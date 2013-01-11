@@ -135,6 +135,24 @@ def latex_figure(m, includegraphics=True):
     filename = m.group('filename')
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
+
+    # Figure on the web?
+    if filename.startswith('http'):
+        this_dir = os.getcwd()
+        figdir = 'downloaded_figures'
+        if not os.path.isdir(figdir):
+            os.mkdir(figdir)
+        os.chdir(figdir)
+        import urllib
+        try:
+            urllib.urlretrieve(filename, filename=basename)
+            print 'downloading', filename, '.......'
+        except IOError:
+            print '*** error: cannot treat latex figure on the net (no connection or invalid URL)'
+            sys.exit(1)
+        filename = os.path.join(figdir, basename)
+        os.chdir(this_dir)
+
     #root, ext = os.path.splitext(filename)
     # doconce.py ensures that images are transformed to .ps or .eps
 

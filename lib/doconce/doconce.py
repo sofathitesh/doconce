@@ -751,7 +751,8 @@ def exercises(filestr, format):
                     exer['file'] = [name.strip() for name in
                                     m_file.group(1).split(',')]
             elif m_file and inside_subex:
-                subex['file'] = m_file.group(1)
+                subex['file'] = [name.strip() for name in
+                                 m_file.group(1).split(',')]
             elif m_solution_file:
                 exer['solution_file'] = [name.strip() for name in
                                          m_solution_file.group(1).split(',')]
@@ -1050,8 +1051,8 @@ def typeset_envirs(filestr, format):
                            'remarks']:
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
-                    return '\n\n__%s.__ %s\n\n' % (envir[0].upper() + envir[1:],
-                                                   m.group(1))
+                    return '\n\n__%s.__\n%s\n\n' % (envir[0].upper() + envir[1:],
+                                                    m.group(1))
             elif envir == 'notes':
                 # Remove all text in notes
                 def subst(m):
@@ -1104,7 +1105,7 @@ def typeset_lists(filestr, format, debug_info=[]):
     # for debugging only:
     _code_block_no = 0; _tex_block_no = 0
 
-    for line in lines:
+    for i, line in enumerate(lines):
         debugpr('\n------------------------\nsource line=[%s]' % line)
         # do a syntax check:
         for tag in INLINE_TAGS_BUGS:
@@ -1114,7 +1115,10 @@ def typeset_lists(filestr, format, debug_info=[]):
                 if m:
                     print '>>> syntax error: "%s"\n    %s' % \
                           (m.group(0), bug[1])
-                    print '    in line\n', line
+                    print '    in line\n[%s]' % line
+                    print '    surrounding text is\n'
+                    for l in lines[i-4:i+5]:
+                        print l
 
         if not line or line.isspace():  # blank line?
             if not lists:
@@ -1274,8 +1278,7 @@ def typeset_lists(filestr, format, debug_info=[]):
         debugpr('text=[%s]' % text)
 
         # hack to make wiki have all text in an item on a single line:
-        newline = '' if lists and (format == 'gwiki' or format == 'mwiki' or format == 'cwiki') \
-                  else '\n'  # hack...
+        newline = '' if lists and format in ('gwiki', 'cwiki') else '\n'
         #newline = '\n'
         result.write(text + newline)
         lastindent = indent
@@ -1848,7 +1851,7 @@ def doconce2format(filestr, format):
     debugpr('%s\n**** The file after inserting @@@CODE (from file):\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # hack to fix a bug with !ec/!et at the end of files, which is not
+    # Hack to fix a bug with !ec/!et at the end of files, which is not
     # correctly substituted by '' in rst, sphinx, st, epytext, plain, wikis
     # (the fix is to add "enough" blank lines - the reason can be
     # an effective strip of filestr, e.g., through '\n'.join(lines))
@@ -1857,6 +1860,10 @@ def doconce2format(filestr, format):
         filestr = filestr.rstrip()
         if filestr.endswith('!ec') or filestr.endswith('!et'):
             filestr += '\n'*10
+
+    # Sphinx hack for transforming align envirs to separate equations
+    if format == "sphinx":
+        filestr = sphinx.align2equations(filestr)
 
     # Next step: remove all verbatim and math blocks
 

@@ -345,33 +345,36 @@ which results in::
 
 
 
-One can use C{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")} to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use C{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (C{#else}) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the C{sphinx}, C{pandoc},
-or C{html} formats
+C{mwiki}, or C{html} formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in C{latex} and the mentioned formats
+LaTeX constructs. For output both in C{latex} or C{pdflatex} I{and}
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   - Use only the equation environments C{\[}, C{\]},
     C{equation}, C{equation*}, C{align}, and C{align*}.
   - Labels in multiple equation environments such as C{align} are
-    not (yet) handled by C{sphinx} and C{pandoc}, so avoid inserting
-    labels and referring  to equation labels in C{align} environments.
-    Actually, C{align*} is the preferred environment for multiple equations.
-  - LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as C{sphinx}, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically C{# #if FORMAT in ("latex", "pdflatex")}) to
-    include special code for C{latex} and C{pdflatex} output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    not (yet) handled by C{pandoc}.
+  - MediaWiki (C{mwiki}) does not support references to equations.
+
+
+
+I{Notice.} LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as C{sphinx}, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically C{if FORMAT in ("latex", "pdflatex")}) to
+include special code for C{latex} and C{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 I{LaTeX Newcommands.} Text missing...
 

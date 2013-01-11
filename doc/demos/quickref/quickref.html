@@ -92,7 +92,7 @@ MathJax.Hub.Config({
 
 
 <p>
-<center><h4>Jan 6, 2013</h4></center> <!-- date -->
+<center><h4>Jan 11, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -510,6 +510,7 @@ $$
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
+
 Here is a single equation:
 
 <p>
@@ -525,17 +526,19 @@ which results in
 <p>
 $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
+
 <p>
-One can use <tt>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</tt> to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use <tt>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</tt>
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (<tt>#else</tt>) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 <p>
 Any LaTeX syntax is accepted, but if output in the <tt>sphinx</tt>, <tt>pandoc</tt>,
-or <tt>html</tt> formats
+<tt>mwiki</tt>, or <tt>html</tt> formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <tt>latex</tt> and the mentioned formats
+LaTeX constructs. For output both in <tt>latex</tt> or <tt>pdflatex</tt> <em>and</em>
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
 <p>
@@ -544,20 +547,34 @@ the following rules are recommended:
   <li> Use only the equation environments <tt>\[</tt>, <tt>\]</tt>,
     <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.</li>
   <li> Labels in multiple equation environments such as <tt>align</tt> are
-    not (yet) handled by <tt>sphinx</tt> and <tt>pandoc</tt>, so avoid inserting
-    labels and referring  to equation labels in <tt>align</tt> environments.
-    Actually, <tt>align*</tt> is the preferred environment for multiple equations.</li>
-  <li> LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically <tt># #if FORMAT in ("latex", "pdflatex")</tt>) to
-    include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.</li>
+    not (yet) handled by <tt>pandoc</tt>.</li>
+  <li> MediaWiki (<tt>mwiki</tt>) does not support references to equations.</li>
 </ul>
+
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Notice</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically <tt>if FORMAT in ("latex", "pdflatex")</tt>) to
+include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.</p>
+</td>
+</tr>
+</table>
+<p>
 
 <b>LaTeX Newcommands.</b> Text missing...
 

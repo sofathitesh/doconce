@@ -1207,12 +1207,18 @@ Here is the result:
 
 The support of LaTeX mathematics varies among the formats:
 
- * Output `latex` and `pdflatex` has of course full support.
+ * Output in LaTeX (`latex` and `pdflatex` formats) has of course full
+   support of all LaTeX mathematics, of course.
  * The `html` format supports single equations and multiple equations
    via the align environment, also with labels.
- * Although `sphinx`, like `html`, employs
-   MathJax, it does not support labels in align environments.
  * Markdown (`pandoc` format) allows single equations and inline mathematics.
+ * MediaWiki (`mwiki` format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (`latex` and `pdflatex` formats), stick to
+simple `\[` and `\]` or `equation` and `align` or `align*` environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the `latex` format and then using the Pandoc program to translate

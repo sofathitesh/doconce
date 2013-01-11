@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 6, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 11, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -694,35 +694,38 @@ and
 <pre class="literal-block">
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 </pre>
-<p>One can use <tt class="docutils literal">#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;)</tt> to let
-the preprocessor choose a block of mathematics in LaTeX format
+<p>One can use <tt class="docutils literal">#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;html&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;)</tt>
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (<tt class="docutils literal">#else</tt>) a modified form more suited for plain text and wiki
 formats without support for mathematics.</p>
 <p>Any LaTeX syntax is accepted, but if output in the <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">pandoc</tt>,
-or <tt class="docutils literal">html</tt> formats
+<tt class="docutils literal">mwiki</tt>, or <tt class="docutils literal">html</tt> formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <tt class="docutils literal">latex</tt> and the mentioned formats
+LaTeX constructs. For output both in <tt class="docutils literal">latex</tt> or <tt class="docutils literal">pdflatex</tt> <em>and</em>
+the mentioned formats with LaTeX support,
 the following rules are recommended:</p>
 <blockquote>
 <ul class="simple">
 <li>Use only the equation environments <tt class="docutils literal">\[</tt>, <tt class="docutils literal">\]</tt>,
 <tt class="docutils literal">equation</tt>, <tt class="docutils literal">equation*</tt>, <tt class="docutils literal">align</tt>, and <tt class="docutils literal">align*</tt>.</li>
 <li>Labels in multiple equation environments such as <tt class="docutils literal">align</tt> are
-not (yet) handled by <tt class="docutils literal">sphinx</tt> and <tt class="docutils literal">pandoc</tt>, so avoid inserting
-labels and referring  to equation labels in <tt class="docutils literal">align</tt> environments.
-Actually, <tt class="docutils literal">align*</tt> is the preferred environment for multiple equations.</li>
-<li>LaTeX supports lots of fancy formatting, for example, multiple
+not (yet) handled by <tt class="docutils literal">pandoc</tt>.</li>
+<li>MediaWiki (<tt class="docutils literal">mwiki</tt>) does not support references to equations.</li>
+</ul>
+</blockquote>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <tt class="docutils literal">sphinx</tt>, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
 one plot per figure. However, one can use preprocessor if-tests on
-the format (typically <tt class="docutils literal"># #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</tt>) to
+the format (typically <tt class="docutils literal">if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</tt>) to
 include special code for <tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
-PDF document.</li>
-</ul>
-</blockquote>
+PDF document.</p>
+</div>
 <p><em>LaTeX Newcommands.</em> Text missing...</p>
 </div>
 <div class="section" id="figures-and-movies">

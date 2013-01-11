@@ -227,11 +227,33 @@ both inline and in block:
 
 !bt
 \begin{align*}
-\Ddt{u} &= 0\\
+\Ddt{u} &= 0
+\\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
 !et
+
+Or with align with label and numbers:
+
+!bt
+\begin{align}
+\Ddt{u} &= 0
+label{aligneq1}\\
+\half &= \halfi\\
+\half\x &= \normalvec
+label{aligneq1}
+\end{align}
+!et
+
+% if FORMAT == "sphinx":
+Sphinx makes a fix here and splits align into multiple equation
+environments.
+% endif
+% if FORMAT == "mwiki":
+The labels above are removed in mwiki since mwiki cannot refer to
+labels in equations.
+% endif
 
 ===== Custom Environments =====
 

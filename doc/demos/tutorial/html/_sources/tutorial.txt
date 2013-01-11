@@ -9,7 +9,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Jan 6, 2013
+:Date: Jan 11, 2013
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -248,8 +248,15 @@ The result looks like this:
 .. math::
    :label: myeq1
         
-        {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial u\over\partial t} = \nabla^2 u + f, 
+        
+
+
+
+.. math::
+        
+        
+        {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g
         
 
 Of course, such blocks only looks nice in formats with support
@@ -468,11 +475,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 
 
 .. warning::
-    In the comments one cannot paste raw HTML code with MathJax
+    In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -509,15 +516,19 @@ Here is an example on the latter strategy:
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through ``pandoc``, only single equations or ``align*``
 environments are well understood.
 
-Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the ``Verb`` macro from the ``fancyvrb`` package
+while ``pandoc`` only supports the standard ``verb`` construction for
+inline verbatim text.  Moreover, quite some additional ``doconce
+replace`` and ``doconce subst`` edits might be needed on the ``.mkd`` or
+``.tex`` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -968,7 +979,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
+MediaWiki, and
+Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -978,6 +991,13 @@ Transformation from Doconce to these formats is done by
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the `sandbox of
+wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
+works well with Wikipedia, Wikibooks, and
+`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+but not always well elsewhere
+(see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.

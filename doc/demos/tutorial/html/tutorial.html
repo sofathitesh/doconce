@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 6, 2013</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 11, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -267,8 +267,9 @@ if there are backslahes or other special LaTeX symbols in the LaTeX code.</p>
 </div>
 <p>The result looks like this:</p>
 <div class="math" id="equation-myeq1">
-<span class="eqno">(1)</span>\[\begin{split}     {\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
-     {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
+<span class="eqno">(1)</span>\[     {\partial u\over\partial t} = \nabla^2 u + f,\]</div>
+<div class="math">
+\[{\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g\]</div>
 <p>Of course, such blocks only looks nice in formats with support
 for LaTeX mathematics, and here the align environment in particular
 (this includes <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">pdflatex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt>). The raw
@@ -434,10 +435,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google&#8217;s Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this <a class="reference external" href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.</p>
+See a <a class="reference external" href="http://doconce.blogspot.no">blog example</a> for details on blogging.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">In the comments one cannot paste raw HTML code with MathJax
+<p class="last">In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </div>
 </div>
@@ -466,15 +467,19 @@ using <tt class="docutils literal"><span class="pre">pandoc</span></tt>.
 Here is an example on the latter strategy:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
 <span class="go">Terminal&gt; doconce ptex2tex mydoc</span>
+<span class="go">Terminal&gt; doconce replace &#39;\Verb!&#39; &#39;\verb!&#39; mydoc.tex</span>
 <span class="go">Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex</span>
 </pre></div>
 </div>
 <p>When we go through <tt class="docutils literal"><span class="pre">pandoc</span></tt>, only single equations or <tt class="docutils literal"><span class="pre">align*</span></tt>
 environments are well understood.</p>
-<p>Quite some <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> edits might be needed
-on the <tt class="docutils literal"><span class="pre">.mkd</span></tt> or <tt class="docutils literal"><span class="pre">.tex</span></tt> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.</p>
+<p>Note that Doconce applies the <tt class="docutils literal"><span class="pre">Verb</span></tt> macro from the <tt class="docutils literal"><span class="pre">fancyvrb</span></tt> package
+while <tt class="docutils literal"><span class="pre">pandoc</span></tt> only supports the standard <tt class="docutils literal"><span class="pre">verb</span></tt> construction for
+inline verbatim text.  Moreover, quite some additional <tt class="docutils literal"><span class="pre">doconce</span>
+<span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> edits might be needed on the <tt class="docutils literal"><span class="pre">.mkd</span></tt> or
+<tt class="docutils literal"><span class="pre">.tex</span></tt> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.</p>
 <p>Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
 HTML with mathematics displayed my MathJax:</p>
@@ -827,7 +832,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats<a class="headerlink" href="#wiki-formats" title="Permalink to this headline">¶</a></h2>
 <p>There are many different wiki formats, but Doconce only supports three:
-<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
+<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
+MediaWiki, and
+Creole Wiki. These formats are called
 <tt class="docutils literal"><span class="pre">gwiki</span></tt>, <tt class="docutils literal"><span class="pre">mwiki</span></tt>, and <tt class="docutils literal"><span class="pre">cwiki</span></tt>, respectively.
 Transformation from Doconce to these formats is done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format gwiki mydoc.do.txt</span>
@@ -835,6 +842,12 @@ Transformation from Doconce to these formats is done by</p>
 <span class="go">Terminal&gt; doconce format cwiki mydoc.do.txt</span>
 </pre></div>
 </div>
+<p>The produced MediaWiki can be tested in the <a class="reference external" href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
+wikibooks.org</a>. The format
+works well with Wikipedia, Wikibooks, and
+<a class="reference external" href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+but not always well elsewhere
+(see <a class="reference external" href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).</p>
 <p>The Googlecode wiki document, <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the

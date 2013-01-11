@@ -42,7 +42,6 @@ def indent_lines(text, format, indentation=' '*8):
     text = '\n'.join([indentation + line for line in text.splitlines()])
     return text
 
-
 def table_analysis(table):
     """Return max width of each column."""
     column_list = []
@@ -214,9 +213,9 @@ def remove_code_and_tex(filestr):
     filestr = code.sub('%s \g<1>\n' % _CODE_BLOCK, filestr)
     filestr = tex.sub('%s\n' % _MATH_BLOCK, filestr)
 
-    # could leave @@@CODE blocks to ptex2tex, but then these lines must be
+    # (Could leave @@@CODE blocks to ptex2tex, but then these lines must be
     # removed since they may contain underscores and asterix and hence
-    # be destroyed by substutitions of inline tags
+    # be destroyed by substutitions of inline tags.)
 
     return filestr, code_blocks, code_block_types, tex_blocks
 
@@ -330,7 +329,11 @@ def doconce_exercise_output(exer,
                     s += '\n' + begin_hint_ + hint + end_hint + '\n'
 
                 if subex['file']:
-                    s += '*Filename*: `%s`' % subex['file'] + '.\n'
+                    if len(subex['file']) == 1:
+                        s += 'Filename: `%s`' % subex['file'][0] + '.\n'
+                    else:
+                        s += 'Filenames: %s' % \
+                             ', '.join(['`%s`' % f for f in subex['file']]) + '.\n'
 
                 if subex['answer']:
                     s += '\n' + begin_answer + subex['answer'] + end_answer + '\n'

@@ -77,7 +77,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jan 6, 2013
+Jan 11, 2013
 %
 \begin{itemize}
 
@@ -655,12 +655,12 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this \href{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}{example} for details on blogging.
+See a \href{http://doconce.blogspot.no}{blog example} for details on blogging.
 
 \DUadmonition[warning]{
 \DUtitle[warning]{Warning}
 
-In the comments one cannot paste raw HTML code with MathJax
+In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 }
 
@@ -705,6 +705,7 @@ Here is an example on the latter strategy:
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~format~latex~mydoc\\
 Terminal>~doconce~ptex2tex~mydoc\\
+Terminal>~doconce~replace~'\textbackslash{}Verb!'~'\textbackslash{}verb!'~mydoc.tex\\
 Terminal>~pandoc~-f~latex~-t~docx~-o~mydoc.docx~mydoc.tex
 }
 \end{quote}
@@ -712,10 +713,13 @@ Terminal>~pandoc~-f~latex~-t~docx~-o~mydoc.docx~mydoc.tex
 When we go through \texttt{pandoc}, only single equations or \texttt{align*}
 environments are well understood.
 
-Quite some \texttt{doconce replace} and \texttt{doconce subst} edits might be needed
-on the \texttt{.mkd} or \texttt{.tex} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the \texttt{Verb} macro from the \texttt{fancyvrb} package
+while \texttt{pandoc} only supports the standard \texttt{verb} construction for
+inline verbatim text.  Moreover, quite some additional \texttt{doconce
+replace} and \texttt{doconce subst} edits might be needed on the \texttt{.mkd} or
+\texttt{.tex} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -1228,7 +1232,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 }
 
 There are many different wiki formats, but Doconce only supports three:
-\href{http://code.google.com/p/support/wiki/WikiSyntax}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
+\href{http://code.google.com/p/support/wiki/WikiSyntax}{Googlecode wiki},
+MediaWiki, and
+Creole Wiki. These formats are called
 \texttt{gwiki}, \texttt{mwiki}, and \texttt{cwiki}, respectively.
 Transformation from Doconce to these formats is done by:
 %
@@ -1238,6 +1244,13 @@ Terminal>~doconce~format~mwiki~mydoc.do.txt\\
 Terminal>~doconce~format~cwiki~mydoc.do.txt
 }
 \end{quote}
+
+The produced MediaWiki can be tested in the \href{http://en.wikibooks.org/wiki/Sandbox}{sandbox of
+wikibooks.org}. The format
+works well with Wikipedia, Wikibooks, and
+\href{http://doconce.shoutwiki.com/wiki/Doconce_demo}{ShoutWiki},
+but not always well elsewhere
+(see \href{http://doconcedemo.jumpwiki.com/wiki/First_demo}{this example}).
 
 The Googlecode wiki document, \texttt{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.

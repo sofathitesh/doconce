@@ -197,6 +197,17 @@ Movie ref{mymov} has a similar problem.
 
 # Must be a blank line after MOVIE or FIGURE to detect this problem
 
+# Test URL as figure name
+
+FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+
+# Test wikimedia type of files that otherwise reside in subdirs
+# #if FORMAT == "mwiki"
+FIGURE: [testfigs/df_plot.png, width=800] This is a wikimedia figure file.
+
+# Non-uploaded file with no caption
+FIGURE: [testfigs/df2s8765s_plot.png, width=200, frac=0.4]
+# #endif
 
 # Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
@@ -218,11 +229,33 @@ both inline and in block:
 
 !bt
 \begin{align*}
-\Ddt{u} &= 0\\
+\Ddt{u} &= 0
+\\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
 !et
+
+Or with align with label and numbers:
+
+!bt
+\begin{align}
+\Ddt{u} &= 0
+label{aligneq1}\\
+\half &= \halfi\\
+\half\x &= \normalvec
+label{aligneq1}
+\end{align}
+!et
+
+% if FORMAT == "sphinx":
+Sphinx makes a fix here and splits align into multiple equation
+environments.
+% endif
+% if FORMAT == "mwiki":
+The labels above are removed in mwiki since mwiki cannot refer to
+labels in equations.
+% endif
 
 ===== Custom Environments =====
 
@@ -1546,6 +1579,15 @@ Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
+% Test URL as figure name
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+\end{center}
+
+
+% Test wikimedia type of files that otherwise reside in subdirs
 
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
@@ -1568,10 +1610,21 @@ $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 \begin{align*}
-\Ddt{u} &= 0\\ 
+\Ddt{u} &= 0
+\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align*}
+
+Or with align with label and numbers:
+
+\begin{align}
+\Ddt{u} &= 0
+\label{aligneq1}\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\label{aligneq1}
+\end{align}
 
 \subsection{Custom Environments}
 
@@ -1962,7 +2015,7 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: \code{norm.py  }.
+Filename: \code{norm.py}.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
@@ -2009,7 +2062,7 @@ First hint to subexercise a).
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
-\emph{Filename}: \code{subexer_a.pdf}.
+Filename: \code{subexer_a.pdf}.
 
 % --- begin short answer in exercise
 
@@ -2022,7 +2075,7 @@ Here goes the text for subexercise b).
 
 \paragraph{Hint.}
 A hint for this subexercise.
-\emph{Filename}: \code{subexer_b.pdf}.
+Filename: \code{subexer_b.pdf}.
 
 % --- begin solution of exercise
 
@@ -2662,6 +2715,15 @@ Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
+% Test URL as figure name
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+\end{center}
+
+
+% Test wikimedia type of files that otherwise reside in subdirs
 
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
@@ -2686,10 +2748,21 @@ $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 \begin{align*}
-\Ddt{u} &= 0\\ 
+\Ddt{u} &= 0
+\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align*}
+
+Or with align with label and numbers:
+
+\begin{align}
+\Ddt{u} &= 0
+\label{aligneq1}\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\label{aligneq1}
+\end{align}
 
 \subsection{Custom Environments}
 
@@ -3074,7 +3147,7 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: {\fontsize{10pt}{10pt}\Verb!norm.py  !}.
+Filename: {\fontsize{10pt}{10pt}\Verb!norm.py!}.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
@@ -3121,7 +3194,7 @@ First hint to subexercise a).
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
-\emph{Filename}: {\fontsize{10pt}{10pt}\Verb!subexer_a.pdf!}.
+Filename: {\fontsize{10pt}{10pt}\Verb!subexer_a.pdf!}.
 
 % --- begin short answer in exercise
 
@@ -3134,7 +3207,7 @@ Here goes the text for subexercise b).
 
 \paragraph{Hint.}
 A hint for this subexercise.
-\emph{Filename}: {\fontsize{10pt}{10pt}\Verb!subexer_b.pdf!}.
+Filename: {\fontsize{10pt}{10pt}\Verb!subexer_b.pdf!}.
 
 % --- begin solution of exercise
 
@@ -3745,6 +3818,15 @@ Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
+% Test URL as figure name
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+\end{center}
+
+
+% Test wikimedia type of files that otherwise reside in subdirs
 
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
@@ -3767,10 +3849,21 @@ $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 \begin{align*}
-\Ddt{u} &= 0\\ 
+\Ddt{u} &= 0
+\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align*}
+
+Or with align with label and numbers:
+
+\begin{align}
+\Ddt{u} &= 0
+\label{aligneq1}\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\label{aligneq1}
+\end{align}
 
 \subsection{Custom Environments}
 
@@ -4151,7 +4244,7 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: \Verb!norm.py  !.
+Filename: \Verb!norm.py!.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
@@ -4198,7 +4291,7 @@ First hint to subexercise a).
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
-\emph{Filename}: \Verb!subexer_a.pdf!.
+Filename: \Verb!subexer_a.pdf!.
 
 % --- begin short answer in exercise
 
@@ -4211,7 +4304,7 @@ Here goes the text for subexercise b).
 
 \paragraph{Hint.}
 A hint for this subexercise.
-\emph{Filename}: \Verb!subexer_b.pdf!.
+Filename: \Verb!subexer_b.pdf!.
 
 % --- begin solution of exercise
 
@@ -4672,6 +4765,17 @@ Movie `mymov`_ has a similar problem.
 .. Must be a blank line after MOVIE or FIGURE to detect this problem
 
 
+.. Test URL as figure name
+
+
+
+.. figure:: https://doconce.googlecode.com/hg/doc/blog/f_plot.png
+   :width: 500
+
+
+
+.. Test wikimedia type of files that otherwise reside in subdirs
+
 
 .. Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
@@ -4696,10 +4800,23 @@ Newcommands must also be tested in this test report:
 both inline and in block::
 
         \begin{align*}
-        \frac{Du}{dt} &= 0\\ 
+        \frac{Du}{dt} &= 0
+        \\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
+
+
+Or with align with label and numbers::
+
+        \begin{align}
+        \frac{Du}{dt} &= 0
+        label{aligneq1}\\ 
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
+        label{aligneq1}
+        \end{align}
+
 
 
 Custom Environments
@@ -5039,7 +5156,7 @@ x_0, y_0, and R quantities.
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
-*Filename*: ``norm.py  ``.
+Filename: ``norm.py``.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
@@ -5085,7 +5202,7 @@ Intro to this exercise. Questions are in subexercises below.
 *Hint 1.* First hint to subexercise a).
 
 *Hint 2.* Second hint to subexercise a).
-*Filename*: ``subexer_a.pdf``.
+Filename: ``subexer_a.pdf``.
 
 .. --- begin short answer in exercise
 
@@ -5097,7 +5214,7 @@ Intro to this exercise. Questions are in subexercises below.
 *b)* Here goes the text for subexercise b).
 
 *Hint.* A hint for this subexercise.
-*Filename*: ``subexer_b.pdf``.
+Filename: ``subexer_b.pdf``.
 
 .. --- begin solution of exercise
 
@@ -5539,6 +5656,17 @@ Movie :ref:`mymov` has a similar problem.
 .. Must be a blank line after MOVIE or FIGURE to detect this problem
 
 
+.. Test URL as figure name
+
+
+
+.. figure:: https://doconce.googlecode.com/hg/doc/blog/f_plot.png
+   :width: 500
+
+
+
+.. Test wikimedia type of files that otherwise reside in subdirs
+
 
 .. Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
@@ -5567,11 +5695,44 @@ both inline and in block:
 
 .. math::
         
-        \frac{Du}{dt} &= 0\\ 
+        \frac{Du}{dt} &= 0
+        \\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
         
 
+
+Or with align with label and numbers:
+
+
+.. math::
+   :label: aligneq1
+        
+        \frac{Du}{dt} = 0
+        
+        
+
+
+
+.. math::
+        
+         
+        \frac{1}{2} = {1/2}
+        
+
+
+
+.. math::
+   :label: aligneq1
+        
+         
+        \frac{1}{2}\pmb{x} = \pmb{n}
+        
+        
+
+
+Sphinx makes a fix here and splits align into multiple equation
+environments.
 
 Custom Environments
 -------------------
@@ -5770,9 +5931,18 @@ Here is a system without equation numbers, using the align-astrisk environment:
 And here is a system of equations with labels in an align environment:
 
 .. math::
+   :label: eq1
         
-        a &= q + 4 + 5+ 6  \\ 
-        b &= \nabla^2 u + \nabla^4 x 
+        a = q + 4 + 5+ 6  
+        
+
+
+
+.. math::
+   :label: eq2
+        
+         
+        b = \nabla^2 u + \nabla^4 x 
         
 
 We can refer to :eq:`eq1`-:eq:`eq2`.
@@ -5944,8 +6114,15 @@ The formula for a circle is given by
 
 .. math::
         
-        x &= x_0 + R\cos 2\pi t,\\ 
-        y &= y_0 + R\sin 2\pi t,
+        x = x_0 + R\cos 2\pi t,
+        
+
+
+
+.. math::
+        
+         
+        y = y_0 + R\sin 2\pi t,
         
 
 where :math:`R` is the radius of the circle, :math:`(x_0,y_0)` is the
@@ -5998,7 +6175,7 @@ above.
 
 
 *b)* Let :math:`R` be uniformly distributed and :math:`(x_0,y_0)` normally distributed.
-*Filename*: ``norm.py  ``.
+Filename: ``norm.py``.
 
 *c)* Let :math:`R` and :math:`(x_0,y_0)` be normally distributed.
 
@@ -6044,7 +6221,7 @@ Intro to this exercise. Questions are in subexercises below.
 *Hint 1.* First hint to subexercise a).
 
 *Hint 2.* Second hint to subexercise a).
-*Filename*: ``subexer_a.pdf``.
+Filename: ``subexer_a.pdf``.
 
 .. --- begin short answer in exercise
 
@@ -6056,7 +6233,7 @@ Intro to this exercise. Questions are in subexercises below.
 *b)* Here goes the text for subexercise b).
 
 *Hint.* A hint for this subexercise.
-*Filename*: ``subexer_b.pdf``.
+Filename: ``subexer_b.pdf``.
 
 .. --- begin solution of exercise
 
@@ -6444,6 +6621,59 @@ Movie mymov has a similar problem.
 
 <wiki:comment> Must be a blank line after MOVIE or FIGURE to detect this problem </wiki:comment>
 
+<wiki:comment> Test URL as figure name </wiki:comment>
+
+
+
+---------------------------------------------------------------
+
+Figure: 
+
+(the URL of the image file https://doconce.googlecode.com/hg/doc/blog/f_plot.png must be inserted here)
+
+<wiki:comment>
+Put the figure file https://doconce.googlecode.com/hg/doc/blog/f_plot.png on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
+</wiki:comment>
+---------------------------------------------------------------
+
+
+
+<wiki:comment> Test wikimedia type of files that otherwise reside in subdirs </wiki:comment>
+<wiki:comment> #if FORMAT == "mwiki" </wiki:comment>
+
+
+---------------------------------------------------------------
+
+Figure:  This is a wikimedia figure file.
+
+(the URL of the image file testfigs/df_plot.png must be inserted here)
+
+<wiki:comment>
+Put the figure file testfigs/df_plot.png on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
+</wiki:comment>
+---------------------------------------------------------------
+
+
+
+<wiki:comment> Non-uploaded file with no caption </wiki:comment>
+
+
+---------------------------------------------------------------
+
+Figure: 
+
+(the URL of the image file testfigs/df2s8765s_plot.png must be inserted here)
+
+<wiki:comment>
+Put the figure file testfigs/df2s8765s_plot.png on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
+</wiki:comment>
+---------------------------------------------------------------
+
+
+<wiki:comment> #endif </wiki:comment>
 
 <wiki:comment> Somewhat challenging heading with latex math, \t, \n, ? and parenthesis </wiki:comment>
 
@@ -6464,10 +6694,23 @@ both inline and in block:
 
 {{{
 \begin{align*}
-\frac{Du}{dt} &= 0\\ 
+\frac{Du}{dt} &= 0
+\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
+}}}
+
+Or with align with label and numbers:
+
+{{{
+\begin{align}
+\frac{Du}{dt} &= 0
+label{aligneq1}\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+label{aligneq1}
+\end{align}
 }}}
 
 ==== Custom Environments ====
@@ -6749,7 +6992,7 @@ above.
 <wiki:comment> --- end solution of exercise </wiki:comment>
 
 *b)* Let `R` be uniformly distributed and `(x_0,y_0)` normally distributed.
-*Filename*: `norm.py  `.
+Filename: `norm.py`.
 
 *c)* Let `R` and `(x_0,y_0)` be normally distributed.
 
@@ -6786,7 +7029,7 @@ Intro to this exercise. Questions are in subexercises below.
 *Hint 1.* First hint to subexercise a).
 
 *Hint 2.* Second hint to subexercise a).
-*Filename*: `subexer_a.pdf`.
+Filename: `subexer_a.pdf`.
 
 <wiki:comment> --- begin short answer in exercise </wiki:comment>
 
@@ -6796,7 +7039,7 @@ Intro to this exercise. Questions are in subexercises below.
 *b)* Here goes the text for subexercise b).
 
 *Hint.* A hint for this subexercise.
-*Filename*: `subexer_b.pdf`.
+Filename: `subexer_b.pdf`.
 
 <wiki:comment> --- begin solution of exercise </wiki:comment>
 
@@ -6907,7 +7150,7 @@ __TOC__
 
 
 
-<!--> !split -->
+<!-- !split -->
 
 The format of this document is
 mwiki
@@ -6919,8 +7162,8 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
-<!--> Cannot demonstrate chapter headings since abstract and chapter -->
-<!--> is mutually exclusive in LaTeX -->
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- is mutually exclusive in LaTeX -->
 
 
 
@@ -6930,26 +7173,37 @@ Here is a nested list:
 
 
 <ul>
-  <li> item1  <li> item2  <li> item3 which continues    on the next line to test that feature  <li> and a sublist
+  <li> item1
+  <li> item2
+  <li> item3 which continues
+    on the next line to test that feature
+  <li> and a sublist
+
 <ul>
-    <li><li> with indented subitem1    <li><li> and a subitem2</ul>
+    <li><li> with indented subitem1
+    <li><li> and a subitem2
+</ul>
 
   <li> and perhaps an ordered sublist
+
 <ol>
-   <li><li> first item   <li><li> second item,      continuing on a new line</ol>
+   <li><li> first item
+   <li><li> second item,
+      continuing on a new line
+</ol>
 
 </ul>
 
     Here are two lines that make up
     a block quote.
 
-<!--> !split and check if these extra words are included properly in the comment -->
+<!-- !split and check if these extra words are included properly in the comment -->
 
 ==== Subsection 1 ====
 
 More text, with a reference back to the section [#Section_1] and further
 to the section [#URLs]. 
-<!--> sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
+<!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 
 Let's do some copying from files too. First from subroutine up to the very end,
 
@@ -6967,7 +7221,7 @@ C     END1
       program testme
       call test()
       return
-</code>
+</syntaxhighlight>
 and then just the subroutine,
 <syntaxhighlight lang="fortran">
       subroutine test()
@@ -6978,7 +7232,7 @@ and then just the subroutine,
          r = r + i
       end do
       return
-</code>
+</syntaxhighlight>
 and finally the complete file:
 <syntaxhighlight lang="fortran">
 C     a comment
@@ -6996,28 +7250,28 @@ C     END1
       program testme
       call test()
       return
-</code>
+</syntaxhighlight>
 
 Testing other code environments. First Python:
-<code>
+<syntaxhighlight lang="text">
 !bc pycod
 def f(x):
     return x+1
 !ec
-</code>
+</syntaxhighlight>
 which gets rendered as
 
 <syntaxhighlight lang="python">
 def f(x):
     return x+1
-</code>
+</syntaxhighlight>
 Then Cython:
 <syntaxhighlight lang="python">
 cpdef f(double x):
     return x + 1
-</code>
+</syntaxhighlight>
 
-<!--> This one tests a + sign before a code environment -->
+<!-- This one tests a + sign before a code environment -->
 C++:
 <syntaxhighlight lang="cpp">
 #include <iostream>
@@ -7027,11 +7281,11 @@ int main()
    std::cout << "Sample output" << std::endl;
    return 0
 }
-</code>
-<!--> The next should get correctly typset in sphinx (cod is fcod) -->
+</syntaxhighlight>
+<!-- The next should get correctly typset in sphinx (cod is fcod) -->
 And a little bit of Fortran:
 
-<code>
+<syntaxhighlight lang="text">
 !bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -7040,7 +7294,7 @@ And a little bit of Fortran:
       return
       end
 !ec
-</code>
+</syntaxhighlight>
 which then is typeset as
 
 <syntaxhighlight lang="python">
@@ -7050,7 +7304,7 @@ which then is typeset as
       length = b - a
       return
       end
-</code>
+</syntaxhighlight>
 
 
 System call:
@@ -7060,7 +7314,7 @@ Terminal> cd test
 Terminal> myprog -f
 output1
 output2
-</code>
+</syntaxhighlight>
 
 It is time to test <code>verbatim inline font</code> especially with <code>a newline
 inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The
@@ -7074,60 +7328,76 @@ Test of figures. In particular we refer to Figure fig:impact in which
 there is a flow.
 
 
-[[File:../doc/manual/figs/streamtubes.png|frame|alt=../doc/manual/figs/streamtubes.png| Visualization of flow by streamtubes. (fig:impact)]]
+[[File:Streamtubes.png|frame|200px|alt=Streamtubes.png|Visualization of flow by streamtubes. (fig:impact)]] <!-- not yet uploaded to common.wikimedia.org -->
 
 
 Figures without captions are allowed.
 
 
-[[File:../doc/manual/figs/streamtubes.png|frame|alt=../doc/manual/figs/streamtubes.png|]]
+[[File:Streamtubes.png|frame|200px|alt=Streamtubes.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
 
 
 Test of movies.
 
  Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
 
-<!--> Test empty caption: -->
+<!-- Test empty caption: -->
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play wavepacket.html)
 
-<!--> Test wrong syntax and multi-line caption -->
+<!-- Test wrong syntax and multi-line caption -->
 
 
  Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).   (Movie of files <code>../doc/manual/figs/wavepacket_*.png</code> in wavepacket_0001.html)
 
 
-<!--> Check out the correct with and height of YouTube movies from the -->
-<!--> embed command that the YouTube page can generate -->
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate -->
 
  Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=_O7iUiftbKU
 
-<!--> Test multi-line caption in figure -->
+<!-- Test multi-line caption in figure -->
 
 Here is figure myfig with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 
-[[File:../doc/manual/figs/wavepacket_0001.png|frame|alt=../doc/manual/figs/wavepacket_0001.png| A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in <math>t_{i+1}</math>. (myfig) ]]
+[[File:Wavepacket 0001.png|frame|500px|alt=Wavepacket 0001.png|A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in <math>t_{i+1}</math>. (myfig)]] <!-- not yet uploaded to common.wikimedia.org -->
 
 
 Movie mymov has a similar problem.
 
-<!--> Must be a blank line after MOVIE or FIGURE to detect this problem -->
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
+<!-- Test URL as figure name -->
 
 
-<!--> Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+[[File:f_plot.png|frame|500,px|link=https://doconce.googlecode.com/hg/doc/blog|alt=f_plot.png|<span title=""></span>]]
+
+
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
+
+[[File:Df plot.png|frame|800px|alt=Df plot.png|This is a wikimedia figure file.]] <!-- user: Hplwp, filename: df_plot.png, timestamp: 2013-01-10T11:37:05Z -->
+
+
+<!-- Non-uploaded file with no caption -->
+
+[[File:Df2s8765s plot.png|frame|200,px|alt=Df2s8765s plot.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
+
+
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
 ==== The <math>\theta</math> parameter (not <math>\nabla</math>?) ====
 
 Functions do not always need to be advanced, here is one
 involving <math>\theta</math>:
-<code>
+<syntaxhighlight lang="text">
 def f(theta):
     return theta**2
-</code>
+</syntaxhighlight>
 
-''More on <math>\theta</math>.'' Here is more text following headline with math.
+''More on <math>\theta</math>.''
+Here is more text following headline with math.
 
 Newcommands must also be tested in this test report:
 <math>\frac{1}{2}</math>, <math>{1/2}</math>, <math>\pmb{x}</math>, <math>\frac{Du}{dt}</math>,
@@ -7135,11 +7405,26 @@ both inline and in block:
 
 :<math>
 \begin{align*}
-\frac{Du}{dt} &= 0\\ 
+\frac{Du}{dt} &= 0
+\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
 </math>
+
+Or with align with label and numbers:
+
+:<math>
+\begin{align}
+\frac{Du}{dt} &= 0
+\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align}
+</math>
+
+The labels above are removed in mwiki since mwiki cannot refer to
+labels in equations.
 
 ==== Custom Environments ====
 
@@ -7150,24 +7435,26 @@ Should look nice in most formats!
 
 
 
-<!--> begin theorem -->
+<!-- begin theorem -->
 
 
 
-''Theorem 5.'' Let <math>a=1</math> and <math>b=2</math>. Then <math>c=3</math>.
-<!--> end theorem -->
+''Theorem 5.''
+Let <math>a=1</math> and <math>b=2</math>. Then <math>c=3</math>.
+<!-- end theorem -->
 
-<!--> begin proof -->
-''Proof.'' Since <math>c=a+b</math>, the result follows from straightforward addition.
+<!-- begin proof -->
+''Proof.''
+Since <math>c=a+b</math>, the result follows from straightforward addition.
 <math>\Diamond</math>
-<!--> end proof -->
+<!-- end proof -->
 
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
 ==== Tables ====
 
-<!--> index with comma could fool sphinx -->
+<!-- index with comma could fool sphinx -->
 
 Let us take this table from the manual:
 
@@ -7180,7 +7467,7 @@ Let us take this table from the manual:
 </table>
 
 The Doconce source code reads
-<code>
+<syntaxhighlight lang="text">
   |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -7188,7 +7475,7 @@ The Doconce source code reads
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
-</code>
+</syntaxhighlight>
 
 Here is yet another table to test that we can handle more than
 one table:
@@ -7226,7 +7513,8 @@ and <code>|</code> right after verbatim word (with no space):
 
 ==== A test of verbatim words in heading with subscript <math>a_i</math>: <code>my_file_v1</code> and <code>my_file_v2</code> ====
 
-''Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math <math>a_{i-1}</math>.'' Here
+''Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math <math>a_{i-1}</math>.''
+Here
 is
 some text.
 
@@ -7248,12 +7536,12 @@ Here are some tough tests of URLs, especially for the <code>latex</code> format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
 and a [http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1 good book].
 
-<!--> Comments should be inserted outside paragraphs (because in the rst -->
-<!--> format extra blanks make a paragraph break). -->
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
 
-<!--> Note that when there is no http: or file:, it can be a file link -->
-<!--> if the link name is URL, url, "URL", or "url". Such files should, -->
-<!--> if rst output is desired, but placed in a <code>_static*</code> folder. -->
+<!-- Note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
 
 More tough tests: repeated URLs whose footnotes when using the
 <code>--latex-printed</code> option must be correct. We have
@@ -7265,14 +7553,11 @@ footnotes.
 
 Here is an equation without label using backslash-bracket environment:
 :<math>
-\[ a = b + c \]
+ a = b + c 
 </math>
 or with number and label, as in Equation (my:eq1), using the equation environment:
 :<math>
-\begin{equation}
-{\partial u\over\partial t} = \nabla^2 u label{my:eq1}
-\end{equation}
-</math>
+{\partial u\over\partial t} = \nabla^2 u </math>
 We can refer to this equation by Equation (my:eq1).
 
 Here is a system without equation numbers, using the align-astrisk environment:
@@ -7295,35 +7580,39 @@ between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
 
 == Exercises ==
 
-<!--> --- begin exercise -->
+<!-- --- begin exercise -->
 
 ==== Problem 1: Flip a Coin ====
 
-<!--> keywords = random numbers; Monte Carlo simulation -->
+<!-- keywords = random numbers; Monte Carlo simulation -->
 
-<!--> Torture tests -->
+<!-- Torture tests -->
 
 Make a program that simulates flipping a coin <math>N</math> times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-<!--> Test syntax error -->
+<!-- Test syntax error -->
 
-''Hint 1.'' Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
+''Hint 1.''
+Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 
-''Hint 2.'' Draw an integer among <math>\{1,2\}</math> with
+''Hint 2.''
+Draw an integer among <math>\{1,2\}</math> with
 <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
 
-<!--> --- begin short answer in exercise -->
+<!-- --- begin short answer in exercise -->
 
-''Answer.'' If the <code>random.random()</code> function returns a number <math><1/2</math>, let it be
+''Answer.''
+If the <code>random.random()</code> function returns a number <math><1/2</math>, let it be
 head, otherwise tail. Repeat this <math>N</math> number of times.
-<!--> --- end short answer in exercise -->
+<!-- --- end short answer in exercise -->
 
-<!--> --- begin solution of exercise -->
+<!-- --- begin solution of exercise -->
 
-''Solution.'' Code:
+''Solution.''
+Code:
 <syntaxhighlight lang="python">
 import sys, random
 N = int(sys.argv[1])
@@ -7333,38 +7622,39 @@ for i in range(N):
     if r <= 0.5:
         heads += 1
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
-</code>
+</syntaxhighlight>
 
-<!--> --- end solution of exercise -->
+<!-- --- end solution of exercise -->
 Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
-<!--> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
-<!--> --- end of exercise -->
-
-
+<!-- --- end of exercise -->
 
 
-<!--> --- begin exercise -->
+
+
+<!-- --- begin exercise -->
 
 ==== Project 2: Compute a Probability ====
 
-<!--> Minimalistic exercise -->
+<!-- Minimalistic exercise -->
 
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval <math>[0,1)</math>?
 
-''Hint.'' To answer this question empirically, let a program
+''Hint.''
+To answer this question empirically, let a program
 draw <math>N</math> such random numbers using Python's standard <code>random</code> module,
 count how many of them, <math>M</math>, that fall in the interval <math>(0.5,0.6)</math>, and
 compute the probability as <math>M/N</math>.
 
-<!--> --- end of exercise -->
+<!-- --- end of exercise -->
 
 
 
 
-<!--> --- begin exercise -->
+<!-- --- begin exercise -->
 
 ==== Project 3: Explore Distributions of Random Circles ====
 
@@ -7391,40 +7681,46 @@ def circle(R, x0, y0, n=501):
     return x, y
 
 x, y = circle(2.0, 0, 0)
-</code>
+</syntaxhighlight>
 
-<!--> Often in an exercise we have some comments about the solution -->
-<!--> which we normally want to keep where they are. -->
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
 
 The goal of this project is to draw <math>N</math> circles with random
 center and radius. Plot each circle using the <code>circle</code> function
 above.
 
 
-''a)'' Let <math>R</math> be normally distributed and <math>(x_0,y_0)</math> uniformly distributed.
+''a)''
+Let <math>R</math> be normally distributed and <math>(x_0,y_0)</math> uniformly distributed.
 
-''Hint.'' Use the <code>numpy.random</code> module to draw the
+''Hint.''
+Use the <code>numpy.random</code> module to draw the
 <math>x_0</math>, <math>y_0</math>, and <math>R</math> quantities.
 
-<!--> --- begin short answer in exercise -->
+<!-- --- begin short answer in exercise -->
 
-''Answer.'' Here goes the short answer to part a).
-<!--> --- end short answer in exercise -->
+''Answer.''
+Here goes the short answer to part a).
+<!-- --- end short answer in exercise -->
 
-<!--> --- begin solution of exercise -->
+<!-- --- begin solution of exercise -->
 
-''Solution.'' Here goes a full solution to part a).
+''Solution.''
+Here goes a full solution to part a).
 
-<!--> --- end solution of exercise -->
+<!-- --- end solution of exercise -->
 
-''b)'' Let <math>R</math> be uniformly distributed and <math>(x_0,y_0)</math> normally distributed.
-''Filename'': <code>norm.py  </code>.
+''b)''
+Let <math>R</math> be uniformly distributed and <math>(x_0,y_0)</math> normally distributed.
+Filename: <code>norm.py</code>.
 
-''c)'' Let <math>R</math> and <math>(x_0,y_0)</math> be normally distributed.
+''c)''
+Let <math>R</math> and <math>(x_0,y_0)</math> be normally distributed.
 
 Filename: <code>circles.pdf</code>.
 
-<!--> Closing remarks for this Project -->
+<!-- Closing remarks for this Project -->
 
 ==== Remarks ====
 
@@ -7432,48 +7728,56 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-<!--> --- end of exercise -->
+<!-- --- end of exercise -->
 
 
 
 
-<!--> --- begin exercise -->
+<!-- --- begin exercise -->
 
 ==== Exercise 4: Determine some Distance ====
 
 Intro to this exercise. Questions are in subexercises below.
 
-<!--> --- begin solution of exercise -->
+<!-- --- begin solution of exercise -->
 
-''Solution.'' Here goes a full solution of the whole exercise.
+''Solution.''
+Here goes a full solution of the whole exercise.
 
-<!--> --- end solution of exercise -->
+<!-- --- end solution of exercise -->
 
 
-''a)'' Subexercises are numbered a), b), etc.
+''a)''
+Subexercises are numbered a), b), etc.
 
-''Hint 1.'' First hint to subexercise a).
+''Hint 1.''
+First hint to subexercise a).
 
-''Hint 2.'' Second hint to subexercise a).
-''Filename'': <code>subexer_a.pdf</code>.
+''Hint 2.''
+Second hint to subexercise a).
+Filename: <code>subexer_a.pdf</code>.
 
-<!--> --- begin short answer in exercise -->
+<!-- --- begin short answer in exercise -->
 
-''Answer.'' Short answer to subexercise a).
-<!--> --- end short answer in exercise -->
+''Answer.''
+Short answer to subexercise a).
+<!-- --- end short answer in exercise -->
 
-''b)'' Here goes the text for subexercise b).
+''b)''
+Here goes the text for subexercise b).
 
-''Hint.'' A hint for this subexercise.
-''Filename'': <code>subexer_b.pdf</code>.
+''Hint.''
+A hint for this subexercise.
+Filename: <code>subexer_b.pdf</code>.
 
-<!--> --- begin solution of exercise -->
+<!-- --- begin solution of exercise -->
 
-''Solution.'' Here goes the solution of this subexercise.
+''Solution.''
+Here goes the solution of this subexercise.
 
-<!--> --- end solution of exercise -->
+<!-- --- end solution of exercise -->
 
-<!--> Closing remarks for this Exercise -->
+<!-- Closing remarks for this Exercise -->
 
 ==== Remarks ====
 
@@ -7482,7 +7786,7 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-<!--> --- end of exercise -->
+<!-- --- end of exercise -->
 
 
 
@@ -7494,7 +7798,7 @@ With some text, before we continue with exercises.
 
 == More Exercises ==
 
-<!--> --- begin exercise -->
+<!-- --- begin exercise -->
 
 ==== Exercise 5: Make references to projects and problems ====
 
@@ -7502,12 +7806,12 @@ Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [
 and verify it.
 Filename: <code>verify_formula.py</code>.
 
-<!--> --- end of exercise -->
+<!-- --- end of exercise -->
 
 
 
 
-<!--> --- begin exercise -->
+<!-- --- begin exercise -->
 
 ==== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
 
@@ -7516,7 +7820,7 @@ the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Expl
 and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
 Filename: <code>selc_composed.pdf</code>.
 
-<!--> --- end of exercise -->
+<!-- --- end of exercise -->
 
 
 
@@ -7548,18 +7852,22 @@ Without label.
 
 
 
-''Hint.'' Here is a hint.
+''Hint.''
+Here is a hint.
 
 
 {{warning|And here is a warning about something to pay attention to.}}
 
-''Summary.'' Much testing in this document, otherwise stupid content.
+''Summary.''
+Much testing in this document, otherwise stupid content.
 
-''Notice.'' Ah, we are close to the end.
+''Notice.''
+Ah, we are close to the end.
 
 
 
-''Question.'' So, how many admonition environments does Doconce support?
+''Question.''
+So, how many admonition environments does Doconce support?
 
 
 ************** File: testdoc.cwiki *****************
@@ -7785,6 +8093,11 @@ Movie mymov has a similar problem.
 
 <wiki:comment> Must be a blank line after MOVIE or FIGURE to detect this problem </wiki:comment>
 
+<wiki:comment> Test URL as figure name </wiki:comment>
+
+{{https://doconce.googlecode.com/hg/doc/blog/f_plot.png|}}
+
+<wiki:comment> Test wikimedia type of files that otherwise reside in subdirs </wiki:comment>
 
 <wiki:comment> Somewhat challenging heading with latex math, \t, \n, ? and parenthesis </wiki:comment>
 
@@ -7806,10 +8119,23 @@ both inline and in block:
 
 {{{
 \begin{align*}
-\frac{Du}{dt} &= 0\\ 
+\frac{Du}{dt} &= 0
+\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
+}}}
+
+Or with align with label and numbers:
+
+{{{
+\begin{align}
+\frac{Du}{dt} &= 0
+label{aligneq1}\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+label{aligneq1}
+\end{align}
 }}}
 
 
@@ -8099,7 +8425,7 @@ above.
 <wiki:comment> --- end solution of exercise </wiki:comment>
 
 //b)// Let {{{R}}} be uniformly distributed and {{{(x_0,y_0)}}} normally distributed.
-//Filename//: {{{norm.py  }}}.
+Filename: {{{norm.py}}}.
 
 //c)// Let {{{R}}} and {{{(x_0,y_0)}}} be normally distributed.
 
@@ -8137,7 +8463,7 @@ Intro to this exercise. Questions are in subexercises below.
 //Hint 1.// First hint to subexercise a).
 
 //Hint 2.// Second hint to subexercise a).
-//Filename//: {{{subexer_a.pdf}}}.
+Filename: {{{subexer_a.pdf}}}.
 
 <wiki:comment> --- begin short answer in exercise </wiki:comment>
 
@@ -8147,7 +8473,7 @@ Intro to this exercise. Questions are in subexercises below.
 //b)// Here goes the text for subexercise b).
 
 //Hint.// A hint for this subexercise.
-//Filename//: {{{subexer_b.pdf}}}.
+Filename: {{{subexer_b.pdf}}}.
 
 <wiki:comment> --- begin solution of exercise </wiki:comment>
 
@@ -8458,6 +8784,10 @@ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spann
 
 Movie ref{mymov} has a similar problem.
 
+
+
+FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+
 The \theta parameter (not \nabla?)
 
 Functions do not always need to be advanced, here is one
@@ -8475,10 +8805,22 @@ Newcommands must also be tested in this test report:
 both inline and in block::
 
         \begin{align*}
-        \frac{Du}{dt} &= 0\\ 
+        \frac{Du}{dt} &= 0
+        \\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
+
+
+Or with align with label and numbers::
+
+        \begin{align}
+        \frac{Du}{dt} &= 0
+        label{aligneq1}\\ 
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
+        label{aligneq1}
+        \end{align}
 
 
 Custom Environments
@@ -8716,7 +9058,7 @@ x_0, y_0, and R quantities.
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
-*Filename*: 'norm.py  '.
+Filename: 'norm.py'.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
@@ -8741,7 +9083,7 @@ Intro to this exercise. Questions are in subexercises below.
 *Hint 1.* First hint to subexercise a).
 
 *Hint 2.* Second hint to subexercise a).
-*Filename*: 'subexer_a.pdf'.
+Filename: 'subexer_a.pdf'.
 
 
 *Answer.* Short answer to subexercise a).
@@ -8749,7 +9091,7 @@ Intro to this exercise. Questions are in subexercises below.
 *b)* Here goes the text for subexercise b).
 
 *Hint.* A hint for this subexercise.
-*Filename*: 'subexer_b.pdf'.
+Filename: 'subexer_b.pdf'.
 
 
 *Solution.* Here goes the solution of this subexercise.
@@ -9037,6 +9379,9 @@ Movie ref{mymov} has a similar problem.
 
 
 
+FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+
+
 
 The M{\theta} parameter (not M{\nabla}?)
 ----------------------------------------
@@ -9056,10 +9401,23 @@ M{\frac{1}{2}}, M{{1/2}}, M{\pmb{x}}, M{\frac{Du}{dt}},
 both inline and in block::
 
         \begin{align*}
-        \frac{Du}{dt} &= 0\\ 
+        \frac{Du}{dt} &= 0
+        \\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
+
+
+Or with align with label and numbers::
+
+        \begin{align}
+        \frac{Du}{dt} &= 0
+        label{aligneq1}\\ 
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
+        label{aligneq1}
+        \end{align}
+
 
 
 Custom Environments
@@ -9331,7 +9689,7 @@ I{Solution.} Here goes a full solution to part a).
 
 
 I{b)} Let M{R} be uniformly distributed and M{(x_0,y_0)} normally distributed.
-I{Filename}: C{norm.py  }.
+Filename: C{norm.py}.
 
 I{c)} Let M{R} and M{(x_0,y_0)} be normally distributed.
 
@@ -9365,7 +9723,7 @@ I{a)} Subexercises are numbered a), b), etc.
 I{Hint 1.} First hint to subexercise a).
 
 I{Hint 2.} Second hint to subexercise a).
-I{Filename}: C{subexer_a.pdf}.
+Filename: C{subexer_a.pdf}.
 
 
 I{Answer.} Short answer to subexercise a).
@@ -9373,7 +9731,7 @@ I{Answer.} Short answer to subexercise a).
 I{b)} Here goes the text for subexercise b).
 
 I{Hint.} A hint for this subexercise.
-I{Filename}: C{subexer_b.pdf}.
+Filename: C{subexer_b.pdf}.
 
 
 I{Solution.} Here goes the solution of this subexercise.
@@ -9739,6 +10097,9 @@ Movie ref{mymov} has a similar problem.
 
 
 
+FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+
+
 
 The \theta parameter (not \nabla?)
 ----------------------------------
@@ -9758,10 +10119,23 @@ Newcommands must also be tested in this test report:
 both inline and in block::
 
         \begin{align*}
-        \frac{Du}{dt} &= 0\\ 
+        \frac{Du}{dt} &= 0
+        \\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
+
+
+Or with align with label and numbers::
+
+        \begin{align}
+        \frac{Du}{dt} &= 0
+        label{aligneq1}\\ 
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
+        label{aligneq1}
+        \end{align}
+
 
 
 Custom Environments
@@ -10032,7 +10406,7 @@ x_0, y_0, and R quantities.
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
-*Filename*: norm.py  .
+Filename: norm.py.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
@@ -10066,7 +10440,7 @@ Intro to this exercise. Questions are in subexercises below.
 *Hint 1.* First hint to subexercise a).
 
 *Hint 2.* Second hint to subexercise a).
-*Filename*: subexer_a.pdf.
+Filename: subexer_a.pdf.
 
 
 *Answer.* Short answer to subexercise a).
@@ -10074,7 +10448,7 @@ Intro to this exercise. Questions are in subexercises below.
 *b)* Here goes the text for subexercise b).
 
 *Hint.* A hint for this subexercise.
-*Filename*: subexer_b.pdf.
+Filename: subexer_b.pdf.
 
 
 *Solution.* Here goes the solution of this subexercise.
@@ -10424,6 +10798,11 @@ Movie ref{mymov} has a similar problem.
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
+<!-- Test URL as figure name -->
+
+FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
@@ -10446,11 +10825,25 @@ both inline and in block:
 
 $$
 \begin{align*}
-\Ddt{u} &= 0\\ 
+\Ddt{u} &= 0
+\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align*}
 $$
+
+Or with align with label and numbers:
+
+$$
+\begin{align}
+\Ddt{u} &= 0
+\label{aligneq1}\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\label{aligneq1}
+\end{align}
+$$
+
 
 Custom Environments
 -------------------
@@ -10805,7 +11198,7 @@ $x_0$, $y_0$, and $R$ quantities.
 <!-- --- end solution of exercise -->
 
 *b)* Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-*Filename*: `norm.py  `.
+Filename: `norm.py`.
 
 *c)* Let $R$ and $(x_0,y_0)$ be normally distributed.
 
@@ -10844,7 +11237,7 @@ Intro to this exercise. Questions are in subexercises below.
 *Hint 1.* First hint to subexercise a).
 
 *Hint 2.* Second hint to subexercise a).
-*Filename*: `subexer_a.pdf`.
+Filename: `subexer_a.pdf`.
 
 <!-- --- begin short answer in exercise -->
 
@@ -10854,7 +11247,7 @@ Intro to this exercise. Questions are in subexercises below.
 *b)* Here goes the text for subexercise b).
 
 *Hint.* A hint for this subexercise.
-*Filename*: `subexer_b.pdf`.
+Filename: `subexer_b.pdf`.
 
 <!-- --- begin solution of exercise -->
 
@@ -11026,7 +11419,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'solution': 'Here goes a full solution to part a).',
              'text': 'Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.'},
             {'answer': '',
-             'file': 'norm.py  ',
+             'file': ['norm.py'],
              'hints': [],
              'solution': '',
              'text': 'Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.'},
@@ -11049,13 +11442,13 @@ Could not find match for from regex "\*\s+\$.+normally"
   'solution': 'Here goes a full solution of the whole exercise.',
   'solution_file': None,
   'subex': [{'answer': 'Short answer to subexercise a).',
-             'file': 'subexer_a.pdf',
+             'file': ['subexer_a.pdf'],
              'hints': ['First hint to subexercise a).',
                        'Second hint to subexercise a).'],
              'solution': '',
              'text': 'Subexercises are numbered a), b), etc.'},
             {'answer': '',
-             'file': 'subexer_b.pdf',
+             'file': ['subexer_b.pdf'],
              'hints': ['A hint for this subexercise.'],
              'solution': 'Here goes the solution of this subexercise.',
              'text': 'Here goes the text for subexercise b).'}],
@@ -11105,9 +11498,457 @@ iso-8859-1
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title></title>
+  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
+<p>The format of this document is plain, homemade LaTeX (from Doconce).</p>
+<p>This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<h1 id="section-1">Section 1</h1>
+<p>[sec1]</p>
+<p>Here is a nested list:</p>
+<ul>
+<li><p>item1</p></li>
+<li><p>item2</p></li>
+<li><p>item3 which continues on the next line to test that feature</p></li>
+<li><p>and a sublist</p>
+<ul>
+<li><p>with indented subitem1</p></li>
+<li><p>and a subitem2</p></li>
+</ul></li>
+<li><p>and perhaps an ordered sublist</p>
+<ol style="list-style-type: decimal">
+<li><p>first item</p></li>
+<li><p>second item, continuing on a new line</p></li>
+</ol></li>
+</ul>
+<blockquote>
+<p>Here are two lines that make up a block quote.</p>
+</blockquote>
+<h2 id="subsection-1">Subsection 1</h2>
+<p>More text, with a reference back to Section [sec1] and further to Section [subsubsec:ex].</p>
+<p>Let’s do some copying from files too. First from subroutine up to the very end,</p>
+<pre><code>subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
 
+      program testme
+      call test()
+      return</code></pre>
+<p>and then just the subroutine,</p>
+<pre><code>      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return</code></pre>
+<p>and finally the complete file:</p>
+<pre><code>C     a comment
+
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return</code></pre>
+<p>Testing other code environments. First Python:</p>
+<pre><code>!bc pycod
+def f(x):
+    return x+1
+!ec</code></pre>
+<p>which gets rendered as</p>
+<pre><code>def f(x):
+    return x+1</code></pre>
+<p>Then Cython:</p>
+<pre><code>cpdef f(double x):
+    return x + 1</code></pre>
+<p>C++:</p>
+<pre><code>#include &lt;iostream&gt;
+
+int main()
+{
+   std::cout &lt;&lt; &quot;Sample output&quot; &lt;&lt; std::endl;
+   return 0
+}</code></pre>
+<p>And a little bit of Fortran:</p>
+<pre><code>!bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+!ec</code></pre>
+<p>which then is typeset as</p>
+<pre><code>subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end</code></pre>
+<p>System call:</p>
+<pre><code>Terminal&gt; mkdir test
+Terminal&gt; cd test
+Terminal&gt; myprog -f
+output1
+output2</code></pre>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
+<h2 id="subsection-2">Subsection 2</h2>
+<p>[subsec:ex]</p>
+<p>Test of figures. In particular we refer to Figure [fig:impact] in which there is a flow.</p>
+<p>[ht]</p>
+<div class="figure">
+<embed src="../doc/manual/figs/streamtubes.eps"><p class="caption">image</p>
+</div>
+<p>Figures without captions are allowed.</p>
+<div class="figure">
+<embed src="../doc/manual/figs/streamtubes.eps"><p class="caption">image</p>
+</div>
+<p>Test of movies.</p>
+<p>[ht]</p>
+<p><a href="run:../doc/manual/figs/mjolnir.mpeg">../doc/manual/figs/mjolnir.mpeg</a></p>
+<p>[ht]</p>
+<p><a href="run:../doc/manual/figs/wavepacket.mpeg">../doc/manual/figs/wavepacket.mpeg</a></p>
+<p>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). [mymov] (Movie of files <code>../doc/manual/figs/wavepacket_*.png</code> in <a href="{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}"></a>)</p>
+<p>Movies can be uploaded to YouTube and embedded as HTML or as a link.: <a href="{http://www.youtube.com/watch?v=_O7iUiftbKU}"></a></p>
+<p>Here is figure [myfig] with a long multi-line caption and an extra space before the FIGURE keyword.</p>
+<p>[ht]</p>
+<div class="figure">
+<embed src="../doc/manual/figs/wavepacket_0001.eps"><p class="caption">image</p>
+</div>
+<p>Movie [mymov] has a similar problem.</p>
+<div class="figure">
+<img src="downloaded_figures/f_plot.png" alt="image" /><p class="caption">image</p>
+</div>
+<h2 id="the-theta-parameter-not-nabla">The \(\theta\) parameter (not \(\nabla\)?)</h2>
+<p>[decay:sec:theta]</p>
+<p>Functions do not always need to be advanced, here is one involving \(\theta\):</p>
+<pre><code>def f(theta):
+    return theta**2</code></pre>
+<h4 id="more-on-theta.">More on \(\theta\).</h4>
+<p>Here is more text following headline with math.</p>
+<p>Newcommands must also be tested in this : \(\half\), \(\halfi\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
+<p>\[\begin{aligned}
+\Ddt{u} &amp;= 0
+\\ 
+\half &amp;= \halfi\\ 
+\half\x &amp;= \normalvec\end{aligned}\]</p>
+<p>Or with align with label and numbers:</p>
+<p>\[\begin{aligned}
+\Ddt{u} &amp;= 0
+\label{aligneq1}\\ 
+\half &amp;= \halfi\\ 
+\half\x &amp;= \normalvec
+\label{aligneq1}\end{aligned}\]</p>
+<h2 id="custom-environments">Custom Environments</h2>
+<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
+<p>[theorem:fundamental1]</p>
+<h4 id="theorem-5.">Theorem 5.</h4>
+<p>Let \(a=1\) and \(b=2\). Then \(c=3\).</p>
+<h4 id="proof.">Proof.</h4>
+<p>Since \(c=a+b\), the result follows from straightforward addition. \(\Diamond\) As we see, the proof of Theorem 5 is a modest achievement.</p>
+<h2 id="tables">Tables</h2>
+<p>[subsec:table]</p>
+<p>Let us take this table from the manual:</p>
+<blockquote>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">0.0</td>
+<td align="left">1.4186</td>
+<td align="left">-5.01</td>
+</tr>
+<tr class="even">
+<td align="left">2.0</td>
+<td align="left">1.376512</td>
+<td align="left">11.919</td>
+</tr>
+<tr class="odd">
+<td align="left">4.0</td>
+<td align="left">1.1E+1</td>
+<td align="left">14.717624</td>
+</tr>
+</tbody>
+</table>
+<p>The Doconce source code reads</p>
+</blockquote>
+<pre><code>|--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|</code></pre>
+<p>Here is yet another table to test that we can handle more than one table:</p>
+<blockquote>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">0.0</td>
+<td align="left">1.4186</td>
+<td align="left">-5.01</td>
+</tr>
+<tr class="even">
+<td align="left">1.0</td>
+<td align="left">1.376512</td>
+<td align="left">11.919</td>
+</tr>
+<tr class="odd">
+<td align="left">3.0</td>
+<td align="left">1.1E+1</td>
+<td align="left">14.717624</td>
+</tr>
+</tbody>
+</table>
+<p>And one with math headings (that are expanded and must be treated accordingly) and verbatim heading and entry:</p>
+</blockquote>
+<blockquote>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">288</td>
+<td align="left">-0.0065</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">11,000</td>
+<td align="left">216</td>
+<td align="left">0.0</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">20,000</td>
+<td align="left">216</td>
+<td align="left">0.001</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">32,000</td>
+<td align="left">228</td>
+<td align="left">0.0028</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">47,000</td>
+<td align="left">270</td>
+<td align="left">0.0</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">51,000</td>
+<td align="left">270</td>
+<td align="left">-0.0028</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="left">71,000</td>
+<td align="left">214</td>
+<td align="left"><code>NaN</code></td>
+</tr>
+</tbody>
+</table>
+<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right after verbatim word (with no space):</p>
+</blockquote>
+<blockquote>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">9</td>
+<td align="left">9.62</td>
+<td align="left">5.57</td>
+<td align="left">8.98</td>
+</tr>
+<tr class="even">
+<td align="left">-20</td>
+<td align="left">-23.39</td>
+<td align="left">-7.65</td>
+<td align="left">-19.93</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">17.74</td>
+<td align="left">-4.50</td>
+<td align="left">9.96</td>
+</tr>
+<tr class="even">
+<td align="left">0</td>
+<td align="left">-9.19</td>
+<td align="left">4.13</td>
+<td align="left">-0.26</td>
+</tr>
+</tbody>
+</table>
+<h2>A test of verbatim words in heading with subscript \(a_i\): <code>my\_file\_v1</code> and <code>my\_file\_v2</code></h2>
+</blockquote>
+<h4 id="files-my_file_v1.py-and-my_file_v2.py-define-some-math-a_i-1.">Files <code>my\_file\_v1.py</code> and <code>my\_file\_v2.py</code> define some math \(a_{i-1}\).</h4>
+<p>Here is some text.</p>
+<h2 id="urls">URLs</h2>
+<p>[subsubsec:ex]</p>
+<p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}"></a>. Here is a plain file link <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also <code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="{http://folk.uio.no/hpl}"></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}">good book</a>.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
+<h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
+<p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
+<h2 id="latex-mathematics">LaTeX Mathematics</h2>
+<p>Here is an equation without label using backslash-bracket environment: \[a = b + c\] or with number and label, as in ([my:eq1]), using the equation environment:</p>
+<p>\[{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}\]</p>
+<p>We can refer to this equation by ([my:eq1]).</p>
+<p>Here is a system without equation numbers, using the align-astrisk environment:</p>
+<p>\[\begin{aligned}
+\pmb{a} &amp;= \pmb{q}\times\pmb{n} \\ 
+b &amp;= \nabla^2 u + \nabla^4 v\end{aligned}\]</p>
+<p>And here is a system of equations with labels in an align environment:</p>
+<p>\[\begin{aligned}
+a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
+b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}\end{aligned}\]</p>
+<p>We can refer to ([eq1])-([eq2]).</p>
+<p>Many of the next environments will fail in non-latex formats. Testing multiline:</p>
+<p>\[\begin{gathered}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}\end{gathered}\]</p>
+<p>Testing split:</p>
+<p>\[\label{split:envir:eq}
+\begin{split}
+a = b = q &amp;+ \\ 
+  &amp; f + \nabla\cdot\nabla u
+\end{split}\]</p>
+<p>We can refer to the last equation by ([split:envir:eq]).</p>
+<p>Testing gather:</p>
+<p>\[\begin{gathered}
+a = b \\ 
+c = d + 7 + 9\end{gathered}\]</p>
+<p>Testing alignat:</p>
+<p>\[\begin{aligned}
+{2}
+a &amp;= q + 4 + 5+ 6\qquad &amp; \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned}\]</p>
+<p>Let us refer to ([eq1])-([eq2]) again, and to the alignat variant ([eq1a])-([eq2a]), and to ([my:eq1]).</p>
+<p>Testing eqnarray:</p>
+<p>\[\begin{aligned}
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g \label{myeq2}\end{aligned}\]</p>
+<p>More mathematical typesetting is demonstrated in the coming exercises.</p>
+<p>Below, we have Problem [demo:ex:1] and Project [demo:ex:2], as well as Projects [proj:circle1] and [exer:you], and in between there we have Exercise [exer:some:formula].</p>
+<h1 id="exercises">Exercises</h1>
+<h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
+<p>[demo:ex:1] Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+<h4 id="hint-1.">Hint 1.</h4>
+<p>Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+<h4 id="hint-2.">Hint 2.</h4>
+<p>Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+<h4 id="answer.">Answer.</h4>
+<p>If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
+<h4 id="solution.">Solution.</h4>
+<p>Code:</p>
+<pre><code>import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r &lt;= 0.5:
+        heads += 1
+print &#39;Flipping a coin %d times gave %d heads&#39; % (N, heads)</code></pre>
+<p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
+<h2 id="project-2-compute-a-probability">Project 2: Compute a Probability</h2>
+<p>[demo:ex:2]</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
+<h4 id="hint.">Hint.</h4>
+<p>To answer this question empirically, let a program draw \(N\) such random numbers using Python’s standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
+<h2 id="project-3-explore-distributions-of-random-circles">Project 3: Explore Distributions of Random Circles</h2>
+<p>[proj:circle1]</p>
+<p>The formula for a circle is given by</p>
+<p>\[\begin{aligned}
+x &amp;= x_0 + R\cos 2\pi t,\\ 
+y &amp;= y_0 + R\sin 2\pi t,\end{aligned}\]</p>
+<p>where \(R\) is the radius of the circle, \((x_0,y_0)\) is the center point, and \(t\) is a parameter in the unit interval \([0,1]\). For any \(t\), \((x,y)\) is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<pre><code>import numpy as np
+
+def circle(R, x0, y0, n=501):
+    t = np.linspace(0, 1, n)
+    x = x0 + R*np.cos(2*np.pi*t)
+    y = y0 + R*np.sin(2*np.pi*t)
+    return x, y
+
+x, y = circle(2.0, 0, 0)</code></pre>
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<h4 id="a">a)</h4>
+<p>Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
+<h4 id="hint.-1">Hint.</h4>
+<p>Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
+<h4 id="answer.-1">Answer.</h4>
+<p>Here goes the short answer to part a).</p>
+<h4 id="solution.-1">Solution.</h4>
+<p>Here goes a full solution to part a).</p>
+<h4 id="b">b)</h4>
+<p>Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. Filename: <code>norm.py</code>.</p>
+<h4 id="c">c)</h4>
+<p>Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
+<p>Filename: <code>circles.pdf</code>.</p>
+<h4 id="remarks.">Remarks.</h4>
+<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<h2 id="exercise-4-determine-some-distance">Exercise 4: Determine some Distance</h2>
+<p>[exer:dist]</p>
+<p>Intro to this exercise. Questions are in subexercises below.</p>
+<h4 id="solution.-2">Solution.</h4>
+<p>Here goes a full solution of the whole exercise.</p>
+<h4 id="a-1">a)</h4>
+<p>Subexercises are numbered a), b), etc.</p>
+<h4 id="hint-1.-1">Hint 1.</h4>
+<p>First hint to subexercise a).</p>
+<h4 id="hint-2.-1">Hint 2.</h4>
+<p>Second hint to subexercise a). Filename: <code>subexer_a.pdf</code>.</p>
+<h4 id="answer.-2">Answer.</h4>
+<p>Short answer to subexercise a).</p>
+<h4 id="b-1">b)</h4>
+<p>Here goes the text for subexercise b).</p>
+<h4 id="hint.-2">Hint.</h4>
+<p>A hint for this subexercise. Filename: <code>subexer_b.pdf</code>.</p>
+<h4 id="solution.-3">Solution.</h4>
+<p>Here goes the solution of this subexercise.</p>
+<h4 id="remarks.-1">Remarks.</h4>
+<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<h1 id="here-goes-another-section">Here goes another section</h1>
+<p>With some text, before we continue with exercises.</p>
+<h1 id="more-exercises">More Exercises</h1>
+<h2 id="exercise-5-make-references-to-projects-and-problems">Exercise 5: Make references to projects and problems</h2>
+<p>[exer:some:formula]</p>
+<p>Pick a statement from Project [proj:circle1] or Problem [demo:ex:1] and verify it. Filename: <code>verify_formula.py</code>.</p>
+<h2 id="project-6-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 6: References to Project [demo:ex:2] in a heading works for latex</h2>
+<p>[exer:you]</p>
+<p>Refer to the previous exercise as Exercise [exer:some:formula], the two before that as Projects [demo:ex:2] and [proj:circle1], and this one as Project [exer:you]. Filename: <code>selc_composed.pdf</code>.</p>
+<h1 id="just-for-testing-part-i">Just for testing; part I</h1>
+<p>This is the first appendix.</p>
+<h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
+<h1 id="just-for-testing-part-ii">Just for testing; part II</h1>
+<p>This is more stuff for an appendix.</p>
+<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
+<p>Without label.</p>
+<h2 id="appendix-testing-identical-titles-1">Appendix: Testing identical titles</h2>
+<p>[test:title:id1]</p>
+<p>With label.</p>
+<h2 id="appendix-testing-identical-titles-2">Appendix: Testing identical titles</h2>
+<p>[test:title:id2]</p>
+<p>With label.</p>
+<h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
+<p>Without label.</p>
 </body>
 </html>
 pandoc 1.9.4.2
@@ -11332,6 +12173,10 @@ output2</code></pre>
 <p>Movie ref{mymov} has a similar problem.</p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
+<!-- Test URL as figure name -->
+
+<p>FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]</p>
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
@@ -11343,10 +12188,21 @@ output2</code></pre>
 <p>Newcommands must also be tested in this : \(\half\), \(\halfi\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
 <p>\[
 \begin{align*}
-\Ddt{u} &amp;= 0\\ 
+\Ddt{u} &amp;= 0
+\\ 
 \half &amp;= \halfi\\ 
 \half\x &amp;= \normalvec
 \end{align*}
+\]</p>
+<p>Or with align with label and numbers:</p>
+<p>\[
+\begin{align}
+\Ddt{u} &amp;= 0
+\label{aligneq1}\\ 
+\half &amp;= \halfi\\ 
+\half\x &amp;= \normalvec
+\label{aligneq1}
+\end{align}
 \]</p>
 <h2 id="custom-environments">Custom Environments</h2>
 <p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
@@ -11657,7 +12513,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><em>Solution.</em> Here goes a full solution to part a).</p>
 <!-- --- end solution of exercise -->
 
-<p><em>b)</em> Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. <em>Filename</em>: <code>norm.py</code>.</p>
+<p><em>b)</em> Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. Filename: <code>norm.py</code>.</p>
 <p><em>c)</em> Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
 <p>Filename: <code>circles.pdf</code>.</p>
 <!-- Closing remarks for this Project -->
@@ -11681,12 +12537,12 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <p><em>a)</em> Subexercises are numbered a), b), etc.</p>
 <p><em>Hint 1.</em> First hint to subexercise a).</p>
-<p><em>Hint 2.</em> Second hint to subexercise a). <em>Filename</em>: <code>subexer_a.pdf</code>.</p>
+<p><em>Hint 2.</em> Second hint to subexercise a). Filename: <code>subexer_a.pdf</code>.</p>
 <!-- --- begin short answer in exercise -->
 
 <p><em>Answer.</em> Short answer to subexercise a). <!-- --- end short answer in exercise --></p>
 <p><em>b)</em> Here goes the text for subexercise b).</p>
-<p><em>Hint.</em> A hint for this subexercise. <em>Filename</em>: <code>subexer_b.pdf</code>.</p>
+<p><em>Hint.</em> A hint for this subexercise. Filename: <code>subexer_b.pdf</code>.</p>
 <!-- --- begin solution of exercise -->
 
 <p><em>Solution.</em> Here goes the solution of this subexercise.</p>
@@ -14007,7 +14863,15 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
 <p>
+<!-- Test URL as figure name -->
 
+<p>
+<center><p><img src="https://doconce.googlecode.com/hg/doc/blog/f_plot.png" align="bottom" width=500,></p></center>
+
+<p>
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
+
+<p>
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
 <p>
@@ -14035,13 +14899,31 @@ both inline and in block:
 <p>
 $$
 \begin{align*}
-\Ddt{u} &= 0\\ 
+\Ddt{u} &= 0
+\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align*}
 $$
 
+
 <p>
+Or with align with label and numbers:
+
+<p>
+$$
+\begin{align}
+\Ddt{u} &= 0
+\label{aligneq1}\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\label{aligneq1}
+\end{align}
+$$
+
+
+<p>
+
 
 <h3>Custom Environments  <a name="___sec4"></a></h3>
 <p>
@@ -14203,12 +15085,14 @@ footnotes.
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
+
 or with number and label, as in \eqref{my:eq1}, using the equation environment:
 $$
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 $$
+
 We can refer to this equation by \eqref{my:eq1}.
 
 <p>
@@ -14220,6 +15104,7 @@ b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 $$
 
+
 <p>
 
 And here is a system of equations with labels in an align environment:
@@ -14229,6 +15114,7 @@ a &= q + 4 + 5+ 6 \label{eq1} \\
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 $$
+
 We can refer to \eqref{eq1}-\eqref{eq2}.
 
 <p>
@@ -14241,6 +15127,7 @@ a = b = q + \\
 \label{multiline:eq1}
 \end{multline}
 $$
+
 Testing split:
 $$
 \begin{equation}
@@ -14251,6 +15138,7 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 $$
+
 We can refer to the last equation by \eqref{split:envir:eq}.
 
 <p>
@@ -14262,6 +15150,7 @@ c = d + 7 + 9
 \end{gather}
 $$
 
+
 <p>
 Testing alignat:
 $$
@@ -14270,6 +15159,7 @@ a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 $$
+
 Let us refer to \eqref{eq1}-\eqref{eq2} again, and to the
 alignat variant \eqref{eq1a}-\eqref{eq2a}, and to \eqref{my:eq1}.
 
@@ -14281,6 +15171,7 @@ $$
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
 $$
+
 
 <p>
 More mathematical typesetting is demonstrated in the coming exercises.
@@ -14373,6 +15264,7 @@ x &= x_0 + R\cos 2\pi t,\\
 y &= y_0 + R\sin 2\pi t,
 \end{align}
 $$
+
 where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
 center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
 For any \( t \), \( (x,y) \) is a point on the circle.
@@ -14424,7 +15316,7 @@ above.
 
 <p>
 <b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
-<em>Filename</em>: <tt>norm.py  </tt>.
+Filename: <tt>norm.py</tt>.
 
 <p>
 <b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
@@ -14468,7 +15360,7 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 <b>Hint 2.</b> Second hint to subexercise a).
-<em>Filename</em>: <tt>subexer_a.pdf</tt>.
+Filename: <tt>subexer_a.pdf</tt>.
 
 <p>
 
@@ -14477,7 +15369,7 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 <b>Hint.</b> A hint for this subexercise.
-<em>Filename</em>: <tt>subexer_b.pdf</tt>.
+Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
 
@@ -14924,6 +15816,7 @@ And a line more
 <h3>Some math and computer code  <a name="___sec2"></a></h3>
 <p>
 $$ f(x,y,t) = e^{-xt}\sin\pi y $$
+
 Python implementation:
 
 <p>
@@ -15199,7 +16092,7 @@ echo "Here are the slide shows:"
 
 ************** File: make.sh *****************
 #!/bin/sh -x
-rm -rf html_images reveal.js
+rm -rf html_images reveal.js downloaded_figures
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
 doconce remove_exercise_answers testdoc.html
@@ -15242,12 +16135,14 @@ doconce format mwiki testdoc.do.txt
 doconce format cwiki testdoc.do.txt
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string'
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess
 
 # Test pandoc: from latex to markdown, from markdown to html
 doconce format latex testdoc.do.txt
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
+# pandoc cannot work well with \Verb, needs \verb
+doconce replace '\Verb!' '\verb!' testdoc.tex
 pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
@@ -16122,6 +17017,7 @@ $$
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 $$
+
 Of course, such blocks only looks nice in formats with support
 for LaTeX mathematics, and here the align environment in particular
 (this includes <tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>, and <tt>sphinx</tt>). The raw
@@ -16348,7 +17244,7 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.
+See a <a href="http://doconce.blogspot.no">blog example</a> for details on blogging.
 
 <p>
 
@@ -16361,7 +17257,7 @@ See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated
 <tr>
 <td>&nbsp;</td>
 <td align="left" valign="top">
-<p>In the comments one cannot paste raw HTML code with MathJax
+<p>In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </td>
 </tr>
@@ -16401,6 +17297,7 @@ Here is an example on the latter strategy:
 <pre>
 Terminal&gt; doconce format latex mydoc
 Terminal&gt; doconce ptex2tex mydoc
+Terminal&gt; doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 <! -- end verbatim block -->
@@ -16408,10 +17305,13 @@ When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
 environments are well understood.
 
 <p>
-Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
-on the <tt>.mkd</tt> or <tt>.tex</tt> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the <tt>Verb</tt> macro from the <tt>fancyvrb</tt> package
+while <tt>pandoc</tt> only supports the standard <tt>verb</tt> construction for
+inline verbatim text.  Moreover, quite some additional <tt>doconce
+replace</tt> and <tt>doconce subst</tt> edits might be needed on the <tt>.mkd</tt> or
+<tt>.tex</tt> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 <p>
 Here is an example where we take a Doconce snippet (without title, author,
@@ -16886,7 +17786,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <h3>Wiki Formats  <a name="___sec15"></a></h3>
 <p>
 There are many different wiki formats, but Doconce only supports three:
-<a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
+<a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
+MediaWiki, and
+Creole Wiki. These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
@@ -16896,6 +17798,14 @@ Terminal&gt; doconce format mwiki mydoc.do.txt
 Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
 <! -- end verbatim block -->
+
+<p>
+The produced MediaWiki can be tested in the <a href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
+wikibooks.org</a>. The format
+works well with Wikipedia, Wikibooks, and
+<a href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+but not always well elsewhere
+(see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
 <p>
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
@@ -17928,7 +18838,7 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 {\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
-See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}}{example} for details on blogging.
+See a \href{{http://doconce.blogspot.no}}{blog example} for details on blogging.
 
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
@@ -17938,7 +18848,7 @@ See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-b
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
 \vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
-In the comments one cannot paste raw HTML code with MathJax
+In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 \end{minipage}}
 \end{center}
@@ -17971,15 +18881,19 @@ Here is an example on the latter strategy:
 \bsys
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \esys
 When we go through \code{pandoc}, only single equations or \code{align*}
 environments are well understood.
 
-Quite some \code{doconce replace} and \code{doconce subst} edits might be needed
-on the \code{.mkd} or \code{.tex} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via {\LaTeX}.
+Note that Doconce applies the \code{Verb} macro from the \code{fancyvrb} package
+while \code{pandoc} only supports the standard \code{verb} construction for
+inline verbatim text.  Moreover, quite some additional \code{doconce
+replace} and \code{doconce subst} edits might be needed on the \code{.mkd} or
+\code{.tex} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via {\LaTeX}.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -18383,7 +19297,9 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 \subsection{Wiki Formats}
 
 There are many different wiki formats, but Doconce only supports three:
-\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
+\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki},
+MediaWiki, and
+Creole Wiki. These formats are called
 \code{gwiki}, \code{mwiki}, and \code{cwiki}, respectively.
 Transformation from Doconce to these formats is done by
 \bsys
@@ -18391,6 +19307,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 \esys
+
+The produced MediaWiki can be tested in the \href{{http://en.wikibooks.org/wiki/Sandbox}}{sandbox of
+wikibooks.org}. The format
+works well with Wikipedia, Wikibooks, and
+\href{{http://doconce.shoutwiki.com/wiki/Doconce_demo}}{ShoutWiki},
+but not always well elsewhere
+(see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
 The Googlecode wiki document, \code{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -19115,11 +20038,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 
 
 .. warning::
-    In the comments one cannot paste raw HTML code with MathJax
+    In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -19153,15 +20076,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through ``pandoc``, only single equations or ``align*``
 environments are well understood.
 
-Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the ``Verb`` macro from the ``fancyvrb`` package
+while ``pandoc`` only supports the standard ``verb`` construction for
+inline verbatim text.  Moreover, quite some additional ``doconce
+replace`` and ``doconce subst`` edits might be needed on the ``.mkd`` or
+``.tex`` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -19585,7 +20512,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
+MediaWiki, and
+Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -19594,6 +20523,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the `sandbox of
+wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
+works well with Wikipedia, Wikibooks, and
+`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+but not always well elsewhere
+(see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -20148,8 +21084,15 @@ The result looks like this:
 .. math::
    :label: myeq1
         
-        {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial u\over\partial t} = \nabla^2 u + f, 
+        
+
+
+
+.. math::
+        
+        
+        {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g
         
 
 Of course, such blocks only looks nice in formats with support
@@ -20368,11 +21311,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 
 
 .. warning::
-    In the comments one cannot paste raw HTML code with MathJax
+    In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -20409,15 +21352,19 @@ Here is an example on the latter strategy:
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through ``pandoc``, only single equations or ``align*``
 environments are well understood.
 
-Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the ``Verb`` macro from the ``fancyvrb`` package
+while ``pandoc`` only supports the standard ``verb`` construction for
+inline verbatim text.  Moreover, quite some additional ``doconce
+replace`` and ``doconce subst`` edits might be needed on the ``.mkd`` or
+``.tex`` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -20868,7 +21815,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
+MediaWiki, and
+Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -20878,6 +21827,13 @@ Transformation from Doconce to these formats is done by
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the `sandbox of
+wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
+works well with Wikipedia, Wikibooks, and
+`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+but not always well elsewhere
+(see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -21575,11 +22531,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 ==== Pandoc and Markdown ====
@@ -21609,15 +22565,19 @@ Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
 When we go through `pandoc`, only single equations or `align*`
 environments are well understood.
 
-Quite some `doconce replace` and `doconce subst` edits might be needed
-on the `.mkd` or `.tex` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the `Verb` macro from the `fancyvrb` package
+while `pandoc` only supports the standard `verb` construction for
+inline verbatim text.  Moreover, quite some additional `doconce
+replace` and `doconce subst` edits might be needed on the `.mkd` or
+`.tex` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -21993,7 +22953,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ==== Wiki Formats ====
 
 There are many different wiki formats, but Doconce only supports three:
-[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki], MediaWiki, and Creole Wiki. These formats are called
+[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
+MediaWiki, and
+Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -22001,6 +22963,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 }}}
+
+The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
+wikibooks.org]. The format
+works well with Wikipedia, Wikibooks, and
+[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+but not always well elsewhere
+(see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -22284,7 +23253,7 @@ Mercurial (`hg`) directories, go to the directory, run
 
 
 ************** File: tutorial.mwiki *****************
-<!--> Missing: FIGURE, MOVIE, environments -->
+<!-- Missing: FIGURE, MOVIE, environments -->
 
 #TITLE (actually governed by the filename): Doconce: Document Once, Include Anywhere
 
@@ -22293,7 +23262,23 @@ By '''Hans Petter Langtangen'''
 ==== Jan 32, 2100 ====
 
 <ul>
- <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
+ <li> When writing a note, report, manual, etc., do you find it difficult
+   to choose the typesetting format? That is, to choose between plain
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
+   reStructuredText, Sphinx, XML, etc.  Would it be convenient to
+   start with some very simple text-like format that easily converts
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
+ <li> Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+ <li> Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
+</ul>
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -22307,10 +23292,45 @@ som examples.
 
 
 <ul>
-  <li> Bullet lists arise from lines starting with <code>*</code>.  <li> ''Emphasized words'' are surrounded by <code>*</code>.  <li> '''Words in boldface''' are surrounded by underscores.  <li> Words from computer code are enclosed in back quotes and    then typeset <code>verbatim (in a monospace font)</code>.  <li> Section headings are recognied by equality (<code>=</code>) signs before    and after the title, and the number of <code>=</code> signs indicates the    level of the section: 7 for main section, 5 for subsection, and    3 for subsubsection.  <li> Paragraph headings are recognized by a double underscore    before and after the heading.  <li> The abstract of a document starts with ''Abstract'' as paragraph    heading, and all text up to the next heading makes up the abstract,  <li> Blocks of computer code can easily be included by placing    <code>!bc</code> (begin code) and <code>!ec</code> (end code) commands at separate lines    before and after the code block.  <li> Blocks of computer code can also be imported from source files.  <li> Blocks of LaTeX mathematics can easily be included by placing    <code>!bt</code> (begin TeX) and <code>!et</code> (end TeX) commands at separate lines    before and after the math block.  <li> There is support for both LaTeX and text-like inline mathematics.  <li> Figures and movies with captions, simple tables,    URLs with links, index list, labels and references are supported.  <li> Invisible comments in the output format can be inserted throughout    the text.  <li> Visible comments can be inserted so that authors and readers can    comment upon the text (and at any time turn on/off output of such    comments).  <li> There is an exercise environment with many advanced features.  <li> With a preprocessor, Preprocess or Mako, one can include    other documents (files) and large portions of text can be defined    in or out of the text.  <li> With Mako one can also have Python code    embedded in the Doconce document and thereby parameterize the    text (e.g., one text can describe programming in two languages).</ul>
+  <li> Bullet lists arise from lines starting with <code>*</code>.
+  <li> ''Emphasized words'' are surrounded by <code>*</code>.
+  <li> '''Words in boldface''' are surrounded by underscores.
+  <li> Words from computer code are enclosed in back quotes and
+    then typeset <code>verbatim (in a monospace font)</code>.
+  <li> Section headings are recognied by equality (<code>=</code>) signs before
+    and after the title, and the number of <code>=</code> signs indicates the
+    level of the section: 7 for main section, 5 for subsection, and
+    3 for subsubsection.
+  <li> Paragraph headings are recognized by a double underscore
+    before and after the heading.
+  <li> The abstract of a document starts with ''Abstract'' as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+  <li> Blocks of computer code can easily be included by placing
+    <code>!bc</code> (begin code) and <code>!ec</code> (end code) commands at separate lines
+    before and after the code block.
+  <li> Blocks of computer code can also be imported from source files.
+  <li> Blocks of LaTeX mathematics can easily be included by placing
+    <code>!bt</code> (begin TeX) and <code>!et</code> (end TeX) commands at separate lines
+    before and after the math block.
+  <li> There is support for both LaTeX and text-like inline mathematics.
+  <li> Figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported.
+  <li> Invisible comments in the output format can be inserted throughout
+    the text.
+  <li> Visible comments can be inserted so that authors and readers can
+    comment upon the text (and at any time turn on/off output of such
+    comments).
+  <li> There is an exercise environment with many advanced features.
+  <li> With a preprocessor, Preprocess or Mako, one can include
+    other documents (files) and large portions of text can be defined
+    in or out of the text.
+  <li> With Mako one can also have Python code
+    embedded in the Doconce document and thereby parameterize the
+    text (e.g., one text can describe programming in two languages).
+</ul>
 
 Here is an example of some simple text written in the Doconce format:
-<code>
+<syntaxhighlight lang="text">
 ===== A Subsection with Sample Text =====
 label{my:first:sec}
 
@@ -22353,7 +23373,7 @@ Tables are also supperted, e.g.,
   |--------------------------------|
 
 # lines beginning with # are comment lines
-</code>
+</syntaxhighlight>
 The Doconce text above results in the following little document:
 
 ==== A Subsection with Sample Text ====
@@ -22364,14 +23384,20 @@ natural in plain text.  Lists are typeset as you would do in an email,
 
 
 <ul>
-  <li> item 1  <li> item 2  <li> item 3</ul>
+  <li> item 1
+  <li> item 2
+  <li> item 3
+</ul>
 
 Lists can also have numbered items instead of bullets, just use an <code>o</code>
 (for ordered) instead of the asterisk:
 
 
 <ol>
- <li> item 1 <li> item 2 <li> item 3</ol>
+ <li> item 1
+ <li> item 2
+ <li> item 3
+</ol>
 
 URLs with a link word are possible, as in [http://folk.uio.no/hpl hpl].
 If the word is URL, the URL itself becomes the link name,
@@ -22404,9 +23430,9 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like <math>\nu = \sin(x)</math> is
 typeset as
 
-<code>
+<syntaxhighlight lang="text">
 $\nu = \sin(x)$|$v = sin(x)$
-</code>
+</syntaxhighlight>
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula. If you write a lot of mathematics, only the
 output formats <code>latex</code>, <code>pdflatex</code>, <code>html</code>, <code>sphinx</code>, and <code>pandoc</code>
@@ -22414,9 +23440,9 @@ are of interest
 and all these support inline LaTeX mathematics so then you will naturally
 drop the pipe symbol and write just
 
-<code>
+<syntaxhighlight lang="text">
 $\nu = \sin(x)$
-</code>
+</syntaxhighlight>
 However, if you want more textual formats, like plain text or reStructuredText,
 the text after the pipe symbol may help to make the math formula more readable
 if there are backslahes or other special LaTeX symbols in the LaTeX code.
@@ -22424,22 +23450,22 @@ if there are backslahes or other special LaTeX symbols in the LaTeX code.
 Blocks of mathematics are typeset with raw LaTeX, inside
 <code>!bt</code> and <code>!et</code> (begin TeX, end TeX) instructions:
 
-<code>
+<syntaxhighlight lang="text">
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 !et
-</code>
-<!--> Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!--> tex and code blocks in inside verbatim blocks and are replaced -->
-<!--> by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+</syntaxhighlight>
+<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!-- tex and code blocks in inside verbatim blocks and are replaced -->
+<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
 The result looks like this:
 
 :<math>
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 </math>
@@ -22452,7 +23478,7 @@ for those who can read LaTeX syntax.
 You can have blocks of computer code, starting and ending with
 <code>!bc</code> and <code>!ec</code> instructions, respectively.
 
-<code>
+<syntaxhighlight lang="text">
 !bc pycod
 from math import sin, pi
 def myfunc(x):
@@ -22461,7 +23487,7 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 !ec
-</code>
+</syntaxhighlight>
 Such blocks are formatted as
 
 <syntaxhighlight lang="python">
@@ -22471,7 +23497,7 @@ def myfunc(x):
 
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
-</code>
+</syntaxhighlight>
 A code block must come after some plain sentence (at least for successful
 output to <code>sphinx</code>, <code>rst</code>, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.
@@ -22523,7 +23549,7 @@ syntax we refer to the <code>doc/manual/manual.do.txt</code> file (see the
 for various formats of this document).
 
 
-<!--> Example on including another Doconce file (using preprocess): -->
+<!-- Example on including another Doconce file (using preprocess): -->
 
 
 
@@ -22533,11 +23559,11 @@ Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
 formats applies the script <code>doconce format</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc.do.txt
-</code>
+</syntaxhighlight>
 or just
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc
-</code>
+</syntaxhighlight>
 
 ==== Preprocessing ====
 
@@ -22547,7 +23573,7 @@ filename. For example,
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
-</code>
+</syntaxhighlight>
 The variable <code>FORMAT</code> is always defined as the current format when
 running <code>preprocess</code> or <code>mako</code>. That is, in the last example, <code>FORMAT</code> is
 defined as <code>latex</code>. Inside the Doconce document one can then perform
@@ -22556,7 +23582,7 @@ format specific actions through tests like <code>#if FORMAT == "latex"</code>
 
 ==== Removal of inline comments ====
 
-<!--> mention notes also -->
+<!-- mention notes also -->
 
 The command-line arguments <code>--no-preprocess</code> and <code>--no-mako</code> turn off
 running <code>preprocess</code> and <code>mako</code>, respectively.
@@ -22564,12 +23590,12 @@ running <code>preprocess</code> and <code>mako</code>, respectively.
 Inline comments in the text are removed from the output by
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc --skip_inline_comments
-</code>
+</syntaxhighlight>
 One can also remove all such comments from the original Doconce
 file by running:
-<code>
+<syntaxhighlight lang="text">
 Terminal> doconce remove_inline_comments mydoc
-</code>
+</syntaxhighlight>
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
@@ -22579,7 +23605,7 @@ Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc
-</code>
+</syntaxhighlight>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
 The HTML style can be defined either in the header of the HTML file or
@@ -22614,7 +23640,7 @@ from the source code of a page at the site; just insert <code>%(title)s</code> a
 by <code>%(main)s</code>. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc --html-template=mytemplate.html
-</code>
+</syntaxhighlight>
 
 ==== Blogs ====
 
@@ -22626,10 +23652,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 
-{{warning|In the comments one cannot paste raw HTML code with MathJax
+{{warning|In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.}}
 
 ==== Pandoc and Markdown ====
@@ -22637,12 +23663,12 @@ scripts so there is no support for mathematics in the comments.}}
 Output in Pandoc's extended Markdown format results from
 <syntaxhighlight lang="bash">
 Terminal> doconce format pandoc mydoc
-</code>
+</syntaxhighlight>
 The name of the output file is <code>mydoc.mkd</code>.
 From this format one can go to numerous other formats:
 <syntaxhighlight lang="bash">
 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
-</code>
+</syntaxhighlight>
 Pandoc supports <code>latex</code>, <code>html</code>, <code>odt</code> (OpenOffice), <code>docx</code> (Microsoft
 Word), <code>rtf</code>, <code>texinfo</code>, to mention some. The <code>-R</code> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
@@ -22659,15 +23685,19 @@ Here is an example on the latter strategy:
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
-</code>
+</syntaxhighlight>
 When we go through <code>pandoc</code>, only single equations or <code>align*</code>
 environments are well understood.
 
-Quite some <code>doconce replace</code> and <code>doconce subst</code> edits might be needed
-on the <code>.mkd</code> or <code>.tex</code> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the <code>Verb</code> macro from the <code>fancyvrb</code> package
+while <code>pandoc</code> only supports the standard <code>verb</code> construction for
+inline verbatim text.  Moreover, quite some additional <code>doconce
+replace</code> and <code>doconce subst</code> edits might be needed on the <code>.mkd</code> or
+<code>.tex</code> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -22675,22 +23705,23 @@ HTML with mathematics displayed my MathJax:
 <syntaxhighlight lang="bash">
 Terminal> doconce format pandoc mydoc
 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
-</code>
+</syntaxhighlight>
 The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
 Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is done in two steps:
-<!--> Note: putting code blocks inside a list is not successful in many -->
-<!--> formats - the text may be messed up. A better choice is a paragraph -->
-<!--> environment, as used here. -->
+<!-- Note: putting code blocks inside a list is not successful in many -->
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 
-''Step 1.'' Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
+''Step 1.''
+Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
 the <code>ptex2tex</code> program (or <code>doconce ptex2tex</code>):
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-</code>
+</syntaxhighlight>
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex</code>, or
 <code>newcommands_replace.tex</code> (see the section [#Macros_(Newcommands),_Cross-References,_Index,_and_Bibliography]).
@@ -22701,14 +23732,15 @@ An option <code>--latex-printed</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
-''Step 2.'' Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
+''Step 2.''
+Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex mydoc
-</code>
+</syntaxhighlight>
 In case you do not have <code>ptex2tex</code>, you may run a (very) simplified version:
 <syntaxhighlight lang="bash">
 Terminal> doconce ptex2tex mydoc
-</code>
+</syntaxhighlight>
 
 Note that Doconce generates a <code>.p.tex</code> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
@@ -22717,7 +23749,7 @@ Computer Modern font, run
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DHELVETICA mydoc
 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
-</code>
+</syntaxhighlight>
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
@@ -22729,7 +23761,18 @@ Preprocessor variables to be defined or undefined are
 
 
 <ul>
- <li> <code>BOOK</code> for the "book" documentclass rather than the standard   "article" class (necessary if you apply chapter headings) <li> <code>PALATINO</code> for the Palatino font <li> <code>HELVETIA</code> for the Helvetica font <li> <code>A4PAPER</code> for A4 paper size <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices) <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere) <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)</ul>
+ <li> <code>BOOK</code> for the "book" documentclass rather than the standard
+   "article" class (necessary if you apply chapter headings)
+ <li> <code>PALATINO</code> for the Palatino font
+ <li> <code>HELVETIA</code> for the Helvetica font
+ <li> <code>A4PAPER</code> for A4 paper size
+ <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices)
+ <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies
+ <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document
+   or document to be included elsewhere)
+ <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
+   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)
+</ul>
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -22748,7 +23791,7 @@ Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
           "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
-</code>
+</syntaxhighlight>
 Note that <code>@</code> must be used to separate the begin and end LaTeX
 commands, unless only the environment name is given (such as <code>minted</code>
 above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}</code> as
@@ -22760,7 +23803,8 @@ begin and end for blocks inside <code>!bc fpro</code> and <code>!ec</code>).  Sp
 and <code>\end{verbatim}</code> used.
 
 
-''Step 2b (optional).'' Edit the <code>mydoc.tex</code> file to your needs.
+''Step 2b (optional).''
+Edit the <code>mydoc.tex</code> file to your needs.
 For example, you may want to substitute <code>section</code> by <code>section*</code> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
@@ -22772,13 +23816,14 @@ Here are two examples:
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
-</code>
+</syntaxhighlight>
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
 generating PDF from the LaTeX file.
 
-''Step 3.'' Compile <code>mydoc.tex</code>
+''Step 3.''
+Compile <code>mydoc.tex</code>
 and create the PDF file:
 <syntaxhighlight lang="bash">
 Terminal> latex mydoc
@@ -22787,7 +23832,7 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> latex mydoc
 Terminal> dvipdf mydoc
-</code>
+</syntaxhighlight>
 
 If one wishes to run <code>ptex2tex</code> and use the minted LaTeX package for
 typesetting code blocks (<code>Minted_Python</code>, <code>Minted_Cpp</code>, etc., in
@@ -22797,7 +23842,7 @@ needed.  This package is included by running <code>ptex2tex</code> with the
 <code>-DMINTED</code> option:
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DMINTED mydoc
-</code>
+</syntaxhighlight>
 In this case, <code>latex</code> must be run with the
 <code>-shell-escape</code> option:
 <syntaxhighlight lang="bash">
@@ -22807,7 +23852,7 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
-</code>
+</syntaxhighlight>
 When running <code>doconce ptex2tex mydoc envir=minted</code> (or other minted
 specifications with <code>doconce ptex2tex</code>), the minted package is automatically
 included so there is no need for the <code>-DMINTED</code> option.
@@ -22818,14 +23863,14 @@ Running <code>pdflatex</code> instead of <code>latex</code> follows almost the s
 but the start is
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-</code>
+</syntaxhighlight>
 Then <code>ptex2tex</code> is run as explained above, and finally
 <syntaxhighlight lang="bash">
 Terminal> pdflatex -shell-escape mydoc
 Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
-</code>
+</syntaxhighlight>
 
 ==== Plain ASCII Text ====
 
@@ -22834,7 +23879,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 <syntaxhighlight lang="bash">
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
-</code>
+</syntaxhighlight>
 
 ==== reStructuredText ====
 
@@ -22843,14 +23888,14 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file <code>mydoc.rst</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format rst mydoc.do.txt
-</code>
+</syntaxhighlight>
 We may now produce various other formats:
 <syntaxhighlight lang="bash">
 Terminal> rst2html.py  mydoc.rst > mydoc.html # html
 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
-</code>
+</syntaxhighlight>
 
 The OpenOffice file <code>mydoc.odt</code> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -22859,7 +23904,7 @@ to convert between the many formats OpenOffice supports ''on the command line''.
 Run
 <syntaxhighlight lang="bash">
 Terminal> unoconv --show
-</code>
+</syntaxhighlight>
 to see all the formats that are supported.
 For example, the following commands take
 <code>mydoc.odt</code> to Microsoft Office Open XML format,
@@ -22868,9 +23913,10 @@ classic MS Word format, and PDF:
 Terminal> unoconv -f ooxml mydoc.odt
 Terminal> unoconv -f doc mydoc.odt
 Terminal> unoconv -f pdf mydoc.odt
-</code>
+</syntaxhighlight>
 
-''Remark about Mathematical Typesetting.'' At the time of this writing, there is no easy way to go from Doconce
+''Remark about Mathematical Typesetting.''
+At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by <code>latex</code> as
 output and to a wide extent also supported by the <code>sphinx</code> output format.
@@ -22878,7 +23924,10 @@ Some links for going from LaTeX to Word are listed below.
 
 
 <ul>
- <li> http://ubuntuforums.org/showthread.php?t=1033441 <li> http://tug.org/utilities/texconv/textopc.html <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</ul>
+ <li> http://ubuntuforums.org/showthread.php?t=1033441
+ <li> http://tug.org/utilities/texconv/textopc.html
+ <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html
+</ul>
 
 ==== Sphinx ====
 
@@ -22888,7 +23937,7 @@ most of the steps through the <code>doconce sphinx_dir</code> command:
 Terminal> doconce sphinx_dir author="authors' names" \
           title="some title" version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
-</code>
+</syntaxhighlight>
 The keywords <code>author</code>, <code>title</code>, and <code>version</code> are used in the headings
 of the Sphinx document. By default, <code>version</code> is 1.0 and the script
 will try to deduce authors and title from the doconce files <code>file1</code>,
@@ -22902,7 +23951,7 @@ Sphinx (the default theme is <code>'default'</code>).
 With a single-file document in <code>mydoc.do.txt</code> one often just runs
 <syntaxhighlight lang="bash">
 Terminal> doconce sphinx_dir mydoc
-</code>
+</syntaxhighlight>
 and then an appropriate Sphinx directory <code>sphinx-rootdir</code> is made with
 relevant files.
 
@@ -22940,7 +23989,7 @@ For example,
 to realize the themes <code>fenics</code> and <code>pyramid</code>, one writes
 <syntaxhighlight lang="bash">
 Terminal> ./make-themes.sh fenics pyramid
-</code>
+</syntaxhighlight>
 The resulting directories with HTML documents are <code>_build/html_fenics</code>
 and <code>_build/html_pyramid</code>, respectively. Without arguments,
 <code>make-themes.sh</code> makes all available themes (!).
@@ -22949,12 +23998,14 @@ If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file <code>mydoc.do.txt</code>.
 
-''Step 1.'' Translate Doconce into the Sphinx format:
+''Step 1.''
+Translate Doconce into the Sphinx format:
 <syntaxhighlight lang="bash">
 Terminal> doconce format sphinx mydoc
-</code>
+</syntaxhighlight>
 
-''Step 2.'' Create a Sphinx root directory
+''Step 2.''
+Create a Sphinx root directory
 either manually or by using the interactive <code>sphinx-quickstart</code>
 program. Here is a scripted version of the steps with the latter:
 <syntaxhighlight lang="bash">
@@ -22982,7 +24033,7 @@ y
 y
 y
 EOF
-</code>
+</syntaxhighlight>
 The autogenerated <code>conf.py</code> file
 may need some edits if you want to specific layout (Sphinx themes)
 of HTML pages. The <code>doconce sphinx_dir</code> generator makes an extended <code>conv.py</code>
@@ -22990,10 +24041,11 @@ file where, among other things, several useful Sphinx extensions
 are included.
 
 
-''Step 3.'' Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
+''Step 3.''
+Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
 <syntaxhighlight lang="bash">
 Terminal> cp mydoc.rst sphinx-rootdir
-</code>
+</syntaxhighlight>
 If you have figures in your document, the relative paths to those will
 be invalid when you work with <code>mydoc.rst</code> in the <code>sphinx-rootdir</code>
 directory. Either edit <code>mydoc.rst</code> so that figure file paths are correct,
@@ -23001,21 +24053,23 @@ or simply copy your figure directories to <code>sphinx-rootdir</code>.
 Links to local files in <code>mydoc.rst</code> must be modified to links to
 files in the <code>_static</code> directory, see comment above.
 
-''Step 4.'' Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
+''Step 4.''
+Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
 is included, i.e., add <code>mydoc</code> to the <code>toctree</code> section so that it becomes
-<code>
+<syntaxhighlight lang="text">
 .. toctree::
    :maxdepth: 2
 
    mydoc
-</code>
+</syntaxhighlight>
 (The spaces before <code>mydoc</code> are important!)
 
-''Step 5.'' Generate, for instance, an HTML version of the Sphinx source:
+''Step 5.''
+Generate, for instance, an HTML version of the Sphinx source:
 <syntaxhighlight lang="bash">
 make clean   # remove old versions
 make html
-</code>
+</syntaxhighlight>
 
 Sphinx can generate a range of different formats:
 standalone HTML, HTML in separate directories with <code>index.html</code> files,
@@ -23023,10 +24077,11 @@ a large single HTML file, JSON files, various help files (the qthelp, HTML,
 and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
 and Texinfo files.
 
-''Step 6.'' View the result:
+''Step 6.''
+View the result:
 <syntaxhighlight lang="bash">
 Terminal> firefox _build/html/index.html
-</code>
+</syntaxhighlight>
 
 Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows <code>!bc</code>: <code>cod</code> gives Python
@@ -23036,14 +24091,23 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ==== Wiki Formats ====
 
 There are many different wiki formats, but Doconce only supports three:
-[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki], MediaWiki, and Creole Wiki. These formats are called
+[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
+MediaWiki, and
+Creole Wiki. These formats are called
 <code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <syntaxhighlight lang="bash">
 Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
-</code>
+</syntaxhighlight>
+
+The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
+wikibooks.org]. The format
+works well with Wikipedia, Wikibooks, and
+[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+but not always well elsewhere
+(see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
 The Googlecode wiki document, <code>mydoc.gwiki</code>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -23079,9 +24143,9 @@ constitute comprehensive examples on how such scripts can be made.
 ==== Demos ====
 
 The current text is generated from a Doconce format stored in the file
-<code>
+<syntaxhighlight lang="text">
 docs/tutorial/tutorial.do.txt
-</code>
+</syntaxhighlight>
 The file <code>make.sh</code> in the <code>tutorial</code> directory of the
 Doconce source code contains a demo of how to produce a variety of
 formats.  The source of this tutorial, <code>tutorial.do.txt</code> is the
@@ -23109,7 +24173,7 @@ hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 Since Doconce is frequently updated, it is recommended to use the
 above procedure and whenever a problem occurs, make sure to
 update to the most recent version:
@@ -23118,12 +24182,12 @@ cd doconce
 hg pull
 hg update
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 
 Debian GNU/Linux users can also run
 <syntaxhighlight lang="bash">
 sudo apt-get install doconce
-</code>
+</syntaxhighlight>
 This installs the latest release and not the most updated and bugfixed
 version.
 On Ubuntu one needs to run
@@ -23131,7 +24195,7 @@ On Ubuntu one needs to run
 sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
-</code>
+</syntaxhighlight>
 
 ==== Dependencies ====
 
@@ -23146,7 +24210,7 @@ cd preprocess
 cd doconce
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 
 A much more advanced alternative to Preprocess is
 [http://www.makotemplates.org Mako]. Its installation is most
@@ -23154,13 +24218,13 @@ conveniently done by <code>pip</code>,
 
 <syntaxhighlight lang="bash">
 pip install Mako
-</code>
+</syntaxhighlight>
 This command requires <code>pip</code> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pip
-</code>
+</syntaxhighlight>
 Alternatively, one can install from the <code>pip</code> [http://pypi.python.org/pypi/pip source code].
 
 Mako can also be installed directly from
@@ -23179,7 +24243,7 @@ On Debian Linux (including Ubuntu) systems one can simply write
 
 <syntaxhighlight lang="bash">
 sudo apt-get install imagemagick
-</code>
+</syntaxhighlight>
 
 The convenience program <code>doconce combine_images</code>, for combining several
 images into one, will use <code>montage</code> and <code>convert</code> from ImageMagick and
@@ -23188,7 +24252,7 @@ Debian package. The latter gets installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-extra-utils
-</code>
+</syntaxhighlight>
 
 ==== Spellcheck ====
 
@@ -23197,7 +24261,7 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install ispell
-</code>
+</syntaxhighlight>
 
 ==== Ptex2tex for LaTeX Output ====
 
@@ -23209,7 +24273,7 @@ which is installed by
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 It may happen that you need additional style files, you can run
 a script, <code>cp2texmf.sh</code>:
 
@@ -23217,14 +24281,14 @@ a script, <code>cp2texmf.sh</code>:
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
-</code>
+</syntaxhighlight>
 This script copies some special stylefiles that
 that <code>ptex2tex</code> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-latex-recommended texlive-latex-extra
-</code>
+</syntaxhighlight>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <code>~/texmf/tex/latex/misc</code> directory).
@@ -23239,13 +24303,13 @@ users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pygments
-</code>
+</syntaxhighlight>
 Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
 enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
@@ -23256,7 +24320,7 @@ use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.
 
-<!--> Say something about anslistings.sty -->
+<!-- Say something about anslistings.sty -->
 
 ==== reStructuredText (reST) Output ====
 
@@ -23269,11 +24333,11 @@ svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 To use the OpenOffice suite you will typically on Debian systems install
 <syntaxhighlight lang="bash">
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
-</code>
+</syntaxhighlight>
 
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
@@ -23291,7 +24355,7 @@ hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 
 ==== Markdown and Pandoc Output ====
 
@@ -23302,7 +24366,7 @@ easily done by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install pandoc
-</code>
+</syntaxhighlight>
 on Debian (Ubuntu) systems.
 
 ==== Epydoc Output ====
@@ -23314,9 +24378,10 @@ svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
 cd ..
-</code>
+</syntaxhighlight>
 
-''Remark.'' Several of the packages above installed from source code
+''Remark.''
+Several of the packages above installed from source code
 are also available in Debian-based system through the
 <code>apt-get install</code> command. However, we recommend installation directly
 from the version control system repository as there might be important
@@ -23693,11 +24758,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [[http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html|example]] for details on blogging.
+See a [[http://doconce.blogspot.no|blog example]] for details on blogging.
 
 
 
-//Warning.// In the comments one cannot paste raw HTML code with MathJax
+//Warning.// In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 
@@ -23728,15 +24793,19 @@ Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
 When we go through {{{pandoc}}}, only single equations or {{{align*}}}
 environments are well understood.
 
-Quite some {{{doconce replace}}} and {{{doconce subst}}} edits might be needed
-on the {{{.mkd}}} or {{{.tex}}} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the {{{Verb}}} macro from the {{{fancyvrb}}} package
+while {{{pandoc}}} only supports the standard {{{verb}}} construction for
+inline verbatim text.  Moreover, quite some additional {{{doconce
+replace}}} and {{{doconce subst}}} edits might be needed on the {{{.mkd}}} or
+{{{.tex}}} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -24118,7 +25187,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 == Wiki Formats ==
 
 There are many different wiki formats, but Doconce only supports three:
-[[http://code.google.com/p/support/wiki/WikiSyntax|Googlecode wiki]], MediaWiki, and Creole Wiki. These formats are called
+[[http://code.google.com/p/support/wiki/WikiSyntax|Googlecode wiki]],
+MediaWiki, and
+Creole Wiki. These formats are called
 {{{gwiki}}}, {{{mwiki}}}, and {{{cwiki}}}, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -24126,6 +25197,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 }}}
+
+The produced MediaWiki can be tested in the [[http://en.wikibooks.org/wiki/Sandbox|sandbox of
+wikibooks.org]]. The format
+works well with Wikipedia, Wikibooks, and
+[[http://doconce.shoutwiki.com/wiki/Doconce_demo|ShoutWiki]],
+but not always well elsewhere
+(see [[http://doconcedemo.jumpwiki.com/wiki/First_demo|this example]]).
 
 The Googlecode wiki document, {{{mydoc.gwiki}}}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -24793,11 +25871,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html":example for details on blogging.
+See a "http://doconce.blogspot.no":blog example for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -24830,15 +25908,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through 'pandoc', only single equations or 'align*'
 environments are well understood.
 
-Quite some 'doconce replace' and 'doconce subst' edits might be needed
-on the '.mkd' or '.tex' files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the 'Verb' macro from the 'fancyvrb' package
+while 'pandoc' only supports the standard 'verb' construction for
+inline verbatim text.  Moreover, quite some additional 'doconce
+replace' and 'doconce subst' edits might be needed on the '.mkd' or
+'.tex' files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -25237,7 +26319,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
-"http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki, MediaWiki, and Creole Wiki. These formats are called
+"http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki,
+MediaWiki, and
+Creole Wiki. These formats are called
 'gwiki', 'mwiki', and 'cwiki', respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -25246,6 +26330,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the "http://en.wikibooks.org/wiki/Sandbox":sandbox of
+wikibooks.org. The format
+works well with Wikipedia, Wikibooks, and
+"http://doconce.shoutwiki.com/wiki/Doconce_demo":ShoutWiki,
+but not always well elsewhere
+(see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
 The Googlecode wiki document, 'mydoc.gwiki', is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -25934,11 +27025,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this U{example<http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>} for details on blogging.
+See a U{blog example<http://doconce.blogspot.no>} for details on blogging.
 
 
 
-I{Warning.} In the comments one cannot paste raw HTML code with MathJax
+I{Warning.} In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -25972,15 +27063,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through C{pandoc}, only single equations or C{align*}
 environments are well understood.
 
-Quite some C{doconce replace} and C{doconce subst} edits might be needed
-on the C{.mkd} or C{.tex} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the C{Verb} macro from the C{fancyvrb} package
+while C{pandoc} only supports the standard C{verb} construction for
+inline verbatim text.  Moreover, quite some additional C{doconce
+replace} and C{doconce subst} edits might be needed on the C{.mkd} or
+C{.tex} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -26389,7 +27484,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>}, MediaWiki, and Creole Wiki. These formats are called
+U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>},
+MediaWiki, and
+Creole Wiki. These formats are called
 C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -26398,6 +27495,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the U{sandbox of
+wikibooks.org<http://en.wikibooks.org/wiki/Sandbox>}. The format
+works well with Wikipedia, Wikibooks, and
+U{ShoutWiki<http://doconce.shoutwiki.com/wiki/Doconce_demo>},
+but not always well elsewhere
+(see U{this example<http://doconcedemo.jumpwiki.com/wiki/First_demo>}).
 
 The Googlecode wiki document, C{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -27126,11 +28230,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this example (http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+See a blog example (http://doconce.blogspot.no) for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -27164,15 +28268,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through pandoc, only single equations or align*
 environments are well understood.
 
-Quite some doconce replace and doconce subst edits might be needed
-on the .mkd or .tex files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the Verb macro from the fancyvrb package
+while pandoc only supports the standard verb construction for
+inline verbatim text.  Moreover, quite some additional doconce
+replace and doconce subst edits might be needed on the .mkd or
+.tex files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -27590,7 +28698,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-Googlecode wiki (http://code.google.com/p/support/wiki/WikiSyntax), MediaWiki, and Creole Wiki. These formats are called
+Googlecode wiki (http://code.google.com/p/support/wiki/WikiSyntax),
+MediaWiki, and
+Creole Wiki. These formats are called
 gwiki, mwiki, and cwiki, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -27599,6 +28709,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the sandbox of
+wikibooks.org (http://en.wikibooks.org/wiki/Sandbox). The format
+works well with Wikipedia, Wikibooks, and
+ShoutWiki (http://doconce.shoutwiki.com/wiki/Doconce_demo),
+but not always well elsewhere
+(see this example (http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
 The Googlecode wiki document, mydoc.gwiki, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -28343,11 +29460,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [example](http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+See a [blog example](http://doconce.blogspot.no) for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -28383,16 +29500,20 @@ Here is an example on the latter strategy:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When we go through `pandoc`, only single equations or `align*`
 environments are well understood.
 
-Quite some `doconce replace` and `doconce subst` edits might be needed
-on the `.mkd` or `.tex` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the `Verb` macro from the `fancyvrb` package
+while `pandoc` only supports the standard `verb` construction for
+inline verbatim text.  Moreover, quite some additional `doconce
+replace` and `doconce subst` edits might be needed on the `.mkd` or
+`.tex` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -28830,7 +29951,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-[Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax), MediaWiki, and Creole Wiki. These formats are called
+[Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax),
+MediaWiki, and
+Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -28839,6 +29962,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The produced MediaWiki can be tested in the [sandbox of
+wikibooks.org](http://en.wikibooks.org/wiki/Sandbox). The format
+works well with Wikipedia, Wikibooks, and
+[ShoutWiki](http://doconce.shoutwiki.com/wiki/Doconce_demo),
+but not always well elsewhere
+(see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -29349,10 +30479,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this "example": "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html" for details on blogging.
+See a "blog example": "http://doconce.blogspot.no" for details on blogging.
 
 !bwarning
-In the comments one cannot paste raw HTML code with MathJax
+In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 !ewarning
 
@@ -29383,15 +30513,19 @@ Here is an example on the latter strategy:
 !bc sys
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 !ec
 When we go through `pandoc`, only single equations or `align*`
 environments are well understood.
 
-Quite some `doconce replace` and `doconce subst` edits might be needed
-on the `.mkd` or `.tex` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the `Verb` macro from the `fancyvrb` package
+while `pandoc` only supports the standard `verb` construction for
+inline verbatim text.  Moreover, quite some additional `doconce
+replace` and `doconce subst` edits might be needed on the `.mkd` or
+`.tex` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -29774,7 +30908,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ===== Wiki Formats =====
 
 There are many different wiki formats, but Doconce only supports three:
-"Googlecode wiki": "http://code.google.com/p/support/wiki/WikiSyntax", MediaWiki, and Creole Wiki. These formats are called
+"Googlecode wiki": "http://code.google.com/p/support/wiki/WikiSyntax",
+MediaWiki, and
+Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 !bc sys
@@ -29782,6 +30918,14 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 !ec
+
+The produced MediaWiki can be tested in the "sandbox of
+wikibooks.org": "http://en.wikibooks.org/wiki/Sandbox". The format
+works well with Wikipedia, Wikibooks, and
+"ShoutWiki": "http://doconce.shoutwiki.com/wiki/Doconce_demo",
+but not always well elsewhere
+(see "this example":
+"http://doconcedemo.jumpwiki.com/wiki/First_demo").
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -30037,7 +31181,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 06 Jan 2013 (19:07)</center>
+<center>Fri, 11 Jan 2013 (07:46)</center>
 
 
 
@@ -30168,7 +31312,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 06 Jan 2013 (19:07)</center>
+<center>Fri, 11 Jan 2013 (07:46)</center>
 
 
 
@@ -31644,12 +32788,18 @@ Here is the result:
 
 The support of LaTeX mathematics varies among the formats:
 
- * Output `latex` and `pdflatex` has of course full support.
+ * Output in LaTeX (`latex` and `pdflatex` formats) has of course full
+   support of all LaTeX mathematics, of course.
  * The `html` format supports single equations and multiple equations
    via the align environment, also with labels.
- * Although `sphinx`, like `html`, employs
-   MathJax, it does not support labels in align environments.
  * Markdown (`pandoc` format) allows single equations and inline mathematics.
+ * MediaWiki (`mwiki` format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (`latex` and `pdflatex` formats), stick to
+simple `\[` and `\]` or `equation` and `align` or `align*` environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the `latex` format and then using the Pandoc program to translate
@@ -33184,7 +34334,7 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.
+See a <a href="http://doconce.blogspot.no">blog example</a> for details on blogging.
 
 <p>
 
@@ -33197,7 +34347,7 @@ See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated
 <tr>
 <td>&nbsp;</td>
 <td align="left" valign="top">
-<p>In the comments one cannot paste raw HTML code with MathJax
+<p>In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </td>
 </tr>
@@ -33237,6 +34387,7 @@ Here is an example on the latter strategy:
 <pre>
 Terminal&gt; doconce format latex mydoc
 Terminal&gt; doconce ptex2tex mydoc
+Terminal&gt; doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 <! -- end verbatim block -->
@@ -33244,10 +34395,13 @@ When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
 environments are well understood.
 
 <p>
-Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
-on the <tt>.mkd</tt> or <tt>.tex</tt> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the <tt>Verb</tt> macro from the <tt>fancyvrb</tt> package
+while <tt>pandoc</tt> only supports the standard <tt>verb</tt> construction for
+inline verbatim text.  Moreover, quite some additional <tt>doconce
+replace</tt> and <tt>doconce subst</tt> edits might be needed on the <tt>.mkd</tt> or
+<tt>.tex</tt> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 <p>
 Here is an example where we take a Doconce snippet (without title, author,
@@ -33722,7 +34876,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <h3>Wiki Formats  <a name="___sec23"></a></h3>
 <p>
 There are many different wiki formats, but Doconce only supports three:
-<a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
+<a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
+MediaWiki, and
+Creole Wiki. These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
@@ -33732,6 +34888,14 @@ Terminal&gt; doconce format mwiki mydoc.do.txt
 Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
 <! -- end verbatim block -->
+
+<p>
+The produced MediaWiki can be tested in the <a href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
+wikibooks.org</a>. The format
+works well with Wikipedia, Wikibooks, and
+<a href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+but not always well elsewhere
+(see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
 <p>
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
@@ -35194,20 +36358,28 @@ $$
 \end{align}
 $$
 
+
 <p>
 The support of LaTeX mathematics varies among the formats:
 
 <p>
 
 <ul>
- <li> Output <tt>latex</tt> and <tt>pdflatex</tt> has of course full support.</li>
+ <li> Output in LaTeX (<tt>latex</tt> and <tt>pdflatex</tt> formats) has of course full
+   support of all LaTeX mathematics, of course.</li>
  <li> The <tt>html</tt> format supports single equations and multiple equations
    via the align environment, also with labels.</li>
- <li> Although <tt>sphinx</tt>, like <tt>html</tt>, employs
-   MathJax, it does not support labels in align environments.</li>
  <li> Markdown (<tt>pandoc</tt> format) allows single equations and inline mathematics.</li>
+ <li> MediaWiki (<tt>mwiki</tt> format) does not enable labels in equations and hence
+   equations cannot be referred to.</li>
 </ul>
 
+The main conclusion is that for
+output beyond LaTeX (<tt>latex</tt> and <tt>pdflatex</tt> formats), stick to
+simple <tt>\[</tt> and <tt>\]</tt> or <tt>equation</tt> and <tt>align</tt> or <tt>align*</tt> environments,
+and avoid referring to equations in MediaWikis.
+
+<p>
 Going from Doconce to MS Word is most easily done by outputting in
 the <tt>latex</tt> format and then using the Pandoc program to translate
 from LaTeX to MS Word (note that only a subset of LaTeX will be
@@ -35337,6 +36509,7 @@ $$
 \Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
 \eeqa
 $$
+
 in the current format.
 
 <p>
@@ -37002,7 +38175,7 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 {\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
-See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}}{example} for details on blogging.
+See a \href{{http://doconce.blogspot.no}}{blog example} for details on blogging.
 
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
@@ -37012,7 +38185,7 @@ See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-b
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
 \vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
-In the comments one cannot paste raw HTML code with MathJax
+In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 \end{minipage}}
 \end{center}
@@ -37045,15 +38218,19 @@ Here is an example on the latter strategy:
 \bsys
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \esys
 When we go through \code{pandoc}, only single equations or \code{align*}
 environments are well understood.
 
-Quite some \code{doconce replace} and \code{doconce subst} edits might be needed
-on the \code{.mkd} or \code{.tex} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via {\LaTeX}.
+Note that Doconce applies the \code{Verb} macro from the \code{fancyvrb} package
+while \code{pandoc} only supports the standard \code{verb} construction for
+inline verbatim text.  Moreover, quite some additional \code{doconce
+replace} and \code{doconce subst} edits might be needed on the \code{.mkd} or
+\code{.tex} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via {\LaTeX}.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -37457,7 +38634,9 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 \subsection{Wiki Formats}
 
 There are many different wiki formats, but Doconce only supports three:
-\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
+\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki},
+MediaWiki, and
+Creole Wiki. These formats are called
 \code{gwiki}, \code{mwiki}, and \code{cwiki}, respectively.
 Transformation from Doconce to these formats is done by
 \bsys
@@ -37465,6 +38644,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 \esys
+
+The produced MediaWiki can be tested in the \href{{http://en.wikibooks.org/wiki/Sandbox}}{sandbox of
+wikibooks.org}. The format
+works well with Wikipedia, Wikibooks, and
+\href{{http://doconce.shoutwiki.com/wiki/Doconce_demo}}{ShoutWiki},
+but not always well elsewhere
+(see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
 The Googlecode wiki document, \code{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -38745,18 +39931,24 @@ Here is the result:
 The support of {\LaTeX} mathematics varies among the formats:
 
 \begin{itemize}
- \item Output \code{latex} and \code{pdflatex} has of course full support.
+ \item Output in {\LaTeX} (\code{latex} and \code{pdflatex} formats) has of course full
+   support of all {\LaTeX} mathematics, of course.
 
  \item The \code{html} format supports single equations and multiple equations
    via the align environment, also with labels.
 
- \item Although \code{sphinx}, like \code{html}, employs
-   MathJax, it does not support labels in align environments.
-
  \item Markdown (\code{pandoc} format) allows single equations and inline mathematics.
+
+ \item MediaWiki (\code{mwiki} format) does not enable labels in equations and hence
+   equations cannot be referred to.
 \end{itemize}
 
 \noindent
+The main conclusion is that for
+output beyond {\LaTeX} (\code{latex} and \code{pdflatex} formats), stick to
+simple \code{\[} and \code{\]} or \code{equation} and \code{align} or \code{align*} environments,
+and avoid referring to equations in MediaWikis.
+
 Going from Doconce to MS Word is most easily done by outputting in
 the \code{latex} format and then using the Pandoc program to translate
 from {\LaTeX} to MS Word (note that only a subset of {\LaTeX} will be
@@ -40132,11 +41324,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 
 
 .. warning::
-    In the comments one cannot paste raw HTML code with MathJax
+    In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -40170,15 +41362,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through ``pandoc``, only single equations or ``align*``
 environments are well understood.
 
-Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the ``Verb`` macro from the ``fancyvrb`` package
+while ``pandoc`` only supports the standard ``verb`` construction for
+inline verbatim text.  Moreover, quite some additional ``doconce
+replace`` and ``doconce subst`` edits might be needed on the ``.mkd`` or
+``.tex`` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -40602,7 +41798,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
+MediaWiki, and
+Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -40611,6 +41809,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the `sandbox of
+wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
+works well with Wikipedia, Wikibooks, and
+`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+but not always well elsewhere
+(see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -41924,15 +43129,21 @@ Here is the result::
 
 The support of LaTeX mathematics varies among the formats:
 
- * Output ``latex`` and ``pdflatex`` has of course full support.
+ * Output in LaTeX (``latex`` and ``pdflatex`` formats) has of course full
+   support of all LaTeX mathematics, of course.
 
  * The ``html`` format supports single equations and multiple equations
    via the align environment, also with labels.
 
- * Although ``sphinx``, like ``html``, employs
-   MathJax, it does not support labels in align environments.
-
  * Markdown (``pandoc`` format) allows single equations and inline mathematics.
+
+ * MediaWiki (``mwiki`` format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (``latex`` and ``pdflatex`` formats), stick to
+simple ``\[`` and ``\]`` or ``equation`` and ``align`` or ``align*`` environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the ``latex`` format and then using the Pandoc program to translate
@@ -43471,11 +44682,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 
 
 .. warning::
-    In the comments one cannot paste raw HTML code with MathJax
+    In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -43512,15 +44723,19 @@ Here is an example on the latter strategy:
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through ``pandoc``, only single equations or ``align*``
 environments are well understood.
 
-Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the ``Verb`` macro from the ``fancyvrb`` package
+while ``pandoc`` only supports the standard ``verb`` construction for
+inline verbatim text.  Moreover, quite some additional ``doconce
+replace`` and ``doconce subst`` edits might be needed on the ``.mkd`` or
+``.tex`` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -43971,7 +45186,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
+MediaWiki, and
+Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -43981,6 +45198,13 @@ Transformation from Doconce to these formats is done by
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the `sandbox of
+wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
+works well with Wikipedia, Wikibooks, and
+`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+but not always well elsewhere
+(see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -45441,23 +46665,38 @@ Here is the result:
 
 
 .. math::
+   :label: myeq1
         
-        {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+        {\partial u\over\partial t} = \nabla^2 u + f, 
+        
+
+
+
+.. math::
+   :label: myeq2
+        
+        
+        {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g. 
         
 
 
 The support of LaTeX mathematics varies among the formats:
 
- * Output ``latex`` and ``pdflatex`` has of course full support.
+ * Output in LaTeX (``latex`` and ``pdflatex`` formats) has of course full
+   support of all LaTeX mathematics, of course.
 
  * The ``html`` format supports single equations and multiple equations
    via the align environment, also with labels.
 
- * Although ``sphinx``, like ``html``, employs
-   MathJax, it does not support labels in align environments.
-
  * Markdown (``pandoc`` format) allows single equations and inline mathematics.
+
+ * MediaWiki (``mwiki`` format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (``latex`` and ``pdflatex`` formats), stick to
+simple ``\[`` and ``\]`` or ``equation`` and ``align`` or ``align*`` environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the ``latex`` format and then using the Pandoc program to translate
@@ -46906,11 +48145,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 ==== Pandoc and Markdown ====
@@ -46940,15 +48179,19 @@ Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
 When we go through `pandoc`, only single equations or `align*`
 environments are well understood.
 
-Quite some `doconce replace` and `doconce subst` edits might be needed
-on the `.mkd` or `.tex` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the `Verb` macro from the `fancyvrb` package
+while `pandoc` only supports the standard `verb` construction for
+inline verbatim text.  Moreover, quite some additional `doconce
+replace` and `doconce subst` edits might be needed on the `.mkd` or
+`.tex` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -47324,7 +48567,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ==== Wiki Formats ====
 
 There are many different wiki formats, but Doconce only supports three:
-[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki], MediaWiki, and Creole Wiki. These formats are called
+[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
+MediaWiki, and
+Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -47332,6 +48577,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 }}}
+
+The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
+wikibooks.org]. The format
+works well with Wikipedia, Wikibooks, and
+[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+but not always well elsewhere
+(see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -48523,10 +49775,15 @@ Here is the result:
 The support of LaTeX mathematics varies among the formats:
 
 
- * Output `latex` and `pdflatex` has of course full support.
+ * Output in LaTeX (`latex` and `pdflatex` formats) has of course full   support of all LaTeX mathematics, of course.
  * The `html` format supports single equations and multiple equations   via the align environment, also with labels.
- * Although `sphinx`, like `html`, employs   MathJax, it does not support labels in align environments.
  * Markdown (`pandoc` format) allows single equations and inline mathematics.
+ * MediaWiki (`mwiki` format) does not enable labels in equations and hence   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (`latex` and `pdflatex` formats), stick to
+simple `\[` and `\]` or `equation` and `align` or `align*` environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the `latex` format and then using the Pandoc program to translate
@@ -49377,8 +50634,8 @@ By '''Hans Petter Langtangen'''
 
 ==== Jan 32, 2100 ====
 
-<!--> lines beginning with # are doconce comment lines -->
-<!--> (documents can also have mako comment lines) -->
+<!-- lines beginning with # are doconce comment lines -->
+<!-- (documents can also have mako comment lines) -->
 
 
 
@@ -49388,19 +50645,67 @@ Doconce is two things:
 
 
 <ol>
- <li> Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText    (reST), Sphinx, Epytext, and also plain text (where non-obvious    formatting/tags are removed for clear reading in, e.g.,    emails). From reST you can (via <code>rst2*</code> programs) go to XML, HTML,    LaTeX, PDF, OpenOffice, and from the latter (via <code>unoconv</code>) to    RTF, numerous MS Word formats (including MS Office Open XML),    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU    Texinfo, MediaWiki, RTF, Groff, and other formats. <li> Doconce is a working strategy for never duplicating information.    Text is written in a single place and then transformed to    a number of different destinations of diverse type (software    source code, manuals, tutorials, books, wikis, memos, emails, etc.).    The Doconce markup language support this working strategy.    The slogan is: "Write once, include anywhere".</ol>
+ <li> Doconce is a very simple and minimally tagged markup language that
+    looks like ordinary ASCII text (much like what you would use in an
+    email), but the text can be transformed to numerous other formats,
+    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via <code>rst2*</code> programs) go to XML, HTML,
+    LaTeX, PDF, OpenOffice, and from the latter (via <code>unoconv</code>) to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
+ <li> Doconce is a working strategy for never duplicating information.
+    Text is written in a single place and then transformed to
+    a number of different destinations of diverse type (software
+    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
+    The Doconce markup language support this working strategy.
+    The slogan is: "Write once, include anywhere".
+</ol>
 
 Here are some Doconce features:
 
 
 <ul>
-  <li> Doconce markup does include tags, so the format is more tagged than    Markdown and Pandoc, but less than reST, and very much less than    LaTeX and HTML.  <li> Doconce can be converted to plain ''untagged'' text,    often desirable for computer programs and email.  <li> Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.  <li> Doconce has full support for LaTeX math and integrates well    with big LaTeX projects (books).  <li> Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or wiki document.  <li> Contrary to the similar (and superior) Pandoc translator, Doconce    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),    lots of computer code environments in LaTeX, and a special exercise    syntax. Doconce also also runs preprocessors (including Mako)    such that the author can mix ordinary text with programming    construction for generating parts of the text.</ul>
+  <li> Doconce markup does include tags, so the format is more tagged than
+    Markdown and Pandoc, but less than reST, and very much less than
+    LaTeX and HTML.
+  <li> Doconce can be converted to plain ''untagged'' text,
+    often desirable for computer programs and email.
+  <li> Doconce has good support for copying in parts of computer code
+    directly from the source code files via regular expressions
+    for the start and end lines.
+  <li> Doconce has full support for LaTeX math and integrates well
+    with big LaTeX projects (books).
+  <li> Doconce is almost self-explanatory and is a handy starting point
+    for generating documents in more complicated markup languages, such
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
+  <li> Contrary to the similar (and superior) Pandoc translator, Doconce
+    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+    lots of computer code environments in LaTeX, and a special exercise
+    syntax. Doconce also also runs preprocessors (including Mako)
+    such that the author can mix ordinary text with programming
+    construction for generating parts of the text.
+</ul>
 
 Doconce was particularly written for the following sample applications:
 
 
 <ul>
-  <li> Large books written in LaTeX, but where many pieces (computer demos,    projects, examples) can be written in Doconce to appear in other    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.  <li> Software documentation, primarily Python doc strings, which one wants    to appear as plain untagged text for viewing in Pydoc, as reStructuredText    for use with Sphinx, as wiki text when publishing the software at    web sites, and as LaTeX integrated in, e.g., a thesis.  <li> Quick memos, which start as plain text in email, then some small    amount of Doconce tagging is added, before the memos can appear as    Sphinx web pages, MS Word documents, or in wikis.</ul>
+  <li> Large books written in LaTeX, but where many pieces (computer demos,
+    projects, examples) can be written in Doconce to appear in other
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
+  <li> Software documentation, primarily Python doc strings, which one wants
+    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
+    for use with Sphinx, as wiki text when publishing the software at
+    web sites, and as LaTeX integrated in, e.g., a thesis.
+  <li> Quick memos, which start as plain text in email, then some small
+    amount of Doconce tagging is added, before the memos can appear as
+    Sphinx web pages, MS Word documents, or in wikis.
+</ul>
 
 History: Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
@@ -49432,7 +50737,7 @@ hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 Since Doconce is frequently updated, it is recommended to use the
 above procedure and whenever a problem occurs, make sure to
 update to the most recent version:
@@ -49441,12 +50746,12 @@ cd doconce
 hg pull
 hg update
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 
 Debian GNU/Linux users can also run
 <syntaxhighlight lang="bash">
 sudo apt-get install doconce
-</code>
+</syntaxhighlight>
 This installs the latest release and not the most updated and bugfixed
 version.
 On Ubuntu one needs to run
@@ -49454,7 +50759,7 @@ On Ubuntu one needs to run
 sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
-</code>
+</syntaxhighlight>
 
 ==== Dependencies ====
 
@@ -49469,7 +50774,7 @@ cd preprocess
 cd doconce
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 
 A much more advanced alternative to Preprocess is
 [http://www.makotemplates.org Mako]. Its installation is most
@@ -49477,13 +50782,13 @@ conveniently done by <code>pip</code>,
 
 <syntaxhighlight lang="bash">
 pip install Mako
-</code>
+</syntaxhighlight>
 This command requires <code>pip</code> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pip
-</code>
+</syntaxhighlight>
 Alternatively, one can install from the <code>pip</code> [http://pypi.python.org/pypi/pip source code].
 
 Mako can also be installed directly from
@@ -49502,7 +50807,7 @@ On Debian Linux (including Ubuntu) systems one can simply write
 
 <syntaxhighlight lang="bash">
 sudo apt-get install imagemagick
-</code>
+</syntaxhighlight>
 
 The convenience program <code>doconce combine_images</code>, for combining several
 images into one, will use <code>montage</code> and <code>convert</code> from ImageMagick and
@@ -49511,7 +50816,7 @@ Debian package. The latter gets installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-extra-utils
-</code>
+</syntaxhighlight>
 
 ==== Spellcheck ====
 
@@ -49520,7 +50825,7 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install ispell
-</code>
+</syntaxhighlight>
 
 ==== Ptex2tex for LaTeX Output ====
 
@@ -49532,7 +50837,7 @@ which is installed by
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 It may happen that you need additional style files, you can run
 a script, <code>cp2texmf.sh</code>:
 
@@ -49540,14 +50845,14 @@ a script, <code>cp2texmf.sh</code>:
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
-</code>
+</syntaxhighlight>
 This script copies some special stylefiles that
 that <code>ptex2tex</code> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-latex-recommended texlive-latex-extra
-</code>
+</syntaxhighlight>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <code>~/texmf/tex/latex/misc</code> directory).
@@ -49562,13 +50867,13 @@ users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pygments
-</code>
+</syntaxhighlight>
 Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
 enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
@@ -49579,7 +50884,7 @@ use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.
 
-<!--> Say something about anslistings.sty -->
+<!-- Say something about anslistings.sty -->
 
 ==== reStructuredText (reST) Output ====
 
@@ -49592,11 +50897,11 @@ svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 To use the OpenOffice suite you will typically on Debian systems install
 <syntaxhighlight lang="bash">
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
-</code>
+</syntaxhighlight>
 
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
@@ -49614,7 +50919,7 @@ hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 
 ==== Markdown and Pandoc Output ====
 
@@ -49625,7 +50930,7 @@ easily done by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install pandoc
-</code>
+</syntaxhighlight>
 on Debian (Ubuntu) systems.
 
 ==== Epydoc Output ====
@@ -49637,9 +50942,10 @@ svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
 cd ..
-</code>
+</syntaxhighlight>
 
-''Remark.'' Several of the packages above installed from source code
+''Remark.''
+Several of the packages above installed from source code
 are also available in Debian-based system through the
 <code>apt-get install</code> command. However, we recommend installation directly
 from the version control system repository as there might be important
@@ -49649,25 +50955,25 @@ Mercurial (<code>hg</code>) directories, go to the directory, run
 <code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
 
 
-<!-->  -->
-<!--> Here are some comment lines that do not affect any formatting -->
-<!--> these lines are converted to comments in the output format. -->
-<!--> This may have some side effects, especially in rst and sphinx -->
-<!--> where lines following the comment may be taken as part of -->
-<!--> the comment if there are no blank lines after the comment. -->
-<!-->  -->
-<!--> One can use ## and the mako preprocessor to remove comments -->
-<!--> ''before'' doconce sees the text. That can be useful when -->
-<!--> doconce comments interferes with formatting. -->
-<!--> The mako tool also supports <%doc> .. </%doc> -->
-<!-->  -->
+<!--  -->
+<!-- Here are some comment lines that do not affect any formatting -->
+<!-- these lines are converted to comments in the output format. -->
+<!-- This may have some side effects, especially in rst and sphinx -->
+<!-- where lines following the comment may be taken as part of -->
+<!-- the comment if there are no blank lines after the comment. -->
+<!--  -->
+<!-- One can use ## and the mako preprocessor to remove comments -->
+<!-- ''before'' doconce sees the text. That can be useful when -->
+<!-- doconce comments interferes with formatting. -->
+<!-- The mako tool also supports <%doc> .. </%doc> -->
+<!--  -->
 
 ==== Demos ====
 
 The current text is generated from a Doconce format stored in the
 <syntaxhighlight lang="bash">
 docs/manual/manual.do.txt
-</code>
+</syntaxhighlight>
 file in the Doconce source code tree. We have made a
 [https://doconce.googlecode.com/hg/doc/demos/manual/index.html demo web page]
 where you can compare the Doconce source with the output in many
@@ -49680,13 +50986,13 @@ Doconce file to obtain documents in various formats.
 Another demo is found in
 <syntaxhighlight lang="bash">
 docs/tutorial/tutorial.do.txt
-</code>
+</syntaxhighlight>
 In the <code>tutorial</code> directory there is also a <code>make.sh</code> file producing a
 lot of formats, with a corresponding
 [https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html web demo]
 of the results.
 
-<!--> Example on including another Doconce file: -->
+<!-- Example on including another Doconce file: -->
 
 
 
@@ -49696,11 +51002,11 @@ Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
 formats applies the script <code>doconce format</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc.do.txt
-</code>
+</syntaxhighlight>
 or just
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc
-</code>
+</syntaxhighlight>
 
 ==== Preprocessing ====
 
@@ -49710,7 +51016,7 @@ filename. For example,
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
-</code>
+</syntaxhighlight>
 The variable <code>FORMAT</code> is always defined as the current format when
 running <code>preprocess</code> or <code>mako</code>. That is, in the last example, <code>FORMAT</code> is
 defined as <code>latex</code>. Inside the Doconce document one can then perform
@@ -49719,7 +51025,7 @@ format specific actions through tests like <code>#if FORMAT == "latex"</code>
 
 ==== Removal of inline comments ====
 
-<!--> mention notes also -->
+<!-- mention notes also -->
 
 The command-line arguments <code>--no-preprocess</code> and <code>--no-mako</code> turn off
 running <code>preprocess</code> and <code>mako</code>, respectively.
@@ -49727,12 +51033,12 @@ running <code>preprocess</code> and <code>mako</code>, respectively.
 Inline comments in the text are removed from the output by
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc --skip_inline_comments
-</code>
+</syntaxhighlight>
 One can also remove all such comments from the original Doconce
 file by running:
-<code>
+<syntaxhighlight lang="text">
 Terminal> doconce remove_inline_comments mydoc
-</code>
+</syntaxhighlight>
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
@@ -49742,7 +51048,7 @@ Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc
-</code>
+</syntaxhighlight>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
 The HTML style can be defined either in the header of the HTML file or
@@ -49777,7 +51083,7 @@ from the source code of a page at the site; just insert <code>%(title)s</code> a
 by <code>%(main)s</code>. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc --html-template=mytemplate.html
-</code>
+</syntaxhighlight>
 
 ==== Blogs ====
 
@@ -49789,10 +51095,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 
-{{warning|In the comments one cannot paste raw HTML code with MathJax
+{{warning|In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.}}
 
 ==== Pandoc and Markdown ====
@@ -49800,12 +51106,12 @@ scripts so there is no support for mathematics in the comments.}}
 Output in Pandoc's extended Markdown format results from
 <syntaxhighlight lang="bash">
 Terminal> doconce format pandoc mydoc
-</code>
+</syntaxhighlight>
 The name of the output file is <code>mydoc.mkd</code>.
 From this format one can go to numerous other formats:
 <syntaxhighlight lang="bash">
 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
-</code>
+</syntaxhighlight>
 Pandoc supports <code>latex</code>, <code>html</code>, <code>odt</code> (OpenOffice), <code>docx</code> (Microsoft
 Word), <code>rtf</code>, <code>texinfo</code>, to mention some. The <code>-R</code> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
@@ -49822,15 +51128,19 @@ Here is an example on the latter strategy:
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
-</code>
+</syntaxhighlight>
 When we go through <code>pandoc</code>, only single equations or <code>align*</code>
 environments are well understood.
 
-Quite some <code>doconce replace</code> and <code>doconce subst</code> edits might be needed
-on the <code>.mkd</code> or <code>.tex</code> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the <code>Verb</code> macro from the <code>fancyvrb</code> package
+while <code>pandoc</code> only supports the standard <code>verb</code> construction for
+inline verbatim text.  Moreover, quite some additional <code>doconce
+replace</code> and <code>doconce subst</code> edits might be needed on the <code>.mkd</code> or
+<code>.tex</code> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -49838,22 +51148,23 @@ HTML with mathematics displayed my MathJax:
 <syntaxhighlight lang="bash">
 Terminal> doconce format pandoc mydoc
 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
-</code>
+</syntaxhighlight>
 The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
 Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is done in two steps:
-<!--> Note: putting code blocks inside a list is not successful in many -->
-<!--> formats - the text may be messed up. A better choice is a paragraph -->
-<!--> environment, as used here. -->
+<!-- Note: putting code blocks inside a list is not successful in many -->
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 
-''Step 1.'' Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
+''Step 1.''
+Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
 the <code>ptex2tex</code> program (or <code>doconce ptex2tex</code>):
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-</code>
+</syntaxhighlight>
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex</code>, or
 <code>newcommands_replace.tex</code> (see the section [#Macros_(Newcommands)]).
@@ -49864,14 +51175,15 @@ An option <code>--latex-printed</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
-''Step 2.'' Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
+''Step 2.''
+Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex mydoc
-</code>
+</syntaxhighlight>
 In case you do not have <code>ptex2tex</code>, you may run a (very) simplified version:
 <syntaxhighlight lang="bash">
 Terminal> doconce ptex2tex mydoc
-</code>
+</syntaxhighlight>
 
 Note that Doconce generates a <code>.p.tex</code> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
@@ -49880,7 +51192,7 @@ Computer Modern font, run
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DHELVETICA mydoc
 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
-</code>
+</syntaxhighlight>
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
@@ -49892,7 +51204,18 @@ Preprocessor variables to be defined or undefined are
 
 
 <ul>
- <li> <code>BOOK</code> for the "book" documentclass rather than the standard   "article" class (necessary if you apply chapter headings) <li> <code>PALATINO</code> for the Palatino font <li> <code>HELVETIA</code> for the Helvetica font <li> <code>A4PAPER</code> for A4 paper size <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices) <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere) <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)</ul>
+ <li> <code>BOOK</code> for the "book" documentclass rather than the standard
+   "article" class (necessary if you apply chapter headings)
+ <li> <code>PALATINO</code> for the Palatino font
+ <li> <code>HELVETIA</code> for the Helvetica font
+ <li> <code>A4PAPER</code> for A4 paper size
+ <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices)
+ <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies
+ <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document
+   or document to be included elsewhere)
+ <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
+   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)
+</ul>
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -49911,7 +51234,7 @@ Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
           "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
-</code>
+</syntaxhighlight>
 Note that <code>@</code> must be used to separate the begin and end LaTeX
 commands, unless only the environment name is given (such as <code>minted</code>
 above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}</code> as
@@ -49923,7 +51246,8 @@ begin and end for blocks inside <code>!bc fpro</code> and <code>!ec</code>).  Sp
 and <code>\end{verbatim}</code> used.
 
 
-''Step 2b (optional).'' Edit the <code>mydoc.tex</code> file to your needs.
+''Step 2b (optional).''
+Edit the <code>mydoc.tex</code> file to your needs.
 For example, you may want to substitute <code>section</code> by <code>section*</code> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
@@ -49935,13 +51259,14 @@ Here are two examples:
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
-</code>
+</syntaxhighlight>
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
 generating PDF from the LaTeX file.
 
-''Step 3.'' Compile <code>mydoc.tex</code>
+''Step 3.''
+Compile <code>mydoc.tex</code>
 and create the PDF file:
 <syntaxhighlight lang="bash">
 Terminal> latex mydoc
@@ -49950,7 +51275,7 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> latex mydoc
 Terminal> dvipdf mydoc
-</code>
+</syntaxhighlight>
 
 If one wishes to run <code>ptex2tex</code> and use the minted LaTeX package for
 typesetting code blocks (<code>Minted_Python</code>, <code>Minted_Cpp</code>, etc., in
@@ -49960,7 +51285,7 @@ needed.  This package is included by running <code>ptex2tex</code> with the
 <code>-DMINTED</code> option:
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DMINTED mydoc
-</code>
+</syntaxhighlight>
 In this case, <code>latex</code> must be run with the
 <code>-shell-escape</code> option:
 <syntaxhighlight lang="bash">
@@ -49970,7 +51295,7 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
-</code>
+</syntaxhighlight>
 When running <code>doconce ptex2tex mydoc envir=minted</code> (or other minted
 specifications with <code>doconce ptex2tex</code>), the minted package is automatically
 included so there is no need for the <code>-DMINTED</code> option.
@@ -49981,14 +51306,14 @@ Running <code>pdflatex</code> instead of <code>latex</code> follows almost the s
 but the start is
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-</code>
+</syntaxhighlight>
 Then <code>ptex2tex</code> is run as explained above, and finally
 <syntaxhighlight lang="bash">
 Terminal> pdflatex -shell-escape mydoc
 Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
-</code>
+</syntaxhighlight>
 
 ==== Plain ASCII Text ====
 
@@ -49997,7 +51322,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 <syntaxhighlight lang="bash">
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
-</code>
+</syntaxhighlight>
 
 ==== reStructuredText ====
 
@@ -50006,14 +51331,14 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file <code>mydoc.rst</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format rst mydoc.do.txt
-</code>
+</syntaxhighlight>
 We may now produce various other formats:
 <syntaxhighlight lang="bash">
 Terminal> rst2html.py  mydoc.rst > mydoc.html # html
 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
-</code>
+</syntaxhighlight>
 
 The OpenOffice file <code>mydoc.odt</code> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -50022,7 +51347,7 @@ to convert between the many formats OpenOffice supports ''on the command line''.
 Run
 <syntaxhighlight lang="bash">
 Terminal> unoconv --show
-</code>
+</syntaxhighlight>
 to see all the formats that are supported.
 For example, the following commands take
 <code>mydoc.odt</code> to Microsoft Office Open XML format,
@@ -50031,9 +51356,10 @@ classic MS Word format, and PDF:
 Terminal> unoconv -f ooxml mydoc.odt
 Terminal> unoconv -f doc mydoc.odt
 Terminal> unoconv -f pdf mydoc.odt
-</code>
+</syntaxhighlight>
 
-''Remark about Mathematical Typesetting.'' At the time of this writing, there is no easy way to go from Doconce
+''Remark about Mathematical Typesetting.''
+At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by <code>latex</code> as
 output and to a wide extent also supported by the <code>sphinx</code> output format.
@@ -50041,7 +51367,10 @@ Some links for going from LaTeX to Word are listed below.
 
 
 <ul>
- <li> http://ubuntuforums.org/showthread.php?t=1033441 <li> http://tug.org/utilities/texconv/textopc.html <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</ul>
+ <li> http://ubuntuforums.org/showthread.php?t=1033441
+ <li> http://tug.org/utilities/texconv/textopc.html
+ <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html
+</ul>
 
 ==== Sphinx ====
 
@@ -50051,7 +51380,7 @@ most of the steps through the <code>doconce sphinx_dir</code> command:
 Terminal> doconce sphinx_dir author="authors' names" \
           title="some title" version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
-</code>
+</syntaxhighlight>
 The keywords <code>author</code>, <code>title</code>, and <code>version</code> are used in the headings
 of the Sphinx document. By default, <code>version</code> is 1.0 and the script
 will try to deduce authors and title from the doconce files <code>file1</code>,
@@ -50065,7 +51394,7 @@ Sphinx (the default theme is <code>'default'</code>).
 With a single-file document in <code>mydoc.do.txt</code> one often just runs
 <syntaxhighlight lang="bash">
 Terminal> doconce sphinx_dir mydoc
-</code>
+</syntaxhighlight>
 and then an appropriate Sphinx directory <code>sphinx-rootdir</code> is made with
 relevant files.
 
@@ -50103,7 +51432,7 @@ For example,
 to realize the themes <code>fenics</code> and <code>pyramid</code>, one writes
 <syntaxhighlight lang="bash">
 Terminal> ./make-themes.sh fenics pyramid
-</code>
+</syntaxhighlight>
 The resulting directories with HTML documents are <code>_build/html_fenics</code>
 and <code>_build/html_pyramid</code>, respectively. Without arguments,
 <code>make-themes.sh</code> makes all available themes (!).
@@ -50112,12 +51441,14 @@ If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file <code>mydoc.do.txt</code>.
 
-''Step 1.'' Translate Doconce into the Sphinx format:
+''Step 1.''
+Translate Doconce into the Sphinx format:
 <syntaxhighlight lang="bash">
 Terminal> doconce format sphinx mydoc
-</code>
+</syntaxhighlight>
 
-''Step 2.'' Create a Sphinx root directory
+''Step 2.''
+Create a Sphinx root directory
 either manually or by using the interactive <code>sphinx-quickstart</code>
 program. Here is a scripted version of the steps with the latter:
 <syntaxhighlight lang="bash">
@@ -50145,7 +51476,7 @@ y
 y
 y
 EOF
-</code>
+</syntaxhighlight>
 The autogenerated <code>conf.py</code> file
 may need some edits if you want to specific layout (Sphinx themes)
 of HTML pages. The <code>doconce sphinx_dir</code> generator makes an extended <code>conv.py</code>
@@ -50153,10 +51484,11 @@ file where, among other things, several useful Sphinx extensions
 are included.
 
 
-''Step 3.'' Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
+''Step 3.''
+Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
 <syntaxhighlight lang="bash">
 Terminal> cp mydoc.rst sphinx-rootdir
-</code>
+</syntaxhighlight>
 If you have figures in your document, the relative paths to those will
 be invalid when you work with <code>mydoc.rst</code> in the <code>sphinx-rootdir</code>
 directory. Either edit <code>mydoc.rst</code> so that figure file paths are correct,
@@ -50164,21 +51496,23 @@ or simply copy your figure directories to <code>sphinx-rootdir</code>.
 Links to local files in <code>mydoc.rst</code> must be modified to links to
 files in the <code>_static</code> directory, see comment above.
 
-''Step 4.'' Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
+''Step 4.''
+Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
 is included, i.e., add <code>mydoc</code> to the <code>toctree</code> section so that it becomes
-<code>
+<syntaxhighlight lang="text">
 .. toctree::
    :maxdepth: 2
 
    mydoc
-</code>
+</syntaxhighlight>
 (The spaces before <code>mydoc</code> are important!)
 
-''Step 5.'' Generate, for instance, an HTML version of the Sphinx source:
+''Step 5.''
+Generate, for instance, an HTML version of the Sphinx source:
 <syntaxhighlight lang="bash">
 make clean   # remove old versions
 make html
-</code>
+</syntaxhighlight>
 
 Sphinx can generate a range of different formats:
 standalone HTML, HTML in separate directories with <code>index.html</code> files,
@@ -50186,10 +51520,11 @@ a large single HTML file, JSON files, various help files (the qthelp, HTML,
 and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
 and Texinfo files.
 
-''Step 6.'' View the result:
+''Step 6.''
+View the result:
 <syntaxhighlight lang="bash">
 Terminal> firefox _build/html/index.html
-</code>
+</syntaxhighlight>
 
 Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows <code>!bc</code>: <code>cod</code> gives Python
@@ -50199,14 +51534,23 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ==== Wiki Formats ====
 
 There are many different wiki formats, but Doconce only supports three:
-[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki], MediaWiki, and Creole Wiki. These formats are called
+[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
+MediaWiki, and
+Creole Wiki. These formats are called
 <code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <syntaxhighlight lang="bash">
 Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
-</code>
+</syntaxhighlight>
+
+The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
+wikibooks.org]. The format
+works well with Wikipedia, Wikibooks, and
+[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+but not always well elsewhere
+(see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
 The Googlecode wiki document, <code>mydoc.gwiki</code>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -50251,7 +51595,7 @@ lists, special lines, inline tags, and environments.
 An unordered bullet list makes use of the <code>*</code> as bullet sign
 and is indented as follows
 
-<code>
+<syntaxhighlight lang="text">
    * item 1
 
    * item 2
@@ -50264,38 +51608,51 @@ and is indented as follows
        also spans two lines
 
    * item 3
-</code>
+</syntaxhighlight>
 
 This list gets typeset as
 
 
 <ul>
-   <li> item 1   <li> item 2
-<ul>
-     <li><li> subitem 1, if there are more       lines, each line must       be intended as shown here     <li><li> subitem 2,       also spans two lines</ul>
+   <li> item 1
+   <li> item 2
 
-   <li> item 3</ul>
+<ul>
+     <li><li> subitem 1, if there are more
+       lines, each line must
+       be intended as shown here
+     <li><li> subitem 2,
+       also spans two lines
+</ul>
+
+   <li> item 3
+</ul>
 
 In an ordered list, each item starts with an <code>o</code> (as the first letter
 in "ordered"):
 
-<code>
+<syntaxhighlight lang="text">
    o item 1
    o item 2
      * subitem 1
      * subitem 2
    o item 3
-</code>
+</syntaxhighlight>
 
 resulting in
 
 
 <ol>
-  <li> item 1  <li> item 2
-<ul>
-     <li><li> subitem 1     <li><li> subitem 2</ul>
+  <li> item 1
+  <li> item 2
 
-  <li> item 3</ol>
+<ul>
+     <li><li> subitem 1
+     <li><li> subitem 2
+</ul>
+
+  <li> item 3
+</ol>
 
 Ordered lists cannot have an ordered sublist, i.e., the ordering
 applies to the outer list only.
@@ -50303,22 +51660,27 @@ applies to the outer list only.
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:
 
-<code>
+<syntaxhighlight lang="text">
    - keyword1: explanation of keyword1
 
    - keyword2: explanation
      of keyword2 (remember to indent properly
      if there are multiple
      lines)
-</code>
+</syntaxhighlight>
 
 The result becomes
 
 
 <dl>
    <dt>keyword1:<dd> 
-     explanation of keyword1   <dt>keyword2:<dd> 
-     explanation     of keyword2 (remember to indent properly     if there are multiple     lines)</dl>
+     explanation of keyword1
+   <dt>keyword2:<dd> 
+     explanation
+     of keyword2 (remember to indent properly
+     if there are multiple
+     lines)
+</dl>
 
 ==== Special Lines ====
 
@@ -50328,38 +51690,39 @@ line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, movies, etc.
 
 
-''Heading with Title and Author(s).'' Lines starting with <code>TITLE:</code>, <code>AUTHOR:</code>, and <code>DATE:</code> are optional and used
+''Heading with Title and Author(s).''
+Lines starting with <code>TITLE:</code>, <code>AUTHOR:</code>, and <code>DATE:</code> are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax
-<code>
+<syntaxhighlight lang="text">
 name at institution1 and institution2 and institution3
-</code>
+</syntaxhighlight>
 The <code>at</code> with surrounding spaces
 is essential for adding information about institution(s)
 to the author name, and the <code>and</code> with surrounding spaces is
 essential as delimiter between different institutions.
 An email address can optionally be included, using the syntax
-<code>
+<syntaxhighlight lang="text">
 name Email: somename@site.net at institution1 and institution2
-</code>
+</syntaxhighlight>
 Multiple authors require multiple <code>AUTHOR:</code> lines. All information
 associated with <code>TITLE:</code> and <code>AUTHOR:</code> keywords must appear on a single
 line.  Here is an example:
-<code>
+<syntaxhighlight lang="text">
 TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
-</code>
+</syntaxhighlight>
 Note how one can specify a single institution, multiple institutions,
 and no institution. In some formats (including <code>rst</code> and <code>sphinx</code>)
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format:
-<code>
+<syntaxhighlight lang="text">
 Hans Petter Langtangen [1, 2]
 Kaare Dump  (dump@cyb.space.com) [3]
 A. Dummy Author
@@ -50367,28 +51730,36 @@ A. Dummy Author
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
 [3] Segfault, Cyberspace Inc.
-</code>
+</syntaxhighlight>
 Similar typesetting is done for LaTeX and HTML formats.
 
 The current date can be specified as <code>today</code>.
 
 
-''Table of Contents.'' A table of contents can be generated by the line
-<code>
+''Table of Contents.''
+A table of contents can be generated by the line
+<syntaxhighlight lang="text">
 TOC: on
-</code>
+</syntaxhighlight>
 This line is usually placed after the <code>DATE:</code> line.
 The value <code>off</code> turns off the table of contents.
 
 
-''Section Headings.'' Section headings are recognized by being surrounded by equal signs (=) or
+''Section Headings.''
+Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
 
 
 <ul>
-   <li> 9 <code>=</code> characters for chapters   <li> 7 for sections   <li> 5 for subsections   <li> 3 for subsubsections   <li> 2 ''underscrores'' (only! - it looks best) for paragraphs     (paragraph heading will be inlined)</ul>
+   <li> 9 <code>=</code> characters for chapters
+   <li> 7 for sections
+   <li> 5 for subsections
+   <li> 3 for subsubsections
+   <li> 2 ''underscrores'' (only! - it looks best) for paragraphs
+     (paragraph heading will be inlined)
+</ul>
 
 Headings can be surrounded by as many blanks as desired.
 
@@ -50398,7 +51769,7 @@ section heading is taken as part of the text of the abstract).
 
 
 Here are some examples:
-<code>
+<syntaxhighlight lang="text">
 __Abstract.__ The following text just attempts to exemplify
 various section headings.
 
@@ -50425,7 +51796,7 @@ The running text goes here.
 The running text goes here.
 
 __A Paragraph.__ The running text goes here.
-</code>
+</syntaxhighlight>
 
 
 
@@ -50433,15 +51804,15 @@ __A Paragraph.__ The running text goes here.
 
 ==== Figures ====
 
-<!--> Note: need extra blank after FIGURE and MOVIE in !bc environments -->
-<!--> because doconce treats !ec as part of the caption and moves the -->
-<!--> !ec up to the caption line -->
+<!-- Note: need extra blank after FIGURE and MOVIE in !bc environments -->
+<!-- because doconce treats !ec as part of the caption and moves the -->
+<!-- !ec up to the caption line -->
 
 Figures are recognized by the special line syntax
-<code>
+<syntaxhighlight lang="text">
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 
-</code>
+</syntaxhighlight>
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say <code>.eps</code> when requesting an HTML format, Doconce tries to find another
@@ -50460,7 +51831,7 @@ part of the caption appearing on the same line as <code>FIGURE:</code> will be
 included in the formatted caption).
 
 
-[[File:figs/streamtubes.png|frame|alt=figs/streamtubes.png| Streamtube visualization of a fluid flow. (fig:viz)]]
+[[File:Streamtubes.png|frame|400px|alt=Streamtubes.png|Streamtube visualization of a fluid flow. (fig:viz)]] <!-- not yet uploaded to common.wikimedia.org -->
 
 
 Combining several image files into one, in a table fashion, can be done by the
@@ -50468,7 +51839,7 @@ Combining several image files into one, in a table fashion, can be done by the
 <syntaxhighlight lang="bash">
 montage -background white -geometry 100% -tile 2x \
         file1.png file2.png ... file4.png result.png
-</code>
+</syntaxhighlight>
 The option <code>-tile XxY</code> gives <code>X</code> figures in the horizontal direction and
 <code>Y</code> in the vertical direction (<code>tile 2x</code> means two figures per row
 and <code>-tile x2</code> means two rows).
@@ -50479,19 +51850,19 @@ Here is an example on the <code>MOVIE:</code> keyword for embedding movies. This
 feature works well for the <code>latex</code>, <code>html</code>, <code>rst</code>, and <code>sphinx</code> formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
-<code>
+<syntaxhighlight lang="text">
 MOVIE: [filename, height=xxx width=yyy] possible caption
 
-</code>
+</syntaxhighlight>
 
-<!--> latex/PDF format can make use of the movie15 package for displaying movies, -->
-<!--> or just plain \hrun: ...{...} -->
+<!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
+<!-- or just plain \hrun: ...{...} -->
 
  (Movie figs/mjolnir.mpeg: play mjolnir.html)
 
-<!--> MOVIE: [figs/wavepacket.gif, width=600 height=470] -->
+<!-- MOVIE: [figs/wavepacket.gif, width=600 height=470] -->
 
-<!--> MOVIE: [figs/wavepacket2.mpeg, width=600 height=470] -->
+<!-- MOVIE: [figs/wavepacket2.mpeg, width=600 height=470] -->
 
 The LaTeX format results in a file that can either make use of
 the movie15 package (requires the PDF to be shown in Acrobat Reader)
@@ -50509,7 +51880,7 @@ variable <code>MOVIE15</code>. There is an associated variable
 viewer when displaying the PDF file (in Acrobat Reader):
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
-</code>
+</syntaxhighlight>
 
 The HTML, reST, and Sphinx formats can also treat filenames of the form
 <code>myframes*.png</code>. In that case, an HTML file for showing the sequence of frames
@@ -50525,13 +51896,16 @@ of ''embedded'' YouTube movies. The recipe goes as follows:
 
 
 <ol>
-<li> click on ''Share'' and then *Embed*<li> copy the URL for the embedded movie<li> note the height and width of the embedded movie</ol>
+<li> click on ''Share'' and then ''Embed''
+<li> copy the URL for the embedded movie
+<li> note the height and width of the embedded movie
+</ol>
 
 A typical <code>MOVIE</code> command with a YouTube movie is then
 
-<code>
+<syntaxhighlight lang="text">
 MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 height=315]
-</code>
+</syntaxhighlight>
 Doconce will be able to embed standard YouTube URLs also, but then
 the width and height might be inappropriate.
 
@@ -50551,14 +51925,14 @@ plus LaTeX/TeX inline mathematics, such as <math>\nu = \sin(x)</math>.
 
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
-<code>
+<syntaxhighlight lang="text">
 *emphasized words*
-</code>
+</syntaxhighlight>
 
 Boldface font is recognized by an underscore instead of an asterisk:
-<code>
+<syntaxhighlight lang="text">
 _several words in boldface_ followed by *ephasized text*.
-</code>
+</syntaxhighlight>
 The line above gets typeset as
 '''several words in boldface''' followed by ''ephasized text''.
 
@@ -50566,10 +51940,10 @@ The line above gets typeset as
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
-<code>
+<syntaxhighlight lang="text">
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
-</code>
+</syntaxhighlight>
 The typesetting result looks like this:
 <code>call myroutine(a, b)</code> looks like a Fortran call
 while <code>void myfunc(double *a, double *b)</code> must be C.
@@ -50580,7 +51954,8 @@ problems with inline verbatim text that is split over two lines.
 
 
 
-''Notice.'' Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+''Notice.''
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -50590,18 +51965,18 @@ very simple formatting usually avoids such problems).
 ==== Links to Web Addresses ====
 
 Web addresses with links are typeset as
-<code>
+<syntaxhighlight lang="text">
 some URL like "Search Google": "http://google.com".
-</code>
+</syntaxhighlight>
 which appears as some URL like [http://google.com Search Google].
 The space after colon is optional, but it is important to enclose the
 link and the URL in double quotes.
 
 To have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
-<code>
+<syntaxhighlight lang="text">
 Click on this link: URL:"http://code.google.com/p/doconce".
-</code>
+</syntaxhighlight>
 which gets rendered as
 Click on this link: http://code.google.com/p/doconce.
 
@@ -50615,15 +51990,23 @@ Links to files ending in <code>.txt</code>, <code>.html</code>, <code>.pdf</code
 <code>.f77</code>, <code>.f90</code>, <code>.f95</code>, <code>.sh</code>, <code>.csh</code>, <code>.ksh</code>, <code>.zsh</code>,
 <code>.c</code>, <code>.cpp</code>, <code>.cxx</code>, <code>.pl</code>, and <code>.java</code> follows the same
 setup:
-<code>
+<syntaxhighlight lang="text">
 see the "Doconce Manual": "manual.do.txt".
-</code>
+</syntaxhighlight>
 which appears as see the [manual.do.txt Doconce Manual].
 However, linking to local files like this needs caution:
 
 
 <ul>
-  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, links to local files do not work unless the    files reside in a <code>_static</code> directory (a warning is issued about this).</ul>
+  <li> In the <code>html</code> format the links work well if the files are
+    supplied with the <code>.html</code> with the same relative location.
+  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files
+    will unless the <code>.tex</code> file has a full URL specified through
+    a <code>\hyperbaseurl</code> command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  <li> In the <code>sphinx</code> format, links to local files do not work unless the
+    files reside in a <code>_static</code> directory (a warning is issued about this).
+</ul>
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a <code>_static</code> or <code>_static-name</code> directory and makes links to
@@ -50639,43 +52022,43 @@ to transform the source code file to HTML format by running
 <syntaxhighlight lang="bash">
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
-</code>
+</syntaxhighlight>
 Then you can link to <code>_static/make.sh.html</code> instead of
 <code>subdir/make.sh</code>. Here is an example where the reader
 has the file available as <code>src/myprog.py</code> in her
 software and the document links to <code>_static/myprog.py</code>:
-<code>
+<syntaxhighlight lang="text">
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
-</code>
+</syntaxhighlight>
 
 Links to files with other extensions are typeset with
 ''the filename as link text''. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
-<code>
+<syntaxhighlight lang="text">
 URL: "manual.html"
-</code>
+</syntaxhighlight>
 resulting in the link manual.html.
 
-<!--> This is now automatically carried out by the autogenerated -->
-<!--> script for sphinx: -->
-<!--> For such local links to -->
-<!--> work with the <code>sphinx</code> format, the <code>.rst</code> file needs a fix, carried -->
-<!--> out by -->
-<!--> !bc sys -->
-<!--> doconce sphinxfix_localURLs mydoc.rst -->
-<!--> !ec -->
-<!--> (The files, such as <code>manual.html</code>, are then copied to a subdirectory -->
-<!--> <code>_static</code>, which must be manually copied to the Sphinx directory's -->
-<!--> <code>_static</code> directory - links in the <code>.rst</code> files are automatically -->
-<!--> adjusted.) -->
+<!-- This is now automatically carried out by the autogenerated -->
+<!-- script for sphinx: -->
+<!-- For such local links to -->
+<!-- work with the <code>sphinx</code> format, the <code>.rst</code> file needs a fix, carried -->
+<!-- out by -->
+<!-- !bc sys -->
+<!-- doconce sphinxfix_localURLs mydoc.rst -->
+<!-- !ec -->
+<!-- (The files, such as <code>manual.html</code>, are then copied to a subdirectory -->
+<!-- <code>_static</code>, which must be manually copied to the Sphinx directory's -->
+<!-- <code>_static</code> directory - links in the <code>.rst</code> files are automatically -->
+<!-- adjusted.) -->
 
 ==== Inline Comments ====
 
 Doconce also supports inline comments in the text:
-<code>
+<syntaxhighlight lang="text">
 [name: comment]
-</code>
+</syntaxhighlight>
 where <code>name</code> is the name of the author of the command, and <code>comment</code> is a
 plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
@@ -50702,12 +52085,12 @@ text. Doconce therefore supports an extended inline math syntax where
 the writer can provide an alternative syntax suited for formats close
 to plain ASCII:
 
-<code>
+<syntaxhighlight lang="text">
 Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
-</code>
+</syntaxhighlight>
 That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in formats with LaTeX support (<code>latex</code>, <code>pdflatex</code>, <code>html</code>,
@@ -50726,12 +52109,12 @@ described in the section [#Inline_Tagging].
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash <code>#</code>:
-<code>
+<syntaxhighlight lang="text">
 #
 # Here are some comment lines that do not affect any formatting.
 # These lines are converted to comments in the output format.
 #
-</code>
+</syntaxhighlight>
 Such comment lines may have some side effects in the <code>rst</code> and <code>sphinx</code>
 formats because following lines are taken as part of the comment if
 there is not a blank line after the comment.
@@ -50754,10 +52137,10 @@ preprocessor and an if-else block with a variable that is undefined
 ==== Cross-Referencing ====
 
 References and labels are supported. The syntax is simple:
-<code>
+<syntaxhighlight lang="text">
 label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.
-</code>
+</syntaxhighlight>
 This syntax is close that that of labels and cross-references in
 LaTeX. When the label is placed after a section or subsection heading,
 the plain text, Epytext, and StructuredText formats will simply
@@ -50800,9 +52183,9 @@ the generalized references in Doconce has a syntax that may utilize
 the <code>xr</code> feature in LaTeX.
 
 The syntax of generalized references reads
-<code>
+<syntaxhighlight lang="text">
 ref[internal][cite][external]
-</code>
+</syntaxhighlight>
 If all <code>label</code> references in the text <code>internal</code> are references
 to labels in the present document, the above <code>ref</code> command is replaced
 by the text <code>internal</code>. Otherwise, if cite is non-empty and the format
@@ -50815,21 +52198,21 @@ If none of the two situations above applies, the <code>external</code>
 text will be the output.
 
 Here is an example on a specific generalized reference:
-<code>
+<syntaxhighlight lang="text">
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
 "http://code.google.com/p/doconce/wiki/Description"
 cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
 the document "A Document for Testing Doconce": "testdoc.html"
 cite{testdoc:12}], Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 In LaTeX, this becomes
-<code>
+<syntaxhighlight lang="text">
 As explained in
 Section~\ref{subsec:ex} in
 \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
 \cite{testdoc:12}, Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 Note that there is a specific numbered reference to an external
 document, if <code>subsec:ex</code> is not a label in the present document,
 and that we add a citation in the usual way, but also include
@@ -50839,48 +52222,48 @@ links used in the "external" part of the reference (LaTeX cannot
 have links to local files, so a complete URL must be used).
 
 Translation to Sphinx or reStructuredText results in
-<code>
+<syntaxhighlight lang="text">
 As explained in
 a `section <testdoc.html#___sec2>`_ in
 the document `A Document for Testing Doconce <testdoc.html>`_
 [testdoc:12]_, Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 In plain HTML, this becomes
-<code>
+<syntaxhighlight lang="text">
 As explained in
 a <a href="testdoc.html#___sec2">section</a> in
 the document <a href="testdoc.html">A Document for Testing Doconce</a>
 <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 The plain text format reads
-<code>
+<syntaxhighlight lang="text">
 As explained in
 a section (testdoc.html#___sec2) in
 the document A Document for Testing Doconce (testdoc.html)
 [1], Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 And in Pandoc-exteded Markdown we have
-<code>
+<syntaxhighlight lang="text">
 As explained in
 a [section](testdoc.html#___sec2) in
 the document [A Document for Testing Doconce](testdoc.html)
 @testdoc:12, Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 
 ==== Index and Bibliography ====
 
 An index can be created for the <code>latex</code>, <code>rst</code>, and <code>sphinx</code> formats
 by the <code>idx</code> keyword, following a LaTeX-inspired syntax:
-<code>
+<syntaxhighlight lang="text">
 idx{some index entry}
 idx{main entry!subentry}
 idx{`verbatim_text` and more}
-</code>
+</syntaxhighlight>
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to
-<code>
+<syntaxhighlight lang="text">
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
-</code>
+</syntaxhighlight>
 Everything related to the index simply becomes invisible in plain
 text, Epytext, StructuredText, HTML, and wiki formats.  Note: <code>idx</code>
 commands should be inserted outside paragraphs, not in between the
@@ -50893,17 +52276,17 @@ the paragraph heading and the text body, although this works fine if
 LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
-<code>
+<syntaxhighlight lang="text">
 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
-</code>
+</syntaxhighlight>
 Citation labels can be separated by comma. In LaTeX, this is directly
 translated to the corresponding <code>cite</code> command; in reST
 and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like
-<code>
+<syntaxhighlight lang="text">
 as found in [3][14]
-</code>
+</syntaxhighlight>
 if <code>Larsen_1986</code> has already appeared in the 3rd citation in the document
 and <code>Nielsen_Kjeldstrup_1999</code> is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.
@@ -50915,7 +52298,7 @@ or simply a Python dictionary written in a file with extension <code>.py</code>.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,
-<code>
+<syntaxhighlight lang="text">
 {
 'Nielsen_Kjeldstrup_1999': """
 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
@@ -50927,7 +52310,7 @@ O. B. Larsen. On Markup and Generality.
 *Personal Press*. 1986.
 """
 }
-</code>
+</syntaxhighlight>
 
 In the <code>latex</code> and <code>pdflatex</code> formats, the <code>.bib</code> file will be used in
 the standard BibTeX way.  In the <code>rst</code> and <code>sphinx</code> formats, the
@@ -50945,8 +52328,8 @@ of <code>myfile.bbl</code> or using <code>doconce bbl2rst myfile.bbl</code> to a
 this editing. From the <code>myfile.rst</code> file it is easy to create <code>myfile.py</code>
 with the dictionary version of the references.
 
-<!--> see ketch/tex2rst for nice bibtex to rst converter which could -->
-<!--> be used here -->
+<!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
+<!-- be used here -->
 
 Conversion of BibTeX databases to reST format can be
 done by the [http://pypi.python.org/pypi/bibliograph.parsing/ bibliograph.parsing] tool.
@@ -50969,7 +52352,7 @@ A table like
 <tr><td align="right">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
 </table>
 is built up of pipe symbols and dashes:
-<code>
+<syntaxhighlight lang="text">
   |--------------------------------|
   |time  | velocity | acceleration |
   |--------------------------------|
@@ -50977,7 +52360,7 @@ is built up of pipe symbols and dashes:
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
-</code>
+</syntaxhighlight>
 The pipes and column values do not need to be aligned (but why write
 the Doconce source in an ugly way?). In the line below the heading,
 one can insert the characters <code>c</code>, <code>r</code>, or <code>l</code> to specify the
@@ -51005,7 +52388,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
-<code>
+<syntaxhighlight lang="text">
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist}
 file=earth2moon.pdf
@@ -51013,7 +52396,7 @@ solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-</code>
+</syntaxhighlight>
 Doconce will recognize the exercise, problem, or project ''title'',
 the ''label'', the ''result file'', the ''solution'' (if any of
 these three entities is present), and the ''running text''. In addition,
@@ -51033,7 +52416,7 @@ are inserted so that the beginning and end of answers and solutions can
 be identified and removed if desired.
 
 A full exercise set-up can be sketched as follows:
-<code>
+<syntaxhighlight lang="text">
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 file=earth2moon.pdf
@@ -51077,7 +52460,7 @@ directives is always typeset at the end of the exercise.
 !bsol
 Here goes a full solution of the whole exercise.
 !esol
-</code>
+</syntaxhighlight>
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <code>.mydoc.exerinfo</code>,
@@ -51105,9 +52488,9 @@ by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The ''title'' is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
-<code>
+<syntaxhighlight lang="text">
 see Problem ref{...}
-</code>
+</syntaxhighlight>
 works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
@@ -51126,7 +52509,7 @@ directly after a section/paragraph heading or a table.
 
 Here is a plain code block:
 
-<code>
+<syntaxhighlight lang="text">
 !bc
 % Could be a comment line in some file
 % And some data
@@ -51134,16 +52517,16 @@ Here is a plain code block:
 2.204 1.730
 3.001 1.198
 !ec
-</code>
+</syntaxhighlight>
 which gets rendered as
 
-<code>
+<syntaxhighlight lang="text">
 % Could be a comment line in some file
 % And some data
 1.003 1.025
 2.204 1.730
 3.001 1.198
-</code>
+</syntaxhighlight>
 
 
 There may be an argument after the <code>!bc</code> tag to specify a certain
@@ -51163,9 +52546,9 @@ supported for Sphinx as well.  The argument after <code>!bc</code> is in case of
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
 optional comment to be inserted in the Doconce source file, e.g.,
-<code>
+<syntaxhighlight lang="text">
 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-</code>
+</syntaxhighlight>
 Here, three arguments are defined: <code>pycod</code> for Python code,
 <code>cod</code> also for Python code, <code>cppcod</code> for C++ code, and <code>sys</code>
 for terminal sessions. The same arguments would be defined
@@ -51188,10 +52571,10 @@ definitions of the arguments after <code>!bc</code> can be redefined in the
 <code>sphinx code-blocks</code> comments for Sphinx. Support for other languages
 is easily added.
 
-<!--> (Any sphinx code-block comment, whether inside verbatim code -->
-<!--> blocks or outside, yields a mapping between bc arguments -->
-<!--> and computer languages. In case of muliple definitions, the -->
-<!--> first one is used.) -->
+<!-- (Any sphinx code-block comment, whether inside verbatim code -->
+<!-- blocks or outside, yields a mapping between bc arguments -->
+<!-- and computer languages. In case of muliple definitions, the -->
+<!-- first one is used.) -->
 
 The enclosing <code>!ec</code> tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
@@ -51201,7 +52584,7 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 Here is a verbatim code block with Python code (<code>pycod</code> style):
-<code>
+<syntaxhighlight lang="text">
 !bc pycod
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -51218,7 +52601,7 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 !ec
-</code>
+</syntaxhighlight>
 The typeset result of this block becomes
 
 <syntaxhighlight lang="python">
@@ -51236,7 +52619,7 @@ INLINE_TAGS = {
     r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
 }
-</code>
+</syntaxhighlight>
 And here is a C++ code snippet (<code>cppcod</code> style):
 <syntaxhighlight lang="cpp">
 void myfunc(double* x, const double& myarr) {
@@ -51244,17 +52627,17 @@ void myfunc(double* x, const double& myarr) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
 }
-</code>
+</syntaxhighlight>
 
-<!--> When showing copy from file in !bc envir, intent a character - otherwise -->
-<!--> ptex2tex is confused and starts copying. However, here (in make.sh) we use -->
-<!--> doconce ptex2tex which does not have this problem. -->
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying. However, here (in make.sh) we use -->
+<!-- doconce ptex2tex which does not have this problem. -->
 Computer code can be copied directly from a file, if desired. The syntax
 is then
-<code>
+<syntaxhighlight lang="text">
 @@@CODE myfile.f
 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
-</code>
+</syntaxhighlight>
 The first line implies that all lines in the file <code>myfile.f</code> are
 copied into a verbatim block, typset in a <code>!bc Xpro</code> environment, where
 <code>X</code> is the extension of the filename, here <code>f</code> (i.e., the environment
@@ -51291,7 +52674,7 @@ C     END1
       program testme
       call test()
       return
-</code>
+</syntaxhighlight>
 
 Let us then copy just a piece in the middle as indicated by the <code>fromto:</code>
 directive above:
@@ -51305,7 +52688,7 @@ directive above:
          r = r + i
       end do
       return
-</code>
+</syntaxhighlight>
 
 Note that the "to" line is not copied into the Doconce file, but the
 "from" line is. Sometimes it is convenient to also neglect the
@@ -51327,11 +52710,11 @@ A = 1
 p0 = 0
 simulate_and_plot(c, A, p0)
 # --- End Example 2 ---
-</code>
+</syntaxhighlight>
 is easy with
-<code>
+<syntaxhighlight lang="text">
 from-to: Start Example 2@End Example 2
-</code>
+</syntaxhighlight>
 With only <code>fromto:</code> this would be impossible.
 
 (Remark for those familiar with <code>ptex2tex</code>: The from-to
@@ -51348,28 +52731,39 @@ Blocks of mathematical text are like computer code blocks, but
 the opening tag is <code>!bt</code> (begin TeX) and the closing tag is
 <code>!et</code>. It is important that <code>!bt</code> and <code>!et</code> appear on the beginning of the
 line and followed by a newline.
-<code>
+<syntaxhighlight lang="text">
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 !et
-</code>
+</syntaxhighlight>
 Here is the result:
 
 :<math>
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
-\end{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, \\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \end{align}
 </math>
 
 The support of LaTeX mathematics varies among the formats:
 
 
 <ul>
- <li> Output <code>latex</code> and <code>pdflatex</code> has of course full support. <li> The <code>html</code> format supports single equations and multiple equations   via the align environment, also with labels. <li> Although <code>sphinx</code>, like <code>html</code>, employs   MathJax, it does not support labels in align environments. <li> Markdown (<code>pandoc</code> format) allows single equations and inline mathematics.</ul>
+ <li> Output in LaTeX (<code>latex</code> and <code>pdflatex</code> formats) has of course full
+   support of all LaTeX mathematics, of course.
+ <li> The <code>html</code> format supports single equations and multiple equations
+   via the align environment, also with labels.
+ <li> Markdown (<code>pandoc</code> format) allows single equations and inline mathematics.
+ <li> MediaWiki (<code>mwiki</code> format) does not enable labels in equations and hence
+   equations cannot be referred to.
+</ul>
+
+The main conclusion is that for
+output beyond LaTeX (<code>latex</code> and <code>pdflatex</code> formats), stick to
+simple <code>\[</code> and <code>\]</code> or <code>equation</code> and <code>align</code> or <code>align*</code> environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the <code>latex</code> format and then using the Pandoc program to translate
@@ -51385,7 +52779,7 @@ plain text and wiki formats without support for mathematical
 typesetting. Such branching can be used with mako if-else statements
 alternatively:
 
-<code>
+<syntaxhighlight lang="text">
 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", "pandoc"):
 !bt
 \[ \sin^2x + \cos^2x = 1,\]
@@ -51395,7 +52789,7 @@ alternatively:
               sin^2(x) + cos^2(x) = 1,
 !ec
 % endif
-</code>
+</syntaxhighlight>
 
 ==== Mathematics for PowerPoint/OpenOffice ====
 
@@ -51405,7 +52799,26 @@ use with PowerPoint or OpenOffice presentations.
 
 
 <ol>
- <li> Make a Sphinx version of the Doconce file. <li> Go to the Sphinx directory and load the <code>conf.py</code> file into    a browser. <li> Search for "math" and comment out the    <code>'sphinx.ext.mathjax'</code> (enabled by default) and    <code>'matplotlib.sphinxext.mathmpl'</code> (disabled by default)    lines, and uncomment the <code>'sphinx.ext.pngmath'</code> package.    This is the package that generates small PNG pictures    of the mathematics. <li> Uncomment the line with <code>pngmath_dvipng_args =</code> and    set the PNG resolution to <code>-D 200</code> when the purpose is to    generate mathematics pictures for slides. <li> Run <code>make html</code>. <li> Look at the HTML source file in the <code>_build/html</code>    directory: all mathematics are in <code>img</code> tags with <code>src=</code>    pointing to a PNG file and <code>alt=</code> pointing to the LaTeX    source for the formula in question. This makes it very    easy to find the PNG file that corresponding to a particular    mathematical expression.</ol>
+ <li> Make a Sphinx version of the Doconce file.
+ <li> Go to the Sphinx directory and load the <code>conf.py</code> file into
+    a browser.
+ <li> Search for "math" and comment out the
+    <code>'sphinx.ext.mathjax'</code> (enabled by default) and
+    <code>'matplotlib.sphinxext.mathmpl'</code> (disabled by default)
+    lines, and uncomment the <code>'sphinx.ext.pngmath'</code> package.
+    This is the package that generates small PNG pictures
+    of the mathematics.
+ <li> Uncomment the line with <code>pngmath_dvipng_args =</code> and
+    set the PNG resolution to <code>-D 200</code> when the purpose is to
+    generate mathematics pictures for slides.
+ <li> Run <code>make html</code>.
+ <li> Look at the HTML source file in the <code>_build/html</code>
+    directory: all mathematics are in <code>img</code> tags with <code>src=</code>
+    pointing to a PNG file and <code>alt=</code> pointing to the LaTeX
+    source for the formula in question. This makes it very
+    easy to find the PNG file that corresponding to a particular
+    mathematical expression.
+</ol>
 
 ==== Macros (Newcommands) ====
 
@@ -51428,7 +52841,8 @@ newcommands in the <code>newcommands*.tex</code> files ''must'' appear on a sing
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-''Example.'' Suppose we have the following commands in
+''Example.''
+Suppose we have the following commands in
 <code>newcommand_replace.tex</code>:
 
 <syntaxhighlight lang="python">
@@ -51437,7 +52851,7 @@ expressions).
 \newcommand{\ep}{\thinspace . }
 \newcommand{\uvec}{\vec u}
 \newcommand{\Q}{\pmb{Q}}
-</code>
+</syntaxhighlight>
 
 and these in <code>newcommands_keep.tex</code>:
 
@@ -51446,21 +52860,20 @@ and these in <code>newcommands_keep.tex</code>:
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 \newcommand{\half}{\frac{1}{2}}
-</code>
+</syntaxhighlight>
 
 The LaTeX block
-<code>
+<syntaxhighlight lang="text">
 \beqa
 \x\cdot\normalvec &=& 0, label{my:eq1}\\
 \Ddt{\uvec} &=& \Q \ep   label{my:eq2}
 \eeqa
-</code>
+</syntaxhighlight>
 will then be rendered to
 :<math>
 \begin{eqnarray}
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}
-\end{eqnarray}
+\x\cdot\normalvec &=& 0, \\
+\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   \end{eqnarray}
 </math>
 in the current format.
 
@@ -51520,7 +52933,7 @@ it follows that
 From the above equations it follows that
 # #endif
 $x+y$ is 8.
-</code>
+</syntaxhighlight>
 
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section [#From_Doconce_to_Other_Formats].
@@ -51574,7 +52987,7 @@ else
   make html
   cd ..
 fi
-</code>
+</syntaxhighlight>
 The autogenerated <code>automake_sphinx.sh</code> file (by <code>doconce sphinx_dir</code>)
 is compatible with a master <code>.rst</code> file split into pieces as long as
 the complete set of pieces in correct order is given to <code>doconce sphinx_dir</code>.
@@ -51596,7 +53009,7 @@ if a sophisticated table is desired in LaTeX output, do something like
 # #else
 # insert a Doconce-formatted "inline" table
 # #endif
-</code>
+</syntaxhighlight>
 
 Similarly, if certain adjustments are needed, like
 pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
@@ -51630,19 +53043,22 @@ as ordinary text.
 
 Here is how to get the Doconce Editing Mode in Emacs.
 
-''Step 1.'' Download the Doconce tarball from <code>code.google.com/p/doconce</code>,
+''Step 1.''
+Download the Doconce tarball from <code>code.google.com/p/doconce</code>,
 pack it out and go to the root directory.
 
-''Step 2.'' Copy the <code>doconce-mode.el</code> file to the home directory:
-<code>
+''Step 2.''
+Copy the <code>doconce-mode.el</code> file to the home directory:
+<syntaxhighlight lang="text">
 cp misc/.doconce-mode.el $HOME
-</code>
+</syntaxhighlight>
 
-''Step 3.'' Add these lines to <code>$HOME/.emacs</code>:
-<code>
+''Step 3.''
+Add these lines to <code>$HOME/.emacs</code>:
+<syntaxhighlight lang="text">
 (load-file "~/hg/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
-</code>
+</syntaxhighlight>
 Emacs will now recognize files with extension <code>.do.txt</code> and enter
 the Doconce Editing Mode.
 
@@ -51699,25 +53115,25 @@ correctly. Merge them into one common expression.
 ==== Links to local directories do not work ====
 
 Links of the type
-<code>
+<syntaxhighlight lang="text">
 see the "examples directory": "src/examples"
-</code>
+</syntaxhighlight>
 do not work well. You need to link to a specific HTML file:
-<code>
+<syntaxhighlight lang="text">
 see the "examples directory": "src/examples/index.html"
-</code>
+</syntaxhighlight>
 
 ==== Links are not typeset correctly ====
 
 Not all formats will allow formatting of the links. Verbatim words
 in links are allowed if the whole link is typeset in verbatim:
-<code>
+<syntaxhighlight lang="text">
 see the directory "`examples`": "src/examples/index.html".
-</code>
+</syntaxhighlight>
 However, the following will not be typeset correctly:
-<code>
+<syntaxhighlight lang="text">
 see the "`examples` directory": "src/examples/index.html"
-</code>
+</syntaxhighlight>
 The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
@@ -51733,16 +53149,16 @@ Make sure there is whitespace surrounding the text in back-ticks.
 
 Check the encoding of the <code>.do.txt</code> file with the Unix <code>file</code> command
 or with
-<code>
+<syntaxhighlight lang="text">
 Terminal> doconce guess_encoding myfile.do.txt
-</code>
+</syntaxhighlight>
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
-<code>
+<syntaxhighlight lang="text">
 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-</code>
+</syntaxhighlight>
 
 ==== Wrong Norwegian charcters ====
 
@@ -51868,19 +53284,19 @@ verbatim environment.
 
 Suppose you have a URL reference like
 
-<code>
+<syntaxhighlight lang="text">
 ..which can be found in the file "my_file.txt":
 "http://some.where.net/web/dir/my_file.txt".
-</code>
+</syntaxhighlight>
 LaTeX will stop with a message about a missing dollar sign. The reason
 is that underscores in link texts need to be preceded by a backslash.
 However, this is incovenient to do in the Doconce source since the
 underscore is misleading in other formats.
 The remedy is to format the link text with inline verbatim tags (backticks):
-<code>
+<syntaxhighlight lang="text">
 ..which can be found in the file "`my_file.txt`":
 "http://some.where.net/web/dir/my_file.txt".
-</code>
+</syntaxhighlight>
 Verbatim text in links works fine with underscores.
 
 ==== Error when running latex: You must have 'pygmentize' installed ====
@@ -51891,7 +53307,7 @@ running <code>latex</code> or <code>pdflatex</code>:
 <syntaxhighlight lang="bash">
 Terminal> latex -shell-escape file mydoc.tex
 Terminal> pdflatex -shell-escape file mydoc.tex
-</code>
+</syntaxhighlight>
 Using <code>doconce ptex2tex</code> will turn on the minted style if specified as
 environment on the command line, while using <code>ptex2tex</code> requires the
 preprocessor option <code>-DMINTED</code> to turn on the minted package.
@@ -51908,7 +53324,7 @@ formats, but add comment lines that can be replaced by LaTeX environments
 via <code>doconce replace</code>. Theorems can be numbered using a variable in Mako.
 Here is an example on raw Doconce code:
 
-<code>
+<syntaxhighlight lang="text">
 <%
 theorem_counter = 4
 %>
@@ -51932,9 +53348,9 @@ $\Diamond$|$END$
 
 As we see, the proof of Theorem ${theorem_counter} is a modest
 achievement.
-</code>
+</syntaxhighlight>
 The <code>.p.tex</code> output file now reads
-<code>
+<syntaxhighlight lang="text">
 % begin theorem
 label{theorem:fundamental1}
 
@@ -51951,7 +53367,7 @@ $\Diamond$
 
 As we see, the proof of Theorem 5 is a modest
 achievement.
-</code>
+</syntaxhighlight>
 Note that with Mako variables we can easily create our own counters,
 and this works in any format. In LaTeX we can use both the generated
 numbers from Mako variables or we can use the labels.
@@ -51967,13 +53383,13 @@ doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $file
 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file
 doconce replace '% begin theorem' '\begin{theorem}' $file
 doconce replace '% end theorem' '\end{theorem}' $file
-</code>
+</syntaxhighlight>
 More heavy editing is better done in a Python script that reads the
 <code>mydoc.p.tex</code> file and performs string substitutions and regex
 substitutions as needed.
 
 The resulting <code>mydoc.tex</code> file now becomes
-<code>
+<syntaxhighlight lang="text">
 \usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
@@ -51995,7 +53411,7 @@ $\Diamond$
 
 As we see, the proof of Theorem 5 is a modest
 achievement.
-</code>
+</syntaxhighlight>
 Even better, HTML output looks nice as well.
 
 Note that Doconce supports fancy environments for verbatim code via
@@ -52005,9 +53421,9 @@ Also <code>doconce ptex2tex</code> has some flexibility for typesetting computer
 ==== The LaTeX file does not compile ====
 
 If the problem is undefined control sequence involving
-<code>
+<syntaxhighlight lang="text">
 \code{...}
-</code>
+</syntaxhighlight>
 the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
@@ -52015,19 +53431,19 @@ that all inline verbatim text appears on the same line.
 ==== Inline verbatim gives error ====
 
 Check if the inline verbatim contains typical LaTeX commands, e.g.,
-<code>
+<syntaxhighlight lang="text">
 some text with `\usepackage{mypack}` is difficult because
 ptex2tex will replace this by \code{\usepackage{mypack}} and
 then replace this by
 {\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
 which is wrong because ptex2tex applies regex that don't
 capture the second }
-</code>
+</syntaxhighlight>
 The remedy is to place verbatim LaTeX commands in verbatim
 blocks - that is safe.
 
-<!--> Could have doconce configure file where inline verbatim is -->
-<!--> configured to be \fontsize... directly, not via ptex2tex \code{}. -->
+<!-- Could have doconce configure file where inline verbatim is -->
+<!-- configured to be \fontsize... directly, not via ptex2tex \code{}. -->
 
 ==== Errors in figure captions ====
 
@@ -52053,7 +53469,23 @@ two ways out of it:
 
 
 <ol>
-<li> Make a little Bash script that performs a series of   <code>doconce subst</code> (regular expressions) or <code>doconce replace</code> (regular text)   substitutions to change the text automatically (you probably have to   repeat these edits so automating them is a good idea).<li> Place the title, author(s), and date of the Doconce file in a separate   file and use the preprocessor to include the rest. The rest is then   one or more Doconce files without title, author(s), and date. This   means that the <code>doconce format latex</code> command does not generate   the LaTeX intro (preamble) and outro, just the core text, for these   files.   Make a new file by hand with the appropriate LaTeX intro and outro   text and include the various text pieces in this file.   To make the LaTeX document, you compile all Doconce files   into LaTeX code, except the "top" Doconce file that includes the   others. That file is not used for LaTeX output, but   replaced by the hand-written LaTeX "top" file.</ol>
+<li> Make a little Bash script that performs a series of
+   <code>doconce subst</code> (regular expressions) or <code>doconce replace</code> (regular text)
+   substitutions to change the text automatically (you probably have to
+   repeat these edits so automating them is a good idea).
+<li> Place the title, author(s), and date of the Doconce file in a separate
+   file and use the preprocessor to include the rest. The rest is then
+   one or more Doconce files without title, author(s), and date. This
+   means that the <code>doconce format latex</code> command does not generate
+   the LaTeX intro (preamble) and outro, just the core text, for these
+   files.
+   Make a new file by hand with the appropriate LaTeX intro and outro
+   text and include the various text pieces in this file.
+   To make the LaTeX document, you compile all Doconce files
+   into LaTeX code, except the "top" Doconce file that includes the
+   others. That file is not used for LaTeX output, but
+   replaced by the hand-written LaTeX "top" file.
+</ol>
 
 ==== Problems with gwiki Output ====
 
@@ -52103,12 +53535,12 @@ spans the width and a centered caption. Changing the appearance
 of the rule and caption can either be done by inserting styles or
 simply by automatic editing of the HTML code in a little shell script:
 
-<code>
+<syntaxhighlight lang="text">
 doconce replace '<p class="caption">' \
  '<p style="width: 50%; font-style: italic; color: blue">' mydoc.html
 doconce replace '<hr class="figure">' \
  '<hr style="width: 50%">' mydoc.html
-</code>
+</syntaxhighlight>
 
 ==== Debugging ====
 
@@ -52126,7 +53558,7 @@ format, and you need to know these steps to make use of the logfile.
 
 == Basic Parsing Ideas ==
 
-<!--> avoid list here since we have code in between (never a good idea) -->
+<!-- avoid list here since we have code in between (never a good idea) -->
 
 The (parts of) files with computer code to be directly included in
 the document are first copied into verbatim blocks.
@@ -52139,9 +53571,9 @@ handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression
 
-<code>
+<syntaxhighlight lang="text">
 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
-</code>
+</syntaxhighlight>
 
 That is, a possible indent (which we measure), an optional list
 item identifier, optional space, optional words ended by colon,
@@ -52180,7 +53612,7 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted.
 
-<code>
+<syntaxhighlight lang="text">
     - argument x: x value (float),
       which must be a positive number.
     - keyword argument tolerance: tolerance (float) for stopping
@@ -52190,7 +53622,7 @@ arguments and variables are nicely formatted.
     - class variable items: the total number of MyClass objects (int).
     - module variable debug: True: debug mode is on; False: no debugging
       (bool variable).
-</code>
+</syntaxhighlight>
 
 The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.
@@ -52198,15 +53630,21 @@ and Sphinx just typeset the list as a list with keywords.
 
 <dl>
     <dt>*module variable* x:<dd> 
-      x value (float),      which must be a positive number.    <dt>*module variable* tolerance:<dd> 
-      tolerance (float) for stopping      the iterations.</dl>
+      x value (float),
+      which must be a positive number.
+    <dt>*module variable* tolerance:<dd> 
+      tolerance (float) for stopping
+      the iterations.
+</dl>
 
 
 
 == Bibliography ==
 
 <ol>
-  <li> H. P. Langtangen. ''A Primer on Scientific Programming with Python''. Springer, 2009.  <li> H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. ''Advances in Water Resources'', vol 22, 185-195, 1998.</ol>
+  <li> H. P. Langtangen. ''A Primer on Scientific Programming with Python''. Springer, 2009.
+  <li> H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. ''Advances in Water Resources'', vol 22, 185-195, 1998.
+</ol>
 
 
 ************** File: manual.cwiki *****************
@@ -52640,11 +54078,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [[http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html|example]] for details on blogging.
+See a [[http://doconce.blogspot.no|blog example]] for details on blogging.
 
 
 
-//Warning.// In the comments one cannot paste raw HTML code with MathJax
+//Warning.// In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 
@@ -52675,15 +54113,19 @@ Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
 When we go through {{{pandoc}}}, only single equations or {{{align*}}}
 environments are well understood.
 
-Quite some {{{doconce replace}}} and {{{doconce subst}}} edits might be needed
-on the {{{.mkd}}} or {{{.tex}}} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the {{{Verb}}} macro from the {{{fancyvrb}}} package
+while {{{pandoc}}} only supports the standard {{{verb}}} construction for
+inline verbatim text.  Moreover, quite some additional {{{doconce
+replace}}} and {{{doconce subst}}} edits might be needed on the {{{.mkd}}} or
+{{{.tex}}} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -53065,7 +54507,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 == Wiki Formats ==
 
 There are many different wiki formats, but Doconce only supports three:
-[[http://code.google.com/p/support/wiki/WikiSyntax|Googlecode wiki]], MediaWiki, and Creole Wiki. These formats are called
+[[http://code.google.com/p/support/wiki/WikiSyntax|Googlecode wiki]],
+MediaWiki, and
+Creole Wiki. These formats are called
 {{{gwiki}}}, {{{mwiki}}}, and {{{cwiki}}}, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -53073,6 +54517,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 }}}
+
+The produced MediaWiki can be tested in the [[http://en.wikibooks.org/wiki/Sandbox|sandbox of
+wikibooks.org]]. The format
+works well with Wikipedia, Wikibooks, and
+[[http://doconce.shoutwiki.com/wiki/Doconce_demo|ShoutWiki]],
+but not always well elsewhere
+(see [[http://doconcedemo.jumpwiki.com/wiki/First_demo|this example]]).
 
 The Googlecode wiki document, {{{mydoc.gwiki}}}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -54257,10 +55708,15 @@ Here is the result:
 The support of LaTeX mathematics varies among the formats:
 
 
- * Output {{{latex}}} and {{{pdflatex}}} has of course full support.
+ * Output in LaTeX ({{{latex}}} and {{{pdflatex}}} formats) has of course full   support of all LaTeX mathematics, of course.
  * The {{{html}}} format supports single equations and multiple equations   via the align environment, also with labels.
- * Although {{{sphinx}}}, like {{{html}}}, employs   MathJax, it does not support labels in align environments.
  * Markdown ({{{pandoc}}} format) allows single equations and inline mathematics.
+ * MediaWiki ({{{mwiki}}} format) does not enable labels in equations and hence   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX ({{{latex}}} and {{{pdflatex}}} formats), stick to
+simple {{{\[}}} and {{{\]}}} or {{{equation}}} and {{{align}}} or {{{align*}}} environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the {{{latex}}} format and then using the Pandoc program to translate
@@ -55561,11 +57017,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html":example for details on blogging.
+See a "http://doconce.blogspot.no":blog example for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -55598,15 +57054,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through 'pandoc', only single equations or 'align*'
 environments are well understood.
 
-Quite some 'doconce replace' and 'doconce subst' edits might be needed
-on the '.mkd' or '.tex' files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the 'Verb' macro from the 'fancyvrb' package
+while 'pandoc' only supports the standard 'verb' construction for
+inline verbatim text.  Moreover, quite some additional 'doconce
+replace' and 'doconce subst' edits might be needed on the '.mkd' or
+'.tex' files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -56005,7 +57465,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
-"http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki, MediaWiki, and Creole Wiki. These formats are called
+"http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki,
+MediaWiki, and
+Creole Wiki. These formats are called
 'gwiki', 'mwiki', and 'cwiki', respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -56014,6 +57476,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the "http://en.wikibooks.org/wiki/Sandbox":sandbox of
+wikibooks.org. The format
+works well with Wikipedia, Wikibooks, and
+"http://doconce.shoutwiki.com/wiki/Doconce_demo":ShoutWiki,
+but not always well elsewhere
+(see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
 The Googlecode wiki document, 'mydoc.gwiki', is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -57193,12 +58662,18 @@ Here is the result::
 
 The support of LaTeX mathematics varies among the formats:
 
- - Output 'latex' and 'pdflatex' has of course full support.
+ - Output in LaTeX ('latex' and 'pdflatex' formats) has of course full
+   support of all LaTeX mathematics, of course.
  - The 'html' format supports single equations and multiple equations
    via the align environment, also with labels.
- - Although 'sphinx', like 'html', employs
-   MathJax, it does not support labels in align environments.
  - Markdown ('pandoc' format) allows single equations and inline mathematics.
+ - MediaWiki ('mwiki' format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX ('latex' and 'pdflatex' formats), stick to
+simple '\[' and '\]' or 'equation' and 'align' or 'align*' environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the 'latex' format and then using the Pandoc program to translate
@@ -58546,11 +60021,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this U{example<http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>} for details on blogging.
+See a U{blog example<http://doconce.blogspot.no>} for details on blogging.
 
 
 
-I{Warning.} In the comments one cannot paste raw HTML code with MathJax
+I{Warning.} In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -58584,15 +60059,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through C{pandoc}, only single equations or C{align*}
 environments are well understood.
 
-Quite some C{doconce replace} and C{doconce subst} edits might be needed
-on the C{.mkd} or C{.tex} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the C{Verb} macro from the C{fancyvrb} package
+while C{pandoc} only supports the standard C{verb} construction for
+inline verbatim text.  Moreover, quite some additional C{doconce
+replace} and C{doconce subst} edits might be needed on the C{.mkd} or
+C{.tex} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -59001,7 +60480,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>}, MediaWiki, and Creole Wiki. These formats are called
+U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>},
+MediaWiki, and
+Creole Wiki. These formats are called
 C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -59010,6 +60491,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the U{sandbox of
+wikibooks.org<http://en.wikibooks.org/wiki/Sandbox>}. The format
+works well with Wikipedia, Wikibooks, and
+U{ShoutWiki<http://doconce.shoutwiki.com/wiki/Doconce_demo>},
+but not always well elsewhere
+(see U{this example<http://doconcedemo.jumpwiki.com/wiki/First_demo>}).
 
 The Googlecode wiki document, C{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -60226,12 +61714,18 @@ Here is the result::
 
 The support of LaTeX mathematics varies among the formats:
 
- - Output C{latex} and C{pdflatex} has of course full support.
+ - Output in LaTeX (C{latex} and C{pdflatex} formats) has of course full
+   support of all LaTeX mathematics, of course.
  - The C{html} format supports single equations and multiple equations
    via the align environment, also with labels.
- - Although C{sphinx}, like C{html}, employs
-   MathJax, it does not support labels in align environments.
  - Markdown (C{pandoc} format) allows single equations and inline mathematics.
+ - MediaWiki (C{mwiki} format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (C{latex} and C{pdflatex} formats), stick to
+simple C{\[} and C{\]} or C{equation} and C{align} or C{align*} environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the C{latex} format and then using the Pandoc program to translate
@@ -61648,11 +63142,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this example (http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+See a blog example (http://doconce.blogspot.no) for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -61686,15 +63180,19 @@ Here is an example on the latter strategy::
 
         Terminal> doconce format latex mydoc
         Terminal> doconce ptex2tex mydoc
+        Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
 When we go through pandoc, only single equations or align*
 environments are well understood.
 
-Quite some doconce replace and doconce subst edits might be needed
-on the .mkd or .tex files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the Verb macro from the fancyvrb package
+while pandoc only supports the standard verb construction for
+inline verbatim text.  Moreover, quite some additional doconce
+replace and doconce subst edits might be needed on the .mkd or
+.tex files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -62112,7 +63610,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-Googlecode wiki (http://code.google.com/p/support/wiki/WikiSyntax), MediaWiki, and Creole Wiki. These formats are called
+Googlecode wiki (http://code.google.com/p/support/wiki/WikiSyntax),
+MediaWiki, and
+Creole Wiki. These formats are called
 gwiki, mwiki, and cwiki, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -62121,6 +63621,13 @@ Transformation from Doconce to these formats is done by::
         Terminal> doconce format mwiki mydoc.do.txt
         Terminal> doconce format cwiki mydoc.do.txt
 
+
+The produced MediaWiki can be tested in the sandbox of
+wikibooks.org (http://en.wikibooks.org/wiki/Sandbox). The format
+works well with Wikipedia, Wikibooks, and
+ShoutWiki (http://doconce.shoutwiki.com/wiki/Doconce_demo),
+but not always well elsewhere
+(see this example (http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
 The Googlecode wiki document, mydoc.gwiki, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -63351,15 +64858,21 @@ Here is the result::
 
 The support of LaTeX mathematics varies among the formats:
 
- * Output latex and pdflatex has of course full support.
+ * Output in LaTeX (latex and pdflatex formats) has of course full
+   support of all LaTeX mathematics, of course.
 
  * The html format supports single equations and multiple equations
    via the align environment, also with labels.
 
- * Although sphinx, like html, employs
-   MathJax, it does not support labels in align environments.
-
  * Markdown (pandoc format) allows single equations and inline mathematics.
+
+ * MediaWiki (mwiki format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (latex and pdflatex formats), stick to
+simple \[ and \] or equation and align or align* environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the latex format and then using the Pandoc program to translate
@@ -64845,11 +66358,11 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [example](http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+See a [blog example](http://doconce.blogspot.no) for details on blogging.
 
 
 
-*Warning.* In the comments one cannot paste raw HTML code with MathJax
+*Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
@@ -64885,16 +66398,20 @@ Here is an example on the latter strategy:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When we go through `pandoc`, only single equations or `align*`
 environments are well understood.
 
-Quite some `doconce replace` and `doconce subst` edits might be needed
-on the `.mkd` or `.tex` files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the `Verb` macro from the `fancyvrb` package
+while `pandoc` only supports the standard `verb` construction for
+inline verbatim text.  Moreover, quite some additional `doconce
+replace` and `doconce subst` edits might be needed on the `.mkd` or
+`.tex` files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -65332,7 +66849,9 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-[Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax), MediaWiki, and Creole Wiki. These formats are called
+[Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax),
+MediaWiki, and
+Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -65341,6 +66860,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The produced MediaWiki can be tested in the [sandbox of
+wikibooks.org](http://en.wikibooks.org/wiki/Sandbox). The format
+works well with Wikipedia, Wikibooks, and
+[ShoutWiki](http://doconce.shoutwiki.com/wiki/Doconce_demo),
+but not always well elsewhere
+(see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -66661,15 +68187,21 @@ $$
 
 The support of LaTeX mathematics varies among the formats:
 
- * Output `latex` and `pdflatex` has of course full support.
+ * Output in LaTeX (`latex` and `pdflatex` formats) has of course full
+   support of all LaTeX mathematics, of course.
 
  * The `html` format supports single equations and multiple equations
    via the align environment, also with labels.
 
- * Although `sphinx`, like `html`, employs
-   MathJax, it does not support labels in align environments.
-
  * Markdown (`pandoc` format) allows single equations and inline mathematics.
+
+ * MediaWiki (`mwiki` format) does not enable labels in equations and hence
+   equations cannot be referred to.
+
+The main conclusion is that for
+output beyond LaTeX (`latex` and `pdflatex` formats), stick to
+simple `\[` and `\]` or `equation` and `align` or `align*` environments,
+and avoid referring to equations in MediaWikis.
 
 Going from Doconce to MS Word is most easily done by outputting in
 the `latex` format and then using the Pandoc program to translate
@@ -68319,33 +69851,36 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
 
-One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (`#else`) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-or `html` formats
+`mwiki`, or `html` formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` and the mentioned formats
+LaTeX constructs. For output both in `latex` or `pdflatex` *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   * Use only the equation environments `\[`, `\]`,
     `equation`, `equation*`, `align`, and `align*`.
   * Labels in multiple equation environments such as `align` are
-    not (yet) handled by `sphinx` and `pandoc`, so avoid inserting
-    labels and referring  to equation labels in `align` environments.
-    Actually, `align*` is the preferred environment for multiple equations.
-  * LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as `sphinx`, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically `# #if FORMAT in ("latex", "pdflatex")`) to
-    include special code for `latex` and `pdflatex` output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    not (yet) handled by `pandoc`.
+  * MediaWiki (`mwiki`) does not support references to equations.
+
+!bnotice
+LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as `sphinx`, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically `if FORMAT in ("latex", "pdflatex")`) to
+include special code for `latex` and `pdflatex` output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
+!enotice
 
 
 __LaTeX Newcommands.__
@@ -69193,6 +70728,7 @@ $$
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
+
 Here is a single equation:
 
 <p>
@@ -69208,17 +70744,19 @@ which results in
 <p>
 $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
+
 <p>
-One can use <tt>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</tt> to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use <tt>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</tt>
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (<tt>#else</tt>) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 <p>
 Any LaTeX syntax is accepted, but if output in the <tt>sphinx</tt>, <tt>pandoc</tt>,
-or <tt>html</tt> formats
+<tt>mwiki</tt>, or <tt>html</tt> formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <tt>latex</tt> and the mentioned formats
+LaTeX constructs. For output both in <tt>latex</tt> or <tt>pdflatex</tt> <em>and</em>
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
 <p>
@@ -69227,20 +70765,34 @@ the following rules are recommended:
   <li> Use only the equation environments <tt>\[</tt>, <tt>\]</tt>,
     <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.</li>
   <li> Labels in multiple equation environments such as <tt>align</tt> are
-    not (yet) handled by <tt>sphinx</tt> and <tt>pandoc</tt>, so avoid inserting
-    labels and referring  to equation labels in <tt>align</tt> environments.
-    Actually, <tt>align*</tt> is the preferred environment for multiple equations.</li>
-  <li> LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically <tt># #if FORMAT in ("latex", "pdflatex")</tt>) to
-    include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.</li>
+    not (yet) handled by <tt>pandoc</tt>.</li>
+  <li> MediaWiki (<tt>mwiki</tt>) does not support references to equations.</li>
 </ul>
+
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Notice</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically <tt>if FORMAT in ("latex", "pdflatex")</tt>) to
+include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.</p>
+</td>
+</tr>
+</table>
+<p>
 
 <b>LaTeX Newcommands.</b> Text missing...
 
@@ -70352,15 +71904,16 @@ which results in
 
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
-One can use \code{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")} to let
-the preprocessor choose a block of mathematics in {\LaTeX} format
+One can use \code{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}
+to let the preprocessor choose a block of mathematics in {\LaTeX} format
 or (\code{#else}) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any {\LaTeX} syntax is accepted, but if output in the \code{sphinx}, \code{pandoc},
-or \code{html} formats
+\code{mwiki}, or \code{html} formats
 is important, one must know that these formats does not support many
-{\LaTeX} constructs. For output both in \code{latex} and the mentioned formats
+{\LaTeX} constructs. For output both in \code{latex} or \code{pdflatex} \emph{and}
+the mentioned formats with {\LaTeX} support,
 the following rules are recommended:
 
 \begin{itemize}
@@ -70368,23 +71921,33 @@ the following rules are recommended:
     \code{equation}, \code{equation*}, \code{align}, and \code{align*}.
 
   \item Labels in multiple equation environments such as \code{align} are
-    not (yet) handled by \code{sphinx} and \code{pandoc}, so avoid inserting
-    labels and referring  to equation labels in \code{align} environments.
-    Actually, \code{align*} is the preferred environment for multiple equations.
+    not (yet) handled by \code{pandoc}.
 
-  \item {\LaTeX} supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as \code{sphinx}, makes it necessary
-    to only utilze very standard {\LaTeX} and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically \code{# #if FORMAT in ("latex", "pdflatex")}) to
-    include special code for \code{latex} and \code{pdflatex} output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced {\LaTeX} features and fine tuning of resulting
-    PDF document.
+  \item MediaWiki (\code{mwiki}) does not support references to equations.
 \end{itemize}
 
 \noindent
+
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{noticebackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
 \paragraph{LaTeX Newcommands.}
 Text missing...
 
@@ -71240,35 +72803,38 @@ which results in::
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
-One can use ``#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")`` to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use ``#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")``
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (``#else``) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the ``sphinx``, ``pandoc``,
-or ``html`` formats
+``mwiki``, or ``html`` formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in ``latex`` and the mentioned formats
+LaTeX constructs. For output both in ``latex`` or ``pdflatex`` *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   * Use only the equation environments ``\[``, ``\]``,
     ``equation``, ``equation*``, ``align``, and ``align*``.
 
   * Labels in multiple equation environments such as ``align`` are
-    not (yet) handled by ``sphinx`` and ``pandoc``, so avoid inserting
-    labels and referring  to equation labels in ``align`` environments.
-    Actually, ``align*`` is the preferred environment for multiple equations.
+    not (yet) handled by ``pandoc``.
 
-  * LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as ``sphinx``, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically ``# #if FORMAT in ("latex", "pdflatex")``) to
-    include special code for ``latex`` and ``pdflatex`` output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+  * MediaWiki (``mwiki``) does not support references to equations.
+
+
+.. note::
+   LaTeX supports lots of fancy formatting, for example, multiple
+   plots in the same figure, footnotes, margin notes, etc.
+   Allowing other output formats, such as ``sphinx``, makes it necessary
+   to only utilze very standard LaTeX and avoid, for instance, more than
+   one plot per figure. However, one can use preprocessor if-tests on
+   the format (typically ``if FORMAT in ("latex", "pdflatex")``) to
+   include special code for ``latex`` and ``pdflatex`` output and more
+   straightforward typesetting for other formats. In this way, one can
+   also allow advanced LaTeX features and fine tuning of resulting
+   PDF document.
 
 *LaTeX Newcommands.* Text missing...
 
@@ -72150,35 +73716,38 @@ which results in
          \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 
 
-One can use ``#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")`` to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use ``#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")``
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (``#else``) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the ``sphinx``, ``pandoc``,
-or ``html`` formats
+``mwiki``, or ``html`` formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in ``latex`` and the mentioned formats
+LaTeX constructs. For output both in ``latex`` or ``pdflatex`` *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   * Use only the equation environments ``\[``, ``\]``,
     ``equation``, ``equation*``, ``align``, and ``align*``.
 
   * Labels in multiple equation environments such as ``align`` are
-    not (yet) handled by ``sphinx`` and ``pandoc``, so avoid inserting
-    labels and referring  to equation labels in ``align`` environments.
-    Actually, ``align*`` is the preferred environment for multiple equations.
+    not (yet) handled by ``pandoc``.
 
-  * LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as ``sphinx``, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically ``# #if FORMAT in ("latex", "pdflatex")``) to
-    include special code for ``latex`` and ``pdflatex`` output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+  * MediaWiki (``mwiki``) does not support references to equations.
+
+
+.. note::
+   LaTeX supports lots of fancy formatting, for example, multiple
+   plots in the same figure, footnotes, margin notes, etc.
+   Allowing other output formats, such as ``sphinx``, makes it necessary
+   to only utilze very standard LaTeX and avoid, for instance, more than
+   one plot per figure. However, one can use preprocessor if-tests on
+   the format (typically ``if FORMAT in ("latex", "pdflatex")``) to
+   include special code for ``latex`` and ``pdflatex`` output and more
+   straightforward typesetting for other formats. In this way, one can
+   also allow advanced LaTeX features and fine tuning of resulting
+   PDF document.
 
 *LaTeX Newcommands.* Text missing...
 
@@ -73007,21 +74576,35 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 }}}
 
-One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (`#else`) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-or `html` formats
+`mwiki`, or `html` formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` and the mentioned formats
+LaTeX constructs. For output both in `latex` or `pdflatex` *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
 
   * Use only the equation environments `\[`, `\]`,    `equation`, `equation*`, `align`, and `align*`.
-  * Labels in multiple equation environments such as `align` are    not (yet) handled by `sphinx` and `pandoc`, so avoid inserting    labels and referring  to equation labels in `align` environments.    Actually, `align*` is the preferred environment for multiple equations.
-  * LaTeX supports lots of fancy formatting, for example, multiple    plots in the same figure, footnotes, margin notes, etc.    Allowing other output formats, such as `sphinx`, makes it necessary    to only utilze very standard LaTeX and avoid, for instance, more than    one plot per figure. However, one can use preprocessor if-tests on    the format (typically `# #if FORMAT in ("latex", "pdflatex")`) to    include special code for `latex` and `pdflatex` output and more    straightforward typesetting for other formats. In this way, one can    also allow advanced LaTeX features and fine tuning of resulting    PDF document.
+  * Labels in multiple equation environments such as `align` are    not (yet) handled by `pandoc`.
+  * MediaWiki (`mwiki`) does not support references to equations.
+
+
+
+*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as `sphinx`, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically `if FORMAT in ("latex", "pdflatex")`) to
+include special code for `latex` and `pdflatex` output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 *LaTeX Newcommands.* Text missing...
 
@@ -73450,7 +75033,7 @@ __TOC__
 
 
 
-<!--> Very preliminary -->
+<!-- Very preliminary -->
 
 '''WARNING: This quick reference is very incomplete!'''
 
@@ -73460,7 +75043,18 @@ Doconce currently translates files to the following formats:
 
 
 <ul>
- <li> LaTeX (format <code>latex</code> and <code>pdflatex</code>) <li> HTML (format <code>html</code>) <li> reStructuredText (format <code>rst</code>) <li> plain (untagged) ASCII (format <code>plain</code>) <li> Sphinx (format <code>sphinx</code>) <li> (Pandoc extended) Markdown (format <code>pandoc</code>) <li> Googlecode wiki (format <code>gwiki</code>) <li> MediaWiki for Wikipedia and Wikibooks (format <code>mwiki</code>) <li> Creoloe wiki (format <code>cwiki</code>) <li> Epydoc (format <code>epydoc</code>) <li> StructuredText (format <code>st</code>)</ul>
+ <li> LaTeX (format <code>latex</code> and <code>pdflatex</code>)
+ <li> HTML (format <code>html</code>)
+ <li> reStructuredText (format <code>rst</code>)
+ <li> plain (untagged) ASCII (format <code>plain</code>)
+ <li> Sphinx (format <code>sphinx</code>)
+ <li> (Pandoc extended) Markdown (format <code>pandoc</code>)
+ <li> Googlecode wiki (format <code>gwiki</code>)
+ <li> MediaWiki for Wikipedia and Wikibooks (format <code>mwiki</code>)
+ <li> Creoloe wiki (format <code>cwiki</code>)
+ <li> Epydoc (format <code>epydoc</code>)
+ <li> StructuredText (format <code>st</code>)
+</ul>
 
 The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>html</code>, and <code>plain</code>.
 
@@ -73469,19 +75063,19 @@ The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>ht
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads
-<code>
+<syntaxhighlight lang="text">
 TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
 TOC: on
-</code>
+</syntaxhighlight>
 The entire title must appear on a single line.
 The author syntax is
-<code>
+<syntaxhighlight lang="text">
 name Email: somename@adr.net at institution1 and institution2
-</code>
+</syntaxhighlight>
 where the email is optional, the "at" keyword is required if one or
 more institutions are to be specified, and the "and" keyword
 separates the institutions. Each author specification must appear
@@ -73527,7 +75121,7 @@ with <code>*</code>, ''enumeration lists'', where each item starts with <code>o<
 consqutive numbers,
 and ''description'' lists, where each item starts with <code>-</code> followed
 by a keyword and a colon.
-<code>
+<syntaxhighlight lang="text">
 Here is a bullet list:
 
  * item1
@@ -73556,37 +75150,56 @@ And finally a description list:
  - keyword2:
    followed by text on the next line
  - keyword3: and its description may fit on one line
-</code>
+</syntaxhighlight>
 The code above follows.
 
 Here is a bullet list:
 
 
 <ul>
- <li> item1 <li> item2
-<ul>
-  <li><li> subitem1 of item2  <li><li> subitem2 of item2</ul>
+ <li> item1
+ <li> item2
 
- <li> item3</ul>
+<ul>
+  <li><li> subitem1 of item2
+  <li><li> subitem2 of item2
+</ul>
+
+ <li> item3
+</ul>
 
 Note that sublists are indented.
 Here is an enumeration list:
 
 
 <ol>
-<li> item1<li> item2   may appear on   multiple lines
-<ol>
- <li><li> subitem1 of item2 <li><li> subitem2 of item2</ol>
+<li> item1
+<li> item2
+   may appear on
+   multiple lines
 
-<li> item3</ol>
+<ol>
+ <li><li> subitem1 of item2
+ <li><li> subitem2 of item2
+</ol>
+
+<li> item3
+</ol>
 
 And finally a description list:
 
 
 <dl>
  <dt>keyword1:<dd> 
-   followed by   some text   over multiple   lines <dt>keyword2:<dd>    followed by text on the next line <dt>keyword3:<dd> 
-   and its description may fit on one line</dl>
+   followed by
+   some text
+   over multiple
+   lines
+ <dt>keyword2:<dd> 
+   followed by text on the next line
+ <dt>keyword3:<dd> 
+   and its description may fit on one line
+</dl>
 
 ==== Comments ====
 
@@ -73605,15 +75218,15 @@ inside the comment directives <code>%<doc></code> (beginning) and <code><%doc/><
 Inline comments, in the text, that are meant as messages or notes to readers
 (authors in particular)
 are often useful and enabled by the syntax
-<code>
+<syntaxhighlight lang="text">
 [name: running text]
-</code>
+</syntaxhighlight>
 where <code>name</code> is the name or ID of an author or reader making the comment,
 and <code>running text</code> is the comment. There must be a space after the colon.
 Running
 <syntaxhighlight lang="bash">
 doconce format html mydoc.do.txt --skip_inline_comments
-</code>
+</syntaxhighlight>
 removes all such inline comments from the output. This feature makes it easy
 to turn on and off notes to readers and is frequently used while writing
 a document.
@@ -73622,15 +75235,15 @@ All inline comments to readers can also be physically
 removed from the Doconce source if desired:
 <syntaxhighlight lang="bash">
 doconce remove_inline_comments mydoc.do.txt
-</code>
+</syntaxhighlight>
 This action is appropriate when all issues with such comments are resolved.
 
 ==== Verbatim/Computer Code ====
 
 Inline verbatim code is typeset within back-ticks, as in
-<code>
+<syntaxhighlight lang="text">
 Some sentence with `words in verbatim style`.
-</code>
+</syntaxhighlight>
 resulting in Some sentence with <code>words in verbatim style</code>.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
@@ -73647,9 +75260,9 @@ in programming <code>X</code>, where <code>X</code> may be <code>py</code> for P
 <code>pl</code> for Perl. For output in <code>latex</code> one can let <code>xxx</code> reflect any
 defined verbatim environment in the <code>ptex2tex</code> configuration file
 (<code>.ptex2tex.cfg</code>). For <code>sphinx</code> output one can insert a comment
-<code>
+<syntaxhighlight lang="text">
 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-</code>
+</syntaxhighlight>
 that maps environments (<code>xxx</code>) onto valid language types for
 Pygments (which is what <code>sphinx</code> applies to typeset computer code).
 
@@ -73665,16 +75278,16 @@ from numpy import sin, cos, exp, pi
 
 def f(x, y, z, t):
     return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
-</code>
+</syntaxhighlight>
 
-<!--> When showing copy from file in !bc envir, indent a character - otherwise -->
-<!--> ptex2tex is confused and starts copying... -->
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
-<code>
+<syntaxhighlight lang="text">
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
-</code>
+</syntaxhighlight>
 The <code>@@@CODE</code> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <code>doconce_program.sh</code>.
 The second specification copies from the first line matching the ''regular
@@ -73696,7 +75309,13 @@ Important warnings:
 
 
 <ul>
- <li> A code block must come after some plain sentence (at least for successful   output in reStructredText), not directly after a section/paragraph heading,   table, comment, figure, or movie. <li> Verbatim code blocks inside lists can be ugly typeset in some   output formats. A more robust approach is to replace the list by   paragraphs with headings.</ul>
+ <li> A code block must come after some plain sentence (at least for successful
+   output in reStructredText), not directly after a section/paragraph heading,
+   table, comment, figure, or movie.
+ <li> Verbatim code blocks inside lists can be ugly typeset in some
+   output formats. A more robust approach is to replace the list by
+   paragraphs with headings.
+</ul>
 
 ==== LaTeX Mathematics ====
 
@@ -73710,9 +75329,9 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 <math>Ax=b</math>. To help increase readability in other formats than <code>sphinx</code>,
 <code>latex</code>, and <code>pdflatex</code>, inline mathematics may have a more human
 readable companion expression. The syntax is like
-<code>
+<syntaxhighlight lang="text">
 $\sin(\norm{\bf u})$|$sin(||u||)$
-</code>
+</syntaxhighlight>
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
 expressions are surrounded by dollar signs. Plain text formats and HTML
@@ -73723,17 +75342,17 @@ Blocks of LaTeX mathematics are written within
 and
 <code>!et</code> (begin/end TeX) directives starting on the beginning of a line:
 
-<code>
+<syntaxhighlight lang="text">
 !bt
 \begin{align*}
 \nabla\cdot \pmb{u} &= 0,\\
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
-</code>
-<!--> Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!--> tex and code blocks in inside verbatim blocks and are replaced -->
-<!--> by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+</syntaxhighlight>
+<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!-- tex and code blocks in inside verbatim blocks and are replaced -->
+<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
 This LaTeX code gets rendered as
 
 :<math>
@@ -73744,43 +75363,64 @@ This LaTeX code gets rendered as
 </math>
 Here is a single equation:
 
-<code>
+<syntaxhighlight lang="text">
 !bt
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
-</code>
+</syntaxhighlight>
 which results in
 
 :<math>
-\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 </math>
 
-One can use <code>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</code> to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use <code>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</code>
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (<code>#else</code>) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the <code>sphinx</code>, <code>pandoc</code>,
-or <code>html</code> formats
+<code>mwiki</code>, or <code>html</code> formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <code>latex</code> and the mentioned formats
+LaTeX constructs. For output both in <code>latex</code> or <code>pdflatex</code> ''and''
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
 
 <ul>
-  <li> Use only the equation environments <code>\[</code>, <code>\]</code>,    <code>equation</code>, <code>equation*</code>, <code>align</code>, and <code>align*</code>.  <li> Labels in multiple equation environments such as <code>align</code> are    not (yet) handled by <code>sphinx</code> and <code>pandoc</code>, so avoid inserting    labels and referring  to equation labels in <code>align</code> environments.    Actually, <code>align*</code> is the preferred environment for multiple equations.  <li> LaTeX supports lots of fancy formatting, for example, multiple    plots in the same figure, footnotes, margin notes, etc.    Allowing other output formats, such as <code>sphinx</code>, makes it necessary    to only utilze very standard LaTeX and avoid, for instance, more than    one plot per figure. However, one can use preprocessor if-tests on    the format (typically <code># #if FORMAT in ("latex", "pdflatex")</code>) to    include special code for <code>latex</code> and <code>pdflatex</code> output and more    straightforward typesetting for other formats. In this way, one can    also allow advanced LaTeX features and fine tuning of resulting    PDF document.</ul>
+  <li> Use only the equation environments <code>\[</code>, <code>\]</code>,
+    <code>equation</code>, <code>equation*</code>, <code>align</code>, and <code>align*</code>.
+  <li> Labels in multiple equation environments such as <code>align</code> are
+    not (yet) handled by <code>pandoc</code>.
+  <li> MediaWiki (<code>mwiki</code>) does not support references to equations.
+</ul>
 
-''LaTeX Newcommands.'' Text missing...
+
+
+''Notice.''
+LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as <code>sphinx</code>, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically <code>if FORMAT in ("latex", "pdflatex")</code>) to
+include special code for <code>latex</code> and <code>pdflatex</code> output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
+
+''LaTeX Newcommands.''
+Text missing...
 
 ==== Figures and Movies ====
 
 Figures and movies have almost equal syntax:
-<code>
+<syntaxhighlight lang="text">
 FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
-</code>
+</syntaxhighlight>
 Note the mandatory comma after the figure/movie file.
 
 The figure file can be listed without extension. Doconce will then find
@@ -73800,7 +75440,7 @@ montage file1.png file2.png -tile x1 result.png
 montage file1.png file2.png -tile 1x result.png
 
 convert -background white file1.png file2.png +append tmp.png
-</code>
+</syntaxhighlight>
 Use <code>+append</code> for stacking left to right, <code>-append</code> for top to bottom.
 The positioning of the figures can be controlled by <code>-gravity</code>.
 
@@ -73808,7 +75448,7 @@ The positioning of the figures can be controlled by <code>-gravity</code>.
 
 The table in the section [#Section_Types] was written with this
 syntax:
-<code>
+<syntaxhighlight lang="text">
 |----------------c--------|------------------c--------------------|
 |      Section type       |        Syntax                         |
 |----------------l--------|------------------l--------------------|
@@ -73818,22 +75458,36 @@ syntax:
 | subsubsection           | `=== Heading ===`            (3 `=`)  |
 | paragraph               | `__Heading.__`               (2 `_`)  |
 |-----------------------------------------------------------------|
-</code>
+</syntaxhighlight>
 
 Note that
 
 
 <ul>
- <li> Each line begins and ends with a vertical bar (pipe symbol). <li> Column data are separated by a vertical bar (pipe symbol). <li> There may be horizontal rules, i.e., lines with dashes for   indicating the heading and the end of the table, and these may   contain characters 'c', 'l', or 'r' for how to align headings or   columns. The first horizontal rule may indicate how to align   headings (center, left, right), and the horizontal rule after the   heading line may indicate how to align the data in the columns   (center, left, right). <li> If the horizontal rules are without alignment information there should   be no vertical bar (pipe symbol) between the columns. Otherwise, such   a bar indicates a vertical bar between columns in LaTeX. <li> Many output formats are so primitive that heading and column alignment   have no effect.</ul>
+ <li> Each line begins and ends with a vertical bar (pipe symbol).
+ <li> Column data are separated by a vertical bar (pipe symbol).
+ <li> There may be horizontal rules, i.e., lines with dashes for
+   indicating the heading and the end of the table, and these may
+   contain characters 'c', 'l', or 'r' for how to align headings or
+   columns. The first horizontal rule may indicate how to align
+   headings (center, left, right), and the horizontal rule after the
+   heading line may indicate how to align the data in the columns
+   (center, left, right).
+ <li> If the horizontal rules are without alignment information there should
+   be no vertical bar (pipe symbol) between the columns. Otherwise, such
+   a bar indicates a vertical bar between columns in LaTeX.
+ <li> Many output formats are so primitive that heading and column alignment
+   have no effect.
+</ul>
 
 ==== Labels, References, Citations, and Index ====
 
 The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
-<code>
+<syntaxhighlight lang="text">
 label{name}
-</code>
+</syntaxhighlight>
 with no backslash
 preceding the label keyword! It is common practice to choose <code>name</code>
 as some hierarchical name, say <code>a:b:c</code>, where <code>a</code> and <code>b</code> indicate
@@ -73841,15 +75495,15 @@ some abbreviations for a section and/or subsection for the topic and
 <code>c</code> is some name for the particular unit that has a label.
 
 A reference to the label <code>name</code> is written as
-<code>
+<syntaxhighlight lang="text">
 ref{name}
-</code>
+</syntaxhighlight>
 again with no backslash before <code>ref</code>.
 
 Single citations are written as
-<code>
+<syntaxhighlight lang="text">
 cite{name}
-</code>
+</syntaxhighlight>
 where <code>name</code> is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
 Bibliography citations often have <code>name</code> on the form
@@ -73857,9 +75511,9 @@ Bibliography citations often have <code>name</code> on the form
 <code>YYYY</code> is the year of the publication.
 Multiple citations at once is possible by separating the logical names
 by comma:
-<code>
+<syntaxhighlight lang="text">
 cite{name1,name2,name3}
-</code>
+</syntaxhighlight>
 
 The bibliography is specified by a line <code>BIBFILE: name_bib.bib,
 name_bib.rst, name_bib.py</code>, where <code>name</code> is the logical name of the
@@ -73875,7 +75529,7 @@ a reference with <code>ref</code> to have one formulation if the label is
 in the same document and another formulation if the reference is
 to an item in an external document. The syntax of a generalized
 reference is
-<code>
+<syntaxhighlight lang="text">
 ref[internal][cite][external]
 
 # Example:
@@ -73884,7 +75538,7 @@ ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
 "testdoc.html#___sec2" in the document
 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
 Doconce documents may include movies.
-</code>
+</syntaxhighlight>
 The output from a generalized reference is the text <code>internal</code> if all
 <code>label</code> references in <code>internal</code> are references to labels in the
 present document. Otherwise, if cite is non-empty and the format is
@@ -73899,9 +75553,9 @@ documents.  If none of the two situations above applies, the
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
-<code>
+<syntaxhighlight lang="text">
 index{name}
-</code>
+</syntaxhighlight>
 It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
@@ -74016,7 +75670,7 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
-</code>
+</syntaxhighlight>
 
 ==== Exercises ====
 
@@ -74026,10 +75680,23 @@ An exercise, problem, or project sections contains certain ''elements'':
 
 
 <ul>
-  <li> a headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title (required)  <li> a label (optional)  <li> a solution file (optional)  <li> name of file with a student solution (optional)  <li> main exercise text (required)  <li> a short answer (optional)  <li> a full solution (optional)  <li> one or more hints (optional)  <li> one or more subexercises (subproblems, subprojects), which can also    contain a text, a short answer, a full solution, name student file    to be handed in, and one or more hints (optional)</ul>
+  <li> a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  <li> a label (optional)
+  <li> a solution file (optional)
+  <li> name of file with a student solution (optional)
+  <li> main exercise text (required)
+  <li> a short answer (optional)
+  <li> a full solution (optional)
+  <li> one or more hints (optional)
+  <li> one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+</ul>
 
 A typical sketch of a a problem without subexercises goes as follows:
-<code>
+<syntaxhighlight lang="text">
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
@@ -74047,11 +75714,11 @@ Wikipedia has the formula for the curve.
 "Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
 !ehint
-</code>
+</syntaxhighlight>
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
-<code>
+<syntaxhighlight lang="text">
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
@@ -74099,7 +75766,7 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 
-</code>
+</syntaxhighlight>
 By default, answers, solutions, and hints are typeset as paragraphs.
 
 ==== Environments ====
@@ -74110,7 +75777,19 @@ the environments:
 
 
 <ul>
- <li> <code>c</code>: computer code (or verbatim text) <li> <code>t</code>: math blocks with LaTeX syntax <li> <code>subex</code>: sub-exercise <li> <code>ans</code>: short answer to exercise or sub-exercise <li> <code>sol</code>: full solution to exercise or sub-exercise <li> <code>notes</code>: multi-line notes to be included or not <li> <code>quote</code>: indented text <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with    specialy typesetting (or symbols) <li> <code>pop</code>: text to gradually pop up in slide presentations <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a   slide</ul>
+ <li> <code>c</code>: computer code (or verbatim text)
+ <li> <code>t</code>: math blocks with LaTeX syntax
+ <li> <code>subex</code>: sub-exercise
+ <li> <code>ans</code>: short answer to exercise or sub-exercise
+ <li> <code>sol</code>: full solution to exercise or sub-exercise
+ <li> <code>notes</code>: multi-line notes to be included or not
+ <li> <code>quote</code>: indented text
+ <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
+    specialy typesetting (or symbols)
+ <li> <code>pop</code>: text to gradually pop up in slide presentations
+ <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
+   slide
+</ul>
 
 ==== Labels, Index, and Citations ====
 
@@ -74127,7 +75806,7 @@ Here is a typical example on utilizing <code>preprocess</code> to include anothe
 document, "comment out" a large portion of text, and to write format-specific
 constructions:
 
-<code>
+<syntaxhighlight lang="text">
 # #include "myotherdoc.do.txt"
 
 # #if FORMAT in ("latex", "pdflatex")
@@ -74156,7 +75835,7 @@ constructions:
 # #ifdef EXTRA_MATERIAL
 ....large portions of text...
 # #endif
-</code>
+</syntaxhighlight>
 
 With the <code>mako</code> preprocessor the if-else tests have slightly different syntax.
 An [http://hplgit.github.com/bioinf-py/ example document] contains
@@ -74166,7 +75845,8 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 ==== Resources ====
 
 <ul>
- <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</ul>
+ <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+</ul>
 
 
 ************** File: quickref.cwiki *****************
@@ -74507,21 +76187,35 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 }}}
 
-One can use {{{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")}}} to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use {{{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}}}
+to let the preprocessor choose a block of mathematics in LaTeX format
 or ({{{#else}}}) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the {{{sphinx}}}, {{{pandoc}}},
-or {{{html}}} formats
+{{{mwiki}}}, or {{{html}}} formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in {{{latex}}} and the mentioned formats
+LaTeX constructs. For output both in {{{latex}}} or {{{pdflatex}}} //and//
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
 
   * Use only the equation environments {{{\[}}}, {{{\]}}},    {{{equation}}}, {{{equation*}}}, {{{align}}}, and {{{align*}}}.
-  * Labels in multiple equation environments such as {{{align}}} are    not (yet) handled by {{{sphinx}}} and {{{pandoc}}}, so avoid inserting    labels and referring  to equation labels in {{{align}}} environments.    Actually, {{{align*}}} is the preferred environment for multiple equations.
-  * LaTeX supports lots of fancy formatting, for example, multiple    plots in the same figure, footnotes, margin notes, etc.    Allowing other output formats, such as {{{sphinx}}}, makes it necessary    to only utilze very standard LaTeX and avoid, for instance, more than    one plot per figure. However, one can use preprocessor if-tests on    the format (typically {{{# #if FORMAT in ("latex", "pdflatex")}}}) to    include special code for {{{latex}}} and {{{pdflatex}}} output and more    straightforward typesetting for other formats. In this way, one can    also allow advanced LaTeX features and fine tuning of resulting    PDF document.
+  * Labels in multiple equation environments such as {{{align}}} are    not (yet) handled by {{{pandoc}}}.
+  * MediaWiki ({{{mwiki}}}) does not support references to equations.
+
+
+
+//Notice.// LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as {{{sphinx}}}, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically {{{if FORMAT in ("latex", "pdflatex")}}}) to
+include special code for {{{latex}}} and {{{pdflatex}}} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 //LaTeX Newcommands.// Text missing...
 
@@ -75280,33 +76974,36 @@ which results in::
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
-One can use '#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")' to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use '#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")'
+to let the preprocessor choose a block of mathematics in LaTeX format
 or ('#else') a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the 'sphinx', 'pandoc',
-or 'html' formats
+'mwiki', or 'html' formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in 'latex' and the mentioned formats
+LaTeX constructs. For output both in 'latex' or 'pdflatex' *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   - Use only the equation environments '\[', '\]',
     'equation', 'equation*', 'align', and 'align*'.
   - Labels in multiple equation environments such as 'align' are
-    not (yet) handled by 'sphinx' and 'pandoc', so avoid inserting
-    labels and referring  to equation labels in 'align' environments.
-    Actually, 'align*' is the preferred environment for multiple equations.
-  - LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as 'sphinx', makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically '# #if FORMAT in ("latex", "pdflatex")') to
-    include special code for 'latex' and 'pdflatex' output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    not (yet) handled by 'pandoc'.
+  - MediaWiki ('mwiki') does not support references to equations.
+
+
+
+*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as 'sphinx', makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically 'if FORMAT in ("latex", "pdflatex")') to
+include special code for 'latex' and 'pdflatex' output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 *LaTeX Newcommands.* Text missing...
 
@@ -76093,33 +77790,36 @@ which results in::
 
 
 
-One can use C{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")} to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use C{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (C{#else}) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the C{sphinx}, C{pandoc},
-or C{html} formats
+C{mwiki}, or C{html} formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in C{latex} and the mentioned formats
+LaTeX constructs. For output both in C{latex} or C{pdflatex} I{and}
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   - Use only the equation environments C{\[}, C{\]},
     C{equation}, C{equation*}, C{align}, and C{align*}.
   - Labels in multiple equation environments such as C{align} are
-    not (yet) handled by C{sphinx} and C{pandoc}, so avoid inserting
-    labels and referring  to equation labels in C{align} environments.
-    Actually, C{align*} is the preferred environment for multiple equations.
-  - LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as C{sphinx}, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically C{# #if FORMAT in ("latex", "pdflatex")}) to
-    include special code for C{latex} and C{pdflatex} output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    not (yet) handled by C{pandoc}.
+  - MediaWiki (C{mwiki}) does not support references to equations.
+
+
+
+I{Notice.} LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as C{sphinx}, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically C{if FORMAT in ("latex", "pdflatex")}) to
+include special code for C{latex} and C{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 I{LaTeX Newcommands.} Text missing...
 
@@ -76936,35 +78636,38 @@ which results in::
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
-One can use #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use #if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (#else) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the sphinx, pandoc,
-or html formats
+mwiki, or html formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in latex and the mentioned formats
+LaTeX constructs. For output both in latex or pdflatex *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   * Use only the equation environments \[, \],
     equation, equation*, align, and align*.
 
   * Labels in multiple equation environments such as align are
-    not (yet) handled by sphinx and pandoc, so avoid inserting
-    labels and referring  to equation labels in align environments.
-    Actually, align* is the preferred environment for multiple equations.
+    not (yet) handled by pandoc.
 
-  * LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as sphinx, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically # #if FORMAT in ("latex", "pdflatex")) to
-    include special code for latex and pdflatex output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+  * MediaWiki (mwiki) does not support references to equations.
+
+
+
+*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as sphinx, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically if FORMAT in ("latex", "pdflatex")) to
+include special code for latex and pdflatex output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 *LaTeX Newcommands.* Text missing...
 
@@ -77824,35 +79527,38 @@ which results in
 
 $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
-One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (`#else`) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-or `html` formats
+`mwiki`, or `html` formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` and the mentioned formats
+LaTeX constructs. For output both in `latex` or `pdflatex` *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   * Use only the equation environments `\[`, `\]`,
     `equation`, `equation*`, `align`, and `align*`.
 
   * Labels in multiple equation environments such as `align` are
-    not (yet) handled by `sphinx` and `pandoc`, so avoid inserting
-    labels and referring  to equation labels in `align` environments.
-    Actually, `align*` is the preferred environment for multiple equations.
+    not (yet) handled by `pandoc`.
 
-  * LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as `sphinx`, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically `# #if FORMAT in ("latex", "pdflatex")`) to
-    include special code for `latex` and `pdflatex` output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+  * MediaWiki (`mwiki`) does not support references to equations.
+
+
+
+*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as `sphinx`, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically `if FORMAT in ("latex", "pdflatex")`) to
+include special code for `latex` and `pdflatex` output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
 
 *LaTeX Newcommands.* Text missing...
 
@@ -78336,9 +80042,10 @@ Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
-+ rm -rf html_images reveal.js
++ rm -rf html_images reveal.js downloaded_figures
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 mako variables: {'FORMAT': 'html'}
 translating preprocessed doconce text in __tmp.do.txt to html
 
@@ -78398,7 +80105,8 @@ output in testdoc.html
 + doconce split_html testdoc.html
 made subdirectory html_images
 + doconce format latex testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=latex  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
 
 FIX: multi-line caption
@@ -78451,9 +80159,11 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
+downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 output in testdoc.p.tex
 + doconce format pdflatex testdoc.do.txt --latex-printed
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=pdflatex  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 mako variables: {'FORMAT': 'pdflatex'}
 translating preprocessed doconce text in __tmp.do.txt to pdflatex
 
@@ -78507,6 +80217,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
+downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 output in testdoc.p.tex
 + doconce latex_exercise_toc testdoc
 table of exercises inserted in testdoc.p.tex
@@ -78673,6 +80384,12 @@ LaTeX Warning: Reference `myfig' on page 7
 
 LaTeX Warning: Reference `mymov' on page 7 
 
+<downloaded_figures/f_plot.png, id=89, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
+/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (29.43953pt too high) has occurred while \output is active
+[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -78697,8 +80414,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mpeg>>
-] [9 <../doc/manual/figs/wavepacket_0001.png>]
+[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -78719,7 +80435,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-[10]
+
 Overfull \hbox (78.30609pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
@@ -78727,8 +80443,9 @@ Overfull \hbox (78.30609pt too wide)
 Overfull \hbox (31.36086pt too wide) 
 []\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
  the []
+[11]
 
-LaTeX Warning: Reference `my:eq1' on page 11 
+LaTeX Warning: Reference `my:eq1' on page 12 
 
 
 Package amsmath Warning: Foreign command \over;
@@ -78736,17 +80453,16 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                 on 
 
 
-LaTeX Warning: Reference `my:eq1' on page 11 
+LaTeX Warning: Reference `my:eq1' on page 12 
 
 
-LaTeX Warning: Reference `eq1' on page 11 
+LaTeX Warning: Reference `eq1' on page 12 
 
 
-LaTeX Warning: Reference `eq2' on page 11 
+LaTeX Warning: Reference `eq2' on page 12 
 
-[11]
 
-LaTeX Warning: Reference `split:envir:eq' on page 12 undefined on input line 70
+LaTeX Warning: Reference `split:envir:eq' on page 12 undefined on input line 72
 8.
 
 
@@ -78764,58 +80480,58 @@ LaTeX Warning: Reference `eq2a' on page 12
 
 LaTeX Warning: Reference `my:eq1' on page 12 
 
+[12]
 
-LaTeX Warning: Reference `demo:ex:1' on page 12 
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 12 
+LaTeX Warning: Reference `demo:ex:1' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 12 
+LaTeX Warning: Reference `demo:ex:2' on page 13 
 
 
-
-LaTeX Warning: Reference `exer:you' on page 12 
-
-
-LaTeX Warning: Reference `exer:some:formula' on page 12 undefined on input line
- 734.
-
-(./testdoc.out.pyg [12]) (./testdoc.out.pyg) [13]
-
-LaTeX Warning: Reference `proj:circle1' on page 14 
+LaTeX Warning: Reference `proj:circle1' on page 13 
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 14 
-
-[14]
-
-LaTeX Warning: Reference `demo:ex:2' on page 15 
+LaTeX Warning: Reference `exer:you' on page 13 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 15 undefined on input line
- 1003.
+LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
+ 754.
 
-
-LaTeX Warning: Reference `demo:ex:2' on page 15 
-
+(./testdoc.out.pyg) [13] (./testdoc.out.pyg) [14]
 
 LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1004
 .
 
 
+LaTeX Warning: Reference `demo:ex:1' on page 15 
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 15 
+
+
+LaTeX Warning: Reference `exer:some:formula' on page 15 undefined on input line
+ 1023.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 15 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1024
+.
+
+
 LaTeX Warning: Reference `exer:you' on page 15 
 
-<latex_figs/hint.pdf, id=230, 89.33376pt x 89.33376pt>
+[15] <latex_figs/hint.pdf, id=242, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=231, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [15 <./latex_figs/hint.pdf>]
-<latex_figs/summary.pdf, id=253, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=243, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
+<latex_figs/summary.pdf, id=244, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=254, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=245, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=255, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=246, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
@@ -78823,8 +80539,8 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[16 <./latex_figs/warning.pdf> <./latex_figs/summary.pdf> <./latex_figs/notice.
-pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
+[16 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
+f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -78925,6 +80641,7 @@ newcommands_replace.tex
 ../doc/manual/figs/streamtubes.png
 ../doc/manual/figs/streamtubes.png
 ../doc/manual/figs/wavepacket_0001.png
+downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.out.pyg
 latex_figs/hint.pdf
@@ -78976,7 +80693,8 @@ Transcript written on testdoc.log.
 + echo ----------- end of doconce ptex2tex output ----------------
 + cat testdoc.tex
 + doconce format plain testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=plain  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to plain
 
 FIX: multi-line caption
@@ -79029,7 +80747,8 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=st  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to st
 
 FIX: multi-line caption
@@ -79082,7 +80801,8 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=sphinx  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to sphinx
 
 FIX: multi-line caption
@@ -79156,15 +80876,14 @@ Warning: the "alignat" environment will give errors in Sphinx:
 Detected (align) equation systems with multiple labels
 (that Sphinx will not handle - labels will be removed
 and references to them will be empty):
-label{eq1}
-label{eq2}
 label{eq1a}
 label{eq2a}
 
 output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format rst testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=rst  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to rst
 
 FIX: multi-line caption
@@ -79219,7 +80938,8 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
 + doconce format epytext testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=epytext  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to epytext
 
 FIX: multi-line caption
@@ -79272,7 +80992,8 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 
 FIX: multi-line caption
@@ -79325,6 +81046,8 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{gather} does not work well
@@ -79337,7 +81060,8 @@ Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.md
 + doconce format mwiki testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=mwiki  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 
 FIX: multi-line caption
@@ -79390,21 +81114,15 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
-
-NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
-      (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
-
-
-NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
-      (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
-
-
-NOTE: Upload image file ../doc/manual/figs/wavepacket_0001.png to the Wiki* site
-      (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
-
+NOTE: You must upload image file streamtubes.png to common.wikimedia.org
+NOTE: You must upload image file streamtubes.png to common.wikimedia.org
+NOTE: You must upload image file wavepacket_0001.png to common.wikimedia.org
+NOTE: You must upload image file df2s8765s_plot.png to common.wikimedia.org
+*** warning: reference to label "my:eq1" in an equation does not work in MediaWiki
 output in testdoc.mwiki
 + doconce format cwiki testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=cwiki  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 
 FIX: multi-line caption
@@ -79458,8 +81176,9 @@ found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
-+ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string
-running mako on testdoc.do.txt to make __tmp.do.txt
++ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --no-preprocess
+Found preprocess-like statements, but --no-preprocess prevents running preprocess
+running mako on __tmp.do.txt to make __tmp.do.txt
 mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 
@@ -79531,9 +81250,28 @@ NOTE: Place ../doc/manual/figs/wavepacket_0001.png at some place on the web and 
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
+
+NOTE: Place https://doconce.googlecode.com/hg/doc/blog/f_plot.png at some place on the web and edit the
+      .gwiki page, either manually (seach for 'Figure: ')
+      or use the doconce script:
+      doconce gwiki_figsubst.py mydoc.gwiki URL
+
+
+NOTE: Place testfigs/df_plot.png at some place on the web and edit the
+      .gwiki page, either manually (seach for 'Figure: ')
+      or use the doconce script:
+      doconce gwiki_figsubst.py mydoc.gwiki URL
+
+
+NOTE: Place testfigs/df2s8765s_plot.png at some place on the web and edit the
+      .gwiki page, either manually (seach for 'Figure: ')
+      or use the doconce script:
+      doconce gwiki_figsubst.py mydoc.gwiki URL
+
 output in testdoc.gwiki
 + doconce format latex testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=latex  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
 
 FIX: multi-line caption
@@ -79586,6 +81324,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
+downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 output in testdoc.p.tex
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 \bpypro (!bc pypro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -79597,16 +81336,14 @@ output in testdoc.p.tex
 \bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
++ doconce replace \Verb! \verb! testdoc.tex
+replacing \Verb! by \verb! in testdoc.tex
 + pandoc -f latex -t markdown -o testdoc.md testdoc.tex
-pandoc: 
-Error:
-"source" (line 290, column 18):
-unexpected "!"
-expecting letter, new-line, "{" or "\\"
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -v
 + doconce format pandoc testdoc.do.txt
-running mako on testdoc.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 
 FIX: multi-line caption
@@ -79657,6 +81394,8 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -79848,7 +81587,6 @@ output in tutorial.html
 + doconce format latex tutorial
 running preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
-copying warning.eps from /usr/local/lib/python2.7/dist-packages/doconce/latex_styles.zip to subdirectory latex_figs
 output in tutorial.p.tex
 + ptex2tex -DMINTED -DHELVETICA tutorial
 running preprocessor on tutorial.p.tex...  defines: 'HELVETICA', 'MINTED'  done
@@ -79997,20 +81735,20 @@ Overfull \hbox (0.29683pt too wide)
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[10]
+[10] [11]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
-[11]
+
 Overfull \hbox (0.55649pt too wide) 
 \OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[12]
+[12] [13]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-[13]
+
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
@@ -80020,11 +81758,11 @@ ries, []
 [14]
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[15]
+[15] [16]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[16] [17]
+[17]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [18] [19]
@@ -80272,20 +82010,20 @@ Overfull \hbox (0.29683pt too wide)
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[10]
+[10] [11]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
-[11]
+
 Overfull \hbox (0.55649pt too wide) 
 \OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[12]
+[12] [13]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-[13]
+
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
@@ -80295,11 +82033,11 @@ ries, []
 [14]
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[15]
+[15] [16]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[16] [17]
+[17]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [18] [19]
@@ -80662,7 +82400,7 @@ Underfull \hbox (badness 10000)
 [10]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 11 undefined on i
-nput line 685.
+nput line 690.
 
 
 Underfull \hbox (badness 10000) 
@@ -80703,7 +82441,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 177695 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 177963 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -80850,7 +82588,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -80997,7 +82735,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -81150,7 +82888,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -81297,7 +83035,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -81491,6 +83229,9 @@ Overfull \hbox (11.29898pt too wide)
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
+
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
@@ -81709,16 +83450,16 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
 [tutorial.epytext (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.epytext.ps'
-[23 lines wrapped]
+[22 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
 [tutorial.txt (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.txt.ps'
-[19 lines wrapped]
+[18 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
-[tutorial.gwiki (plain): 19 pages on 19 sheets]
-[Total: 19 pages on 19 sheets] saved into the file `tutorial.gwiki.ps'
+[tutorial.gwiki (plain): 20 pages on 20 sheets]
+[Total: 20 pages on 20 sheets] saved into the file `tutorial.gwiki.ps'
 [47 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
@@ -81727,19 +83468,19 @@ output in tutorial.md
 [62 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
-[tutorial.mwiki (plain): 21 pages on 21 sheets]
-[Total: 21 pages on 21 sheets] saved into the file `tutorial.mwiki.ps'
-[151 lines wrapped]
+[tutorial.mwiki (plain): 22 pages on 22 sheets]
+[Total: 22 pages on 22 sheets] saved into the file `tutorial.mwiki.ps'
+[106 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 22 pages on 22 sheets]
 [Total: 22 pages on 22 sheets] saved into the file `tutorial.md.ps'
-[10 lines wrapped]
+[9 lines wrapped]
 + ps2pdf tutorial.md.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[539 lines wrapped]
+[546 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -81812,12 +83553,12 @@ Not recommended for sphinx output: math environment beqa
 (use equation, \[ \], or align/align*)
 *** warning: hyperlink to URL src/examples/index.html is to a local file,
   - should be _static/src/examples/index.html for sphinx.
-*** warning: hyperlink to URL manual.do.txt is to a local file,
-  - should be _static/manual.do.txt for sphinx.
 *** warning: hyperlink to URL testdoc.html is to a local file,
   - should be _static/testdoc.html for sphinx.
 *** warning: hyperlink to URL src/myprog.py is to a local file,
   - should be _static/src/myprog.py for sphinx.
+*** warning: hyperlink to URL manual.do.txt is to a local file,
+  - should be _static/manual.do.txt for sphinx.
 *** warning: hyperlink to URL manual.html is to a local file,
   - should be _static/manual.html for sphinx.
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
@@ -81832,13 +83573,6 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format sphinx
-
-Detected (align) equation systems with multiple labels
-(that Sphinx will not handle - labels will be removed
-and references to them will be empty):
-label{myeq1}
-label{myeq2}
-
 output in manual.rst
 + rm -rf sphinx-rootdir
 + doconce sphinx_dir author=HPL title=Doconce Manual version=0.6 manual.do.txt
@@ -82129,6 +83863,9 @@ Overfull \hbox (11.29898pt too wide)
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
 
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
@@ -82142,7 +83879,7 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
-t line 854.
+t line 858.
 
 
 Overfull \hbox (78.51936pt too wide) 
@@ -82168,7 +83905,7 @@ d{quote}" \
 Overfull \hbox (71.00006pt too wide) 
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
-
+[9]
 Overfull \hbox (92.17801pt too wide) 
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
@@ -82177,7 +83914,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-[9]
+
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -82211,10 +83948,10 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
+[11]
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-[11]
+
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
@@ -82225,7 +83962,7 @@ Overfull \hbox (65.00006pt too wide)
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-
+[12]
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -82233,15 +83970,15 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12] [13]
+[13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-
+[14]
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[14] [15]
+[15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
@@ -82260,11 +83997,11 @@ imula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-
+[16]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[16]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
@@ -82366,8 +84103,8 @@ Overfull \hbox (83.00006pt too wide)
 . 
 [23]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 217
-7.
+LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 219
+0.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
@@ -82375,7 +84112,7 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
-ut line 2179.
+ut line 2192.
 
 
 LaTeX Warning: Hyper reference `id2' on page 24 
@@ -82554,13 +84291,13 @@ to-mode-alist))
 [38]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-
+[39]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-[39]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
@@ -82605,7 +84342,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -82613,7 +84350,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-[44]
+
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -82623,11 +84360,11 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[45]
+[45] [46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-[46]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
@@ -82823,6 +84560,9 @@ Overfull \hbox (11.29898pt too wide)
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
 
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
@@ -82858,7 +84598,7 @@ d{quote}" \
 Overfull \hbox (71.00006pt too wide) 
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
-
+[9]
 Overfull \hbox (92.17801pt too wide) 
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
@@ -82867,7 +84607,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-[9]
+
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -82901,10 +84641,10 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
+[11]
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-[11]
+
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
@@ -82915,7 +84655,7 @@ Overfull \hbox (65.00006pt too wide)
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-
+[12]
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -82923,15 +84663,15 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12] [13]
+[13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-
+[14]
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[14] [15]
+[15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
@@ -82950,11 +84690,11 @@ imula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-
+[16]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[16]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
@@ -83186,10 +84926,10 @@ label{myeq2}
 Overfull \hbox (3.77757pt too wide) 
 []\T1/ptm/m/n/10 Markdown (\T1/pcr/m/n/10 pandoc \T1/ptm/m/n/10 for-mat) al-low
 s sin-gle equa-tions and in-line math-
-
+[33]
 Overfull \hbox (3.0pt too wide) 
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
-[33]
+
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
@@ -83228,13 +84968,13 @@ to-mode-alist))
 [38]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-
+[39]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-[39]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
@@ -83274,7 +85014,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -83282,7 +85022,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-[44]
+
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -83292,11 +85032,11 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[45]
+[45] [46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-[46]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
@@ -83455,7 +85195,6 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format pdflatex
-copying warning.pdf from /usr/local/lib/python2.7/dist-packages/doconce/latex_styles.zip to subdirectory latex_figs
 output in manual.p.tex
 + doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 \bpro (!bc pro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -83616,17 +85355,17 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=168, 583.17876pt x 437.635pt>
+[15] [16] [17] [18] <figs/streamtubes.png, id=171, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1441.
+ne 1453.
 
 
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=198, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=200, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -83634,16 +85373,16 @@ Overfull \hbox (4.68658pt too wide)
 [22 <./latex_figs/notice.pdf>]
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-604.
+616.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-608.
+620.
 
 [23]
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-40.
+52.
 
 [24]
 
@@ -83668,19 +85407,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
-02.
+14.
 
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-876.
+888.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-877.
+889.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -83691,10 +85430,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -83719,12 +85458,12 @@ Overfull \hbox (1.76395pt too wide)
 [], [],
 
 LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
-488.
+506.
 
 [37] [38] [39] [40] [41]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2757.
+ne 2775.
 
 [42] [43] [44]
 Overfull \hbox (48.87616pt too wide) 
@@ -84009,12 +85748,12 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=353, 583.17876pt x 437.635pt>
+[15] [16] [17] [18] <figs/streamtubes.png, id=356, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=379, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=381, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -84026,14 +85765,14 @@ nces for (sub)sections,
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-876.
+888.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-877.
+889.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -84044,10 +85783,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84337,12 +86076,12 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=353, 583.17876pt x 437.635pt>
+[15] [16] [17] [18] <figs/streamtubes.png, id=356, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=379, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=381, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -84357,10 +86096,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84525,7 +86264,6 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.eps for format latex
-copying warning.eps from /usr/local/lib/python2.7/dist-packages/doconce/latex_styles.zip to subdirectory latex_figs
 output in manual.p.tex
 + doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 \bpro (!bc pro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -84704,10 +86442,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84996,10 +86734,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -85300,10 +87038,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -85592,10 +87330,10 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-
+[34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[34]
+
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -85806,10 +87544,9 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format mwiki
-
-NOTE: Upload image file figs/streamtubes.png to the Wiki* site
-      (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
-
+NOTE: You must upload image file streamtubes.png to common.wikimedia.org
+*** warning: reference to label "myeq1" in an equation does not work in MediaWiki
+*** warning: reference to label "myeq2" in an equation does not work in MediaWiki
 output in manual.mwiki
 + rm -f *.ps
 + rm -rf demo
@@ -85944,20 +87681,27 @@ Overfull \hbox (27.8928pt too wide)
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [5]
-Overfull \hbox (10.99698pt too wide) 
+Overfull \hbox (52.99661pt too wide) 
 []\OT1/phv/m/n/10 One can use []
-[6]
-Overfull \hbox (70.29608pt too wide) 
-\OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally [])
+[6] <latex_figs/notice.eps>
+Underfull \hbox (badness 1924) 
+\OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
 
-LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 560
+Underfull \hbox (badness 1701) 
+\OT1/phv/m/n/10 for in-stance, more than one plot per fig-ure. How-ever,
+
+Underfull \hbox (badness 2564) 
+[]\OT1/phv/m/n/10 ) to in-clude spe-cial
+[7]
+
+LaTeX Warning: Reference `quick:sections' on page 8 undefined on input line 571
 .
 
-[7]
+[8]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
  on the form [],
-[8]
+
 Overfull \hbox (88.21638pt too wide) 
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [],
 [9] [10] [11] [12]
@@ -86052,6 +87796,7 @@ gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/notice.eps
  ***********
 
 
@@ -86159,11 +87904,17 @@ Overfull \hbox (27.8928pt too wide)
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [5]
-Overfull \hbox (10.99698pt too wide) 
+Overfull \hbox (52.99661pt too wide) 
 []\OT1/phv/m/n/10 One can use []
-[6]
-Overfull \hbox (70.29608pt too wide) 
-\OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally [])
+[6] <latex_figs/notice.eps>
+Underfull \hbox (badness 1924) 
+\OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
+
+Underfull \hbox (badness 1701) 
+\OT1/phv/m/n/10 for in-stance, more than one plot per fig-ure. How-ever,
+
+Underfull \hbox (badness 2564) 
+[]\OT1/phv/m/n/10 ) to in-clude spe-cial
 [7] [8]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
@@ -86179,11 +87930,11 @@ Overfull \hbox (3.50804pt too wide)
 Overfull \hbox (2.40855pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-
+[13]
 Overfull \hbox (0.18839pt too wide) 
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
  doc-u-ment, "com-
-[13]
+
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
@@ -86265,6 +88016,7 @@ quickref.out
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/notice.eps
  ***********
 
  )
@@ -86479,22 +88231,22 @@ Overfull \hbox (71.00006pt too wide)
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
 [1]
-Overfull \hbox (4.50082pt too wide) in alignment at lines 169--177
+Overfull \hbox (4.50082pt too wide) in alignment at lines 191--199
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 177--185
+Overfull \hbox (4.50082pt too wide) in alignment at lines 199--207
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 185--187
+Overfull \hbox (4.50082pt too wide) in alignment at lines 207--209
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 187--188
+Overfull \hbox (4.50082pt too wide) in alignment at lines 209--210
  [] [] 
 
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ========= Heading ========
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 188--225
+Overfull \hbox (4.50082pt too wide) in alignment at lines 210--247
  [] [] 
 
 Overfull \hbox (27.20697pt too wide) 
@@ -86542,18 +88294,18 @@ Overfull \hbox (137.00006pt too wide)
 []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
 {u} = 0.\] 
 
-Overfull \hbox (43.5697pt too wide) 
+Overfull \hbox (37.5697pt too wide) 
 []\T1/ptm/m/n/10 One can use \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex",
- "sphinx", "mwiki")
+ "html", "sphinx",
 
 Overfull \hbox (12.58893pt too wide) 
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
 m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 /10 , \T1/pcr/m/n/10 equation*\T1/ptm/m/n/10 ,
 
-Overfull \hbox (12.28825pt too wide) 
-\T1/ptm/m/n/10 clude spe-cial code for \T1/pcr/m/n/10 latex \T1/ptm/m/n/10 and 
-\T1/pcr/m/n/10 pdflatex \T1/ptm/m/n/10 out-put and more straight-
+
+
+
 
 Overfull \hbox (449.00006pt too wide) 
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
@@ -86576,7 +88328,7 @@ Overfull \hbox (71.00006pt too wide)
 
 
 LaTeX Warning: Hyper reference `section-types' on page 7 undefined on input lin
-e 718.
+e 745.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -86780,10 +88532,6 @@ Overfull \hbox (4.19656pt too wide)
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-
-
-
-
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
@@ -86870,22 +88618,22 @@ Overfull \hbox (71.00006pt too wide)
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 169--177
+Overfull \hbox (4.50082pt too wide) in alignment at lines 191--199
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 177--185
+Overfull \hbox (4.50082pt too wide) in alignment at lines 199--207
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 185--187
+Overfull \hbox (4.50082pt too wide) in alignment at lines 207--209
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 187--188
+Overfull \hbox (4.50082pt too wide) in alignment at lines 209--210
  [] [] 
 
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ========= Heading ========
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 188--225
+Overfull \hbox (4.50082pt too wide) in alignment at lines 210--247
  [] [] 
 
 Overfull \vbox (8.32294pt too high) has occurred while \output is active
@@ -86935,18 +88683,18 @@ Overfull \hbox (137.00006pt too wide)
 []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
 {u} = 0.\] 
 
-Overfull \hbox (43.5697pt too wide) 
+Overfull \hbox (37.5697pt too wide) 
 []\T1/ptm/m/n/10 One can use \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex",
- "sphinx", "mwiki")
+ "html", "sphinx",
 [6]
 Overfull \hbox (12.58893pt too wide) 
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
 m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 /10 , \T1/pcr/m/n/10 equation*\T1/ptm/m/n/10 ,
 
-Overfull \hbox (12.28825pt too wide) 
-\T1/ptm/m/n/10 clude spe-cial code for \T1/pcr/m/n/10 latex \T1/ptm/m/n/10 and 
-\T1/pcr/m/n/10 pdflatex \T1/ptm/m/n/10 out-put and more straight-
+
+
+
 
 Overfull \hbox (449.00006pt too wide) 
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
@@ -87168,10 +88916,6 @@ ticolumn{1}{c}{acceleration} \\
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
-
-
-
-
 
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''

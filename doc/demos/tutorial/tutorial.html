@@ -95,7 +95,7 @@ MathJax.Hub.Config({
 
 
 <p>
-<center><h4>Jan 6, 2013</h4></center> <!-- date -->
+<center><h4>Jan 11, 2013</h4></center> <!-- date -->
 <p>
 
 
@@ -335,6 +335,7 @@ $$
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 $$
+
 Of course, such blocks only looks nice in formats with support
 for LaTeX mathematics, and here the align environment in particular
 (this includes <tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>, and <tt>sphinx</tt>). The raw
@@ -561,7 +562,7 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.
+See a <a href="http://doconce.blogspot.no">blog example</a> for details on blogging.
 
 <p>
 
@@ -574,7 +575,7 @@ See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated
 <tr>
 <td>&nbsp;</td>
 <td align="left" valign="top">
-<p>In the comments one cannot paste raw HTML code with MathJax
+<p>In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </td>
 </tr>
@@ -614,6 +615,7 @@ Here is an example on the latter strategy:
 <pre>
 Terminal&gt; doconce format latex mydoc
 Terminal&gt; doconce ptex2tex mydoc
+Terminal&gt; doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 <! -- end verbatim block -->
@@ -621,10 +623,13 @@ When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
 environments are well understood.
 
 <p>
-Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
-on the <tt>.mkd</tt> or <tt>.tex</tt> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the <tt>Verb</tt> macro from the <tt>fancyvrb</tt> package
+while <tt>pandoc</tt> only supports the standard <tt>verb</tt> construction for
+inline verbatim text.  Moreover, quite some additional <tt>doconce
+replace</tt> and <tt>doconce subst</tt> edits might be needed on the <tt>.mkd</tt> or
+<tt>.tex</tt> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 <p>
 Here is an example where we take a Doconce snippet (without title, author,
@@ -1099,7 +1104,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <h3>Wiki Formats  <a name="___sec15"></a></h3>
 <p>
 There are many different wiki formats, but Doconce only supports three:
-<a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
+<a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
+MediaWiki, and
+Creole Wiki. These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
@@ -1109,6 +1116,14 @@ Terminal&gt; doconce format mwiki mydoc.do.txt
 Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
 <! -- end verbatim block -->
+
+<p>
+The produced MediaWiki can be tested in the <a href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
+wikibooks.org</a>. The format
+works well with Wikipedia, Wikibooks, and
+<a href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+but not always well elsewhere
+(see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
 <p>
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
