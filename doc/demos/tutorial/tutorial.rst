@@ -916,8 +916,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 `Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
-MediaWiki, and
-Creole Wiki. These formats are called
+`MediaWiki <http://www.mediawiki.org/wiki/Help:Formatting>`_, and
+`Creole Wiki <http://www.wikicreole.org/wiki/Creole1.0>`_.
+These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -934,6 +935,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
+Large MediaWiki documents can be made with the
+`Book creator <http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>`_.
+From the MediaWiki format one can go to other formats with aid
+of `mwlib <http://pediapress.com/code/>`_. This means that one can
+easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -943,14 +955,6 @@ When the Doconce file contains figures, each figure filename must in
 the ``.gwiki`` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of `mwlib <http://pediapress.com/code/>`_. This means that one can
-easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
