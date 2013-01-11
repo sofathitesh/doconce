@@ -1114,8 +1114,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <h2>Wiki Formats</h2>
 <p>There are many different wiki formats, but Doconce only supports three:
 <a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
-MediaWiki, and
-Creole Wiki. These formats are called
+<a class="reference external" href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki</a>, and
+<a class="reference external" href="http://www.wikicreole.org/wiki/Creole1.0">Creole Wiki</a>.
+These formats are called
 <tt class="docutils literal">gwiki</tt>, <tt class="docutils literal">mwiki</tt>, and <tt class="docutils literal">cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by:</p>
 <pre class="literal-block">
@@ -1129,6 +1130,14 @@ works well with Wikipedia, Wikibooks, and
 <a class="reference external" href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
 but not always well elsewhere
 (see <a class="reference external" href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).</p>
+<p>Large MediaWiki documents can be made with the
+<a class="reference external" href="http://en.wikipedia.org/w/index.php?title=Special:Book&amp;bookcmd=book_creator">Book creator</a>.
+From the MediaWiki format one can go to other formats with aid
+of <a class="reference external" href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a class="reference external" href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.</p>
 <p>The Googlecode wiki document, <tt class="docutils literal">mydoc.gwiki</tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -1137,12 +1146,6 @@ wiki editor in a web browser.</p>
 the <tt class="docutils literal">.gwiki</tt> file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).</p>
-<p>From the MediaWiki format one can go to other formats with aid
-of <a class="reference external" href="http://pediapress.com/code/">mwlib</a>. This means that one can
-easily use Doconce to write <a class="reference external" href="http://en.wikibooks.org">Wikibooks</a>
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.</p>
 </div>
 <div class="section" id="tweaking-the-doconce-output">
 <h2>Tweaking the Doconce Output</h2>

@@ -1105,8 +1105,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
-MediaWiki, and
-Creole Wiki. These formats are called
+<a href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki</a>, and
+<a href="http://www.wikicreole.org/wiki/Creole1.0">Creole Wiki</a>.
+These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
@@ -1126,6 +1127,17 @@ but not always well elsewhere
 (see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
 <p>
+Large MediaWiki documents can be made with the
+<a href="http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator">Book creator</a>.
+From the MediaWiki format one can go to other formats with aid
+of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+<p>
+
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -1138,15 +1150,6 @@ available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
 <p>
-From the MediaWiki format one can go to other formats with aid
-of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
-easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
-<p>
-
 
 <h3>Tweaking the Doconce Output  <a name="___sec16"></a></h3>
 <p>
