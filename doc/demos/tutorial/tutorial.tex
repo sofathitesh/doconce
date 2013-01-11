@@ -106,7 +106,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Jan 6, 2013
+Jan 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -560,7 +560,7 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 {\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
-See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}}{example} for details on blogging.
+See a \href{{http://doconce.blogspot.no}}{blog example} for details on blogging.
 
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
@@ -570,7 +570,7 @@ See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-b
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
 \vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
-In the comments one cannot paste raw HTML code with MathJax
+In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 \end{minipage}}
 \end{center}
@@ -609,15 +609,18 @@ Here is an example on the latter strategy:
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \end{Verbatim}
 When we go through {\fontsize{10pt}{10pt}\Verb!pandoc!}, only single equations or {\fontsize{10pt}{10pt}\Verb!align*!}
 environments are well understood.
 
-Quite some {\fontsize{10pt}{10pt}\Verb!doconce replace!} and {\fontsize{10pt}{10pt}\Verb!doconce subst!} edits might be needed
-on the {\fontsize{10pt}{10pt}\Verb!.mkd!} or {\fontsize{10pt}{10pt}\Verb!.tex!} files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via {\LaTeX}.
+Note that Doconce applies the {\fontsize{10pt}{10pt}\Verb!Verb!} macro from the {\fontsize{10pt}{10pt}\Verb!fancyvrb!} package
+while {\fontsize{10pt}{10pt}\Verb!pandoc!} only supports the standard {\fontsize{10pt}{10pt}\Verb!verb!} construction for
+inline verbatim text.  Moreover, quite some additional {\fontsize{10pt}{10pt}\Verb!doconce replace!} and {\fontsize{10pt}{10pt}\Verb!doconce subst!} edits might be needed on the {\fontsize{10pt}{10pt}\Verb!.mkd!} or
+{\fontsize{10pt}{10pt}\Verb!.tex!} files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via {\LaTeX}.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -1073,7 +1076,9 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 \subsection{Wiki Formats}
 
 There are many different wiki formats, but Doconce only supports three:
-\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
+\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki},
+MediaWiki, and
+Creole Wiki. These formats are called
 {\fontsize{10pt}{10pt}\Verb!gwiki!}, {\fontsize{10pt}{10pt}\Verb!mwiki!}, and {\fontsize{10pt}{10pt}\Verb!cwiki!}, respectively.
 Transformation from Doconce to these formats is done by
 \vspace{4pt}
@@ -1083,6 +1088,13 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 \end{Verbatim}
+
+The produced MediaWiki can be tested in the \href{{http://en.wikibooks.org/wiki/Sandbox}}{sandbox of
+wikibooks.org}. The format
+works well with Wikipedia, Wikibooks, and
+\href{{http://doconce.shoutwiki.com/wiki/Doconce_demo}}{ShoutWiki},
+but not always well elsewhere
+(see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
 The Googlecode wiki document, {\fontsize{10pt}{10pt}\Verb!mydoc.gwiki!}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.

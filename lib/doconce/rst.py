@@ -33,10 +33,9 @@ def rst_figure(m):
 
 
     filename = m.group('filename')
-    if not os.path.isfile(filename):
-        #raise IOError('No figure file %s' % filename)
-        print 'No figure file %s' % filename
-        sys.exit(1)
+    link = filename if filename.startswith('http') else None
+    if not link and not os.path.isfile(filename):
+        raise IOError('no figure file %s' % filename)
 
     result += '\n.. figure:: ' + filename + '\n'  # utilize flexibility
     opts = m.group('options')

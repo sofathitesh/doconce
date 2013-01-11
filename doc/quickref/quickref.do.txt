@@ -325,33 +325,36 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
 
-One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (`#else`) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-or `html` formats
+`mwiki`, or `html` formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` and the mentioned formats
+LaTeX constructs. For output both in `latex` or `pdflatex` *and*
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 
   * Use only the equation environments `\[`, `\]`,
     `equation`, `equation*`, `align`, and `align*`.
   * Labels in multiple equation environments such as `align` are
-    not (yet) handled by `sphinx` and `pandoc`, so avoid inserting
-    labels and referring  to equation labels in `align` environments.
-    Actually, `align*` is the preferred environment for multiple equations.
-  * LaTeX supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as `sphinx`, makes it necessary
-    to only utilze very standard LaTeX and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically `# #if FORMAT in ("latex", "pdflatex")`) to
-    include special code for `latex` and `pdflatex` output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    not (yet) handled by `pandoc`.
+  * MediaWiki (`mwiki`) does not support references to equations.
+
+!bnotice
+LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as `sphinx`, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically `if FORMAT in ("latex", "pdflatex")`) to
+include special code for `latex` and `pdflatex` output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
+!enotice
 
 
 __LaTeX Newcommands.__

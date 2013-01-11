@@ -328,6 +328,35 @@ def sphinx_code_newmathlabels(filestr, format):
 
     return filestr
 
+def align2equations(filestr):
+    """Turn align environments into separate equation environments."""
+    if not '{align}' in filestr:
+        return filestr
+
+    lines = filestr.splitlines()
+    inside_align = False
+    inside_code = False
+    for i in range(len(lines)):
+        if lines[i].startswith('!bc'):
+            inside_code = True
+        if lines[i].startswith('!ec'):
+            inside_code = False
+        if inside_code:
+            continue
+
+        if r'\begin{align}' in lines[i]:
+            inside_align = True
+            lines[i] = lines[i].replace(r'\begin{align}', r'\begin{equation}')
+        if inside_align and '\\\\' in lines[i]:
+            lines[i] = lines[i].replace('\\\\', '\n' + r'\end{equation}' + '\n!et\n\n!bt\n' + r'\begin{equation}' + '\n')
+        if inside_align and '&':
+            lines[i] = lines[i].replace('&', '')
+        if r'\end{align}' in lines[i]:
+            inside_align = False
+            lines[i] = lines[i].replace(r'\end{align}', r'\end{equation}')
+    filestr = '\n'.join(lines)
+    return filestr
+
 def sphinx_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -369,23 +398,25 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     # method of removing labels. Do not use :nowrap: since this will
     # generate other labels that we cannot refer to.
     #
+    # After transforming align environments to separate equations
+    # the problem with multiple math labels has disappeared.
+    # Any output of such labels means an error in the align -> equation
+    # transformation...
     math_labels = []
     multiple_math_labels = []  # sphinx has problems with multiple math labels
     for i in range(len(tex_blocks)):
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
         # extract all \label{}s inside tex blocks and typeset them
         # with :label: tags
-        label_regex1 = fix_latex(r'\label\{(.+?)\}', application='match')
-        label_regex2 = fix_latex( r'label\{(.+?)\}', application='match')
-        for label_regex in (label_regex1, label_regex2):
-            labels = re.findall(label_regex, tex_blocks[i])
-            if len(labels) == 1:
-                tex_blocks[i] = '   :label: %s\n' % labels[0] + tex_blocks[i]
-            elif len(labels) > 1:
-                multiple_math_labels.append(labels)
-            if len(labels) > 0:
-                math_labels.extend(labels)
-            tex_blocks[i] = re.sub(label_regex, '', tex_blocks[i])
+        label_regex = fix_latex( r'label\{(.+?)\}', application='match')
+        labels = re.findall(label_regex, tex_blocks[i])
+        if len(labels) == 1:
+            tex_blocks[i] = '   :label: %s\n' % labels[0] + tex_blocks[i]
+        elif len(labels) > 1:
+            multiple_math_labels.append(labels)
+        if len(labels) > 0:
+            math_labels.extend(labels)
+        tex_blocks[i] = re.sub(label_regex, '', tex_blocks[i])
 
         # fix latex constructions that do not work with sphinx math
         commands = [r'\begin{equation}',

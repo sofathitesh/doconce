@@ -14,7 +14,8 @@ DATE: Today
   * Key question: What tools should I use for writing?
   * Default answer: LaTeX
   * Alternative: MS Word w/math
-  * Recent popular alternative tools: Sphinx, Markdown, IPython notebook
+  * Recent popular alternative tools: Sphinx, Markdown, MediaWiki,
+    IPython notebook
 
 !epop
 
@@ -770,7 +771,8 @@ doconce format plain  doconcefile  # plain, untagged text for email
 ======= Writing tips =======
 
  * See the previous *Concerns I, II and III* slides for issues when writing
-   for multiple formats.
+   for multiple formats. However: Doconce makes a fix so that Sphinx works
+   with labels in align environments :-)
  * Prepare figures in the right format: EPS for `latex`, PDF for `pdflatex`,
    PNG, GIF or JPEG for HTML formats (`html`, and HTML output from
    `sphinx`, `rst`, `pandoc`). One can omit the figure file extension and
@@ -798,8 +800,8 @@ following points are important:
  * Place index entries (`idx{keyword}`) before the paragraph where they
    are introduced (not inside the text). Also place index entries before
    `===` headings.
- * Be careful with labels in `align` math environments - `sphinx` and `pandoc`
-   cannot refer to them.
+ * Be careful with labels in `align` math environments: `pandoc`
+   and `mwiki` cannot refer to them.
  * Always have a line of running text before a code snippet or program.
  * Do not insert comments before intented text, such as computer code and
    lists.

@@ -329,7 +329,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 6, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 11, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -714,10 +714,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this <a class="reference external" href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.</p>
+See a <a class="reference external" href="http://doconce.blogspot.no">blog example</a> for details on blogging.</p>
 <div class="warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">In the comments one cannot paste raw HTML code with MathJax
+<p class="last">In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </div>
 </div>
@@ -747,14 +747,18 @@ Here is an example on the latter strategy:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format latex mydoc
 Terminal&gt; doconce ptex2tex mydoc
+Terminal&gt; doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 <p>When we go through <tt class="docutils literal">pandoc</tt>, only single equations or <tt class="docutils literal">align*</tt>
 environments are well understood.</p>
-<p>Quite some <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt> edits might be needed
-on the <tt class="docutils literal">.mkd</tt> or <tt class="docutils literal">.tex</tt> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.</p>
+<p>Note that Doconce applies the <tt class="docutils literal">Verb</tt> macro from the <tt class="docutils literal">fancyvrb</tt> package
+while <tt class="docutils literal">pandoc</tt> only supports the standard <tt class="docutils literal">verb</tt> construction for
+inline verbatim text.  Moreover, quite some additional <tt class="docutils literal">doconce
+replace</tt> and <tt class="docutils literal">doconce subst</tt> edits might be needed on the <tt class="docutils literal">.mkd</tt> or
+<tt class="docutils literal">.tex</tt> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.</p>
 <p>Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
 HTML with mathematics displayed my MathJax:</p>
@@ -1109,7 +1113,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats</h2>
 <p>There are many different wiki formats, but Doconce only supports three:
-<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
+<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
+MediaWiki, and
+Creole Wiki. These formats are called
 <tt class="docutils literal">gwiki</tt>, <tt class="docutils literal">mwiki</tt>, and <tt class="docutils literal">cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by:</p>
 <pre class="literal-block">
@@ -1117,6 +1123,12 @@ Terminal&gt; doconce format gwiki mydoc.do.txt
 Terminal&gt; doconce format mwiki mydoc.do.txt
 Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
+<p>The produced MediaWiki can be tested in the <a class="reference external" href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
+wikibooks.org</a>. The format
+works well with Wikipedia, Wikibooks, and
+<a class="reference external" href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+but not always well elsewhere
+(see <a class="reference external" href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).</p>
 <p>The Googlecode wiki document, <tt class="docutils literal">mydoc.gwiki</tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the

@@ -104,7 +104,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Jan 6, 2013
+Jan 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -487,15 +487,16 @@ which results in
 
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
-One can use \Verb!#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")! to let
-the preprocessor choose a block of mathematics in {\LaTeX} format
+One can use \Verb!#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")!
+to let the preprocessor choose a block of mathematics in {\LaTeX} format
 or (\Verb!#else!) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any {\LaTeX} syntax is accepted, but if output in the \Verb!sphinx!, \Verb!pandoc!,
-or \Verb!html! formats
+\Verb!mwiki!, or \Verb!html! formats
 is important, one must know that these formats does not support many
-{\LaTeX} constructs. For output both in \Verb!latex! and the mentioned formats
+{\LaTeX} constructs. For output both in \Verb!latex! or \Verb!pdflatex! \emph{and}
+the mentioned formats with {\LaTeX} support,
 the following rules are recommended:
 
 \begin{itemize}
@@ -503,23 +504,33 @@ the following rules are recommended:
     \Verb!equation!, \Verb!equation*!, \Verb!align!, and \Verb!align*!.
 
   \item Labels in multiple equation environments such as \Verb!align! are
-    not (yet) handled by \Verb!sphinx! and \Verb!pandoc!, so avoid inserting
-    labels and referring  to equation labels in \Verb!align! environments.
-    Actually, \Verb!align*! is the preferred environment for multiple equations.
+    not (yet) handled by \Verb!pandoc!.
 
-  \item {\LaTeX} supports lots of fancy formatting, for example, multiple
-    plots in the same figure, footnotes, margin notes, etc.
-    Allowing other output formats, such as \Verb!sphinx!, makes it necessary
-    to only utilze very standard {\LaTeX} and avoid, for instance, more than
-    one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically \Verb!# #if FORMAT in ("latex", "pdflatex")!) to
-    include special code for \Verb!latex! and \Verb!pdflatex! output and more
-    straightforward typesetting for other formats. In this way, one can
-    also allow advanced {\LaTeX} features and fine tuning of resulting
-    PDF document.
+  \item MediaWiki (\Verb!mwiki!) does not support references to equations.
 \end{itemize}
 
 \noindent
+
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{noticebackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \Verb!sphinx!, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \Verb!if FORMAT in ("latex", "pdflatex")!) to
+include special code for \Verb!latex! and \Verb!pdflatex! output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
 \paragraph{LaTeX Newcommands.}
 Text missing...
 

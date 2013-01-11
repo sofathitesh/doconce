@@ -11,19 +11,76 @@ mwiki_ref_and_label (just using code from gwiki)
 Just using plan ASCII solutions for index_bib (requires some work to
 port to MediaWiki, but is straightforward - use rst as template) and
 exercise (probably ok with the plain solution).
+
+The page http://en.wikibooks.org/wiki/Wikibooks:Sandbox is fine for
+short-lived experiments.
+
+http://shoutwiki.com can host MediaWiki pages.
+http://jumpwiki.com/wiki/Main_Page can also host MediaWiki pages, but
+there are troubles with align envirs and math (ugly typesetting and
+some strange indents).
+
+Create a user account, choose *Create a Wiki* in the menu on the left,
+fill out the form, wait until you get a Main Page, click on edit, make
+references to a new page, say [[First demo|demo]], save, click on
+demo and fill out that page with the content of a mydoconcefile.wiki,
+sometimes it is necessary to create a new account, just do that and
+go back.
 """
 
 
 import re, os, commands, sys
 from common import default_movie, plain_exercise, insert_code_and_tex
 
+def align2equations(math_text):
+    """
+    Transform an align environment to a set of equation environments.
+    Used to handle multiple equations if align does not work well
+    """
+    if not '{align' in math_text:
+        return
+    math_text = math_text.replace('&', '')
+    math_text = math_text.replace('\\\\', r"""
+</math>
+
+:<math>""")
+    pattern = r'\\(begin|end)\{align\*?\}\s*'
+    math_text = re.sub(pattern, '', math_text)
+    # :<math> and </math> surroundings appear when !bt and !et are translated
+    return math_text
+
+def equation2nothing(math_text):
+    pattern = r'\\(begin|end)\{equation\*?\}\s*'
+    math_text = re.sub(pattern, '', math_text)
+    math_text = math_text.replace(r'\[', '')
+    math_text = math_text.replace(r'\]', '')
+    return math_text
+
+def remove_labels(math_text):
+    pattern = 'label\{(.+?)\}\s*'
+    labels = re.findall(pattern, math_text)
+    if labels:
+        math_text = re.sub(pattern, '', math_text)
+    return math_text, labels
+
+
 def mwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
+    # http://en.wikipedia.org/wiki/Help:Displaying_a_formula
+    # MediaWiki math does not support labels in equations.
+    # The enviros equation and \[ \] must be removed (not supported).
 
-    # Remove labels from equations
     for i in range(len(tex_blocks)):
-        if 'label{' in tex_blocks[i]:
-            tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
+        # Standard align works in Wikipedia and Wikibooks.
+        # Standard align gives somewhat ugly output on wiiki.com services,
+        # but a set of separate equations is not much better.
+        # We therefore stick to align instead.
+        #tex_blocks[i] = align2equations(tex_blocks[i])
+        tex_blocks[i] = equation2nothing(tex_blocks[i])
+        tex_blocks[i], labels = remove_labels(tex_blocks[i])
+        for label in labels:
+            if label in filestr:
+                print '*** warning: reference to label "%s" in an equation does not work in MediaWiki' % label
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
@@ -67,16 +124,17 @@ def mwiki_figure(m):
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
     root, ext = os.path.splitext(filename)
-    if not ext in '.png .gif .jpg .jpeg'.split():
-        # try to convert image file to PNG, using
-        # convert from ImageMagick:
-        cmd = 'convert %s png:%s' % (filename, root+'.png')
-        failure, output = commands.getstatusoutput(cmd)
-        if failure:
-            print '\n**** Warning: could not run', cmd
-            print 'Convert %s to PNG format manually' % filename
-            sys.exit(1)
-        filename = root + '.png'
+    if link is None:
+        if not ext in '.png .gif .jpg .jpeg'.split():
+            # try to convert image file to PNG, using
+            # convert from ImageMagick:
+            cmd = 'convert %s png:%s' % (filename, root+'.png')
+            failure, output = commands.getstatusoutput(cmd)
+            if failure:
+                print '\n**** Warning: could not run', cmd
+                print 'Convert %s to PNG format manually' % filename
+                sys.exit(1)
+            filename = root + '.png'
 
     caption = m.group('caption').strip()
     if caption != '':
@@ -118,7 +176,11 @@ def mwiki_figure(m):
             'action': 'query', 'titles': 'Image:' + filename,
             'prop': 'imageinfo', 'format': 'xml'})
         url = 'http://en.wikipedia.org/w/api.php?' + prms
-        f = urllib.urlopen(url)
+        try:
+            f = urllib.urlopen(url)
+        except IOError:
+            print '*** error: cannot treat mediawiki figure on the net (no connection or invalid URL)'
+            sys.exit(1)
         imageinfo = f.read()
         f.close()
         def get_data(name, text):
@@ -229,7 +291,7 @@ def define(FILENAME_EXTENSION,
         'section':       '\n\n\n' + r'== \g<subst> ==\n',
         'subsection':    '\n\n' + r'=== \g<subst> ===\n',
         'subsubsection': '\n' + r'==== \g<subst> ====\n',
-        'paragraph':     r"''\g<subst>'' ",
+        'paragraph':     r"''\g<subst>''\n",
         'title':         r'#TITLE (actually governed by the filename): \g<subst>\n',
         'date':          r'===== \g<subst> =====',
         'author':        mwiki_author, #r'===== \g<name>, \g<institution> =====',
@@ -252,8 +314,8 @@ def define(FILENAME_EXTENSION,
         'itemize':     {'begin': '\n', 'item': '*', 'end': '\n\n'},
         'enumerate':   {'begin': '\n', 'item': '#', 'end': '\n\n'},
         'description': {'begin': '\n', 'item': '* %s ', 'end': '\n\n'},
-        'separator': '\n'}  # problem: requires ** and ## at level 2 etc.
-    # Try this!
+        'separator': '\n'}
+    # Try this:
     LIST['mwiki'] = LIST['html']
 
 

@@ -19,12 +19,34 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
+% admonition (specially marked topic)
+\providecommand{\DUadmonition}[2][class-arg]{%
+  % try \DUadmonition#1{#2}:
+  \ifcsname DUadmonition#1\endcsname%
+    \csname DUadmonition#1\endcsname{#2}%
+  \else
+    \begin{center}
+      \fbox{\parbox{0.9\textwidth}{#2}}
+    \end{center}
+  \fi
+}
+
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
+
+% title for topics, admonitions and sidebar
+\providecommand*{\DUtitle}[2][class-arg]{%
+  % call \DUtitle#1{#2} if it exists:
+  \ifcsname DUtitle#1\endcsname%
+    \csname DUtitle#1\endcsname{#2}%
+  \else
+    \smallskip\noindent\textbf{#2}\smallskip%
+  \fi
+}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -53,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jan 6, 2013
+Jan 11, 2013
 
 \end{DUfieldlist}
 
@@ -622,15 +644,16 @@ which results in:
 }
 \end{quote}
 
-One can use \texttt{\#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")} to let
-the preprocessor choose a block of mathematics in LaTeX format
+One can use \texttt{\#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}
+to let the preprocessor choose a block of mathematics in LaTeX format
 or (\texttt{\#else}) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the \texttt{sphinx}, \texttt{pandoc},
-or \texttt{html} formats
+\texttt{mwiki}, or \texttt{html} formats
 is important, one must know that these formats does not support many
-LaTeX constructs. For output both in \texttt{latex} and the mentioned formats
+LaTeX constructs. For output both in \texttt{latex} or \texttt{pdflatex} \emph{and}
+the mentioned formats with LaTeX support,
 the following rules are recommended:
 %
 \begin{quote}
@@ -641,24 +664,28 @@ the following rules are recommended:
 \texttt{equation}, \texttt{equation*}, \texttt{align}, and \texttt{align*}.
 
 \item Labels in multiple equation environments such as \texttt{align} are
-not (yet) handled by \texttt{sphinx} and \texttt{pandoc}, so avoid inserting
-labels and referring  to equation labels in \texttt{align} environments.
-Actually, \texttt{align*} is the preferred environment for multiple equations.
+not (yet) handled by \texttt{pandoc}.
 
-\item LaTeX supports lots of fancy formatting, for example, multiple
-plots in the same figure, footnotes, margin notes, etc.
-Allowing other output formats, such as \texttt{sphinx}, makes it necessary
-to only utilze very standard LaTeX and avoid, for instance, more than
-one plot per figure. However, one can use preprocessor if-tests on
-the format (typically \texttt{\# \#if FORMAT in ("latex", "pdflatex")}) to
-include special code for \texttt{latex} and \texttt{pdflatex} output and more
-straightforward typesetting for other formats. In this way, one can
-also allow advanced LaTeX features and fine tuning of resulting
-PDF document.
+\item MediaWiki (\texttt{mwiki}) does not support references to equations.
 
 \end{itemize}
 
 \end{quote}
+
+\DUadmonition[note]{
+\DUtitle[note]{Note}
+
+LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \texttt{sphinx}, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \texttt{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \texttt{latex} and \texttt{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.
+}
 
 \emph{LaTeX Newcommands.} Text missing...
 

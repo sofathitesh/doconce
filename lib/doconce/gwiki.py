@@ -21,22 +21,25 @@ def gwiki_code(filestr, code_blocks, code_block_types,
 
 def gwiki_figure(m):
     filename = m.group('filename')
-    if not os.path.isfile(filename):
+    link = filename if filename.startswith('http') else None
+    if not link and not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
 
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
     root, ext = os.path.splitext(filename)
-    if not ext in '.png .gif .jpg .jpeg'.split():
-        # try to convert image file to PNG, using
-        # convert from ImageMagick:
-        cmd = 'convert %s png:%s' % (filename, root+'.png')
-        failure, output = commands.getstatusoutput(cmd)
-        if failure:
-            print '\n**** Warning: could not run', cmd
-            print 'Convert %s to PNG format manually' % filename
-            sys.exit(1)
-        filename = root + '.png'
+
+    if link is None:
+        if not ext in '.png .gif .jpg .jpeg'.split():
+            # try to convert image file to PNG, using
+            # convert from ImageMagick:
+            cmd = 'convert %s png:%s' % (filename, root+'.png')
+            failure, output = commands.getstatusoutput(cmd)
+            if failure:
+                print '\n**** Warning: could not run', cmd
+                print 'Convert %s to PNG format manually' % filename
+                sys.exit(1)
+            filename = root + '.png'
     caption = m.group('caption')
     # keep label if it's there:
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)

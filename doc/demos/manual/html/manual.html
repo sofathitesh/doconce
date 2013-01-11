@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 6, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 11, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -459,10 +459,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google&#8217;s Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this <a class="reference external" href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.</p>
+See a <a class="reference external" href="http://doconce.blogspot.no">blog example</a> for details on blogging.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">In the comments one cannot paste raw HTML code with MathJax
+<p class="last">In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </div>
 </div>
@@ -491,15 +491,19 @@ using <tt class="docutils literal"><span class="pre">pandoc</span></tt>.
 Here is an example on the latter strategy:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
 <span class="go">Terminal&gt; doconce ptex2tex mydoc</span>
+<span class="go">Terminal&gt; doconce replace &#39;\Verb!&#39; &#39;\verb!&#39; mydoc.tex</span>
 <span class="go">Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex</span>
 </pre></div>
 </div>
 <p>When we go through <tt class="docutils literal"><span class="pre">pandoc</span></tt>, only single equations or <tt class="docutils literal"><span class="pre">align*</span></tt>
 environments are well understood.</p>
-<p>Quite some <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> edits might be needed
-on the <tt class="docutils literal"><span class="pre">.mkd</span></tt> or <tt class="docutils literal"><span class="pre">.tex</span></tt> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.</p>
+<p>Note that Doconce applies the <tt class="docutils literal"><span class="pre">Verb</span></tt> macro from the <tt class="docutils literal"><span class="pre">fancyvrb</span></tt> package
+while <tt class="docutils literal"><span class="pre">pandoc</span></tt> only supports the standard <tt class="docutils literal"><span class="pre">verb</span></tt> construction for
+inline verbatim text.  Moreover, quite some additional <tt class="docutils literal"><span class="pre">doconce</span>
+<span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> edits might be needed on the <tt class="docutils literal"><span class="pre">.mkd</span></tt> or
+<tt class="docutils literal"><span class="pre">.tex</span></tt> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.</p>
 <p>Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
 HTML with mathematics displayed my MathJax:</p>
@@ -852,7 +856,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats<a class="headerlink" href="#wiki-formats" title="Permalink to this headline">¶</a></h2>
 <p>There are many different wiki formats, but Doconce only supports three:
-<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
+<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
+MediaWiki, and
+Creole Wiki. These formats are called
 <tt class="docutils literal"><span class="pre">gwiki</span></tt>, <tt class="docutils literal"><span class="pre">mwiki</span></tt>, and <tt class="docutils literal"><span class="pre">cwiki</span></tt>, respectively.
 Transformation from Doconce to these formats is done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format gwiki mydoc.do.txt</span>
@@ -860,6 +866,12 @@ Transformation from Doconce to these formats is done by</p>
 <span class="go">Terminal&gt; doconce format cwiki mydoc.do.txt</span>
 </pre></div>
 </div>
+<p>The produced MediaWiki can be tested in the <a class="reference external" href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
+wikibooks.org</a>. The format
+works well with Wikipedia, Wikibooks, and
+<a class="reference external" href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+but not always well elsewhere
+(see <a class="reference external" href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).</p>
 <p>The Googlecode wiki document, <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -1385,7 +1397,7 @@ By the way, here is an example on referencing Figure <a class="reference interna
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a class="reference internal" href="#mathtext"><em>LaTeX Blocks of Mathematical Text</em></a> and <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a> are
 nice to demonstrate, as well as a reference to equations,
-say <a href="#equation-myeq1">(?)</a>-<a href="#equation-myeq2">(?)</a>. A comparison of the output and
+say <a href="#equation-myeq1">(1)</a>-<a href="#equation-myeq2">(2)</a>. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
@@ -1940,20 +1952,26 @@ line and followed by a newline.</p>
 </pre></div>
 </div>
 <p>Here is the result:</p>
-<div class="math">
-\[\begin{split}{\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g.\end{split}\]</div>
+<div class="math" id="equation-myeq1">
+<span class="eqno">(1)</span>\[     {\partial u\over\partial t} = \nabla^2 u + f,\]</div>
+<div class="math" id="equation-myeq2">
+<span class="eqno">(2)</span>\[     {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g.\]</div>
 <p>The support of LaTeX mathematics varies among the formats:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Output <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> has of course full support.</li>
+<li>Output in LaTeX (<tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> formats) has of course full
+support of all LaTeX mathematics, of course.</li>
 <li>The <tt class="docutils literal"><span class="pre">html</span></tt> format supports single equations and multiple equations
 via the align environment, also with labels.</li>
-<li>Although <tt class="docutils literal"><span class="pre">sphinx</span></tt>, like <tt class="docutils literal"><span class="pre">html</span></tt>, employs
-MathJax, it does not support labels in align environments.</li>
 <li>Markdown (<tt class="docutils literal"><span class="pre">pandoc</span></tt> format) allows single equations and inline mathematics.</li>
+<li>MediaWiki (<tt class="docutils literal"><span class="pre">mwiki</span></tt> format) does not enable labels in equations and hence
+equations cannot be referred to.</li>
 </ul>
 </div></blockquote>
+<p>The main conclusion is that for
+output beyond LaTeX (<tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> formats), stick to
+simple <tt class="docutils literal"><span class="pre">\[</span></tt> and <tt class="docutils literal"><span class="pre">\]</span></tt> or <tt class="docutils literal"><span class="pre">equation</span></tt> and <tt class="docutils literal"><span class="pre">align</span></tt> or <tt class="docutils literal"><span class="pre">align*</span></tt> environments,
+and avoid referring to equations in MediaWikis.</p>
 <p>Going from Doconce to MS Word is most easily done by outputting in
 the <tt class="docutils literal"><span class="pre">latex</span></tt> format and then using the Pandoc program to translate
 from LaTeX to MS Word (note that only a subset of LaTeX will be

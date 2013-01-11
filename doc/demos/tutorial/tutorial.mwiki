@@ -1,13 +1,29 @@
-<!--> Missing: FIGURE, MOVIE, environments -->
+<!-- Missing: FIGURE, MOVIE, environments -->
 
 #TITLE (actually governed by the filename): Doconce: Document Once, Include Anywhere
 
 By '''Hans Petter Langtangen'''
 
-==== Jan 6, 2013 ====
+==== Jan 11, 2013 ====
 
 <ul>
- <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
+ <li> When writing a note, report, manual, etc., do you find it difficult
+   to choose the typesetting format? That is, to choose between plain
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
+   reStructuredText, Sphinx, XML, etc.  Would it be convenient to
+   start with some very simple text-like format that easily converts
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
+ <li> Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+ <li> Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
+</ul>
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -21,10 +37,45 @@ som examples.
 
 
 <ul>
-  <li> Bullet lists arise from lines starting with <code>*</code>.  <li> ''Emphasized words'' are surrounded by <code>*</code>.  <li> '''Words in boldface''' are surrounded by underscores.  <li> Words from computer code are enclosed in back quotes and    then typeset <code>verbatim (in a monospace font)</code>.  <li> Section headings are recognied by equality (<code>=</code>) signs before    and after the title, and the number of <code>=</code> signs indicates the    level of the section: 7 for main section, 5 for subsection, and    3 for subsubsection.  <li> Paragraph headings are recognized by a double underscore    before and after the heading.  <li> The abstract of a document starts with ''Abstract'' as paragraph    heading, and all text up to the next heading makes up the abstract,  <li> Blocks of computer code can easily be included by placing    <code>!bc</code> (begin code) and <code>!ec</code> (end code) commands at separate lines    before and after the code block.  <li> Blocks of computer code can also be imported from source files.  <li> Blocks of LaTeX mathematics can easily be included by placing    <code>!bt</code> (begin TeX) and <code>!et</code> (end TeX) commands at separate lines    before and after the math block.  <li> There is support for both LaTeX and text-like inline mathematics.  <li> Figures and movies with captions, simple tables,    URLs with links, index list, labels and references are supported.  <li> Invisible comments in the output format can be inserted throughout    the text.  <li> Visible comments can be inserted so that authors and readers can    comment upon the text (and at any time turn on/off output of such    comments).  <li> There is an exercise environment with many advanced features.  <li> With a preprocessor, Preprocess or Mako, one can include    other documents (files) and large portions of text can be defined    in or out of the text.  <li> With Mako one can also have Python code    embedded in the Doconce document and thereby parameterize the    text (e.g., one text can describe programming in two languages).</ul>
+  <li> Bullet lists arise from lines starting with <code>*</code>.
+  <li> ''Emphasized words'' are surrounded by <code>*</code>.
+  <li> '''Words in boldface''' are surrounded by underscores.
+  <li> Words from computer code are enclosed in back quotes and
+    then typeset <code>verbatim (in a monospace font)</code>.
+  <li> Section headings are recognied by equality (<code>=</code>) signs before
+    and after the title, and the number of <code>=</code> signs indicates the
+    level of the section: 7 for main section, 5 for subsection, and
+    3 for subsubsection.
+  <li> Paragraph headings are recognized by a double underscore
+    before and after the heading.
+  <li> The abstract of a document starts with ''Abstract'' as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+  <li> Blocks of computer code can easily be included by placing
+    <code>!bc</code> (begin code) and <code>!ec</code> (end code) commands at separate lines
+    before and after the code block.
+  <li> Blocks of computer code can also be imported from source files.
+  <li> Blocks of LaTeX mathematics can easily be included by placing
+    <code>!bt</code> (begin TeX) and <code>!et</code> (end TeX) commands at separate lines
+    before and after the math block.
+  <li> There is support for both LaTeX and text-like inline mathematics.
+  <li> Figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported.
+  <li> Invisible comments in the output format can be inserted throughout
+    the text.
+  <li> Visible comments can be inserted so that authors and readers can
+    comment upon the text (and at any time turn on/off output of such
+    comments).
+  <li> There is an exercise environment with many advanced features.
+  <li> With a preprocessor, Preprocess or Mako, one can include
+    other documents (files) and large portions of text can be defined
+    in or out of the text.
+  <li> With Mako one can also have Python code
+    embedded in the Doconce document and thereby parameterize the
+    text (e.g., one text can describe programming in two languages).
+</ul>
 
 Here is an example of some simple text written in the Doconce format:
-<code>
+<syntaxhighlight lang="text">
 ===== A Subsection with Sample Text =====
 label{my:first:sec}
 
@@ -67,7 +118,7 @@ Tables are also supperted, e.g.,
   |--------------------------------|
 
 # lines beginning with # are comment lines
-</code>
+</syntaxhighlight>
 The Doconce text above results in the following little document:
 
 ==== A Subsection with Sample Text ====
@@ -78,14 +129,20 @@ natural in plain text.  Lists are typeset as you would do in an email,
 
 
 <ul>
-  <li> item 1  <li> item 2  <li> item 3</ul>
+  <li> item 1
+  <li> item 2
+  <li> item 3
+</ul>
 
 Lists can also have numbered items instead of bullets, just use an <code>o</code>
 (for ordered) instead of the asterisk:
 
 
 <ol>
- <li> item 1 <li> item 2 <li> item 3</ol>
+ <li> item 1
+ <li> item 2
+ <li> item 3
+</ol>
 
 URLs with a link word are possible, as in [http://folk.uio.no/hpl hpl].
 If the word is URL, the URL itself becomes the link name,
@@ -118,9 +175,9 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like <math>\nu = \sin(x)</math> is
 typeset as
 
-<code>
+<syntaxhighlight lang="text">
 $\nu = \sin(x)$|$v = sin(x)$
-</code>
+</syntaxhighlight>
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula. If you write a lot of mathematics, only the
 output formats <code>latex</code>, <code>pdflatex</code>, <code>html</code>, <code>sphinx</code>, and <code>pandoc</code>
@@ -128,9 +185,9 @@ are of interest
 and all these support inline LaTeX mathematics so then you will naturally
 drop the pipe symbol and write just
 
-<code>
+<syntaxhighlight lang="text">
 $\nu = \sin(x)$
-</code>
+</syntaxhighlight>
 However, if you want more textual formats, like plain text or reStructuredText,
 the text after the pipe symbol may help to make the math formula more readable
 if there are backslahes or other special LaTeX symbols in the LaTeX code.
@@ -138,22 +195,22 @@ if there are backslahes or other special LaTeX symbols in the LaTeX code.
 Blocks of mathematics are typeset with raw LaTeX, inside
 <code>!bt</code> and <code>!et</code> (begin TeX, end TeX) instructions:
 
-<code>
+<syntaxhighlight lang="text">
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 !et
-</code>
-<!--> Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!--> tex and code blocks in inside verbatim blocks and are replaced -->
-<!--> by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+</syntaxhighlight>
+<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!-- tex and code blocks in inside verbatim blocks and are replaced -->
+<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
 The result looks like this:
 
 :<math>
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 </math>
@@ -166,7 +223,7 @@ for those who can read LaTeX syntax.
 You can have blocks of computer code, starting and ending with
 <code>!bc</code> and <code>!ec</code> instructions, respectively.
 
-<code>
+<syntaxhighlight lang="text">
 !bc pycod
 from math import sin, pi
 def myfunc(x):
@@ -175,7 +232,7 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 !ec
-</code>
+</syntaxhighlight>
 Such blocks are formatted as
 
 <syntaxhighlight lang="python">
@@ -185,7 +242,7 @@ def myfunc(x):
 
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
-</code>
+</syntaxhighlight>
 A code block must come after some plain sentence (at least for successful
 output to <code>sphinx</code>, <code>rst</code>, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.
@@ -237,7 +294,7 @@ syntax we refer to the <code>doc/manual/manual.do.txt</code> file (see the
 for various formats of this document).
 
 
-<!--> Example on including another Doconce file (using preprocess): -->
+<!-- Example on including another Doconce file (using preprocess): -->
 
 
 
@@ -247,11 +304,11 @@ Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
 formats applies the script <code>doconce format</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc.do.txt
-</code>
+</syntaxhighlight>
 or just
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc
-</code>
+</syntaxhighlight>
 
 ==== Preprocessing ====
 
@@ -261,7 +318,7 @@ filename. For example,
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
-</code>
+</syntaxhighlight>
 The variable <code>FORMAT</code> is always defined as the current format when
 running <code>preprocess</code> or <code>mako</code>. That is, in the last example, <code>FORMAT</code> is
 defined as <code>latex</code>. Inside the Doconce document one can then perform
@@ -270,7 +327,7 @@ format specific actions through tests like <code>#if FORMAT == "latex"</code>
 
 ==== Removal of inline comments ====
 
-<!--> mention notes also -->
+<!-- mention notes also -->
 
 The command-line arguments <code>--no-preprocess</code> and <code>--no-mako</code> turn off
 running <code>preprocess</code> and <code>mako</code>, respectively.
@@ -278,12 +335,12 @@ running <code>preprocess</code> and <code>mako</code>, respectively.
 Inline comments in the text are removed from the output by
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc --skip_inline_comments
-</code>
+</syntaxhighlight>
 One can also remove all such comments from the original Doconce
 file by running:
-<code>
+<syntaxhighlight lang="text">
 Terminal> doconce remove_inline_comments mydoc
-</code>
+</syntaxhighlight>
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
@@ -293,7 +350,7 @@ Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc
-</code>
+</syntaxhighlight>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
 The HTML style can be defined either in the header of the HTML file or
@@ -328,7 +385,7 @@ from the source code of a page at the site; just insert <code>%(title)s</code> a
 by <code>%(main)s</code>. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc --html-template=mytemplate.html
-</code>
+</syntaxhighlight>
 
 ==== Blogs ====
 
@@ -340,10 +397,10 @@ date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 
-{{warning|In the comments one cannot paste raw HTML code with MathJax
+{{warning|In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.}}
 
 ==== Pandoc and Markdown ====
@@ -351,12 +408,12 @@ scripts so there is no support for mathematics in the comments.}}
 Output in Pandoc's extended Markdown format results from
 <syntaxhighlight lang="bash">
 Terminal> doconce format pandoc mydoc
-</code>
+</syntaxhighlight>
 The name of the output file is <code>mydoc.mkd</code>.
 From this format one can go to numerous other formats:
 <syntaxhighlight lang="bash">
 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
-</code>
+</syntaxhighlight>
 Pandoc supports <code>latex</code>, <code>html</code>, <code>odt</code> (OpenOffice), <code>docx</code> (Microsoft
 Word), <code>rtf</code>, <code>texinfo</code>, to mention some. The <code>-R</code> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
@@ -373,15 +430,19 @@ Here is an example on the latter strategy:
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
+Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
-</code>
+</syntaxhighlight>
 When we go through <code>pandoc</code>, only single equations or <code>align*</code>
 environments are well understood.
 
-Quite some <code>doconce replace</code> and <code>doconce subst</code> edits might be needed
-on the <code>.mkd</code> or <code>.tex</code> files to successfully have mathematics that is
-well translated to MS Word.  Also when going to reStructuredText using
-Pandoc, it can be advantageous to go via LaTeX.
+Note that Doconce applies the <code>Verb</code> macro from the <code>fancyvrb</code> package
+while <code>pandoc</code> only supports the standard <code>verb</code> construction for
+inline verbatim text.  Moreover, quite some additional <code>doconce
+replace</code> and <code>doconce subst</code> edits might be needed on the <code>.mkd</code> or
+<code>.tex</code> files to successfully have mathematics that is well translated
+to MS Word.  Also when going to reStructuredText using Pandoc, it can
+be advantageous to go via LaTeX.
 
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
@@ -389,22 +450,23 @@ HTML with mathematics displayed my MathJax:
 <syntaxhighlight lang="bash">
 Terminal> doconce format pandoc mydoc
 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
-</code>
+</syntaxhighlight>
 The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
 Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is done in two steps:
-<!--> Note: putting code blocks inside a list is not successful in many -->
-<!--> formats - the text may be messed up. A better choice is a paragraph -->
-<!--> environment, as used here. -->
+<!-- Note: putting code blocks inside a list is not successful in many -->
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 
-''Step 1.'' Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
+''Step 1.''
+Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
 the <code>ptex2tex</code> program (or <code>doconce ptex2tex</code>):
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-</code>
+</syntaxhighlight>
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex</code>, or
 <code>newcommands_replace.tex</code> (see the section [#Macros_(Newcommands),_Cross-References,_Index,_and_Bibliography]).
@@ -415,14 +477,15 @@ An option <code>--latex-printed</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
-''Step 2.'' Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
+''Step 2.''
+Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex mydoc
-</code>
+</syntaxhighlight>
 In case you do not have <code>ptex2tex</code>, you may run a (very) simplified version:
 <syntaxhighlight lang="bash">
 Terminal> doconce ptex2tex mydoc
-</code>
+</syntaxhighlight>
 
 Note that Doconce generates a <code>.p.tex</code> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
@@ -431,7 +494,7 @@ Computer Modern font, run
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DHELVETICA mydoc
 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
-</code>
+</syntaxhighlight>
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
@@ -443,7 +506,18 @@ Preprocessor variables to be defined or undefined are
 
 
 <ul>
- <li> <code>BOOK</code> for the "book" documentclass rather than the standard   "article" class (necessary if you apply chapter headings) <li> <code>PALATINO</code> for the Palatino font <li> <code>HELVETIA</code> for the Helvetica font <li> <code>A4PAPER</code> for A4 paper size <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices) <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere) <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)</ul>
+ <li> <code>BOOK</code> for the "book" documentclass rather than the standard
+   "article" class (necessary if you apply chapter headings)
+ <li> <code>PALATINO</code> for the Palatino font
+ <li> <code>HELVETIA</code> for the Helvetica font
+ <li> <code>A4PAPER</code> for A4 paper size
+ <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices)
+ <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies
+ <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document
+   or document to be included elsewhere)
+ <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
+   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)
+</ul>
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -462,7 +536,7 @@ Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
           "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
-</code>
+</syntaxhighlight>
 Note that <code>@</code> must be used to separate the begin and end LaTeX
 commands, unless only the environment name is given (such as <code>minted</code>
 above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}</code> as
@@ -474,7 +548,8 @@ begin and end for blocks inside <code>!bc fpro</code> and <code>!ec</code>).  Sp
 and <code>\end{verbatim}</code> used.
 
 
-''Step 2b (optional).'' Edit the <code>mydoc.tex</code> file to your needs.
+''Step 2b (optional).''
+Edit the <code>mydoc.tex</code> file to your needs.
 For example, you may want to substitute <code>section</code> by <code>section*</code> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
@@ -486,13 +561,14 @@ Here are two examples:
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
-</code>
+</syntaxhighlight>
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
 generating PDF from the LaTeX file.
 
-''Step 3.'' Compile <code>mydoc.tex</code>
+''Step 3.''
+Compile <code>mydoc.tex</code>
 and create the PDF file:
 <syntaxhighlight lang="bash">
 Terminal> latex mydoc
@@ -501,7 +577,7 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> latex mydoc
 Terminal> dvipdf mydoc
-</code>
+</syntaxhighlight>
 
 If one wishes to run <code>ptex2tex</code> and use the minted LaTeX package for
 typesetting code blocks (<code>Minted_Python</code>, <code>Minted_Cpp</code>, etc., in
@@ -511,7 +587,7 @@ needed.  This package is included by running <code>ptex2tex</code> with the
 <code>-DMINTED</code> option:
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DMINTED mydoc
-</code>
+</syntaxhighlight>
 In this case, <code>latex</code> must be run with the
 <code>-shell-escape</code> option:
 <syntaxhighlight lang="bash">
@@ -521,7 +597,7 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
-</code>
+</syntaxhighlight>
 When running <code>doconce ptex2tex mydoc envir=minted</code> (or other minted
 specifications with <code>doconce ptex2tex</code>), the minted package is automatically
 included so there is no need for the <code>-DMINTED</code> option.
@@ -532,14 +608,14 @@ Running <code>pdflatex</code> instead of <code>latex</code> follows almost the s
 but the start is
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-</code>
+</syntaxhighlight>
 Then <code>ptex2tex</code> is run as explained above, and finally
 <syntaxhighlight lang="bash">
 Terminal> pdflatex -shell-escape mydoc
 Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
-</code>
+</syntaxhighlight>
 
 ==== Plain ASCII Text ====
 
@@ -548,7 +624,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 <syntaxhighlight lang="bash">
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
-</code>
+</syntaxhighlight>
 
 ==== reStructuredText ====
 
@@ -557,14 +633,14 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file <code>mydoc.rst</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format rst mydoc.do.txt
-</code>
+</syntaxhighlight>
 We may now produce various other formats:
 <syntaxhighlight lang="bash">
 Terminal> rst2html.py  mydoc.rst > mydoc.html # html
 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
-</code>
+</syntaxhighlight>
 
 The OpenOffice file <code>mydoc.odt</code> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -573,7 +649,7 @@ to convert between the many formats OpenOffice supports ''on the command line''.
 Run
 <syntaxhighlight lang="bash">
 Terminal> unoconv --show
-</code>
+</syntaxhighlight>
 to see all the formats that are supported.
 For example, the following commands take
 <code>mydoc.odt</code> to Microsoft Office Open XML format,
@@ -582,9 +658,10 @@ classic MS Word format, and PDF:
 Terminal> unoconv -f ooxml mydoc.odt
 Terminal> unoconv -f doc mydoc.odt
 Terminal> unoconv -f pdf mydoc.odt
-</code>
+</syntaxhighlight>
 
-''Remark about Mathematical Typesetting.'' At the time of this writing, there is no easy way to go from Doconce
+''Remark about Mathematical Typesetting.''
+At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by <code>latex</code> as
 output and to a wide extent also supported by the <code>sphinx</code> output format.
@@ -592,7 +669,10 @@ Some links for going from LaTeX to Word are listed below.
 
 
 <ul>
- <li> http://ubuntuforums.org/showthread.php?t=1033441 <li> http://tug.org/utilities/texconv/textopc.html <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</ul>
+ <li> http://ubuntuforums.org/showthread.php?t=1033441
+ <li> http://tug.org/utilities/texconv/textopc.html
+ <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html
+</ul>
 
 ==== Sphinx ====
 
@@ -602,7 +682,7 @@ most of the steps through the <code>doconce sphinx_dir</code> command:
 Terminal> doconce sphinx_dir author="authors' names" \
           title="some title" version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
-</code>
+</syntaxhighlight>
 The keywords <code>author</code>, <code>title</code>, and <code>version</code> are used in the headings
 of the Sphinx document. By default, <code>version</code> is 1.0 and the script
 will try to deduce authors and title from the doconce files <code>file1</code>,
@@ -616,7 +696,7 @@ Sphinx (the default theme is <code>'default'</code>).
 With a single-file document in <code>mydoc.do.txt</code> one often just runs
 <syntaxhighlight lang="bash">
 Terminal> doconce sphinx_dir mydoc
-</code>
+</syntaxhighlight>
 and then an appropriate Sphinx directory <code>sphinx-rootdir</code> is made with
 relevant files.
 
@@ -654,7 +734,7 @@ For example,
 to realize the themes <code>fenics</code> and <code>pyramid</code>, one writes
 <syntaxhighlight lang="bash">
 Terminal> ./make-themes.sh fenics pyramid
-</code>
+</syntaxhighlight>
 The resulting directories with HTML documents are <code>_build/html_fenics</code>
 and <code>_build/html_pyramid</code>, respectively. Without arguments,
 <code>make-themes.sh</code> makes all available themes (!).
@@ -663,12 +743,14 @@ If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file <code>mydoc.do.txt</code>.
 
-''Step 1.'' Translate Doconce into the Sphinx format:
+''Step 1.''
+Translate Doconce into the Sphinx format:
 <syntaxhighlight lang="bash">
 Terminal> doconce format sphinx mydoc
-</code>
+</syntaxhighlight>
 
-''Step 2.'' Create a Sphinx root directory
+''Step 2.''
+Create a Sphinx root directory
 either manually or by using the interactive <code>sphinx-quickstart</code>
 program. Here is a scripted version of the steps with the latter:
 <syntaxhighlight lang="bash">
@@ -696,7 +778,7 @@ y
 y
 y
 EOF
-</code>
+</syntaxhighlight>
 The autogenerated <code>conf.py</code> file
 may need some edits if you want to specific layout (Sphinx themes)
 of HTML pages. The <code>doconce sphinx_dir</code> generator makes an extended <code>conv.py</code>
@@ -704,10 +786,11 @@ file where, among other things, several useful Sphinx extensions
 are included.
 
 
-''Step 3.'' Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
+''Step 3.''
+Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
 <syntaxhighlight lang="bash">
 Terminal> cp mydoc.rst sphinx-rootdir
-</code>
+</syntaxhighlight>
 If you have figures in your document, the relative paths to those will
 be invalid when you work with <code>mydoc.rst</code> in the <code>sphinx-rootdir</code>
 directory. Either edit <code>mydoc.rst</code> so that figure file paths are correct,
@@ -715,21 +798,23 @@ or simply copy your figure directories to <code>sphinx-rootdir</code>.
 Links to local files in <code>mydoc.rst</code> must be modified to links to
 files in the <code>_static</code> directory, see comment above.
 
-''Step 4.'' Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
+''Step 4.''
+Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
 is included, i.e., add <code>mydoc</code> to the <code>toctree</code> section so that it becomes
-<code>
+<syntaxhighlight lang="text">
 .. toctree::
    :maxdepth: 2
 
    mydoc
-</code>
+</syntaxhighlight>
 (The spaces before <code>mydoc</code> are important!)
 
-''Step 5.'' Generate, for instance, an HTML version of the Sphinx source:
+''Step 5.''
+Generate, for instance, an HTML version of the Sphinx source:
 <syntaxhighlight lang="bash">
 make clean   # remove old versions
 make html
-</code>
+</syntaxhighlight>
 
 Sphinx can generate a range of different formats:
 standalone HTML, HTML in separate directories with <code>index.html</code> files,
@@ -737,10 +822,11 @@ a large single HTML file, JSON files, various help files (the qthelp, HTML,
 and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
 and Texinfo files.
 
-''Step 6.'' View the result:
+''Step 6.''
+View the result:
 <syntaxhighlight lang="bash">
 Terminal> firefox _build/html/index.html
-</code>
+</syntaxhighlight>
 
 Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows <code>!bc</code>: <code>cod</code> gives Python
@@ -750,14 +836,23 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ==== Wiki Formats ====
 
 There are many different wiki formats, but Doconce only supports three:
-[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki], MediaWiki, and Creole Wiki. These formats are called
+[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
+MediaWiki, and
+Creole Wiki. These formats are called
 <code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <syntaxhighlight lang="bash">
 Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
-</code>
+</syntaxhighlight>
+
+The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
+wikibooks.org]. The format
+works well with Wikipedia, Wikibooks, and
+[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+but not always well elsewhere
+(see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
 The Googlecode wiki document, <code>mydoc.gwiki</code>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -793,9 +888,9 @@ constitute comprehensive examples on how such scripts can be made.
 ==== Demos ====
 
 The current text is generated from a Doconce format stored in the file
-<code>
+<syntaxhighlight lang="text">
 docs/tutorial/tutorial.do.txt
-</code>
+</syntaxhighlight>
 The file <code>make.sh</code> in the <code>tutorial</code> directory of the
 Doconce source code contains a demo of how to produce a variety of
 formats.  The source of this tutorial, <code>tutorial.do.txt</code> is the
@@ -823,7 +918,7 @@ hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 Since Doconce is frequently updated, it is recommended to use the
 above procedure and whenever a problem occurs, make sure to
 update to the most recent version:
@@ -832,12 +927,12 @@ cd doconce
 hg pull
 hg update
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 
 Debian GNU/Linux users can also run
 <syntaxhighlight lang="bash">
 sudo apt-get install doconce
-</code>
+</syntaxhighlight>
 This installs the latest release and not the most updated and bugfixed
 version.
 On Ubuntu one needs to run
@@ -845,7 +940,7 @@ On Ubuntu one needs to run
 sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
-</code>
+</syntaxhighlight>
 
 ==== Dependencies ====
 
@@ -860,7 +955,7 @@ cd preprocess
 cd doconce
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 
 A much more advanced alternative to Preprocess is
 [http://www.makotemplates.org Mako]. Its installation is most
@@ -868,13 +963,13 @@ conveniently done by <code>pip</code>,
 
 <syntaxhighlight lang="bash">
 pip install Mako
-</code>
+</syntaxhighlight>
 This command requires <code>pip</code> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pip
-</code>
+</syntaxhighlight>
 Alternatively, one can install from the <code>pip</code> [http://pypi.python.org/pypi/pip source code].
 
 Mako can also be installed directly from
@@ -893,7 +988,7 @@ On Debian Linux (including Ubuntu) systems one can simply write
 
 <syntaxhighlight lang="bash">
 sudo apt-get install imagemagick
-</code>
+</syntaxhighlight>
 
 The convenience program <code>doconce combine_images</code>, for combining several
 images into one, will use <code>montage</code> and <code>convert</code> from ImageMagick and
@@ -902,7 +997,7 @@ Debian package. The latter gets installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-extra-utils
-</code>
+</syntaxhighlight>
 
 ==== Spellcheck ====
 
@@ -911,7 +1006,7 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install ispell
-</code>
+</syntaxhighlight>
 
 ==== Ptex2tex for LaTeX Output ====
 
@@ -923,7 +1018,7 @@ which is installed by
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 It may happen that you need additional style files, you can run
 a script, <code>cp2texmf.sh</code>:
 
@@ -931,14 +1026,14 @@ a script, <code>cp2texmf.sh</code>:
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
-</code>
+</syntaxhighlight>
 This script copies some special stylefiles that
 that <code>ptex2tex</code> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-latex-recommended texlive-latex-extra
-</code>
+</syntaxhighlight>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <code>~/texmf/tex/latex/misc</code> directory).
@@ -953,13 +1048,13 @@ users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pygments
-</code>
+</syntaxhighlight>
 Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
-</code>
+</syntaxhighlight>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
 enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
@@ -970,7 +1065,7 @@ use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.
 
-<!--> Say something about anslistings.sty -->
+<!-- Say something about anslistings.sty -->
 
 ==== reStructuredText (reST) Output ====
 
@@ -983,11 +1078,11 @@ svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 To use the OpenOffice suite you will typically on Debian systems install
 <syntaxhighlight lang="bash">
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
-</code>
+</syntaxhighlight>
 
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
@@ -1005,7 +1100,7 @@ hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
 cd ..
-</code>
+</syntaxhighlight>
 
 ==== Markdown and Pandoc Output ====
 
@@ -1016,7 +1111,7 @@ easily done by
 
 <syntaxhighlight lang="bash">
 sudo apt-get install pandoc
-</code>
+</syntaxhighlight>
 on Debian (Ubuntu) systems.
 
 ==== Epydoc Output ====
@@ -1028,9 +1123,10 @@ svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
 cd ..
-</code>
+</syntaxhighlight>
 
-''Remark.'' Several of the packages above installed from source code
+''Remark.''
+Several of the packages above installed from source code
 are also available in Debian-based system through the
 <code>apt-get install</code> command. However, we recommend installation directly
 from the version control system repository as there might be important

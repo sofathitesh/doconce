@@ -1,2 +1,3 @@
 #!/bin/sh
-rm -f demo.html *~
+doconce clean
+rm -rf automake_sphinx.py _d*.log tmp*

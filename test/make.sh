@@ -1,5 +1,5 @@
 #!/bin/sh -x
-rm -rf html_images reveal.js
+rm -rf html_images reveal.js downloaded_figures
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
 doconce remove_exercise_answers testdoc.html
@@ -42,12 +42,14 @@ doconce format mwiki testdoc.do.txt
 doconce format cwiki testdoc.do.txt
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string'
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess
 
 # Test pandoc: from latex to markdown, from markdown to html
 doconce format latex testdoc.do.txt
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
+# pandoc cannot work well with \Verb, needs \verb
+doconce replace '\Verb!' '\verb!' testdoc.tex
 pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
