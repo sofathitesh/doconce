@@ -1,6 +1,6 @@
 % On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
 % Hans Petter Langtangen
-% Dec 13, 2012
+% Jan 12, 2013
 
 <!-- !split -->
 Scope
@@ -20,7 +20,8 @@ Scope
 
   * Alternative: MS Word w/math
 
-  * Recent popular alternative tools: Sphinx, Markdown, IPython notebook
+  * Recent popular alternative tools: Sphinx, Markdown, MediaWiki,
+    IPython notebook
 
 <!-- !epop -->
 
@@ -161,8 +162,8 @@ Concerns I
  * Algorithms must be written up using basic elements like lists or
    paragraphs with headings.
 
- * Tables cannot be referred to by numbers and have to appear at a
-   fixed position in the text.
+ * Tables cannot be referred to by numbers and have to appear at
+   fixed positions in the text.
 
  * Computer code has to appear at fixed positions in the text.
 
@@ -206,7 +207,7 @@ Concerns III
 
  * Curve plots with color lines do not work well in black-and-white
    printing. Make sure plots makes sense in color and BW (e.g., by
-   using colors and markers).
+   using colors *and* markers).
 
 <!-- !epop -->
 
@@ -435,8 +436,22 @@ Inline math as in LaTeX:
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
 
 
-An equation environment is surrounded by `!bt` and `!et` tags
-(see the source of this document), the rest is plain LaTeX:
+An equation environment is surrounded by `!bt` and `!et` tags,
+the rest is plain LaTeX:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+\label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+\label{b:eq}
+\end{align}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+which is rendered as
 
 $$
 \begin{align}
@@ -446,7 +461,6 @@ $$
 \label{b:eq}
 \end{align}
 $$
-
 
 Limit math environments to
 
@@ -470,7 +484,27 @@ Limit math environments to
 Doconce: displaying code
 ========================
 
-Code is enclosed in `!bc` and `!ec` tags (see the source for this page).
+Code is enclosed in `!bc` and `!ec` tags:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bc pycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+!ec
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This gets rendered as
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
@@ -488,6 +522,11 @@ def solver(I, a, T, dt, theta):
     return u, t
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The `!bc` command can be followed by a specification of the computer
+language: `pycod` for Python code snippet, `pypro` for complete Python
+program, `fcod` for Fortran snippet, `fpro` for Fortran program, and so
+forth (`c` for C, `cpp` for C++, `sh` for Unix shells, `m` for Matlab).
+
 <!-- !split -->
 Doconce: copying code from source files
 =======================================
@@ -497,23 +536,32 @@ source files:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-@@@CODE file  fromto: start-regex@end-regex
-
-ex:
-
-@@@CODE src/dc_mod.py  fromto: def solver@def verify_three
+@@@CODE path/to/file
+@@@CODE path/to/file   fromto: start-regex@end-regex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Computer language can be specified:
+For example, copying a code snippet starting with `def solver(` and
+ending with (line not included) `def next(x, y,` is specified by
+start and end regular expressions:
 
- * `!bc pycod` for Python snippet,
 
- * `!bc pypro` for complete Python program
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@@@CODE src/dc_mod.py  fromto: def solver\(@def next\(x,\s*y,
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- * Similar for C (`c`), C++ (`cpp`), Fortran (`f`),
-   Bash (`sh`), MATLAB (`m`), e.g., `!bc mpro`
+Typesetting of code is implied by the file extension:
 
- * From files: `.py` gives `!bc pycod`, `.f` gives `!bc fcod`, etc.
+ * `.py`: `pypro` if complete file, `pycod` if snippet
+
+ * `.f`, `.f90`, `f.95`: `fpro` and `fcod`
+
+ * `.cpp`, `.cxx`: `cpppro` and `cppcod`
+
+ * `.c`: `cpro` and `ccod`
+
+ * `.*sh`: `shpro` and `shcod`
+
+ * `.m`: `mpro` and `mcod`
 
  * `ptex2tex` can be used to choose between 40+ typesettings of
    computer code in LaTeX
@@ -887,7 +935,7 @@ Doconce: output in other formats
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-doconce format pandoc doconcefile  # Markdown (pandoc extended)
+doconce format pandoc doconcefile  # (Pandoc extended) Markdown
 doconce format mwiki  doconcefile  # MediaWiki
 doconce format gwiki  doconcefile  # Googlecode wiki
 doconce format cwiki  doconcefile  # Creole wiki (Bitbucket)
@@ -912,4 +960,55 @@ Doconce: installation
  * Need `latex`, `sphinx`, `pandoc`, etc. (see Installation in [manual](http://code.google.com/p/doconce/wiki/Description))
 
  * For slides: only `preprocess` is needed :-)
+
+<!-- !split -->
+Writing tips
+============
+
+ * See the previous *Concerns I, II and III* slides for issues when writing
+   for multiple formats. However: Doconce makes a fix so that Sphinx works
+   with labels in align environments :-)
+
+ * Prepare figures in the right format: EPS for `latex`, PDF for `pdflatex`,
+   PNG, GIF or JPEG for HTML formats (`html`, and HTML output from
+   `sphinx`, `rst`, `pandoc`). One can omit the figure file extension and
+   `doconce` will pick the most appropriate file for the given output format.
+
+ * Let plotting programs produce both PDF/EPS and PNG files.
+   (Recall that PDF and EPS are vector graphics formats that can scale to
+   any size with much higher quality than PNG or other bitmap formats.)
+
+ * Use `doconce combine_images` to combine several images into one.
+
+ * Use `doconce spellcheck *.do.txt` to automatically spellcheck files.
+
+<!-- !split -->
+Writing tips for sphinx and other formats
+=========================================
+
+For output formats different from `latex`, `pdflatex`, and `html`, the
+following points are important:
+
+ * Do not use math in section headings or figure captions if output in
+   `sphinx` is wanted (such math are removed in references).
+
+ * Let all running text start in column 1 (`sphinx` is annoyed by intended
+   lines).
+
+ * Use progressive section headings: after chapter (`=========`) comes
+   section (`=======`), and then subsection (`=====`) before paragraph
+   heading (`===`). "Jumps", say `===` after `======` works fine for
+   `latex`, `pdflatex`, and `html`, but not for `rst` and `sphinx`.
+
+ * Place index entries (``) before the paragraph where they
+   are introduced (not inside the text). Also place index entries before
+   `===` headings.
+
+ * Be careful with labels in `align` math environments: `pandoc`
+   and `mwiki` cannot refer to them.
+
+ * Always have a line of running text before a code snippet or program.
+
+ * Do not insert comments before intented text, such as computer code and
+   lists.
 

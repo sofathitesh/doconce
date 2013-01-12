@@ -62,7 +62,7 @@ if __name__ == '__main__':
     system('cp -r deck.annotate.js deck.js/extensions/')
 
     os.system('cp doconce_modifications/deck/core/*.css deck.js/core/')
-    #os.system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
+    os.system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
 
     system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
     zip_dir('deck.js')
