@@ -339,7 +339,7 @@ label{b:eq}
 \end{align}
 |et
 !ec
-which is renereded as
+which is rendered as
 
 !bt
 \begin{align}

@@ -24,7 +24,7 @@ def recommended_html_styles_and_pygments_styles():
         'simple': ['autumn', 'default', 'perldoc'],
         'sky': ['default'],
         'night': ['fruity', 'native'],
-        'darkgrey': ['native', 'monokai'],
+        'darkgray': ['native', 'monokai'],
         'serif': ['perldoc'],
         },
         'csss': {

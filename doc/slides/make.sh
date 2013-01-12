@@ -11,7 +11,7 @@ mv -f $name.html ${name}_plain.html
 
 doconce format html $name --pygments-html-style=native
 doconce slides_html $name reveal --html-slide-theme=darkgray
-# fix:
+# fix backslashes inside verbatim envirs that doconce has added...
 doconce replace '\label{this:section}' 'label{this:section}' $name.html
 doconce replace '\label{fig1}' 'label{fig1}' $name.html
 doconce replace '\label{demo' 'label{demo' $name.html
@@ -28,9 +28,9 @@ mv -f $name.pdf ${name}_anslistings.pdf
 
 # sphinx doesn't handle math inside code well, we drop it since
 # other formats demonstrate doconce writing this way
-#doconce format sphinx $name
-#doconce sphinx_dir author="H. P. Langtangen" theme=pyramid $name
-#python automake_sphinx.py
+doconce format sphinx $name
+doconce sphinx_dir author="H. P. Langtangen" theme=pyramid $name
+python automake_sphinx.py
 
 doconce format pandoc $name  # Markdown (pandoc extended)
 doconce format gwiki  $name  # Googlecode wiki
@@ -46,7 +46,8 @@ cp -r ${name}*.pdf *.md ${name}*.html reveal.js fig ../demos/slides/
 doconce format html sw_index.do.txt
 cp sw_index.html ../demos/slides/index.html
 
-doconce slides_html demo all
+# Make all the styles for the short demo talk
+doconce slides_html demo all  # generates tmp_slides_html_all.sh
 pygmentize -l text -f html -o demo_doconce.html demo.do.txt
 sh -x tmp_slides_html_all.sh
 
