@@ -399,7 +399,7 @@ def html_table(table):
 def html_movie(m):
     filename = m.group('filename')
     options = m.group('options')
-    caption = m.group('caption')
+    caption = m.group('caption').strip()
 
     # Turn options to dictionary
     if ',' in options:
@@ -446,6 +446,8 @@ def html_movie(m):
         text = """
 <iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
 """ % (width, height, filename)
+        if caption:
+            text += """<hr>\n<em>%s</em>\n<hr>\n<p>\m"""
     else:
         text = """
 <embed src="%s" %s autoplay="false" loop="true"></embed>
