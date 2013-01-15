@@ -447,7 +447,7 @@ def html_movie(m):
 <iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
 """ % (width, height, filename)
         if caption:
-            text += """\n<em>%s</em>\n<hr>\n""" % caption
+            text += """\n<em>%s</em>\n\n""" % caption
     else:
         text = """
 <embed src="%s" %s autoplay="false" loop="true"></embed>
