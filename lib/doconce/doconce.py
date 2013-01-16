@@ -666,7 +666,8 @@ def insert_code_from_file(filestr, format):
 
 
 def exercises(filestr, format):
-    # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
+    # Exercise:
+    # ===== Exercise: title ===== (starts with at least 3 =, max 5)
     # label{some:label} file=thisfile.py solution=somefile.do.txt
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
@@ -679,7 +680,10 @@ def exercises(filestr, format):
     exer_end = False
     exer_counter = 0
 
-    exer_heading_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]{3,5}')
+    if '--example-as-exercise' in sys.argv:
+        exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project|Example)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
+    else:
+        exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
 
     label_pattern = re.compile(r'^\s*label\{(.+?)\}')
     # We accept file and solution to be comment lines
@@ -716,7 +720,12 @@ def exercises(filestr, format):
             exer['no'] = exer_counter
             exer['title'] = m_heading.group('title')
             exer['heading'] = m_heading.group(1)   # heading type
-            exer['type'] = m_heading.group(2)      # exercise type
+            exer_tp = m_heading.group(2)           # exercise type
+            if '{' + exer_tp + '}' in line:
+                exer['type_visible'] = False
+            else:
+                exer['type_visible'] = True
+            exer['type'] = exer_tp
             exer['label'] = None
             exer['solution_file'] = None
             exer['file'] = None

@@ -694,6 +694,26 @@ Here goes a full solution of the whole exercise.
 !esol
 
 
+===== {Exercise}: Some exercise without the "Exercise:" prefix =====
+
+# Another minimalistic exercise
+
+Just some text.
+
+# #if FORMAT == "plain"
+===== Example: Just an example =====
+
+# This example needs the --example-as-exercise option
+
+!bsubex
+What is the capital of Norway?
+
+!bans
+Oslo.
+!eans
+!esubex
+# #endif
+
 ======= Here goes another section =======
 
 With some text, before we continue with exercises.
