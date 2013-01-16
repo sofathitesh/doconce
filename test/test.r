@@ -696,6 +696,26 @@ Here goes a full solution of the whole exercise.
 !esol
 
 
+===== {Exercise}: Some exercise without the "Exercise:" prefix =====
+
+# Another minimalistic exercise
+
+Just some text.
+
+# #if FORMAT == "plain"
+===== Example: Just an example =====
+
+# This example needs the --example-as-exercise option
+
+!bsubex
+What is the capital of Norway?
+
+!bans
+Oslo.
+!eans
+!esubex
+# #endif
+
 ======= Here goes another section =======
 
 With some text, before we continue with exercises.
@@ -940,17 +960,18 @@ $$
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Remarks </a><br>
-<a href="._part0002_testdoc.html#___sec16"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec17"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 6: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec20"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec22"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec23"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
+<a href="._part0002_testdoc.html#___sec17"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec18"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 7: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec23"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec24"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec27"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -2097,6 +2118,23 @@ remarks will appear at the end of the typeset exercise.
 % --- end of exercise
 
 
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Some exercise without the "Exercise:" prefix}
+
+% Another minimalistic exercise
+
+Just some text.
+
+
+\end{exercise}
+% --- end of exercise
+
+
 \section{Here goes another section}
 
 With some text, before we continue with exercises.
@@ -2108,7 +2146,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 5: Make references to projects and problems}
+\subsection*{Exercise 6: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -2127,7 +2165,7 @@ Filename: \code{verify_formula.py}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 6: References to Project~\ref{demo:ex:2} in a heading works for latex}
+\subsection*{Project 7: References to Project~\ref{demo:ex:2} in a heading works for latex}
 
 \label{exer:you}
 
@@ -2379,8 +2417,8 @@ Problem & 1 & Flip a Coin & p.~\pageref{demo:ex:1} \\
 Project & 2 & Compute a Probability & p.~\pageref{demo:ex:2} \\
 Project & 3 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
 Exercise & 4 & Determine some Distance & p.~\pageref{exer:dist} \\
-Exercise & 5 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
-Project & 6 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
+Exercise & 6 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
+Project & 7 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
 \end{tabular}
 % --- end of table of exercises
 
@@ -3229,6 +3267,23 @@ remarks will appear at the end of the typeset exercise.
 % --- end of exercise
 
 
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Some exercise without the "Exercise:" prefix}
+
+% Another minimalistic exercise
+
+Just some text.
+
+
+\end{exercise}
+% --- end of exercise
+
+
 \section{Here goes another section}
 
 With some text, before we continue with exercises.
@@ -3240,7 +3295,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 5: Make references to projects and problems}
+\subsection*{Exercise 6: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -3259,7 +3314,7 @@ Filename: {\fontsize{10pt}{10pt}\Verb!verify_formula.py!}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 6: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
+\subsection*{Project 7: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
 
 \label{exer:you}
 
@@ -3531,8 +3586,8 @@ Problem & 1 & Flip a Coin & p.~\pageref{demo:ex:1} \\
 Project & 2 & Compute a Probability & p.~\pageref{demo:ex:2} \\
 Project & 3 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
 Exercise & 4 & Determine some Distance & p.~\pageref{exer:dist} \\
-Exercise & 5 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
-Project & 6 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
+Exercise & 6 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
+Project & 7 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
 \end{tabular}
 % --- end of table of exercises
 
@@ -4326,6 +4381,23 @@ remarks will appear at the end of the typeset exercise.
 % --- end of exercise
 
 
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Some exercise without the "Exercise:" prefix}
+
+% Another minimalistic exercise
+
+Just some text.
+
+
+\end{exercise}
+% --- end of exercise
+
+
 \section{Here goes another section}
 
 With some text, before we continue with exercises.
@@ -4337,7 +4409,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 5: Make references to projects and problems}
+\subsection*{Exercise 6: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -4356,7 +4428,7 @@ Filename: \Verb!verify_formula.py!.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 6: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
+\subsection*{Project 7: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
 
 \label{exer:you}
 
@@ -4707,7 +4779,7 @@ Test of movies.
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
         <p>
-        <em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+        <em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
         </p>
 
 
@@ -4730,7 +4802,7 @@ Test of movies.
 .. raw:: html
         
         <p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
-        <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).  </em></p>
+        <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>
 
 
 
@@ -4742,6 +4814,9 @@ Test of movies.
 .. raw:: html
         
         <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+        
 
 
 
@@ -4997,8 +5072,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have `Problem 1: Flip a Coin`_ and `Project 2: Compute a Probability`_,
-as well as `Project 3: Explore Distributions of Random Circles`_ and `Project 6: References in a headings do not work well in rst`_, and in
-between there we have `Exercise 5: Make references to projects and problems`_.
+as well as `Project 3: Explore Distributions of Random Circles`_ and `Project 7: References in a headings do not work well in rst`_, and in
+between there we have `Exercise 6: Make references to projects and problems`_.
 
 Exercises
 =========
@@ -5239,6 +5314,23 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+
+.. --- begin exercise
+
+
+Some exercise without the "Exercise:" prefix
+--------------------------------------------
+
+.. Another minimalistic exercise
+
+
+Just some text.
+
+.. --- end of exercise
+
+
+
 Here goes another section
 =========================
 
@@ -5254,7 +5346,7 @@ More Exercises
 
 .. _exer:some:formula:
 
-Exercise 5: Make references to projects and problems
+Exercise 6: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from `Project 3: Explore Distributions of Random Circles`_ or `Problem 1: Flip a Coin`_
@@ -5272,12 +5364,12 @@ Filename: ``verify_formula.py``.
 
 .. _exer:you:
 
-Project 6: References in a headings do not work well in rst
+Project 7: References in a headings do not work well in rst
 -----------------------------------------------------------
 
-Refer to the previous exercise as `Exercise 5: Make references to projects and problems`_,
+Refer to the previous exercise as `Exercise 6: Make references to projects and problems`_,
 the two before that as `Project 2: Compute a Probability`_ and `Project 3: Explore Distributions of Random Circles`_,
-and this one as `Project 6: References in a headings do not work well in rst`_.
+and this one as `Project 7: References in a headings do not work well in rst`_.
 Filename: ``selc_composed.pdf``.
 
 .. --- end of exercise
@@ -5598,7 +5690,7 @@ Test of movies.
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
         <p>
-        <em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+        <em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
         </p>
 
 
@@ -5621,7 +5713,7 @@ Test of movies.
 .. raw:: html
         
         <p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
-        <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).  </em></p>
+        <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>
 
 
 
@@ -5633,6 +5725,9 @@ Test of movies.
 .. raw:: html
         
         <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+        
 
 
 
@@ -6258,6 +6353,23 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+
+.. --- begin exercise
+
+
+Some exercise without the "Exercise:" prefix
+--------------------------------------------
+
+.. Another minimalistic exercise
+
+
+Just some text.
+
+.. --- end of exercise
+
+
+
 Here goes another section
 =========================
 
@@ -6273,7 +6385,7 @@ More Exercises
 
 .. _exer:some:formula:
 
-Exercise 5: Make references to projects and problems
+Exercise 6: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from :ref:`proj:circle1` or :ref:`demo:ex:1`
@@ -6291,7 +6403,7 @@ Filename: ``verify_formula.py``.
 
 .. _exer:you:
 
-Project 6: References in a headings do not work well in sphinx
+Project 7: References in a headings do not work well in sphinx
 --------------------------------------------------------------
 
 Refer to the previous exercise as :ref:`exer:some:formula`,
@@ -6862,8 +6974,8 @@ b &= \nabla^2 u + \nabla^4 v
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
-between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
+between there we have [#Exercise_6:_Make_references_to_projects_and_problems].
 
 
 
@@ -7060,6 +7172,34 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+==== Some exercise without the "Exercise:" prefix ====
+
+<wiki:comment> Another minimalistic exercise </wiki:comment>
+
+Just some text.
+
+<wiki:comment> #if FORMAT == "plain" </wiki:comment>
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
+==== Example: Just an example ====
+
+<wiki:comment> This example needs the --example-as-exercise option </wiki:comment>
+
+!bsubex
+What is the capital of Norway?
+
+!bans
+Oslo.
+!eans
+!esubex
+<wiki:comment> #endif </wiki:comment>
+
+
+
 == Here goes another section ==
 
 With some text, before we continue with exercises.
@@ -7070,7 +7210,7 @@ With some text, before we continue with exercises.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Exercise 5: Make references to projects and problems ====
+==== Exercise 6: Make references to projects and problems ====
 
 Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -7083,11 +7223,11 @@ Filename: `verify_formula.py`.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
+==== Project 7: References to [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
 
-Refer to the previous exercise as [#Exercise_5:_Make_references_to_projects_and_problems],
+Refer to the previous exercise as [#Exercise_6:_Make_references_to_projects_and_problems],
 the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
+and this one as [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
 Filename: `selc_composed.pdf`.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -7573,8 +7713,8 @@ b &= \nabla^2 u + \nabla^4 v
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
-between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
+between there we have [#Exercise_6:_Make_references_to_projects_and_problems].
 
 
 
@@ -7790,6 +7930,19 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+<!-- --- begin exercise -->
+
+==== Some exercise without the "Exercise:" prefix ====
+
+<!-- Another minimalistic exercise -->
+
+Just some text.
+
+<!-- --- end of exercise -->
+
+
+
 == Here goes another section ==
 
 With some text, before we continue with exercises.
@@ -7800,7 +7953,7 @@ With some text, before we continue with exercises.
 
 <!-- --- begin exercise -->
 
-==== Exercise 5: Make references to projects and problems ====
+==== Exercise 6: Make references to projects and problems ====
 
 Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -7813,11 +7966,11 @@ Filename: <code>verify_formula.py</code>.
 
 <!-- --- begin exercise -->
 
-==== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
+==== Project 7: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
 
-Refer to the previous exercise as [#Exercise_5:_Make_references_to_projects_and_problems],
+Refer to the previous exercise as [#Exercise_6:_Make_references_to_projects_and_problems],
 the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
+and this one as [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
 Filename: <code>selc_composed.pdf</code>.
 
 <!-- --- end of exercise -->
@@ -8292,8 +8445,8 @@ b &= \nabla^2 u + \nabla^4 v
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
-between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
+between there we have [#Exercise_6:_Make_references_to_projects_and_problems].
 
 
 
@@ -8494,6 +8647,20 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+
+== Some exercise without the "Exercise:" prefix ==
+
+<wiki:comment> Another minimalistic exercise </wiki:comment>
+
+Just some text.
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
+
+
 = Here goes another section =
 
 With some text, before we continue with exercises.
@@ -8505,7 +8672,7 @@ With some text, before we continue with exercises.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Exercise 5: Make references to projects and problems ==
+== Exercise 6: Make references to projects and problems ==
 
 Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -8519,11 +8686,11 @@ Filename: {{{verify_formula.py}}}.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
+== Project 7: References to [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
 
-Refer to the previous exercise as [#Exercise_5:_Make_references_to_projects_and_problems],
+Refer to the previous exercise as [#Exercise_6:_Make_references_to_projects_and_problems],
 the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
+and this one as [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
 Filename: {{{selc_composed.pdf}}}.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -8965,8 +9132,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 6: References to Project ref{demo:ex:2} in a heading works for st", and in
-between there we have  "Exercise 5: Make references to projects and problems".
+as well as  "Project 3: Explore Distributions of Random Circles" and "Project 7: References to Project ref{demo:ex:2} in a heading works for st", and in
+between there we have  "Exercise 6: Make references to projects and problems".
 
 Exercises
 
@@ -9102,23 +9269,27 @@ Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
+Some exercise without the "Exercise:" prefix
+
+Just some text.
+
 Here goes another section
 
 With some text, before we continue with exercises.
 
 More Exercises
 
-Exercise 5: Make references to projects and problems
+Exercise 6: Make references to projects and problems
 
 Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
 and verify it.
 Filename: 'verify_formula.py'.
 
-Project 6: References to  "Project 2: Compute a Probability" in a heading works for st
+Project 7: References to  "Project 2: Compute a Probability" in a heading works for st
 
-Refer to the previous exercise as  "Exercise 5: Make references to projects and problems",
+Refer to the previous exercise as  "Exercise 6: Make references to projects and problems",
 the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 6: References to Project ref{demo:ex:2} in a heading works for st".
+and this one as  "Project 7: References to Project ref{demo:ex:2} in a heading works for st".
 Filename: 'selc_composed.pdf'.
 
 Appendix: Just for testing; part I
@@ -9575,8 +9746,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 6: References to Project ref{demo:ex:2} in a heading works for epytext", and in
-between there we have  "Exercise 5: Make references to projects and problems".
+as well as  "Project 3: Explore Distributions of Random Circles" and "Project 7: References to Project ref{demo:ex:2} in a heading works for epytext", and in
+between there we have  "Exercise 6: Make references to projects and problems".
 
 Exercises
 =========
@@ -9748,6 +9919,17 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+
+
+Some exercise without the "Exercise:" prefix
+--------------------------------------------
+
+
+Just some text.
+
+
+
 Here goes another section
 =========================
 
@@ -9759,7 +9941,7 @@ More Exercises
 
 
 
-Exercise 5: Make references to projects and problems
+Exercise 6: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
@@ -9771,12 +9953,12 @@ Filename: C{verify_formula.py}.
 
 
 
-Project 6: References to  "Project 2: Compute a Probability" in a heading works for epytext
+Project 7: References to  "Project 2: Compute a Probability" in a heading works for epytext
 -------------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  "Exercise 5: Make references to projects and problems",
+Refer to the previous exercise as  "Exercise 6: Make references to projects and problems",
 the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 6: References to Project ref{demo:ex:2} in a heading works for epytext".
+and this one as  "Project 7: References to Project ref{demo:ex:2} in a heading works for epytext".
 Filename: C{selc_composed.pdf}.
 
 
@@ -9871,10 +10053,12 @@ Table of contents:
      Remarks 
    Exercise 4: Determine some Distance 
      Remarks 
+   Some exercise without the "Exercise:" prefix 
+   Example 6: Just an example 
  Here goes another section 
  More Exercises 
-   Exercise 5: Make references to projects and problems 
-   Project 6: References to  "Project 2: Compute a Probability" in a heading works for plain 
+   Exercise 7: Make references to projects and problems 
+   Project 8: References to  "Project 2: Compute a Probability" in a heading works for plain 
  Appendix: Just for testing; part I 
    A subsection within an appendix 
  Appendix: Just for testing; part II 
@@ -10292,8 +10476,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 6: References to Project ref{demo:ex:2} in a heading works for plain", and in
-between there we have  "Exercise 5: Make references to projects and problems".
+as well as  "Project 3: Explore Distributions of Random Circles" and "Project 8: References to Project ref{demo:ex:2} in a heading works for plain", and in
+between there we have  "Exercise 7: Make references to projects and problems".
 
 Exercises
 =========
@@ -10465,6 +10649,32 @@ remarks will appear at the end of the typeset exercise.
 
 
 
+
+
+
+Some exercise without the "Exercise:" prefix
+--------------------------------------------
+
+
+Just some text.
+
+
+
+
+
+
+Example 6: Just an example
+--------------------------
+
+
+
+*a)* What is the capital of Norway?
+
+
+*Answer.* Oslo.
+
+
+
 Here goes another section
 =========================
 
@@ -10476,7 +10686,7 @@ More Exercises
 
 
 
-Exercise 5: Make references to projects and problems
+Exercise 7: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
@@ -10488,12 +10698,12 @@ Filename: verify_formula.py.
 
 
 
-Project 6: References to  "Project 2: Compute a Probability" in a heading works for plain
+Project 8: References to  "Project 2: Compute a Probability" in a heading works for plain
 -----------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  "Exercise 5: Make references to projects and problems",
+Refer to the previous exercise as  "Exercise 7: Make references to projects and problems",
 the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 6: References to Project ref{demo:ex:2} in a heading works for plain".
+and this one as  "Project 8: References to Project ref{demo:ex:2} in a heading works for plain".
 Filename: selc_composed.pdf.
 
 
@@ -10761,7 +10971,7 @@ Test of movies.
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p>
-<em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
 </p>
 
 
@@ -10778,13 +10988,16 @@ Test of movies.
 
 
 <p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
-<em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).  </em></p>
+<em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>
 
 <!-- Check out the correct with and height of YouTube movies from the -->
 <!-- embed command that the YouTube page can generate -->
 
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+
+<em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+
 
 
 <!-- Test multi-line caption in figure -->
@@ -11062,8 +11275,8 @@ $$
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  [Problem 1: Flip a Coin](#n) and  [Project 2: Compute a Probability](#y),
-as well as  [Project 3: Explore Distributions of Random Circles](#s) and [Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
-between there we have  [Exercise 5: Make references to projects and problems](#s).
+as well as  [Project 3: Explore Distributions of Random Circles](#s) and [Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
+between there we have  [Exercise 6: Make references to projects and problems](#s).
 
 Exercises
 =========
@@ -11268,6 +11481,20 @@ remarks will appear at the end of the typeset exercise.
 <!-- --- end of exercise -->
 
 
+
+
+<!-- --- begin exercise -->
+
+Some exercise without the "Exercise:" prefix
+--------------------------------------------
+
+<!-- Another minimalistic exercise -->
+
+Just some text.
+
+<!-- --- end of exercise -->
+
+
 Here goes another section
 =========================
 
@@ -11280,7 +11507,7 @@ More Exercises
 
 <!-- --- begin exercise -->
 
-Exercise 5: Make references to projects and problems
+Exercise 6: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from  [Project 3: Explore Distributions of Random Circles](#s) or  [Problem 1: Flip a Coin](#n)
@@ -11294,12 +11521,12 @@ Filename: `verify_formula.py`.
 
 <!-- --- begin exercise -->
 
-Project 6: References to  [Project 2: Compute a Probability](#y) in a heading works for pandoc
+Project 7: References to  [Project 2: Compute a Probability](#y) in a heading works for pandoc
 ----------------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  [Exercise 5: Make references to projects and problems](#s),
+Refer to the previous exercise as  [Exercise 6: Make references to projects and problems](#s),
 the two before that as  [Project 2: Compute a Probability](#y) and [Project 3: Explore Distributions of Random Circles](#s),
-and this one as  [Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
+and this one as  [Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
 Filename: `selc_composed.pdf`.
 
 <!-- --- end of exercise -->
@@ -11388,7 +11615,8 @@ Could not find match for from regex "\*\s+\$.+normally"
   'subex': [],
   'text': '# Torture tests\n\nMake a program that simulates flipping a coin $N$ times.\nPrint out "tail" or "head" for each flip and\nlet the program count the number of heads.\n\n\n# Test syntax error',
   'title': 'Flip a Coin',
-  'type': 'Problem'},
+  'type': 'Problem',
+  'type_visible': True},
  {'answer': '',
   'closing_remarks': '',
   'file': None,
@@ -11402,7 +11630,8 @@ Could not find match for from regex "\*\s+\$.+normally"
   'subex': [],
   'text': '# Minimalistic exercise\n\n\nWhat is the probability of getting a number between 0.5 and 0.6 when\ndrawing uniformly distributed random numbers from the interval $[0,1)$?',
   'title': 'Compute a Probability',
-  'type': 'Project'},
+  'type': 'Project',
+  'type_visible': True},
  {'answer': '',
   'closing_remarks': 'At the very end of the exercise it may be appropriate to summarize\nand give some perspectives.',
   'file': ['circles.pdf'],
@@ -11430,7 +11659,8 @@ Could not find match for from regex "\*\s+\$.+normally"
              'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
   'text': 'The formula for a circle is given by\n\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
   'title': 'Explore Distributions of Random Circles',
-  'type': 'Project'},
+  'type': 'Project',
+  'type_visible': True},
  {'answer': '',
   'closing_remarks': 'Some final closing remarks, e.g., summarizing the main findings\nand their implications in other problems can be made. These\nremarks will appear at the end of the typeset exercise.',
   'file': None,
@@ -11454,7 +11684,23 @@ Could not find match for from regex "\*\s+\$.+normally"
              'text': 'Here goes the text for subexercise b).'}],
   'text': 'Intro to this exercise. Questions are in subexercises below.',
   'title': 'Determine some Distance',
-  'type': 'Exercise'},
+  'type': 'Exercise',
+  'type_visible': True},
+ {'answer': '',
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': None,
+  'no': 5,
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': '# Another minimalistic exercise\n\nJust some text.',
+  'title': 'Some exercise without the "Exercise:" prefix',
+  'type': 'Exercise',
+  'type_visible': False},
  {'answer': '',
   'closing_remarks': '',
   'file': ['verify_formula.py'],
@@ -11462,13 +11708,14 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': [],
   'keywords': None,
   'label': 'exer:some:formula',
-  'no': 5,
+  'no': 6,
   'solution': '',
   'solution_file': None,
   'subex': [],
   'text': 'Pick a statement from Project ref{proj:circle1} or Problem ref{demo:ex:1}\nand verify it.',
   'title': 'Make references to projects and problems',
-  'type': 'Exercise'},
+  'type': 'Exercise',
+  'type_visible': True},
  {'answer': '',
   'closing_remarks': '',
   'file': ['selc_composed.pdf'],
@@ -11476,13 +11723,14 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': [],
   'keywords': None,
   'label': 'exer:you',
-  'no': 6,
+  'no': 7,
   'solution': '',
   'solution_file': None,
   'subex': [],
   'text': 'Refer to the previous exercise as Exercise ref{exer:some:formula},\nthe two before that as Projects ref{demo:ex:2} and ref{proj:circle1},\nand this one as Project ref{exer:you}.',
   'title': 'References to Project ref{demo:ex:2} in a heading works for pandoc',
-  'type': 'Project'}]
+  'type': 'Project',
+  'type_visible': True}]
 ************** File: tmp_encodings.txt *****************
 iso-8859-1
 iso-8859-1
@@ -11925,13 +12173,15 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>Here goes the solution of this subexercise.</p>
 <h4 id="remarks.-1">Remarks.</h4>
 <p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h2>
+<p>Just some text.</p>
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
-<h2 id="exercise-5-make-references-to-projects-and-problems">Exercise 5: Make references to projects and problems</h2>
+<h2 id="exercise-6-make-references-to-projects-and-problems">Exercise 6: Make references to projects and problems</h2>
 <p>[exer:some:formula]</p>
 <p>Pick a statement from Project [proj:circle1] or Problem [demo:ex:1] and verify it. Filename: <code>verify_formula.py</code>.</p>
-<h2 id="project-6-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 6: References to Project [demo:ex:2] in a heading works for latex</h2>
+<h2 id="project-7-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 7: References to Project [demo:ex:2] in a heading works for latex</h2>
 <p>[exer:you]</p>
 <p>Refer to the previous exercise as Exercise [exer:some:formula], the two before that as Projects [demo:ex:2] and [proj:circle1], and this one as Project [exer:you]. Filename: <code>selc_composed.pdf</code>.</p>
 <h1 id="just-for-testing-part-i">Just for testing; part I</h1>
@@ -12139,7 +12389,7 @@ output2</code></pre>
 <p>Test of movies.</p>
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p>
-<em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
 </p>
 
 
@@ -12156,7 +12406,7 @@ output2</code></pre>
 
 
 <p>
-<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a> <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). </em>
+<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a> <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em>
 </p>
 
 <!-- Check out the correct with and height of YouTube movies from the -->
@@ -12165,7 +12415,7 @@ output2</code></pre>
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
 
-
+<p><em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em></p>
 <!-- Test multi-line caption in figure -->
 
 <p>Here is figure ref{myfig} with a long multi-line caption and an extra space before the FIGURE keyword.</p>
@@ -12433,7 +12683,7 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 \end{eqnarray}
 \]</p>
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
-<p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 2: Compute a Probability</a>, as well as <a href="#s">Project 3: Explore Distributions of Random Circles</a> and <a href="#c">Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 5: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 2: Compute a Probability</a>, as well as <a href="#s">Project 3: Explore Distributions of Random Circles</a> and <a href="#c">Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 6: Make references to projects and problems</a>.</p>
 <h1 id="exercises">Exercises</h1>
 <!-- --- begin exercise -->
 
@@ -12555,12 +12805,23 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <!-- --- end of exercise -->
 
 
+
+
+<!-- --- begin exercise -->
+
+<h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h2>
+<!-- Another minimalistic exercise -->
+
+<p>Just some text.</p>
+<!-- --- end of exercise -->
+
+
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
 <!-- --- begin exercise -->
 
-<h2 id="exercise-5-make-references-to-projects-and-problems">Exercise 5: Make references to projects and problems</h2>
+<h2 id="exercise-6-make-references-to-projects-and-problems">Exercise 6: Make references to projects and problems</h2>
 <p>Pick a statement from <a href="#s">Project 3: Explore Distributions of Random Circles</a> or <a href="#n">Problem 1: Flip a Coin</a> and verify it. Filename: <code>verify_formula.py</code>.</p>
 <!-- --- end of exercise -->
 
@@ -12569,8 +12830,8 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise -->
 
-<h2 id="project-6-references-to-project-2-compute-a-probability-in-a-heading-works-for-pandoc">Project 6: References to <a href="#y">Project 2: Compute a Probability</a> in a heading works for pandoc</h2>
-<p>Refer to the previous exercise as <a href="#s">Exercise 5: Make references to projects and problems</a>, the two before that as <a href="#y">Project 2: Compute a Probability</a> and <a href="#s">Project 3: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<h2 id="project-7-references-to-project-2-compute-a-probability-in-a-heading-works-for-pandoc">Project 7: References to <a href="#y">Project 2: Compute a Probability</a> in a heading works for pandoc</h2>
+<p>Refer to the previous exercise as <a href="#s">Exercise 6: Make references to projects and problems</a>, the two before that as <a href="#y">Project 2: Compute a Probability</a> and <a href="#s">Project 3: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
 <!-- --- end of exercise -->
 
 
@@ -14273,17 +14534,18 @@ $$
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Remarks </a><br>
-<a href="._part0002_testdoc.html#___sec16"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec17"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 6: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec20"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec22"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec23"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
+<a href="._part0002_testdoc.html#___sec17"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec18"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 7: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec23"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec24"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec27"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -14809,7 +15071,7 @@ Test of movies.
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p>
-<em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
 </p>
 
 
@@ -14829,7 +15091,7 @@ Test of movies.
 
 <p>
 <a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
-<em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a> </em></p>
+<em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
 
 <p>
 <!-- Check out the correct with and height of YouTube movies from the -->
@@ -14838,6 +15100,9 @@ Test of movies.
 <p>
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+
+<em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+
 
 
 <p>
@@ -15178,8 +15443,8 @@ More mathematical typesetting is demonstrated in the coming exercises.
 
 <p>
 Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 6: References in a headings do not work well in html</a>, and in
-between there we have <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>.
+as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 7: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>.
 
 <p>
 
@@ -15391,20 +15656,37 @@ remarks will appear at the end of the typeset exercise.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec16"></a></h2>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec16"></a></h3>
+<p>
+<!-- Another minimalistic exercise -->
+
+<p>
+Just some text.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<h2>Here goes another section  <a name="___sec17"></a></h2>
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec17"></a></h2>
+<h2>More Exercises  <a name="___sec18"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
 
 <p>
 
-<h3>Exercise 5: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<h3>Exercise 6: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 <p>
 Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -15420,11 +15702,11 @@ Filename: <tt>verify_formula.py</tt>.
 
 <p>
 
-<h3>Project 6: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<h3>Project 7: References in a headings do not work well in html <a name="exer:you"></a></h3>
 <p>
-Refer to the previous exercise as <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>,
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as <a href="#exer:you">Project 6: References in a headings do not work well in html</a>.
+and this one as <a href="#exer:you">Project 7: References in a headings do not work well in html</a>.
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
@@ -15433,22 +15715,22 @@ Filename: <tt>selc_composed.pdf</tt>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec20"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec21"></a></h2>
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec21"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec22"></a></h3>
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec22"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec23"></a></h2>
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec23"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec24"></a></h3>
 <p>
 Without label.
 
@@ -15466,7 +15748,7 @@ With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec26"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec27"></a></h3>
 <p>
 Without label.
 
@@ -15960,6 +16242,7 @@ markdown
 notes
 notes-server
 postmessage
+print-pdf
 remotes
 zoom-js
 
@@ -15982,6 +16265,9 @@ notes.html
 reveal.js/plugin/postmessage:
 example.html
 postmessage.js
+
+reveal.js/plugin/print-pdf:
+print-pdf.js
 
 reveal.js/plugin/remotes:
 remotes.js
@@ -16007,6 +16293,10 @@ doconce format html slides --pygments-html-style=autumn
 doconce slides_html slides reveal --html-slide-theme=simple
 cp slides.html slides_reveal_simple.html
 
+doconce format html slides --pygments-html-style=native
+doconce slides_html slides reveal --html-slide-theme=darkgray
+cp slides.html slides_reveal_darkgray.html
+
 doconce format html slides --pygments-html-style=default
 doconce slides_html slides reveal --html-slide-theme=sky
 cp slides.html slides_reveal_sky.html
@@ -16022,10 +16312,6 @@ cp slides.html slides_reveal_beige.html
 doconce format html slides --pygments-html-style=fruity
 doconce slides_html slides reveal --html-slide-theme=night
 cp slides.html slides_reveal_night.html
-
-doconce format html slides --pygments-html-style=native
-doconce slides_html slides reveal --html-slide-theme=darkgrey
-cp slides.html slides_reveal_darkgrey.html
 
 doconce format html slides --pygments-html-style=autumn
 doconce slides_html slides dzslides --html-slide-theme=dzslides_default
@@ -16122,7 +16408,7 @@ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\en
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt
+doconce format plain testdoc.do.txt --example-as-exercise
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt
 mv -f testdoc.rst testdoc.sphinx.rst
@@ -17787,8 +18073,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
-MediaWiki, and
-Creole Wiki. These formats are called
+<a href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki</a>, and
+<a href="http://www.wikicreole.org/wiki/Creole1.0">Creole Wiki</a>.
+These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
@@ -17808,6 +18095,17 @@ but not always well elsewhere
 (see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
 <p>
+Large MediaWiki documents can be made with the
+<a href="http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator">Book creator</a>.
+From the MediaWiki format one can go to other formats with aid
+of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+<p>
+
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -17820,15 +18118,6 @@ available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
 <p>
-From the MediaWiki format one can go to other formats with aid
-of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
-easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
-<p>
-
 
 <h3>Tweaking the Doconce Output  <a name="___sec16"></a></h3>
 <p>
@@ -19298,8 +19587,9 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 
 There are many different wiki formats, but Doconce only supports three:
 \href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki},
-MediaWiki, and
-Creole Wiki. These formats are called
+\href{{http://www.mediawiki.org/wiki/Help:Formatting}}{MediaWiki}, and
+\href{{http://www.wikicreole.org/wiki/Creole1.0}}{Creole Wiki}.
+These formats are called
 \code{gwiki}, \code{mwiki}, and \code{cwiki}, respectively.
 Transformation from Doconce to these formats is done by
 \bsys
@@ -19315,6 +19605,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
+Large MediaWiki documents can be made with the
+\href{{http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator}}{Book creator}.
+From the MediaWiki format one can go to other formats with aid
+of \href{{http://pediapress.com/code/}}{mwlib}. This means that one can
+easily use Doconce to write \href{{http://en.wikibooks.org}}{Wikibooks}
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard {\LaTeX} book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, \code{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -19324,13 +19625,6 @@ When the Doconce file contains figures, each figure filename must in
 the \code{.gwiki} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of \href{{http://pediapress.com/code/}}{mwlib}. This means that one can
-easily use Doconce to write \href{{http://en.wikibooks.org}}{Wikibooks}
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard {\LaTeX} book or a Sphinx web document.
 
 \subsection{Tweaking the Doconce Output}
 
@@ -20513,8 +20807,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 `Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
-MediaWiki, and
-Creole Wiki. These formats are called
+`MediaWiki <http://www.mediawiki.org/wiki/Help:Formatting>`_, and
+`Creole Wiki <http://www.wikicreole.org/wiki/Creole1.0>`_.
+These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -20531,6 +20826,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
+Large MediaWiki documents can be made with the
+`Book creator <http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>`_.
+From the MediaWiki format one can go to other formats with aid
+of `mwlib <http://pediapress.com/code/>`_. This means that one can
+easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -20540,14 +20846,6 @@ When the Doconce file contains figures, each figure filename must in
 the ``.gwiki`` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of `mwlib <http://pediapress.com/code/>`_. This means that one can
-easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -21816,8 +22114,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 `Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
-MediaWiki, and
-Creole Wiki. These formats are called
+`MediaWiki <http://www.mediawiki.org/wiki/Help:Formatting>`_, and
+`Creole Wiki <http://www.wikicreole.org/wiki/Creole1.0>`_.
+These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -21835,6 +22134,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
+Large MediaWiki documents can be made with the
+`Book creator <http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>`_.
+From the MediaWiki format one can go to other formats with aid
+of `mwlib <http://pediapress.com/code/>`_. This means that one can
+easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -21844,14 +22154,6 @@ When the Doconce file contains figures, each figure filename must in
 the ``.gwiki`` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of `mwlib <http://pediapress.com/code/>`_. This means that one can
-easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -22954,8 +23256,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 [http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
-MediaWiki, and
-Creole Wiki. These formats are called
+[http://www.mediawiki.org/wiki/Help:Formatting MediaWiki], and
+[http://www.wikicreole.org/wiki/Creole1.0 Creole Wiki].
+These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -22971,6 +23274,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
+Large MediaWiki documents can be made with the
+[http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator Book creator].
+From the MediaWiki format one can go to other formats with aid
+of [http://pediapress.com/code/ mwlib]. This means that one can
+easily use Doconce to write [http://en.wikibooks.org Wikibooks]
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -22980,13 +23294,6 @@ When the Doconce file contains figures, each figure filename must in
 the `.gwiki` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [http://pediapress.com/code/ mwlib]. This means that one can
-easily use Doconce to write [http://en.wikibooks.org Wikibooks]
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 ==== Tweaking the Doconce Output ====
 
@@ -24092,8 +24399,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 [http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
-MediaWiki, and
-Creole Wiki. These formats are called
+[http://www.mediawiki.org/wiki/Help:Formatting MediaWiki], and
+[http://www.wikicreole.org/wiki/Creole1.0 Creole Wiki].
+These formats are called
 <code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <syntaxhighlight lang="bash">
@@ -24109,6 +24417,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
+Large MediaWiki documents can be made with the
+[http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator Book creator].
+From the MediaWiki format one can go to other formats with aid
+of [http://pediapress.com/code/ mwlib]. This means that one can
+easily use Doconce to write [http://en.wikibooks.org Wikibooks]
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, <code>mydoc.gwiki</code>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -24118,13 +24437,6 @@ When the Doconce file contains figures, each figure filename must in
 the <code>.gwiki</code> file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [http://pediapress.com/code/ mwlib]. This means that one can
-easily use Doconce to write [http://en.wikibooks.org Wikibooks]
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 ==== Tweaking the Doconce Output ====
 
@@ -25188,8 +25500,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 [[http://code.google.com/p/support/wiki/WikiSyntax|Googlecode wiki]],
-MediaWiki, and
-Creole Wiki. These formats are called
+[[http://www.mediawiki.org/wiki/Help:Formatting|MediaWiki]], and
+[[http://www.wikicreole.org/wiki/Creole1.0|Creole Wiki]].
+These formats are called
 {{{gwiki}}}, {{{mwiki}}}, and {{{cwiki}}}, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -25205,6 +25518,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [[http://doconcedemo.jumpwiki.com/wiki/First_demo|this example]]).
 
+Large MediaWiki documents can be made with the
+[[http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator|Book creator]].
+From the MediaWiki format one can go to other formats with aid
+of [[http://pediapress.com/code/|mwlib]]. This means that one can
+easily use Doconce to write [[http://en.wikibooks.org|Wikibooks]]
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, {{{mydoc.gwiki}}}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -25214,13 +25538,6 @@ When the Doconce file contains figures, each figure filename must in
 the {{{.gwiki}}} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [[http://pediapress.com/code/|mwlib]]. This means that one can
-easily use Doconce to write [[http://en.wikibooks.org|Wikibooks]]
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 
 == Tweaking the Doconce Output ==
@@ -26320,8 +26637,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 "http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki,
-MediaWiki, and
-Creole Wiki. These formats are called
+"http://www.mediawiki.org/wiki/Help:Formatting":MediaWiki, and
+"http://www.wikicreole.org/wiki/Creole1.0":Creole Wiki.
+These formats are called
 'gwiki', 'mwiki', and 'cwiki', respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -26338,6 +26656,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
+Large MediaWiki documents can be made with the
+"http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator":Book creator.
+From the MediaWiki format one can go to other formats with aid
+of "http://pediapress.com/code/":mwlib. This means that one can
+easily use Doconce to write "http://en.wikibooks.org":Wikibooks
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, 'mydoc.gwiki', is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -26347,13 +26676,6 @@ When the Doconce file contains figures, each figure filename must in
 the '.gwiki' file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of "http://pediapress.com/code/":mwlib. This means that one can
-easily use Doconce to write "http://en.wikibooks.org":Wikibooks
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 Tweaking the Doconce Output
 
@@ -27485,8 +27807,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>},
-MediaWiki, and
-Creole Wiki. These formats are called
+U{MediaWiki<http://www.mediawiki.org/wiki/Help:Formatting>}, and
+U{Creole Wiki<http://www.wikicreole.org/wiki/Creole1.0>}.
+These formats are called
 C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -27503,6 +27826,17 @@ U{ShoutWiki<http://doconce.shoutwiki.com/wiki/Doconce_demo>},
 but not always well elsewhere
 (see U{this example<http://doconcedemo.jumpwiki.com/wiki/First_demo>}).
 
+Large MediaWiki documents can be made with the
+U{Book creator<http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>}.
+From the MediaWiki format one can go to other formats with aid
+of U{mwlib<http://pediapress.com/code/>}. This means that one can
+easily use Doconce to write U{Wikibooks<http://en.wikibooks.org>}
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, C{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -27512,14 +27846,6 @@ When the Doconce file contains figures, each figure filename must in
 the C{.gwiki} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of U{mwlib<http://pediapress.com/code/>}. This means that one can
-easily use Doconce to write U{Wikibooks<http://en.wikibooks.org>}
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -28699,8 +29025,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 Googlecode wiki (http://code.google.com/p/support/wiki/WikiSyntax),
-MediaWiki, and
-Creole Wiki. These formats are called
+MediaWiki (http://www.mediawiki.org/wiki/Help:Formatting), and
+Creole Wiki (http://www.wikicreole.org/wiki/Creole1.0).
+These formats are called
 gwiki, mwiki, and cwiki, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -28717,6 +29044,17 @@ ShoutWiki (http://doconce.shoutwiki.com/wiki/Doconce_demo),
 but not always well elsewhere
 (see this example (http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
+Large MediaWiki documents can be made with the
+Book creator (http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator).
+From the MediaWiki format one can go to other formats with aid
+of mwlib (http://pediapress.com/code/). This means that one can
+easily use Doconce to write Wikibooks (http://en.wikibooks.org)
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, mydoc.gwiki, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -28726,14 +29064,6 @@ When the Doconce file contains figures, each figure filename must in
 the .gwiki file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of mwlib (http://pediapress.com/code/). This means that one can
-easily use Doconce to write Wikibooks (http://en.wikibooks.org)
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -29952,8 +30282,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 [Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax),
-MediaWiki, and
-Creole Wiki. These formats are called
+[MediaWiki](http://www.mediawiki.org/wiki/Help:Formatting), and
+[Creole Wiki](http://www.wikicreole.org/wiki/Creole1.0).
+These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -29970,6 +30301,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
+Large MediaWiki documents can be made with the
+[Book creator](http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator).
+From the MediaWiki format one can go to other formats with aid
+of [mwlib](http://pediapress.com/code/). This means that one can
+easily use Doconce to write [Wikibooks](http://en.wikibooks.org)
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -29979,14 +30321,6 @@ When the Doconce file contains figures, each figure filename must in
 the `.gwiki` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [mwlib](http://pediapress.com/code/). This means that one can
-easily use Doconce to write [Wikibooks](http://en.wikibooks.org)
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -30909,8 +31243,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 "Googlecode wiki": "http://code.google.com/p/support/wiki/WikiSyntax",
-MediaWiki, and
-Creole Wiki. These formats are called
+"MediaWiki": "http://www.mediawiki.org/wiki/Help:Formatting", and
+"Creole Wiki": "http://www.wikicreole.org/wiki/Creole1.0".
+These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 !bc sys
@@ -30927,6 +31262,18 @@ but not always well elsewhere
 (see "this example":
 "http://doconcedemo.jumpwiki.com/wiki/First_demo").
 
+Large MediaWiki documents can be made with the
+"Book creator":
+"http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator".
+From the MediaWiki format one can go to other formats with aid
+of "mwlib": "http://pediapress.com/code/". This means that one can
+easily use Doconce to write "Wikibooks": "http://en.wikibooks.org"
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -30936,14 +31283,6 @@ When the Doconce file contains figures, each figure filename must in
 the `.gwiki` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of "mwlib": "http://pediapress.com/code/". This means that one can
-easily use Doconce to write "Wikibooks": "http://en.wikibooks.org"
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 ===== Tweaking the Doconce Output =====
 
@@ -31181,7 +31520,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 11 Jan 2013 (07:46)</center>
+<center>Wed, 16 Jan 2013 (15:28)</center>
 
 
 
@@ -31312,7 +31651,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 11 Jan 2013 (07:46)</center>
+<center>Wed, 16 Jan 2013 (15:28)</center>
 
 
 
@@ -34877,8 +35216,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
-MediaWiki, and
-Creole Wiki. These formats are called
+<a href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki</a>, and
+<a href="http://www.wikicreole.org/wiki/Creole1.0">Creole Wiki</a>.
+These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
@@ -34898,6 +35238,17 @@ but not always well elsewhere
 (see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
 <p>
+Large MediaWiki documents can be made with the
+<a href="http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator">Book creator</a>.
+From the MediaWiki format one can go to other formats with aid
+of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+<p>
+
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -34910,15 +35261,6 @@ available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
 <p>
-From the MediaWiki format one can go to other formats with aid
-of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
-easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
-<p>
-
 
 <h3>Tweaking the Doconce Output  <a name="___sec24"></a></h3>
 <p>
@@ -38635,8 +38977,9 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 
 There are many different wiki formats, but Doconce only supports three:
 \href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki},
-MediaWiki, and
-Creole Wiki. These formats are called
+\href{{http://www.mediawiki.org/wiki/Help:Formatting}}{MediaWiki}, and
+\href{{http://www.wikicreole.org/wiki/Creole1.0}}{Creole Wiki}.
+These formats are called
 \code{gwiki}, \code{mwiki}, and \code{cwiki}, respectively.
 Transformation from Doconce to these formats is done by
 \bsys
@@ -38652,6 +38995,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
+Large MediaWiki documents can be made with the
+\href{{http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator}}{Book creator}.
+From the MediaWiki format one can go to other formats with aid
+of \href{{http://pediapress.com/code/}}{mwlib}. This means that one can
+easily use Doconce to write \href{{http://en.wikibooks.org}}{Wikibooks}
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard {\LaTeX} book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, \code{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -38661,13 +39015,6 @@ When the Doconce file contains figures, each figure filename must in
 the \code{.gwiki} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of \href{{http://pediapress.com/code/}}{mwlib}. This means that one can
-easily use Doconce to write \href{{http://en.wikibooks.org}}{Wikibooks}
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard {\LaTeX} book or a Sphinx web document.
 
 \subsection{Tweaking the Doconce Output}
 
@@ -41799,8 +42146,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 `Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
-MediaWiki, and
-Creole Wiki. These formats are called
+`MediaWiki <http://www.mediawiki.org/wiki/Help:Formatting>`_, and
+`Creole Wiki <http://www.wikicreole.org/wiki/Creole1.0>`_.
+These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -41817,6 +42165,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
+Large MediaWiki documents can be made with the
+`Book creator <http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>`_.
+From the MediaWiki format one can go to other formats with aid
+of `mwlib <http://pediapress.com/code/>`_. This means that one can
+easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -41826,14 +42185,6 @@ When the Doconce file contains figures, each figure filename must in
 the ``.gwiki`` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of `mwlib <http://pediapress.com/code/>`_. This means that one can
-easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -45187,8 +45538,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 `Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_,
-MediaWiki, and
-Creole Wiki. These formats are called
+`MediaWiki <http://www.mediawiki.org/wiki/Help:Formatting>`_, and
+`Creole Wiki <http://www.wikicreole.org/wiki/Creole1.0>`_.
+These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -45206,6 +45558,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
+Large MediaWiki documents can be made with the
+`Book creator <http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>`_.
+From the MediaWiki format one can go to other formats with aid
+of `mwlib <http://pediapress.com/code/>`_. This means that one can
+easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -45215,14 +45578,6 @@ When the Doconce file contains figures, each figure filename must in
 the ``.gwiki`` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of `mwlib <http://pediapress.com/code/>`_. This means that one can
-easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -48568,8 +48923,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 [http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
-MediaWiki, and
-Creole Wiki. These formats are called
+[http://www.mediawiki.org/wiki/Help:Formatting MediaWiki], and
+[http://www.wikicreole.org/wiki/Creole1.0 Creole Wiki].
+These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -48585,6 +48941,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
+Large MediaWiki documents can be made with the
+[http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator Book creator].
+From the MediaWiki format one can go to other formats with aid
+of [http://pediapress.com/code/ mwlib]. This means that one can
+easily use Doconce to write [http://en.wikibooks.org Wikibooks]
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -48594,13 +48961,6 @@ When the Doconce file contains figures, each figure filename must in
 the `.gwiki` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [http://pediapress.com/code/ mwlib]. This means that one can
-easily use Doconce to write [http://en.wikibooks.org Wikibooks]
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 ==== Tweaking the Doconce Output ====
 
@@ -51535,8 +51895,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 [http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki],
-MediaWiki, and
-Creole Wiki. These formats are called
+[http://www.mediawiki.org/wiki/Help:Formatting MediaWiki], and
+[http://www.wikicreole.org/wiki/Creole1.0 Creole Wiki].
+These formats are called
 <code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <syntaxhighlight lang="bash">
@@ -51552,6 +51913,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
+Large MediaWiki documents can be made with the
+[http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator Book creator].
+From the MediaWiki format one can go to other formats with aid
+of [http://pediapress.com/code/ mwlib]. This means that one can
+easily use Doconce to write [http://en.wikibooks.org Wikibooks]
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, <code>mydoc.gwiki</code>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -51561,13 +51933,6 @@ When the Doconce file contains figures, each figure filename must in
 the <code>.gwiki</code> file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [http://pediapress.com/code/ mwlib]. This means that one can
-easily use Doconce to write [http://en.wikibooks.org Wikibooks]
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 ==== Tweaking the Doconce Output ====
 
@@ -54508,8 +54873,9 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 There are many different wiki formats, but Doconce only supports three:
 [[http://code.google.com/p/support/wiki/WikiSyntax|Googlecode wiki]],
-MediaWiki, and
-Creole Wiki. These formats are called
+[[http://www.mediawiki.org/wiki/Help:Formatting|MediaWiki]], and
+[[http://www.wikicreole.org/wiki/Creole1.0|Creole Wiki]].
+These formats are called
 {{{gwiki}}}, {{{mwiki}}}, and {{{cwiki}}}, respectively.
 Transformation from Doconce to these formats is done by
 {{{
@@ -54525,6 +54891,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [[http://doconcedemo.jumpwiki.com/wiki/First_demo|this example]]).
 
+Large MediaWiki documents can be made with the
+[[http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator|Book creator]].
+From the MediaWiki format one can go to other formats with aid
+of [[http://pediapress.com/code/|mwlib]]. This means that one can
+easily use Doconce to write [[http://en.wikibooks.org|Wikibooks]]
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, {{{mydoc.gwiki}}}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -54534,13 +54911,6 @@ When the Doconce file contains figures, each figure filename must in
 the {{{.gwiki}}} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [[http://pediapress.com/code/|mwlib]]. This means that one can
-easily use Doconce to write [[http://en.wikibooks.org|Wikibooks]]
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 
 == Tweaking the Doconce Output ==
@@ -57466,8 +57836,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 "http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki,
-MediaWiki, and
-Creole Wiki. These formats are called
+"http://www.mediawiki.org/wiki/Help:Formatting":MediaWiki, and
+"http://www.wikicreole.org/wiki/Creole1.0":Creole Wiki.
+These formats are called
 'gwiki', 'mwiki', and 'cwiki', respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -57484,6 +57855,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
+Large MediaWiki documents can be made with the
+"http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator":Book creator.
+From the MediaWiki format one can go to other formats with aid
+of "http://pediapress.com/code/":mwlib. This means that one can
+easily use Doconce to write "http://en.wikibooks.org":Wikibooks
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, 'mydoc.gwiki', is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -57493,13 +57875,6 @@ When the Doconce file contains figures, each figure filename must in
 the '.gwiki' file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of "http://pediapress.com/code/":mwlib. This means that one can
-easily use Doconce to write "http://en.wikibooks.org":Wikibooks
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
 
 Tweaking the Doconce Output
 
@@ -60481,8 +60856,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>},
-MediaWiki, and
-Creole Wiki. These formats are called
+U{MediaWiki<http://www.mediawiki.org/wiki/Help:Formatting>}, and
+U{Creole Wiki<http://www.wikicreole.org/wiki/Creole1.0>}.
+These formats are called
 C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -60499,6 +60875,17 @@ U{ShoutWiki<http://doconce.shoutwiki.com/wiki/Doconce_demo>},
 but not always well elsewhere
 (see U{this example<http://doconcedemo.jumpwiki.com/wiki/First_demo>}).
 
+Large MediaWiki documents can be made with the
+U{Book creator<http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator>}.
+From the MediaWiki format one can go to other formats with aid
+of U{mwlib<http://pediapress.com/code/>}. This means that one can
+easily use Doconce to write U{Wikibooks<http://en.wikibooks.org>}
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, C{mydoc.gwiki}, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -60508,14 +60895,6 @@ When the Doconce file contains figures, each figure filename must in
 the C{.gwiki} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of U{mwlib<http://pediapress.com/code/>}. This means that one can
-easily use Doconce to write U{Wikibooks<http://en.wikibooks.org>}
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -63611,8 +63990,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 Googlecode wiki (http://code.google.com/p/support/wiki/WikiSyntax),
-MediaWiki, and
-Creole Wiki. These formats are called
+MediaWiki (http://www.mediawiki.org/wiki/Help:Formatting), and
+Creole Wiki (http://www.wikicreole.org/wiki/Creole1.0).
+These formats are called
 gwiki, mwiki, and cwiki, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -63629,6 +64009,17 @@ ShoutWiki (http://doconce.shoutwiki.com/wiki/Doconce_demo),
 but not always well elsewhere
 (see this example (http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
+Large MediaWiki documents can be made with the
+Book creator (http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator).
+From the MediaWiki format one can go to other formats with aid
+of mwlib (http://pediapress.com/code/). This means that one can
+easily use Doconce to write Wikibooks (http://en.wikibooks.org)
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, mydoc.gwiki, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -63638,14 +64029,6 @@ When the Doconce file contains figures, each figure filename must in
 the .gwiki file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of mwlib (http://pediapress.com/code/). This means that one can
-easily use Doconce to write Wikibooks (http://en.wikibooks.org)
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -66850,8 +67233,9 @@ Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
 [Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax),
-MediaWiki, and
-Creole Wiki. These formats are called
+[MediaWiki](http://www.mediawiki.org/wiki/Help:Formatting), and
+[Creole Wiki](http://www.wikicreole.org/wiki/Creole1.0).
+These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -66868,6 +67252,17 @@ works well with Wikipedia, Wikibooks, and
 but not always well elsewhere
 (see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
+Large MediaWiki documents can be made with the
+[Book creator](http://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator).
+From the MediaWiki format one can go to other formats with aid
+of [mwlib](http://pediapress.com/code/). This means that one can
+easily use Doconce to write [Wikibooks](http://en.wikibooks.org)
+and publish these in PDF and MediaWiki format, while
+at the same time, the book can also be published as a
+standard LaTeX book, a Sphinx web document, or a collection of HTML files.
+
+
+
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
@@ -66877,14 +67272,6 @@ When the Doconce file contains figures, each figure filename must in
 the `.gwiki` file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
-
-From the MediaWiki format one can go to other formats with aid
-of [mwlib](http://pediapress.com/code/). This means that one can
-easily use Doconce to write [Wikibooks](http://en.wikibooks.org)
-and publish these in PDF and MediaWiki format.
-At the same time, the book can also be published as a
-standard LaTeX book or a Sphinx web document.
-
 
 Tweaking the Doconce Output
 ---------------------------
@@ -80096,7 +80483,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
@@ -80156,7 +80543,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
@@ -80214,7 +80601,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
@@ -80500,7 +80887,7 @@ LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
 
 (./testdoc.out.pyg) [13] (./testdoc.out.pyg) [14]
 
-LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1004
+LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1021
 .
 
 
@@ -80511,27 +80898,27 @@ LaTeX Warning: Reference `demo:ex:2' on page 15
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 15 undefined on input line
- 1023.
+ 1040.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 15 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1024
+LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1041
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 15 
 
-[15] <latex_figs/hint.pdf, id=242, 89.33376pt x 89.33376pt>
+[15] <latex_figs/hint.pdf, id=243, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=243, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=244, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=244, 89.33376pt x 89.33376pt>
+<latex_figs/summary.pdf, id=245, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=245, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=246, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=246, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=247, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
@@ -80540,7 +80927,7 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
 [16 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
-f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
+f> <./latex_figs/notice.pdf>] [17 <./latex_figs/question.pdf>] (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -80686,15 +81073,16 @@ nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (16 pages, ).
+Output written on testdoc.pdf (17 pages, ).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
 + echo ----------- end of doconce ptex2tex output ----------------
 + cat testdoc.tex
-+ doconce format plain testdoc.do.txt
++ doconce format plain testdoc.do.txt --example-as-exercise
 running preprocess -DFORMAT=plain  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
+mako variables: {'FORMAT': 'plain'}
 translating preprocessed doconce text in __tmp.do.txt to plain
 
 FIX: multi-line caption
@@ -80744,7 +81132,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 8 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
 running preprocess -DFORMAT=st  testdoc.do.txt > __tmp.do.txt
@@ -80798,7 +81186,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
 running preprocess -DFORMAT=sphinx  testdoc.do.txt > __tmp.do.txt
@@ -80861,7 +81249,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
 
@@ -80933,7 +81321,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
@@ -80989,7 +81377,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
 running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
@@ -81043,7 +81431,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
@@ -81111,7 +81499,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
 NOTE: You must upload image file streamtubes.png to common.wikimedia.org
@@ -81172,7 +81560,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
@@ -81229,7 +81617,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
 
@@ -81321,7 +81709,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
@@ -81393,7 +81781,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 6 exercises, written to .testdoc.exerinfo
+found info about 7 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
@@ -82441,7 +82829,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 177963 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178211 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -82588,7 +82976,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -82735,7 +83123,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -82888,7 +83276,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -83035,7 +83423,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184045 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -83367,11 +83755,11 @@ Overfull \hbox (16.13748pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
-
+[16]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
-[16]
+
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
@@ -83450,27 +83838,27 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
 [tutorial.epytext (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.epytext.ps'
-[22 lines wrapped]
+[23 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
 [tutorial.txt (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.txt.ps'
-[18 lines wrapped]
+[19 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
 [tutorial.gwiki (plain): 20 pages on 20 sheets]
 [Total: 20 pages on 20 sheets] saved into the file `tutorial.gwiki.ps'
-[47 lines wrapped]
+[48 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
 [tutorial.cwiki (plain): 20 pages on 20 sheets]
 [Total: 20 pages on 20 sheets] saved into the file `tutorial.cwiki.ps'
-[62 lines wrapped]
+[63 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
 [tutorial.mwiki (plain): 22 pages on 22 sheets]
 [Total: 22 pages on 22 sheets] saved into the file `tutorial.mwiki.ps'
-[106 lines wrapped]
+[107 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 22 pages on 22 sheets]
@@ -83480,7 +83868,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[546 lines wrapped]
+[553 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -83993,11 +84381,11 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
-
+[16]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-[16]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
@@ -84104,7 +84492,7 @@ Overfull \hbox (83.00006pt too wide)
 [23]
 
 LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 219
-0.
+3.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
@@ -84112,7 +84500,7 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
-ut line 2192.
+ut line 2195.
 
 
 LaTeX Warning: Hyper reference `id2' on page 24 
@@ -84686,11 +85074,11 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
-
+[16]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-[16]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
@@ -85355,17 +85743,17 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=171, 583.17876pt x 437.635pt>
+[15] [16] [17] [18] <figs/streamtubes.png, id=174, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1453.
+ne 1458.
 
 
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=200, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=203, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -85373,16 +85761,16 @@ Overfull \hbox (4.68658pt too wide)
 [22 <./latex_figs/notice.pdf>]
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-616.
+621.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-620.
+625.
 
 [23]
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-52.
+57.
 
 [24]
 
@@ -85407,19 +85795,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
-14.
+19.
 
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-888.
+893.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-889.
+894.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -85458,12 +85846,12 @@ Overfull \hbox (1.76395pt too wide)
 [], [],
 
 LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
-506.
+511.
 
 [37] [38] [39] [40] [41]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2775.
+ne 2780.
 
 [42] [43] [44]
 Overfull \hbox (48.87616pt too wide) 
@@ -85748,12 +86136,12 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=356, 583.17876pt x 437.635pt>
+[15] [16] [17] [18] <figs/streamtubes.png, id=359, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=381, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=384, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -85765,14 +86153,14 @@ nces for (sub)sections,
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-888.
+893.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-889.
+894.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -86076,12 +86464,12 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=356, 583.17876pt x 437.635pt>
+[15] [16] [17] [18] <figs/streamtubes.png, id=359, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=381, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=384, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/

@@ -275,6 +275,8 @@ def doconce_exercise_output(exer,
     s += exer['heading']  # result string
     if include_numbering and not include_type:
         include_type = True
+    if not exer['type_visible']:
+        include_type = False
     if include_type:
         s += ' ' + exer['type']
         if include_numbering:

@@ -29,7 +29,7 @@ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\en
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt
+doconce format plain testdoc.do.txt --example-as-exercise
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt
 mv -f testdoc.rst testdoc.sphinx.rst
