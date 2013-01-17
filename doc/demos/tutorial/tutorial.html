@@ -556,7 +556,8 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -580,6 +581,15 @@ scripts so there is no support for mathematics in the comments.</p>
 </td>
 </tr>
 </table>
+<p>
+WordPress (<tt>wordpress.com</tt>) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The <tt>--wordpress</tt> option to
+<tt>doconce</tt> modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a <a href="http://doconce.wordpress.com">doconce example</a>
+on blogging with mathematics and code on WordPress.
+
 <p>
 
 <h3>Pandoc and Markdown  <a name="___sec9"></a></h3>

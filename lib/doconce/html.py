@@ -244,14 +244,16 @@ def html_code(filestr, code_blocks, code_block_types,
         filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
         filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
         # Equation references (ref{...}) must be \eqref{...} in MathJax
+        # (note: this affects also (ref{...}) syntax in verbatim blocks...)
         filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
     elif MATH_TYPESETTING == 'WordPress':
         filestr = re.sub(r'!bt *\n', '\n', filestr)
         filestr = re.sub(r'!et *\n', '\n', filestr)
         # References are not supported
+        # (note: this affects also (ref{...}) syntax in verbatim blocks...)
         filestr = re.sub(r'\(ref\{(.+?)\}\)',
-                         r'<b>REF to equation \g<1> not supported</b>', filestr)
+                         r'<b>(REF to equation \g<1> not supported)</b>', filestr)
     else:
         # Plain verbatim display of LaTeX syntax in math blocks
         filestr = c.sub(r'<blockquote><pre>\n', filestr)
@@ -260,7 +262,7 @@ def html_code(filestr, code_blocks, code_block_types,
     # --- Final fixes for html format ---
 
     # Add MathJax script if math is present (math is defined right above)
-    if math:
+    if math and MATH_TYPESETTING == 'MathJax':
         newcommands_files = list(
             sorted([name
                     for name in glob.glob('newcommands*.tex')
@@ -371,6 +373,10 @@ MathJax.Hub.Config({
         variables = {'title': title, 'date': date, 'main': filestr}
         filestr = template % variables
 
+    if MATH_TYPESETTING == 'WordPress':
+        # Remove all comments for wordpress.com html
+        pattern = re.compile('<!-- .+? -->', re.DOTALL)
+        filestr = re.sub(pattern, '', filestr)
     return filestr
 
 def html_figure(m):

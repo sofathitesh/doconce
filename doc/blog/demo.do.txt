@@ -3,6 +3,10 @@
 # http://doconce.shoutwiki.com/wiki/Doconce_demo
 # http://doconcedemo.jumpwiki.com/wiki/First_demo
 
+# #ifndef BLOG
+# #define BLOG
+# #endif
+
 Here is some simple mathematics:
 
 !bt
@@ -72,16 +76,27 @@ MOVIE: [http://www.youtube.com/watch?v=75Ju0eM5T2c]
 
 !bnotice
 
+# #if BLOG == "google"
  o There must be no title, author, or date in the document.
  o If the Doconce code above is stored in a file
    "`demo.do.txt`": "https://doconce.googlecode.com/hg/doc/blog/demo.do.txt.html", run
    `doconce format html demo` to produce the HTML code, stored in
    "`demo.html`": "https://doconce.googlecode.com/hg/doc/blog/demo.html.html".
  o Copy the text in `demo.html` into the blog text area on
-   URL: "http://doconce.blogspot.com".
+   URL: "http://doconce.blogspot.com" site, , using *HTML* mode.
  o Remember to first choose the *HTML-code* tab (and not just *Write*)
    and to place the copied text between the `div` tags.
-
+# #elif BLOG == "wordpress"
+ o There must be no title, author, or date in the document.
+ o If the Doconce code above is stored in a file
+   "`demo.do.txt`": "https://doconce.googlecode.com/hg/doc/blog/demo.do.txt.html", run
+   `doconce format html demo --wordpress` to produce the HTML code, stored in
+   "`demo.html`": "https://doconce.googlecode.com/hg/doc/blog/demo_wordpress.html.html".
+ o Copy the text in `demo.html` into the blog text area on
+   URL: "http://doconce.wordpress.com" site, using *Text* mode (not *Visual*!).
+ o Remember to first choose the *HTML-code* tab (and not just *Write*)
+   and to place the copied text between the `div` tags.
+# #endif
 !enotice
 
 

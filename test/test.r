@@ -16432,43 +16432,6 @@ Automatically generated HTML file from Doconce source
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
-
-<!-- newcommands_replace.tex -->
-$$
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\halfi}{1/2}
-\newcommand{\half}{\frac{1}{2}}
-\newcommand{\report}{test report}
-$$
-
-
-
-
-<!-- ------------------- main content ------------------------>
-    
-<p>
-
-
-<title>A Document for Testing Doconce</title>
-
-<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
-
 <p>
 <! -- author(s) -->
 
@@ -16494,7 +16457,7 @@ $$
 
 
 <p>
-<!-- institution(s) -->
+
 
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
@@ -16506,7 +16469,7 @@ $$
 
 
 <p>
-<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<center><h4>Jan 32, 2100</h4></center> 
 <p>
 
 <h2>Table of contents</h2>
@@ -16545,7 +16508,7 @@ $$
 <p>
 
 
-<!-- !split -->
+
 
 <p>
 The format of this document is
@@ -16562,8 +16525,8 @@ And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
 <p>
-<!-- Cannot demonstrate chapter headings since abstract and chapter -->
-<!-- is mutually exclusive in LaTeX -->
+
+
 
 <p>
 
@@ -16600,7 +16563,7 @@ Here is a nested list:
     a block quote.
 </blockquote>
 <p>
-<!-- !split and check if these extra words are included properly in the comment -->
+
 
 <p>
 
@@ -16608,7 +16571,7 @@ Here is a nested list:
 <p>
 More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
 to the section <a href="#subsubsec:ex">URLs</a>. 
-<!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
+
 
 <p>
 Let's do some copying from files too. First from subroutine up to the very end,
@@ -16616,7 +16579,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
       <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
       <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
@@ -16635,7 +16598,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 and then just the subroutine,
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
       <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
       <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
@@ -16649,7 +16612,7 @@ and then just the subroutine,
 and finally the complete file:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">C</span>     <span style="color: #19177C">a</span> <span style="color: #19177C">comment</span>
 
       <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
@@ -16671,7 +16634,7 @@ and finally the complete file:
 Testing other code environments. First Python:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
 def f(x):
     return x+1
@@ -16683,7 +16646,7 @@ which gets rendered as
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
@@ -16691,17 +16654,17 @@ which gets rendered as
 Then Cython:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">cpdef</span> <span style="color: #0000FF">f</span>(double x):
     <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
 <p>
 
-<!-- This one tests a + sign before a code environment -->
+
 C++:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
 
 <span style="color: #B00040">int</span> main()
@@ -16711,13 +16674,13 @@ C++:
 }
 </pre></div>
 <p>
-<!-- The next should get correctly typset in sphinx (cod is fcod) -->
+
 And a little bit of Fortran:
 
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -16733,7 +16696,7 @@ which then is typeset as
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
       real*8 a, b, x
       x = (a + b)/2
@@ -16746,7 +16709,7 @@ which then is typeset as
 System call:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #008000">test</span>
 Terminal&gt; <span style="color: #008000">cd test</span>
 Terminal&gt; myprog -f
@@ -16795,7 +16758,7 @@ Test of movies.
 
 
 <p>
-<!-- Test empty caption: -->
+
 
 <p>
 
@@ -16806,15 +16769,15 @@ Test of movies.
 
 
 <p>
-<!-- Test wrong syntax and multi-line caption -->
+
 
 <p>
 <a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
 
 <p>
-<!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
+
+
 
 <p>
 
@@ -16825,7 +16788,7 @@ Test of movies.
 
 
 <p>
-<!-- Test multi-line caption in figure -->
+
 
 <p>
 Here is figure <a href="#myfig">2</a> with a long multi-line caption
@@ -16844,19 +16807,19 @@ and an extra space before the FIGURE keyword.
 Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <p>
-<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
 
 <p>
-<!-- Test URL as figure name -->
+
 
 <p>
 <center><p><img src="https://doconce.googlecode.com/hg/doc/blog/f_plot.png" align="bottom" width=500,></p></center>
 
 <p>
-<!-- Test wikimedia type of files that otherwise reside in subdirs -->
+
 
 <p>
-<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+
 
 <p>
 
@@ -16866,7 +16829,7 @@ Functions do not always need to be advanced, here is one
 involving $latex \theta$:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
     return theta**2
 </pre></div>
@@ -16925,19 +16888,19 @@ Should look nice in most formats!
 
 <p>
 
-<!-- begin theorem -->
+
 <a name="theorem:fundamental1"></a>
 
 <p>
 
 <b>Theorem 5.</b> Let $latex a=1$ and $latex b=2$. Then $latex c=3$.
-<!-- end theorem -->
+
 
 <p>
-<!-- begin proof -->
+
 <b>Proof.</b> Since $latex c=a+b$, the result follows from straightforward addition.
 $latex latex \Diamond$
-<!-- end proof -->
+
 
 <p>
 As we see, the proof of Theorem 5 is a modest
@@ -16949,7 +16912,7 @@ achievement.
 <h3>Tables <a name="subsec:table"></a></h3>
 <p>
 
-<!-- index with comma could fool sphinx -->
+
 
 <p>
 Let us take this table from the manual:
@@ -16967,7 +16930,7 @@ Let us take this table from the manual:
 The Doconce source code reads
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -17048,13 +17011,13 @@ Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
 and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.
 
 <p>
-<!-- Comments should be inserted outside paragraphs (because in the rst -->
-<!-- format extra blanks make a paragraph break). -->
+
+
 
 <p>
-<!-- Note that when there is no http: or file:, it can be a file link -->
-<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
-<!-- if rst output is desired, but placed in a <tt>_static*</tt> folder. -->
+
+
+
 
 <p>
 More tough tests: repeated URLs whose footnotes when using the
@@ -17175,15 +17138,15 @@ between there we have <a href="#exer:some:formula">Exercise 6: Make references t
 <h2>Exercises  <a name="___sec9"></a></h2>
 <p>
 
-<!-- --- begin exercise -->
+
 
 <p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
-<!-- keywords = random numbers; Monte Carlo simulation -->
+
 
 <p>
-<!-- Torture tests -->
+
 
 <p>
 Make a program that simulates flipping a coin $latex N$ times.
@@ -17192,7 +17155,7 @@ let the program count the number of heads.
 
 <p>
 
-<!-- Test syntax error -->
+
 
 <p>
 <b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
@@ -17202,21 +17165,21 @@ let the program count the number of heads.
 <tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
 
 <p>
-<!-- --- begin short answer in exercise -->
+
 
 <p>
 <b>Answer.</b> If the <tt>random.random()</tt> function returns a number $latex <1/2$, let it be
 head, otherwise tail. Repeat this $latex N$ number of times.
-<!-- --- end short answer in exercise -->
+
 
 <p>
-<!-- --- begin solution of exercise -->
+
 
 <p>
 <b>Solution.</b> Code:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
 N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
 heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
@@ -17228,23 +17191,23 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 </pre></div>
 <p>
 
-<!-- --- end solution of exercise -->
+
 Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
-<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
-<p>
-<!-- --- end of exercise -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<p>
+
+
+
 
 <p>
 
 <h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
 <p>
-<!-- Minimalistic exercise -->
+
 
 <p>
 
@@ -17258,12 +17221,12 @@ count how many of them, $latex M$, that fall in the interval $latex (0.5,0.6)$, 
 compute the probability as $latex M/N$.
 
 <p>
-<!-- --- end of exercise -->
+
 
 <p>
 
 
-<!-- --- begin exercise -->
+
 
 <p>
 
@@ -17289,7 +17252,7 @@ The formula can be used to generate <tt>n</tt> points on a circle:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
@@ -17302,8 +17265,8 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 </pre></div>
 <p>
 
-<!-- Often in an exercise we have some comments about the solution -->
-<!-- which we normally want to keep where they are. -->
+
+
 
 <p>
 The goal of this project is to draw $latex N$ circles with random
@@ -17319,20 +17282,20 @@ above.
 $latex x_0$, $latex y_0$, and $latex R$ quantities.
 
 <p>
-<!-- --- begin short answer in exercise -->
+
 
 <p>
 <b>Answer.</b> Here goes the short answer to part a).
-<!-- --- end short answer in exercise -->
+
 
 <p>
-<!-- --- begin solution of exercise -->
+
 
 <p>
 <b>Solution.</b> Here goes a full solution to part a).
 
 <p>
-<!-- --- end solution of exercise -->
+
 
 <p>
 <b>b)</b> Let $latex R$ be uniformly distributed and $latex (x_0,y_0)$ normally distributed.
@@ -17345,7 +17308,7 @@ Filename: <tt>norm.py</tt>.
 Filename: <tt>circles.pdf</tt>.
 
 <p>
-<!-- Closing remarks for this Project -->
+
 
 <p>
 
@@ -17356,12 +17319,12 @@ and give some perspectives.
 
 <p>
 
-<!-- --- end of exercise -->
+
 
 <p>
 
 
-<!-- --- begin exercise -->
+
 
 <p>
 
@@ -17370,13 +17333,13 @@ and give some perspectives.
 Intro to this exercise. Questions are in subexercises below.
 
 <p>
-<!-- --- begin solution of exercise -->
+
 
 <p>
 <b>Solution.</b> Here goes a full solution of the whole exercise.
 
 <p>
-<!-- --- end solution of exercise -->
+
 
 <p>
 
@@ -17390,11 +17353,11 @@ Intro to this exercise. Questions are in subexercises below.
 Filename: <tt>subexer_a.pdf</tt>.
 
 <p>
-<!-- --- begin short answer in exercise -->
+
 
 <p>
 <b>Answer.</b> Short answer to subexercise a).
-<!-- --- end short answer in exercise -->
+
 
 <p>
 <b>b)</b> Here goes the text for subexercise b).
@@ -17404,16 +17367,16 @@ Filename: <tt>subexer_a.pdf</tt>.
 Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
-<!-- --- begin solution of exercise -->
+
 
 <p>
 <b>Solution.</b> Here goes the solution of this subexercise.
 
 <p>
-<!-- --- end solution of exercise -->
+
 
 <p>
-<!-- Closing remarks for this Exercise -->
+
 
 <p>
 
@@ -17425,24 +17388,24 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<!-- --- end of exercise -->
+
 
 <p>
 
 
-<!-- --- begin exercise -->
+
 
 <p>
 
 <h3>Some exercise without the "Exercise:" prefix  <a name="___sec16"></a></h3>
 <p>
-<!-- Another minimalistic exercise -->
+
 
 <p>
 Just some text.
 
 <p>
-<!-- --- end of exercise -->
+
 
 <p>
 
@@ -17456,7 +17419,7 @@ With some text, before we continue with exercises.
 <h2>More Exercises  <a name="___sec18"></a></h2>
 <p>
 
-<!-- --- begin exercise -->
+
 
 <p>
 
@@ -17467,12 +17430,12 @@ and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
 <p>
-<!-- --- end of exercise -->
+
 
 <p>
 
 
-<!-- --- begin exercise -->
+
 
 <p>
 
@@ -17484,7 +17447,7 @@ and this one as <a href="#exer:you">Project 7: References in a headings do not w
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
-<!-- --- end of exercise -->
+
 
 <p>
 
@@ -18759,7 +18722,8 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -18783,6 +18747,15 @@ scripts so there is no support for mathematics in the comments.</p>
 </td>
 </tr>
 </table>
+<p>
+WordPress (<tt>wordpress.com</tt>) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The <tt>--wordpress</tt> option to
+<tt>doconce</tt> modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a <a href="http://doconce.wordpress.com">doconce example</a>
+on blogging with mathematics and code on WordPress.
+
 <p>
 
 <h3>Pandoc and Markdown  <a name="___sec9"></a></h3>
@@ -20356,7 +20329,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
-is one example.
+is particularly well suited since it also allows extensive {\LaTeX} mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -20377,6 +20351,13 @@ scripts so there is no support for mathematics in the comments.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+WordPress (\code{wordpress.com}) allows raw HTML code in blogs,
+but has very limited
+{\LaTeX} support, basically only formulas. The \code{--wordpress} option to
+\code{doconce} modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a \href{{http://doconce.wordpress.com}}{doconce example}
+on blogging with mathematics and code on WordPress.
 
 \subsection{Pandoc and Markdown}
 
@@ -21561,7 +21542,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -21573,6 +21555,14 @@ See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 .. warning::
     In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
+
+WordPress (``wordpress.com``) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The ``--wordpress`` option to
+``doconce`` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a `doconce example <http://doconce.wordpress.com>`_
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -22838,7 +22828,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -22850,6 +22841,14 @@ See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 .. warning::
     In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
+
+WordPress (``wordpress.com``) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The ``--wordpress`` option to
+``doconce`` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a `doconce example <http://doconce.wordpress.com>`_
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -24062,7 +24061,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -24074,6 +24074,14 @@ See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (`wordpress.com`) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The `--wordpress` option to
+`doconce` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [http://doconce.wordpress.com doconce example]
+on blogging with mathematics and code on WordPress.
 
 ==== Pandoc and Markdown ====
 
@@ -25188,7 +25196,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -25199,6 +25208,14 @@ See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 {{warning|In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.}}
+
+WordPress (<code>wordpress.com</code>) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The <code>--wordpress</code> option to
+<code>doconce</code> modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [http://doconce.wordpress.com doconce example]
+on blogging with mathematics and code on WordPress.
 
 ==== Pandoc and Markdown ====
 
@@ -26299,7 +26316,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service ({{{blogname.blogspot.com}}})
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -26311,6 +26329,14 @@ See a [[http://doconce.blogspot.no|blog example]] for details on blogging.
 
 //Warning.// In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress ({{{wordpress.com}}}) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The {{{--wordpress}}} option to
+{{{doconce}}} modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [[http://doconce.wordpress.com|doconce example]]
+on blogging with mathematics and code on WordPress.
 
 
 == Pandoc and Markdown ==
@@ -27417,7 +27443,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service ('blogname.blogspot.com')
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -27429,6 +27456,14 @@ See a "http://doconce.blogspot.no":blog example for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress ('wordpress.com') allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The '--wordpress' option to
+'doconce' modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a "http://doconce.wordpress.com":doconce example
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 
@@ -28576,7 +28611,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (C{blogname.blogspot.com})
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -28588,6 +28624,14 @@ See a U{blog example<http://doconce.blogspot.no>} for details on blogging.
 
 I{Warning.} In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (C{wordpress.com}) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The C{--wordpress} option to
+C{doconce} modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a U{doconce example<http://doconce.wordpress.com>}
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -29785,7 +29829,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (blogname.blogspot.com)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -29797,6 +29842,14 @@ See a blog example (http://doconce.blogspot.no) for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (wordpress.com) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The --wordpress option to
+doconce modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a doconce example (http://doconce.wordpress.com)
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -31019,7 +31072,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -31031,6 +31085,14 @@ See a [blog example](http://doconce.blogspot.no) for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (`wordpress.com`) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The `--wordpress` option to
+`doconce` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [doconce example](http://doconce.wordpress.com)
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -32042,7 +32104,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -32054,6 +32117,14 @@ See a "blog example": "http://doconce.blogspot.no" for details on blogging.
 In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 !ewarning
+
+WordPress (`wordpress.com`) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The `--wordpress` option to
+`doconce` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a "doconce example": "http://doconce.wordpress.com"
+on blogging with mathematics and code on WordPress.
 
 ===== Pandoc and Markdown =====
 
@@ -32755,7 +32826,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (15:55)</center>
+<center>Wed, 16 Jan 2013 (16:37)</center>
 
 
 
@@ -32886,7 +32957,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (15:55)</center>
+<center>Wed, 16 Jan 2013 (16:37)</center>
 
 
 
@@ -35902,7 +35973,8 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -35926,6 +35998,15 @@ scripts so there is no support for mathematics in the comments.</p>
 </td>
 </tr>
 </table>
+<p>
+WordPress (<tt>wordpress.com</tt>) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The <tt>--wordpress</tt> option to
+<tt>doconce</tt> modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a <a href="http://doconce.wordpress.com">doconce example</a>
+on blogging with mathematics and code on WordPress.
+
 <p>
 
 <h3>Pandoc and Markdown  <a name="___sec17"></a></h3>
@@ -39746,7 +39827,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
-is one example.
+is particularly well suited since it also allows extensive {\LaTeX} mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -39767,6 +39849,13 @@ scripts so there is no support for mathematics in the comments.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+WordPress (\code{wordpress.com}) allows raw HTML code in blogs,
+but has very limited
+{\LaTeX} support, basically only formulas. The \code{--wordpress} option to
+\code{doconce} modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a \href{{http://doconce.wordpress.com}}{doconce example}
+on blogging with mathematics and code on WordPress.
 
 \subsection{Pandoc and Markdown}
 
@@ -42900,7 +42989,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -42912,6 +43002,14 @@ See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 .. warning::
     In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
+
+WordPress (``wordpress.com``) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The ``--wordpress`` option to
+``doconce`` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a `doconce example <http://doconce.wordpress.com>`_
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -46262,7 +46360,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -46274,6 +46373,14 @@ See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
 .. warning::
     In the comments after the blog one cannot paste raw HTML code with MathJax
     scripts so there is no support for mathematics in the comments.
+
+WordPress (``wordpress.com``) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The ``--wordpress`` option to
+``doconce`` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a `doconce example <http://doconce.wordpress.com>`_
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -49729,7 +49836,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -49741,6 +49849,14 @@ See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (`wordpress.com`) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The `--wordpress` option to
+`doconce` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [http://doconce.wordpress.com doconce example]
+on blogging with mathematics and code on WordPress.
 
 ==== Pandoc and Markdown ====
 
@@ -52684,7 +52800,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -52695,6 +52812,14 @@ See a [http://doconce.blogspot.no blog example] for details on blogging.
 
 {{warning|In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.}}
+
+WordPress (<code>wordpress.com</code>) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The <code>--wordpress</code> option to
+<code>doconce</code> modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [http://doconce.wordpress.com doconce example]
+on blogging with mathematics and code on WordPress.
 
 ==== Pandoc and Markdown ====
 
@@ -55672,7 +55797,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service ({{{blogname.blogspot.com}}})
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -55684,6 +55810,14 @@ See a [[http://doconce.blogspot.no|blog example]] for details on blogging.
 
 //Warning.// In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress ({{{wordpress.com}}}) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The {{{--wordpress}}} option to
+{{{doconce}}} modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [[http://doconce.wordpress.com|doconce example]]
+on blogging with mathematics and code on WordPress.
 
 
 == Pandoc and Markdown ==
@@ -58616,7 +58750,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service ('blogname.blogspot.com')
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -58628,6 +58763,14 @@ See a "http://doconce.blogspot.no":blog example for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress ('wordpress.com') allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The '--wordpress' option to
+'doconce' modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a "http://doconce.wordpress.com":doconce example
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 
@@ -61625,7 +61768,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (C{blogname.blogspot.com})
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -61637,6 +61781,14 @@ See a U{blog example<http://doconce.blogspot.no>} for details on blogging.
 
 I{Warning.} In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (C{wordpress.com}) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The C{--wordpress} option to
+C{doconce} modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a U{doconce example<http://doconce.wordpress.com>}
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -64750,7 +64902,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (blogname.blogspot.com)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -64762,6 +64915,14 @@ See a blog example (http://doconce.blogspot.no) for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (wordpress.com) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The --wordpress option to
+doconce modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a doconce example (http://doconce.wordpress.com)
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -67970,7 +68131,8 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
@@ -67982,6 +68144,14 @@ See a [blog example](http://doconce.blogspot.no) for details on blogging.
 
 *Warning.* In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
+
+WordPress (`wordpress.com`) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The `--wordpress` option to
+`doconce` modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a [doconce example](http://doconce.wordpress.com)
+on blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -83398,21 +83568,20 @@ in the []
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.eps>
+[6] [7] <latex_figs/warning.eps> [8]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-[8]
 
 LaTeX Warning: Reference `newcommands' on page 9 
 
 
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
-
+[9]
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[9]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
@@ -83677,17 +83846,17 @@ in the []
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.eps>
+[6] [7] <latex_figs/warning.eps> [8]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-[8]
+
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
-
+[9]
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[9]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
@@ -84081,7 +84250,7 @@ Underfull \hbox (badness 10000)
 [10]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 11 undefined on i
-nput line 690.
+nput line 699.
 
 
 Underfull \hbox (badness 10000) 
@@ -84122,7 +84291,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178211 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178652 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -84269,7 +84438,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -84416,7 +84585,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -84569,7 +84738,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -84716,7 +84885,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184291 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -84910,13 +85079,13 @@ Overfull \hbox (11.29898pt too wide)
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-
+[7]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
-[7]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
@@ -84934,14 +85103,14 @@ Overfull \hbox (78.51936pt too wide)
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[8]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -84962,7 +85131,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-
+[9]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -84971,7 +85140,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-[9]
+
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -84980,11 +85149,11 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[10]
+
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
@@ -85029,11 +85198,11 @@ Overfull \hbox (1.98695pt too wide)
 [14]
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
-
+[15]
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-[15]
+
 Overfull \hbox (5.60612pt too wide) 
 \T1/ptm/m/n/10 Different out-put for-mats re-quire dif-fer-ent for-mats of im-a
 ge files. For ex-am-ple, PostScript
@@ -85041,14 +85210,14 @@ ge files. For ex-am-ple, PostScript
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
-
+[16]
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
-[16]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
@@ -85134,8 +85303,8 @@ output in tutorial.md
 [23 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
-[tutorial.txt (plain): 21 pages on 21 sheets]
-[Total: 21 pages on 21 sheets] saved into the file `tutorial.txt.ps'
+[tutorial.txt (plain): 22 pages on 22 sheets]
+[Total: 22 pages on 22 sheets] saved into the file `tutorial.txt.ps'
 [19 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
@@ -85161,7 +85330,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[553 lines wrapped]
+[559 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -85558,23 +85727,24 @@ Overfull \hbox (15.73763pt too wide)
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
+[8]
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
-t line 858.
+LaTeX Warning: Hyper reference `macros-newcommands' on page 9 undefined on inpu
+t line 867.
 
 
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-[8]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-
+[9]
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -85586,7 +85756,7 @@ d{quote}" \
 Overfull \hbox (71.00006pt too wide) 
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
-[9]
+
 Overfull \hbox (92.17801pt too wide) 
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
@@ -85609,11 +85779,11 @@ Overfull \hbox (27.6591pt too wide)
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
-
+[10]
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-[10]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
@@ -85666,7 +85836,7 @@ here
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-
+[16]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
@@ -85674,7 +85844,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
-[16]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
@@ -85685,7 +85855,7 @@ y
 
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
-
+[17]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 Appendix is supported too: just let the heading start with "Ap
 pendix: "  
@@ -85697,7 +85867,7 @@ ng
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 is used - all other formats just leave the heading as it is wr
 itten).  
-[17]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
@@ -85784,8 +85954,8 @@ Overfull \hbox (83.00006pt too wide)
 . 
 [23]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 219
-3.
+LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 220
+2.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
@@ -85793,7 +85963,7 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
-ut line 2195.
+ut line 2204.
 
 
 LaTeX Warning: Hyper reference `id2' on page 24 
@@ -86255,19 +86425,19 @@ Overfull \hbox (15.73763pt too wide)
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
-
+[8]
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-[8]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-
+[9]
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -86279,7 +86449,7 @@ d{quote}" \
 Overfull \hbox (71.00006pt too wide) 
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
-[9]
+
 Overfull \hbox (92.17801pt too wide) 
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
@@ -86302,11 +86472,11 @@ Overfull \hbox (27.6591pt too wide)
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
-
+[10]
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-[10]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
@@ -86359,7 +86529,7 @@ here
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-
+[16]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
@@ -86367,7 +86537,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
-[16]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
@@ -86378,7 +86548,7 @@ y
 
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
-
+[17]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 Appendix is supported too: just let the heading start with "Ap
 pendix: "  
@@ -86390,7 +86560,7 @@ ng
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 is used - all other formats just leave the heading as it is wr
 itten).  
-[17]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
@@ -87036,17 +87206,18 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=174, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] [19]
+<figs/streamtubes.png, id=182, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1458.
+ne 1466.
 
 
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=203, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=204, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -87054,16 +87225,16 @@ Overfull \hbox (4.68658pt too wide)
 [22 <./latex_figs/notice.pdf>]
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-621.
+629.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-625.
+633.
 
 [23]
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-57.
+65.
 
 [24]
 
@@ -87088,19 +87259,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
-19.
+27.
 
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-893.
+901.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-894.
+902.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -87139,12 +87310,12 @@ Overfull \hbox (1.76395pt too wide)
 [], [],
 
 LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
-511.
+519.
 
 [37] [38] [39] [40] [41]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2780.
+ne 2788.
 
 [42] [43] [44]
 Overfull \hbox (48.87616pt too wide) 
@@ -87429,12 +87600,13 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=359, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] [19]
+<figs/streamtubes.png, id=365, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=384, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=385, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -87446,14 +87618,14 @@ nces for (sub)sections,
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-893.
+901.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-894.
+902.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -87757,12 +87929,13 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=359, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] [19]
+<figs/streamtubes.png, id=365, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=384, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=385, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -88102,7 +88275,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -88394,7 +88567,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -88698,7 +88871,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -88990,7 +89163,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []

@@ -200,14 +200,21 @@ from the source code of a page at the site; just insert <literal>%(title)s</lite
 <literal>%(date)s</literal> at appropriate places and replace the main bod of text
 by <literal>%(main)s</literal>. Here is an example:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format html mydoc --html-template=mytemplate.html</literal_block></section><section ids="blogs" names="blogs"><title>Blogs</title><paragraph>Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<literal>blogname.blogspot.com</literal>)
-is one example.
+is particularly well suited since it also allows extensive LaTeX mathematics via
+MathJax.
 Write the blog text as a Doconce document without any title, author, and
 date. Then generate HTML as described above. Copy the text and paste it
 into the text area in the blog, making sure the input format is HTML.
 On Google's Blogger service you can use Doconce to generate blogs with
 LaTeX mathematics and pretty (pygmentized) blocks of computer code.
 See a <reference name="blog example" refuri="http://doconce.blogspot.no">blog example</reference><target ids="blog-example" names="blog\ example" refuri="http://doconce.blogspot.no"/> for details on blogging.</paragraph><warning><paragraph>In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.</paragraph></warning></section><section ids="pandoc-and-markdown" names="pandoc\ and\ markdown"><title>Pandoc and Markdown</title><paragraph>Output in Pandoc's extended Markdown format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.mkd</literal>.
+scripts so there is no support for mathematics in the comments.</paragraph></warning><paragraph>WordPress (<literal>wordpress.com</literal>) allows raw HTML code in blogs,
+but has very limited
+LaTeX support, basically only formulas. The <literal>--wordpress</literal> option to
+<literal>doconce</literal> modifies the HTML code such that all equations are typeset
+in a way that is acceptable to WordPress.
+There is a <reference name="doconce example" refuri="http://doconce.wordpress.com">doconce example</reference><target ids="doconce-example" names="doconce\ example" refuri="http://doconce.wordpress.com"/>
+on blogging with mathematics and code on WordPress.</paragraph></section><section ids="pandoc-and-markdown" names="pandoc\ and\ markdown"><title>Pandoc and Markdown</title><paragraph>Output in Pandoc's extended Markdown format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.mkd</literal>.
 From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
 Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some. The <literal>-R</literal> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
