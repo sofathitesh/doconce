@@ -11032,16 +11032,16 @@ def f(theta):
 
 *More on $\theta$.* Here is more text following headline with math.
 
-Newcommands must also be tested in this \report:
-$\half$, $\halfi$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this test report:
+$\frac{1}{2}$, ${1/2}$, $\pmb{x}$, $\frac{Du}{dt}$,
 both inline and in block:
 
 $$
 \begin{align*}
-\Ddt{u} &= 0
+\frac{Du}{dt} &= 0
 \\ 
-\half &= \halfi\\ 
-\half\x &= \normalvec
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
 $$
 
@@ -11049,10 +11049,10 @@ Or with align with label and numbers:
 
 $$
 \begin{align}
-\Ddt{u} &= 0
+\frac{Du}{dt} &= 0
 \label{aligneq1}\\ 
-\half &= \halfi\\ 
-\half\x &= \normalvec
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \label{aligneq1}
 \end{align}
 $$
@@ -12435,22 +12435,22 @@ output2</code></pre>
 <pre><code>def f(theta):
     return theta**2</code></pre>
 <p><em>More on \(\theta\).</em> Here is more text following headline with math.</p>
-<p>Newcommands must also be tested in this : \(\half\), \(\halfi\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
+<p>Newcommands must also be tested in this test report: \(\frac{1}{2}\), \({1/2}\), \(\pmb{x}\), \(\frac{Du}{dt}\), both inline and in block:</p>
 <p>\[
 \begin{align*}
-\Ddt{u} &amp;= 0
+\frac{Du}{dt} &amp;= 0
 \\ 
-\half &amp;= \halfi\\ 
-\half\x &amp;= \normalvec
+\frac{1}{2} &amp;= {1/2}\\ 
+\frac{1}{2}\pmb{x} &amp;= \pmb{n}
 \end{align*}
 \]</p>
 <p>Or with align with label and numbers:</p>
 <p>\[
 \begin{align}
-\Ddt{u} &amp;= 0
+\frac{Du}{dt} &amp;= 0
 \label{aligneq1}\\ 
-\half &amp;= \halfi\\ 
-\half\x &amp;= \normalvec
+\frac{1}{2} &amp;= {1/2}\\ 
+\frac{1}{2}\pmb{x} &amp;= \pmb{n}
 \label{aligneq1}
 \end{align}
 \]</p>
@@ -15157,17 +15157,17 @@ involving \( \theta \):
 <b>More on \( \theta \).</b> Here is more text following headline with math.
 
 <p>
-Newcommands must also be tested in this \report:
-\( \half \), \( \halfi \), \( \x \), \( \Ddt{u} \),
+Newcommands must also be tested in this test report:
+\( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \),
 both inline and in block:
 
 <p>
 $$
 \begin{align*}
-\Ddt{u} &= 0
+\frac{Du}{dt} &= 0
 \\ 
-\half &= \halfi\\ 
-\half\x &= \normalvec
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
 $$
 
@@ -15178,10 +15178,10 @@ Or with align with label and numbers:
 <p>
 $$
 \begin{align}
-\Ddt{u} &= 0
+\frac{Du}{dt} &= 0
 \label{aligneq1}\\ 
-\half &= \halfi\\ 
-\half\x &= \normalvec
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \label{aligneq1}
 \end{align}
 $$
@@ -16376,9 +16376,1244 @@ cp slides.html slides_deck_beamer.html
 echo "Here are the slide shows:"
 /bin/ls slides_*_*.html
 
+************** File: testdoc_wordpress.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+</style>
+
+</head>
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+<!-- ------------------- main content ------------------------>
+    
+<p>
+
+
+<title>A Document for Testing Doconce</title>
+
+<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
+
+<p>
+<! -- author(s) -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
+</center>
+
+<center>
+<b>Kaare Dump</b> [3]
+</center>
+
+<center>
+<b>A. Dummy Author</b> 
+</center>
+
+<center>
+<b>I. S. Overworked</b> [4, 5, 6, 7]
+</center>
+
+<center>
+<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<center>[3] <b>Segfault Inc, Cyberspace</b></center>
+<center>[4] <b>Inst1</b></center>
+<center>[5] <b>Inst2, Somewhere</b></center>
+<center>[6] <b>Third Inst, Elsewhere</b></center>
+<center>[7] <b>Fourth Inst</b></center>
+
+
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+<h2>Table of contents</h2>
+
+<p>
+
+<a href="#sec1"> Section 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec1"> Subsection 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The $latex \theta$ parameter (not $latex \nabla$?) </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript $latex a_i$: <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec8"> LaTeX Mathematics </a><br>
+<a href="#___sec9"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 2: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 4: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec15"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
+<a href="#___sec17"> Here goes another section </a><br>
+<a href="#___sec18"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 7: References in a headings do not work well in html </a><br>
+<a href="#___sec21"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec22"> A subsection within an appendix </a><br>
+<a href="#___sec23"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec24"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec27"> Appendix: Testing identical titles </a><br>
+
+<p>
+
+
+<!-- !split -->
+
+<p>
+The format of this document is
+plain, homemade HTML (from Doconce).
+
+<p>
+
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+
+<p>
+And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+
+<p>
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- is mutually exclusive in LaTeX -->
+
+<p>
+
+<h2>Section 1 <a name="sec1"></a></h2>
+<p>
+Here is a nested list:
+
+<p>
+
+<ul>
+  <li> item1</li>
+  <li> item2</li>
+  <li> item3 which continues
+    on the next line to test that feature</li>
+  <li> and a sublist</li>
+
+<ul>
+    <li> with indented subitem1</li>
+    <li> and a subitem2</li>
+</ul>
+
+  <li> and perhaps an ordered sublist</li>
+
+<ol>
+   <li> first item</li>
+   <li> second item,
+      continuing on a new line</li>
+</ol>
+
+</ul>
+
+<blockquote>
+    Here are two lines that make up
+    a block quote.
+</blockquote>
+<p>
+<!-- !split and check if these extra words are included properly in the comment -->
+
+<p>
+
+<h3>Subsection 1  <a name="___sec1"></a></h3>
+<p>
+More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
+to the section <a href="#subsubsec:ex">URLs</a>. 
+<!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
+
+<p>
+Let's do some copying from files too. First from subroutine up to the very end,
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
+      <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
+      <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
+      <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #008000; font-weight: bold">do </span><span style="color: #19177C">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #19177C">i</span>
+         <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #19177C">r</span> <span style="color: #666666">+</span> <span style="color: #19177C">i</span>
+      <span style="color: #008000; font-weight: bold">end do</span>
+<span style="color: #008000; font-weight: bold">      return</span>
+<span style="color: #19177C">C</span>     <span style="color: #19177C">END1</span>
+
+      <span style="color: #008000; font-weight: bold">program </span><span style="color: #19177C">testme</span>
+      <span style="color: #008000; font-weight: bold">call </span><span style="color: #19177C">test</span>()
+      <span style="color: #008000; font-weight: bold">return</span>
+</pre></div>
+<p>
+and then just the subroutine,
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
+      <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
+      <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
+      <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #008000; font-weight: bold">do </span><span style="color: #19177C">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #19177C">i</span>
+         <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #19177C">r</span> <span style="color: #666666">+</span> <span style="color: #19177C">i</span>
+      <span style="color: #008000; font-weight: bold">end do</span>
+<span style="color: #008000; font-weight: bold">      return</span>
+</pre></div>
+<p>
+and finally the complete file:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">C</span>     <span style="color: #19177C">a</span> <span style="color: #19177C">comment</span>
+
+      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
+      <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
+      <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
+      <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #008000; font-weight: bold">do </span><span style="color: #19177C">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #19177C">i</span>
+         <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #19177C">r</span> <span style="color: #666666">+</span> <span style="color: #19177C">i</span>
+      <span style="color: #008000; font-weight: bold">end do</span>
+<span style="color: #008000; font-weight: bold">      return</span>
+<span style="color: #19177C">C</span>     <span style="color: #19177C">END1</span>
+
+      <span style="color: #008000; font-weight: bold">program </span><span style="color: #19177C">testme</span>
+      <span style="color: #008000; font-weight: bold">call </span><span style="color: #19177C">test</span>()
+      <span style="color: #008000; font-weight: bold">return</span>
+</pre></div>
+<p>
+
+Testing other code environments. First Python:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
+def f(x):
+    return x+1
+!ec
+</pre></div>
+<p>
+which gets rendered as
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
+</pre></div>
+<p>
+Then Cython:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">cpdef</span> <span style="color: #0000FF">f</span>(double x):
+    <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
+</pre></div>
+<p>
+
+<!-- This one tests a + sign before a code environment -->
+C++:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+
+<span style="color: #B00040">int</span> main()
+{
+   std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Sample output&quot;</span> <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
+   <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>
+}
+</pre></div>
+<p>
+<!-- The next should get correctly typset in sphinx (cod is fcod) -->
+And a little bit of Fortran:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+!ec
+</pre></div>
+<p>
+which then is typeset as
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+</pre></div>
+<p>
+
+System call:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #008000">test</span>
+Terminal&gt; <span style="color: #008000">cd test</span>
+Terminal&gt; myprog -f
+output1
+output2
+</pre></div>
+<p>
+
+It is time to test <tt>verbatim inline font</tt> especially with <tt>a newline
+inside the text</tt> and an exclamation mark at the end: <tt>BEGIN</tt>! The
+exclamation mark inside the verbatim text is not smart for latex as
+we use ! in the <tt>verb</tt> typesetting... Also test backslashes
+like <tt>\begin</tt> and <tt>\end</tt> in inline verbatim text.
+
+<p>
+
+<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+<p>
+Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+
+<p>
+
+<center> <! -- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
+<p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
+</center>
+
+<p>
+
+Figures without captions are allowed.
+
+<p>
+<center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
+
+<p>
+Test of movies.
+
+<p>
+
+<embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
+</p>
+
+
+<p>
+<!-- Test empty caption: -->
+
+<p>
+
+<embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em></em>
+</p>
+
+
+<p>
+<!-- Test wrong syntax and multi-line caption -->
+
+<p>
+<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
+
+<p>
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate -->
+
+<p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+
+<em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+
+
+
+<p>
+<!-- Test multi-line caption in figure -->
+
+<p>
+Here is figure <a href="#myfig">2</a> with a long multi-line caption
+and an extra space before the FIGURE keyword.
+
+<p>
+
+<center> <! -- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <tt>my_file_v1</tt> and <tt>my_file_v2</tt> as well as math with subscript as in $latex t_{i+1}$. <a name="myfig"></a> </p></center>
+<p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
+</center>
+
+<p>
+
+Movie <a href="#mymov">mymov</a> has a similar problem.
+
+<p>
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
+<p>
+<!-- Test URL as figure name -->
+
+<p>
+<center><p><img src="https://doconce.googlecode.com/hg/doc/blog/f_plot.png" align="bottom" width=500,></p></center>
+
+<p>
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
+
+<p>
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+
+<p>
+
+<h3>The $latex \theta$ parameter (not $latex \nabla$?) <a name="decay:sec:theta"></a></h3>
+<p>
+Functions do not always need to be advanced, here is one
+involving $latex \theta$:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
+    return theta**2
+</pre></div>
+<p>
+
+<b>More on $latex \theta$.</b> Here is more text following headline with math.
+
+<p>
+Newcommands must also be tested in this test report:
+$latex \frac{1}{2}$, $latex {1/2}$, $latex \pmb{x}$, $latex \frac{Du}{dt}$,
+both inline and in block:
+
+<p>
+
+$latex 
+\frac{Du}{dt} = 0
+ $
+
+$latex  
+\frac{1}{2} = {1/2} $
+
+$latex  
+\frac{1}{2}\pmb{x} = \pmb{n}
+ $
+
+
+
+<p>
+Or with align with label and numbers:
+
+<p>
+
+$latex 
+\frac{Du}{dt} = 0
+ $
+
+$latex  
+\frac{1}{2} = {1/2} $
+
+$latex  
+\frac{1}{2}\pmb{x} = \pmb{n}
+
+ $
+
+
+
+<p>
+
+
+<h3>Custom Environments  <a name="___sec4"></a></h3>
+<p>
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <tt>.tex</tt> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+
+<p>
+
+<!-- begin theorem -->
+<a name="theorem:fundamental1"></a>
+
+<p>
+
+<b>Theorem 5.</b> Let $latex a=1$ and $latex b=2$. Then $latex c=3$.
+<!-- end theorem -->
+
+<p>
+<!-- begin proof -->
+<b>Proof.</b> Since $latex c=a+b$, the result follows from straightforward addition.
+$latex latex \Diamond$
+<!-- end proof -->
+
+<p>
+As we see, the proof of Theorem 5 is a modest
+achievement.
+
+<p>
+
+
+<h3>Tables <a name="subsec:table"></a></h3>
+<p>
+
+<!-- index with comma could fool sphinx -->
+
+<p>
+Let us take this table from the manual:
+
+<p>
+
+<table border="1">
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
+<tr><td align="left">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
+<tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
+</table>
+<p>
+
+The Doconce source code reads
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+</pre></div>
+<p>
+
+Here is yet another table to test that we can handle more than
+one table:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="left">   0.0             </td> <td align="left">   1.4186          </td> <td align="left">   -5.01           </td> </tr>
+<tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
+<tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
+</table>
+<p>
+And one with math headings (that are expanded and must be treated
+accordingly) and verbatim heading and entry:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>    $latex latex i$     </b></td> <td align="center"><b>   $latex latex h_i$    </b></td> <td align="center"><b> $latex latex \bar T_i$ </b></td> <td align="center"><b>   <tt>L_i</tt>   </b></td> </tr>
+<tr><td align="left">   0                   </td> <td align="right">   0                   </td> <td align="right">   288                 </td> <td align="right">   -0.0065             </td> </tr>
+<tr><td align="left">   1                   </td> <td align="right">   11,000              </td> <td align="right">   216                 </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   2                   </td> <td align="right">   20,000              </td> <td align="right">   216                 </td> <td align="right">   0.001               </td> </tr>
+<tr><td align="left">   3                   </td> <td align="right">   32,000              </td> <td align="right">   228                 </td> <td align="right">   0.0028              </td> </tr>
+<tr><td align="left">   4                   </td> <td align="right">   47,000              </td> <td align="right">   270                 </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   5                   </td> <td align="right">   51,000              </td> <td align="right">   270                 </td> <td align="right">   -0.0028             </td> </tr>
+<tr><td align="left">   6                   </td> <td align="right">   71,000              </td> <td align="right">   214                 </td> <td align="right">   <tt>NaN</tt>        </td> </tr>
+</table>
+<p>
+And add one with verbatim headings (with underscores),
+and rows starting with <tt>|-</tt> because of a negative number,
+and <tt>|</tt> right after verbatim word (with no space):
+
+<p>
+<table border="1">
+<tr><td align="center"><b>           exact            </b></td> <td align="center"><b>        <tt>v_1</tt>        </b></td> <td align="center"><b> $latex latex a_i$ + <tt>v_2</tt> </b></td> <td align="center"><b>      <tt>verb_3_</tt>      </b></td> </tr>
+<tr><td align="right">   9                             </td> <td align="right">   9.62                          </td> <td align="right">   5.57                          </td> <td align="right">   8.98                          </td> </tr>
+<tr><td align="right">   -20                           </td> <td align="right">   -23.39                        </td> <td align="right">   -7.65                         </td> <td align="right">   -19.93                        </td> </tr>
+<tr><td align="right">   10                            </td> <td align="right">   17.74                         </td> <td align="right">   -4.50                         </td> <td align="right">   9.96                          </td> </tr>
+<tr><td align="right">   0                             </td> <td align="right">   -9.19                         </td> <td align="right">   4.13                          </td> <td align="right">   -0.26                         </td> </tr>
+</table>
+<p>
+
+
+<h3>A test of verbatim words in heading with subscript $latex a_i$: <tt>my_file_v1</tt> and <tt>my_file_v2</tt>  <a name="___sec6"></a></h3>
+<p>
+<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math $latex a_{i-1}$.</b> Here
+is
+some text.
+
+<p>
+
+
+<h3>URLs <a name="subsubsec:ex"></a></h3>
+<p>
+Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
+the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <tt>file:///</tt> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a
+file</a> is
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+
+<p>
+Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
+<a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas
+and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.
+
+<p>
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
+
+<p>
+<!-- Note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a <tt>_static*</tt> folder. -->
+
+<p>
+More tough tests: repeated URLs whose footnotes when using the
+<tt>--latex-printed</tt> option must be correct. We have
+<a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
+<a href="http://google.com">google</a>, which should result in exactly three
+footnotes.
+
+<p>
+
+
+<h3>LaTeX Mathematics  <a name="___sec8"></a></h3>
+<p>
+Here is an equation without label using backslash-bracket environment:
+
+$latex  a = b + c  $
+
+
+or with number and label, as in <b>REF to equation my:eq1 not supported</b>, using the equation environment:
+
+$latex 
+{\partial u\over\partial t} = \nabla^2 u 
+ $
+
+
+We can refer to this equation by <b>REF to equation my:eq1 not supported</b>.
+
+<p>
+Here is a system without equation numbers, using the align-astrisk environment:
+
+$latex 
+\pmb{a} = \pmb{q}\times\pmb{n}  $
+
+$latex  
+b = \nabla^2 u + \nabla^4 v
+ $
+
+
+
+<p>
+
+And here is a system of equations with labels in an align environment:
+
+$latex 
+a = q + 4 + 5+ 6   $
+
+$latex  
+b = \nabla^2 u + \nabla^4 x 
+ $
+
+
+We can refer to <b>REF to equation eq1 not supported</b>-<b>REF to equation eq2 not supported</b>.
+
+<p>
+Many of the next environments will fail in non-latex formats.
+Testing multiline:
+
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+
+\end{multline}
+
+Testing split:
+
+$latex 
+
+\begin{split}
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
+\end{split}
+ $
+
+
+We can refer to the last equation by <b>REF to equation split:envir:eq not supported</b>.
+
+<p>
+Testing gather:
+
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+
+
+<p>
+Testing alignat:
+
+\begin{alignat}{2}
+a = q + 4 + 5+ 6\qquad  \mbox{for } q\geq 0   $
+
+$latex  
+b = \nabla^2 u + \nabla^4 x  x\in\Omega 
+\end{alignat}
+
+Let us refer to <b>REF to equation eq1 not supported</b>-<b>REF to equation eq2 not supported</b> again, and to the
+alignat variant <b>REF to equation eq1a not supported</b>-<b>REF to equation eq2a not supported</b>, and to <b>REF to equation my:eq1 not supported</b>.
+
+<p>
+Testing eqnarray:
+
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
+\end{eqnarray}
+
+
+<p>
+More mathematical typesetting is demonstrated in the coming exercises.
+
+<p>
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 7: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>.
+
+<p>
+
+<h2>Exercises  <a name="___sec9"></a></h2>
+<p>
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
+<!-- keywords = random numbers; Monte Carlo simulation -->
+
+<p>
+<!-- Torture tests -->
+
+<p>
+Make a program that simulates flipping a coin $latex N$ times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+<p>
+
+<!-- Test syntax error -->
+
+<p>
+<b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+
+<p>
+<b>Hint 2.</b> Draw an integer among $latex \{1,2\}$ with
+<tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
+
+<p>
+<!-- --- begin short answer in exercise -->
+
+<p>
+<b>Answer.</b> If the <tt>random.random()</tt> function returns a number $latex <1/2$, let it be
+head, otherwise tail. Repeat this $latex N$ number of times.
+<!-- --- end short answer in exercise -->
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> Code:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
+N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
+heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(N):
+    r <span style="color: #666666">=</span> random<span style="color: #666666">.</span>random()
+    <span style="color: #008000; font-weight: bold">if</span> r <span style="color: #666666">&lt;=</span> <span style="color: #666666">0.5</span>:
+        heads <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Flipping a coin </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> times gave </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> heads&#39;</span> <span style="color: #666666">%</span> (N, heads)
+</pre></div>
+<p>
+
+<!-- --- end solution of exercise -->
+Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
+<p>
+<!-- Minimalistic exercise -->
+
+<p>
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval $latex [0,1)$?
+
+<p>
+<b>Hint.</b> To answer this question empirically, let a program
+draw $latex N$ such random numbers using Python's standard <tt>random</tt> module,
+count how many of them, $latex M$, that fall in the interval $latex (0.5,0.6)$, and
+compute the probability as $latex M/N$.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+<p>
+The formula for a circle is given by
+
+<p>
+
+$latex 
+x = x_0 + R\cos 2\pi t, $
+
+$latex  
+y = y_0 + R\sin 2\pi t,
+ $
+
+
+where $latex R$ is the radius of the circle, $latex (x_0,y_0)$ is the
+center point, and $latex t$ is a parameter in the unit interval $latex [0,1]$.
+For any $latex t$, $latex (x,y)$ is a point on the circle.
+The formula can be used to generate <tt>n</tt> points on a circle:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
+    t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, n)
+    x <span style="color: #666666">=</span> x0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>cos(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    y <span style="color: #666666">=</span> y0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    <span style="color: #008000; font-weight: bold">return</span> x, y
+
+x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
+</pre></div>
+<p>
+
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+
+<p>
+The goal of this project is to draw $latex N$ circles with random
+center and radius. Plot each circle using the <tt>circle</tt> function
+above.
+
+<p>
+
+<b>a)</b> Let $latex R$ be normally distributed and $latex (x_0,y_0)$ uniformly distributed.
+
+<p>
+<b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
+$latex x_0$, $latex y_0$, and $latex R$ quantities.
+
+<p>
+<!-- --- begin short answer in exercise -->
+
+<p>
+<b>Answer.</b> Here goes the short answer to part a).
+<!-- --- end short answer in exercise -->
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> Here goes a full solution to part a).
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+<b>b)</b> Let $latex R$ be uniformly distributed and $latex (x_0,y_0)$ normally distributed.
+Filename: <tt>norm.py</tt>.
+
+<p>
+<b>c)</b> Let $latex R$ and $latex (x_0,y_0)$ be normally distributed.
+
+<p>
+Filename: <tt>circles.pdf</tt>.
+
+<p>
+<!-- Closing remarks for this Project -->
+
+<p>
+
+<h4>Remarks  <a name="___sec13"></a></h4>
+<p>
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+<p>
+
+<!-- --- end of exercise -->
+
+<p>
+
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
+<p>
+Intro to this exercise. Questions are in subexercises below.
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> Here goes a full solution of the whole exercise.
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+
+<b>a)</b> Subexercises are numbered a), b), etc.
+
+<p>
+<b>Hint 1.</b> First hint to subexercise a).
+
+<p>
+<b>Hint 2.</b> Second hint to subexercise a).
+Filename: <tt>subexer_a.pdf</tt>.
+
+<p>
+<!-- --- begin short answer in exercise -->
+
+<p>
+<b>Answer.</b> Short answer to subexercise a).
+<!-- --- end short answer in exercise -->
+
+<p>
+<b>b)</b> Here goes the text for subexercise b).
+
+<p>
+<b>Hint.</b> A hint for this subexercise.
+Filename: <tt>subexer_b.pdf</tt>.
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> Here goes the solution of this subexercise.
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+<!-- Closing remarks for this Exercise -->
+
+<p>
+
+<h4>Remarks  <a name="___sec15"></a></h4>
+<p>
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+<p>
+
+<!-- --- end of exercise -->
+
+<p>
+
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec16"></a></h3>
+<p>
+<!-- Another minimalistic exercise -->
+
+<p>
+Just some text.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<h2>Here goes another section  <a name="___sec17"></a></h2>
+<p>
+With some text, before we continue with exercises.
+
+<p>
+
+<h2>More Exercises  <a name="___sec18"></a></h2>
+<p>
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Exercise 6: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<p>
+Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+and verify it.
+Filename: <tt>verify_formula.py</tt>.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Project 7: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<p>
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 7: References in a headings do not work well in html</a>.
+Filename: <tt>selc_composed.pdf</tt>.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<h2>Appendix: Just for testing; part I  <a name="___sec21"></a></h2>
+<p>
+This is the first appendix.
+
+<p>
+
+<h3>A subsection within an appendix  <a name="___sec22"></a></h3>
+<p>
+
+<h2>Appendix: Just for testing; part II  <a name="___sec23"></a></h2>
+<p>
+This is more stuff for an appendix.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec24"></a></h3>
+<p>
+Without label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec27"></a></h3>
+<p>
+Without label.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
+<th align="left" valign="middle"><b>Hint</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>Here is a hint.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
+<th align="left" valign="middle"><b>Warning</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>And here is a warning about something to pay attention to.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
+<th align="left" valign="middle"><b>Summary</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>Much testing in this document, otherwise stupid content.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Notice</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>Ah, we are close to the end.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
+<th align="left" valign="middle"><b>Question</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>So, how many admonition environments does Doconce support?</p>
+</td>
+</tr>
+</table>
+
+<!-- ------------------- end of main content ----------------->
+</body>
+</html>
+    
+
+
 ************** File: make.sh *****************
 #!/bin/sh -x
 rm -rf html_images reveal.js downloaded_figures
+
+doconce format html testdoc --wordpress
+cp testdoc.html testdoc_wordpress.html
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
 doconce remove_exercise_answers testdoc.html
@@ -31520,7 +32755,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (15:28)</center>
+<center>Wed, 16 Jan 2013 (15:55)</center>
 
 
 
@@ -31651,7 +32886,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (15:28)</center>
+<center>Wed, 16 Jan 2013 (15:55)</center>
 
 
 
@@ -36846,10 +38081,10 @@ The LaTeX block
 <! -- end verbatim block -->
 will then be rendered to
 $$
-\beqa
+\begin{eqnarray}
 \x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
-\eeqa
+\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   \label{my:eq2}
+\end{eqnarray}
 $$
 
 in the current format.
@@ -68704,10 +69939,10 @@ The LaTeX block
 
 will then be rendered to
 $$
-\beqa
+\begin{eqnarray}
 \x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
-\eeqa
+\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   \label{my:eq2}
+\end{eqnarray}
 $$
 in the current format.
 
@@ -80430,6 +81665,64 @@ Resources
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
 + rm -rf html_images reveal.js downloaded_figures
++ doconce format html testdoc --wordpress
+running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+mako variables: {'FORMAT': 'html'}
+translating preprocessed doconce text in __tmp.do.txt to html
+
+FIX: multi-line caption
+
+ Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
+
+-- fixed to one line
+
+FIX: multi-line caption
+
+ A long
+caption spanning
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
+
+-- fixed to one line
+
+FIX: FIGURE not at the beginning of the line - 1 fixes
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
+
+
+FIX: MOVIE not at the beginning of the line - 1 fixes
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). label{mymov} 
+
+
+FIX: !bhint not at the beginning of the line - 1 fixes
+  !bhint
+
+
+FIX: !ehint not at the beginning of the line - 1 fixes
+  !ehint
+
+
+*** The total of 6 fixes above should be incorporated in the file!
+
+
+found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
+found info about 7 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format html
+output in testdoc.html
++ cp testdoc.html testdoc_wordpress.html
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
 running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
@@ -85553,7 +86846,7 @@ Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{eqnarray} does not work well
          pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{align} does not work well
+Warning: latex envir \begin{eqnarray} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{theorem} does not work well
          pandoc extended markdown syntax handles only single equations

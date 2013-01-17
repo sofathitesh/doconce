@@ -2489,10 +2489,10 @@ The LaTeX block
 
 will then be rendered to
 $$
-\beqa
+\begin{eqnarray}
 \x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
-\eeqa
+\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   \label{my:eq2}
+\end{eqnarray}
 $$
 in the current format.
 

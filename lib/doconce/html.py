@@ -171,6 +171,28 @@ def html_code(filestr, code_blocks, code_block_types,
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
             code_blocks[i] = code_blocks[i].replace('"', '&quot;')
 
+    if '--wordpress' in sys.argv:
+        # Change all equations to $latex ...$\n
+        replace = [
+            (r'\[', '$latex '),
+            (r'\]', ' $\n'),
+            (r'\begin{equation}', '$latex '),
+            (r'\end{equation}', ' $\n'),
+            (r'\begin{equation*}', '$latex '),
+            (r'\end{equation*}', ' $\n'),
+            (r'\begin{align}', '$latex '),
+            (r'\end{align}', ' $\n'),
+            (r'\begin{align*}', '$latex '),
+            (r'\end{align*}', ' $\n'),
+            ]
+        for i in range(len(tex_blocks)):
+            if '{align' in tex_blocks[i]:
+                tex_blocks[i] = tex_blocks[i].replace('&', '')
+                tex_blocks[i] = tex_blocks[i].replace('\\\\', ' $\n\n$latex ')
+            for from_, to_ in replace:
+                tex_blocks[i] = tex_blocks[i].replace(from_, to_)
+            tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
+
     # Fix label -> \label in tex_blocks
     for i in range(len(tex_blocks)):
         if 'label' in tex_blocks[i]:
@@ -178,6 +200,7 @@ def html_code(filestr, code_blocks, code_block_types,
             pattern = r'^label\{'
             cpattern = re.compile(pattern, re.MULTILINE)
             tex_blocks[i] = cpattern.sub('\\label{', tex_blocks[i])
+
 
     from doconce import debugpr
     debugpr('File before call to insert_code_and_tex (format html)\n%s'
@@ -199,7 +222,10 @@ def html_code(filestr, code_blocks, code_block_types,
                 r'</pre>\n<! -- end verbatim block -->\n',
                 filestr)
 
-    MATH_TYPESETTING = 'MathJax'
+    if '--wordpress' in sys.argv:
+        MATH_TYPESETTING = 'WordPress'
+    else:
+        MATH_TYPESETTING = 'MathJax'
     c = re.compile(r'^!bt *\n', re.MULTILINE)
     m1 = c.search(filestr)
     from common import INLINE_TAGS
@@ -220,6 +246,12 @@ def html_code(filestr, code_blocks, code_block_types,
         # Equation references (ref{...}) must be \eqref{...} in MathJax
         filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
+    elif MATH_TYPESETTING == 'WordPress':
+        filestr = re.sub(r'!bt *\n', '\n', filestr)
+        filestr = re.sub(r'!et *\n', '\n', filestr)
+        # References are not supported
+        filestr = re.sub(r'\(ref\{(.+?)\}\)',
+                         r'<b>REF to equation \g<1> not supported</b>', filestr)
     else:
         # Plain verbatim display of LaTeX syntax in math blocks
         filestr = c.sub(r'<blockquote><pre>\n', filestr)
@@ -740,6 +772,12 @@ def define(FILENAME_EXTENSION,
         'movie':         html_movie,
         'comment':       '<!-- %s -->',
         }
+
+    if '--wordpress' in sys.argv:
+        INLINE_TAGS_SUBST['html'].update({
+            'math':          r'\g<begin>$latex \g<subst>$\g<end>',
+            'math2':         r'\g<begin>$latex \g<latexmath>$\g<end>'
+            })
 
     ENVIRS['html'] = {
         'quote':         html_quote,
