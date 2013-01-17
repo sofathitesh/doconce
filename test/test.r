@@ -31929,51 +31929,57 @@ Mercurial (`hg`) directories, go to the directory, run
 ************** File: ../_what_is.do.txt *****************
 Doconce is two things:
 
-  o Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via `rst2*` programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via `unoconv`) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
-  o Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
 
 
 
 Here are some Doconce features:
 
+  * Doconce has strong support for *text with computer source code and
+    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+  * Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
   * Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
   * Doconce can be converted to plain *untagged* text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  * Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
-  * Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
-  * Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  * Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
+# #ifdef EXTRA
 Doconce was particularly written for the following sample applications:
 
   * Large books written in LaTeX, but where many pieces (computer demos,
@@ -31988,8 +31994,9 @@ Doconce was particularly written for the following sample applications:
   * Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     Sphinx web pages, MS Word documents, or in wikis.
+# #endif
 
-History: Doconce was developed in 2006 at a time when most popular
+__History.__ Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -31997,7 +32004,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+__Disclaimer.__ Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -32826,7 +32833,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (16:37)</center>
+<center>Wed, 16 Jan 2013 (22:43)</center>
 
 
 
@@ -32957,7 +32964,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (16:37)</center>
+<center>Wed, 16 Jan 2013 (22:43)</center>
 
 
 
@@ -35403,73 +35410,62 @@ $$
 Doconce is two things:
 
 <p>
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
-<ol>
- <li> Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via <tt>rst2*</tt> programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via <tt>unoconv</tt>) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
- <li> Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".</li>
-</ol>
+<p>
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+<p>
 
 Here are some Doconce features:
 
 <p>
 
 <ul>
+  <li> Doconce has strong support for <em>text with computer source code and
+    LaTeX mathematics</em> in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.</li>
+  <li> Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.</li>
   <li> Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.</li>
   <li> Doconce can be converted to plain <em>untagged</em> text,
-    often desirable for computer programs and email.</li>
+    often desirable for computer code and email.</li>
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.</li>
-  <li> Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).</li>
-  <li> Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.</li>
-  <li> Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.</li>
+  <li> Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.</li>
+  <li> Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.</li>
+  <li> Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.</li>
 </ul>
 
-Doconce was particularly written for the following sample applications:
-
-<p>
-
-<ul>
-  <li> Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</li>
-  <li> Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.</li>
-  <li> Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.</li>
-</ul>
-
-History: Doconce was developed in 2006 at a time when most popular
+<b>History.</b> Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -35478,7 +35474,7 @@ fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
 <p>
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+<b>Disclaimer.</b> Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -39378,79 +39374,68 @@ Jan 32, 2100
 
 Doconce is two things:
 
-\begin{enumerate}
- \item Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, {\LaTeX}, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via \code{rst2*} programs) go to XML, HTML,
-    {\LaTeX}, PDF, OpenOffice, and from the latter (via \code{unoconv}) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, {\LaTeX}, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, {\LaTeX}, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, {\LaTeX}, PDF, DocBook, GNU Texinfo, and more.
 
- \item Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
-\end{enumerate}
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
 
-\noindent
+
+
 Here are some Doconce features:
 
 \begin{itemize}
+  \item Doconce has strong support for \emph{text with computer source code and
+    {\LaTeX} mathematics} in the formats {\LaTeX}, \textsc{pdf}{\LaTeX}, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+
+  \item Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
+
   \item Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     {\LaTeX} and HTML.
 
   \item Doconce can be converted to plain \emph{untagged} text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
 
   \item Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
-  \item Doconce has full support for {\LaTeX} math and integrates well
-    with big {\LaTeX} projects (books).
+  \item Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as {\LaTeX}, Sphinx, HTML, MediaWiki, and
+    Google wiki.
 
-  \item Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, {\LaTeX}, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+  \item Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
 
-  \item Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in {\LaTeX}, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  \item Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner {\LaTeX} and HTML output.
 \end{itemize}
 
 \noindent
-Doconce was particularly written for the following sample applications:
-
-\begin{itemize}
-  \item Large books written in {\LaTeX}, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-
-  \item Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as {\LaTeX} integrated in, e.g., a thesis.
-
-  \item Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-\end{itemize}
-
-\noindent
-History: Doconce was developed in 2006 at a time when most popular
+\paragraph{History.}
+Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -39458,7 +39443,8 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+\paragraph{Disclaimer.}
+Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -42496,70 +42482,64 @@ What Is Doconce?
 
 Doconce is two things:
 
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via ``rst2*`` programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via ``unoconv``) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
+  * Doconce has strong support for *text with computer source code and
+    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+
+  * Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
+
   * Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
 
   * Doconce can be converted to plain *untagged* text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
-  * Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+  * Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
 
-  * Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
 
-  * Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-  * Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-
-  * Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-
-  * Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+*History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -42567,7 +42547,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+*Disclaimer.* Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -45822,70 +45802,64 @@ What Is Doconce?
 
 Doconce is two things:
 
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via ``rst2*`` programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via ``unoconv``) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
+  * Doconce has strong support for *text with computer source code and
+    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+
+  * Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
+
   * Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
 
   * Doconce can be converted to plain *untagged* text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
-  * Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+  * Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
 
-  * Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
 
-  * Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-  * Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-
-  * Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-
-  * Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+*History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -45893,7 +45867,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+*Disclaimer.* Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -49434,28 +49408,36 @@ By *Hans Petter Langtangen*
 
 Doconce is two things:
 
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
- # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText    (reST), Sphinx, Epytext, and also plain text (where non-obvious    formatting/tags are removed for clear reading in, e.g.,    emails). From reST you can (via `rst2*` programs) go to XML, HTML,    LaTeX, PDF, OpenOffice, and from the latter (via `unoconv`) to    RTF, numerous MS Word formats (including MS Office Open XML),    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU    Texinfo, MediaWiki, RTF, Groff, and other formats.
- # Doconce is a working strategy for never duplicating information.    Text is written in a single place and then transformed to    a number of different destinations of diverse type (software    source code, manuals, tutorials, books, wikis, memos, emails, etc.).    The Doconce markup language support this working strategy.    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
 
-  * Doconce markup does include tags, so the format is more tagged than    Markdown and Pandoc, but less than reST, and very much less than    LaTeX and HTML.
-  * Doconce can be converted to plain *untagged* text,    often desirable for computer programs and email.
+  * Doconce has strong support for *text with computer source code and    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. One piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
+  * Doconce targets scientific papers and reports, thesis, large book    projects, software manuals, memos, as well as blogs and wikis with    math and code content.
+  * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
+  * Doconce can be converted to plain *untagged* text,    often desirable for computer code and email.
   * Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.
-  * Doconce has full support for LaTeX math and integrates well    with big LaTeX projects (books).
-  * Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or wiki document.
-  * Contrary to the similar (and superior) Pandoc translator, Doconce    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),    lots of computer code environments in LaTeX, and a special exercise    syntax. Doconce also also runs preprocessors (including Mako)    such that the author can mix ordinary text with programming    construction for generating parts of the text.
+  * Doconce is almost self-explanatory and fast to write. The tools    can be used for handy generation of more verbose and complicated    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and    Google wiki.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which    allows programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write one text    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-
-  * Large books written in LaTeX, but where many pieces (computer demos,    projects, examples) can be written in Doconce to appear in other    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-  * Software documentation, primarily Python doc strings, which one wants    to appear as plain untagged text for viewing in Pydoc, as reStructuredText    for use with Sphinx, as wiki text when publishing the software at    web sites, and as LaTeX integrated in, e.g., a thesis.
-  * Quick memos, which start as plain text in email, then some small    amount of Doconce tagging is added, before the memos can appear as    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+*History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -49463,7 +49445,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+*Disclaimer.* Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -52354,71 +52336,61 @@ By '''Hans Petter Langtangen'''
 
 Doconce is two things:
 
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
-<ol>
- <li> Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via <code>rst2*</code> programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via <code>unoconv</code>) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
- <li> Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
-</ol>
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
 
 <ul>
+  <li> Doconce has strong support for ''text with computer source code and
+    LaTeX mathematics'' in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+  <li> Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
   <li> Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
   <li> Doconce can be converted to plain ''untagged'' text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  <li> Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
-  <li> Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
-  <li> Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  <li> Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
+  <li> Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
+  <li> Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 </ul>
 
-Doconce was particularly written for the following sample applications:
-
-
-<ul>
-  <li> Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-  <li> Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-  <li> Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-</ul>
-
-History: Doconce was developed in 2006 at a time when most popular
+''History.''
+Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -52426,7 +52398,8 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+''Disclaimer.''
+Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -55388,28 +55361,36 @@ By **Hans Petter Langtangen**
 
 Doconce is two things:
 
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
- # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText    (reST), Sphinx, Epytext, and also plain text (where non-obvious    formatting/tags are removed for clear reading in, e.g.,    emails). From reST you can (via {{{rst2*}}} programs) go to XML, HTML,    LaTeX, PDF, OpenOffice, and from the latter (via {{{unoconv}}}) to    RTF, numerous MS Word formats (including MS Office Open XML),    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU    Texinfo, MediaWiki, RTF, Groff, and other formats.
- # Doconce is a working strategy for never duplicating information.    Text is written in a single place and then transformed to    a number of different destinations of diverse type (software    source code, manuals, tutorials, books, wikis, memos, emails, etc.).    The Doconce markup language support this working strategy.    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
 
-  * Doconce markup does include tags, so the format is more tagged than    Markdown and Pandoc, but less than reST, and very much less than    LaTeX and HTML.
-  * Doconce can be converted to plain //untagged// text,    often desirable for computer programs and email.
+  * Doconce has strong support for //text with computer source code and    LaTeX mathematics// in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. One piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
+  * Doconce targets scientific papers and reports, thesis, large book    projects, software manuals, memos, as well as blogs and wikis with    math and code content.
+  * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
+  * Doconce can be converted to plain //untagged// text,    often desirable for computer code and email.
   * Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.
-  * Doconce has full support for LaTeX math and integrates well    with big LaTeX projects (books).
-  * Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or wiki document.
-  * Contrary to the similar (and superior) Pandoc translator, Doconce    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),    lots of computer code environments in LaTeX, and a special exercise    syntax. Doconce also also runs preprocessors (including Mako)    such that the author can mix ordinary text with programming    construction for generating parts of the text.
+  * Doconce is almost self-explanatory and fast to write. The tools    can be used for handy generation of more verbose and complicated    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and    Google wiki.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which    allows programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write one text    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-
-  * Large books written in LaTeX, but where many pieces (computer demos,    projects, examples) can be written in Doconce to appear in other    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-  * Software documentation, primarily Python doc strings, which one wants    to appear as plain untagged text for viewing in Pydoc, as reStructuredText    for use with Sphinx, as wiki text when publishing the software at    web sites, and as LaTeX integrated in, e.g., a thesis.
-  * Quick memos, which start as plain text in email, then some small    amount of Doconce tagging is added, before the memos can appear as    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+//History.// Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -55417,7 +55398,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+//Disclaimer.// Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -58322,62 +58303,57 @@ What Is Doconce?
 
 Doconce is two things:
 
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via 'rst2*' programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via 'unoconv') to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
+
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
+  - Doconce has strong support for *text with computer source code and
+    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+  - Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
   - Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
   - Doconce can be converted to plain *untagged* text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
   - Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  - Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
-  - Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
-  - Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  - Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
+  - Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
+  - Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-  - Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-  - Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-  - Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+*History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -58385,7 +58361,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+*Disclaimer.* Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -61312,62 +61288,57 @@ What Is Doconce?
 
 Doconce is two things:
 
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via C{rst2*} programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via C{unoconv}) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
+
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
+  - Doconce has strong support for I{text with computer source code and
+    LaTeX mathematics} in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+  - Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
   - Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
   - Doconce can be converted to plain I{untagged} text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
   - Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  - Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
-  - Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
-  - Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  - Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
+  - Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
+  - Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-  - Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-  - Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-  - Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+I{History.} Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -61375,7 +61346,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+I{Disclaimer.} Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -64438,70 +64409,64 @@ What Is Doconce?
 
 Doconce is two things:
 
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via rst2* programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via unoconv) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
+  * Doconce has strong support for *text with computer source code and
+    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+
+  * Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
+
   * Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
 
   * Doconce can be converted to plain *untagged* text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
-  * Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+  * Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
 
-  * Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
 
-  * Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-  * Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-
-  * Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-
-  * Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+*History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -64509,7 +64474,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+*Disclaimer.* Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -67623,70 +67588,64 @@ What Is Doconce?
 
 Doconce is two things:
 
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via `rst2*` programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via `unoconv`) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+Doconce is a very simple and minimally tagged markup language that
+looks like ordinary ASCII text, much like what you would use in an
+email, but the text can be transformed to numerous other formats,
+including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
+MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
+(where non-obvious formatting/tags are removed for clear reading in,
+e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+Doconce supports a working strategy of never duplicating information.
+Text is written in a single place and then transformed to a number of
+different destinations of diverse type: scientific reports, software
+manuals, books, thesis, software source code, wikis, blogs, emails,
+etc.  The slogan is: "Write once, include anywhere".
+
+
 
 Here are some Doconce features:
 
+  * Doconce has strong support for *text with computer source code and
+    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
+    and MediaWiki. One piece of text can enter (e.g.) a classical
+    science book, an ebook, a web document, and a blog.
+
+  * Doconce targets scientific papers and reports, thesis, large book
+    projects, software manuals, memos, as well as blogs and wikis with
+    math and code content.
+
   * Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
+    Markdown, but less than reST, and very much less than
     LaTeX and HTML.
 
   * Doconce can be converted to plain *untagged* text,
-    often desirable for computer programs and email.
+    often desirable for computer code and email.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
-  * Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+  * Doconce is almost self-explanatory and fast to write. The tools
+    can be used for handy generation of more verbose and complicated
+    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
+    Google wiki.
 
-  * Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which
+    allows programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write one text
+    with different flavors: long vs short text, Python vs Matlab code
+    examples, experimental vs mature content.
 
-  * Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+    allows more types of equations (especially systems of
+    equations with references), has more flexible
+    inclusion of source code, integrates preprocessors, has
+    special support for exercises, and produces
+    cleaner LaTeX and HTML output.
 
-Doconce was particularly written for the following sample applications:
-
-  * Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-
-  * Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-
-  * Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
+*History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -67694,7 +67653,7 @@ sophisticated project. Moreover, Doconce was developed mainly to
 fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
-Disclaimer: Doconce is a simple tool, largely based on interpreting
+*Disclaimer.* Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -85615,10 +85574,18 @@ No file manual.rst.aux.
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
 
-Overfull \hbox (1.15796pt too wide) 
-\T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
-t-
- [1]
+Overfull \hbox (4.40753pt too wide) 
+\T1/ptm/m/it/10 La-TeX math-e-mat-ics \T1/ptm/m/n/10 in the for-mats La-TeX, pd
+fLa-TeX, Sphinx, HTML,
+
+Overfull \hbox (12.52711pt too wide) 
+[]\T1/ptm/m/n/10 Doconce tar-gets sci-en-tific pa-pers and re-ports, the-sis, l
+arge book projects,
+
+Overfull \hbox (5.77814pt too wide) 
+\T1/ptm/m/n/10 be used for handy gen-er-a-tion of more ver-bose and com-pli-cat
+ed markup
+[1] 
 
 
 
@@ -85626,15 +85593,15 @@ t-
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
-[2]
+
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-
+[2]
 Overfull \hbox (5.60612pt too wide) 
 \T1/ptm/m/n/10 Different out-put for-mats re-quire dif-fer-ent for-mats of im-a
 ge files. For ex-am-ple, PostScript
-[3]
+
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
@@ -85642,7 +85609,7 @@ Overfull \hbox (83.00006pt too wide)
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
-
+[3]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
@@ -85661,10 +85628,10 @@ ape \T1/ptm/m/n/10 or \T1/pcr/m/n/10 pdflatex -shell-escape\T1/ptm/m/n/10 .
 Overfull \hbox (185.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
-[4]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
-
+[4]
 Overfull \hbox (161.00006pt too wide) 
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
@@ -85687,7 +85654,7 @@ T1/ptm/m/n/10 ) or \T1/pcr/m/n/10 % if FORMAT == "latex": \T1/ptm/m/n/10 (for
 
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
-[6]
+
 Overfull \hbox (0.13686pt too wide) 
 \T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
 ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
@@ -85699,15 +85666,15 @@ ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 Overfull \hbox (0.81818pt too wide) 
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
-
+[6]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-[7]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
-
+[7]
 Overfull \hbox (11.29898pt too wide) 
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
@@ -85727,24 +85694,23 @@ Overfull \hbox (15.73763pt too wide)
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
-[8]
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 9 undefined on inpu
-t line 867.
+LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
+t line 840.
 
 
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[9]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -85765,7 +85731,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-
+[9]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -85779,11 +85745,11 @@ Overfull \hbox (27.6591pt too wide)
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
-[10]
+
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
@@ -85799,10 +85765,10 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-[11]
+
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
@@ -85813,7 +85779,7 @@ Overfull \hbox (65.00006pt too wide)
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-[12]
+
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -85821,22 +85787,22 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[13]
+[12] [13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-[14]
+
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[15]
+[14] [15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-[16]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
@@ -85848,14 +85814,14 @@ imula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-
+[16]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
-[17]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 Appendix is supported too: just let the heading start with "Ap
 pendix: "  
@@ -85867,7 +85833,7 @@ ng
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 is used - all other formats just leave the heading as it is wr
 itten).  
-
+[17]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
@@ -85954,8 +85920,8 @@ Overfull \hbox (83.00006pt too wide)
 . 
 [23]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 220
-2.
+LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 217
+5.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
@@ -85963,7 +85929,7 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
-ut line 2204.
+ut line 2177.
 
 
 LaTeX Warning: Hyper reference `id2' on page 24 
@@ -86313,10 +86279,18 @@ Package hyperref Message: Driver (default): hdvips.
 
 (./manual.rst.out) (./manual.rst.out)
 
-Overfull \hbox (1.15796pt too wide) 
-\T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
-t-
- [1]
+Overfull \hbox (4.40753pt too wide) 
+\T1/ptm/m/it/10 La-TeX math-e-mat-ics \T1/ptm/m/n/10 in the for-mats La-TeX, pd
+fLa-TeX, Sphinx, HTML,
+
+Overfull \hbox (12.52711pt too wide) 
+[]\T1/ptm/m/n/10 Doconce tar-gets sci-en-tific pa-pers and re-ports, the-sis, l
+arge book projects,
+
+Overfull \hbox (5.77814pt too wide) 
+\T1/ptm/m/n/10 be used for handy gen-er-a-tion of more ver-bose and com-pli-cat
+ed markup
+[1] 
 
 
 
@@ -86324,15 +86298,15 @@ t-
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
-[2]
+
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-
+[2]
 Overfull \hbox (5.60612pt too wide) 
 \T1/ptm/m/n/10 Different out-put for-mats re-quire dif-fer-ent for-mats of im-a
 ge files. For ex-am-ple, PostScript
-[3]
+
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
@@ -86340,7 +86314,7 @@ Overfull \hbox (83.00006pt too wide)
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
-
+[3]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
@@ -86359,10 +86333,10 @@ ape \T1/ptm/m/n/10 or \T1/pcr/m/n/10 pdflatex -shell-escape\T1/ptm/m/n/10 .
 Overfull \hbox (185.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
-[4]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
-
+[4]
 Overfull \hbox (161.00006pt too wide) 
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
@@ -86385,7 +86359,7 @@ T1/ptm/m/n/10 ) or \T1/pcr/m/n/10 % if FORMAT == "latex": \T1/ptm/m/n/10 (for
 
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
-[6]
+
 Overfull \hbox (0.13686pt too wide) 
 \T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
 ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
@@ -86397,15 +86371,15 @@ ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 Overfull \hbox (0.81818pt too wide) 
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
-
+[6]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-[7]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
-
+[7]
 Overfull \hbox (11.29898pt too wide) 
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
@@ -86425,19 +86399,19 @@ Overfull \hbox (15.73763pt too wide)
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
-[8]
+
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[9]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -86458,7 +86432,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-
+[9]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -86472,11 +86446,11 @@ Overfull \hbox (27.6591pt too wide)
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
-[10]
+
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
@@ -86492,10 +86466,10 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-[11]
+
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
@@ -86506,7 +86480,7 @@ Overfull \hbox (65.00006pt too wide)
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-[12]
+
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -86514,22 +86488,22 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[13]
+[12] [13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-[14]
+
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[15]
+[14] [15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-[16]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
@@ -86541,14 +86515,14 @@ imula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-
+[16]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
-[17]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 Appendix is supported too: just let the heading start with "Ap
 pendix: "  
@@ -86560,7 +86534,7 @@ ng
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 is used - all other formats just leave the heading as it is wr
 itten).  
-
+[17]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
@@ -87142,25 +87116,26 @@ No file manual.aux.
 (./newcommands_keep.tex) (./newcommands_replace.tex)
 
 
-
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.pdf, id=79, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
+[6] <latex_figs/warning.pdf, id=73, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -87206,12 +87181,11 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] [19]
-<figs/streamtubes.png, id=182, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] <figs/streamtubes.png, id=175, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1466.
+ne 1456.
 
 
 Overfull \hbox (42.0102pt too wide) 
@@ -87225,16 +87199,16 @@ Overfull \hbox (4.68658pt too wide)
 [22 <./latex_figs/notice.pdf>]
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-629.
+619.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-633.
+623.
 
 [23]
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-65.
+55.
 
 [24]
 
@@ -87259,19 +87233,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
-27.
+17.
 
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-901.
+891.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-902.
+892.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -87310,12 +87284,12 @@ Overfull \hbox (1.76395pt too wide)
 [], [],
 
 LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
-519.
+509.
 
 [37] [38] [39] [40] [41]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2788.
+ne 2778.
 
 [42] [43] [44]
 Overfull \hbox (48.87616pt too wide) 
@@ -87540,25 +87514,26 @@ Writing index file manual.idx
 (./newcommands_replace.tex)
 
 
-
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.pdf, id=275, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
+[6] <latex_figs/warning.pdf, id=270, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -87600,9 +87575,8 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] [19]
-<figs/streamtubes.png, id=365, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] <figs/streamtubes.png, id=360, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -87618,14 +87592,14 @@ nces for (sub)sections,
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-901.
+891.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-902.
+892.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -87869,25 +87843,26 @@ Writing index file manual.idx
 (./newcommands_replace.tex)
 
 
-
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.pdf, id=275, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
+[6] <latex_figs/warning.pdf, id=270, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -87929,9 +87904,8 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] [19]
-<figs/streamtubes.png, id=365, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] <figs/streamtubes.png, id=360, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -88214,27 +88188,27 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (./newcommands_keep.tex) (./newcommands_replace.tex)
 
 
+ [1]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
 
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.eps>
+[6] <latex_figs/warning.eps> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -88275,7 +88249,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -88506,27 +88480,27 @@ Writing index file manual.idx
 (./newcommands_replace.tex)
 
 
+ [1]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
 
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.eps>
+[6] <latex_figs/warning.eps> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -88567,7 +88541,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -88810,27 +88784,27 @@ Writing index file manual.idx
 (./newcommands_replace.tex)
 
 
+ [1]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
 
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.eps>
+[6] <latex_figs/warning.eps> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -88871,7 +88845,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
@@ -89102,27 +89076,27 @@ Writing index file manual.idx
 (./newcommands_replace.tex)
 
 
+ [1]
+Overfull \hbox (2.74654pt too wide) 
+ []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
+at a time when most pop-u-lar markup
 
-Overfull \hbox (8.67865pt too wide) 
-\OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
-such as Google
-[1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[4]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-
+[4]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7] <latex_figs/warning.eps>
+[6] <latex_figs/warning.eps> [7]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -89163,7 +89137,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
