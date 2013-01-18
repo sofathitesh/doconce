@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Jan 16, 2013
+% Jan 18, 2013
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -2723,6 +2723,16 @@ well for his diverse applications of it.
 
 General Problems
 ----------------
+
+Doconce aborts because of a syntax error that is not an error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+`--no-abort` option on the command line. You may send an email
+to the Doconce author at `hpl@simula.no` and report the problem.
 
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

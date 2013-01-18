@@ -107,7 +107,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Jan 16, 2013
+Jan 18, 2013
 \end{center}
 
 \vspace{1cm}
@@ -2653,6 +2653,14 @@ hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
 \subsection{General Problems}
+
+\paragraph{Doconce aborts because of a syntax error that is not an error.}
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+\Verb!--no-abort! option on the command line. You may send an email
+to the Doconce author at \Verb!hpl@simula.no! and report the problem.
 
 \paragraph{Something goes wrong in the preprocessing step.}
 Doconce automatically removes the file \Verb!__tmp.do.txt!, which is the

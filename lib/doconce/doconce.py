@@ -9,7 +9,8 @@ except ImportError:
 
 def _abort():
     print 'Abort!'
-    sys.exit(1)
+    if not '--no-abort' in sys.argv:
+        sys.exit(1)
 
 
 def debugpr(out):
@@ -185,7 +186,7 @@ def syntax_check(filestr, format):
                      'movie': r'^\s*MOVIE:.+$',
                      }
     for construction in constructions:
-        pattern = re.compile(r'%s\s*^(!b[ct]|@@@CODE|\s*\*)' % \
+        pattern = re.compile(r'%s\s*^(!b[ct]\s*$|@@@CODE| +\* +| +o +)' % \
                              constructions[construction],
                              re.MULTILINE)
         m = pattern.search(filestr)
