@@ -436,7 +436,7 @@ instance).
 Usage
 -----
 
-For a new project, do the points below as the initialization of new accepted
+For a new project, do the points below for initializating a new accepted
 personal dictionary for this project. Thereafter, the process is
 automated: misspellings.txt~ should be empty if there are no new misspellings.
 tmp_misspelled*~ are made for each file tested with the file's misspelled
@@ -475,30 +475,27 @@ Some misspellings can be hard to find if the word is strange
 (like "emp", for instance). Then invoke ``tmp_stripped_text.txt``,
 which is the stripped version of the text file being spellchecked.
 All references, labels, code segments, etc., are removed in this
-stripped file. Run a standard spell checker on the file (say ispell
-inside Emacs) and you should only be prompted for just the same
-misspellings as listed in ``misspellings.txt~``.
+stripped file. Run ispell on the file::
 
-To search for a strange string, say "sec", run
-(search for "sec" not surrounded by letters)::
+  ispell -l -p.dict4spell.txt tmp_stripped_text.txt
 
-  egrep '[^A-Za-z]sec[^A-Za-z]' file
-
-A common error in latex is to forget a ``\ref`` or ``\label``
-in front of a label so that the label gets spellchecked.
-This may give rise to strange words flagged as misspelled.
+Now, ispell will prompt you for the misspellings and show the context.
+A common error in latex is to forget a ``\ref`` or ``\label`` in front
+of a label so that the label gets spellchecked.  This may give rise to
+strange words flagged as misspelled.
 
 How to control what is stripped
 -------------------------------
 
 The spellcheck function loads a file .strip, if present, with
-possibly three lists:
+possibly three lists that defines what is being stripped away
+in ``tmp_stripped_*`` files:
 
-  * environments, holding begin-end pairs of environments that
+  * ``environments``, holding begin-end pairs of environments that
     should be entirely removed from the text.
-  * replacements, holding (from, to) pairs or (from, to, regex-flags)
+  * ``replacements``, holding (from, to) pairs or (from, to, regex-flags)
     triplets for substituting text.
-  * common_typos, holding typical wrong spellings of words.
+  * ``common_typos``, holding typical wrong spellings of words.
 
 execfile is applied to .strip to execute the definition of the lists.
 

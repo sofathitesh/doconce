@@ -17036,14 +17036,14 @@ Here is an equation without label using backslash-bracket environment:
 $latex  a = b + c  $
 
 
-or with number and label, as in <b>REF to equation my:eq1 not supported</b>, using the equation environment:
+or with number and label, as in <b>(REF to equation my:eq1 not supported)</b>, using the equation environment:
 
 $latex 
 {\partial u\over\partial t} = \nabla^2 u 
  $
 
 
-We can refer to this equation by <b>REF to equation my:eq1 not supported</b>.
+We can refer to this equation by <b>(REF to equation my:eq1 not supported)</b>.
 
 <p>
 Here is a system without equation numbers, using the align-astrisk environment:
@@ -17069,7 +17069,7 @@ b = \nabla^2 u + \nabla^4 x
  $
 
 
-We can refer to <b>REF to equation eq1 not supported</b>-<b>REF to equation eq2 not supported</b>.
+We can refer to <b>(REF to equation eq1 not supported)</b>-<b>(REF to equation eq2 not supported)</b>.
 
 <p>
 Many of the next environments will fail in non-latex formats.
@@ -17092,7 +17092,7 @@ a = b = q &+ \\
  $
 
 
-We can refer to the last equation by <b>REF to equation split:envir:eq not supported</b>.
+We can refer to the last equation by <b>(REF to equation split:envir:eq not supported)</b>.
 
 <p>
 Testing gather:
@@ -17113,8 +17113,8 @@ $latex
 b = \nabla^2 u + \nabla^4 x  x\in\Omega 
 \end{alignat}
 
-Let us refer to <b>REF to equation eq1 not supported</b>-<b>REF to equation eq2 not supported</b> again, and to the
-alignat variant <b>REF to equation eq1a not supported</b>-<b>REF to equation eq2a not supported</b>, and to <b>REF to equation my:eq1 not supported</b>.
+Let us refer to <b>(REF to equation eq1 not supported)</b>-<b>(REF to equation eq2 not supported)</b> again, and to the
+alignat variant <b>(REF to equation eq1a not supported)</b>-<b>(REF to equation eq2a not supported)</b>, and to <b>(REF to equation my:eq1 not supported)</b>.
 
 <p>
 Testing eqnarray:
@@ -32833,7 +32833,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (22:43)</center>
+<center>Fri, 18 Jan 2013 (01:51)</center>
 
 
 
@@ -32964,7 +32964,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 16 Jan 2013 (22:43)</center>
+<center>Fri, 18 Jan 2013 (01:51)</center>
 
 
 
@@ -34726,6 +34726,15 @@ well for his diverse applications of it.
 
 
 ===== General Problems =====
+
+=== Doconce aborts because of a syntax error that is not an error ===
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+`--no-abort` option on the command line. You may send an email
+to the Doconce author at `hpl@simula.no` and report the problem.
 
 === Something goes wrong in the preprocessing step ===
 
@@ -38416,7 +38425,18 @@ well for his diverse applications of it.
 <h3>General Problems  <a name="___sec56"></a></h3>
 <p>
 
-<h4>Something goes wrong in the preprocessing step  <a name="___sec57"></a></h4>
+<h4>Doconce aborts because of a syntax error that is not an error  <a name="___sec57"></a></h4>
+<p>
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+<tt>--no-abort</tt> option on the command line. You may send an email
+to the Doconce author at <tt>hpl@simula.no</tt> and report the problem.
+
+<p>
+
+<h4>Something goes wrong in the preprocessing step  <a name="___sec58"></a></h4>
 <p>
 Doconce automatically removes the file <tt>__tmp.do.txt</tt>, which is the
 resulting of the preprocessing stge and the file to examine if
@@ -38427,7 +38447,7 @@ something goes wrong in this stage (i.e., when <tt>mako</tt> and/or
 
 <p>
 
-<h4>Figure captions are incomplete  <a name="___sec58"></a></h4>
+<h4>Figure captions are incomplete  <a name="___sec59"></a></h4>
 <p>
 If only the first part of a figure caption in the Doconce file is seen
 in the target output format, the reason is usually that the caption
@@ -38436,7 +38456,7 @@ be written as <em>one line</em>, at the same line as the FIGURE keyword.
 
 <p>
 
-<h4>Preprocessor directives do not work  <a name="___sec59"></a></h4>
+<h4>Preprocessor directives do not work  <a name="___sec60"></a></h4>
 <p>
 Make sure the preprocessor instructions, in Preprocess or Mako, have
 correct syntax. Also make sure that you do not mix Preprocess and Mako
@@ -38444,14 +38464,14 @@ instructions. Doconce will then only run Preprocess.
 
 <p>
 
-<h4>Problems with boldface and emphasize  <a name="___sec60"></a></h4>
+<h4>Problems with boldface and emphasize  <a name="___sec61"></a></h4>
 <p>
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
 <p>
 
-<h4>Links to local directories do not work  <a name="___sec61"></a></h4>
+<h4>Links to local directories do not work  <a name="___sec62"></a></h4>
 <p>
 Links of the type
 <!-- begin verbatim block -->
@@ -38468,7 +38488,7 @@ see the &quot;examples directory&quot;: &quot;src/examples/index.html&quot;
 
 <p>
 
-<h4>Links are not typeset correctly  <a name="___sec62"></a></h4>
+<h4>Links are not typeset correctly  <a name="___sec63"></a></h4>
 <p>
 Not all formats will allow formatting of the links. Verbatim words
 in links are allowed if the whole link is typeset in verbatim:
@@ -38489,19 +38509,19 @@ in the line above it.
 <p>
 
 
-<h4>Inline verbatim code is not detected  <a name="___sec63"></a></h4>
+<h4>Inline verbatim code is not detected  <a name="___sec64"></a></h4>
 <p>
 Make sure there is a space before the first back-tick.
 
 <p>
 
-<h4>Inline verbatim text is not formatted correctly  <a name="___sec64"></a></h4>
+<h4>Inline verbatim text is not formatted correctly  <a name="___sec65"></a></h4>
 <p>
 Make sure there is whitespace surrounding the text in back-ticks.
 
 <p>
 
-<h4>Strange non-English characters  <a name="___sec65"></a></h4>
+<h4>Strange non-English characters  <a name="___sec66"></a></h4>
 <p>
 Check the encoding of the <tt>.do.txt</tt> file with the Unix <tt>file</tt> command
 or with
@@ -38522,7 +38542,7 @@ Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 <p>
 
-<h4>Wrong Norwegian charcters  <a name="___sec66"></a></h4>
+<h4>Wrong Norwegian charcters  <a name="___sec67"></a></h4>
 <p>
 When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
@@ -38531,7 +38551,7 @@ run <tt>doconce change_encoding</tt> to change the encoding of the Doconce file.
 
 <p>
 
-<h4>Too short underlining of reST headlines  <a name="___sec67"></a></h4>
+<h4>Too short underlining of reST headlines  <a name="___sec68"></a></h4>
 <p>
 This may happen if there is a paragraph heading without
 proceeding text before some section heading.
@@ -38539,7 +38559,7 @@ proceeding text before some section heading.
 <p>
 
 
-<h4>Found !bt but no tex blocks extracted (BUG)  <a name="___sec68"></a></h4>
+<h4>Found !bt but no tex blocks extracted (BUG)  <a name="___sec69"></a></h4>
 <p>
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first <tt>!bt</tt> (inserting the blanks again did not
@@ -38547,10 +38567,10 @@ trigger the error message again...).
 
 <p>
 
-<h3>Problems with code or Tex Blocks  <a name="___sec69"></a></h3>
+<h3>Problems with code or Tex Blocks  <a name="___sec70"></a></h3>
 <p>
 
-<h4>Code or math block errors in reST  <a name="___sec70"></a></h4>
+<h4>Code or math block errors in reST  <a name="___sec71"></a></h4>
 <p>
 First note that a code or math block must come after some plain
 sentence (at least for successful output in reST), not directly
@@ -38573,7 +38593,7 @@ indicate a verbatim block of text).
 
 <p>
 
-<h4>Strange errors around code or TeX blocks in reST  <a name="___sec71"></a></h4>
+<h4>Strange errors around code or TeX blocks in reST  <a name="___sec72"></a></h4>
 <p>
 If <tt>idx</tt> commands for defining indices are placed inside paragraphs,
 and especially right before a code block, the reST translator
@@ -38584,7 +38604,7 @@ paragraphs.
 
 <p>
 
-<h4>Something is wrong with a verbatim code block  <a name="___sec72"></a></h4>
+<h4>Something is wrong with a verbatim code block  <a name="___sec73"></a></h4>
 <p>
 Check first that there is a "normal" sentence right before
 the block (this is important for reST and similar
@@ -38592,7 +38612,7 @@ the block (this is important for reST and similar
 
 <p>
 
-<h4>Code/TeX block is not shown in reST format  <a name="___sec73"></a></h4>
+<h4>Code/TeX block is not shown in reST format  <a name="___sec74"></a></h4>
 <p>
 A comment right before a code or tex block will treat the whole
 block also as a comment. It is important that there is normal
@@ -38600,7 +38620,7 @@ running text right before <tt>!bt</tt> and <tt>!bc</tt> environments.
 
 <p>
 
-<h4>Verbatim code blocks inside lists look ugly  <a name="___sec74"></a></h4>
+<h4>Verbatim code blocks inside lists look ugly  <a name="___sec75"></a></h4>
 <p>
 Read the the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
 <tt>!bc</tt> and <tt>!ec</tt> tags in column 1 of the file, and be careful with
@@ -38611,7 +38631,7 @@ avoid verbatim code blocks inside lists (it makes life easier).
 
 <p>
 
-<h4>LaTeX code blocks inside lists look ugly  <a name="___sec75"></a></h4>
+<h4>LaTeX code blocks inside lists look ugly  <a name="___sec76"></a></h4>
 <p>
 Same solution as for computer code blocks as described in the
 previous paragraph. Make sure the <tt>!bt</tt> and <tt>!et</tt> tags are in column 1
@@ -38621,10 +38641,10 @@ Using paragraphs instead of list items is a good idea also here.
 <p>
 
 
-<h3>Problems with reST/Sphinx Output  <a name="___sec76"></a></h3>
+<h3>Problems with reST/Sphinx Output  <a name="___sec77"></a></h3>
 <p>
 
-<h4>Title level inconsistent  <a name="___sec77"></a></h4>
+<h4>Title level inconsistent  <a name="___sec78"></a></h4>
 <p>
 reST does not like jumps in the levels of headings. For example, you cannot
 have a <tt>===</tt> (paragraph) heading after a <tt>=======</tt> (section) heading without
@@ -38632,14 +38652,14 @@ a <tt>=====</tt> (subsection) heading in between.
 
 <p>
 
-<h4>Lists do not appear in .rst files  <a name="___sec78"></a></h4>
+<h4>Lists do not appear in .rst files  <a name="___sec79"></a></h4>
 <p>
 Check if you have a comment right above the list. That comment
 will include the list if the list is indentend. Remove the comment.
 
 <p>
 
-<h4>Error message "Undefined substitution..." from reST  <a name="___sec79"></a></h4>
+<h4>Error message "Undefined substitution..." from reST  <a name="___sec80"></a></h4>
 <p>
 This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
@@ -38647,7 +38667,7 @@ Just ignore these error messages.
 
 <p>
 
-<h4>Warning about duplicate link names  <a name="___sec80"></a></h4>
+<h4>Warning about duplicate link names  <a name="___sec81"></a></h4>
 <p>
 Link names should be unique, but if (e.g.) "file" is used as link text
 several places in a reST file, the links still work. The warning can
@@ -38655,7 +38675,7 @@ therefore be ignorned.
 
 <p>
 
-<h4>Inconsistent headings in reST  <a name="___sec81"></a></h4>
+<h4>Inconsistent headings in reST  <a name="___sec82"></a></h4>
 <p>
 The <tt>rst2*.py</tt> and Sphinx converters abort if the headers of sections
 are not consistent, i.e., a subsection must come under a section,
@@ -38666,7 +38686,7 @@ and make sure they decrease by two every time a lower level is encountered.
 
 <p>
 
-<h4>No code environment appears before "bc ipy" blocks  <a name="___sec82"></a></h4>
+<h4>No code environment appears before "bc ipy" blocks  <a name="___sec83"></a></h4>
 <p>
 The <tt>!bc ipy</tt> directive behaves this way for <tt>sphinx</tt> output because
 interactive sessions are automatically handled. If this is not
@@ -38675,10 +38695,10 @@ verbatim environment.
 
 <p>
 
-<h3>Problems with LaTeX Output  <a name="___sec83"></a></h3>
+<h3>Problems with LaTeX Output  <a name="___sec84"></a></h3>
 <p>
 
-<h4>LaTeX does not like underscores in URLs  <a name="___sec84"></a></h4>
+<h4>LaTeX does not like underscores in URLs  <a name="___sec85"></a></h4>
 <p>
 Suppose you have a URL reference like
 
@@ -38704,7 +38724,7 @@ Verbatim text in links works fine with underscores.
 
 <p>
 
-<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec85"></a></h4>
+<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec86"></a></h4>
 <p>
 This message points to the use of the minted style for typesetting verbatim
 code. You need to include the <tt>-shell-escape</tt> command-line argument when
@@ -38723,7 +38743,7 @@ When this package is included, <tt>latex</tt> or <tt>pdflatex</tt> runs the
 
 <p>
 
-<h4>How can I use my fancy LaTeX environments?  <a name="___sec86"></a></h4>
+<h4>How can I use my fancy LaTeX environments?  <a name="___sec87"></a></h4>
 <p>
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
@@ -38842,7 +38862,7 @@ Also <tt>doconce ptex2tex</tt> has some flexibility for typesetting computer cod
 <p>
 
 
-<h4>The LaTeX file does not compile  <a name="___sec87"></a></h4>
+<h4>The LaTeX file does not compile  <a name="___sec88"></a></h4>
 <p>
 If the problem is undefined control sequence involving
 <!-- begin verbatim block -->
@@ -38856,7 +38876,7 @@ that all inline verbatim text appears on the same line.
 
 <p>
 
-<h4>Inline verbatim gives error   <a name="___sec88"></a></h4>
+<h4>Inline verbatim gives error   <a name="___sec89"></a></h4>
 <p>
 Check if the inline verbatim contains typical LaTeX commands, e.g.,
 <!-- begin verbatim block -->
@@ -38879,7 +38899,7 @@ blocks - that is safe.
 <p>
 
 
-<h4>Errors in figure captions  <a name="___sec89"></a></h4>
+<h4>Errors in figure captions  <a name="___sec90"></a></h4>
 <p>
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
@@ -38892,7 +38912,7 @@ inside figure captions) and precede underscores by backslash.)
 
 <p>
 
-<h4>Chapters are ignored  <a name="___sec90"></a></h4>
+<h4>Chapters are ignored  <a name="___sec91"></a></h4>
 <p>
 The default LaTeX style is "article". If you chapters in the Doconce file,
 you need to run <tt>ptex2tex</tt> with the option <tt>-DBOOK</tt> to set the LaTeX
@@ -38900,7 +38920,7 @@ documentstyle to "book".
 
 <p>
 
-<h4>I want to tune the top of the LaTeX file  <a name="___sec91"></a></h4>
+<h4>I want to tune the top of the LaTeX file  <a name="___sec92"></a></h4>
 <p>
 The top of the LaTeX file, as generated by Doconce, is very simple.
 If this LaTeX code is not sufficient for your needs, there are
@@ -38927,17 +38947,17 @@ two ways out of it:
    replaced by the hand-written LaTeX "top" file.</li>
 </ol>
 
-<h3>Problems with gwiki Output  <a name="___sec92"></a></h3>
+<h3>Problems with gwiki Output  <a name="___sec93"></a></h3>
 <p>
 
-<h4>Strange nested lists in gwiki  <a name="___sec93"></a></h4>
+<h4>Strange nested lists in gwiki  <a name="___sec94"></a></h4>
 <p>
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the <tt>.gwiki</tt> file directly.
 
 <p>
 
-<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec94"></a></h4>
+<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec95"></a></h4>
 <p>
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
@@ -38948,10 +38968,10 @@ further.
 
 <p>
 
-<h3>Problems with HTML Output  <a name="___sec95"></a></h3>
+<h3>Problems with HTML Output  <a name="___sec96"></a></h3>
 <p>
 
-<h4>How can I change the layout of the HTML page?  <a name="___sec96"></a></h4>
+<h4>How can I change the layout of the HTML page?  <a name="___sec97"></a></h4>
 <p>
 The standard of way of controlling the HTML format is to use an
 HTML template. The Doconce source is then the body of text (leave
@@ -38976,7 +38996,7 @@ the HTML file (preferably done automatically via <tt>doconce replace</tt> and
 
 <p>
 
-<h4>Why do figures look ugly when using HTML templates?  <a name="___sec97"></a></h4>
+<h4>Why do figures look ugly when using HTML templates?  <a name="___sec98"></a></h4>
 <p>
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
@@ -38998,7 +39018,7 @@ doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
 <p>
 
 
-<h3>Debugging  <a name="___sec98"></a></h3>
+<h3>Debugging  <a name="___sec99"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -39013,7 +39033,7 @@ format, and you need to know these steps to make use of the logfile.
 <p>
 
 
-<h2>Basic Parsing Ideas  <a name="___sec99"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec100"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -39069,7 +39089,7 @@ LaTeX, and work further on the document in this format.
 <p>
 
 
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec100"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec101"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return
@@ -41930,6 +41950,14 @@ hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
 \subsection{General Problems}
+
+\paragraph{Doconce aborts because of a syntax error that is not an error.}
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+\code{--no-abort} option on the command line. You may send an email
+to the Doconce author at \code{hpl@simula.no} and report the problem.
 
 \paragraph{Something goes wrong in the preprocessing step.}
 Doconce automatically removes the file \code{__tmp.do.txt}, which is the
@@ -45149,6 +45177,16 @@ well for his diverse applications of it.
 
 General Problems
 ----------------
+
+Doconce aborts because of a syntax error that is not an error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+``--no-abort`` option on the command line. You may send an email
+to the Doconce author at ``hpl@simula.no`` and report the problem.
 
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -48729,6 +48767,16 @@ well for his diverse applications of it.
 General Problems
 ----------------
 
+Doconce aborts because of a syntax error that is not an error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+``--no-abort`` option on the command line. You may send an email
+to the Doconce author at ``hpl@simula.no`` and report the problem.
+
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -51780,6 +51828,15 @@ well for his diverse applications of it.
 
 ==== General Problems ====
 
+==== Doconce aborts because of a syntax error that is not an error ====
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+`--no-abort` option on the command line. You may send an email
+to the Doconce author at `hpl@simula.no` and report the problem.
+
 ==== Something goes wrong in the preprocessing step ====
 
 Doconce automatically removes the file `__tmp.do.txt`, which is the
@@ -54783,6 +54840,15 @@ well for his diverse applications of it.
 
 ==== General Problems ====
 
+==== Doconce aborts because of a syntax error that is not an error ====
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+<code>--no-abort</code> option on the command line. You may send an email
+to the Doconce author at <code>hpl@simula.no</code> and report the problem.
+
 ==== Something goes wrong in the preprocessing step ====
 
 Doconce automatically removes the file <code>__tmp.do.txt</code>, which is the
@@ -57747,6 +57813,15 @@ well for his diverse applications of it.
 
 
 == General Problems ==
+
+=== Doconce aborts because of a syntax error that is not an error ===
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+{{{--no-abort}}} option on the command line. You may send an email
+to the Doconce author at {{{hpl@simula.no}}} and report the problem.
 
 === Something goes wrong in the preprocessing step ===
 
@@ -60718,6 +60793,15 @@ hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
 General Problems
+
+Doconce aborts because of a syntax error that is not an error
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+'--no-abort' option on the command line. You may send an email
+to the Doconce author at 'hpl@simula.no' and report the problem.
 
 Something goes wrong in the preprocessing step
 
@@ -63796,6 +63880,16 @@ well for his diverse applications of it.
 
 General Problems
 ----------------
+
+Doconce aborts because of a syntax error that is not an error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+C{--no-abort} option on the command line. You may send an email
+to the Doconce author at C{hpl@simula.no} and report the problem.
 
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -66956,6 +67050,16 @@ well for his diverse applications of it.
 
 General Problems
 ----------------
+
+Doconce aborts because of a syntax error that is not an error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+--no-abort option on the command line. You may send an email
+to the Doconce author at hpl@simula.no and report the problem.
 
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70299,6 +70403,16 @@ well for his diverse applications of it.
 
 General Problems
 ----------------
+
+Doconce aborts because of a syntax error that is not an error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+`--no-abort` option on the command line. You may send an email
+to the Doconce author at `hpl@simula.no` and report the problem.
 
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86105,10 +86219,10 @@ Overfull \hbox (35.00006pt too wide)
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[38]
+[38] [39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-[39]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
@@ -86130,11 +86244,11 @@ defined on
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[43]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[43]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -86155,11 +86269,11 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
+[44]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -86790,10 +86904,10 @@ Overfull \hbox (35.00006pt too wide)
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[38]
+[38] [39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-[39]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
@@ -86810,11 +86924,11 @@ ile
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[43]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[43]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -86835,11 +86949,11 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
+[44]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -87289,7 +87403,7 @@ LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
 [37] [38] [39] [40] [41]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2778.
+ne 2786.
 
 [42] [43] [44]
 Overfull \hbox (48.87616pt too wide) 

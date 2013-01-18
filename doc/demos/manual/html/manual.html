@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 16, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 18, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -2258,6 +2258,15 @@ well for his diverse applications of it.</p>
 </div>
 <div class="section" id="general-problems">
 <h2>General Problems<a class="headerlink" href="#general-problems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="doconce-aborts-because-of-a-syntax-error-that-is-not-an-error">
+<h3>Doconce aborts because of a syntax error that is not an error<a class="headerlink" href="#doconce-aborts-because-of-a-syntax-error-that-is-not-an-error" title="Permalink to this headline">¶</a></h3>
+<p>Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+<tt class="docutils literal"><span class="pre">--no-abort</span></tt> option on the command line. You may send an email
+to the Doconce author at <tt class="docutils literal"><span class="pre">hpl&#64;simula.no</span></tt> and report the problem.</p>
+</div>
 <div class="section" id="something-goes-wrong-in-the-preprocessing-step">
 <h3>Something goes wrong in the preprocessing step<a class="headerlink" href="#something-goes-wrong-in-the-preprocessing-step" title="Permalink to this headline">¶</a></h3>
 <p>Doconce automatically removes the file <tt class="docutils literal"><span class="pre">__tmp.do.txt</span></tt>, which is the
@@ -2890,6 +2899,7 @@ groundwater flow.
 <li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
 <li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
 <li><a class="reference internal" href="#general-problems">General Problems</a><ul>
+<li><a class="reference internal" href="#doconce-aborts-because-of-a-syntax-error-that-is-not-an-error">Doconce aborts because of a syntax error that is not an error</a></li>
 <li><a class="reference internal" href="#something-goes-wrong-in-the-preprocessing-step">Something goes wrong in the preprocessing step</a></li>
 <li><a class="reference internal" href="#figure-captions-are-incomplete">Figure captions are incomplete</a></li>
 <li><a class="reference internal" href="#preprocessor-directives-do-not-work">Preprocessor directives do not work</a></li>
