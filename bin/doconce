@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os, sys, shutil, re, glob, sets
 from commands import getstatusoutput
+from misc import system
 
 def format():
     """
@@ -342,8 +343,7 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
     cmd = 'cat %s | ispell -l -t -d american %s > %s' % \
           (scratchfile, p_opt, misspellings)
     #cmd = 'cat %s | aspell -t -d american list %s > %s'
-    #print cmd
-    os.system(cmd)
+    system(cmd)
 
     # Load misspellings, remove duplicates
     f = open(misspellings, 'r')
@@ -597,10 +597,7 @@ def _preprocess_all_files(rootdir, options=''):
                 outfilename = basename + ext
                 outpath = os.path.join(d, outfilename)
                 cmd = 'preprocess %s %s > %s' % (options, path, outpath)
-                #print cmd
-                failure = os.system(cmd)
-                if failure:
-                    print 'WARNING: could not run\n  %s' %  cmd
+                system(cmd)
 
     os.path.walk(rootdir, _treat_a_dir, None)
 
@@ -942,20 +939,15 @@ y
 EOF
 """ % vars())
     f.close()
-    failure = os.system('sh tmp_sphinx_gen.sh')
-    if failure:
-        print 'Could not run script for making sphinx directory'
-        sys.exit(1)
+    system('sh tmp_sphinx_gen.sh', failure_info='to generate sphinx directory')
+    os.remove('tmp_sphinx_gen.sh')
     os.chdir(sphinx_rootdir)
 
     # Copy themes
     import doconce.common
     install_dir = doconce.common.where()
     shutil.copy(os.path.join(install_dir, 'sphinx_themes.zip'), os.curdir)
-    failure = os.system('unzip sphinx_themes.zip > /dev/null')
-    if failure:
-        print 'Could not pack out themes'
-        sys.exit(1)
+    system('unzip sphinx_themes.zip > /dev/null')
     os.remove('sphinx_themes.zip')
     os.rename('sphinx_themes', '_themes')
     themes = [name[8:] for name in \
@@ -1628,13 +1620,8 @@ def combine_images():
         cmds.append('rm -f tmp.pdf tmp-nup.pdf tmp-nup-crop.pdf')
     print
     for cmd in cmds:
-        failure = os.system(cmd)
-        if failure:
-            print 'Could not run\n  ', cmd
-            sys.exit(1)
-        else:
-            print cmd
-    print 'Output in', output_file
+        system(cmd, verbose=True)
+    print 'output in', output_file
 
 
 def usage_expand_commands():
@@ -1915,15 +1902,9 @@ def ptex2tex():
           (' '.join(preprocess_options),
            filename + '.p.tex',
            filename + '.tex')
-    failure = os.system(cmd)
-    if failure:
-        print """
-Could not run
-    %s
-preprocess failed or is not installed.
-Download preprocess from http://code.google.com/p/preprocess
-""" % cmd
-        sys.exit(1)
+    system(cmd, failure_info="""
+preprocess failed or is not installed;
+download preprocess from http://code.google.com/p/preprocess""")
 
     # Mimic ptex2tex by replacing all code environments by
     # a plain verbatim command
@@ -2297,10 +2278,7 @@ def _change_encoding_unix(filename, from_enc, to_enc):
         print 'Changing encoding is not implemented on Windows machines'
         sys.exit(1)
     os.rename(filename, backupfile)
-    failure = os.system(cmd)
-    if failure:
-        print 'could not run', cmd
-        sys.exit(1)
+    system(cmd)
 
 def _change_encoding_python(filename, from_enc, to_enc):
     f = codecs.open(filename, 'r', from_enc)
