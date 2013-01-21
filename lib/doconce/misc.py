@@ -1,3 +1,21 @@
+import sys
+
+def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
+    """
+    Run OS command cmd.
+    If abort_on_failure: abort when cmd gives failure and print
+    command and failure_info (to explain what the command does).
+    If verbose: print cmd.
+    """
+    if verbose or '--verbose' in sys.argv:
+        print 'running', cmd
+    failure = os.system(cmd)
+    if failure:
+        print 'could not run', cmd, failure_info
+        if abort_on_failure:
+            print 'Abort!'
+            sys.exit(1)
+
 def recommended_html_styles_and_pygments_styles():
     """
     List good combinations of HTML slide styles and
