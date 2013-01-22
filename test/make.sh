@@ -4,6 +4,9 @@ rm -rf html_images reveal.js downloaded_figures
 doconce format html testdoc --wordpress
 cp testdoc.html testdoc_wordpress.html
 
+doconce format html testdoc --without-answers --without-solutions
+cp testdoc.html testdoc_no_solutions.html
+
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
 doconce remove_exercise_answers testdoc.html
 doconce html_colorbullets testdoc.html

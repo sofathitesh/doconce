@@ -5,6 +5,7 @@ translation modules (latex.py, html.py, etc.) are also included in
 here.
 """
 import re, sys
+from misc import option
 
 # Identifiers in the text used to identify code and math blocks
 _CODE_BLOCK = '<<<!!CODE_BLOCK'
@@ -301,10 +302,10 @@ def doconce_exercise_output(exer,
                 begin_hint_ = begin_hint.replace('Hint.', 'Hint %d.' % (i+1))
             s += '\n' + begin_hint_ + hint + end_hint + '\n'
 
-    if exer['answer']:
+    if exer['answer'] and not option('without-answers'):
         s += '\n' + begin_answer + exer['answer'] + end_answer + '\n'
 
-    if exer['solution']:
+    if exer['solution']  and not option('without-solutions'):
         s += '\n' + begin_solution
         # Make sure we have a sentence after the heading
         if exer['solution'].lstrip().startswith(_CODE_BLOCK):
@@ -337,10 +338,9 @@ def doconce_exercise_output(exer,
                         s += 'Filenames: %s' % \
                              ', '.join(['`%s`' % f for f in subex['file']]) + '.\n'
 
-                if subex['answer']:
+                if subex['answer'] and not option('without-answers'):
                     s += '\n' + begin_answer + subex['answer'] + end_answer + '\n'
-
-                if subex['solution']:
+                if subex['solution'] and not option('without-solutions'):
                     s += '\n' + begin_solution
                     # Make sure we have a sentence after the heading
                     if subex['solution'].lstrip().startswith(_CODE_BLOCK):
