@@ -1,4 +1,61 @@
-import sys
+import sys, os
+
+_legal_command_line_options = [
+    '--help',
+    '--debug',
+    '--no-abort',
+    '--skip_inline_comments',
+    '--encoding=',
+    '--oneline_paragraphs',
+    '--no-mako',
+    '--no-preprocess',
+    '--no-pygments-html',
+    '--minted-latex-style=',
+    '--pygments-html-style=',
+    '--pygments-html-linenos',
+    '--html-solarized',
+    '--html-template=',
+    '--html-slide-theme=',
+    '--latex-printed',
+    '--html-color-admon',
+    '--css=',
+    '--verbose',
+    '--example-as-exercise',
+    '--wordpress',
+    ]
+
+def get_legal_command_line_options():
+    """Return list of legal command-line options."""
+    return _legal_command_line_options
+
+def option(name, default=None):
+    """
+    Return value of command-line option with the given name.
+    If name ends with = (``--name=value``), return the value,
+    otherwise return True or False whether the option ``--name``
+    is found or not. If default is provided, this value is returned
+    in case the option was not found.
+    """
+    # Note: Do not use fancy command-line parsers as much functionality
+    # is dependent on command-line info (preprocessor options for instance)
+    # that is not compatible with simple options( --name).
+    name = '--' + name
+    if not name in _legal_command_line_options:
+        print 'test for illegal option:', name
+        print 'Abort!'
+        sys.exit(1)
+    if name.endswith('='):
+        for arg in sys.argv[1:]:
+            if arg.startswith(name):
+                opt, value = arg.split('=')
+                return value
+        if default is not None:
+            return default
+        else:
+            return False
+    else:
+        return (name in sys.argv)
+
 
 def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
     """

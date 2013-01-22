@@ -9,13 +9,13 @@ except ImportError:
 
 def _abort():
     print 'Abort!'
-    if not '--no-abort' in sys.argv:
+    if not option('no-abort'):
         sys.exit(1)
 
 
 def debugpr(out):
     """Add the text in string `out` to the log file (name in _log variable)."""
-    if '--debug' in sys.argv:
+    if option('debug'):
         global _log
         _log = open('_doconce_debugging.log','a')
         _log.write(out + '\n')
@@ -23,6 +23,7 @@ def debugpr(out):
 
 
 from common import *
+from misc import option
 import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc
 for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc:
     #print 'calling define function in', module.__name__
@@ -681,7 +682,7 @@ def exercises(filestr, format):
     exer_end = False
     exer_counter = 0
 
-    if '--example-as-exercise' in sys.argv:
+    if option('example-as-exercise'):
         exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project|Example)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
     else:
         exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
@@ -1890,11 +1891,11 @@ def doconce2format(filestr, format):
           ('*'*80, pprint.pformat(tex_blocks)))
 
     # Remove linebreaks within paragraphs
-    if '--oneline_paragraphs' in sys.argv:  # (does not yet work well)
+    if option('oneline_paragraphs'):  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)
 
     # Remove inline comments
-    if '--skip_inline_comments' in sys.argv:
+    if option('skip_inline_comments'):
         filestr = subst_away_inline_comments(filestr)
 
     # Fix stand-alone http(s) URLs (after verbatim blocks are removed,
@@ -2052,7 +2053,7 @@ preprocess package (sudo apt-get install preprocess).
 """ % filename
             _abort()
 
-        if '--no-preprocess' in sys.argv:
+        if option('no-preprocess'):
             print 'Found preprocess-like statements, but --no-preprocess prevents running preprocess'
             shutil.copy(filename, resultfile)  # just copy
         else:
@@ -2071,8 +2072,8 @@ preprocess package (sudo apt-get install preprocess).
     mako_commands = r'^\s*<?%'
     if re.search(mako_commands, filestr, re.MULTILINE):
 
-        if '--no-mako' in sys.argv:
-            print 'Found Mako-like statements, but --no-mako prevents running the Mako preprocessor'
+        if option('no-mako'):
+            print 'found Mako-like statements, but --no-mako prevents running the Mako preprocessor'
             return filename if preprocessor is None else resultfile
 
         # Check if there is SWIG code that can fool mako
@@ -2122,12 +2123,12 @@ python-mako package (sudo apt-get install python-mako).
         lookup = TemplateLookup(directories=[os.curdir])
         temp = Template(filename=resultfile, lookup=lookup)
         kwargs = {'FORMAT': format}
-        for option in preprocessor_options:
-            if not option.startswith('--'):
+        for opt in preprocessor_options:
+            if not opt.startswith('--'):
                 try:
-                    key, value = option.split('=')
+                    key, value = opt.split('=')
                 except ValueError:
-                    print 'command line argument "%s" not recognized' % option
+                    print 'command line argument "%s" not recognized' % opt
                     _abort()
                 # Try eval(value), if it fails, assume string
                 try:
@@ -2183,14 +2184,6 @@ def main():
 
     # oneline is inactive (doesn't work well yet)
 
-    options = ['--debug', '--skip_inline_comments', '--encoding=',
-               '--oneline_paragraphs', '--no-mako', '--no-preprocess',
-               '--no-pygments-html', '--minted-latex-style=',
-               '--pygments-html-style=', '--pygments-html-linenos',
-               '--html-solarized', '--latex-printed', '--html-color-admon',
-               '--css=',
-               ]
-
     global _log, encoding, filename
 
     try:
@@ -2198,8 +2191,10 @@ def main():
         filename = sys.argv[2]
         del sys.argv[1:3]
     except IndexError:
-        print 'Usage: %s format filename [%s] [preprocessor options]\n' \
-              % (sys.argv[0], ' '.join(options))
+        from misc import get_legal_command_line_options
+        options = ' '.join(get_legal_command_line_options())
+        print 'Usage: %s format filename [preprocessor options] [%s]\n' \
+              % (sys.argv[0], options)
         if len(sys.argv) == 1:
             print 'Missing format specification!'
         print 'formats:', str(supported_format_names())[1:-1]
@@ -2212,13 +2207,9 @@ def main():
         print '%s is not among the supported formats:\n%s' % (format, names)
         _abort()
 
-    encoding = ''
-    for arg in sys.argv[1:]:
-        if arg.startswith('encoding=') or arg.startswith('--encoding='):
-            dummy, encoding = arg.split('=')
-            break
+    encoding = option('encoding=', default='')
 
-    if '--debug' in sys.argv:
+    if option('debug'):
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')
         _log.write("""
@@ -2246,7 +2237,7 @@ def main():
     #print '\n----- doconce format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format, sys.argv[1:])
     file2file(filename_preprocessed, format, out_filename)
-    if filename_preprocessed.startswith('__') and '--debug' not in sys.argv:
+    if filename_preprocessed.startswith('__') and not option('debug'):
         os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
     print 'output in', out_filename

@@ -19298,7 +19298,7 @@ Terminal&gt; doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the <a href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
 wikibooks.org</a>. The format
 works well with Wikipedia, Wikibooks, and
-<a href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+<a href="http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page">ShoutWiki</a>,
 but not always well elsewhere
 (see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
@@ -20817,7 +20817,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the \href{{http://en.wikibooks.org/wiki/Sandbox}}{sandbox of
 wikibooks.org}. The format
 works well with Wikipedia, Wikibooks, and
-\href{{http://doconce.shoutwiki.com/wiki/Doconce_demo}}{ShoutWiki},
+\href{{http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page}}{ShoutWiki},
 but not always well elsewhere
 (see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
@@ -22047,7 +22047,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the `sandbox of
 wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
 works well with Wikipedia, Wikibooks, and
-`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+`ShoutWiki <http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>`_,
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
@@ -23364,7 +23364,7 @@ Transformation from Doconce to these formats is done by
 The produced MediaWiki can be tested in the `sandbox of
 wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
 works well with Wikipedia, Wikibooks, and
-`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+`ShoutWiki <http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>`_,
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
@@ -24513,7 +24513,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
 wikibooks.org]. The format
 works well with Wikipedia, Wikibooks, and
-[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page ShoutWiki],
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
@@ -25665,7 +25665,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
 wikibooks.org]. The format
 works well with Wikipedia, Wikibooks, and
-[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page ShoutWiki],
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
@@ -26775,7 +26775,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [[http://en.wikibooks.org/wiki/Sandbox|sandbox of
 wikibooks.org]]. The format
 works well with Wikipedia, Wikibooks, and
-[[http://doconce.shoutwiki.com/wiki/Doconce_demo|ShoutWiki]],
+[[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page|ShoutWiki]],
 but not always well elsewhere
 (see [[http://doconcedemo.jumpwiki.com/wiki/First_demo|this example]]).
 
@@ -27922,7 +27922,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the "http://en.wikibooks.org/wiki/Sandbox":sandbox of
 wikibooks.org. The format
 works well with Wikipedia, Wikibooks, and
-"http://doconce.shoutwiki.com/wiki/Doconce_demo":ShoutWiki,
+"http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page":ShoutWiki,
 but not always well elsewhere
 (see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
@@ -29101,7 +29101,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the U{sandbox of
 wikibooks.org<http://en.wikibooks.org/wiki/Sandbox>}. The format
 works well with Wikipedia, Wikibooks, and
-U{ShoutWiki<http://doconce.shoutwiki.com/wiki/Doconce_demo>},
+U{ShoutWiki<http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>},
 but not always well elsewhere
 (see U{this example<http://doconcedemo.jumpwiki.com/wiki/First_demo>}).
 
@@ -30328,7 +30328,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the sandbox of
 wikibooks.org (http://en.wikibooks.org/wiki/Sandbox). The format
 works well with Wikipedia, Wikibooks, and
-ShoutWiki (http://doconce.shoutwiki.com/wiki/Doconce_demo),
+ShoutWiki (http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page),
 but not always well elsewhere
 (see this example (http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
@@ -31594,7 +31594,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [sandbox of
 wikibooks.org](http://en.wikibooks.org/wiki/Sandbox). The format
 works well with Wikipedia, Wikibooks, and
-[ShoutWiki](http://doconce.shoutwiki.com/wiki/Doconce_demo),
+[ShoutWiki](http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page),
 but not always well elsewhere
 (see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
@@ -32570,7 +32570,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the "sandbox of
 wikibooks.org": "http://en.wikibooks.org/wiki/Sandbox". The format
 works well with Wikipedia, Wikibooks, and
-"ShoutWiki": "http://doconce.shoutwiki.com/wiki/Doconce_demo",
+"ShoutWiki": "http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page",
 but not always well elsewhere
 (see "this example":
 "http://doconcedemo.jumpwiki.com/wiki/First_demo").
@@ -32833,7 +32833,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 18 Jan 2013 (01:51)</center>
+<center>Tue, 22 Jan 2013 (12:57)</center>
 
 
 
@@ -32964,7 +32964,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 18 Jan 2013 (01:51)</center>
+<center>Tue, 22 Jan 2013 (12:57)</center>
 
 
 
@@ -36554,7 +36554,7 @@ Terminal&gt; doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the <a href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
 wikibooks.org</a>. The format
 works well with Wikipedia, Wikibooks, and
-<a href="http://doconce.shoutwiki.com/wiki/Doconce_demo">ShoutWiki</a>,
+<a href="http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page">ShoutWiki</a>,
 but not always well elsewhere
 (see <a href="http://doconcedemo.jumpwiki.com/wiki/First_demo">this example</a>).
 
@@ -40321,7 +40321,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the \href{{http://en.wikibooks.org/wiki/Sandbox}}{sandbox of
 wikibooks.org}. The format
 works well with Wikipedia, Wikibooks, and
-\href{{http://doconce.shoutwiki.com/wiki/Doconce_demo}}{ShoutWiki},
+\href{{http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page}}{ShoutWiki},
 but not always well elsewhere
 (see \href{{http://doconcedemo.jumpwiki.com/wiki/First_demo}}{this example}).
 
@@ -43502,7 +43502,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the `sandbox of
 wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
 works well with Wikipedia, Wikibooks, and
-`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+`ShoutWiki <http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>`_,
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
@@ -46908,7 +46908,7 @@ Transformation from Doconce to these formats is done by
 The produced MediaWiki can be tested in the `sandbox of
 wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
 works well with Wikipedia, Wikibooks, and
-`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+`ShoutWiki <http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>`_,
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
@@ -50318,7 +50318,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
 wikibooks.org]. The format
 works well with Wikipedia, Wikibooks, and
-[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page ShoutWiki],
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
@@ -53299,7 +53299,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
 wikibooks.org]. The format
 works well with Wikipedia, Wikibooks, and
-[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page ShoutWiki],
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 
@@ -56303,7 +56303,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [[http://en.wikibooks.org/wiki/Sandbox|sandbox of
 wikibooks.org]]. The format
 works well with Wikipedia, Wikibooks, and
-[[http://doconce.shoutwiki.com/wiki/Doconce_demo|ShoutWiki]],
+[[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page|ShoutWiki]],
 but not always well elsewhere
 (see [[http://doconcedemo.jumpwiki.com/wiki/First_demo|this example]]).
 
@@ -59280,7 +59280,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the "http://en.wikibooks.org/wiki/Sandbox":sandbox of
 wikibooks.org. The format
 works well with Wikipedia, Wikibooks, and
-"http://doconce.shoutwiki.com/wiki/Doconce_demo":ShoutWiki,
+"http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page":ShoutWiki,
 but not always well elsewhere
 (see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
@@ -62313,7 +62313,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the U{sandbox of
 wikibooks.org<http://en.wikibooks.org/wiki/Sandbox>}. The format
 works well with Wikipedia, Wikibooks, and
-U{ShoutWiki<http://doconce.shoutwiki.com/wiki/Doconce_demo>},
+U{ShoutWiki<http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>},
 but not always well elsewhere
 (see U{this example<http://doconcedemo.jumpwiki.com/wiki/First_demo>}).
 
@@ -65460,7 +65460,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the sandbox of
 wikibooks.org (http://en.wikibooks.org/wiki/Sandbox). The format
 works well with Wikipedia, Wikibooks, and
-ShoutWiki (http://doconce.shoutwiki.com/wiki/Doconce_demo),
+ShoutWiki (http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page),
 but not always well elsewhere
 (see this example (http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
@@ -68716,7 +68716,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [sandbox of
 wikibooks.org](http://en.wikibooks.org/wiki/Sandbox). The format
 works well with Wikipedia, Wikibooks, and
-[ShoutWiki](http://doconce.shoutwiki.com/wiki/Doconce_demo),
+[ShoutWiki](http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page),
 but not always well elsewhere
 (see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 
@@ -83341,7 +83341,7 @@ output in slides.html
 + doconce slides_html slides reveal --html-slide-type=beigesmall
 made subdirectory reveal.js
 WARNING: the pygments style "emacs" is not recommended for "beige"!
-recommended styles are perldoc
+recommended styles are "perldoc"
 slides written to slides.html
 + mv -f slides.html slides_reveal.html
 + /bin/ls -R reveal.js
@@ -84364,7 +84364,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178652 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178665 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -84511,7 +84511,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -84658,7 +84658,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -84811,7 +84811,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -84958,7 +84958,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184759 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -85430,7 +85430,7 @@ make.sh: 6: make.sh: ./clean.sh: Permission denied
 + d2f=doconce format
 + doconce format html manual.do.txt --no-mako --no-pygments-html
 running preprocess -DFORMAT=html  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to html
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -85456,7 +85456,7 @@ figure file figs/streamtubes:
 output in manual.html
 + doconce format sphinx manual.do.txt --no-mako
 running preprocess -DFORMAT=sphinx  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to sphinx
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -85476,12 +85476,12 @@ Not recommended for sphinx output: math environment beqa
 (use equation, \[ \], or align/align*)
 *** warning: hyperlink to URL src/examples/index.html is to a local file,
   - should be _static/src/examples/index.html for sphinx.
+*** warning: hyperlink to URL manual.do.txt is to a local file,
+  - should be _static/manual.do.txt for sphinx.
 *** warning: hyperlink to URL testdoc.html is to a local file,
   - should be _static/testdoc.html for sphinx.
 *** warning: hyperlink to URL src/myprog.py is to a local file,
   - should be _static/src/myprog.py for sphinx.
-*** warning: hyperlink to URL manual.do.txt is to a local file,
-  - should be _static/manual.do.txt for sphinx.
 *** warning: hyperlink to URL manual.html is to a local file,
   - should be _static/manual.html for sphinx.
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
@@ -85597,7 +85597,7 @@ Build finished. The HTML pages are in _build/html.
 + cd ..
 + doconce format rst manual.do.txt --no-mako
 running preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to rst
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -87005,7 +87005,7 @@ Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
 running preprocess -DFORMAT=plain  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to plain
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -87029,7 +87029,7 @@ copy complete file _format_specific2.do.txt  (format: pro)
 output in manual.txt
 + doconce format epytext manual.do.txt --no-mako
 running preprocess -DFORMAT=epytext  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to epytext
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -87053,7 +87053,7 @@ copy complete file _format_specific2.do.txt  (format: pro)
 output in manual.epytext
 + doconce format st manual.do.txt --no-mako
 running preprocess -DFORMAT=st  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to st
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -87077,7 +87077,7 @@ copy complete file _format_specific2.do.txt  (format: pro)
 output in manual.st
 + doconce format pandoc manual.do.txt --no-mako
 running preprocess -DFORMAT=pandoc  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -87111,7 +87111,7 @@ Warning: latex envir \begin{theorem} does not work well
 output in manual.md
 + doconce format pdflatex manual.do.txt --no-mako
 running preprocess -DFORMAT=pdflatex  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to pdflatex
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -88183,7 +88183,7 @@ Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
 running preprocess -DFORMAT=latex  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to latex
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -89403,7 +89403,7 @@ Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
 running preprocess -DFORMAT=gwiki  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -89437,7 +89437,7 @@ output in manual.gwiki
 \(the URL of the image file figs/streamtubes.png must be inserted here\) replaced by https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png in manual.gwiki
 + doconce format cwiki manual.do.txt --no-mako
 running preprocess -DFORMAT=cwiki  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 
 *** warning: found \cite{...} (cite{...} has no backslash)
@@ -89463,7 +89463,7 @@ figure file figs/streamtubes:
 output in manual.cwiki
 + doconce format mwiki manual.do.txt --no-mako
 running preprocess -DFORMAT=mwiki  manual.do.txt > __tmp.do.txt
-Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
+found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 
 *** warning: found \cite{...} (cite{...} has no backslash)

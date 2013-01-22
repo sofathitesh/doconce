@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Jan 18, 2013
+% Jan 22, 2013
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -1036,7 +1036,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [sandbox of
 wikibooks.org](http://en.wikibooks.org/wiki/Sandbox). The format
 works well with Wikipedia, Wikibooks, and
-[ShoutWiki](http://doconce.shoutwiki.com/wiki/Doconce_demo),
+[ShoutWiki](http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page),
 but not always well elsewhere
 (see [this example](http://doconcedemo.jumpwiki.com/wiki/First_demo)).
 

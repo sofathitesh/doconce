@@ -851,7 +851,7 @@ Transformation from Doconce to these formats is done by::
 The produced MediaWiki can be tested in the "http://en.wikibooks.org/wiki/Sandbox":sandbox of
 wikibooks.org. The format
 works well with Wikipedia, Wikibooks, and
-"http://doconce.shoutwiki.com/wiki/Doconce_demo":ShoutWiki,
+"http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page":ShoutWiki,
 but not always well elsewhere
 (see "http://doconcedemo.jumpwiki.com/wiki/First_demo":this example).
 
