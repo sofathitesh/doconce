@@ -2595,6 +2595,29 @@ Here~goes~a~full~solution~of~the~whole~exercise.\\
 }
 \end{quote}
 
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with \texttt{Example:} and adding the
+command-line option \texttt{-{}-examples-as-exercises}. This means that one can
+typeset examples as an exercise and use the \texttt{!bsubex} and \texttt{!bsol}
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options \texttt{-{}-without-answers} and \texttt{-{}-without-solutions}
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword \texttt{Exercise:}, \texttt{Problem:}, \texttt{Project:},
+or \texttt{Example:}. By enclosing the keyword in braces, as in:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+=====~\{Problem\}:~Find~a~solution~to~a~problem~=====
+}
+\end{quote}
+
+the keyword is marked for being left out of the heading, resulting in
+the heading ``Find a solution to a problem''.
+
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file \texttt{.mydoc.exerinfo},
 if \texttt{mydoc.do.txt} is the name of the Doconce file.  The file contains

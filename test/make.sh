@@ -4,16 +4,16 @@ rm -rf html_images reveal.js downloaded_figures
 doconce format html testdoc --wordpress
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without-answers --without-solutions
+doconce format html testdoc --without-answers --without-solutions --examples-as-exercises
 cp testdoc.html testdoc_no_solutions.html
 
-doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
+doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
 doconce remove_exercise_answers testdoc.html
 doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
 
-doconce format latex testdoc.do.txt
-doconce format pdflatex testdoc.do.txt --latex-printed
+doconce format latex testdoc.do.txt --examples-as-exercises
+doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
 doconce latex_exercise_toc testdoc
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
 
@@ -35,23 +35,23 @@ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\en
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --example-as-exercise
-doconce format st testdoc.do.txt
-doconce format sphinx testdoc.do.txt
+doconce format plain testdoc.do.txt --examples-as-exercises
+doconce format st testdoc.do.txt --examples-as-exercises
+doconce format sphinx testdoc.do.txt --examples-as-exercises
 mv -f testdoc.rst testdoc.sphinx.rst
 # Note: the chapter heading must be removed
 # for successful compilation of the sphinx document.
-doconce format rst testdoc.do.txt
-doconce format epytext testdoc.do.txt
-doconce format pandoc testdoc.do.txt
-doconce format mwiki testdoc.do.txt
-doconce format cwiki testdoc.do.txt
+doconce format rst testdoc.do.txt --examples-as-exercises
+doconce format epytext testdoc.do.txt --examples-as-exercises
+doconce format pandoc testdoc.do.txt --examples-as-exercises
+doconce format mwiki testdoc.do.txt --examples-as-exercises
+doconce format cwiki testdoc.do.txt --examples-as-exercises
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess --examples-as-exercises
 
 # Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt
+doconce format latex testdoc.do.txt --examples-as-exercises
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
 # pandoc cannot work well with \Verb, needs \verb
@@ -60,7 +60,7 @@ pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
 
-doconce format pandoc testdoc.do.txt
+doconce format pandoc testdoc.do.txt --examples-as-exercises
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 

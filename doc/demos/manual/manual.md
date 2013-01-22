@@ -1973,6 +1973,7 @@ The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Project: Determine the Distance to the Moon =====
 \label{proj:moondist}
@@ -2048,6 +2049,30 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with `Example:` and adding the
+command-line option `--examples-as-exercises`. This means that one can
+typeset examples as an exercise and use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword `Exercise:`, `Problem:`, `Project:`,
+or `Example:`. By enclosing the keyword in braces, as in
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== {Problem}: Find a solution to a problem =====
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,

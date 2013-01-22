@@ -2307,6 +2307,8 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
+<p>
 <!-- begin verbatim block -->
 <pre>
 ===== Project: Determine the Distance to the Moon =====
@@ -2388,6 +2390,34 @@ Here goes a full solution of the whole exercise.
 <! -- end verbatim block -->
 
 <p>
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with <tt>Example:</tt> and adding the
+command-line option <tt>--examples-as-exercises</tt>. This means that one can
+typeset examples as an exercise and use the <tt>!bsubex</tt> and <tt>!bsol</tt>
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+<p>
+The command line options <tt>--without-answers</tt> and <tt>--without-solutions</tt>
+turn off output of answers and solutions, respectively, except for
+examples.
+
+<p>
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword <tt>Exercise:</tt>, <tt>Problem:</tt>, <tt>Project:</tt>,
+or <tt>Example:</tt>. By enclosing the keyword in braces, as in
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+===== {Problem}: Find a solution to a problem =====
+</pre>
+<! -- end verbatim block -->
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
+<p>
+
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <tt>.mydoc.exerinfo</tt>,
 if <tt>mydoc.do.txt</tt> is the name of the Doconce file.  The file contains

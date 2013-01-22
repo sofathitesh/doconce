@@ -1521,38 +1521,60 @@ def latex_exercise_toc():
     try:
         heading = sys.argv[2]
     except IndexError:
-        heading = "List of Exercises"
+        # Build default heading from types of environments found
+        import sets
+        types_of_exer = sets.Set()
+        for ex in exer:
+            if ex['type'] != 'Example':
+                types_of_exer.add(ex['type'])
+        types_of_exer = list(types_of_exer)
+        types_of_exer = ['%ss' % tp for tp in types_of_exer]  # plural
+        types_of_exer = [tp for tp in sorted(types_of_exer)]  # alphabetic order
+        if len(types_of_exer) == 1:
+            types_of_exer = types_of_exer[0]
+        elif len(types_of_exer) == 2:
+            types_of_exer = ' and '.join(types_of_exer)
+        elif len(types_of_exer) > 2:
+            types_of_exer[-1] = 'and ' + types_of_exer[-1]
+            types_of_exer = ', '.join(types_of_exer)
+        heading = "List of %s" % types_of_exer
     latex = r"""
 \subsection*{%s}
 \\begin{tabular}{lrll}
 """ % heading
     max_title_length = 45
     for ex in exer:
+        if ex['type'] == 'Example':
+            continue
+        title = ex['title']
+        # Short title?
+        short = ''
+        for line in ex['text'].splitlines():
+            m = re.search(r'#\s*[Ss]hort:\s*(.+)', line)
+            if m:
+                short = m.group(1).strip()
+                title = short
+                break
+        if not short:
+            # Truncate long titles
+            if len(title) > max_title_length:
+                words = title.split()
+                title = []
+                for word in words:
+                    title.append(word)
+                    if len(' '.join(title)) > max_title_length - 5:
+                        title.append('...')
+                        break
+                title = ' '.join(title)
+        title = title.replace('\\', '\\\\') # re.sub later swallows \
+        latex += ex['type'] + ' & ' + str(ex['no']) + ' & ' + title
         if ex['label']:
-            title = ex['title']
-            # Short title?
-            short = ''
-            for line in ex['text'].splitlines():
-                m = re.search(r'#\s*[Ss]hort:\s*(.+)', line)
-                if m:
-                    short = m.group(1).strip()
-                    title = short
-                    break
-            if not short:
-                # Truncate long titles
-                if len(title) > max_title_length:
-                    words = title.split()
-                    title = []
-                    for word in words:
-                        title.append(word)
-                        if len(' '.join(title)) > max_title_length - 5:
-                            title.append('...')
-                            break
-                    title = ' '.join(title)
-            title = title.replace('\\', '\\\\') # re.sub later swallows \
-            latex += ex['type'] + ' & ' + str(ex['no']) + ' & ' + title \
-            + r' & p.~\pageref{%s}' % ex['label'] + ' \\\\\\\\' + '\n'
-            # (need 8 \ for \\ to survive because re.sub below eats them)
+            latex += r' & p.~\pageref{%s}' % ex['label']
+        else:
+            # Leave pageref empty
+            latex += ' &'
+        latex += ' \\\\\\\\' + '\n'
+        # (need 8 \ for \\ to survive because re.sub below eats them)
     latex += r"""\end{tabular}
 % --- end of table of exercises
 

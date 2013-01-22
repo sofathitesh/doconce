@@ -1020,17 +1020,18 @@ doconce~list\_labels~myfile
   \label{exercises}%
 }
 
-Doconce supports \emph{Exercise}, \emph{Problem}, and \emph{Project}. These are typeset
+Doconce supports \emph{Exercise}, \emph{Problem}, \emph{Project}, and \emph{Example}.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain \emph{elements}:
+Exercise, problem, project, or example sections contains certain \emph{elements}:
 %
 \begin{quote}
 %
 \begin{itemize}
 
-\item a headline at the level of a subsection or subsubsection,
-containing one of the words ``Exercise:'', ``Problem:'', or
-``Project:'', followed by a title (required)
+\item a headline at the level of a subsection
+containing one of the words ``Exercise:'', ``Problem:'',
+``Project:'', or ``Example:'', followed by a title (required)
 
 \item a label (optional)
 
@@ -1076,6 +1077,17 @@ compute~the~integral.\\
 !ehint
 }
 \end{quote}
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+=====~\{Problem\}:~Derive~the~Formula~for~the~Area~of~an~Ellipse~=====
+}
+\end{quote}
+
+the title becomes just ``Derive the ...''.
 
 An exercise with subproblems, answers and full solutions has this
 setup-up:
@@ -1131,6 +1143,9 @@ Here~goes~a~full~solution~of~the~whole~exercise.\\
 \end{quote}
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments \texttt{-{}-without-answers} and \texttt{-{}-without-solutions}
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 %___________________________________________________________________________

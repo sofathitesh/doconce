@@ -680,9 +680,9 @@ def exercises(filestr, format):
     exer = {}       # data for one exercise, to be appended to all_exer
     inside_exer = False
     exer_end = False
-    exer_counter = 0
+    exer_counter = dict(Exercise=0, Problem=0, Project=0, Example=0)
 
-    if option('example-as-exercise'):
+    if option('examples-as-exercises'):
         exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project|Example)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
     else:
         exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
@@ -718,16 +718,18 @@ def exercises(filestr, format):
             inside_exer = True
 
             exer = {}  # data in the exercise
-            exer_counter += 1
-            exer['no'] = exer_counter
             exer['title'] = m_heading.group('title')
             exer['heading'] = m_heading.group(1)   # heading type
+
             exer_tp = m_heading.group(2)           # exercise type
             if '{' + exer_tp + '}' in line:
                 exer['type_visible'] = False
             else:
                 exer['type_visible'] = True
             exer['type'] = exer_tp
+            exer_counter[exer_tp] += 1
+            exer['no'] = exer_counter[exer_tp]
+
             exer['label'] = None
             exer['solution_file'] = None
             exer['file'] = None
@@ -2228,14 +2230,17 @@ def main():
         basename = filename
         filename = filename + '.do.txt'
         if not os.path.isfile(filename):
-            print 'No such Doconce file: %s' % (filename[:-7])
+            print 'no such doconce file: %s' % (filename[:-7])
             _abort()
     else:
         basename = filename[:-7]
 
     out_filename = basename + FILENAME_EXTENSION[format]
     #print '\n----- doconce format %s %s' % (format, filename)
-    filename_preprocessed = preprocess(filename, format, sys.argv[1:])
+    preprocessor_options = [arg for arg in sys.argv[1:]
+                            if not arg.startswith('--')]
+    filename_preprocessed = preprocess(filename, format,
+                                       preprocessor_options)
     file2file(filename_preprocessed, format, out_filename)
     if filename_preprocessed.startswith('__') and not option('debug'):
         os.remove(filename_preprocessed)  # clean up

@@ -2007,6 +2007,23 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 </pre>
+<p>Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with <tt class="docutils literal">Example:</tt> and adding the
+command-line option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>. This means that one can
+typeset examples as an exercise and use the <tt class="docutils literal">!bsubex</tt> and <tt class="docutils literal">!bsol</tt>
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.</p>
+<p>The command line options <tt class="docutils literal"><span class="pre">--without-answers</span></tt> and <tt class="docutils literal"><span class="pre">--without-solutions</span></tt>
+turn off output of answers and solutions, respectively, except for
+examples.</p>
+<p>Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword <tt class="docutils literal">Exercise:</tt>, <tt class="docutils literal">Problem:</tt>, <tt class="docutils literal">Project:</tt>,
+or <tt class="docutils literal">Example:</tt>. By enclosing the keyword in braces, as in:</p>
+<pre class="literal-block">
+===== {Problem}: Find a solution to a problem =====
+</pre>
+<p>the keyword is marked for being left out of the heading, resulting in
+the heading &quot;Find a solution to a problem&quot;.</p>
 <p>The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <tt class="docutils literal">.mydoc.exerinfo</tt>,
 if <tt class="docutils literal">mydoc.do.txt</tt> is the name of the Doconce file.  The file contains
