@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Jan 18, 2013 ====
+==== Jan 22, 2013 ====
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -919,7 +919,7 @@ Terminal> doconce format cwiki mydoc.do.txt
 The produced MediaWiki can be tested in the [http://en.wikibooks.org/wiki/Sandbox sandbox of
 wikibooks.org]. The format
 works well with Wikipedia, Wikibooks, and
-[http://doconce.shoutwiki.com/wiki/Doconce_demo ShoutWiki],
+[http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page ShoutWiki],
 but not always well elsewhere
 (see [http://doconcedemo.jumpwiki.com/wiki/First_demo this example]).
 

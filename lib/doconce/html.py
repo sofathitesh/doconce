@@ -1,6 +1,7 @@
 import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex, \
      indent_lines
+from misc import option
 
 # Style sheets
 
@@ -111,25 +112,21 @@ def html_code(filestr, code_blocks, code_block_types,
     except ImportError:
         pygm = None
     # Can turn off pygments on the cmd line
-    if '--no-pygments-html' in sys.argv:
+    if option('no-pygments-html'):
         pygm = None
     if pygm is not None:
-        pygm_style = 'emacs'  # default
-        pygm_style = 'default'  # default
-        for arg in sys.argv[1:]:
-            if arg.startswith('--pygments-html-style='):
-                pygm_style = arg.split('=')[1]
-                legal_styles = list(get_all_styles())
-                legal_styles += ['no', 'none']
-                if pygm_style not in legal_styles:
-                    print 'pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles))
-                    #sys.exit(1)
-                    print 'using the default style...'
-                    pygm_style = 'default'
-                if pygm_style in ['no', 'none']:
-                    pygm = None
+        pygm_style = option('pygments-html-style=', default='default')
+        legal_styles = list(get_all_styles())
+        legal_styles += ['no', 'none']
+        if pygm_style not in legal_styles:
+            print 'pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles))
+            #sys.exit(1)
+            print 'using the default style...'
+            pygm_style = 'default'
+        if pygm_style in ['no', 'none']:
+            pygm = None
 
-        linenos = '--pygments-html-linenos' in sys.argv
+        linenos = option('pygments-html-linenos')
 
     # For html we should make replacements of < and > in code_blocks,
     # since these can be interpreted as tags, and we must
@@ -171,7 +168,7 @@ def html_code(filestr, code_blocks, code_block_types,
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
             code_blocks[i] = code_blocks[i].replace('"', '&quot;')
 
-    if '--wordpress' in sys.argv:
+    if option('wordpress'):
         # Change all equations to $latex ...$\n
         replace = [
             (r'\[', '$latex '),
@@ -222,7 +219,7 @@ def html_code(filestr, code_blocks, code_block_types,
                 r'</pre>\n<! -- end verbatim block -->\n',
                 filestr)
 
-    if '--wordpress' in sys.argv:
+    if option('wordpress'):
         MATH_TYPESETTING = 'WordPress'
     else:
         MATH_TYPESETTING = 'MathJax'
@@ -328,17 +325,13 @@ MathJax.Hub.Config({
 
     # Add header from external template
     header = '<title>' in filestr  # will the html file get a header?
-    template = ''
-    for arg in sys.argv:
-        if arg.startswith('--html-template='):
-            template = arg.split('=')[1]
-            if header:
-                print 'Warning: HTML template %s ignored since the file has a title (and hence a generated HTML header)' % template
-            authors = '<! -- author(s) -->' in filestr
-            if authors:
-                print 'Warning: AUTHOR is not recommended when using HTML templates (usually looks no good)'
-            break
-    if template and not header:
+    template = option('html-template=', default='')
+    if template != '' and header:
+        print 'Warning: HTML template %s ignored since the file has a title (and hence a generated HTML header)' % template
+        authors = '<! -- author(s) -->' in filestr
+        if authors:
+            print 'Warning: AUTHOR is not recommended when using HTML templates (usually looks no good)'
+    if template != '' and not header:
         title = ''
         date = ''
         # The first section heading or a #TITLE: ... line becomes the title
@@ -386,8 +379,8 @@ def html_figure(m):
 
     if opts:
         info = [s.split('=') for s in opts.split()]
-        opts = ' ' .join(['%s=%s' % (option, value)
-                          for option, value in info if option not in ['frac']])
+        opts = ' ' .join(['%s=%s' % (opt, value)
+                          for opt, value in info if opt not in ['frac']])
 
     if caption:
        # Caption above figure and a horizontal rule (fine for anchoring):
@@ -725,7 +718,7 @@ def html_%s(block, format):
 </table>
 """ %% block
     janko = '<div class="%s">%%s</div>' %% block
-    return janko if '--html-color-admon' in sys.argv else lyx
+    return janko if option('html-color-admon') else lyx
 ''' % (_admon, _admon, _Admon, _Admon, _admon)
     exec(_text)
 
@@ -779,7 +772,7 @@ def define(FILENAME_EXTENSION,
         'comment':       '<!-- %s -->',
         }
 
-    if '--wordpress' in sys.argv:
+    if option('wordpress'):
         INLINE_TAGS_SUBST['html'].update({
             'math':          r'\g<begin>$latex \g<subst>$\g<end>',
             'math2':         r'\g<begin>$latex \g<latexmath>$\g<end>'
@@ -830,7 +823,7 @@ def define(FILENAME_EXTENSION,
     TOC['html'] = html_toc
 
     # Embedded style sheets
-    if '--html-solarized' in sys.argv:
+    if option('html-solarized'):
         css = css_solarized
     else:
         css = css_blueish # default
@@ -840,15 +833,14 @@ def define(FILENAME_EXTENSION,
 %s
 </style>
 """ % css
-    for arg in sys.argv:
-        if arg.startswith('--css='):
-            filename = arg.split('=')[1]
-            if not os.path.isfile(filename):
-                # Put the style in the file when the file does not exist
-                f = open(filename, 'w')
-                f.write(css)
-                f.close()
-            style = '<link rel="stylesheet" href="%s">' % filename
+    css_filename = option('css=')
+    if css_filename:
+        if not os.path.isfile(filename):
+            # Put the style in the file when the file does not exist
+            f = open(filename, 'w')
+            f.write(css)
+            f.close()
+        style = '<link rel="stylesheet" href="%s">' % filename
 
 
     # Document start

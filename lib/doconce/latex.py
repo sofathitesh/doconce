@@ -3,6 +3,7 @@
 import os, commands, re, sys, glob
 from common import plain_exercise, table_analysis, \
      _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines
+from misc import option
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 include_numbering_of_exercises = True
@@ -88,7 +89,7 @@ def latex_code(filestr, code_blocks, code_block_types,
         filestr = re.sub(r'section\{(Exercise|Problem|Project)( +[^}])',
                          r'section*{\g<1>\g<2>', filestr)
 
-    if '--latex-printed' in sys.argv:
+    if option('latex-printed'):
         # Make adjustments for printed versions of the PDF document.
         # Fix links so that the complete URL is in a footnote
         pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
@@ -1025,15 +1026,13 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 """
-    if '--latex-printed' in sys.argv:
+    if option('latex-printed'):
        INTRO['latex'] = INTRO['latex'].replace('oneside,', 'twoside,')
 
-    pygm_style = 'default'
-    for arg in sys.argv[1:]:
-        if arg.startswith('--minted-latex-style='):
-           pygm_style = arg.split('=')[1]
-           INTRO['latex'] = INTRO['latex'].replace('usemintedstyle{default}',
-                                           'usemintedstyle{%s}' % pygm_style)
+    pygm_style = option('minted-latex-style=', default='default')
+    if not pygm_style == 'default':
+        INTRO['latex'] = INTRO['latex'].replace('usemintedstyle{default}',
+                                       'usemintedstyle{%s}' % pygm_style)
 
     newcommands_files = list(sorted([name
                                      for name in glob.glob('newcommands*.tex')

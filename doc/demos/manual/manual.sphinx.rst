@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jan 18, 2013
+:Date: Jan 22, 2013
 
 .. lines beginning with # are doconce comment lines
 
@@ -1093,7 +1093,7 @@ Transformation from Doconce to these formats is done by
 The produced MediaWiki can be tested in the `sandbox of
 wikibooks.org <http://en.wikibooks.org/wiki/Sandbox>`_. The format
 works well with Wikipedia, Wikibooks, and
-`ShoutWiki <http://doconce.shoutwiki.com/wiki/Doconce_demo>`_,
+`ShoutWiki <http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page>`_,
 but not always well elsewhere
 (see `this example <http://doconcedemo.jumpwiki.com/wiki/First_demo>`_).
 
