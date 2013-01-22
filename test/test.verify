@@ -44,7 +44,7 @@ clean_and_make(append=False)
 
 log = open(logfilename, 'a')
 files = '.do.txt', '.html', '.p.tex', '.tex_ptex2tex', '.tex_doconce_ptex2tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md', '.tmp'
-files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt', '._part0000_testdoc.html', '._part0001_testdoc.html', '._part0002_testdoc.html', 'slides.do.txt', 'slides_reveal.html', 'tmp_slides_html_all.sh', 'testdoc_wordpress.html']
+files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt', '._part0000_testdoc.html', '._part0001_testdoc.html', '._part0002_testdoc.html', 'slides.do.txt', 'slides_reveal.html', 'tmp_slides_html_all.sh', 'testdoc_wordpress.html', 'testdoc_no_solutions.html']
 for f in files:
     add(f, log)
 add('make.sh', log)
