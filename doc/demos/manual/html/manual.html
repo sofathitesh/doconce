@@ -1616,15 +1616,15 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.</p>
 </div>
-<div class="section" id="exercises-problems-or-projects">
-<h2>Exercises, Problems, or Projects<a class="headerlink" href="#exercises-problems-or-projects" title="Permalink to this headline">¶</a></h2>
-<p>Doconce has special support for three types of &#8220;exercises&#8221;, named
-<em>exercise</em>, <em>problem</em>, or <em>project</em>.
+<div class="section" id="exercises-problems-projects-and-examples">
+<h2>Exercises, Problems, Projects, and Examples<a class="headerlink" href="#exercises-problems-projects-and-examples" title="Permalink to this headline">¶</a></h2>
+<p>Doconce has special support for four types of &#8220;exercises&#8221;, named
+<em>exercise</em>, <em>problem</em>, <em>project</em>, or <em>example</em>.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 <tt class="docutils literal"><span class="pre">=</span></tt> characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 <tt class="docutils literal"><span class="pre">=</span></tt> characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word &#8220;Exercise&#8221;, &#8220;Problem&#8221;, or &#8220;Project&#8221;, followed
+consists of the word &#8220;Exercise&#8221;, &#8220;Problem&#8221;, &#8220;Project&#8221;, or &#8220;Example&#8221;, followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -1637,7 +1637,7 @@ solution=eart2moon_sol.do.txt
 Here goes the running text of the project....
 </pre></div>
 </div>
-<p>Doconce will recognize the exercise, problem, or project <em>title</em>,
+<p>Doconce will recognize the exercise, problem, project, or example <em>title</em>,
 the <em>label</em>, the <em>result file</em>, the <em>solution</em> (if any of
 these three entities is present), and the <em>running text</em>. In addition,
 one can add subexercise environments, starting with <tt class="docutils literal"><span class="pre">!bsubex</span></tt> and ending
@@ -1699,12 +1699,17 @@ Here goes a full solution of the whole exercise.
 !esol
 </pre></div>
 </div>
-<p>Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with <tt class="docutils literal"><span class="pre">Example:</span></tt> and adding the
-command-line option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>. This means that one can
-typeset examples as an exercise and use the <tt class="docutils literal"><span class="pre">!bsubex</span></tt> and <tt class="docutils literal"><span class="pre">!bsol</span></tt>
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.</p>
+<p>A recommended rule for using the different &#8220;exercise&#8221; types goes as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Exercises are smaller problems directly related to the present chapter
+(e.g., with references to the text).</li>
+<li>Problems are sufficiently independent of the chapter&#8217;s text
+that they make sense on their own, separated from the rest of the docoment.</li>
+<li>Projects are larger problems that also make sense on their own.</li>
+<li>Examples are exercises, problems, or projects with full solutions.</li>
+</ul>
+</div></blockquote>
 <p>The command line options <tt class="docutils literal"><span class="pre">--without-answers</span></tt> and <tt class="docutils literal"><span class="pre">--without-solutions</span></tt>
 turn off output of answers and solutions, respectively, except for
 examples.</p>
@@ -1733,20 +1738,26 @@ downloading the solution file if the result file meets certain
 criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.</p>
-<p>For now, exercises, problems, and projects are typeset as ordinary
+<p>For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;,
 or &#8220;Project:&#8221; word, so that references like</p>
 <div class="highlight-text"><div class="highlight"><pre>see Problem ref{...}
 </pre></div>
 </div>
-<p>works well in all formats.</p>
-<p>It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named &#8220;Exercises&#8221;, &#8220;Problems&#8221;, or
-&#8220;Projects&#8221;.</p>
+<p>works well in all formats (i.e., no double &#8220;Problem Problem&#8221; appears).</p>
+<p><em>Remark.</em> Examples are <em>not</em> typeset similarly to exercises unless one adds
+the command-line option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>. That is, without
+this option, any heading and starting with <tt class="docutils literal"><span class="pre">Example:</span></tt> makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>,
+one can use the <tt class="docutils literal"><span class="pre">!bsubex</span></tt> and <tt class="docutils literal"><span class="pre">!bsol</span></tt>
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.</p>
 </div>
 <div class="section" id="blocks-of-verbatim-computer-code">
 <span id="sec-verbatim-blocks"></span><h2>Blocks of Verbatim Computer Code<a class="headerlink" href="#blocks-of-verbatim-computer-code" title="Permalink to this headline">¶</a></h2>
@@ -2899,7 +2910,7 @@ groundwater flow.
 <li><a class="reference internal" href="#generalized-cross-referencing">Generalized Cross-Referencing</a></li>
 <li><a class="reference internal" href="#index-and-bibliography">Index and Bibliography</a></li>
 <li><a class="reference internal" href="#tables">Tables</a></li>
-<li><a class="reference internal" href="#exercises-problems-or-projects">Exercises, Problems, or Projects</a></li>
+<li><a class="reference internal" href="#exercises-problems-projects-and-examples">Exercises, Problems, Projects, and Examples</a></li>
 <li><a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a></li>
 <li><a class="reference internal" href="#latex-blocks-of-mathematical-text">LaTeX Blocks of Mathematical Text</a><ul>
 <li><a class="reference internal" href="#mathematics-for-powerpoint-openoffice">Mathematics for PowerPoint/OpenOffice</a></li>

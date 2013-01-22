@@ -2294,15 +2294,15 @@ the format and insert format-specific code for tables.
 <p>
 
 
-<h3>Exercises, Problems, or Projects  <a name="___sec44"></a></h3>
+<h3>Exercises, Problems, Projects, and Examples  <a name="___sec44"></a></h3>
 <p>
-Doconce has special support for three types of "exercises", named
-<em>exercise</em>, <em>problem</em>, or <em>project</em>.
+Doconce has special support for four types of "exercises", named
+<em>exercise</em>, <em>problem</em>, <em>project</em>, or <em>example</em>.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 <tt>=</tt> characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 <tt>=</tt> characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -2320,7 +2320,7 @@ Here goes the running text of the project....
 
 </pre>
 <! -- end verbatim block -->
-Doconce will recognize the exercise, problem, or project <em>title</em>,
+Doconce will recognize the exercise, problem, project, or example <em>title</em>,
 the <em>label</em>, the <em>result file</em>, the <em>solution</em> (if any of
 these three entities is present), and the <em>running text</em>. In addition,
 one can add subexercise environments, starting with <tt>!bsubex</tt> and ending
@@ -2390,14 +2390,19 @@ Here goes a full solution of the whole exercise.
 <! -- end verbatim block -->
 
 <p>
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with <tt>Example:</tt> and adding the
-command-line option <tt>--examples-as-exercises</tt>. This means that one can
-typeset examples as an exercise and use the <tt>!bsubex</tt> and <tt>!bsol</tt>
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
 
 <p>
+
+<ul>
+  <li> Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).</li>
+  <li> Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.</li>
+  <li> Projects are larger problems that also make sense on their own.</li>
+  <li> Examples are exercises, problems, or projects with full solutions.</li>
+</ul>
+
 The command line options <tt>--without-answers</tt> and <tt>--without-solutions</tt>
 turn off output of answers and solutions, respectively, except for
 examples.
@@ -2439,10 +2444,10 @@ output format, but this is an intended future feature to be
 impelemented.
 
 <p>
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
@@ -2451,12 +2456,18 @@ or "Project:" word, so that references like
 see Problem ref{...}
 </pre>
 <! -- end verbatim block -->
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
 <p>
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+<b>Remark.</b> Examples are <em>not</em> typeset similarly to exercises unless one adds
+the command-line option <tt>--examples-as-exercises</tt>. That is, without
+this option, any heading and starting with <tt>Example:</tt> makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option <tt>--examples-as-exercises</tt>,
+one can use the <tt>!bsubex</tt> and <tt>!bsol</tt>
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 <p>
 

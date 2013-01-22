@@ -35016,7 +35016,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 22 Jan 2013 (15:04)</center>
+<center>Tue, 22 Jan 2013 (15:30)</center>
 
 
 
@@ -35147,7 +35147,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 22 Jan 2013 (15:04)</center>
+<center>Tue, 22 Jan 2013 (15:30)</center>
 
 
 
@@ -36269,15 +36269,15 @@ the format and insert format-specific code for tables.
 
 
 
-===== Exercises, Problems, or Projects =====
+===== Exercises, Problems, Projects, and Examples =====
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 `=` characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 `=` characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -36292,7 +36292,7 @@ solution=eart2moon_sol.do.txt
 Here goes the running text of the project....
 
 !ec
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with `!bsubex` and ending
@@ -36357,12 +36357,14 @@ Here goes a full solution of the whole exercise.
 !esol
 !ec
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with `Example:` and adding the
-command-line option `--examples-as-exercises`. This means that one can
-typeset examples as an exercise and use the `!bsubex` and `!bsol`
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  * Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+  * Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+  * Projects are larger problems that also make sense on their own.
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options `--without-answers` and `--without-solutions`
 turn off output of answers and solutions, respectively, except for
@@ -36398,21 +36400,29 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
 !bc
 see Problem ref{...}
 !ec
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+__Remark.__
+Examples are *not* typeset similarly to exercises unless one adds
+the command-line option `--examples-as-exercises`. That is, without
+this option, any heading and starting with `Example:` makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option `--examples-as-exercises`,
+one can use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
+
 
 
 ===== Blocks of Verbatim Computer Code =====
@@ -39794,15 +39804,15 @@ the format and insert format-specific code for tables.
 <p>
 
 
-<h3>Exercises, Problems, or Projects  <a name="___sec44"></a></h3>
+<h3>Exercises, Problems, Projects, and Examples  <a name="___sec44"></a></h3>
 <p>
-Doconce has special support for three types of "exercises", named
-<em>exercise</em>, <em>problem</em>, or <em>project</em>.
+Doconce has special support for four types of "exercises", named
+<em>exercise</em>, <em>problem</em>, <em>project</em>, or <em>example</em>.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 <tt>=</tt> characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 <tt>=</tt> characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -39820,7 +39830,7 @@ Here goes the running text of the project....
 
 </pre>
 <! -- end verbatim block -->
-Doconce will recognize the exercise, problem, or project <em>title</em>,
+Doconce will recognize the exercise, problem, project, or example <em>title</em>,
 the <em>label</em>, the <em>result file</em>, the <em>solution</em> (if any of
 these three entities is present), and the <em>running text</em>. In addition,
 one can add subexercise environments, starting with <tt>!bsubex</tt> and ending
@@ -39890,14 +39900,19 @@ Here goes a full solution of the whole exercise.
 <! -- end verbatim block -->
 
 <p>
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with <tt>Example:</tt> and adding the
-command-line option <tt>--examples-as-exercises</tt>. This means that one can
-typeset examples as an exercise and use the <tt>!bsubex</tt> and <tt>!bsol</tt>
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
 
 <p>
+
+<ul>
+  <li> Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).</li>
+  <li> Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.</li>
+  <li> Projects are larger problems that also make sense on their own.</li>
+  <li> Examples are exercises, problems, or projects with full solutions.</li>
+</ul>
+
 The command line options <tt>--without-answers</tt> and <tt>--without-solutions</tt>
 turn off output of answers and solutions, respectively, except for
 examples.
@@ -39939,10 +39954,10 @@ output format, but this is an intended future feature to be
 impelemented.
 
 <p>
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
@@ -39951,12 +39966,18 @@ or "Project:" word, so that references like
 see Problem ref{...}
 </pre>
 <! -- end verbatim block -->
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
 <p>
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+<b>Remark.</b> Examples are <em>not</em> typeset similarly to exercises unless one adds
+the command-line option <tt>--examples-as-exercises</tt>. That is, without
+this option, any heading and starting with <tt>Example:</tt> makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option <tt>--examples-as-exercises</tt>,
+one can use the <tt>!bsubex</tt> and <tt>!bsol</tt>
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 <p>
 
@@ -43466,15 +43487,15 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-\subsection{Exercises, Problems, or Projects}
+\subsection{Exercises, Problems, Projects, and Examples}
 
-Doconce has special support for three types of "exercises", named
-\emph{exercise}, \emph{problem}, or \emph{project}.
+Doconce has special support for four types of "exercises", named
+\emph{exercise}, \emph{problem}, \emph{project}, or \emph{example}.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 \code{=} characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 \code{=} characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -43489,7 +43510,7 @@ solution=eart2moon_sol.do.txt
 Here goes the running text of the project....
 
 \eccq
-Doconce will recognize the exercise, problem, or project \emph{title},
+Doconce will recognize the exercise, problem, project, or example \emph{title},
 the \emph{label}, the \emph{result file}, the \emph{solution} (if any of
 these three entities is present), and the \emph{running text}. In addition,
 one can add subexercise environments, starting with \code{!bsubex} and ending
@@ -43554,13 +43575,21 @@ Here goes a full solution of the whole exercise.
 !esol
 \eccq
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with \code{Example:} and adding the
-command-line option \code{--examples-as-exercises}. This means that one can
-typeset examples as an exercise and use the \code{!bsubex} and \code{!bsol}
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
 
+\begin{itemize}
+  \item Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+
+  \item Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+
+  \item Projects are larger problems that also make sense on their own.
+
+  \item Examples are exercises, problems, or projects with full solutions.
+\end{itemize}
+
+\noindent
 The command line options \code{--without-answers} and \code{--without-solutions}
 turn off output of answers and solutions, respectively, except for
 examples.
@@ -43595,21 +43624,28 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in {\LaTeX}, for instance) or a link to the title of the section.
 The \emph{title} is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
 \bccq
 see Problem ref{...}
 \eccq
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+\paragraph{Remark.}
+Examples are \emph{not} typeset similarly to exercises unless one adds
+the command-line option \code{--examples-as-exercises}. That is, without
+this option, any heading and starting with \code{Example:} makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option \code{--examples-as-exercises},
+one can use the \code{!bsubex} and \code{!bsol}
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 \subsection{Blocks of Verbatim Computer Code}
 
@@ -46680,16 +46716,16 @@ the format and insert format-specific code for tables.
 
 
 
-Exercises, Problems, or Projects
---------------------------------
+Exercises, Problems, Projects, and Examples
+-------------------------------------------
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 ``=`` characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 ``=`` characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -46704,7 +46740,7 @@ in) and a solution file. The Doconce code looks like this::
         Here goes the running text of the project....
         
 
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with ``!bsubex`` and ending
@@ -46770,12 +46806,17 @@ A full exercise set-up can be sketched as follows::
         !esol
 
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with ``Example:`` and adding the
-command-line option ``--examples-as-exercises``. This means that one can
-typeset examples as an exercise and use the ``!bsubex`` and ``!bsol``
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  * Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+
+  * Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+
+  * Projects are larger problems that also make sense on their own.
+
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options ``--without-answers`` and ``--without-solutions``
 turn off output of answers and solutions, respectively, except for
@@ -46811,10 +46852,10 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like::
@@ -46822,11 +46863,18 @@ or "Project:" word, so that references like::
 
         see Problem ref{...}
 
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+*Remark.* Examples are *not* typeset similarly to exercises unless one adds
+the command-line option ``--examples-as-exercises``. That is, without
+this option, any heading and starting with ``Example:`` makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option ``--examples-as-exercises``,
+one can use the ``!bsubex`` and ``!bsol``
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
+
 
 
 .. _sec:verbatim:blocks:
@@ -50231,16 +50279,16 @@ the format and insert format-specific code for tables.
 
 
 
-Exercises, Problems, or Projects
---------------------------------
+Exercises, Problems, Projects, and Examples
+-------------------------------------------
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 ``=`` characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 ``=`` characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -50258,7 +50306,7 @@ in) and a solution file. The Doconce code looks like this:
         Here goes the running text of the project....
         
 
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with ``!bsubex`` and ending
@@ -50326,12 +50374,17 @@ A full exercise set-up can be sketched as follows:
         !esol
 
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with ``Example:`` and adding the
-command-line option ``--examples-as-exercises``. This means that one can
-typeset examples as an exercise and use the ``!bsubex`` and ``!bsol``
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  * Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+
+  * Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+
+  * Projects are larger problems that also make sense on their own.
+
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options ``--without-answers`` and ``--without-solutions``
 turn off output of answers and solutions, respectively, except for
@@ -50370,10 +50423,10 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
@@ -50383,11 +50436,18 @@ or "Project:" word, so that references like
 
         see Problem ref{...}
 
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+*Remark.* Examples are *not* typeset similarly to exercises unless one adds
+the command-line option ``--examples-as-exercises``. That is, without
+this option, any heading and starting with ``Example:`` makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option ``--examples-as-exercises``,
+one can use the ``!bsubex`` and ``!bsol``
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
+
 
 
 .. _sec:verbatim:blocks:
@@ -53447,15 +53507,15 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-==== Exercises, Problems, or Projects ====
+==== Exercises, Problems, Projects, and Examples ====
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 `=` characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 `=` characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -53470,7 +53530,7 @@ solution=eart2moon_sol.do.txt
 Here goes the running text of the project....
 
 }}}
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with `!bsubex` and ending
@@ -53535,12 +53595,13 @@ Here goes a full solution of the whole exercise.
 !esol
 }}}
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with `Example:` and adding the
-command-line option `--examples-as-exercises`. This means that one can
-typeset examples as an exercise and use the `!bsubex` and `!bsol`
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+
+  * Exercises are smaller problems directly related to the present chapter    (e.g., with references to the text).
+  * Problems are sufficiently independent of the chapter's text    that they make sense on their own, separated from the rest of the docoment.
+  * Projects are larger problems that also make sense on their own.
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options `--without-answers` and `--without-solutions`
 turn off output of answers and solutions, respectively, except for
@@ -53576,21 +53637,27 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
 {{{
 see Problem ref{...}
 }}}
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+*Remark.* Examples are *not* typeset similarly to exercises unless one adds
+the command-line option `--examples-as-exercises`. That is, without
+this option, any heading and starting with `Example:` makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option `--examples-as-exercises`,
+one can use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 ==== Blocks of Verbatim Computer Code ====
 
@@ -56460,15 +56527,15 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-==== Exercises, Problems, or Projects ====
+==== Exercises, Problems, Projects, and Examples ====
 
-Doconce has special support for three types of "exercises", named
-''exercise'', ''problem'', or ''project''.
+Doconce has special support for four types of "exercises", named
+''exercise'', ''problem'', ''project'', or ''example''.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 <code>=</code> characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 <code>=</code> characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -56483,7 +56550,7 @@ solution=eart2moon_sol.do.txt
 Here goes the running text of the project....
 
 </syntaxhighlight>
-Doconce will recognize the exercise, problem, or project ''title'',
+Doconce will recognize the exercise, problem, project, or example ''title'',
 the ''label'', the ''result file'', the ''solution'' (if any of
 these three entities is present), and the ''running text''. In addition,
 one can add subexercise environments, starting with <code>!bsubex</code> and ending
@@ -56548,12 +56615,17 @@ Here goes a full solution of the whole exercise.
 !esol
 </syntaxhighlight>
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with <code>Example:</code> and adding the
-command-line option <code>--examples-as-exercises</code>. This means that one can
-typeset examples as an exercise and use the <code>!bsubex</code> and <code>!bsol</code>
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+
+<ul>
+  <li> Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+  <li> Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+  <li> Projects are larger problems that also make sense on their own.
+  <li> Examples are exercises, problems, or projects with full solutions.
+</ul>
 
 The command line options <code>--without-answers</code> and <code>--without-solutions</code>
 turn off output of answers and solutions, respectively, except for
@@ -56589,21 +56661,28 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The ''title'' is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
 <syntaxhighlight lang="text">
 see Problem ref{...}
 </syntaxhighlight>
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+''Remark.''
+Examples are ''not'' typeset similarly to exercises unless one adds
+the command-line option <code>--examples-as-exercises</code>. That is, without
+this option, any heading and starting with <code>Example:</code> makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option <code>--examples-as-exercises</code>,
+one can use the <code>!bsubex</code> and <code>!bsol</code>
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 ==== Blocks of Verbatim Computer Code ====
 
@@ -59469,15 +59548,15 @@ is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
 
-== Exercises, Problems, or Projects ==
+== Exercises, Problems, Projects, and Examples ==
 
-Doconce has special support for three types of "exercises", named
-//exercise//, //problem//, or //project//.
+Doconce has special support for four types of "exercises", named
+//exercise//, //problem//, //project//, or //example//.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 {{{=}}} characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 {{{=}}} characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -59492,7 +59571,7 @@ solution=eart2moon_sol.do.txt
 Here goes the running text of the project....
 
 }}}
-Doconce will recognize the exercise, problem, or project //title//,
+Doconce will recognize the exercise, problem, project, or example //title//,
 the //label//, the //result file//, the //solution// (if any of
 these three entities is present), and the //running text//. In addition,
 one can add subexercise environments, starting with {{{!bsubex}}} and ending
@@ -59557,12 +59636,13 @@ Here goes a full solution of the whole exercise.
 !esol
 }}}
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with {{{Example:}}} and adding the
-command-line option {{{--examples-as-exercises}}}. This means that one can
-typeset examples as an exercise and use the {{{!bsubex}}} and {{{!bsol}}}
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+
+  * Exercises are smaller problems directly related to the present chapter    (e.g., with references to the text).
+  * Problems are sufficiently independent of the chapter's text    that they make sense on their own, separated from the rest of the docoment.
+  * Projects are larger problems that also make sense on their own.
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options {{{--without-answers}}} and {{{--without-solutions}}}
 turn off output of answers and solutions, respectively, except for
@@ -59598,21 +59678,27 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The //title// is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
 {{{
 see Problem ref{...}
 }}}
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+//Remark.// Examples are //not// typeset similarly to exercises unless one adds
+the command-line option {{{--examples-as-exercises}}}. That is, without
+this option, any heading and starting with {{{Example:}}} makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option {{{--examples-as-exercises}}},
+one can use the {{{!bsubex}}} and {{{!bsol}}}
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 
 == Blocks of Verbatim Computer Code ==
@@ -62465,15 +62551,15 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-Exercises, Problems, or Projects
+Exercises, Problems, Projects, and Examples
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 '=' characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 '=' characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -62488,7 +62574,7 @@ in) and a solution file. The Doconce code looks like this::
         Here goes the running text of the project....
         
 
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with '!bsubex' and ending
@@ -62554,12 +62640,14 @@ A full exercise set-up can be sketched as follows::
         !esol
 
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with 'Example:' and adding the
-command-line option '--examples-as-exercises'. This means that one can
-typeset examples as an exercise and use the '!bsubex' and '!bsol'
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  - Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+  - Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+  - Projects are larger problems that also make sense on their own.
+  - Examples are exercises, problems, or projects with full solutions.
 
 The command line options '--without-answers' and '--without-solutions'
 turn off output of answers and solutions, respectively, except for
@@ -62595,10 +62683,10 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like::
@@ -62606,11 +62694,17 @@ or "Project:" word, so that references like::
 
         see Problem ref{...}
 
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+*Remark.* Examples are *not* typeset similarly to exercises unless one adds
+the command-line option '--examples-as-exercises'. That is, without
+this option, any heading and starting with 'Example:' makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option '--examples-as-exercises',
+one can use the '!bsubex' and '!bsol'
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
 
 Blocks of Verbatim Computer Code
 
@@ -65553,16 +65647,16 @@ the format and insert format-specific code for tables.
 
 
 
-Exercises, Problems, or Projects
---------------------------------
+Exercises, Problems, Projects, and Examples
+-------------------------------------------
 
-Doconce has special support for three types of "exercises", named
-I{exercise}, I{problem}, or I{project}.
+Doconce has special support for four types of "exercises", named
+I{exercise}, I{problem}, I{project}, or I{example}.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 C{=} characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 C{=} characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -65577,7 +65671,7 @@ in) and a solution file. The Doconce code looks like this::
         Here goes the running text of the project....
         
 
-Doconce will recognize the exercise, problem, or project I{title},
+Doconce will recognize the exercise, problem, project, or example I{title},
 the I{label}, the I{result file}, the I{solution} (if any of
 these three entities is present), and the I{running text}. In addition,
 one can add subexercise environments, starting with C{!bsubex} and ending
@@ -65643,12 +65737,14 @@ A full exercise set-up can be sketched as follows::
         !esol
 
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with C{Example:} and adding the
-command-line option C{--examples-as-exercises}. This means that one can
-typeset examples as an exercise and use the C{!bsubex} and C{!bsol}
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  - Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+  - Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+  - Projects are larger problems that also make sense on their own.
+  - Examples are exercises, problems, or projects with full solutions.
 
 The command line options C{--without-answers} and C{--without-solutions}
 turn off output of answers and solutions, respectively, except for
@@ -65684,10 +65780,10 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The I{title} is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like::
@@ -65695,11 +65791,18 @@ or "Project:" word, so that references like::
 
         see Problem ref{...}
 
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+I{Remark.} Examples are I{not} typeset similarly to exercises unless one adds
+the command-line option C{--examples-as-exercises}. That is, without
+this option, any heading and starting with C{Example:} makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option C{--examples-as-exercises},
+one can use the C{!bsubex} and C{!bsol}
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
+
 
 
 Blocks of Verbatim Computer Code
@@ -68734,16 +68837,16 @@ the format and insert format-specific code for tables.
 
 
 
-Exercises, Problems, or Projects
---------------------------------
+Exercises, Problems, Projects, and Examples
+-------------------------------------------
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 = characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 = characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -68758,7 +68861,7 @@ in) and a solution file. The Doconce code looks like this::
         Here goes the running text of the project....
         
 
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with !bsubex and ending
@@ -68824,12 +68927,17 @@ A full exercise set-up can be sketched as follows::
         !esol
 
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with Example: and adding the
-command-line option --examples-as-exercises. This means that one can
-typeset examples as an exercise and use the !bsubex and !bsol
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  * Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+
+  * Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+
+  * Projects are larger problems that also make sense on their own.
+
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options --without-answers and --without-solutions
 turn off output of answers and solutions, respectively, except for
@@ -68865,10 +68973,10 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like::
@@ -68876,11 +68984,18 @@ or "Project:" word, so that references like::
 
         see Problem ref{...}
 
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+*Remark.* Examples are *not* typeset similarly to exercises unless one adds
+the command-line option --examples-as-exercises. That is, without
+this option, any heading and starting with Example: makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option --examples-as-exercises,
+one can use the !bsubex and !bsol
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
+
 
 
 Blocks of Verbatim Computer Code
@@ -72080,16 +72195,16 @@ the format and insert format-specific code for tables.
 
 
 
-Exercises, Problems, or Projects
---------------------------------
+Exercises, Problems, Projects, and Examples
+-------------------------------------------
 
-Doconce has special support for three types of "exercises", named
-*exercise*, *problem*, or *project*.
+Doconce has special support for four types of "exercises", named
+*exercise*, *problem*, *project*, or *example*.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 `=` characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 `=` characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word "Exercise", "Problem", or "Project", followed
+consists of the word "Exercise", "Problem", "Project", or "Example", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -72106,7 +72221,7 @@ Here goes the running text of the project....
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Doconce will recognize the exercise, problem, or project *title*,
+Doconce will recognize the exercise, problem, project, or example *title*,
 the *label*, the *result file*, the *solution* (if any of
 these three entities is present), and the *running text*. In addition,
 one can add subexercise environments, starting with `!bsubex` and ending
@@ -72172,12 +72287,17 @@ Here goes a full solution of the whole exercise.
 !esol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with `Example:` and adding the
-command-line option `--examples-as-exercises`. This means that one can
-typeset examples as an exercise and use the `!bsubex` and `!bsol`
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.
+A recommended rule for using the different "exercise" types goes as follows:
+
+  * Exercises are smaller problems directly related to the present chapter
+    (e.g., with references to the text).
+
+  * Problems are sufficiently independent of the chapter's text
+    that they make sense on their own, separated from the rest of the docoment.
+
+  * Projects are larger problems that also make sense on their own.
+
+  * Examples are exercises, problems, or projects with full solutions.
 
 The command line options `--without-answers` and `--without-solutions`
 turn off output of answers and solutions, respectively, except for
@@ -72215,10 +72335,10 @@ criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 impelemented.
 
-For now, exercises, problems, and projects are typeset as ordinary
+For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like
@@ -72227,11 +72347,18 @@ or "Project:" word, so that references like
 see Problem ref{...}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-works well in all formats.
+works well in all formats (i.e., no double "Problem Problem" appears).
 
-It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named "Exercises", "Problems", or
-"Projects".
+*Remark.* Examples are *not* typeset similarly to exercises unless one adds
+the command-line option `--examples-as-exercises`. That is, without
+this option, any heading and starting with `Example:` makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option `--examples-as-exercises`,
+one can use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.
+
 
 
 Blocks of Verbatim Computer Code
@@ -88830,11 +88957,6 @@ marks
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
 
-Overfull \hbox (81.14767pt too wide) 
-\T1/ptm/m/n/10 header that starts with \T1/pcr/m/n/10 Example: \T1/ptm/m/n/10 a
-nd adding the command-line op-tion \T1/pcr/m/n/10 --examples-as-exercises\T1/pt
-m/m/n/10 .
-
 Overfull \hbox (11.27908pt too wide) 
 []\T1/ptm/m/n/10 The com-mand line op-tions \T1/pcr/m/n/10 --without-answers \T
 1/ptm/m/n/10 and \T1/pcr/m/n/10 --without-solutions
@@ -88842,13 +88964,17 @@ Overfull \hbox (11.27908pt too wide)
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
 [29]
+Overfull \hbox (12.78633pt too wide) 
+[]\T1/ptm/m/it/10 Remark. \T1/ptm/m/n/10 Ex-am-ples are \T1/ptm/m/it/10 not \T1
+/ptm/m/n/10 type-set sim-i-larly to ex-er-cises un-less one adds the command-
+[30]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[30] [31]
+[31]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[32]
+[32] [33]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -88856,7 +88982,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-[33]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -88875,7 +89001,7 @@ Overfull \hbox (3.0pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-
+[34]
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -88887,7 +89013,7 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[34]
+
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
@@ -88897,18 +89023,17 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-
+[36]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
-[36]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 37 undef
 ined on 
 
-
+[37]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[37] [38]
+[38]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
@@ -88921,10 +89046,10 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-
+[40]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
-[40]
+
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
@@ -89532,11 +89657,6 @@ marks
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
 
-Overfull \hbox (81.14767pt too wide) 
-\T1/ptm/m/n/10 header that starts with \T1/pcr/m/n/10 Example: \T1/ptm/m/n/10 a
-nd adding the command-line op-tion \T1/pcr/m/n/10 --examples-as-exercises\T1/pt
-m/m/n/10 .
-
 Overfull \hbox (11.27908pt too wide) 
 []\T1/ptm/m/n/10 The com-mand line op-tions \T1/pcr/m/n/10 --without-answers \T
 1/ptm/m/n/10 and \T1/pcr/m/n/10 --without-solutions
@@ -89544,10 +89664,14 @@ Overfull \hbox (11.27908pt too wide)
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
 [29]
+Overfull \hbox (12.78633pt too wide) 
+[]\T1/ptm/m/it/10 Remark. \T1/ptm/m/n/10 Ex-am-ples are \T1/ptm/m/it/10 not \T1
+/ptm/m/n/10 type-set sim-i-larly to ex-er-cises un-less one adds the command-
+[30]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[30] [31]
+[31]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [32]
@@ -89558,7 +89682,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-
+[33]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -89566,7 +89690,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-[33]
+
 Overfull \hbox (3.77757pt too wide) 
 []\T1/ptm/m/n/10 Markdown (\T1/pcr/m/n/10 pandoc \T1/ptm/m/n/10 for-mat) al-low
 s sin-gle equa-tions and in-line math-
@@ -89577,7 +89701,7 @@ Overfull \hbox (3.0pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-
+[34]
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -89589,23 +89713,23 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[34]
+
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
+[35]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
-[35]
+
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
-[36]
+[36] [37]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[37] [38]
+[38]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
@@ -89618,14 +89742,14 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-
+[40]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[40] [41] [42] [43]
+[41] [42] [43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -89637,7 +89761,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -89654,7 +89778,7 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-[44]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -89666,7 +89790,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-
+[45]
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -89676,15 +89800,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[45] [46]
+[46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
+[47]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[47]
+
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -89699,17 +89823,17 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
-
+[48]
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[48] [49] (./manual.rst.aux)
+[49] [50] (./manual.rst.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (49 pages, ).
+Output written on manual.rst.dvi (50 pages, ).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -90074,15 +90198,18 @@ LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]
@@ -90111,12 +90238,12 @@ Overfull \hbox (1.76395pt too wide)
 [37]
 
 LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
-532.
+547.
 
 [38] [39] [40] [41] [42]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2809.
+ne 2824.
 
 [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
@@ -90432,15 +90559,18 @@ LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]
@@ -90749,15 +90879,18 @@ Overfull \hbox (4.37044pt too wide)
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
 [25] [26] [27] [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]
@@ -91098,15 +91231,18 @@ Overfull \hbox (47.74467pt too wide)
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
 [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]
@@ -91393,15 +91529,18 @@ Overfull \hbox (47.74467pt too wide)
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
 [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]
@@ -91700,15 +91839,18 @@ Overfull \hbox (47.74467pt too wide)
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
 [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]
@@ -91995,15 +92137,18 @@ Overfull \hbox (47.74467pt too wide)
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
 [28] [29]
+Overfull \hbox (1.92667pt too wide) 
+\OT1/phv/m/n/10 The com-mand line op-tions [] and [] turn
+
 Overfull \hbox (7.44238pt too wide) 
 \OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
-[30] [31] [32] [33]
+[30] [31] [32] [33] [34]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
+
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
 [35]

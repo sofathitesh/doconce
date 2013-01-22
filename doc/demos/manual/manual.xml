@@ -800,13 +800,13 @@ in tables (<literal>rst</literal> and <literal>sphinx</literal> are examples). A
 Doconce tables are very simple: neither entries nor
 headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
-the format and insert format-specific code for tables.</paragraph></section><section ids="exercises-problems-or-projects" names="exercises,\ problems,\ or\ projects"><title>Exercises, Problems, or Projects</title><paragraph>Doconce has special support for three types of &quot;exercises&quot;, named
-<emphasis>exercise</emphasis>, <emphasis>problem</emphasis>, or <emphasis>project</emphasis>.
+the format and insert format-specific code for tables.</paragraph></section><section ids="exercises-problems-projects-and-examples" names="exercises,\ problems,\ projects,\ and\ examples"><title>Exercises, Problems, Projects, and Examples</title><paragraph>Doconce has special support for four types of &quot;exercises&quot;, named
+<emphasis>exercise</emphasis>, <emphasis>problem</emphasis>, <emphasis>project</emphasis>, or <emphasis>example</emphasis>.
 These are all typeset as special kind of
-sections. Such sections start with a subsection or subsubsection
-headline, indicated by 3 or 5 <literal>=</literal> characters, and last up to the
+sections. Such sections start with a subsection
+headline, 5 <literal>=</literal> characters, and last up to the
 next headline or the end of the file. The headline itself must
-consists of the word &quot;Exercise&quot;, &quot;Problem&quot;, or &quot;Project&quot;, followed
+consists of the word &quot;Exercise&quot;, &quot;Problem&quot;, &quot;Project&quot;, or &quot;Example&quot;, followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
@@ -815,7 +815,7 @@ label{proj:moondist}
 file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
-Here goes the running text of the project....</literal_block><paragraph>Doconce will recognize the exercise, problem, or project <emphasis>title</emphasis>,
+Here goes the running text of the project....</literal_block><paragraph>Doconce will recognize the exercise, problem, project, or example <emphasis>title</emphasis>,
 the <emphasis>label</emphasis>, the <emphasis>result file</emphasis>, the <emphasis>solution</emphasis> (if any of
 these three entities is present), and the <emphasis>running text</emphasis>. In addition,
 one can add subexercise environments, starting with <literal>!bsubex</literal> and ending
@@ -871,12 +871,9 @@ directives is always typeset at the end of the exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
-!esol</literal_block><paragraph>Examples can also be typeset in a similar way as exercises using a
-subsection header that starts with <literal>Example:</literal> and adding the
-command-line option <literal>--examples-as-exercises</literal>. This means that one can
-typeset examples as an exercise and use the <literal>!bsubex</literal> and <literal>!bsol</literal>
-commands to indicate a subproblem and a solution. In this way, the
-example looks like an exercise equipped with a solution.</paragraph><paragraph>The command line options <literal>--without-answers</literal> and <literal>--without-solutions</literal>
+!esol</literal_block><paragraph>A recommended rule for using the different &quot;exercise&quot; types goes as follows:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Exercises are smaller problems directly related to the present chapter
+(e.g., with references to the text).</paragraph></list_item><list_item><paragraph>Problems are sufficiently independent of the chapter's text
+that they make sense on their own, separated from the rest of the docoment.</paragraph></list_item><list_item><paragraph>Projects are larger problems that also make sense on their own.</paragraph></list_item><list_item><paragraph>Examples are exercises, problems, or projects with full solutions.</paragraph></list_item></bullet_list></block_quote><paragraph>The command line options <literal>--without-answers</literal> and <literal>--without-solutions</literal>
 turn off output of answers and solutions, respectively, except for
 examples.</paragraph><paragraph>Sometimes one does not want the heading of an exercise, problem, project,
 or example to contain the keyword <literal>Exercise:</literal>, <literal>Problem:</literal>, <literal>Project:</literal>,
@@ -896,15 +893,21 @@ the result file can be uploaded. One can also think of mechanisms for
 downloading the solution file if the result file meets certain
 criteria.  Doconce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
-impelemented.</paragraph><paragraph>For now, exercises, problems, and projects are typeset as ordinary
+impelemented.</paragraph><paragraph>For now, exercises, problems, projects, examples are typeset as ordinary
 Doconce sections (this is the most general approach that will work for many
-format). One must therefore refer to an exercise, problem, or project
-by its label, which normally will translate to the section number
+formats). One must therefore refer to an exercise, problem, project, or
+example by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <emphasis>title</emphasis> is typeset without any leading &quot;Exercise:&quot;, &quot;Problem:&quot;,
-or &quot;Project:&quot; word, so that references like:</paragraph><literal_block xml:space="preserve">see Problem ref{...}</literal_block><paragraph>works well in all formats.</paragraph><paragraph>It is recommended to collect all exercises as subsetions (or subsubsections)
-under a section (or subsection) named &quot;Exercises&quot;, &quot;Problems&quot;, or
-&quot;Projects&quot;.</paragraph><target refid="sec-verbatim-blocks"/></section><section ids="blocks-of-verbatim-computer-code sec-verbatim-blocks" names="blocks\ of\ verbatim\ computer\ code sec:verbatim:blocks"><title>Blocks of Verbatim Computer Code</title><paragraph>Blocks of computer code, to be typeset verbatim, must appear inside a
+or &quot;Project:&quot; word, so that references like:</paragraph><literal_block xml:space="preserve">see Problem ref{...}</literal_block><paragraph>works well in all formats (i.e., no double &quot;Problem Problem&quot; appears).</paragraph><paragraph><emphasis>Remark.</emphasis> Examples are <emphasis>not</emphasis> typeset similarly to exercises unless one adds
+the command-line option <literal>--examples-as-exercises</literal>. That is, without
+this option, any heading and starting with <literal>Example:</literal> makes Doconce
+treat the forthcoming text as ordinary text without any interpretation
+of exercise-style instructions.
+With the command-line option <literal>--examples-as-exercises</literal>,
+one can use the <literal>!bsubex</literal> and <literal>!bsol</literal>
+commands to indicate a subproblem and a solution. In this way, the
+typesetting of the example looks like an exercise equipped with a solution.</paragraph><target refid="sec-verbatim-blocks"/></section><section ids="blocks-of-verbatim-computer-code sec-verbatim-blocks" names="blocks\ of\ verbatim\ computer\ code sec:verbatim:blocks"><title>Blocks of Verbatim Computer Code</title><paragraph>Blocks of computer code, to be typeset verbatim, must appear inside a
 &quot;begin code&quot; <literal>!bc</literal> keyword and an &quot;end code&quot; <literal>!ec</literal> keyword. Both
 keywords must be on a single line and <emphasis>start at the beginning of the
 line</emphasis>.  Before such a code block there must be a plain sentence
