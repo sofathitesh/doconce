@@ -1699,6 +1699,23 @@ Here goes a full solution of the whole exercise.
 !esol
 </pre></div>
 </div>
+<p>Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with <tt class="docutils literal"><span class="pre">Example:</span></tt> and adding the
+command-line option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>. This means that one can
+typeset examples as an exercise and use the <tt class="docutils literal"><span class="pre">!bsubex</span></tt> and <tt class="docutils literal"><span class="pre">!bsol</span></tt>
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.</p>
+<p>The command line options <tt class="docutils literal"><span class="pre">--without-answers</span></tt> and <tt class="docutils literal"><span class="pre">--without-solutions</span></tt>
+turn off output of answers and solutions, respectively, except for
+examples.</p>
+<p>Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword <tt class="docutils literal"><span class="pre">Exercise:</span></tt>, <tt class="docutils literal"><span class="pre">Problem:</span></tt>, <tt class="docutils literal"><span class="pre">Project:</span></tt>,
+or <tt class="docutils literal"><span class="pre">Example:</span></tt>. By enclosing the keyword in braces, as in</p>
+<div class="highlight-text"><div class="highlight"><pre>===== {Problem}: Find a solution to a problem =====
+</pre></div>
+</div>
+<p>the keyword is marked for being left out of the heading, resulting in
+the heading &#8220;Find a solution to a problem&#8221;.</p>
 <p>The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <tt class="docutils literal"><span class="pre">.mydoc.exerinfo</span></tt>,
 if <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> is the name of the Doconce file.  The file contains

@@ -334,11 +334,12 @@ doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
-doconce list_labels myfile</literal_block></section><section ids="exercises" names="exercises"><title refid="id14">Exercises</title><paragraph>Doconce supports <emphasis>Exercise</emphasis>, <emphasis>Problem</emphasis>, and <emphasis>Project</emphasis>. These are typeset
+doconce list_labels myfile</literal_block></section><section ids="exercises" names="exercises"><title refid="id14">Exercises</title><paragraph>Doconce supports <emphasis>Exercise</emphasis>, <emphasis>Problem</emphasis>, <emphasis>Project</emphasis>, and <emphasis>Example</emphasis>.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain <emphasis>elements</emphasis>:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>a headline at the level of a subsection or subsubsection,
-containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, or
-&quot;Project:&quot;, followed by a title (required)</paragraph></list_item><list_item><paragraph>a label (optional)</paragraph></list_item><list_item><paragraph>a solution file (optional)</paragraph></list_item><list_item><paragraph>name of file with a student solution (optional)</paragraph></list_item><list_item><paragraph>main exercise text (required)</paragraph></list_item><list_item><paragraph>a short answer (optional)</paragraph></list_item><list_item><paragraph>a full solution (optional)</paragraph></list_item><list_item><paragraph>one or more hints (optional)</paragraph></list_item><list_item><paragraph>one or more subexercises (subproblems, subprojects), which can also
+Exercise, problem, project, or example sections contains certain <emphasis>elements</emphasis>:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>a headline at the level of a subsection
+containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;,
+&quot;Project:&quot;, or &quot;Example:&quot;, followed by a title (required)</paragraph></list_item><list_item><paragraph>a label (optional)</paragraph></list_item><list_item><paragraph>a solution file (optional)</paragraph></list_item><list_item><paragraph>name of file with a student solution (optional)</paragraph></list_item><list_item><paragraph>main exercise text (required)</paragraph></list_item><list_item><paragraph>a short answer (optional)</paragraph></list_item><list_item><paragraph>a full solution (optional)</paragraph></list_item><list_item><paragraph>one or more hints (optional)</paragraph></list_item><list_item><paragraph>one or more subexercises (subproblems, subprojects), which can also
 contain a text, a short answer, a full solution, name student file
 to be handed in, and one or more hints (optional)</paragraph></list_item></bullet_list></block_quote><paragraph>A typical sketch of a a problem without subexercises goes as follows:</paragraph><literal_block xml:space="preserve">===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -356,7 +357,9 @@ Wikipedia has the formula for the curve.
 !bhint
 &quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
-!ehint</literal_block><paragraph>An exercise with subproblems, answers and full solutions has this
+!ehint</literal_block><paragraph>If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads:</paragraph><literal_block xml:space="preserve">===== {Problem}: Derive the Formula for the Area of an Ellipse =====</literal_block><paragraph>the title becomes just &quot;Derive the ...&quot;.</paragraph><paragraph>An exercise with subproblems, answers and full solutions has this
 setup-up:</paragraph><literal_block xml:space="preserve">===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
@@ -402,7 +405,10 @@ directives is always typeset at the end of the exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
-!esol</literal_block><paragraph>By default, answers, solutions, and hints are typeset as paragraphs.</paragraph></section><section ids="environments" names="environments"><title refid="id15">Environments</title><paragraph>Doconce environments start with <literal>!benvirname</literal> and end with <literal>!eenvirname</literal>,
+!esol</literal_block><paragraph>By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments <literal>--without-answers</literal> and <literal>--without-solutions</literal>
+turn off output of answers and solutions, respectively, except for
+examples.</paragraph></section><section ids="environments" names="environments"><title refid="id15">Environments</title><paragraph>Doconce environments start with <literal>!benvirname</literal> and end with <literal>!eenvirname</literal>,
 where <literal>envirname</literal> is the name of the environment. Here is a listing of
 the environments:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph><literal>c</literal>: computer code (or verbatim text)</paragraph></list_item><list_item><paragraph><literal>t</literal>: math blocks with LaTeX syntax</paragraph></list_item><list_item><paragraph><literal>subex</literal>: sub-exercise</paragraph></list_item><list_item><paragraph><literal>ans</literal>: short answer to exercise or sub-exercise</paragraph></list_item><list_item><paragraph><literal>sol</literal>: full solution to exercise or sub-exercise</paragraph></list_item><list_item><paragraph><literal>notes</literal>: multi-line notes to be included or not</paragraph></list_item><list_item><paragraph><literal>quote</literal>: indented text</paragraph></list_item><list_item><definition_list><definition_list_item><term><literal>notice</literal>, <literal>summary</literal>, <literal>warning</literal>, <literal>question</literal>, <literal>hint</literal>: boxes with</term><definition><paragraph>specialy typesetting (or symbols)</paragraph></definition></definition_list_item></definition_list></list_item><list_item><paragraph><literal>pop</literal>: text to gradually pop up in slide presentations</paragraph></list_item><list_item><paragraph><literal>slidecell</literal>: indication of cells in a grid layout for elements on a
 slide</paragraph></list_item></bullet_list></block_quote></section><section ids="labels-index-and-citations" names="labels,\ index,\ and\ citations"><title refid="id16">Labels, Index, and Citations</title></section><section ids="preprocessing" names="preprocessing"><title refid="id17">Preprocessing</title><paragraph>Doconce documents may utilize a preprocessor, either <literal>preprocess</literal> and/or

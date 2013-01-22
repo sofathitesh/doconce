@@ -871,7 +871,17 @@ directives is always typeset at the end of the exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
-!esol</literal_block><paragraph>The various elements of exercises are collected in a special data
+!esol</literal_block><paragraph>Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with <literal>Example:</literal> and adding the
+command-line option <literal>--examples-as-exercises</literal>. This means that one can
+typeset examples as an exercise and use the <literal>!bsubex</literal> and <literal>!bsol</literal>
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.</paragraph><paragraph>The command line options <literal>--without-answers</literal> and <literal>--without-solutions</literal>
+turn off output of answers and solutions, respectively, except for
+examples.</paragraph><paragraph>Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword <literal>Exercise:</literal>, <literal>Problem:</literal>, <literal>Project:</literal>,
+or <literal>Example:</literal>. By enclosing the keyword in braces, as in:</paragraph><literal_block xml:space="preserve">===== {Problem}: Find a solution to a problem =====</literal_block><paragraph>the keyword is marked for being left out of the heading, resulting in
+the heading &quot;Find a solution to a problem&quot;.</paragraph><paragraph>The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <literal>.mydoc.exerinfo</literal>,
 if <literal>mydoc.do.txt</literal> is the name of the Doconce file.  The file contains
 a list of dictionaries, where keys in the dictionary corresponds to

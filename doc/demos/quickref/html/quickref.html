@@ -675,14 +675,15 @@ doconce list_labels myfile
 </div>
 <div class="section" id="exercises">
 <h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
-<p>Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
+<p>Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain <em>elements</em>:</p>
+Exercise, problem, project, or example sections contains certain <em>elements</em>:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a headline at the level of a subsection or subsubsection,
-containing one of the words &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;, or
-&#8220;Project:&#8221;, followed by a title (required)</li>
+<li>a headline at the level of a subsection
+containing one of the words &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;,
+&#8220;Project:&#8221;, or &#8220;Example:&#8221;, followed by a title (required)</li>
 <li>a label (optional)</li>
 <li>a solution file (optional)</li>
 <li>name of file with a student solution (optional)</li>
@@ -715,6 +716,13 @@ compute the integral.
 !ehint
 </pre></div>
 </div>
+<p>If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads</p>
+<div class="highlight-text"><div class="highlight"><pre>===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+</pre></div>
+</div>
+<p>the title becomes just &#8220;Derive the ...&#8221;.</p>
 <p>An exercise with subproblems, answers and full solutions has this
 setup-up:</p>
 <div class="highlight-text"><div class="highlight"><pre>===== Exercise: Determine the Distance to the Moon =====
@@ -765,7 +773,10 @@ Here goes a full solution of the whole exercise.
 !esol
 </pre></div>
 </div>
-<p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
+<p>By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments <tt class="docutils literal"><span class="pre">--without-answers</span></tt> and <tt class="docutils literal"><span class="pre">--without-solutions</span></tt>
+turn off output of answers and solutions, respectively, except for
+examples.</p>
 </div>
 <div class="section" id="environments">
 <h1>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h1>

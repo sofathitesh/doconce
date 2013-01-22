@@ -242,7 +242,7 @@ Or with align with label and numbers:
 label{aligneq1}\\
 \half &= \halfi\\
 \half\x &= \normalvec
-label{aligneq1}
+label{aligneq2}
 \end{align}
 !et
 
@@ -376,6 +376,41 @@ and `|` right after verbatim word (with no space):
 __Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
 is
 some text.
+
+
+===== Example: Examples can be typeset as exercises =====
+label{Example}
+
+Examples can start with a subsection heading starting with `Example:`
+and then, with the command-line option `--examples-as-exercises` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+!bsubex
+State some problem.
+
+!bsol
+The answer to this subproblem can be written here.
+!esol
+!esubex
+
+!bsubex
+State some other problem.
+
+!bhint
+A hint can be given.
+!ehint
+
+!bhint
+Maybe even another hint?
+!ehint
+
+!bsol
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+!esol
+!esubex
 
 
 ===== URLs =====
@@ -700,7 +735,6 @@ Here goes a full solution of the whole exercise.
 
 Just some text.
 
-# #if FORMAT == "plain"
 ===== Example: Just an example =====
 
 # This example needs the --example-as-exercise option
@@ -712,7 +746,6 @@ What is the capital of Norway?
 Oslo.
 !eans
 !esubex
-# #endif
 
 ======= Here goes another section =======
 

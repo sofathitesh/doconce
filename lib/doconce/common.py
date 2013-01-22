@@ -272,6 +272,9 @@ def doconce_exercise_output(exer,
     Write exercise in Doconce format. This output can be
     reused in most formats.
     """
+    write_answers   = not option('without-answers')
+    write_solutions = not option('without-solutions')
+
     s = '\n\n' + begin_exercise + '\n\n'
     s += exer['heading']  # result string
     if include_numbering and not include_type:
@@ -302,10 +305,10 @@ def doconce_exercise_output(exer,
                 begin_hint_ = begin_hint.replace('Hint.', 'Hint %d.' % (i+1))
             s += '\n' + begin_hint_ + hint + end_hint + '\n'
 
-    if exer['answer'] and not option('without-answers'):
+    if exer['answer'] and (exer['type'] == 'Example' or write_answers):
         s += '\n' + begin_answer + exer['answer'] + end_answer + '\n'
 
-    if exer['solution']  and not option('without-solutions'):
+    if exer['solution'] and (exer['type'] == 'Example' or write_solutions):
         s += '\n' + begin_solution
         # Make sure we have a sentence after the heading
         if exer['solution'].lstrip().startswith(_CODE_BLOCK):
@@ -338,9 +341,11 @@ def doconce_exercise_output(exer,
                         s += 'Filenames: %s' % \
                              ', '.join(['`%s`' % f for f in subex['file']]) + '.\n'
 
-                if subex['answer'] and not option('without-answers'):
+                if subex['answer'] and \
+                       (exer['type'] == 'Example' or write_answers):
                     s += '\n' + begin_answer + subex['answer'] + end_answer + '\n'
-                if subex['solution'] and not option('without-solutions'):
+                if subex['solution'] and \
+                       (exer['type'] == 'Example' or write_solutions):
                     s += '\n' + begin_solution
                     # Make sure we have a sentence after the heading
                     if subex['solution'].lstrip().startswith(_CODE_BLOCK):

@@ -707,13 +707,14 @@ doconce list_labels myfile
 Exercises
 ---------
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  * a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
 
   * a label (optional)
 
@@ -754,6 +755,17 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up:
@@ -810,6 +822,9 @@ Here goes a full solution of the whole exercise.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 Environments

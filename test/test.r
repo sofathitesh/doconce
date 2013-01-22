@@ -244,7 +244,7 @@ Or with align with label and numbers:
 label{aligneq1}\\
 \half &= \halfi\\
 \half\x &= \normalvec
-label{aligneq1}
+label{aligneq2}
 \end{align}
 !et
 
@@ -378,6 +378,41 @@ and `|` right after verbatim word (with no space):
 __Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
 is
 some text.
+
+
+===== Example: Examples can be typeset as exercises =====
+label{Example}
+
+Examples can start with a subsection heading starting with `Example:`
+and then, with the command-line option `--examples-as-exercises` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+!bsubex
+State some problem.
+
+!bsol
+The answer to this subproblem can be written here.
+!esol
+!esubex
+
+!bsubex
+State some other problem.
+
+!bhint
+A hint can be given.
+!ehint
+
+!bhint
+Maybe even another hint?
+!ehint
+
+!bsol
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+!esol
+!esubex
 
 
 ===== URLs =====
@@ -702,7 +737,6 @@ Here goes a full solution of the whole exercise.
 
 Just some text.
 
-# #if FORMAT == "plain"
 ===== Example: Just an example =====
 
 # This example needs the --example-as-exercise option
@@ -714,7 +748,6 @@ What is the capital of Norway?
 Oslo.
 !eans
 !esubex
-# #endif
 
 ======= Here goes another section =======
 
@@ -951,27 +984,29 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec8"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec9"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec9"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec10"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 2: Compute a Probability </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
-<a href="._part0002_testdoc.html#___sec17"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec18"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 7: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec23"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec24"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec17"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec18"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc.html#___sec19"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec20"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc.html#___sec23"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec24"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec25"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec27"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec29"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -1644,7 +1679,7 @@ Or with align with label and numbers:
 \label{aligneq1}\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 
 \subsection{Custom Environments}
@@ -1776,6 +1811,54 @@ and \code{|} right after verbatim word (with no space):
 Here
 is
 some text.
+
+
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 1: Examples can be typeset as exercises}
+
+\label{Example}
+
+Examples can start with a subsection heading starting with \code{Example:}
+and then, with the command-line option \code{--examples-as-exercises} be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+\paragraph{a)}
+State some problem.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+The answer to this subproblem can be written here.
+
+% --- end solution of exercise
+
+\paragraph{b)}
+State some other problem.
+
+\paragraph{Hint 1.}
+A hint can be given.
+
+\paragraph{Hint 2.}
+Maybe even another hint?
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+% --- end solution of exercise
+
+
+\end{exercise}
+% --- end of exercise
 
 \subsection{URLs}
 
@@ -1952,7 +2035,7 @@ Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 2: Compute a Probability}
+\subsection*{Project 1: Compute a Probability}
 
 \label{demo:ex:2}
 
@@ -1979,7 +2062,7 @@ compute the probability as $M/N$.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 3: Explore Distributions of Random Circles}
+\subsection*{Project 2: Explore Distributions of Random Circles}
 
 \label{proj:circle1}
 
@@ -2061,7 +2144,7 @@ and give some perspectives.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 4: Determine some Distance}
+\subsection*{Exercise 1: Determine some Distance}
 
 \label{exer:dist}
 
@@ -2135,6 +2218,31 @@ Just some text.
 % --- end of exercise
 
 
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 2: Just an example}
+
+% This example needs the --example-as-exercise option
+
+
+\paragraph{a)}
+What is the capital of Norway?
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Oslo.
+% --- end short answer in exercise
+
+
+\end{exercise}
+% --- end of exercise
+
+
 \section{Here goes another section}
 
 With some text, before we continue with exercises.
@@ -2146,7 +2254,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 6: Make references to projects and problems}
+\subsection*{Exercise 3: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -2165,7 +2273,7 @@ Filename: \code{verify_formula.py}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 7: References to Project~\ref{demo:ex:2} in a heading works for latex}
+\subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for latex}
 
 \label{exer:you}
 
@@ -2411,14 +2519,15 @@ final,                   % or draft (marks overfull hboxes)
 
 \tableofcontents
 
-\subsection*{List of Exercises}
+\subsection*{List of Exercises, Problems, and Projects}
 \begin{tabular}{lrll}
 Problem & 1 & Flip a Coin & p.~\pageref{demo:ex:1} \\
-Project & 2 & Compute a Probability & p.~\pageref{demo:ex:2} \\
-Project & 3 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
-Exercise & 4 & Determine some Distance & p.~\pageref{exer:dist} \\
-Exercise & 6 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
-Project & 7 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
+Project & 1 & Compute a Probability & p.~\pageref{demo:ex:2} \\
+Project & 2 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
+Exercise & 1 & Determine some Distance & p.~\pageref{exer:dist} \\
+Exercise & 2 & Some exercise without the "Exercise:" prefix & \\
+Exercise & 3 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
+Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
 \end{tabular}
 % --- end of table of exercises
 
@@ -2799,7 +2908,7 @@ Or with align with label and numbers:
 \label{aligneq1}\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 
 \subsection{Custom Environments}
@@ -2933,6 +3042,54 @@ and {\fontsize{10pt}{10pt}\Verb!|!} right after verbatim word (with no space):
 Here
 is
 some text.
+
+
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 1: Examples can be typeset as exercises}
+
+\label{Example}
+
+Examples can start with a subsection heading starting with {\fontsize{10pt}{10pt}\Verb!Example:!}
+and then, with the command-line option {\fontsize{10pt}{10pt}\Verb!--examples-as-exercises!} be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+\paragraph{a)}
+State some problem.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+The answer to this subproblem can be written here.
+
+% --- end solution of exercise
+
+\paragraph{b)}
+State some other problem.
+
+\paragraph{Hint 1.}
+A hint can be given.
+
+\paragraph{Hint 2.}
+Maybe even another hint?
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+% --- end solution of exercise
+
+
+\end{exercise}
+% --- end of exercise
 
 \subsection{URLs}
 
@@ -3100,7 +3257,7 @@ Filenames: {\fontsize{10pt}{10pt}\Verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\Ve
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 2: Compute a Probability}
+\subsection*{Project 1: Compute a Probability}
 
 \label{demo:ex:2}
 
@@ -3127,7 +3284,7 @@ compute the probability as $M/N$.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 3: Explore Distributions of Random Circles}
+\subsection*{Project 2: Explore Distributions of Random Circles}
 
 \label{proj:circle1}
 
@@ -3210,7 +3367,7 @@ and give some perspectives.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 4: Determine some Distance}
+\subsection*{Exercise 1: Determine some Distance}
 
 \label{exer:dist}
 
@@ -3284,6 +3441,31 @@ Just some text.
 % --- end of exercise
 
 
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 2: Just an example}
+
+% This example needs the --example-as-exercise option
+
+
+\paragraph{a)}
+What is the capital of Norway?
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Oslo.
+% --- end short answer in exercise
+
+
+\end{exercise}
+% --- end of exercise
+
+
 \section{Here goes another section}
 
 With some text, before we continue with exercises.
@@ -3295,7 +3477,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 6: Make references to projects and problems}
+\subsection*{Exercise 3: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -3314,7 +3496,7 @@ Filename: {\fontsize{10pt}{10pt}\Verb!verify_formula.py!}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 7: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
+\subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
 
 \label{exer:you}
 
@@ -3580,14 +3762,15 @@ Jan 32, 2100
 
 \tableofcontents
 
-\subsection*{List of Exercises}
+\subsection*{List of Exercises, Problems, and Projects}
 \begin{tabular}{lrll}
 Problem & 1 & Flip a Coin & p.~\pageref{demo:ex:1} \\
-Project & 2 & Compute a Probability & p.~\pageref{demo:ex:2} \\
-Project & 3 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
-Exercise & 4 & Determine some Distance & p.~\pageref{exer:dist} \\
-Exercise & 6 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
-Project & 7 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
+Project & 1 & Compute a Probability & p.~\pageref{demo:ex:2} \\
+Project & 2 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
+Exercise & 1 & Determine some Distance & p.~\pageref{exer:dist} \\
+Exercise & 2 & Some exercise without the "Exercise:" prefix & \\
+Exercise & 3 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
+Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
 \end{tabular}
 % --- end of table of exercises
 
@@ -3917,7 +4100,7 @@ Or with align with label and numbers:
 \label{aligneq1}\\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 
 \subsection{Custom Environments}
@@ -4049,6 +4232,54 @@ and \Verb!|! right after verbatim word (with no space):
 Here
 is
 some text.
+
+
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 1: Examples can be typeset as exercises}
+
+\label{Example}
+
+Examples can start with a subsection heading starting with \Verb!Example:!
+and then, with the command-line option \Verb!--examples-as-exercises! be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+\paragraph{a)}
+State some problem.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+The answer to this subproblem can be written here.
+
+% --- end solution of exercise
+
+\paragraph{b)}
+State some other problem.
+
+\paragraph{Hint 1.}
+A hint can be given.
+
+\paragraph{Hint 2.}
+Maybe even another hint?
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+% --- end solution of exercise
+
+
+\end{exercise}
+% --- end of exercise
 
 \subsection{URLs}
 
@@ -4215,7 +4446,7 @@ Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 2: Compute a Probability}
+\subsection*{Project 1: Compute a Probability}
 
 \label{demo:ex:2}
 
@@ -4242,7 +4473,7 @@ compute the probability as $M/N$.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 3: Explore Distributions of Random Circles}
+\subsection*{Project 2: Explore Distributions of Random Circles}
 
 \label{proj:circle1}
 
@@ -4324,7 +4555,7 @@ and give some perspectives.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 4: Determine some Distance}
+\subsection*{Exercise 1: Determine some Distance}
 
 \label{exer:dist}
 
@@ -4398,6 +4629,31 @@ Just some text.
 % --- end of exercise
 
 
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 2: Just an example}
+
+% This example needs the --example-as-exercise option
+
+
+\paragraph{a)}
+What is the capital of Norway?
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Oslo.
+% --- end short answer in exercise
+
+
+\end{exercise}
+% --- end of exercise
+
+
 \section{Here goes another section}
 
 With some text, before we continue with exercises.
@@ -4409,7 +4665,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 6: Make references to projects and problems}
+\subsection*{Exercise 3: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -4428,7 +4684,7 @@ Filename: \Verb!verify_formula.py!.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 7: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
+\subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
 
 \label{exer:you}
 
@@ -4889,7 +5145,7 @@ Or with align with label and numbers::
         label{aligneq1}\\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
-        label{aligneq1}
+        label{aligneq2}
         \end{align}
 
 
@@ -5003,6 +5259,51 @@ is
 some text.
 
 
+
+
+.. --- begin exercise
+
+
+.. _Example:
+
+Example 1: Examples can be typeset as exercises
+-----------------------------------------------
+
+Examples can start with a subsection heading starting with ``Example:``
+and then, with the command-line option ``--examples-as-exercises`` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+.. --- begin solution of exercise
+
+
+*Solution.* The answer to this subproblem can be written here.
+
+.. --- end solution of exercise
+
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+.. --- begin solution of exercise
+
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+.. --- end solution of exercise
+
+
+.. --- end of exercise
+
+
+
 .. _subsubsec:ex:
 
 URLs
@@ -5071,9 +5372,9 @@ Here is a system without equation numbers, using the align-astrisk environment::
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have `Problem 1: Flip a Coin`_ and `Project 2: Compute a Probability`_,
-as well as `Project 3: Explore Distributions of Random Circles`_ and `Project 7: References in a headings do not work well in rst`_, and in
-between there we have `Exercise 6: Make references to projects and problems`_.
+Below, we have `Problem 1: Flip a Coin`_ and `Project 1: Compute a Probability`_,
+as well as `Project 2: Explore Distributions of Random Circles`_ and `Project 3: References in a headings do not work well in rst`_, and in
+between there we have `Exercise 3: Make references to projects and problems`_.
 
 Exercises
 =========
@@ -5147,7 +5448,7 @@ Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 
 .. _demo:ex:2:
 
-Project 2: Compute a Probability
+Project 1: Compute a Probability
 --------------------------------
 
 .. Minimalistic exercise
@@ -5173,7 +5474,7 @@ compute the probability as M/N.
 
 .. _proj:circle1:
 
-Project 3: Explore Distributions of Random Circles
+Project 2: Explore Distributions of Random Circles
 --------------------------------------------------
 
 The formula for a circle is given by::
@@ -5258,7 +5559,7 @@ and give some perspectives.
 
 .. _exer:dist:
 
-Exercise 4: Determine some Distance
+Exercise 1: Determine some Distance
 -----------------------------------
 
 Intro to this exercise. Questions are in subexercises below.
@@ -5331,6 +5632,31 @@ Just some text.
 
 
 
+
+
+.. --- begin exercise
+
+
+Example 2: Just an example
+--------------------------
+
+.. This example needs the --example-as-exercise option
+
+
+
+*a)* What is the capital of Norway?
+
+.. --- begin short answer in exercise
+
+
+*Answer.* Oslo.
+.. --- end short answer in exercise
+
+
+.. --- end of exercise
+
+
+
 Here goes another section
 =========================
 
@@ -5346,10 +5672,10 @@ More Exercises
 
 .. _exer:some:formula:
 
-Exercise 6: Make references to projects and problems
+Exercise 3: Make references to projects and problems
 ----------------------------------------------------
 
-Pick a statement from `Project 3: Explore Distributions of Random Circles`_ or `Problem 1: Flip a Coin`_
+Pick a statement from `Project 2: Explore Distributions of Random Circles`_ or `Problem 1: Flip a Coin`_
 and verify it.
 Filename: ``verify_formula.py``.
 
@@ -5364,12 +5690,12 @@ Filename: ``verify_formula.py``.
 
 .. _exer:you:
 
-Project 7: References in a headings do not work well in rst
+Project 3: References in a headings do not work well in rst
 -----------------------------------------------------------
 
-Refer to the previous exercise as `Exercise 6: Make references to projects and problems`_,
-the two before that as `Project 2: Compute a Probability`_ and `Project 3: Explore Distributions of Random Circles`_,
-and this one as `Project 7: References in a headings do not work well in rst`_.
+Refer to the previous exercise as `Exercise 3: Make references to projects and problems`_,
+the two before that as `Project 1: Compute a Probability`_ and `Project 2: Explore Distributions of Random Circles`_,
+and this one as `Project 3: References in a headings do not work well in rst`_.
 Filename: ``selc_composed.pdf``.
 
 .. --- end of exercise
@@ -5818,7 +6144,7 @@ Or with align with label and numbers:
 
 
 .. math::
-   :label: aligneq1
+   :label: aligneq2
         
          
         \frac{1}{2}\pmb{x} = \pmb{n}
@@ -5952,6 +6278,51 @@ A test of verbatim words in heading with subscript :math:`a_i`: ``my_file_v1`` a
 *Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math :math:`a_{i-1}`.* Here
 is
 some text.
+
+
+
+
+.. --- begin exercise
+
+
+.. _Example:
+
+Example 1: Examples can be typeset as exercises
+-----------------------------------------------
+
+Examples can start with a subsection heading starting with ``Example:``
+and then, with the command-line option ``--examples-as-exercises`` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+.. --- begin solution of exercise
+
+
+*Solution.* The answer to this subproblem can be written here.
+
+.. --- end solution of exercise
+
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+.. --- begin solution of exercise
+
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+.. --- end solution of exercise
+
+
+.. --- end of exercise
+
 
 
 .. _subsubsec:ex:
@@ -6175,7 +6546,7 @@ Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 
 .. _demo:ex:2:
 
-Project 2: Compute a Probability
+Project 1: Compute a Probability
 --------------------------------
 
 .. Minimalistic exercise
@@ -6201,7 +6572,7 @@ compute the probability as :math:`M/N`.
 
 .. _proj:circle1:
 
-Project 3: Explore Distributions of Random Circles
+Project 2: Explore Distributions of Random Circles
 --------------------------------------------------
 
 The formula for a circle is given by
@@ -6297,7 +6668,7 @@ and give some perspectives.
 
 .. _exer:dist:
 
-Exercise 4: Determine some Distance
+Exercise 1: Determine some Distance
 -----------------------------------
 
 Intro to this exercise. Questions are in subexercises below.
@@ -6370,6 +6741,31 @@ Just some text.
 
 
 
+
+
+.. --- begin exercise
+
+
+Example 2: Just an example
+--------------------------
+
+.. This example needs the --example-as-exercise option
+
+
+
+*a)* What is the capital of Norway?
+
+.. --- begin short answer in exercise
+
+
+*Answer.* Oslo.
+.. --- end short answer in exercise
+
+
+.. --- end of exercise
+
+
+
 Here goes another section
 =========================
 
@@ -6385,7 +6781,7 @@ More Exercises
 
 .. _exer:some:formula:
 
-Exercise 6: Make references to projects and problems
+Exercise 3: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from :ref:`proj:circle1` or :ref:`demo:ex:1`
@@ -6403,7 +6799,7 @@ Filename: ``verify_formula.py``.
 
 .. _exer:you:
 
-Project 7: References in a headings do not work well in sphinx
+Project 3: References in a headings do not work well in sphinx
 --------------------------------------------------------------
 
 Refer to the previous exercise as :ref:`exer:some:formula`,
@@ -6821,7 +7217,7 @@ Or with align with label and numbers:
 label{aligneq1}\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-label{aligneq1}
+label{aligneq2}
 \end{align}
 }}}
 
@@ -6916,6 +7312,42 @@ and `|` right after verbatim word (with no space):
 is
 some text.
 
+
+
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+==== Example 1: Examples can be typeset as exercises ====
+
+Examples can start with a subsection heading starting with `Example:`
+and then, with the command-line option `--examples-as-exercises` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+*Solution.* The answer to this subproblem can be written here.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
 ==== URLs ====
 
 Testing of URLs: hpl's home page [http://folk.uio.no/hpl hpl], or
@@ -6973,9 +7405,9 @@ b &= \nabla^2 u + \nabla^4 v
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
-between there we have [#Exercise_6:_Make_references_to_projects_and_problems].
+Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_1:_Compute_a_Probability],
+as well as [#Project_2:_Explore_Distributions_of_Random_Circles] and [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
+between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
 
 
@@ -7032,7 +7464,7 @@ Filenames: `flip_coin.py`, `flip_coin.pdf`.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Project 2: Compute a Probability ====
+==== Project 1: Compute a Probability ====
 
 <wiki:comment> Minimalistic exercise </wiki:comment>
 
@@ -7052,7 +7484,7 @@ compute the probability as `M/N`.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Project 3: Explore Distributions of Random Circles ====
+==== Project 2: Explore Distributions of Random Circles ====
 
 The formula for a circle is given by
 
@@ -7125,7 +7557,7 @@ and give some perspectives.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Exercise 4: Determine some Distance ====
+==== Exercise 1: Determine some Distance ====
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -7181,22 +7613,26 @@ remarks will appear at the end of the typeset exercise.
 
 Just some text.
 
-<wiki:comment> #if FORMAT == "plain" </wiki:comment>
-
 <wiki:comment> --- end of exercise </wiki:comment>
 
-==== Example: Just an example ====
+
+
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+==== Example 2: Just an example ====
 
 <wiki:comment> This example needs the --example-as-exercise option </wiki:comment>
 
-!bsubex
-What is the capital of Norway?
 
-!bans
-Oslo.
-!eans
-!esubex
-<wiki:comment> #endif </wiki:comment>
+*a)* What is the capital of Norway?
+
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+*Answer.* Oslo.
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+<wiki:comment> --- end of exercise </wiki:comment>
 
 
 
@@ -7210,9 +7646,9 @@ With some text, before we continue with exercises.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Exercise 6: Make references to projects and problems ====
+==== Exercise 3: Make references to projects and problems ====
 
-Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
+Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
 Filename: `verify_formula.py`.
 
@@ -7223,11 +7659,11 @@ Filename: `verify_formula.py`.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Project 7: References to [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
+==== Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for gwiki ====
 
-Refer to the previous exercise as [#Exercise_6:_Make_references_to_projects_and_problems],
-the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
+Refer to the previous exercise as [#Exercise_3:_Make_references_to_projects_and_problems],
+the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
 Filename: `selc_composed.pdf`.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -7658,6 +8094,48 @@ Here
 is
 some text.
 
+
+
+
+<!-- --- begin exercise -->
+
+==== Example 1: Examples can be typeset as exercises ====
+
+Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples-as-exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+''a)''
+State some problem.
+
+<!-- --- begin solution of exercise -->
+
+''Solution.''
+The answer to this subproblem can be written here.
+
+<!-- --- end solution of exercise -->
+
+''b)''
+State some other problem.
+
+''Hint 1.''
+A hint can be given.
+
+''Hint 2.''
+Maybe even another hint?
+
+<!-- --- begin solution of exercise -->
+
+''Solution.''
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<!-- --- end solution of exercise -->
+
+<!-- --- end of exercise -->
+
 ==== URLs ====
 
 Testing of URLs: hpl's home page [http://folk.uio.no/hpl hpl], or
@@ -7712,9 +8190,9 @@ b &= \nabla^2 u + \nabla^4 v
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
-between there we have [#Exercise_6:_Make_references_to_projects_and_problems].
+Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_1:_Compute_a_Probability],
+as well as [#Project_2:_Explore_Distributions_of_Random_Circles] and [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
+between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
 
 
@@ -7775,7 +8253,7 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 
 <!-- --- begin exercise -->
 
-==== Project 2: Compute a Probability ====
+==== Project 1: Compute a Probability ====
 
 <!-- Minimalistic exercise -->
 
@@ -7796,7 +8274,7 @@ compute the probability as <math>M/N</math>.
 
 <!-- --- begin exercise -->
 
-==== Project 3: Explore Distributions of Random Circles ====
+==== Project 2: Explore Distributions of Random Circles ====
 
 The formula for a circle is given by
 
@@ -7875,7 +8353,7 @@ and give some perspectives.
 
 <!-- --- begin exercise -->
 
-==== Exercise 4: Determine some Distance ====
+==== Exercise 1: Determine some Distance ====
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -7943,6 +8421,27 @@ Just some text.
 
 
 
+
+<!-- --- begin exercise -->
+
+==== Example 2: Just an example ====
+
+<!-- This example needs the --example-as-exercise option -->
+
+
+''a)''
+What is the capital of Norway?
+
+<!-- --- begin short answer in exercise -->
+
+''Answer.''
+Oslo.
+<!-- --- end short answer in exercise -->
+
+<!-- --- end of exercise -->
+
+
+
 == Here goes another section ==
 
 With some text, before we continue with exercises.
@@ -7953,9 +8452,9 @@ With some text, before we continue with exercises.
 
 <!-- --- begin exercise -->
 
-==== Exercise 6: Make references to projects and problems ====
+==== Exercise 3: Make references to projects and problems ====
 
-Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
+Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
 Filename: <code>verify_formula.py</code>.
 
@@ -7966,11 +8465,11 @@ Filename: <code>verify_formula.py</code>.
 
 <!-- --- begin exercise -->
 
-==== Project 7: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
+==== Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for mwiki ====
 
-Refer to the previous exercise as [#Exercise_6:_Make_references_to_projects_and_problems],
-the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
+Refer to the previous exercise as [#Exercise_3:_Make_references_to_projects_and_problems],
+the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
 Filename: <code>selc_composed.pdf</code>.
 
 <!-- --- end of exercise -->
@@ -8287,7 +8786,7 @@ Or with align with label and numbers:
 label{aligneq1}\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-label{aligneq1}
+label{aligneq2}
 \end{align}
 }}}
 
@@ -8386,6 +8885,43 @@ is
 some text.
 
 
+
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+
+== Example 1: Examples can be typeset as exercises ==
+
+Examples can start with a subsection heading starting with {{{Example:}}}
+and then, with the command-line option {{{--examples-as-exercises}}} be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+//a)// State some problem.
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+//Solution.// The answer to this subproblem can be written here.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+//b)// State some other problem.
+
+//Hint 1.// A hint can be given.
+
+//Hint 2.// Maybe even another hint?
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+//Solution.// The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
+
 == URLs ==
 
 Testing of URLs: hpl's home page [[http://folk.uio.no/hpl|hpl]], or
@@ -8444,9 +8980,9 @@ b &= \nabla^2 u + \nabla^4 v
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
-between there we have [#Exercise_6:_Make_references_to_projects_and_problems].
+Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_1:_Compute_a_Probability],
+as well as [#Project_2:_Explore_Distributions_of_Random_Circles] and [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
+between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
 
 
@@ -8505,7 +9041,7 @@ Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Project 2: Compute a Probability ==
+== Project 1: Compute a Probability ==
 
 <wiki:comment> Minimalistic exercise </wiki:comment>
 
@@ -8526,7 +9062,7 @@ compute the probability as {{{M/N}}}.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Project 3: Explore Distributions of Random Circles ==
+== Project 2: Explore Distributions of Random Circles ==
 
 The formula for a circle is given by
 
@@ -8600,7 +9136,7 @@ and give some perspectives.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Exercise 4: Determine some Distance ==
+== Exercise 1: Determine some Distance ==
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -8661,6 +9197,26 @@ Just some text.
 
 
 
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+
+== Example 2: Just an example ==
+
+<wiki:comment> This example needs the --example-as-exercise option </wiki:comment>
+
+
+//a)// What is the capital of Norway?
+
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+//Answer.// Oslo.
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
+
+
 = Here goes another section =
 
 With some text, before we continue with exercises.
@@ -8672,9 +9228,9 @@ With some text, before we continue with exercises.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Exercise 6: Make references to projects and problems ==
+== Exercise 3: Make references to projects and problems ==
 
-Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
+Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
 Filename: {{{verify_formula.py}}}.
 
@@ -8686,11 +9242,11 @@ Filename: {{{verify_formula.py}}}.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Project 7: References to [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
+== Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for cwiki ==
 
-Refer to the previous exercise as [#Exercise_6:_Make_references_to_projects_and_problems],
-the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_7:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
+Refer to the previous exercise as [#Exercise_3:_Make_references_to_projects_and_problems],
+the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
 Filename: {{{selc_composed.pdf}}}.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -8986,7 +9542,7 @@ Or with align with label and numbers::
         label{aligneq1}\\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
-        label{aligneq1}
+        label{aligneq2}
         \end{align}
 
 
@@ -9079,6 +9635,30 @@ A test of verbatim words in heading with subscript a_i: 'my_file_v1' and 'my_fil
 is
 some text.
 
+Example 1: Examples can be typeset as exercises
+
+Examples can start with a subsection heading starting with 'Example:'
+and then, with the command-line option '--examples-as-exercises' be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+
+*Solution.* The answer to this subproblem can be written here.
+
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
 URLs
 
 Testing of URLs: hpl's home page "http://folk.uio.no/hpl":hpl, or
@@ -9131,9 +9711,9 @@ Here is a system without equation numbers, using the align-astrisk environment::
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 7: References to Project ref{demo:ex:2} in a heading works for st", and in
-between there we have  "Exercise 6: Make references to projects and problems".
+Below, we have  "Problem 1: Flip a Coin" and  "Project 1: Compute a Probability",
+as well as  "Project 2: Explore Distributions of Random Circles" and "Project 3: References to Project ref{demo:ex:2} in a heading works for st", and in
+between there we have  "Exercise 3: Make references to projects and problems".
 
 Exercises
 
@@ -9170,7 +9750,7 @@ head, otherwise tail. Repeat this N number of times.
 
 Filenames: 'flip_coin.py', 'flip_coin.pdf'.
 
-Project 2: Compute a Probability
+Project 1: Compute a Probability
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
@@ -9180,7 +9760,7 @@ draw N such random numbers using Python's standard 'random' module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
 compute the probability as M/N.
 
-Project 3: Explore Distributions of Random Circles
+Project 2: Explore Distributions of Random Circles
 
 The formula for a circle is given by::
 
@@ -9236,7 +9816,7 @@ Remarks
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
-Exercise 4: Determine some Distance
+Exercise 1: Determine some Distance
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -9273,23 +9853,30 @@ Some exercise without the "Exercise:" prefix
 
 Just some text.
 
+Example 2: Just an example
+
+*a)* What is the capital of Norway?
+
+
+*Answer.* Oslo.
+
 Here goes another section
 
 With some text, before we continue with exercises.
 
 More Exercises
 
-Exercise 6: Make references to projects and problems
+Exercise 3: Make references to projects and problems
 
-Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
+Pick a statement from  "Project 2: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
 and verify it.
 Filename: 'verify_formula.py'.
 
-Project 7: References to  "Project 2: Compute a Probability" in a heading works for st
+Project 3: References to  "Project 1: Compute a Probability" in a heading works for st
 
-Refer to the previous exercise as  "Exercise 6: Make references to projects and problems",
-the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 7: References to Project ref{demo:ex:2} in a heading works for st".
+Refer to the previous exercise as  "Exercise 3: Make references to projects and problems",
+the two before that as  "Project 1: Compute a Probability" and "Project 2: Explore Distributions of Random Circles",
+and this one as  "Project 3: References to Project ref{demo:ex:2} in a heading works for st".
 Filename: 'selc_composed.pdf'.
 
 Appendix: Just for testing; part I
@@ -9586,7 +10173,7 @@ Or with align with label and numbers::
         label{aligneq1}\\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
-        label{aligneq1}
+        label{aligneq2}
         \end{align}
 
 
@@ -9688,6 +10275,37 @@ is
 some text.
 
 
+
+
+
+Example 1: Examples can be typeset as exercises
+-----------------------------------------------
+
+Examples can start with a subsection heading starting with C{Example:}
+and then, with the command-line option C{--examples-as-exercises} be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+I{a)} State some problem.
+
+
+I{Solution.} The answer to this subproblem can be written here.
+
+
+I{b)} State some other problem.
+
+I{Hint 1.} A hint can be given.
+
+I{Hint 2.} Maybe even another hint?
+
+
+I{Solution.} The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+
+
+
 URLs
 ----
 
@@ -9745,9 +10363,9 @@ Here is a system without equation numbers, using the align-astrisk environment::
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 7: References to Project ref{demo:ex:2} in a heading works for epytext", and in
-between there we have  "Exercise 6: Make references to projects and problems".
+Below, we have  "Problem 1: Flip a Coin" and  "Project 1: Compute a Probability",
+as well as  "Project 2: Explore Distributions of Random Circles" and "Project 3: References to Project ref{demo:ex:2} in a heading works for epytext", and in
+between there we have  "Exercise 3: Make references to projects and problems".
 
 Exercises
 =========
@@ -9796,7 +10414,7 @@ Filenames: C{flip_coin.py}, C{flip_coin.pdf}.
 
 
 
-Project 2: Compute a Probability
+Project 1: Compute a Probability
 --------------------------------
 
 
@@ -9814,7 +10432,7 @@ compute the probability as M{M/N}.
 
 
 
-Project 3: Explore Distributions of Random Circles
+Project 2: Explore Distributions of Random Circles
 --------------------------------------------------
 
 The formula for a circle is given by::
@@ -9879,7 +10497,7 @@ and give some perspectives.
 
 
 
-Exercise 4: Determine some Distance
+Exercise 1: Determine some Distance
 -----------------------------------
 
 Intro to this exercise. Questions are in subexercises below.
@@ -9930,6 +10548,21 @@ Just some text.
 
 
 
+
+
+
+Example 2: Just an example
+--------------------------
+
+
+
+I{a)} What is the capital of Norway?
+
+
+I{Answer.} Oslo.
+
+
+
 Here goes another section
 =========================
 
@@ -9941,10 +10574,10 @@ More Exercises
 
 
 
-Exercise 6: Make references to projects and problems
+Exercise 3: Make references to projects and problems
 ----------------------------------------------------
 
-Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
+Pick a statement from  "Project 2: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
 and verify it.
 Filename: C{verify_formula.py}.
 
@@ -9953,12 +10586,12 @@ Filename: C{verify_formula.py}.
 
 
 
-Project 7: References to  "Project 2: Compute a Probability" in a heading works for epytext
+Project 3: References to  "Project 1: Compute a Probability" in a heading works for epytext
 -------------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  "Exercise 6: Make references to projects and problems",
-the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 7: References to Project ref{demo:ex:2} in a heading works for epytext".
+Refer to the previous exercise as  "Exercise 3: Make references to projects and problems",
+the two before that as  "Project 1: Compute a Probability" and "Project 2: Explore Distributions of Random Circles",
+and this one as  "Project 3: References to Project ref{demo:ex:2} in a heading works for epytext".
 Filename: C{selc_composed.pdf}.
 
 
@@ -10044,21 +10677,22 @@ Table of contents:
    Custom Environments 
    Tables 
    A test of verbatim words in heading with subscript a_i: my_file_v1 and my_file_v2 
+   Example 1: Examples can be typeset as exercises 
    URLs 
    LaTeX Mathematics 
  Exercises 
    Problem 1: Flip a Coin 
-   Project 2: Compute a Probability 
-   Project 3: Explore Distributions of Random Circles 
+   Project 1: Compute a Probability 
+   Project 2: Explore Distributions of Random Circles 
      Remarks 
-   Exercise 4: Determine some Distance 
+   Exercise 1: Determine some Distance 
      Remarks 
    Some exercise without the "Exercise:" prefix 
-   Example 6: Just an example 
+   Example 2: Just an example 
  Here goes another section 
  More Exercises 
-   Exercise 7: Make references to projects and problems 
-   Project 8: References to  "Project 2: Compute a Probability" in a heading works for plain 
+   Exercise 3: Make references to projects and problems 
+   Project 3: References to  "Project 1: Compute a Probability" in a heading works for plain 
  Appendix: Just for testing; part I 
    A subsection within an appendix 
  Appendix: Just for testing; part II 
@@ -10317,7 +10951,7 @@ Or with align with label and numbers::
         label{aligneq1}\\ 
         \frac{1}{2} &= {1/2}\\ 
         \frac{1}{2}\pmb{x} &= \pmb{n}
-        label{aligneq1}
+        label{aligneq2}
         \end{align}
 
 
@@ -10419,6 +11053,37 @@ is
 some text.
 
 
+
+
+
+Example 1: Examples can be typeset as exercises
+-----------------------------------------------
+
+Examples can start with a subsection heading starting with Example:
+and then, with the command-line option --examples-as-exercises be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+
+*Solution.* The answer to this subproblem can be written here.
+
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+
+
+
 URLs
 ----
 
@@ -10475,9 +11140,9 @@ Here is a system without equation numbers, using the align-astrisk environment::
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 8: References to Project ref{demo:ex:2} in a heading works for plain", and in
-between there we have  "Exercise 7: Make references to projects and problems".
+Below, we have  "Problem 1: Flip a Coin" and  "Project 1: Compute a Probability",
+as well as  "Project 2: Explore Distributions of Random Circles" and "Project 3: References to Project ref{demo:ex:2} in a heading works for plain", and in
+between there we have  "Exercise 3: Make references to projects and problems".
 
 Exercises
 =========
@@ -10526,7 +11191,7 @@ Filenames: flip_coin.py, flip_coin.pdf.
 
 
 
-Project 2: Compute a Probability
+Project 1: Compute a Probability
 --------------------------------
 
 
@@ -10544,7 +11209,7 @@ compute the probability as M/N.
 
 
 
-Project 3: Explore Distributions of Random Circles
+Project 2: Explore Distributions of Random Circles
 --------------------------------------------------
 
 The formula for a circle is given by::
@@ -10609,7 +11274,7 @@ and give some perspectives.
 
 
 
-Exercise 4: Determine some Distance
+Exercise 1: Determine some Distance
 -----------------------------------
 
 Intro to this exercise. Questions are in subexercises below.
@@ -10663,7 +11328,7 @@ Just some text.
 
 
 
-Example 6: Just an example
+Example 2: Just an example
 --------------------------
 
 
@@ -10686,10 +11351,10 @@ More Exercises
 
 
 
-Exercise 7: Make references to projects and problems
+Exercise 3: Make references to projects and problems
 ----------------------------------------------------
 
-Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
+Pick a statement from  "Project 2: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
 and verify it.
 Filename: verify_formula.py.
 
@@ -10698,12 +11363,12 @@ Filename: verify_formula.py.
 
 
 
-Project 8: References to  "Project 2: Compute a Probability" in a heading works for plain
+Project 3: References to  "Project 1: Compute a Probability" in a heading works for plain
 -----------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  "Exercise 7: Make references to projects and problems",
-the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 8: References to Project ref{demo:ex:2} in a heading works for plain".
+Refer to the previous exercise as  "Exercise 3: Make references to projects and problems",
+the two before that as  "Project 1: Compute a Probability" and "Project 2: Explore Distributions of Random Circles",
+and this one as  "Project 3: References to Project ref{demo:ex:2} in a heading works for plain".
 Filename: selc_composed.pdf.
 
 
@@ -11053,7 +11718,7 @@ $$
 \label{aligneq1}\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 $$
 
@@ -11158,6 +11823,43 @@ A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_f
 *Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here
 is
 some text.
+
+
+
+
+<!-- --- begin exercise -->
+
+Example 1: Examples can be typeset as exercises
+-----------------------------------------------
+
+Examples can start with a subsection heading starting with `Example:`
+and then, with the command-line option `--examples-as-exercises` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+<!-- --- begin solution of exercise -->
+
+*Solution.* The answer to this subproblem can be written here.
+
+<!-- --- end solution of exercise -->
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+<!-- --- begin solution of exercise -->
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<!-- --- end solution of exercise -->
+
+<!-- --- end of exercise -->
 
 
 URLs
@@ -11274,9 +11976,9 @@ $$
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  [Problem 1: Flip a Coin](#n) and  [Project 2: Compute a Probability](#y),
-as well as  [Project 3: Explore Distributions of Random Circles](#s) and [Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
-between there we have  [Exercise 6: Make references to projects and problems](#s).
+Below, we have  [Problem 1: Flip a Coin](#n) and  [Project 1: Compute a Probability](#y),
+as well as  [Project 2: Explore Distributions of Random Circles](#s) and [Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
+between there we have  [Exercise 3: Make references to projects and problems](#s).
 
 Exercises
 =========
@@ -11336,7 +12038,7 @@ Filenames: `flip_coin.py`, `flip_coin.pdf`.
 
 <!-- --- begin exercise -->
 
-Project 2: Compute a Probability
+Project 1: Compute a Probability
 --------------------------------
 
 <!-- Minimalistic exercise -->
@@ -11357,7 +12059,7 @@ compute the probability as $M/N$.
 
 <!-- --- begin exercise -->
 
-Project 3: Explore Distributions of Random Circles
+Project 2: Explore Distributions of Random Circles
 --------------------------------------------------
 
 The formula for a circle is given by
@@ -11433,7 +12135,7 @@ and give some perspectives.
 
 <!-- --- begin exercise -->
 
-Exercise 4: Determine some Distance
+Exercise 1: Determine some Distance
 -----------------------------------
 
 Intro to this exercise. Questions are in subexercises below.
@@ -11495,6 +12197,26 @@ Just some text.
 <!-- --- end of exercise -->
 
 
+
+
+<!-- --- begin exercise -->
+
+Example 2: Just an example
+--------------------------
+
+<!-- This example needs the --example-as-exercise option -->
+
+
+*a)* What is the capital of Norway?
+
+<!-- --- begin short answer in exercise -->
+
+*Answer.* Oslo.
+<!-- --- end short answer in exercise -->
+
+<!-- --- end of exercise -->
+
+
 Here goes another section
 =========================
 
@@ -11507,10 +12229,10 @@ More Exercises
 
 <!-- --- begin exercise -->
 
-Exercise 6: Make references to projects and problems
+Exercise 3: Make references to projects and problems
 ----------------------------------------------------
 
-Pick a statement from  [Project 3: Explore Distributions of Random Circles](#s) or  [Problem 1: Flip a Coin](#n)
+Pick a statement from  [Project 2: Explore Distributions of Random Circles](#s) or  [Problem 1: Flip a Coin](#n)
 and verify it.
 Filename: `verify_formula.py`.
 
@@ -11521,12 +12243,12 @@ Filename: `verify_formula.py`.
 
 <!-- --- begin exercise -->
 
-Project 7: References to  [Project 2: Compute a Probability](#y) in a heading works for pandoc
+Project 3: References to  [Project 1: Compute a Probability](#y) in a heading works for pandoc
 ----------------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  [Exercise 6: Make references to projects and problems](#s),
-the two before that as  [Project 2: Compute a Probability](#y) and [Project 3: Explore Distributions of Random Circles](#s),
-and this one as  [Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
+Refer to the previous exercise as  [Exercise 3: Make references to projects and problems](#s),
+the two before that as  [Project 1: Compute a Probability](#y) and [Project 2: Explore Distributions of Random Circles](#s),
+and this one as  [Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
 Filename: `selc_composed.pdf`.
 
 <!-- --- end of exercise -->
@@ -11601,7 +12323,31 @@ Could not find match for from regex "\*\s+\$.+normally"
 # f = open('.testdoc.exerinfo', 'r')
 # exer = eval(f.read())
 #
-[{'answer': 'If the `random.random()` function returns a number $<1/2$, let it be\nhead, otherwise tail. Repeat this $N$ number of times.',
+[{'answer': '',
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'Example',
+  'no': 1,
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': 'The answer to this subproblem can be written here.',
+             'text': 'State some problem.'},
+            {'answer': '',
+             'file': None,
+             'hints': ['A hint can be given.', 'Maybe even another hint?'],
+             'solution': 'The answer to this other subproblem goes here,\nmaybe over multiple doconce input lines.',
+             'text': 'State some other problem.'}],
+  'text': 'Examples can start with a subsection heading starting with `Example:`\nand then, with the command-line option `--examples-as-exercises` be\ntypeset as exercises. This is useful if one has solution\nenvironments as part of the example.',
+  'title': 'Examples can be typeset as exercises',
+  'type': 'Example',
+  'type_visible': True},
+ {'answer': 'If the `random.random()` function returns a number $<1/2$, let it be\nhead, otherwise tail. Repeat this $N$ number of times.',
   'closing_remarks': '',
   'file': ['flip_coin.py', 'flip_coin.pdf'],
   'heading': '=====',
@@ -11624,7 +12370,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': ["To answer this question empirically, let a program\ndraw $N$ such random numbers using Python's standard `random` module,\ncount how many of them, $M$, that fall in the interval $(0.5,0.6)$, and\ncompute the probability as $M/N$."],
   'keywords': None,
   'label': 'demo:ex:2',
-  'no': 2,
+  'no': 1,
   'solution': '',
   'solution_file': None,
   'subex': [],
@@ -11639,7 +12385,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': [],
   'keywords': None,
   'label': 'proj:circle1',
-  'no': 3,
+  'no': 2,
   'solution': '',
   'solution_file': None,
   'subex': [{'answer': 'Here goes the short answer to part a).',
@@ -11668,7 +12414,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': [],
   'keywords': None,
   'label': 'exer:dist',
-  'no': 4,
+  'no': 1,
   'solution': 'Here goes a full solution of the whole exercise.',
   'solution_file': None,
   'subex': [{'answer': 'Short answer to subexercise a).',
@@ -11693,7 +12439,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': [],
   'keywords': None,
   'label': None,
-  'no': 5,
+  'no': 2,
   'solution': '',
   'solution_file': None,
   'subex': [],
@@ -11703,12 +12449,31 @@ Could not find match for from regex "\*\s+\$.+normally"
   'type_visible': False},
  {'answer': '',
   'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': None,
+  'no': 2,
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'answer': 'Oslo.',
+             'file': None,
+             'hints': [],
+             'solution': '',
+             'text': 'What is the capital of Norway?'}],
+  'text': '# This example needs the --example-as-exercise option',
+  'title': 'Just an example',
+  'type': 'Example',
+  'type_visible': True},
+ {'answer': '',
+  'closing_remarks': '',
   'file': ['verify_formula.py'],
   'heading': '=====',
   'hints': [],
   'keywords': None,
   'label': 'exer:some:formula',
-  'no': 6,
+  'no': 3,
   'solution': '',
   'solution_file': None,
   'subex': [],
@@ -11723,7 +12488,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'hints': [],
   'keywords': None,
   'label': 'exer:you',
-  'no': 7,
+  'no': 3,
   'solution': '',
   'solution_file': None,
   'subex': [],
@@ -11902,7 +12667,7 @@ output2</code></pre>
 \label{aligneq1}\\ 
 \half &amp;= \halfi\\ 
 \half\x &amp;= \normalvec
-\label{aligneq1}\end{aligned}\]</p>
+\label{aligneq2}\end{aligned}\]</p>
 <h2 id="custom-environments">Custom Environments</h2>
 <p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
 <p>[theorem:fundamental1]</p>
@@ -12047,6 +12812,21 @@ output2</code></pre>
 </blockquote>
 <h4 id="files-my_file_v1.py-and-my_file_v2.py-define-some-math-a_i-1.">Files <code>my\_file\_v1.py</code> and <code>my\_file\_v2.py</code> define some math \(a_{i-1}\).</h4>
 <p>Here is some text.</p>
+<h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
+<p>[Example]</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<h4 id="a">a)</h4>
+<p>State some problem.</p>
+<h4 id="solution.">Solution.</h4>
+<p>The answer to this subproblem can be written here.</p>
+<h4 id="b">b)</h4>
+<p>State some other problem.</p>
+<h4 id="hint-1.">Hint 1.</h4>
+<p>A hint can be given.</p>
+<h4 id="hint-2.">Hint 2.</h4>
+<p>Maybe even another hint?</p>
+<h4 id="solution.-1">Solution.</h4>
+<p>The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
 <h2 id="urls">URLs</h2>
 <p>[subsubsec:ex]</p>
 <p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}"></a>. Here is a plain file link <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also <code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="{http://folk.uio.no/hpl}"></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
@@ -12098,13 +12878,13 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned}\]</p
 <h1 id="exercises">Exercises</h1>
 <h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
 <p>[demo:ex:1] Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
-<h4 id="hint-1.">Hint 1.</h4>
+<h4 id="hint-1.-1">Hint 1.</h4>
 <p>Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
-<h4 id="hint-2.">Hint 2.</h4>
+<h4 id="hint-2.-1">Hint 2.</h4>
 <p>Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
 <h4 id="answer.">Answer.</h4>
 <p>If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
-<h4 id="solution.">Solution.</h4>
+<h4 id="solution.-2">Solution.</h4>
 <p>Code:</p>
 <pre><code>import sys, random
 N = int(sys.argv[1])
@@ -12115,12 +12895,12 @@ for i in range(N):
         heads += 1
 print &#39;Flipping a coin %d times gave %d heads&#39; % (N, heads)</code></pre>
 <p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
-<h2 id="project-2-compute-a-probability">Project 2: Compute a Probability</h2>
+<h2 id="project-1-compute-a-probability">Project 1: Compute a Probability</h2>
 <p>[demo:ex:2]</p>
 <p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
 <h4 id="hint.">Hint.</h4>
 <p>To answer this question empirically, let a program draw \(N\) such random numbers using Python’s standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
-<h2 id="project-3-explore-distributions-of-random-circles">Project 3: Explore Distributions of Random Circles</h2>
+<h2 id="project-2-explore-distributions-of-random-circles">Project 2: Explore Distributions of Random Circles</h2>
 <p>[proj:circle1]</p>
 <p>The formula for a circle is given by</p>
 <p>\[\begin{aligned}
@@ -12137,51 +12917,56 @@ def circle(R, x0, y0, n=501):
 
 x, y = circle(2.0, 0, 0)</code></pre>
 <p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
-<h4 id="a">a)</h4>
+<h4 id="a-1">a)</h4>
 <p>Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
 <h4 id="hint.-1">Hint.</h4>
 <p>Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
 <h4 id="answer.-1">Answer.</h4>
 <p>Here goes the short answer to part a).</p>
-<h4 id="solution.-1">Solution.</h4>
+<h4 id="solution.-3">Solution.</h4>
 <p>Here goes a full solution to part a).</p>
-<h4 id="b">b)</h4>
+<h4 id="b-1">b)</h4>
 <p>Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. Filename: <code>norm.py</code>.</p>
 <h4 id="c">c)</h4>
 <p>Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
 <p>Filename: <code>circles.pdf</code>.</p>
 <h4 id="remarks.">Remarks.</h4>
 <p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
-<h2 id="exercise-4-determine-some-distance">Exercise 4: Determine some Distance</h2>
+<h2 id="exercise-1-determine-some-distance">Exercise 1: Determine some Distance</h2>
 <p>[exer:dist]</p>
 <p>Intro to this exercise. Questions are in subexercises below.</p>
-<h4 id="solution.-2">Solution.</h4>
+<h4 id="solution.-4">Solution.</h4>
 <p>Here goes a full solution of the whole exercise.</p>
-<h4 id="a-1">a)</h4>
+<h4 id="a-2">a)</h4>
 <p>Subexercises are numbered a), b), etc.</p>
-<h4 id="hint-1.-1">Hint 1.</h4>
+<h4 id="hint-1.-2">Hint 1.</h4>
 <p>First hint to subexercise a).</p>
-<h4 id="hint-2.-1">Hint 2.</h4>
+<h4 id="hint-2.-2">Hint 2.</h4>
 <p>Second hint to subexercise a). Filename: <code>subexer_a.pdf</code>.</p>
 <h4 id="answer.-2">Answer.</h4>
 <p>Short answer to subexercise a).</p>
-<h4 id="b-1">b)</h4>
+<h4 id="b-2">b)</h4>
 <p>Here goes the text for subexercise b).</p>
 <h4 id="hint.-2">Hint.</h4>
 <p>A hint for this subexercise. Filename: <code>subexer_b.pdf</code>.</p>
-<h4 id="solution.-3">Solution.</h4>
+<h4 id="solution.-5">Solution.</h4>
 <p>Here goes the solution of this subexercise.</p>
 <h4 id="remarks.-1">Remarks.</h4>
 <p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
 <h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h2>
 <p>Just some text.</p>
+<h2 id="example-2-just-an-example">Example 2: Just an example</h2>
+<h4 id="a-3">a)</h4>
+<p>What is the capital of Norway?</p>
+<h4 id="answer.-3">Answer.</h4>
+<p>Oslo.</p>
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
-<h2 id="exercise-6-make-references-to-projects-and-problems">Exercise 6: Make references to projects and problems</h2>
+<h2 id="exercise-3-make-references-to-projects-and-problems">Exercise 3: Make references to projects and problems</h2>
 <p>[exer:some:formula]</p>
 <p>Pick a statement from Project [proj:circle1] or Problem [demo:ex:1] and verify it. Filename: <code>verify_formula.py</code>.</p>
-<h2 id="project-7-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 7: References to Project [demo:ex:2] in a heading works for latex</h2>
+<h2 id="project-3-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 3: References to Project [demo:ex:2] in a heading works for latex</h2>
 <p>[exer:you]</p>
 <p>Refer to the previous exercise as Exercise [exer:some:formula], the two before that as Projects [demo:ex:2] and [proj:circle1], and this one as Project [exer:you]. Filename: <code>selc_composed.pdf</code>.</p>
 <h1 id="just-for-testing-part-i">Just for testing; part I</h1>
@@ -12451,7 +13236,7 @@ output2</code></pre>
 \label{aligneq1}\\ 
 \frac{1}{2} &amp;= {1/2}\\ 
 \frac{1}{2}\pmb{x} &amp;= \pmb{n}
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 \]</p>
 <h2 id="custom-environments">Custom Environments</h2>
@@ -12620,6 +13405,27 @@ output2</code></pre>
 </table>
 <h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h2>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
+<!-- --- begin exercise -->
+
+<h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
+<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p><em>a)</em> State some problem.</p>
+<!-- --- begin solution of exercise -->
+
+<p><em>Solution.</em> The answer to this subproblem can be written here.</p>
+<!-- --- end solution of exercise -->
+
+<p><em>b)</em> State some other problem.</p>
+<p><em>Hint 1.</em> A hint can be given.</p>
+<p><em>Hint 2.</em> Maybe even another hint?</p>
+<!-- --- begin solution of exercise -->
+
+<p><em>Solution.</em> The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+<!-- --- end solution of exercise -->
+
+<!-- --- end of exercise -->
+
+
 <h2 id="urls">URLs</h2>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.</p>
@@ -12683,7 +13489,7 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 \end{eqnarray}
 \]</p>
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
-<p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 2: Compute a Probability</a>, as well as <a href="#s">Project 3: Explore Distributions of Random Circles</a> and <a href="#c">Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 6: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 1: Compute a Probability</a>, as well as <a href="#s">Project 2: Explore Distributions of Random Circles</a> and <a href="#c">Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 3: Make references to projects and problems</a>.</p>
 <h1 id="exercises">Exercises</h1>
 <!-- --- begin exercise -->
 
@@ -12719,7 +13525,7 @@ heads = <span class="dv">0</span>
 
 <!-- --- begin exercise -->
 
-<h2 id="project-2-compute-a-probability">Project 2: Compute a Probability</h2>
+<h2 id="project-1-compute-a-probability">Project 1: Compute a Probability</h2>
 <!-- Minimalistic exercise -->
 
 
@@ -12732,7 +13538,7 @@ heads = <span class="dv">0</span>
 
 <!-- --- begin exercise -->
 
-<h2 id="project-3-explore-distributions-of-random-circles">Project 3: Explore Distributions of Random Circles</h2>
+<h2 id="project-2-explore-distributions-of-random-circles">Project 2: Explore Distributions of Random Circles</h2>
 <p>The formula for a circle is given by</p>
 <p>\[
 \begin{align}
@@ -12777,7 +13583,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise -->
 
-<h2 id="exercise-4-determine-some-distance">Exercise 4: Determine some Distance</h2>
+<h2 id="exercise-1-determine-some-distance">Exercise 1: Determine some Distance</h2>
 <p>Intro to this exercise. Questions are in subexercises below.</p>
 <!-- --- begin solution of exercise -->
 
@@ -12816,13 +13622,28 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <!-- --- end of exercise -->
 
 
+
+
+<!-- --- begin exercise -->
+
+<h2 id="example-2-just-an-example">Example 2: Just an example</h2>
+<!-- This example needs the --example-as-exercise option -->
+
+
+<p><em>a)</em> What is the capital of Norway?</p>
+<!-- --- begin short answer in exercise -->
+
+<p><em>Answer.</em> Oslo. <!-- --- end short answer in exercise --></p>
+<!-- --- end of exercise -->
+
+
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
 <!-- --- begin exercise -->
 
-<h2 id="exercise-6-make-references-to-projects-and-problems">Exercise 6: Make references to projects and problems</h2>
-<p>Pick a statement from <a href="#s">Project 3: Explore Distributions of Random Circles</a> or <a href="#n">Problem 1: Flip a Coin</a> and verify it. Filename: <code>verify_formula.py</code>.</p>
+<h2 id="exercise-3-make-references-to-projects-and-problems">Exercise 3: Make references to projects and problems</h2>
+<p>Pick a statement from <a href="#s">Project 2: Explore Distributions of Random Circles</a> or <a href="#n">Problem 1: Flip a Coin</a> and verify it. Filename: <code>verify_formula.py</code>.</p>
 <!-- --- end of exercise -->
 
 
@@ -12830,8 +13651,8 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise -->
 
-<h2 id="project-7-references-to-project-2-compute-a-probability-in-a-heading-works-for-pandoc">Project 7: References to <a href="#y">Project 2: Compute a Probability</a> in a heading works for pandoc</h2>
-<p>Refer to the previous exercise as <a href="#s">Exercise 6: Make references to projects and problems</a>, the two before that as <a href="#y">Project 2: Compute a Probability</a> and <a href="#s">Project 3: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 7: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<h2 id="project-3-references-to-project-1-compute-a-probability-in-a-heading-works-for-pandoc">Project 3: References to <a href="#y">Project 1: Compute a Probability</a> in a heading works for pandoc</h2>
+<p>Refer to the previous exercise as <a href="#s">Exercise 3: Make references to projects and problems</a>, the two before that as <a href="#y">Project 1: Compute a Probability</a> and <a href="#s">Project 2: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
 <!-- --- end of exercise -->
 
 
@@ -14525,27 +15346,29 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec8"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec9"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec9"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec10"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 2: Compute a Probability </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
-<a href="._part0002_testdoc.html#___sec17"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec18"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 7: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec23"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec24"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec17"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec18"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc.html#___sec19"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec20"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc.html#___sec23"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec24"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec25"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec27"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec29"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -15182,7 +16005,7 @@ $$
 \label{aligneq1}\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 $$
 
@@ -15308,6 +16131,40 @@ some text.
 <p>
 
 
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
+<p>
+Examples can start with a subsection heading starting with <tt>Example:</tt>
+and then, with the command-line option <tt>--examples-as-exercises</tt> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+<p>
+
+<b>a)</b> State some problem.
+
+<p>
+
+<p>
+<b>b)</b> State some other problem.
+
+<p>
+<b>Hint 1.</b> A hint can be given.
+
+<p>
+<b>Hint 2.</b> Maybe even another hint?
+
+<p>
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
@@ -15346,7 +16203,7 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec8"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
@@ -15442,13 +16299,13 @@ $$
 More mathematical typesetting is demonstrated in the coming exercises.
 
 <p>
-Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 7: References in a headings do not work well in html</a>, and in
-between there we have <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>.
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 1: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
 <p>
 
-<h2>Exercises  <a name="___sec9"></a></h2>
+<h2>Exercises  <a name="___sec10"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
@@ -15493,7 +16350,7 @@ Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 
-<h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
+<h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 <p>
 <!-- Minimalistic exercise -->
 
@@ -15518,7 +16375,7 @@ compute the probability as \( M/N \).
 
 <p>
 
-<h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+<h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 <p>
 The formula for a circle is given by
 
@@ -15594,7 +16451,7 @@ Filename: <tt>circles.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -15610,7 +16467,7 @@ and give some perspectives.
 
 <p>
 
-<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
+<h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 <p>
 Intro to this exercise. Questions are in subexercises below.
 
@@ -15643,7 +16500,7 @@ Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec15"></a></h4>
+<h4>Remarks  <a name="___sec16"></a></h4>
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -15660,7 +16517,7 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec16"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec17"></a></h3>
 <p>
 <!-- Another minimalistic exercise -->
 
@@ -15673,22 +16530,42 @@ Just some text.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec17"></a></h2>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Example 2: Just an example  <a name="___sec18"></a></h3>
+<p>
+<!-- This example needs the --example-as-exercise option -->
+
+<p>
+
+<b>a)</b> What is the capital of Norway?
+
+<p>
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<h2>Here goes another section  <a name="___sec19"></a></h2>
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec18"></a></h2>
+<h2>More Exercises  <a name="___sec20"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
 
 <p>
 
-<h3>Exercise 6: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 <p>
-Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
@@ -15702,11 +16579,11 @@ Filename: <tt>verify_formula.py</tt>.
 
 <p>
 
-<h3>Project 7: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 <p>
-Refer to the previous exercise as <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>,
-the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as <a href="#exer:you">Project 7: References in a headings do not work well in html</a>.
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 3: References in a headings do not work well in html</a>.
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
@@ -15715,22 +16592,22 @@ Filename: <tt>selc_composed.pdf</tt>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec21"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec23"></a></h2>
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec22"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec24"></a></h3>
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec23"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec25"></a></h2>
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec24"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec26"></a></h3>
 <p>
 Without label.
 
@@ -15748,7 +16625,7 @@ With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec27"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec29"></a></h3>
 <p>
 Without label.
 
@@ -16483,27 +17360,29 @@ Automatically generated HTML file from Doconce source
 &nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript $latex a_i$: <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#Example"> Example: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec8"> LaTeX Mathematics </a><br>
-<a href="#___sec9"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec9"> LaTeX Mathematics </a><br>
+<a href="#___sec10"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 2: Compute a Probability </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec15"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
-<a href="#___sec17"> Here goes another section </a><br>
-<a href="#___sec18"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 7: References in a headings do not work well in html </a><br>
-<a href="#___sec21"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec22"> A subsection within an appendix </a><br>
-<a href="#___sec23"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec24"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec17"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec18"> Example: Just an example </a><br>
+<a href="#___sec19"> Here goes another section </a><br>
+<a href="#___sec20"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="#___sec23"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec24"> A subsection within an appendix </a><br>
+<a href="#___sec25"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec26"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec27"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec29"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -16991,6 +17870,68 @@ some text.
 <p>
 
 
+<h3>Example: Examples can be typeset as exercises <a name="Example"></a></h3>
+<p>
+Examples can start with a subsection heading starting with <tt>Example:</tt>
+and then, with the command-line option <tt>--examples-as-exercises</tt> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+<p>
+
+!bsubex
+State some problem.
+
+<p>
+!bsol
+The answer to this subproblem can be written here.
+!esol
+!esubex
+
+<p>
+!bsubex
+State some other problem.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
+<th align="left" valign="middle"><b>Hint</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>A hint can be given.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
+<th align="left" valign="middle"><b>Hint</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>Maybe even another hint?</p>
+</td>
+</tr>
+</table>
+<p>
+!bsol
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+!esol
+!esubex
+
+<p>
+
+
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
@@ -17029,7 +17970,7 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec8"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
 <p>
 Here is an equation without label using backslash-bracket environment:
 
@@ -17129,13 +18070,13 @@ Testing eqnarray:
 More mathematical typesetting is demonstrated in the coming exercises.
 
 <p>
-Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 7: References in a headings do not work well in html</a>, and in
-between there we have <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>.
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 1: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
 <p>
 
-<h2>Exercises  <a name="___sec9"></a></h2>
+<h2>Exercises  <a name="___sec10"></a></h2>
 <p>
 
 
@@ -17205,7 +18146,7 @@ Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 
-<h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
+<h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 <p>
 
 
@@ -17230,7 +18171,7 @@ compute the probability as $latex M/N$.
 
 <p>
 
-<h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+<h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 <p>
 The formula for a circle is given by
 
@@ -17312,7 +18253,7 @@ Filename: <tt>circles.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -17328,7 +18269,7 @@ and give some perspectives.
 
 <p>
 
-<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
+<h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 <p>
 Intro to this exercise. Questions are in subexercises below.
 
@@ -17380,7 +18321,7 @@ Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec15"></a></h4>
+<h4>Remarks  <a name="___sec16"></a></h4>
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -17397,7 +18338,7 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec16"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec17"></a></h3>
 <p>
 
 
@@ -17410,22 +18351,38 @@ Just some text.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec17"></a></h2>
+<h3>Example: Just an example  <a name="___sec18"></a></h3>
+<p>
+
+
+<p>
+!bsubex
+What is the capital of Norway?
+
+<p>
+!bans
+Oslo.
+!eans
+!esubex
+
+<p>
+
+<h2>Here goes another section  <a name="___sec19"></a></h2>
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec18"></a></h2>
+<h2>More Exercises  <a name="___sec20"></a></h2>
 <p>
 
 
 
 <p>
 
-<h3>Exercise 6: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 <p>
-Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
@@ -17439,11 +18396,11 @@ Filename: <tt>verify_formula.py</tt>.
 
 <p>
 
-<h3>Project 7: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 <p>
-Refer to the previous exercise as <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>,
-the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as <a href="#exer:you">Project 7: References in a headings do not work well in html</a>.
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 3: References in a headings do not work well in html</a>.
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
@@ -17452,22 +18409,22 @@ Filename: <tt>selc_composed.pdf</tt>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec21"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec23"></a></h2>
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec22"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec24"></a></h3>
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec23"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec25"></a></h2>
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec24"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec26"></a></h3>
 <p>
 Without label.
 
@@ -17485,7 +18442,7 @@ With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec27"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec29"></a></h3>
 <p>
 Without label.
 
@@ -17715,27 +18672,29 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec8"> LaTeX Mathematics </a><br>
-<a href="#___sec9"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec9"> LaTeX Mathematics </a><br>
+<a href="#___sec10"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 2: Compute a Probability </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec15"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec16"> Some exercise without the "Exercise:" prefix </a><br>
-<a href="#___sec17"> Here goes another section </a><br>
-<a href="#___sec18"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 6: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 7: References in a headings do not work well in html </a><br>
-<a href="#___sec21"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec22"> A subsection within an appendix </a><br>
-<a href="#___sec23"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec24"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec17"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec18"> Example 2: Just an example </a><br>
+<a href="#___sec19"> Here goes another section </a><br>
+<a href="#___sec20"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="#___sec23"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec24"> A subsection within an appendix </a><br>
+<a href="#___sec25"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec26"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec27"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec29"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -18095,7 +19054,7 @@ $$
 \label{aligneq1}\\ 
 \frac{1}{2} &= {1/2}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-\label{aligneq1}
+\label{aligneq2}
 \end{align}
 $$
 
@@ -18215,6 +19174,55 @@ some text.
 <p>
 
 
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
+<p>
+Examples can start with a subsection heading starting with <tt>Example:</tt>
+and then, with the command-line option <tt>--examples-as-exercises</tt> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+<p>
+
+<b>a)</b> State some problem.
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> The answer to this subproblem can be written here.
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+<b>b)</b> State some other problem.
+
+<p>
+<b>Hint 1.</b> A hint can be given.
+
+<p>
+<b>Hint 2.</b> Maybe even another hint?
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
@@ -18253,7 +19261,7 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec8"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
@@ -18349,13 +19357,13 @@ $$
 More mathematical typesetting is demonstrated in the coming exercises.
 
 <p>
-Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 7: References in a headings do not work well in html</a>, and in
-between there we have <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>.
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 1: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
 <p>
 
-<h2>Exercises  <a name="___sec9"></a></h2>
+<h2>Exercises  <a name="___sec10"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
@@ -18396,7 +19404,7 @@ Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 
-<h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
+<h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 <p>
 <!-- Minimalistic exercise -->
 
@@ -18421,7 +19429,7 @@ compute the probability as \( M/N \).
 
 <p>
 
-<h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+<h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 <p>
 The formula for a circle is given by
 
@@ -18484,7 +19492,7 @@ Filename: <tt>circles.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -18500,7 +19508,7 @@ and give some perspectives.
 
 <p>
 
-<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
+<h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 <p>
 Intro to this exercise. Questions are in subexercises below.
 
@@ -18527,7 +19535,7 @@ Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec15"></a></h4>
+<h4>Remarks  <a name="___sec16"></a></h4>
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -18544,7 +19552,7 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec16"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec17"></a></h3>
 <p>
 <!-- Another minimalistic exercise -->
 
@@ -18557,22 +19565,47 @@ Just some text.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec17"></a></h2>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Example 2: Just an example  <a name="___sec18"></a></h3>
+<p>
+<!-- This example needs the --example-as-exercise option -->
+
+<p>
+
+<b>a)</b> What is the capital of Norway?
+
+<p>
+<!-- --- begin short answer in exercise -->
+
+<p>
+<b>Answer.</b> Oslo.
+<!-- --- end short answer in exercise -->
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+
+<h2>Here goes another section  <a name="___sec19"></a></h2>
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec18"></a></h2>
+<h2>More Exercises  <a name="___sec20"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
 
 <p>
 
-<h3>Exercise 6: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 <p>
-Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
@@ -18586,11 +19619,11 @@ Filename: <tt>verify_formula.py</tt>.
 
 <p>
 
-<h3>Project 7: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 <p>
-Refer to the previous exercise as <a href="#exer:some:formula">Exercise 6: Make references to projects and problems</a>,
-the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as <a href="#exer:you">Project 7: References in a headings do not work well in html</a>.
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 3: References in a headings do not work well in html</a>.
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
@@ -18599,22 +19632,22 @@ Filename: <tt>selc_composed.pdf</tt>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec21"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec23"></a></h2>
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec22"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec24"></a></h3>
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec23"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec25"></a></h2>
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec24"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec26"></a></h3>
 <p>
 Without label.
 
@@ -18632,7 +19665,7 @@ With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec27"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec29"></a></h3>
 <p>
 Without label.
 
@@ -18725,16 +19758,16 @@ rm -rf html_images reveal.js downloaded_figures
 doconce format html testdoc --wordpress
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without-answers --without-solutions
+doconce format html testdoc --without-answers --without-solutions --examples-as-exercises
 cp testdoc.html testdoc_no_solutions.html
 
-doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
+doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
 doconce remove_exercise_answers testdoc.html
 doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
 
-doconce format latex testdoc.do.txt
-doconce format pdflatex testdoc.do.txt --latex-printed
+doconce format latex testdoc.do.txt --examples-as-exercises
+doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
 doconce latex_exercise_toc testdoc
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
 
@@ -18756,23 +19789,23 @@ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\en
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --example-as-exercise
-doconce format st testdoc.do.txt
-doconce format sphinx testdoc.do.txt
+doconce format plain testdoc.do.txt --examples-as-exercises
+doconce format st testdoc.do.txt --examples-as-exercises
+doconce format sphinx testdoc.do.txt --examples-as-exercises
 mv -f testdoc.rst testdoc.sphinx.rst
 # Note: the chapter heading must be removed
 # for successful compilation of the sphinx document.
-doconce format rst testdoc.do.txt
-doconce format epytext testdoc.do.txt
-doconce format pandoc testdoc.do.txt
-doconce format mwiki testdoc.do.txt
-doconce format cwiki testdoc.do.txt
+doconce format rst testdoc.do.txt --examples-as-exercises
+doconce format epytext testdoc.do.txt --examples-as-exercises
+doconce format pandoc testdoc.do.txt --examples-as-exercises
+doconce format mwiki testdoc.do.txt --examples-as-exercises
+doconce format cwiki testdoc.do.txt --examples-as-exercises
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess --examples-as-exercises
 
 # Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt
+doconce format latex testdoc.do.txt --examples-as-exercises
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
 # pandoc cannot work well with \Verb, needs \verb
@@ -18781,7 +19814,7 @@ pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
 
-doconce format pandoc testdoc.do.txt
+doconce format pandoc testdoc.do.txt --examples-as-exercises
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 
@@ -33983,7 +35016,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 22 Jan 2013 (13:27)</center>
+<center>Tue, 22 Jan 2013 (15:04)</center>
 
 
 
@@ -34114,7 +35147,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 22 Jan 2013 (13:27)</center>
+<center>Tue, 22 Jan 2013 (15:04)</center>
 
 
 
@@ -35249,6 +36282,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
 !bc
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist}
@@ -35322,6 +36356,28 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 !ec
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with `Example:` and adding the
+command-line option `--examples-as-exercises`. This means that one can
+typeset examples as an exercise and use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword `Exercise:`, `Problem:`, `Project:`,
+or `Example:`. By enclosing the keyword in braces, as in
+
+!bc
+===== {Problem}: Find a solution to a problem =====
+!ec
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
@@ -38751,6 +39807,8 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
+<p>
 <!-- begin verbatim block -->
 <pre>
 ===== Project: Determine the Distance to the Moon =====
@@ -38832,6 +39890,34 @@ Here goes a full solution of the whole exercise.
 <! -- end verbatim block -->
 
 <p>
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with <tt>Example:</tt> and adding the
+command-line option <tt>--examples-as-exercises</tt>. This means that one can
+typeset examples as an exercise and use the <tt>!bsubex</tt> and <tt>!bsol</tt>
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+<p>
+The command line options <tt>--without-answers</tt> and <tt>--without-solutions</tt>
+turn off output of answers and solutions, respectively, except for
+examples.
+
+<p>
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword <tt>Exercise:</tt>, <tt>Problem:</tt>, <tt>Project:</tt>,
+or <tt>Example:</tt>. By enclosing the keyword in braces, as in
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+===== {Problem}: Find a solution to a problem =====
+</pre>
+<! -- end verbatim block -->
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
+<p>
+
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <tt>.mydoc.exerinfo</tt>,
 if <tt>mydoc.do.txt</tt> is the name of the Doconce file.  The file contains
@@ -42393,6 +43479,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
 \bccq
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist}
@@ -42466,6 +43553,28 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 \eccq
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with \code{Example:} and adding the
+command-line option \code{--examples-as-exercises}. This means that one can
+typeset examples as an exercise and use the \code{!bsubex} and \code{!bsol}
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options \code{--without-answers} and \code{--without-solutions}
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword \code{Exercise:}, \code{Problem:}, \code{Project:},
+or \code{Example:}. By enclosing the keyword in braces, as in
+
+\bccq
+===== {Problem}: Find a solution to a problem =====
+\eccq
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file \code{.mydoc.exerinfo},
@@ -45659,6 +46768,28 @@ A full exercise set-up can be sketched as follows::
         !bsol
         Here goes a full solution of the whole exercise.
         !esol
+
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with ``Example:`` and adding the
+command-line option ``--examples-as-exercises``. This means that one can
+typeset examples as an exercise and use the ``!bsubex`` and ``!bsol``
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options ``--without-answers`` and ``--without-solutions``
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword ``Exercise:``, ``Problem:``, ``Project:``,
+or ``Example:``. By enclosing the keyword in braces, as in::
+
+
+        ===== {Problem}: Find a solution to a problem =====
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
 
 
 The various elements of exercises are collected in a special data
@@ -49115,6 +50246,7 @@ The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
 
+
 .. code-block:: text
 
 
@@ -49192,6 +50324,31 @@ A full exercise set-up can be sketched as follows:
         !bsol
         Here goes a full solution of the whole exercise.
         !esol
+
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with ``Example:`` and adding the
+command-line option ``--examples-as-exercises``. This means that one can
+typeset examples as an exercise and use the ``!bsubex`` and ``!bsol``
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options ``--without-answers`` and ``--without-solutions``
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword ``Exercise:``, ``Problem:``, ``Project:``,
+or ``Example:``. By enclosing the keyword in braces, as in
+
+
+.. code-block:: text
+
+
+        ===== {Problem}: Find a solution to a problem =====
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
 
 
 The various elements of exercises are collected in a special data
@@ -52303,6 +53460,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
 {{{
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist}
@@ -52376,6 +53534,28 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 }}}
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with `Example:` and adding the
+command-line option `--examples-as-exercises`. This means that one can
+typeset examples as an exercise and use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword `Exercise:`, `Problem:`, `Project:`,
+or `Example:`. By enclosing the keyword in braces, as in
+
+{{{
+===== {Problem}: Find a solution to a problem =====
+}}}
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
@@ -55293,6 +56473,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
 <syntaxhighlight lang="text">
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist}
@@ -55366,6 +56547,28 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 </syntaxhighlight>
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with <code>Example:</code> and adding the
+command-line option <code>--examples-as-exercises</code>. This means that one can
+typeset examples as an exercise and use the <code>!bsubex</code> and <code>!bsol</code>
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options <code>--without-answers</code> and <code>--without-solutions</code>
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword <code>Exercise:</code>, <code>Problem:</code>, <code>Project:</code>,
+or <code>Example:</code>. By enclosing the keyword in braces, as in
+
+<syntaxhighlight lang="text">
+===== {Problem}: Find a solution to a problem =====
+</syntaxhighlight>
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <code>.mydoc.exerinfo</code>,
@@ -58279,6 +59482,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
+
 {{{
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist}
@@ -58352,6 +59556,28 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 }}}
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with {{{Example:}}} and adding the
+command-line option {{{--examples-as-exercises}}}. This means that one can
+typeset examples as an exercise and use the {{{!bsubex}}} and {{{!bsol}}}
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options {{{--without-answers}}} and {{{--without-solutions}}}
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword {{{Exercise:}}}, {{{Problem:}}}, {{{Project:}}},
+or {{{Example:}}}. By enclosing the keyword in braces, as in
+
+{{{
+===== {Problem}: Find a solution to a problem =====
+}}}
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file {{{.mydoc.exerinfo}}},
@@ -61326,6 +62552,28 @@ A full exercise set-up can be sketched as follows::
         !bsol
         Here goes a full solution of the whole exercise.
         !esol
+
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with 'Example:' and adding the
+command-line option '--examples-as-exercises'. This means that one can
+typeset examples as an exercise and use the '!bsubex' and '!bsol'
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options '--without-answers' and '--without-solutions'
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword 'Exercise:', 'Problem:', 'Project:',
+or 'Example:'. By enclosing the keyword in braces, as in::
+
+
+        ===== {Problem}: Find a solution to a problem =====
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
 
 
 The various elements of exercises are collected in a special data
@@ -64393,6 +65641,28 @@ A full exercise set-up can be sketched as follows::
         !bsol
         Here goes a full solution of the whole exercise.
         !esol
+
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with C{Example:} and adding the
+command-line option C{--examples-as-exercises}. This means that one can
+typeset examples as an exercise and use the C{!bsubex} and C{!bsol}
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options C{--without-answers} and C{--without-solutions}
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword C{Exercise:}, C{Problem:}, C{Project:},
+or C{Example:}. By enclosing the keyword in braces, as in::
+
+
+        ===== {Problem}: Find a solution to a problem =====
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
 
 
 The various elements of exercises are collected in a special data
@@ -67552,6 +68822,28 @@ A full exercise set-up can be sketched as follows::
         !bsol
         Here goes a full solution of the whole exercise.
         !esol
+
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with Example: and adding the
+command-line option --examples-as-exercises. This means that one can
+typeset examples as an exercise and use the !bsubex and !bsol
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options --without-answers and --without-solutions
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword Exercise:, Problem:, Project:,
+or Example:. By enclosing the keyword in braces, as in::
+
+
+        ===== {Problem}: Find a solution to a problem =====
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
 
 
 The various elements of exercises are collected in a special data
@@ -70803,6 +72095,7 @@ The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:
 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Project: Determine the Distance to the Moon =====
 \label{proj:moondist}
@@ -70878,6 +72171,30 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Examples can also be typeset in a similar way as exercises using a
+subsection header that starts with `Example:` and adding the
+command-line option `--examples-as-exercises`. This means that one can
+typeset examples as an exercise and use the `!bsubex` and `!bsol`
+commands to indicate a subproblem and a solution. In this way, the
+example looks like an exercise equipped with a solution.
+
+The command line options `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
+
+Sometimes one does not want the heading of an exercise, problem, project,
+or example to contain the keyword `Exercise:`, `Problem:`, `Project:`,
+or `Example:`. By enclosing the keyword in braces, as in
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== {Problem}: Find a solution to a problem =====
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+the keyword is marked for being left out of the heading, resulting in
+the heading "Find a solution to a problem".
+
 
 The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
@@ -73061,13 +74378,14 @@ list of capabilities:
 
 ===== Exercises =====
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  * a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
   * a label (optional)
   * a solution file (optional)
   * name of file with a student solution (optional)
@@ -73099,6 +74417,15 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 !ec
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+!bc
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+!ec
+the title becomes just "Derive the ...".
+
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
@@ -73152,6 +74479,9 @@ Here goes a full solution of the whole exercise.
 
 !ec
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 ===== Environments =====
@@ -74114,16 +75444,17 @@ doconce list_labels myfile
 
 <h3>Exercises  <a name="___sec12"></a></h3>
 <p>
-Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
+Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain <em>elements</em>:
+Exercise, problem, project, or example sections contains certain <em>elements</em>:
 
 <p>
 
 <ul>
-  <li> a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)</li>
+  <li> a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)</li>
   <li> a label (optional)</li>
   <li> a solution file (optional)</li>
   <li> name of file with a student solution (optional)</li>
@@ -74158,6 +75489,19 @@ compute the integral.
 !ehint
 </pre>
 <! -- end verbatim block -->
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+</pre>
+<! -- end verbatim block -->
+the title becomes just "Derive the ...".
+
+<p>
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
@@ -74214,6 +75558,9 @@ Here goes a full solution of the whole exercise.
 </pre>
 <! -- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments <tt>--without-answers</tt> and <tt>--without-solutions</tt>
+turn off output of answers and solutions, respectively, except for
+examples.
 
 <p>
 
@@ -75233,14 +76580,15 @@ doconce list_labels myfile
 
 \subsection{Exercises}
 
-Doconce supports \emph{Exercise}, \emph{Problem}, and \emph{Project}. These are typeset
+Doconce supports \emph{Exercise}, \emph{Problem}, \emph{Project}, and \emph{Example}.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain \emph{elements}:
+Exercise, problem, project, or example sections contains certain \emph{elements}:
 
 \begin{itemize}
-  \item a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  \item a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
 
   \item a label (optional)
 
@@ -75282,6 +76630,15 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 \eccq
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+\bccq
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+\eccq
+the title becomes just "Derive the ...".
+
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
@@ -75335,6 +76692,9 @@ Here goes a full solution of the whole exercise.
 
 \eccq
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments \code{--without-answers} and \code{--without-solutions}
+turn off output of answers and solutions, respectively, except for
+examples.
 
 \subsection{Environments}
 
@@ -76132,13 +77492,14 @@ list of capabilities::
 Exercises
 ---------
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  * a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
 
   * a label (optional)
 
@@ -76178,6 +77539,15 @@ A typical sketch of a a problem without subexercises goes as follows::
         "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
         !ehint
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads::
+
+
+        ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up::
@@ -76232,6 +77602,9 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments ``--without-answers`` and ``--without-solutions``
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 Environments
@@ -77064,13 +78437,14 @@ list of capabilities:
 Exercises
 ---------
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  * a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
 
   * a label (optional)
 
@@ -77112,6 +78486,18 @@ A typical sketch of a a problem without subexercises goes as follows:
         "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
         !ehint
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+
+.. code-block:: text
+
+
+        ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up:
@@ -77169,6 +78555,9 @@ setup-up:
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments ``--without-answers`` and ``--without-solutions``
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 Environments
@@ -77874,12 +79263,13 @@ doconce list_labels myfile
 
 ==== Exercises ====
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
 
-  * a headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title (required)
+  * a headline at the level of a subsection    containing one of the words "Exercise:", "Problem:",    "Project:", or "Example:", followed by a title (required)
   * a label (optional)
   * a solution file (optional)
   * name of file with a student solution (optional)
@@ -77909,6 +79299,15 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 }}}
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+{{{
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+}}}
+the title becomes just "Derive the ...".
+
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
@@ -77962,6 +79361,9 @@ Here goes a full solution of the whole exercise.
 
 }}}
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
 
 ==== Environments ====
 
@@ -78689,15 +80091,16 @@ doconce list_labels myfile
 
 ==== Exercises ====
 
-Doconce supports ''Exercise'', ''Problem'', and ''Project''. These are typeset
+Doconce supports ''Exercise'', ''Problem'', ''Project'', and ''Example''.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain ''elements'':
+Exercise, problem, project, or example sections contains certain ''elements'':
 
 
 <ul>
-  <li> a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  <li> a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
   <li> a label (optional)
   <li> a solution file (optional)
   <li> name of file with a student solution (optional)
@@ -78730,6 +80133,15 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 </syntaxhighlight>
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+<syntaxhighlight lang="text">
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+</syntaxhighlight>
+the title becomes just "Derive the ...".
+
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
@@ -78783,6 +80195,9 @@ Here goes a full solution of the whole exercise.
 
 </syntaxhighlight>
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments <code>--without-answers</code> and <code>--without-solutions</code>
+turn off output of answers and solutions, respectively, except for
+examples.
 
 ==== Environments ====
 
@@ -79490,12 +80905,13 @@ doconce list_labels myfile
 
 == Exercises ==
 
-Doconce supports //Exercise//, //Problem//, and //Project//. These are typeset
+Doconce supports //Exercise//, //Problem//, //Project//, and //Example//.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain //elements//:
+Exercise, problem, project, or example sections contains certain //elements//:
 
 
-  * a headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title (required)
+  * a headline at the level of a subsection    containing one of the words "Exercise:", "Problem:",    "Project:", or "Example:", followed by a title (required)
   * a label (optional)
   * a solution file (optional)
   * name of file with a student solution (optional)
@@ -79525,6 +80941,15 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 }}}
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+{{{
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+}}}
+the title becomes just "Derive the ...".
+
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
@@ -79578,6 +81003,9 @@ Here goes a full solution of the whole exercise.
 
 }}}
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments {{{--without-answers}}} and {{{--without-solutions}}}
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 == Environments ==
@@ -80290,13 +81718,14 @@ list of capabilities::
 
 Exercises
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  - a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  - a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
   - a label (optional)
   - a solution file (optional)
   - name of file with a student solution (optional)
@@ -80328,6 +81757,15 @@ A typical sketch of a a problem without subexercises goes as follows::
         "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
         !ehint
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads::
+
+
+        ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up::
@@ -80382,6 +81820,9 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments '--without-answers' and '--without-solutions'
+turn off output of answers and solutions, respectively, except for
+examples.
 
 Environments
 
@@ -81113,13 +82554,14 @@ list of capabilities::
 Exercises
 ---------
 
-Doconce supports I{Exercise}, I{Problem}, and I{Project}. These are typeset
+Doconce supports I{Exercise}, I{Problem}, I{Project}, and I{Example}.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain I{elements}:
+Exercise, problem, project, or example sections contains certain I{elements}:
 
-  - a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  - a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
   - a label (optional)
   - a solution file (optional)
   - name of file with a student solution (optional)
@@ -81151,6 +82593,15 @@ A typical sketch of a a problem without subexercises goes as follows::
         "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
         !ehint
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads::
+
+
+        ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up::
@@ -81205,6 +82656,9 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments C{--without-answers} and C{--without-solutions}
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 Environments
@@ -81965,13 +83419,14 @@ list of capabilities::
 Exercises
 ---------
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  * a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
 
   * a label (optional)
 
@@ -82011,6 +83466,15 @@ A typical sketch of a a problem without subexercises goes as follows::
         "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
         !ehint
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads::
+
+
+        ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up::
@@ -82065,6 +83529,9 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments --without-answers and --without-solutions
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 Environments
@@ -82864,13 +84331,14 @@ doconce list_labels myfile
 Exercises
 ---------
 
-Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
 as ordinary sections and referred to by their section labels.
-An exercise, problem, or project sections contains certain *elements*:
+Exercise, problem, project, or example sections contains certain *elements*:
 
-  * a headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
 
   * a label (optional)
 
@@ -82911,6 +84379,17 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+the title becomes just "Derive the ...".
 
 An exercise with subproblems, answers and full solutions has this
 setup-up:
@@ -82967,6 +84446,9 @@ Here goes a full solution of the whole exercise.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments `--without-answers` and `--without-solutions`
+turn off output of answers and solutions, respectively, except for
+examples.
 
 
 Environments
@@ -83061,7 +84543,6 @@ Resources
 + doconce format html testdoc --wordpress
 running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'FORMAT': 'html'}
 translating preprocessed doconce text in __tmp.do.txt to html
 
 FIX: multi-line caption
@@ -83116,10 +84597,9 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + cp testdoc.html testdoc_wordpress.html
-+ doconce format html testdoc --without-answers --without-solutions
++ doconce format html testdoc --without-answers --without-solutions --examples-as-exercises
 running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'FORMAT': 'html'}
 translating preprocessed doconce text in __tmp.do.txt to html
 
 FIX: multi-line caption
@@ -83165,15 +84645,14 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + cp testdoc.html testdoc_no_solutions.html
-+ doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
++ doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
 running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'FORMAT': 'html'}
 translating preprocessed doconce text in __tmp.do.txt to html
 
 FIX: multi-line caption
@@ -83223,7 +84702,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
@@ -83231,7 +84710,7 @@ output in testdoc.html
 + doconce html_colorbullets testdoc.html
 + doconce split_html testdoc.html
 made subdirectory html_images
-+ doconce format latex testdoc.do.txt
++ doconce format latex testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=latex  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
@@ -83283,15 +84762,14 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 output in testdoc.p.tex
-+ doconce format pdflatex testdoc.do.txt --latex-printed
++ doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
 running preprocess -DFORMAT=pdflatex  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'FORMAT': 'pdflatex'}
 translating preprocessed doconce text in __tmp.do.txt to pdflatex
 
 FIX: multi-line caption
@@ -83341,7 +84819,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
@@ -83477,7 +84955,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-139.
+140.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -83562,7 +85040,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-
+[11]
 Overfull \hbox (78.30609pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
@@ -83570,7 +85048,6 @@ Overfull \hbox (78.30609pt too wide)
 Overfull \hbox (31.36086pt too wide) 
 []\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
  the []
-[11]
 
 LaTeX Warning: Reference `my:eq1' on page 12 
 
@@ -83588,26 +85065,26 @@ LaTeX Warning: Reference `eq1' on page 12
 
 LaTeX Warning: Reference `eq2' on page 12 
 
-
-LaTeX Warning: Reference `split:envir:eq' on page 12 undefined on input line 72
-8.
-
-
-LaTeX Warning: Reference `eq1' on page 12 
-
-
-LaTeX Warning: Reference `eq2' on page 12 
-
-
-LaTeX Warning: Reference `eq1a' on page 12 
-
-
-LaTeX Warning: Reference `eq2a' on page 12 
-
-
-LaTeX Warning: Reference `my:eq1' on page 12 
-
 [12]
+
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 77
+7.
+
+
+LaTeX Warning: Reference `eq1' on page 13 
+
+
+LaTeX Warning: Reference `eq2' on page 13 
+
+
+LaTeX Warning: Reference `eq1a' on page 13 
+
+
+LaTeX Warning: Reference `eq2a' on page 13 
+
+
+LaTeX Warning: Reference `my:eq1' on page 13 
+
 
 LaTeX Warning: Reference `demo:ex:1' on page 13 
 
@@ -83623,42 +85100,42 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 754.
+ 803.
 
-(./testdoc.out.pyg) [13] (./testdoc.out.pyg) [14]
+(./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1021
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1095
 .
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 15 
+LaTeX Warning: Reference `demo:ex:1' on page 16 
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 15 
+LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 15 undefined on input line
- 1040.
+LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
+ 1114.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 15 
+LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1041
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1115
 .
 
 
-LaTeX Warning: Reference `exer:you' on page 15 
+LaTeX Warning: Reference `exer:you' on page 16 
 
-[15] <latex_figs/hint.pdf, id=243, 89.33376pt x 89.33376pt>
+[16] <latex_figs/hint.pdf, id=266, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=244, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=267, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=245, 89.33376pt x 89.33376pt>
+<latex_figs/summary.pdf, id=268, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=246, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=269, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=247, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=270, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
@@ -83666,8 +85143,8 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[16 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
-f> <./latex_figs/notice.pdf>] [17 <./latex_figs/question.pdf>] (./testdoc.aux)
+[17 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
+f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -83819,10 +85296,9 @@ Transcript written on testdoc.log.
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
 + echo ----------- end of doconce ptex2tex output ----------------
 + cat testdoc.tex
-+ doconce format plain testdoc.do.txt --example-as-exercise
++ doconce format plain testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=plain  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'FORMAT': 'plain'}
 translating preprocessed doconce text in __tmp.do.txt to plain
 
 FIX: multi-line caption
@@ -83872,9 +85348,9 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 8 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
-+ doconce format st testdoc.do.txt
++ doconce format st testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=st  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to st
@@ -83926,9 +85402,9 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.st
-+ doconce format sphinx testdoc.do.txt
++ doconce format sphinx testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=sphinx  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to sphinx
@@ -83989,7 +85465,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
 
@@ -84009,7 +85485,7 @@ label{eq2a}
 
 output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
-+ doconce format rst testdoc.do.txt
++ doconce format rst testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=rst  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to rst
@@ -84061,11 +85537,11 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
-+ doconce format epytext testdoc.do.txt
++ doconce format epytext testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=epytext  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to epytext
@@ -84117,9 +85593,9 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
-+ doconce format pandoc testdoc.do.txt
++ doconce format pandoc testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
@@ -84171,7 +85647,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
@@ -84187,7 +85663,7 @@ Warning: latex envir \begin{eqnarray} does not work well
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.md
-+ doconce format mwiki testdoc.do.txt
++ doconce format mwiki testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=mwiki  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to mwiki
@@ -84239,7 +85715,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
 NOTE: You must upload image file streamtubes.png to common.wikimedia.org
@@ -84248,7 +85724,7 @@ NOTE: You must upload image file wavepacket_0001.png to common.wikimedia.org
 NOTE: You must upload image file df2s8765s_plot.png to common.wikimedia.org
 *** warning: reference to label "my:eq1" in an equation does not work in MediaWiki
 output in testdoc.mwiki
-+ doconce format cwiki testdoc.do.txt
++ doconce format cwiki testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=cwiki  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to cwiki
@@ -84300,11 +85776,11 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
-+ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --no-preprocess
++ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --no-preprocess --examples-as-exercises
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 running mako on __tmp.do.txt to make __tmp.do.txt
 mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
@@ -84357,7 +85833,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
 
@@ -84397,7 +85873,7 @@ NOTE: Place testfigs/df2s8765s_plot.png at some place on the web and edit the
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
 output in testdoc.gwiki
-+ doconce format latex testdoc.do.txt
++ doconce format latex testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=latex  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
@@ -84449,7 +85925,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
@@ -84469,7 +85945,7 @@ replacing \Verb! by \verb! in testdoc.tex
 + pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -v
-+ doconce format pandoc testdoc.do.txt
++ doconce format pandoc testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
@@ -84521,7 +85997,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
@@ -87353,14 +88829,26 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
+
+Overfull \hbox (81.14767pt too wide) 
+\T1/ptm/m/n/10 header that starts with \T1/pcr/m/n/10 Example: \T1/ptm/m/n/10 a
+nd adding the command-line op-tion \T1/pcr/m/n/10 --examples-as-exercises\T1/pt
+m/m/n/10 .
+
+Overfull \hbox (11.27908pt too wide) 
+[]\T1/ptm/m/n/10 The com-mand line op-tions \T1/pcr/m/n/10 --without-answers \T
+1/ptm/m/n/10 and \T1/pcr/m/n/10 --without-solutions
+
+Overfull \hbox (11.00006pt too wide) 
+[]\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
 [29]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[30]
+[30] [31]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[31] [32]
+[32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -87368,7 +88856,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-
+[33]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -87380,7 +88868,7 @@ label{myeq2}
 Overfull \hbox (3.77757pt too wide) 
 []\T1/ptm/m/n/10 Markdown (\T1/pcr/m/n/10 pandoc \T1/ptm/m/n/10 for-mat) al-low
 s sin-gle equa-tions and in-line math-
-[33]
+
 Overfull \hbox (3.0pt too wide) 
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
 
@@ -87403,27 +88891,28 @@ Overfull \hbox (31.34828pt too wide)
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
+[35]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[35]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
+[36]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 36 undef
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 37 undef
 ined on 
 
-[36]
+
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[37]
+[37] [38]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[38] [39]
+[39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
@@ -87435,20 +88924,20 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
-
+[40]
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[40]
+[41]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 41 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 42 un
 defined on 
 
-[41] [42]
+[42] [43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[43]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
@@ -87456,7 +88945,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -87473,7 +88962,7 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-[44]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -87485,7 +88974,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-
+[45]
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -87495,15 +88984,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[45] [46]
+[46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
+[47]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[47]
+
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -87518,11 +89007,11 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
-
+[48]
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[48] [49] (./manual.rst.aux)
+[49] [50] (./manual.rst.aux)
 
 Package rerunfilecheck Warning: File `manual.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -87536,7 +89025,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (49 pages, ).
+Output written on manual.rst.dvi (50 pages, ).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -88042,14 +89531,26 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
+
+Overfull \hbox (81.14767pt too wide) 
+\T1/ptm/m/n/10 header that starts with \T1/pcr/m/n/10 Example: \T1/ptm/m/n/10 a
+nd adding the command-line op-tion \T1/pcr/m/n/10 --examples-as-exercises\T1/pt
+m/m/n/10 .
+
+Overfull \hbox (11.27908pt too wide) 
+[]\T1/ptm/m/n/10 The com-mand line op-tions \T1/pcr/m/n/10 --without-answers \T
+1/ptm/m/n/10 and \T1/pcr/m/n/10 --without-solutions
+
+Overfull \hbox (11.00006pt too wide) 
+[]\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
 [29]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[30]
+[30] [31]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[31] [32]
+[32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -88065,11 +89566,11 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-
+[33]
 Overfull \hbox (3.77757pt too wide) 
 []\T1/ptm/m/n/10 Markdown (\T1/pcr/m/n/10 pandoc \T1/ptm/m/n/10 for-mat) al-low
 s sin-gle equa-tions and in-line math-
-[33]
+
 Overfull \hbox (3.0pt too wide) 
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
 
@@ -88095,20 +89596,20 @@ mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 :
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
-
+[35]
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[35]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
 [36]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[37]
+[37] [38]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[38] [39]
+[39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
@@ -88124,11 +89625,11 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[40] [41] [42]
+[40] [41] [42] [43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[43]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
@@ -88202,7 +89703,11 @@ nt).
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[48] [49] (./manual.rst.aux) )
+[48] [49] (./manual.rst.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (see the transcript file for additional information)
 Output written on manual.rst.dvi (49 pages, ).
 Transcript written on manual.rst.log.
@@ -88568,7 +90073,10 @@ LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
-[28] [29] [30] [31] [32] [33]
+[28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -88577,7 +90085,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -88588,43 +90096,44 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
+[37]
 
-LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
-509.
+LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
+532.
 
-[37] [38] [39] [40] [41]
+[38] [39] [40] [41] [42]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2786.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
+ne 2809.
 
-[42] [43] [44]
+[43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48]
+[49]
 No file manual.bbl.
 No file manual.ind.
-[49] (./manual.aux)
+[50] (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -88733,7 +90242,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, ).
+Output written on manual.pdf (50 pages, ).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
@@ -88922,7 +90431,10 @@ LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
-[28] [29] [30] [31] [32] [33]
+[28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -88931,7 +90443,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -88942,31 +90454,31 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44]
+[37] [38] [39] [40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -89074,7 +90586,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, ).
+Output written on manual.pdf (51 pages, ).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -89236,7 +90748,10 @@ Overfull \hbox (4.68658pt too wide)
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27] [28] [29] [30] [31] [32] [33]
+[25] [26] [27] [28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -89245,7 +90760,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -89256,31 +90771,31 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44]
+[37] [38] [39] [40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -89382,7 +90897,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, ).
+Output written on manual.pdf (51 pages, ).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -89582,7 +91097,10 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -89591,7 +91109,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -89602,31 +91120,31 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44]
+[37] [38] [39] [40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -89714,7 +91232,7 @@ latex_figs/notice.eps
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, ).
+Output written on manual.dvi (51 pages, ).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -89874,7 +91392,10 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -89883,7 +91404,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -89894,31 +91415,31 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44]
+[37] [38] [39] [40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -90006,7 +91527,7 @@ latex_figs/notice.eps
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, ).
+Output written on manual.dvi (51 pages, ).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
@@ -90178,7 +91699,10 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -90187,7 +91711,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -90198,31 +91722,31 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44]
+[37] [38] [39] [40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -90310,7 +91834,7 @@ latex_figs/notice.eps
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, ).
+Output written on manual.dvi (51 pages, ).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -90470,7 +91994,10 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[28] [29]
+Overfull \hbox (7.44238pt too wide) 
+\OT1/phv/m/n/10 or ex-am-ple to con-tain the key-word [], [], [], or [].
+[30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -90479,7 +92006,7 @@ Package amsmath Warning: Foreign command \over;
 [34]
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-
+[35]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -90490,31 +92017,31 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[35]
+
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
-
+[36]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44]
+[37] [38] [39] [40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[45] [46]
+[46] [47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[47]
+[48]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -90602,7 +92129,7 @@ latex_figs/notice.eps
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, ).
+Output written on manual.dvi (51 pages, ).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -91072,11 +92599,11 @@ Overfull \hbox (88.21638pt too wide)
 Overfull \hbox (3.50804pt too wide) 
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
-
+[13]
 Overfull \hbox (2.40855pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-[13]
+
 Overfull \hbox (0.18839pt too wide) 
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
  doc-u-ment, "com-
@@ -91645,6 +93172,10 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
+Overfull \hbox (113.00006pt too wide) 
+[]\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
+ ===== 
+
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
@@ -92030,13 +93561,17 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
+Overfull \hbox (113.00006pt too wide) 
+[]\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
+ ===== 
+
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-
+[12]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-[12]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -92047,11 +93582,11 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-
+[13]
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
-[13]
+
 Overfull \hbox (28.47902pt too wide) 
 []\T1/ptm/m/n/10 specialy
 
