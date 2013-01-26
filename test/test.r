@@ -6136,8 +6136,7 @@ Or with align with label and numbers:
 
 
 .. math::
-        
-         
+          
         \frac{1}{2} = {1/2}
         
 
@@ -6145,8 +6144,7 @@ Or with align with label and numbers:
 
 .. math::
    :label: aligneq2
-        
-         
+          
         \frac{1}{2}\pmb{x} = \pmb{n}
         
         
@@ -6406,8 +6404,7 @@ And here is a system of equations with labels in an align environment:
 
 .. math::
    :label: eq2
-        
-         
+          
         b = \nabla^2 u + \nabla^4 x 
         
 
@@ -6586,8 +6583,7 @@ The formula for a circle is given by
 
 
 .. math::
-        
-         
+          
         y = y_0 + R\sin 2\pi t,
         
 
@@ -11713,13 +11709,23 @@ $$
 Or with align with label and numbers:
 
 $$
-\begin{align}
-\frac{Du}{dt} &= 0
-\label{aligneq1}\\ 
-\frac{1}{2} &= {1/2}\\ 
-\frac{1}{2}\pmb{x} &= \pmb{n}
+\begin{equation}
+\frac{Du}{dt} = 0
+\label{aligneq1}
+\end{equation}
+$$
+
+$$
+\begin{equation}  
+\frac{1}{2} = {1/2}
+\end{equation}
+$$
+
+$$
+\begin{equation}  
+\frac{1}{2}\pmb{x} = \pmb{n}
 \label{aligneq2}
-\end{align}
+\end{equation}
 $$
 
 
@@ -11920,10 +11926,15 @@ $$
 
 And here is a system of equations with labels in an align environment:
 $$
-\begin{align}
-a &= q + 4 + 5+ 6 \label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x \label{eq2}
-\end{align}
+\begin{equation}
+a = q + 4 + 5+ 6 \label{eq1} 
+\end{equation}
+$$
+
+$$
+\begin{equation}  
+b = \nabla^2 u + \nabla^4 x \label{eq2}
+\end{equation}
 $$
 We can refer to Equations (eq1)-(eq2).
 
@@ -12065,10 +12076,15 @@ Project 2: Explore Distributions of Random Circles
 The formula for a circle is given by
 
 $$
-\begin{align}
-x &= x_0 + R\cos 2\pi t,\\ 
-y &= y_0 + R\sin 2\pi t,
-\end{align}
+\begin{equation}
+x = x_0 + R\cos 2\pi t,
+\end{equation}
+$$
+
+$$
+\begin{equation}  
+y = y_0 + R\sin 2\pi t,
+\end{equation}
 $$
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
@@ -12403,7 +12419,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': [],
              'solution': '',
              'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
-  'text': 'The formula for a circle is given by\n\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
+  'text': 'The formula for a circle is given by\n\n<<<!!MATH_BLOCK\n\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
   'title': 'Explore Distributions of Random Circles',
   'type': 'Project',
   'type_visible': True},
@@ -13231,13 +13247,21 @@ output2</code></pre>
 \]</p>
 <p>Or with align with label and numbers:</p>
 <p>\[
-\begin{align}
-\frac{Du}{dt} &amp;= 0
-\label{aligneq1}\\ 
-\frac{1}{2} &amp;= {1/2}\\ 
-\frac{1}{2}\pmb{x} &amp;= \pmb{n}
+\begin{equation}
+\frac{Du}{dt} = 0
+\label{aligneq1}
+\end{equation}
+\]</p>
+<p>\[
+\begin{equation}  
+\frac{1}{2} = {1/2}
+\end{equation}
+\]</p>
+<p>\[
+\begin{equation}  
+\frac{1}{2}\pmb{x} = \pmb{n}
 \label{aligneq2}
-\end{align}
+\end{equation}
 \]</p>
 <h2 id="custom-environments">Custom Environments</h2>
 <p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
@@ -13450,10 +13474,14 @@ b &amp;= \nabla^2 u + \nabla^4 v
 \end{align*}
 \]</p>
 <p>And here is a system of equations with labels in an align environment: \[
-\begin{align}
-a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
-b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}
-\end{align}
+\begin{equation}
+a = q + 4 + 5+ 6 \label{eq1} 
+\end{equation}
+\]</p>
+<p>\[
+\begin{equation}  
+b = \nabla^2 u + \nabla^4 x \label{eq2}
+\end{equation}
 \] We can refer to Equations (eq1)-(eq2).</p>
 <p>Many of the next environments will fail in non-latex formats. Testing multiline: \[
 \begin{multline}
@@ -13541,10 +13569,14 @@ heads = <span class="dv">0</span>
 <h2 id="project-2-explore-distributions-of-random-circles">Project 2: Explore Distributions of Random Circles</h2>
 <p>The formula for a circle is given by</p>
 <p>\[
-\begin{align}
-x &amp;= x_0 + R\cos 2\pi t,\\ 
-y &amp;= y_0 + R\sin 2\pi t,
-\end{align}
+\begin{equation}
+x = x_0 + R\cos 2\pi t,
+\end{equation}
+\]</p>
+<p>\[
+\begin{equation}  
+y = y_0 + R\sin 2\pi t,
+\end{equation}
 \] where \(R\) is the radius of the circle, \((x_0,y_0)\) is the center point, and \(t\) is a parameter in the unit interval \([0,1]\). For any \(t\), \((x,y)\) is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
 <pre class="sourceCode Python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
 
@@ -19880,9 +19912,6 @@ And more code:
 
 <p>
 
-Does it make a change if we insert a line.
-
-<p>
 <!-- begin verbatim block -->
 <pre>
 /* Here is some SWIG code code */
@@ -24961,8 +24990,7 @@ The result looks like this:
 
 
 .. math::
-        
-        
+         
         {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g
         
 
@@ -33215,10 +33243,15 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 The result looks like this:
 
 $$
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
-\end{align}
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u + f, \label{myeq1}
+\end{equation}
+$$
+
+$$
+\begin{equation} 
+{\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g
+\end{equation}
 $$
 Of course, such blocks only looks nice in formats with support
 for LaTeX mathematics, and here the align environment in particular
@@ -35181,7 +35214,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 26 Jan 2013 (10:03)</center>
+<center>Sat, 26 Jan 2013 (11:43)</center>
 
 
 
@@ -35312,7 +35345,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 26 Jan 2013 (10:03)</center>
+<center>Sat, 26 Jan 2013 (11:43)</center>
 
 
 
@@ -50949,8 +50982,7 @@ Here is the result:
 
 .. math::
    :label: myeq2
-        
-        
+         
         {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g. 
         
 
@@ -72886,10 +72918,15 @@ line and followed by a newline.
 Here is the result:
 
 $$
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
-\end{align}
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u + f, \label{myeq1}
+\end{equation}
+$$
+
+$$
+\begin{equation} 
+{\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
+\end{equation}
 $$
 
 The support of LaTeX mathematics varies among the formats:
@@ -86042,10 +86079,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{gather} does not work well
@@ -86053,8 +86086,6 @@ Warning: latex envir \begin{gather} does not work well
 Warning: latex envir \begin{alignat} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{eqnarray} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.md
 + doconce format mwiki testdoc.do.txt --examples-as-exercises
@@ -86392,10 +86423,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{gather} does not work well
@@ -86403,8 +86430,6 @@ Warning: latex envir \begin{gather} does not work well
 Warning: latex envir \begin{alignat} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{eqnarray} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.md
 + pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
@@ -86471,7 +86496,7 @@ output in mako_test2.html
 
 
 *** warning: the code block
----------------------
+---------------------------
 /* Here is some SWIG code code */
 %module MyMod
 %{
@@ -86482,7 +86507,7 @@ output in mako_test2.html
 import_array();
 %}
 
----------------------
+---------------------------
 contains a single % on the beginning of a line: %m
 Such lines cause problems for the mako preprocessor
 since it thinks this is a mako statement.
@@ -86491,11 +86516,11 @@ since it thinks this is a mako statement.
 
 
 *** warning: the code block
----------------------
+---------------------------
 % Matlab comment only
 ...
 
----------------------
+---------------------------
 contains a single % on the beginning of a line: % 
 Such lines cause problems for the mako preprocessor
 since it thinks this is a mako statement.
@@ -88495,8 +88520,6 @@ running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{quote} does not work well
          pandoc extended markdown syntax handles only single equations
 output in tutorial.md
@@ -88532,8 +88555,8 @@ output in tutorial.md
 [107 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
-[tutorial.md (Modula 2): 22 pages on 22 sheets]
-[Total: 22 pages on 22 sheets] saved into the file `tutorial.md.ps'
+[tutorial.md (Modula 2): 23 pages on 23 sheets]
+[Total: 23 pages on 23 sheets] saved into the file `tutorial.md.ps'
 [9 lines wrapped]
 + ps2pdf tutorial.md.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
@@ -90253,8 +90276,6 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{eqnarray} does not work well

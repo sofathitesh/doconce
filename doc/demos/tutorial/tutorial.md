@@ -229,10 +229,15 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 The result looks like this:
 
 $$
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
-\end{align}
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u + f, \label{myeq1}
+\end{equation}
+$$
+
+$$
+\begin{equation} 
+{\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g
+\end{equation}
 $$
 Of course, such blocks only looks nice in formats with support
 for LaTeX mathematics, and here the align environment in particular

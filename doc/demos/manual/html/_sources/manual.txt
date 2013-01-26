@@ -2606,8 +2606,7 @@ Here is the result:
 
 .. math::
    :label: myeq2
-        
-        
+         
         {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g. 
         
 

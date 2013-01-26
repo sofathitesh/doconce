@@ -254,8 +254,7 @@ The result looks like this:
 
 
 .. math::
-        
-        
+         
         {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g
         
 
