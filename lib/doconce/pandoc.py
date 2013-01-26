@@ -24,6 +24,7 @@ def pandoc_author(authors_and_institutions, auth2index,
     authors = '% ' + ';  '.join(authors) + '\n'
     return authors
 
+
 def pandoc_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)

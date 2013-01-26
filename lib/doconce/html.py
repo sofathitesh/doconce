@@ -190,9 +190,17 @@ def html_code(filestr, code_blocks, code_block_types,
                 tex_blocks[i] = tex_blocks[i].replace(from_, to_)
             tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
 
-    # Fix label -> \label in tex_blocks
     for i in range(len(tex_blocks)):
+        """
+        Not important - the problem was repeated label.
+        if 'begin{equation' in tex_blocks[i]:
+            # Make sure label is on a separate line inside begin{equation}
+            # environments (insert \n after labels with something before)
+            tex_blocks[i] = re.sub('([^ ]) +label\{', '\g<1>\nlabel{',
+                                   tex_blocks[i])
+        """
         if 'label' in tex_blocks[i]:
+            # Fix label -> \label in tex_blocks
             tex_blocks[i] = tex_blocks[i].replace(' label{', ' \\label{')
             pattern = r'^label\{'
             cpattern = re.compile(pattern, re.MULTILINE)

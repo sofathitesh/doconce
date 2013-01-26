@@ -2,6 +2,7 @@
 
 # can reuse most of rst module:
 from rst import *
+from common import align2equations
 
 legal_pygments_languages = [
     'Cucumber', 'cucumber', 'Gherkin', 'gherkin',
@@ -328,34 +329,7 @@ def sphinx_code_newmathlabels(filestr, format):
 
     return filestr
 
-def align2equations(filestr):
-    """Turn align environments into separate equation environments."""
-    if not '{align}' in filestr:
-        return filestr
 
-    lines = filestr.splitlines()
-    inside_align = False
-    inside_code = False
-    for i in range(len(lines)):
-        if lines[i].startswith('!bc'):
-            inside_code = True
-        if lines[i].startswith('!ec'):
-            inside_code = False
-        if inside_code:
-            continue
-
-        if r'\begin{align}' in lines[i]:
-            inside_align = True
-            lines[i] = lines[i].replace(r'\begin{align}', r'\begin{equation}')
-        if inside_align and '\\\\' in lines[i]:
-            lines[i] = lines[i].replace('\\\\', '\n' + r'\end{equation}' + '\n!et\n\n!bt\n' + r'\begin{equation}' + '\n')
-        if inside_align and '&':
-            lines[i] = lines[i].replace('&', '')
-        if r'\end{align}' in lines[i]:
-            inside_align = False
-            lines[i] = lines[i].replace(r'\end{align}', r'\end{equation}')
-    filestr = '\n'.join(lines)
-    return filestr
 
 def sphinx_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
