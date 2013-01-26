@@ -2560,12 +2560,21 @@ that are not errors. To continue execution, simply add the
 C{--no-abort} option on the command line. You may send an email
 to the Doconce author at C{hpl@simula.no} and report the problem.
 
+The Mako preprocessor is seemingly not run
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you have lines starting with C{%} inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.
+
 Something goes wrong in the preprocessing step
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Doconce automatically removes the file C{__tmp.do.txt}, which is the
 resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when C{mako} and/or
+something goes wrong in this stage (i.e., when C{mako} and
 C{preprocess} is run). Add the C{--debug} flag at the end of the
 C{doconce} command to (both make a debug file and) avoid that
 C{__tmp.do.txt} is deleted.

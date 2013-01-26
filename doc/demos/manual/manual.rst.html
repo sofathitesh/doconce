@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 22, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 26, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -2617,11 +2617,19 @@ that are not errors. To continue execution, simply add the
 <tt class="docutils literal"><span class="pre">--no-abort</span></tt> option on the command line. You may send an email
 to the Doconce author at <tt class="docutils literal">hpl&#64;simula.no</tt> and report the problem.</p>
 </div>
+<div class="section" id="the-mako-preprocessor-is-seemingly-not-run">
+<h3>The Mako preprocessor is seemingly not run</h3>
+<p>If you have lines starting with <tt class="docutils literal">%</tt> inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.</p>
+</div>
 <div class="section" id="something-goes-wrong-in-the-preprocessing-step">
 <h3>Something goes wrong in the preprocessing step</h3>
 <p>Doconce automatically removes the file <tt class="docutils literal">__tmp.do.txt</tt>, which is the
 resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when <tt class="docutils literal">mako</tt> and/or
+something goes wrong in this stage (i.e., when <tt class="docutils literal">mako</tt> and
 <tt class="docutils literal">preprocess</tt> is run). Add the <tt class="docutils literal"><span class="pre">--debug</span></tt> flag at the end of the
 <tt class="docutils literal">doconce</tt> command to (both make a debug file and) avoid that
 <tt class="docutils literal">__tmp.do.txt</tt> is deleted.</p>

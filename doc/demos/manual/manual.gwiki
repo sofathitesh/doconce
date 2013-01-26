@@ -2,7 +2,7 @@
 
 By *Hans Petter Langtangen*
 
-==== Jan 22, 2013 ====
+==== Jan 26, 2013 ====
 
 <wiki:comment> lines beginning with # are doconce comment lines </wiki:comment>
 <wiki:comment> (documents can also have mako comment lines) </wiki:comment>
@@ -2424,11 +2424,19 @@ that are not errors. To continue execution, simply add the
 `--no-abort` option on the command line. You may send an email
 to the Doconce author at `hpl@simula.no` and report the problem.
 
+==== The Mako preprocessor is seemingly not run ====
+
+If you have lines starting with `%` inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.
+
 ==== Something goes wrong in the preprocessing step ====
 
 Doconce automatically removes the file `__tmp.do.txt`, which is the
 resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when `mako` and/or
+something goes wrong in this stage (i.e., when `mako` and
 `preprocess` is run). Add the `--debug` flag at the end of the
 `doconce` command to (both make a debug file and) avoid that
 `__tmp.do.txt` is deleted.

@@ -78,7 +78,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jan 22, 2013
+Jan 26, 2013
 
 \end{DUfieldlist}
 
@@ -3439,6 +3439,21 @@ to the Doconce author at \texttt{hpl@simula.no} and report the problem.
 %___________________________________________________________________________
 
 \subsubsection*{\phantomsection%
+  The Mako preprocessor is seemingly not run%
+  \addcontentsline{toc}{subsubsection}{The Mako preprocessor is seemingly not run}%
+  \label{the-mako-preprocessor-is-seemingly-not-run}%
+}
+
+If you have lines starting with \texttt{\%} inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
   Something goes wrong in the preprocessing step%
   \addcontentsline{toc}{subsubsection}{Something goes wrong in the preprocessing step}%
   \label{something-goes-wrong-in-the-preprocessing-step}%
@@ -3446,7 +3461,7 @@ to the Doconce author at \texttt{hpl@simula.no} and report the problem.
 
 Doconce automatically removes the file \texttt{\_\_tmp.do.txt}, which is the
 resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when \texttt{mako} and/or
+something goes wrong in this stage (i.e., when \texttt{mako} and
 \texttt{preprocess} is run). Add the \texttt{-{}-debug} flag at the end of the
 \texttt{doconce} command to (both make a debug file and) avoid that
 \texttt{\_\_tmp.do.txt} is deleted.

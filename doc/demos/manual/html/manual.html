@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 22, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 26, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -2295,11 +2295,19 @@ that are not errors. To continue execution, simply add the
 <tt class="docutils literal"><span class="pre">--no-abort</span></tt> option on the command line. You may send an email
 to the Doconce author at <tt class="docutils literal"><span class="pre">hpl&#64;simula.no</span></tt> and report the problem.</p>
 </div>
+<div class="section" id="the-mako-preprocessor-is-seemingly-not-run">
+<h3>The Mako preprocessor is seemingly not run<a class="headerlink" href="#the-mako-preprocessor-is-seemingly-not-run" title="Permalink to this headline">¶</a></h3>
+<p>If you have lines starting with <tt class="docutils literal"><span class="pre">%</span></tt> inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.</p>
+</div>
 <div class="section" id="something-goes-wrong-in-the-preprocessing-step">
 <h3>Something goes wrong in the preprocessing step<a class="headerlink" href="#something-goes-wrong-in-the-preprocessing-step" title="Permalink to this headline">¶</a></h3>
 <p>Doconce automatically removes the file <tt class="docutils literal"><span class="pre">__tmp.do.txt</span></tt>, which is the
 resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when <tt class="docutils literal"><span class="pre">mako</span></tt> and/or
+something goes wrong in this stage (i.e., when <tt class="docutils literal"><span class="pre">mako</span></tt> and
 <tt class="docutils literal"><span class="pre">preprocess</span></tt> is run). Add the <tt class="docutils literal"><span class="pre">--debug</span></tt> flag at the end of the
 <tt class="docutils literal"><span class="pre">doconce</span></tt> command to (both make a debug file and) avoid that
 <tt class="docutils literal"><span class="pre">__tmp.do.txt</span></tt> is deleted.</p>
@@ -2928,6 +2936,7 @@ groundwater flow.
 <li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
 <li><a class="reference internal" href="#general-problems">General Problems</a><ul>
 <li><a class="reference internal" href="#doconce-aborts-because-of-a-syntax-error-that-is-not-an-error">Doconce aborts because of a syntax error that is not an error</a></li>
+<li><a class="reference internal" href="#the-mako-preprocessor-is-seemingly-not-run">The Mako preprocessor is seemingly not run</a></li>
 <li><a class="reference internal" href="#something-goes-wrong-in-the-preprocessing-step">Something goes wrong in the preprocessing step</a></li>
 <li><a class="reference internal" href="#figure-captions-are-incomplete">Figure captions are incomplete</a></li>
 <li><a class="reference internal" href="#preprocessor-directives-do-not-work">Preprocessor directives do not work</a></li>
