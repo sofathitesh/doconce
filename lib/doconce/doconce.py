@@ -2019,17 +2019,34 @@ def preprocess(filename, format, preprocessor_options=[]):
 
     # First guess if preprocess or mako is used
 
+    # Collect first -D... and -U... options on the command line
+    preprocess_options = [opt for opt in preprocessor_options
+                          if opt[:2] == '-D' or opt[:2] == '-U']
+    # Add -D to mako name=value options so that such variables
+    # are set for preprocess too
+    for opt in preprocessor_options:
+        if opt[0] != '-' and '=' in opt:
+            preprocess_options.append('-D' + opt)
+
+    # Look for mako variables
+    mako_kwargs = {'FORMAT': format}
+    for opt in preprocessor_options:
+        if not opt.startswith('--'):
+            try:
+                key, value = opt.split('=')
+            except ValueError:
+                print 'command line argument "%s" not recognized' % opt
+                _abort()
+            # Try eval(value), if it fails, assume string
+            try:
+                mako_kwargs[key] = eval(value)
+            except (NameError, SyntaxError):
+                mako_kwargs[key] = value
+
     preprocess_commands = r'^#\s*#(if|define|include)'
     if re.search(preprocess_commands, filestr, re.MULTILINE):
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
-        # Collect first -D... and -U... options on the command line
-        preprocess_options = [opt for opt in preprocessor_options
-                              if opt[:2] == '-D' or opt[:2] == '-U']
-        # Add -D to name=value options (mako style parameters)
-        for opt in preprocessor_options:
-            if opt[0] != '-' and '=' in opt:
-                preprocess_options.append('-D' + opt)
         preprocess_options = ' '.join(preprocess_options)
         resultfile = '__tmp.do.txt'
 
@@ -2071,23 +2088,54 @@ preprocess package (sudo apt-get install preprocess).
             f = open(resultfile, 'r'); filestr = f.read(); f.close()
 
 
-    mako_commands = r'^\s*<?%'
-    if re.search(mako_commands, filestr, re.MULTILINE):
+    mako_commands = r'^ *<?%[^%]'
+    # Problem: mako_commands match Matlab comments and SWIG directives,
+    # so we need to remove code blocks for testing if we really use
+    # mako. Also issue warnings if code blocks contain mako instructions
+    # matching the mako_commands pattern
+    filestr_without_code, code_blocks, code_block_types, tex_blocks = \
+                          remove_code_and_tex(filestr)
+    match_percentage = re.search(mako_commands, filestr_without_code,
+                                 re.MULTILINE)
+    match_mako_variable = False
+    for name in mako_kwargs:
+        pattern = r'\$\{%s\}' % name
+        if re.search(pattern, filestr_without_code):
+            match_mako_variable = True
+            break
 
-        if option('no-mako'):
-            print 'found Mako-like statements, but --no-mako prevents running the Mako preprocessor'
-            return filename if preprocessor is None else resultfile
+    if (match_percentage or match_mako_variable) and option('no-mako'):
+        # Found mako-like statements, but --no-mako is forced, give a message
+        print '*** warning: mako is not run because of the option --no-mako'
 
-        # Check if there is SWIG code that can fool mako
-        # (Should check for Matlab comments too, inside code blocks...)
-        swig_commands = [r'^%module\s+', r'%{', r'^%}']
-        found_swig = False
-        for swig_command in swig_commands:
-            if re.search(swig_command, filestr, re.MULTILINE):
-                found_swig = True;
-                break;
-        if found_swig:
-            print 'Found SWIG statements - cannot run Mako as preprocessor (both use % heavily)'
+    if (not option('no-mako')) and (match_percentage or match_mako_variable):
+        # Found use of mako
+
+        # Check if there is SWIG or Matlab code that can fool mako with a %
+        mako_problems = False
+        for code_block in code_blocks:
+            m = re.search(mako_commands, code_block, re.MULTILINE)
+            if m:
+                print '\n\n*** warning: the code block\n---------------------------'
+                print code_block
+                print '''---------------------------
+contains a single %% on the beginning of a line: %s
+Such lines cause problems for the mako preprocessor
+since it thinks this is a mako statement.
+''' % (m.group(0))
+                print
+                mako_problems = True
+        if mako_problems:
+            print '''\
+Use %% in the code block(s) above to fix the
+problem with % at the beginning of lines,
+or put the code in a file that is included
+with @@@CODE filename, or drop mako instructions
+or variables and rely on preprocess only in the
+preprocessing step. In the latter case you
+need to include --no-mako on the command line.
+'''
+            print 'mako is not run because of the lines starting with %!!\n'
             return filename if preprocessor is None else resultfile
 
         if preprocessor is not None:  # already found preprocess commands?
@@ -2124,27 +2172,15 @@ python-mako package (sudo apt-get install python-mako).
         from mako.lookup import TemplateLookup
         lookup = TemplateLookup(directories=[os.curdir])
         temp = Template(filename=resultfile, lookup=lookup)
-        kwargs = {'FORMAT': format}
-        for opt in preprocessor_options:
-            if not opt.startswith('--'):
-                try:
-                    key, value = opt.split('=')
-                except ValueError:
-                    print 'command line argument "%s" not recognized' % opt
-                    _abort()
-                # Try eval(value), if it fails, assume string
-                try:
-                    kwargs[key] = eval(value)
-                except (NameError, SyntaxError):
-                    kwargs[key] = value
+
         debugpr('Keyword arguments to be sent to mako: %s' % \
-                pprint.pformat(kwargs))
+                pprint.pformat(mako_kwargs))
         if preprocessor_options:
-            print 'mako variables:', kwargs
+            print 'mako variables:', mako_kwargs
 
 
         try:
-            filestr = temp.render(**kwargs)
+            filestr = temp.render(**mako_kwargs)
         except TypeError, e:
             if "'Undefined' object is not callable" in str(e):
                 calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
@@ -2153,7 +2189,7 @@ python-mako package (sudo apt-get install python-mako).
             else:
                 # Just dump everything mako has
                 print '*** mako error:'
-                filestr = temp.render(**kwargs)
+                filestr = temp.render(**mako_kwargs)
 
 
         except NameError, e:
@@ -2164,7 +2200,7 @@ python-mako package (sudo apt-get install python-mako).
             else:
                 # Just dump everything mako has
                 print '*** mako error:'
-                filestr = temp.render(**kwargs)
+                filestr = temp.render(**mako_kwargs)
 
         f = open(resultfile, 'w')
         f.write(filestr)
@@ -2173,6 +2209,8 @@ python-mako package (sudo apt-get install python-mako).
     if preprocessor is None:
         # no preprocessor syntax detected
         resultfile = filename
+    else:
+        debugpr('%s\n**** The file after running preprocess and/or mako:\n\n%s\n\n' % (' '*80, filestr))
 
     return resultfile
 
@@ -2216,7 +2254,7 @@ def main():
         _log = open(_log_filename,'w')
         _log.write("""
     This is a log file for the doconce script.
-    Debugging is turned on by a 3rd command-line argument '--debug'
+    Debugging is turned on by the command-line argument '--debug'
     to doconce format. Without that command-line argument,
     this file is not produced.
 
@@ -2242,6 +2280,7 @@ def main():
     filename_preprocessed = preprocess(filename, format,
                                        preprocessor_options)
     file2file(filename_preprocessed, format, out_filename)
+
     if filename_preprocessed.startswith('__') and not option('debug'):
         os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)

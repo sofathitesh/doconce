@@ -3,6 +3,13 @@ import os, sys, shutil, re, glob, sets
 from commands import getstatusoutput
 from doconce.misc import system, option
 
+def remove_options_from_command_line():
+    """Remove options (--name) from sys.argv."""
+    opts_index = [i for i in range(len(sys.argv))
+                  if sys.argv[i].startswith('--')]
+    for i in opts_index:
+        del sys.argv[i]
+
 def format():
     """
     Run the doconce module on a file (with extension .do.txt) in Doconce format
@@ -1607,6 +1614,8 @@ def combine_images():
     if len(sys.argv) < 3:
         usage_combine_images()
         sys.exit(1)
+
+    remove_options_from_command_line()
 
     imagefiles = sys.argv[1:-1]
     output_file = sys.argv[-1]

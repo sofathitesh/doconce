@@ -100,6 +100,14 @@ cp encoding1.do.txt tmp2.do.txt
 doconce change_encoding utf-8 latin1 tmp2.do.txt
 doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
 
+# Test mako problems
+doconce format html mako_test1 --no-pygments-html  # mako variable only, no % lines
+doconce format html mako_test2 --no-pygments-html  # % lines inside code, but need for mako
+doconce format html mako_test3 --no-pygments-html  # % lines inside code
+cp mako_test3.html mako_test3b.html
+doconce format html mako_test3 --no-mako --no-pygments-html # no problem message
+doconce format html mako_test4 --no-pygments-html  # works fine, lines start with %%
+
 # Test error detection
 doconce format plain failures
 cp failures.do.txt tmp2.do.txt
