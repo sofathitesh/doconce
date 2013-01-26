@@ -71,7 +71,7 @@ DATE: Today
     * _MathJax_: `equation*`, `equation`, `align*`, `align`
     * _MediaWiki_: `equation*`, `equation`, `align*`, `align`
     * _Sphinx_: `equation*`, `equation`, `align*`
-    * _Markdown_: `equation*`, `equation`
+    * _Markdown_: `equation*`, `equation`, `align*` (but no labels)
 
 !split
 ======= LaTeX is very rich; other tools support only some elements =======
@@ -124,7 +124,9 @@ based on HTML and vice versa.
  * Keys for items in the bibliography are made visible by Sphinx so
    "bibitems" a la BibTeX must look sensible and consistent.
  * If you need several equations numbered in an `align` environment,
-   recall that Sphinx and Markdown cannot handle this.
+   recall that Sphinx, Markdown, and MediaWiki cannot handle this,
+   although they have LaTeX math support.
+ * Markdown tolerates labels in equations but cannot refer to them.
 !epop
 
 !split

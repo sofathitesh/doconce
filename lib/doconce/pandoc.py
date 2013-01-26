@@ -61,9 +61,14 @@ def pandoc_code(filestr, code_blocks, code_block_types,
     cpattern = re.compile(pattern, re.DOTALL)
     math_envirs = cpattern.findall(filestr)
     for envir in math_envirs:
-        if envir not in ('equation', 'align*'):
-            print 'Warning: latex envir \\begin{%s} does not work well' % envir
-            print '         pandoc extended markdown syntax handles only single equations'
+        if envir not in ('equation', 'align*', 'align'):
+            print """\
+*** warning: latex envir \\begin{%s} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+""" % envir
 
     # pandoc/markdown supports LaTeX if embedded in $$
     filestr = re.sub(r'!bt *\n', '$$\n', filestr)

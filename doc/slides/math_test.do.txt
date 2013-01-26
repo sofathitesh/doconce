@@ -113,10 +113,13 @@ in the present case is
 # #endif
 
 # #if FORMAT == "pandoc"
-Pandoc-extended Markdown output does not work with labels
-multiple equations. Doconce actually splits an align environment
+Pandoc-extended Markdown output does not work with labels and
+multiple equations (the HTML output is just the raw LaTeX code).
+Doconce therefore splits an align environment
 into separate, single equations in case of Markdown output.
 However, labels will do not work, neither for single equations nor for
-multiple ones.
+multiple ones. One can hence write with align and labels and get excellent
+output in LaTeX, HTML, and Sphinx, while the equations looks nice in
+Markdown-based HTML although the lables cannot be used for reference.
 # #endif
 

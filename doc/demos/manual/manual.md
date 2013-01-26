@@ -2391,10 +2391,15 @@ line and followed by a newline.
 Here is the result:
 
 $$
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
-\end{align}
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u + f, \label{myeq1}
+\end{equation}
+$$
+
+$$
+\begin{equation} 
+{\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
+\end{equation}
 $$
 
 The support of LaTeX mathematics varies among the formats:
