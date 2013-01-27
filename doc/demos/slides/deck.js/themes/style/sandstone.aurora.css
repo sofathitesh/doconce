@@ -9,23 +9,23 @@
 .deck-container {
   font-family: "Open Sans", sans-serif;
   font-size: 1.75em;
-  background-color: #d7d3c8;
+  background-color: #331e54;
   /* fallback color if gradients are not supported */
-  background-image: -webkit-linear-gradient(top, #d7d3c8, #f6f4ec);
-  background-image: -moz-linear-gradient(top, #d7d3c8, #f6f4ec);
+  background-image: -webkit-linear-gradient(top, #331e54, black);
+  background-image: -moz-linear-gradient(top, #331e54, black);
   /* For Fx 3.6 to Fx 15 */
-  background-image: -ms-linear-gradient(top, #d7d3c8, #f6f4ec);
+  background-image: -ms-linear-gradient(top, #331e54, black);
   /* For IE 10 Platform Previews and Consumer Preview */
-  background-image: -o-linear-gradient(top, #d7d3c8, #f6f4ec);
+  background-image: -o-linear-gradient(top, #331e54, black);
   /* For Opera 11.1 to 12.0 */
-  background-image: linear-gradient(to bottom, #d7d3c8, #f6f4ec);
+  background-image: linear-gradient(to bottom, #331e54, black);
   /* Standard syntax; must be the last statement */
-  color: black;
+  color: white;
 }
 .deck-container #tabzilla-panel {
   z-index: 999;
 }
-.deck-container .slide h2, .deck-container .slide h3 {
+.deck-container .slide h2 {
   border-bottom-color: #ccc;
 }
 .deck-container .slide img, .deck-container .slide iframe {

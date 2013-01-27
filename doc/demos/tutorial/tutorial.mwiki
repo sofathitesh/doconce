@@ -928,7 +928,7 @@ Doconce itself is pure Python code hosted at http://code.google.com/p/doconce.  
 Mercurial (<code>hg</code>) source follows the standard procedure:
 <syntaxhighlight lang="bash">
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -1057,7 +1057,7 @@ beyond Doconce itself, can be used as a simpler alternative to the <code>ptex2te
 program.
 
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
-is popular among many
+and popular among many
 users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 <syntaxhighlight lang="bash">

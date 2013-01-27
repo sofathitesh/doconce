@@ -470,7 +470,7 @@ is a sample of how this tutorial looks in different formats.</paragraph><paragra
 translates the more comprehensive documentation, <literal>manual.do.txt</literal>, to
 various formats. The <literal>make.sh</literal> script runs a set of translations.</paragraph></section></section><section ids="installation-of-doconce-and-its-dependencies" names="installation\ of\ doconce\ and\ its\ dependencies"><title>Installation of Doconce and its Dependencies</title><section ids="doconce" names="doconce"><title>Doconce</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
 Mercurial (<literal>hg</literal>) source follows the standard procedure:</paragraph><literal_block xml:space="preserve"># Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..</literal_block><paragraph>Since Doconce is frequently updated, it is recommended to use the
@@ -516,7 +516,7 @@ the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <literal>~/texmf/tex/latex/misc</literal> directory).</paragraph><paragraph>Note that the <literal>doconce ptex2tex</literal> command, which needs no installation
 beyond Doconce itself, can be used as a simpler alternative to the <literal>ptex2tex</literal>
 program.</paragraph><paragraph>The <emphasis>minted</emphasis> LaTeX style is offered by <literal>ptex2tex</literal> and <literal>doconce ptext2tex</literal>
-is popular among many
+and popular among many
 users. This style requires the package <reference name="Pygments" refuri="http://pygments.org">Pygments</reference><target ids="pygments" names="pygments" refuri="http://pygments.org"/>
 to be installed. On Debian Linux:</paragraph><literal_block xml:space="preserve">sudo apt-get install python-pygments</literal_block><paragraph>Alternatively, the package can be installed manually:</paragraph><literal_block xml:space="preserve">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments

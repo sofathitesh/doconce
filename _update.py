@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+import sys
 
 def system(cmd):
     print cmd
     failure = os.system(cmd)
     if failure:
         print 'could not run\n%s\in%s' % (cmd, os.getcwd())
+        sys.exit(1)
 
 def rmtree(directory):
     try:
@@ -61,9 +63,8 @@ if __name__ == '__main__':
     system('git clone git://github.com/nemec/deck.annotate.js.git')
     system('cp -r deck.annotate.js deck.js/extensions/')
 
-    os.system('cp doconce_modifications/deck/core/*.css deck.js/core/')
-    os.system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
-
+    system('cp doconce_modifications/deck/core/*.css deck.js/core/')
+    system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
     system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
     zip_dir('deck.js')
 
