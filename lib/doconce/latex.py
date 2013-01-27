@@ -2,7 +2,8 @@
 
 import os, commands, re, sys, glob
 from common import plain_exercise, table_analysis, \
-     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines
+     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
+     python_online_tutor
 from misc import option
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
@@ -46,10 +47,20 @@ def latex_code(filestr, code_blocks, code_block_types,
             if _CODE_BLOCK in lines[i]:
                 words = lines[i].split()
                 if len(words) == 2:
-                    envir = words[1]
+                    if words[1] == 'pyoptpro':
+                        envir = 'pypro'
+                    else:
+                        envir = words[1]
                 else:
                     envir = 'ccq'
                 lines[i] = '\\' + 'b' + envir + '\n' + code + '\\' + 'e' + envir
+                if len(words) == 2 and words[1] == 'pyoptpro' and \
+                       not option('latex-printed'):
+                    # Insert an Online Python Tutorial link and add to lines[i]
+                    lines[i] += '\n(\\href{{%s}}{Visualize execution}) ' % \
+                                python_online_tutor(envir, return_tp='url')
+
+                    pass
                 break
 
     for tex in tex_blocks:
@@ -71,7 +82,7 @@ def latex_code(filestr, code_blocks, code_block_types,
     filestr = re.sub(r'!et\n', '', filestr)
 
     # Check for misspellings
-    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
+    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py pyoptpro'.split()
     for envir in code_block_types:
         if envir and envir not in envirs:
             print 'Warning: found "!bc %s", but %s is not a standard predefined ptex2tex environment' % (envir, envir)

@@ -4,7 +4,7 @@ Doconce format to other formats.  Some convenience functions used in
 translation modules (latex.py, html.py, etc.) are also included in
 here.
 """
-import re, sys
+import re, sys, urllib
 from misc import option
 
 # Identifiers in the text used to identify code and math blocks
@@ -54,6 +54,28 @@ def table_analysis(table):
                 column_list[j].append(len(column))
     return [max(c) for c in column_list]
 
+def python_online_tutor(code, return_tp='iframe'):
+    """
+    Return URL (return_tp is 'url') or iframe HTML code
+    (return_tp is 'iframe') for code embedded in
+    on pythontutor.com.
+    """
+    codestr = urllib.quote_plus(code.strip())
+    if return_tp == 'iframe':
+        urlprm = urllib.urlencode({'py': 2,
+                                   'curInstr': 0,
+                                   'cumulative': 'false'})
+        iframe = """\
+<iframe width="800" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=%s&%s">
+</iframe>
+""" % (codestr, urlprm) # must treat code separately (urlencode adds chars)
+        return iframe
+    elif return_tp == 'url':
+        url = 'http://pythontutor.com/visualize.html#code=%s&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0' % codestr
+        return url
+    else:
+        print 'BUG'; sys.exit(1)
 
 def align2equations(filestr):
     """Turn align environments into separate equation environments."""

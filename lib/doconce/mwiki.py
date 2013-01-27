@@ -92,7 +92,8 @@ def mwiki_code(filestr, code_blocks, code_block_types,
                       pro='python', pypro='python', cypro='python',
                       fpro='fortran', cpro='c', cpppro='cpp',
                       mpro='matlab', plpro='perl', shpro='bash',
-                      sys='bash', dat='python')
+                      sys='bash', dat='python',
+                      pyoptpro='python')
 
     for key in envir2lang:
         language = envir2lang[key]

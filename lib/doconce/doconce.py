@@ -547,7 +547,7 @@ def insert_code_from_file(filestr, format):
             elif filetype in ('csh', 'ksh', 'zsh', 'tcsh'):
                 filetype = 'sh'
             if filetype in ('py', 'f', 'c', 'cpp', 'sh',
-                            'm', 'pl', 'cy', 'rst'):
+                            'm', 'pl', 'cy', 'rst', 'pyopt'):
                 code_envir = filetype
             else:
                 code_envir = ''

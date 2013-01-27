@@ -7,7 +7,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Jan 26, 2013
+Date: Jan 27, 2013
 
 What Is Doconce?
 ================
