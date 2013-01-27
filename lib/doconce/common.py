@@ -66,7 +66,7 @@ def python_online_tutor(code, return_tp='iframe'):
                                    'curInstr': 0,
                                    'cumulative': 'false'})
         iframe = """\
-<iframe width="800" height="500" frameborder="0"
+<iframe width="950" height="500" frameborder="0"
         src="http://pythontutor.com/iframe-embed.html#code=%s&%s">
 </iframe>
 """ % (codestr, urlprm) # must treat code separately (urlencode adds chars)

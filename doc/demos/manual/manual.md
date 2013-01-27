@@ -1710,7 +1710,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [LaTeX Blocks of Mathematical Text](#t) and [Macros (Newcommands)](#s)) are
 nice to demonstrate, as well as a reference to equations,
-say Equations (myeq1)-(myeq2). A comparison of the output and
+say \eqref{myeq1}-\eqref{myeq2}. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 

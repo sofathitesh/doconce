@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# ------------------- scientific_writing talk ---------------------
 name=scientific_writing
 
 # Note: since Doconce syntax is demonstrated inside !bc/!ec
@@ -11,18 +13,21 @@ mv -f $name.html ${name}_plain.html
 
 doconce format html $name --pygments-html-style=native
 doconce slides_html $name reveal --html-slide-theme=darkgray
-# fix backslashes inside verbatim envirs that doconce has added...
+# Fix selected backslashes inside verbatim envirs that doconce has added
+# (only a problem when we want to show full doconce code with
+# labels in !bc-!ec envirs).
 doconce replace '\label{this:section}' 'label{this:section}' $name.html
 doconce replace '\label{fig1}' 'label{fig1}' $name.html
 doconce replace '\label{demo' 'label{demo' $name.html
 
+
 doconce format pdflatex $name --minted-latex-style=trac
-doconce ptex2tex $name envir=minted
+doconce ptex2tex $name envir=minted -DBOOK
 pdflatex -shell-escape $name
 mv -f $name.pdf ${name}_minted.pdf
 
 doconce format pdflatex $name
-doconce ptex2tex $name envir=ans:nt
+doconce ptex2tex $name envir=ans:nt -DBOOK
 pdflatex $name
 mv -f $name.pdf ${name}_anslistings.pdf
 
@@ -45,6 +50,8 @@ cp -r ${name}*.pdf *.md ${name}*.html reveal.js fig ../demos/slides/
 
 doconce format html sw_index.do.txt
 cp sw_index.html ../demos/slides/index.html
+
+# ------------------- short demo talk ---------------------
 
 # Make all the styles for the short demo talk
 doconce slides_html demo all  # generates tmp_slides_html_all.sh

@@ -92,6 +92,19 @@ which gets rendered as
 def f(x):
     return x+1
 !ec
+
+Now a complete program to be shown via Python Online Tutorial:
+!bc pyoptpro
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+!ec
+
 Then Cython:
 !bc cycod
 cpdef f(double x):
@@ -1443,6 +1456,20 @@ which gets rendered as
 def f(x):
     return x+1
 \epycod
+
+Now a complete program to be shown via Python Online Tutorial:
+\bpypro
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+\epypro
+(\href{{http://pythontutor.com/visualize.html#code=pypro&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
 Then Cython:
 \bcycod
 cpdef f(double x):
@@ -2676,6 +2703,20 @@ def f(x):
     return x+1
 \end{minted}
 \noindent
+
+Now a complete program to be shown via Python Online Tutorial:
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+\end{minted}
+\noindent
+
 Then Cython:
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{cython}
 cpdef f(double x):
@@ -3913,6 +3954,19 @@ which gets rendered as
 def f(x):
     return x+1
 \end{minted}
+
+Now a complete program to be shown via Python Online Tutorial:
+\begin{python:nt}
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+\end{python:nt}
+
 Then Cython:
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{cython}
 cpdef f(double x):
@@ -4942,6 +4996,20 @@ which gets rendered as::
         def f(x):
             return x+1
 
+
+Now a complete program to be shown via Python Online Tutorial::
+
+
+        def f(x):
+            return x + 1
+        
+        a = 2
+        x = a
+        a = 1
+        v = f(x)
+        print v
+
+
 Then Cython::
 
 
@@ -5908,6 +5976,16 @@ which gets rendered as
 
         def f(x):
             return x+1
+
+
+Now a complete program to be shown via Python Online Tutorial:
+
+.. raw:: html
+
+        <iframe width="800" height="500" frameborder="0"
+                src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
+        </iframe>
+
 
 Then Cython:
 
@@ -6985,6 +7063,19 @@ which gets rendered as
 def f(x):
     return x+1
 }}}
+
+Now a complete program to be shown via Python Online Tutorial:
+{{{
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+}}}
+
 Then Cython:
 {{{
 cpdef f(double x):
@@ -7837,6 +7928,19 @@ which gets rendered as
 def f(x):
     return x+1
 </syntaxhighlight>
+
+Now a complete program to be shown via Python Online Tutorial:
+<syntaxhighlight lang="python">
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+</syntaxhighlight>
+
 Then Cython:
 <syntaxhighlight lang="python">
 cpdef f(double x):
@@ -8642,6 +8746,19 @@ which gets rendered as
 def f(x):
     return x+1
 }}}
+
+Now a complete program to be shown via Python Online Tutorial:
+{{{
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+}}}
+
 Then Cython:
 {{{
 cpdef f(double x):
@@ -9411,6 +9528,20 @@ which gets rendered as::
         def f(x):
             return x+1
 
+
+Now a complete program to be shown via Python Online Tutorial::
+
+
+        def f(x):
+            return x + 1
+        
+        a = 2
+        x = a
+        a = 1
+        v = f(x)
+        print v
+
+
 Then Cython::
 
 
@@ -10036,6 +10167,20 @@ which gets rendered as::
 
         def f(x):
             return x+1
+
+
+Now a complete program to be shown via Python Online Tutorial::
+
+
+        def f(x):
+            return x + 1
+        
+        a = 2
+        x = a
+        a = 1
+        v = f(x)
+        print v
+
 
 Then Cython::
 
@@ -10815,6 +10960,20 @@ which gets rendered as::
         def f(x):
             return x+1
 
+
+Now a complete program to be shown via Python Online Tutorial::
+
+
+        def f(x):
+            return x + 1
+        
+        a = 2
+        x = a
+        a = 1
+        v = f(x)
+        print v
+
+
 Then Cython::
 
 
@@ -11551,6 +11710,19 @@ def f(x):
     return x+1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Now a complete program to be shown via Python Online Tutorial:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Then Cython:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -11907,13 +12079,13 @@ LaTeX Mathematics
 
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
-or with number and label, as in Equation (my:eq1), using the equation environment:
+or with number and label, as in \eqref{my:eq1}, using the equation environment:
 $$
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 $$
-We can refer to this equation by Equation (my:eq1).
+We can refer to this equation by \eqref{my:eq1}.
 
 Here is a system without equation numbers, using the align-astrisk environment:
 $$
@@ -11936,7 +12108,7 @@ $$
 b = \nabla^2 u + \nabla^4 x \label{eq2}
 \end{equation}
 $$
-We can refer to Equations (eq1)-(eq2).
+We can refer to \eqref{eq1}-\eqref{eq2}.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -11957,7 +12129,7 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 $$
-We can refer to the last equation by Equation (split:envir:eq).
+We can refer to the last equation by \eqref{split:envir:eq}.
 
 Testing gather:
 $$
@@ -11974,8 +12146,8 @@ a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 $$
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+Let us refer to \eqref{eq1}-\eqref{eq2} again, and to the
+alignat variant \eqref{eq1a}-\eqref{eq2a}, and to \eqref{my:eq1}.
 
 Testing eqnarray:
 $$
@@ -12603,6 +12775,16 @@ def f(x):
 <p>which gets rendered as</p>
 <pre><code>def f(x):
     return x+1</code></pre>
+<p>Now a complete program to be shown via Python Online Tutorial:</p>
+<pre><code>def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v</code></pre>
+<p>(<a href="{http://pythontutor.com/visualize.html#code=pypro&amp;mode=display&amp;cumulative=false&amp;heapPrimitives=false&amp;drawParentPointers=false&amp;textReferences=false&amp;py=2&amp;curInstr=0}">Visualize execution</a>)</p>
 <p>Then Cython:</p>
 <pre><code>cpdef f(double x):
     return x + 1</code></pre>
@@ -13148,6 +13330,15 @@ def f(x):
 <p>which gets rendered as</p>
 <pre class="sourceCode Python"><code class="sourceCode python"><span class="kw">def</span> f(x):
     <span class="kw">return</span> x<span class="dv">+1</span></code></pre>
+<p>Now a complete program to be shown via Python Online Tutorial:</p>
+<pre class="sourceCode Python"><code class="sourceCode python"><span class="kw">def</span> f(x):
+    <span class="kw">return</span> x + <span class="dv">1</span>
+
+a = <span class="dv">2</span>
+x = a
+a = <span class="dv">1</span>
+v = f(x)
+<span class="kw">print</span> v</code></pre>
 <p>Then Cython:</p>
 <pre><code>cpdef f(double x):
     return x + 1</code></pre>
@@ -13462,11 +13653,11 @@ output2</code></pre>
 
 <p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and <a href="http://google.com">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
-<p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in Equation (my:eq1), using the equation environment: \[
+<p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in , using the equation environment: \[
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
-\] We can refer to this equation by Equation (my:eq1).</p>
+\] We can refer to this equation by .</p>
 <p>Here is a system without equation numbers, using the align-astrisk environment: \[
 \begin{align*}
 \pmb{a} &amp;= \pmb{q}\times\pmb{n} \\ 
@@ -13482,7 +13673,7 @@ a = q + 4 + 5+ 6 \label{eq1}
 \begin{equation}  
 b = \nabla^2 u + \nabla^4 x \label{eq2}
 \end{equation}
-\] We can refer to Equations (eq1)-(eq2).</p>
+\] We can refer to -.</p>
 <p>Many of the next environments will fail in non-latex formats. Testing multiline: \[
 \begin{multline}
 a = b = q + \\ 
@@ -13497,7 +13688,7 @@ a = b = q &amp;+ \\
   &amp; f + \nabla\cdot\nabla u
 \end{split}
 \end{equation}
-\] We can refer to the last equation by Equation (split:envir:eq).</p>
+\] We can refer to the last equation by .</p>
 <p>Testing gather: \[
 \begin{gather}
 a = b \\ 
@@ -13509,7 +13700,7 @@ c = d + 7 + 9
 a &amp;= q + 4 + 5+ 6\qquad &amp; \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 \end{alignat}
-\] Let us refer to Equations (eq1)-(eq2) again, and to the alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).</p>
+\] Let us refer to - again, and to the alignat variant -, and to .</p>
 <p>Testing eqnarray: \[
 \begin{eqnarray}
 {\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, \label{myeq1}\\ 
@@ -15801,6 +15992,15 @@ which gets rendered as
     <span style="color: #AA22FF; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 </td></tr></table><p>
+
+Now a complete program to be shown via Python Online Tutorial:
+<p>
+
+<iframe width="800" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
+</iframe>
+<p>
+
 Then Cython:
 <p>
 
@@ -17562,6 +17762,15 @@ which gets rendered as
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 <p>
+
+Now a complete program to be shown via Python Online Tutorial:
+<p>
+
+<iframe width="800" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
+</iframe>
+<p>
+
 Then Cython:
 <p>
 
@@ -18874,6 +19083,15 @@ which gets rendered as
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 <p>
+
+Now a complete program to be shown via Python Online Tutorial:
+<p>
+
+<iframe width="800" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
+</iframe>
+<p>
+
 Then Cython:
 <p>
 
@@ -35214,7 +35432,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 26 Jan 2013 (11:43)</center>
+<center>Sun, 27 Jan 2013 (07:22)</center>
 
 
 
@@ -35345,7 +35563,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 26 Jan 2013 (11:43)</center>
+<center>Sun, 27 Jan 2013 (07:22)</center>
 
 
 
@@ -72237,7 +72455,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [LaTeX Blocks of Mathematical Text](#t) and [Macros (Newcommands)](#s)) are
 nice to demonstrate, as well as a reference to equations,
-say Equations (myeq1)-(myeq2). A comparison of the output and
+say \eqref{myeq1}-\eqref{myeq2}. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -85399,16 +85617,17 @@ LaTeX Warning: Reference `sec1' on page 3
 LaTeX Warning: Reference `subsubsec:ex' on page 3 
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
-(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
+[4]
 Overfull \hbox (43.91478pt too wide) 
 []\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
 
 LaTeX Warning: Reference `fig:impact' on page 5 
 
-<../doc/manual/figs/streamtubes.png, id=41, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=40, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 2310) has occurred while \output is active [5]
 Overfull \hbox (47.04507pt too wide) 
 \OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
 [6 <../doc/manual/figs/streamtubes.png>]
@@ -85498,8 +85717,8 @@ LaTeX Warning: Reference `eq2' on page 12
 
 [12]
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 77
-7.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 79
+1.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -85531,11 +85750,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 803.
+ 817.
 
 (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1095
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1109
 .
 
 
@@ -85546,13 +85765,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1114.
+ 1128.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1115
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1129
 .
 
 
@@ -85667,6 +85886,7 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
@@ -86079,14 +86299,30 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
-Warning: latex envir \begin{multline} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{gather} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{alignat} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{eqnarray} does not work well
-         pandoc extended markdown syntax handles only single equations
+*** warning: latex envir \begin{multline} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{gather} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{alignat} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{eqnarray} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
 output in testdoc.md
 + doconce format mwiki testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=mwiki  testdoc.do.txt > __tmp.do.txt
@@ -86423,14 +86659,30 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
-Warning: latex envir \begin{multline} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{gather} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{alignat} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{eqnarray} does not work well
-         pandoc extended markdown syntax handles only single equations
+*** warning: latex envir \begin{multline} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{gather} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{alignat} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{eqnarray} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
 output in testdoc.md
 + pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 + pandoc -v
@@ -88518,10 +88770,12 @@ output in tutorial.epytext
 + doconce format pandoc tutorial.do.txt
 running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{quote} does not work well
-         pandoc extended markdown syntax handles only single equations
+*** warning: latex envir \begin{quote} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
 output in tutorial.md
 + a2ps_plain=a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer=''
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.do.ps tutorial.do.txt
@@ -90276,14 +90530,24 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-Warning: latex envir \begin{align} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{eqnarray} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{eqnarray} does not work well
-         pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{theorem} does not work well
-         pandoc extended markdown syntax handles only single equations
+*** warning: latex envir \begin{eqnarray} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{eqnarray} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
+*** warning: latex envir \begin{theorem} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
 output in manual.md
 + doconce format pdflatex manual.do.txt --no-mako
 running preprocess -DFORMAT=pdflatex  manual.do.txt > __tmp.do.txt
@@ -94127,8 +94391,12 @@ output in quickref.epytext
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
-Warning: latex envir \begin{quote} does not work well
-         pandoc extended markdown syntax handles only single equations
+*** warning: latex envir \begin{quote} does not work well
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+
 output in quickref.md
 + rm -rf demo
 + mkdir demo
