@@ -5982,7 +5982,7 @@ Now a complete program to be shown via Python Online Tutorial:
 
 .. raw:: html
 
-        <iframe width="800" height="500" frameborder="0"
+        <iframe width="950" height="500" frameborder="0"
                 src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
         </iframe>
 
@@ -15729,7 +15729,7 @@ Here is a nested list:
 
 <p>
 
-<table>
+<table border="0">
 
   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> item1</li>
   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> item2</li>
@@ -15737,7 +15737,7 @@ Here is a nested list:
     on the next line to test that feature</li>
   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> and a sublist</li>
 
-<table>
+<table border="0">
 
     </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/green_bullet2"></td><td> with indented subitem1</li>
     </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/green_bullet2"></td><td> and a subitem2</li>
@@ -15996,7 +15996,7 @@ which gets rendered as
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
-<iframe width="800" height="500" frameborder="0"
+<iframe width="950" height="500" frameborder="0"
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
@@ -17121,7 +17121,7 @@ MathJax.Hub.Config({
 <h3>Figure and bullet list  <a name="___sec0"></a></h3>
 <p>
 
-<table>
+<table border="0">
 <tr>
 <td> 
 
@@ -17766,7 +17766,7 @@ which gets rendered as
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
-<iframe width="800" height="500" frameborder="0"
+<iframe width="950" height="500" frameborder="0"
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
@@ -19087,7 +19087,7 @@ which gets rendered as
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
-<iframe width="800" height="500" frameborder="0"
+<iframe width="950" height="500" frameborder="0"
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
@@ -21973,7 +21973,7 @@ Mercurial (<tt>hg</tt>) source follows the standard procedure:
 <!-- begin verbatim block  sys-->
 <pre>
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -22151,7 +22151,7 @@ program.
 
 <p>
 The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
-is popular among many
+and popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
 to be installed. On Debian Linux,
 <!-- begin verbatim block  sys-->
@@ -23479,7 +23479,7 @@ Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doc
 Mercurial (\code{hg}) source follows the standard procedure:
 \bsys
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -23604,7 +23604,7 @@ beyond Doconce itself, can be used as a simpler alternative to the \code{ptex2te
 program.
 
 The \emph{minted} {\LaTeX} style is offered by \code{ptex2tex} and \code{doconce ptext2tex}
-is popular among many
+and popular among many
 users. This style requires the package \href{{http://pygments.org}}{Pygments}
 to be installed. On Debian Linux,
 \bsys
@@ -24715,7 +24715,7 @@ Mercurial (``hg``) source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -24852,7 +24852,7 @@ beyond Doconce itself, can be used as a simpler alternative to the ``ptex2tex``
 program.
 
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
-is popular among many
+and popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
 to be installed. On Debian Linux::
 
@@ -26034,7 +26034,7 @@ Mercurial (``hg``) source follows the standard procedure:
 .. code-block:: console
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -26192,7 +26192,7 @@ beyond Doconce itself, can be used as a simpler alternative to the ``ptex2tex``
 program.
 
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
-is popular among many
+and popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
 to be installed. On Debian Linux,
 
@@ -27175,7 +27175,7 @@ Doconce itself is pure Python code hosted at http://code.google.com/p/doconce.  
 Mercurial (`hg`) source follows the standard procedure:
 {{{
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -27304,7 +27304,7 @@ beyond Doconce itself, can be used as a simpler alternative to the `ptex2tex`
 program.
 
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
-is popular among many
+and popular among many
 users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 {{{
@@ -28327,7 +28327,7 @@ Doconce itself is pure Python code hosted at http://code.google.com/p/doconce.  
 Mercurial (<code>hg</code>) source follows the standard procedure:
 <syntaxhighlight lang="bash">
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -28456,7 +28456,7 @@ beyond Doconce itself, can be used as a simpler alternative to the <code>ptex2te
 program.
 
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
-is popular among many
+and popular among many
 users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 <syntaxhighlight lang="bash">
@@ -29440,7 +29440,7 @@ Doconce itself is pure Python code hosted at [[http://code.google.com/p/doconce]
 Mercurial ({{{hg}}}) source follows the standard procedure:
 {{{
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -29570,7 +29570,7 @@ beyond Doconce itself, can be used as a simpler alternative to the {{{ptex2tex}}
 program.
 
 The //minted// LaTeX style is offered by {{{ptex2tex}}} and {{{doconce ptext2tex}}}
-is popular among many
+and popular among many
 users. This style requires the package [[http://pygments.org|Pygments]]
 to be installed. On Debian Linux,
 {{{
@@ -30584,7 +30584,7 @@ Mercurial ('hg') source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -30716,7 +30716,7 @@ beyond Doconce itself, can be used as a simpler alternative to the 'ptex2tex'
 program.
 
 The *minted* LaTeX style is offered by 'ptex2tex' and 'doconce ptext2tex'
-is popular among many
+and popular among many
 users. This style requires the package "http://pygments.org":Pygments
 to be installed. On Debian Linux::
 
@@ -31768,7 +31768,7 @@ Mercurial (C{hg}) source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -31905,7 +31905,7 @@ beyond Doconce itself, can be used as a simpler alternative to the C{ptex2tex}
 program.
 
 The I{minted} LaTeX style is offered by C{ptex2tex} and C{doconce ptext2tex}
-is popular among many
+and popular among many
 users. This style requires the package U{Pygments<http://pygments.org>}
 to be installed. On Debian Linux::
 
@@ -32995,7 +32995,7 @@ Mercurial (hg) source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -33132,7 +33132,7 @@ beyond Doconce itself, can be used as a simpler alternative to the ptex2tex
 program.
 
 The *minted* LaTeX style is offered by ptex2tex and doconce ptext2tex
-is popular among many
+and popular among many
 users. This style requires the package Pygments (http://pygments.org)
 to be installed. On Debian Linux::
 
@@ -34267,7 +34267,7 @@ Mercurial (`hg`) source follows the standard procedure:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -34420,7 +34420,7 @@ beyond Doconce itself, can be used as a simpler alternative to the `ptex2tex`
 program.
 
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
-is popular among many
+and popular among many
 users. This style requires the package [Pygments](http://pygments.org)
 to be installed. On Debian Linux,
 
@@ -35432,7 +35432,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 27 Jan 2013 (07:22)</center>
+<center>Sun, 27 Jan 2013 (10:43)</center>
 
 
 
@@ -35563,7 +35563,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 27 Jan 2013 (07:22)</center>
+<center>Sun, 27 Jan 2013 (10:43)</center>
 
 
 
@@ -38144,7 +38144,7 @@ Mercurial (<tt>hg</tt>) source follows the standard procedure:
 <!-- begin verbatim block  sys-->
 <pre>
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -38322,7 +38322,7 @@ program.
 
 <p>
 The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
-is popular among many
+and popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
 to be installed. On Debian Linux,
 <!-- begin verbatim block  sys-->
@@ -42172,7 +42172,7 @@ Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doc
 Mercurial (\code{hg}) source follows the standard procedure:
 \bsys
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -42297,7 +42297,7 @@ beyond Doconce itself, can be used as a simpler alternative to the \code{ptex2te
 program.
 
 The \emph{minted} {\LaTeX} style is offered by \code{ptex2tex} and \code{doconce ptext2tex}
-is popular among many
+and popular among many
 users. This style requires the package \href{{http://pygments.org}}{Pygments}
 to be installed. On Debian Linux,
 \bsys
@@ -45332,7 +45332,7 @@ Mercurial (``hg``) source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -45469,7 +45469,7 @@ beyond Doconce itself, can be used as a simpler alternative to the ``ptex2tex``
 program.
 
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
-is popular among many
+and popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
 to be installed. On Debian Linux::
 
@@ -48706,7 +48706,7 @@ Mercurial (``hg``) source follows the standard procedure:
 .. code-block:: console
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -48864,7 +48864,7 @@ beyond Doconce itself, can be used as a simpler alternative to the ``ptex2tex``
 program.
 
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
-is popular among many
+and popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
 to be installed. On Debian Linux,
 
@@ -52336,7 +52336,7 @@ Doconce itself is pure Python code hosted at http://code.google.com/p/doconce.  
 Mercurial (`hg`) source follows the standard procedure:
 {{{
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -52465,7 +52465,7 @@ beyond Doconce itself, can be used as a simpler alternative to the `ptex2tex`
 program.
 
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
-is popular among many
+and popular among many
 users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 {{{
@@ -55337,7 +55337,7 @@ Doconce itself is pure Python code hosted at http://code.google.com/p/doconce.  
 Mercurial (<code>hg</code>) source follows the standard procedure:
 <syntaxhighlight lang="bash">
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -55466,7 +55466,7 @@ beyond Doconce itself, can be used as a simpler alternative to the <code>ptex2te
 program.
 
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
-is popular among many
+and popular among many
 users. This style requires the package [http://pygments.org Pygments]
 to be installed. On Debian Linux,
 <syntaxhighlight lang="bash">
@@ -58389,7 +58389,7 @@ Doconce itself is pure Python code hosted at [[http://code.google.com/p/doconce]
 Mercurial ({{{hg}}}) source follows the standard procedure:
 {{{
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -58519,7 +58519,7 @@ beyond Doconce itself, can be used as a simpler alternative to the {{{ptex2tex}}
 program.
 
 The //minted// LaTeX style is offered by {{{ptex2tex}}} and {{{doconce ptext2tex}}}
-is popular among many
+and popular among many
 users. This style requires the package [[http://pygments.org|Pygments]]
 to be installed. On Debian Linux,
 {{{
@@ -61397,7 +61397,7 @@ Mercurial ('hg') source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -61529,7 +61529,7 @@ beyond Doconce itself, can be used as a simpler alternative to the 'ptex2tex'
 program.
 
 The *minted* LaTeX style is offered by 'ptex2tex' and 'doconce ptext2tex'
-is popular among many
+and popular among many
 users. This style requires the package "http://pygments.org":Pygments
 to be installed. On Debian Linux::
 
@@ -64433,7 +64433,7 @@ Mercurial (C{hg}) source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -64570,7 +64570,7 @@ beyond Doconce itself, can be used as a simpler alternative to the C{ptex2tex}
 program.
 
 The I{minted} LaTeX style is offered by C{ptex2tex} and C{doconce ptext2tex}
-is popular among many
+and popular among many
 users. This style requires the package U{Pygments<http://pygments.org>}
 to be installed. On Debian Linux::
 
@@ -67611,7 +67611,7 @@ Mercurial (hg) source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -67748,7 +67748,7 @@ beyond Doconce itself, can be used as a simpler alternative to the ptex2tex
 program.
 
 The *minted* LaTeX style is offered by ptex2tex and doconce ptext2tex
-is popular among many
+and popular among many
 users. This style requires the package Pygments (http://pygments.org)
 to be installed. On Debian Linux::
 
@@ -70843,7 +70843,7 @@ Mercurial (`hg`) source follows the standard procedure:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -70996,7 +70996,7 @@ beyond Doconce itself, can be used as a simpler alternative to the `ptex2tex`
 program.
 
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
-is popular among many
+and popular among many
 users. This style requires the package [Pygments](http://pygments.org)
 to be installed. On Debian Linux,
 
@@ -74173,7 +74173,7 @@ Doconce itself is pure Python code hosted at URL:
 Mercurial (`hg`) source follows the standard procedure:
 !bc sys
 # Doconce
-hg clone https://doconce.googlecode.com/hg/ doconce
+hg clone https://code.google.com/p/doconce/ doconce
 cd doconce
 sudo python setup.py install
 cd ..
@@ -74302,7 +74302,7 @@ beyond Doconce itself, can be used as a simpler alternative to the `ptex2tex`
 program.
 
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
-is popular among many
+and popular among many
 users. This style requires the package "Pygments": "http://pygments.org"
 to be installed. On Debian Linux,
 !bc sys
@@ -87777,7 +87777,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178665 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178658 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -87924,7 +87924,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184771 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88071,7 +88071,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184771 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -88224,7 +88224,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184771 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88371,7 +88371,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184771 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -88683,7 +88683,7 @@ Overfull \hbox (1.98695pt too wide)
  to re-Struc-tured-Text. Since
 [14]
 Overfull \hbox (11.00006pt too wide) 
-[]\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
+[]\T1/pcr/m/n/10 hg clone https://code.google.com/p/doconce/ doconce  
 [15]
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
@@ -89116,7 +89116,7 @@ ed markup
 
 
 Overfull \hbox (11.00006pt too wide) 
-[]\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
+[]\T1/pcr/m/n/10 hg clone https://code.google.com/p/doconce/ doconce  
 
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
@@ -89832,7 +89832,7 @@ ed markup
 
 
 Overfull \hbox (11.00006pt too wide) 
-[]\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
+[]\T1/pcr/m/n/10 hg clone https://code.google.com/p/doconce/ doconce  
 
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc

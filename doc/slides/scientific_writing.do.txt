@@ -7,7 +7,7 @@ DATE: Today
 ======= Scope =======
 
 !bpop
-  * *scientific writing* = lecture notes, slides, reports, thesis, books,  ...
+  * *Scientific writing* = lecture notes, slides, reports, thesis, books,  ...
   * (Journal papers typeset by journals are out of scope)
   * Scope: documents with much *math* and *computer code*
   * Key question: What tools should I use for writing?
@@ -45,20 +45,19 @@ FIGURE: [fig/IPython_logo.png, width=300]
 ======= Scientific writing needs to address many new media =======
 
 !bslidecell 00
-!bpop
  * Old days (1985-2005): BW for printing
  * Now:
    o BW books
    o Colorful books and PDFs
    o Colorful PDFs with hyperlinks
-   o HTML web pages (plain or fancy design)
+   o Designed web pages
    o Wiki
    o Blogg
    o epub
    o Next new fancy format
+ * PC, iPad, phone, Kindle, ...
  * LaTeX does not support all of this
  * We need to write for multiple formats!
-!epop
 !eslidecell
 
 !bslidecell 01
@@ -701,7 +700,7 @@ Very effective way to generate slides from running text:
    bullet points are not recommended in general, we need
    it here for demonstration purposes
 
-FIGURE: [fig/teacher1, width=150]
+FIGURE: [fig/teacher1, width=100]
 
 Key equation:
 
@@ -725,7 +724,7 @@ Last page gets rendered to
  * Key point 1
  * Key point 2
 
-FIGURE: [fig/teacher1, width=150, frac=0.4]
+FIGURE: [fig/teacher1, width=100, frac=0.4]
 
 Key equation:
 

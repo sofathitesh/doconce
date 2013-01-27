@@ -11,6 +11,16 @@ mv -f $name.html ${name}_solarized.html
 doconce format html $name --pygments-html-style=default
 mv -f $name.html ${name}_plain.html
 
+doconce format html $name --pygments-html-style=perldoc
+cp $name.html ${name}_deck.html
+doconce slides_html ${name}_deck deck --html-slide-theme=sandstone.default
+# Fix selected backslashes inside verbatim envirs that doconce has added
+# (only a problem when we want to show full doconce code with
+# labels in !bc-!ec envirs).
+doconce replace '\label{this:section}' 'label{this:section}' ${name}_deck.html
+doconce replace '\label{fig1}' 'label{fig1}' ${name}_deck.html
+doconce replace '\label{demo' 'label{demo' ${name}_deck.html
+
 doconce format html $name --pygments-html-style=native
 doconce slides_html $name reveal --html-slide-theme=darkgray
 # Fix selected backslashes inside verbatim envirs that doconce has added
@@ -46,7 +56,7 @@ doconce format gwiki  $name  # Googlecode wiki
 
 pygmentize -l text -f html -o ${name}_doconce.html ${name}.do.txt
 
-cp -r ${name}*.pdf *.md ${name}*.html reveal.js fig ../demos/slides/
+cp -r ${name}*.pdf *.md *.gwiki ${name}*.html deck.js reveal.js fig ../demos/slides/
 
 doconce format html sw_index.do.txt
 cp sw_index.html ../demos/slides/index.html
@@ -102,6 +112,6 @@ smaller fonts for verbatim code)
 of the original rainbow background)
 <li><a href="demo.pdf">Handouts in PDF</a> (generated via LaTeX)
 <li><a href="demo_doconce.html">Doconce source code for the slides</a>
-<li><a href="../scientific_writing.html">Doconce: Why and How</a>
+<li>Doconce: Why and How, <a href="../scientific_writing.html">reveal w/darkgrey</a>, <a href="../scientific_writing_deck.html">deck w/sandstone.default</a>
 </ul>
 EOF

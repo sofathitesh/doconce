@@ -1,14 +1,13 @@
 % On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
 % Hans Petter Langtangen
-% Jan 12, 2013
+% Jan 27, 2013
 
 <!-- !split -->
 Scope
 =====
 
 <!-- !bpop -->
-
-  * *scientific writing* = lecture notes, slides, reports, thesis, books,  ...
+  * *Scientific writing* = lecture notes, slides, reports, thesis, books,  ...
 
   * (Journal papers typeset by journals are out of scope)
 
@@ -25,36 +24,69 @@ Scope
 
 <!-- !epop -->
 
+<!-- !bslidecell 00 -->
+FIGURE: [fig/LaTeX_logo.jpg, width=120]
+<!-- !eslidecell -->
+
+<!-- !bslidecell 01 -->
+FIGURE: [fig/MS_Word_logo.jpg, width=80]
+<!-- !eslidecell -->
+
+<!-- !bslidecell 02 -->
+FIGURE: [fig/sphinx_logo.png, width=200]
+<!-- !eslidecell -->
+
+<!-- !bslidecell 10 -->
+FIGURE: [fig/markdown_logo.jpg, width=80]
+<!-- !eslidecell -->
+
+<!-- !bslidecell 11 -->
+FIGURE: [fig/MediaWiki_logo.jpg, width=80]
+<!-- !eslidecell -->
+
+<!-- !bslidecell 12 -->
+FIGURE: [fig/IPython_logo.png, width=300]
+<!-- !eslidecell -->
+
 <!-- !split -->
 Scientific writing needs to address many new media
 ==================================================
 
-<!-- !bpop -->
- * Old days (1985-2005): mostly black-and-white documents aimed at printing
+<!-- !bslidecell 00 -->
+ * Old days (1985-2005): BW for printing
 
  * Now:
 
-  1. Black-and-white books
+  1. BW books
 
   2. Colorful books and PDFs
 
-  3. PDFs with hyperlinks
+  3. Colorful PDFs with hyperlinks
 
-  4. HTML web pages (plain or fancy design)
+  4. Designed web pages
 
-  5. Wikis
+  5. Wiki
 
-  6. epub
+  6. Blogg
 
+  7. epub
+
+  8. Next new fancy format
+
+
+ * PC, iPad, phone, Kindle, ...
 
  * LaTeX does not support all of this
 
  * We need to write for multiple formats!
 
-<!-- !epop -->
+<!-- !eslidecell -->
+
+<!-- !bslidecell 01 -->
+FIGURE: [fig/jungle_with_mess.jpg, width=500]
+<!-- !eslidecell -->
 
 <!-- !split -->
-
 Popular tools anno 2012
 =======================
 
@@ -63,10 +95,9 @@ Popular tools anno 2012
 
  * _pdfLaTeX_: takes over (figures in png, pdf)
 
- * _Word_: popular, but limited math support and not so good-looking
-   math fonts
+ * _MS Word_: popular, but too clicky math support and ugly fonts
 
- * _HTML with MathJax_: "full" LaTeX math
+ * _HTML with MathJax_: "full" LaTeX *math*
 
  * _Sphinx_:
    limited LaTeX math support, great support for web design
@@ -78,14 +109,16 @@ Popular tools anno 2012
    limited LaTeX math support, transforms to
    lots of formats (LaTeX, HTML, XML, Word, OpenOffice, ...)
 
- * _MediaWiki_: "full" LaTeX math support (Wikipedia)
+ * _IPython notebooks_: combines Python code, interactivity,
+   visualization, and Markdown code/math
+
+ * _MediaWiki_: good LaTeX math support (Wikipedia)
 
  * Other _wiki_ formats: no math support, great for collaborative editing
 
- * _Epydoc_: old tool for Python code documentation
+ * _Wordpress_: supports LaTeX *formulas*
 
- * _IPython notebooks_: combines Python code, interactivity and Markdown
-   writing
+ * _Epydoc_: old tool for Python code documentation
 
  * _Plain text for email_ (no tagging)
 
@@ -101,7 +134,7 @@ LaTeX is very rich; other tools support only some elements
  * LaTeX equation math:
 
     * _LaTeX_: `equation*`, `equation`, `align*`, `align` +
-      `eqnarray`, `split`, `alignat`, ...
+      `eqnarray`, `split`, `alignat`, ... (numerous!)
 
     * _MathJax_: `equation*`, `equation`, `align*`, `align`
 
@@ -109,7 +142,7 @@ LaTeX is very rich; other tools support only some elements
 
     * _Sphinx_: `equation*`, `equation`, `align*`
 
-    * _Markdown_: `equation*`, `equation`
+    * _Markdown_: `equation*`, `equation`, `align*` (but no labels)
 
 
 <!-- !split -->
@@ -139,7 +172,7 @@ LaTeX is very rich; other tools support only some elements
 
  * Bibliography: LaTeX, Sphinx, reStructuredText, MediaWiki
 
- * Hyperlinks: all (but does not work on paper!)
+ * Hyperlinks: all (but not on paper!)
 
 <!-- !epop -->
 
@@ -186,8 +219,11 @@ Concerns II
  * Keys for items in the bibliography are made visible by Sphinx so
    "bibitems" a la BibTeX must look sensible and consistent.
 
- * If you need several equations numbered in an `align` environment,
-   recall that Sphinx and Markdown cannot handle this.
+ * If you need several equations *numbered* in an `align` environment,
+   recall that Sphinx, Markdown, and MediaWiki cannot handle this,
+   although they have LaTeX math support.
+
+ * Markdown tolerates labels in equations but cannot refer to them.
 
 <!-- !epop -->
 
@@ -233,13 +269,17 @@ Solution II: Use Doconce
 Doconce offers minimalistic typing, great flexibility wrt format,
 especially for scientific writing.
 
- * Can generate LaTeX, HTML, Sphinx, Markdown, MediaWiki and other wiki formats
+ * Can generate LaTeX, HTML, Sphinx, Markdown, MediaWiki, Google wiki,
+   Creole wiki, reST, plain text
 
- * Good support for math and code
+ * Particularly good support for math and code
 
  * Great flexibility for typesetting code
 
  * Made for science books *and* smaller teaching modules
+
+ * Targets traditional books, electronic PDF, PDF for phones,
+   web pages, Google and Wordpress blogs (with math and code)
 
  * Support for code snippets from files, embedded movies, warnings/hint/info,
    generalized links
@@ -319,9 +359,11 @@ Here goes the summary...
 Doconce: section headings
 =========================
 
-Headings are marked with =:
+Headings are surrounded by `=` signs:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+========= This is an H1/chapter heading =========
+
 ======= This is an H2/section heading =======
 
 ===== This is an H3/subsection heading =====
@@ -331,7 +373,21 @@ Headings are marked with =:
 __This is a paragraph heading.__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<!-- !split -->
+Result:
+
+This is an H1/chapter heading
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This is an H2/section heading
+=============================
+
+This is an H3/subsection heading
+--------------------------------
+
+This is an H4/paragraph heading
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*This is a paragraph heading.* !split
 Doconce: markup and lists
 =========================
 
@@ -454,15 +510,25 @@ the rest is plain LaTeX:
 which is rendered as
 
 $$
-\begin{align}
-\frac{\partial u}{\partial t} &= \nabla^2 u,
-\label{a:eq}\\
-\nabla\cdot\pmb{v} & = 0
-\label{b:eq}
-\end{align}
+\begin{equation}
+\frac{\partial u}{\partial t} = \nabla^2 u,
+\label{a:eq}
+\end{equation}
 $$
 
+$$
+\begin{equation} 
+\nabla\cdot\pmb{v}  = 0
+\label{b:eq}
+\end{equation}
+$$
+
+<!-- !split -->
+Doconce: math flexibility
+=========================
+
 Limit math environments to
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \[ ... \]
@@ -479,6 +545,10 @@ Limit math environments to
 \begin{align}
 \end{align}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Even though Sphinx, Markdown, and MediaWiki have problems with
+the latter, Doconce splits it into separate, single equations
+such that align with labels works accross formats.
 
 <!-- !split -->
 Doconce: displaying code
@@ -527,6 +597,7 @@ language: `pycod` for Python code snippet, `pypro` for complete Python
 program, `fcod` for Fortran snippet, `fpro` for Fortran program, and so
 forth (`c` for C, `cpp` for C++, `sh` for Unix shells, `m` for Matlab).
 
+
 <!-- !split -->
 Doconce: copying code from source files
 =======================================
@@ -553,6 +624,8 @@ Typesetting of code is implied by the file extension:
 
  * `.py`: `pypro` if complete file, `pycod` if snippet
 
+ * `.pyopt`: visualized execution via the [Online Python Tutor](http://pythontutor.com)
+
  * `.f`, `.f90`, `f.95`: `fpro` and `fcod`
 
  * `.cpp`, `.cxx`: `cpppro` and `cppcod`
@@ -567,6 +640,32 @@ Typesetting of code is implied by the file extension:
    computer code in LaTeX
 
  * `pygments` is used for code typesetting in HTML (about 10 different styles)
+
+<!-- !split -->
+Doconce: displaying interactive demo code
+=========================================
+
+With `!bc pyoptpro` or a file `*.pyopt`, the code applies the
+[Online Python Tutor](http://pythontutor.com) for displaying
+program flow and state of variables:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+def solver(I, a, T, dt, theta):
+    dt = float(dt)
+    N = int(round(T/dt))
+    T = N*dt
+    u = [0.0]*(N+1)
+    t = [i*dt for i in range(N+1)]
+
+    u[0] = I
+    for n in range(0, N):
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+
+u, t = solver(I=1, a=1, T=3, dt=1., theta=0.5)
+print u
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <!-- !split -->
 Doconce: tables
@@ -608,7 +707,8 @@ Doconce: newcommands for math
 Doconce: exercises
 ==================
 
-Doconce offers a special format for *exercises*, *problems* and *projects*:
+Doconce offers a special format for *exercises*, *problems*, *projects*,
+and *examples*:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -644,6 +744,8 @@ Make another program that computes the probability
 of getting at least three heads out of 5 throws.
 !esubex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Solutions/answers can easily be left out of the document.
 
 <!-- !split -->
 Doconce: exercises
@@ -693,7 +795,7 @@ Doconce: exercises
 
 All *exercises*, *problems*, and *projects* in a document are parsed
 and available in a data structure (list of dicts) for further
-processing.
+processing (e.g., making a book of problems).
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -787,8 +889,12 @@ Doconce: example on slide code
 
  * Key point 1
  * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
 
-FIGURE: [fig/teacher1, width=150]
+FIGURE: [fig/teacher1, width=100]
 
 Key equation:
 
@@ -813,13 +919,87 @@ Headline
 
  * Key point 2
 
-FIGURE: [fig/teacher1, width=150]
+FIGURE: [fig/teacher1, width=100, frac=0.4]
 
 Key equation:
 
 $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 
 And maybe a final comment?
+
+<!-- !split -->
+Doconce: example on slide code with cells
+=========================================
+
+One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by `!bslidecell MN` and `!eslidecell`
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!split
+======= Headline =======
+
+!bslidecell 00
+!bpop
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+!epop
+
+!bpop
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+!epop
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [fig/broken_pen_and_paper, width=400, frac=0.8]
+!eslidecell
+
+!split
+======= Next slide... =======
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<!-- !split -->
+Doconce: example on slide code
+==============================
+
+Last page gets rendered to
+
+Headline
+========
+
+<!-- !bslidecell 00 -->
+<!-- !bpop -->
+ * Key point 1
+
+ * Key point 2
+
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+
+<!-- !epop -->
+
+<!-- !bpop -->
+$$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
+<!-- !epop -->
+
+<!-- !eslidecell -->
+
+<!-- !bslidecell 01 -->
+FIGURE: [fig/broken_pen_and_paper, width=400]
+<!-- !eslidecell -->
+
 
 <!-- !split -->
 Doconce: slide styles
@@ -839,7 +1019,7 @@ Doconce: slide styles
    * [html5slides](http://code.google.com/p/html5slides/) (experimental)
 
 
- * _Problem_: each package has its (similar) syntax
+ * _Problem_: each package has its own syntax (though similar)
 
    * _Solution_: slide code is autogenerated from compact Doconce syntax
 
@@ -856,6 +1036,7 @@ Doconce: slide styles
 
  * _Problem_: original versions of the styles have too large fonts,
    centering, and other features not so suitable for lectures
+   with much math and code
 
    * _Solution_: Doconce contains adjusted css files
 
@@ -884,6 +1065,28 @@ doconce format html doconcefile --no-pygments-html
 # Further making of slides
 doconce slides_html doconcefile reveal --html-slide-theme=darkgray
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<!-- !split -->
+Doconce: output for blogging
+============================
+
+Two types of blogs are supported:
+
+ * Google's blogspot.com: just paste the raw HTML
+   (full support of math and code)
+
+ * Wordpress: despite limited math, Doconce manipulates the math
+   such that even `equation` and `align` work in Wordpress :-)
+
+For wordpress, add `--wordpress`:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doconce format html doconcefile --wordpress
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and paste the code into the text area.
+
+
 
 <!-- !split -->
 Doconce: output in pdfLaTeX
@@ -921,13 +1124,36 @@ doconce format sphinx doconcefile
 
 # Autocreate sphinx directory
 doconce sphinx_dir theme=pyramid doconcefile
+
 # Copy files and build HTML document
 python automake-sphinx.py
 
 google-chrome sphinx-rootdir/_build/html/index.html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Much easier than running the Sphinx tools manually...
+Much easier than running the Sphinx tools manually!
+
+<!-- !split -->
+Doconce: output for wiki
+========================
+
+Only MediaWiki supports math.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+doconce format mwiki doconcefile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Recommended site:
+
+ * [ShoutWiki](http://shoutwiki.com) for standard wikis
+
+Publishing of "official" documents:
+
+ * [Wikibooks](http://en.wikibooks.org/wiki/Wikibooks:WIW)
+   (can test code in the "sandbox": <http://en.wikibooks.org/wiki/Wikibooks>:Sandbox)
+
+ * Wikipedia
 
 <!-- !split -->
 Doconce: output in other formats
@@ -936,7 +1162,6 @@ Doconce: output in other formats
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 doconce format pandoc doconcefile  # (Pandoc extended) Markdown
-doconce format mwiki  doconcefile  # MediaWiki
 doconce format gwiki  doconcefile  # Googlecode wiki
 doconce format cwiki  doconcefile  # Creole wiki (Bitbucket)
 doconce format rst    doconcefile  # reStructuredText
@@ -947,27 +1172,27 @@ doconce format plain  doconcefile  # plain, untagged text for email
 Doconce: installation
 =====================
 
- * Ubuntu: `sudo apt-get install python-doconce` (old version)
+ * Ubuntu: `sudo apt-get install python-doconce` (old version!)
 
  * Source at [Googlecode](http://code.google.com/p/doconce) (recommended!)
 
  * Check out source, `sudo python setyp.py install`
 
- * Many dependencies...
+ * Many [dependencies...](https://doconce.googlecode.com/hg/doc/demos/manual/manual.html#___sec1)
 
  * Must have `preprocess` and `mako`
 
- * Need `latex`, `sphinx`, `pandoc`, etc. (see Installation in [manual](http://code.google.com/p/doconce/wiki/Description))
+ * Need `latex`, `sphinx`, `pandoc`, etc. (see Installation in [manual](https://doconce.googlecode.com/hg/doc/demos/manual/manual.html#___sec1))
 
- * For slides: only `preprocess` is needed :-)
+ * Easy for slides: only `preprocess` is needed :-)
 
 <!-- !split -->
 Writing tips
 ============
 
  * See the previous *Concerns I, II and III* slides for issues when writing
-   for multiple formats. However: Doconce makes a fix so that Sphinx works
-   with labels in align environments :-)
+   for multiple formats. However: Doconce makes a fix so that Sphinx and
+   other formats works with labels in align environments :-)
 
  * Prepare figures in the right format: EPS for `latex`, PDF for `pdflatex`,
    PNG, GIF or JPEG for HTML formats (`html`, and HTML output from

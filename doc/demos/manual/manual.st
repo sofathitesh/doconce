@@ -80,7 +80,7 @@ Mercurial ('hg') source follows the standard procedure::
 
 
         # Doconce
-        hg clone https://doconce.googlecode.com/hg/ doconce
+        hg clone https://code.google.com/p/doconce/ doconce
         cd doconce
         sudo python setup.py install
         cd ..
@@ -212,7 +212,7 @@ beyond Doconce itself, can be used as a simpler alternative to the 'ptex2tex'
 program.
 
 The *minted* LaTeX style is offered by 'ptex2tex' and 'doconce ptext2tex'
-is popular among many
+and popular among many
 users. This style requires the package "http://pygments.org":Pygments
 to be installed. On Debian Linux::
 
