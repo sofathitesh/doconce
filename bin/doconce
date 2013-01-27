@@ -571,7 +571,7 @@ def insertdocstr():
 
     global doconce_program
     if os.path.isfile(os.path.join('bin', 'doconce')):
-        doconce_program = os.path.join(os.getcwd(), 'bin', 'doconce')
+        doconce_program = 'python ' + os.path.join(os.getcwd(), 'bin', 'doconce')
     else:
         doconce_program = 'doconce'  # must be found somewhere in PATH
     # alternative: use sys.argv[3] argument to tell where to find doconce

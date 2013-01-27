@@ -85,7 +85,6 @@ Documentation of Doconce is found in
 
 Both directories contain a make.sh file for creating various formats.
 
-
 '''
 
 __version__ = '0.8.2'
