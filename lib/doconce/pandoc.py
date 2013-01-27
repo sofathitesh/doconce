@@ -185,9 +185,6 @@ def pandoc_ref_and_label(section_label2title, format, filestr):
                   '[%s](#%s)' % (section_label2title[label],
                                  title2pandoc(section_label2title[label])))
 
-    from common import ref2equations
-    filestr = ref2equations(filestr)
-
     return filestr
 
 
