@@ -2045,8 +2045,11 @@ def preprocess(filename, format, preprocessor_options=[]):
             except (NameError, SyntaxError):
                 mako_kwargs[key] = value
 
+    filestr_without_code, code_blocks, code_block_types, tex_blocks = \
+                          remove_code_and_tex(filestr)
+
     preprocess_commands = r'^#\s*#(if|define|include)'
-    if re.search(preprocess_commands, filestr, re.MULTILINE):
+    if re.search(preprocess_commands, filestr_without_code, re.MULTILINE):
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
         preprocess_options = ' '.join(preprocess_options)
@@ -2095,8 +2098,6 @@ preprocess package (sudo apt-get install preprocess).
     # so we need to remove code blocks for testing if we really use
     # mako. Also issue warnings if code blocks contain mako instructions
     # matching the mako_commands pattern
-    filestr_without_code, code_blocks, code_block_types, tex_blocks = \
-                          remove_code_and_tex(filestr)
     match_percentage = re.search(mako_commands, filestr_without_code,
                                  re.MULTILINE)
     match_mako_variable = False
