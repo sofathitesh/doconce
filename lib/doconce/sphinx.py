@@ -2,7 +2,7 @@
 
 # can reuse most of rst module:
 from rst import *
-from common import align2equations
+from common import align2equations, python_online_tutor
 
 legal_pygments_languages = [
     'Cucumber', 'cucumber', 'Gherkin', 'gherkin',
@@ -357,13 +357,17 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                           pro='python', pypro='python', cypro='cython',
                           fpro='fortran', cpro='c', cpppro='c++',
                           mpro='matlab', plpro='perl', shpro='bash',
-                          sys='console', dat='python')
+                          sys='console', dat='python',
+                          pyoptpro='python')
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
     # First indent all code blocks
 
     for i in range(len(code_blocks)):
+        if code_block_types[i].startswith('pyoptpro'):
+            code_blocks[i] = python_online_tutor(code_blocks[i],
+                                                 return_tp='iframe')
         code_blocks[i] = indent_lines(code_blocks[i], format)
 
     # Treat math labels. Drop labels in environments with multiple
@@ -475,9 +479,14 @@ and references to them will be empty):"""
         #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
         #                 '\n.. code-block:: %s\n\n' % envir2lang[key], filestr,
         #                 flags=re.MULTILINE)
-        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
-        filestr = cpattern.sub('\n.. code-block:: %s\n\n' % \
-                               envir2lang[key], filestr)
+        if key == 'pyoptpro':
+            filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                             '\n.. raw:: html\n\n',
+                             filestr, flags=re.MULTILINE)
+        else:
+            filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                             '\n.. code-block:: %s\n\n' % \
+                             envir2lang[key], filestr, flags=re.MULTILINE)
 
     # any !bc with/without argument becomes a text block:
     #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: text\n\n', filestr,

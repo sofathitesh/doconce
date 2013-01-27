@@ -90,6 +90,19 @@ which gets rendered as
 def f(x):
     return x+1
 !ec
+
+Now a complete program to be shown via Python Online Tutorial:
+!bc pyoptpro
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+!ec
+
 Then Cython:
 !bc cycod
 cpdef f(double x):

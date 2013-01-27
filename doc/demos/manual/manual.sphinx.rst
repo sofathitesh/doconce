@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jan 26, 2013
+:Date: Jan 27, 2013
 
 .. lines beginning with # are doconce comment lines
 
@@ -2754,7 +2754,7 @@ will then be rendered to
 .. math::
         
         \pmb{x}\cdot\pmb{n}  &=  0, \\
-        \frac{D{\vec u}{dt}}  &=  \pmb{Q} {\thinspace . }   
+        \frac{D{\vec u}}{dt}  &=  \pmb{Q} {\thinspace . }   
         
 
 in the current format.

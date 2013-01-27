@@ -1,6 +1,6 @@
 import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines
+     indent_lines, python_online_tutor
 from misc import option
 
 # Style sheets
@@ -102,7 +102,8 @@ def html_code(filestr, code_blocks, code_block_types,
                            c='c', cpp='c++', sh='bash', rst='rst',
                            m ='matlab', pl='perl', swig='c++',
                            latex='latex', html='html', js='js',
-                           sys='bash', xml='xml')
+                           sys='bash', xml='xml',
+                           pyproopt='python')
     try:
         import pygments as pygm
         from pygments.lexers import guess_lexer, get_lexer_by_name
@@ -128,12 +129,18 @@ def html_code(filestr, code_blocks, code_block_types,
 
         linenos = option('pygments-html-linenos')
 
-    # For html we should make replacements of < and > in code_blocks,
-    # since these can be interpreted as tags, and we must
-    # handle latin-1 characters.
+    PythoOnlineTutor = False  # True if one occurence
     for i in range(len(code_blocks)):
+        if code_block_types[i].startswith('pyoptpro'):
+            PythoOnlineTutor = True
+            if pygm is None:
+                print '*** error: cannot use Python Online Tutorial (pyproopt)'
+                print '    without pygmentized code'
+                sys.exit(1)
+            code_blocks[i] = python_online_tutor(code_blocks[i],
+                                                 return_tp='iframe')
 
-        if pygm is not None:
+        elif pygm is not None:
             # Typeset with pygments
             #lexer = guess_lexer(code_blocks[i])
             if code_block_types[i].endswith('cod') or \
@@ -214,11 +221,11 @@ def html_code(filestr, code_blocks, code_block_types,
     debugpr('File after call to isnert_code_and tex (format html)\n%s'
             % filestr)
 
-    if pygm:
+    if pygm or PythoOnlineTutor:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         filestr = c.sub(r'<p>\n\n', filestr)
         filestr = re.sub(r'!ec\n', r'<p>\n', filestr)
-        debugpr('\n\nAfter replacement of !bc and !ec\n%s' % filestr)
+        debugpr('\n\nAfter replacement of !bc and !ec (pygmntized code)\n%s' % filestr)
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         # Do not use <code> here, it gives an extra line at the top
