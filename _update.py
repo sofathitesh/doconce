@@ -5,7 +5,7 @@ def system(cmd):
     print cmd
     failure = os.system(cmd)
     if failure:
-        print 'could not run\n%s\in%s' % (cmd, os.getcwd())
+        print 'could not run\n%s\nin%s' % (cmd, os.getcwd())
         sys.exit(1)
 
 def rmtree(directory):
@@ -65,7 +65,8 @@ if __name__ == '__main__':
 
     system('cp doconce_modifications/deck/core/*.css deck.js/core/')
     system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
-    system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
+    # this find will always generate errors..., use os.system
+    os.system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
     zip_dir('deck.js')
 
     # Pack latex styles and figures in a zip file without any directory
@@ -82,7 +83,7 @@ if __name__ == '__main__':
     # back to root dir
     os.chdir(os.pardir)
 
-    system('bin/doconce insertdocstr lib/doconce')
+    system('python bin/doconce insertdocstr plain lib/doconce')
 
     # remove files that are to be regenerated:
     #system('sh clean.sh')
@@ -100,4 +101,5 @@ if __name__ == '__main__':
         os.chdir(d)
         system('sh ./clean.sh')
         os.chdir(thisdir)
+    print 'Successful execution of', sys.argv[0]
 
