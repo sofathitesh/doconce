@@ -2021,9 +2021,9 @@ def preprocess(filename, format, preprocessor_options=[]):
 
     # First guess if preprocess or mako is used
 
-    # Collect first -D... and -U... options on the command line
+    # Collect first -Dvar=value options on the command line
     preprocess_options = [opt for opt in preprocessor_options
-                          if opt[:2] == '-D' or opt[:2] == '-U']
+                          if opt[:2] == '-D']
     # Add -D to mako name=value options so that such variables
     # are set for preprocess too
     for opt in preprocessor_options:
@@ -2033,7 +2033,7 @@ def preprocess(filename, format, preprocessor_options=[]):
     # Look for mako variables
     mako_kwargs = {'FORMAT': format}
     for opt in preprocessor_options:
-        if opt.startswith('-D') or opt.startswith('-U'):
+        if opt.startswith('-D'):
             opt2 = opt[2:]
             if '=' in opt:
                 key, value = opt2.split('=')

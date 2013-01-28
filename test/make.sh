@@ -4,7 +4,7 @@ rm -rf html_images reveal.js downloaded_figures
 doconce format html testdoc --wordpress
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without-answers --without-solutions --examples-as-exercises
+doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
 cp testdoc.html testdoc_no_solutions.html
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
@@ -12,7 +12,7 @@ doconce remove_exercise_answers testdoc.html
 doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
 
-doconce format latex testdoc.do.txt --examples-as-exercises
+doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
 doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
 doconce latex_exercise_toc testdoc
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
@@ -35,7 +35,7 @@ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\en
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --examples-as-exercises
+doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
 doconce format st testdoc.do.txt --examples-as-exercises
 doconce format sphinx testdoc.do.txt --examples-as-exercises
 mv -f testdoc.rst testdoc.sphinx.rst
