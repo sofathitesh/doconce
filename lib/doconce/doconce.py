@@ -2033,17 +2033,26 @@ def preprocess(filename, format, preprocessor_options=[]):
     # Look for mako variables
     mako_kwargs = {'FORMAT': format}
     for opt in preprocessor_options:
-        if not (opt.startswith('--') or \
-                opt.startswith('-D') or opt.startswith('-U')):
+        if opt.startswith('-D') or opt.startswith('-U'):
+            opt2 = opt[2:]
+            if '=' in opt:
+                key, value = opt2.split('=')
+            else:
+                key = opt2;  value = opt.startswith('-D')
+        elif not opt.startswith('--'):
             try:
                 key, value = opt.split('=')
             except ValueError:
                 print 'command line argument "%s" not recognized' % opt
                 _abort()
-            # Try eval(value), if it fails, assume string
+        else:
+            key = None
+
+        if key is not None:
+            # Try eval(value), if it fails, assume string or bool
             try:
                 mako_kwargs[key] = eval(value)
-            except (NameError, SyntaxError):
+            except (NameError, TypeError, SyntaxError):
                 mako_kwargs[key] = value
 
     filestr_without_code, code_blocks, code_block_types, tex_blocks = \
