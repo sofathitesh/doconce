@@ -2033,7 +2033,8 @@ def preprocess(filename, format, preprocessor_options=[]):
     # Look for mako variables
     mako_kwargs = {'FORMAT': format}
     for opt in preprocessor_options:
-        if not opt.startswith('--'):
+        if not (opt.startswith('--') or \
+                opt.startswith('-D') or opt.startswith('-U')):
             try:
                 key, value = opt.split('=')
             except ValueError:
