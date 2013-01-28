@@ -26,6 +26,9 @@ plain, homemade pdfLaTeX (from Doconce).
 ${FORMAT}
 % endif
 
+% if SOMEVAR:
+# Just a comment
+% endif
 
 __Abstract.__
 This is a document with many test constructions for doconce syntax.
