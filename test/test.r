@@ -28,6 +28,9 @@ plain, homemade pdfLaTeX (from Doconce).
 ${FORMAT}
 % endif
 
+% if SOMEVAR:
+# Just a comment
+% endif
 
 __Abstract.__
 This is a document with many test constructions for doconce syntax.
@@ -18947,7 +18950,9 @@ The format of this document is
 plain, homemade HTML (from Doconce).
 
 <p>
+<!-- Just a comment -->
 
+<p>
 <b>Abstract.</b> This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -20162,7 +20167,7 @@ rm -rf html_images reveal.js downloaded_figures
 doconce format html testdoc --wordpress
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without-answers --without-solutions --examples-as-exercises
+doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
 cp testdoc.html testdoc_no_solutions.html
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
@@ -20170,7 +20175,7 @@ doconce remove_exercise_answers testdoc.html
 doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
 
-doconce format latex testdoc.do.txt --examples-as-exercises
+doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
 doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
 doconce latex_exercise_toc testdoc
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
@@ -20193,7 +20198,7 @@ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\en
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --examples-as-exercises
+doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
 doconce format st testdoc.do.txt --examples-as-exercises
 doconce format sphinx testdoc.do.txt --examples-as-exercises
 mv -f testdoc.rst testdoc.sphinx.rst
@@ -35432,7 +35437,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 27 Jan 2013 (10:43)</center>
+<center>Sun, 27 Jan 2013 (16:49)</center>
 
 
 
@@ -35563,7 +35568,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 27 Jan 2013 (10:43)</center>
+<center>Sun, 27 Jan 2013 (16:49)</center>
 
 
 
@@ -85246,9 +85251,10 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + cp testdoc.html testdoc_wordpress.html
-+ doconce format html testdoc --without-answers --without-solutions --examples-as-exercises
-running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
++ doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+running preprocess -DFORMAT=html -DSOMEVAR testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
+mako variables: {'SOMEVAR': True, 'FORMAT': 'html'}
 translating preprocessed doconce text in __tmp.do.txt to html
 
 FIX: multi-line caption
@@ -85359,9 +85365,10 @@ output in testdoc.html
 + doconce html_colorbullets testdoc.html
 + doconce split_html testdoc.html
 made subdirectory html_images
-+ doconce format latex testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=latex  testdoc.do.txt > __tmp.do.txt
++ doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
+running preprocess -DFORMAT=latex -DSOMEVAR=True testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
+mako variables: {'SOMEVAR': True, 'FORMAT': 'latex'}
 translating preprocessed doconce text in __tmp.do.txt to latex
 
 FIX: multi-line caption
@@ -85947,9 +85954,10 @@ Transcript written on testdoc.log.
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
 + echo ----------- end of doconce ptex2tex output ----------------
 + cat testdoc.tex
-+ doconce format plain testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=plain  testdoc.do.txt > __tmp.do.txt
++ doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
+running preprocess -DFORMAT=plain -DSOMEVAR=1 testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
+mako variables: {'SOMEVAR': 1, 'FORMAT': 'plain'}
 translating preprocessed doconce text in __tmp.do.txt to plain
 
 FIX: multi-line caption
@@ -92991,13 +92999,11 @@ Go to the demo directory and load index.html into a web browser.
 Removing in /home/hpl/vc/doconce/doc/quickref:
 + doconce
 + doconce format html quickref --no-pygments-html --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to html
+translating doconce text in quickref.do.txt to html
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.html
 + doconce format latex quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to latex
+translating doconce text in quickref.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.p.tex
 + doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
@@ -93445,8 +93451,7 @@ Output written on quickref.dvi (14 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to sphinx
+translating doconce text in quickref.do.txt to sphinx
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
   - should be _static/testdoc.html#___sec2 for sphinx.
 *** warning: hyperlink to URL testdoc.html is to a local file,
@@ -93524,8 +93529,7 @@ or just run it by
 + doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake_sphinx.py
 replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake_sphinx.py
 + python automake_sphinx.py
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to sphinx
+translating doconce text in quickref.do.txt to sphinx
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
   - should be _static/testdoc.html#___sec2 for sphinx.
 *** warning: hyperlink to URL testdoc.html is to a local file,
@@ -93570,8 +93574,7 @@ google-chrome sphinx-rootdir/_build/html/index.html
 
 + cp quickref.rst quickref.sphinx.rst
 + doconce format rst quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to rst
+translating doconce text in quickref.do.txt to rst
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 + rst2xml.py quickref.rst
@@ -94358,38 +94361,31 @@ Output written on quickref.rst.dvi (15 pages, ).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to plain
+translating doconce text in quickref.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.txt
 + doconce format gwiki quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to gwiki
+translating doconce text in quickref.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.gwiki
 + doconce format mwiki quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to mwiki
+translating doconce text in quickref.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.mwiki
 + doconce format cwiki quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to cwiki
+translating doconce text in quickref.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.cwiki
 + doconce format st quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to st
+translating doconce text in quickref.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.st
 + doconce format epytext quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to epytext
+translating doconce text in quickref.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to pandoc
+translating doconce text in quickref.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
 *** warning: latex envir \begin{quote} does not work well
     pandoc-extended markdown syntax handles only single equations
