@@ -40,6 +40,8 @@ document is embedded."""),
     ('--latex-printed',
      """True if the LaTeX output is to be printed on paper such that links
 will not work (the full URL of links then appear as footnotes)."""),
+    ('--latex-preamble=',
+     """User-provided LaTeX preamble file, either complete or additions."""),
     ('--html-color-admon',
      """True if color admon images are to be used in notice, warning, etc.
 environments, otherwise simpler (lyx_*.png) files are used."""),
