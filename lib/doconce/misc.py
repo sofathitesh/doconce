@@ -88,10 +88,7 @@ def option(name, default=None):
             if arg.startswith(name):
                 opt, value = arg.split('=')
                 return value
-        if default is not None:
-            return default
-        else:
-            return False
+        return default
     else:
         return (name in sys.argv)
 

@@ -24,8 +24,8 @@ def debugpr(out):
 
 from common import *
 from misc import option
-import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc
-for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc:
+import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb
+for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb:
     #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
@@ -44,7 +44,7 @@ for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki,
                   OUTRO)
 
 def supported_format_names():
-    return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc'
+    return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc', 'ipynb'
 
 def doconce_envirs():
     return ['c', 't',                 # verbatim and tex blocks
