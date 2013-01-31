@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 27, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 30, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -336,7 +336,6 @@ ul.auto-toc {
 </div>
 <div class="section" id="id1">
 <span id="what-is-doconce"></span><h1>What Is Doconce?</h1>
-<p>Doconce is two things:</p>
 <p>Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -353,31 +352,27 @@ etc.  The slogan is: &quot;Write once, include anywhere&quot;.</p>
 <p>Here are some Doconce features:</p>
 <blockquote>
 <ul class="simple">
-<li>Doconce has strong support for <em>text with computer source code and
+<li>Doconce has very strong support for <em>text with computer source code and
 LaTeX mathematics</em> in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-and MediaWiki. One piece of text can enter (e.g.) a classical
+and MediaWiki. A piece of text can enter (e.g.) a classical
 science book, an ebook, a web document, and a blog.</li>
-<li>Doconce targets scientific papers and reports, thesis, large book
-projects, software manuals, memos, as well as blogs and wikis with
-math and code content.</li>
-<li>Doconce markup does include tags, so the format is more tagged than
-Markdown, but less than reST, and very much less than
-LaTeX and HTML.</li>
-<li>Doconce can be converted to plain <em>untagged</em> text,
-often desirable for computer code and email.</li>
+<li>Doconce targets in particular large book projects where many different
+pieces of text and software can be assembled and published in different
+formats for different devices.</li>
 <li>Doconce has good support for copying in parts of computer code
 directly from the source code files via regular expressions
 for the start and end lines.</li>
-<li>Doconce is almost self-explanatory and fast to write. The tools
-can be used for handy generation of more verbose and complicated
-markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-Google wiki.</li>
 <li>Doconce first runs two preprocessors (Preprocess and Mako), which
 allows programming constructs (includes, if-tests, function calls)
 as part of the text. This feature makes it easy to write one text
 with different flavors: long vs short text, Python vs Matlab code
 examples, experimental vs mature content.</li>
-<li>Compared to related tools, foremost Sphinx and Markdown, Doconce
+<li>Doconce can be converted to plain <em>untagged</em> text,
+often desirable for email and computer code documentation.</li>
+<li>Doconce markup does include tags, so the format is more tagged than
+Markdown, but less than reST, and very much less than
+LaTeX and HTML.</li>
+<li>Compared to the related tools Sphinx and Markdown, Doconce
 allows more types of equations (especially systems of
 equations with references), has more flexible
 inclusion of source code, integrates preprocessors, has

@@ -34531,8 +34531,6 @@ Mercurial (`hg`) directories, go to the directory, run
 
 
 ************** File: ../_what_is.do.txt *****************
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -34552,31 +34550,27 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  * Doconce has strong support for *text with computer source code and
+  * Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
-  * Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-  * Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-  * Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  * Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  * Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
   * Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
     as part of the text. This feature makes it easy to write one text
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+  * Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+  * Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -35437,7 +35431,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 27 Jan 2013 (16:49)</center>
+<center>Wed, 30 Jan 2013 (23:43)</center>
 
 
 
@@ -35568,7 +35562,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 27 Jan 2013 (16:49)</center>
+<center>Wed, 30 Jan 2013 (23:43)</center>
 
 
 
@@ -38061,9 +38055,6 @@ $$
 
 <h2>What Is Doconce? <a name="what:is:doconce"></a></h2>
 <p>
-Doconce is two things:
-
-<p>
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -38087,31 +38078,27 @@ Here are some Doconce features:
 <p>
 
 <ul>
-  <li> Doconce has strong support for <em>text with computer source code and
+  <li> Doconce has very strong support for <em>text with computer source code and
     LaTeX mathematics</em> in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.</li>
-  <li> Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.</li>
-  <li> Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.</li>
-  <li> Doconce can be converted to plain <em>untagged</em> text,
-    often desirable for computer code and email.</li>
+  <li> Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.</li>
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.</li>
-  <li> Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.</li>
   <li> Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
     as part of the text. This feature makes it easy to write one text
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.</li>
-  <li> Compared to related tools, foremost Sphinx and Markdown, Doconce
+  <li> Doconce can be converted to plain <em>untagged</em> text,
+    often desirable for email and computer code documentation.</li>
+  <li> Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.</li>
+  <li> Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -42088,8 +42075,6 @@ Jan 32, 2100
 \label{what:is:doconce}
 \index{doconce!short explanation}
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -42110,30 +42095,18 @@ etc.  The slogan is: "Write once, include anywhere".
 Here are some Doconce features:
 
 \begin{itemize}
-  \item Doconce has strong support for \emph{text with computer source code and
+  \item Doconce has very strong support for \emph{text with computer source code and
     {\LaTeX} mathematics} in the formats {\LaTeX}, \textsc{pdf}{\LaTeX}, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
-  \item Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-
-  \item Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    {\LaTeX} and HTML.
-
-  \item Doconce can be converted to plain \emph{untagged} text,
-    often desirable for computer code and email.
+  \item Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
 
   \item Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-
-  \item Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as {\LaTeX}, Sphinx, HTML, MediaWiki, and
-    Google wiki.
 
   \item Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
@@ -42141,7 +42114,14 @@ Here are some Doconce features:
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
-  \item Compared to related tools, foremost Sphinx and Markdown, Doconce
+  \item Doconce can be converted to plain \emph{untagged} text,
+    often desirable for email and computer code documentation.
+
+  \item Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    {\LaTeX} and HTML.
+
+  \item Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -45249,8 +45229,6 @@ Doconce Description
 What Is Doconce?
 ================
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -45270,30 +45248,18 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  * Doconce has strong support for *text with computer source code and
+  * Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
-  * Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-
-  * Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-
-  * Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  * Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-
-  * Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
@@ -45301,7 +45267,14 @@ Here are some Doconce features:
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+  * Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+
+  * Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -48622,8 +48595,6 @@ What Is Doconce?
    single: doconce; short explanation
 
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -48643,30 +48614,18 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  * Doconce has strong support for *text with computer source code and
+  * Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
-  * Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-
-  * Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-
-  * Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  * Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-
-  * Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
@@ -48674,7 +48633,14 @@ Here are some Doconce features:
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+  * Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+
+  * Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -52284,8 +52250,6 @@ By *Hans Petter Langtangen*
 
 == What Is Doconce? ==
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -52306,14 +52270,13 @@ etc.  The slogan is: "Write once, include anywhere".
 Here are some Doconce features:
 
 
-  * Doconce has strong support for *text with computer source code and    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. One piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
-  * Doconce targets scientific papers and reports, thesis, large book    projects, software manuals, memos, as well as blogs and wikis with    math and code content.
-  * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
-  * Doconce can be converted to plain *untagged* text,    often desirable for computer code and email.
+  * Doconce has very strong support for *text with computer source code and    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. A piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
+  * Doconce targets in particular large book projects where many different    pieces of text and software can be assembled and published in different    formats for different devices.
   * Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.
-  * Doconce is almost self-explanatory and fast to write. The tools    can be used for handy generation of more verbose and complicated    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and    Google wiki.
   * Doconce first runs two preprocessors (Preprocess and Mako), which    allows programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write one text    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
+  * Doconce can be converted to plain *untagged* text,    often desirable for email and computer code documentation.
+  * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
+  * Compared to the related tools Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
 
 *History.* Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
@@ -55259,8 +55222,6 @@ By '''Hans Petter Langtangen'''
 
 == What Is Doconce? ==
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -55282,31 +55243,27 @@ Here are some Doconce features:
 
 
 <ul>
-  <li> Doconce has strong support for ''text with computer source code and
+  <li> Doconce has very strong support for ''text with computer source code and
     LaTeX mathematics'' in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
-  <li> Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-  <li> Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-  <li> Doconce can be converted to plain ''untagged'' text,
-    often desirable for computer code and email.
+  <li> Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  <li> Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
   <li> Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
     as part of the text. This feature makes it easy to write one text
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
-  <li> Compared to related tools, foremost Sphinx and Markdown, Doconce
+  <li> Doconce can be converted to plain ''untagged'' text,
+    often desirable for email and computer code documentation.
+  <li> Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+  <li> Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -58336,8 +58293,6 @@ By **Hans Petter Langtangen**
 
 = What Is Doconce? =
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -58358,14 +58313,13 @@ etc.  The slogan is: "Write once, include anywhere".
 Here are some Doconce features:
 
 
-  * Doconce has strong support for //text with computer source code and    LaTeX mathematics// in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. One piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
-  * Doconce targets scientific papers and reports, thesis, large book    projects, software manuals, memos, as well as blogs and wikis with    math and code content.
-  * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
-  * Doconce can be converted to plain //untagged// text,    often desirable for computer code and email.
+  * Doconce has very strong support for //text with computer source code and    LaTeX mathematics// in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. A piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
+  * Doconce targets in particular large book projects where many different    pieces of text and software can be assembled and published in different    formats for different devices.
   * Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.
-  * Doconce is almost self-explanatory and fast to write. The tools    can be used for handy generation of more verbose and complicated    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and    Google wiki.
   * Doconce first runs two preprocessors (Preprocess and Mako), which    allows programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write one text    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
+  * Doconce can be converted to plain //untagged// text,    often desirable for email and computer code documentation.
+  * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
+  * Compared to the related tools Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
 
 //History.// Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
@@ -61325,8 +61279,6 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 
 What Is Doconce?
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -61346,31 +61298,27 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  - Doconce has strong support for *text with computer source code and
+  - Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
-  - Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-  - Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-  - Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  - Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
   - Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  - Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
   - Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
     as part of the text. This feature makes it easy to write one text
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
-  - Compared to related tools, foremost Sphinx and Markdown, Doconce
+  - Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+  - Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+  - Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -64357,8 +64305,6 @@ What Is Doconce?
 ================
 
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -64378,31 +64324,27 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  - Doconce has strong support for I{text with computer source code and
+  - Doconce has very strong support for I{text with computer source code and
     LaTeX mathematics} in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
-  - Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-  - Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-  - Doconce can be converted to plain I{untagged} text,
-    often desirable for computer code and email.
+  - Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
   - Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  - Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
   - Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
     as part of the text. This feature makes it easy to write one text
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
-  - Compared to related tools, foremost Sphinx and Markdown, Doconce
+  - Doconce can be converted to plain I{untagged} text,
+    often desirable for email and computer code documentation.
+  - Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+  - Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -67528,8 +67470,6 @@ What Is Doconce?
 ================
 
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -67549,30 +67489,18 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  * Doconce has strong support for *text with computer source code and
+  * Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
-  * Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-
-  * Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-
-  * Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  * Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-
-  * Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
@@ -67580,7 +67508,14 @@ Here are some Doconce features:
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+  * Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+
+  * Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -70760,8 +70695,6 @@ What Is Doconce?
 ================
 
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -70781,30 +70714,18 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  * Doconce has strong support for *text with computer source code and
+  * Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
-  * Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-
-  * Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-
-  * Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  * Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
 
   * Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-
-  * Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
@@ -70812,7 +70733,14 @@ Here are some Doconce features:
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
-  * Compared to related tools, foremost Sphinx and Markdown, Doconce
+  * Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+
+  * Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
@@ -87785,7 +87713,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178658 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178654 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -87932,7 +87860,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88079,7 +88007,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -88232,7 +88160,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88379,7 +88307,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184766 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -89106,17 +89034,9 @@ No file manual.rst.aux.
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
 
-Overfull \hbox (4.40753pt too wide) 
-\T1/ptm/m/it/10 La-TeX math-e-mat-ics \T1/ptm/m/n/10 in the for-mats La-TeX, pd
-fLa-TeX, Sphinx, HTML,
-
-Overfull \hbox (12.52711pt too wide) 
-[]\T1/ptm/m/n/10 Doconce tar-gets sci-en-tific pa-pers and re-ports, the-sis, l
-arge book projects,
-
-Overfull \hbox (5.77814pt too wide) 
-\T1/ptm/m/n/10 be used for handy gen-er-a-tion of more ver-bose and com-pli-cat
-ed markup
+Overfull \hbox (0.93748pt too wide) 
+\T1/ptm/m/n/10 pre-pro-ces-sors, has spe-cial sup-port for ex-er-cises, and pro
+-duces cleaner
 [1] 
 
 
@@ -89141,14 +89061,14 @@ Overfull \hbox (83.00006pt too wide)
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
-[3]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
-
+[3]
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
@@ -89206,12 +89126,12 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
-[7]
+
 Overfull \hbox (11.29898pt too wide) 
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-
+[7]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
 
@@ -89228,21 +89148,21 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
-t line 840.
+t line 833.
 
 
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-[8]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-
+[8]
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -89263,7 +89183,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-[9]
+
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -89272,7 +89192,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-
+[9]
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -89281,11 +89201,11 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-[10]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-
+[10]
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
@@ -89300,14 +89220,14 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-[11]
+
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-
+[11]
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
@@ -89346,11 +89266,11 @@ imula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-[16]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-
+[16]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
@@ -89369,13 +89289,13 @@ itten).
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-<figs/streamtubes.eps> [18]
+<figs/streamtubes.eps>
 Overfull \hbox (11.00006pt too wide) 
 \T1/pcr/m/n/10 montage -background white -geometry 100% -tile 2x \  
-
+[18]
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-[19]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
@@ -89391,26 +89311,26 @@ Overfull \hbox (131.00006pt too wide)
 []\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 he
 ight=315] 
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 20 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 19 un
 defined on 
 
-
+[19]
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-[20]
+
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
-
+[20]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 Overfull \hbox (22.65768pt too wide) 
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
-[21]
+
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
@@ -89421,6 +89341,7 @@ tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
+[21]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 22 undef
 ined on 
@@ -89429,14 +89350,14 @@ ined on
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 22 undef
 ined on 
 
-[22]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id2' on page 23 
+LaTeX Warning: Hyper reference `id2' on page 22 
 
 
 Overfull \hbox (89.00006pt too wide) 
@@ -89446,27 +89367,26 @@ g.
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-
+[22]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-[23]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 217
-5.
+LaTeX Warning: Hyper reference `fig-viz' on page 23 undefined on input line 216
+8.
 
 
-LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
+LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 23 u
 ndefined on 
 
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
-ut line 2177.
+LaTeX Warning: Hyper reference `macros-newcommands' on page 23 undefined on inp
+ut line 2170.
 
 
-LaTeX Warning: Hyper reference `id2' on page 24 
+LaTeX Warning: Hyper reference `id2' on page 23 
 
-
+[23]
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
 
@@ -89479,7 +89399,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 the document "A Document for Testing Doconce": "testdoc.html" 
  
-[24]
+
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
 
@@ -89517,11 +89437,11 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 @testdoc:12, Doconce documents may include movies. 
-
+[24]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-[25]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
@@ -89531,11 +89451,11 @@ es*.
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-
+[25]
 Overfull \hbox (7.29897pt too wide) 
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
-[26]
+
 Overfull \hbox (13.43625pt too wide) 
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
@@ -89543,7 +89463,7 @@ Overfull \hbox (13.43625pt too wide)
 Overfull \hbox (24.53633pt too wide) 
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[27]
+[26]
 Overfull \hbox (35.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 
@@ -89556,7 +89476,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
-[28]
+[27]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -89574,18 +89494,18 @@ Overfull \hbox (11.27908pt too wide)
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
-[29]
+[28]
 Overfull \hbox (12.78633pt too wide) 
 []\T1/ptm/m/it/10 Remark. \T1/ptm/m/n/10 Ex-am-ples are \T1/ptm/m/it/10 not \T1
 /ptm/m/n/10 type-set sim-i-larly to ex-er-cises un-less one adds the command-
-[30]
+[29]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[31]
+[30]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[32] [33]
+[31] [32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -89612,7 +89532,7 @@ Overfull \hbox (3.0pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-[34]
+[33]
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -89624,52 +89544,52 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-
+[34]
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-[35]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[36]
+[35]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 37 undef
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 36 undef
 ined on 
 
-[37]
+[36]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[38]
+[37]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[39]
+[38]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-
+[39]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-[40]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[41]
+[40]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 42 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 41 un
 defined on 
 
-[42] [43]
+[41] [42]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -89677,11 +89597,11 @@ n.
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-
+[43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -89702,7 +89622,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -89710,7 +89630,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-[45]
+
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -89720,15 +89640,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[46]
+[45] [46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-[47]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[48]
+[47]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -89747,7 +89667,7 @@ nt).
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[49] [50] (./manual.rst.aux)
+[48] [49] (./manual.rst.aux)
 
 Package rerunfilecheck Warning: File `manual.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -89761,7 +89681,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (50 pages, ).
+Output written on manual.rst.dvi (49 pages, ).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -89822,17 +89742,9 @@ Package hyperref Message: Driver (default): hdvips.
 
 (./manual.rst.out) (./manual.rst.out)
 
-Overfull \hbox (4.40753pt too wide) 
-\T1/ptm/m/it/10 La-TeX math-e-mat-ics \T1/ptm/m/n/10 in the for-mats La-TeX, pd
-fLa-TeX, Sphinx, HTML,
-
-Overfull \hbox (12.52711pt too wide) 
-[]\T1/ptm/m/n/10 Doconce tar-gets sci-en-tific pa-pers and re-ports, the-sis, l
-arge book projects,
-
-Overfull \hbox (5.77814pt too wide) 
-\T1/ptm/m/n/10 be used for handy gen-er-a-tion of more ver-bose and com-pli-cat
-ed markup
+Overfull \hbox (0.93748pt too wide) 
+\T1/ptm/m/n/10 pre-pro-ces-sors, has spe-cial sup-port for ex-er-cises, and pro
+-duces cleaner
 [1] 
 
 
@@ -89857,14 +89769,14 @@ Overfull \hbox (83.00006pt too wide)
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
-[3]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
-
+[3]
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
@@ -89922,12 +89834,12 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
-[7]
+
 Overfull \hbox (11.29898pt too wide) 
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-
+[7]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
 
@@ -89947,14 +89859,14 @@ Overfull \hbox (78.51936pt too wide)
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-[8]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-
+[8]
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -89975,7 +89887,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-[9]
+
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -89984,7 +89896,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-
+[9]
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -89993,11 +89905,11 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-[10]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-
+[10]
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
@@ -90012,14 +89924,14 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-[11]
+
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-
+[11]
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
@@ -90058,11 +89970,11 @@ imula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
-[16]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-
+[16]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
@@ -90081,13 +89993,13 @@ itten).
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-<figs/streamtubes.eps> [18]
+<figs/streamtubes.eps>
 Overfull \hbox (11.00006pt too wide) 
 \T1/pcr/m/n/10 montage -background white -geometry 100% -tile 2x \  
-
+[18]
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-[19]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
@@ -90106,23 +90018,23 @@ ight=315]
 Overfull \hbox (69.25586pt too wide) 
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
-
+[19]
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-[20]
+
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
-
+[20]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 Overfull \hbox (22.65768pt too wide) 
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
-[21]
+
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
@@ -90133,11 +90045,11 @@ tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
-
+[21]
 Overfull \hbox (3.53781pt too wide) 
 \T1/ptm/m/n/10 ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 (see t
 he sec-tion [][][][][][]
-[22]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
@@ -90155,18 +90067,18 @@ g.
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-
+[22]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-[23]
+
 Overfull \hbox (21.44621pt too wide) 
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
 Overfull \hbox (27.01674pt too wide) 
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
-
+[23]
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
 
@@ -90182,7 +90094,7 @@ Overfull \hbox (71.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
-[24]
+
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \href{{http://code.google.com/p/doconce/source/browse/test/tes
 tdoc.do.txt}}{Langtangen, 2012}  
@@ -90217,11 +90129,11 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 @testdoc:12, Doconce documents may include movies. 
-
+[24]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-[25]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
@@ -90231,11 +90143,11 @@ es*.
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-
+[25]
 Overfull \hbox (7.29897pt too wide) 
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
-[26]
+
 Overfull \hbox (13.43625pt too wide) 
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
@@ -90243,10 +90155,10 @@ Overfull \hbox (13.43625pt too wide)
 Overfull \hbox (24.53633pt too wide) 
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-
+[26]
 Overfull \hbox (35.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[27]
+
 Overfull \hbox (21.27702pt too wide) 
 []\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
  al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
@@ -90256,7 +90168,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
-[28]
+[27]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -90274,18 +90186,18 @@ Overfull \hbox (11.27908pt too wide)
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
-[29]
+[28]
 Overfull \hbox (12.78633pt too wide) 
 []\T1/ptm/m/it/10 Remark. \T1/ptm/m/n/10 Ex-am-ples are \T1/ptm/m/it/10 not \T1
 /ptm/m/n/10 type-set sim-i-larly to ex-er-cises un-less one adds the command-
-[30]
+[29]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[31]
+[30]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[32]
+[31] [32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -90293,7 +90205,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-[33]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -90312,7 +90224,7 @@ Overfull \hbox (3.0pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-[34]
+[33]
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -90324,43 +90236,43 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-
+[34]
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-[35]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-
+[35]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
-[36] [37]
+[36]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[38]
+[37]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[39]
+[38]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-
+[39]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-[40]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[41] [42] [43]
+[40] [41] [42]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -90368,11 +90280,11 @@ n.
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-
+[43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -90393,7 +90305,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -90401,7 +90313,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-[45]
+
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -90411,15 +90323,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[46]
+[45] [46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-[47]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-
+[47]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -90434,17 +90346,13 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
-[48]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[49] [50] (./manual.rst.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+[48] [49] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (50 pages, ).
+Output written on manual.rst.dvi (49 pages, ).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -90679,6 +90587,10 @@ No file manual.aux.
 
  [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
@@ -90746,7 +90658,7 @@ Overfull \hbox (4.1082pt too wide)
 <use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1456.
+ne 1449.
 
 
 Overfull \hbox (42.0102pt too wide) 
@@ -90760,16 +90672,16 @@ Overfull \hbox (4.68658pt too wide)
 [22 <./latex_figs/notice.pdf>]
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-619.
+612.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-623.
+616.
 
 [23]
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-55.
+48.
 
 [24]
 
@@ -90794,19 +90706,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
-17.
+10.
 
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-891.
+884.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-892.
+885.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -90852,12 +90764,12 @@ Overfull \hbox (1.76395pt too wide)
 [37]
 
 LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
-547.
+540.
 
 [38] [39] [40] [41] [42]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2831.
+ne 2824.
 
 [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
@@ -91084,6 +90996,10 @@ Writing index file manual.idx
 
  [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
@@ -91160,14 +91076,14 @@ nces for (sub)sections,
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-891.
+884.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-892.
+885.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -91419,6 +91335,10 @@ Writing index file manual.idx
 
  [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
@@ -91768,6 +91688,10 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 
 
  [1]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
@@ -92066,6 +91990,10 @@ Writing index file manual.idx
 
 
  [1]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
@@ -92376,6 +92304,10 @@ Writing index file manual.idx
 
 
  [1]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
@@ -92674,6 +92606,10 @@ Writing index file manual.idx
 
 
  [1]
+Overfull \hbox (3.88658pt too wide) 
+\OT1/phv/m/n/10 more types of equa-tions (es-pe-cially sys-tems of equa-tions w
+ith ref-er-ences),
+
 Overfull \hbox (2.74654pt too wide) 
  []\OT1/phv/b/n/10 History.[] \OT1/phv/m/n/10 Do-conce was de-vel-oped in 2006 
 at a time when most pop-u-lar markup
