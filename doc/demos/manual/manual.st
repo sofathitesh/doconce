@@ -3,8 +3,6 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 
 What Is Doconce?
 
-Doconce is two things:
-
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
@@ -24,31 +22,27 @@ etc.  The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
 
-  - Doconce has strong support for *text with computer source code and
+  - Doconce has very strong support for *text with computer source code and
     LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
-  - Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-  - Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    LaTeX and HTML.
-  - Doconce can be converted to plain *untagged* text,
-    often desirable for computer code and email.
+  - Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
   - Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-  - Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as LaTeX, Sphinx, HTML, MediaWiki, and
-    Google wiki.
   - Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
     as part of the text. This feature makes it easy to write one text
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
-  - Compared to related tools, foremost Sphinx and Markdown, Doconce
+  - Doconce can be converted to plain *untagged* text,
+    often desirable for email and computer code documentation.
+  - Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    LaTeX and HTML.
+  - Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
