@@ -205,13 +205,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jan 30, 2013}
+\date{Jan 31, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jan 30, 2013}}
+{\large\textsf{Jan 31, 2013}}
 
 \end{center}
 \vfill
@@ -220,7 +220,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Jan 30, 2013
+Jan 31, 2013
 \end{center}
 
 \vspace{1cm}
@@ -643,7 +643,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 \subsection{Blogs}
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
+raw HTML code. Google's Blogger service (\code{blogger.com} or
+\code{blogname.blogspot.com})
 is particularly well suited since it also allows extensive {\LaTeX} mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -797,6 +798,14 @@ Preprocessor variables to be defined or undefined are
 \end{itemize}
 
 \noindent
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option \code{--latex-preamble=myfile}.
+In case \code{myfile} contains a documentclass definition, Doconce assumes
+that the file contains the \emph{complete} preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in \code{myfile}). Otherwise, \code{myfile} is assumed to contain
+\emph{additional} {\LaTeX} code to be added to the Doconce default preamble.
+
 The \code{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
 documents. After any \code{!bc} command in the Doconce source you can

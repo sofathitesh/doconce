@@ -106,7 +106,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Jan 30, 2013
+Jan 31, 2013
 \end{center}
 
 \vspace{1cm}
@@ -553,7 +553,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 \subsection{Blogs}
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service ({\fontsize{10pt}{10pt}\Verb!blogname.blogspot.com!})
+raw HTML code. Google's Blogger service ({\fontsize{10pt}{10pt}\Verb!blogger.com!} or
+{\fontsize{10pt}{10pt}\Verb!blogname.blogspot.com!})
 is particularly well suited since it also allows extensive {\LaTeX} mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -722,6 +723,14 @@ Preprocessor variables to be defined or undefined are
 \end{itemize}
 
 \noindent
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option {\fontsize{10pt}{10pt}\Verb!--latex-preamble=myfile!}.
+In case {\fontsize{10pt}{10pt}\Verb!myfile!} contains a documentclass definition, Doconce assumes
+that the file contains the \emph{complete} preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in {\fontsize{10pt}{10pt}\Verb!myfile!}). Otherwise, {\fontsize{10pt}{10pt}\Verb!myfile!} is assumed to contain
+\emph{additional} {\LaTeX} code to be added to the Doconce default preamble.
+
 The {\fontsize{10pt}{10pt}\Verb!ptex2tex!} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
 documents. After any {\fontsize{10pt}{10pt}\Verb!!bc!} command in the Doconce source you can

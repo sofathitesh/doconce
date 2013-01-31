@@ -9,7 +9,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Jan 30, 2013
+:Date: Jan 31, 2013
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -434,7 +434,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+raw HTML code. Google's Blogger service (``blogger.com`` or
+``blogname.blogspot.com``)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -588,6 +589,14 @@ Preprocessor variables to be defined or undefined are
 
  * ``MINTED`` for inclusion of the minted package (which requires ``latex``
    or ``pdflatex`` to be run with the ``-shell-escape`` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option ``--latex-preamble=myfile``.
+In case ``myfile`` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in ``myfile``). Otherwise, ``myfile`` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

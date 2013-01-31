@@ -4,7 +4,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Jan 30, 2013 ====
+==== Jan 31, 2013 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult
@@ -390,7 +390,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 ==== Blogs ====
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
+raw HTML code. Google's Blogger service (<code>blogger.com</code> or
+<code>blogname.blogspot.com</code>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -527,6 +528,14 @@ Preprocessor variables to be defined or undefined are
  <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
    or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)
 </ul>
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option <code>--latex-preamble=myfile</code>.
+In case <code>myfile</code> contains a documentclass definition, Doconce assumes
+that the file contains the ''complete'' preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in <code>myfile</code>). Otherwise, <code>myfile</code> is assumed to contain
+''additional'' LaTeX code to be added to the Doconce default preamble.
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

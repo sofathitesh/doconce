@@ -21321,7 +21321,8 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <h3>Blogs  <a name="___sec8"></a></h3>
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
+raw HTML code. Google's Blogger service (<tt>blogger.com</tt> or
+<tt>blogname.blogspot.com</tt>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -21500,6 +21501,15 @@ Preprocessor variables to be defined or undefined are
    or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)</li>
 </ul>
 
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option <tt>--latex-preamble=myfile</tt>.
+In case <tt>myfile</tt> contains a documentclass definition, Doconce assumes
+that the file contains the <em>complete</em> preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in <tt>myfile</tt>). Otherwise, <tt>myfile</tt> is assumed to contain
+<em>additional</em> LaTeX code to be added to the Doconce default preamble.
+
+<p>
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt>!bc</tt> command in the Doconce source you can
@@ -22928,7 +22938,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 \subsection{Blogs}
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
+raw HTML code. Google's Blogger service (\code{blogger.com} or
+\code{blogname.blogspot.com})
 is particularly well suited since it also allows extensive {\LaTeX} mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -23082,6 +23093,14 @@ Preprocessor variables to be defined or undefined are
 \end{itemize}
 
 \noindent
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option \code{--latex-preamble=myfile}.
+In case \code{myfile} contains a documentclass definition, Doconce assumes
+that the file contains the \emph{complete} preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in \code{myfile}). Otherwise, \code{myfile} is assumed to contain
+\emph{additional} {\LaTeX} code to be added to the Doconce default preamble.
+
 The \code{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
 documents. After any \code{!bc} command in the Doconce source you can
@@ -24141,7 +24160,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+raw HTML code. Google's Blogger service (``blogger.com`` or
+``blogname.blogspot.com``)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -24295,6 +24315,14 @@ Preprocessor variables to be defined or undefined are
 
  * ``MINTED`` for inclusion of the minted package (which requires ``latex``
    or ``pdflatex`` to be run with the ``-shell-escape`` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option ``--latex-preamble=myfile``.
+In case ``myfile`` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in ``myfile``). Otherwise, ``myfile`` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -25426,7 +25454,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+raw HTML code. Google's Blogger service (``blogger.com`` or
+``blogname.blogspot.com``)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -25588,6 +25617,14 @@ Preprocessor variables to be defined or undefined are
 
  * ``MINTED`` for inclusion of the minted package (which requires ``latex``
    or ``pdflatex`` to be run with the ``-shell-escape`` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option ``--latex-preamble=myfile``.
+In case ``myfile`` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in ``myfile``). Otherwise, ``myfile`` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -26659,7 +26696,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 ==== Blogs ====
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+raw HTML code. Google's Blogger service (`blogger.com` or
+`blogname.blogspot.com`)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -26790,6 +26828,14 @@ Preprocessor variables to be defined or undefined are
  * `MOVIE15` for using the movie15 LaTeX package to display movies
  * `PREAMBLE` to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere)
  * `MINTED` for inclusion of the minted package (which requires `latex`   or `pdflatex` to be run with the `-shell-escape` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option `--latex-preamble=myfile`.
+In case `myfile` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in `myfile`). Otherwise, `myfile` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -27794,7 +27840,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 ==== Blogs ====
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
+raw HTML code. Google's Blogger service (<code>blogger.com</code> or
+<code>blogname.blogspot.com</code>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -27931,6 +27978,14 @@ Preprocessor variables to be defined or undefined are
  <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
    or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)
 </ul>
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option <code>--latex-preamble=myfile</code>.
+In case <code>myfile</code> contains a documentclass definition, Doconce assumes
+that the file contains the ''complete'' preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in <code>myfile</code>). Otherwise, <code>myfile</code> is assumed to contain
+''additional'' LaTeX code to be added to the Doconce default preamble.
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -28914,7 +28969,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 == Blogs ==
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service ({{{blogname.blogspot.com}}})
+raw HTML code. Google's Blogger service ({{{blogger.com}}} or
+{{{blogname.blogspot.com}}})
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -29047,6 +29103,14 @@ Preprocessor variables to be defined or undefined are
  * {{{MOVIE15}}} for using the movie15 LaTeX package to display movies
  * {{{PREAMBLE}}} to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere)
  * {{{MINTED}}} for inclusion of the minted package (which requires {{{latex}}}   or {{{pdflatex}}} to be run with the {{{-shell-escape}}} option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option {{{--latex-preamble=myfile}}}.
+In case {{{myfile}}} contains a documentclass definition, Doconce assumes
+that the file contains the //complete// preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in {{{myfile}}}). Otherwise, {{{myfile}}} is assumed to contain
+//additional// LaTeX code to be added to the Doconce default preamble.
 
 The {{{ptex2tex}}} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -30041,7 +30105,8 @@ by '%(main)s'. Here is an example::
 Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service ('blogname.blogspot.com')
+raw HTML code. Google's Blogger service ('blogger.com' or
+'blogname.blogspot.com')
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -30179,6 +30244,14 @@ Preprocessor variables to be defined or undefined are
    or document to be included elsewhere)
  - 'MINTED' for inclusion of the minted package (which requires 'latex'
    or 'pdflatex' to be run with the '-shell-escape' option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option '--latex-preamble=myfile'.
+In case 'myfile' contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in 'myfile'). Otherwise, 'myfile' is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The 'ptex2tex' tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -31209,7 +31282,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (C{blogname.blogspot.com})
+raw HTML code. Google's Blogger service (C{blogger.com} or
+C{blogname.blogspot.com})
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -31350,6 +31424,14 @@ Preprocessor variables to be defined or undefined are
    or document to be included elsewhere)
  - C{MINTED} for inclusion of the minted package (which requires C{latex}
    or C{pdflatex} to be run with the C{-shell-escape} option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option C{--latex-preamble=myfile}.
+In case C{myfile} contains a documentclass definition, Doconce assumes
+that the file contains the I{complete} preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in C{myfile}). Otherwise, C{myfile} is assumed to contain
+I{additional} LaTeX code to be added to the Doconce default preamble.
 
 The C{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -32427,7 +32509,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (blogname.blogspot.com)
+raw HTML code. Google's Blogger service (blogger.com or
+blogname.blogspot.com)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -32575,6 +32658,14 @@ Preprocessor variables to be defined or undefined are
 
  * MINTED for inclusion of the minted package (which requires latex
    or pdflatex to be run with the -shell-escape option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option --latex-preamble=myfile.
+In case myfile contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in myfile). Otherwise, myfile is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ptex2tex tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -33675,7 +33766,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+raw HTML code. Google's Blogger service (`blogger.com` or
+`blogname.blogspot.com`)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -33833,6 +33925,14 @@ Preprocessor variables to be defined or undefined are
 
  * `MINTED` for inclusion of the minted package (which requires `latex`
    or `pdflatex` to be run with the `-shell-escape` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option `--latex-preamble=myfile`.
+In case `myfile` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in `myfile`). Otherwise, `myfile` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -34535,9 +34635,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -34546,23 +34646,28 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  * Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  * Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
   * Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
-  * Doconce has good support for copying in parts of computer code
+  * Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+  * Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
   * Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
   * Doconce can be converted to plain *untagged* text,
@@ -34708,7 +34813,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 ===== Blogs =====
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+raw HTML code. Google's Blogger service (`blogger.com` or
+`blogname.blogspot.com`)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -34842,6 +34948,14 @@ Preprocessor variables to be defined or undefined are
    or document to be included elsewhere)
  * `MINTED` for inclusion of the minted package (which requires `latex`
    or `pdflatex` to be run with the `-shell-escape` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option `--latex-preamble=myfile`.
+In case `myfile` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in `myfile`). Otherwise, `myfile` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -35431,7 +35545,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 30 Jan 2013 (23:43)</center>
+<center>Thu, 31 Jan 2013 (15:01)</center>
 
 
 
@@ -35562,7 +35676,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 30 Jan 2013 (23:43)</center>
+<center>Thu, 31 Jan 2013 (15:01)</center>
 
 
 
@@ -38059,9 +38173,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 <p>
@@ -38072,25 +38186,31 @@ manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
 <p>
-
 Here are some Doconce features:
 
 <p>
 
 <ul>
-  <li> Doconce has very strong support for <em>text with computer source code and
-    LaTeX mathematics</em> in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  <li> Doconce addresses small and large documents containing
+    <em>text with much computer source code and
+    LaTeX mathematics</em>, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.</li>
   <li> Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.</li>
-  <li> Doconce has good support for copying in parts of computer code
+  <li> Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.</li>
+  <li> Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.</li>
   <li> Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write <em>one text</em>
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.</li>
   <li> Doconce can be converted to plain <em>untagged</em> text,
@@ -38609,7 +38729,8 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <h3>Blogs  <a name="___sec16"></a></h3>
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
+raw HTML code. Google's Blogger service (<tt>blogger.com</tt> or
+<tt>blogname.blogspot.com</tt>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -38788,6 +38909,15 @@ Preprocessor variables to be defined or undefined are
    or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)</li>
 </ul>
 
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option <tt>--latex-preamble=myfile</tt>.
+In case <tt>myfile</tt> contains a documentclass definition, Doconce assumes
+that the file contains the <em>complete</em> preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in <tt>myfile</tt>). Otherwise, <tt>myfile</tt> is assumed to contain
+<em>additional</em> LaTeX code to be added to the Doconce default preamble.
+
+<p>
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt>!bc</tt> command in the Doconce source you can
@@ -42079,9 +42209,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, {\LaTeX}, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, {\LaTeX}, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -42090,27 +42220,33 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
 \begin{itemize}
-  \item Doconce has very strong support for \emph{text with computer source code and
-    {\LaTeX} mathematics} in the formats {\LaTeX}, \textsc{pdf}{\LaTeX}, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  \item Doconce addresses small and large documents containing
+    \emph{text with much computer source code and
+    {\LaTeX} mathematics}, where the output is desired in different formats
+    such as {\LaTeX}, \textsc{pdf}{\LaTeX}, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
   \item Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
 
-  \item Doconce has good support for copying in parts of computer code
+  \item Doconce enables authors who write for many times of media
+    (blogs, wikis, {\LaTeX} manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+
+  \item Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
   \item Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write \emph{one text}
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
@@ -42508,7 +42644,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 \subsection{Blogs}
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
+raw HTML code. Google's Blogger service (\code{blogger.com} or
+\code{blogname.blogspot.com})
 is particularly well suited since it also allows extensive {\LaTeX} mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -42662,6 +42799,14 @@ Preprocessor variables to be defined or undefined are
 \end{itemize}
 
 \noindent
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option \code{--latex-preamble=myfile}.
+In case \code{myfile} contains a documentclass definition, Doconce assumes
+that the file contains the \emph{complete} preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in \code{myfile}). Otherwise, \code{myfile} is assumed to contain
+\emph{additional} {\LaTeX} code to be added to the Doconce default preamble.
+
 The \code{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
 documents. After any \code{!bc} command in the Doconce source you can
@@ -45233,9 +45378,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -45244,26 +45389,32 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  * Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  * Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
   * Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
 
-  * Doconce has good support for copying in parts of computer code
+  * Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+
+  * Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
@@ -45710,7 +45861,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+raw HTML code. Google's Blogger service (``blogger.com`` or
+``blogname.blogspot.com``)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -45864,6 +46016,14 @@ Preprocessor variables to be defined or undefined are
 
  * ``MINTED`` for inclusion of the minted package (which requires ``latex``
    or ``pdflatex`` to be run with the ``-shell-escape`` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option ``--latex-preamble=myfile``.
+In case ``myfile`` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in ``myfile``). Otherwise, ``myfile`` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -48599,9 +48759,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -48610,26 +48770,32 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  * Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  * Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
   * Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
 
-  * Doconce has good support for copying in parts of computer code
+  * Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+
+  * Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
@@ -49121,7 +49287,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+raw HTML code. Google's Blogger service (``blogger.com`` or
+``blogname.blogspot.com``)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -49283,6 +49450,14 @@ Preprocessor variables to be defined or undefined are
 
  * ``MINTED`` for inclusion of the minted package (which requires ``latex``
    or ``pdflatex`` to be run with the ``-shell-escape`` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option ``--latex-preamble=myfile``.
+In case ``myfile`` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in ``myfile``). Otherwise, ``myfile`` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -52254,9 +52429,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -52265,15 +52440,14 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
 
-  * Doconce has very strong support for *text with computer source code and    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. A piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
+  * Doconce addresses small and large documents containing    *text with much computer source code and    LaTeX mathematics*, where the output is desired in different formats    such as LaTeX, pdfLaTeX, Sphinx, HTML,    MediaWiki, blogger.com, and wordpress.com.    A piece of Doconce text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
   * Doconce targets in particular large book projects where many different    pieces of text and software can be assembled and published in different    formats for different devices.
-  * Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.
-  * Doconce first runs two preprocessors (Preprocess and Mako), which    allows programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write one text    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
+  * Doconce enables authors who write for many times of media    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common    source language such that lots of different pieces can easily be    brought together later to form a coherent (big) document.
+  * Doconce has good support for copying computer code    directly from the source code files via regular expressions    for the start and end lines.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which    allow programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write *one text*    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
   * Doconce can be converted to plain *untagged* text,    often desirable for email and computer code documentation.
   * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
   * Compared to the related tools Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
@@ -52658,7 +52832,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 ==== Blogs ====
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+raw HTML code. Google's Blogger service (`blogger.com` or
+`blogname.blogspot.com`)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -52789,6 +52964,14 @@ Preprocessor variables to be defined or undefined are
  * `MOVIE15` for using the movie15 LaTeX package to display movies
  * `PREAMBLE` to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere)
  * `MINTED` for inclusion of the minted package (which requires `latex`   or `pdflatex` to be run with the `-shell-escape` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option `--latex-preamble=myfile`.
+In case `myfile` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in `myfile`). Otherwise, `myfile` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -55226,9 +55409,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -55237,25 +55420,30 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
 
 <ul>
-  <li> Doconce has very strong support for ''text with computer source code and
-    LaTeX mathematics'' in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  <li> Doconce addresses small and large documents containing
+    ''text with much computer source code and
+    LaTeX mathematics'', where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
   <li> Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
-  <li> Doconce has good support for copying in parts of computer code
+  <li> Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+  <li> Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
   <li> Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write ''one text''
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
   <li> Doconce can be converted to plain ''untagged'' text,
@@ -55654,7 +55842,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 ==== Blogs ====
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
+raw HTML code. Google's Blogger service (<code>blogger.com</code> or
+<code>blogname.blogspot.com</code>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -55791,6 +55980,14 @@ Preprocessor variables to be defined or undefined are
  <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
    or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)
 </ul>
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option <code>--latex-preamble=myfile</code>.
+In case <code>myfile</code> contains a documentclass definition, Doconce assumes
+that the file contains the ''complete'' preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in <code>myfile</code>). Otherwise, <code>myfile</code> is assumed to contain
+''additional'' LaTeX code to be added to the Doconce default preamble.
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -58297,9 +58494,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -58308,15 +58505,14 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
 
-  * Doconce has very strong support for //text with computer source code and    LaTeX mathematics// in the formats LaTeX, pdfLaTeX, Sphinx, HTML,    and MediaWiki. A piece of text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
+  * Doconce addresses small and large documents containing    //text with much computer source code and    LaTeX mathematics//, where the output is desired in different formats    such as LaTeX, pdfLaTeX, Sphinx, HTML,    MediaWiki, blogger.com, and wordpress.com.    A piece of Doconce text can enter (e.g.) a classical    science book, an ebook, a web document, and a blog.
   * Doconce targets in particular large book projects where many different    pieces of text and software can be assembled and published in different    formats for different devices.
-  * Doconce has good support for copying in parts of computer code    directly from the source code files via regular expressions    for the start and end lines.
-  * Doconce first runs two preprocessors (Preprocess and Mako), which    allows programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write one text    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
+  * Doconce enables authors who write for many times of media    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common    source language such that lots of different pieces can easily be    brought together later to form a coherent (big) document.
+  * Doconce has good support for copying computer code    directly from the source code files via regular expressions    for the start and end lines.
+  * Doconce first runs two preprocessors (Preprocess and Mako), which    allow programming constructs (includes, if-tests, function calls)    as part of the text. This feature makes it easy to write //one text//    with different flavors: long vs short text, Python vs Matlab code    examples, experimental vs mature content.
   * Doconce can be converted to plain //untagged// text,    often desirable for email and computer code documentation.
   * Doconce markup does include tags, so the format is more tagged than    Markdown, but less than reST, and very much less than    LaTeX and HTML.
   * Compared to the related tools Sphinx and Markdown, Doconce    allows more types of equations (especially systems of    equations with references), has more flexible    inclusion of source code, integrates preprocessors, has    special support for exercises, and produces    cleaner LaTeX and HTML output.
@@ -58708,7 +58904,8 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 == Blogs ==
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service ({{{blogname.blogspot.com}}})
+raw HTML code. Google's Blogger service ({{{blogger.com}}} or
+{{{blogname.blogspot.com}}})
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -58841,6 +59038,14 @@ Preprocessor variables to be defined or undefined are
  * {{{MOVIE15}}} for using the movie15 LaTeX package to display movies
  * {{{PREAMBLE}}} to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere)
  * {{{MINTED}}} for inclusion of the minted package (which requires {{{latex}}}   or {{{pdflatex}}} to be run with the {{{-shell-escape}}} option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option {{{--latex-preamble=myfile}}}.
+In case {{{myfile}}} contains a documentclass definition, Doconce assumes
+that the file contains the //complete// preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in {{{myfile}}}). Otherwise, {{{myfile}}} is assumed to contain
+//additional// LaTeX code to be added to the Doconce default preamble.
 
 The {{{ptex2tex}}} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -61283,9 +61488,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -61294,23 +61499,28 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  - Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  - Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
   - Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
-  - Doconce has good support for copying in parts of computer code
+  - Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+  - Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
   - Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
   - Doconce can be converted to plain *untagged* text,
@@ -61697,7 +61907,8 @@ by '%(main)s'. Here is an example::
 Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service ('blogname.blogspot.com')
+raw HTML code. Google's Blogger service ('blogger.com' or
+'blogname.blogspot.com')
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -61835,6 +62046,14 @@ Preprocessor variables to be defined or undefined are
    or document to be included elsewhere)
  - 'MINTED' for inclusion of the minted package (which requires 'latex'
    or 'pdflatex' to be run with the '-shell-escape' option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option '--latex-preamble=myfile'.
+In case 'myfile' contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in 'myfile'). Otherwise, 'myfile' is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The 'ptex2tex' tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -64309,9 +64528,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -64320,23 +64539,28 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  - Doconce has very strong support for I{text with computer source code and
-    LaTeX mathematics} in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  - Doconce addresses small and large documents containing
+    I{text with much computer source code and
+    LaTeX mathematics}, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
   - Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
-  - Doconce has good support for copying in parts of computer code
+  - Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+  - Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
   - Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write I{one text}
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
   - Doconce can be converted to plain I{untagged} text,
@@ -64751,7 +64975,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (C{blogname.blogspot.com})
+raw HTML code. Google's Blogger service (C{blogger.com} or
+C{blogname.blogspot.com})
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -64892,6 +65117,14 @@ Preprocessor variables to be defined or undefined are
    or document to be included elsewhere)
  - C{MINTED} for inclusion of the minted package (which requires C{latex}
    or C{pdflatex} to be run with the C{-shell-escape} option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option C{--latex-preamble=myfile}.
+In case C{myfile} contains a documentclass definition, Doconce assumes
+that the file contains the I{complete} preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in C{myfile}). Otherwise, C{myfile} is assumed to contain
+I{additional} LaTeX code to be added to the Doconce default preamble.
 
 The C{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -67474,9 +67707,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -67485,26 +67718,32 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  * Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  * Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
   * Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
 
-  * Doconce has good support for copying in parts of computer code
+  * Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+
+  * Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
@@ -67922,7 +68161,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (blogname.blogspot.com)
+raw HTML code. Google's Blogger service (blogger.com or
+blogname.blogspot.com)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -68070,6 +68310,14 @@ Preprocessor variables to be defined or undefined are
 
  * MINTED for inclusion of the minted package (which requires latex
    or pdflatex to be run with the -shell-escape option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option --latex-preamble=myfile.
+In case myfile contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in myfile). Otherwise, myfile is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The ptex2tex tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -70699,9 +70947,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -70710,26 +70958,32 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  * Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  * Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
   * Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
 
-  * Doconce has good support for copying in parts of computer code
+  * Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+
+  * Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
@@ -71191,7 +71445,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+raw HTML code. Google's Blogger service (`blogger.com` or
+`blogname.blogspot.com`)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -71349,6 +71604,14 @@ Preprocessor variables to be defined or undefined are
 
  * `MINTED` for inclusion of the minted package (which requires `latex`
    or `pdflatex` to be run with the `-shell-escape` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option `--latex-preamble=myfile`.
+In case `myfile` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in `myfile`). Otherwise, `myfile` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -87672,7 +87935,7 @@ Underfull \hbox (badness 10000)
 [10]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 11 undefined on i
-nput line 699.
+nput line 700.
 
 
 Underfull \hbox (badness 10000) 
@@ -87713,7 +87976,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 178654 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 179004 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -87860,7 +88123,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88007,7 +88270,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -88160,7 +88423,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88307,7 +88570,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 184770 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -88590,14 +88853,14 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[11]
+
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
@@ -88735,14 +88998,14 @@ output in tutorial.md
 [48 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
-[tutorial.cwiki (plain): 20 pages on 20 sheets]
-[Total: 20 pages on 20 sheets] saved into the file `tutorial.cwiki.ps'
-[63 lines wrapped]
+[tutorial.cwiki (plain): 21 pages on 21 sheets]
+[Total: 21 pages on 21 sheets] saved into the file `tutorial.cwiki.ps'
+[64 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
 [tutorial.mwiki (plain): 22 pages on 22 sheets]
 [Total: 22 pages on 22 sheets] saved into the file `tutorial.mwiki.ps'
-[107 lines wrapped]
+[109 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 23 pages on 23 sheets]
@@ -88750,9 +89013,9 @@ output in tutorial.md
 [9 lines wrapped]
 + ps2pdf tutorial.md.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
-[tutorial.xml (plain): 19 pages on 19 sheets]
-[Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[559 lines wrapped]
+[tutorial.xml (plain): 20 pages on 20 sheets]
+[Total: 20 pages on 20 sheets] saved into the file `tutorial.xml.ps'
+[564 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -89057,7 +89320,7 @@ ge files. For ex-am-ple, PostScript
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
-
+[3]
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
@@ -89068,7 +89331,7 @@ Overfull \hbox (29.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
-[3]
+
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
@@ -89110,7 +89373,7 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (0.13686pt too wide) 
 \T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
 ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
-
+[6]
 Overfull \hbox (50.49731pt too wide) 
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
@@ -89118,11 +89381,11 @@ ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 Overfull \hbox (0.81818pt too wide) 
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
-[6]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-
+[7]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
@@ -89131,7 +89394,7 @@ Overfull \hbox (11.29898pt too wide)
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-[7]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
 
@@ -89148,25 +89411,25 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
-t line 833.
+t line 842.
 
 
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[8]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
-
+[9]
 Overfull \hbox (143.00006pt too wide) 
 []          \T1/pcr/m/n/10 "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\en
 d{quote}" \  
@@ -89192,7 +89455,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-[9]
+
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -89201,11 +89464,11 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[10]
+
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
@@ -89217,7 +89480,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
+[11]
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
 
@@ -89227,11 +89490,11 @@ Overfull \hbox (29.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[11]
+
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-
+[12]
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -89239,15 +89502,15 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12] [13]
+[13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-
+[14]
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[14] [15]
+[15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
@@ -89262,7 +89525,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
-
+[16]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
@@ -89270,7 +89533,7 @@ rspace Inc.
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[16]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
@@ -89289,13 +89552,13 @@ itten).
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-<figs/streamtubes.eps>
+<figs/streamtubes.eps> [18]
 Overfull \hbox (11.00006pt too wide) 
 \T1/pcr/m/n/10 montage -background white -geometry 100% -tile 2x \  
-[18]
+
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-
+[19]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
@@ -89311,26 +89574,26 @@ Overfull \hbox (131.00006pt too wide)
 []\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 he
 ight=315] 
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 19 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 20 un
 defined on 
 
-[19]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-
+[20]
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
-[20]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 Overfull \hbox (22.65768pt too wide) 
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
-
+[21]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
@@ -89341,7 +89604,6 @@ tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
-[21]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 22 undef
 ined on 
@@ -89350,14 +89612,14 @@ ined on
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 22 undef
 ined on 
 
-
+[22]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id2' on page 22 
+LaTeX Warning: Hyper reference `id2' on page 23 
 
 
 Overfull \hbox (89.00006pt too wide) 
@@ -89367,26 +89629,27 @@ g.
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-[22]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
+[23]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 23 undefined on input line 216
-8.
+LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 218
+5.
 
 
-LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 23 u
+LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
 ndefined on 
 
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 23 undefined on inp
-ut line 2170.
+LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
+ut line 2187.
 
 
-LaTeX Warning: Hyper reference `id2' on page 23 
+LaTeX Warning: Hyper reference `id2' on page 24 
 
-[23]
+
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
 
@@ -89399,7 +89662,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 the document "A Document for Testing Doconce": "testdoc.html" 
  
-
+[24]
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
 
@@ -89437,11 +89700,11 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 @testdoc:12, Doconce documents may include movies. 
-[24]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
+[25]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
@@ -89451,11 +89714,11 @@ es*.
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-[25]
+
 Overfull \hbox (7.29897pt too wide) 
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
-
+[26]
 Overfull \hbox (13.43625pt too wide) 
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
@@ -89463,7 +89726,7 @@ Overfull \hbox (13.43625pt too wide)
 Overfull \hbox (24.53633pt too wide) 
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[26]
+[27]
 Overfull \hbox (35.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 
@@ -89476,7 +89739,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
-[27]
+[28]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -89494,18 +89757,18 @@ Overfull \hbox (11.27908pt too wide)
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
-[28]
+[29]
 Overfull \hbox (12.78633pt too wide) 
 []\T1/ptm/m/it/10 Remark. \T1/ptm/m/n/10 Ex-am-ples are \T1/ptm/m/it/10 not \T1
 /ptm/m/n/10 type-set sim-i-larly to ex-er-cises un-less one adds the command-
-[29]
+[30]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[30]
+[31]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[31] [32]
+[32] [33]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -89532,7 +89795,7 @@ Overfull \hbox (3.0pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-[33]
+[34]
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -89544,52 +89807,52 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[34]
+
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
+[35]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[35]
+[36]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 36 undef
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 37 undef
 ined on 
 
-[36]
+[37]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[37]
+[38]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[38]
+[39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-[39]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-
+[40]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[40]
+[41]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 41 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 42 un
 defined on 
 
-[41] [42]
+[42] [43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -89597,11 +89860,11 @@ n.
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[43]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -89622,7 +89885,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -89630,7 +89893,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-
+[45]
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -89640,15 +89903,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[45] [46]
+[46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
+[47]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[47]
+[48]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -89667,7 +89930,7 @@ nt).
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[48] [49] (./manual.rst.aux)
+[49] [50] (./manual.rst.aux)
 
 Package rerunfilecheck Warning: File `manual.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -89681,7 +89944,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (49 pages, ).
+Output written on manual.rst.dvi (50 pages, ).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -89765,7 +90028,7 @@ ge files. For ex-am-ple, PostScript
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
-
+[3]
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
@@ -89776,7 +90039,7 @@ Overfull \hbox (29.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
-[3]
+
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
@@ -89818,7 +90081,7 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (0.13686pt too wide) 
 \T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
 ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
-
+[6]
 Overfull \hbox (50.49731pt too wide) 
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
@@ -89826,11 +90089,11 @@ ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 Overfull \hbox (0.81818pt too wide) 
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
-[6]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-
+[7]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
@@ -89839,7 +90102,7 @@ Overfull \hbox (11.29898pt too wide)
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-[7]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex  
 
@@ -89859,18 +90122,18 @@ Overfull \hbox (78.51936pt too wide)
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[8]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
-
+[9]
 Overfull \hbox (143.00006pt too wide) 
 []          \T1/pcr/m/n/10 "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\en
 d{quote}" \  
@@ -89896,7 +90159,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-[9]
+
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -89905,11 +90168,11 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[10]
+
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
@@ -89921,7 +90184,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
+[11]
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
 
@@ -89931,11 +90194,11 @@ Overfull \hbox (29.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[11]
+
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-
+[12]
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -89943,15 +90206,15 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12] [13]
+[13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-
+[14]
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[14] [15]
+[15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
@@ -89966,7 +90229,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
-
+[16]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
@@ -89974,7 +90237,7 @@ rspace Inc.
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[16]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
@@ -89993,13 +90256,13 @@ itten).
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-<figs/streamtubes.eps>
+<figs/streamtubes.eps> [18]
 Overfull \hbox (11.00006pt too wide) 
 \T1/pcr/m/n/10 montage -background white -geometry 100% -tile 2x \  
-[18]
+
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-
+[19]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
@@ -90018,23 +90281,23 @@ ight=315]
 Overfull \hbox (69.25586pt too wide) 
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
-[19]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-
+[20]
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
-[20]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 Overfull \hbox (22.65768pt too wide) 
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
-
+[21]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
@@ -90045,11 +90308,11 @@ tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
-[21]
+
 Overfull \hbox (3.53781pt too wide) 
 \T1/ptm/m/n/10 ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 (see t
 he sec-tion [][][][][][]
-
+[22]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
@@ -90067,18 +90330,18 @@ g.
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-[22]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-
+[23]
 Overfull \hbox (21.44621pt too wide) 
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
 Overfull \hbox (27.01674pt too wide) 
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
-[23]
+
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
 
@@ -90094,7 +90357,7 @@ Overfull \hbox (71.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
-
+[24]
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \href{{http://code.google.com/p/doconce/source/browse/test/tes
 tdoc.do.txt}}{Langtangen, 2012}  
@@ -90129,11 +90392,11 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 @testdoc:12, Doconce documents may include movies. 
-[24]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
+[25]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
@@ -90143,11 +90406,11 @@ es*.
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-[25]
+
 Overfull \hbox (7.29897pt too wide) 
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
-
+[26]
 Overfull \hbox (13.43625pt too wide) 
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
@@ -90155,10 +90418,10 @@ Overfull \hbox (13.43625pt too wide)
 Overfull \hbox (24.53633pt too wide) 
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[26]
+
 Overfull \hbox (35.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-
+[27]
 Overfull \hbox (21.27702pt too wide) 
 []\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
  al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
@@ -90168,7 +90431,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
-[27]
+[28]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -90186,18 +90449,18 @@ Overfull \hbox (11.27908pt too wide)
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Find a solution to a problem ===== 
-[28]
+[29]
 Overfull \hbox (12.78633pt too wide) 
 []\T1/ptm/m/it/10 Remark. \T1/ptm/m/n/10 Ex-am-ples are \T1/ptm/m/it/10 not \T1
 /ptm/m/n/10 type-set sim-i-larly to ex-er-cises un-less one adds the command-
-[29]
+[30]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[30]
+[31]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[31] [32]
+[32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -90205,7 +90468,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-
+[33]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -90224,7 +90487,7 @@ Overfull \hbox (3.0pt too wide)
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-[33]
+[34]
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -90236,43 +90499,43 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[34]
+
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
+[35]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 \Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}  
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[35]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
-[36]
+[36] [37]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[37]
+[38]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[38]
+[39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-[39]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-
+[40]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[40] [41] [42]
+[41] [42] [43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -90280,11 +90543,11 @@ n.
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[43]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -90305,7 +90568,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -90313,7 +90576,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-
+[45]
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -90323,15 +90586,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[45] [46]
+[46]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
+[47]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[47]
+
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -90346,13 +90609,17 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
-
+[48]
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[48] [49] (./manual.rst.aux) )
+[49] [50] (./manual.rst.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (49 pages, ).
+Output written on manual.rst.dvi (50 pages, ).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -90607,8 +90874,8 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] <latex_figs/warning.pdf, id=73, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [7]
+[6] [7] <latex_figs/warning.pdf, id=80, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -90654,17 +90921,18 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=175, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] [19]
+<figs/streamtubes.png, id=183, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1449.
+ne 1464.
 
 
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=204, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=205, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -90672,16 +90940,16 @@ Overfull \hbox (4.68658pt too wide)
 [22 <./latex_figs/notice.pdf>]
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-612.
+627.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-616.
+631.
 
 [23]
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-48.
+63.
 
 [24]
 
@@ -90706,19 +90974,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
-10.
+25.
 
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-884.
+899.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-885.
+900.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -90764,12 +91032,12 @@ Overfull \hbox (1.76395pt too wide)
 [37]
 
 LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
-540.
+555.
 
 [38] [39] [40] [41] [42]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2824.
+ne 2839.
 
 [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
@@ -91016,8 +91284,8 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] <latex_figs/warning.pdf, id=270, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [7]
+[6] [7] <latex_figs/warning.pdf, id=275, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -91059,12 +91327,13 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=360, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] [19]
+<figs/streamtubes.png, id=366, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=385, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=386, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
@@ -91076,14 +91345,14 @@ nces for (sub)sections,
 [25] [26] [27]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-884.
+899.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-885.
+900.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 28 
@@ -91355,8 +91624,8 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] <latex_figs/warning.pdf, id=270, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [7]
+[6] [7] <latex_figs/warning.pdf, id=275, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -91398,12 +91667,13 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] <figs/streamtubes.png, id=360, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
+[15] [16] [17] [18] [19]
+<figs/streamtubes.png, id=366, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] <latex_figs/notice.pdf, id=385, 89.33376pt x 89.33376pt>
+[21] <latex_figs/notice.pdf, id=386, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 Overfull \hbox (4.68658pt too wide) 
 \OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/

@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Jan 30, 2013
+% Jan 31, 2013
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -14,9 +14,9 @@ Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
 email, but the text can be transformed to numerous other formats,
 including HTML, Sphinx, LaTeX, PDF, reStructuredText (reST), Markdown,
-MediaWiki, Google wiki, Creole wiki, Epytext, and also plain text
-(where non-obvious formatting/tags are removed for clear reading in,
-e.g., emails). From reST or Markdown you can go to XML, OpenOffice, MS
+MediaWiki, Google wiki, Creole wiki, blogger.com, wordpress.com,
+Epytext, and also plain (untagged) text for email.
+From reST or Markdown you can go to XML, OpenOffice, MS
 Word, HTML, LaTeX, PDF, DocBook, GNU Texinfo, and more.
 
 Doconce supports a working strategy of never duplicating information.
@@ -25,26 +25,32 @@ different destinations of diverse type: scientific reports, software
 manuals, books, thesis, software source code, wikis, blogs, emails,
 etc.  The slogan is: "Write once, include anywhere".
 
-
-
 Here are some Doconce features:
 
-  * Doconce has very strong support for *text with computer source code and
-    LaTeX mathematics* in the formats LaTeX, pdfLaTeX, Sphinx, HTML,
-    and MediaWiki. A piece of text can enter (e.g.) a classical
+  * Doconce addresses small and large documents containing
+    *text with much computer source code and
+    LaTeX mathematics*, where the output is desired in different formats
+    such as LaTeX, pdfLaTeX, Sphinx, HTML,
+    MediaWiki, blogger.com, and wordpress.com.
+    A piece of Doconce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
   * Doconce targets in particular large book projects where many different
     pieces of text and software can be assembled and published in different
     formats for different devices.
 
-  * Doconce has good support for copying in parts of computer code
+  * Doconce enables authors who write for many times of media
+    (blogs, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    source language such that lots of different pieces can easily be
+    brought together later to form a coherent (big) document.
+
+  * Doconce has good support for copying computer code
     directly from the source code files via regular expressions
     for the start and end lines.
 
   * Doconce first runs two preprocessors (Preprocess and Mako), which
-    allows programming constructs (includes, if-tests, function calls)
-    as part of the text. This feature makes it easy to write one text
+    allow programming constructs (includes, if-tests, function calls)
+    as part of the text. This feature makes it easy to write *one text*
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
@@ -506,7 +512,8 @@ Blogs
 -----
 
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+raw HTML code. Google's Blogger service (`blogger.com` or
+`blogname.blogspot.com`)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -664,6 +671,14 @@ Preprocessor variables to be defined or undefined are
 
  * `MINTED` for inclusion of the minted package (which requires `latex`
    or `pdflatex` to be run with the `-shell-escape` option)
+
+If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option `--latex-preamble=myfile`.
+In case `myfile` contains a documentclass definition, Doconce assumes
+that the file contains the *complete* preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in `myfile`). Otherwise, `myfile` is assumed to contain
+*additional* LaTeX code to be added to the Doconce default preamble.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

@@ -329,7 +329,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 30, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 31, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -707,7 +707,8 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <div class="section" id="blogs">
 <h2>Blogs</h2>
 <p>Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<tt class="docutils literal">blogname.blogspot.com</tt>)
+raw HTML code. Google's Blogger service (<tt class="docutils literal">blogger.com</tt> or
+<tt class="docutils literal">blogname.blogspot.com</tt>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -834,6 +835,13 @@ or document to be included elsewhere)</li>
 or <tt class="docutils literal">pdflatex</tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option)</li>
 </ul>
 </blockquote>
+<p>If you are not satisfied with the Doconce preamble, you can provide
+your own preamble by adding the command-line option <tt class="docutils literal"><span class="pre">--latex-preamble=myfile</span></tt>.
+In case <tt class="docutils literal">myfile</tt> contains a documentclass definition, Doconce assumes
+that the file contains the <em>complete</em> preamble you want (not that all
+the packages listed in the default preamble are required and must be
+present in <tt class="docutils literal">myfile</tt>). Otherwise, <tt class="docutils literal">myfile</tt> is assumed to contain
+<em>additional</em> LaTeX code to be added to the Doconce default preamble.</p>
 <p>The <tt class="docutils literal">ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal">!bc</tt> command in the Doconce source you can
