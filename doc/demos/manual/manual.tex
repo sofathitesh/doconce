@@ -107,7 +107,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Jan 27, 2013
+Jan 30, 2013
 \end{center}
 
 \vspace{1cm}
@@ -122,8 +122,6 @@ Jan 27, 2013
 
 \label{what:is:doconce}
 \index{doconce!short explanation}
-
-Doconce is two things:
 
 Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text, much like what you would use in an
@@ -145,30 +143,18 @@ etc.  The slogan is: "Write once, include anywhere".
 Here are some Doconce features:
 
 \begin{itemize}
-  \item Doconce has strong support for \emph{text with computer source code and
+  \item Doconce has very strong support for \emph{text with computer source code and
     {\LaTeX} mathematics} in the formats {\LaTeX}, \textsc{pdf}{\LaTeX}, Sphinx, HTML,
-    and MediaWiki. One piece of text can enter (e.g.) a classical
+    and MediaWiki. A piece of text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog.
 
-  \item Doconce targets scientific papers and reports, thesis, large book
-    projects, software manuals, memos, as well as blogs and wikis with
-    math and code content.
-
-  \item Doconce markup does include tags, so the format is more tagged than
-    Markdown, but less than reST, and very much less than
-    {\LaTeX} and HTML.
-
-  \item Doconce can be converted to plain \emph{untagged} text,
-    often desirable for computer code and email.
+  \item Doconce targets in particular large book projects where many different
+    pieces of text and software can be assembled and published in different
+    formats for different devices.
 
   \item Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
     for the start and end lines.
-
-  \item Doconce is almost self-explanatory and fast to write. The tools
-    can be used for handy generation of more verbose and complicated
-    markup languages, such as {\LaTeX}, Sphinx, HTML, MediaWiki, and
-    Google wiki.
 
   \item Doconce first runs two preprocessors (Preprocess and Mako), which
     allows programming constructs (includes, if-tests, function calls)
@@ -176,7 +162,14 @@ Here are some Doconce features:
     with different flavors: long vs short text, Python vs Matlab code
     examples, experimental vs mature content.
 
-  \item Compared to related tools, foremost Sphinx and Markdown, Doconce
+  \item Doconce can be converted to plain \emph{untagged} text,
+    often desirable for email and computer code documentation.
+
+  \item Doconce markup does include tags, so the format is more tagged than
+    Markdown, but less than reST, and very much less than
+    {\LaTeX} and HTML.
+
+  \item Compared to the related tools Sphinx and Markdown, Doconce
     allows more types of equations (especially systems of
     equations with references), has more flexible
     inclusion of source code, integrates preprocessors, has
