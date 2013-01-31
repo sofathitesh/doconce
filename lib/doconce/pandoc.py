@@ -23,6 +23,25 @@ def pandoc_author(authors_and_institutions, auth2index,
 
 def pandoc_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
+    for i in range(len(tex_blocks)):
+        # Remove \[ and \] in single equations
+        tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
+        tex_blocks[i] = tex_blocks[i].replace(r'\]', '')
+        # Check for illegal environments
+        m = re.search(r'\\begin\{(.+?)\}', tex_blocks[i])
+        if m:
+            envir = m.group(1)
+            if envir not in ('equation', 'align*', 'align'):
+                print """\
+*** warning: latex envir \\begin{%s} does not work well:
+    pandoc-extended markdown syntax handles only single equations
+    (but doconce splits align environments into single equations).
+    Labels in equations do not work with pandoc-extended markdown
+    output.
+""" % envir
+        # Add $$ on each side of the equation
+        tex_blocks[i] = '$$\n' + tex_blocks[i] + '\n$$'
+
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
     defs = dict(cod='Python', pycod='Python', cppcod='Cpp',
@@ -53,32 +72,13 @@ def pandoc_code(filestr, code_blocks, code_block_types,
     cpattern = re.compile(r'^!ec\s*$', flags=re.MULTILINE)
     filestr = cpattern.sub('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n', filestr)
 
-    # Math: give warning if not only single equations
-    pattern = r'!bt.+?\\begin\{(.+?)\}'
-    cpattern = re.compile(pattern, re.DOTALL)
-    math_envirs = cpattern.findall(filestr)
-    for envir in math_envirs:
-        if envir not in ('equation', 'align*', 'align'):
-            print """\
-*** warning: latex envir \\begin{%s} does not work well
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
-""" % envir
+    filestr = re.sub(r'^!bt *$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!et *$', '', filestr, flags=re.MULTILINE)
 
-    # pandoc/markdown supports LaTeX if embedded in $$
-    filestr = re.sub(r'!bt *\n', '$$\n', filestr)
-    filestr = re.sub(r'!et *\n', '$$\n', filestr)
-
-    filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
-    filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
-
+    # \eqref and labels will not work, but labels do no harm
     filestr = filestr.replace(' label{', ' \\label{')
     pattern = r'^label\{'
-    cpattern = re.compile(pattern, re.MULTILINE)
-    filestr = cpattern.sub('\\label{', filestr)
-
+    filestr = re.sub(pattern, '\\label{', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
     # Final fixes
