@@ -21,6 +21,7 @@ Ideas:
 
 def json_markdown(text):
     """Return a string (text) as a json markdown cell."""
+    lines = text.splitlines()
     out = """\
    {
     "cell_type": "markdown",
@@ -29,11 +30,12 @@ def json_markdown(text):
 %s
     ]
    },
-""" % '\n'.join([r'    "%s\n",' % line for line in text.splitlines()])
+""" % '\n'.join([r'    "%s\n",' % line for line in lines[:-1]] +
+                [r'    "%s"' % lines[-1]])
     return out
 
-def json_pycode(code_block):
-    """Return a list code lines (code_block) as a json code cell."""
+def json_pycode(code_block, prompt_number, language='python'):
+    """Return a list of code lines (code_block) as a json code cell."""
     out = """\
    {
     "cell_type": "code",
@@ -41,9 +43,14 @@ def json_pycode(code_block):
     "metadata": {},
     "input": [
 %s
-    ]
+    ],
+    "language": "%s",
+    "metadata": {},
+    "outputs": [],
+    "prompt_number": %s
    },
-""" % '\n'.join([r'    "%s\n",' % line for line in code_block])
+""" % ('\n'.join([r'    "%s\n",' % line for line in code_block[:-1]] +
+                 [r'    "%s"' % code_block[-1]]), language, prompt_number)
     return out.splitlines()
 
 def ipynb_author(authors_and_institutions, auth2index,
@@ -67,7 +74,7 @@ def ipynb_author(authors_and_institutions, auth2index,
 def ipynb_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
     for i in range(len(code_blocks)):
-        code_blocks[i] = json_pycode(code_blocks[i])
+        code_blocks[i] = json_pycode(code_blocks[i], i+1, 'python')
 
     # go through tex_blocks and wrap in $$ and then as json_markdown cell
     #....stopped here [[[
