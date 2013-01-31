@@ -1,8 +1,4 @@
 """
-Warning: This translater should be complete
-(no "reference links", though), but it is
-not tested.
-
 See http://johnmacfarlane.net/pandoc/README.html
 for syntax.
 """
