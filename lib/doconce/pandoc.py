@@ -32,7 +32,7 @@ def pandoc_code(filestr, code_blocks, code_block_types,
         if m:
             envir = m.group(1)
             if envir not in ('equation', 'align*', 'align'):
-            print """\
+                print """\
 *** warning: latex envir \\begin{%s} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).

@@ -906,7 +906,9 @@ def define(FILENAME_EXTENSION,
     preamble_complete = False
     filename = option('latex-preamble=', None)
     if filename is not None:
-        f = open(filename, 'r'); preamble = f.read(); f.close()
+        f = open(filename, "r")
+        preamble = f.read()
+        f.close()
         if r'\documentclass' in preamble:
             preamble_complete = True
 
