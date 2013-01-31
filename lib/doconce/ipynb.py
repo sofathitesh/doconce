@@ -35,7 +35,8 @@ def json_markdown(text):
     return out
 
 def json_pycode(code_block, prompt_number, language='python'):
-    """Return a list of code lines (code_block) as a json code cell."""
+    """Return a code string (code_block) as a json code cell."""
+    lines = code_block.splitlines()
     out = """\
    {
     "cell_type": "code",
@@ -49,9 +50,9 @@ def json_pycode(code_block, prompt_number, language='python'):
     "outputs": [],
     "prompt_number": %s
    },
-""" % ('\n'.join([r'    "%s\n",' % line for line in code_block[:-1]] +
-                 [r'    "%s"' % code_block[-1]]), language, prompt_number)
-    return out.splitlines()
+""" % ('\n'.join([r'    "%s\n",' % line for line in lines[:-1]] +
+                 [r'    "%s"' % lines[-1]]), language, prompt_number)
+    return out
 
 def ipynb_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
@@ -77,44 +78,37 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         code_blocks[i] = json_pycode(code_blocks[i], i+1, 'python')
 
     # go through tex_blocks and wrap in $$ and then as json_markdown cell
-    #....stopped here [[[
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
-
-
-    # any !bc with/without argument becomes an unspecified block
-    replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    cpattern = re.compile(r'^!bc.*$', flags=re.MULTILINE)
-    filestr = cpattern.sub(replacement, filestr)
-
-    cpattern = re.compile(r'^!ec\s*$', flags=re.MULTILINE)
-    filestr = cpattern.sub('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n', filestr)
-
-    # Math: give warning if not only single equations
-    pattern = r'!bt.+?\\begin\{(.+?)\}'
-    cpattern = re.compile(pattern, re.DOTALL)
-    math_envirs = cpattern.findall(filestr)
-    for envir in math_envirs:
-        if envir not in ('equation', 'align*', 'align'):
+    for i in range(len(tex_blocks)):
+        # Remove \[ and \] in single equations
+        tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
+        tex_blocks[i] = tex_blocks[i].replace(r'\]', '')
+        # Check for illegal environments
+        m = re.search(r'\\begin\{(.+?)\}', tex_blocks[i])
+        if m:
+            envir = m.group(1)
+            if envir not in ('equation', 'align*', 'align'):
             print """\
-*** warning: latex envir \\begin{%s} does not work well
+*** warning: latex envir \\begin{%s} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 """ % envir
+        # Add $$ on each side of the equation
+        tex_blocks[i] = json_markdown('$$\n' + tex_blocks[i] + '\n$$')
 
-    # pandoc/markdown supports LaTeX if embedded in $$
-    filestr = re.sub(r'!bt *\n', '$$\n', filestr)
-    filestr = re.sub(r'!et *\n', '$$\n', filestr)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
-    filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
-    filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
 
+    filestr = re.sub(r'^!bc.*$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!ec *$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!bt *$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!et *$', '', filestr, flags=re.MULTILINE)
+
+    # \eqref and labels will not work, but labels do no harm
     filestr = filestr.replace(' label{', ' \\label{')
     pattern = r'^label\{'
-    cpattern = re.compile(pattern, re.MULTILINE)
-    filestr = cpattern.sub('\\label{', filestr)
-
+    filestr = re.sub(pattern, '\\label{', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
     # Final fixes
@@ -168,7 +162,7 @@ def ipynb_table(table):
                     s += getattr(c, a2py[ca])(w) + '  '
         s += '\n'
     s += '\n'
-    return s
+    return json_markdown(s)
 
 def ipynb_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
