@@ -134,6 +134,13 @@ def pandoc_table(table):
     s += '\n'
     return s
 
+def pandoc_figure(m):
+    filename = m.group('filename')
+    caption = m.group('caption').strip()
+    text = '![%s](%s)' % (caption, filename)
+    #print 'pandoc_figure:', text
+    return text
+
 def pandoc_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
@@ -232,7 +239,7 @@ def define(FILENAME_EXTENSION,
         'math2':     r'\g<begin>$\g<latexmath>$\g<end>',
         'emphasize': None,
         'bold':      None,
-        'figure':    r'![\g<caption>](\g<filename>)',
+        'figure':    pandoc_figure,
         #'movie':     default_movie,
         'movie':     html_movie,
         'verbatim':  None,
@@ -280,5 +287,6 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['pandoc'] = pandoc_index_bib
     EXERCISE['pandoc'] = plain_exercise
     TOC['pandoc'] = lambda s: '# Table of contents: Run pandoc with --toc option'
+    FIGURE_EXT['pandoc'] = ('.png', '.gif', '.jpg', '.jpeg', '.tif', '.tiff', '.pdf')
 
     # no return, rely on in-place modification of dictionaries

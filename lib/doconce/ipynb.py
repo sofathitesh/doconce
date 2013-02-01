@@ -4,8 +4,8 @@ import re, sys
 from common import default_movie, plain_exercise, table_analysis, \
      insert_code_and_tex
 from html import html_movie
-from pandoc import pandoc_table, pandoc_ref_and_label as ipynb_ref_and_label, \
-     pandoc_index_bib as ipynb_index_bib, pandoc_quote as ipynb_quote
+from pandoc import pandoc_table, pandoc_ref_and_label, \
+     pandoc_index_bib, pandoc_quote, pandoc_figure
 
 """
 Ideas:
@@ -18,8 +18,12 @@ Ideas:
    the very end must be placed inside a cell structure.
 """
 
+def _quote_double_quotes(text):
+    return text.replace('"', r'\"')
+
 def json_markdown(text):
     """Return a string (text) as a json markdown cell."""
+    text = _quote_double_quotes(text)
     lines = text.splitlines()
     out = """\
    {
@@ -35,6 +39,20 @@ def json_markdown(text):
 
 def json_pycode(code_block, prompt_number, language='python'):
     """Return a code string (code_block) as a json code cell."""
+    if code_block == '':
+        return """\
+   {
+    "cell_type": "code",
+    "collapsed": false,
+    "metadata": {},
+    "input": [],
+    "language": "%s",
+    "outputs": [],
+    "prompt_number": %s
+   },
+""" % (language, prompt_number)
+
+    code_block = _quote_double_quotes(code_block)
     lines = code_block.splitlines()
     out = """\
    {
@@ -75,6 +93,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
     for i in range(len(code_blocks)):
         code_blocks[i] = json_pycode(code_blocks[i], i+1, 'python')
+    final_prompt_no = i+1
 
     # go through tex_blocks and wrap in $$ and then as json_markdown cell
     for i in range(len(tex_blocks)):
@@ -114,20 +133,33 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     # Note: the patterns are overlapping so a plain re.sub will not work,
     # here we run through all blocks found and subsitute the first remaining
     # one, one by one.
-    pattern = r'\},\n(.+?)\{\n    "cell_type":'
+    pattern = r'   \},\n(.+?)\{\n    "cell_type":'
+    begin_pattern = r'^(.+?)\{\n    "cell_type":'
+    remaining_block_begin = re.findall(begin_pattern, filestr, flags=re.DOTALL)
     remaining_blocks = re.findall(pattern, filestr, flags=re.DOTALL)
-    def repl(m):
-        text = m.group(1)
-        text = json_markdown(text)
-        out = """\
-    },
-%s    {
-    "cell_type":""" % text
-    for block in remaining_blocks:
-        filestr = re.sub(pattern, repl, filestr, count=1, flags=re.DOTALL)
-
-    print 'filestr after subst of remaining parts:'
-    print filestr #[[[
+    import string
+    for block in remaining_block_begin + remaining_blocks:
+        filestr = string.replace(filestr, block, json_markdown(block) + '   ',
+                                 maxreplace=1)
+    filestr_end = re.sub(r'   \{\n    "cell_type": .+?\n   \},\n', '', filestr,
+                         flags=re.DOTALL)
+    filestr = filestr.replace(filestr_end, json_markdown(filestr_end))
+    filestr = """{
+ "metadata": {
+  "name": "SOME NAME"
+ },
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+""" + filestr.rstrip() + '\n'+ \
+    json_pycode('', final_prompt_no+1, 'python').rstrip()[:-1] + """
+   ],
+   "metadata": {}
+  }
+ ]
+}"""
     return filestr
 
 def ipynb_table(table):
@@ -160,7 +192,7 @@ def define(FILENAME_EXTENSION,
         'math2':     r'\g<begin>$\g<latexmath>$\g<end>',
         'emphasize': None,
         'bold':      None,
-        'figure':    r'![\g<caption>](\g<filename>)',
+        'figure':    pandoc_figure,
         #'movie':     default_movie,
         'movie':     html_movie,
         'verbatim':  None,
@@ -179,13 +211,13 @@ def define(FILENAME_EXTENSION,
         'subsection':    lambda m: r'### \g<subst>',
         'subsubsection': lambda m: r'#### \g<subst>',
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'abstract':      r'*\g<type>.* \g<text>\n\n\g<rest>',
+        'abstract':      r'\n*\g<type>.* \g<text>\n\n\g<rest>',
         'comment':       '<!-- %s -->',
         }
 
     CODE['ipynb'] = ipynb_code
     ENVIRS['ipynb'] = {
-        'quote':        ipynb_quote,
+        'quote':        pandoc_quote,
         }
 
     from common import DEFAULT_ARGLIST
@@ -202,11 +234,12 @@ def define(FILENAME_EXTENSION,
 
         'separator': '\n',
         }
-    CROSS_REFS['ipynb'] = ipynb_ref_and_label
+    CROSS_REFS['ipynb'] = pandoc_ref_and_label
 
     TABLE['ipynb'] = ipynb_table
-    INDEX_BIB['ipynb'] = ipynb_index_bib
+    INDEX_BIB['ipynb'] = pandoc_index_bib
     EXERCISE['ipynb'] = plain_exercise
     TOC['ipynb'] = lambda s: ''
+    FIGURE_EXT['ipynb'] = ('.png', '.gif', '.jpg', '.jpeg', '.tif', '.tiff', '.pdf')
 
     # no return, rely on in-place modification of dictionaries

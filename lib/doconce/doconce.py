@@ -1875,7 +1875,7 @@ def doconce2format(filestr, format):
             filestr += '\n'*10
 
     # Sphinx hack for transforming align envirs to separate equations
-    if format in ("sphinx", "pandoc"):
+    if format in ("sphinx", "pandoc", "ipynb"):
         filestr = align2equations(filestr)
         debugpr('%s\n**** The file after {align} envirs are rewritten as separate equations:\n\n%s\n\n' % \
           ('*'*80, filestr))
