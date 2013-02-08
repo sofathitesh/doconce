@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+</style>
+
+</head>
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+
+
+<!-- ------------------- main content ------------------------>
+    
+<title>Doconce Quick Reference</title>
+
+<center><h1>Doconce Quick Reference</h1></center>  <! -- document title -->
+
+<p>
+<! -- author(s) -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Simula Research Laboratory</b></center>
+<center>[2] <b>University of Oslo</b></center>
+<p>
+<center><h4>Feb 8, 2013</h4></center> <!-- date -->
+<p>
+<h2>Table of contents</h2>
+
+<p>
+
+<a href="#___sec0"> Supported Formats </a><br>
+<a href="#___sec1"> Title, Authors, and Date </a><br>
+<a href="#quick:sections"> Section Types </a><br>
+<a href="#___sec3"> Inline Formatting </a><br>
+<a href="#___sec4"> Lists </a><br>
+<a href="#___sec5"> Comments </a><br>
+<a href="#___sec6"> Verbatim/Computer Code </a><br>
+<a href="#___sec7"> LaTeX Mathematics </a><br>
+<a href="#___sec8"> Figures and Movies </a><br>
+<a href="#___sec9"> Tables </a><br>
+<a href="#___sec10"> Labels, References, Citations, and Index </a><br>
+<a href="#___sec11"> Capabilities of the "doconce" Program </a><br>
+<a href="#___sec12"> Exercises </a><br>
+<a href="#___sec13"> Environments </a><br>
+<a href="#___sec14"> Labels, Index, and Citations </a><br>
+<a href="#___sec15"> Preprocessing </a><br>
+<a href="#___sec16"> Resources </a><br>
+
+<p>
+
+
+<!-- Very preliminary -->
+
+<p>
+<b>WARNING: This quick reference is very incomplete!</b>
+
+<p>
+
+
+<h3>Supported Formats  <a name="___sec0"></a></h3>
+<p>
+Doconce currently translates files to the following formats:
+
+<p>
+
+<ul>
+ <li> LaTeX (format <tt>latex</tt> and <tt>pdflatex</tt>)</li>
+ <li> HTML (format <tt>html</tt>)</li>
+ <li> reStructuredText (format <tt>rst</tt>)</li>
+ <li> plain (untagged) ASCII (format <tt>plain</tt>)</li>
+ <li> Sphinx (format <tt>sphinx</tt>)</li>
+ <li> (Pandoc extended) Markdown (format <tt>pandoc</tt>)</li>
+ <li> Googlecode wiki (format <tt>gwiki</tt>)</li>
+ <li> MediaWiki for Wikipedia and Wikibooks (format <tt>mwiki</tt>)</li>
+ <li> Creoloe wiki (format <tt>cwiki</tt>)</li>
+ <li> Epydoc (format <tt>epydoc</tt>)</li>
+ <li> StructuredText (format <tt>st</tt>)</li>
+</ul>
+
+The best supported formats are <tt>latex</tt>, <tt>sphinx</tt>, <tt>html</tt>, and <tt>plain</tt>.
+
+<p>
+
+<h3>Title, Authors, and Date  <a name="___sec1"></a></h3>
+<p>
+A typical example of giving a title, a set of authors, a date,
+and an optional table of contents
+reads
+<!-- begin verbatim block -->
+<pre>
+TITLE: On an Ultimate Markup Language
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
+AUTHOR: A. Dummy Author
+DATE: today
+TOC: on
+</pre>
+<! -- end verbatim block -->
+The entire title must appear on a single line.
+The author syntax is
+<!-- begin verbatim block -->
+<pre>
+name Email: somename@adr.net at institution1 and institution2
+</pre>
+<! -- end verbatim block -->
+where the email is optional, the "at" keyword is required if one or
+more institutions are to be specified, and the "and" keyword
+separates the institutions. Each author specification must appear
+on a single line.
+When more than one author belong to the
+same institution, make sure that the institution is specified in an identical
+way for each author.
+
+<p>
+The date can be set as any text different from <tt>today</tt> if not the
+current date is wanted, e.g., <tt>Feb 22, 2016</tt>.
+
+<p>
+The table of contents is removed by writing <tt>TOC: off</tt>.
+
+<p>
+
+
+<h3>Section Types <a name="quick:sections"></a></h3>
+<p>
+<table border="1">
+<tr><td align="center"><b>                    Section type                    </b></td> <td align="center"><b>                       Syntax                       </b></td> </tr>
+<tr><td align="left">   chapter                                               </td> <td align="left">   <tt>========= Heading ========</tt> (9 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   section                                               </td> <td align="left">   <tt>======= Heading =======</tt>    (7 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   subsection                                            </td> <td align="left">   <tt>===== Heading =====</tt>        (5 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   subsubsection                                         </td> <td align="left">   <tt>=== Heading ===</tt>            (3 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   paragraph                                             </td> <td align="left">   <tt>__Heading.__</tt>               (2 <tt>_</tt>)    </td> </tr>
+<tr><td align="left">   abstract                                              </td> <td align="left">   <tt>__Abstract.__</tt> Running text...                </td> </tr>
+</table>
+<p>
+Note that abstracts are recognized by starting with <tt>__Abstract.__</tt> at
+the beginning of a line and ending with three or more <tt>=</tt> signs of the
+next heading.
+
+<p>
+Appendix is supported: just let the heading start with "Appendix: "
+(this affects only <tt>latex</tt> output, where the appendix formatting
+is used - all other formats just leave the heading as it is written).
+
+<p>
+
+<h3>Inline Formatting  <a name="___sec3"></a></h3>
+<p>
+Words surrounded by <tt>*</tt> are emphasized: <tt>*emphasized words*</tt> becomes
+<em>emphasized words</em>. Similarly, an underscore surrounds words that
+appear in boldface: <tt>_boldface_</tt> become <b>boldface</b>.
+
+<p>
+
+<h3>Lists  <a name="___sec4"></a></h3>
+<p>
+There are three types of lists: <em>bullet lists</em>, where each item starts
+with <tt>*</tt>, <em>enumeration lists</em>, where each item starts with <tt>o</tt> and gets
+consqutive numbers,
+and <em>description</em> lists, where each item starts with <tt>-</tt> followed
+by a keyword and a colon.
+<!-- begin verbatim block -->
+<pre>
+Here is a bullet list:
+
+ * item1
+ * item2
+  * subitem1 of item2
+  * subitem2 of item2
+ * item3
+
+Note that sublists are consistently indented by one or more blanks..
+Here is an enumeration list:
+
+ o item1
+ o item2
+   may appear on
+   multiple lines
+  o subitem1 of item2
+  o subitem2 of item2
+ o item3
+
+And finally a description list:
+
+ - keyword1: followed by
+   some text
+   over multiple
+   lines
+ - keyword2:
+   followed by text on the next line
+ - keyword3: and its description may fit on one line
+</pre>
+<! -- end verbatim block -->
+The code above follows.
+
+<p>
+Here is a bullet list:
+
+<p>
+
+<ul>
+ <li> item1</li>
+ <li> item2</li>
+
+<ul>
+  <li> subitem1 of item2</li>
+  <li> subitem2 of item2</li>
+</ul>
+
+ <li> item3</li>
+</ul>
+
+Note that sublists are indented.
+Here is an enumeration list:
+
+<p>
+
+<ol>
+<li> item1</li>
+<li> item2
+   may appear on
+   multiple lines</li>
+
+<ol>
+ <li> subitem1 of item2</li>
+ <li> subitem2 of item2</li>
+</ol>
+
+<li> item3</li>
+</ol>
+
+And finally a description list:
+
+<p>
+
+<dl>
+ <dt>keyword1:<dd> 
+   followed by
+   some text
+   over multiple
+   lines
+ <dt>keyword2:<dd> 
+   followed by text on the next line
+ <dt>keyword3:<dd> 
+   and its description may fit on one line
+</dl>
+
+<h3>Comments  <a name="___sec5"></a></h3>
+<p>
+Lines starting with <tt>#</tt> are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats <tt>rst</tt> and
+<tt>sphinx</tt> are desired.
+
+<p>
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file. Mako comments are recognized
+by lines starting with two hashes <tt>##</tt> or by blocks of text
+inside the comment directives <tt>%<doc></tt> (beginning) and <tt><%doc/></tt> (end).
+
+<p>
+Inline comments, in the text, that are meant as messages or notes to readers
+(authors in particular)
+are often useful and enabled by the syntax
+<!-- begin verbatim block -->
+<pre>
+[name: running text]
+</pre>
+<! -- end verbatim block -->
+where <tt>name</tt> is the name or ID of an author or reader making the comment,
+and <tt>running text</tt> is the comment. There must be a space after the colon.
+Running
+<!-- begin verbatim block  sys-->
+<pre>
+doconce format html mydoc.do.txt --skip_inline_comments
+</pre>
+<! -- end verbatim block -->
+removes all such inline comments from the output. This feature makes it easy
+to turn on and off notes to readers and is frequently used while writing
+a document.
+
+<p>
+All inline comments to readers can also be physically
+removed from the Doconce source if desired:
+<!-- begin verbatim block  sys-->
+<pre>
+doconce remove_inline_comments mydoc.do.txt
+</pre>
+<! -- end verbatim block -->
+This action is appropriate when all issues with such comments are resolved.
+
+<p>
+
+<h3>Verbatim/Computer Code  <a name="___sec6"></a></h3>
+<p>
+Inline verbatim code is typeset within back-ticks, as in
+<!-- begin verbatim block -->
+<pre>
+Some sentence with `words in verbatim style`.
+</pre>
+<! -- end verbatim block -->
+resulting in Some sentence with <tt>words in verbatim style</tt>.
+
+<p>
+Multi-line blocks of verbatim text, typically computer code, is typeset
+in between <tt>!bc xxx</tt> and <tt>!ec</tt> directives, which must appear on the
+beginning of the line. A specification <tt>xxx</tt> indicates what verbatim
+formatting style that is to be used. Typical values for <tt>xxx</tt> are
+nothing, <tt>cod</tt> for a code snippet, <tt>pro</tt> for a complete program,
+<tt>sys</tt> for a terminal session, <tt>dat</tt> for a data file (or output from a
+program),
+<tt>Xpro</tt> or <tt>Xcod</tt> for a program or code snipped, respectively,
+in programming <tt>X</tt>, where <tt>X</tt> may be <tt>py</tt> for Python,
+<tt>cy</tt> for Cython, <tt>sh</tt> for Bash or other Unix shells,
+<tt>f</tt> for Fortran, <tt>c</tt> for C, <tt>cpp</tt> for C++, <tt>m</tt> for MATLAB,
+<tt>pl</tt> for Perl. For output in <tt>latex</tt> one can let <tt>xxx</tt> reflect any
+defined verbatim environment in the <tt>ptex2tex</tt> configuration file
+(<tt>.ptex2tex.cfg</tt>). For <tt>sphinx</tt> output one can insert a comment
+<!-- begin verbatim block -->
+<pre>
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+</pre>
+<! -- end verbatim block -->
+that maps environments (<tt>xxx</tt>) onto valid language types for
+Pygments (which is what <tt>sphinx</tt> applies to typeset computer code).
+
+<p>
+The <tt>xxx</tt> specifier has only effect for <tt>latex</tt> and
+<tt>sphinx</tt> output. All other formats use a fixed monospace font for all
+kinds of verbatim output.
+
+<p>
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+<p>
+<!-- begin verbatim block  cod-->
+<pre>
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+</pre>
+<! -- end verbatim block -->
+
+<p>
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
+Computer code can also be copied from a file:
+<!-- begin verbatim block -->
+<pre>
+ @@@CODE doconce_program.sh
+ @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+ @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
+</pre>
+<! -- end verbatim block -->
+The <tt>@@@CODE</tt> identifier must appear at the very beginning of the line.
+The first specification copies the complete file <tt>doconce_program.sh</tt>.
+The second specification copies from the first line matching the <em>regular
+expression</em> <tt>doconce clean</tt> up to, but not including the line
+matching the <em>regular expression</em> <tt>^doconce split_rst</tt>.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+<p>
+The copied line from file are in this example put inside <tt>!bc shpro</tt>
+and <tt>!ec</tt> directives, if a complete file is copied, while the
+directives become <tt>!bc shcod</tt> and <tt>!ec</tt> when a code snippet is copied
+from file. In general, for a filename extension <tt>.X</tt>, the environment
+becomes <tt>!bc Xpro</tt> or <tt>!bc Xcod</tt> for a complete program or snippet,
+respectively. The enivorments (<tt>Xcod</tt> and <tt>Xpro</tt>) are only active
+for <tt>latex</tt> and <tt>sphinx</tt> outout.
+
+<p>
+Important warnings:
+
+<p>
+
+<ul>
+ <li> A code block must come after some plain sentence (at least for successful
+   output in reStructredText), not directly after a section/paragraph heading,
+   table, comment, figure, or movie.</li>
+ <li> Verbatim code blocks inside lists can be ugly typeset in some
+   output formats. A more robust approach is to replace the list by
+   paragraphs with headings.</li>
+</ul>
+
+<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
+<p>
+Doconce supports inline mathematics and blocks of mathematics, using
+standard LaTeX syntax. The output formats <tt>sphinx</tt>, <tt>latex</tt>, and <tt>pdflatex</tt>
+work with this syntax while all other formats will just display the
+raw LaTeX code.
+
+<p>
+Inline expressions are written in the standard
+LaTeX way with the mathematics surrounded by dollar signs, as in
+\( Ax=b \). To help increase readability in other formats than <tt>sphinx</tt>,
+<tt>latex</tt>, and <tt>pdflatex</tt>, inline mathematics may have a more human
+readable companion expression. The syntax is like
+<!-- begin verbatim block -->
+<pre>
+$\sin(\norm{\bf u})$|$sin(||u||)$
+</pre>
+<! -- end verbatim block -->
+That is, the LaTeX expression appears to the left of a vertical bar (pipe
+symbol) and the more readable expression appears to the right. Both
+expressions are surrounded by dollar signs. Plain text formats and HTML
+will applied the expression to the right.
+
+<p>
+Blocks of LaTeX mathematics are written within
+<tt>!bt</tt>
+and
+<tt>!et</tt> (begin/end TeX) directives starting on the beginning of a line:
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+!bt
+\begin{align*}
+\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\times \pmb{u} &amp;= 0.
+\end{align*}
+!et
+</pre>
+<! -- end verbatim block -->
+<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!-- tex and code blocks in inside verbatim blocks and are replaced -->
+<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+This LaTeX code gets rendered as
+
+<p>
+$$
+\begin{align*}
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
+\end{align*}
+$$
+
+Here is a single equation:
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+!bt
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+!et
+</pre>
+<! -- end verbatim block -->
+which results in
+
+<p>
+$$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
+
+
+<p>
+One can use <tt>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</tt>
+to let the preprocessor choose a block of mathematics in LaTeX format
+or (<tt>#else</tt>) a modified form more suited for plain text and wiki
+formats without support for mathematics.
+
+<p>
+Any LaTeX syntax is accepted, but if output in the <tt>sphinx</tt>, <tt>pandoc</tt>,
+<tt>mwiki</tt>, or <tt>html</tt> formats
+is important, one must know that these formats does not support many
+LaTeX constructs. For output both in <tt>latex</tt> or <tt>pdflatex</tt> <em>and</em>
+the mentioned formats with LaTeX support,
+the following rules are recommended:
+
+<p>
+
+<ul>
+  <li> Use only the equation environments <tt>\[</tt>, <tt>\]</tt>,
+    <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.</li>
+  <li> Labels in multiple equation environments such as <tt>align</tt> are
+    not (yet) handled by <tt>pandoc</tt>.</li>
+  <li> MediaWiki (<tt>mwiki</tt>) does not support references to equations.</li>
+</ul>
+
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Notice</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically <tt>if FORMAT in ("latex", "pdflatex")</tt>) to
+include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<b>LaTeX Newcommands.</b> Text missing...
+
+<p>
+
+
+<h3>Figures and Movies  <a name="___sec8"></a></h3>
+<p>
+Figures and movies have almost equal syntax:
+<!-- begin verbatim block -->
+<pre>
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+
+</pre>
+<! -- end verbatim block -->
+Note the mandatory comma after the figure/movie file.
+
+<p>
+The figure file can be listed without extension. Doconce will then find
+the version of the file with the most appropriate extension for the chosen
+output format. If not suitable version is found, Doconce will convert
+another format to the desired one.
+
+<p>
+Movie files can either be a video or a wildcard expression for a
+series of frames. In the latter case, a simple device in an HTML page
+will display the individual frame files as a movie.
+
+<p>
+Combining several image files into one can be done by the
+<tt>convert</tt> and <tt>montage</tt> programs from the ImageMagick suite:
+<!-- begin verbatim block  sys-->
+<pre>
+montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+montage file1.png file2.png -tile x1 result.png
+montage file1.png file2.png -tile 1x result.png
+
+convert -background white file1.png file2.png +append tmp.png
+</pre>
+<! -- end verbatim block -->
+Use <tt>+append</tt> for stacking left to right, <tt>-append</tt> for top to bottom.
+The positioning of the figures can be controlled by <tt>-gravity</tt>.
+
+<p>
+
+
+<h3>Tables  <a name="___sec9"></a></h3>
+<p>
+The table in the section <a href="#quick:sections">Section Types</a> was written with this
+syntax:
+<!-- begin verbatim block -->
+<pre>
+|----------------c--------|------------------c--------------------|
+|      Section type       |        Syntax                         |
+|----------------l--------|------------------l--------------------|
+| chapter                 | `========= Heading ========` (9 `=`)  |
+| section                 | `======= Heading =======`    (7 `=`)  |
+| subsection              | `===== Heading =====`        (5 `=`)  |
+| subsubsection           | `=== Heading ===`            (3 `=`)  |
+| paragraph               | `__Heading.__`               (2 `_`)  |
+|-----------------------------------------------------------------|
+</pre>
+<! -- end verbatim block -->
+
+<p>
+Note that
+
+<p>
+
+<ul>
+ <li> Each line begins and ends with a vertical bar (pipe symbol).</li>
+ <li> Column data are separated by a vertical bar (pipe symbol).</li>
+ <li> There may be horizontal rules, i.e., lines with dashes for
+   indicating the heading and the end of the table, and these may
+   contain characters 'c', 'l', or 'r' for how to align headings or
+   columns. The first horizontal rule may indicate how to align
+   headings (center, left, right), and the horizontal rule after the
+   heading line may indicate how to align the data in the columns
+   (center, left, right).</li>
+ <li> If the horizontal rules are without alignment information there should
+   be no vertical bar (pipe symbol) between the columns. Otherwise, such
+   a bar indicates a vertical bar between columns in LaTeX.</li>
+ <li> Many output formats are so primitive that heading and column alignment
+   have no effect.</li>
+</ul>
+
+<h3>Labels, References, Citations, and Index  <a name="___sec10"></a></h3>
+<p>
+The notion of labels, references, citations, and an index is adopted
+from LaTeX with a very similar syntax. As in LaTeX, a label can be
+inserted anywhere, using the syntax
+<!-- begin verbatim block -->
+<pre>
+label{name}
+</pre>
+<! -- end verbatim block -->
+with no backslash
+preceding the label keyword! It is common practice to choose <tt>name</tt>
+as some hierarchical name, say <tt>a:b:c</tt>, where <tt>a</tt> and <tt>b</tt> indicate
+some abbreviations for a section and/or subsection for the topic and
+<tt>c</tt> is some name for the particular unit that has a label.
+
+<p>
+A reference to the label <tt>name</tt> is written as
+<!-- begin verbatim block -->
+<pre>
+ref{name}
+</pre>
+<! -- end verbatim block -->
+again with no backslash before <tt>ref</tt>.
+
+<p>
+Single citations are written as
+<!-- begin verbatim block -->
+<pre>
+cite{name}
+</pre>
+<! -- end verbatim block -->
+where <tt>name</tt> is a logical name
+of the reference (again, LaTeX writers must not insert a backslash).
+Bibliography citations often have <tt>name</tt> on the form
+<tt>Author1_Author2_YYYY</tt>, <tt>Author_YYYY</tt>, or <tt>Author1_etal_YYYY</tt>, where
+<tt>YYYY</tt> is the year of the publication.
+Multiple citations at once is possible by separating the logical names
+by comma:
+<!-- begin verbatim block -->
+<pre>
+cite{name1,name2,name3}
+</pre>
+<! -- end verbatim block -->
+
+<p>
+The bibliography is specified by a line <tt>BIBFILE: name_bib.bib,
+name_bib.rst, name_bib.py</tt>, where <tt>name</tt> is the logical name of the
+document (the doconce file will then normally have the name
+<tt>name.do.txt</tt>), and the various files reflect different formattings of
+the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
+bibliography, and '.py' a Python list of dictionaries for specifying
+the entries in the bibliography. The bibliography (as read from file)
+is inserted where the <tt>BIBFILE</tt> keyword appears.
+
+<p>
+There is a <em>generalized referencing</em> feature in Doconce that allows
+a reference with <tt>ref</tt> to have one formulation if the label is
+in the same document and another formulation if the reference is
+to an item in an external document. The syntax of a generalized
+reference is
+<!-- begin verbatim block -->
+<pre>
+ref[internal][cite][external]
+
+# Example:
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
+&quot;testdoc.html#___sec2&quot; in the document
+&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
+Doconce documents may include movies.
+</pre>
+<! -- end verbatim block -->
+The output from a generalized reference is the text <tt>internal</tt> if all
+<tt>ref{label}</tt> references in <tt>internal</tt> are references to labels in the
+present document. Otherwise, if cite is non-empty and the format is
+<tt>latex</tt> or <tt>pdflatex</tt> one assumes that the references in <tt>internal</tt>
+are to external documents declared by a comment line <tt>#
+Externaldocuments: testdoc, mydoc</tt> (usually after the title, authors,
+and date). In this case the output text is <tt>internal cite</tt> and the
+LaTeX package <tt>xr</tt> is used to handle the labels in the external
+documents.  If none of the two situations above applies, the
+<tt>external</tt> text will be the output.
+
+<p>
+Doconce supports creating an index of keywords. A certain keyword
+is registered for the index by a syntax like (no
+backslash!)
+<!-- begin verbatim block -->
+<pre>
+index{name}
+</pre>
+<! -- end verbatim block -->
+It is recommended to place any index of this type outside
+running text, i.e., after (sub)section titles and in the space between
+paragraphs. Index specifications placed right before paragraphs also
+gives the doconce source code an indication of the content in the
+forthcoming text. The index is only produced for the <tt>latex</tt>, <tt>rst</tt>, and
+<tt>sphinx</tt> formats.
+
+<p>
+
+<h3>Capabilities of the "doconce" Program  <a name="___sec11"></a></h3>
+<p>
+The <tt>doconce</tt> program can be used for a number of purposes besides
+transforming a <tt>.do.txt</tt> file to some format. Here is the
+list of capabilities:
+
+<p>
+<!-- begin verbatim block  shpro-->
+<pre>
+Usage: doconce command [optional arguments]
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+
+
+# transform doconce file to another format
+doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
+
+# substitute a phrase by another using regular expressions
+doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
+(-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
+ -x is the re.VERBOSE modifier, --restore copies backup files back again)
+
+# replace a phrase by another literally
+doconce replace from-text to-text file1 file2 ...
+(exact text substutition)
+
+# doconce replace using from and to phrases from file
+doconce replace_from_file file-with-from-to file1 file2 ...
+(exact text substitution, but a set of from-to relations)
+
+# gwiki format requires substitution of figure file names by URLs
+doconce gwiki_figsubst file.gwiki URL-of-fig-dir
+
+# remove all inline comments in a doconce file
+doconce remove_inline_comments file.do.txt
+
+# create a directory for the sphinx format
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
+(requires sphinx version &gt;= 1.1)
+
+# replace latex-1 (non-ascii) characters by html codes
+doconce latin2html file.html
+
+# walk through a directory tree and insert doconce files as
+# docstrings in *.p.py files
+doconce insertdocstr rootdir
+
+# remove all files that the doconce format can regenerate
+doconce clean
+
+# print the header (preamble) for latex file
+doconce latex_header
+
+# print the footer for latex files
+doconce latex_footer
+
+# change encoding
+doconce change_encoding utf-8 latin1 filename
+
+# guess the encoding in a text
+doconce guess_encoding filename
+
+# transform a .bbl file to a .rst file with reST bibliography format
+doconce bbl2rst file.bbl
+
+# split a sphinx/rst file into parts
+doconce split_rst complete_file.rst
+
+# edit URLs to local files and place them in _static
+doconce sphinxfix_local_URLs file.rst
+
+# split an html file into parts according to !split commands
+doconce split_html complete_file.html
+
+# create slides from a (doconce) html file
+doconce slides_html slide_type complete_file.html
+
+# replace bullets in lists by colored bullets
+doconce html_colorbullets file1.html file2.html ...
+
+# grab selected text from a file
+doconce grab   --from[-] from-text [--to[-] to-text] somefile
+
+# remove selected text from a file
+doconce remove --from[-] from-text [--to[-] to-text] somefile
+
+# remove answers to exercises
+doconce remove_exercise_answers file_in_some_format
+
+# run spellcheck on a set of files
+doconce spellcheck [-d .mydict.txt] *.do.txt
+
+# transform ptex2tex files (.p.tex) to ordinary latex file
+# and manage the code environments
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# expand short cut commands to full form in files
+doconce expand_commands file1 file2 ...
+
+# combine several images into one
+doconce combine_images image1 image2 ... output_file
+
+# insert a table of exercises in a latex file myfile.p.tex
+doconce latex_exercise_toc myfile
+
+# list all labels in a document (for purposes of cleaning them up)
+doconce list_labels myfile
+</pre>
+<! -- end verbatim block -->
+
+<p>
+
+<h3>Exercises  <a name="___sec12"></a></h3>
+<p>
+Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
+These are typeset
+as ordinary sections and referred to by their section labels.
+Exercise, problem, project, or example sections contains certain <em>elements</em>:
+
+<p>
+
+<ul>
+  <li> a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)</li>
+  <li> a label (optional)</li>
+  <li> a solution file (optional)</li>
+  <li> name of file with a student solution (optional)</li>
+  <li> main exercise text (required)</li>
+  <li> a short answer (optional)</li>
+  <li> a full solution (optional)</li>
+  <li> one or more hints (optional)</li>
+  <li> one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)</li>
+</ul>
+
+A typical sketch of a a problem without subexercises goes as follows:
+<!-- begin verbatim block -->
+<pre>
+===== Problem: Derive the Formula for the Area of an Ellipse =====
+label{problem:ellipsearea1}
+file=ellipse_area.pdf
+solution=ellipse_area1_sol.pdf
+
+Derive an expression for the area of an ellipse by integrating
+the area under a curve that defines half of the allipse.
+Show each step in the mathematical derivation.
+
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
+
+!bhint
+&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
+compute the integral.
+!ehint
+</pre>
+<! -- end verbatim block -->
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+</pre>
+<! -- end verbatim block -->
+the title becomes just "Derive the ...".
+
+<p>
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
+!esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
+</pre>
+<! -- end verbatim block -->
+By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments <tt>--without-answers</tt> and <tt>--without-solutions</tt>
+turn off output of answers and solutions, respectively, except for
+examples.
+
+<p>
+
+
+<h3>Environments  <a name="___sec13"></a></h3>
+<p>
+Doconce environments start with <tt>!benvirname</tt> and end with <tt>!eenvirname</tt>,
+where <tt>envirname</tt> is the name of the environment. Here is a listing of
+the environments:
+
+<p>
+
+<ul>
+ <li> <tt>c</tt>: computer code (or verbatim text)</li>
+ <li> <tt>t</tt>: math blocks with LaTeX syntax</li>
+ <li> <tt>subex</tt>: sub-exercise</li>
+ <li> <tt>ans</tt>: short answer to exercise or sub-exercise</li>
+ <li> <tt>sol</tt>: full solution to exercise or sub-exercise</li>
+ <li> <tt>notes</tt>: multi-line notes to be included or not</li>
+ <li> <tt>quote</tt>: indented text</li>
+ <li> <tt>notice</tt>, <tt>summary</tt>, <tt>warning</tt>, <tt>question</tt>, <tt>hint</tt>: boxes with
+    specialy typesetting (or symbols)</li>
+ <li> <tt>pop</tt>: text to gradually pop up in slide presentations</li>
+ <li> <tt>slidecell</tt>: indication of cells in a grid layout for elements on a
+   slide</li>
+</ul>
+
+<h3>Labels, Index, and Citations  <a name="___sec14"></a></h3>
+<p>
+
+<h3>Preprocessing  <a name="___sec15"></a></h3>
+<p>
+Doconce documents may utilize a preprocessor, either <tt>preprocess</tt> and/or
+<tt>mako</tt>. The former is a C-style preprocessor that allows if-tests
+and including other files (but not macros with arguments).
+The <tt>mako</tt> preprocessor is much more advanced - it is actually a full
+programming language, very similar to Python.
+
+<p>
+The command <tt>doconce format</tt> first runs <tt>preprocess</tt> and then <tt>mako</tt>.
+Here is a typical example on utilizing <tt>preprocess</tt> to include another
+document, "comment out" a large portion of text, and to write format-specific
+constructions:
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+# #include &quot;myotherdoc.do.txt&quot;
+
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
+\begin{table}
+\caption{Some words... label{mytab}}
+\begin{tabular}{lrr}
+\hline\noalign{\smallskip}
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          &amp; 1.4186       &amp; -5.01        \\
+2.0          &amp; 1.376512     &amp; 11.919       \\
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\
+\hline
+\end{tabular}
+\end{table}
+# #else
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+# #endif
+
+# #ifdef EXTRA_MATERIAL
+....large portions of text...
+# #endif
+</pre>
+<! -- end verbatim block -->
+
+<p>
+With the <tt>mako</tt> preprocessor the if-else tests have slightly different syntax.
+An <a href="http://hplgit.github.com/bioinf-py/">example document</a> contains
+some illustrations on how to utilize <tt>mako</tt> (clone the GitHub project and
+examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
+
+<p>
+
+<h3>Resources  <a name="___sec16"></a></h3>
+<p>
+
+<ul>
+ <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>
+</ul>
+
+
+<!-- ------------------- end of main content ----------------->
+</body>
+</html>
+    
+
