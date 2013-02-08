@@ -9,6 +9,92 @@
 
 ;; Doconce hacks by hpl
 
+;; Key bindings, see http://ergoemacs.org/emacs/keyboard_shortcuts.html
+(add-hook 'text-mode-hook
+ (lambda ()
+ (local-set-key (kbd "\C-chelp") "
+|--------------------------------------------------------|
+| Emacs key      | Action                                |
+|----l-------------------------l-------------------------|
+|  Ctrl+c f      | figure                                |
+|  Ctrl+c v      | movie/video                           |
+|  Ctrl+c h1     | heading level 1 (section/h1)          |
+|  Ctrl+c h2     | heading level 2 (subsection/h2)       |
+|  Ctrl+c h3     | heading level 2 (subsection/h3)       |
+|  Ctrl+c hp     | heading for paragraph                 |
+|  Ctrl+c me     | math environment: !bt equation !et    |
+|  Ctrl+c ma     | math environment: !bt align !et       |
+|  Ctrl+c ce     | code environment: !bc !ec             |
+|  Ctrl+c cf     | code from file: @@@CODE               |
+|  Ctrl+c table  | table                                 |
+|  Ctrl+c exer   | exercise outline                      |
+|  Ctrl+c slide  | slide outline                         |
+|--------------------------------------------------------|
+")
+ (local-set-key (kbd "\C-cf") "FIGURE: [path, width=400 frac=1.0] caption on one line. label{}")
+ (local-set-key "\C-ch1" "======= Section heading (h1) =======")
+ (local-set-key "\C-ch2" "===== Subsection heading (h2) =====")
+ (local-set-key "\C-ch3" "=== Subsubsection heading (h3) ===")
+ (local-set-key "\C-chp" "__Paragraph heading.__ ")
+ (local-set-key "\C-cv" "MOVIE: [path] caption on one line.")
+ (local-set-key (kbd "\C-cslide") "
+!split
+===== Slide heading =====
+
+!bslidecell 00
+ * bullet 1
+ * bullet 2
+!eslidecell
+
+!bslidecell 01
+FIGURE: [path, width=400]
+!eslidecell
+
+")
+ (local-set-key (kbd "\C-ctable") "
+|------------------------|
+| heading1 | heading2    |
+|----l-----------r-------|
+|  1.0     | 2.0         |
+|------------------------|
+")
+ (local-set-key (kbd "\C-cme") "!bt
+\\begin{equation} 
+...
+label{} 
+\\end{equation}
+!et")
+ (local-set-key (kbd "\C-cma") "!bt
+\\begin{align} 
+... &= 
+label{} \\\\
+... &= 
+label{}
+\\end{align}
+!et")
+ (local-set-key (kbd "\C-cce") "!bc
+!ec")
+ (local-set-key (kbd "\C-ccf") "@@@CODE path fromto: start_regex@to_regex")
+ (local-set-key (kbd "\C-cexer") "===== Exercise: ... =====
+label{}
+file=solution.pdf
+
+text...
+
+# !bsol
+# !esol
+
+# !bsubex
+# subexercise...
+
+# !bsol
+# !esol
+# !esubex
+")
+)
+)
+
+
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License version 2,
 ;; as published by the Free Software Foundation.
