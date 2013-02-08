@@ -2580,18 +2580,6 @@ def slides_html():
     header, parts, footer = get_html_header_parts_footer(filename)
     parts = tablify(parts)
 
-    # Add padding style to td tags in tables
-    header += """
-<!-- padding of cells in tables: <td class="padding">...</td> -->    
-<style type="text/css">
-td.padding {
-padding-top:20px;
-padding-bottom:20px;
-padding-right:50px;
-padding-left:50px%;
-}
-</style>
-"""    
     filestr = None
     if slide_type == 'doconce':
         doconce_html_split(header, parts, footer, basename, filename)
@@ -3768,6 +3756,16 @@ git://github.com/barraq/deck.ext.js.git
 
 <title>%(title)s</title>
 %(head_header)s
+
+<!-- padding of cells in tables: <td class="padding">...</td> -->    
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
 
 <!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">

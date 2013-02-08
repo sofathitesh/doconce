@@ -509,7 +509,6 @@ the rest is plain LaTeX:
 
 which is rendered as
 
-
 $$
 \begin{equation}
 \frac{\partial u}{\partial t} = \nabla^2 u,
@@ -517,15 +516,12 @@ $$
 \end{equation}
 $$
 
-
-
 $$
 \begin{equation} 
 \nabla\cdot\pmb{v}  = 0
 \label{b:eq}
 \end{equation}
 $$
-
 
 <!-- !split -->
 Doconce: math flexibility
@@ -902,9 +898,7 @@ FIGURE: [fig/teacher1, width=100]
 
 Key equation:
 
-
 \[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
-
 
 And maybe a final comment?
 
@@ -929,11 +923,9 @@ Headline
 
 Key equation:
 
-
 $$
  -\nabla^2 u = f \quad\hbox{in }\Omega 
 $$
-
 
 And maybe a final comment?
 
@@ -1001,11 +993,9 @@ Headline
 <!-- !epop -->
 
 <!-- !bpop -->
-
 $$
  -\nabla^2 u = f \quad\hbox{in }\Omega 
 $$
-
 <!-- !epop -->
 
 <!-- !eslidecell -->
