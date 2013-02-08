@@ -42,8 +42,12 @@
 ===== Slide heading =====
 
 !bslidecell 00
+
+!bpop
  * bullet 1
  * bullet 2
+!epop
+
 !eslidecell
 
 !bslidecell 01
