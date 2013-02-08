@@ -115,14 +115,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             blocks[i] = ['math', blocks[i]]
         else:
             blocks[i] = ['text', blocks[i]]
-    import pprint; pprint.pprint(blocks)
 
-    # Typeset code blocks as json_pycode cells
-    #for i in range(len(code_blocks)):
-    #    code_blocks[i] = json_pycode(code_blocks[i], i+1, 'python')
-    #final_prompt_no = i+1
-
-    # Go through tex_blocks and wrap in $$ and then as json_markdown cell
+    # Go through tex_blocks and wrap in $$
     for i in range(len(tex_blocks)):
         # Remove \[ and \] in single equations
         tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
@@ -139,9 +133,11 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     Labels in equations do not work with pandoc-extended markdown
     output.
 """ % envir
-        # Add $$ on each side of the equation
-        #tex_blocks[i] = json_markdown('$$\n' + tex_blocks[i] + '\n$$')
-        tex_blocks[i] = '$$\n' + tex_blocks[i] + '\n$$'
+        # Markdown: add $$ on each side of the equation
+        #tex_blocks[i] = '$$\n' + tex_blocks[i] + '\n$$'
+        # Here: use heading (###) and simple formula, remove newline
+        # in math expressions
+        tex_blocks[i] = '### $ ' + '  '.join(tex_blocks[i].splitlines()) + ' $'
 
     # blocks is now a list of text chunks in markdown and math/code line
     # instructions. Insert code and tex blocks
@@ -188,7 +184,9 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     filestr = filestr.replace(' label{', ' \\\\label{')
     pattern = r'^label\{'
     filestr = re.sub(pattern, '\\\\label{', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
+    # \eqref crashes the notebook
+    #filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
+    filestr = re.sub(r'\(ref\{(.+?)\}\)', r'Eq (\g<1>)', filestr)
 
     '''
     # Final fixes: replace all text between cells by markdown code cells
