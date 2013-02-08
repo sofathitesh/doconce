@@ -73,29 +73,56 @@ def json_pycode(code_block, prompt_number, language='python'):
 
 def ipynb_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
-    # List authors on multiple lines
     authors = []
     for author, i, e in authors_and_institutions:
-        if i is None:
-            authors.append(author)
-        else:
-            authors.append(author + ' at ' + ' and '.join(i))
-    text = ''
-    if len(authors) == 1:
-        text += 'Author: '
-    else:
-        text += 'Authors: '
-    text += ',  '.join(authors) + '\n'
-    return json_markdown(text)
-
+        author_str = "new_author(name=u'%s'" % author
+        if i is not None:
+            author_str += ", affiliation=u'%s'" % ' and '.join(i)
+        if e is not None:
+            author_str += ", email=u'%s'" % e
+        author_str += ')'
+        authors.append(author_str)
+    s ='authors = [%s]' % (', '.join(authors))
+    return s
 
 def ipynb_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
-    for i in range(len(code_blocks)):
-        code_blocks[i] = json_pycode(code_blocks[i], i+1, 'python')
-    final_prompt_no = i+1
+    # Parse document into markdown text, code blocks, and tex blocks
+    from common import _CODE_BLOCK, _MATH_BLOCK
+    authors = ''
+    blocks = [[]]
+    for line in filestr.splitlines():
+        if line.startswith('authors = [new_author(name='):
+            authors = line
+        elif line.startswith(_CODE_BLOCK):
+            blocks[-1] = '\n'.join(blocks[-1]).strip()
+            blocks.append(line)
+        elif line.startswith(_MATH_BLOCK):
+            blocks[-1] = '\n'.join(blocks[-1]).strip()
+            blocks.append(line)
+        else:
+            if not isinstance(blocks[-1], list):
+                blocks.append([])
+            blocks[-1].append(line)
+    if isinstance(blocks[-1], list):
+        blocks[-1] = '\n'.join(blocks[-1]).strip()
 
-    # go through tex_blocks and wrap in $$ and then as json_markdown cell
+    # Add block type info
+    for i in range(len(blocks)):
+        if blocks[i].startswith(_CODE_BLOCK):
+            blocks[i] = ['code', blocks[i]]
+        elif blocks[i].startswith(_MATH_BLOCK):
+            blocks[i] = ['math', blocks[i]]
+        else:
+            blocks[i] = ['text', blocks[i]]
+    import pprint; pprint.pprint(blocks)
+
+    # Typeset code blocks as json_pycode cells
+    #for i in range(len(code_blocks)):
+    #    code_blocks[i] = json_pycode(code_blocks[i], i+1, 'python')
+    #final_prompt_no = i+1
+
+    # Go through tex_blocks and wrap in $$ and then as json_markdown cell
     for i in range(len(tex_blocks)):
         # Remove \[ and \] in single equations
         tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
@@ -113,22 +140,57 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     output.
 """ % envir
         # Add $$ on each side of the equation
-        tex_blocks[i] = json_markdown('$$\n' + tex_blocks[i] + '\n$$')
+        #tex_blocks[i] = json_markdown('$$\n' + tex_blocks[i] + '\n$$')
+        tex_blocks[i] = '$$\n' + tex_blocks[i] + '\n$$'
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    # blocks is now a list of text chunks in markdown and math/code line
+    # instructions. Insert code and tex blocks
+    for code in code_blocks:
+        for i in range(len(blocks)):
+            if _CODE_BLOCK in blocks[i][1]:
+                blocks[i][1] = code
+                break
+    for tex in tex_blocks:
+        for i in range(len(blocks)):
+            if _MATH_BLOCK in blocks[i][1]:
+                blocks[i][1] = tex
+                break
+    # Make IPython structures
+    from IPython.nbformat.v3 import (
+         NotebookNode,
+         new_code_cell, new_text_cell, new_worksheet, new_notebook, new_output,
+         new_metadata, new_author)
+    import IPython.nbformat.v3.nbjson
+    ws = new_worksheet()
+    prompt_number = 1
+    for block_tp, block in blocks:
+        if block_tp == 'text' or block_tp == 'math':
+            ws.cells.append(new_text_cell(u'markdown', source=block))
+        elif block_tp == 'code':
+            ws.cells.append(new_code_cell(input=block,
+                                          prompt_number=prompt_number,
+                                          collapsed=False))
+    # Catch the title as the first heading
+    m = re.search(r'^#+\s*(.+)$', filestr, flags=re.MULTILINE)
+    title = m.group(1).strip() if m else ''
+    if authors:
+        exec(authors)
+        md = new_metadata(name=title, authors=authors)
+    else:
+        md = new_metadata(name=title)
+    nb = new_notebook(worksheets=[ws], metadata=new_metadata())
 
+    # Convert nb to json format
+    filestr = IPython.nbformat.v3.nbjson.writes(nb)
 
-    filestr = re.sub(r'^!bc.*$', '', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'^!ec *$', '', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'^!bt *$', '', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'^!et *$', '', filestr, flags=re.MULTILINE)
-
+    # must do the replacements here at the very end when json is written out
     # \eqref and labels will not work, but labels do no harm
-    filestr = filestr.replace(' label{', ' \\label{')
+    filestr = filestr.replace(' label{', ' \\\\label{')
     pattern = r'^label\{'
-    filestr = re.sub(pattern, '\\label{', filestr, flags=re.MULTILINE)
+    filestr = re.sub(pattern, '\\\\label{', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
+    '''
     # Final fixes: replace all text between cells by markdown code cells
     # Note: the patterns are overlapping so a plain re.sub will not work,
     # here we run through all blocks found and subsitute the first remaining
@@ -160,6 +222,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
   }
  ]
 }"""
+    '''
     return filestr
 
 def ipynb_table(table):
