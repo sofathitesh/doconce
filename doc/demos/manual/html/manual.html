@@ -2254,26 +2254,76 @@ is found at the beginning of the line (i.e., the document
 has a title), the header and footer are included, otherwise not.</p>
 </div>
 <div class="section" id="emacs-doconce-formatter">
-<h2>Emacs Doconce Formatter<a class="headerlink" href="#emacs-doconce-formatter" title="Permalink to this headline">¶</a></h2>
-<p>The file <tt class="docutils literal"><span class="pre">misc/.doconce-mode.el</span></tt> in the Doconce source distribution
-gives a &#8220;Doconce Editing Mode&#8221; in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+<span id="emacs-doconce"></span><h2>Emacs Doconce Formatter<a class="headerlink" href="#emacs-doconce-formatter" title="Permalink to this headline">¶</a></h2>
+<p>The file <a class="reference external" href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
+gives a &#8220;Doconce Editing Mode&#8221; in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.</p>
-<p>Here is how to get the Doconce Editing Mode in Emacs.</p>
-<p><em>Step 1.</em> Download the Doconce tarball from <tt class="docutils literal"><span class="pre">code.google.com/p/doconce</span></tt>,
-pack it out and go to the root directory.</p>
-<p><em>Step 2.</em> Copy the <tt class="docutils literal"><span class="pre">doconce-mode.el</span></tt> file to the home directory:</p>
-<div class="highlight-text"><div class="highlight"><pre>cp misc/.doconce-mode.el $HOME
-</pre></div>
-</div>
-<p><em>Step 3.</em> Add these lines to <tt class="docutils literal"><span class="pre">$HOME/.emacs</span></tt>:</p>
-<div class="highlight-text"><div class="highlight"><pre>(load-file &quot;~/hg/.doconce-mode.el&quot;)
+as ordinary text.)</p>
+<p>Here is how to get the Doconce Editing Mode in Emacs: Download <a class="reference external" href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> and save it in your home directory, then add these lines to <tt class="docutils literal"><span class="pre">~/.emacs</span></tt>:</p>
+<div class="highlight-text"><div class="highlight"><pre>(load-file &quot;~/.doconce-mode.el&quot;)
 (setq auto-mode-alist(cons &#39;(&quot;\\.do\\.txt$&quot; . doconce-mode) auto-mode-alist))
 </pre></div>
 </div>
 <p>Emacs will now recognize files with extension <tt class="docutils literal"><span class="pre">.do.txt</span></tt> and enter
 the Doconce Editing Mode.</p>
+<p>The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Emacs key</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ctrl+c f</td>
+<td>figure</td>
+</tr>
+<tr class="row-odd"><td>Ctrl+c v</td>
+<td>movie/video</td>
+</tr>
+<tr class="row-even"><td>Ctrl+c h1</td>
+<td>heading level 1 (section/h1)</td>
+</tr>
+<tr class="row-odd"><td>Ctrl+c h2</td>
+<td>heading level 2 (subsection/h2)</td>
+</tr>
+<tr class="row-even"><td>Ctrl+c h3</td>
+<td>heading level 2 (subsection/h3)</td>
+</tr>
+<tr class="row-odd"><td>Ctrl+c hp</td>
+<td>heading for paragraph</td>
+</tr>
+<tr class="row-even"><td>Ctrl+c me</td>
+<td>math environment: !bt equation</td>
+</tr>
+<tr class="row-odd"><td>Ctrl+c ma</td>
+<td>math environment: !bt align</td>
+</tr>
+<tr class="row-even"><td>Ctrl+c ce</td>
+<td>code environment: !bc</td>
+</tr>
+<tr class="row-odd"><td>Ctrl+c cf</td>
+<td>code from file: &#64;&#64;&#64;CODE</td>
+</tr>
+<tr class="row-even"><td>Ctrl+c table</td>
+<td>table</td>
+</tr>
+<tr class="row-odd"><td>Ctrl+c exer</td>
+<td>exercise outline</td>
+</tr>
+<tr class="row-even"><td>Ctrl+c slide</td>
+<td>slide outline</td>
+</tr>
+</tbody>
+</table>
+<p>Typing <tt class="docutils literal"><span class="pre">Ctrl+c</span> <span class="pre">help</span></tt> prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!</p>
 </div>
 </div>
 <div class="section" id="troubleshooting">

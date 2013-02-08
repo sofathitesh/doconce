@@ -2453,32 +2453,42 @@ has a title), the header and footer are included, otherwise not.
 
 ==== Emacs Doconce Formatter ====
 
-The file <code>misc/.doconce-mode.el</code> in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-''Step 1.''
-Download the Doconce tarball from <code>code.google.com/p/doconce</code>,
-pack it out and go to the root directory.
-
-''Step 2.''
-Copy the <code>doconce-mode.el</code> file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] and save it in your home directory, then add these lines to <code>~/.emacs</code>:
 <syntaxhighlight lang="text">
-cp misc/.doconce-mode.el $HOME
-</syntaxhighlight>
-
-''Step 3.''
-Add these lines to <code>$HOME/.emacs</code>:
-<syntaxhighlight lang="text">
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 </syntaxhighlight>
 Emacs will now recognize files with extension <code>.do.txt</code> and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table                          </td> <td align="left">   table                                 </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+</table>
+Typing <code>Ctrl+c help</code> prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 

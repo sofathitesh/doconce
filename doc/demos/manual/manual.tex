@@ -2651,32 +2651,50 @@ has a title), the header and footer are included, otherwise not.
 
 \subsection{Emacs Doconce Formatter}
 
-The file \Verb!misc/.doconce-mode.el! in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+\label{emacs:doconce}
+
+The file \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-\paragraph{Step 1.}
-Download the Doconce tarball from \Verb!code.google.com/p/doconce!,
-pack it out and go to the root directory.
-
-\paragraph{Step 2.}
-Copy the \Verb!doconce-mode.el! file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} and save it in your home directory, then add these lines to \Verb!~/.emacs!:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-cp misc/.doconce-mode.el $HOME
-\end{Verbatim}
-
-\paragraph{Step 3.}
-Add these lines to \Verb!$HOME/.emacs!:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 \end{Verbatim}
 Emacs will now recognize files with extension \Verb!.do.txt! and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+
+\begin{quote}\begin{tabular}{ll}
+\hline
+\multicolumn{1}{c}{ Emacs key } & \multicolumn{1}{c}{ Action } \\
+\hline
+Ctrl+c f                           & figure                             \\
+Ctrl+c v                           & movie/video                        \\
+Ctrl+c h1                          & heading level 1 (section/h1)       \\
+Ctrl+c h2                          & heading level 2 (subsection/h2)    \\
+Ctrl+c h3                          & heading level 2 (subsection/h3)    \\
+Ctrl+c hp                          & heading for paragraph              \\
+Ctrl+c me                          & math environment: !bt equation !et \\
+Ctrl+c ma                          & math environment: !bt align !et    \\
+Ctrl+c ce                          & code environment: !bc !ec          \\
+Ctrl+c cf                          & code from file: @@@CODE            \\
+Ctrl+c table                       & table                              \\
+Ctrl+c exer                        & exercise outline                   \\
+Ctrl+c slide                       & slide outline                      \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+Typing \Verb!Ctrl+c help! prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 \section{Troubleshooting}

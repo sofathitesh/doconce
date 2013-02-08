@@ -3117,39 +3117,50 @@ has a title), the header and footer are included, otherwise not.
 <p>
 
 
-<h3>Emacs Doconce Formatter  <a name="___sec53"></a></h3>
+<h3>Emacs Doconce Formatter <a name="emacs:doconce"></a></h3>
 <p>
-The file <tt>misc/.doconce-mode.el</tt> in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
 <p>
-Here is how to get the Doconce Editing Mode in Emacs.
-
-<p>
-<b>Step 1.</b> Download the Doconce tarball from <tt>code.google.com/p/doconce</tt>,
-pack it out and go to the root directory.
-
-<p>
-<b>Step 2.</b> Copy the <tt>doconce-mode.el</tt> file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> and save it in your home directory, then add these lines to <tt>~/.emacs</tt>:
 <!-- begin verbatim block -->
 <pre>
-cp misc/.doconce-mode.el $HOME
-</pre>
-<! -- end verbatim block -->
-
-<p>
-<b>Step 3.</b> Add these lines to <tt>$HOME/.emacs</tt>:
-<!-- begin verbatim block -->
-<pre>
-(load-file &quot;~/hg/.doconce-mode.el&quot;)
+(load-file &quot;~/.doconce-mode.el&quot;)
 (setq auto-mode-alist(cons '(&quot;\\.do\\.txt$&quot; . doconce-mode) auto-mode-alist))
 </pre>
 <! -- end verbatim block -->
 Emacs will now recognize files with extension <tt>.do.txt</tt> and enter
 the Doconce Editing Mode.
+
+<p>
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table                          </td> <td align="left">   table                                 </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+</table>
+<p>
+Typing <tt>Ctrl+c help</tt> prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 <p>
 
