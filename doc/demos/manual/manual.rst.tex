@@ -3356,36 +3356,133 @@ has a title), the header and footer are included, otherwise not.
   Emacs Doconce Formatter%
   \addcontentsline{toc}{subsection}{Emacs Doconce Formatter}%
   \label{emacs-doconce-formatter}%
+  \label{emacs-doconce}%
 }
 
-The file \texttt{misc/.doconce-mode.el} in the Doconce source distribution
-gives a ``Doconce Editing Mode'' in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file \href{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}{.doconce-mode.el} in the Doconce source distribution
+gives a ``Doconce Editing Mode'' in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-\emph{Step 1.} Download the Doconce tarball from \texttt{code.google.com/p/doconce},
-pack it out and go to the root directory.
-
-\emph{Step 2.} Copy the \texttt{doconce-mode.el} file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download \href{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}{.doconce-mode.el} and save it in your home directory, then add these lines to \texttt{\textasciitilde{}/.emacs}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-cp~misc/.doconce-mode.el~\$HOME
-}
-\end{quote}
-
-\emph{Step 3.} Add these lines to \texttt{\$HOME/.emacs}:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-(load-file~"\textasciitilde{}/hg/.doconce-mode.el")\\
+(load-file~"\textasciitilde{}/.doconce-mode.el")\\
 (setq~auto-mode-alist(cons~'("\textbackslash{}\textbackslash{}.do\textbackslash{}\textbackslash{}.txt\$"~.~doconce-mode)~auto-mode-alist))
 }
 \end{quote}
 
 Emacs will now recognize files with extension \texttt{.do.txt} and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+\setlength{\DUtablewidth}{\linewidth}
+\begin{longtable*}[c]{|p{0.412\DUtablewidth}|p{0.412\DUtablewidth}|}
+\hline
+\textbf{%
+Emacs key
+} & \textbf{%
+Action
+} \\
+\hline
+\endfirsthead
+\hline
+\textbf{%
+Emacs key
+} & \textbf{%
+Action
+} \\
+\hline
+\endhead
+\multicolumn{2}{c}{\hfill ... continued on next page} \\
+\endfoot
+\endlastfoot
+
+Ctrl+c f
+ & 
+figure
+ \\
+\hline
+
+Ctrl+c v
+ & 
+movie/video
+ \\
+\hline
+
+Ctrl+c h1
+ & 
+heading level 1 (section/h1)
+ \\
+\hline
+
+Ctrl+c h2
+ & 
+heading level 2 (subsection/h2)
+ \\
+\hline
+
+Ctrl+c h3
+ & 
+heading level 2 (subsection/h3)
+ \\
+\hline
+
+Ctrl+c hp
+ & 
+heading for paragraph
+ \\
+\hline
+
+Ctrl+c me
+ & 
+math environment: !bt equation
+ \\
+\hline
+
+Ctrl+c ma
+ & 
+math environment: !bt align
+ \\
+\hline
+
+Ctrl+c ce
+ & 
+code environment: !bc !ec
+ \\
+\hline
+
+Ctrl+c cf
+ & 
+code from file: @@@CODE
+ \\
+\hline
+
+Ctrl+c table
+ & 
+table
+ \\
+\hline
+
+Ctrl+c exer
+ & 
+exercise outline
+ \\
+\hline
+
+Ctrl+c slide
+ & 
+slide outline
+ \\
+\hline
+\end{longtable*}
+
+Typing \texttt{Ctrl+c help} prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 %___________________________________________________________________________

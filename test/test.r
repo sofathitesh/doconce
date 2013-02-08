@@ -35545,7 +35545,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 31 Jan 2013 (15:50)</center>
+<center>Fri, 08 Feb 2013 (01:43)</center>
 
 
 
@@ -35676,7 +35676,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 31 Jan 2013 (15:50)</center>
+<center>Fri, 08 Feb 2013 (01:43)</center>
 
 
 
@@ -37424,30 +37424,46 @@ has a title), the header and footer are included, otherwise not.
 
 
 ===== Emacs Doconce Formatter =====
+label{emacs:doconce}
 
-The file `misc/.doconce-mode.el` in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file ".doconce-mode.el": "https://doconce.googlecode.com/hg/misc/.doconce-mode.el" in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-__Step 1.__ Download the Doconce tarball from `code.google.com/p/doconce`,
-pack it out and go to the root directory.
-
-__Step 2.__ Copy the `doconce-mode.el` file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download ".doconce-mode.el": "https://doconce.googlecode.com/hg/misc/.doconce-mode.el" and save it in your home directory, then add these lines to `~/.emacs`:
 !bc
-cp misc/.doconce-mode.el $HOME
-!ec
-
-__Step 3.__ Add these lines to `$HOME/.emacs`:
-!bc
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 !ec
 Emacs will now recognize files with extension `.do.txt` and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+|--------------------------------------------------------|
+| Emacs key      | Action                                |
+|----l-------------------------l-------------------------|
+|  Ctrl+c f      | figure                                |
+|  Ctrl+c v      | movie/video                           |
+|  Ctrl+c h1     | heading level 1 (section/h1)          |
+|  Ctrl+c h2     | heading level 2 (subsection/h2)       |
+|  Ctrl+c h3     | heading level 2 (subsection/h3)       |
+|  Ctrl+c hp     | heading for paragraph                 |
+|  Ctrl+c me     | math environment: !bt equation !et    |
+|  Ctrl+c ma     | math environment: !bt align !et       |
+|  Ctrl+c ce     | code environment: !bc !ec             |
+|  Ctrl+c cf     | code from file: @@@CODE               |
+|  Ctrl+c table  | table                                 |
+|  Ctrl+c exer   | exercise outline                      |
+|  Ctrl+c slide  | slide outline                         |
+|--------------------------------------------------------|
+
+Typing `Ctrl+c help` prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 ======= Troubleshooting =======
@@ -41164,39 +41180,50 @@ has a title), the header and footer are included, otherwise not.
 <p>
 
 
-<h3>Emacs Doconce Formatter  <a name="___sec53"></a></h3>
+<h3>Emacs Doconce Formatter <a name="emacs:doconce"></a></h3>
 <p>
-The file <tt>misc/.doconce-mode.el</tt> in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
 <p>
-Here is how to get the Doconce Editing Mode in Emacs.
-
-<p>
-<b>Step 1.</b> Download the Doconce tarball from <tt>code.google.com/p/doconce</tt>,
-pack it out and go to the root directory.
-
-<p>
-<b>Step 2.</b> Copy the <tt>doconce-mode.el</tt> file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> and save it in your home directory, then add these lines to <tt>~/.emacs</tt>:
 <!-- begin verbatim block -->
 <pre>
-cp misc/.doconce-mode.el $HOME
-</pre>
-<! -- end verbatim block -->
-
-<p>
-<b>Step 3.</b> Add these lines to <tt>$HOME/.emacs</tt>:
-<!-- begin verbatim block -->
-<pre>
-(load-file &quot;~/hg/.doconce-mode.el&quot;)
+(load-file &quot;~/.doconce-mode.el&quot;)
 (setq auto-mode-alist(cons '(&quot;\\.do\\.txt$&quot; . doconce-mode) auto-mode-alist))
 </pre>
 <! -- end verbatim block -->
 Emacs will now recognize files with extension <tt>.do.txt</tt> and enter
 the Doconce Editing Mode.
+
+<p>
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table                          </td> <td align="left">   table                                 </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+</table>
+<p>
+Typing <tt>Ctrl+c help</tt> prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 <p>
 
@@ -44761,32 +44788,50 @@ has a title), the header and footer are included, otherwise not.
 
 \subsection{Emacs Doconce Formatter}
 
-The file \code{misc/.doconce-mode.el} in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+\label{emacs:doconce}
+
+The file \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-\paragraph{Step 1.}
-Download the Doconce tarball from \code{code.google.com/p/doconce},
-pack it out and go to the root directory.
-
-\paragraph{Step 2.}
-Copy the \code{doconce-mode.el} file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} and save it in your home directory, then add these lines to \code{~/.emacs}:
 \bccq
-cp misc/.doconce-mode.el $HOME
-\eccq
-
-\paragraph{Step 3.}
-Add these lines to \code{$HOME/.emacs}:
-\bccq
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 \eccq
 Emacs will now recognize files with extension \code{.do.txt} and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+
+\begin{quote}\begin{tabular}{ll}
+\hline
+\multicolumn{1}{c}{ Emacs key } & \multicolumn{1}{c}{ Action } \\
+\hline
+Ctrl+c f                           & figure                             \\
+Ctrl+c v                           & movie/video                        \\
+Ctrl+c h1                          & heading level 1 (section/h1)       \\
+Ctrl+c h2                          & heading level 2 (subsection/h2)    \\
+Ctrl+c h3                          & heading level 2 (subsection/h3)    \\
+Ctrl+c hp                          & heading for paragraph              \\
+Ctrl+c me                          & math environment: !bt equation !et \\
+Ctrl+c ma                          & math environment: !bt align !et    \\
+Ctrl+c ce                          & code environment: !bc !ec          \\
+Ctrl+c cf                          & code from file: @@@CODE            \\
+Ctrl+c table                       & table                              \\
+Ctrl+c exer                        & exercise outline                   \\
+Ctrl+c slide                       & slide outline                      \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+Typing \code{Ctrl+c help} prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 \section{Troubleshooting}
@@ -48031,34 +48076,52 @@ is found at the beginning of the line (i.e., the document
 has a title), the header and footer are included, otherwise not.
 
 
+.. _emacs:doconce:
+
 Emacs Doconce Formatter
 -----------------------
 
-The file ``misc/.doconce-mode.el`` in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-*Step 1.* Download the Doconce tarball from ``code.google.com/p/doconce``,
-pack it out and go to the root directory.
-
-*Step 2.* Copy the ``doconce-mode.el`` file to the home directory::
+Here is how to get the Doconce Editing Mode in Emacs: Download `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ and save it in your home directory, then add these lines to ``~/.emacs``::
 
 
-        cp misc/.doconce-mode.el $HOME
-
-
-*Step 3.* Add these lines to ``$HOME/.emacs``::
-
-
-        (load-file "~/hg/.doconce-mode.el")
+        (load-file "~/.doconce-mode.el")
         (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 
 Emacs will now recognize files with extension ``.do.txt`` and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation 
+
+Ctrl+c ma                           math environment: !bt align 
+
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table                        table                               
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+==================================  ==================================  
+
+Typing ``Ctrl+c help`` prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 Troubleshooting
@@ -51670,38 +51733,55 @@ is found at the beginning of the line (i.e., the document
 has a title), the header and footer are included, otherwise not.
 
 
+.. _emacs:doconce:
+
 Emacs Doconce Formatter
 -----------------------
 
-The file ``misc/.doconce-mode.el`` in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-*Step 1.* Download the Doconce tarball from ``code.google.com/p/doconce``,
-pack it out and go to the root directory.
-
-*Step 2.* Copy the ``doconce-mode.el`` file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ and save it in your home directory, then add these lines to ``~/.emacs``:
 
 .. code-block:: text
 
 
-        cp misc/.doconce-mode.el $HOME
-
-
-*Step 3.* Add these lines to ``$HOME/.emacs``:
-
-.. code-block:: text
-
-
-        (load-file "~/hg/.doconce-mode.el")
+        (load-file "~/.doconce-mode.el")
         (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 
 Emacs will now recognize files with extension ``.do.txt`` and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation 
+
+Ctrl+c ma                           math environment: !bt align 
+
+Ctrl+c ce                           code environment: !bc 
+
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table                        table                               
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+==================================  ==================================  
+
+Typing ``Ctrl+c help`` prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 Troubleshooting
@@ -54787,29 +54867,43 @@ has a title), the header and footer are included, otherwise not.
 
 ==== Emacs Doconce Formatter ====
 
-The file `misc/.doconce-mode.el` in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-*Step 1.* Download the Doconce tarball from `code.google.com/p/doconce`,
-pack it out and go to the root directory.
-
-*Step 2.* Copy the `doconce-mode.el` file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] and save it in your home directory, then add these lines to `~/.emacs`:
 {{{
-cp misc/.doconce-mode.el $HOME
-}}}
-
-*Step 3.* Add these lines to `$HOME/.emacs`:
-{{{
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 }}}
 Emacs will now recognize files with extension `.do.txt` and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+
+ ||              *Emacs key*                ||                *Action*                 ||
+ ||  Ctrl+c f                               ||  figure                                 ||
+ ||  Ctrl+c v                               ||  movie/video                            ||
+ ||  Ctrl+c h1                              ||  heading level 1 (section/h1)           ||
+ ||  Ctrl+c h2                              ||  heading level 2 (subsection/h2)        ||
+ ||  Ctrl+c h3                              ||  heading level 2 (subsection/h3)        ||
+ ||  Ctrl+c hp                              ||  heading for paragraph                  ||
+ ||  Ctrl+c me                              ||  math environment: !bt equation !et     ||
+ ||  Ctrl+c ma                              ||  math environment: !bt align !et        ||
+ ||  Ctrl+c ce                              ||  code environment: !bc !ec              ||
+ ||  Ctrl+c cf                              ||  code from file: @@@CODE                ||
+ ||  Ctrl+c table                           ||  table                                  ||
+ ||  Ctrl+c exer                            ||  exercise outline                       ||
+ ||  Ctrl+c slide                           ||  slide outline                          ||
+
+
+Typing `Ctrl+c help` prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 
@@ -57847,32 +57941,42 @@ has a title), the header and footer are included, otherwise not.
 
 ==== Emacs Doconce Formatter ====
 
-The file <code>misc/.doconce-mode.el</code> in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-''Step 1.''
-Download the Doconce tarball from <code>code.google.com/p/doconce</code>,
-pack it out and go to the root directory.
-
-''Step 2.''
-Copy the <code>doconce-mode.el</code> file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] and save it in your home directory, then add these lines to <code>~/.emacs</code>:
 <syntaxhighlight lang="text">
-cp misc/.doconce-mode.el $HOME
-</syntaxhighlight>
-
-''Step 3.''
-Add these lines to <code>$HOME/.emacs</code>:
-<syntaxhighlight lang="text">
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 </syntaxhighlight>
 Emacs will now recognize files with extension <code>.do.txt</code> and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table                          </td> <td align="left">   table                                 </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+</table>
+Typing <code>Ctrl+c help</code> prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 
@@ -60865,29 +60969,43 @@ has a title), the header and footer are included, otherwise not.
 
 == Emacs Doconce Formatter ==
 
-The file {{{misc/.doconce-mode.el}}} in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file [[https://doconce.googlecode.com/hg/misc/.doconce-mode.el|.doconce-mode.el]] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-//Step 1.// Download the Doconce tarball from {{{code.google.com/p/doconce}}},
-pack it out and go to the root directory.
-
-//Step 2.// Copy the {{{doconce-mode.el}}} file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download [[https://doconce.googlecode.com/hg/misc/.doconce-mode.el|.doconce-mode.el]] and save it in your home directory, then add these lines to {{{~/.emacs}}}:
 {{{
-cp misc/.doconce-mode.el $HOME
-}}}
-
-//Step 3.// Add these lines to {{{$HOME/.emacs}}}:
-{{{
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 }}}
 Emacs will now recognize files with extension {{{.do.txt}}} and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+
+ | =Emacs key                              | =Action                                 |
+ |  Ctrl+c f                               |  figure                                 |
+ |  Ctrl+c v                               |  movie/video                            |
+ |  Ctrl+c h1                              |  heading level 1 (section/h1)           |
+ |  Ctrl+c h2                              |  heading level 2 (subsection/h2)        |
+ |  Ctrl+c h3                              |  heading level 2 (subsection/h3)        |
+ |  Ctrl+c hp                              |  heading for paragraph                  |
+ |  Ctrl+c me                              |  math environment: !bt equation !et     |
+ |  Ctrl+c ma                              |  math environment: !bt align !et        |
+ |  Ctrl+c ce                              |  code environment: !bc !ec              |
+ |  Ctrl+c cf                              |  code from file: @@@CODE                |
+ |  Ctrl+c table                           |  table                                  |
+ |  Ctrl+c exer                            |  exercise outline                       |
+ |  Ctrl+c slide                           |  slide outline                          |
+
+
+Typing {{{Ctrl+c help}}} prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 
@@ -63894,30 +64012,46 @@ has a title), the header and footer are included, otherwise not.
 
 Emacs Doconce Formatter
 
-The file 'misc/.doconce-mode.el' in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file "https://doconce.googlecode.com/hg/misc/.doconce-mode.el":.doconce-mode.el in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-*Step 1.* Download the Doconce tarball from 'code.google.com/p/doconce',
-pack it out and go to the root directory.
-
-*Step 2.* Copy the 'doconce-mode.el' file to the home directory::
-
-
-        cp misc/.doconce-mode.el $HOME
-
-
-*Step 3.* Add these lines to '$HOME/.emacs':
+Here is how to get the Doconce Editing Mode in Emacs: Download "https://doconce.googlecode.com/hg/misc/.doconce-mode.el":.doconce-mode.el and save it in your home directory, then add these lines to '~/.emacs':
 !bc
-        (load-file "~/hg/.doconce-mode.el")
+        (load-file "~/.doconce-mode.el")
         (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 
 Emacs will now recognize files with extension '.do.txt' and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation 
+
+Ctrl+c ma                           math environment: !bt align 
+
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table                        table                               
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+==================================  ==================================  
+
+Typing 'Ctrl+c help' prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 Troubleshooting
 
@@ -67022,31 +67156,47 @@ has a title), the header and footer are included, otherwise not.
 Emacs Doconce Formatter
 -----------------------
 
-The file C{misc/.doconce-mode.el} in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file U{.doconce-mode.el<https://doconce.googlecode.com/hg/misc/.doconce-mode.el>} in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-I{Step 1.} Download the Doconce tarball from C{code.google.com/p/doconce},
-pack it out and go to the root directory.
-
-I{Step 2.} Copy the C{doconce-mode.el} file to the home directory::
+Here is how to get the Doconce Editing Mode in Emacs: Download U{.doconce-mode.el<https://doconce.googlecode.com/hg/misc/.doconce-mode.el>} and save it in your home directory, then add these lines to C{~/.emacs}::
 
 
-        cp misc/.doconce-mode.el $HOME
-
-
-I{Step 3.} Add these lines to C{$HOME/.emacs}::
-
-
-        (load-file "~/hg/.doconce-mode.el")
+        (load-file "~/.doconce-mode.el")
         (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 
 Emacs will now recognize files with extension C{.do.txt} and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation 
+
+Ctrl+c ma                           math environment: !bt align 
+
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table                        table                               
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+==================================  ==================================  
+
+Typing C{Ctrl+c help} prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 Troubleshooting
@@ -70243,31 +70393,47 @@ has a title), the header and footer are included, otherwise not.
 Emacs Doconce Formatter
 -----------------------
 
-The file misc/.doconce-mode.el in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file .doconce-mode.el (https://doconce.googlecode.com/hg/misc/.doconce-mode.el) in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-*Step 1.* Download the Doconce tarball from code.google.com/p/doconce,
-pack it out and go to the root directory.
-
-*Step 2.* Copy the doconce-mode.el file to the home directory::
+Here is how to get the Doconce Editing Mode in Emacs: Download .doconce-mode.el (https://doconce.googlecode.com/hg/misc/.doconce-mode.el) and save it in your home directory, then add these lines to ~/.emacs::
 
 
-        cp misc/.doconce-mode.el $HOME
-
-
-*Step 3.* Add these lines to $HOME/.emacs::
-
-
-        (load-file "~/hg/.doconce-mode.el")
+        (load-file "~/.doconce-mode.el")
         (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 
 Emacs will now recognize files with extension .do.txt and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation 
+
+Ctrl+c ma                           math environment: !bt align 
+
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table                        table                               
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+==================================  ==================================  
+
+Typing Ctrl+c help prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 Troubleshooting
@@ -73654,32 +73820,46 @@ has a title), the header and footer are included, otherwise not.
 Emacs Doconce Formatter
 -----------------------
 
-The file `misc/.doconce-mode.el` in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
-the reST Editing Mode for Emacs. Some Doconce features are recognized,
+The file [.doconce-mode.el](https://doconce.googlecode.com/hg/misc/.doconce-mode.el) in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
+the reST Editing Mode for Emacs. Many Doconce features are recognized,
 but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.
+as ordinary text.)
 
-Here is how to get the Doconce Editing Mode in Emacs.
-
-*Step 1.* Download the Doconce tarball from `code.google.com/p/doconce`,
-pack it out and go to the root directory.
-
-*Step 2.* Copy the `doconce-mode.el` file to the home directory:
+Here is how to get the Doconce Editing Mode in Emacs: Download [.doconce-mode.el](https://doconce.googlecode.com/hg/misc/.doconce-mode.el) and save it in your home directory, then add these lines to `~/.emacs`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cp misc/.doconce-mode.el $HOME
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Step 3.* Add these lines to `$HOME/.emacs`:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(load-file "~/hg/.doconce-mode.el")
+(load-file "~/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Emacs will now recognize files with extension `.do.txt` and enter
 the Doconce Editing Mode.
+
+The major advantage with the Doconce Editing Mode in Emacs is that
+many keyboard shortcuts are defined:
+
+
+            Emacs key                             Action                
+----------------------------------  ----------------------------------  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation $$
+Ctrl+c ma                           math environment: !bt align $$
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table                        table                               
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+
+
+Typing `Ctrl+c help` prints the above table in Emacs. Try out
+the different shortcuts and see how handy they are in learning
+Doconce and saving much typing!
 
 
 Troubleshooting
@@ -87976,7 +88156,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 179004 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 179003 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88123,7 +88303,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185113 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88270,7 +88450,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185113 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -88423,7 +88603,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185113 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -88570,7 +88750,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185111 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 185113 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -89828,10 +90008,14 @@ ined on
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [38]
+Overfull \hbox (7.02733pt too wide) 
+[]\T1/ptm/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-l
+oad [][][][][][]
+
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[39]
+[39] [40]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
@@ -89840,7 +90024,7 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-[40]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
@@ -89856,7 +90040,7 @@ defined on
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
@@ -89864,7 +90048,7 @@ Overfull \hbox (77.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -89881,7 +90065,7 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
+[45]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -89893,7 +90077,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-[45]
+
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -89903,11 +90087,11 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[46]
+[46] [47]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-[47]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
@@ -90516,10 +90700,14 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [38]
+Overfull \hbox (7.02733pt too wide) 
+[]\T1/ptm/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-l
+oad [][][][][][]
+
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[39]
+[39] [40]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
@@ -90528,7 +90716,7 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-[40]
+
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
@@ -90543,11 +90731,11 @@ n.
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-
+[44]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
@@ -90568,7 +90756,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[45]
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -90576,7 +90764,7 @@ tim code via the \T1/pcr/m/n/10 ptex2tex
 Overfull \hbox (2.15741pt too wide) 
 \T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
 ts. Also \T1/pcr/m/n/10 doconce ptex2tex
-[45]
+
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -90586,15 +90774,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[46]
+[46] [47]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-[47]
+
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-
+[48]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -90609,7 +90797,7 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
-[48]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
@@ -91034,10 +91222,14 @@ Overfull \hbox (1.76395pt too wide)
 LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
 555.
 
-[38] [39] [40] [41] [42]
+[38] [39]
+Overfull \hbox (4.02658pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][].doconce-
+[40] [41] [42]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2839.
+ne 2857.
 
 [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
@@ -91395,7 +91587,11 @@ Overfull \hbox (6.36638pt too wide)
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39]
+Overfull \hbox (4.02658pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][].doconce-
+[40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
@@ -91720,7 +91916,11 @@ Overfull \hbox (6.36638pt too wide)
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39]
+Overfull \hbox (4.02658pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][].doconce-
+[40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
@@ -92075,7 +92275,11 @@ Overfull \hbox (6.36638pt too wide)
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39]
+Overfull \hbox (39.44624pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][][][][][]
+[40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
@@ -92377,7 +92581,11 @@ Overfull \hbox (6.36638pt too wide)
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39]
+Overfull \hbox (39.44624pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][][][][][]
+[40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
@@ -92691,7 +92899,11 @@ Overfull \hbox (6.36638pt too wide)
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39]
+Overfull \hbox (39.44624pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][][][][][]
+[40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
@@ -92993,7 +93205,11 @@ Overfull \hbox (6.36638pt too wide)
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[37] [38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39]
+Overfull \hbox (39.44624pt too wide) 
+[]\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
+load [][][][][][]
+[40] [41] [42] [43] [44] [45]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
