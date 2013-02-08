@@ -1059,7 +1059,7 @@ def typeset_envirs(filestr, format):
             # subst functions for default handling
             if envir == 'quote':
                 def subst(m):
-                    return indent_lines(m.group(1), format, ' '*4) + '\n\n'
+                    return indent_lines(m.group(1), format, ' '*4) + '\n'
             elif envir in ['warning', 'question', 'hint', 'notice', 'summary',
                            'remarks']:
                 # Just a plan paragraph with paragraph heading
@@ -1618,7 +1618,7 @@ def typeset_authors(filestr, format):
         index2inst, auth2email, filestr = interpret_authors(filestr, format)
     author_block = INLINE_TAGS_SUBST[format]['author']\
         (authors_and_institutions, auth2index, inst2index,
-         index2inst, auth2email).rstrip() + '\n'  # ensure newline
+         index2inst, auth2email).rstrip() + '\n'  # ensure one newline
     filestr = filestr.replace('XXXAUTHOR', author_block)
     return filestr
 

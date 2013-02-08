@@ -59,7 +59,7 @@ def rst_figure(m):
 def rst_movie(m):
     html_text = html_movie(m)
     html_text = indent_lines(html_text, 'sphinx')
-    rst_text = '.. raw:: html\n' + html_text + '\n\n'
+    rst_text = '.. raw:: html\n' + html_text + '\n'
     return rst_text
 
 # these global patterns are used in st, epytext, plaintext as well:
@@ -85,23 +85,20 @@ def rst_code(filestr, code_blocks, code_block_types,
     # (problems with substituting !bc and !bt may be caused by
     # missing characters in these two families)
     #c = re.compile(bc_regex_pattern, re.DOTALL)
-    c = re.compile(bc_regex_pattern, re.MULTILINE)
-    filestr = c.sub(r'\g<1>::\n\n', filestr)
-    filestr = re.sub(r'!ec\n', '\n\n', filestr)
-    #filestr = re.sub(r'!ec\n', '\n', filestr)
-    #filestr = re.sub(r'!ec\n', '', filestr)
+    filestr = re.sub(bc_regex_pattern, r'\g<1>::\n\n', filestr, flags=re.MULTILINE|re.DOTALL)
+    filestr = re.sub(r'^!ec\n', '\n', filestr, flags=re.MULTILINE)
+    #filestr = re.sub(r'^!ec\n', '', filestr, flags=re.MULTILINE)
 
     #c = re.compile(r'([a-zA-Z0-9)"])[:.]?\s*?!bt\n', re.DOTALL)
     #filestr = c.sub(r'\g<1>:\n\n', filestr)
-    #filestr = re.sub(r'!bt\n', '.. latex-math::\n\n', filestr)
-    #filestr = re.sub(r'!bt\n', '.. latex::\n\n', filestr)
+    #filestr = re.sub(r'^!bt\n', '.. latex-math::\n\n', filestr, re.MULTILINE)
+    #filestr = re.sub(r'^!bt\n', '.. latex::\n\n', filestr, re.MULTILINE)
 
     # just use the same substitution as for code blocks:
-    c = re.compile(bt_regex_pattern, re.MULTILINE)
-    #filestr = c.sub(r'\g<1>::\n\n', filestr)
-    filestr = c.sub(r'\g<1>::\n', filestr)
-    #filestr = re.sub(r'!et *\n', '\n\n', filestr)
-    filestr = re.sub(r'!et *\n', '\n\n', filestr)
+    filestr = re.sub(bt_regex_pattern, r'\g<1>::\n', filestr,
+                     flags=re.MULTILINE)
+    #filestr = re.sub(r'^!et *\n', '\n\n', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!et *\n', '\n', filestr, flags=re.MULTILINE)
 
     # sphinx math:
     #filestr = re.sub(r'!bt\n', '\n.. math::\n\n', filestr)
@@ -196,7 +193,7 @@ def rst_author(authors_and_institutions, auth2index,
         else:
             authors.append(author)
 
-    text = ':Author: ' + ', '.join(authors) + '\n\n'
+    text = ':Author: ' + ', '.join(authors)  # (text is r-stripped in typeset_authors)
     # we skip institutions in rst
     return text
 
@@ -326,14 +323,12 @@ def rst_quote(block, format):
 ..
 
 %s
-
 """ % (indent_lines(block, format, ' '*4))
 
 def rst_notes(block, format):
     # Set notes in comments
     return """
 %s
-
 """ % (indent_lines(block, format, '..  '))
 
 
@@ -341,35 +336,30 @@ def rst_warning(block, format):
     return """
 .. warning::
 %s
-
 """ % (indent_lines(block, format, ' '*4))
 
 def rst_question(block, format):
     return """
 .. attention::
 %s
-
 """ % (indent_lines(block, format, ' '*3))
 
 def rst_hint(block, format):
     return """
 .. hint::
 %s
-
 """ % (indent_lines(block, format, ' '*3))
 
 def rst_notice(block, format):
     return """
 .. note::
 %s
-
 """ % (indent_lines(block, format, ' '*3))
 
 def rst_summary(block, format):
     return """
 .. important::
 %s
-
 """ % (indent_lines(block, format, ' '*3))
 
 

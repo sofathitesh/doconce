@@ -17,6 +17,10 @@
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -127,6 +131,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+
 % insert custom LaTeX commands...
 
 \makeindex
@@ -202,7 +207,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------

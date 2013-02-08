@@ -383,7 +383,9 @@ Here is a single equation:
 
 which results in
 
-$$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
+$$
+ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
+$$
 
 One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
 to let the preprocessor choose a block of mathematics in LaTeX format

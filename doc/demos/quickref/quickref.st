@@ -1,11 +1,6 @@
 TITLE: Doconce Quick Reference
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
-
-
-
-
-
-
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Feb 8, 2013
 **WARNING: This quick reference is very incomplete!**
 
 Supported Formats

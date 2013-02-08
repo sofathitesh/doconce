@@ -5,7 +5,6 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-
 :Date: Feb 8, 2013
 
 .. contents:: Table of Contents

@@ -5,7 +5,6 @@ Doconce Description
 ===================
 
 :Author: Hans Petter Langtangen
-
 :Date: Feb 8, 2013
 
 .. lines beginning with # are doconce comment lines
@@ -1727,8 +1726,7 @@ resulting in the link `<manual.html>`_.
 
 .. doconce sphinxfix_localURLs mydoc.rst
 
-.. 
-
+.. !ec
 
 .. (The files, such as ``manual.html``, are then copied to a subdirectory
 
@@ -2972,12 +2970,9 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
-Ctrl+c ce                           code environment: !bc 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
 Ctrl+c exer                         exercise outline                    

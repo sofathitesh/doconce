@@ -1344,7 +1344,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as `FIGURE:` will be
 included in the formatted caption).
 
-FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
+![Streamtube visualization of a fluid flow. ](figs/streamtubes.png)
 
 Combining several image files into one, in a table fashion, can be done by the
 `montage` program from the ImageMagick suite:
@@ -2749,8 +2749,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation $$
-Ctrl+c ma                           math environment: !bt align $$
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               

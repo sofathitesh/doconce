@@ -23,6 +23,7 @@ demonstrated.
 
 # latex blocks are surrounded by !bt and !et
 
+!bslidecell 00
 !bt
 \begin{align}
 u'(t) &= -au(t), \quad t \in (0,T],
@@ -36,6 +37,12 @@ where
 
  * $a$, $I$, and $T$ are prescribed parameters
  * $u(t)$ is the unknown function
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [fig/teacher2, width=300]
+!eslidecell
 
 !split
 ======= Numerical solution method =======

@@ -1,5 +1,6 @@
 TITLE: Doconce Description
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Feb 8, 2013
 
 What Is Doconce?
 
@@ -2439,10 +2440,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
