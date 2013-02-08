@@ -681,13 +681,13 @@ def latex_quote(block, format):
 \begin{quote}
 %s
 \end{quote}
-""" % (indent_lines(block, format, ' '*4))
+""" % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
 def latex_notes(block, format):
     # Set notes in comments
     return r"""
 %s
-""" % (indent_lines(block, format, '% '))
+""" % (indent_lines(block, format, '% ', trailing_newline=False))
 
 latexfigdir = 'latex_figs'
 
@@ -1059,6 +1059,8 @@ final,                   % or draft (marks overfull hboxes)
     elif preamble:
         # Insert user-provided part of the preamble
         INTRO['latex'] = INTRO['latex'].replace('% USER PREAMBLE', preamble)
+    else:
+        INTRO['latex'] = INTRO['latex'].replace('% USER PREAMBLE', '')
 
     if option('latex-printed'):
         INTRO['latex'] = INTRO['latex'].replace('oneside,', 'twoside,')

@@ -983,8 +983,6 @@ $$
 <center>[5] <b>Inst2, Somewhere</b></center>
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -1054,6 +1052,10 @@ $$
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -1163,6 +1165,7 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
 
 % insert custom LaTeX commands...
 
@@ -1282,7 +1285,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -2484,6 +2486,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+
 \usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
@@ -2532,7 +2535,6 @@ final,                   % or draft (marks overfull hboxes)
 {\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
 {\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -3730,6 +3732,7 @@ open=right               % start new chapters on odd-numbered pages
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+
 \usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
@@ -3790,7 +3793,6 @@ open=right               % start new chapters on odd-numbered pages
 \centerline{{\small ${}^7$Fourth Inst}}
 \end{center}
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -4862,7 +4864,6 @@ A Document for Testing Doconce
 ==============================
 
 :Author: Hans Petter Langtangen (hpl at simula.no), Kaare Dump, A. Dummy Author, I. S. Overworked, J. Doe (j_doe at cyberspace.com)
-
 :Date: Jan 32, 2100
 
 .. contents:: Table of Contents
@@ -5838,7 +5839,6 @@ A Document for Testing Doconce
 ==============================
 
 :Author: Hans Petter Langtangen (hpl at simula.no), Kaare Dump, A. Dummy Author, I. S. Overworked, J. Doe (j_doe at cyberspace.com)
-
 :Date: Jan 32, 2100
 
 .. !split
@@ -9421,13 +9421,8 @@ Without label.
 
 
 TITLE: A Document for Testing Doconce
-BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. DoeDATE: today
-
-
-
-
-
-
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. Doe
+DATE: Jan 32, 2100
 # !split
 
 The format of this document is
@@ -10055,14 +10050,8 @@ Without label.
 
 
 TITLE: A Document for Testing Doconce
-BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. DoeDATE: today
-
-
-
-
-
-
-
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. Doe
+DATE: Jan 32, 2100
 # !split
 
 The format of this document is
@@ -10808,7 +10797,6 @@ J. Doe  (j_doe@cyberspace.com)
 [5] Inst2, Somewhere
 [6] Third Inst, Elsewhere
 [7] Fourth Inst
-
 
 Date: Jan 32, 2100
 
@@ -11796,11 +11784,11 @@ Subsection 2
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
 there is a flow.
 
-FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
+![Visualization of flow by streamtubes. ](../doc/manual/figs/streamtubes.png)
 
 Figures without captions are allowed.
 
-FIGURE:[../doc/manual/figs/streamtubes, width=200]
+![](../doc/manual/figs/streamtubes.png)
 
 Test of movies.
 
@@ -11841,7 +11829,7 @@ Test of movies.
 Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
-FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. {myfig} 
+![A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. ](../doc/manual/figs/wavepacket_0001.png)
 
 Movie ref{mymov} has a similar problem.
 
@@ -11849,7 +11837,7 @@ Movie ref{mymov} has a similar problem.
 
 <!-- Test URL as figure name -->
 
-FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+![](https://doconce.googlecode.com/hg/doc/blog/f_plot.png)
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
@@ -12081,7 +12069,9 @@ LaTeX Mathematics
 -----------------
 
 Here is an equation without label using backslash-bracket environment:
-$$ a = b + c $$
+$$
+ a = b + c 
+$$
 or with number and label, as in \eqref{my:eq1}, using the equation environment:
 $$
 \begin{equation}
@@ -13378,9 +13368,13 @@ output2</code></pre>
 <p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
 <h2 id="subsection-2">Subsection 2</h2>
 <p>Test of figures. In particular we refer to Figure ref{fig:impact} in which there is a flow.</p>
-<p>FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}</p>
+<div class="figure">
+<img src="../doc/manual/figs/streamtubes.png" alt="Visualization of flow by streamtubes." /><p class="caption">Visualization of flow by streamtubes.</p>
+</div>
 <p>Figures without captions are allowed.</p>
-<p>FIGURE:[../doc/manual/figs/streamtubes, width=200]</p>
+<div class="figure">
+<img src="../doc/manual/figs/streamtubes.png" /><p class="caption"></p>
+</div>
 <p>Test of movies.</p>
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p>
@@ -13414,13 +13408,17 @@ output2</code></pre>
 <!-- Test multi-line caption in figure -->
 
 <p>Here is figure ref{myfig} with a long multi-line caption and an extra space before the FIGURE keyword.</p>
-<p>FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \(t_{i+1}\). {myfig}</p>
+<div class="figure">
+<img src="../doc/manual/figs/wavepacket_0001.png" alt="A long caption spanning several lines and containing verbatim words like my_file_v1 and my_file_v2 as well as math with subscript as in t_{i+1}." /><p class="caption">A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \(t_{i+1}\).</p>
+</div>
 <p>Movie ref{mymov} has a similar problem.</p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
 <!-- Test URL as figure name -->
 
-<p>FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]</p>
+<div class="figure">
+<img src="https://doconce.googlecode.com/hg/doc/blog/f_plot.png" /><p class="caption"></p>
+</div>
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
@@ -13656,7 +13654,9 @@ output2</code></pre>
 
 <p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and <a href="http://google.com">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
-<p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in , using the equation environment: \[
+<p>Here is an equation without label using backslash-bracket environment: \[
+ a = b + c 
+\] or with number and label, as in , using the equation environment: \[
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
@@ -14885,8 +14885,6 @@ Automatically generated HTML file from Doconce source
 <!-- institution -->
 
 <center><b>Cyberspace Inc.</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -14986,6 +14984,10 @@ the section <a href="#genrefs">Generalized References</a>."
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -15094,6 +15096,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 
+
 % References to labels in external documents:
 \usepackage{xr}
 \externaldocument{testdoc}
@@ -15171,7 +15174,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -15273,7 +15275,6 @@ Test of one author at one institution
 =====================================
 
 :Author: John Doe (doe at cyberspace.net)
-
 :Date: Jan 32, 2100
 
 .. Externaldocument: testdoc
@@ -15352,7 +15353,6 @@ Test of one author at one institution
 John Doe [1] (doe@cyberspace.net)
 
 [1] Cyberspace Inc.
-
 
 Date: Jan 32, 2100
 
@@ -15555,8 +15555,6 @@ $$
 <center>[5] <b>Inst2, Somewhere</b></center>
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -17107,9 +17105,6 @@ MathJax.Hub.Config({
 
 <p>
 <!-- institution(s) -->
-
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -17578,8 +17573,6 @@ Automatically generated HTML file from Doconce source
 <center>[5] <b>Inst2, Somewhere</b></center>
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> 
 <p>
@@ -18899,8 +18892,6 @@ $$
 <center>[5] <b>Inst2, Somewhere</b></center>
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -20858,8 +20849,6 @@ MathJax.Hub.Config({
 
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -22312,6 +22301,10 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -22418,6 +22411,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+
 % insert custom LaTeX commands...
 
 \makeindex
@@ -22493,7 +22487,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -23734,7 +23727,6 @@ Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
-
 :Date: Jan 32, 2100
 
  * When writing a note, report, manual, etc., do you find it difficult
@@ -24995,7 +24987,6 @@ Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
-
 :Date: Jan 32, 2100
 
  * When writing a note, report, manual, etc., do you find it difficult
@@ -29734,9 +29725,8 @@ Mercurial ({{{hg}}}) directories, go to the directory, run
 ************** File: tutorial.st *****************
 
 TITLE: Doconce: Document Once, Include Anywhere
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
-
-
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Jan 32, 2100
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
@@ -30890,9 +30880,8 @@ Mercurial ('hg') directories, go to the directory, run
 ************** File: tutorial.epytext *****************
 
 TITLE: Doconce: Document Once, Include Anywhere
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
-
-
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Jan 32, 2100
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
@@ -32098,7 +32087,6 @@ Hans Petter Langtangen [1, 2]
 
 [1] Simula Research Laboratory
 [2] University of Oslo
-
 
 Date: Jan 32, 2100
 
@@ -35545,7 +35533,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 08 Feb 2013 (01:43)</center>
+<center>Fri, 08 Feb 2013 (03:18)</center>
 
 
 
@@ -35676,7 +35664,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 08 Feb 2013 (01:43)</center>
+<center>Fri, 08 Feb 2013 (03:18)</center>
 
 
 
@@ -38171,8 +38159,6 @@ $$
 
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -42008,6 +41994,10 @@ and Sphinx just typeset the list as a list with keywords.
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -42118,6 +42108,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+
 % insert custom LaTeX commands...
 
 \makeindex
@@ -42193,7 +42184,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -45405,7 +45395,6 @@ Doconce Description
 ===================
 
 :Author: Hans Petter Langtangen
-
 :Date: Jan 32, 2100
 
 .. lines beginning with # are doconce comment lines
@@ -46973,8 +46962,7 @@ resulting in the link `<manual.html>`_.
 
 .. doconce sphinxfix_localURLs mydoc.rst
 
-.. 
-
+.. !ec
 
 .. (The files, such as ``manual.html``, are then copied to a subdirectory
 
@@ -48108,10 +48096,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
@@ -48800,7 +48786,6 @@ Doconce Description
 ===================
 
 :Author: Hans Petter Langtangen
-
 :Date: Jan 32, 2100
 
 .. lines beginning with # are doconce comment lines
@@ -50522,8 +50507,7 @@ resulting in the link `<manual.html>`_.
 
 .. doconce sphinxfix_localURLs mydoc.rst
 
-.. 
-
+.. !ec
 
 .. (The files, such as ``manual.html``, are then copied to a subdirectory
 
@@ -51767,12 +51751,9 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
-Ctrl+c ce                           code environment: !bc 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
 Ctrl+c exer                         exercise outline                    
@@ -61598,7 +61579,8 @@ and Sphinx just typeset the list as a list with keywords.
 
 ************** File: manual.st *****************
 TITLE: Doconce Description
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Jan 32, 2100
 
 What Is Doconce?
 
@@ -64038,10 +64020,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
@@ -64649,11 +64629,8 @@ Bibliography
 
 ************** File: manual.epytext *****************
 TITLE: Doconce Description
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
-
-
-
-
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Jan 32, 2100
 What Is Doconce?
 ================
 
@@ -67183,10 +67160,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
@@ -67845,7 +67820,6 @@ Hans Petter Langtangen [1, 2]
 
 [1] Simula Research Laboratory
 [2] University of Oslo
-
 
 Date: Jan 32, 2100
 
@@ -70420,10 +70394,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation 
-
-Ctrl+c ma                           math environment: !bt align 
-
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
@@ -72443,7 +72415,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as `FIGURE:` will be
 included in the formatted caption).
 
-FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
+![Streamtube visualization of a fluid flow. ](figs/streamtubes.png)
 
 Combining several image files into one, in a table fashion, can be done by the
 `montage` program from the ImageMagick suite:
@@ -73848,8 +73820,8 @@ Ctrl+c h1                           heading level 1 (section/h1)
 Ctrl+c h2                           heading level 2 (subsection/h2)     
 Ctrl+c h3                           heading level 2 (subsection/h3)     
 Ctrl+c hp                           heading for paragraph               
-Ctrl+c me                           math environment: !bt equation $$
-Ctrl+c ma                           math environment: !bt align $$
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
 Ctrl+c table                        table                               
@@ -75677,8 +75649,6 @@ MathJax.Hub.Config({
 
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
-
-
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -76706,6 +76676,10 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -76812,6 +76786,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+
 % insert custom LaTeX commands...
 
 \makeindex
@@ -76885,7 +76860,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
-
 
 
 % ----------------- date -------------------------
@@ -77826,7 +77800,6 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-
 :Date: Jan 32, 2100
 
 .. contents:: Table of Contents
@@ -78727,7 +78700,6 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-
 :Date: Jan 32, 2100
 
 .. Very preliminary
@@ -82112,13 +82084,8 @@ examine the Doconce source and the {{{doc/src/make.sh}}} script).
 
 ************** File: quickref.st *****************
 TITLE: Doconce Quick Reference
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
-
-
-
-
-
-
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Jan 32, 2100
 **WARNING: This quick reference is very incomplete!**
 
 Supported Formats
@@ -82925,14 +82892,8 @@ Resources
 
 ************** File: quickref.epytext *****************
 TITLE: Doconce Quick Reference
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
-
-
-
-
-
-
-
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+DATE: Jan 32, 2100
 B{WARNING: This quick reference is very incomplete!}
 
 
@@ -83748,7 +83709,6 @@ Hans Petter Langtangen [1, 2]
 
 [1] Simula Research Laboratory
 [2] University of Oslo
-
 
 Date: Jan 32, 2100
 
@@ -85032,7 +84992,9 @@ Here is a single equation:
 
 which results in
 
-$$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
+$$
+ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
+$$
 
 One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
 to let the preprocessor choose a block of mathematics in LaTeX format
@@ -86504,7 +86466,8 @@ Warning: the "alignat" environment will give errors in Sphinx:
         \begin{alignat}{2}
         a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0  \\ 
         b &= \nabla^2 u + \nabla^4 x & x\in\Omega 
-        \end{alignat} 
+        \end{alignat}
+
 
 
 Detected (align) equation systems with multiple labels
@@ -86678,25 +86641,27 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
-*** warning: latex envir \begin{multline} does not work well
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format pandoc
+*** warning: latex envir \begin{multline} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 
-*** warning: latex envir \begin{gather} does not work well
+*** warning: latex envir \begin{gather} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 
-*** warning: latex envir \begin{alignat} does not work well
+*** warning: latex envir \begin{alignat} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 
-*** warning: latex envir \begin{eqnarray} does not work well
+*** warning: latex envir \begin{eqnarray} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
@@ -87038,25 +87003,27 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
-*** warning: latex envir \begin{multline} does not work well
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format pandoc
+*** warning: latex envir \begin{multline} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 
-*** warning: latex envir \begin{gather} does not work well
+*** warning: latex envir \begin{gather} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 
-*** warning: latex envir \begin{alignat} does not work well
+*** warning: latex envir \begin{alignat} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
     output.
 
-*** warning: latex envir \begin{eqnarray} does not work well
+*** warning: latex envir \begin{eqnarray} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
@@ -89149,12 +89116,6 @@ output in tutorial.epytext
 + doconce format pandoc tutorial.do.txt
 running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
-*** warning: latex envir \begin{quote} does not work well
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
-
 output in tutorial.md
 + a2ps_plain=a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer=''
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.do.ps tutorial.do.txt
@@ -89165,7 +89126,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
 [tutorial.epytext (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.epytext.ps'
-[23 lines wrapped]
+[22 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
 [tutorial.txt (plain): 22 pages on 22 sheets]
@@ -90901,19 +90862,9 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-*** warning: latex envir \begin{eqnarray} does not work well
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
-
-*** warning: latex envir \begin{eqnarray} does not work well
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
-
-*** warning: latex envir \begin{theorem} does not work well
+figure file figs/streamtubes:
+    can use figs/streamtubes.png for format pandoc
+*** warning: latex envir \begin{eqnarray} does not work well:
     pandoc-extended markdown syntax handles only single equations
     (but doconce splits align environments into single equations).
     Labels in equations do not work with pandoc-extended markdown
@@ -94809,12 +94760,6 @@ output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
 translating doconce text in quickref.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
-*** warning: latex envir \begin{quote} does not work well
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
-
 output in quickref.md
 + rm -rf demo
 + mkdir demo

@@ -8,7 +8,6 @@ Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
-
 :Date: Feb 8, 2013
 
  * When writing a note, report, manual, etc., do you find it difficult

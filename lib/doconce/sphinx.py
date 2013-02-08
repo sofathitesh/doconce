@@ -239,11 +239,13 @@ def sphinx_code_orig(filestr, format):
     cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
     filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
 
-    filestr = re.sub(r'!ec *\n', '\n\n', filestr)
-    #filestr = re.sub(r'!ec\n', '\n', filestr)
-    #filestr = re.sub(r'!ec\n', '', filestr)
-    filestr = re.sub(r'!bt *\n', '\n.. math::\n\n', filestr)
-    filestr = re.sub(r'!et *\n', '\n\n', filestr)
+    filestr = re.sub(r'^!ec *\n', '\n', filestr, flags=re.MULTILINE)
+    #filestr = re.sub(r'^!ec\n', '\n', filestr, flags=re.MULTILINE)
+    #filestr = re.sub(r'^!ec\n', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!bt *\n', '\n.. math::\n\n', filestr,
+                     flags=re.MULTILINE)
+    filestr = re.sub(r'^!et *\n', '\n\n', filestr,
+                     flags=re.MULTILINE)
 
     return filestr
 
@@ -321,7 +323,7 @@ def sphinx_code_newmathlabels(filestr, format):
     cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
     filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
 
-    filestr = re.sub(r'!ec *\n', '\n\n', filestr)
+    filestr = re.sub(r'!ec *\n', '\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
     #filestr = re.sub(r'!ec\n', '', filestr)
     filestr = re.sub(r'!bt *\n', '\n.. math::\n   :nowrap:\n\n', filestr)
@@ -491,14 +493,14 @@ and references to them will be empty):"""
     # any !bc with/without argument becomes a text block:
     #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: text\n\n', filestr,
     #                 flags=re.MULTILINE)
-    cpattern = re.compile(r'^!bc.*$', flags=re.MULTILINE)
-    filestr = cpattern.sub('\n.. code-block:: text\n\n', filestr)
+    filestr = re.sub(r'^!bc.*$', '\n.. code-block:: text\n\n', filestr,
+                     flags=re.MULTILINE)
 
-    filestr = re.sub(r'!ec *\n', '\n\n', filestr)
-    #filestr = re.sub(r'!ec\n', '\n', filestr)
-    #filestr = re.sub(r'!ec\n', '', filestr)
-    filestr = re.sub(r'!bt *\n', '\n.. math::\n', filestr)
-    filestr = re.sub(r'!et *\n', '\n\n', filestr)
+    filestr = re.sub(r'^!ec *\n', '\n', filestr, flags=re.MULTILINE)
+    #filestr = re.sub(r'^!ec\n', '\n', filestr, flags=re.MULTILINE)
+    #filestr = re.sub(r'^!ec\n', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!bt *\n', '\n.. math::\n', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!et *\n', '\n', filestr, flags=re.MULTILINE)
 
     filestr = fix_underlines_in_headings(filestr)
 

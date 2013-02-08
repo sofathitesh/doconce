@@ -2575,11 +2575,23 @@ def slides_html():
          return
 
 
-    # Create a slide presentation from the HTML file
+    # --- Create a slide presentation from the HTML file ---
 
     header, parts, footer = get_html_header_parts_footer(filename)
     parts = tablify(parts)
 
+    # Add padding style to td tags in tables
+    header += """
+<!-- padding of cells in tables: <td class="padding">...</td> -->    
+<style type="text/css">
+td.padding {
+padding-top:20px;
+padding-bottom:20px;
+padding-right:50px;
+padding-left:50px%;
+}
+</style>
+"""    
     filestr = None
     if slide_type == 'doconce':
         doconce_html_split(header, parts, footer, basename, filename)
@@ -2629,7 +2641,7 @@ def tablify(parts):
             for row in table:
                 ht += '<tr>\n'
                 for column in row:
-                    ht += '<td> %s </td>\n' % (column)
+                    ht += '<td class="padding"> %s </td>\n' % (column)
                 ht += '</tr>\n'
             ht += '</table>\n'
 

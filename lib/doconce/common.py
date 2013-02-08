@@ -19,7 +19,7 @@ def where():
     import os
     return os.path.dirname(__file__)
 
-def indent_lines(text, format, indentation=' '*8):
+def indent_lines(text, format, indentation=' '*8, trailing_newline=True):
     """
     Indent each line in the string text, provided in a format for
     HTML, LaTeX, epytext, ..., by the blank string indentation.
@@ -36,11 +36,14 @@ def indent_lines(text, format, indentation=' '*8):
 
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
+
 """
             return text
 
     # indent X chars (choose X=6 for sufficient indent in lists)
     text = '\n'.join([indentation + line for line in text.splitlines()])
+    if trailing_newline:
+        text += '\n'
     return text
 
 def table_analysis(table):

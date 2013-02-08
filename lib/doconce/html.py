@@ -700,7 +700,7 @@ def html_quote(block, format):
 <blockquote>
 %s
 </blockquote>
-""" % (indent_lines(block, format, ' '*4))
+""" % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
 def html_notes(block, format):
     # Set notes in comments

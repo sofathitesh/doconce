@@ -40,7 +40,7 @@ def pandoc_code(filestr, code_blocks, code_block_types,
     output.
 """ % envir
         # Add $$ on each side of the equation
-        tex_blocks[i] = '$$\n' + tex_blocks[i] + '\n$$'
+        tex_blocks[i] = '$$\n' + tex_blocks[i] + '$$\n'
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
@@ -72,8 +72,8 @@ def pandoc_code(filestr, code_blocks, code_block_types,
     cpattern = re.compile(r'^!ec\s*$', flags=re.MULTILINE)
     filestr = cpattern.sub('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n', filestr)
 
-    filestr = re.sub(r'^!bt *$', '', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'^!et *$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!bt *\n', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^!et *\n', '', filestr, flags=re.MULTILINE)
 
     # \eqref and labels will not work, but labels do no harm
     filestr = filestr.replace(' label{', ' \\label{')
