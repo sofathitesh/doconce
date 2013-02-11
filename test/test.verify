@@ -7,6 +7,15 @@ import commands, os, sys, commands, re
 # should try the easyviz documentation as that docment has a lot
 # of figures and cross references (is a nice example of doconce too)
 
+# Check that we have Internet
+import urllib
+try:
+    urllib.urlopen('https://doconce.googlecode.com/hg/doc/blog/f_plot.png')
+except IOError, e:
+    print e
+    print 'No Internet connection - the testdoc test cannot be run. Abort.'
+    sys.exit(1)
+
 thisdir = os.getcwd()
 logfilename = os.path.join(thisdir, 'test.v')
 log = open(logfilename, 'w')

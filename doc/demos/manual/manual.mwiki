@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Feb 8, 2013 ====
+==== Feb 10, 2013 ====
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -2499,17 +2499,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running <code>doconce format</code>, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 ==== General Problems ====
 
@@ -2622,6 +2615,16 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first <code>!bt</code> (inserting the blanks again did not
 trigger the error message again...).
+
+==== Emacs editing does not work properly because of "regexp overflow" ====
+
+Sometimes the Doonce editing mode (see the section [#Emacs_Doconce_Formatter]) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the <code>preprocess</code> directive <code>#include "piece.do.txt"</code>.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 ==== Problems with code or Tex Blocks ====
 

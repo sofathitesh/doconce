@@ -17062,6 +17062,16 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
 </script>
 
 
+<!-- padding of cells in tables: <td class="padding">...</td> -->    
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
 <!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -17121,7 +17131,7 @@ MathJax.Hub.Config({
 
 <table border="0">
 <tr>
-<td> 
+<td class="padding"> 
 
 
 <p>
@@ -17135,7 +17145,7 @@ MathJax.Hub.Config({
 
 
  </td>
-<td> 
+<td class="padding"> 
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
  </td>
 </tr>
@@ -35533,7 +35543,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 08 Feb 2013 (03:18)</center>
+<center>Sun, 10 Feb 2013 (17:17)</center>
 
 
 
@@ -35664,7 +35674,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 08 Feb 2013 (03:18)</center>
+<center>Sun, 10 Feb 2013 (17:17)</center>
 
 
 
@@ -37461,17 +37471,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running `doconce format`, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 ===== General Problems =====
@@ -37587,6 +37590,16 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first `!bt` (inserting the blanks again did not
 trigger the error message again...).
+
+=== Emacs editing does not work properly because of "regexp overflow" ===
+
+Sometimes the Doonce editing mode (see Section ref{emacs:doconce}) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the `preprocess` directive `#include "piece.do.txt"`.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 ===== Problems with code or Tex Blocks =====
 
@@ -41222,18 +41235,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running <tt>doconce format</tt>, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-<p>
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 <p>
 
@@ -41393,10 +41398,22 @@ trigger the error message again...).
 
 <p>
 
-<h3>Problems with code or Tex Blocks  <a name="___sec71"></a></h3>
+<h4>Emacs editing does not work properly because of "regexp overflow"  <a name="___sec71"></a></h4>
+<p>
+Sometimes the Doonce editing mode (see the section <a href="#emacs:doconce">Emacs Doconce Formatter</a>) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the <tt>preprocess</tt> directive <tt>#include "piece.do.txt"</tt>.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
+
 <p>
 
-<h4>Code or math block errors in reST  <a name="___sec72"></a></h4>
+<h3>Problems with code or Tex Blocks  <a name="___sec72"></a></h3>
+<p>
+
+<h4>Code or math block errors in reST  <a name="___sec73"></a></h4>
 <p>
 First note that a code or math block must come after some plain
 sentence (at least for successful output in reST), not directly
@@ -41419,7 +41436,7 @@ indicate a verbatim block of text).
 
 <p>
 
-<h4>Strange errors around code or TeX blocks in reST  <a name="___sec73"></a></h4>
+<h4>Strange errors around code or TeX blocks in reST  <a name="___sec74"></a></h4>
 <p>
 If <tt>idx</tt> commands for defining indices are placed inside paragraphs,
 and especially right before a code block, the reST translator
@@ -41430,7 +41447,7 @@ paragraphs.
 
 <p>
 
-<h4>Something is wrong with a verbatim code block  <a name="___sec74"></a></h4>
+<h4>Something is wrong with a verbatim code block  <a name="___sec75"></a></h4>
 <p>
 Check first that there is a "normal" sentence right before
 the block (this is important for reST and similar
@@ -41438,7 +41455,7 @@ the block (this is important for reST and similar
 
 <p>
 
-<h4>Code/TeX block is not shown in reST format  <a name="___sec75"></a></h4>
+<h4>Code/TeX block is not shown in reST format  <a name="___sec76"></a></h4>
 <p>
 A comment right before a code or tex block will treat the whole
 block also as a comment. It is important that there is normal
@@ -41446,7 +41463,7 @@ running text right before <tt>!bt</tt> and <tt>!bc</tt> environments.
 
 <p>
 
-<h4>Verbatim code blocks inside lists look ugly  <a name="___sec76"></a></h4>
+<h4>Verbatim code blocks inside lists look ugly  <a name="___sec77"></a></h4>
 <p>
 Read the the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
 <tt>!bc</tt> and <tt>!ec</tt> tags in column 1 of the file, and be careful with
@@ -41457,7 +41474,7 @@ avoid verbatim code blocks inside lists (it makes life easier).
 
 <p>
 
-<h4>LaTeX code blocks inside lists look ugly  <a name="___sec77"></a></h4>
+<h4>LaTeX code blocks inside lists look ugly  <a name="___sec78"></a></h4>
 <p>
 Same solution as for computer code blocks as described in the
 previous paragraph. Make sure the <tt>!bt</tt> and <tt>!et</tt> tags are in column 1
@@ -41467,10 +41484,10 @@ Using paragraphs instead of list items is a good idea also here.
 <p>
 
 
-<h3>Problems with reST/Sphinx Output  <a name="___sec78"></a></h3>
+<h3>Problems with reST/Sphinx Output  <a name="___sec79"></a></h3>
 <p>
 
-<h4>Title level inconsistent  <a name="___sec79"></a></h4>
+<h4>Title level inconsistent  <a name="___sec80"></a></h4>
 <p>
 reST does not like jumps in the levels of headings. For example, you cannot
 have a <tt>===</tt> (paragraph) heading after a <tt>=======</tt> (section) heading without
@@ -41478,14 +41495,14 @@ a <tt>=====</tt> (subsection) heading in between.
 
 <p>
 
-<h4>Lists do not appear in .rst files  <a name="___sec80"></a></h4>
+<h4>Lists do not appear in .rst files  <a name="___sec81"></a></h4>
 <p>
 Check if you have a comment right above the list. That comment
 will include the list if the list is indentend. Remove the comment.
 
 <p>
 
-<h4>Error message "Undefined substitution..." from reST  <a name="___sec81"></a></h4>
+<h4>Error message "Undefined substitution..." from reST  <a name="___sec82"></a></h4>
 <p>
 This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
@@ -41493,7 +41510,7 @@ Just ignore these error messages.
 
 <p>
 
-<h4>Warning about duplicate link names  <a name="___sec82"></a></h4>
+<h4>Warning about duplicate link names  <a name="___sec83"></a></h4>
 <p>
 Link names should be unique, but if (e.g.) "file" is used as link text
 several places in a reST file, the links still work. The warning can
@@ -41501,7 +41518,7 @@ therefore be ignorned.
 
 <p>
 
-<h4>Inconsistent headings in reST  <a name="___sec83"></a></h4>
+<h4>Inconsistent headings in reST  <a name="___sec84"></a></h4>
 <p>
 The <tt>rst2*.py</tt> and Sphinx converters abort if the headers of sections
 are not consistent, i.e., a subsection must come under a section,
@@ -41512,7 +41529,7 @@ and make sure they decrease by two every time a lower level is encountered.
 
 <p>
 
-<h4>No code environment appears before "bc ipy" blocks  <a name="___sec84"></a></h4>
+<h4>No code environment appears before "bc ipy" blocks  <a name="___sec85"></a></h4>
 <p>
 The <tt>!bc ipy</tt> directive behaves this way for <tt>sphinx</tt> output because
 interactive sessions are automatically handled. If this is not
@@ -41521,10 +41538,10 @@ verbatim environment.
 
 <p>
 
-<h3>Problems with LaTeX Output  <a name="___sec85"></a></h3>
+<h3>Problems with LaTeX Output  <a name="___sec86"></a></h3>
 <p>
 
-<h4>LaTeX does not like underscores in URLs  <a name="___sec86"></a></h4>
+<h4>LaTeX does not like underscores in URLs  <a name="___sec87"></a></h4>
 <p>
 Suppose you have a URL reference like
 
@@ -41550,7 +41567,7 @@ Verbatim text in links works fine with underscores.
 
 <p>
 
-<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec87"></a></h4>
+<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec88"></a></h4>
 <p>
 This message points to the use of the minted style for typesetting verbatim
 code. You need to include the <tt>-shell-escape</tt> command-line argument when
@@ -41569,7 +41586,7 @@ When this package is included, <tt>latex</tt> or <tt>pdflatex</tt> runs the
 
 <p>
 
-<h4>How can I use my fancy LaTeX environments?  <a name="___sec88"></a></h4>
+<h4>How can I use my fancy LaTeX environments?  <a name="___sec89"></a></h4>
 <p>
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
@@ -41688,7 +41705,7 @@ Also <tt>doconce ptex2tex</tt> has some flexibility for typesetting computer cod
 <p>
 
 
-<h4>The LaTeX file does not compile  <a name="___sec89"></a></h4>
+<h4>The LaTeX file does not compile  <a name="___sec90"></a></h4>
 <p>
 If the problem is undefined control sequence involving
 <!-- begin verbatim block -->
@@ -41702,7 +41719,7 @@ that all inline verbatim text appears on the same line.
 
 <p>
 
-<h4>Inline verbatim gives error   <a name="___sec90"></a></h4>
+<h4>Inline verbatim gives error   <a name="___sec91"></a></h4>
 <p>
 Check if the inline verbatim contains typical LaTeX commands, e.g.,
 <!-- begin verbatim block -->
@@ -41725,7 +41742,7 @@ blocks - that is safe.
 <p>
 
 
-<h4>Errors in figure captions  <a name="___sec91"></a></h4>
+<h4>Errors in figure captions  <a name="___sec92"></a></h4>
 <p>
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
@@ -41738,7 +41755,7 @@ inside figure captions) and precede underscores by backslash.)
 
 <p>
 
-<h4>Chapters are ignored  <a name="___sec92"></a></h4>
+<h4>Chapters are ignored  <a name="___sec93"></a></h4>
 <p>
 The default LaTeX style is "article". If you chapters in the Doconce file,
 you need to run <tt>ptex2tex</tt> with the option <tt>-DBOOK</tt> to set the LaTeX
@@ -41746,7 +41763,7 @@ documentstyle to "book".
 
 <p>
 
-<h4>I want to tune the top of the LaTeX file  <a name="___sec93"></a></h4>
+<h4>I want to tune the top of the LaTeX file  <a name="___sec94"></a></h4>
 <p>
 The top of the LaTeX file, as generated by Doconce, is very simple.
 If this LaTeX code is not sufficient for your needs, there are
@@ -41773,17 +41790,17 @@ two ways out of it:
    replaced by the hand-written LaTeX "top" file.</li>
 </ol>
 
-<h3>Problems with gwiki Output  <a name="___sec94"></a></h3>
+<h3>Problems with gwiki Output  <a name="___sec95"></a></h3>
 <p>
 
-<h4>Strange nested lists in gwiki  <a name="___sec95"></a></h4>
+<h4>Strange nested lists in gwiki  <a name="___sec96"></a></h4>
 <p>
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the <tt>.gwiki</tt> file directly.
 
 <p>
 
-<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec96"></a></h4>
+<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec97"></a></h4>
 <p>
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
@@ -41794,10 +41811,10 @@ further.
 
 <p>
 
-<h3>Problems with HTML Output  <a name="___sec97"></a></h3>
+<h3>Problems with HTML Output  <a name="___sec98"></a></h3>
 <p>
 
-<h4>How can I change the layout of the HTML page?  <a name="___sec98"></a></h4>
+<h4>How can I change the layout of the HTML page?  <a name="___sec99"></a></h4>
 <p>
 The standard of way of controlling the HTML format is to use an
 HTML template. The Doconce source is then the body of text (leave
@@ -41822,7 +41839,7 @@ the HTML file (preferably done automatically via <tt>doconce replace</tt> and
 
 <p>
 
-<h4>Why do figures look ugly when using HTML templates?  <a name="___sec99"></a></h4>
+<h4>Why do figures look ugly when using HTML templates?  <a name="___sec100"></a></h4>
 <p>
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
@@ -41844,7 +41861,7 @@ doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
 <p>
 
 
-<h3>Debugging  <a name="___sec100"></a></h3>
+<h3>Debugging  <a name="___sec101"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -41859,7 +41876,7 @@ format, and you need to know these steps to make use of the logfile.
 <p>
 
 
-<h2>Basic Parsing Ideas  <a name="___sec101"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec102"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -41915,7 +41932,7 @@ LaTeX, and work further on the document in this format.
 <p>
 
 
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec102"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec103"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return
@@ -44831,17 +44848,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running \code{doconce format}, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 \subsection{General Problems}
 
@@ -44940,6 +44950,15 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first \code{!bt} (inserting the blanks again did not
 trigger the error message again...).
+
+\paragraph{Emacs editing does not work properly because of "regexp overflow".}
+Sometimes the Doonce editing mode (see Section~\ref{emacs:doconce}) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the \code{preprocess} directive \code{#include "piece.do.txt"}.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 \subsection{Problems with code or Tex Blocks}
 
@@ -48119,17 +48138,10 @@ Disclaimer
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running ``doconce format``, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 General Problems
@@ -48266,6 +48278,17 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first ``!bt`` (inserting the blanks again did not
 trigger the error message again...).
+
+Emacs editing does not work properly because of "regexp overflow"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes the Doonce editing mode (see the section `Emacs Doconce Formatter`_) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the ``preprocess`` directive ``#include "piece.do.txt"``.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 Problems with code or Tex Blocks
 --------------------------------
@@ -51774,17 +51797,10 @@ Disclaimer
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running ``doconce format``, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 General Problems
@@ -51933,6 +51949,17 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first ``!bt`` (inserting the blanks again did not
 trigger the error message again...).
+
+Emacs editing does not work properly because of "regexp overflow"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes the Doonce editing mode (see the section :ref:`emacs:doconce`) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the ``preprocess`` directive ``#include "piece.do.txt"``.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 Problems with code or Tex Blocks
 --------------------------------
@@ -54895,17 +54922,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running `doconce format`, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 ==== General Problems ====
 
@@ -55018,6 +55038,16 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first `!bt` (inserting the blanks again did not
 trigger the error message again...).
+
+==== Emacs editing does not work properly because of "regexp overflow" ====
+
+Sometimes the Doonce editing mode (see the section [#Emacs_Doconce_Formatter]) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the `preprocess` directive `#include "piece.do.txt"`.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 ==== Problems with code or Tex Blocks ====
 
@@ -57968,17 +57998,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running <code>doconce format</code>, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 ==== General Problems ====
 
@@ -58091,6 +58114,16 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first <code>!bt</code> (inserting the blanks again did not
 trigger the error message again...).
+
+==== Emacs editing does not work properly because of "regexp overflow" ====
+
+Sometimes the Doonce editing mode (see the section [#Emacs_Doconce_Formatter]) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the <code>preprocess</code> directive <code>#include "piece.do.txt"</code>.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 ==== Problems with code or Tex Blocks ====
 
@@ -60998,17 +61031,10 @@ Doconce and saving much typing!
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running {{{doconce format}}}, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 == General Problems ==
@@ -61122,6 +61148,16 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first {{{!bt}}} (inserting the blanks again did not
 trigger the error message again...).
+
+=== Emacs editing does not work properly because of "regexp overflow" ===
+
+Sometimes the Doonce editing mode (see the section [#Emacs_Doconce_Formatter]) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the {{{preprocess}}} directive {{{#include "piece.do.txt"}}}.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 
 == Problems with code or Tex Blocks ==
@@ -64040,17 +64076,10 @@ Disclaimer
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running 'doconce format', the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 General Problems
 
@@ -64169,6 +64198,16 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first '!bt' (inserting the blanks again did not
 trigger the error message again...).
+
+Emacs editing does not work properly because of "regexp overflow"
+
+Sometimes the Doonce editing mode (see the section "Emacs Doconce Formatter") in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the 'preprocess' directive '#include "piece.do.txt"'.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 Problems with code or Tex Blocks
 
@@ -67183,17 +67222,10 @@ Disclaimer
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running C{doconce format}, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 General Problems
@@ -67330,6 +67362,17 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first C{!bt} (inserting the blanks again did not
 trigger the error message again...).
+
+Emacs editing does not work properly because of "regexp overflow"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes the Doonce editing mode (see the section "Emacs Doconce Formatter") in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the C{preprocess} directive C{#include "piece.do.txt"}.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 Problems with code or Tex Blocks
 --------------------------------
@@ -70417,17 +70460,10 @@ Disclaimer
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running doconce format, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 General Problems
@@ -70564,6 +70600,17 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first !bt (inserting the blanks again did not
 trigger the error message again...).
+
+Emacs editing does not work properly because of "regexp overflow"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes the Doonce editing mode (see the section "Emacs Doconce Formatter") in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the preprocess directive #include "piece.do.txt".
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 Problems with code or Tex Blocks
 --------------------------------
@@ -73843,17 +73890,10 @@ Disclaimer
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running `doconce format`, the reason for the error is
 most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
 
 
 General Problems
@@ -73994,6 +74034,17 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first `!bt` (inserting the blanks again did not
 trigger the error message again...).
+
+Emacs editing does not work properly because of "regexp overflow"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes the Doonce editing mode (see the section [Emacs Doconce Formatter](#r)) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the `preprocess` directive `#include "piece.do.txt"`.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
 
 Problems with code or Tex Blocks
 --------------------------------
@@ -85569,7 +85620,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -85627,7 +85677,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -85680,7 +85729,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -85741,7 +85789,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -85798,7 +85845,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86330,7 +86376,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86384,7 +86429,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86438,7 +86482,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 
 *** warning:
 Not recommended for sphinx output: math environment {eqnarray}
@@ -86520,7 +86563,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86576,7 +86618,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86630,7 +86671,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86710,7 +86750,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86771,7 +86810,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86828,7 +86866,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86920,7 +86957,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -86992,7 +87028,6 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-found reference "Movie ref{mymov}" with unexpected word "Movie" in front (reference to equation, but missing parenthesis in (ref{mymov})?)
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -88123,7 +88158,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 179003 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 179005 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -89994,14 +90029,18 @@ Overfull \hbox (95.00006pt too wide)
 ile 
 [41]
 
+LaTeX Warning: Hyper reference `emacs-doconce-formatter' on page 42 undefined o
+n 
+
+
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 42 un
 defined on 
 
-[42] [43]
+[42] [43] [44]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[44]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
@@ -90668,10 +90707,10 @@ oad [][][][][][]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[39] [40]
+[39]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
-
+[40]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
@@ -90688,11 +90727,11 @@ ile
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[44]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[44]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -90713,11 +90752,11 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
+[45]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[45]
+
 Overfull \hbox (9.14774pt too wide) 
 []\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
 tim code via the \T1/pcr/m/n/10 ptex2tex
@@ -91177,24 +91216,28 @@ LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
 Overfull \hbox (4.02658pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][].doconce-
-[40] [41] [42]
+[40] [41]
+
+LaTeX Warning: Reference `emacs:doconce' on page 42 undefined on input line 281
+1.
+
+[42]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2857.
+ne 2859.
 
-[43] [44] [45]
+[43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49]
 No file manual.bbl.
 No file manual.ind.
 [50] (./manual.aux)
@@ -91542,19 +91585,19 @@ Overfull \hbox (1.76395pt too wide)
 Overfull \hbox (4.02658pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][].doconce-
-[40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -91871,19 +91914,19 @@ Overfull \hbox (1.76395pt too wide)
 Overfull \hbox (4.02658pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][].doconce-
-[40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -92230,19 +92273,19 @@ Overfull \hbox (1.76395pt too wide)
 Overfull \hbox (39.44624pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][][][][][]
-[40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -92536,19 +92579,19 @@ Overfull \hbox (1.76395pt too wide)
 Overfull \hbox (39.44624pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][][][][][]
-[40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -92854,19 +92897,19 @@ Overfull \hbox (1.76395pt too wide)
 Overfull \hbox (39.44624pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][][][][][]
-[40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -93160,19 +93203,19 @@ Overfull \hbox (1.76395pt too wide)
 Overfull \hbox (39.44624pt too wide) 
 []\OT1/phv/m/n/10 Here is how to get the Do-conce Edit-ing Mode in Emacs: Down-
 load [][][][][][]
-[40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46]
 Overfull \hbox (48.87616pt too wide) 
 [] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
 -ments. Also []
-[46] [47]
+[47]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[48]
+[48] [49]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
