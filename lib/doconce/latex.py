@@ -100,18 +100,27 @@ def latex_code(filestr, code_blocks, code_block_types,
         filestr = re.sub(r'section\{(Exercise|Problem|Project)( +[^}])',
                          r'section*{\g<1>\g<2>', filestr)
 
+    # Fix % in link texts (-> \%, otherwise treated as comment...)
+    pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
+    def subst(m):  # m is match object
+        url = m.group(1).strip()
+        text = m.group(2).strip()
+        # fix % without backslash
+        text = re.sub(r'([^\\])\%', r'\g<1>\\%', text)
+        return '\\href{{%s}}{%s}' % (url, text)
+    filestr = re.sub(pattern, subst, filestr)
+
     if option('latex-printed'):
         # Make adjustments for printed versions of the PDF document.
         # Fix links so that the complete URL is in a footnote
-        pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
         def subst(m):  # m is match object
             url = m.group(1).strip()
             text = m.group(2).strip()
             #print 'url:', url, 'text:', text
-            if not ('http' in text or '\\nolinkurl{' in text):
+            if not ('ftp:' in text or 'http' in text or '\\nolinkurl{' in text):
+                # The link text does not display the URL so we include it
+                # in a footnote (\nolinkurl{} indicates URL: "...")
                 texttt_url = url.replace('_', '\\_').replace('#', '\\#')
-                # fix % without backslash
-                texttt_url = re.sub(r'([^\\])\%', r'\g<1>\\%', texttt_url)
                 return '\\href{{%s}}{%s}' % (url, text) + \
                        '\\footnote{\\texttt{%s}}' % texttt_url
             else: # no substitution, URL is in the link text
