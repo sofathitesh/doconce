@@ -487,8 +487,8 @@ def html_movie(m):
         if not 'youtube.com/embed/' in filename:
             filename = filename.replace('watch?v=', 'embed/')
         # Make html for a local YouTube frame
-        width = kwargs.get('width', 420)
-        height = kwargs.get('height', 315)
+        width = kwargs.get('width', 640)
+        height = kwargs.get('height', 365)
         text = """
 <iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
 """ % (width, height, filename)

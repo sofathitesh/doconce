@@ -159,7 +159,8 @@ def latex_figure(m, includegraphics=True):
         try:
             urllib.urlretrieve(filename, filename=basename)
             print 'downloading', filename, '.......'
-        except IOError:
+        except IOError, e:
+            print 'tried to download %s, but failure:' % filename, e
             print '*** error: cannot treat latex figure on the net (no connection or invalid URL)'
             sys.exit(1)
         filename = os.path.join(figdir, basename)
