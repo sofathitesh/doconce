@@ -127,7 +127,7 @@ def syntax_check(filestr, format):
             if w[0] != w[-1]:
                 print '\ninconsistent no of = in heading:\n', line
                 print 'lengths: %d and %d, must be equal and odd' % \
-                      (w[0], w[-1])
+                      (len(w[0]), len(w[-1]))
                 _abort()
 
     # Check that references have parenthesis (equations) or
