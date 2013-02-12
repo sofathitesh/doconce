@@ -2551,6 +2551,9 @@ def slides_html():
     filename = sys.argv[1]
     if not filename.endswith('.html'):
         filename += '.html'
+    if not os.path.isfile(filename):
+        print 'doconce file in html format, %s, does not exist - abort' % filename
+        sys.exit(1)
     basename = os.path.basename(filename)
     filestem = os.path.splitext(basename)[0]
 
@@ -2625,20 +2628,23 @@ def tablify(parts):
             #print 'table:'; pprint.pprint(table)
 
             # typeset table in html
-            ht = '\n<table border="0">\n'
+            tbl = '\n<table border="0">\n'
             for row in table:
-                ht += '<tr>\n'
+                tbl += '<tr>\n'
                 for column in row:
-                    ht += '<td class="padding"> %s </td>\n' % (column)
-                ht += '</tr>\n'
-            ht += '</table>\n'
+                    tbl += '<td class="padding"> %s </td>\n' % (column)
+                    # This is an attempt to control the width of columns,
+                    # but it does not work well.
+                    #tbl += '<td class="padding"><div style="width: %d%%"> %s </div></td>\n' % (100./len(row), column)
+                tbl += '</tr>\n'
+            tbl += '</table>\n'
 
             # Put the whole table where cell 00 was defined
             pattern00 = r'<!-- !bslidecell +00 +-->(.+?)<!-- !eslidecell +-->'
             cpattern00 = re.compile(pattern00, re.DOTALL)
-            #part = cpattern00.sub(ht, part)  # does not preserve math \
+            #part = cpattern00.sub(tbl, part)  # does not preserve math \
             part = cpattern00.sub('XXXYYY@#$', part)  # some ID and then replace
-            part = part.replace('XXXYYY@#$', ht)
+            part = part.replace('XXXYYY@#$', tbl) # since replace handles \
             # Let the other cells be empty
             part = cpattern.sub('', part)
             #print 'part:'; pprint.pprint(part)
@@ -3726,6 +3732,21 @@ git://github.com/barraq/deck.ext.js.git
         )
 
     theme = option('html-slide-theme=', default='default')
+    # Check that the theme name is registered
+    from doconce.misc import recommended_html_styles_and_pygments_styles
+    all_combinations = recommended_html_styles_and_pygments_styles()
+    if not slide_tp in all_combinations:
+        # This test will not be run since it is already tested that
+        # the slide type is legal (before calling this function)
+        print '*** error: slide type "%s" is not known - abort' % slide_tp
+        print 'known slide types:', ', '.join(list(all_combinations.keys()))
+        sys.exit(1)
+    if theme != 'default':
+        if not theme in all_combinations[slide_tp]:
+            print '*** error: %s theme "%s" is not known - abort' % \
+                  (slide_tp, theme)
+            print 'known themes:', ', '.join(list(all_combinations[slide_tp].keys()))
+            sys.exit(1)
 
     m = re.search(r'<title>(.*?)</title>', ''.join(header))
     if m:
@@ -3757,7 +3778,7 @@ git://github.com/barraq/deck.ext.js.git
 <title>%(title)s</title>
 %(head_header)s
 
-<!-- padding of cells in tables: <td class="padding">...</td> -->    
+<!-- Styles for table layout of slides -->
 <style type="text/css">
 td.padding {
   padding-top:20px;
@@ -3800,16 +3821,16 @@ MathJax.Hub.Config({
         m = re.search(r'typeset with pygments style "(.+?)"', part)
         pygm_style = m.group(1) if m else 'plain <pre>'
         html_style = slide_syntax[slide_tp]['theme']
-        from doconce.misc import recommended_html_styles_and_pygments_styles
-        combinations = recommended_html_styles_and_pygments_styles()[slide_tp]
-        if html_style in combinations:
+        recommended_combinations = all_combinations[slide_tp]
+        if html_style in recommended_combinations:
             if pygm_style != 'plain <pre>' and \
-               not pygm_style in combinations[html_style]:
-                print 'WARNING: the pygments style "%s" is not '\
+               not pygm_style in recommended_combinations[html_style]:
+                print '*** warning: pygments style "%s" is not '\
                       'recommended for "%s"!' % (pygm_style, html_style)
                 print 'recommended styles are %s' % \
                 (', '.join(['"%s"' % combination
-                            for combination in combinations[html_style]]))
+                            for combination in
+                            recommended_combinations[html_style]]))
 
         # Fix styles: native should have black background for neon and night
         if slide_syntax[slide_tp]['theme'] in ['neon', 'night']:
