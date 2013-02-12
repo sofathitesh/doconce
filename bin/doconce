@@ -2587,8 +2587,8 @@ def slides_html():
     if slide_type == 'doconce':
         doconce_html_split(header, parts, footer, basename, filename)
     elif slide_type in ('reveal', 'csss', 'dzslides', 'deck', 'html5slides'):
-        filestr = generate_slides(header, parts, footer, basename, filename,
-                                  slide_type)
+        filestr = generate_html5_slides(header, parts, footer,
+                                        basename, filename, slide_type)
     else:
         print 'unknown slide type "%s"' % slide_type
 
@@ -2739,8 +2739,8 @@ def doconce_html_split(header, parts, footer, basename, filename):
             shutil.copy(part_filename, filename)
 
 
-def generate_slides(header, parts, footer, basename, filename,
-                    slide_tp='reveal'):
+def generate_html5_slides(header, parts, footer, basename, filename,
+                          slide_tp='reveal'):
     if slide_tp not in ['dzslides', 'html5slides']:
         copy_datafiles(eval(slide_tp + '_files'))  # copy to subdir if needed
 
