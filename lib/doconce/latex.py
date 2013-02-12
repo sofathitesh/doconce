@@ -102,7 +102,7 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     # Fix % in link texts (-> \%, otherwise treated as comment...)
     pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
-    def subst(m):  # m is match object
+    def subst(m):  # m is match object[[[
         url = m.group(1).strip()
         text = m.group(2).strip()
         # fix % without backslash
@@ -120,7 +120,7 @@ def latex_code(filestr, code_blocks, code_block_types,
             if not ('ftp:' in text or 'http' in text or '\\nolinkurl{' in text):
                 # The link text does not display the URL so we include it
                 # in a footnote (\nolinkurl{} indicates URL: "...")
-                texttt_url = url.replace('_', '\\_').replace('#', '\\#')
+                texttt_url = url.replace('_', '\\_').replace('#', '\\#').replace('%', '\\%')
                 return '\\href{{%s}}{%s}' % (url, text) + \
                        '\\footnote{\\texttt{%s}}' % texttt_url
             else: # no substitution, URL is in the link text
@@ -588,8 +588,10 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #    print '%d subst of %s' % (n, c)
     #    #filestr = filestr.replace(c, chars[c])
 
-    # Handle 50% and similar
-    filestr = re.sub(r'([0-9]{1,3})%', r'\g<1>\%', filestr)
+    # Handle 50% and similar (with initial space, does not work
+    # for 50% as first word on a line, so we add a fix for that
+    filestr = re.sub(r'( [0-9]{1,3})%', r'\g<1>\%', filestr)
+    filestr = re.sub(r'(^[0-9]{1,3})%', r'\g<1>\%', filestr, flags=re.MULTILINE)
 
     # fix periods followed by too long space:
     prefix = r'Prof\.', r'Profs\.', r'prof\.', r'profs\.', r'Dr\.', \
@@ -1065,6 +1067,8 @@ final,                   % or draft (marks overfull hboxes)
     if preamble_complete:
         INTRO['latex'] = preamble + r"""
 \begin{document}
+% ------------------- main content ------------------------
+
 """
     elif preamble:
         # Insert user-provided part of the preamble
@@ -1097,6 +1101,8 @@ final,                   % or draft (marks overfull hboxes)
 
 
     OUTRO['latex'] = r"""
+
+% ------------------- end of main content -----------------
 
 % #ifdef PREAMBLE
 \printindex
