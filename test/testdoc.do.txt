@@ -451,7 +451,8 @@ Here are some tough tests of URLs, especially for the `latex` format:
 and a "good book":
 "http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1". Need to test
 Newton-Cotes with percentage in URL too:
-URL: "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas".
+URL: "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"
+and URL: "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" which has a shebang.
 
 # Comments should be inserted outside paragraphs (because in the rst
 # format extra blanks make a paragraph break).
