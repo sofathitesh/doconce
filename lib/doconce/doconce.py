@@ -134,8 +134,15 @@ def syntax_check(filestr, format):
     # the right preceding keyword (Section, Chapter, Exercise, etc.)
     pattern = re.compile(r'\s+([A-Za-z]+?)\s+(ref\{.+\})', re.MULTILINE)
     refs = pattern.findall(filestr)
-    prefixes = ['chapter', 'section', 'figure', 'movie',
-                'exercise', 'problem', 'project', 'example',
+    prefixes = ['chapter', 'ch.',
+                'section', 'sec.',
+                'appendix', 'app.',
+                'figure', 'fig.',
+                'movie',
+                'exercise',
+                'problem',
+                'project',
+                'example', 'ex.',
                 'and', 'or']
     for prefix, ref in refs:
         if prefix[-1] == 's':
