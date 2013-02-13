@@ -2501,7 +2501,7 @@ def split_html():
     else:
         basename = filename[:-5]
 
-    header, parts, footer = get_html_header_parts_footer(filename)
+    header, parts, footer = get_header_parts_footer(filename, "html")
     doconce_html_split(header, parts, footer, basename, filename)
 
 
@@ -2580,8 +2580,8 @@ def slides_html():
 
     # --- Create a slide presentation from the HTML file ---
 
-    header, parts, footer = get_html_header_parts_footer(filename)
-    parts = tablify(parts)
+    header, parts, footer = get_header_parts_footer(filename, "html")
+    parts = tablify(parts, "html")
 
     filestr = None
     if slide_type == 'doconce':
@@ -2599,15 +2599,17 @@ def slides_html():
         print 'slides written to', filename
 
 
-def tablify(parts):
+def tablify(parts, format="html"):
     """
     Detect !bslidecell XY and !eslidecell environments and typeset
     elements of a part (slide page) as a table.
     """
+    begin_comment, end_comment = _format_comments(format)
     for i in range(len(parts)):
         part = ''.join(parts[i])
-        if '<!-- !bslidecell' in part:
-            pattern = r'<!-- !bslidecell +(\d\d) +-->(.+?)<!-- !eslidecell +-->'
+        if '%s !bslidecell' % begin_comment in part:
+            pattern = r'%s !bslidecell +(\d\d) *%s(.+?)%s !eslidecell *%s' % \
+                      (begin_comment, end_comment, begin_comment, end_comment)
             cpattern = re.compile(pattern, re.DOTALL)
             cells = cpattern.findall(part)
             #print 'CELLS:'; import pprint; pprint.pprint(cells)
@@ -2640,7 +2642,8 @@ def tablify(parts):
             tbl += '</table>\n'
 
             # Put the whole table where cell 00 was defined
-            pattern00 = r'<!-- !bslidecell +00 +-->(.+?)<!-- !eslidecell +-->'
+            pattern00 = r'%s !bslidecell +00 *%s(.+?)%s !eslidecell *%s' % \
+                      (begin_comment, end_comment, begin_comment, end_comment)
             cpattern00 = re.compile(pattern00, re.DOTALL)
             #part = cpattern00.sub(tbl, part)  # does not preserve math \
             part = cpattern00.sub('XXXYYY@#$', part)  # some ID and then replace
@@ -2652,20 +2655,30 @@ def tablify(parts):
             parts[i] = part
     return parts
 
+def _format_comments(format='html'):
+    if format == 'html':
+        return '<!--', '-->'
+    elif format == 'latex':
+        return '%', ''
+    else:
+        return None, None
 
-def get_html_header_parts_footer(filename):
+def get_header_parts_footer(filename, format='html'):
     """Return list of lines for header, parts split by !split, and footer."""
     header = []
     footer = []
     parts = [[]]
     loc = 'header'
+    begin_comment, end_comment = _format_comments(format)
     f = open(filename, 'r')
     for line in f:
-        if re.search(r'^<!-- -+ main content -+>', line):
+        if re.search(r'^%s -+ main content -+%s' %
+                     (begin_comment, end_comment), line):
             loc = 'body'
-        if re.search(r'^<!-- !split.*?-+>', line):
+        if re.search(r'^%s !split.*?%s' % (begin_comment, end_comment), line):
             parts.append([])
-        if re.search(r'^<!-- -+ end of main content -+>', line):
+        if re.search(r'^%s -+ end of main content -+%s' %
+                     (begin_comment, end_comment), line):
             loc = 'footer'
         if loc == 'header':
             header.append(line)
