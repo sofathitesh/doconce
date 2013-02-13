@@ -3,10 +3,6 @@ import commands, os, sys, commands, re
 
 # recommendation: remove installation and reinstall (to test setup.py)
 
-# in addition to the tests below (testdoc, tutorial, manual) one
-# should try the easyviz documentation as that docment has a lot
-# of figures and cross references (is a nice example of doconce too)
-
 # Check that we have Internet
 import urllib
 try:
@@ -70,6 +66,8 @@ else:
     print 'Error: no date in testdoc.p.tex'
     sys.exit(1)
 
+# Drop tutorial
+"""
 tutdir = os.path.join(os.pardir, 'doc', 'tutorial')
 print 'cd', tutdir
 os.chdir(tutdir)
@@ -87,9 +85,11 @@ for f in files:
     add(f, log)
 add(os.path.join(os.pardir, '_what_is.do.txt'), log)
 add(os.path.join(os.pardir, '_doconce2anything.do.txt'), log)
+"""
 
-# test DocWriter:
 os.chdir(thisdir)
+# test DocWriter:
+log = open(logfilename, 'a')
 failure, output = commands.getstatusoutput('python ../lib/doconce/DocWriter.py')
 files = 'tmp_Doconce.do.txt', 'tmp_DocWriter.do.txt', 'tmp_DocWriter.html', \
         'tmp_HTML.html'
