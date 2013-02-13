@@ -1,12 +1,9 @@
+;; How to use this file: in .emacs just write
+;; (load-file "~/.doconce-mode.el")
+;; if this file is in the home directory
+
 ;;http://stackoverflow.com/questions/1063115/a-hello-world-example-for-a-major-mode-in-emacs
 ;;http://ergoemacs.org/emacs/elisp_syntax_coloring.html
-
-;; Key bindings, see http://ergoemacs.org/emacs/keyboard_shortcuts.html
-
-;; THis does not work, might something with text-mode-hook and
-;; the fact that we now define the doconce-mode differently from what
-;; we do in the original .doconce-mode.el file
-
 
 
 ;; Key bindings, see http://ergoemacs.org/emacs/keyboard_shortcuts.html
