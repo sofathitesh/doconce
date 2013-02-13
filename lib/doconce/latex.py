@@ -964,7 +964,7 @@ def define(FILENAME_EXTENSION,
 
 
 % #ifdef PREAMBLE
-%-------------------------- begin preamble --------------------------
+%-------------------- begin preamble ----------------------
 % #ifdef BOOK
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
@@ -1060,9 +1060,11 @@ final,                   % or draft (marks overfull hboxes)
 \makeindex
 
 \begin{document}
-%-------------------------- end preamble --------------------------
+%-------------------- end preamble ------------------------
 
 % #endif
+
+% ------------------- main content ------------------------
 
 """
     if preamble_complete:
