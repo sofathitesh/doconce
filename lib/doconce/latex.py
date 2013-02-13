@@ -100,13 +100,14 @@ def latex_code(filestr, code_blocks, code_block_types,
         filestr = re.sub(r'section\{(Exercise|Problem|Project)( +[^}])',
                          r'section*{\g<1>\g<2>', filestr)
 
-    # Fix % in link texts (-> \%, otherwise treated as comment...)
+    # Fix % and # in link texts (-> \%, \# - % is otherwise a comment...)
     pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
-    def subst(m):  # m is match object[[[
+    def subst(m):  # m is match object
         url = m.group(1).strip()
         text = m.group(2).strip()
         # fix % without backslash
         text = re.sub(r'([^\\])\%', r'\g<1>\\%', text)
+        text = re.sub(r'([^\\])\#', r'\g<1>\\#', text)
         return '\\href{{%s}}{%s}' % (url, text)
     filestr = re.sub(pattern, subst, filestr)
 
