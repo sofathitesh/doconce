@@ -1909,6 +1909,10 @@ def doconce2format(filestr, format):
     if option('skip_inline_comments'):
         filestr = subst_away_inline_comments(filestr)
 
+    # Remove comments starting with ##
+    pattern = r'^##.+$\n'
+    filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
+
     # Fix stand-alone http(s) URLs (after verbatim blocks are removed,
     # but before figure handling and inline_tag_subst)
     pattern = r' (https?://.+?)([ ,?:;!)\n])'
