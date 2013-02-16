@@ -13324,7 +13324,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'keywords': ['random numbers', 'Monte Carlo simulation'],
   'label': 'demo:ex:1',
   'no': 1,
-  'solution': '13 <<<!!CODE_BLOCK  pycod',
+  'solution': "!bc pycod\nimport sys, random\nN = int(sys.argv[1])\nheads = 0\nfor i in range(N):\n    r = random.random()\n    if r <= 0.5:\n        heads += 1\nprint 'Flipping a coin %d times gave %d heads' % (N, heads)\n\n!ec",
   'solution_file': ['mysol.txt', 'mysol_flip_coin.py', 'yet_another.file'],
   'subex': [],
   'text': '# Torture tests\n\nMake a program that simulates flipping a coin $N$ times.\nPrint out "tail" or "head" for each flip and\nlet the program count the number of heads.\n\n\n# Test syntax error',
@@ -13371,7 +13371,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': [],
              'solution': '',
              'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
-  'text': 'The formula for a circle is given by\n\n14 <<<!!MATH_BLOCK\n\n15 <<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n14 <<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
+  'text': 'The formula for a circle is given by\n\n!bt\n\\begin{equation}\nx = x_0 + R\\cos 2\\pi t,\n\\end{equation}\n\n!et\n\n!bt\n\\begin{equation}  \ny = y_0 + R\\sin 2\\pi t,\n\\end{equation}\n\n!et\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n!bc pypro\nimport numpy as np\n\ndef circle(R, x0, y0, n=501):\n    t = np.linspace(0, 1, n)\n    x = x0 + R*np.cos(2*np.pi*t)\n    y = y0 + R*np.sin(2*np.pi*t)\n    return x, y\n\nx, y = circle(2.0, 0, 0)\n\n!ec\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
   'title': 'Explore Distributions of Random Circles',
   'type': 'Project',
   'type_visible': True},
@@ -13383,7 +13383,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'keywords': None,
   'label': 'exer:dist',
   'no': 1,
-  'solution': 'Here goes a full solution of the whole exercise.\nWith some math $a=b$ in this solution:\n18 <<<!!MATH_BLOCK\nAnd code `a=b` in this solution:\n16 <<<!!CODE_BLOCK \nEnd of solution is here.',
+  'solution': 'Here goes a full solution of the whole exercise.\nWith some math $a=b$ in this solution:\n!bt\n\\[ \\hbox{math in solution: } a = b \\]\n\n!et\nAnd code `a=b` in this solution:\n!bc\na = b  # code in solution\n\n!ec \nEnd of solution is here.',
   'solution_file': None,
   'subex': [{'answer': 'Short answer to subexercise a).\nWith math in answer: $a=b$.',
              'file': ['subexer_a.pdf'],
@@ -13395,7 +13395,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'file': ['subexer_b.pdf'],
              'hints': ['A hint for this subexercise.'],
              'solution': 'Here goes the solution of this subexercise.',
-             'text': 'Here goes the text for subexercise b).\n\n\nSome math $\\cos^2 x + \\sin^2 x = 1$ written one a single line:\n\n17 <<<!!MATH_BLOCK'}],
+             'text': 'Here goes the text for subexercise b).\n\n\nSome math $\\cos^2 x + \\sin^2 x = 1$ written one a single line:\n\n!bt\n\\[ \\cos^2 x + \\sin^2 x = 1 \\thinspace .\\]\n\n!et'}],
   'text': 'Intro to this exercise. Questions are in subexercises below.\n\n\n\n\n\n#  No meaning in this weired test example:\nThe text here belongs to the main (intro) part of the exercise. Need\nclosing remarks to have text after subexercises.',
   'title': 'Determine some Distance',
   'type': 'Exercise',
@@ -13411,7 +13411,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'solution': '',
   'solution_file': None,
   'subex': [],
-  'text': '# Another minimalistic exercise\n\nJust some text. And some math saying that $e^0=1$ on a single line,\nto test that math block insertion is correct:\n\n19 <<<!!MATH_BLOCK\n\nAnd a test that the code `lambda x: x+2` is correctly placed here:\n\n17 <<<!!CODE_BLOCK',
+  'text': '# Another minimalistic exercise\n\nJust some text. And some math saying that $e^0=1$ on a single line,\nto test that math block insertion is correct:\n\n!bt\n\\[ \\exp{(0)} = 1 \\]\n\n!et\n\nAnd a test that the code `lambda x: x+2` is correctly placed here:\n\n!bc\nlambda x: x+2\n\n!ec',
   'title': 'Some exercise without the "Exercise:" prefix',
   'type': 'Exercise',
   'type_visible': False},
@@ -23190,7 +23190,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 16 Feb 2013 (10:41)</center>
+<center>Sat, 16 Feb 2013 (12:08)</center>
 
 
 
@@ -23321,7 +23321,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 16 Feb 2013 (10:41)</center>
+<center>Sat, 16 Feb 2013 (12:08)</center>
 
 
 
