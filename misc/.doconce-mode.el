@@ -106,22 +106,25 @@ text...
 (make-face 'do-math-face)
 (set-face-attribute 'do-math-face nil :family "courier")
 (set-face-attribute 'do-math-face nil :slant 'normal)
-(set-face-attribute 'do-math-face nil :height '170)
+(set-face-attribute 'do-math-face nil :height '150)
 
 (make-face 'do-figmov-face)
 ;;(set-face-attribute 'do-figmov-face nil :background "gray")
-(set-face-attribute 'do-figmov-face nil :slant 'italic)
+;;(set-face-attribute 'do-figmov-face nil :slant 'italic)
 (set-face-attribute 'do-figmov-face nil :underline t)
 
 (make-face 'do-heading-face)
-(set-face-attribute 'do-heading-face nil :background "gray")
+;;(set-face-attribute 'do-heading-face nil :background "yellow")
+(set-face-attribute 'do-heading-face nil :foreground "yellow")
 (set-face-attribute 'do-heading-face nil :slant 'normal)
+;;(set-face-attribute 'do-heading-face nil :height '170)
 
 (make-face 'do-emph-face)
 (set-face-attribute 'do-emph-face nil :slant 'italic)
 
 (make-face 'do-bold-face)
 (set-face-attribute 'do-bold-face nil :weight 'bold)
+(set-face-attribute 'do-bold-face nil :foreground "lightgray")
 
 (make-face 'do-filecode-face)
 (set-face-attribute 'do-filecode-face nil :slant 'italic)
@@ -130,28 +133,33 @@ text...
 (set-face-attribute 'do-comment-face nil :slant 'italic)
 (set-face-attribute 'do-comment-face nil :foreground "red")
 
+(make-face 'do-split-face)
+(set-face-attribute 'do-split-face nil :background "red")
+
 
 
 ;;;###autoload
 (define-generic-mode doconce
   '(("%<doc>" . "%</doc>"))              ; (mako) comment characters
-  '("bwarning" "ewarning" "bsol" "esol") ; keywords (!bt used below does not work well)
-  '(("\\(!bc[^§]+?!ec\\)" (1 'do-code-face))
-    ("\\(\\(FIGURE\\|MOVIE\\|AUTHOR\\|TITLE\\):.+$\\)" (1 'do-figmov-face))
-    ("\\(!bt[^§]+?!et\\)" (1 'do-math-face))
+  '("bwarning" "ewarning" "bquote" "equote" "bsubex" "esubex" "bhint" "ehint" "bsol" "esol" "bans" "eans" "bpop" "epop" "bslidecell" "eslidecell" "idx") ; keywords (!bt used below does not work well)
+  '(("\\(^!bc[^§]+?!ec\\)" (1 'do-code-face))
+    ("\\(^\\(FIGURE\\|MOVIE\\|AUTHOR\\|TITLE\\):.+$\\)" (1 'do-figmov-face))
+    ("\\(^!bt[^§]+?!et\\)" (1 'do-math-face))
+    ("\\(`.+?`\\)" (1 'do-code-face))
     ("\\(\\*.+?\\*\\)" (1 'do-emph-face))
-    ("\\(_.+?_\\)" (1 'do-bold-face))
+    ("\\(_[\w\s]+_\\)" (1 'do-bold-face))
     ("\\(==+ *.+ *==+\\)" (1 'do-heading-face))
     ("\\(^__.+?[.:?]__\\)" (1 'do-heading-face))
-    ("\\(@@@CODE .+$\\)" (1 'do-filecode-face))
+    ("\\(^@@@CODE .+\\)" (1 'do-filecode-face))
+    ("\\(^!split\\)" (1 'do-bold-face))
     ("\\(^#.+$\\)" (1 'do-comment-face))
    )                ; font lock
   '("\\.do\\.txt$")                     ; auto-mode-alist
-  '(hello-world-special-setup)          ; function-list
+  '(doconce-special-setup)              ; function-list
   "An example major mode.
 We have comments, keywords, a special face for dates, and recognize .hello files.")
 
-(defun hello-world-special-setup ()
+(defun doconce-special-setup ()
   "Some custom setup stuff done here by mode writer."
-  (message "You've just enabled the most amazing mode ever."))
+  (message "You've just enabled the doconce mode."))
 
