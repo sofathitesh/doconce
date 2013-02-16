@@ -8,9 +8,11 @@ except ImportError:
     OrderedDict = dict
 
 def _abort():
-    print 'Abort! (add --no-abort on the command line to avoid this abortion)'
     if not option('no-abort'):
+        print 'Abort! (add --no-abort on the command line to avoid this abortion)'
         sys.exit(1)
+    else:
+        print 'avoided abortion because of --no-abort'
 
 
 def debugpr(out):
@@ -674,7 +676,7 @@ def insert_code_from_file(filestr, format):
     return filestr
 
 
-def exercises(filestr, format):
+def exercises(filestr, format, code_blocks, tex_blocks):
     # Exercise:
     # ===== Exercise: title ===== (starts with at least 3 =, max 5)
     # label{some:label} file=thisfile.py solution=somefile.do.txt
@@ -887,6 +889,58 @@ def exercises(filestr, format):
 
     filestr = '\n'.join(newlines)
     if all_exer:
+        # Replace code and math blocks by actual code.
+        # This must be done in the all_exer data structure,
+        # if a pprint.pformat'ed string is used, quotes in
+        # computer code and derivatives lead to errors
+        # if we take an eval on the output.
+
+        from common import _CODE_BLOCK, _MATH_BLOCK
+
+        def replace_code_math(text):
+            if not isinstance(text, basestring):
+                return text
+
+            pattern = r"(\d+) %s( +)([a-z]+)" % _CODE_BLOCK
+            code = re.findall(pattern, text, flags=re.MULTILINE)
+            for n, space, tp in code:
+                block = code_blocks[int(n)]
+                from_ = '%s %s%s%s' % (n, _CODE_BLOCK, space, tp)
+                to_ = '!bc %s\n' % (tp) + block + '\n!ec'
+                text = text.replace(from_, to_)
+            # Remaining blocks without type
+            pattern = r"(\d+) %s" % _CODE_BLOCK
+            code = re.findall(pattern, text, flags=re.MULTILINE)
+            for n in code:
+                block = code_blocks[int(n)]
+                from_ = '%s %s' % (n, _CODE_BLOCK)
+                to_ = '!bc\n' + block + '\n!ec'
+                text = text.replace(from_, to_)
+            pattern = r"(\d+) %s" % _MATH_BLOCK
+            math = re.findall(pattern, text, flags=re.MULTILINE)
+            for n in math:
+                block = tex_blocks[int(n)]
+                from_ = '%s %s' % (n, _MATH_BLOCK)
+                to_ = '!bt\n' + block + '\n!et'
+                text = text.replace(from_, to_)
+            return text
+
+        for e in range(len(all_exer)):
+            for key in all_exer[e]:
+                if key == 'subex':
+                    for es in range(len(all_exer[e][key])):
+                       for keys in all_exer[e][key][es]:
+                           all_exer[e][key][es][keys] = \
+                               replace_code_math(all_exer[e][key][es][keys])
+                else:
+                     all_exer[e][key] = \
+                               replace_code_math(all_exer[e][key])
+
+        all_exer_str = pprint.pformat(all_exer)
+
+        # (recall that we write to pprint-formatted string!)
+
+        # Dump this data structure to file
         exer_filename = filename.replace('.do.txt', '')
         exer_filename = '.%s.exerinfo' % exer_filename
         f = open(exer_filename, 'w')
@@ -898,7 +952,7 @@ def exercises(filestr, format):
 # exer = eval(f.read())
 #
 """ % (filename, exer_filename))
-        f.write(pprint.pformat(all_exer))
+        f.write(all_exer_str)
         f.close()
         print 'found info about %d exercises, written to %s' % \
               (len(all_exer), exer_filename)
@@ -1914,7 +1968,7 @@ def doconce2format(filestr, format):
     filestr = re.sub(pattern, ' URL: "\g<1>"\g<2>', filestr)
 
     # Next step: deal with exercises
-    filestr = exercises(filestr, format)
+    filestr = exercises(filestr, format, code_blocks, tex_blocks)
 
     # Next step: deal with figures
     filestr = handle_figures(filestr, format)
