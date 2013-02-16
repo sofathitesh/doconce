@@ -11,6 +11,38 @@ from misc import option
 _CODE_BLOCK = '<<<!!CODE_BLOCK'
 _MATH_BLOCK = '<<<!!MATH_BLOCK'
 
+# Comment lines used to identify parts that can later be removed.
+# The lines below are wrapped as comments.
+# Defined here once so different modules can utilize the same syntax.
+envir_delimiter_lines = {
+    'sol':
+    ('--- begin solution of exercise ---',
+     '--- end solution of exercise ---'),
+    'ans':
+    ('--- begin answer of exercise ---',
+     '--- end answer of exercise ---'),
+    'hint':
+    ('--- begin hint in exercise ---',
+     '--- end hint in exercise ---'),
+    'exercise':
+    ('--- begin exercise ---',
+     '--- end exercise ---'),
+}
+
+
+def safe_join(lines, delimiter):
+    try:
+        filestr = delimiter.join(lines) + '\n' # will fail if ord(char) > 127
+        return filestr
+    except UnicodeDecodeError, e:
+        if "'ascii' codec can't decode" in e and 'position' in e:
+            pos = int(e.split('position')[1].split(':'))
+            print filestr[pos-50:pos], '[problematic char]', filestr[pos+1:pos+51]
+            sys.exit(1)
+        else:
+            print e
+            sys.exit(1)
+
 def where():
     """
     Return the location where the doconce package is installed.
@@ -76,6 +108,7 @@ def python_online_tutor(code, return_tp='iframe'):
         return iframe
     elif return_tp == 'url':
         url = 'http://pythontutor.com/visualize.html#code=%s&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0' % codestr
+        url = url.replace('%', '\\%').replace('#', '\\#')
         return url
     else:
         print 'BUG'; sys.exit(1)
@@ -269,68 +302,76 @@ def remove_code_and_tex(filestr):
     filestr = code.sub('%s \g<1>\n' % _CODE_BLOCK, filestr)
     filestr = tex.sub('%s\n' % _MATH_BLOCK, filestr)
 
-    # (Could leave @@@CODE blocks to ptex2tex, but then these lines must be
-    # removed since they may contain underscores and asterix and hence
-    # be destroyed by substutitions of inline tags.)
+    # Number the blocks
+    lines = filestr.splitlines()
+    code_block_counter = 0
+    math_block_counter = 0
+    for i in range(len(lines)):
+        if lines[i].startswith(_CODE_BLOCK):
+            lines[i] = '%d ' % code_block_counter + lines[i]
+            code_block_counter += 1
+        if lines[i].startswith(_MATH_BLOCK):
+            lines[i] = '%d ' % math_block_counter + lines[i]
+            math_block_counter += 1
+    filestr = safe_join(lines, '\n')
+
+    # Give error if blocks contain !bt
 
     return filestr, code_blocks, code_block_types, tex_blocks
 
 
 def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
+    # Consistency check
+    n = filestr.count(_CODE_BLOCK)
+    if len(code_blocks) != n:
+        print '*** BUG: found %d code block markers for %d initial code blocks\nAbort!' % (n, len(code_blocks))
+        print 'Possible cause: !bc and !ec inside code blocks - replace by |bc and |ec'
+        sys.exit(1)
+    n = filestr.count(_MATH_BLOCK)
+    if len(tex_blocks) != n:
+        print '*** BUG: found %d tex block markers for %d initial tex blocks\nAbort!' % (n, len(tex_blocks))
+        print 'Possible cause: !bt and !et inside code blocks - replace by |bt and |ec'
+        sys.exit(1)
+
     lines = filestr.splitlines()
-    for code in code_blocks:
-        # the following construction does not handle newlines in regex and
-        # similar verbatim environments properly:
-        #filestr = re.sub(r'%s (.*?)\n' % _CODE_BLOCK,
-        #                 '!bc\g<1>\n%s!ec\n' % code, filestr, 1)
-        # use string.replace instead
 
-        for i in range(len(lines)):
+    # Note: re.sub cannot be used because newlines, \nabla, etc
+    # are not handled correctly. Need str.replace.
+
+    for i in range(len(lines)):
+        if _CODE_BLOCK in lines[i] or _MATH_BLOCK in lines[i]:
+            words = lines[i].split()
+            # on a line: number block-indicator code-type
+            n = int(words[0])
             if _CODE_BLOCK in lines[i]:
-                words = lines[i].split()
-                words[0] = '!bc'
-                lines[i] = ' '.join(words) + '\n' + code + '!ec'
-                break
-
-    for tex in tex_blocks:
-        # Also here problems with this: (\nabla becomes \n (newline) and abla)
-        # which means that
-        # filestr = re.sub(_MATH_BLOCK, '!bt\n%s!et' % tex, filestr, 1)
-        # does not work properly. Instead, we use str.replace
-
-        for i in range(len(lines)):
+                words[1] = '!bc'
+                code = code_blocks[n]
+                lines[i] = ' '.join(words[1:]) + '\n' + code + '!ec'
             if _MATH_BLOCK in lines[i]:
-                lines[i] = lines[i].replace(_MATH_BLOCK,
-                                            '!bt\n%s!et' % tex)
-                break
-    try:
-        filestr = '\n'.join(lines) + '\n' # will fail if ord(char) > 127
-    except UnicodeDecodeError, e:
-        if "'ascii' codec can't decode" in e and 'position' in e:
-            pos = int(e.split('position')[1].split(':'))
-            print filestr[pos-50:pos], '[problematic char]', filestr[pos+1:pos+51]
-            sys.exit(1)
-        else:
-            print e
-            sys.exit(1)
+                words[1] = '!bc'
+                math = tex_blocks[n]
+                lines[i] = '!bt\n' + math + '!et'
 
+    filestr = safe_join(lines, '\n')
     return filestr
 
+
 def doconce_exercise_output(exer,
-                            begin_exercise, end_exercise,
-                            begin_answer, end_answer,
-                            begin_solution, end_solution,
-                            begin_hint, end_hint,
+                            solution_header = '__Solution.__',
+                            answer_header = '__Answer.__ ',
+                            hint_header = '__Hint.__ ',
                             include_numbering=True,
                             include_type=True):
     """
     Write exercise in Doconce format. This output can be
     reused in most formats.
     """
-    write_answers   = not option('without-answers')
-    write_solutions = not option('without-solutions')
+    # Note: answers, solutions, and hints must be written out and not
+    # removed here, because if they contain math or code blocks,
+    # there will be fewer blocks in the end that what was extracted
+    # at the beginning of the translation process.
 
-    s = '\n\n' + begin_exercise + '\n\n'
+    s = '\n\n# ' + envir_delimiter_lines['exercise'][0] + '\n\n'
     s += exer['heading']  # result string
     if include_numbering and not include_type:
         include_type = True
@@ -355,21 +396,40 @@ def doconce_exercise_output(exer,
     if exer['hints']:
         for i, hint in enumerate(exer['hints']):
             if len(exer['hints']) == 1 and i == 0:
-                begin_hint_ = begin_hint
+                hint_header_ = hint_header
             else:
-                begin_hint_ = begin_hint.replace('Hint.', 'Hint %d.' % (i+1))
-            s += '\n' + begin_hint_ + hint + end_hint + '\n'
+                hint_header_ = hint_header.replace('Hint.', 'Hint %d.' % (i+1))
+            if exer['type'] != 'Example':
+                s += '\n# ' + envir_delimiter_lines['hint'][0] + '\n'
+            s += '\n' + hint_header_ + hint + '\n'
+            if exer['type'] != 'Example':
+                s += '# ' + envir_delimiter_lines['hint'][1] + '\n'
 
-    if exer['answer'] and (exer['type'] == 'Example' or write_answers):
-        s += '\n' + begin_answer + exer['answer'] + end_answer + '\n'
+    if exer['answer']:
+        s += '\n'
+        # Leave out begin-end answer comments if example since we want to
+        # avoid marking such sections for deletion (--without-answers)
+        if exer['type'] != 'Example':
+            s += '\n# ' + envir_delimiter_lines['ans'][0] + '\n'
+        s += answer_header + '\n' + exer['answer'] + '\n'
+        if exer['type'] != 'Example':
+            s += '# ' + envir_delimiter_lines['ans'][1] + '\n'
 
-    if exer['solution'] and (exer['type'] == 'Example' or write_solutions):
-        s += '\n' + begin_solution
+
+    if exer['solution']:
+        s += '\n'
+        # Leave out begin-end solution comments if example since we want to
+        # avoid marking such sections for deletion (--without-solutions)
+        if exer['type'] != 'Example':
+            s += '\n# ' + envir_delimiter_lines['sol'][0] + '\n'
+        s += solution_header + '\n'
         # Make sure we have a sentence after the heading
-        if exer['solution'].lstrip().startswith(_CODE_BLOCK):
-            print '\nwarning: open solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' % exer['title'] + '\n'
+        if re.search(r'^\d+ %s' % _CODE_BLOCK, exer['solution'].lstrip()):
+            print '\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' % exer['title'] + '\n'
             s += 'Code:\n'
-        s += exer['solution'] + '\n' + end_solution + '\n'
+        s += exer['solution'] + '\n'
+        if exer['type'] != 'Example':
+            s += '# ' + envir_delimiter_lines['sol'][1] + '\n'
 
     if exer['subex']:
         s += '\n'
@@ -383,11 +443,15 @@ def doconce_exercise_output(exer,
 
                 for i, hint in enumerate(subex['hints']):
                     if len(subex['hints']) == 1 and i == 0:
-                        begin_hint_ = begin_hint
+                        hint_header_ = hint_header
                     else:
-                        begin_hint_ = begin_hint.replace(
+                        hint_header_ = hint_header.replace(
                             'Hint.', 'Hint %d.' % (i+1))
-                    s += '\n' + begin_hint_ + hint + end_hint + '\n'
+                    if exer['type'] != 'Example':
+                        s += '\n# ' + envir_delimiter_lines['hint'][0] + '\n'
+                    s += '\n' + hint_header_ + hint + '\n'
+                    if exer['type'] != 'Example':
+                        s += '# ' + envir_delimiter_lines['hint'][1] + '\n'
 
                 if subex['file']:
                     if len(subex['file']) == 1:
@@ -396,17 +460,27 @@ def doconce_exercise_output(exer,
                         s += 'Filenames: %s' % \
                              ', '.join(['`%s`' % f for f in subex['file']]) + '.\n'
 
-                if subex['answer'] and \
-                       (exer['type'] == 'Example' or write_answers):
-                    s += '\n' + begin_answer + subex['answer'] + end_answer + '\n'
-                if subex['solution'] and \
-                       (exer['type'] == 'Example' or write_solutions):
-                    s += '\n' + begin_solution
+                if subex['answer']:
+                    s += '\n'
+                    if exer['type'] != 'Example':
+                        s += '\n# ' + envir_delimiter_lines['ans'][0] + '\n'
+                    s += answer_header + '\n' + subex['answer'] + '\n'
+                    if exer['type'] != 'Example':
+                        s += '# ' + envir_delimiter_lines['ans'][1] + '\n'
+
+                if subex['solution']:
+                    s += '\n'
+                    if exer['type'] != 'Example':
+                        s += '\n# ' + envir_delimiter_lines['sol'][0] + '\n'
+                    s += solution_header + '\n'
                     # Make sure we have a sentence after the heading
-                    if subex['solution'].lstrip().startswith(_CODE_BLOCK):
-                        print '\nwarning: open solution in exercise "%s" with a line of text\nbefore the code! (Now "Code:" was inserted)' % exer['title'] + '\n'
+                    if re.search(r'^\d+ %s' % _CODE_BLOCK,
+                                 subex['solution'].lstrip()):
+                        print '\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' % exer['title'] + '\n'
                         s += 'Code:\n'
-                    s += subex['solution'] + '\n' + end_solution + '\n'
+                    s += subex['solution'] + '\n'
+                    if exer['type'] != 'Example':
+                        s += '# ' + envir_delimiter_lines['sol'][1] + '\n'
 
     if exer['file']:
         if exer['subex']:
@@ -431,25 +505,11 @@ def doconce_exercise_output(exer,
         else:
             s += '# solution files: %s\n' % ', '.join(exer['solution_file'])
 
-    s += '\n' + end_exercise + '\n\n'
+    s += '\n# ' + envir_delimiter_lines['exercise'][1] + '\n\n'
     return s
 
 def plain_exercise(exer):
-    begin_exercise = '# --- begin exercise'
-    end_exercise = '# --- end of exercise'
-    begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
-    end_solution = '\n# --- end solution of exercise'
-    begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
-    end_answer = '\n# --- end short answer in exercise'
-    begin_hint = '__Hint.__ '
-    end_hint = ''
-
-    return doconce_exercise_output(exer,
-                                   begin_exercise, end_exercise,
-                                   begin_answer, end_answer,
-                                   begin_solution, end_solution,
-                                   begin_hint, end_hint,
-                                   True, True)
+    return doconce_exercise_output(exer)
 
 BLANKLINE = {}
 FILENAME_EXTENSION = {}

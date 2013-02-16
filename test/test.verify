@@ -3,10 +3,6 @@ import commands, os, sys, commands, re
 
 # recommendation: remove installation and reinstall (to test setup.py)
 
-# in addition to the tests below (testdoc, tutorial, manual) one
-# should try the easyviz documentation as that docment has a lot
-# of figures and cross references (is a nice example of doconce too)
-
 # Check that we have Internet
 import urllib
 try:
@@ -53,7 +49,7 @@ clean_and_make(append=False)
 
 log = open(logfilename, 'a')
 files = '.do.txt', '.html', '.p.tex', '.tex_ptex2tex', '.tex_doconce_ptex2tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md', '.tmp'
-files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt', '._part0000_testdoc.html', '._part0001_testdoc.html', '._part0002_testdoc.html', 'slides.do.txt', 'slides_reveal.html', 'tmp_slides_html_all.sh', 'testdoc_wordpress.html', 'testdoc_no_solutions.html', 'mako_test1.html', 'mako_test2.html', 'mako_test3.html', 'mako_test3b.html', 'mako_test4.html']
+files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt', '._part0000_testdoc.html', '._part0001_testdoc.html', '._part0002_testdoc.html', 'slides.do.txt', 'slides_reveal.html', 'tmp_slides_html_all.sh', 'testdoc_wordpress.html', 'testdoc_no_solutions.html', 'testdoc_no_solutions.p.tex', 'mako_test1.html', 'mako_test2.html', 'mako_test3.html', 'mako_test3b.html', 'mako_test4.html']
 for f in files:
     add(f, log)
 add('make.sh', log)
@@ -70,6 +66,8 @@ else:
     print 'Error: no date in testdoc.p.tex'
     sys.exit(1)
 
+# Drop tutorial
+"""
 tutdir = os.path.join(os.pardir, 'doc', 'tutorial')
 print 'cd', tutdir
 os.chdir(tutdir)
@@ -87,9 +85,11 @@ for f in files:
     add(f, log)
 add(os.path.join(os.pardir, '_what_is.do.txt'), log)
 add(os.path.join(os.pardir, '_doconce2anything.do.txt'), log)
+"""
 
-# test DocWriter:
 os.chdir(thisdir)
+# test DocWriter:
+log = open(logfilename, 'a')
 failure, output = commands.getstatusoutput('python ../lib/doconce/DocWriter.py')
 files = 'tmp_Doconce.do.txt', 'tmp_DocWriter.do.txt', 'tmp_DocWriter.html', \
         'tmp_HTML.html'

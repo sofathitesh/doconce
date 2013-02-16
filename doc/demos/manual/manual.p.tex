@@ -37,7 +37,7 @@
 
 
 % #ifdef PREAMBLE
-%-------------------------- begin preamble --------------------------
+%-------------------- begin preamble ----------------------
 % #ifdef BOOK
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
@@ -137,9 +137,11 @@ final,                   % or draft (marks overfull hboxes)
 \makeindex
 
 \begin{document}
-%-------------------------- end preamble --------------------------
+%-------------------- end preamble ------------------------
 
 % #endif
+
+% ------------------- main content ------------------------
 
 \input{newcommands_keep}
 \input{newcommands_replace}
@@ -213,13 +215,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Feb 12, 2013}
+\date{Feb 16, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Feb 12, 2013}}
+{\large\textsf{Feb 16, 2013}}
 
 \end{center}
 \vfill
@@ -228,7 +230,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Feb 12, 2013
+Feb 16, 2013
 \end{center}
 
 \vspace{1cm}
@@ -2957,6 +2959,13 @@ This message points to a bug, but has been resolved by removing blank lines
 between the text and the first \code{!bt} (inserting the blanks again did not
 trigger the error message again...).
 
+\paragraph{Examples are typset with environment delimiters visible.}
+If you see an Example section containing \code{!bsubex}, \code{!bsol}, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option \code{--examples-as-exercises}. The text in the example is typeset
+as is unless this option is included.
+
 \paragraph{Emacs editing does not work properly because of "regexp overflow".}
 Sometimes the Doonce editing mode (see Section~\ref{emacs:doconce}) in Emacs
 leads to an error message ending with "overflow in regexp matcher".
@@ -3413,3 +3422,4 @@ and Sphinx just typeset the list as a list with keywords.
 
 \end{document}
 % #endif
+

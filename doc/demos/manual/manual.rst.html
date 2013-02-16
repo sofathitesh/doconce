@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Feb 12, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Feb 16, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -2771,6 +2771,14 @@ proceeding text before some section heading.</p>
 <p>This message points to a bug, but has been resolved by removing blank lines
 between the text and the first <tt class="docutils literal">!bt</tt> (inserting the blanks again did not
 trigger the error message again...).</p>
+</div>
+<div class="section" id="examples-are-typset-with-environment-delimiters-visible">
+<h3>Examples are typset with environment delimiters visible</h3>
+<p>If you see an Example section containing <tt class="docutils literal">!bsubex</tt>, <tt class="docutils literal">!bsol</tt>, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>. The text in the example is typeset
+as is unless this option is included.</p>
 </div>
 <div class="section" id="emacs-editing-does-not-work-properly-because-of-regexp-overflow">
 <h3>Emacs editing does not work properly because of &quot;regexp overflow&quot;</h3>

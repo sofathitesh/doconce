@@ -325,12 +325,6 @@ def rst_quote(block, format):
 %s
 """ % (indent_lines(block, format, ' '*4))
 
-def rst_notes(block, format):
-    # Set notes in comments
-    return """
-%s
-""" % (indent_lines(block, format, '..  '))
-
 
 def rst_warning(block, format):
     return """
@@ -432,7 +426,6 @@ def define(FILENAME_EXTENSION,
         'notice':        rst_notice,
         'hint':          rst_hint,
         'summary':       rst_summary,
-        'notes':         rst_notes,
         }
 
     CODE['rst'] = rst_code  # function for typesetting code

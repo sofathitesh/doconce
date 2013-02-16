@@ -3,9 +3,11 @@
 
 # html
 doconce format html tutorial  --no-pygments-html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # latex
 doconce format latex tutorial
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 ptex2tex -DMINTED -DHELVETICA tutorial
 latex -shell-escape tutorial.tex
 latex -shell-escape tutorial.tex
@@ -13,6 +15,7 @@ dvipdf tutorial.dvi
 
 # Sphinx
 doconce format sphinx tutorial
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 rm -rf sphinx-rootdir
 doconce sphinx_dir tutorial
 cp tutorial.rst tutorial.sphinx.rst
@@ -30,6 +33,7 @@ cd ../../..
 
 # reStructuredText:
 doconce format rst tutorial
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 rst2xml.py tutorial.rst > tutorial.xml
 rst2odt.py tutorial.rst > tutorial.odt
 rst2html.py tutorial.rst > tutorial.rst.html
@@ -39,12 +43,25 @@ dvipdf tutorial.rst.dvi
 
 # Other formats:
 doconce format plain tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 doconce format gwiki tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 doconce format cwiki tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 doconce format mwiki tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 doconce format st tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 doconce format epytext tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 doconce format pandoc tutorial.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Make PDF of most of the above:
 a2ps_plain='a2ps --left-title='\'''\'' --right-title='\'''\'' --left-footer='\'''\'' --right-footer='\'''\'' --footer='\'''\'''
