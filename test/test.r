@@ -714,10 +714,22 @@ file=subexer_a.pdf
 
 !bans
 Short answer to subexercise a).
+With math in answer: $a=b$.
 !eans
 
 !bhint
 First hint to subexercise a).
+With math $a=b$ in hint:
+
+!bt
+\[ a=b. \]
+!et
+And with code returning $x+1$ in hint:
+
+!bc
+def func(x):
+    return x + 1  # with code in hint
+!ec
 !ehint
 
 !bhint
@@ -729,6 +741,12 @@ Second hint to subexercise a).
 Here goes the text for subexercise b).
 
 file=subexer_b.pdf
+
+Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
+!bt
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+!et
 
 !bhint
 A hint for this subexercise.
@@ -747,18 +765,43 @@ remarks will appear at the end of the typeset exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
+With some math $a=b$ in this solution:
+!bt
+\[ \hbox{math in solution: } a = b \]
+!et
+And code `a=b` in this solution:
+!bc
+a = b  # code in solution
+!ec
+End of solution is here.
 !esol
+
+#  No meaning in this weired test example:
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
 
 
 ===== {Exercise}: Some exercise without the "Exercise:" prefix =====
 
 # Another minimalistic exercise
 
-Just some text.
+Just some text. And some math saying that $e^0=1$ on a single line,
+to test that math block insertion is correct:
+
+!bt
+\[ \exp{(0)} = 1 \]
+!et
+
+And a test that the code `lambda x: x+2` is correctly placed here:
+
+!bc
+lambda x: x+2
+!ec
 
 ===== Example: Just an example =====
 
-# This example needs the --example-as-exercise option
+# This example needs the --examples-as-exercises option, otherwise
+# it is just typeset as it is written.
 
 !bsubex
 What is the capital of Norway?
@@ -802,6 +845,8 @@ This is the first appendix.
 
 ===== A subsection within an appendix =====
 
+Some text.
+
 ======= Appendix: Just for testing; part II =======
 
 This is more stuff for an appendix.
@@ -838,6 +883,10 @@ Much testing in this document, otherwise stupid content.
 
 !bnotice
 Ah, we are close to the end.
+With math:
+!bt
+\[ p=q\]
+!et
 !enotice
 
 !bquestion
@@ -1478,7 +1527,9 @@ a = 1
 v = f(x)
 print v
 \epypro
-(\href{{http://pythontutor.com/visualize.html#code=pypro&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+\noindent
+(\href{{http://pythontutor.com/visualize.html\#code=def+f\%28x\%29\%3A\%0A++++return+x+\%2B+1\%0A\%0Aa+\%3D+2\%0Ax+\%3D+a\%0Aa+\%3D+1\%0Av+\%3D+f\%28x\%29\%0Aprint+v&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
 
 Then Cython:
 \bcycod
@@ -1852,7 +1903,7 @@ some text.
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -1869,12 +1920,8 @@ environments as part of the example.
 \paragraph{a)}
 State some problem.
 
-% --- begin solution of exercise
-
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
-
-% --- end solution of exercise
 
 \paragraph{b)}
 State some other problem.
@@ -1885,17 +1932,12 @@ A hint can be given.
 \paragraph{Hint 2.}
 Maybe even another hint?
 
-% --- begin solution of exercise
-
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-% --- end solution of exercise
-
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 \subsection{URLs}
 
@@ -2013,7 +2055,7 @@ between there we have Exercise~\ref{exer:some:formula}.
 
 \section{Exercises}
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2031,22 +2073,28 @@ let the program count the number of heads.
 
 % Test syntax error
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \code{r = random.random()} and define head as \code{r <= 0.5}.
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
 
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \code{r = random.randint(1,2)} and define head when \code{r} is 1.
+% --- end hint in exercise ---
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 If the \code{random.random()} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
-% --- end short answer in exercise
+% --- end answer of exercise ---
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Code:
 \bpycod
@@ -2059,19 +2107,17 @@ for i in range(N):
         heads += 1
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \epycod
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2085,20 +2131,22 @@ Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \code{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
-
+% --- end hint in exercise ---
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2140,22 +2188,24 @@ above.
 \paragraph{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \code{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+% --- end hint in exercise ---
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
-% --- end short answer in exercise
+% --- end answer of exercise ---
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
@@ -2173,14 +2223,13 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2190,43 +2239,80 @@ and give some perspectives.
 
 Intro to this exercise. Questions are in subexercises below.
 
-% --- begin solution of exercise
 
+
+
+
+% No meaning in this weired test example:
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
-
-% --- end solution of exercise
+With some math $a=b$ in this solution:
+\[ \hbox{math in solution: } a = b \]
+And code \code{a=b} in this solution:
+\bccq
+a = b  # code in solution
+\eccq
+End of solution is here.
+% --- end solution of exercise ---
 
 
 \paragraph{a)}
 Subexercises are numbered a), b), etc.
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
+With math $a=b$ in hint:
+
+\[ a=b. \]
+And with code returning $x+1$ in hint:
+
+\bccq
+def func(x):
+    return x + 1  # with code in hint
+\eccq
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+% --- end hint in exercise ---
 Filename: \code{subexer_a.pdf}.
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
-% --- end short answer in exercise
+With math in answer: $a=b$.
+% --- end answer of exercise ---
 
 \paragraph{b)}
 Here goes the text for subexercise b).
 
+
+Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+% --- end hint in exercise ---
 Filename: \code{subexer_b.pdf}.
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 
 % Closing remarks for this Exercise
 
@@ -2236,14 +2322,13 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2251,36 +2336,41 @@ remarks will appear at the end of the typeset exercise.
 
 % Another minimalistic exercise
 
-Just some text.
+Just some text. And some math saying that $e^0=1$ on a single line,
+to test that math block insertion is correct:
 
+\[ \exp{(0)} = 1 \]
+
+And a test that the code \code{lambda x: x+2} is correctly placed here:
+
+\bccq
+lambda x: x+2
+\eccq
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --example-as-exercise option
+% This example needs the --examples-as-exercises option, otherwise
+% it is just typeset as it is written.
 
 
 \paragraph{a)}
 What is the capital of Norway?
 
-% --- begin short answer in exercise
-
 \paragraph{Answer.}
 Oslo.
-% --- end short answer in exercise
-
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 \section{Here goes another section}
@@ -2290,7 +2380,7 @@ With some text, before we continue with exercises.
 
 \section{More Exercises}
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2302,14 +2392,13 @@ Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
 and verify it.
 Filename: \code{verify_formula.py}.
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -2322,9 +2411,8 @@ the two before that as Projects~\ref{demo:ex:2} and~\ref{proj:circle1},
 and this one as Project~\ref{exer:you}.
 Filename: \code{selc_composed.pdf}.
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
@@ -2336,6 +2424,9 @@ Filename: \code{selc_composed.pdf}.
 This is the first appendix.
 
 \subsection{A subsection within an appendix}
+
+Some text.
+
 
 \section{Just for testing; part II}
 
@@ -2404,6 +2495,8 @@ Much testing in this document, otherwise stupid content.
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
 \vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
 Ah, we are close to the end.
+With math:
+\[ p=q\]
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -2427,6 +2520,7 @@ So, how many admonition environments does Doconce support?
 
 \end{document}
 % #endif
+
 
 ************** File: testdoc.tex_ptex2tex *****************
 %%
@@ -3104,7 +3198,7 @@ some text.
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3121,12 +3215,8 @@ environments as part of the example.
 \paragraph{a)}
 State some problem.
 
-% --- begin solution of exercise
-
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
-
-% --- end solution of exercise
 
 \paragraph{b)}
 State some other problem.
@@ -3137,17 +3227,12 @@ A hint can be given.
 \paragraph{Hint 2.}
 Maybe even another hint?
 
-% --- begin solution of exercise
-
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-% --- end solution of exercise
-
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 \subsection{URLs}
 
@@ -3255,7 +3340,7 @@ between there we have Exercise~\ref{exer:some:formula}.
 
 \section{Exercises}
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3273,22 +3358,28 @@ let the program count the number of heads.
 
 % Test syntax error
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\Verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\Verb!r <= 0.5!}.
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
 
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 {\fontsize{10pt}{10pt}\Verb!r = random.randint(1,2)!} and define head when {\fontsize{10pt}{10pt}\Verb!r!} is 1.
+% --- end hint in exercise ---
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 If the {\fontsize{10pt}{10pt}\Verb!random.random()!} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
-% --- end short answer in exercise
+% --- end answer of exercise ---
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Code:
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
@@ -3302,19 +3393,17 @@ for i in range(N):
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \end{minted}
 \noindent
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 Filenames: {\fontsize{10pt}{10pt}\Verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\Verb!flip_coin.pdf!}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3328,20 +3417,22 @@ Filenames: {\fontsize{10pt}{10pt}\Verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\Ve
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard {\fontsize{10pt}{10pt}\Verb!random!} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
-
+% --- end hint in exercise ---
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3384,22 +3475,24 @@ above.
 \paragraph{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the {\fontsize{10pt}{10pt}\Verb!numpy.random!} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+% --- end hint in exercise ---
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
-% --- end short answer in exercise
+% --- end answer of exercise ---
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
@@ -3417,14 +3510,13 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3434,43 +3526,84 @@ and give some perspectives.
 
 Intro to this exercise. Questions are in subexercises below.
 
-% --- begin solution of exercise
 
+
+
+
+% No meaning in this weired test example:
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
-
-% --- end solution of exercise
+With some math $a=b$ in this solution:
+\[ \hbox{math in solution: } a = b \]
+And code {\fontsize{10pt}{10pt}\Verb!a=b!} in this solution:
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+a = b  # code in solution
+\end{Verbatim}
+\noindent
+End of solution is here.
+% --- end solution of exercise ---
 
 
 \paragraph{a)}
 Subexercises are numbered a), b), etc.
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
+With math $a=b$ in hint:
+
+\[ a=b. \]
+And with code returning $x+1$ in hint:
+
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+def func(x):
+    return x + 1  # with code in hint
+\end{Verbatim}
+\noindent
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+% --- end hint in exercise ---
 Filename: {\fontsize{10pt}{10pt}\Verb!subexer_a.pdf!}.
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
-% --- end short answer in exercise
+With math in answer: $a=b$.
+% --- end answer of exercise ---
 
 \paragraph{b)}
 Here goes the text for subexercise b).
 
+
+Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+% --- end hint in exercise ---
 Filename: {\fontsize{10pt}{10pt}\Verb!subexer_b.pdf!}.
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 
 % Closing remarks for this Exercise
 
@@ -3480,14 +3613,13 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3495,36 +3627,43 @@ remarks will appear at the end of the typeset exercise.
 
 % Another minimalistic exercise
 
-Just some text.
+Just some text. And some math saying that $e^0=1$ on a single line,
+to test that math block insertion is correct:
 
+\[ \exp{(0)} = 1 \]
+
+And a test that the code {\fontsize{10pt}{10pt}\Verb!lambda x: x+2!} is correctly placed here:
+
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+lambda x: x+2
+\end{Verbatim}
+\noindent
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --example-as-exercise option
+% This example needs the --examples-as-exercises option, otherwise
+% it is just typeset as it is written.
 
 
 \paragraph{a)}
 What is the capital of Norway?
 
-% --- begin short answer in exercise
-
 \paragraph{Answer.}
 Oslo.
-% --- end short answer in exercise
-
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 \section{Here goes another section}
@@ -3534,7 +3673,7 @@ With some text, before we continue with exercises.
 
 \section{More Exercises}
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3546,14 +3685,13 @@ Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
 and verify it.
 Filename: {\fontsize{10pt}{10pt}\Verb!verify_formula.py!}.
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -3566,9 +3704,8 @@ the two before that as Projects~\ref{demo:ex:2} and~\ref{proj:circle1},
 and this one as Project~\ref{exer:you}.
 Filename: {\fontsize{10pt}{10pt}\Verb!selc_composed.pdf!}.
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
@@ -3580,6 +3717,9 @@ Filename: {\fontsize{10pt}{10pt}\Verb!selc_composed.pdf!}.
 This is the first appendix.
 
 \subsection{A subsection within an appendix}
+
+Some text.
+
 
 \section{Just for testing; part II}
 
@@ -3648,6 +3788,8 @@ Much testing in this document, otherwise stupid content.
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
 \vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
 Ah, we are close to the end.
+With math:
+\[ p=q\]
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -3669,6 +3811,7 @@ So, how many admonition environments does Doconce support?
 \printindex
 
 \end{document}
+
 ************** File: testdoc.tex_doconce_ptex2tex *****************
 \bsys (!bc sys) -> begin{quote}begin{Verbatim}
 \bpypro (!bc pypro) -> \begin{python:nt}
@@ -4314,7 +4457,7 @@ some text.
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4331,12 +4474,8 @@ environments as part of the example.
 \paragraph{a)}
 State some problem.
 
-% --- begin solution of exercise
-
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
-
-% --- end solution of exercise
 
 \paragraph{b)}
 State some other problem.
@@ -4347,17 +4486,12 @@ A hint can be given.
 \paragraph{Hint 2.}
 Maybe even another hint?
 
-% --- begin solution of exercise
-
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-% --- end solution of exercise
-
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 \subsection{URLs}
 
@@ -4465,7 +4599,7 @@ between there we have Exercise~\ref{exer:some:formula}.
 
 \section{Exercises}
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4483,22 +4617,28 @@ let the program count the number of heads.
 
 % Test syntax error
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \Verb!r = random.random()! and define head as \Verb!r <= 0.5!.
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
 
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \Verb!r = random.randint(1,2)! and define head when \Verb!r! is 1.
+% --- end hint in exercise ---
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 If the \Verb!random.random()! function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
-% --- end short answer in exercise
+% --- end answer of exercise ---
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Code:
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
@@ -4511,19 +4651,17 @@ for i in range(N):
         heads += 1
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \end{minted}
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4537,20 +4675,22 @@ Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \Verb!random! module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
-
+% --- end hint in exercise ---
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4592,22 +4732,24 @@ above.
 \paragraph{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \Verb!numpy.random! module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+% --- end hint in exercise ---
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
-% --- end short answer in exercise
+% --- end answer of exercise ---
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
@@ -4625,14 +4767,13 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4642,43 +4783,80 @@ and give some perspectives.
 
 Intro to this exercise. Questions are in subexercises below.
 
-% --- begin solution of exercise
 
+
+
+
+% No meaning in this weired test example:
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
-
-% --- end solution of exercise
+With some math $a=b$ in this solution:
+\[ \hbox{math in solution: } a = b \]
+And code \Verb!a=b! in this solution:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+a = b  # code in solution
+\end{Verbatim}
+End of solution is here.
+% --- end solution of exercise ---
 
 
 \paragraph{a)}
 Subexercises are numbered a), b), etc.
 
+% --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
+With math $a=b$ in hint:
+
+\[ a=b. \]
+And with code returning $x+1$ in hint:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+def func(x):
+    return x + 1  # with code in hint
+\end{Verbatim}
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+% --- end hint in exercise ---
 Filename: \Verb!subexer_a.pdf!.
 
-% --- begin short answer in exercise
 
+% --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
-% --- end short answer in exercise
+With math in answer: $a=b$.
+% --- end answer of exercise ---
 
 \paragraph{b)}
 Here goes the text for subexercise b).
 
+
+Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+% --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+% --- end hint in exercise ---
 Filename: \Verb!subexer_b.pdf!.
 
-% --- begin solution of exercise
 
+% --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
-
-% --- end solution of exercise
+% --- end solution of exercise ---
 
 % Closing remarks for this Exercise
 
@@ -4688,14 +4866,13 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4703,36 +4880,41 @@ remarks will appear at the end of the typeset exercise.
 
 % Another minimalistic exercise
 
-Just some text.
+Just some text. And some math saying that $e^0=1$ on a single line,
+to test that math block insertion is correct:
 
+\[ \exp{(0)} = 1 \]
+
+And a test that the code \Verb!lambda x: x+2! is correctly placed here:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+lambda x: x+2
+\end{Verbatim}
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --example-as-exercise option
+% This example needs the --examples-as-exercises option, otherwise
+% it is just typeset as it is written.
 
 
 \paragraph{a)}
 What is the capital of Norway?
 
-% --- begin short answer in exercise
-
 \paragraph{Answer.}
 Oslo.
-% --- end short answer in exercise
-
 
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 \section{Here goes another section}
@@ -4742,7 +4924,7 @@ With some text, before we continue with exercises.
 
 \section{More Exercises}
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4754,14 +4936,13 @@ Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
 and verify it.
 Filename: \Verb!verify_formula.py!.
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
 
-% --- begin exercise
+% --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
@@ -4774,9 +4955,8 @@ the two before that as Projects~\ref{demo:ex:2} and~\ref{proj:circle1},
 and this one as Project~\ref{exer:you}.
 Filename: \Verb!selc_composed.pdf!.
 
-
 \end{exercise}
-% --- end of exercise
+% --- end exercise ---
 
 
 
@@ -4788,6 +4968,9 @@ Filename: \Verb!selc_composed.pdf!.
 This is the first appendix.
 
 \subsection{A subsection within an appendix}
+
+Some text.
+
 
 \section{Just for testing; part II}
 
@@ -4856,6 +5039,8 @@ Much testing in this document, otherwise stupid content.
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
 \vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
 Ah, we are close to the end.
+With math:
+\[ p=q\]
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -4877,6 +5062,7 @@ So, how many admonition environments does Doconce support?
 \printindex
 
 \end{document}
+
 
 ************** File: testdoc.rst *****************
 .. Automatically generated reST file from Doconce source
@@ -5357,7 +5543,7 @@ some text.
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _Example:
@@ -5373,13 +5559,7 @@ environments as part of the example.
 
 *a)* State some problem.
 
-.. --- begin solution of exercise
-
-
 *Solution.* The answer to this subproblem can be written here.
-
-.. --- end solution of exercise
-
 
 *b)* State some other problem.
 
@@ -5387,16 +5567,10 @@ environments as part of the example.
 
 *Hint 2.* Maybe even another hint?
 
-.. --- begin solution of exercise
-
-
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-.. --- end solution of exercise
-
-
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
@@ -5480,7 +5654,7 @@ Exercises
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _demo:ex:1:
@@ -5501,21 +5675,31 @@ let the program count the number of heads.
 .. Test syntax error
 
 
+.. --- begin hint in exercise ---
+
+
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+.. --- end hint in exercise ---
+
+
+.. --- begin hint in exercise ---
+
 
 *Hint 2.* Draw an integer among \{1,2\} with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
+.. --- end hint in exercise ---
 
-.. --- begin short answer in exercise
 
+
+.. --- begin answer of exercise ---
 
 *Answer.* If the ``random.random()`` function returns a number <1/2, let it be
 head, otherwise tail. Repeat this N number of times.
-.. --- end short answer in exercise
+.. --- end answer of exercise ---
 
 
-.. --- begin solution of exercise
 
+.. --- begin solution of exercise ---
 
 *Solution.* Code::
 
@@ -5529,20 +5713,19 @@ head, otherwise tail. Repeat this N number of times.
                 heads += 1
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
-
-.. --- end solution of exercise
+.. --- end solution of exercise ---
 
 Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _demo:ex:2:
@@ -5557,18 +5740,23 @@ Project 1: Compute a Probability
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
 
+.. --- begin hint in exercise ---
+
+
 *Hint.* To answer this question empirically, let a program
 draw N such random numbers using Python's standard ``random`` module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
 compute the probability as M/N.
-
-.. --- end of exercise
-
+.. --- end hint in exercise ---
 
 
+.. --- end exercise ---
 
 
-.. --- begin exercise
+
+
+
+.. --- begin exercise ---
 
 
 .. _proj:circle1:
@@ -5612,22 +5800,26 @@ above.
 
 *a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
 
+.. --- begin hint in exercise ---
+
+
 *Hint.* Use the ``numpy.random`` module to draw the
 x_0, y_0, and R quantities.
+.. --- end hint in exercise ---
 
-.. --- begin short answer in exercise
 
+
+.. --- begin answer of exercise ---
 
 *Answer.* Here goes the short answer to part a).
-.. --- end short answer in exercise
+.. --- end answer of exercise ---
 
 
-.. --- begin solution of exercise
 
+.. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution to part a).
-
-.. --- end solution of exercise
+.. --- end solution of exercise ---
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
@@ -5647,13 +5839,13 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _exer:dist:
@@ -5663,40 +5855,89 @@ Exercise 1: Determine some Distance
 
 Intro to this exercise. Questions are in subexercises below.
 
-.. --- begin solution of exercise
 
+
+
+
+.. No meaning in this weired test example:
+
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+.. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution of the whole exercise.
+With some math a=b in this solution::
 
-.. --- end solution of exercise
+        \[ \hbox{math in solution: } a = b \]
+
+And code ``a=b`` in this solution::
+
+
+        a = b  # code in solution
+
+End of solution is here.
+.. --- end solution of exercise ---
 
 
 
 *a)* Subexercises are numbered a), b), etc.
 
+.. --- begin hint in exercise ---
+
+
 *Hint 1.* First hint to subexercise a).
+With math a=b in hint::
+
+        \[ a=b. \]
+
+And with code returning x+1 in hint::
+
+
+        def func(x):
+            return x + 1  # with code in hint
+
+.. --- end hint in exercise ---
+
+
+.. --- begin hint in exercise ---
+
 
 *Hint 2.* Second hint to subexercise a).
+.. --- end hint in exercise ---
+
 Filename: ``subexer_a.pdf``.
 
-.. --- begin short answer in exercise
 
+.. --- begin answer of exercise ---
 
 *Answer.* Short answer to subexercise a).
-.. --- end short answer in exercise
+With math in answer: a=b.
+.. --- end answer of exercise ---
 
 
 *b)* Here goes the text for subexercise b).
 
+
+Some math \cos^2 x + \sin^2 x = 1 written one a single line::
+
+        \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+
+.. --- begin hint in exercise ---
+
+
 *Hint.* A hint for this subexercise.
+.. --- end hint in exercise ---
+
 Filename: ``subexer_b.pdf``.
 
-.. --- begin solution of exercise
 
+.. --- begin solution of exercise ---
 
 *Solution.* Here goes the solution of this subexercise.
-
-.. --- end solution of exercise
+.. --- end solution of exercise ---
 
 
 .. Closing remarks for this Exercise
@@ -5710,13 +5951,13 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 Some exercise without the "Exercise:" prefix
@@ -5725,34 +5966,41 @@ Some exercise without the "Exercise:" prefix
 .. Another minimalistic exercise
 
 
-Just some text.
+Just some text. And some math saying that e^0=1 on a single line,
+to test that math block insertion is correct::
 
-.. --- end of exercise
-
-
-
+        \[ \exp{(0)} = 1 \]
 
 
-.. --- begin exercise
+And a test that the code ``lambda x: x+2`` is correctly placed here::
+
+
+        lambda x: x+2
+
+
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
 
 
 Example 2: Just an example
 --------------------------
 
-.. This example needs the --example-as-exercise option
+.. This example needs the --examples-as-exercises option, otherwise
+
+.. it is just typeset as it is written.
 
 
 
 *a)* What is the capital of Norway?
 
-.. --- begin short answer in exercise
-
-
 *Answer.* Oslo.
-.. --- end short answer in exercise
 
-
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
@@ -5766,7 +6014,7 @@ More Exercises
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _exer:some:formula:
@@ -5778,13 +6026,13 @@ Pick a statement from `Project 2: Explore Distributions of Random Circles`_ or `
 and verify it.
 Filename: ``verify_formula.py``.
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _exer:you:
@@ -5797,7 +6045,7 @@ the two before that as `Project 1: Compute a Probability`_ and `Project 2: Explo
 and this one as `Project 3: References in a headings do not work well in rst`_.
 Filename: ``selc_composed.pdf``.
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
@@ -5808,6 +6056,8 @@ This is the first appendix.
 
 A subsection within an appendix
 -------------------------------
+
+Some text.
 
 Appendix: Just for testing; part II
 ===================================
@@ -5851,6 +6101,10 @@ Without label.
 
 .. note::
    Ah, we are close to the end.
+   With math::
+
+        \[ p=q\]
+
 
 
 .. attention::
@@ -6388,7 +6642,7 @@ some text.
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _Example:
@@ -6404,13 +6658,7 @@ environments as part of the example.
 
 *a)* State some problem.
 
-.. --- begin solution of exercise
-
-
 *Solution.* The answer to this subproblem can be written here.
-
-.. --- end solution of exercise
-
 
 *b)* State some other problem.
 
@@ -6418,16 +6666,10 @@ environments as part of the example.
 
 *Hint 2.* Maybe even another hint?
 
-.. --- begin solution of exercise
-
-
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-.. --- end solution of exercise
-
-
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
@@ -6586,7 +6828,7 @@ Exercises
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _demo:ex:1:
@@ -6607,21 +6849,31 @@ let the program count the number of heads.
 .. Test syntax error
 
 
+.. --- begin hint in exercise ---
+
+
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+.. --- end hint in exercise ---
+
+
+.. --- begin hint in exercise ---
+
 
 *Hint 2.* Draw an integer among :math:`\{1,2\}` with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
+.. --- end hint in exercise ---
 
-.. --- begin short answer in exercise
 
+
+.. --- begin answer of exercise ---
 
 *Answer.* If the ``random.random()`` function returns a number :math:`<1/2`, let it be
 head, otherwise tail. Repeat this :math:`N` number of times.
-.. --- end short answer in exercise
+.. --- end answer of exercise ---
 
 
-.. --- begin solution of exercise
 
+.. --- begin solution of exercise ---
 
 *Solution.* Code:
 
@@ -6636,20 +6888,19 @@ head, otherwise tail. Repeat this :math:`N` number of times.
                 heads += 1
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
-
-.. --- end solution of exercise
+.. --- end solution of exercise ---
 
 Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _demo:ex:2:
@@ -6664,18 +6915,23 @@ Project 1: Compute a Probability
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval :math:`[0,1)`?
 
+.. --- begin hint in exercise ---
+
+
 *Hint.* To answer this question empirically, let a program
 draw :math:`N` such random numbers using Python's standard ``random`` module,
 count how many of them, :math:`M`, that fall in the interval :math:`(0.5,0.6)`, and
 compute the probability as :math:`M/N`.
-
-.. --- end of exercise
-
+.. --- end hint in exercise ---
 
 
+.. --- end exercise ---
 
 
-.. --- begin exercise
+
+
+
+.. --- begin exercise ---
 
 
 .. _proj:circle1:
@@ -6729,22 +6985,26 @@ above.
 
 *a)* Let :math:`R` be normally distributed and :math:`(x_0,y_0)` uniformly distributed.
 
+.. --- begin hint in exercise ---
+
+
 *Hint.* Use the ``numpy.random`` module to draw the
 :math:`x_0`, :math:`y_0`, and :math:`R` quantities.
+.. --- end hint in exercise ---
 
-.. --- begin short answer in exercise
 
+
+.. --- begin answer of exercise ---
 
 *Answer.* Here goes the short answer to part a).
-.. --- end short answer in exercise
+.. --- end answer of exercise ---
 
 
-.. --- begin solution of exercise
 
+.. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution to part a).
-
-.. --- end solution of exercise
+.. --- end solution of exercise ---
 
 
 *b)* Let :math:`R` be uniformly distributed and :math:`(x_0,y_0)` normally distributed.
@@ -6764,13 +7024,13 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _exer:dist:
@@ -6780,40 +7040,99 @@ Exercise 1: Determine some Distance
 
 Intro to this exercise. Questions are in subexercises below.
 
-.. --- begin solution of exercise
 
+
+
+
+.. No meaning in this weired test example:
+
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+.. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution of the whole exercise.
+With some math :math:`a=b` in this solution:
 
-.. --- end solution of exercise
+.. math::
+         \hbox{math in solution: } a = b 
+
+And code ``a=b`` in this solution:
+
+.. code-block:: text
+
+
+        a = b  # code in solution
+
+End of solution is here.
+.. --- end solution of exercise ---
 
 
 
 *a)* Subexercises are numbered a), b), etc.
 
+.. --- begin hint in exercise ---
+
+
 *Hint 1.* First hint to subexercise a).
+With math :math:`a=b` in hint:
+
+
+.. math::
+         a=b. 
+
+And with code returning :math:`x+1` in hint:
+
+
+.. code-block:: text
+
+
+        def func(x):
+            return x + 1  # with code in hint
+
+.. --- end hint in exercise ---
+
+
+.. --- begin hint in exercise ---
+
 
 *Hint 2.* Second hint to subexercise a).
+.. --- end hint in exercise ---
+
 Filename: ``subexer_a.pdf``.
 
-.. --- begin short answer in exercise
 
+.. --- begin answer of exercise ---
 
 *Answer.* Short answer to subexercise a).
-.. --- end short answer in exercise
+With math in answer: :math:`a=b`.
+.. --- end answer of exercise ---
 
 
 *b)* Here goes the text for subexercise b).
 
+
+Some math :math:`\cos^2 x + \sin^2 x = 1` written one a single line:
+
+
+.. math::
+         \cos^2 x + \sin^2 x = 1 \thinspace .
+
+
+.. --- begin hint in exercise ---
+
+
 *Hint.* A hint for this subexercise.
+.. --- end hint in exercise ---
+
 Filename: ``subexer_b.pdf``.
 
-.. --- begin solution of exercise
 
+.. --- begin solution of exercise ---
 
 *Solution.* Here goes the solution of this subexercise.
-
-.. --- end solution of exercise
+.. --- end solution of exercise ---
 
 
 .. Closing remarks for this Exercise
@@ -6827,13 +7146,13 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 Some exercise without the "Exercise:" prefix
@@ -6842,34 +7161,46 @@ Some exercise without the "Exercise:" prefix
 .. Another minimalistic exercise
 
 
-Just some text.
-
-.. --- end of exercise
-
+Just some text. And some math saying that :math:`e^0=1` on a single line,
+to test that math block insertion is correct:
 
 
+.. math::
+         \exp{(0)} = 1 
 
 
-.. --- begin exercise
+And a test that the code ``lambda x: x+2`` is correctly placed here:
+
+
+.. code-block:: text
+
+
+        lambda x: x+2
+
+
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
 
 
 Example 2: Just an example
 --------------------------
 
-.. This example needs the --example-as-exercise option
+.. This example needs the --examples-as-exercises option, otherwise
+
+.. it is just typeset as it is written.
 
 
 
 *a)* What is the capital of Norway?
 
-.. --- begin short answer in exercise
-
-
 *Answer.* Oslo.
-.. --- end short answer in exercise
 
-
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
@@ -6883,7 +7214,7 @@ More Exercises
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _exer:some:formula:
@@ -6895,13 +7226,13 @@ Pick a statement from :ref:`proj:circle1` or :ref:`demo:ex:1`
 and verify it.
 Filename: ``verify_formula.py``.
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
 
 
-.. --- begin exercise
+.. --- begin exercise ---
 
 
 .. _exer:you:
@@ -6914,7 +7245,7 @@ the two before that as :ref:`demo:ex:2` and :ref:`proj:circle1`,
 and this one as :ref:`exer:you`.
 Filename: ``selc_composed.pdf``.
 
-.. --- end of exercise
+.. --- end exercise ---
 
 
 
@@ -6925,6 +7256,8 @@ This is the first appendix.
 
 A subsection within an appendix
 -------------------------------
+
+Some text.
 
 Appendix: Just for testing; part II
 ===================================
@@ -6968,6 +7301,11 @@ Without label.
 
 .. note::
    Ah, we are close to the end.
+   With math:
+
+.. math::
+         p=q
+
 
 
 .. attention::
@@ -7435,7 +7773,7 @@ some text.
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Example 1: Examples can be typeset as exercises ====
 
@@ -7447,11 +7785,7 @@ environments as part of the example.
 
 *a)* State some problem.
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
-
 *Solution.* The answer to this subproblem can be written here.
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
 
 *b)* State some other problem.
 
@@ -7459,14 +7793,10 @@ environments as part of the example.
 
 *Hint 2.* Maybe even another hint?
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
-
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-<wiki:comment> --- end solution of exercise </wiki:comment>
-
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 ==== URLs ====
 
@@ -7536,7 +7866,7 @@ between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
 == Exercises ==
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Problem 1: Flip a Coin ====
 
@@ -7551,19 +7881,25 @@ let the program count the number of heads.
 
 <wiki:comment> Test syntax error </wiki:comment>
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
+
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
 
 *Hint 2.* Draw an integer among `\{1,2\}` with
 `r = random.randint(1,2)` and define head when `r` is 1.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
 
+<wiki:comment> --- begin answer of exercise --- </wiki:comment>
 *Answer.* If the `random.random()` function returns a number `<1/2`, let it be
 head, otherwise tail. Repeat this `N` number of times.
-<wiki:comment> --- end short answer in exercise </wiki:comment>
+<wiki:comment> --- end answer of exercise --- </wiki:comment>
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 *Solution.* Code:
 {{{
 import sys, random
@@ -7575,17 +7911,16 @@ for i in range(N):
         heads += 1
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 }}}
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 Filenames: `flip_coin.py`, `flip_coin.pdf`.
 <wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Project 1: Compute a Probability ====
 
@@ -7595,17 +7930,20 @@ Filenames: `flip_coin.py`, `flip_coin.pdf`.
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval `[0,1)`?
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 *Hint.* To answer this question empirically, let a program
 draw `N` such random numbers using Python's standard `random` module,
 count how many of them, `M`, that fall in the interval `(0.5,0.6)`, and
 compute the probability as `M/N`.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Project 2: Explore Distributions of Random Circles ====
 
@@ -7644,19 +7982,21 @@ above.
 
 *a)* Let `R` be normally distributed and `(x_0,y_0)` uniformly distributed.
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 *Hint.* Use the `numpy.random` module to draw the
 `x_0`, `y_0`, and `R` quantities.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
 
+<wiki:comment> --- begin answer of exercise --- </wiki:comment>
 *Answer.* Here goes the short answer to part a).
-<wiki:comment> --- end short answer in exercise </wiki:comment>
+<wiki:comment> --- end answer of exercise --- </wiki:comment>
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 *Solution.* Here goes a full solution to part a).
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 
 *b)* Let `R` be uniformly distributed and `(x_0,y_0)` normally distributed.
 Filename: `norm.py`.
@@ -7673,46 +8013,89 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Exercise 1: Determine some Distance ====
 
 Intro to this exercise. Questions are in subexercises below.
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+
+
+
+<wiki:comment> No meaning in this weired test example: </wiki:comment>
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 *Solution.* Here goes a full solution of the whole exercise.
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+With some math `a=b` in this solution:
+{{{
+\[ \hbox{math in solution: } a = b \]
+}}}
+And code `a=b` in this solution:
+{{{
+a = b  # code in solution
+}}}
+End of solution is here.
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 
 
 *a)* Subexercises are numbered a), b), etc.
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 *Hint 1.* First hint to subexercise a).
+With math `a=b` in hint:
+
+{{{
+\[ a=b. \]
+}}}
+And with code returning `x+1` in hint:
+
+{{{
+def func(x):
+    return x + 1  # with code in hint
+}}}
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
+
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
 
 *Hint 2.* Second hint to subexercise a).
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 Filename: `subexer_a.pdf`.
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
 
+<wiki:comment> --- begin answer of exercise --- </wiki:comment>
 *Answer.* Short answer to subexercise a).
-<wiki:comment> --- end short answer in exercise </wiki:comment>
+With math in answer: `a=b`.
+<wiki:comment> --- end answer of exercise --- </wiki:comment>
 
 *b)* Here goes the text for subexercise b).
 
+
+Some math `\cos^2 x + \sin^2 x = 1` written one a single line:
+
+{{{
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+}}}
+
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 *Hint.* A hint for this subexercise.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 Filename: `subexer_b.pdf`.
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 *Solution.* Here goes the solution of this subexercise.
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 
 <wiki:comment> Closing remarks for this Exercise </wiki:comment>
 
@@ -7723,39 +8106,48 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Some exercise without the "Exercise:" prefix ====
 
 <wiki:comment> Another minimalistic exercise </wiki:comment>
 
-Just some text.
+Just some text. And some math saying that `e^0=1` on a single line,
+to test that math block insertion is correct:
 
-<wiki:comment> --- end of exercise </wiki:comment>
+{{{
+\[ \exp{(0)} = 1 \]
+}}}
+
+And a test that the code `lambda x: x+2` is correctly placed here:
+
+{{{
+lambda x: x+2
+}}}
+
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Example 2: Just an example ====
 
-<wiki:comment> This example needs the --example-as-exercise option </wiki:comment>
+<wiki:comment> This example needs the --examples-as-exercises option, otherwise </wiki:comment>
+<wiki:comment> it is just typeset as it is written. </wiki:comment>
 
 
 *a)* What is the capital of Norway?
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
-
 *Answer.* Oslo.
-<wiki:comment> --- end short answer in exercise </wiki:comment>
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
@@ -7767,7 +8159,7 @@ With some text, before we continue with exercises.
 
 == More Exercises ==
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Exercise 3: Make references to projects and problems ====
 
@@ -7775,12 +8167,12 @@ Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [
 and verify it.
 Filename: `verify_formula.py`.
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 ==== Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for gwiki ====
 
@@ -7789,7 +8181,7 @@ the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Expl
 and this one as [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
 Filename: `selc_composed.pdf`.
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
@@ -7798,6 +8190,10 @@ Filename: `selc_composed.pdf`.
 This is the first appendix.
 
 ==== A subsection within an appendix ====
+
+Some text.
+
+
 
 == Appendix: Just for testing; part II ==
 
@@ -7830,6 +8226,10 @@ Without label.
 *Summary.* Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
+With math:
+{{{
+\[ p=q\]
+}}}
 
 
 
@@ -8233,7 +8633,7 @@ some text.
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Example 1: Examples can be typeset as exercises ====
 
@@ -8246,12 +8646,8 @@ environments as part of the example.
 ''a)''
 State some problem.
 
-<!-- --- begin solution of exercise -->
-
 ''Solution.''
 The answer to this subproblem can be written here.
-
-<!-- --- end solution of exercise -->
 
 ''b)''
 State some other problem.
@@ -8262,15 +8658,11 @@ A hint can be given.
 ''Hint 2.''
 Maybe even another hint?
 
-<!-- --- begin solution of exercise -->
-
 ''Solution.''
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-<!-- --- end solution of exercise -->
-
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 ==== URLs ====
 
@@ -8337,7 +8729,7 @@ between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
 == Exercises ==
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Problem 1: Flip a Coin ====
 
@@ -8352,22 +8744,28 @@ let the program count the number of heads.
 
 <!-- Test syntax error -->
 
+<!-- --- begin hint in exercise --- -->
+
 ''Hint 1.''
 Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
 
 ''Hint 2.''
 Draw an integer among <math>\{1,2\}</math> with
 <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+<!-- --- end hint in exercise --- -->
 
-<!-- --- begin short answer in exercise -->
 
+<!-- --- begin answer of exercise --- -->
 ''Answer.''
 If the <code>random.random()</code> function returns a number <math><1/2</math>, let it be
 head, otherwise tail. Repeat this <math>N</math> number of times.
-<!-- --- end short answer in exercise -->
+<!-- --- end answer of exercise --- -->
 
-<!-- --- begin solution of exercise -->
 
+<!-- --- begin solution of exercise --- -->
 ''Solution.''
 Code:
 <syntaxhighlight lang="python">
@@ -8380,17 +8778,16 @@ for i in range(N):
         heads += 1
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 </syntaxhighlight>
-
-<!-- --- end solution of exercise -->
+<!-- --- end solution of exercise --- -->
 Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Project 1: Compute a Probability ====
 
@@ -8400,18 +8797,21 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval <math>[0,1)</math>?
 
+<!-- --- begin hint in exercise --- -->
+
 ''Hint.''
 To answer this question empirically, let a program
 draw <math>N</math> such random numbers using Python's standard <code>random</code> module,
 count how many of them, <math>M</math>, that fall in the interval <math>(0.5,0.6)</math>, and
 compute the probability as <math>M/N</math>.
+<!-- --- end hint in exercise --- -->
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Project 2: Explore Distributions of Random Circles ====
 
@@ -8451,22 +8851,24 @@ above.
 ''a)''
 Let <math>R</math> be normally distributed and <math>(x_0,y_0)</math> uniformly distributed.
 
+<!-- --- begin hint in exercise --- -->
+
 ''Hint.''
 Use the <code>numpy.random</code> module to draw the
 <math>x_0</math>, <math>y_0</math>, and <math>R</math> quantities.
+<!-- --- end hint in exercise --- -->
 
-<!-- --- begin short answer in exercise -->
 
+<!-- --- begin answer of exercise --- -->
 ''Answer.''
 Here goes the short answer to part a).
-<!-- --- end short answer in exercise -->
+<!-- --- end answer of exercise --- -->
 
-<!-- --- begin solution of exercise -->
 
+<!-- --- begin solution of exercise --- -->
 ''Solution.''
 Here goes a full solution to part a).
-
-<!-- --- end solution of exercise -->
+<!-- --- end solution of exercise --- -->
 
 ''b)''
 Let <math>R</math> be uniformly distributed and <math>(x_0,y_0)</math> normally distributed.
@@ -8485,54 +8887,97 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Exercise 1: Determine some Distance ====
 
 Intro to this exercise. Questions are in subexercises below.
 
-<!-- --- begin solution of exercise -->
 
+
+
+
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+<!-- --- begin solution of exercise --- -->
 ''Solution.''
 Here goes a full solution of the whole exercise.
-
-<!-- --- end solution of exercise -->
+With some math <math>a=b</math> in this solution:
+:<math>
+ \hbox{math in solution: } a = b 
+</math>
+And code <code>a=b</code> in this solution:
+<syntaxhighlight lang="text">
+a = b  # code in solution
+</syntaxhighlight>
+End of solution is here.
+<!-- --- end solution of exercise --- -->
 
 
 ''a)''
 Subexercises are numbered a), b), etc.
 
+<!-- --- begin hint in exercise --- -->
+
 ''Hint 1.''
 First hint to subexercise a).
+With math <math>a=b</math> in hint:
+
+:<math>
+ a=b. 
+</math>
+And with code returning <math>x+1</math> in hint:
+
+<syntaxhighlight lang="text">
+def func(x):
+    return x + 1  # with code in hint
+</syntaxhighlight>
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
 
 ''Hint 2.''
 Second hint to subexercise a).
+<!-- --- end hint in exercise --- -->
 Filename: <code>subexer_a.pdf</code>.
 
-<!-- --- begin short answer in exercise -->
 
+<!-- --- begin answer of exercise --- -->
 ''Answer.''
 Short answer to subexercise a).
-<!-- --- end short answer in exercise -->
+With math in answer: <math>a=b</math>.
+<!-- --- end answer of exercise --- -->
 
 ''b)''
 Here goes the text for subexercise b).
 
+
+Some math <math>\cos^2 x + \sin^2 x = 1</math> written one a single line:
+
+:<math>
+ \cos^2 x + \sin^2 x = 1 \thinspace .
+</math>
+
+<!-- --- begin hint in exercise --- -->
+
 ''Hint.''
 A hint for this subexercise.
+<!-- --- end hint in exercise --- -->
 Filename: <code>subexer_b.pdf</code>.
 
-<!-- --- begin solution of exercise -->
 
+<!-- --- begin solution of exercise --- -->
 ''Solution.''
 Here goes the solution of this subexercise.
-
-<!-- --- end solution of exercise -->
+<!-- --- end solution of exercise --- -->
 
 <!-- Closing remarks for this Exercise -->
 
@@ -8543,41 +8988,50 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Some exercise without the "Exercise:" prefix ====
 
 <!-- Another minimalistic exercise -->
 
-Just some text.
+Just some text. And some math saying that <math>e^0=1</math> on a single line,
+to test that math block insertion is correct:
 
-<!-- --- end of exercise -->
+:<math>
+ \exp{(0)} = 1 
+</math>
+
+And a test that the code <code>lambda x: x+2</code> is correctly placed here:
+
+<syntaxhighlight lang="text">
+lambda x: x+2
+</syntaxhighlight>
+
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Example 2: Just an example ====
 
-<!-- This example needs the --example-as-exercise option -->
+<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
 
 
 ''a)''
 What is the capital of Norway?
 
-<!-- --- begin short answer in exercise -->
-
 ''Answer.''
 Oslo.
-<!-- --- end short answer in exercise -->
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
@@ -8589,7 +9043,7 @@ With some text, before we continue with exercises.
 
 == More Exercises ==
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Exercise 3: Make references to projects and problems ====
 
@@ -8597,12 +9051,12 @@ Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [
 and verify it.
 Filename: <code>verify_formula.py</code>.
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 ==== Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for mwiki ====
 
@@ -8611,7 +9065,7 @@ the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Expl
 and this one as [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
 Filename: <code>selc_composed.pdf</code>.
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
@@ -8620,6 +9074,10 @@ Filename: <code>selc_composed.pdf</code>.
 This is the first appendix.
 
 ==== A subsection within an appendix ====
+
+Some text.
+
+
 
 == Appendix: Just for testing; part II ==
 
@@ -8654,6 +9112,10 @@ Much testing in this document, otherwise stupid content.
 
 ''Notice.''
 Ah, we are close to the end.
+With math:
+:<math>
+ p=q
+</math>
 
 
 
@@ -9039,7 +9501,7 @@ some text.
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Example 1: Examples can be typeset as exercises ==
@@ -9052,11 +9514,7 @@ environments as part of the example.
 
 //a)// State some problem.
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
-
 //Solution.// The answer to this subproblem can be written here.
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
 
 //b)// State some other problem.
 
@@ -9064,14 +9522,10 @@ environments as part of the example.
 
 //Hint 2.// Maybe even another hint?
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
-
 //Solution.// The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-<wiki:comment> --- end solution of exercise </wiki:comment>
-
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 == URLs ==
@@ -9143,7 +9597,7 @@ between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
 = Exercises =
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Problem 1: Flip a Coin ==
@@ -9159,19 +9613,25 @@ let the program count the number of heads.
 
 <wiki:comment> Test syntax error </wiki:comment>
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 //Hint 1.// Use {{{r = random.random()}}} and define head as {{{r <= 0.5}}}.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
+
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
 
 //Hint 2.// Draw an integer among {{{\{1,2\}}}} with
 {{{r = random.randint(1,2)}}} and define head when {{{r}}} is 1.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
 
+<wiki:comment> --- begin answer of exercise --- </wiki:comment>
 //Answer.// If the {{{random.random()}}} function returns a number {{{<1/2}}}, let it be
 head, otherwise tail. Repeat this {{{N}}} number of times.
-<wiki:comment> --- end short answer in exercise </wiki:comment>
+<wiki:comment> --- end answer of exercise --- </wiki:comment>
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 //Solution.// Code:
 {{{
 import sys, random
@@ -9183,17 +9643,16 @@ for i in range(N):
         heads += 1
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 }}}
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 <wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Project 1: Compute a Probability ==
@@ -9204,17 +9663,20 @@ Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval {{{[0,1)}}}?
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 //Hint.// To answer this question empirically, let a program
 draw {{{N}}} such random numbers using Python's standard {{{random}}} module,
 count how many of them, {{{M}}}, that fall in the interval {{{(0.5,0.6)}}}, and
 compute the probability as {{{M/N}}}.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Project 2: Explore Distributions of Random Circles ==
@@ -9254,19 +9716,21 @@ above.
 
 //a)// Let {{{R}}} be normally distributed and {{{(x_0,y_0)}}} uniformly distributed.
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 //Hint.// Use the {{{numpy.random}}} module to draw the
 {{{x_0}}}, {{{y_0}}}, and {{{R}}} quantities.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
 
+<wiki:comment> --- begin answer of exercise --- </wiki:comment>
 //Answer.// Here goes the short answer to part a).
-<wiki:comment> --- end short answer in exercise </wiki:comment>
+<wiki:comment> --- end answer of exercise --- </wiki:comment>
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 //Solution.// Here goes a full solution to part a).
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 
 //b)// Let {{{R}}} be uniformly distributed and {{{(x_0,y_0)}}} normally distributed.
 Filename: {{{norm.py}}}.
@@ -9283,47 +9747,90 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Exercise 1: Determine some Distance ==
 
 Intro to this exercise. Questions are in subexercises below.
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+
+
+
+<wiki:comment> No meaning in this weired test example: </wiki:comment>
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 //Solution.// Here goes a full solution of the whole exercise.
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+With some math {{{a=b}}} in this solution:
+{{{
+\[ \hbox{math in solution: } a = b \]
+}}}
+And code {{{a=b}}} in this solution:
+{{{
+a = b  # code in solution
+}}}
+End of solution is here.
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 
 
 //a)// Subexercises are numbered a), b), etc.
 
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 //Hint 1.// First hint to subexercise a).
+With math {{{a=b}}} in hint:
+
+{{{
+\[ a=b. \]
+}}}
+And with code returning {{{x+1}}} in hint:
+
+{{{
+def func(x):
+    return x + 1  # with code in hint
+}}}
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
+
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
 
 //Hint 2.// Second hint to subexercise a).
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 Filename: {{{subexer_a.pdf}}}.
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
 
+<wiki:comment> --- begin answer of exercise --- </wiki:comment>
 //Answer.// Short answer to subexercise a).
-<wiki:comment> --- end short answer in exercise </wiki:comment>
+With math in answer: {{{a=b}}}.
+<wiki:comment> --- end answer of exercise --- </wiki:comment>
 
 //b)// Here goes the text for subexercise b).
 
+
+Some math {{{\cos^2 x + \sin^2 x = 1}}} written one a single line:
+
+{{{
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+}}}
+
+<wiki:comment> --- begin hint in exercise --- </wiki:comment>
+
 //Hint.// A hint for this subexercise.
+<wiki:comment> --- end hint in exercise --- </wiki:comment>
 Filename: {{{subexer_b.pdf}}}.
 
-<wiki:comment> --- begin solution of exercise </wiki:comment>
 
+<wiki:comment> --- begin solution of exercise --- </wiki:comment>
 //Solution.// Here goes the solution of this subexercise.
-
-<wiki:comment> --- end solution of exercise </wiki:comment>
+<wiki:comment> --- end solution of exercise --- </wiki:comment>
 
 <wiki:comment> Closing remarks for this Exercise </wiki:comment>
 
@@ -9334,41 +9841,50 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Some exercise without the "Exercise:" prefix ==
 
 <wiki:comment> Another minimalistic exercise </wiki:comment>
 
-Just some text.
+Just some text. And some math saying that {{{e^0=1}}} on a single line,
+to test that math block insertion is correct:
 
-<wiki:comment> --- end of exercise </wiki:comment>
+{{{
+\[ \exp{(0)} = 1 \]
+}}}
+
+And a test that the code {{{lambda x: x+2}}} is correctly placed here:
+
+{{{
+lambda x: x+2
+}}}
+
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Example 2: Just an example ==
 
-<wiki:comment> This example needs the --example-as-exercise option </wiki:comment>
+<wiki:comment> This example needs the --examples-as-exercises option, otherwise </wiki:comment>
+<wiki:comment> it is just typeset as it is written. </wiki:comment>
 
 
 //a)// What is the capital of Norway?
 
-<wiki:comment> --- begin short answer in exercise </wiki:comment>
-
 //Answer.// Oslo.
-<wiki:comment> --- end short answer in exercise </wiki:comment>
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
@@ -9380,7 +9896,7 @@ With some text, before we continue with exercises.
 
 = More Exercises =
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Exercise 3: Make references to projects and problems ==
@@ -9389,12 +9905,12 @@ Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [
 and verify it.
 Filename: {{{verify_formula.py}}}.
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
 
-<wiki:comment> --- begin exercise </wiki:comment>
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 
 == Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for cwiki ==
@@ -9404,7 +9920,7 @@ the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Expl
 and this one as [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
 Filename: {{{selc_composed.pdf}}}.
 
-<wiki:comment> --- end of exercise </wiki:comment>
+<wiki:comment> --- end exercise --- </wiki:comment>
 
 
 
@@ -9414,6 +9930,10 @@ This is the first appendix.
 
 
 == A subsection within an appendix ==
+
+Some text.
+
+
 
 = Appendix: Just for testing; part II =
 
@@ -9450,6 +9970,10 @@ Without label.
 //Summary.// Much testing in this document, otherwise stupid content.
 
 //Notice.// Ah, we are close to the end.
+With math:
+{{{
+\[ p=q\]
+}}}
 
 
 
@@ -9809,16 +10333,13 @@ environments as part of the example.
 
 *a)* State some problem.
 
-
 *Solution.* The answer to this subproblem can be written here.
-
 
 *b)* State some other problem.
 
 *Hint 1.* A hint can be given.
 
 *Hint 2.* Maybe even another hint?
-
 
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
@@ -9892,7 +10413,9 @@ let the program count the number of heads.
 
 
 
+
 *Hint 1.* Use 'r = random.random()' and define head as 'r <= 0.5'.
+
 
 *Hint 2.* Draw an integer among \{1,2\} with
 'r = random.randint(1,2)' and define head when 'r' is 1.
@@ -9914,13 +10437,13 @@ head, otherwise tail. Repeat this N number of times.
                 heads += 1
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
-
 Filenames: 'flip_coin.py', 'flip_coin.pdf'.
 
 Project 1: Compute a Probability
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
+
 
 *Hint.* To answer this question empirically, let a program
 draw N such random numbers using Python's standard 'random' module,
@@ -9961,6 +10484,7 @@ above.
 
 *a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
 
+
 *Hint.* Use the 'numpy.random' module to draw the
 x_0, y_0, and R quantities.
 
@@ -9969,7 +10493,6 @@ x_0, y_0, and R quantities.
 
 
 *Solution.* Here goes a full solution to part a).
-
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
 Filename: 'norm.py'.
@@ -9988,21 +10511,57 @@ Exercise 1: Determine some Distance
 Intro to this exercise. Questions are in subexercises below.
 
 
-*Solution.* Here goes a full solution of the whole exercise.
 
+
+
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+*Solution.* Here goes a full solution of the whole exercise.
+With some math a=b in this solution::
+
+        \[ \hbox{math in solution: } a = b \]
+
+And code 'a=b' in this solution::
+
+
+        a = b  # code in solution
+
+End of solution is here.
 
 
 *a)* Subexercises are numbered a), b), etc.
 
+
 *Hint 1.* First hint to subexercise a).
+With math a=b in hint::
+
+        \[ a=b. \]
+
+And with code returning x+1 in hint::
+
+
+        def func(x):
+            return x + 1  # with code in hint
+
+
 
 *Hint 2.* Second hint to subexercise a).
 Filename: 'subexer_a.pdf'.
 
 
 *Answer.* Short answer to subexercise a).
+With math in answer: a=b.
 
 *b)* Here goes the text for subexercise b).
+
+
+Some math \cos^2 x + \sin^2 x = 1 written one a single line::
+
+        \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+
 
 *Hint.* A hint for this subexercise.
 Filename: 'subexer_b.pdf'.
@@ -10018,12 +10577,21 @@ remarks will appear at the end of the typeset exercise.
 
 Some exercise without the "Exercise:" prefix
 
-Just some text.
+Just some text. And some math saying that e^0=1 on a single line,
+to test that math block insertion is correct::
+
+        \[ \exp{(0)} = 1 \]
+
+
+And a test that the code 'lambda x: x+2' is correctly placed here::
+
+
+        lambda x: x+2
+
 
 Example 2: Just an example
 
 *a)* What is the capital of Norway?
-
 
 *Answer.* Oslo.
 
@@ -10051,6 +10619,8 @@ Appendix: Just for testing; part I
 This is the first appendix.
 
 A subsection within an appendix
+
+Some text.
 
 Appendix: Just for testing; part II
 
@@ -10083,6 +10653,10 @@ Without label.
 *Summary.* Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
+With math::
+
+        \[ p=q\]
+
 
 
 
@@ -10464,9 +11038,7 @@ environments as part of the example.
 
 I{a)} State some problem.
 
-
 I{Solution.} The answer to this subproblem can be written here.
-
 
 I{b)} State some other problem.
 
@@ -10474,10 +11046,8 @@ I{Hint 1.} A hint can be given.
 
 I{Hint 2.} Maybe even another hint?
 
-
 I{Solution.} The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
-
 
 
 
@@ -10562,7 +11132,9 @@ let the program count the number of heads.
 
 
 
+
 I{Hint 1.} Use C{r = random.random()} and define head as C{r <= 0.5}.
+
 
 I{Hint 2.} Draw an integer among M{\{1,2\}} with
 C{r = random.randint(1,2)} and define head when C{r} is 1.
@@ -10584,7 +11156,6 @@ I{Solution.} Code::
                 heads += 1
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
-
 Filenames: C{flip_coin.py}, C{flip_coin.pdf}.
 
 
@@ -10599,6 +11170,7 @@ Project 1: Compute a Probability
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval M{[0,1)}?
+
 
 I{Hint.} To answer this question empirically, let a program
 draw M{N} such random numbers using Python's standard C{random} module,
@@ -10645,6 +11217,7 @@ above.
 
 I{a)} Let M{R} be normally distributed and M{(x_0,y_0)} uniformly distributed.
 
+
 I{Hint.} Use the C{numpy.random} module to draw the
 M{x_0}, M{y_0}, and M{R} quantities.
 
@@ -10653,7 +11226,6 @@ I{Answer.} Here goes the short answer to part a).
 
 
 I{Solution.} Here goes a full solution to part a).
-
 
 I{b)} Let M{R} be uniformly distributed and M{(x_0,y_0)} normally distributed.
 Filename: C{norm.py}.
@@ -10681,28 +11253,63 @@ Exercise 1: Determine some Distance
 Intro to this exercise. Questions are in subexercises below.
 
 
-I{Solution.} Here goes a full solution of the whole exercise.
 
+
+
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+I{Solution.} Here goes a full solution of the whole exercise.
+With some math M{a=b} in this solution::
+
+        \[ \hbox{math in solution: } a = b \]
+
+And code C{a=b} in this solution::
+
+
+        a = b  # code in solution
+
+End of solution is here.
 
 
 I{a)} Subexercises are numbered a), b), etc.
 
+
 I{Hint 1.} First hint to subexercise a).
+With math M{a=b} in hint::
+
+        \[ a=b. \]
+
+And with code returning M{x+1} in hint::
+
+
+        def func(x):
+            return x + 1  # with code in hint
+
+
 
 I{Hint 2.} Second hint to subexercise a).
 Filename: C{subexer_a.pdf}.
 
 
 I{Answer.} Short answer to subexercise a).
+With math in answer: M{a=b}.
 
 I{b)} Here goes the text for subexercise b).
+
+
+Some math M{\cos^2 x + \sin^2 x = 1} written one a single line::
+
+        \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+
 
 I{Hint.} A hint for this subexercise.
 Filename: C{subexer_b.pdf}.
 
 
 I{Solution.} Here goes the solution of this subexercise.
-
 
 
 Remarks
@@ -10722,7 +11329,17 @@ Some exercise without the "Exercise:" prefix
 --------------------------------------------
 
 
-Just some text.
+Just some text. And some math saying that M{e^0=1} on a single line,
+to test that math block insertion is correct::
+
+        \[ \exp{(0)} = 1 \]
+
+
+And a test that the code C{lambda x: x+2} is correctly placed here::
+
+
+        lambda x: x+2
+
 
 
 
@@ -10735,7 +11352,6 @@ Example 2: Just an example
 
 
 I{a)} What is the capital of Norway?
-
 
 I{Answer.} Oslo.
 
@@ -10782,6 +11398,8 @@ This is the first appendix.
 A subsection within an appendix
 -------------------------------
 
+Some text.
+
 Appendix: Just for testing; part II
 ===================================
 
@@ -10818,6 +11436,10 @@ I{Warning.} And here is a warning about something to pay attention to.
 I{Summary.} Much testing in this document, otherwise stupid content.
 
 I{Notice.} Ah, we are close to the end.
+With math::
+
+        \[ p=q\]
+
 
 
 
@@ -11258,9 +11880,7 @@ environments as part of the example.
 
 *a)* State some problem.
 
-
 *Solution.* The answer to this subproblem can be written here.
-
 
 *b)* State some other problem.
 
@@ -11268,10 +11888,8 @@ environments as part of the example.
 
 *Hint 2.* Maybe even another hint?
 
-
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
-
 
 
 
@@ -11355,7 +11973,9 @@ let the program count the number of heads.
 
 
 
+
 *Hint 1.* Use r = random.random() and define head as r <= 0.5.
+
 
 *Hint 2.* Draw an integer among \{1,2\} with
 r = random.randint(1,2) and define head when r is 1.
@@ -11377,7 +11997,6 @@ head, otherwise tail. Repeat this N number of times.
                 heads += 1
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
-
 Filenames: flip_coin.py, flip_coin.pdf.
 
 
@@ -11392,6 +12011,7 @@ Project 1: Compute a Probability
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
+
 
 *Hint.* To answer this question empirically, let a program
 draw N such random numbers using Python's standard random module,
@@ -11438,6 +12058,7 @@ above.
 
 *a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
 
+
 *Hint.* Use the numpy.random module to draw the
 x_0, y_0, and R quantities.
 
@@ -11446,7 +12067,6 @@ x_0, y_0, and R quantities.
 
 
 *Solution.* Here goes a full solution to part a).
-
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
 Filename: norm.py.
@@ -11474,28 +12094,63 @@ Exercise 1: Determine some Distance
 Intro to this exercise. Questions are in subexercises below.
 
 
-*Solution.* Here goes a full solution of the whole exercise.
 
+
+
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+*Solution.* Here goes a full solution of the whole exercise.
+With some math a=b in this solution::
+
+        \[ \hbox{math in solution: } a = b \]
+
+And code a=b in this solution::
+
+
+        a = b  # code in solution
+
+End of solution is here.
 
 
 *a)* Subexercises are numbered a), b), etc.
 
+
 *Hint 1.* First hint to subexercise a).
+With math a=b in hint::
+
+        \[ a=b. \]
+
+And with code returning x+1 in hint::
+
+
+        def func(x):
+            return x + 1  # with code in hint
+
+
 
 *Hint 2.* Second hint to subexercise a).
 Filename: subexer_a.pdf.
 
 
 *Answer.* Short answer to subexercise a).
+With math in answer: a=b.
 
 *b)* Here goes the text for subexercise b).
+
+
+Some math \cos^2 x + \sin^2 x = 1 written one a single line::
+
+        \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+
 
 *Hint.* A hint for this subexercise.
 Filename: subexer_b.pdf.
 
 
 *Solution.* Here goes the solution of this subexercise.
-
 
 
 Remarks
@@ -11515,7 +12170,17 @@ Some exercise without the "Exercise:" prefix
 --------------------------------------------
 
 
-Just some text.
+Just some text. And some math saying that e^0=1 on a single line,
+to test that math block insertion is correct::
+
+        \[ \exp{(0)} = 1 \]
+
+
+And a test that the code lambda x: x+2 is correctly placed here::
+
+
+        lambda x: x+2
+
 
 
 
@@ -11528,7 +12193,6 @@ Example 2: Just an example
 
 
 *a)* What is the capital of Norway?
-
 
 *Answer.* Oslo.
 
@@ -11575,6 +12239,8 @@ This is the first appendix.
 A subsection within an appendix
 -------------------------------
 
+Some text.
+
 Appendix: Just for testing; part II
 ===================================
 
@@ -11611,6 +12277,10 @@ Without label.
 *Summary.* Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
+With math::
+
+        \[ p=q\]
+
 
 
 
@@ -12044,7 +12714,7 @@ some text.
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Example 1: Examples can be typeset as exercises
 -----------------------------------------------
@@ -12057,11 +12727,7 @@ environments as part of the example.
 
 *a)* State some problem.
 
-<!-- --- begin solution of exercise -->
-
 *Solution.* The answer to this subproblem can be written here.
-
-<!-- --- end solution of exercise -->
 
 *b)* State some other problem.
 
@@ -12069,14 +12735,10 @@ environments as part of the example.
 
 *Hint 2.* Maybe even another hint?
 
-<!-- --- begin solution of exercise -->
-
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
-<!-- --- end solution of exercise -->
-
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 URLs
@@ -12212,7 +12874,7 @@ Exercises
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Problem 1: Flip a Coin
 ----------------------
@@ -12228,19 +12890,25 @@ let the program count the number of heads.
 
 <!-- Test syntax error -->
 
+<!-- --- begin hint in exercise --- -->
+
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
 
 *Hint 2.* Draw an integer among $\{1,2\}$ with
 `r = random.randint(1,2)` and define head when `r` is 1.
+<!-- --- end hint in exercise --- -->
 
-<!-- --- begin short answer in exercise -->
 
+<!-- --- begin answer of exercise --- -->
 *Answer.* If the `random.random()` function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
-<!-- --- end short answer in exercise -->
+<!-- --- end answer of exercise --- -->
 
-<!-- --- begin solution of exercise -->
 
+<!-- --- begin solution of exercise --- -->
 *Solution.* Code:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
@@ -12254,16 +12922,16 @@ for i in range(N):
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<!-- --- end solution of exercise -->
+<!-- --- end solution of exercise --- -->
 Filenames: `flip_coin.py`, `flip_coin.pdf`.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Project 1: Compute a Probability
 --------------------------------
@@ -12274,17 +12942,20 @@ Project 1: Compute a Probability
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
 
+<!-- --- begin hint in exercise --- -->
+
 *Hint.* To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard `random` module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
+<!-- --- end hint in exercise --- -->
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Project 2: Explore Distributions of Random Circles
 --------------------------------------------------
@@ -12330,19 +13001,21 @@ above.
 
 *a)* Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
+<!-- --- begin hint in exercise --- -->
+
 *Hint.* Use the `numpy.random` module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+<!-- --- end hint in exercise --- -->
 
-<!-- --- begin short answer in exercise -->
 
+<!-- --- begin answer of exercise --- -->
 *Answer.* Here goes the short answer to part a).
-<!-- --- end short answer in exercise -->
+<!-- --- end answer of exercise --- -->
 
-<!-- --- begin solution of exercise -->
 
+<!-- --- begin solution of exercise --- -->
 *Solution.* Here goes a full solution to part a).
-
-<!-- --- end solution of exercise -->
+<!-- --- end solution of exercise --- -->
 
 *b)* Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 Filename: `norm.py`.
@@ -12360,47 +13033,94 @@ At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Exercise 1: Determine some Distance
 -----------------------------------
 
 Intro to this exercise. Questions are in subexercises below.
 
-<!-- --- begin solution of exercise -->
 
+
+
+
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+<!-- --- begin solution of exercise --- -->
 *Solution.* Here goes a full solution of the whole exercise.
+With some math $a=b$ in this solution:
+$$
+ \hbox{math in solution: } a = b 
+$$
+And code `a=b` in this solution:
 
-<!-- --- end solution of exercise -->
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a = b  # code in solution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+End of solution is here.
+<!-- --- end solution of exercise --- -->
 
 
 *a)* Subexercises are numbered a), b), etc.
 
+<!-- --- begin hint in exercise --- -->
+
 *Hint 1.* First hint to subexercise a).
+With math $a=b$ in hint:
+
+$$
+ a=b. 
+$$
+And with code returning $x+1$ in hint:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def func(x):
+    return x + 1  # with code in hint
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
 
 *Hint 2.* Second hint to subexercise a).
+<!-- --- end hint in exercise --- -->
 Filename: `subexer_a.pdf`.
 
-<!-- --- begin short answer in exercise -->
 
+<!-- --- begin answer of exercise --- -->
 *Answer.* Short answer to subexercise a).
-<!-- --- end short answer in exercise -->
+With math in answer: $a=b$.
+<!-- --- end answer of exercise --- -->
 
 *b)* Here goes the text for subexercise b).
 
+
+Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
+$$
+ \cos^2 x + \sin^2 x = 1 \thinspace .
+$$
+
+<!-- --- begin hint in exercise --- -->
+
 *Hint.* A hint for this subexercise.
+<!-- --- end hint in exercise --- -->
 Filename: `subexer_b.pdf`.
 
-<!-- --- begin solution of exercise -->
 
+<!-- --- begin solution of exercise --- -->
 *Solution.* Here goes the solution of this subexercise.
-
-<!-- --- end solution of exercise -->
+<!-- --- end solution of exercise --- -->
 
 <!-- Closing remarks for this Exercise -->
 
@@ -12412,41 +13132,51 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Some exercise without the "Exercise:" prefix
 --------------------------------------------
 
 <!-- Another minimalistic exercise -->
 
-Just some text.
+Just some text. And some math saying that $e^0=1$ on a single line,
+to test that math block insertion is correct:
 
-<!-- --- end of exercise -->
+$$
+ \exp{(0)} = 1 
+$$
+
+And a test that the code `lambda x: x+2` is correctly placed here:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lambda x: x+2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Example 2: Just an example
 --------------------------
 
-<!-- This example needs the --example-as-exercise option -->
+<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
 
 
 *a)* What is the capital of Norway?
 
-<!-- --- begin short answer in exercise -->
-
 *Answer.* Oslo.
-<!-- --- end short answer in exercise -->
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 Here goes another section
@@ -12459,7 +13189,7 @@ More Exercises
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Exercise 3: Make references to projects and problems
 ----------------------------------------------------
@@ -12468,12 +13198,12 @@ Pick a statement from  [Project 2: Explore Distributions of Random Circles](#s) 
 and verify it.
 Filename: `verify_formula.py`.
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 Project 3: References to  [Project 1: Compute a Probability](#y) in a heading works for pandoc
 ----------------------------------------------------------------------------------------------
@@ -12483,7 +13213,7 @@ the two before that as  [Project 1: Compute a Probability](#y) and [Project 2: E
 and this one as  [Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
 Filename: `selc_composed.pdf`.
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 Appendix: Just for testing; part I
@@ -12493,6 +13223,8 @@ This is the first appendix.
 
 A subsection within an appendix
 -------------------------------
+
+Some text.
 
 Appendix: Just for testing; part II
 ===================================
@@ -12530,6 +13262,10 @@ Without label.
 *Summary.* Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
+With math:
+$$
+ p=q
+$$
 
 
 
@@ -12588,7 +13324,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'keywords': ['random numbers', 'Monte Carlo simulation'],
   'label': 'demo:ex:1',
   'no': 1,
-  'solution': '<<<!!CODE_BLOCK  pycod',
+  'solution': '13 <<<!!CODE_BLOCK  pycod',
   'solution_file': ['mysol.txt', 'mysol_flip_coin.py', 'yet_another.file'],
   'subex': [],
   'text': '# Torture tests\n\nMake a program that simulates flipping a coin $N$ times.\nPrint out "tail" or "head" for each flip and\nlet the program count the number of heads.\n\n\n# Test syntax error',
@@ -12635,7 +13371,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': [],
              'solution': '',
              'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
-  'text': 'The formula for a circle is given by\n\n<<<!!MATH_BLOCK\n\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
+  'text': 'The formula for a circle is given by\n\n14 <<<!!MATH_BLOCK\n\n15 <<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n14 <<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
   'title': 'Explore Distributions of Random Circles',
   'type': 'Project',
   'type_visible': True},
@@ -12647,11 +13383,11 @@ Could not find match for from regex "\*\s+\$.+normally"
   'keywords': None,
   'label': 'exer:dist',
   'no': 1,
-  'solution': 'Here goes a full solution of the whole exercise.',
+  'solution': 'Here goes a full solution of the whole exercise.\nWith some math $a=b$ in this solution:\n18 <<<!!MATH_BLOCK\nAnd code `a=b` in this solution:\n16 <<<!!CODE_BLOCK \nEnd of solution is here.',
   'solution_file': None,
-  'subex': [{'answer': 'Short answer to subexercise a).',
+  'subex': [{'answer': 'Short answer to subexercise a).\nWith math in answer: $a=b$.',
              'file': ['subexer_a.pdf'],
-             'hints': ['First hint to subexercise a).',
+             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n16 <<<!!MATH_BLOCK\nAnd with code returning $x+1$ in hint:\n\n15 <<<!!CODE_BLOCK',
                        'Second hint to subexercise a).'],
              'solution': '',
              'text': 'Subexercises are numbered a), b), etc.'},
@@ -12659,8 +13395,8 @@ Could not find match for from regex "\*\s+\$.+normally"
              'file': ['subexer_b.pdf'],
              'hints': ['A hint for this subexercise.'],
              'solution': 'Here goes the solution of this subexercise.',
-             'text': 'Here goes the text for subexercise b).'}],
-  'text': 'Intro to this exercise. Questions are in subexercises below.',
+             'text': 'Here goes the text for subexercise b).\n\n\nSome math $\\cos^2 x + \\sin^2 x = 1$ written one a single line:\n\n17 <<<!!MATH_BLOCK'}],
+  'text': 'Intro to this exercise. Questions are in subexercises below.\n\n\n\n\n\n#  No meaning in this weired test example:\nThe text here belongs to the main (intro) part of the exercise. Need\nclosing remarks to have text after subexercises.',
   'title': 'Determine some Distance',
   'type': 'Exercise',
   'type_visible': True},
@@ -12675,7 +13411,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'solution': '',
   'solution_file': None,
   'subex': [],
-  'text': '# Another minimalistic exercise\n\nJust some text.',
+  'text': '# Another minimalistic exercise\n\nJust some text. And some math saying that $e^0=1$ on a single line,\nto test that math block insertion is correct:\n\n19 <<<!!MATH_BLOCK\n\nAnd a test that the code `lambda x: x+2` is correctly placed here:\n\n17 <<<!!CODE_BLOCK',
   'title': 'Some exercise without the "Exercise:" prefix',
   'type': 'Exercise',
   'type_visible': False},
@@ -12694,7 +13430,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': [],
              'solution': '',
              'text': 'What is the capital of Norway?'}],
-  'text': '# This example needs the --example-as-exercise option',
+  'text': '# This example needs the --examples-as-exercises option, otherwise\n# it is just typeset as it is written.',
   'title': 'Just an example',
   'type': 'Example',
   'type_visible': True},
@@ -12828,7 +13564,7 @@ x = a
 a = 1
 v = f(x)
 print v</code></pre>
-<p>(<a href="{http://pythontutor.com/visualize.html#code=pypro&amp;mode=display&amp;cumulative=false&amp;heapPrimitives=false&amp;drawParentPointers=false&amp;textReferences=false&amp;py=2&amp;curInstr=0}">Visualize execution</a>)</p>
+<p>(<a href="{http://pythontutor.com/visualize.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&amp;mode=display&amp;cumulative=false&amp;heapPrimitives=false&amp;drawParentPointers=false&amp;textReferences=false&amp;py=2&amp;curInstr=0}">Visualize execution</a>)</p>
 <p>Then Cython:</p>
 <pre><code>cpdef f(double x):
     return x + 1</code></pre>
@@ -13177,18 +13913,26 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <h2 id="exercise-1-determine-some-distance">Exercise 1: Determine some Distance</h2>
 <p>[exer:dist]</p>
 <p>Intro to this exercise. Questions are in subexercises below.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
 <h4 id="solution.-4">Solution.</h4>
-<p>Here goes a full solution of the whole exercise.</p>
+<p>Here goes a full solution of the whole exercise. With some math \(a=b\) in this solution: \[\hbox{math in solution: } a = b\] And code <code>a=b</code> in this solution:</p>
+<pre><code>a = b  # code in solution</code></pre>
+<p>End of solution is here.</p>
 <h4 id="a-2">a)</h4>
 <p>Subexercises are numbered a), b), etc.</p>
 <h4 id="hint-1.-2">Hint 1.</h4>
-<p>First hint to subexercise a).</p>
+<p>First hint to subexercise a). With math \(a=b\) in hint:</p>
+<p>\[a=b.\] And with code returning \(x+1\) in hint:</p>
+<pre><code>def func(x):
+    return x + 1  # with code in hint</code></pre>
 <h4 id="hint-2.-2">Hint 2.</h4>
 <p>Second hint to subexercise a). Filename: <code>subexer_a.pdf</code>.</p>
 <h4 id="answer.-2">Answer.</h4>
-<p>Short answer to subexercise a).</p>
+<p>Short answer to subexercise a). With math in answer: \(a=b\).</p>
 <h4 id="b-2">b)</h4>
 <p>Here goes the text for subexercise b).</p>
+<p>Some math \(\cos^2 x + \sin^2 x = 1\) written one a single line:</p>
+<p>\[\cos^2 x + \sin^2 x = 1 \thinspace .\]</p>
 <h4 id="hint.-2">Hint.</h4>
 <p>A hint for this subexercise. Filename: <code>subexer_b.pdf</code>.</p>
 <h4 id="solution.-5">Solution.</h4>
@@ -13196,7 +13940,10 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <h4 id="remarks.-1">Remarks.</h4>
 <p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
 <h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h2>
-<p>Just some text.</p>
+<p>Just some text. And some math saying that \(e^0=1\) on a single line, to test that math block insertion is correct:</p>
+<p>\[\exp{(0)} = 1\]</p>
+<p>And a test that the code <code>lambda x: x+2</code> is correctly placed here:</p>
+<pre><code>lambda x: x+2</code></pre>
 <h2 id="example-2-just-an-example">Example 2: Just an example</h2>
 <h4 id="a-3">a)</h4>
 <p>What is the capital of Norway?</p>
@@ -13214,6 +13961,7 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <h1 id="just-for-testing-part-i">Just for testing; part I</h1>
 <p>This is the first appendix.</p>
 <h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
+<p>Some text.</p>
 <h1 id="just-for-testing-part-ii">Just for testing; part II</h1>
 <p>This is more stuff for an appendix.</p>
 <h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
@@ -13672,25 +14420,17 @@ output2</code></pre>
 </table>
 <h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h2>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
 <p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
 <p><em>a)</em> State some problem.</p>
-<!-- --- begin solution of exercise -->
-
 <p><em>Solution.</em> The answer to this subproblem can be written here.</p>
-<!-- --- end solution of exercise -->
-
 <p><em>b)</em> State some other problem.</p>
 <p><em>Hint 1.</em> A hint can be given.</p>
 <p><em>Hint 2.</em> Maybe even another hint?</p>
-<!-- --- begin solution of exercise -->
-
 <p><em>Solution.</em> The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
-<!-- --- end solution of exercise -->
-
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 <h2 id="urls">URLs</h2>
@@ -13764,7 +14504,7 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 <p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 1: Compute a Probability</a>, as well as <a href="#s">Project 2: Explore Distributions of Random Circles</a> and <a href="#c">Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 3: Make references to projects and problems</a>.</p>
 <h1 id="exercises">Exercises</h1>
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
 <!-- keywords = random numbers; Monte Carlo simulation -->
@@ -13774,14 +14514,14 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 <p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
 <!-- Test syntax error -->
 
-<p><em>Hint 1.</em> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
-<p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
-<!-- --- begin short answer in exercise -->
+<!-- --- begin hint in exercise --- -->
 
-<p><em>Answer.</em> If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times. <!-- --- end short answer in exercise --></p>
-<!-- --- begin solution of exercise -->
+<p><em>Hint 1.</em> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>. <!-- --- end hint in exercise --- --></p>
+<!-- --- begin hint in exercise --- -->
 
-<p><em>Solution.</em> Code:</p>
+<p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1. <!-- --- end hint in exercise --- --></p>
+<p><!-- --- begin answer of exercise --- --> <em>Answer.</em> If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times. <!-- --- end answer of exercise --- --></p>
+<p><!-- --- begin solution of exercise --- --> <em>Solution.</em> Code:</p>
 <pre class="sourceCode Python"><code class="sourceCode python"><span class="ch">import</span> sys, random
 N = <span class="dt">int</span>(sys.argv[<span class="dv">1</span>])
 heads = <span class="dv">0</span>
@@ -13790,26 +14530,28 @@ heads = <span class="dv">0</span>
     <span class="kw">if</span> r &lt;= <span class="fl">0.5</span>:
         heads += <span class="dv">1</span>
 <span class="kw">print</span> <span class="st">&#39;Flipping a coin </span><span class="ot">%d</span><span class="st"> times gave </span><span class="ot">%d</span><span class="st"> heads&#39;</span> % (N, heads)</code></pre>
-<p><!-- --- end solution of exercise --> Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>. <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file --></p>
-<!-- --- end of exercise -->
+<p><!-- --- end solution of exercise --- --> Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>. <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file --></p>
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="project-1-compute-a-probability">Project 1: Compute a Probability</h2>
 <!-- Minimalistic exercise -->
 
 
 <p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
-<p><em>Hint.</em> To answer this question empirically, let a program draw \(N\) such random numbers using Python's standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
-<!-- --- end of exercise -->
+<!-- --- begin hint in exercise --- -->
+
+<p><em>Hint.</em> To answer this question empirically, let a program draw \(N\) such random numbers using Python's standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\). <!-- --- end hint in exercise --- --></p>
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="project-2-explore-distributions-of-random-circles">Project 2: Explore Distributions of Random Circles</h2>
 <p>The formula for a circle is given by</p>
@@ -13837,15 +14579,11 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
 <p><em>a)</em> Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
-<p><em>Hint.</em> Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
-<!-- --- begin short answer in exercise -->
+<!-- --- begin hint in exercise --- -->
 
-<p><em>Answer.</em> Here goes the short answer to part a). <!-- --- end short answer in exercise --></p>
-<!-- --- begin solution of exercise -->
-
-<p><em>Solution.</em> Here goes a full solution to part a).</p>
-<!-- --- end solution of exercise -->
-
+<p><em>Hint.</em> Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities. <!-- --- end hint in exercise --- --></p>
+<p><!-- --- begin answer of exercise --- --> <em>Answer.</em> Here goes the short answer to part a). <!-- --- end answer of exercise --- --></p>
+<p><!-- --- begin solution of exercise --- --> <em>Solution.</em> Here goes a full solution to part a). <!-- --- end solution of exercise --- --></p>
 <p><em>b)</em> Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. Filename: <code>norm.py</code>.</p>
 <p><em>c)</em> Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
 <p>Filename: <code>circles.pdf</code>.</p>
@@ -13853,89 +14591,105 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <p>Remarks ~~~~~~~</p>
 <p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="exercise-1-determine-some-distance">Exercise 1: Determine some Distance</h2>
 <p>Intro to this exercise. Questions are in subexercises below.</p>
-<!-- --- begin solution of exercise -->
-
-<p><em>Solution.</em> Here goes a full solution of the whole exercise.</p>
-<!-- --- end solution of exercise -->
-
-
+<p><!-- No meaning in this weired test example: --> The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p><!-- --- begin solution of exercise --- --> <em>Solution.</em> Here goes a full solution of the whole exercise. With some math \(a=b\) in this solution: \[
+ \hbox{math in solution: } a = b 
+\] And code <code>a=b</code> in this solution:</p>
+<pre><code>a = b  # code in solution</code></pre>
+<p>End of solution is here. <!-- --- end solution of exercise --- --></p>
 <p><em>a)</em> Subexercises are numbered a), b), etc.</p>
-<p><em>Hint 1.</em> First hint to subexercise a).</p>
-<p><em>Hint 2.</em> Second hint to subexercise a). Filename: <code>subexer_a.pdf</code>.</p>
-<!-- --- begin short answer in exercise -->
+<!-- --- begin hint in exercise --- -->
 
-<p><em>Answer.</em> Short answer to subexercise a). <!-- --- end short answer in exercise --></p>
+<p><em>Hint 1.</em> First hint to subexercise a). With math \(a=b\) in hint:</p>
+<p>\[
+ a=b. 
+\] And with code returning \(x+1\) in hint:</p>
+<pre><code>def func(x):
+    return x + 1  # with code in hint</code></pre>
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
+
+<p><em>Hint 2.</em> Second hint to subexercise a). <!-- --- end hint in exercise --- --> Filename: <code>subexer_a.pdf</code>.</p>
+<p><!-- --- begin answer of exercise --- --> <em>Answer.</em> Short answer to subexercise a). With math in answer: \(a=b\). <!-- --- end answer of exercise --- --></p>
 <p><em>b)</em> Here goes the text for subexercise b).</p>
-<p><em>Hint.</em> A hint for this subexercise. Filename: <code>subexer_b.pdf</code>.</p>
-<!-- --- begin solution of exercise -->
+<p>Some math \(\cos^2 x + \sin^2 x = 1\) written one a single line:</p>
+<p>\[
+ \cos^2 x + \sin^2 x = 1 \thinspace .
+\]</p>
+<!-- --- begin hint in exercise --- -->
 
-<p><em>Solution.</em> Here goes the solution of this subexercise.</p>
-<!-- --- end solution of exercise -->
-
+<p><em>Hint.</em> A hint for this subexercise. <!-- --- end hint in exercise --- --> Filename: <code>subexer_b.pdf</code>.</p>
+<p><!-- --- begin solution of exercise --- --> <em>Solution.</em> Here goes the solution of this subexercise. <!-- --- end solution of exercise --- --></p>
 <!-- Closing remarks for this Exercise -->
 
 <p>Remarks ~~~~~~~</p>
 <p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h2>
 <!-- Another minimalistic exercise -->
 
-<p>Just some text.</p>
-<!-- --- end of exercise -->
+<p>Just some text. And some math saying that \(e^0=1\) on a single line, to test that math block insertion is correct:</p>
+<p>\[
+ \exp{(0)} = 1 
+\]</p>
+<p>And a test that the code <code>lambda x: x+2</code> is correctly placed here:</p>
+<pre><code>lambda x: x+2</code></pre>
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="example-2-just-an-example">Example 2: Just an example</h2>
-<!-- This example needs the --example-as-exercise option -->
+<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
 
 
 <p><em>a)</em> What is the capital of Norway?</p>
-<!-- --- begin short answer in exercise -->
-
-<p><em>Answer.</em> Oslo. <!-- --- end short answer in exercise --></p>
-<!-- --- end of exercise -->
+<p><em>Answer.</em> Oslo.</p>
+<!-- --- end exercise --- -->
 
 
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="exercise-3-make-references-to-projects-and-problems">Exercise 3: Make references to projects and problems</h2>
 <p>Pick a statement from <a href="#s">Project 2: Explore Distributions of Random Circles</a> or <a href="#n">Problem 1: Flip a Coin</a> and verify it. Filename: <code>verify_formula.py</code>.</p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <h2 id="project-3-references-to-project-1-compute-a-probability-in-a-heading-works-for-pandoc">Project 3: References to <a href="#y">Project 1: Compute a Probability</a> in a heading works for pandoc</h2>
 <p>Refer to the previous exercise as <a href="#s">Exercise 3: Make references to projects and problems</a>, the two before that as <a href="#y">Project 1: Compute a Probability</a> and <a href="#s">Project 2: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 
 <h1 id="appendix-just-for-testing-part-i">Appendix: Just for testing; part I</h1>
 <p>This is the first appendix.</p>
 <h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
+<p>Some text.</p>
 <h1 id="appendix-just-for-testing-part-ii">Appendix: Just for testing; part II</h1>
 <p>This is more stuff for an appendix.</p>
 <h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
@@ -13949,7 +14703,9 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><em>Hint.</em> Here is a hint.</p>
 <p><em>Warning.</em> And here is a warning about something to pay attention to.</p>
 <p><em>Summary.</em> Much testing in this document, otherwise stupid content.</p>
-<p><em>Notice.</em> Ah, we are close to the end.</p>
+<p><em>Notice.</em> Ah, we are close to the end. With math: \[
+ p=q
+\]</p>
 <p><em>Question.</em> So, how many admonition environments does Doconce support?</p>
 </body>
 </html>
@@ -15322,6 +16078,7 @@ Section~\ref{genrefs}."
 \end{document}
 % #endif
 
+
 ************** File: author1.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -16265,7 +17022,8 @@ involving \( \theta \):
 </pre></div>
 </td></tr></table><p>
 
-<b>More on \( \theta \).</b> Here is more text following headline with math.
+<b>More on \( \theta \).</b>
+Here is more text following headline with math.
 
 <p>
 Newcommands must also be tested in this test report:
@@ -16315,12 +17073,14 @@ Should look nice in most formats!
 
 <p>
 
-<b>Theorem 5.</b> Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+<b>Theorem 5.</b>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
 <!-- end theorem -->
 
 <p>
 <!-- begin proof -->
-<b>Proof.</b> Since \( c=a+b \), the result follows from straightforward addition.
+<b>Proof.</b>
+Since \( c=a+b \), the result follows from straightforward addition.
 \( \Diamond \)
 <!-- end proof -->
 
@@ -16412,14 +17172,15 @@ and <tt>|</tt> right after verbatim word (with no space):
 
 <h3>A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt>  <a name="___sec6"></a></h3>
 <p>
-<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math \( a_{i-1} \).</b> Here
+<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math \( a_{i-1} \).</b>
+Here
 is
 some text.
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16432,23 +17193,32 @@ environments as part of the example.
 
 <p>
 
-<b>a)</b> State some problem.
+<b>a)</b>
+State some problem.
 
 <p>
+<b>Solution.</b>
+The answer to this subproblem can be written here.
 
 <p>
-<b>b)</b> State some other problem.
+<b>b)</b>
+State some other problem.
 
 <p>
-<b>Hint 1.</b> A hint can be given.
+<b>Hint 1.</b>
+A hint can be given.
 
 <p>
-<b>Hint 2.</b> Maybe even another hint?
+<b>Hint 2.</b>
+Maybe even another hint?
 
 <p>
+<b>Solution.</b>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
@@ -16599,7 +17369,7 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 <h2>Exercises  <a name="___sec10"></a></h2>
 <p>
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16619,25 +17389,42 @@ let the program count the number of heads.
 <!-- Test syntax error -->
 
 <p>
-<b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+<!-- --- begin hint in exercise --- -->
 
 <p>
-<b>Hint 2.</b> Draw an integer among \( \{1,2\} \) with
+<b>Hint 1.</b>
+Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 2.</b>
+Draw an integer among \( \{1,2\} \) with
 <tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
+<!-- --- end hint in exercise --- -->
 
 <p>
 
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+If the <tt>random.random()</tt> function returns a number \( <1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+<!-- --- end answer of exercise --- -->
+
 <p>
+
 Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16651,18 +17438,23 @@ What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 
 <p>
-<b>Hint.</b> To answer this question empirically, let a program
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+To answer this question empirically, let a program
 draw \( N \) such random numbers using Python's standard <tt>random</tt> module,
 count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
 compute the probability as \( M/N \).
+<!-- --- end hint in exercise --- -->
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16717,22 +17509,36 @@ above.
 
 <p>
 
-<b>a)</b> Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+<b>a)</b>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
 <p>
-<b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+Use the <tt>numpy.random</tt> module to draw the
 \( x_0 \), \( y_0 \), and \( R \) quantities.
+<!-- --- end hint in exercise --- -->
 
 <p>
 
-<p>
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+Here goes the short answer to part a).
+<!-- --- end answer of exercise --- -->
 
 <p>
-<b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+
+
+<p>
+<b>b)</b>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
 Filename: <tt>norm.py</tt>.
 
 <p>
-<b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+<b>c)</b>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
 
 <p>
 Filename: <tt>circles.pdf</tt>.
@@ -16749,12 +17555,12 @@ and give some perspectives.
 
 <p>
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16764,27 +17570,82 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 
-<p>
-
-<b>a)</b> Subexercises are numbered a), b), etc.
-
-<p>
-<b>Hint 1.</b> First hint to subexercise a).
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
 
 <p>
-<b>Hint 2.</b> Second hint to subexercise a).
+
+
+<p>
+
+<b>a)</b>
+Subexercises are numbered a), b), etc.
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 1.</b>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+
+<p>
+$$ a=b. $$
+
+And with code returning \( x+1 \) in hint:
+
+<p>
+
+
+<!-- code typeset with pygments style "emacs" -->
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
+    return x + 1  # with code in hint
+</pre></div>
+</td></tr></table><p>
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 2.</b>
+Second hint to subexercise a).
+<!-- --- end hint in exercise --- -->
 Filename: <tt>subexer_a.pdf</tt>.
 
 <p>
 
-<p>
-<b>b)</b> Here goes the text for subexercise b).
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+<!-- --- end answer of exercise --- -->
 
 <p>
-<b>Hint.</b> A hint for this subexercise.
+<b>b)</b>
+Here goes the text for subexercise b).
+
+<p>
+
+Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
+
+<p>
+$$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
+
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+A hint for this subexercise.
+<!-- --- end hint in exercise --- -->
 Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
+
 
 <p>
 <!-- Closing remarks for this Exercise -->
@@ -16799,12 +17660,12 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16813,30 +17674,49 @@ remarks will appear at the end of the typeset exercise.
 <!-- Another minimalistic exercise -->
 
 <p>
-Just some text.
+Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
 
 <p>
-<!-- --- end of exercise -->
+$$ \exp{(0)} = 1 $$
+
+
+<p>
+And a test that the code <tt>lambda x: x+2</tt> is correctly placed here:
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- code typeset with pygments style "emacs" -->
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
+</pre></div>
+</td></tr></table><p>
+
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
 
 <p>
 
 <h3>Example 2: Just an example  <a name="___sec18"></a></h3>
 <p>
-<!-- This example needs the --example-as-exercise option -->
+<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
 
 <p>
 
-<b>a)</b> What is the capital of Norway?
+<b>a)</b>
+What is the capital of Norway?
 
 <p>
+<b>Answer.</b>
+Oslo.
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
@@ -16850,7 +17730,7 @@ With some text, before we continue with exercises.
 <h2>More Exercises  <a name="___sec20"></a></h2>
 <p>
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16861,12 +17741,12 @@ and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -16878,7 +17758,7 @@ and this one as <a href="#exer:you">Project 3: References in a headings do not w
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
@@ -16890,6 +17770,9 @@ This is the first appendix.
 <p>
 
 <h3>A subsection within an appendix  <a name="___sec24"></a></h3>
+<p>
+Some text.
+
 <p>
 
 <h2>Appendix: Just for testing; part II  <a name="___sec25"></a></h2>
@@ -16976,7 +17859,10 @@ Without label.
 <tr>
 <td>&nbsp;</td>
 <td align="left" valign="top">
-<p>Ah, we are close to the end.</p>
+<p>Ah, we are close to the end.
+With math:
+$$ p=q$$
+
 </td>
 </tr>
 </table>
@@ -17656,7 +18542,7 @@ Automatically generated HTML file from Doconce source
 &nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript $latex a_i$: <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#Example"> Example: Examples can be typeset as exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec9"> LaTeX Mathematics </a><br>
 <a href="#___sec10"> Exercises </a><br>
@@ -17667,7 +18553,7 @@ Automatically generated HTML file from Doconce source
 &nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec16"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec18"> Example: Just an example </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec18"> Example 2: Just an example </a><br>
 <a href="#___sec19"> Here goes another section </a><br>
 <a href="#___sec20"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
@@ -18019,7 +18905,8 @@ involving $latex \theta$:
 </pre></div>
 <p>
 
-<b>More on $latex \theta$.</b> Here is more text following headline with math.
+<b>More on $latex \theta$.</b>
+Here is more text following headline with math.
 
 <p>
 Newcommands must also be tested in this test report:
@@ -18077,12 +18964,14 @@ Should look nice in most formats!
 
 <p>
 
-<b>Theorem 5.</b> Let $latex a=1$ and $latex b=2$. Then $latex c=3$.
+<b>Theorem 5.</b>
+Let $latex a=1$ and $latex b=2$. Then $latex c=3$.
 
 
 <p>
 
-<b>Proof.</b> Since $latex c=a+b$, the result follows from straightforward addition.
+<b>Proof.</b>
+Since $latex c=a+b$, the result follows from straightforward addition.
 $latex latex \Diamond$
 
 
@@ -18168,14 +19057,19 @@ and <tt>|</tt> right after verbatim word (with no space):
 
 <h3>A test of verbatim words in heading with subscript $latex a_i$: <tt>my_file_v1</tt> and <tt>my_file_v2</tt>  <a name="___sec6"></a></h3>
 <p>
-<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math $latex a_{i-1}$.</b> Here
+<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math $latex a_{i-1}$.</b>
+Here
 is
 some text.
 
 <p>
 
 
-<h3>Example: Examples can be typeset as exercises <a name="Example"></a></h3>
+
+
+<p>
+
+<h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
 <p>
 Examples can start with a subsection heading starting with <tt>Example:</tt>
 and then, with the command-line option <tt>--examples-as-exercises</tt> be
@@ -18184,55 +19078,32 @@ environments as part of the example.
 
 <p>
 
-!bsubex
+<b>a)</b>
 State some problem.
 
 <p>
-!bsol
+<b>Solution.</b>
 The answer to this subproblem can be written here.
-!esol
-!esubex
 
 <p>
-!bsubex
+<b>b)</b>
 State some other problem.
 
 <p>
+<b>Hint 1.</b>
+A hint can be given.
 
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint</b></th>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td align="left" valign="top">
-<p>A hint can be given.</p>
-</td>
-</tr>
-</table>
 <p>
+<b>Hint 2.</b>
+Maybe even another hint?
 
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint</b></th>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td align="left" valign="top">
-<p>Maybe even another hint?</p>
-</td>
-</tr>
-</table>
 <p>
-!bsol
+<b>Solution.</b>
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
-!esol
-!esubex
+
+<p>
+
 
 <p>
 
@@ -18407,25 +19278,35 @@ let the program count the number of heads.
 
 
 <p>
-<b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+
 
 <p>
-<b>Hint 2.</b> Draw an integer among $latex \{1,2\}$ with
+<b>Hint 1.</b>
+Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+
+
+<p>
+
+
+<p>
+<b>Hint 2.</b>
+Draw an integer among $latex \{1,2\}$ with
 <tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
 
+
 <p>
 
 
-<p>
-<b>Answer.</b> If the <tt>random.random()</tt> function returns a number $latex <1/2$, let it be
+<b>Answer.</b>
+If the <tt>random.random()</tt> function returns a number $latex <1/2$, let it be
 head, otherwise tail. Repeat this $latex N$ number of times.
 
 
 <p>
 
 
-<p>
-<b>Solution.</b> Code:
+<b>Solution.</b>
+Code:
 <p>
 
 
@@ -18439,7 +19320,6 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Flipping a coin </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> times gave </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> heads&#39;</span> <span style="color: #666666">%</span> (N, heads)
 </pre></div>
 <p>
-
 
 Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
@@ -18464,10 +19344,15 @@ What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $latex [0,1)$?
 
 <p>
-<b>Hint.</b> To answer this question empirically, let a program
+
+
+<p>
+<b>Hint.</b>
+To answer this question empirically, let a program
 draw $latex N$ such random numbers using Python's standard <tt>random</tt> module,
 count how many of them, $latex M$, that fall in the interval $latex (0.5,0.6)$, and
 compute the probability as $latex M/N$.
+
 
 <p>
 
@@ -18524,34 +19409,40 @@ above.
 
 <p>
 
-<b>a)</b> Let $latex R$ be normally distributed and $latex (x_0,y_0)$ uniformly distributed.
+<b>a)</b>
+Let $latex R$ be normally distributed and $latex (x_0,y_0)$ uniformly distributed.
 
 <p>
-<b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
+
+
+<p>
+<b>Hint.</b>
+Use the <tt>numpy.random</tt> module to draw the
 $latex x_0$, $latex y_0$, and $latex R$ quantities.
 
-<p>
-
-
-<p>
-<b>Answer.</b> Here goes the short answer to part a).
-
 
 <p>
 
 
-<p>
-<b>Solution.</b> Here goes a full solution to part a).
-
-<p>
+<b>Answer.</b>
+Here goes the short answer to part a).
 
 
 <p>
-<b>b)</b> Let $latex R$ be uniformly distributed and $latex (x_0,y_0)$ normally distributed.
+
+
+<b>Solution.</b>
+Here goes a full solution to part a).
+
+
+<p>
+<b>b)</b>
+Let $latex R$ be uniformly distributed and $latex (x_0,y_0)$ normally distributed.
 Filename: <tt>norm.py</tt>.
 
 <p>
-<b>c)</b> Let $latex R$ and $latex (x_0,y_0)$ be normally distributed.
+<b>c)</b>
+Let $latex R$ and $latex (x_0,y_0)$ be normally distributed.
 
 <p>
 Filename: <tt>circles.pdf</tt>.
@@ -18584,44 +19475,104 @@ Intro to this exercise. Questions are in subexercises below.
 <p>
 
 
-<p>
-<b>Solution.</b> Here goes a full solution of the whole exercise.
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
 
 <p>
 
 
+<b>Solution.</b>
+Here goes a full solution of the whole exercise.
+With some math $latex a=b$ in this solution:
+
+$latex  \hbox{math in solution: } a = b  $
+
+
+And code <tt>a=b</tt> in this solution:
 <p>
 
-<b>a)</b> Subexercises are numbered a), b), etc.
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">a = b  # code in solution
+</pre></div>
+<p>
+End of solution is here.
+
 
 <p>
-<b>Hint 1.</b> First hint to subexercise a).
+
+<b>a)</b>
+Subexercises are numbered a), b), etc.
 
 <p>
-<b>Hint 2.</b> Second hint to subexercise a).
+
+
+<p>
+<b>Hint 1.</b>
+First hint to subexercise a).
+With math $latex a=b$ in hint:
+
+<p>
+
+$latex  a=b.  $
+
+
+And with code returning $latex x+1$ in hint:
+
+<p>
+
+
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
+    return x + 1  # with code in hint
+</pre></div>
+<p>
+
+
+<p>
+
+
+<p>
+<b>Hint 2.</b>
+Second hint to subexercise a).
+
 Filename: <tt>subexer_a.pdf</tt>.
 
 <p>
 
 
-<p>
-<b>Answer.</b> Short answer to subexercise a).
+<b>Answer.</b>
+Short answer to subexercise a).
+With math in answer: $latex a=b$.
 
 
 <p>
-<b>b)</b> Here goes the text for subexercise b).
+<b>b)</b>
+Here goes the text for subexercise b).
 
 <p>
-<b>Hint.</b> A hint for this subexercise.
+
+Some math $latex \cos^2 x + \sin^2 x = 1$ written one a single line:
+
+<p>
+
+$latex  \cos^2 x + \sin^2 x = 1 \thinspace . $
+
+
+
+<p>
+
+
+<p>
+<b>Hint.</b>
+A hint for this subexercise.
+
 Filename: <tt>subexer_b.pdf</tt>.
 
 <p>
 
 
-<p>
-<b>Solution.</b> Here goes the solution of this subexercise.
-
-<p>
+<b>Solution.</b>
+Here goes the solution of this subexercise.
 
 
 <p>
@@ -18651,29 +19602,54 @@ remarks will appear at the end of the typeset exercise.
 
 
 <p>
-Just some text.
+Just some text. And some math saying that $latex e^0=1$ on a single line,
+to test that math block insertion is correct:
+
+<p>
+
+$latex  \exp{(0)} = 1  $
+
+
+
+<p>
+And a test that the code <tt>lambda x: x+2</tt> is correctly placed here:
 
 <p>
 
 
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
+</pre></div>
 <p>
 
 
-<h3>Example: Just an example  <a name="___sec18"></a></h3>
+
 <p>
 
 
+
+
 <p>
-!bsubex
+
+<h3>Example 2: Just an example  <a name="___sec18"></a></h3>
+<p>
+
+
+
+<p>
+
+<b>a)</b>
 What is the capital of Norway?
 
 <p>
-!bans
+<b>Answer.</b>
 Oslo.
-!eans
-!esubex
 
 <p>
+
+
+<p>
+
 
 <h2>Here goes another section  <a name="___sec19"></a></h2>
 <p>
@@ -18724,6 +19700,9 @@ This is the first appendix.
 <p>
 
 <h3>A subsection within an appendix  <a name="___sec24"></a></h3>
+<p>
+Some text.
+
 <p>
 
 <h2>Appendix: Just for testing; part II  <a name="___sec25"></a></h2>
@@ -18810,7 +19789,12 @@ Without label.
 <tr>
 <td>&nbsp;</td>
 <td align="left" valign="top">
-<p>Ah, we are close to the end.</p>
+<p>Ah, we are close to the end.
+With math:
+
+$latex  p=q $
+
+
 </td>
 </tr>
 </table>
@@ -19343,7 +20327,8 @@ involving \( \theta \):
 </pre></div>
 <p>
 
-<b>More on \( \theta \).</b> Here is more text following headline with math.
+<b>More on \( \theta \).</b>
+Here is more text following headline with math.
 
 <p>
 Newcommands must also be tested in this test report:
@@ -19393,12 +20378,14 @@ Should look nice in most formats!
 
 <p>
 
-<b>Theorem 5.</b> Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+<b>Theorem 5.</b>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
 <!-- end theorem -->
 
 <p>
 <!-- begin proof -->
-<b>Proof.</b> Since \( c=a+b \), the result follows from straightforward addition.
+<b>Proof.</b>
+Since \( c=a+b \), the result follows from straightforward addition.
 \( \Diamond \)
 <!-- end proof -->
 
@@ -19484,14 +20471,15 @@ and <tt>|</tt> right after verbatim word (with no space):
 
 <h3>A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt>  <a name="___sec6"></a></h3>
 <p>
-<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math \( a_{i-1} \).</b> Here
+<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math \( a_{i-1} \).</b>
+Here
 is
 some text.
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19504,38 +20492,32 @@ environments as part of the example.
 
 <p>
 
-<b>a)</b> State some problem.
+<b>a)</b>
+State some problem.
 
 <p>
-<!-- --- begin solution of exercise -->
+<b>Solution.</b>
+The answer to this subproblem can be written here.
 
 <p>
-<b>Solution.</b> The answer to this subproblem can be written here.
+<b>b)</b>
+State some other problem.
 
 <p>
-<!-- --- end solution of exercise -->
+<b>Hint 1.</b>
+A hint can be given.
 
 <p>
-<b>b)</b> State some other problem.
+<b>Hint 2.</b>
+Maybe even another hint?
 
 <p>
-<b>Hint 1.</b> A hint can be given.
-
-<p>
-<b>Hint 2.</b> Maybe even another hint?
-
-<p>
-<!-- --- begin solution of exercise -->
-
-<p>
-<b>Solution.</b> The answer to this other subproblem goes here,
+<b>Solution.</b>
+The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
 <p>
-<!-- --- end solution of exercise -->
-
-<p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
@@ -19686,7 +20668,7 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 <h2>Exercises  <a name="___sec10"></a></h2>
 <p>
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19706,21 +20688,41 @@ let the program count the number of heads.
 <!-- Test syntax error -->
 
 <p>
-<b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+<!-- --- begin hint in exercise --- -->
 
 <p>
-<b>Hint 2.</b> Draw an integer among \( \{1,2\} \) with
+<b>Hint 1.</b>
+Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 2.</b>
+Draw an integer among \( \{1,2\} \) with
 <tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
-Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
+<!-- --- end hint in exercise --- -->
+
+<p>
+
+<!-- removed !bans ... !eans environment
+ --><!-- (because of the command-line option --without-answers)
+ -->
+<p>
+
+<!-- removed !bsol ... !esol environment
+ --><!-- (because of the command-line option --without-solutions)
+ -->Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19734,18 +20736,23 @@ What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 
 <p>
-<b>Hint.</b> To answer this question empirically, let a program
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+To answer this question empirically, let a program
 draw \( N \) such random numbers using Python's standard <tt>random</tt> module,
 count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
 compute the probability as \( M/N \).
+<!-- --- end hint in exercise --- -->
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19770,14 +20777,15 @@ The formula can be used to generate <tt>n</tt> points on a circle:
 
 
 <!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
-N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
-heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
-<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(N):
-    r <span style="color: #666666">=</span> random<span style="color: #666666">.</span>random()
-    <span style="color: #008000; font-weight: bold">if</span> r <span style="color: #666666">&lt;=</span> <span style="color: #666666">0.5</span>:
-        heads <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
-<span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Flipping a coin </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> times gave </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> heads&#39;</span> <span style="color: #666666">%</span> (N, heads)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
+    t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, n)
+    x <span style="color: #666666">=</span> x0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>cos(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    y <span style="color: #666666">=</span> y0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    <span style="color: #008000; font-weight: bold">return</span> x, y
+
+x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
 </pre></div>
 <p>
 
@@ -19791,18 +20799,36 @@ above.
 
 <p>
 
-<b>a)</b> Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+<b>a)</b>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
 <p>
-<b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+Use the <tt>numpy.random</tt> module to draw the
 \( x_0 \), \( y_0 \), and \( R \) quantities.
+<!-- --- end hint in exercise --- -->
 
 <p>
-<b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+
+<!-- removed !bans ... !eans environment
+ --><!-- (because of the command-line option --without-answers)
+ -->
+<p>
+
+<!-- removed !bsol ... !esol environment
+ --><!-- (because of the command-line option --without-solutions)
+ -->
+<p>
+<b>b)</b>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
 Filename: <tt>norm.py</tt>.
 
 <p>
-<b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+<b>c)</b>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
 
 <p>
 Filename: <tt>circles.pdf</tt>.
@@ -19819,12 +20845,12 @@ and give some perspectives.
 
 <p>
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19834,22 +20860,83 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 
-<b>a)</b> Subexercises are numbered a), b), etc.
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
 
 <p>
-<b>Hint 1.</b> First hint to subexercise a).
+
+<!-- removed !bsol ... !esol environment
+ --><!-- (because of the command-line option --without-solutions)
+ -->
+<p>
+
+<b>a)</b>
+Subexercises are numbered a), b), etc.
 
 <p>
-<b>Hint 2.</b> Second hint to subexercise a).
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 1.</b>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+
+<p>
+$$ a=b. $$
+
+And with code returning \( x+1 \) in hint:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
+    return x + 1  # with code in hint
+</pre></div>
+<p>
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 2.</b>
+Second hint to subexercise a).
+<!-- --- end hint in exercise --- -->
 Filename: <tt>subexer_a.pdf</tt>.
 
 <p>
-<b>b)</b> Here goes the text for subexercise b).
+
+<!-- removed !bans ... !eans environment
+ --><!-- (because of the command-line option --without-answers)
+ -->
+<p>
+<b>b)</b>
+Here goes the text for subexercise b).
 
 <p>
-<b>Hint.</b> A hint for this subexercise.
+
+Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
+
+<p>
+$$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
+
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+A hint for this subexercise.
+<!-- --- end hint in exercise --- -->
 Filename: <tt>subexer_b.pdf</tt>.
 
+<p>
+
+<!-- removed !bsol ... !esol environment
+ --><!-- (because of the command-line option --without-solutions)
+ -->
 <p>
 <!-- Closing remarks for this Exercise -->
 
@@ -19863,12 +20950,12 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19877,35 +20964,49 @@ remarks will appear at the end of the typeset exercise.
 <!-- Another minimalistic exercise -->
 
 <p>
-Just some text.
+Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
 
 <p>
-<!-- --- end of exercise -->
+$$ \exp{(0)} = 1 $$
+
+
+<p>
+And a test that the code <tt>lambda x: x+2</tt> is correctly placed here:
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
+</pre></div>
+<p>
+
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
 
 <p>
 
 <h3>Example 2: Just an example  <a name="___sec18"></a></h3>
 <p>
-<!-- This example needs the --example-as-exercise option -->
+<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
 
 <p>
 
-<b>a)</b> What is the capital of Norway?
+<b>a)</b>
+What is the capital of Norway?
 
 <p>
-<!-- --- begin short answer in exercise -->
+<b>Answer.</b>
+Oslo.
 
 <p>
-<b>Answer.</b> Oslo.
-<!-- --- end short answer in exercise -->
-
-<p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
@@ -19919,7 +21020,7 @@ With some text, before we continue with exercises.
 <h2>More Exercises  <a name="___sec20"></a></h2>
 <p>
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19930,12 +21031,12 @@ and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
 
-<!-- --- begin exercise -->
+<!-- --- begin exercise --- -->
 
 <p>
 
@@ -19947,7 +21048,7 @@ and this one as <a href="#exer:you">Project 3: References in a headings do not w
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
-<!-- --- end of exercise -->
+<!-- --- end exercise --- -->
 
 <p>
 
@@ -19959,6 +21060,9 @@ This is the first appendix.
 <p>
 
 <h3>A subsection within an appendix  <a name="___sec24"></a></h3>
+<p>
+Some text.
+
 <p>
 
 <h2>Appendix: Just for testing; part II  <a name="___sec25"></a></h2>
@@ -20045,7 +21149,10 @@ Without label.
 <tr>
 <td>&nbsp;</td>
 <td align="left" valign="top">
-<p>Ah, we are close to the end.</p>
+<p>Ah, we are close to the end.
+With math:
+$$ p=q$$
+
 </td>
 </tr>
 </table>
@@ -20069,6 +21176,1413 @@ Without label.
 </body>
 </html>
     
+
+
+************** File: testdoc_no_solutions.p.tex *****************
+%%
+%% This file is automatically generated from doconce source
+%%
+%% doconce: http://code.google.com/p/doconce/
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% Many preprocess options can be added:
+%%
+%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to command-line arguments (type doconce ptex2tex to see examples).
+% #endif
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer-collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+% #ifdef BOOK
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
+% #else
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+% #endif
+
+\listfiles               % print all files needed to compile this document
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for epub-style formats
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},              % inner margin (two-sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+
+\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage[latin1]{inputenc}
+\usepackage{ptex2tex}
+% #ifdef MOVIE15
+\usepackage{movie15}
+% #endif
+
+% #ifdef MINTED
+\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usemintedstyle{default}
+% #endif
+
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
+% #ifdef PALATINO
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
+\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
+%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+\begin{document}
+%-------------------- end preamble ------------------------
+
+% #endif
+
+% ------------------- main content ------------------------
+
+\input{newcommands_replace}
+
+
+
+
+% ----------------- title -------------------------
+% #if LATEX_HEADING == "traditional"
+
+\title{A Document for Testing Doconce}
+
+% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{A Document for Testing Doconce}}}
+
+% #elif LATEX_HEADING == "Springer-collection"
+
+\title*{A Document for Testing Doconce}
+% Short version of title:
+%\titlerunning{...}
+
+% #else
+
+\begin{center}
+{\LARGE\bf A Document for Testing Doconce}
+\end{center}
+
+% #endif
+
+
+
+% ----------------- author(s) -------------------------
+% #if LATEX_HEADING == "traditional"
+\author{Hans Petter Langtangen\footnote{Email: \texttt{hpl@simula.no}. Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}
+\and Kaare Dump\footnote{Segfault Inc, Cyberspace.}
+\and A. Dummy Author
+\and I. S. Overworked\footnote{Inst1; Inst2, Somewhere; Third Inst, Elsewhere; and Fourth Inst.}
+\and J. Doe\footnote{Email: \texttt{j\_doe@cyberspace.com}.}}
+
+% #elif LATEX_HEADING == "titlepage"
+\vspace{1.3cm}
+
+    {\Large\textsf{Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})}}\\ [3mm]
+    
+    {\Large\textsf{Kaare Dump${}^{3}$}}\\ [3mm]
+    
+    {\Large\textsf{A. Dummy Author${}^{}$}}\\ [3mm]
+    
+    {\Large\textsf{I. S. Overworked${}^{4, 5, 6, 7}$}}\\ [3mm]
+    
+    {\Large\textsf{J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})}}\\ [3mm]
+    
+\ \\ [2mm]
+
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
+{\large\textsf{${}^3$Segfault Inc, Cyberspace} \\ [1.5mm]}
+{\large\textsf{${}^4$Inst1} \\ [1.5mm]}
+{\large\textsf{${}^5$Inst2, Somewhere} \\ [1.5mm]}
+{\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
+{\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer-collection"
+
+\author{Hans Petter Langtangen and Kaare Dump and A. Dummy Author and I. S. Overworked and J. Doe}
+% Short version of authors:
+%\authorrunning{...}
+\institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo\email{hpl@simula.no} \and Kaare Dump\at Segfault Inc, Cyberspace \and A. Dummy Author \and I. S. Overworked\at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and and Fourth Inst \and J. Doe\email{j_doe@cyberspace.com}}
+
+% #else
+
+\begin{center}
+{\bf Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf Kaare Dump${}^{3}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf A. Dummy Author${}^{}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf I. S. Overworked${}^{4, 5, 6, 7}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
+\centerline{{\small ${}^3$Segfault Inc, Cyberspace}}
+\centerline{{\small ${}^4$Inst1}}
+\centerline{{\small ${}^5$Inst2, Somewhere}}
+\centerline{{\small ${}^6$Third Inst, Elsewhere}}
+\centerline{{\small ${}^7$Fourth Inst}}
+\end{center}
+% #endif
+% ----------------- end author(s) -------------------------
+
+
+% ----------------- date -------------------------
+
+% #if LATEX_HEADING == "traditional"
+
+\date{Jan 32, 2100}
+\maketitle
+
+% #elif LATEX_HEADING == "titlepage"
+
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
+
+\end{center}
+\vfill
+\clearpage
+
+% #else
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+% #endif
+
+
+\tableofcontents
+
+\vspace{1cm} % after toc
+
+
+
+
+
+% !split
+
+The format of this document is
+plain, homemade {\LaTeX} (from Doconce).
+
+% Just a comment
+
+
+% #if LATEX_HEADING == "Springer-collection"
+\abstract{
+% #else
+\begin{abstract}
+% #endif
+This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+
+And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+
+% Cannot demonstrate chapter headings since abstract and chapter
+% is mutually exclusive in {\LaTeX}
+% #if LATEX_HEADING == "Springer-collection"
+}
+% #else
+\end{abstract}
+% #endif
+
+
+\section{Section 1}
+
+\label{sec1}
+
+Here is a nested list:
+
+\begin{itemize}
+  \item item1
+
+  \item item2
+
+  \item item3 which continues
+    on the next line to test that feature
+
+  \item and a sublist
+\begin{itemize}
+
+    \item with indented subitem1
+
+    \item and a subitem2
+
+\end{itemize}
+
+\noindent
+  \item and perhaps an ordered sublist
+\begin{enumerate}
+
+   \item first item
+
+   \item second item,
+      continuing on a new line
+\end{enumerate}
+
+\noindent
+\end{itemize}
+
+\noindent
+
+\begin{quote}
+    Here are two lines that make up
+    a block quote.
+\end{quote}
+% !split and check if these extra words are included properly in the comment
+
+\subsection{Subsection 1}
+
+More text, with a reference back to Section~\ref{sec1} and further
+to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
+
+% sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
+Let's do some copying from files too. First from subroutine up to the very end,
+
+\bfcod
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return
+\efcod
+and then just the subroutine,
+\bfcod
+
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+\efcod
+and finally the complete file:
+\bfpro
+C     a comment
+
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return
+\efpro
+
+Testing other code environments. First Python:
+\bccq
+!bc pycod
+def f(x):
+    return x+1
+!ec
+\eccq
+which gets rendered as
+
+\bpycod
+def f(x):
+    return x+1
+\epycod
+
+Now a complete program to be shown via Python Online Tutorial:
+\bpypro
+def f(x):
+    return x + 1
+
+a = 2
+x = a
+a = 1
+v = f(x)
+print v
+\epypro
+\noindent
+(\href{{http://pythontutor.com/visualize.html\#code=def+f\%28x\%29\%3A\%0A++++return+x+\%2B+1\%0A\%0Aa+\%3D+2\%0Ax+\%3D+a\%0Aa+\%3D+1\%0Av+\%3D+f\%28x\%29\%0Aprint+v&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
+Then Cython:
+\bcycod
+cpdef f(double x):
+    return x + 1
+\ecycod
+
+% This one tests a + sign before a code environment
+C++:
+\bcpppro
+#include <iostream>
+
+int main()
+{
+   std::cout << "Sample output" << std::endl;
+   return 0
+}
+\ecpppro
+% The next should get correctly typset in sphinx (cod is fcod)
+And a little bit of Fortran:
+
+\bccq
+!bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+!ec
+\eccq
+which then is typeset as
+
+\bcod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+\ecod
+
+
+System call:
+\bsys
+Terminal> mkdir test
+Terminal> cd test
+Terminal> myprog -f
+output1
+output2
+\esys
+
+It is time to test \code{verbatim inline font} especially with \code{a newline
+inside the text} and an exclamation mark at the end: \code{BEGIN}! The
+exclamation mark inside the verbatim text is not smart for latex as
+we use ! in the \code{verb} typesetting... Also test backslashes
+like \code{\begin} and \code{\end} in inline verbatim text.
+
+\subsection{Subsection 2}
+
+\label{subsec:ex}
+\index{figures}
+
+Test of figures. In particular we refer to Figure~\ref{fig:impact} in which
+there is a flow.
+
+
+\begin{figure}[ht]
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.eps}}
+  \caption{
+  Visualization of flow by streamtubes. \label{fig:impact}
+  }
+\end{figure}
+%\clearpage % flush figures fig:impact
+
+
+Figures without captions are allowed.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.eps}}
+\end{center}
+
+
+\index{movies}
+Test of movies.
+
+
+\begin{figure}[ht]
+\begin{center}
+
+% #ifdef MOVIE15
+\includemovie[poster,
+label=../doc/manual/figs/mjolnir.mpeg,
+autoplay,
+%controls,
+%toolbar,
+% #ifdef EXTERNAL_MOVIE_VIEWER
+externalviewer,
+% #endif
+text={\small (Loading ../doc/manual/figs/mjolnir.mpeg)},
+repeat,
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}    % requires \usepackage{movie15}
+% #ifndef EXTERNAL_MOVIE_VIEWER
+\movieref[rate=0.5]{../doc/manual/figs/mjolnir.mpeg}{Slower}
+\movieref[rate=2]{../doc/manual/figs/mjolnir.mpeg}{Faster}
+\movieref[default]{../doc/manual/figs/mjolnir.mpeg}{Normal}
+\movieref[pause]{../doc/manual/figs/mjolnir.mpeg}{Play/Pause}
+\movieref[stop]{../doc/manual/figs/mjolnir.mpeg}{Stop}
+% #else
+\href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+% #endif
+
+% #else
+\href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+
+% alternative: \movie command that comes with beamer
+% \movie[options]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+% #endif
+\end{center}
+\caption{ Mjolnir tsunami (by Sylfest Glimsdal).}
+\end{figure}
+
+
+% Test empty caption:
+
+
+\begin{figure}[ht]
+\begin{center}
+
+% #ifdef MOVIE15
+\includemovie[poster,
+label=../doc/manual/figs/wavepacket.mpeg,
+autoplay,
+%controls,
+%toolbar,
+% #ifdef EXTERNAL_MOVIE_VIEWER
+externalviewer,
+% #endif
+text={\small (Loading ../doc/manual/figs/wavepacket.mpeg)},
+repeat,
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}    % requires \usepackage{movie15}
+% #ifndef EXTERNAL_MOVIE_VIEWER
+\movieref[rate=0.5]{../doc/manual/figs/wavepacket.mpeg}{Slower}
+\movieref[rate=2]{../doc/manual/figs/wavepacket.mpeg}{Faster}
+\movieref[default]{../doc/manual/figs/wavepacket.mpeg}{Normal}
+\movieref[pause]{../doc/manual/figs/wavepacket.mpeg}{Play/Pause}
+\movieref[stop]{../doc/manual/figs/wavepacket.mpeg}{Stop}
+% #else
+\href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
+% #endif
+
+% #else
+\href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
+
+% alternative: \movie command that comes with beamer
+% \movie[options]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
+% #endif
+\end{center}
+\caption{}
+\end{figure}
+
+
+% Test wrong syntax and multi-line caption
+
+
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
+
+
+% Check out the correct with and height of YouTube movies from the
+% embed command that the YouTube page can generate
+
+ Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+
+% Test multi-line caption in figure
+
+Here is figure~\ref{myfig} with a long multi-line caption
+and an extra space before the FIGURE keyword.
+
+
+\begin{figure}[ht]
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.eps}}
+  \caption{
+  A long caption spanning several lines and containing verbatim words like \protect \code{my\_file\_v1} and \protect \code{my\_file\_v2} as well as math with subscript as in $t_{i+1}$. \label{myfig}
+  }
+\end{figure}
+%\clearpage % flush figures myfig
+
+
+Movie~\ref{mymov} has a similar problem.
+
+% Must be a blank line after MOVIE or FIGURE to detect this problem
+
+% Test URL as figure name
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+\end{center}
+
+
+% Test wikimedia type of files that otherwise reside in subdirs
+
+% Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
+\subsection{The $\theta$ parameter (not $\nabla$?)}
+
+\label{decay:sec:theta}
+
+Functions do not always need to be advanced, here is one
+involving $\theta$:
+\bccq
+def f(theta):
+    return theta**2
+\eccq
+
+\paragraph{More on $\theta$.}
+Here is more text following headline with math.
+
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
+both inline and in block:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\end{align*}
+
+Or with align with label and numbers:
+
+\begin{align}
+\Ddt{u} &= 0
+\label{aligneq1}\\ 
+\half &= \halfi\\ 
+\half\x &= \normalvec
+\label{aligneq2}
+\end{align}
+
+\subsection{Custom Environments}
+
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the \code{.tex} by proper begin-end {\LaTeX} environments for theorems.
+Should look nice in most formats!
+
+
+
+% begin theorem
+\label{theorem:fundamental1}
+
+
+\paragraph{Theorem 5.}
+Let $a=1$ and $b=2$. Then $c=3$.
+% end theorem
+
+% begin proof
+\paragraph{Proof.}
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$
+% end proof
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+
+\subsection{Tables}
+
+\label{subsec:table}
+
+\index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
+\index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
+\index{index with!subindex}
+
+% index with comma could fool sphinx
+\index{index, with comma, and one more}
+
+Let us take this table from the manual:
+
+\begin{table}
+\caption{
+Testing table environment in {\LaTeX}, enabled by testing on the "latex" format
+with the preprocessor.
+\label{mytab}
+}
+
+
+\begin{quote}\begin{tabular}{lrr}
+\hline
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
+\hline
+0.0          & 1.4186       & -5.01        \\
+2.0          & 1.376512     & 11.919       \\
+4.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+\end{table}
+
+The Doconce source code reads
+\bccq
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+\eccq
+
+Here is yet another table to test that we can handle more than
+one table:
+
+
+\begin{quote}\begin{tabular}{lll}
+\hline
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
+\hline
+0.0          & 1.4186       & -5.01        \\
+1.0          & 1.376512     & 11.919       \\
+3.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+And one with math headings (that are expanded and must be treated
+accordingly) and verbatim heading and entry:
+
+
+\begin{quote}\begin{tabular}{lrrr}
+\hline
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \code{L\_i} } \\
+\hline
+0          & 0          & 288        & -0.0065    \\
+1          & 11,000     & 216        & 0.0        \\
+2          & 20,000     & 216        & 0.001      \\
+3          & 32,000     & 228        & 0.0028     \\
+4          & 47,000     & 270        & 0.0        \\
+5          & 51,000     & 270        & -0.0028    \\
+6          & 71,000     & 214        & \code{NaN} \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+And add one with verbatim headings (with underscores),
+and rows starting with \code{|-} because of a negative number,
+and \code{|} right after verbatim word (with no space):
+
+
+\begin{quote}\begin{tabular}{rrrr}
+\hline
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \code{v\_1} } & \multicolumn{1}{c}{ $a_i$ + \code{v\_2} } & \multicolumn{1}{c}{ \code{verb\_3\_} } \\
+\hline
+9                  & 9.62               & 5.57               & 8.98               \\
+-20                & -23.39             & -7.65              & -19.93             \\
+10                 & 17.74              & -4.50              & 9.96               \\
+0                  & -9.19              & 4.13               & -0.26              \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+
+\subsection{A test of verbatim words in heading with subscript $a_i$: \protect\code{my\_file\_v1} and \protect\code{my\_file\_v2} }
+
+\paragraph{Files \protect\code{my\_file\_v1.py} and \protect\code{my\_file\_v2.py} define some math $a_{i-1}$.}
+Here
+is
+some text.
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 1: Examples can be typeset as exercises}
+
+\label{Example}
+
+Examples can start with a subsection heading starting with \code{Example:}
+and then, with the command-line option \code{--examples-as-exercises} be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+\paragraph{a)}
+State some problem.
+
+\paragraph{Solution.}
+The answer to this subproblem can be written here.
+
+\paragraph{b)}
+State some other problem.
+
+\paragraph{Hint 1.}
+A hint can be given.
+
+\paragraph{Hint 2.}
+Maybe even another hint?
+
+\paragraph{Solution.}
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+\end{exercise}
+% --- end exercise ---
+
+\subsection{URLs}
+
+\label{subsubsec:ex}
+
+Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}, or
+the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}.  Here is a
+plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
+\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
+newline}. Can test spaces with the link with word
+too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
+file} is
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+
+Here are some tough tests of URLs, especially for the \code{latex} format:
+\href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
+and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}. Need to test
+Newton-Cotes with percentage in URL too:
+\href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
+and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
+
+% Comments should be inserted outside paragraphs (because in the rst
+% format extra blanks make a paragraph break).
+
+% Note that when there is no http: or file:, it can be a file link
+% if the link name is URL, url, "URL", or "url". Such files should,
+% if rst output is desired, but placed in a \code{_static*} folder.
+
+More tough tests: repeated URLs whose footnotes when using the
+\code{--latex-printed} option must be correct. We have
+\href{{http://google.com}}{google}, \href{{http://google.com}}{google}, and
+\href{{http://google.com}}{google}, which should result in exactly three
+footnotes.
+
+\subsection{Test of Some {\LaTeX} Fixes}
+
+Let's check abbr.~of some common kind, e.g.~the well-known i.e.
+expression as an example. Moreover, Dr.~Tang and Prof.~Monsen,
+or maybe also prof.~Ting,
+will go to the Dept.~of Science to test how Mr.~Hansen is doing together
+with Ms.~Larsen. A sentence containing "refines lines" could easily
+fool a regex substitution with only i.e.~since the dot matches anything.
+Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
+
+\subsection{{\LaTeX} Mathematics}
+
+Here is an equation without label using backslash-bracket environment:
+\[ a = b + c \]
+or with number and label, as in (\ref{my:eq1}), using the equation environment:
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
+\end{equation}
+We can refer to this equation by (\ref{my:eq1}).
+
+Here is a system without equation numbers, using the align-astrisk environment:
+\begin{align*}
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
+\end{align*}
+
+
+And here is a system of equations with labels in an align environment:
+\begin{align}
+a &= q + 4 + 5+ 6 \label{eq1} \\ 
+b &= \nabla^2 u + \nabla^4 x \label{eq2}
+\end{align}
+We can refer to (\ref{eq1})-(\ref{eq2}).
+
+Many of the next environments will fail in non-latex formats.
+Testing multiline:
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}
+\end{multline}
+Testing split:
+\begin{equation}
+\label{split:envir:eq}
+\begin{split}
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
+\end{split}
+\end{equation}
+We can refer to the last equation by (\ref{split:envir:eq}).
+
+Testing gather:
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+
+Testing alignat:
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
+\end{alignat}
+Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
+alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
+Testing eqnarray:
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
+\end{eqnarray}
+
+More mathematical typesetting is demonstrated in the coming exercises.
+
+Below, we have Problem~\ref{demo:ex:1} and Project~\ref{demo:ex:2},
+as well as Projects~\ref{proj:circle1} and~\ref{exer:you}, and in
+between there we have Exercise~\ref{exer:some:formula}.
+
+
+\section{Exercises}
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Problem 1: Flip a Coin}
+
+\label{demo:ex:1}
+% keywords = random numbers; Monte Carlo simulation
+
+% Torture tests
+
+Make a program that simulates flipping a coin $N$ times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+
+% Test syntax error
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 1.}
+Use \code{r = random.random()} and define head as \code{r <= 0.5}.
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 2.}
+Draw an integer among $\{1,2\}$ with
+\code{r = random.randint(1,2)} and define head when \code{r} is 1.
+% --- end hint in exercise ---
+
+
+% removed !bans ... !eans environment
+% (because of the command-line option --without-answers)
+
+
+% removed !bsol ... !esol environment
+% (because of the command-line option --without-solutions)
+Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
+% solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Project 1: Compute a Probability}
+
+\label{demo:ex:2}
+
+% Minimalistic exercise
+
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+To answer this question empirically, let a program
+draw $N$ such random numbers using Python's standard \code{random} module,
+count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
+compute the probability as $M/N$.
+% --- end hint in exercise ---
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Project 2: Explore Distributions of Random Circles}
+
+\label{proj:circle1}
+
+The formula for a circle is given by
+
+\begin{align}
+x &= x_0 + R\cos 2\pi t,\\ 
+y &= y_0 + R\sin 2\pi t,
+\end{align}
+where $R$ is the radius of the circle, $(x_0,y_0)$ is the
+center point, and $t$ is a parameter in the unit interval $[0,1]$.
+For any $t$, $(x,y)$ is a point on the circle.
+The formula can be used to generate \code{n} points on a circle:
+
+\bpypro
+import numpy as np
+
+def circle(R, x0, y0, n=501):
+    t = np.linspace(0, 1, n)
+    x = x0 + R*np.cos(2*np.pi*t)
+    y = y0 + R*np.sin(2*np.pi*t)
+    return x, y
+
+x, y = circle(2.0, 0, 0)
+\epypro
+
+% Often in an exercise we have some comments about the solution
+% which we normally want to keep where they are.
+
+The goal of this project is to draw $N$ circles with random
+center and radius. Plot each circle using the \code{circle} function
+above.
+
+
+\paragraph{a)}
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+Use the \code{numpy.random} module to draw the
+$x_0$, $y_0$, and $R$ quantities.
+% --- end hint in exercise ---
+
+
+% removed !bans ... !eans environment
+% (because of the command-line option --without-answers)
+
+
+% removed !bsol ... !esol environment
+% (because of the command-line option --without-solutions)
+
+\paragraph{b)}
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+Filename: \code{norm.py}.
+
+\paragraph{c)}
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+
+Filename: \code{circles.pdf}.
+
+% Closing remarks for this Project
+
+\paragraph{Remarks.}
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Exercise 1: Determine some Distance}
+
+\label{exer:dist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+
+
+
+
+% No meaning in this weired test example:
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+% removed !bsol ... !esol environment
+% (because of the command-line option --without-solutions)
+
+
+\paragraph{a)}
+Subexercises are numbered a), b), etc.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 1.}
+First hint to subexercise a).
+With math $a=b$ in hint:
+
+\[ a=b. \]
+And with code returning $x+1$ in hint:
+
+\bccq
+def func(x):
+    return x + 1  # with code in hint
+\eccq
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 2.}
+Second hint to subexercise a).
+% --- end hint in exercise ---
+Filename: \code{subexer_a.pdf}.
+
+
+% removed !bans ... !eans environment
+% (because of the command-line option --without-answers)
+
+\paragraph{b)}
+Here goes the text for subexercise b).
+
+
+Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
+\[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+A hint for this subexercise.
+% --- end hint in exercise ---
+Filename: \code{subexer_b.pdf}.
+
+
+% removed !bsol ... !esol environment
+% (because of the command-line option --without-solutions)
+
+% Closing remarks for this Exercise
+
+\paragraph{Remarks.}
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Some exercise without the "Exercise:" prefix}
+
+% Another minimalistic exercise
+
+Just some text. And some math saying that $e^0=1$ on a single line,
+to test that math block insertion is correct:
+
+\[ \exp{(0)} = 1 \]
+
+And a test that the code \code{lambda x: x+2} is correctly placed here:
+
+\bccq
+lambda x: x+2
+\eccq
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection{Example 2: Just an example}
+
+% This example needs the --examples-as-exercises option, otherwise
+% it is just typeset as it is written.
+
+
+\paragraph{a)}
+What is the capital of Norway?
+
+\paragraph{Answer.}
+Oslo.
+
+\end{exercise}
+% --- end exercise ---
+
+
+\section{Here goes another section}
+
+With some text, before we continue with exercises.
+
+
+\section{More Exercises}
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Exercise 3: Make references to projects and problems}
+
+\label{exer:some:formula}
+
+Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
+and verify it.
+Filename: \code{verify_formula.py}.
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for latex}
+
+\label{exer:you}
+
+Refer to the previous exercise as Exercise~\ref{exer:some:formula},
+the two before that as Projects~\ref{demo:ex:2} and~\ref{proj:circle1},
+and this one as Project~\ref{exer:you}.
+Filename: \code{selc_composed.pdf}.
+
+\end{exercise}
+% --- end exercise ---
+
+
+
+
+\appendix
+
+\section{Just for testing; part I}
+
+This is the first appendix.
+
+\subsection{A subsection within an appendix}
+
+Some text.
+
+
+\section{Just for testing; part II}
+
+This is more stuff for an appendix.
+
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id1}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id2}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
+
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{hintbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/hint.eps}
+\vskip-0.3in\hskip1.5in{\large\bf HINT} \\[0.4cm]
+Here is a hint.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
+
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{warningbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+And here is a warning about something to pay attention to.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{summarybackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/summary.eps}
+\vskip-0.3in\hskip1.5in{\large\bf SUMMARY} \\[0.4cm]
+Much testing in this document, otherwise stupid content.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{noticebackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+Ah, we are close to the end.
+With math:
+\[ p=q\]
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
+
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{questionbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+\vskip-0.3in\hskip1.5in{\large\bf QUESTION} \\[0.4cm]
+So, how many admonition environments does Doconce support?
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
+
+% ------------------- end of main content -----------------
+
+% #ifdef PREAMBLE
+\printindex
+
+\end{document}
+% #endif
 
 
 ************** File: mako_test1.html *****************
@@ -20229,7 +22743,9 @@ And more code:
 #!/bin/sh -x
 rm -rf html_images reveal.js downloaded_figures
 
-doconce format html testdoc --wordpress
+# Note:  --examples-as-exercises is required to avoid abortion
+
+doconce format html testdoc --wordpress  --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_wordpress.html
@@ -20238,6 +22754,11 @@ doconce format html testdoc --without-answers --without-solutions --examples-as-
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_no_solutions.html
+
+doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -20669,7 +23190,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 12 Feb 2013 (23:33)</center>
+<center>Sat, 16 Feb 2013 (10:41)</center>
 
 
 
@@ -20800,7 +23321,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 12 Feb 2013 (23:33)</center>
+<center>Sat, 16 Feb 2013 (10:41)</center>
 
 
 
@@ -22307,7 +24828,8 @@ PDF document.</p>
 </table>
 <p>
 
-<b>LaTeX Newcommands.</b> Text missing...
+<b>LaTeX Newcommands.</b>
+Text missing...
 
 <p>
 
@@ -23968,6 +26490,7 @@ examine the Doconce source and the \code{doc/src/make.sh} script).
 
 \end{document}
 % #endif
+
 
 ************** File: quickref.rst *****************
 .. Automatically generated reST file from Doconce source
@@ -31704,7 +34227,7 @@ Resources
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
 + rm -rf html_images reveal.js downloaded_figures
-+ doconce format html testdoc --wordpress
++ doconce format html testdoc --wordpress --examples-as-exercises
 running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to html
@@ -31752,10 +34275,10 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 7 exercises, written to .testdoc.exerinfo
+found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
@@ -31809,12 +34332,75 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open the solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_no_solutions.html
++ doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+running preprocess -DFORMAT=latex -DSOMEVAR testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+mako variables: {'SOMEVAR': True, 'FORMAT': 'latex'}
+translating preprocessed doconce text in __tmp.do.txt to latex
+
+FIX: multi-line caption
+
+ Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
+
+-- fixed to one line
+
+FIX: multi-line caption
+
+ A long
+caption spanning
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
+
+-- fixed to one line
+
+FIX: FIGURE not at the beginning of the line - 1 fixes
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
+
+
+FIX: MOVIE not at the beginning of the line - 1 fixes
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). label{mymov} 
+
+
+FIX: !bhint not at the beginning of the line - 1 fixes
+  !bhint
+
+
+FIX: !ehint not at the beginning of the line - 1 fixes
+  !ehint
+
+
+*** The total of 6 fixes above should be incorporated in the file!
+
+
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open the solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
+found info about 9 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.eps for format latex
+downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
+output in testdoc.p.tex
++ [ 0 -ne 0 ]
++ cp testdoc.p.tex testdoc_no_solutions.p.tex
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
 running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
@@ -31863,7 +34449,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -31872,6 +34458,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + [ 0 -ne 0 ]
 + doconce remove_exercise_answers testdoc.html
+no answers/solutions to exercises found in testdoc.html
 + [ 0 -ne 0 ]
 + doconce html_colorbullets testdoc.html
 + [ 0 -ne 0 ]
@@ -31927,7 +34514,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -31984,7 +34571,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32244,8 +34831,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 79
-6.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 78
+7.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -32277,11 +34864,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 822.
+ 813.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1114
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1159
 .
 
 
@@ -32292,27 +34879,27 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1133.
+ 1177.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1134
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1178
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 16 
 
-[16] <latex_figs/hint.pdf, id=269, 89.33376pt x 89.33376pt>
+[16] <latex_figs/hint.pdf, id=263, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=270, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=264, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=271, 89.33376pt x 89.33376pt>
+<latex_figs/summary.pdf, id=265, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=272, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=273, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=266, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf> [17 <./latex_figs/hint.pdf> <./latex_figs/warning.p
+df>] <latex_figs/question.pdf, id=288, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
@@ -32320,8 +34907,8 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[17 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
-f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
+[18 <./latex_figs/summary.pdf> <./latex_figs/notice.pdf> <./latex_figs/question
+.pdf>] (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -32468,7 +35055,7 @@ nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (17 pages, ).
+Output written on testdoc.pdf (18 pages, ).
 Transcript written on testdoc.log.
 + [ 0 -ne 0 ]
 + cp testdoc.tex testdoc.tex_ptex2tex
@@ -32525,7 +35112,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32579,7 +35166,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32642,7 +35229,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32715,7 +35302,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32771,7 +35358,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32825,7 +35412,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32905,7 +35492,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -32966,7 +35553,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -33023,7 +35610,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -33115,7 +35702,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -33189,7 +35776,7 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 
-warning: open solution in exercise "Flip a Coin" with a line of
+warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
@@ -33374,7 +35961,7 @@ more verbatime stuff
 !ec
 
 Next we see if backslashes are detected: \\
-Abort!
+Abort! (add --no-abort on the command line to avoid this abortion)
 + cp failures.do.txt tmp2.do.txt
 + doconce subst failure\}\n\n!bc failure}\n\nHello\n!bc tmp2.do.txt
 failure\}\n\n!bc replaced by failure}\n\nHello\n!bc in tmp2.do.txt
@@ -33395,7 +35982,7 @@ More verbatim stuff.
 !ec
 
 Can we successfully say `__call__` and `__ad
-Abort!
+Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce replace \label label tmp2.do.txt
 replacing \label by label in tmp2.do.txt
 + doconce replace \idx idx tmp2.do.txt
@@ -33419,7 +36006,7 @@ More verbatim stuff.
 !ec
 
 Can we successfully say `__call__` and `__ad
-Abort!
+Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce subst -s __Paragraph before.+!bc !bc tmp2.do.txt
 __Paragraph before.+!bc replaced by !bc in tmp2.do.txt
 + doconce format rst tmp2
@@ -33433,7 +36020,7 @@ Insert some extra line (text) to separate the two elements.
 \begin{align}
 a &= b,  label{eq1}\\
 a &= b,  label{eq2
-Abort!
+Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce replace streamtubes width streamtubes,  width tmp2.do.txt
 replacing streamtubes width by streamtubes,  width in tmp2.do.txt
 + doconce format rst tmp2
@@ -33447,7 +36034,7 @@ Insert some extra line (text) to separate the two elements.
 \begin{align}
 a &= b,  label{eq1}\\
 a &= b,  label{eq2
-Abort!
+Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce replace # Comment before math  tmp2.do.txt
 replacing # Comment before math by  in tmp2.do.txt
 + doconce format rst tmp2
@@ -33467,7 +36054,7 @@ Normal text.
 
 
 
-Abort!
+Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce replace # Comment before list  tmp2.do.txt
 replacing # Comment before list by  in tmp2.do.txt
 + doconce format rst tmp2

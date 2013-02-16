@@ -94,10 +94,10 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     for line in filestr.splitlines():
         if line.startswith('authors = [new_author(name='):
             authors = line
-        elif line.startswith(_CODE_BLOCK):
+        elif _CODE_BLOCK in line:
             blocks[-1] = '\n'.join(blocks[-1]).strip()
             blocks.append(line)
-        elif line.startswith(_MATH_BLOCK):
+        elif _MATH_BLOCK in line:
             blocks[-1] = '\n'.join(blocks[-1]).strip()
             blocks.append(line)
         else:

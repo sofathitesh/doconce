@@ -5,7 +5,7 @@ Doconce Description
 ===================
 
 :Author: Hans Petter Langtangen
-:Date: Feb 12, 2013
+:Date: Feb 16, 2013
 
 .. lines beginning with # are doconce comment lines
 
@@ -2869,6 +2869,15 @@ Found !bt but no tex blocks extracted (BUG)
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first ``!bt`` (inserting the blanks again did not
 trigger the error message again...).
+
+Examples are typset with environment delimiters visible
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you see an Example section containing ``!bsubex``, ``!bsol``, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option ``--examples-as-exercises``. The text in the example is typeset
+as is unless this option is included.
 
 Emacs editing does not work properly because of "regexp overflow"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

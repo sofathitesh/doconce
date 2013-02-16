@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Feb 12, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Feb 16, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -1118,7 +1118,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal"><span class="pre">FIGURE:</span></tt> will be
 included in the formatted caption).</p>
 <div class="figure" id="fig-viz">
-<img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="_images/streamtubes.png"><img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" /></a>
 <p class="caption"><em>Streamtube visualization of a fluid flow</em></p>
 </div>
 <p>Combining several image files into one, in a table fashion, can be done by the
@@ -2106,7 +2106,7 @@ expressions).</p>
 <p>will then be rendered to</p>
 <div class="math">
 \[\begin{split}\pmb{x}\cdot\pmb{n}  &amp;=  0, \\
-\frac{D{\vec u}}{dt}  &amp;=  \pmb{Q} {\thinspace . }\end{split}\]</div>
+\frac{D{\vec u}{dt}}  &amp;=  \pmb{Q} {\thinspace . }\end{split}\]</div>
 <p>in the current format.</p>
 </div>
 <div class="section" id="preprocessing-steps">
@@ -2449,6 +2449,14 @@ proceeding text before some section heading.</p>
 <p>This message points to a bug, but has been resolved by removing blank lines
 between the text and the first <tt class="docutils literal"><span class="pre">!bt</span></tt> (inserting the blanks again did not
 trigger the error message again...).</p>
+</div>
+<div class="section" id="examples-are-typset-with-environment-delimiters-visible">
+<h3>Examples are typset with environment delimiters visible<a class="headerlink" href="#examples-are-typset-with-environment-delimiters-visible" title="Permalink to this headline">¶</a></h3>
+<p>If you see an Example section containing <tt class="docutils literal"><span class="pre">!bsubex</span></tt>, <tt class="docutils literal"><span class="pre">!bsol</span></tt>, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option <tt class="docutils literal"><span class="pre">--examples-as-exercises</span></tt>. The text in the example is typeset
+as is unless this option is included.</p>
 </div>
 <div class="section" id="emacs-editing-does-not-work-properly-because-of-regexp-overflow">
 <h3>Emacs editing does not work properly because of &#8220;regexp overflow&#8221;<a class="headerlink" href="#emacs-editing-does-not-work-properly-because-of-regexp-overflow" title="Permalink to this headline">¶</a></h3>
@@ -3013,6 +3021,7 @@ groundwater flow.
 <li><a class="reference internal" href="#wrong-norwegian-charcters">Wrong Norwegian charcters</a></li>
 <li><a class="reference internal" href="#too-short-underlining-of-rest-headlines">Too short underlining of reST headlines</a></li>
 <li><a class="reference internal" href="#found-bt-but-no-tex-blocks-extracted-bug">Found !bt but no tex blocks extracted (BUG)</a></li>
+<li><a class="reference internal" href="#examples-are-typset-with-environment-delimiters-visible">Examples are typset with environment delimiters visible</a></li>
 <li><a class="reference internal" href="#emacs-editing-does-not-work-properly-because-of-regexp-overflow">Emacs editing does not work properly because of &#8220;regexp overflow&#8221;</a></li>
 </ul>
 </li>
@@ -3103,7 +3112,7 @@ groundwater flow.
     </div>
     <div class="footer">
         &copy; Copyright 2013, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>
 </html>

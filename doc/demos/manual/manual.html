@@ -109,7 +109,7 @@ $$
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Feb 12, 2013</h4></center> <!-- date -->
+<center><h4>Feb 16, 2013</h4></center> <!-- date -->
 <p>
 
 <!-- lines beginning with # are doconce comment lines -->
@@ -177,7 +177,8 @@ Here are some Doconce features:
     cleaner LaTeX and HTML output.</li>
 </ul>
 
-<b>History.</b> Doconce was developed in 2006 at a time when most popular
+<b>History.</b>
+Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -186,7 +187,8 @@ fulfill the needs for a flexible source code base for books with much
 mathematics and computer code.
 
 <p>
-<b>Disclaimer.</b> Doconce is a simple tool, largely based on interpreting
+<b>Disclaimer.</b>
+Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
@@ -496,7 +498,8 @@ cd ..
 <! -- end verbatim block -->
 
 <p>
-<b>Remark.</b> Several of the packages above installed from source code
+<b>Remark.</b>
+Several of the packages above installed from source code
 are also available in Debian-based system through the
 <tt>apt-get install</tt> command. However, we recommend installation directly
 from the version control system repository as there might be important
@@ -791,7 +794,8 @@ Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two
 <!-- environment, as used here. -->
 
 <p>
-<b>Step 1.</b> Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
+<b>Step 1.</b>
+Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
 the <tt>ptex2tex</tt> program (or <tt>doconce ptex2tex</tt>):
 <!-- begin verbatim block  sys-->
 <pre>
@@ -810,7 +814,8 @@ aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
 <p>
-<b>Step 2.</b> Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
+<b>Step 2.</b>
+Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex mydoc
@@ -902,7 +907,8 @@ and <tt>\end{verbatim}</tt> used.
 
 <p>
 
-<b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
+<b>Step 2b (optional).</b>
+Edit the <tt>mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
@@ -923,7 +929,8 @@ substitutions. You are anyway encourged to make a script for
 generating PDF from the LaTeX file.
 
 <p>
-<b>Step 3.</b> Compile <tt>mydoc.tex</tt>
+<b>Step 3.</b>
+Compile <tt>mydoc.tex</tt>
 and create the PDF file:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -1045,7 +1052,8 @@ Terminal&gt; unoconv -f pdf mydoc.odt
 <! -- end verbatim block -->
 
 <p>
-<b>Remark about Mathematical Typesetting.</b> At the time of this writing, there is no easy way to go from Doconce
+<b>Remark about Mathematical Typesetting.</b>
+At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by <tt>latex</tt> as
 output and to a wide extent also supported by the <tt>sphinx</tt> output format.
@@ -1140,7 +1148,8 @@ above, here is the complete manual procedure of generating a
 Sphinx document from a file <tt>mydoc.do.txt</tt>.
 
 <p>
-<b>Step 1.</b> Translate Doconce into the Sphinx format:
+<b>Step 1.</b>
+Translate Doconce into the Sphinx format:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format sphinx mydoc
@@ -1148,7 +1157,8 @@ Terminal&gt; doconce format sphinx mydoc
 <! -- end verbatim block -->
 
 <p>
-<b>Step 2.</b> Create a Sphinx root directory
+<b>Step 2.</b>
+Create a Sphinx root directory
 either manually or by using the interactive <tt>sphinx-quickstart</tt>
 program. Here is a scripted version of the steps with the latter:
 <!-- begin verbatim block  sys-->
@@ -1187,7 +1197,8 @@ are included.
 
 <p>
 
-<b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
+<b>Step 3.</b>
+Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; cp mydoc.rst sphinx-rootdir
@@ -1201,7 +1212,8 @@ Links to local files in <tt>mydoc.rst</tt> must be modified to links to
 files in the <tt>_static</tt> directory, see comment above.
 
 <p>
-<b>Step 4.</b> Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
+<b>Step 4.</b>
+Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
 is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it becomes
 <!-- begin verbatim block -->
 <pre>
@@ -1214,7 +1226,8 @@ is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it
 (The spaces before <tt>mydoc</tt> are important!)
 
 <p>
-<b>Step 5.</b> Generate, for instance, an HTML version of the Sphinx source:
+<b>Step 5.</b>
+Generate, for instance, an HTML version of the Sphinx source:
 <!-- begin verbatim block  sys-->
 <pre>
 make clean   # remove old versions
@@ -1230,7 +1243,8 @@ and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
 and Texinfo files.
 
 <p>
-<b>Step 6.</b> View the result:
+<b>Step 6.</b>
+View the result:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; firefox _build/html/index.html
@@ -1437,7 +1451,8 @@ sections, subsections, paragraphs., figures, movies, etc.
 
 <p>
 
-<b>Heading with Title and Author(s).</b> Lines starting with <tt>TITLE:</tt>, <tt>AUTHOR:</tt>, and <tt>DATE:</tt> are optional and used
+<b>Heading with Title and Author(s).</b>
+Lines starting with <tt>TITLE:</tt>, <tt>AUTHOR:</tt>, and <tt>DATE:</tt> are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
@@ -1492,7 +1507,8 @@ The current date can be specified as <tt>today</tt>.
 
 <p>
 
-<b>Table of Contents.</b> A table of contents can be generated by the line
+<b>Table of Contents.</b>
+A table of contents can be generated by the line
 <!-- begin verbatim block -->
 <pre>
 TOC: on
@@ -1503,7 +1519,8 @@ The value <tt>off</tt> turns off the table of contents.
 
 <p>
 
-<b>Section Headings.</b> Section headings are recognized by being surrounded by equal signs (=) or
+<b>Section Headings.</b>
+Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
@@ -2466,7 +2483,8 @@ see Problem ref{...}
 works well in all formats (i.e., no double "Problem Problem" appears).
 
 <p>
-<b>Remark.</b> Examples are <em>not</em> typeset similarly to exercises unless one adds
+<b>Remark.</b>
+Examples are <em>not</em> typeset similarly to exercises unless one adds
 the command-line option <tt>--examples-as-exercises</tt>. That is, without
 this option, any heading and starting with <tt>Example:</tt> makes Doconce
 treat the forthcoming text as ordinary text without any interpretation
@@ -2882,7 +2900,8 @@ line (multi-line newcommands are too hard to parse with regular
 expressions).
 
 <p>
-<b>Example.</b> Suppose we have the following commands in
+<b>Example.</b>
+Suppose we have the following commands in
 <tt>newcommand_replace.tex</tt>:
 
 <p>
@@ -3334,7 +3353,17 @@ trigger the error message again...).
 
 <p>
 
-<h4>Emacs editing does not work properly because of "regexp overflow"  <a name="___sec71"></a></h4>
+<h4>Examples are typset with environment delimiters visible  <a name="___sec71"></a></h4>
+<p>
+If you see an Example section containing <tt>!bsubex</tt>, <tt>!bsol</tt>, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option <tt>--examples-as-exercises</tt>. The text in the example is typeset
+as is unless this option is included.
+
+<p>
+
+<h4>Emacs editing does not work properly because of "regexp overflow"  <a name="___sec72"></a></h4>
 <p>
 Sometimes the Doonce editing mode (see the section <a href="#emacs:doconce">Emacs Doconce Formatter</a>) in Emacs
 leads to an error message ending with "overflow in regexp matcher".
@@ -3346,10 +3375,10 @@ for Emacs to handle.
 
 <p>
 
-<h3>Problems with code or Tex Blocks  <a name="___sec72"></a></h3>
+<h3>Problems with code or Tex Blocks  <a name="___sec73"></a></h3>
 <p>
 
-<h4>Code or math block errors in reST  <a name="___sec73"></a></h4>
+<h4>Code or math block errors in reST  <a name="___sec74"></a></h4>
 <p>
 First note that a code or math block must come after some plain
 sentence (at least for successful output in reST), not directly
@@ -3372,7 +3401,7 @@ indicate a verbatim block of text).
 
 <p>
 
-<h4>Strange errors around code or TeX blocks in reST  <a name="___sec74"></a></h4>
+<h4>Strange errors around code or TeX blocks in reST  <a name="___sec75"></a></h4>
 <p>
 If <tt>idx</tt> commands for defining indices are placed inside paragraphs,
 and especially right before a code block, the reST translator
@@ -3383,7 +3412,7 @@ paragraphs.
 
 <p>
 
-<h4>Something is wrong with a verbatim code block  <a name="___sec75"></a></h4>
+<h4>Something is wrong with a verbatim code block  <a name="___sec76"></a></h4>
 <p>
 Check first that there is a "normal" sentence right before
 the block (this is important for reST and similar
@@ -3391,7 +3420,7 @@ the block (this is important for reST and similar
 
 <p>
 
-<h4>Code/TeX block is not shown in reST format  <a name="___sec76"></a></h4>
+<h4>Code/TeX block is not shown in reST format  <a name="___sec77"></a></h4>
 <p>
 A comment right before a code or tex block will treat the whole
 block also as a comment. It is important that there is normal
@@ -3399,7 +3428,7 @@ running text right before <tt>!bt</tt> and <tt>!bc</tt> environments.
 
 <p>
 
-<h4>Verbatim code blocks inside lists look ugly  <a name="___sec77"></a></h4>
+<h4>Verbatim code blocks inside lists look ugly  <a name="___sec78"></a></h4>
 <p>
 Read the the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
 <tt>!bc</tt> and <tt>!ec</tt> tags in column 1 of the file, and be careful with
@@ -3410,7 +3439,7 @@ avoid verbatim code blocks inside lists (it makes life easier).
 
 <p>
 
-<h4>LaTeX code blocks inside lists look ugly  <a name="___sec78"></a></h4>
+<h4>LaTeX code blocks inside lists look ugly  <a name="___sec79"></a></h4>
 <p>
 Same solution as for computer code blocks as described in the
 previous paragraph. Make sure the <tt>!bt</tt> and <tt>!et</tt> tags are in column 1
@@ -3420,10 +3449,10 @@ Using paragraphs instead of list items is a good idea also here.
 <p>
 
 
-<h3>Problems with reST/Sphinx Output  <a name="___sec79"></a></h3>
+<h3>Problems with reST/Sphinx Output  <a name="___sec80"></a></h3>
 <p>
 
-<h4>Title level inconsistent  <a name="___sec80"></a></h4>
+<h4>Title level inconsistent  <a name="___sec81"></a></h4>
 <p>
 reST does not like jumps in the levels of headings. For example, you cannot
 have a <tt>===</tt> (paragraph) heading after a <tt>=======</tt> (section) heading without
@@ -3431,14 +3460,14 @@ a <tt>=====</tt> (subsection) heading in between.
 
 <p>
 
-<h4>Lists do not appear in .rst files  <a name="___sec81"></a></h4>
+<h4>Lists do not appear in .rst files  <a name="___sec82"></a></h4>
 <p>
 Check if you have a comment right above the list. That comment
 will include the list if the list is indentend. Remove the comment.
 
 <p>
 
-<h4>Error message "Undefined substitution..." from reST  <a name="___sec82"></a></h4>
+<h4>Error message "Undefined substitution..." from reST  <a name="___sec83"></a></h4>
 <p>
 This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
@@ -3446,7 +3475,7 @@ Just ignore these error messages.
 
 <p>
 
-<h4>Warning about duplicate link names  <a name="___sec83"></a></h4>
+<h4>Warning about duplicate link names  <a name="___sec84"></a></h4>
 <p>
 Link names should be unique, but if (e.g.) "file" is used as link text
 several places in a reST file, the links still work. The warning can
@@ -3454,7 +3483,7 @@ therefore be ignorned.
 
 <p>
 
-<h4>Inconsistent headings in reST  <a name="___sec84"></a></h4>
+<h4>Inconsistent headings in reST  <a name="___sec85"></a></h4>
 <p>
 The <tt>rst2*.py</tt> and Sphinx converters abort if the headers of sections
 are not consistent, i.e., a subsection must come under a section,
@@ -3465,7 +3494,7 @@ and make sure they decrease by two every time a lower level is encountered.
 
 <p>
 
-<h4>No code environment appears before "bc ipy" blocks  <a name="___sec85"></a></h4>
+<h4>No code environment appears before "bc ipy" blocks  <a name="___sec86"></a></h4>
 <p>
 The <tt>!bc ipy</tt> directive behaves this way for <tt>sphinx</tt> output because
 interactive sessions are automatically handled. If this is not
@@ -3474,10 +3503,10 @@ verbatim environment.
 
 <p>
 
-<h3>Problems with LaTeX Output  <a name="___sec86"></a></h3>
+<h3>Problems with LaTeX Output  <a name="___sec87"></a></h3>
 <p>
 
-<h4>LaTeX does not like underscores in URLs  <a name="___sec87"></a></h4>
+<h4>LaTeX does not like underscores in URLs  <a name="___sec88"></a></h4>
 <p>
 Suppose you have a URL reference like
 
@@ -3503,7 +3532,7 @@ Verbatim text in links works fine with underscores.
 
 <p>
 
-<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec88"></a></h4>
+<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec89"></a></h4>
 <p>
 This message points to the use of the minted style for typesetting verbatim
 code. You need to include the <tt>-shell-escape</tt> command-line argument when
@@ -3522,7 +3551,7 @@ When this package is included, <tt>latex</tt> or <tt>pdflatex</tt> runs the
 
 <p>
 
-<h4>How can I use my fancy LaTeX environments?  <a name="___sec89"></a></h4>
+<h4>How can I use my fancy LaTeX environments?  <a name="___sec90"></a></h4>
 <p>
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
@@ -3641,7 +3670,7 @@ Also <tt>doconce ptex2tex</tt> has some flexibility for typesetting computer cod
 <p>
 
 
-<h4>The LaTeX file does not compile  <a name="___sec90"></a></h4>
+<h4>The LaTeX file does not compile  <a name="___sec91"></a></h4>
 <p>
 If the problem is undefined control sequence involving
 <!-- begin verbatim block -->
@@ -3655,7 +3684,7 @@ that all inline verbatim text appears on the same line.
 
 <p>
 
-<h4>Inline verbatim gives error   <a name="___sec91"></a></h4>
+<h4>Inline verbatim gives error   <a name="___sec92"></a></h4>
 <p>
 Check if the inline verbatim contains typical LaTeX commands, e.g.,
 <!-- begin verbatim block -->
@@ -3678,7 +3707,7 @@ blocks - that is safe.
 <p>
 
 
-<h4>Errors in figure captions  <a name="___sec92"></a></h4>
+<h4>Errors in figure captions  <a name="___sec93"></a></h4>
 <p>
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
@@ -3691,7 +3720,7 @@ inside figure captions) and precede underscores by backslash.)
 
 <p>
 
-<h4>Chapters are ignored  <a name="___sec93"></a></h4>
+<h4>Chapters are ignored  <a name="___sec94"></a></h4>
 <p>
 The default LaTeX style is "article". If you chapters in the Doconce file,
 you need to run <tt>ptex2tex</tt> with the option <tt>-DBOOK</tt> to set the LaTeX
@@ -3699,7 +3728,7 @@ documentstyle to "book".
 
 <p>
 
-<h4>I want to tune the top of the LaTeX file  <a name="___sec94"></a></h4>
+<h4>I want to tune the top of the LaTeX file  <a name="___sec95"></a></h4>
 <p>
 The top of the LaTeX file, as generated by Doconce, is very simple.
 If this LaTeX code is not sufficient for your needs, there are
@@ -3726,17 +3755,17 @@ two ways out of it:
    replaced by the hand-written LaTeX "top" file.</li>
 </ol>
 
-<h3>Problems with gwiki Output  <a name="___sec95"></a></h3>
+<h3>Problems with gwiki Output  <a name="___sec96"></a></h3>
 <p>
 
-<h4>Strange nested lists in gwiki  <a name="___sec96"></a></h4>
+<h4>Strange nested lists in gwiki  <a name="___sec97"></a></h4>
 <p>
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the <tt>.gwiki</tt> file directly.
 
 <p>
 
-<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec97"></a></h4>
+<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec98"></a></h4>
 <p>
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
@@ -3747,10 +3776,10 @@ further.
 
 <p>
 
-<h3>Problems with HTML Output  <a name="___sec98"></a></h3>
+<h3>Problems with HTML Output  <a name="___sec99"></a></h3>
 <p>
 
-<h4>How can I change the layout of the HTML page?  <a name="___sec99"></a></h4>
+<h4>How can I change the layout of the HTML page?  <a name="___sec100"></a></h4>
 <p>
 The standard of way of controlling the HTML format is to use an
 HTML template. The Doconce source is then the body of text (leave
@@ -3775,7 +3804,7 @@ the HTML file (preferably done automatically via <tt>doconce replace</tt> and
 
 <p>
 
-<h4>Why do figures look ugly when using HTML templates?  <a name="___sec100"></a></h4>
+<h4>Why do figures look ugly when using HTML templates?  <a name="___sec101"></a></h4>
 <p>
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
@@ -3797,7 +3826,7 @@ doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
 <p>
 
 
-<h3>Debugging  <a name="___sec101"></a></h3>
+<h3>Debugging  <a name="___sec102"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -3812,7 +3841,7 @@ format, and you need to know these steps to make use of the logfile.
 <p>
 
 
-<h2>Basic Parsing Ideas  <a name="___sec102"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec103"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -3868,7 +3897,7 @@ LaTeX, and work further on the document in this format.
 <p>
 
 
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec103"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec104"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return

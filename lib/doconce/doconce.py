@@ -8,7 +8,7 @@ except ImportError:
     OrderedDict = dict
 
 def _abort():
-    print 'Abort!'
+    print 'Abort! (add --no-abort on the command line to avoid this abortion)'
     if not option('no-abort'):
         sys.exit(1)
 
@@ -50,7 +50,7 @@ def doconce_envirs():
     return ['c', 't',                 # verbatim and tex blocks
             'ans', 'sol', 'subex',    # exercises
             'pop', 'slidecell',       # slides
-            'notes', 'hint', 'remarks', # exercises and general
+            'hint', 'remarks', # exercises and general
             'quote', 'notice',
             'summary', 'warning', 'question']
 
@@ -716,9 +716,10 @@ def exercises(filestr, format):
     newlines = []  # lines in resulting file
     # m_* variables: various match objects from regex searches
 
-    for i in range(len(lines)):
-        line = lines[i].lstrip()
-        #print line
+    for line_no in range(len(lines)):
+        line = lines[line_no].lstrip()
+        #print 'LINE %d:' % i, line #[[[
+        #import pprint; pprint.pprint(exer) #[[[
 
         m_heading = exer_heading_pattern.search(line)
         if m_heading:
@@ -751,7 +752,6 @@ def exercises(filestr, format):
             inside_answer = False
             inside_solution = False
             inside_closing_remarks = False
-
         elif inside_exer:
             instruction_line = True
 
@@ -786,8 +786,8 @@ def exercises(filestr, format):
                 subex['text'] = '\n'.join(subex['text']).strip()
                 subex['answer'] = '\n'.join(subex['answer']).strip()
                 subex['solution'] = '\n'.join(subex['solution']).strip()
-                for i in range(len(subex['hints'])):
-                    subex['hints'][i] = '\n'.join(subex['hints'][i]).strip()
+                for _i in range(len(subex['hints'])):
+                    subex['hints'][_i] = '\n'.join(subex['hints'][_i]).strip()
 
                 exer['subex'].append(subex)
 
@@ -836,37 +836,37 @@ def exercises(filestr, format):
             # the solution is published (as for the answer/solution).
             if inside_subex and not instruction_line:
                 if inside_answer:
-                    subex['answer'].append(lines[i])
+                    subex['answer'].append(lines[line_no])
                 elif inside_solution:
-                    subex['solution'].append(lines[i])
+                    subex['solution'].append(lines[line_no])
                 elif inside_hint:
-                    subex['hints'][-1].append(lines[i])
+                    subex['hints'][-1].append(lines[line_no])
                 else:
                     # ordinary text line
-                    subex['text'].append(lines[i])
+                    subex['text'].append(lines[line_no])
             elif not inside_subex and not instruction_line:
                 if inside_answer:
-                    exer['answer'].append(lines[i])
+                    exer['answer'].append(lines[line_no])
                 elif inside_solution:
-                    exer['solution'].append(lines[i])
+                    exer['solution'].append(lines[line_no])
                 elif inside_hint:
-                    exer['hints'][-1].append(lines[i])
+                    exer['hints'][-1].append(lines[line_no])
                 elif inside_closing_remarks:
-                    exer['closing_remarks'].append(lines[i])
+                    exer['closing_remarks'].append(lines[line_no])
                 else:
                     # ordinary text line
-                    exer['text'].append(lines[i])
+                    exer['text'].append(lines[line_no])
 
         else:  # outside exercise
-            newlines.append(lines[i])
+            newlines.append(lines[line_no])
 
         # End of exercise? Either 1) new (sub)section with at least ===,
         # 2) !split, or 3) end of file
-        if i == len(lines) - 1:  # last line?
+        if line_no == len(lines) - 1:  # last line?
             exer_end = True
-        elif inside_exer and lines[i+1].startswith('!split'):
+        elif inside_exer and lines[line_no+1].startswith('!split'):
             exer_end = True
-        elif inside_exer and lines[i+1].startswith('==='):
+        elif inside_exer and lines[line_no+1].startswith('==='):
             exer_end = True
 
         if exer and exer_end:
@@ -874,8 +874,8 @@ def exercises(filestr, format):
             exer['answer'] = '\n'.join(exer['answer']).strip()
             exer['solution'] = '\n'.join(exer['solution']).strip()
             exer['closing_remarks'] = '\n'.join(exer['closing_remarks']).strip()
-            for i in range(len(exer['hints'])):
-                exer['hints'][i] = '\n'.join(exer['hints'][i]).strip()
+            for i_ in range(len(exer['hints'])):
+                exer['hints'][i_] = '\n'.join(exer['hints'][i_]).strip()
 
             debugpr(pprint.pformat(exer))
             formatted_exercise = EXERCISE[format](exer)
@@ -1060,7 +1060,7 @@ def typeset_envirs(filestr, format):
 
     for envir in envirs:
         if format in ENVIRS and envir in ENVIRS[format]:
-            def subst(m):  # m: match object from re.sub
+            def subst(m):  # m: match object from re.sub, group(1) is the text
                 return ENVIRS[format][envir](m.group(1), format)
         else:
             # subst functions for default handling
@@ -1071,20 +1071,19 @@ def typeset_envirs(filestr, format):
                            'remarks']:
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
-                    return '\n\n__%s.__\n%s\n\n' % (envir[0].upper() + envir[1:],
-                                                    m.group(1))
-            elif envir == 'notes':
-                # Remove all text in notes
-                def subst(m):
-                    return ''
+                    return '\n\n__%s.__\n%s\n\n' % \
+                           (envir[0].upper() + envir[1:], m.group(1))
 
         pattern = r'^!b%s\s*(.+?)\s*^!e%s\s*' % (envir, envir)
-        cpattern = re.compile(pattern, re.DOTALL | re.MULTILINE)
-        filestr = cpattern.sub(subst, filestr)
+        filestr = re.sub(pattern, subst, filestr,
+                         flags=re.DOTALL | re.MULTILINE)
     return filestr
 
 
 def check_URLs(filestr, format):
+    """Check if URLs exist and work."""
+    # Could use webchecker probably, or just urllib.urlopen
+    # on all links of types below, extract with re.findall
     pass #[[[
 """
     'linkURL2':  # "some link": "https://bla-bla"
@@ -1952,9 +1951,9 @@ def doconce2format(filestr, format):
 
     debugpr('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
 
-    # Next step: deal with various commands to be put as comments
-    # (they must be commands, as comments they may appear inside lists)
-    commands = ['!split', '!bpop', '!epop', '!bslidecell', '!eslidecell']
+    # Next step: deal with various commands and envirs to be put as comments
+    commands = ['!split', '!bpop', '!epop', '!bslidecell', '!eslidecell',
+                '!bnotes', '!enotes',]
     for command in commands:
         comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
         if isinstance(comment_action, str):
@@ -1990,6 +1989,25 @@ def doconce2format(filestr, format):
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
 
+    # Next step: check if there are unprocessed environments and give
+    # warning (must be checked before next step since !bwarning etc
+    # may appear inside code blocks)
+    for envir in doconce_envirs():
+        pattern = r'^(![be]%s)\s' % envir
+        m = re.search(pattern, filestr, flags=re.MULTILINE)
+        if m:
+            print '*** error: found environment\n%s' % m.group(1)
+            print """
+Causes:
+ * %s inside code block (replace ! by |)'
+ * forgotten --examples-as-exercises (if the environment is inside an example)
+ * wrong match of %s and the corresponding begin/end clause
+""" % (m.group(1), m.group(1))
+            print 'Here is the context:\n----------------------------------'
+            print filestr[m.start()-50:m.end()+50]
+            print '----------------------------------'
+            _abort()
+
     # Next step: insert verbatim and math code blocks again and
     # substitute code and tex environments:
     # (this is the place to do package-specific fixes too!)
@@ -1999,6 +2017,39 @@ def doconce2format(filestr, format):
 
     debugpr('%s\n**** The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:\n\n%s\n\n' % \
           ('*'*80, filestr))
+
+    # Next step: remove exercise solution/answers, notes, etc
+    # (Note: must be done after code and tex blocks are inserted!
+    # Otherwise there is a mismatch between all original blocks
+    # and those present after solutions, answers, etc. are removed)
+    envir2option = dict(sol='solutions', ans='answers', hint='hints')
+    # Recall that the comment syntax is now dependent on the format
+    comment_pattern = INLINE_TAGS_SUBST[format].get('comment', '# %s')
+    for envir in 'sol', 'ans', 'hint':
+        option_name = 'without-' + envir2option[envir]
+        if option(option_name):
+            pattern = comment_pattern % envir_delimiter_lines[envir][0] + \
+                      '\n.+?' + comment_pattern % \
+                      envir_delimiter_lines[envir][1] + '\n'
+            replacement = comment_pattern % ('removed !b%s ... !e%s environment\n' % (envir, envir)) + comment_pattern % ('(because of the command-line option --%s)\n' % option_name)
+            filestr = re.sub(pattern, replacement, filestr, flags=re.DOTALL)
+
+
+    debugpr('%s\n**** The file after removal of solutions, answers, notes, hints, etc.:\n\n%s\n\n' % \
+          ('*'*80, filestr))
+
+    """
+    # Not necessary after blocks have numbers
+    from common import _CODE_BLOCK, _MATH_BLOCK
+    remaining_code = filestr.count(_CODE_BLOCK)
+    remaining_math = filestr.count(_MATH_BLOCK)
+    if remaining_code > 0:
+        print '*** BUG: %d remaining uninserted code blocks!' % remaining_code
+        _abort()
+    if remaining_math > 0:
+        print '*** BUG: %d remaining uninserted tex blocks!' % remaining_math
+        _abort()
+    """
 
     # Final step: replace environments starting with | (instead of !)
     # by ! (for illustration of doconce syntax inside !bc/!ec directives).
