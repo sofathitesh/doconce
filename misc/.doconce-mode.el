@@ -110,7 +110,7 @@ text...
 
 (make-face 'do-figmov-face)
 ;;(set-face-attribute 'do-figmov-face nil :background "gray")
-(set-face-attribute 'do-figmov-face nil :slant 'italic)
+;;(set-face-attribute 'do-figmov-face nil :slant 'italic)
 (set-face-attribute 'do-figmov-face nil :underline t)
 
 (make-face 'do-heading-face)
