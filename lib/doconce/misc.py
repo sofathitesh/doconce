@@ -56,6 +56,8 @@ environments, otherwise simpler (lyx_*.png) files are used."""),
      'Leave out solution environments from exercises.'),
     ('--without-answers',
      'Leave out answer environments from exercises.'),
+    ('--without-hints',
+     'Leave out hints from exercises.'),
     ('--wordpress',
      'Make HTML output for wordpress pages.'),
     ]

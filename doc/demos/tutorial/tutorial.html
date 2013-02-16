@@ -93,7 +93,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Feb 12, 2013</h4></center> <!-- date -->
+<center><h4>Feb 16, 2013</h4></center> <!-- date -->
 <p>
 
 
@@ -664,7 +664,8 @@ Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two
 <!-- environment, as used here. -->
 
 <p>
-<b>Step 1.</b> Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
+<b>Step 1.</b>
+Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
 the <tt>ptex2tex</tt> program (or <tt>doconce ptex2tex</tt>):
 <!-- begin verbatim block  sys-->
 <pre>
@@ -683,7 +684,8 @@ aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
 <p>
-<b>Step 2.</b> Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
+<b>Step 2.</b>
+Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex mydoc
@@ -775,7 +777,8 @@ and <tt>\end{verbatim}</tt> used.
 
 <p>
 
-<b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
+<b>Step 2b (optional).</b>
+Edit the <tt>mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
@@ -796,7 +799,8 @@ substitutions. You are anyway encourged to make a script for
 generating PDF from the LaTeX file.
 
 <p>
-<b>Step 3.</b> Compile <tt>mydoc.tex</tt>
+<b>Step 3.</b>
+Compile <tt>mydoc.tex</tt>
 and create the PDF file:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -918,7 +922,8 @@ Terminal&gt; unoconv -f pdf mydoc.odt
 <! -- end verbatim block -->
 
 <p>
-<b>Remark about Mathematical Typesetting.</b> At the time of this writing, there is no easy way to go from Doconce
+<b>Remark about Mathematical Typesetting.</b>
+At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by <tt>latex</tt> as
 output and to a wide extent also supported by the <tt>sphinx</tt> output format.
@@ -1013,7 +1018,8 @@ above, here is the complete manual procedure of generating a
 Sphinx document from a file <tt>mydoc.do.txt</tt>.
 
 <p>
-<b>Step 1.</b> Translate Doconce into the Sphinx format:
+<b>Step 1.</b>
+Translate Doconce into the Sphinx format:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format sphinx mydoc
@@ -1021,7 +1027,8 @@ Terminal&gt; doconce format sphinx mydoc
 <! -- end verbatim block -->
 
 <p>
-<b>Step 2.</b> Create a Sphinx root directory
+<b>Step 2.</b>
+Create a Sphinx root directory
 either manually or by using the interactive <tt>sphinx-quickstart</tt>
 program. Here is a scripted version of the steps with the latter:
 <!-- begin verbatim block  sys-->
@@ -1060,7 +1067,8 @@ are included.
 
 <p>
 
-<b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
+<b>Step 3.</b>
+Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; cp mydoc.rst sphinx-rootdir
@@ -1074,7 +1082,8 @@ Links to local files in <tt>mydoc.rst</tt> must be modified to links to
 files in the <tt>_static</tt> directory, see comment above.
 
 <p>
-<b>Step 4.</b> Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
+<b>Step 4.</b>
+Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
 is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it becomes
 <!-- begin verbatim block -->
 <pre>
@@ -1087,7 +1096,8 @@ is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it
 (The spaces before <tt>mydoc</tt> are important!)
 
 <p>
-<b>Step 5.</b> Generate, for instance, an HTML version of the Sphinx source:
+<b>Step 5.</b>
+Generate, for instance, an HTML version of the Sphinx source:
 <!-- begin verbatim block  sys-->
 <pre>
 make clean   # remove old versions
@@ -1103,7 +1113,8 @@ and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
 and Texinfo files.
 
 <p>
-<b>Step 6.</b> View the result:
+<b>Step 6.</b>
+View the result:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; firefox _build/html/index.html
@@ -1509,7 +1520,8 @@ cd ..
 <! -- end verbatim block -->
 
 <p>
-<b>Remark.</b> Several of the packages above installed from source code
+<b>Remark.</b>
+Several of the packages above installed from source code
 are also available in Debian-based system through the
 <tt>apt-get install</tt> command. However, we recommend installation directly
 from the version control system repository as there might be important

@@ -1,7 +1,9 @@
 #!/bin/sh -x
 rm -rf html_images reveal.js downloaded_figures
 
-doconce format html testdoc --wordpress
+# Note:  --examples-as-exercises is required to avoid abortion
+
+doconce format html testdoc --wordpress  --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_wordpress.html
@@ -10,6 +12,11 @@ doconce format html testdoc --without-answers --without-solutions --examples-as-
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_no_solutions.html
+
+doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi

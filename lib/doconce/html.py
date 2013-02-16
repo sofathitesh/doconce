@@ -702,16 +702,6 @@ def html_quote(block, format):
 </blockquote>
 """ % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
-def html_notes(block, format):
-    # Set notes in comments
-    return r"""
-
-<!-- Notes:
-%s
--->
-
-""" % block
-
 
 for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     _Admon = _admon[0].upper() + _admon[1:]  # upper first char
@@ -777,7 +767,7 @@ def define(FILENAME_EXTENSION,
         'section':       r'\n<h2>\g<subst></h2>',
         'subsection':    r'\n<h3>\g<subst></h3>',
         'subsubsection': r'\n<h4>\g<subst></h4>',
-        'paragraph':     r'<b>\g<subst></b> ',
+        'paragraph':     r'<b>\g<subst></b>\n',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
         'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <! -- document title -->\n',
         'date':          r'<p>\n<center><h4>\g<subst></h4></center> <!-- date -->',
@@ -800,7 +790,6 @@ def define(FILENAME_EXTENSION,
         'notice':        html_notice,
         'hint':          html_hint,
         'summary':       html_summary,
-        'notes':         html_notes,
     }
 
     CODE['html'] = html_code

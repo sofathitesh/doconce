@@ -3,7 +3,8 @@
 import os, commands, re, sys, glob
 from common import plain_exercise, table_analysis, \
      _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
-     python_online_tutor
+     python_online_tutor, envir_delimiter_lines, safe_join, \
+     insert_code_and_tex
 from misc import option
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
@@ -42,43 +43,44 @@ def latex_code(filestr, code_blocks, code_block_types,
                                tex_blocks[i])
 
     lines = filestr.splitlines()
-    for code in code_blocks:
-        for i in range(len(lines)):
-            if _CODE_BLOCK in lines[i]:
-                words = lines[i].split()
-                if len(words) == 2:
-                    if words[1] == 'pyoptpro':
-                        envir = 'pypro'
-                    else:
-                        envir = words[1]
-                else:
-                    envir = 'ccq'
-                lines[i] = '\\' + 'b' + envir + '\n' + code + '\\' + 'e' + envir
-                if len(words) == 2 and words[1] == 'pyoptpro' and \
+    # Add Python Online Tutor URL before code blocks with pyoptpro code
+    for i in range(len(lines)):
+        if _CODE_BLOCK in lines[i]:
+            words = lines[i].split()
+            n = int(words[0])
+            if len(words) >= 3 and words[2] == 'pyoptpro' and \
                        not option('latex-printed'):
-                    # Insert an Online Python Tutorial link and add to lines[i]
-                    lines[i] += '\n(\\href{{%s}}{Visualize execution}) ' % \
-                                python_online_tutor(envir, return_tp='url')
+                # Insert an Online Python Tutorial link and add to lines[i]
+                post = '\n\\noindent\n(\\href{{%s}}{Visualize execution}) ' % \
+                       python_online_tutor(code_blocks[n], return_tp='url')
+                lines[i] = lines[i].replace(' pyoptpro', ' pypro') + post + '\n'
 
-                    pass
-                break
+    filestr = safe_join(lines, '\n')
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
-    for tex in tex_blocks:
-        # Also here problems with this: (\nabla becomes \n (newline) and abla)
-        # which means that
-        # filestr = re.sub(_MATH_BLOCK, '!bt\n%s!et' % tex, filestr, 1)
-        # does not work properly. Instead, we use str.replace
+    lines = filestr.splitlines()
+    current_code_envir = None
+    for i in range(len(lines)):
+        if lines[i].startswith('!bc'):
+            words = lines[i].split()
+            if len(words) == 1:
+                current_code_envir = 'ccq'
+            else:
+                if words[1] == 'pyoptpro':
+                    current_code_envir = 'pypro'
+                else:
+                    current_code_envir = words[1]
+            if current_code_envir is None:
+                # There should have been checks for this in doconce.py
+                print '*** errror: mismatch between !bc and !ec, line', i
+                sys.exit(1)
+            lines[i] = '\\b' + current_code_envir
+        if lines[i].startswith('!ec'):
+            lines[i] = '\\e' + current_code_envir
+            current_code_envir = None
+    filestr = safe_join(lines, '\n')
 
-        for i in range(len(lines)):
-            if _MATH_BLOCK in lines[i]:
-                lines[i] = lines[i].replace(_MATH_BLOCK,
-                                            '!bt\n%s!et' % tex)
-                break
-    filestr = '\n'.join(lines)
-
-    c = re.compile(r'^!bt\n', re.MULTILINE)
-    #filestr = c.sub('\n', filestr)  # why an extra \n?
-    filestr = c.sub('', filestr)
+    filestr = re.sub(r'^!bt\n', '', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'!et\n', '', filestr)
 
     # Check for misspellings
@@ -94,6 +96,19 @@ def latex_code(filestr, code_blocks, code_block_types,
                      '\n\n\\\\appendix\n\n' + r'\\\g<1>{', filestr,  # the first
                      count=1)
     filestr = re.sub(appendix_pattern, r'\\\g<1>{', filestr) # all others
+
+    # Make sure exercises are surrounded by \begin{exercise} and
+    # \end{exercise} with some exercise counter
+    #comment_pattern = INLINE_TAGS_SUBST[format]['comment'] # only in doconce.py
+    comment_pattern = '%% %s'
+    pattern = comment_pattern % envir_delimiter_lines['exercise'][0] + '\n'
+    replacement = pattern + r"""\begin{exercise}
+\refstepcounter{exerno}
+"""
+    filestr = filestr.replace(pattern, replacement)
+    pattern = comment_pattern % envir_delimiter_lines['exercise'][1] + '\n'
+    replacement = r'\end{exercise}' + '\n' + pattern
+    filestr = filestr.replace(pattern, replacement)
 
     if include_numbering_of_exercises:
         # Remove section numbers of exercise sections
@@ -641,15 +656,6 @@ def latex_index_bib(filestr, index, citations, bibfile):
 
 
 def latex_exercise(exer):
-    begin_exercise = '# --- begin exercise\n' + r'\begin{exercise}' + '\n' + r'\refstepcounter{exerno}' + '\n'
-    end_exercise = '\n' + r'\end{exercise}' + '\n# --- end of exercise'
-    begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
-    end_solution = '\n# --- end solution of exercise'
-    begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
-    end_answer = '\n# --- end short answer in exercise'
-    begin_hint = '__Hint.__ '
-    end_hint = ''
-
     # if include_numbering_of_exercises, we could generate a toc for
     # the exercises, based in the exer list of dicts, and store this
     # in a file for later use in latex_code, for instance.
@@ -657,14 +663,9 @@ def latex_exercise(exer):
     # that reads the .filename.exerinfo file.
 
     return doconce_exercise_output(
-        exer,
-        begin_exercise, end_exercise,
-        begin_answer, end_answer,
-        begin_solution, end_solution,
-        begin_hint, end_hint,
-        include_numbering=include_numbering_of_exercises,
-        include_type=include_numbering_of_exercises)
-
+           exer,
+           include_numbering=include_numbering_of_exercises,
+           include_type=include_numbering_of_exercises)
 
 def latex_exercise_old(exer):
     # NOTE: this is the old exercise handler!!
@@ -695,12 +696,6 @@ def latex_quote(block, format):
 %s
 \end{quote}
 """ % (indent_lines(block, format, ' '*4, trailing_newline=False))
-
-def latex_notes(block, format):
-    # Set notes in comments
-    return r"""
-%s
-""" % (indent_lines(block, format, '% ', trailing_newline=False))
 
 latexfigdir = 'latex_figs'
 
@@ -869,7 +864,6 @@ def define(FILENAME_EXTENSION,
         'notice':        latex_notice,
         'hint':          latex_hint,
         'summary':       latex_summary,
-        'notes':         latex_notes,
        }
 
     ending = '\n'

@@ -78,7 +78,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Feb 12, 2013
+Feb 16, 2013
 
 \end{DUfieldlist}
 
@@ -3742,6 +3742,21 @@ proceeding text before some section heading.
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first \texttt{!bt} (inserting the blanks again did not
 trigger the error message again...).
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Examples are typset with environment delimiters visible%
+  \addcontentsline{toc}{subsubsection}{Examples are typset with environment delimiters visible}%
+  \label{examples-are-typset-with-environment-delimiters-visible}%
+}
+
+If you see an Example section containing \texttt{!bsubex}, \texttt{!bsol}, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option \texttt{-{}-examples-as-exercises}. The text in the example is typeset
+as is unless this option is included.
 
 
 %___________________________________________________________________________

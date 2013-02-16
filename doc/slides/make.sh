@@ -7,13 +7,16 @@ name=scientific_writing
 # blocks we need a few fixes
 
 doconce format html $name --pygments-html-style=perldoc --html-solarized
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 mv -f $name.html ${name}_solarized.html
 doconce format html $name --pygments-html-style=default
 mv -f $name.html ${name}_plain.html
 
 doconce format html $name --pygments-html-style=perldoc
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp $name.html ${name}_deck.html
 doconce slides_html ${name}_deck deck --html-slide-theme=sandstone.default
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # Fix selected backslashes inside verbatim envirs that doconce has added
 # (only a problem when we want to show full doconce code with
 # labels in !bc-!ec envirs).
@@ -37,18 +40,23 @@ pdflatex -shell-escape $name
 mv -f $name.pdf ${name}_minted.pdf
 
 doconce format pdflatex $name
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce ptex2tex $name envir=ans:nt -DBOOK
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pdflatex $name
 mv -f $name.pdf ${name}_anslistings.pdf
 
 # sphinx doesn't handle math inside code well, we drop it since
 # other formats demonstrate doconce writing this way
 doconce format sphinx $name
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce sphinx_dir author="H. P. Langtangen" theme=pyramid $name
 python automake_sphinx.py
 
 doconce format pandoc $name  # Markdown (pandoc extended)
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce format gwiki  $name  # Googlecode wiki
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # These don't like slides with code after heading:
 #doconce format rst    $name  # reStructuredText
@@ -63,13 +71,18 @@ cp sw_index.html ../demos/slides/index.html
 
 # ------------------- short demo talk ---------------------
 
+doconce format html demo # test
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 # Make all the styles for the short demo talk
 doconce slides_html demo all  # generates tmp_slides_html_all.sh
 pygmentize -l text -f html -o demo_doconce.html demo.do.txt
 sh -x tmp_slides_html_all.sh
 
 doconce format pdflatex demo
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce ptex2tex demo -DPALATINO envir=minted
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pdflatex -shell-escape demo
 
 cp -r demo.pdf demo_*.html reveal.js deck.js csss fig ../demos/slides/demo/
