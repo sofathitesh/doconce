@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Feb 16, 2013
+DATE: Feb 17, 2013
 **WARNING: This quick reference is very incomplete!**
 
 Supported Formats
