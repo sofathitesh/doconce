@@ -613,6 +613,18 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 !ec
 !esol
 
+=== Remarks ===
+
+Remarks with such a subsubsection heading would previously mark
+the beginning of a new exercise and cause trouble. Maybe a list
+
+ o Mark 1.
+ o Mark 2.
+
+===== Not an exercise =====
+
+Should be possible to stick a normal section in the middle of many
+exercises.
 
 ===== Project: Compute a Probability =====
 
