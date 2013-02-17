@@ -1885,6 +1885,12 @@ def ptex2tex():
         else:
             filename = arg
 
+    try:
+        filename
+    except:
+        print 'no specification of the .p.tex file'
+        sys.exit(1)
+
     # Find which environments that will be defined and which
     # latex packages that must be included.
 
