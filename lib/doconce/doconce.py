@@ -868,7 +868,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             exer_end = True
         elif inside_exer and lines[line_no+1].startswith('!split'):
             exer_end = True
-        elif inside_exer and lines[line_no+1].startswith('==='):
+        elif inside_exer and lines[line_no+1].startswith('====='):
             exer_end = True
 
         if exer and exer_end:
