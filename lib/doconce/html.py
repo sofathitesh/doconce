@@ -5,6 +5,46 @@ from misc import option
 
 # Style sheets
 
+admon_styles = """\
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+    .alert {
+      padding:8px 35px 8px 14px; margin-bottom:18px;
+      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
+      background-color:#fcf8e3; border:1px solid #fbeed5;
+      -webkit-border-radius:4px; -moz-border-radius:4px;
+       border-radius:4px}
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
+       color: #555;
+       background-color: whiteSmoke;
+       background-position: 10px 10px;
+       background-repeat: no-repeat;
+       padding-left: 52px;
+       font-size: 0.8em;
+      }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+"""
+
 css_solarized = """\
     body {
       margin:5;
@@ -44,16 +84,8 @@ css_solarized = """\
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
-    .summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-"""
+%s
+""" % admon_styles
 
 css_blueish = """\
     /* Color definitions:  http://www.december.com/html/spec/color0.html
@@ -75,22 +107,41 @@ css_blueish = """\
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+%s
+""" % admon_styles
 
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
+css_blueish2 = """\
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
     }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-"""
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+   pre {
+    background-color: #fefbf3;
+    vpadding: 9px;
+    border: 1px solid rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    }
+    pre, code { font-size: 90%; line-height: 1.6em; }
+    pre > code { background-color: #fefbf3; border: none }
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+%s
+""" % admon_styles
+
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
 
@@ -338,6 +389,26 @@ MathJax.Hub.Config({
     filestr = re.sub(pattern, '<p>\n', filestr)
     filestr = re.sub(pattern, '<p>\n', filestr)
 
+    # Add info about the toc (for construction of navigation panels etc.).
+    # Just dump the tocinfo dict so that we can read it and take eval
+    # later
+    import pprint
+    global tocinfo
+    toc = '\n<!-- tocinfo\n%s\nend of tocinfo -->\n\n' % pprint.pformat(tocinfo)
+
+    if '<body>' in filestr:
+        # toc before the <body> tag
+        filestr = filestr.replace('<body>\n', tocinfo + '<body>\n')
+    else:
+        # tocinfo to the beginning
+        filestr = tocinfo + filestr
+
+    # Wrap filestr in vagrant template here? Must prevent header from
+    # being added, and another problem: html_split needs to wrap
+    # each page in that template. It's the more general problem that
+    # a template is applied to the whole doc and to parts (last part
+    # will get the footer twice...)
+
     # Add header from external template
     header = '<title>' in filestr  # will the html file get a header?
     template = option('html-template=', default='')
@@ -369,16 +440,26 @@ MathJax.Hub.Config({
         f = open(template, 'r'); template = f.read(); f.close()
         # template can only have slots for title, date, main
         template = latin2html(template) # code non-ascii chars
-        # replate % by %% in template, except for %(title), %(date), %(main)
-        template = template.replace('%(title)s', '@@@TITLE@@@')
-        template = template.replace('%(date)s', '@@@DATE@@@')
-        template = template.replace('%(main)s', '@@@MAIN@@@')
+        # replate % by %% in template, except for %(title), %(date), %(main),
+        # etc which are the variables we can plug into the template.
+        # The keywords list holds the names of these variables (can define
+        # more than we actually use).
+        keywords = ['title', 'date', 'main',
+                    'previous_page_title', 'previous_page_url',
+                    'next_page_title', 'next_page_url',
+                    ]
+        for keyword in keywords:
+            from_ = '%%(%s)s' % keyword
+            to_ = '@@@%s@@@' % keyword.upper()
+            template = template.replace(from_, to_)
         template = template.replace('%', '%%')
-        template = template.replace('@@@TITLE@@@', '%(title)s')
-        template = template.replace('@@@DATE@@@', '%(date)s')
-        template = template.replace('@@@MAIN@@@', '%(main)s')
+        for keyword in keywords:
+            to_ = '%%(%s)s' % keyword
+            from_ = '@@@%s@@@' % keyword.upper()
+            template = template.replace(from_, to_)
 
-        variables = {'title': title, 'date': date, 'main': filestr}
+        variables = {keyword: '' for keyword in keywords} # init
+        variables.update({'title': title, 'date': date, 'main': filestr})
         filestr = template % variables
 
     if MATH_TYPESETTING == 'WordPress':
@@ -676,21 +757,28 @@ def html_index_bib(filestr, index, citations, bibfile):
 
     return filestr
 
+# Module variable holding info about section titles etc.
+# To be used in navitation panels.
+global tocinfo
 
 def html_toc(sections):
     # Find minimum section level
-    tp_min = 4
-    for title, tp, label in sections:
-        if tp < tp_min:
-            tp_min = tp
+    level_min = 4
+    for title, level, label in sections:
+        if level < level_min:
+            level_min = level
+
+    # Store for later use in navgation panels etc.
+    global tocinfo
+    tocinfo = {'sections': sections, 'highest level': level_min}
 
     #hr = '<hr>'
     hr = ''
     s = '<h2>Table of contents</h2>\n\n%s\n' % hr
     for i in range(len(sections)):
-        title, tp, label = sections[i]
+        title, level, label = sections[i]
         href = label if label is not None else '___sec%d' % i
-        s += '&nbsp; '*(3*(tp-tp_min)) + \
+        s += '&nbsp; '*(3*(level - level_min)) + \
              '<a href="#%s">%s</a>' % (href, title ) + '<br>\n'
     s += '%s\n<p>\n' % hr
     return s
@@ -714,16 +802,17 @@ def html_%s(block, format):
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
 <th align="left" valign="middle"><b>%s</b></th>
 </tr>
-<tr>
-<td>&nbsp;</td>
-<td align="left" valign="top">
-<p>%%s</p>
-</td>
-</tr>
+<tr> <td>&nbsp;</td> <td align="left" valign="top"> <p>%%s</p> </td> </tr>
 </table>
 """ %% block
     janko = '<div class="%s">%%s</div>' %% block
-    return janko if option('html-color-admon') else lyx
+    vagrant = '<div class="alert alert-block alert-%s">%%s</div>' %% block
+    if option('html-color-admon'):
+        return janko
+    elif option('html-vagrant'):
+        return vagrant
+    else:
+        return lyx
 ''' % (_admon, _admon, _Admon, _Admon, _admon)
     exec(_text)
 
@@ -754,7 +843,7 @@ def define(FILENAME_EXTENSION,
         'math2':         r'\g<begin>\( \g<latexmath> \)\g<end>',
         'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
         'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-        'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
+        'verbatim':      r'\g<begin><code>\g<subst></code>\g<end>',
         'citation':      '',  # no citations
         #'linkURL':       r'\g<begin><a href="\g<url>">\g<link></a>\g<end>',
         'linkURL2':      r'<a href="\g<url>">\g<link></a>',
@@ -839,12 +928,12 @@ def define(FILENAME_EXTENSION,
 """ % css
     css_filename = option('css=')
     if css_filename:
-        if not os.path.isfile(filename):
+        if not os.path.isfile(css_filename):
             # Put the style in the file when the file does not exist
-            f = open(filename, 'w')
+            f = open(css_filename, 'w')
             f.write(css)
             f.close()
-        style = '<link rel="stylesheet" href="%s">' % filename
+        style = '<link rel="stylesheet" href="%s">' % css_filename
 
 
     # Document start
