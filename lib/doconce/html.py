@@ -390,14 +390,16 @@ MathJax.Hub.Config({
     # later
     import pprint
     global tocinfo
-    toc = '\n<!-- tocinfo\n%s\nend of tocinfo -->\n\n' % pprint.pformat(tocinfo)
+    if tocinfo is not None and isinstance(tocinfo, dict):
+        toc = '\n<!-- tocinfo\n%s\nend of tocinfo -->\n\n' % \
+              pprint.pformat(tocinfo)
 
-    if '<body>' in filestr:
-        # toc before the <body> tag
-        filestr = filestr.replace('<body>\n', tocinfo + '<body>\n')
-    else:
-        # tocinfo to the beginning
-        filestr = tocinfo + filestr
+        if '<body>' in filestr:
+            # toc before the <body> tag
+            filestr = filestr.replace('<body>\n', toc + '<body>\n')
+        else:
+            # tocinfo to the beginning
+            filestr = tocinfo + filestr
 
     # Wrap filestr in vagrant template here? Must prevent header from
     # being added, and another problem: html_split needs to wrap
@@ -756,6 +758,7 @@ def html_index_bib(filestr, index, citations, bibfile):
 # Module variable holding info about section titles etc.
 # To be used in navitation panels.
 global tocinfo
+tocinfo = None
 
 def html_toc(sections):
     # Find minimum section level
@@ -798,14 +801,16 @@ def html_%s(block, format):
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
 <th align="left" valign="middle"><b>%s</b></th>
 </tr>
-<tr> <td>&nbsp;</td> <td align="left" valign="top"> <p>%%s</p> </td> </tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+%%s
+</p></td></tr>
 </table>
 """ %% block
     janko = '<div class="%s">%%s</div>' %% block
     vagrant = '<div class="alert alert-block alert-%s">%%s</div>' %% block
     if option('html-color-admon'):
         return janko
-    elif option('html-vagrant'):
+    elif option('html-style=') == 'vagrant':
         return vagrant
     else:
         return lyx
@@ -912,7 +917,7 @@ def define(FILENAME_EXTENSION,
     TOC['html'] = html_toc
 
     # Embedded style sheets
-    if option('html-solarized'):
+    if option('html-style=') == 'solarized':
         css = css_solarized
     else:
         css = css_blueish # default
@@ -924,12 +929,19 @@ def define(FILENAME_EXTENSION,
 """ % css
     css_filename = option('css=')
     if css_filename:
-        if not os.path.isfile(css_filename):
-            # Put the style in the file when the file does not exist
-            f = open(css_filename, 'w')
-            f.write(css)
-            f.close()
-        style = '<link rel="stylesheet" href="%s">' % css_filename
+        style = ''
+        if ',' in css_filename:
+            css_filenames = css_filename.split(',')
+        else:
+            css_filenames = [css_filename]
+        for css_filename in css_filenames:
+            if css_filename:
+                if not os.path.isfile(css_filename):
+                    # Put the style in the file when the file does not exist
+                    f = open(css_filename, 'w')
+                    f.write(css)
+                    f.close()
+                style += '<link rel="stylesheet" href="%s">\n' % css_filename
 
 
     # Document start

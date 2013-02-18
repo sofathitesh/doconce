@@ -956,8 +956,8 @@ EOF
     system('unzip sphinx_themes.zip > /dev/null')
     os.remove('sphinx_themes.zip')
     os.rename('sphinx_themes', '_themes')
-    themes = [name[8:] for name in \
-              sorted(glob.glob(os.path.join('_themes', '*')))] + ['default']
+    files = sorted(glob.glob(os.path.join('_themes', '*')))
+    themes = [name[8:] for name in files if os.path.isdir(name)] + ['default']
     print 'These Sphinx themes were found:', ', '.join(themes)
 
     f = open('conf.py', 'r');  text = f.read();  f.close()
@@ -985,12 +985,12 @@ if html_theme = 'bootstrap':
 """
     text = text.replace("html_theme = 'default'",
                         '\n'.join(themes_list) + themes_code)
-# Include bootstrap path if we have that module
-try:
-    import sphinx_bootstrap_theme
-    bootstrap = ' sphinx_bootstrap_theme.get_html_theme_path()'
-except Import Error:
-    bootstrap = ''
+    # Include bootstrap path if we have that module
+    try:
+        import sphinx_bootstrap_theme
+        bootstrap = ' sphinx_bootstrap_theme.get_html_theme_path()'
+    except ImportError:
+        bootstrap = ''
     text = text.replace("#html_theme_path = []",
                         "html_theme_path = ['_themes',%s]" % bootstrap)
     extensions = """\

@@ -29,8 +29,8 @@ use plain <pre> tags."""),
 (In LaTeX line numbers can be added via doconce subst or replace
 such that the verbatim environments become like
 \begin{minted}[...,linenos=true,...].)"""),
-    ('--html-solarized',
-     'Use a solarized color theme in HTML output.'),
+    ('--html-style=',
+     'Name of theme for HTML style (solarized, vagrant, ...).'),
     ('--html-template=',
      """Specify an HTML template with header/footer in which the doconce
 document is embedded."""),
