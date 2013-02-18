@@ -83,9 +83,7 @@ css_solarized = """\
     p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-
-%s
-""" % admon_styles
+""" + admon_styles
 
 css_blueish = """\
     /* Color definitions:  http://www.december.com/html/spec/color0.html
@@ -107,8 +105,7 @@ css_blueish = """\
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-%s
-""" % admon_styles
+""" + admon_styles
 
 css_blueish2 = """\
     /* Color definitions:  http://www.december.com/html/spec/color0.html
@@ -125,7 +122,7 @@ css_blueish2 = """\
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-   pre {
+    pre {
     background-color: #fefbf3;
     vpadding: 9px;
     border: 1px solid rgba(0,0,0,.2);
@@ -139,8 +136,7 @@ css_blueish2 = """\
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-%s
-""" % admon_styles
+""" +  admon_styles
 
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
@@ -813,7 +809,7 @@ def html_%s(block, format):
         return vagrant
     else:
         return lyx
-''' % (_admon, _admon, _Admon, _Admon, _admon)
+''' % (_admon, _admon, _Admon, _Admon, _admon, _admon)
     exec(_text)
 
 def define(FILENAME_EXTENSION,
