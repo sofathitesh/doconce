@@ -973,12 +973,26 @@ if html_theme == 'cloud' or html_theme == 'redcloud':
     if not 'cloud' in additional_themes_installed:
         raise Exception('html_theme = "cloud", but this theme is not '\
                         'installed.\n%s' % additional_themes_url['cloud'])
+if html_theme = 'basicstrap':
+    if not 'basicstrap' in additional_themes_installed:
+        raise Exception('html_theme = "basicstrap", but this theme is not '\
+                        'installed.\n%s' % additional_themes_url['basicstrap'])
+if html_theme = 'bootstrap':
+    if not 'bootstrap' in additional_themes_installed:
+        raise Exception('html_theme = "bootstrap", but this theme is not '\
+                        'installed.\n%s' % additional_themes_url['bootstrap'])
 
 """
     text = text.replace("html_theme = 'default'",
                         '\n'.join(themes_list) + themes_code)
+# Include bootstrap path if we have that module
+try:
+    import sphinx_bootstrap_theme
+    bootstrap = ' sphinx_bootstrap_theme.get_html_theme_path()'
+except Import Error:
+    bootstrap = ''
     text = text.replace("#html_theme_path = []",
-                        "html_theme_path = ['_themes']")
+                        "html_theme_path = ['_themes',%s]" % bootstrap)
     extensions = """\
 extensions = [
           #'sphinx.ext.pngmath',
@@ -1010,8 +1024,21 @@ try:
     additional_themes_installed.append('cloud')
 except ImportError:
     additional_themes_url['cloud'] = 'https://bitbucket.org/ecollins/cloud_sptheme'
+try:
+    import sphinxjp.themecore
+    additional_themes_installed.append('basicstrap')
+except ImportError:
+    additional_themes_url['basicstrap'] = 'https://github.com/tell-k/sphinxjp.themes.basicstrap'
+
+try:
+    import sphinx_bootstrap_theme
+    additional_themes_installed.append('bootstrap')
+except ImportError:
+    additional_themes_url['bootstrap'] = 'https://github.com/ryan-roemer/sphinx-bootstrap-theme'
 
 """
+    # Note: impressjs and bootstrap both has sphinxjp.themecore as
+    # module name (?)
     # Note: in the extension list above,
     #'matplotlib.sphinxext.ipython_directive',
     #'matplotlib.sphinxext.ipython_console_highlighting',
