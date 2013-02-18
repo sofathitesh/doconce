@@ -1,4 +1,5 @@
-TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+#TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+TITLE: On the Technicalities of Scientific Writing: The Doconce 2013 Way
 AUTHOR: Hans Petter Langtangen
 DATE: Today
 
