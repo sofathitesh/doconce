@@ -973,11 +973,11 @@ if html_theme == 'cloud' or html_theme == 'redcloud':
     if not 'cloud' in additional_themes_installed:
         raise Exception('html_theme = "cloud", but this theme is not '\
                         'installed.\n%s' % additional_themes_url['cloud'])
-if html_theme = 'basicstrap':
+if html_theme == 'basicstrap':
     if not 'basicstrap' in additional_themes_installed:
         raise Exception('html_theme = "basicstrap", but this theme is not '\
                         'installed.\n%s' % additional_themes_url['basicstrap'])
-if html_theme = 'bootstrap':
+if html_theme == 'bootstrap':
     if not 'bootstrap' in additional_themes_installed:
         raise Exception('html_theme = "bootstrap", but this theme is not '\
                         'installed.\n%s' % additional_themes_url['bootstrap'])
