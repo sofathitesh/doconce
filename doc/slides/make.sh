@@ -6,7 +6,7 @@ name=scientific_writing
 # Note: since Doconce syntax is demonstrated inside !bc/!ec
 # blocks we need a few fixes
 
-doconce format html $name --pygments-html-style=perldoc --html-solarized
+doconce format html $name --pygments-html-style=perldoc --html-style=solarized
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 mv -f $name.html ${name}_solarized.html
 doconce format html $name --pygments-html-style=default
@@ -18,8 +18,8 @@ cp $name.html ${name}_deck.html
 doconce slides_html ${name}_deck deck --html-slide-theme=sandstone.default
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # Fix selected backslashes inside verbatim envirs that doconce has added
-# (only a problem when we want to show full doconce code with
-# labels in !bc-!ec envirs).
+# (only a problem at the places where we want to show full doconce code with
+# labels in !bc-!ec envirs - other labels in math blocks need backslash...).
 doconce replace '\label{this:section}' 'label{this:section}' ${name}_deck.html
 doconce replace '\label{fig1}' 'label{fig1}' ${name}_deck.html
 doconce replace '\label{demo' 'label{demo' ${name}_deck.html
