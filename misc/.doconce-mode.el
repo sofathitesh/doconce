@@ -115,7 +115,9 @@ text...
 
 (make-face 'do-heading-face)
 ;;(set-face-attribute 'do-heading-face nil :background "yellow")
-(set-face-attribute 'do-heading-face nil :foreground "yellow")
+;(set-face-attribute 'do-heading-face nil :foreground "yellow")
+; other colors: lightblue, lightgray, purple
+(set-face-attribute 'do-heading-face nil :foreground "red")
 (set-face-attribute 'do-heading-face nil :slant 'normal)
 ;;(set-face-attribute 'do-heading-face nil :height '170)
 
@@ -131,7 +133,7 @@ text...
 
 (make-face 'do-comment-face)
 (set-face-attribute 'do-comment-face nil :slant 'italic)
-(set-face-attribute 'do-comment-face nil :foreground "red")
+(set-face-attribute 'do-comment-face nil :foreground "yellow")
 
 (make-face 'do-split-face)
 (set-face-attribute 'do-split-face nil :background "red")
