@@ -528,7 +528,7 @@ def insert_code_from_file(filestr, format):
             try:
                 codefile = open(filename, 'r')
             except IOError, e:
-                print 'Could not open the file %s used in @@@CODE instruction' % filename
+                print '*** error: could not open the file %s used in\n%s' % (filename, line)
                 if CREATE_DUMMY_FILE and 'No such file or directory' in str(e):
                     print '    No such file or directory!'
                     print '    A dummy file %s is generated...' % filename
@@ -2040,7 +2040,16 @@ def doconce2format(filestr, format):
     # non-rst/sphinx formats:
     filestr = subst_class_func_mod(filestr, format)
 
-    # Next step: add header and footer
+    # Next step: add header and footer, but first wrap main body
+    # of text inside some recognizable delimiters
+    if format in ('latex', 'pdflatex', 'html'):
+        comment_pattern = INLINE_TAGS_SUBST[format]['comment']
+        delimiter = '------------------- main content ----------------------\n'
+        delimiter = comment_pattern % delimiter  # wrap as comment
+        filestr = delimiter + '\n' + filestr
+        delimiter = '------------------- end of main content ---------------\n'
+        delimiter = comment_pattern % delimiter  # wrap as comment
+        filestr = delimiter + filestr
     if has_title:
         if format in INTRO:
             filestr = INTRO[format] + filestr

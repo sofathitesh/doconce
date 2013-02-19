@@ -40,6 +40,7 @@ doconce latex_exercise_toc testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex
@@ -76,6 +77,9 @@ doconce format sphinx testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 mv -f testdoc.rst testdoc.sphinx.rst
+
+doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Note: the chapter heading must be removed
 # for successful compilation of the sphinx document.
@@ -134,7 +138,8 @@ doconce slides_html slides all
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test grab
-doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
+doconce grab --from- '={5} Subsection 1' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do.txt >> testdoc.tmp
 doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
 
