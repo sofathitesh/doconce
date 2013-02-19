@@ -278,7 +278,7 @@ def html_code(filestr, code_blocks, code_block_types,
         # Do not use <code> here, it gives an extra line at the top
         filestr = c.sub(r'<!-- begin verbatim block \g<1>-->\n<pre>\n', filestr)
         filestr = re.sub(r'!ec\n',
-                r'</pre>\n<! -- end verbatim block -->\n',
+                r'</pre>\n<!-- end verbatim block -->\n',
                 filestr)
 
     if option('wordpress'):
@@ -412,7 +412,7 @@ MathJax.Hub.Config({
     template = option('html-template=', default='')
     if template != '' and header:
         print 'Warning: HTML template %s ignored since the file has a title (and hence a generated HTML header)' % template
-        authors = '<! -- author(s) -->' in filestr
+        authors = '<!-- author(s) -->' in filestr
         if authors:
             print 'Warning: AUTHOR is not recommended when using HTML templates (usually looks no good)'
     if template != '' and not header:
@@ -479,7 +479,7 @@ def html_figure(m):
     if caption:
        # Caption above figure and a horizontal rule (fine for anchoring):
        return """
-<center> <! -- figure -->
+<center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption"> %s </p></center>
 <p><img src="%s" align="bottom" %s></p>
@@ -584,7 +584,7 @@ def html_movie(m):
 
 def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst, auth2email):
-    text = '\n\n<p>\n<! -- author(s) -->\n'
+    text = '\n\n<p>\n<!-- author(s) -->\n'
 
     def email(author):
         address = auth2email[author]
@@ -859,7 +859,7 @@ def define(FILENAME_EXTENSION,
         'subsubsection': r'\n<h4>\g<subst></h4>',
         'paragraph':     r'<b>\g<subst></b>\n',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
-        'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <! -- document title -->\n',
+        'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <!-- document title -->\n',
         'date':          r'<p>\n<center><h4>\g<subst></h4></center> <!-- date -->',
         'author':        html_author,
         'figure':        html_figure,

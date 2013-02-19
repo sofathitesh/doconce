@@ -1538,7 +1538,7 @@ def split_html():
 
     header, parts, footer = get_header_parts_footer(filename, "html")
     files = doconce_html_split(header, parts, footer, basename, filename)
-    print '%s now links to the generated files'
+    print '%s now links to the generated files' % filename
     print ', '.join(files)
 
 
@@ -1706,15 +1706,16 @@ def get_header_parts_footer(filename, format='html'):
     footer = []
     parts = [[]]
     loc = 'header'
+    #comment_pattern = INLINE_TAGS_SUBST[format]['comment']
     begin_comment, end_comment = _format_comments(format)
     f = open(filename, 'r')
     for line in f:
-        if re.search(r'^%s -+ main content -+%s' %
+        if re.search(r'^%s -+ main content -+ %s' %
                      (begin_comment, end_comment), line):
             loc = 'body'
         if re.search(r'^%s !split.*?%s' % (begin_comment, end_comment), line):
             parts.append([])
-        if re.search(r'^%s -+ end of main content -+%s' %
+        if re.search(r'^%s -+ end of main content -+ %s' %
                      (begin_comment, end_comment), line):
             loc = 'footer'
         if loc == 'header':

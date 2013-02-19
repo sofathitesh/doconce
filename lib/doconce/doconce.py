@@ -2041,15 +2041,19 @@ def doconce2format(filestr, format):
     filestr = subst_class_func_mod(filestr, format)
 
     # Next step: add header and footer, but first wrap main body
-    # of text inside some recognizable delimiters
+    # of text inside some recognizable delimiters such that we
+    # can distinguish it later from header and footer (especially
+    # if there is no title and header/footer is not added, but
+    # the final fixes in CODE[format] adds another header/footer, e.g.,
+    # puts the main body inside a user-given HTML template or LaTeX template).
     if format in ('latex', 'pdflatex', 'html'):
         comment_pattern = INLINE_TAGS_SUBST[format]['comment']
-        delimiter = '------------------- main content ----------------------\n'
-        delimiter = comment_pattern % delimiter  # wrap as comment
+        delimiter = '------------------- main content ----------------------'
+        delimiter = '\n' + comment_pattern % delimiter + '\n'  # wrap as comment
         filestr = delimiter + '\n' + filestr
-        delimiter = '------------------- end of main content ---------------\n'
-        delimiter = comment_pattern % delimiter  # wrap as comment
-        filestr = delimiter + filestr
+        delimiter = '------------------- end of main content ---------------'
+        delimiter = comment_pattern % delimiter + '\n'  # wrap as comment
+        filestr = filestr + '\n' + delimiter
     if has_title:
         if format in INTRO:
             filestr = INTRO[format] + filestr

@@ -1054,6 +1054,8 @@ final,                   % or draft (marks overfull hboxes)
 
 \makeindex
 
+%-------------------- end preamble ----------------------
+
 \begin{document}
 
 % #endif
