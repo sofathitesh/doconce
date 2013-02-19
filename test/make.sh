@@ -30,6 +30,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce split_html testdoc.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
+
 doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
