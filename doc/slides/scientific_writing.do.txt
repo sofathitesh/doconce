@@ -133,11 +133,15 @@ based on HTML and vice versa.
    strips away any math notation (avoid that!).
  * Sphinx refers to sections by the title, but removes math in the
    reference, so avoid math in headlines.
- * Algorithms must be written up using basic elements like lists or
-   paragraphs with headings.
  * Tables cannot be referred to by numbers and have to appear at
    fixed positions in the text.
  * Computer code has to appear at fixed positions in the text.
+ * Algorithms must be written up using basic elements like lists or
+   paragraphs with headings.
+ * Recipes are often typeset as enumerated lists. For recipes with
+   code or math blocks: drop the list (gives problems in some formats)
+   and use paragraph (or subsubsection) headings with "Step 1.",
+   "Step 2.", etc.
 !epop
 
 !split

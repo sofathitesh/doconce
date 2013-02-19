@@ -961,13 +961,11 @@ Automatically generated HTML file from Doconce source
 </head>
 <body>
 
-<!-- ------------------- main content ------------------------>
     """ % style
 
     # document ending:
     OUTRO['html'] = """
 
-<!-- ------------------- end of main content ----------------->
 </body>
 </html>
     """

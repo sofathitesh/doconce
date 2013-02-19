@@ -1055,17 +1055,13 @@ final,                   % or draft (marks overfull hboxes)
 \makeindex
 
 \begin{document}
-%-------------------- end preamble ------------------------
 
 % #endif
-
-% ------------------- main content ------------------------
 
 """
     if preamble_complete:
         INTRO['latex'] = preamble + r"""
 \begin{document}
-% ------------------- main content ------------------------
 
 """
     elif preamble:
@@ -1099,8 +1095,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
     OUTRO['latex'] = r"""
-
-% ------------------- end of main content -----------------
 
 % #ifdef PREAMBLE
 \printindex
