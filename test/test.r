@@ -1092,10 +1092,10 @@ $$
 
 <title>A Document for Testing Doconce</title>
 
-<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
+<center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s) -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -1320,6 +1320,8 @@ final,                   % or draft (marks overfull hboxes)
 % insert custom LaTeX commands...
 
 \makeindex
+
+%-------------------- end preamble ----------------------
 
 \begin{document}
 
@@ -2707,6 +2709,8 @@ final,                   % or draft (marks overfull hboxes)
 
 \makeindex
 
+%-------------------- end preamble ----------------------
+
 \begin{document}
 
 
@@ -4021,6 +4025,8 @@ open=right               % start new chapters on odd-numbered pages
 \newtheorem{theorem}{Theorem}[section]
 
 \makeindex
+
+%-------------------- end preamble ----------------------
 
 \begin{document}
 
@@ -15150,7 +15156,7 @@ class Forward1(Diff):
         f, h = self.f, self.h
         return (f(x+h) - f(x))/h
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -16011,10 +16017,10 @@ Automatically generated HTML file from Doconce source
 
 <title>Test of one author at one institution</title>
 
-<center><h1>Test of one author at one institution</h1></center>  <! -- document title -->
+<center><h1>Test of one author at one institution</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s) -->
 
 <center>
 <b>John Doe</b>  (<tt>doe at cyberspace.net</tt>)
@@ -16247,6 +16253,8 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \makeindex
+
+%-------------------- end preamble ----------------------
 
 \begin{document}
 
@@ -16747,10 +16755,10 @@ $$
 
 <title>A Document for Testing Doconce</title>
 
-<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
+<center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s) -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -17503,7 +17511,7 @@ there is a flow.
 
 <p>
 
-<center> <! -- figure -->
+<center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
 <p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
@@ -17566,7 +17574,7 @@ and an extra space before the FIGURE keyword.
 
 <p>
 
-<center> <! -- figure -->
+<center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
@@ -18638,10 +18646,10 @@ MathJax.Hub.Config({
 
 <title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
 
-<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <! -- document title -->
+<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s) -->
 
 <center>
 <b>Hans Petter Langtangen</b> 
@@ -19115,10 +19123,10 @@ Automatically generated HTML file from Doconce source
 
 <title>A Document for Testing Doconce</title>
 
-<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
+<center><h1>A Document for Testing Doconce</h1></center>  
 
 <p>
-<! -- author(s) -->
+
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -19429,7 +19437,7 @@ there is a flow.
 
 <p>
 
-<center> <! -- figure -->
+<center> 
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
 <p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
@@ -19492,7 +19500,7 @@ and an extra space before the FIGURE keyword.
 
 <p>
 
-<center> <! -- figure -->
+<center> 
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in $latex t_{i+1}$. <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
@@ -20616,10 +20624,10 @@ $$
 
 <title>A Document for Testing Doconce</title>
 
-<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
+<center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s) -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -20932,7 +20940,7 @@ there is a flow.
 
 <p>
 
-<center> <! -- figure -->
+<center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
 <p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
@@ -20995,7 +21003,7 @@ and an extra space before the FIGURE keyword.
 
 <p>
 
-<center> <! -- figure -->
+<center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
@@ -22030,6 +22038,8 @@ final,                   % or draft (marks overfull hboxes)
 % insert custom LaTeX commands...
 
 \makeindex
+
+%-------------------- end preamble ----------------------
 
 \begin{document}
 
@@ -23345,7 +23355,7 @@ This document is translated to the format html.
 import_array();
 %}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 And more code:
@@ -23354,7 +23364,7 @@ And more code:
 % Matlab comment only
 ...
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -23388,7 +23398,7 @@ And more code:
 import_array();
 %}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 % endif
@@ -23400,7 +23410,7 @@ And more code:
 % Matlab comment only
 ...
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -23434,7 +23444,7 @@ And more code:
 import_array();
 %}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 % endif
@@ -23446,7 +23456,7 @@ And more code:
 % Matlab comment only
 ...
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -23473,7 +23483,7 @@ And more code:
 import_array();
 %}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -23483,7 +23493,7 @@ And more code:
 % Matlab comment only
 ...
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -24026,7 +24036,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 19 Feb 2013 (06:52)</center>
+<center>Tue, 19 Feb 2013 (07:08)</center>
 
 
 
@@ -24157,7 +24167,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 19 Feb 2013 (06:52)</center>
+<center>Tue, 19 Feb 2013 (07:08)</center>
 
 
 
@@ -25210,10 +25220,10 @@ MathJax.Hub.Config({
 
 <title>Doconce Quick Reference</title>
 
-<center><h1>Doconce Quick Reference</h1></center>  <! -- document title -->
+<center><h1>Doconce Quick Reference</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s) -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
@@ -25299,14 +25309,14 @@ AUTHOR: A. Dummy Author
 DATE: today
 TOC: on
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The entire title must appear on a single line.
 The author syntax is
 <!-- begin verbatim block -->
 <pre>
 name Email: somename@adr.net at institution1 and institution2
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 where the email is optional, the "at" keyword is required if one or
 more institutions are to be specified, and the "and" keyword
 separates the institutions. Each author specification must appear
@@ -25394,7 +25404,7 @@ And finally a description list:
    followed by text on the next line
  - keyword3: and its description may fit on one line
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The code above follows.
 
 <p>
@@ -25472,7 +25482,7 @@ are often useful and enabled by the syntax
 <pre>
 [name: running text]
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 where <code>name</code> is the name or ID of an author or reader making the comment,
 and <code>running text</code> is the comment. There must be a space after the colon.
 Running
@@ -25480,7 +25490,7 @@ Running
 <pre>
 doconce format html mydoc.do.txt --skip_inline_comments
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 removes all such inline comments from the output. This feature makes it easy
 to turn on and off notes to readers and is frequently used while writing
 a document.
@@ -25492,7 +25502,7 @@ removed from the Doconce source if desired:
 <pre>
 doconce remove_inline_comments mydoc.do.txt
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 This action is appropriate when all issues with such comments are resolved.
 
 <p>
@@ -25504,7 +25514,7 @@ Inline verbatim code is typeset within back-ticks, as in
 <pre>
 Some sentence with `words in verbatim style`.
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 resulting in Some sentence with <code>words in verbatim style</code>.
 
 <p>
@@ -25526,7 +25536,7 @@ defined verbatim environment in the <code>ptex2tex</code> configuration file
 <pre>
 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 that maps environments (<code>xxx</code>) onto valid language types for
 Pygments (which is what <code>sphinx</code> applies to typeset computer code).
 
@@ -25547,7 +25557,7 @@ from numpy import sin, cos, exp, pi
 def f(x, y, z, t):
     return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 <!-- When showing copy from file in !bc envir, indent a character - otherwise -->
@@ -25559,7 +25569,7 @@ Computer code can also be copied from a file:
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The <code>@@@CODE</code> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <code>doconce_program.sh</code>.
 The second specification copies from the first line matching the <em>regular
@@ -25609,7 +25619,7 @@ readable companion expression. The syntax is like
 <pre>
 $\sin(\norm{\bf u})$|$sin(||u||)$
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
 expressions are surrounded by dollar signs. Plain text formats and HTML
@@ -25631,7 +25641,7 @@ and
 \end{align*}
 !et
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 <!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
 <!-- tex and code blocks in inside verbatim blocks and are replaced -->
 <!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
@@ -25654,7 +25664,7 @@ Here is a single equation:
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 which results in
 
 <p>
@@ -25723,7 +25733,7 @@ FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which mus
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 Note the mandatory comma after the figure/movie file.
 
 <p>
@@ -25748,7 +25758,7 @@ montage file1.png file2.png -tile 1x result.png
 
 convert -background white file1.png file2.png +append tmp.png
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 Use <code>+append</code> for stacking left to right, <code>-append</code> for top to bottom.
 The positioning of the figures can be controlled by <code>-gravity</code>.
 
@@ -25771,7 +25781,7 @@ syntax:
 | paragraph               | `__Heading.__`               (2 `_`)  |
 |-----------------------------------------------------------------|
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 Note that
@@ -25804,7 +25814,7 @@ inserted anywhere, using the syntax
 <pre>
 label{name}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 with no backslash
 preceding the label keyword! It is common practice to choose <code>name</code>
 as some hierarchical name, say <code>a:b:c</code>, where <code>a</code> and <code>b</code> indicate
@@ -25817,7 +25827,7 @@ A reference to the label <code>name</code> is written as
 <pre>
 ref{name}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 again with no backslash before <code>ref</code>.
 
 <p>
@@ -25826,7 +25836,7 @@ Single citations are written as
 <pre>
 cite{name}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 where <code>name</code> is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
 Bibliography citations often have <code>name</code> on the form
@@ -25838,7 +25848,7 @@ by comma:
 <pre>
 cite{name1,name2,name3}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 The bibliography is specified by a line <code>BIBFILE: name_bib.bib,
@@ -25867,7 +25877,7 @@ ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
 &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 Doconce documents may include movies.
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The output from a generalized reference is the text <code>internal</code> if all
 <code>ref{label}</code> references in <code>internal</code> are references to labels in the
 present document. Otherwise, if cite is non-empty and the format is
@@ -25887,7 +25897,7 @@ backslash!)
 <pre>
 index{name}
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
@@ -26007,7 +26017,7 @@ doconce latex_exercise_toc myfile
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -26057,7 +26067,7 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
 output. For example, the if the title line above reads
@@ -26067,7 +26077,7 @@ output. For example, the if the title line above reads
 <pre>
 ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 the title becomes just "Derive the ...".
 
 <p>
@@ -26125,7 +26135,7 @@ Here goes a full solution of the whole exercise.
 !esol
 
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <code>--without-answers</code> and <code>--without-solutions</code>
 turn off output of answers and solutions, respectively, except for
@@ -26206,7 +26216,7 @@ constructions:
 ....large portions of text...
 # #endif
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 With the <code>mako</code> preprocessor the if-else tests have slightly different syntax.
@@ -26366,6 +26376,8 @@ final,                   % or draft (marks overfull hboxes)
 % insert custom LaTeX commands...
 
 \makeindex
+
+%-------------------- end preamble ----------------------
 
 \begin{document}
 
@@ -35597,7 +35609,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-141.
+143.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -35715,7 +35727,7 @@ LaTeX Warning: Reference `eq2' on page 13
 
 
 LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 78
-6.
+8.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -35747,11 +35759,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 812.
+ 814.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] [16]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1172
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1174
 .
 
 
@@ -35762,13 +35774,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 17
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1190.
+ 1192.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1191
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1193
 .
 
 
@@ -37139,7 +37151,7 @@ Underfull \hbox (badness 2564)
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [7]
 
-LaTeX Warning: Reference `quick:sections' on page 8 undefined on input line 572
+LaTeX Warning: Reference `quick:sections' on page 8 undefined on input line 574
 .
 
 [8]
