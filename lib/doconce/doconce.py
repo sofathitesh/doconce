@@ -1810,6 +1810,11 @@ def file2file(in_filename, format, out_filename):
     else:
         print 'translating doconce text in', in_filename, 'to', format
 
+    if format == 'html':
+        # Initial the doc's file collection
+        html.add_to_file_collection(filename[:-7] + '.html',
+                                    filename[:-7], mode='w')
+
     # if trouble with encoding:
     # Unix> doconce guess_encoding myfile.do.txt
     # Unix> doconce change_encoding utf-8 latin1 myfile.do.txt

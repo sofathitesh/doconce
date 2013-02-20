@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Feb 19, 2013
+% Feb 20, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -631,9 +631,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version >= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes

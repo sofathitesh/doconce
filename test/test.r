@@ -13556,6 +13556,1188 @@ $$
 *Question.* So, how many admonition environments does Doconce support?
 
 
+************** File: testdoc.ipynb *****************
+{
+ "metadata": {},
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "# A Document for Testing Doconce\n",
+      "_Jan 32, 2100_\n",
+      "\n",
+      "<!-- !split -->\n",
+      "\n",
+      "The format of this document is\n",
+      "ipynb\n",
+      "\n",
+      "*Abstract.* This is a document with many test constructions for doconce syntax.\n",
+      "It was used heavily for the development and kept for testing\n",
+      "numerous constructions, also special and less common cases.\n",
+      "\n",
+      "And exactly for test purposes we have an extra line here, which\n",
+      "is part of the abstract.\n",
+      "\n",
+      "<!-- Cannot demonstrate chapter headings since abstract and chapter -->\n",
+      "<!-- is mutually exclusive in LaTeX -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "## Section 1\n",
+      "\n",
+      "Here is a nested list:\n",
+      "\n",
+      "  * item1\n",
+      "\n",
+      "  * item2\n",
+      "\n",
+      "  * item3 which continues\n",
+      "    on the next line to test that feature\n",
+      "\n",
+      "  * and a sublist\n",
+      "\n",
+      "    * with indented subitem1\n",
+      "\n",
+      "    * and a subitem2\n",
+      "\n",
+      "\n",
+      "  * and perhaps an ordered sublist\n",
+      "\n",
+      "   1. first item\n",
+      "\n",
+      "   2. second item,\n",
+      "      continuing on a new line\n",
+      "\n",
+      "\n",
+      "> Here are two lines that make up\n",
+      "> a block quote.\n",
+      "\n",
+      "<!-- !split and check if these extra words are included properly in the comment -->\n",
+      "\n",
+      "### Subsection 1\n",
+      "\n",
+      "More text, with a reference back to the section [Section 1](#n-1) and further\n",
+      "to the section [URLs](#s). \n",
+      "<!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->\n",
+      "\n",
+      "Let's do some copying from files too. First from subroutine up to the very end,"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "      subroutine test()\n",
+      "      integer i\n",
+      "      real*8 r\n",
+      "      r = 0\n",
+      "      do i = 1, i\n",
+      "         r = r + i\n",
+      "      end do\n",
+      "      return\n",
+      "C     END1\n",
+      "\n",
+      "      program testme\n",
+      "      call test()\n",
+      "      return\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "and then just the subroutine,"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "\n",
+      "      subroutine test()\n",
+      "      integer i\n",
+      "      real*8 r\n",
+      "      r = 0\n",
+      "      do i = 1, i\n",
+      "         r = r + i\n",
+      "      end do\n",
+      "      return\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "and finally the complete file:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "C     a comment\n",
+      "\n",
+      "      subroutine test()\n",
+      "      integer i\n",
+      "      real*8 r\n",
+      "      r = 0\n",
+      "      do i = 1, i\n",
+      "         r = r + i\n",
+      "      end do\n",
+      "      return\n",
+      "C     END1\n",
+      "\n",
+      "      program testme\n",
+      "      call test()\n",
+      "      return\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Testing other code environments. First Python:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "!bc pycod\n",
+      "def f(x):\n",
+      "    return x+1\n",
+      "!ec\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "which gets rendered as"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "def f(x):\n",
+      "    return x+1\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Now a complete program to be shown via Python Online Tutorial:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "def f(x):\n",
+      "    return x + 1\n",
+      "\n",
+      "a = 2\n",
+      "x = a\n",
+      "a = 1\n",
+      "v = f(x)\n",
+      "print v\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Then Cython:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "cpdef f(double x):\n",
+      "    return x + 1\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- This one tests a + sign before a code environment -->\n",
+      "C++:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "#include <iostream>\n",
+      "\n",
+      "int main()\n",
+      "{\n",
+      "   std::cout << \"Sample output\" << std::endl;\n",
+      "   return 0\n",
+      "}\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- The next should get correctly typset in sphinx (cod is fcod) -->\n",
+      "And a little bit of Fortran:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "!bc cod\n",
+      "      subroutine midpt(x, length, a, b)\n",
+      "      real*8 a, b, x\n",
+      "      x = (a + b)/2\n",
+      "      length = b - a\n",
+      "      return\n",
+      "      end\n",
+      "!ec\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "which then is typeset as"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "      subroutine midpt(x, length, a, b)\n",
+      "      real*8 a, b, x\n",
+      "      x = (a + b)/2\n",
+      "      length = b - a\n",
+      "      return\n",
+      "      end\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "System call:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Terminal> mkdir test\n",
+      "Terminal> cd test\n",
+      "Terminal> myprog -f\n",
+      "output1\n",
+      "output2\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "It is time to test `verbatim inline font` especially with `a newline\n",
+      "inside the text` and an exclamation mark at the end: `BEGIN`! The\n",
+      "exclamation mark inside the verbatim text is not smart for latex as\n",
+      "we use ! in the `verb` typesetting... Also test backslashes\n",
+      "like `\\begin` and `\\end` in inline verbatim text.\n",
+      "\n",
+      "### Subsection 2\n",
+      "\n",
+      "\n",
+      "Test of figures. In particular we refer to Figure ref{fig:impact} in which\n",
+      "there is a flow.\n",
+      "\n",
+      "![Visualization of flow by streamtubes. ](../doc/manual/figs/streamtubes.png)\n",
+      "\n",
+      "Figures without captions are allowed.\n",
+      "\n",
+      "![](../doc/manual/figs/streamtubes.png)\n",
+      "\n",
+      "Test of movies.\n",
+      "\n",
+      "\n",
+      "<embed src=\"../doc/manual/figs/mjolnir.mpeg\" width=700 height=400 autoplay=\"false\" loop=\"true\"></embed>\n",
+      "<p>\n",
+      "<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>\n",
+      "</p>\n",
+      "\n",
+      "\n",
+      "<!-- Test empty caption: -->\n",
+      "\n",
+      "\n",
+      "<embed src=\"../doc/manual/figs/wavepacket.mpeg\" width=700 height=400 autoplay=\"false\" loop=\"true\"></embed>\n",
+      "<p>\n",
+      "<em></em>\n",
+      "</p>\n",
+      "\n",
+      "\n",
+      "<!-- Test wrong syntax and multi-line caption -->\n",
+      "\n",
+      "\n",
+      "<p><a href=\"wavepacket_0001.html\">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>\n",
+      "<em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>\n",
+      "\n",
+      "<!-- Check out the correct with and height of YouTube movies from the -->\n",
+      "<!-- embed command that the YouTube page can generate -->\n",
+      "\n",
+      "\n",
+      "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/_O7iUiftbKU\" frameborder=\"0\" allowfullscreen></iframe>\n",
+      "\n",
+      "<em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- Test multi-line caption in figure -->\n",
+      "\n",
+      "Here is figure ref{myfig} with a long multi-line caption\n",
+      "and an extra space before the FIGURE keyword.\n",
+      "\n",
+      "![A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. ](../doc/manual/figs/wavepacket_0001.png)\n",
+      "\n",
+      "Movie ref{mymov} has a similar problem.\n",
+      "\n",
+      "<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->\n",
+      "\n",
+      "<!-- Test URL as figure name -->\n",
+      "\n",
+      "![](https://doconce.googlecode.com/hg/doc/blog/f_plot.png)\n",
+      "\n",
+      "<!-- Test wikimedia type of files that otherwise reside in subdirs -->\n",
+      "\n",
+      "<!-- Somewhat challenging heading with latex math, \\t, \\n, ? and parenthesis -->\n",
+      "\n",
+      "### The $\\theta$ parameter (not $\\nabla$?)\n",
+      "\n",
+      "Functions do not always need to be advanced, here is one\n",
+      "involving $\\theta$:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "def f(theta):\n",
+      "    return theta**2\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "*More on $\\theta$.* Here is more text following headline with math.\n",
+      "\n",
+      "Newcommands must also be tested in this test report:\n",
+      "$\\frac{1}{2}$, ${1/2}$, $\\pmb{x}$, $\\frac{Du}{dt}$,\n",
+      "both inline and in block:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{align*}  \\frac{Du}{dt} &= 0  \\\\   \\frac{1}{2} &= {1/2}\\\\   \\frac{1}{2}\\pmb{x} &= \\pmb{n}  \\end{align*} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Or with align with label and numbers:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{equation}  \\frac{Du}{dt} = 0  \\label{aligneq1}  \\end{equation} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{equation}    \\frac{1}{2} = {1/2}  \\end{equation} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{equation}    \\frac{1}{2}\\pmb{x} = \\pmb{n}  \\label{aligneq2}  \\end{equation} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### Custom Environments\n",
+      "\n",
+      "Here is an attempt to create a theorem environment via Mako\n",
+      "(for counting theorems) and comment lines to help replacing lines in\n",
+      "the `.tex` by proper begin-end LaTeX environments for theorems.\n",
+      "Should look nice in most formats!\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- begin theorem -->\n",
+      "\n",
+      "*Theorem 5.* Let $a=1$ and $b=2$. Then $c=3$.\n",
+      "<!-- end theorem -->\n",
+      "\n",
+      "<!-- begin proof -->\n",
+      "*Proof.* Since $c=a+b$, the result follows from straightforward addition.\n",
+      "$\\Diamond$\n",
+      "<!-- end proof -->\n",
+      "\n",
+      "As we see, the proof of Theorem 5 is a modest\n",
+      "achievement.\n",
+      "\n",
+      "\n",
+      "### Tables\n",
+      "\n",
+      "\n",
+      "<!-- index with comma could fool sphinx -->\n",
+      "\n",
+      "Let us take this table from the manual:\n",
+      "\n",
+      "\n",
+      "   {\n",
+      "    \"cell_type\": \"markdown\",\n",
+      "    \"metadata\": {},\n",
+      "    \"source\": [\n",
+      "    \"\\n\",\n",
+      "    \"    time        velocity    acceleration  \\n\",\n",
+      "    \"------------  ------------  ------------  \\n\",\n",
+      "    \"0.0                 1.4186         -5.01  \\n\",\n",
+      "    \"2.0               1.376512        11.919  \\n\",\n",
+      "    \"4.0                 1.1E+1     14.717624  \\n\",\n",
+      "    \"\\n\",\n",
+      "    \"\"\n",
+      "    ]\n",
+      "   },\n",
+      "\n",
+      "The Doconce source code reads"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "  |--------------------------------|\n",
+      "  |time  | velocity | acceleration |\n",
+      "  |--l--------r-----------r--------|\n",
+      "  | 0.0  | 1.4186   | -5.01        |\n",
+      "  | 2.0  | 1.376512 | 11.919       |\n",
+      "  | 4.0  | 1.1E+1   | 14.717624    |\n",
+      "  |--------------------------------|\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Here is yet another table to test that we can handle more than\n",
+      "one table:\n",
+      "\n",
+      "   {\n",
+      "    \"cell_type\": \"markdown\",\n",
+      "    \"metadata\": {},\n",
+      "    \"source\": [\n",
+      "    \"\\n\",\n",
+      "    \"    time        velocity    acceleration  \\n\",\n",
+      "    \"------------  ------------  ------------  \\n\",\n",
+      "    \"0.0           1.4186        -5.01         \\n\",\n",
+      "    \"1.0           1.376512      11.919        \\n\",\n",
+      "    \"3.0           1.1E+1        14.717624     \\n\",\n",
+      "    \"\\n\",\n",
+      "    \"\"\n",
+      "    ]\n",
+      "   },\n",
+      "And one with math headings (that are expanded and must be treated\n",
+      "accordingly) and verbatim heading and entry:\n",
+      "\n",
+      "   {\n",
+      "    \"cell_type\": \"markdown\",\n",
+      "    \"metadata\": {},\n",
+      "    \"source\": [\n",
+      "    \"\\n\",\n",
+      "    \"   $i$        $h_i$     $\\bar T_i$    `L_i`     \\n\",\n",
+      "    \"----------  ----------  ----------  ----------  \\n\",\n",
+      "    \"0                    0         288     -0.0065  \\n\",\n",
+      "    \"1               11,000         216         0.0  \\n\",\n",
+      "    \"2               20,000         216       0.001  \\n\",\n",
+      "    \"3               32,000         228      0.0028  \\n\",\n",
+      "    \"4               47,000         270         0.0  \\n\",\n",
+      "    \"5               51,000         270     -0.0028  \\n\",\n",
+      "    \"6               71,000         214       `NaN`  \\n\",\n",
+      "    \"\\n\",\n",
+      "    \"\"\n",
+      "    ]\n",
+      "   },\n",
+      "And add one with verbatim headings (with underscores),\n",
+      "and rows starting with `|-` because of a negative number,\n",
+      "and `|` right after verbatim word (with no space):\n",
+      "\n",
+      "   {\n",
+      "    \"cell_type\": \"markdown\",\n",
+      "    \"metadata\": {},\n",
+      "    \"source\": [\n",
+      "    \"\\n\",\n",
+      "    \"    exact          `v_1`      $a_i$ + `v_2`    `verb_3_`    \\n\",\n",
+      "    \"-------------  -------------  -------------  -------------  \\n\",\n",
+      "    \"            9           9.62           5.57           8.98  \\n\",\n",
+      "    \"          -20         -23.39          -7.65         -19.93  \\n\",\n",
+      "    \"           10          17.74          -4.50           9.96  \\n\",\n",
+      "    \"            0          -9.19           4.13          -0.26  \\n\",\n",
+      "    \"\\n\",\n",
+      "    \"\"\n",
+      "    ]\n",
+      "   },\n",
+      "\n",
+      "### A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2`\n",
+      "\n",
+      "*Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here\n",
+      "is\n",
+      "some text.\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Example 1: Examples can be typeset as exercises\n",
+      "\n",
+      "Examples can start with a subsection heading starting with `Example:`\n",
+      "and then, with the command-line option `--examples-as-exercises` be\n",
+      "typeset as exercises. This is useful if one has solution\n",
+      "environments as part of the example.\n",
+      "\n",
+      "\n",
+      "*a)* State some problem.\n",
+      "\n",
+      "*Solution.* The answer to this subproblem can be written here.\n",
+      "\n",
+      "*b)* State some other problem.\n",
+      "\n",
+      "*Hint 1.* A hint can be given.\n",
+      "\n",
+      "*Hint 2.* Maybe even another hint?\n",
+      "\n",
+      "*Solution.* The answer to this other subproblem goes here,\n",
+      "maybe over multiple doconce input lines.\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "### URLs\n",
+      "\n",
+      "Testing of URLs: hpl's home page [hpl](http://folk.uio.no/hpl), or\n",
+      "the entire URL if desired, <http://folk.uio.no/hpl>.  Here is a\n",
+      "plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or\n",
+      "<testdoc.do.txt> or <testdoc.do.txt> or [a link with\n",
+      "newline](testdoc.do.txt). Can test spaces with the link with word\n",
+      "too: [hpl](http://folk.uio.no/hpl) or [hpl](http://folk.uio.no/hpl). Also `file:///` works: [link to a\n",
+      "file](file:///home/hpl/vc/doconce/doc/demos/manual/manual.html) is\n",
+      "fine to have. Moreover, \"loose\" URLs work, i.e., no quotes, just\n",
+      "the plain URL as in <http://folk.uio.no/hpl>, if followed by space, comma,\n",
+      "colon, semi-colon, question mark, exclamation mark, but not a period\n",
+      "(which gets confused with the periods inside the URL).\n",
+      "\n",
+      "Here are some tough tests of URLs, especially for the `latex` format:\n",
+      "[Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas\n",
+      "and a [good book](http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1). Need to test\n",
+      "Newton-Cotes with percentage in URL too:\n",
+      "<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>\n",
+      "and <http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae> which has a shebang.\n",
+      "\n",
+      "<!-- Comments should be inserted outside paragraphs (because in the rst -->\n",
+      "<!-- format extra blanks make a paragraph break). -->\n",
+      "\n",
+      "<!-- Note that when there is no http: or file:, it can be a file link -->\n",
+      "<!-- if the link name is URL, url, \"URL\", or \"url\". Such files should, -->\n",
+      "<!-- if rst output is desired, but placed in a `_static*` folder. -->\n",
+      "\n",
+      "More tough tests: repeated URLs whose footnotes when using the\n",
+      "`--latex-printed` option must be correct. We have\n",
+      "[google](http://google.com), [google](http://google.com), and\n",
+      "[google](http://google.com), which should result in exactly three\n",
+      "footnotes.\n",
+      "\n",
+      "\n",
+      "\n",
+      "### LaTeX Mathematics\n",
+      "\n",
+      "Here is an equation without label using backslash-bracket environment:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $  a = b + c  $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "or with number and label, as in Eq (my:eq1), using the equation environment:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{equation}  {\\partial u\\over\\partial t} = \\nabla^2 u \\label{my:eq1}  \\end{equation} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "We can refer to this equation by Eq (my:eq1).\n",
+      "\n",
+      "Here is a system without equation numbers, using the align-astrisk environment:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{align*}  \\pmb{a} &= \\pmb{q}\\times\\pmb{n} \\\\   b &= \\nabla^2 u + \\nabla^4 v  \\end{align*} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "More mathematical typesetting is demonstrated in the coming exercises.\n",
+      "\n",
+      "Below, we have  [Problem 1: Flip a Coin](#n) and  [Project 1: Compute a Probability](#y),\n",
+      "as well as  [Project 2: Explore Distributions of Random Circles](#s) and [Project 3: References to Project ref{demo:ex:2} in a heading works for ipynb](#b), and in\n",
+      "between there we have  [Exercise 3: Make references to projects and problems](#s).\n",
+      "\n",
+      "## Exercises\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Problem 1: Flip a Coin\n",
+      "\n",
+      "<!-- keywords = random numbers; Monte Carlo simulation -->\n",
+      "\n",
+      "<!-- Torture tests -->\n",
+      "\n",
+      "Make a program that simulates flipping a coin $N$ times.\n",
+      "Print out \"tail\" or \"head\" for each flip and\n",
+      "let the program count the number of heads.\n",
+      "\n",
+      "\n",
+      "<!-- Test syntax error -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "#### Remarks\n",
+      "\n",
+      "Remarks with such a subsubsection heading would previously mark\n",
+      "the beginning of a new exercise and cause trouble. Maybe a list\n",
+      "\n",
+      "1. Mark 1.\n",
+      "\n",
+      "2. Mark 2.\n",
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.\n",
+      "<!-- --- end hint in exercise --- -->\n",
+      "\n",
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint 2.* Draw an integer among $\\{1,2\\}$ with\n",
+      "`r = random.randint(1,2)` and define head when `r` is 1.\n",
+      "<!-- --- end hint in exercise --- -->\n",
+      "\n",
+      "\n",
+      "<!-- --- begin answer of exercise --- -->\n",
+      "*Answer.* If the `random.random()` function returns a number $<1/2$, let it be\n",
+      "head, otherwise tail. Repeat this $N$ number of times.\n",
+      "<!-- --- end answer of exercise --- -->\n",
+      "\n",
+      "\n",
+      "<!-- --- begin solution of exercise --- -->\n",
+      "*Solution.* Code:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "import sys, random\n",
+      "N = int(sys.argv[1])\n",
+      "heads = 0\n",
+      "for i in range(N):\n",
+      "    r = random.random()\n",
+      "    if r <= 0.5:\n",
+      "        heads += 1\n",
+      "print 'Flipping a coin %d times gave %d heads' % (N, heads)\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- --- end solution of exercise --- -->\n",
+      "Filenames: `flip_coin.py`, `flip_coin.pdf`.\n",
+      "<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "### Not an exercise\n",
+      "\n",
+      "Should be possible to stick a normal section in the middle of many\n",
+      "exercises.\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Project 1: Compute a Probability\n",
+      "\n",
+      "<!-- Minimalistic exercise -->\n",
+      "\n",
+      "\n",
+      "What is the probability of getting a number between 0.5 and 0.6 when\n",
+      "drawing uniformly distributed random numbers from the interval $[0,1)$?\n",
+      "\n",
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint.* To answer this question empirically, let a program\n",
+      "draw $N$ such random numbers using Python's standard `random` module,\n",
+      "count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and\n",
+      "compute the probability as $M/N$.\n",
+      "<!-- --- end hint in exercise --- -->\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Project 2: Explore Distributions of Random Circles\n",
+      "\n",
+      "The formula for a circle is given by"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{equation}  x = x_0 + R\\cos 2\\pi t,  \\end{equation} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $ \\begin{equation}    y = y_0 + R\\sin 2\\pi t,  \\end{equation} $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "where $R$ is the radius of the circle, $(x_0,y_0)$ is the\n",
+      "center point, and $t$ is a parameter in the unit interval $[0,1]$.\n",
+      "For any $t$, $(x,y)$ is a point on the circle.\n",
+      "The formula can be used to generate `n` points on a circle:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "import numpy as np\n",
+      "\n",
+      "def circle(R, x0, y0, n=501):\n",
+      "    t = np.linspace(0, 1, n)\n",
+      "    x = x0 + R*np.cos(2*np.pi*t)\n",
+      "    y = y0 + R*np.sin(2*np.pi*t)\n",
+      "    return x, y\n",
+      "\n",
+      "x, y = circle(2.0, 0, 0)\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- Often in an exercise we have some comments about the solution -->\n",
+      "<!-- which we normally want to keep where they are. -->\n",
+      "\n",
+      "The goal of this project is to draw $N$ circles with random\n",
+      "center and radius. Plot each circle using the `circle` function\n",
+      "above.\n",
+      "\n",
+      "\n",
+      "*a)* Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.\n",
+      "\n",
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint.* Use the `numpy.random` module to draw the\n",
+      "$x_0$, $y_0$, and $R$ quantities.\n",
+      "<!-- --- end hint in exercise --- -->\n",
+      "\n",
+      "\n",
+      "<!-- --- begin answer of exercise --- -->\n",
+      "*Answer.* Here goes the short answer to part a).\n",
+      "<!-- --- end answer of exercise --- -->\n",
+      "\n",
+      "\n",
+      "<!-- --- begin solution of exercise --- -->\n",
+      "*Solution.* Here goes a full solution to part a).\n",
+      "<!-- --- end solution of exercise --- -->\n",
+      "\n",
+      "*b)* Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.\n",
+      "Filename: `norm.py`.\n",
+      "\n",
+      "*c)* Let $R$ and $(x_0,y_0)$ be normally distributed.\n",
+      "\n",
+      "Filename: `circles.pdf`.\n",
+      "\n",
+      "<!-- Closing remarks for this Project -->\n",
+      "\n",
+      "#### Remarks\n",
+      "\n",
+      "At the very end of the exercise it may be appropriate to summarize\n",
+      "and give some perspectives.\n",
+      "\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Exercise 1: Determine some Distance\n",
+      "\n",
+      "Intro to this exercise. Questions are in subexercises below.\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- No meaning in this weired test example: -->\n",
+      "The text here belongs to the main (intro) part of the exercise. Need\n",
+      "closing remarks to have text after subexercises.\n",
+      "\n",
+      "\n",
+      "<!-- --- begin solution of exercise --- -->\n",
+      "*Solution.* Here goes a full solution of the whole exercise.\n",
+      "With some math $a=b$ in this solution:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $  a=b.  $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "And code `a=b` in this solution:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "def func(x):\n",
+      "    return x + 1  # with code in hint\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "End of solution is here.\n",
+      "<!-- --- end solution of exercise --- -->\n",
+      "\n",
+      "\n",
+      "*a)* Subexercises are numbered a), b), etc.\n",
+      "\n",
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint 1.* First hint to subexercise a).\n",
+      "With math $a=b$ in hint:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $  \\cos^2 x + \\sin^2 x = 1 \\thinspace . $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "And with code returning $x+1$ in hint:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "a = b  # code in solution\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- --- end hint in exercise --- -->\n",
+      "\n",
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint 2.* Second hint to subexercise a).\n",
+      "<!-- --- end hint in exercise --- -->\n",
+      "Filename: `subexer_a.pdf`.\n",
+      "\n",
+      "\n",
+      "<!-- --- begin answer of exercise --- -->\n",
+      "*Answer.* Short answer to subexercise a).\n",
+      "With math in answer: $a=b$.\n",
+      "<!-- --- end answer of exercise --- -->\n",
+      "\n",
+      "*b)* Here goes the text for subexercise b).\n",
+      "\n",
+      "\n",
+      "Some math $\\cos^2 x + \\sin^2 x = 1$ written one a single line:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $  \\hbox{math in solution: } a = b  $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- --- begin hint in exercise --- -->\n",
+      "\n",
+      "*Hint.* A hint for this subexercise.\n",
+      "<!-- --- end hint in exercise --- -->\n",
+      "Filename: `subexer_b.pdf`.\n",
+      "\n",
+      "\n",
+      "<!-- --- begin solution of exercise --- -->\n",
+      "*Solution.* Here goes the solution of this subexercise.\n",
+      "<!-- --- end solution of exercise --- -->\n",
+      "\n",
+      "<!-- Closing remarks for this Exercise -->\n",
+      "\n",
+      "#### Remarks\n",
+      "\n",
+      "Some final closing remarks, e.g., summarizing the main findings\n",
+      "and their implications in other problems can be made. These\n",
+      "remarks will appear at the end of the typeset exercise.\n",
+      "\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Some exercise without the \"Exercise:\" prefix\n",
+      "\n",
+      "<!-- Another minimalistic exercise -->\n",
+      "\n",
+      "Just some text. And some math saying that $e^0=1$ on a single line,\n",
+      "to test that math block insertion is correct:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $  \\exp{(0)} = 1  $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "And a test that the code `lambda x: x+2` is correctly placed here:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "lambda x: x+2\n"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Example 2: Just an example\n",
+      "\n",
+      "<!-- This example needs the --examples-as-exercises option, otherwise -->\n",
+      "<!-- it is just typeset as it is written. -->\n",
+      "\n",
+      "\n",
+      "*a)* What is the capital of Norway?\n",
+      "\n",
+      "*Answer.* Oslo.\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "## Here goes another section\n",
+      "\n",
+      "With some text, before we continue with exercises.\n",
+      "\n",
+      "## More Exercises\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Exercise 3: Make references to projects and problems\n",
+      "\n",
+      "Pick a statement from  [Project 2: Explore Distributions of Random Circles](#s) or  [Problem 1: Flip a Coin](#n)\n",
+      "and verify it.\n",
+      "Filename: `verify_formula.py`.\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
+      "<!-- --- begin exercise --- -->\n",
+      "\n",
+      "### Project 3: References to  [Project 1: Compute a Probability](#y) in a heading works for ipynb\n",
+      "\n",
+      "Refer to the previous exercise as  [Exercise 3: Make references to projects and problems](#s),\n",
+      "the two before that as  [Project 1: Compute a Probability](#y) and [Project 2: Explore Distributions of Random Circles](#s),\n",
+      "and this one as  [Project 3: References to Project ref{demo:ex:2} in a heading works for ipynb](#b).\n",
+      "Filename: `selc_composed.pdf`.\n",
+      "\n",
+      "<!-- --- end exercise --- -->\n",
+      "\n",
+      "\n",
+      "## Appendix: Just for testing; part I\n",
+      "\n",
+      "This is the first appendix.\n",
+      "\n",
+      "### A subsection within an appendix\n",
+      "\n",
+      "Some text.\n",
+      "\n",
+      "## Appendix: Just for testing; part II\n",
+      "\n",
+      "This is more stuff for an appendix.\n",
+      "\n",
+      "### Appendix: Testing identical titles\n",
+      "\n",
+      "Without label.\n",
+      "\n",
+      "### Appendix: Testing identical titles\n",
+      "\n",
+      "With label.\n",
+      "\n",
+      "### Appendix: Testing identical titles\n",
+      "\n",
+      "With label.\n",
+      "\n",
+      "### Appendix: Testing identical titles\n",
+      "\n",
+      "Without label.\n",
+      "\n",
+      "\n",
+      "\n",
+      "*Hint.* Here is a hint.\n",
+      "\n",
+      "\n",
+      "\n",
+      "*Warning.* And here is a warning about something to pay attention to.\n",
+      "\n",
+      "*Summary.* Much testing in this document, otherwise stupid content.\n",
+      "\n",
+      "*Notice.* Ah, we are close to the end.\n",
+      "With math:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### $  p=q $"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "*Question.* So, how many admonition environments does Doconce support?"
+     ]
+    }
+   ],
+   "metadata": {}
+  }
+ ]
+}
+
 ************** File: testdoc.tmp *****************
 
 More text, with a reference back to Section ref{sec1} and further
@@ -23579,6 +24761,18 @@ print """
 google-chrome sphinx-rootdir/_build/html/index.html
 """
 
+************** File: .testdoc_html_file_collection *****************
+testdoc.html
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/wavepacket_0001.png
+../doc/manual/figs/mjolnir.mpeg
+../doc/manual/figs/wavepacket.mpeg
+../doc/manual/figs/wavepacket_*.png
+._part0000_testdoc.html
+._part0001_testdoc.html
+._part0002_testdoc.html
+
 ************** File: make.sh *****************
 #!/bin/sh -x
 rm -rf html_images reveal.js downloaded_figures
@@ -23679,6 +24873,9 @@ doconce format mwiki testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce format cwiki testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format ipynb testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test mako variables too
@@ -24036,7 +25233,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 19 Feb 2013 (07:08)</center>
+<center>Wed, 20 Feb 2013 (05:27)</center>
 
 
 
@@ -24167,7 +25364,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 19 Feb 2013 (07:08)</center>
+<center>Wed, 20 Feb 2013 (05:27)</center>
 
 
 
@@ -25943,9 +27140,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title=&quot;Short title&quot; version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version &gt;= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes
@@ -27092,9 +28290,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version >= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes
@@ -28005,9 +29204,10 @@ list of capabilities::
         doconce remove_inline_comments file.do.txt
         
         # create a directory for the sphinx format
-        doconce sphinx_dir author='Me and you' title='Quick title' \
-            version=0.1 dirname=sphinx-rootdir theme=default \
-            file1 file2 file3
+        doconce sphinx_dir author='John Doe' title='Long title' \
+            short_title="Short title" version=0.1 \
+            dirname=sphinx-rootdir theme=default logo=mylogo.png \
+            do_file [do_file2 do_file3 ...]
         (requires sphinx version >= 1.1)
         
         # replace latex-1 (non-ascii) characters by html codes
@@ -28949,9 +30149,10 @@ list of capabilities:
         doconce remove_inline_comments file.do.txt
         
         # create a directory for the sphinx format
-        doconce sphinx_dir author='Me and you' title='Quick title' \
-            version=0.1 dirname=sphinx-rootdir theme=default \
-            file1 file2 file3
+        doconce sphinx_dir author='John Doe' title='Long title' \
+            short_title="Short title" version=0.1 \
+            dirname=sphinx-rootdir theme=default logo=mylogo.png \
+            do_file [do_file2 do_file3 ...]
         (requires sphinx version >= 1.1)
         
         # replace latex-1 (non-ascii) characters by html codes
@@ -29776,9 +30977,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version >= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes
@@ -30604,9 +31806,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version >= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes
@@ -31417,9 +32620,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version >= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes
@@ -32226,9 +33430,10 @@ list of capabilities::
         doconce remove_inline_comments file.do.txt
         
         # create a directory for the sphinx format
-        doconce sphinx_dir author='Me and you' title='Quick title' \
-            version=0.1 dirname=sphinx-rootdir theme=default \
-            file1 file2 file3
+        doconce sphinx_dir author='John Doe' title='Long title' \
+            short_title="Short title" version=0.1 \
+            dirname=sphinx-rootdir theme=default logo=mylogo.png \
+            do_file [do_file2 do_file3 ...]
         (requires sphinx version >= 1.1)
         
         # replace latex-1 (non-ascii) characters by html codes
@@ -33055,9 +34260,10 @@ list of capabilities::
         doconce remove_inline_comments file.do.txt
         
         # create a directory for the sphinx format
-        doconce sphinx_dir author='Me and you' title='Quick title' \
-            version=0.1 dirname=sphinx-rootdir theme=default \
-            file1 file2 file3
+        doconce sphinx_dir author='John Doe' title='Long title' \
+            short_title="Short title" version=0.1 \
+            dirname=sphinx-rootdir theme=default logo=mylogo.png \
+            do_file [do_file2 do_file3 ...]
         (requires sphinx version >= 1.1)
         
         # replace latex-1 (non-ascii) characters by html codes
@@ -33919,9 +35125,10 @@ list of capabilities::
         doconce remove_inline_comments file.do.txt
         
         # create a directory for the sphinx format
-        doconce sphinx_dir author='Me and you' title='Quick title' \
-            version=0.1 dirname=sphinx-rootdir theme=default \
-            file1 file2 file3
+        doconce sphinx_dir author='John Doe' title='Long title' \
+            short_title="Short title" version=0.1 \
+            dirname=sphinx-rootdir theme=default logo=mylogo.png \
+            do_file [do_file2 do_file3 ...]
         (requires sphinx version >= 1.1)
         
         # replace latex-1 (non-ascii) characters by html codes
@@ -34833,9 +36040,10 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 doconce remove_inline_comments file.do.txt
 
 # create a directory for the sphinx format
-doconce sphinx_dir author='Me and you' title='Quick title' \
-    version=0.1 dirname=sphinx-rootdir theme=default \
-    file1 file2 file3
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
 (requires sphinx version >= 1.1)
 
 # replace latex-1 (non-ascii) characters by html codes
@@ -36523,6 +37731,62 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
 + [ 0 -ne 0 ]
++ doconce format ipynb testdoc.do.txt --examples-as-exercises
+running preprocess -DFORMAT=ipynb  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to ipynb
+
+FIX: multi-line caption
+
+ Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
+
+-- fixed to one line
+
+FIX: multi-line caption
+
+ A long
+caption spanning
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
+
+-- fixed to one line
+
+FIX: FIGURE not at the beginning of the line - 1 fixes
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
+
+
+FIX: MOVIE not at the beginning of the line - 1 fixes
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). label{mymov} 
+
+
+FIX: !bhint not at the beginning of the line - 1 fixes
+  !bhint
+
+
+FIX: !ehint not at the beginning of the line - 1 fixes
+  !ehint
+
+
+*** The total of 6 fixes above should be incorporated in the file!
+
+
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open the solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
+found info about 9 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format ipynb
+output in testdoc.ipynb
++ [ 0 -ne 0 ]
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --no-preprocess --examples-as-exercises
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 running mako on __tmp.do.txt to make __tmp.do.txt
@@ -37395,8 +38659,9 @@ Overfull \hbox (0.18839pt too wide)
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
+[14]
 No file quickref.ind.
-[14] (./quickref.aux)
+[15] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -37478,7 +38743,7 @@ latex_figs/notice.eps
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, ).
+Output written on quickref.dvi (15 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -37881,12 +39146,11 @@ Overfull \hbox (95.00006pt too wide)
 []\T1/pcr/m/n/10 # gwiki format requires substitution of figure file names by U
 RLs  
 [9]
-Overfull \hbox (65.00006pt too wide) 
-[]\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title' \  
+Overfull \hbox (47.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
 
-
-Overfull \hbox (29.00006pt too wide) 
-[]    \T1/pcr/m/n/10 version=0.1 dirname=sphinx-rootdir theme=default \  
+Overfull \hbox (53.00006pt too wide) 
+[]    \T1/pcr/m/n/10 dirname=sphinx-rootdir theme=default logo=mylogo.png \  
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes  
@@ -37910,11 +39174,11 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
-
+[10]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
-[10]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
@@ -37941,11 +39205,11 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning them
  up)  
-
+[11]
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
-[11]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
@@ -38270,12 +39534,11 @@ Overfull \hbox (95.00006pt too wide)
 []\T1/pcr/m/n/10 # gwiki format requires substitution of figure file names by U
 RLs  
 
-Overfull \hbox (65.00006pt too wide) 
-[]\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title' \  
+Overfull \hbox (47.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
 
-
-Overfull \hbox (29.00006pt too wide) 
-[]    \T1/pcr/m/n/10 version=0.1 dirname=sphinx-rootdir theme=default \  
+Overfull \hbox (53.00006pt too wide) 
+[]    \T1/pcr/m/n/10 dirname=sphinx-rootdir theme=default logo=mylogo.png \  
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes  

@@ -1279,7 +1279,8 @@ def clean():
         for f in generated_files:
             removed.append(f)
     removed.extend(glob.glob('*~') + glob.glob('tmp*') +
-                   glob.glob('._part*.html') + glob.glob('.*.exerinfo'))
+                   glob.glob('._part*.html') + glob.glob('.*.exerinfo') +
+                   glob.glob('.*_html_file_collection'))
     directories = ['sphinx-rootdir', 'html_images']
     for d in directories:
         if os.path.isdir(d):
@@ -1730,6 +1731,8 @@ def get_header_parts_footer(filename, format='html'):
 
 def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
+    import html
+
     local_navigation_pics = False    # avoid copying images to subdir...
     if local_navigation_pics:
         copy_datafiles(html_images)  # copy html_images subdir if needed
@@ -1810,6 +1813,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
 <a href="%s"><img src="%s" border=0 alt="next"></a>
 """ % (next_part_filename, next_filename))
         lines += footer
+        html.add_to_file_collection(part_filename, filename, 'a')
         f = open(part_filename, 'w')
         f.write(''.join(lines))
         f.close()
@@ -3263,7 +3267,7 @@ def analyzer():
     # Must have this in a function since we need to do this recursively
     filename = sys.argv[1]
     alltext = open(filename, 'r').read()
-    # preprocess parts and includes[[[
+    # preprocess parts and includes
     part_pattern = r'\.\.\s*>>+\s*[Pp]art:\s*%s\s*>>+'
     parts = re.findall(part_pattern % '([^ ]+?)', alltext)
 

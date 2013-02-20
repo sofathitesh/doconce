@@ -3,6 +3,39 @@ from common import table_analysis, plain_exercise, insert_code_and_tex, \
      indent_lines, python_online_tutor
 from misc import option
 
+global _file_collection_filename
+
+def add_to_file_collection(filename, doconce_docname=None, mode='a'):
+    """
+    Add filename to the collection of needed files for the
+    HTML document to work.
+    The first time the function is called, doconce_docname != None
+    and this name is used to set the filename of the file with
+    the while file collection. Later, doconce_docname is not given
+    (otherwise previous info is erased).
+    """
+    # bin/doconce functions must provide doconce_docname and
+    # mode='a' in order to write correctly to an already existing
+    # file. Functions in lib/doconce, when accessed by doconce format,
+    # can just provide filename as the first call from doconce.py
+    # provides doconce_docname and initializes _file_collection_filename
+    # correctly.
+    global _file_collection_filename
+    if isinstance(doconce_docname, str) and doconce_docname != '':
+        if doconce_docname.endswith('.do.txt'):
+            doconce_docname = doconce_docname[:-7]
+        if doconce_docname.endswith('.html'):
+            doconce_docname = doconce_docname[:-5]
+        _file_collection_filename = '.' + doconce_docname + \
+                                    '_html_file_collection'
+
+    try:
+        f = open(_file_collection_filename, mode)
+        f.write(filename + '\n')
+        f.close()
+    except:
+        pass
+
 # Style sheets
 
 admon_styles = """\
@@ -385,6 +418,17 @@ MathJax.Hub.Config({
     filestr = re.sub(pattern, '<p>\n', filestr)
     filestr = re.sub(pattern, '<p>\n', filestr)
 
+    # Find all URLs to files (non http, ftp)
+    import common
+    pattern = '<a href="' + common._linked_files
+    files = re.findall(pattern, filestr)
+    for f in files:
+        add_to_file_collection(f)
+
+
+
+
+
     # Add info about the toc (for construction of navigation panels etc.).
     # Just dump the tocinfo dict so that we can read it and take eval
     # later
@@ -471,6 +515,9 @@ def html_figure(m):
     filename = m.group('filename').strip()
     opts = m.group('options').strip()
 
+    if not filename.startswith('http'):
+        add_to_file_collection(filename)
+
     if opts:
         info = [s.split('=') for s in opts.split()]
         opts = ' ' .join(['%s=%s' % (opt, value)
@@ -525,6 +572,9 @@ def html_movie(m):
     filename = m.group('filename')
     options = m.group('options')
     caption = m.group('caption').strip()
+
+    if not filename.startswith('http'):
+        add_to_file_collection(filename)
 
     # Turn options to dictionary
     if ',' in options:
@@ -832,6 +882,7 @@ def define(FILENAME_EXTENSION,
            ENVIRS,
            INTRO,
            OUTRO):
+
     # all arguments are dicts and accept in-place modifications (extensions)
 
     FILENAME_EXTENSION['html'] = '.html'  # output file extension
