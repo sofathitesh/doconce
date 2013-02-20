@@ -3977,3 +3977,20 @@ def _walker_include(arg, dir, files):
     os.chdir(origdir)
 
 # ----------------------------------------------------------------------
+
+
+def which(program):
+    """
+    Mimic the Unix ``which`` command and return the full path of
+    a program whose name is in the `program` argument.
+    Return None if the program is not found in any of the
+    directories in the user's ``PATH`` variable.
+    """
+    pathdirs = os.environ['PATH'].split(os.pathsep)
+    program_path = None
+    for d in pathdirs:
+        if os.path.isdir(d):
+            if os.path.isfile(os.path.join(d, program)):
+                program_path = d
+                break
+    return program_path

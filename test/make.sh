@@ -99,6 +99,9 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce format cwiki testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
+doconce format ipynb testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 # Test mako variables too
 doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
