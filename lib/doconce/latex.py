@@ -732,7 +732,7 @@ def latex_%s(block, format):
 \\fcolorbox{black}{%sbackground}{
 \\begin{minipage}{0.8\\textwidth}
 \includegraphics[height=0.3in]{%s/%s%%s}
-\\vskip-0.3in\hskip1.5in{\large\\bf %s} \\\\[0.4cm]
+\\vskip-0.3in\hskip1.9in{\large\sc %s} \\\\[0.4cm]
 %%s
 \end{minipage}}
 \end{center}
@@ -748,8 +748,11 @@ _admon2rgb = dict(warning=(1.0, 0.8235294, 0.8235294),   # pink
                   hint=(0.87843, 0.95686, 1.0),          # light blue
                   )
 for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
-    exec(_latex_admonition(_admon, _admon.upper(),
+    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
                            _admon, _admon2rgb[_admon]))
+
+def latex_summary(block, format):
+    return '\\summarybox{\n' + block + '}\n'
 
 
 def define(FILENAME_EXTENSION,
@@ -991,7 +994,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MINTED
@@ -1048,6 +1051,36 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
 
 % USER PREAMBLE
 % insert custom LaTeX commands...

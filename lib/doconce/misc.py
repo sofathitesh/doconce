@@ -964,17 +964,18 @@ def ptex2tex():
         print 'No file %s' % (filename + '.p.tex')
         sys.exit(1)
 
+    output_filename = filename + '.tex'
     cmd = 'preprocess %s %s > %s' % \
           (' '.join(preprocess_options),
            filename + '.p.tex',
-           filename + '.tex')
+           output_filename)
     system(cmd, failure_info="""
 preprocess failed or is not installed;
 download preprocess from http://code.google.com/p/preprocess""")
 
     # Mimic ptex2tex by replacing all code environments by
     # a plain verbatim command
-    f = open(filename + '.tex', 'r')
+    f = open(output_filename, 'r')
     filestr = f.read()
     f.close()
 
@@ -1060,9 +1061,10 @@ download preprocess from http://code.google.com/p/preprocess""")
     filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\\%s!\g<1>!}\g<2>' %
                            (fontsize, fontsize, verb_command), filestr)
     '''
-    f = open(filename + '.tex', 'w')
+    f = open(output_filename, 'w')
     f.write(filestr)
     f.close()
+    print 'output in', output_filename
 
 
 def _usage_grab():
