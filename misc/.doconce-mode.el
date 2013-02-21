@@ -143,7 +143,7 @@ text...
 ;;;###autoload
 (define-generic-mode doconce
   '(("%<doc>" . "%</doc>"))              ; (mako) comment characters
-  '("bwarning" "ewarning" "bquote" "equote" "bsubex" "esubex" "bhint" "ehint" "bsol" "esol" "bans" "eans" "bpop" "epop" "bslidecell" "eslidecell" "idx") ; keywords (!bt used below does not work well)
+  '("bwarning" "ewarning" "bquote" "equote" "bnotice" "enotice" "bsummary" "esummary" "bsubex" "esubex" "bhint" "ehint" "bsol" "esol" "bans" "eans" "bpop" "epop" "bslidecell" "eslidecell" "idx") ; keywords (!bt used below does not work well)
   '(("\\(^!bc[^§]+?!ec\\)" (1 'do-code-face))
     ("\\(^\\(FIGURE\\|MOVIE\\|AUTHOR\\|TITLE\\):.+$\\)" (1 'do-figmov-face))
     ("\\(^!bt[^§]+?!et\\)" (1 'do-math-face))
