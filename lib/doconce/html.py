@@ -452,26 +452,40 @@ MathJax.Hub.Config({
     # will get the footer twice...)
 
     # Add header from external template
-    header = '<title>' in filestr  # will the html file get a header?
     template = option('html-template=', default='')
-    if template != '' and header:
-        print 'Warning: HTML template %s ignored since the file has a title (and hence a generated HTML header)' % template
-        authors = '<!-- author(s) -->' in filestr
-        if authors:
-            print 'Warning: AUTHOR is not recommended when using HTML templates (usually looks no good)'
-    if template != '' and not header:
+    if template:
         title = ''
         date = ''
-        # The first section heading or a #TITLE: ... line becomes the title
-        pattern = r'<!--\s+TITLE:\s*(.+?) -->'
-        m = re.search(pattern, filestr)
-        if m:
-            title = m.group(1).strip()
-            filestr = re.sub(pattern, '\n<h1>%s</h1>\n' % title, filestr)
-        else:
-            m = re.search(r'<h\d>(.+?)<a name=', filestr)
+
+        header = '<title>' in filestr  # will the html file get a header?
+        if header:
+            print """\
+*** warning: TITLE may look strange with a template -
+             it is recommended to comment out the title: #TITLE:"""
+            pattern = r'<title>(.+?)</title>'
+            m = re.search(pattern, filestr)
             if m:
                 title = m.group(1).strip()
+                filestr = re.sub(pattern, r'<h1>\g<1></h1>', filestr)
+        authors = '<!-- author(s):' in filestr
+
+        if authors:
+            print """\
+*** warning: AUTHOR may look strange with a template -
+             it is recommended to comment out all authors: #AUTHOR.
+             Better to hardcode authors in a footer in the template."""
+
+        if title == '':
+            # The first section heading or a #TITLE: ... line becomes the title
+            pattern = r'<!--\s+TITLE:\s*(.+?) -->'
+            m = re.search(pattern, filestr)
+            if m:
+                title = m.group(1).strip()
+                filestr = re.sub(pattern, '\n<h1>%s</h1>\n' % title, filestr)
+            else:
+                m = re.search(r'<h\d>(.+?)<a name=', filestr)
+                if m:
+                    title = m.group(1).strip()
         pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
         m = re.search(pattern, filestr)
         if m:
@@ -634,7 +648,17 @@ def html_movie(m):
 
 def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst, auth2email):
-    text = '\n\n<p>\n<!-- author(s) -->\n'
+    # Make a short list of author names - can be extracted elsewhere
+    # from the HTML code and used in, e.g., footers.
+    authors = [author for author in auth2index]
+    if len(authors) > 1:
+        authors[-1] = 'and ' + authors[-1]
+    authors = ', '.join(authors)
+    text = """
+
+<p>
+<!-- author(s): %s -->
+""" % authors
 
     def email(author):
         address = auth2email[author]
