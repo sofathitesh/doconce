@@ -1,4 +1,4 @@
-import os, sys, shutil, re, glob, sets, time
+import os, sys, shutil, re, glob, sets, time, commands
 
 _registered_command_line_options = [
     ('--help',
@@ -17,6 +17,8 @@ _registered_command_line_options = [
      'Do not run the Mako preprocessor program.'),
     ('--no-preprocess',
      'Do not run the Preprocess preprocessor program.'),
+    ('--no-header-footer',
+     'Do not include header and footer in (LaTeX and HTML) documents.'),
     ('--no-pygments-html',
      """Do not use pygments to typeset computer code in HTML,
 use plain <pre> tags."""),
@@ -3942,7 +3944,7 @@ def _run_doconce(filename_doconce, format):
     global doconce_program # set elsewhere
     cmd = '%s format %s %s' % (doconce_program, format, filename_doconce)
     print 'run', cmd
-    failure, outtext = getstatusoutput(cmd)
+    failure, outtext = commands.getstatusoutput(cmd)
     if failure:
         raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \
               (cmd, os.getcwd(), outtext)
@@ -3966,7 +3968,7 @@ def _run_preprocess4includes(filename_dotp_py, options=''):
     pyfile = filename_dotp_py[:-5] + '.py'
     cmd = 'preprocess %s %s > %s' % (options, filename_dotp_py, pyfile)
     print 'run', cmd
-    failure, outtext = getstatusoutput(cmd)
+    failure, outtext = commands.getstatusoutput(cmd)
     #os.remove(tmp_filename)
     if failure:
         raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \

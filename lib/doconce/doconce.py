@@ -2059,7 +2059,8 @@ def doconce2format(filestr, format):
         delimiter = '------------------- end of main content ---------------'
         delimiter = comment_pattern % delimiter + '\n'  # wrap as comment
         filestr = filestr + '\n' + delimiter
-    if has_title:
+    if has_title and not option('no-header-footer') and \
+           option('html-template=', default='') == '':
         if format in INTRO:
             filestr = INTRO[format] + filestr
         if format in OUTRO:
