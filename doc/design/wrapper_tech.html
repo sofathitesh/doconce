@@ -71,6 +71,29 @@ Automatically generated HTML file from Doconce source
 </style>
 
 </head>
+
+<!-- tocinfo
+{'highest level': 0,
+ 'sections': [(' Problem setting ', 0, None, '___sec0'),
+              (' Solution ', 0, None, '___sec1'),
+              (' Step 1: Use Doconce to generate text ', 2, None, '___sec2'),
+              (' Step 2: Write the core text ', 2, None, '___sec3'),
+              (' Step 3: Inspect the HTML page ', 2, None, '___sec4'),
+              (' Step 4: Find some web page and make a template ',
+               2,
+               None,
+               '___sec5'),
+              (' Step 5: Embed your HTML document in the template ',
+               2,
+               None,
+               '___sec6'),
+              (' Using the Vagrant template ', 1, None, '___sec7'),
+              (' Making a template from Vortex pages at the University of Oslo ',
+               1,
+               None,
+               '___sec8')]}
+end of tocinfo -->
+
 <body>
 
 
@@ -101,33 +124,36 @@ MathJax.Hub.Config({
 <center><h1>How to Wrap Plain HTML Files with an Available Look and Feel</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s): HPL -->
+<!-- author(s): Hans Petter Langtangen -->
 
 <center>
-<b>HPL</b> 
+<b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
 
 <p>
 <!-- institution(s) -->
+
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
 <center><h4>Feb 23, 2013</h4></center> <!-- date -->
 <p>
 
-<h2>Problem setting  <a name="___sec0"></a></h2>
+<h1>Problem setting  <a name="___sec0"></a></h1>
 <p>
 
 <ol>
-<li> You need to write web pages, say for a course.</li>
+<li> You need to write web pages, say for a course, and want to have
+   complete control of the core text in a plain text editor without
+   paying attention to fancy layouts.</li>
 <li> There might be many pages, often developing dynamically over time,
    linked to a potentially large number of files (images, computer codes,
    lecture notes, exercises, etc.).
    This author also has a lot of mathematics and computer code
    in these pages.</li>
-<li> You want to write just the core text with a plain editor
-   and pay minimal attention to the layout.</li>
 <li> You will (of course) have full version control of the files with the
-   core content and publish the latest version all files with one command.</li>
+   core content and publish the latest version of all files with one command.</li>
 <li> However, the web pages should appear with a prescribed look and feel
    because your host institution requires so.</li>
 <li> The look and feel is automatically obtained if you write your
@@ -149,12 +175,12 @@ with layouts.
 <p>
 
 
-<h2>Solution  <a name="___sec1"></a></h2>
+<h1>Solution  <a name="___sec1"></a></h1>
 <p>
 
-<h4>Step 1: Use Doconce to generate text  <a name="___sec2"></a></h4>
+<h3>Step 1: Use Doconce to generate text  <a name="___sec2"></a></h3>
 <p>
-We shall use <a href="http://code.google.com/p/doconce">Doconce</a>
+We shall in this document use <a href="http://code.google.com/p/doconce">Doconce</a>
 for writing the core text. Doconce looks like plain text, with just a
 few tags for enabling full LaTeX mathematics and nicely typeset
 computer code. From Doconce you can go to plain LaTeX, pdfLaTeX,
@@ -166,10 +192,9 @@ to generate slides.
 
 <p>
 
-<h4>Step 2: Write the core text  <a name="___sec3"></a></h4>
+<h3>Step 2: Write the core text  <a name="___sec3"></a></h3>
 <p>
-Write the core text, here an exercise with some math code stored
-in a file <code>mydoc.do.txt</code>:
+Write the core text, here an <a href="mydoc_plain_pygmentized.html">exercise with some math and code</a> stored in a file <code>mydoc.do.txt</code>:
 
 <p>
 
@@ -254,7 +279,7 @@ later.
 
 <p>
 
-<h4>Step 3: Inspect the HTML page  <a name="___sec4"></a></h4>
+<h3>Step 3: Inspect the HTML page  <a name="___sec4"></a></h3>
 <p>
 Check the default layout of your HTML page by translating the
 Doconce file to HTML:
@@ -267,14 +292,14 @@ Doconce file to HTML:
 google-chrome mydoc.html
 </pre></div>
 <p>
-The page is rendered with the <a href="mydoc_plain_pygmentized.html">default HTML style</a> as <a href="mydoc_plain.html">seen in the figure below</a>:
+The page is rendered with the <a href="mydoc_plain_pygmentized.html">default HTML style</a> as seen in the figure below (or <a href="mydoc_plain.html">in the file itself</a>):
 
 <p>
 <center><p><img src="fig/plain_html.png" align="bottom" width=900></p></center>
 
 <p>
 
-<h4>Step 4: Find some web page and make a template  <a name="___sec5"></a></h4>
+<h3>Step 4: Find some web page and make a template  <a name="___sec5"></a></h3>
 <p>
 When you see a design of a web page that you would like to adopt,
 view the source code (all browsers have a menu choice for doing this)
@@ -307,7 +332,7 @@ and store it on file. To proceed you need to know some basic HTML.
    have a relative path in the HTML code.</li>
 </ol>
 
-As example, we took the source code of the GitHub minimal theme
+As example, we took the source code of the GitHub "minimal" theme
 and implemented the points above. Some of the elements in the
 downloaded page are conveniently replaced by some indicating text
 that we will fill out when we finalize the layout of our web site.
@@ -382,7 +407,7 @@ application we customize the template:
    <code>Differential Equations</code>.</li>
 </ul>
 
-<h4>Step 5: Embed your HTML document in the template  <a name="___sec6"></a></h4>
+<h3>Step 5: Embed your HTML document in the template  <a name="___sec6"></a></h3>
 <p>
 We can now use Doconce to insert our document <code>mydoc.html</code>,
 generated from <code>mydoc.do.txt</code> into an HTML template.
@@ -417,7 +442,74 @@ to a web page with fancy design!
 
 <p>
 
-<h3>Making a template from Vortex pages at the University of Oslo  <a name="___sec7"></a></h3>
+<h2>Using the Vagrant template  <a name="___sec7"></a></h2>
+<p>
+Besides the GitHub "minimal" theme, Doconce comes with a template
+<a href="../../bundled/html_styles/vagrant/template_vagrant.html"><tt>template_vagrant.html</tt></a> adopted from
+the style in the documentation of the <a href="http://docs.vagrantup.com/v1/docs/getting-started/index.html">Vagrant</a> virtual machine
+tool.
+
+<p>
+<center><p><img src="fig/vagrant_web.png" align="bottom" width=900></p></center>
+
+<p>
+This template, found in <code>bundled/html_styles/vagrant</code> in the
+Doconce source code tree, is easy to adopt to a particular set of web
+pages. It looks as
+
+<p>
+<center><p><img src="fig/template_vagrant.png" align="bottom" width=900></p></center>
+
+<p>
+There are several elements in the template:
+
+<p>
+
+<ol>
+<li> Navigation bar to the left, which is automatically created by Doconce.</li>
+<li> A main part (<code>%(main)s</code>) and a title as usual.</li>
+<li> Navigation buttons on the button, which are automatically filled in
+   by Doconce if the document is split into several parts.</li>
+<li> A logo consisting of a <em>LogoWord</em> in black and a <em>withSubWord</em> in
+   gray. This should be <em>manually edited</em> to some short name for the web pages
+   you want to embed with the Vagrant style.</li>
+<li> Navigation links in the top right part of the page. These should be
+   <em>manually edited</em> or deleted.</li>
+<li> At the bottom of the page there is a footer, which can be
+   <em>manually edited</em> or deleted.</li>
+</ol>
+
+Here we edit the logo to <em>DiffEq101</em>, edit the navigation links at the
+top right to point to Wikipedia and WolframAlpha, and insert a
+copyright 2013 notice in the footer.
+
+<p>
+The Vagrant style depends on two CSS files. We copy these from
+the <code>bundled/html_styles/vagrant/css</code> directory in the Doconce source
+to the current directory so that the links to the stylesheets in
+the template are correct.
+
+<p>
+Translation of the original Doconce writings in <code>mydoc.do.txt</code> is
+done by
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc.do.txt --html-style<span style="color: #666666">=</span>vagrant --html-template<span style="color: #666666">=</span>vagrant/template_vagrant.html
+</pre></div>
+<p>
+The resulting <a href="mydoc_vagrant_pygmentized.html">HTML file</a> has
+a <a href="mydoc_vagrant.html">nice look</a>:
+
+<p>
+<center><p><img src="fig/vagrant_html.png" align="bottom" width=900></p></center>
+
+<p>
+
+
+<h2>Making a template from Vortex pages at the University of Oslo  <a name="___sec8"></a></h2>
 <p>
 As case, we invoke the page for a <a href="http://www.uio.no/studier/emner/matnat/ifi/INF5620/h12/">course</a>. The <a href="uio/5620_pygmentized.html">source code</a>
 is huge. Here is a glimpse:
@@ -479,6 +571,18 @@ Here is <a href="mydoc_uio.html">the result</a>.
 
 <p>
 <center><p><img src="fig/uio_html.png" align="bottom" width=900></p></center>
+
+<p>
+It really looks that we are inside the Vortex web system at the
+University of Oslo and all the links to <em>Student Life</em>, <em>People</em>,
+etc. work.
+
+<p>
+Normally, the web pages at the University of Oslo have to be written
+through a web-based editor (in the Vortex system), and the information
+is stored in XML files.  It is somewhat remarkable that the HTML
+rendered from these XML files can be copied so easily and used as
+templates for web documents anywhere else.
 <!-- ------------------- end of main content --------------- -->
 
 

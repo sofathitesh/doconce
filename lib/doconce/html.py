@@ -171,6 +171,28 @@ css_blueish2 = """\
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 """ +  admon_styles
 
+css_cbcred = """\
+    body {
+      font-family: Helvetica, Verdana, Arial, Sans-serif;
+      color: #404040;
+      background: #ffffff;
+    }
+    h1 { font-size: 1.8em;  color: #8A0808; }
+    h2 { font-size: 1.5em;  color: #8A0808; }
+    h3 { color:  color: #8A0808; }
+    a { color:  color: #8A0808; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+""" + admon_styles
+
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
 
@@ -443,7 +465,7 @@ MathJax.Hub.Config({
             filestr = filestr.replace('<body>\n', toc + '<body>\n')
         else:
             # tocinfo to the beginning
-            filestr = tocinfo + filestr
+            filestr = toc + filestr
 
     # Wrap filestr in vagrant template here? Must prevent header from
     # being added, and another problem: html_split needs to wrap
@@ -453,6 +475,23 @@ MathJax.Hub.Config({
 
     # Add header from external template
     template = option('html-template=', default='')
+    if option('html-style=') == 'vagrant':
+        # Set template_vagrant.html as template
+        if not template:
+            print """
+*** error: --html-style=vagrant requires
+    cp -r path/to/doconce/source/bundled/html_styles/vagrant .
+    --html-template=vagrant/template_vagrant.html
+"""
+            sys.exit(1)
+    if 'template_vagrant.html' in template \
+       and not option('html-style=') == 'vagrant':
+        print """
+*** error: --html-template= with template_vagrant.html requires
+    --html-style=vagrant
+"""
+        sys.exit(1)
+
     if template:
         title = ''
         date = ''
@@ -475,6 +514,7 @@ MathJax.Hub.Config({
              it is recommended to comment out all authors: #AUTHOR.
              Better to hardcode authors in a footer in the template."""
 
+        # Extract title
         if title == '':
             # The first section heading or a #TITLE: ... line becomes the title
             pattern = r'<!--\s+TITLE:\s*(.+?) -->'
@@ -486,12 +526,24 @@ MathJax.Hub.Config({
                 m = re.search(r'<h\d>(.+?)<a name=', filestr)
                 if m:
                     title = m.group(1).strip()
+
+        # Extract date
         pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
         m = re.search(pattern, filestr)
         if m:
             date = m.group(1).strip()
             # remove date since date is in template
             filestr = re.sub(pattern, '', filestr)
+
+        # Make toc for navigation
+        toc_html = ''
+        if option('html-style=') == 'vagrant':
+            level_min = tocinfo['highest level']
+            toc_html = ''
+            for title, level, label, href in tocinfo['sections']:
+                nspaces = 1
+                indent = '&nbsp; '*(nspaces*(level - level_min))
+                toc_html += '     <!-- vagrant nav toc: "%s" --> <li> %s <a href="%s">%s</a>\n' % (title, indent, href, title)
 
         f = open(template, 'r'); template = f.read(); f.close()
         # template can only have slots for title, date, main
@@ -500,7 +552,7 @@ MathJax.Hub.Config({
         # etc which are the variables we can plug into the template.
         # The keywords list holds the names of these variables (can define
         # more than we actually use).
-        keywords = ['title', 'date', 'main',
+        keywords = ['title', 'date', 'main', 'table_of_contents',
                     'previous_page_title', 'previous_page_url',
                     'next_page_title', 'next_page_url',
                     ]
@@ -515,7 +567,8 @@ MathJax.Hub.Config({
             template = template.replace(from_, to_)
 
         variables = {keyword: '' for keyword in keywords} # init
-        variables.update({'title': title, 'date': date, 'main': filestr})
+        variables.update({'title': title, 'date': date, 'main': filestr,
+                          'table_of_contents': toc_html})
         filestr = template % variables
 
     if MATH_TYPESETTING == 'WordPress':
@@ -841,19 +894,23 @@ def html_toc(sections):
         if level < level_min:
             level_min = level
 
-    # Store for later use in navgation panels etc.
-    global tocinfo
-    tocinfo = {'sections': sections, 'highest level': level_min}
 
+    extended_sections = []  # extended list for toc in HTML file
     #hr = '<hr>'
     hr = ''
     s = '<h2>Table of contents</h2>\n\n%s\n' % hr
     for i in range(len(sections)):
         title, level, label = sections[i]
         href = label if label is not None else '___sec%d' % i
-        s += '&nbsp; '*(3*(level - level_min)) + \
-             '<a href="#%s">%s</a>' % (href, title ) + '<br>\n'
+        indent = '&nbsp; '*(3*(level - level_min))
+        s += indent + '<a href="#%s">%s</a>' % (href, title ) + '<br>\n'
+        extended_sections.append((title, level, label, href))
     s += '%s\n<p>\n' % hr
+
+    # Store for later use in navgation panels etc.
+    global tocinfo
+    tocinfo = {'sections': extended_sections, 'highest level': level_min}
+
     return s
 
 def html_quote(block, format):
@@ -994,6 +1051,12 @@ def define(FILENAME_EXTENSION,
     # Embedded style sheets
     if option('html-style=') == 'solarized':
         css = css_solarized
+    elif option('html-style=') == 'blueish':
+        css = css_blueish
+    elif option('html-style=') == 'blueish2':
+        css = css_blueish2
+    elif option('html-style=') == 'cbcred':
+        css = css_cbcred
     else:
         css = css_blueish # default
 

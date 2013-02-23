@@ -133,7 +133,8 @@ def latex_code(filestr, code_blocks, code_block_types,
             url = m.group(1).strip()
             text = m.group(2).strip()
             #print 'url:', url, 'text:', text
-            if not ('ftp:' in text or 'http' in text or '\\nolinkurl{' in text):
+            #if not ('ftp:' in text or 'http' in text or '\\nolinkurl{' in text):
+            if not ('ftp:' in text or 'http' in text):
                 # The link text does not display the URL so we include it
                 # in a footnote (\nolinkurl{} indicates URL: "...")
                 texttt_url = url.replace('_', '\\_').replace('#', '\\#').replace('%', '\\%')

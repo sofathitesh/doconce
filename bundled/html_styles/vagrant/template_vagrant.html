@@ -1,13 +1,20 @@
 <html>
 <head>
+<!--
+Style adopted from the vagrant web pages. The vagrant style
+builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+-->
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!-- bootstrap is essential for the font choice, not syntax.css -->
 <link rel="stylesheet" href="css/twitter_bootstrap.css">
 <link rel="stylesheet" href="css/vagrant.css">
 </head>
 <body>
+
+<title>%(title)s</title>
 
 <!-- ------------------- main content ------------------------>
 
@@ -18,17 +25,17 @@
   </div>
   <div class="span9">
    <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
     <ul>
-     <li><a href="http://www.vagrantup.com">Nav 1</a></li>
-     <li><a href="/v1/docs/getting-started/index.html">Nav 2</a></li>
-     <li><a href="/v1/docs/index.html">Nav 3</a></li>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
     </ul>
    </div>
   </div>
  </div>
 </div
 
-<!-- can extract all 7 and/or 9 headings (dep. on how many) 
+<!-- can extract all 7 and/or 9 headings (dep. on how many)
 make a doconce vagrantcss command that creates the css and header?
 should be some easy customization. Needs integration with split_html.
 Maybe a style choice, or more general, a navigation panel?
@@ -49,33 +56,32 @@ use them. The toc to be generated is just a set of li points.
 YES: try to make a template out of this file. The nav at the top
 is hardcoded in the template. Likewise the logo word.
 -->
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
 <div class="row">
  <div class="span3 Module sidebar">
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
-    <li class="active"> <!-- active means dark blue background -->
-     <a href="/v1/docs/getting-started/index.html">Overview</a></li>
-    <li class="active"><a href="/v1/docs/getting-started/why.html">Why Vagrant?</a></li>
-    <li><a href="/v1/docs/getting-started/introduction.html">Introduction and I try to make a very long list here</a></li>
-    <ul class="nav nav-list">
-      <li> Subsection
-    </ul>
-    <li><a href="/v1/docs/getting-started/setup.html">Project Setup</a></li>
-    <li><a href="/v1/docs/getting-started/boxes.html">Boxes</a></li>
-    <li><a href="/v1/docs/getting-started/ssh.html">SSH</a></li>
-    <li><a href="/v1/docs/getting-started/provisioning.html">Provisioning</a></li>
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+     %(table_of_contents)s
     </ul>
    </div>
   </div>
 
   <div class="span9">
-   <h1 id='getting_started_with_vagrant'>Getting Started with Vagrant</h1>
 
-Bla-bla text. Adjust size of h2 to be that of h1 and h1 even larger.
-Final two div must appear at the end. Done!
+%(main)s
 
-
-<h2>Hei og hopp</h2>
+<!--
+Preliminary examples/discussion on vagrant style syntax
 
 <div class='alert alert-block alert-notice'>
   <h3>What about PHP? Python? Java?</h3>
@@ -84,25 +90,14 @@ We need to extend the concept of templates to title, date,
 body, toc, next_page, previous_page.
 </div>
 
-<div class='my very special class for stuff'>
-I guess all this will be ordinary text. YES! Select one of my
-own images to be used with the alert. We can wrap warnings, notices,
-all that in div envirs!
-</div>
-What about a list?
-<ul>
-<li> item 1 with <code>code stuff</code>
-<li> item 2
-</ul>
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
 
-<h2>Your First Vagrant Virtual Environment</h2>
-<pre>
-$ vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
-$ vagrant init lucid32
-$ vagrant up
-</pre>
-<p>While the <div class="deep-blue">rest of the</div> getting started guide will focus on explaining how to build a fully functional virtual machine to serve Rails applications, you should get used to the above snippet of code. After the initial setup of any Vagrant environment, the above is all any developer will need to create their development environment! Note that the above snippet does actually create a fully functional 512MB virtual machine running Ubuntu in the background, although the machine doesn&#8217;t do much in this state.</p>
-
+<!-- bottom navigation buttons -->
+<!-- Doconce will automatically fill in the right URL in these
+     buttons when doconce html_split is run. Otherwise they are empty.
+-->
 <ul class="pager">
   <li class="previous">
     <a href="%(previous_page_url)s">&larr; %(previous_page_title)s</a>
@@ -111,13 +106,17 @@ $ vagrant up
   <a href="%(next_page_url)s">%(next_page_title)s &rarr;</a>
  </li>
 </ul>
-
+<!--- end of bottom navigation buttons -->
 
  </div>
-</div>
 
-<!-- ------------------- end of main content ----------------->
+ <div class="row Footer">
+  <div class="span12">
+  Here goes a footer, if desired, maybe with a Copyright &copy;
+  </div>
+ </div>
+</div>
 </body>
 </html>
-    
+
 

@@ -1,27 +1,87 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Solve the world's simplest differential equation</title>
+<head>
+<!--
+Style adopted from the vagrant web pages. The vagrant style
+builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+-->
 
-    <link rel="stylesheet" href="css/styles.css">
-    <meta name="viewport"
-     content="width=device-width, initial-scale=1, user-scalable=no">
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Exercise</h1>
-        <p>Differential Equations</p>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-        <!-- picture below the heading on the left -->
-	<img src="fig/discrete_function.png" width=220>
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+</head>
+<body>
 
-      </header>
+<title> Numerical experiments </title>
 
-      <!-- Here goes the main page --->
-      <section>
+<!-- ------------------- main content ------------------------>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">DiffEq<span class="subtitle">101</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="http://wikipedia.org">Wikipedia</a></li>
+     <li> <a href="http://wolframalpha.com">WolframAlpha</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div
+
+<!-- can extract all 7 and/or 9 headings (dep. on how many)
+make a doconce vagrantcss command that creates the css and header?
+should be some easy customization. Needs integration with split_html.
+Maybe a style choice, or more general, a navigation panel?
+Can probably easily in split_html grep for h1 and h2 titles and spit
+out the navigation panel. Can let parts be equipped with a list of
+headings in each part. For example [(heading, level), ...].
+--vagrant-css option turns on these constructions and adds a
+customized header. Can provide a python file that defines
+navigation, logo word. The vagrant css file with bootstrap
+can be stored along with the .zip files and just included from
+there (no - what if the html file is deployed? must have it locally,
+being copied like images).
+
+Can this file be made as an HTML template? Seems so! But we need
+more: toc, navigation at the top, "button" to next page at the bottom.
+Can just provide this in the dict and the template may or may not
+use them. The toc to be generated is just a set of li points.
+YES: try to make a template out of this file. The nav at the top
+is hardcoded in the template. Likewise the logo word.
+-->
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Solve the world's simplest differential equation " --> <li>  <a href="___sec0"> Solve the world's simplest differential equation </a>
+     <!-- vagrant nav toc: " Mathematical problem " --> <li> &nbsp;  <a href="___sec1"> Mathematical problem </a>
+     <!-- vagrant nav toc: " Numerical solution method " --> <li> &nbsp;  <a href="___sec2"> Numerical solution method </a>
+     <!-- vagrant nav toc: " Implementation " --> <li> &nbsp;  <a href="___sec3"> Implementation </a>
+     <!-- vagrant nav toc: " Numerical experiments " --> <li> &nbsp;  <a href="___sec4"> Numerical experiments </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
 
 
 <!-- tocinfo
@@ -98,19 +158,8 @@ $$
 Here, \( n=0,1,\ldots,N-1 \).
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
-Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.
-</p></td></tr>
-</table>
-<p>
+<div class="alert alert-block alert-hint">Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
+Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.</div><p>
 
 <h3>Implementation  <a name="___sec3"></a></h3>
 <p>
@@ -153,16 +202,44 @@ rate for \( \theta=0,1/2,1 \).
 <!-- ------------------- end of main content --------------- -->
 
 
-      </section>
+<!--
+Preliminary examples/discussion on vagrant style syntax
 
-      <footer>
-        <p>This project is maintained by ...</p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+We need to extend the concept of templates to title, date,
+body, toc, next_page, previous_page.
+</div>
 
-    </div>
-    <script src="js/scale.fix.js"></script>
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
 
-  </body>
+<!-- bottom navigation buttons -->
+<!-- Doconce will automatically fill in the right URL in these
+     buttons when doconce html_split is run. Otherwise they are empty.
+-->
+<ul class="pager">
+  <li class="previous">
+    <a href="">&larr; </a>
+  </li>
+  <li class="next">
+  <a href=""> &rarr;</a>
+ </li>
+</ul>
+<!--- end of bottom navigation buttons -->
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  &copy; 2013
+  </div>
+ </div>
+</div>
+</body>
 </html>
+
+
 
