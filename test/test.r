@@ -1006,50 +1006,71 @@ Automatically generated HTML file from Doconce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' Section 1 ', 1, 'sec1'),
-              (' Subsection 1 ', 2, None),
-              (' Subsection 2 ', 2, 'subsec:ex'),
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
+               'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None),
-              (' Tables ', 2, 'subsec:table'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
-               None),
+               None,
+               '___sec6'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
+               'Example',
                'Example'),
-              (' URLs ', 2, 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None),
-              (' Exercises ', 1, None),
-              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1'),
-              (' Remarks ', 3, None),
-              (' Not an exercise ', 2, None),
-              (' Project 1: Compute a Probability ', 2, 'demo:ex:2'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Exercises ', 1, None, '___sec10'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec12'),
+              (' Not an exercise ', 2, None, '___sec13'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
               (' Project 2: Explore Distributions of Random Circles ',
                2,
+               'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None),
-              (' Exercise 1: Determine some Distance ', 2, 'exer:dist'),
-              (' Remarks ', 3, None),
-              (' Some exercise without the "Exercise:" prefix ', 2, None),
-              (' Example 2: Just an example ', 2, None),
-              (' Here goes another section ', 1, None),
-              (' More Exercises ', 1, None),
+              (' Remarks ', 3, None, '___sec16'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec18'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec19'),
+              (' Example 2: Just an example ', 2, None, '___sec20'),
+              (' Here goes another section ', 1, None, '___sec21'),
+              (' More Exercises ', 1, None, '___sec22'),
               (' Exercise 3: Make references to projects and problems ',
                2,
+               'exer:some:formula',
                'exer:some:formula'),
               (' Project 3: References in a headings do not work well in html ',
                2,
+               'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None),
-              (' A subsection within an appendix ', 2, None),
-              (' Appendix: Just for testing; part II ', 1, None),
-              (' Appendix: Testing identical titles ', 2, None),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id1'),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None)]}
+              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
+              (' A subsection within an appendix ', 2, None, '___sec26'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
 end of tocinfo -->
 
 <body>
@@ -1100,7 +1121,7 @@ $$
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s) -->
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked, and J. Doe -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -1259,7 +1280,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -1320,6 +1341,36 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -2582,7 +2633,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.eps}
-\vskip-0.3in\hskip1.5in{\large\bf HINT} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -2594,29 +2645,20 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
 And here is a warning about something to pay attention to.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
-\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{summarybackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
-\vskip-0.3in\hskip1.5in{\large\bf SUMMARY} \\[0.4cm]
-Much testing in this document, otherwise stupid content.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\summarybox{
+Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -2630,7 +2672,7 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.eps}
-\vskip-0.3in\hskip1.5in{\large\bf QUESTION} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
@@ -2664,7 +2706,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 \usepackage{movie15}
@@ -2711,6 +2753,17 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
 
 
 \usepackage{theorem}
@@ -3111,7 +3164,7 @@ repeat,
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\Verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\Verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html} }})
 
 
 % Check out the correct with and height of YouTube movies from the
@@ -3364,8 +3417,8 @@ maybe over multiple doconce input lines.
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}, or
 the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}.  Here is a
-plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
-\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
+plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or
+\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
 too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\Verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
@@ -3383,7 +3436,7 @@ and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_f
 
 For the {\fontsize{10pt}{10pt}\Verb!--latex-printed!} it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
-\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
+\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}\footnote{\texttt{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay\_mod.py}}}.
 
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
@@ -3894,7 +3947,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf HINT} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -3906,29 +3959,20 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
 And here is a warning about something to pay attention to.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
-\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{summarybackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/summary.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf SUMMARY} \\[0.4cm]
-Much testing in this document, otherwise stupid content.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\summarybox{
+Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -3942,7 +3986,7 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf QUESTION} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
@@ -3964,6 +4008,7 @@ So, how many admonition environments does Doconce support?
 \bcpppro (!bc cpppro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
 \bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in testdoc.tex
 ----------- end of doconce ptex2tex output ----------------
 %%
 %% Automatically generated file from Doconce source
@@ -3985,7 +4030,7 @@ open=right               % start new chapters on odd-numbered pages
 
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{anslistings,minted,fancyvrb} % packages needed for verbatim environments
 
@@ -4032,6 +4077,17 @@ open=right               % start new chapters on odd-numbered pages
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
 
 
 \usepackage{theorem}
@@ -4393,7 +4449,7 @@ Test of movies.
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \Verb!../doc/manual/figs/wavepacket_*.png! in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \Verb!../doc/manual/figs/wavepacket_*.png! in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html} }})
 
 
 % Check out the correct with and height of YouTube movies from the
@@ -4642,8 +4698,8 @@ maybe over multiple doconce input lines.
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}, or
 the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}.  Here is a
-plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
-\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
+plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or
+\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
 too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also \Verb!file:///! works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
@@ -4661,7 +4717,7 @@ and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_f
 
 For the \Verb!--latex-printed! it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
-\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
+\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}\footnote{\texttt{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay\_mod.py}}}.
 
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
@@ -5164,7 +5220,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf HINT} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -5176,29 +5232,20 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
 And here is a warning about something to pay attention to.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
-\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{summarybackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/summary.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf SUMMARY} \\[0.4cm]
-Much testing in this document, otherwise stupid content.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\summarybox{
+Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -5212,7 +5259,7 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.pdf}
-\vskip-0.3in\hskip1.5in{\large\bf QUESTION} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
@@ -16369,6 +16416,14 @@ MathJax.Hub.Config({
 <!-- main body -->
 
 
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' This is a test of HTML templates ', 2, None, '___sec0'),
+              (' This is a 7 heading ', 1, None, '___sec1'),
+              (' This is a 5 heading ', 2, None, '___sec2')]}
+end of tocinfo -->
+
+
 <!-- ------------------- main content ---------------------- -->
 
 <p>
@@ -16607,6 +16662,14 @@ where <em>main</em> will become the Doconce file (the main body of text),
         <div id="vrtx-content">
           <div id="vrtx-main-content" class="vrtx-hide-additional-content-false">
 
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' This is a test of HTML templates ', 2, None, '___sec0'),
+              (' This is a 7 heading ', 1, None, '___sec1'),
+              (' This is a 5 heading ', 2, None, '___sec2')]}
+end of tocinfo -->
 
 
 <!-- ------------------- main content ---------------------- -->
@@ -17250,6 +17313,12 @@ Automatically generated HTML file from Doconce source
 </style>
 
 </head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Generalized References ', 1, 'genrefs', 'genrefs')]}
+end of tocinfo -->
+
 <body>
 
     
@@ -17261,7 +17330,7 @@ Automatically generated HTML file from Doconce source
 <center><h1>Test of one author at one institution</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s) -->
+<!-- author(s): John Doe -->
 
 <center>
 <b>John Doe</b>  (<tt>doe at cyberspace.net</tt>)
@@ -17425,7 +17494,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MINTED
@@ -17482,6 +17551,36 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
 
 
 
@@ -17905,50 +18004,71 @@ Automatically generated HTML file from Doconce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' Section 1 ', 1, 'sec1'),
-              (' Subsection 1 ', 2, None),
-              (' Subsection 2 ', 2, 'subsec:ex'),
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
+               'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None),
-              (' Tables ', 2, 'subsec:table'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
-               None),
+               None,
+               '___sec6'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
+               'Example',
                'Example'),
-              (' URLs ', 2, 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None),
-              (' Exercises ', 1, None),
-              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1'),
-              (' Remarks ', 3, None),
-              (' Not an exercise ', 2, None),
-              (' Project 1: Compute a Probability ', 2, 'demo:ex:2'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Exercises ', 1, None, '___sec10'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec12'),
+              (' Not an exercise ', 2, None, '___sec13'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
               (' Project 2: Explore Distributions of Random Circles ',
                2,
+               'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None),
-              (' Exercise 1: Determine some Distance ', 2, 'exer:dist'),
-              (' Remarks ', 3, None),
-              (' Some exercise without the "Exercise:" prefix ', 2, None),
-              (' Example 2: Just an example ', 2, None),
-              (' Here goes another section ', 1, None),
-              (' More Exercises ', 1, None),
+              (' Remarks ', 3, None, '___sec16'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec18'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec19'),
+              (' Example 2: Just an example ', 2, None, '___sec20'),
+              (' Here goes another section ', 1, None, '___sec21'),
+              (' More Exercises ', 1, None, '___sec22'),
               (' Exercise 3: Make references to projects and problems ',
                2,
+               'exer:some:formula',
                'exer:some:formula'),
               (' Project 3: References in a headings do not work well in html ',
                2,
+               'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None),
-              (' A subsection within an appendix ', 2, None),
-              (' Appendix: Just for testing; part II ', 1, None),
-              (' Appendix: Testing identical titles ', 2, None),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id1'),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None)]}
+              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
+              (' A subsection within an appendix ', 2, None, '___sec26'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
 end of tocinfo -->
 
 <body>
@@ -17999,7 +18119,7 @@ $$
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s) -->
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked, and J. Doe -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -18180,50 +18300,71 @@ Automatically generated HTML file from Doconce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' Section 1 ', 1, 'sec1'),
-              (' Subsection 1 ', 2, None),
-              (' Subsection 2 ', 2, 'subsec:ex'),
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
+               'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None),
-              (' Tables ', 2, 'subsec:table'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
-               None),
+               None,
+               '___sec6'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
+               'Example',
                'Example'),
-              (' URLs ', 2, 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None),
-              (' Exercises ', 1, None),
-              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1'),
-              (' Remarks ', 3, None),
-              (' Not an exercise ', 2, None),
-              (' Project 1: Compute a Probability ', 2, 'demo:ex:2'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Exercises ', 1, None, '___sec10'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec12'),
+              (' Not an exercise ', 2, None, '___sec13'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
               (' Project 2: Explore Distributions of Random Circles ',
                2,
+               'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None),
-              (' Exercise 1: Determine some Distance ', 2, 'exer:dist'),
-              (' Remarks ', 3, None),
-              (' Some exercise without the "Exercise:" prefix ', 2, None),
-              (' Example 2: Just an example ', 2, None),
-              (' Here goes another section ', 1, None),
-              (' More Exercises ', 1, None),
+              (' Remarks ', 3, None, '___sec16'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec18'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec19'),
+              (' Example 2: Just an example ', 2, None, '___sec20'),
+              (' Here goes another section ', 1, None, '___sec21'),
+              (' More Exercises ', 1, None, '___sec22'),
               (' Exercise 3: Make references to projects and problems ',
                2,
+               'exer:some:formula',
                'exer:some:formula'),
               (' Project 3: References in a headings do not work well in html ',
                2,
+               'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None),
-              (' A subsection within an appendix ', 2, None),
-              (' Appendix: Just for testing; part II ', 1, None),
-              (' Appendix: Testing identical titles ', 2, None),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id1'),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None)]}
+              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
+              (' A subsection within an appendix ', 2, None, '___sec26'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
 end of tocinfo -->
 
 <body>
@@ -18430,50 +18571,71 @@ Automatically generated HTML file from Doconce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' Section 1 ', 1, 'sec1'),
-              (' Subsection 1 ', 2, None),
-              (' Subsection 2 ', 2, 'subsec:ex'),
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
+               'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None),
-              (' Tables ', 2, 'subsec:table'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
-               None),
+               None,
+               '___sec6'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
+               'Example',
                'Example'),
-              (' URLs ', 2, 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None),
-              (' Exercises ', 1, None),
-              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1'),
-              (' Remarks ', 3, None),
-              (' Not an exercise ', 2, None),
-              (' Project 1: Compute a Probability ', 2, 'demo:ex:2'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Exercises ', 1, None, '___sec10'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec12'),
+              (' Not an exercise ', 2, None, '___sec13'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
               (' Project 2: Explore Distributions of Random Circles ',
                2,
+               'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None),
-              (' Exercise 1: Determine some Distance ', 2, 'exer:dist'),
-              (' Remarks ', 3, None),
-              (' Some exercise without the "Exercise:" prefix ', 2, None),
-              (' Example 2: Just an example ', 2, None),
-              (' Here goes another section ', 1, None),
-              (' More Exercises ', 1, None),
+              (' Remarks ', 3, None, '___sec16'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec18'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec19'),
+              (' Example 2: Just an example ', 2, None, '___sec20'),
+              (' Here goes another section ', 1, None, '___sec21'),
+              (' More Exercises ', 1, None, '___sec22'),
               (' Exercise 3: Make references to projects and problems ',
                2,
+               'exer:some:formula',
                'exer:some:formula'),
               (' Project 3: References in a headings do not work well in html ',
                2,
+               'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None),
-              (' A subsection within an appendix ', 2, None),
-              (' Appendix: Just for testing; part II ', 1, None),
-              (' Appendix: Testing identical titles ', 2, None),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id1'),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None)]}
+              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
+              (' A subsection within an appendix ', 2, None, '___sec26'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
 end of tocinfo -->
 
 <body>
@@ -19895,7 +20057,7 @@ MathJax.Hub.Config({
 <center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s) -->
+<!-- author(s): Hans Petter Langtangen -->
 
 <center>
 <b>Hans Petter Langtangen</b> 
@@ -20080,16 +20242,11 @@ reveal.js/css:
 print
 reveal.css
 reveal.min.css
-shaders
 theme
 
 reveal.js/css/print:
 paper.css
 pdf.css
-
-reveal.js/css/shaders:
-tile-flip.fs
-tile-flip.vs
 
 reveal.js/css/theme:
 beige.css
@@ -21788,50 +21945,71 @@ Automatically generated HTML file from Doconce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' Section 1 ', 1, 'sec1'),
-              (' Subsection 1 ', 2, None),
-              (' Subsection 2 ', 2, 'subsec:ex'),
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
+               'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None),
-              (' Tables ', 2, 'subsec:table'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
-               None),
+               None,
+               '___sec6'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
+               'Example',
                'Example'),
-              (' URLs ', 2, 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None),
-              (' Exercises ', 1, None),
-              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1'),
-              (' Remarks ', 3, None),
-              (' Not an exercise ', 2, None),
-              (' Project 1: Compute a Probability ', 2, 'demo:ex:2'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Exercises ', 1, None, '___sec10'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec12'),
+              (' Not an exercise ', 2, None, '___sec13'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
               (' Project 2: Explore Distributions of Random Circles ',
                2,
+               'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None),
-              (' Exercise 1: Determine some Distance ', 2, 'exer:dist'),
-              (' Remarks ', 3, None),
-              (' Some exercise without the "Exercise:" prefix ', 2, None),
-              (' Example 2: Just an example ', 2, None),
-              (' Here goes another section ', 1, None),
-              (' More Exercises ', 1, None),
+              (' Remarks ', 3, None, '___sec16'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec18'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec19'),
+              (' Example 2: Just an example ', 2, None, '___sec20'),
+              (' Here goes another section ', 1, None, '___sec21'),
+              (' More Exercises ', 1, None, '___sec22'),
               (' Exercise 3: Make references to projects and problems ',
                2,
+               'exer:some:formula',
                'exer:some:formula'),
               (' Project 3: References in a headings do not work well in html ',
                2,
+               'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None),
-              (' A subsection within an appendix ', 2, None),
-              (' Appendix: Just for testing; part II ', 1, None),
-              (' Appendix: Testing identical titles ', 2, None),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id1'),
-              (' Appendix: Testing identical titles ', 2, 'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None)]}
+              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
+              (' A subsection within an appendix ', 2, None, '___sec26'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
 end of tocinfo -->
 
 <body>
@@ -21878,7 +22056,7 @@ $$
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s) -->
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked, and J. Doe -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -23228,7 +23406,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -23289,6 +23467,36 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -24520,7 +24728,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.eps}
-\vskip-0.3in\hskip1.5in{\large\bf HINT} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -24532,29 +24740,20 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
 And here is a warning about something to pay attention to.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
-\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{summarybackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
-\vskip-0.3in\hskip1.5in{\large\bf SUMMARY} \\[0.4cm]
-Much testing in this document, otherwise stupid content.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\summarybox{
+Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -24568,7 +24767,7 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.eps}
-\vskip-0.3in\hskip1.5in{\large\bf QUESTION} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
@@ -24585,6 +24784,11 @@ So, how many admonition environments does Doconce support?
 
 ************** File: mako_test1.html *****************
 
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+
 <!-- ------------------- main content ---------------------- -->
 
 <!-- Purpose: see if doconce detects that mako must be used -->
@@ -24595,6 +24799,11 @@ This document is translated to the format html.
 
 
 ************** File: mako_test2.html *****************
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
 
 <!-- ------------------- main content ---------------------- -->
 
@@ -24629,6 +24838,11 @@ And more code:
 
 
 ************** File: mako_test3.html *****************
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
 
 <!-- ------------------- main content ---------------------- -->
 
@@ -24676,6 +24890,11 @@ And more code:
 
 ************** File: mako_test3b.html *****************
 
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+
 <!-- ------------------- main content ---------------------- -->
 
 <!-- Purpose: see if doconce detects dangerous lines for mako, -->
@@ -24721,6 +24940,11 @@ And more code:
 
 
 ************** File: mako_test4.html *****************
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
 
 <!-- ------------------- main content ---------------------- -->
 
@@ -25311,7 +25535,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Feb 2013 (04:06)</center>
+<center>Sat, 23 Feb 2013 (07:46)</center>
 
 
 
@@ -25442,7 +25666,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Feb 2013 (04:06)</center>
+<center>Sat, 23 Feb 2013 (07:46)</center>
 
 
 
@@ -26449,23 +26673,29 @@ Automatically generated HTML file from Doconce source
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [(' Supported Formats ', 2, None),
-              (' Title, Authors, and Date ', 2, None),
-              (' Section Types ', 2, 'quick:sections'),
-              (' Inline Formatting ', 2, None),
-              (' Lists ', 2, None),
-              (' Comments ', 2, None),
-              (' Verbatim/Computer Code ', 2, None),
-              (' LaTeX Mathematics ', 2, None),
-              (' Figures and Movies ', 2, None),
-              (' Tables ', 2, None),
-              (' Labels, References, Citations, and Index ', 2, None),
-              (' Capabilities of the "doconce" Program ', 2, None),
-              (' Exercises ', 2, None),
-              (' Environments ', 2, None),
-              (' Labels, Index, and Citations ', 2, None),
-              (' Preprocessing ', 2, None),
-              (' Resources ', 2, None)]}
+ 'sections': [(' Supported Formats ', 2, None, '___sec0'),
+              (' Title, Authors, and Date ', 2, None, '___sec1'),
+              (' Section Types ', 2, 'quick:sections', 'quick:sections'),
+              (' Inline Formatting ', 2, None, '___sec3'),
+              (' Lists ', 2, None, '___sec4'),
+              (' Comments ', 2, None, '___sec5'),
+              (' Verbatim/Computer Code ', 2, None, '___sec6'),
+              (' LaTeX Mathematics ', 2, None, '___sec7'),
+              (' Figures and Movies ', 2, None, '___sec8'),
+              (' Tables ', 2, None, '___sec9'),
+              (' Labels, References, Citations, and Index ',
+               2,
+               None,
+               '___sec10'),
+              (' Capabilities of the "doconce" Program ',
+               2,
+               None,
+               '___sec11'),
+              (' Exercises ', 2, None, '___sec12'),
+              (' Environments ', 2, None, '___sec13'),
+              (' Labels, Index, and Citations ', 2, None, '___sec14'),
+              (' Preprocessing ', 2, None, '___sec15'),
+              (' Resources ', 2, None, '___sec16')]}
 end of tocinfo -->
 
 <body>
@@ -26498,7 +26728,7 @@ MathJax.Hub.Config({
 <center><h1>Doconce Quick Reference</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s) -->
+<!-- author(s): Hans Petter Langtangen -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
@@ -27590,7 +27820,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MINTED
@@ -27647,6 +27877,36 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -28161,7 +28421,7 @@ the following rules are recommended:
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -36812,6 +37072,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -36827,8 +37089,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 <2008/02/07> (tvz))
 (/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
@@ -36895,7 +37155,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-143.
+154.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -36925,12 +37185,12 @@ Overfull \hbox (47.04507pt too wide)
 
 LaTeX Warning: Reference `myfig' on page 7 
 
-<../doc/manual/figs/wavepacket_0001.png, id=88, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=89, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
 LaTeX Warning: Reference `mymov' on page 7 
 
-<downloaded_figures/f_plot.png, id=89, 578.16pt x 433.62pt>
+<downloaded_figures/f_plot.png, id=90, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
 /manual/figs/mjolnir.mpeg>>]
@@ -36990,6 +37250,10 @@ Overfull \hbox (1.55275pt too wide)
 \OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
  / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
 
+Overfull \hbox (17.6152pt too wide) 
+[][][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay
+/experiments/decay[]mod.py| 
+
 Overfull \hbox (31.36086pt too wide) 
 []\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
  the []
@@ -37012,8 +37276,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 79
-2.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 80
+3.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -37045,11 +37309,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 818.
+ 829.
 
-[13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] [16]
+[13] (./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1178
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1189
 .
 
 
@@ -37060,27 +37324,25 @@ LaTeX Warning: Reference `demo:ex:2' on page 17
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1196.
+ 1207.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1197
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1208
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 17 
 
-<latex_figs/hint.pdf, id=263, 89.33376pt x 89.33376pt>
-<use latex_figs/hint.pdf> [17]
-<latex_figs/warning.pdf, id=280, 89.33376pt x 89.33376pt>
+[17] <latex_figs/hint.pdf, id=290, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf>
+<latex_figs/warning.pdf, id=291, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=281, 89.33376pt x 89.33376pt>
-<use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=282, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=292, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=283, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=293, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
@@ -37088,8 +37350,8 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[18 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
-f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
+[18 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/notice.pdf
+> <./latex_figs/question.pdf>] (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -37105,6 +37367,8 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
@@ -37118,8 +37382,6 @@ fancyvrb.sty    2008/02/07
 moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
 verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
   framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
-   color.sty    1999/02/16
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
 livier@maths.lth.se>
 listings.sty    2007/02/22 1.4 (Carsten Heinz)
@@ -37196,7 +37458,6 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
 latex_figs/hint.pdf
 latex_figs/warning.pdf
-latex_figs/summary.pdf
 latex_figs/notice.pdf
 latex_figs/question.pdf
  ***********
@@ -37493,7 +37754,7 @@ where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 title: Just a test
 author: HPL
 theme: agni
-These Sphinx themes were found: agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
+These Sphinx themes were found: ADCtheme, agni, agogo, basic, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
 
 'automake_sphinx.py' contains the steps to (re)compile the sphinx
 version. You may want to edit this file, or run the steps manually,
@@ -38025,6 +38286,7 @@ output in testdoc.p.tex
 \bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in testdoc.tex
 + [ 0 -ne 0 ]
 + doconce replace \Verb! \verb! testdoc.tex
 replacing \Verb! by \verb! in testdoc.tex
@@ -38384,6 +38646,7 @@ output in quickref.p.tex
 \bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 \bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+output in quickref.tex
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
@@ -38414,6 +38677,9 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -38426,9 +38692,6 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)) (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-
-
 
 
 
@@ -38493,7 +38756,7 @@ Underfull \hbox (badness 2564)
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [7]
 
-LaTeX Warning: Reference `quick:sections' on page 8 undefined on input line 574
+LaTeX Warning: Reference `quick:sections' on page 8 undefined on input line 585
 .
 
 [8]
@@ -38534,6 +38797,9 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
@@ -38544,9 +38810,6 @@ inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 fancyvrb.sty    2008/02/07
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
     calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
@@ -38643,6 +38906,9 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -38655,9 +38921,6 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)) (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-
-
 
 
 
@@ -38753,6 +39016,9 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
@@ -38763,9 +39029,6 @@ inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 fancyvrb.sty    2008/02/07
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
     calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
@@ -38894,7 +39157,7 @@ Using title "Doconce Quick Reference" from quickref.do.txt
 title: Doconce Quick Reference
 author: HPL
 theme: default
-These Sphinx themes were found: agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
+These Sphinx themes were found: ADCtheme, agni, agogo, basic, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
 
 'automake_sphinx.py' contains the steps to (re)compile the sphinx
 version. You may want to edit this file, or run the steps manually,
@@ -38918,23 +39181,37 @@ sphinx-build -b html -d _build/doctrees   . _build/html
 Making output directory...
 Running Sphinx v1.2pre
 loading pickled environment... not yet created
-building [html]: targets for 2 source files that are out of date
-updating environment: 2 added, 0 changed, 0 removed
-reading sources... [ 50%] index
+building [html]: targets for 5 source files that are out of date
+updating environment: 5 added, 0 changed, 0 removed
+reading sources... [ 20%] _themes/ADCtheme/README
+reading sources... [ 40%] _themes/cloud/doc
+reading sources... [ 60%] _themes/redcloud/doc
+reading sources... [ 80%] index
 reading sources... [100%] quickref
 
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/ADCtheme/README.rst:45: WARNING: nonlocal image URI found: https://github.com/coordt/ADCtheme/raw/master/static/scrn1.png
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/ADCtheme/README.rst:47: WARNING: nonlocal image URI found: https://github.com/coordt/ADCtheme/raw/master/static/scrn2.png
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/redcloud/doc.rst:134: WARNING: duplicate label cloud-theme-usage, other instance in /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/cloud/doc.rst
 looking for now-outdated files... none found
 pickling environment... done
-checking consistency... done
+checking consistency... /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/ADCtheme/README.rst:: WARNING: document isn't included in any toctree
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/cloud/doc.rst:: WARNING: document isn't included in any toctree
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/redcloud/doc.rst:: WARNING: document isn't included in any toctree
+done
 preparing documents... done
-writing output... [ 50%] index
+writing output... [ 20%] _themes/ADCtheme/README
+writing output... [ 40%] _themes/cloud/doc
+writing output... [ 60%] _themes/redcloud/doc
+writing output... [ 80%] index
 writing output... [100%] quickref
 
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/cloud/doc.rst:161: WARNING: unknown document: cloud_theme_test
+/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/redcloud/doc.rst:161: WARNING: unknown document: cloud_theme_test
 writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded.
+build succeeded, 8 warnings.
 
 Build finished. The HTML pages are in _build/html.
 

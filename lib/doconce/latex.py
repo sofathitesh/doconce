@@ -770,7 +770,8 @@ def define(FILENAME_EXTENSION,
            TOC,
            ENVIRS,
            INTRO,
-           OUTRO):
+           OUTRO,
+           filestr):
     # all arguments are dicts and accept in-place modifications (extensions)
 
     FILENAME_EXTENSION['latex'] = '.p.tex'

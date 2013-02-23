@@ -569,7 +569,8 @@ def define(FILENAME_EXTENSION,
            TOC,
            ENVIRS,
            INTRO,
-           OUTRO):
+           OUTRO,
+           filestr):
     if not 'rst' in BLANKLINE:
         # rst.define is not yet ran on these dictionaries, do it:
         import rst
@@ -582,7 +583,8 @@ def define(FILENAME_EXTENSION,
                    TABLE,
                    FIGURE_EXT,
                    INTRO,
-                   OUTRO)
+                   OUTRO,
+                   filestr)
 
     FILENAME_EXTENSION['sphinx'] = FILENAME_EXTENSION['rst']
     BLANKLINE['sphinx'] = BLANKLINE['rst']
