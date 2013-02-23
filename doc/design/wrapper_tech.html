@@ -87,11 +87,12 @@ Automatically generated HTML file from Doconce source
                2,
                None,
                '___sec6'),
-              (' Using the Vagrant template ', 1, None, '___sec7'),
               (' Making a template from Vortex pages at the University of Oslo ',
                1,
                None,
-               '___sec8')]}
+               '___sec7'),
+              (' Using the Vagrant template ', 1, None, '___sec8'),
+              (' Summary ', 1, None, '___sec9')]}
 end of tocinfo -->
 
 <body>
@@ -442,74 +443,8 @@ to a web page with fancy design!
 
 <p>
 
-<h2>Using the Vagrant template  <a name="___sec7"></a></h2>
-<p>
-Besides the GitHub "minimal" theme, Doconce comes with a template
-<a href="../../bundled/html_styles/vagrant/template_vagrant.html"><tt>template_vagrant.html</tt></a> adopted from
-the style in the documentation of the <a href="http://docs.vagrantup.com/v1/docs/getting-started/index.html">Vagrant</a> virtual machine
-tool.
 
-<p>
-<center><p><img src="fig/vagrant_web.png" align="bottom" width=900></p></center>
-
-<p>
-This template, found in <code>bundled/html_styles/vagrant</code> in the
-Doconce source code tree, is easy to adopt to a particular set of web
-pages. It looks as
-
-<p>
-<center><p><img src="fig/template_vagrant.png" align="bottom" width=900></p></center>
-
-<p>
-There are several elements in the template:
-
-<p>
-
-<ol>
-<li> Navigation bar to the left, which is automatically created by Doconce.</li>
-<li> A main part (<code>%(main)s</code>) and a title as usual.</li>
-<li> Navigation buttons on the button, which are automatically filled in
-   by Doconce if the document is split into several parts.</li>
-<li> A logo consisting of a <em>LogoWord</em> in black and a <em>withSubWord</em> in
-   gray. This should be <em>manually edited</em> to some short name for the web pages
-   you want to embed with the Vagrant style.</li>
-<li> Navigation links in the top right part of the page. These should be
-   <em>manually edited</em> or deleted.</li>
-<li> At the bottom of the page there is a footer, which can be
-   <em>manually edited</em> or deleted.</li>
-</ol>
-
-Here we edit the logo to <em>DiffEq101</em>, edit the navigation links at the
-top right to point to Wikipedia and WolframAlpha, and insert a
-copyright 2013 notice in the footer.
-
-<p>
-The Vagrant style depends on two CSS files. We copy these from
-the <code>bundled/html_styles/vagrant/css</code> directory in the Doconce source
-to the current directory so that the links to the stylesheets in
-the template are correct.
-
-<p>
-Translation of the original Doconce writings in <code>mydoc.do.txt</code> is
-done by
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc.do.txt --html-style<span style="color: #666666">=</span>vagrant --html-template<span style="color: #666666">=</span>vagrant/template_vagrant.html
-</pre></div>
-<p>
-The resulting <a href="mydoc_vagrant_pygmentized.html">HTML file</a> has
-a <a href="mydoc_vagrant.html">nice look</a>:
-
-<p>
-<center><p><img src="fig/vagrant_html.png" align="bottom" width=900></p></center>
-
-<p>
-
-
-<h2>Making a template from Vortex pages at the University of Oslo  <a name="___sec8"></a></h2>
+<h2>Making a template from Vortex pages at the University of Oslo  <a name="___sec7"></a></h2>
 <p>
 As case, we invoke the page for a <a href="http://www.uio.no/studier/emner/matnat/ifi/INF5620/h12/">course</a>. The <a href="uio/5620_pygmentized.html">source code</a>
 is huge. Here is a glimpse:
@@ -583,6 +518,89 @@ through a web-based editor (in the Vortex system), and the information
 is stored in XML files.  It is somewhat remarkable that the HTML
 rendered from these XML files can be copied so easily and used as
 templates for web documents anywhere else.
+
+<p>
+
+<h2>Using the Vagrant template  <a name="___sec8"></a></h2>
+<p>
+Besides the GitHub "minimal" theme, Doconce comes with a template
+<a href="../../bundled/html_styles/vagrant/template_vagrant.html"><tt>template_vagrant.html</tt></a> adopted from
+the style in the documentation of the <a href="http://docs.vagrantup.com/v1/docs/getting-started/index.html">Vagrant</a> virtual machine
+tool.
+
+<p>
+<center><p><img src="fig/vagrant_web.png" align="bottom" width=900></p></center>
+
+<p>
+This template, found in <code>bundled/html_styles/vagrant</code> in the
+Doconce source code tree, is easy to adopt to a particular set of web
+pages. It looks as
+
+<p>
+<center><p><img src="fig/template_vagrant.png" align="bottom" width=900></p></center>
+
+<p>
+There are several elements in the template:
+
+<p>
+
+<ol>
+<li> Navigation bar to the left, which is automatically created by Doconce.</li>
+<li> A main part (<code>%(main)s</code>) and a title as usual.</li>
+<li> Navigation buttons on the button, which are automatically filled in
+   by Doconce if the document is split into several parts.</li>
+<li> A logo consisting of a <em>LogoWord</em> in black and a <em>withSubWord</em> in
+   gray. This should be <em>manually edited</em> to some short name for the web pages
+   you want to embed with the Vagrant style.</li>
+<li> Navigation links in the top right part of the page. These should be
+   <em>manually edited</em> or deleted.</li>
+<li> At the bottom of the page there is a footer, which can be
+   <em>manually edited</em> or deleted.</li>
+</ol>
+
+Here we edit the logo to <em>DiffEq101</em>, edit the navigation links at the
+top right to point to Wikipedia and WolframAlpha, and insert a
+copyright 2013 notice in the footer.
+
+<p>
+The Vagrant style depends on two CSS files. We copy these from
+the <code>bundled/html_styles/vagrant/css</code> directory in the Doconce source
+to the current directory so that the links to the stylesheets in
+the template are correct.
+
+<p>
+Translation of the original Doconce writings in <code>mydoc.do.txt</code> is
+done by
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc.do.txt --html-style<span style="color: #666666">=</span>vagrant --html-template<span style="color: #666666">=</span>vagrant/template_vagrant.html
+</pre></div>
+<p>
+The resulting <a href="mydoc_vagrant_pygmentized.html">HTML file</a> has
+a <a href="mydoc_vagrant.html">nice look</a>:
+
+<p>
+<center><p><img src="fig/vagrant_html.png" align="bottom" width=900></p></center>
+
+<p>
+
+<h2>Summary  <a name="___sec9"></a></h2>
+<p>
+We have seen have to write web pages in a text-like format, with full
+support of LaTeX mathematics and nicely typeset (pygmentized) computer code.
+These pages can easily be embedded in various fancy HTML styles by
+simply grabbing a web page with the desired style and editing it as
+explained.
+
+<p>
+However, embedding Doconce documents in fancy web pages is just possibility
+for publishing the content. One can equally well make a traditional
+LaTeX file and include the document in a book, or make a special adapted
+version of the PDF for viewing on phones, or one can generate Sphinx
+output which has <a href="http://hplgit.github.com/teamods/writing_reports/index.html">a lot of different nice styles</a> for viewing on the web.
 <!-- ------------------- end of main content --------------- -->
 
 

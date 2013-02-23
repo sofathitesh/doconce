@@ -2,6 +2,9 @@ TITLE: How to Wrap Plain HTML Files with an Available Look and Feel
 AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 DATE: today
 
+# URL to this page:
+# https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html
+
 ========= Problem setting =========
 
  o You need to write web pages, say for a course, and want to have
@@ -385,4 +388,4 @@ However, embedding Doconce documents in fancy web pages is just possibility
 for publishing the content. One can equally well make a traditional
 LaTeX file and include the document in a book, or make a special adapted
 version of the PDF for viewing on phones, or one can generate Sphinx
-output which has "a lot of different nice styles" for viewing on the web,
+output which has "a lot of different nice styles": "http://hplgit.github.com/teamods/writing_reports/index.html" for viewing on the web.
