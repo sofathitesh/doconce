@@ -27,23 +27,6 @@ def debugpr(out):
 from common import *
 from misc import option
 import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb
-for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb:
-    #print 'calling define function in', module.__name__
-    module.define(FILENAME_EXTENSION,
-                  BLANKLINE,
-                  INLINE_TAGS_SUBST,
-                  CODE,
-                  LIST,
-                  ARGLIST,
-                  TABLE,
-                  EXERCISE,
-                  FIGURE_EXT,
-                  CROSS_REFS,
-                  INDEX_BIB,
-                  TOC,
-                  ENVIRS,
-                  INTRO,
-                  OUTRO)
 
 def supported_format_names():
     return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc', 'ipynb'
@@ -1799,7 +1782,7 @@ def subst_class_func_mod(filestr, format):
     return filestr
 
 
-def file2file(in_filename, format, out_filename):
+def file2file(in_filename, format, basename):
     """
     Perform the transformation of a doconce file, stored in in_filename,
     to a given format (html, latex, etc.), written to out_filename.
@@ -1837,6 +1820,8 @@ def file2file(in_filename, format, out_filename):
     else:
         filestr = doconce2format(filestr, format)
 
+    out_filename = basename + FILENAME_EXTENSION[format]
+
     if encoding:
         f = codecs.open(out_filename, 'w', encoding)
     else:
@@ -1854,6 +1839,7 @@ def file2file(in_filename, format, out_filename):
             print 'Fix character or try --encoding=utf-8 or --encoding=iso-8859-15'
             _abort()
     f.close()
+    return out_filename
 
 
 def doconce2format4docstrings(filestr, format):
@@ -1911,6 +1897,28 @@ def doconce2format4docstrings(filestr, format):
 def doconce2format(filestr, format):
     filestr = syntax_check(filestr, format)
 
+    global FILENAME_EXTENSION, BLANKLINE, INLINE_TAGS_SUBST, CODE, \
+           LIST, ARGLIST,TABLE, EXERCISE, FIGURE_EXT, CROSS_REFS, INDEX_BIB, \
+           TOC, ENVIRS, INTRO, OUTRO
+
+    for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb:
+        #print 'calling define function in', module.__name__
+        module.define(FILENAME_EXTENSION,
+                      BLANKLINE,
+                      INLINE_TAGS_SUBST,
+                      CODE,
+                      LIST,
+                      ARGLIST,
+                      TABLE,
+                      EXERCISE,
+                      FIGURE_EXT,
+                      CROSS_REFS,
+                      INDEX_BIB,
+                      TOC,
+                      ENVIRS,
+                      INTRO,
+                      OUTRO,
+                      filestr)
 
     # -----------------------------------------------------------------
 
@@ -2422,13 +2430,12 @@ def main():
     else:
         basename = filename[:-7]
 
-    out_filename = basename + FILENAME_EXTENSION[format]
     #print '\n----- doconce format %s %s' % (format, filename)
     preprocessor_options = [arg for arg in sys.argv[1:]
                             if not arg.startswith('--')]
     filename_preprocessed = preprocess(filename, format,
                                        preprocessor_options)
-    file2file(filename_preprocessed, format, out_filename)
+    out_filename = file2file(filename_preprocessed, format, basename)
 
     if filename_preprocessed.startswith('__') and not option('debug'):
         os.remove(filename_preprocessed)  # clean up

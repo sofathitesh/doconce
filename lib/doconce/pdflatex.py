@@ -15,7 +15,8 @@ def define(FILENAME_EXTENSION,
            TOC,
            ENVIRS,
            INTRO,
-           OUTRO):
+           OUTRO,
+           filestr):
 
     if not 'latex' in BLANKLINE:
         # latex.define is not yet ran on these dictionaries, do it:
@@ -33,7 +34,8 @@ def define(FILENAME_EXTENSION,
            INDEX_BIB,
            TOC,
            INTRO,
-           OUTRO)
+           OUTRO,
+           filestr)
 
     # The big difference between pdflatex and latex is the image formats
     FIGURE_EXT['pdflatex'] = ('.pdf', '.png', '.jpg', '.jpeg', '.tif', '.tiff')
