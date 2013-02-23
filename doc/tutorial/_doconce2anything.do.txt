@@ -86,7 +86,10 @@ is installed, code blocks are typeset with
 aid of this package. The command-line argument `--no-pygments-html`
 turns off the use of Pygments and makes code blocks appear with
 plain (`pre`) HTML tags. The option `--pygments-html-linenos` turns
-on line numbers in Pygments-formatted code blocks.
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by `--pygments-html-style=style`, where `style`
+can be `default`, `emacs`, `perldoc`, and other valid names for
+Pygments styles.
 
 The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be

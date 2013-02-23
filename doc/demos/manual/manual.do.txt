@@ -1490,7 +1490,6 @@ as ordinary text.)
 Here is how to get the Doconce Editing Mode in Emacs: Download ".doconce-mode.el": "https://doconce.googlecode.com/hg/misc/.doconce-mode.el" and save it in your home directory, then add these lines to `~/.emacs`:
 !bc
 (load-file "~/.doconce-mode.el")
-(setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 !ec
 Emacs will now recognize files with extension `.do.txt` and enter
 the Doconce Editing Mode.
