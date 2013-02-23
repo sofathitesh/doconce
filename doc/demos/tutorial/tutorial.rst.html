@@ -329,7 +329,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 16, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 23, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -672,22 +672,39 @@ is performed by:</p>
 Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
-<p>The HTML style can be defined either in the header of the HTML file or
-in an external CSS file. The latter is enabled by the command-line
-argument <tt class="docutils literal"><span class="pre">--css=filename</span></tt>. There is a default style with blue headings,
-and a style with the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
-color palette, specified by the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt> command line
-argument. If there is no file with name <tt class="docutils literal">filename</tt> in the <tt class="docutils literal"><span class="pre">--css=filename</span></tt>
-specification, the blue or solarized styles are written to <tt class="docutils literal">filename</tt>
-and linked from the HTML document. You can provide your own style sheet
-either by replacing the content inside the <tt class="docutils literal">style</tt> tags or by
-specifying a CSS file through the <tt class="docutils literal"><span class="pre">--css=filename</span></tt> option.</p>
+<p>The HTML style can be defined either in the header of the HTML file,
+using a named built-in style;
+in an external CSS file; or in a template file.</p>
+<p>An external CSS file <tt class="docutils literal">filename</tt> used by setting the command-line
+argument <tt class="docutils literal"><span class="pre">--css=filename</span></tt>. There available built-in styles are
+specified as <tt class="docutils literal"><span class="pre">--html-style=name</span></tt>, where <tt class="docutils literal">name</tt> can be</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal">solarized</tt>: the famous <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
+style (yellowish),</li>
+<li><tt class="docutils literal">blueish</tt>: a simple style with blue headings (default),</li>
+<li><tt class="docutils literal">blueish2</tt>: a variant of <em>bluish</em>,</li>
+<li><tt class="docutils literal">bloodish</tt>: as <tt class="docutils literal">bluish</tt>, but dark read as color.</li>
+</ul>
+</blockquote>
+<p>Using <tt class="docutils literal"><span class="pre">--css=filename</span></tt> where <tt class="docutils literal">filename</tt> is a non-existing file makes
+Doconce write the built-in style to that file. Otherwise the HTML
+links to the CSS stylesheet in <tt class="docutils literal">filename</tt>. Several stylesheets can
+be specified: <tt class="docutils literal"><span class="pre">--ccs=file1.css,file2.css,file3.css</span></tt>.</p>
+<p>Templates are HTML files with &quot;slots&quot; <tt class="docutils literal">%(main)s</tt> for the main body
+of text, <tt class="docutils literal">%(title)s</tt> for the title, and <tt class="docutils literal">%(date)s</tt> for the date.
+Doconce comes with a few templates. The usage of templates is
+described in a <a class="reference external" href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html">separate document</a>. That document describes how you your Doconce-generated
+HTML file can have any specified layout.</p>
 <p>If the Pygments package (including the <tt class="docutils literal">pygmentize</tt> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
 turns off the use of Pygments and makes code blocks appear with
 plain (<tt class="docutils literal">pre</tt>) HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
-on line numbers in Pygments-formatted code blocks.</p>
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by <tt class="docutils literal"><span class="pre">--pygments-html-style=style</span></tt>, where <tt class="docutils literal">style</tt>
+can be <tt class="docutils literal">default</tt>, <tt class="docutils literal">emacs</tt>, <tt class="docutils literal">perldoc</tt>, and other valid names for
+Pygments styles.</p>
 <p>The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be
 no header and footer in the HTML file). The template file must contain

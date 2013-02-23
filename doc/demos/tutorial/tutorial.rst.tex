@@ -77,7 +77,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Feb 16, 2013
+Feb 23, 2013
 %
 \begin{itemize}
 
@@ -602,23 +602,51 @@ Terminal>~doconce~format~html~mydoc
 
 The resulting file \texttt{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style can be defined either in the header of the HTML file or
-in an external CSS file. The latter is enabled by the command-line
-argument \texttt{-{}-css=filename}. There is a default style with blue headings,
-and a style with the \href{http://ethanschoonover.com/solarized}{solarized}
-color palette, specified by the \texttt{-{}-html-solarized} command line
-argument. If there is no file with name \texttt{filename} in the \texttt{-{}-css=filename}
-specification, the blue or solarized styles are written to \texttt{filename}
-and linked from the HTML document. You can provide your own style sheet
-either by replacing the content inside the \texttt{style} tags or by
-specifying a CSS file through the \texttt{-{}-css=filename} option.
+The HTML style can be defined either in the header of the HTML file,
+using a named built-in style;
+in an external CSS file; or in a template file.
+
+An external CSS file \texttt{filename} used by setting the command-line
+argument \texttt{-{}-css=filename}. There available built-in styles are
+specified as \texttt{-{}-html-style=name}, where \texttt{name} can be
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item \texttt{solarized}: the famous \href{http://ethanschoonover.com/solarized}{solarized}
+style (yellowish),
+
+\item \texttt{blueish}: a simple style with blue headings (default),
+
+\item \texttt{blueish2}: a variant of \emph{bluish},
+
+\item \texttt{bloodish}: as \texttt{bluish}, but dark read as color.
+
+\end{itemize}
+
+\end{quote}
+
+Using \texttt{-{}-css=filename} where \texttt{filename} is a non-existing file makes
+Doconce write the built-in style to that file. Otherwise the HTML
+links to the CSS stylesheet in \texttt{filename}. Several stylesheets can
+be specified: \texttt{-{}-ccs=file1.css,file2.css,file3.css}.
+
+Templates are HTML files with ``slots'' \texttt{\%(main)s} for the main body
+of text, \texttt{\%(title)s} for the title, and \texttt{\%(date)s} for the date.
+Doconce comes with a few templates. The usage of templates is
+described in a \href{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}{separate document}. That document describes how you your Doconce-generated
+HTML file can have any specified layout.
 
 If the Pygments package (including the \texttt{pygmentize} program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument \texttt{-{}-no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
 plain (\texttt{pre}) HTML tags. The option \texttt{-{}-pygments-html-linenos} turns
-on line numbers in Pygments-formatted code blocks.
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by \texttt{-{}-pygments-html-style=style}, where \texttt{style}
+can be \texttt{default}, \texttt{emacs}, \texttt{perldoc}, and other valid names for
+Pygments styles.
 
 The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be

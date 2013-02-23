@@ -30,7 +30,6 @@ Automatically generated HTML file from Doconce source
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-
     .notice, .summary, .warning, .hint, .question {
     border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
     background-repeat: no-repeat; background-position: 10px center;
@@ -46,9 +45,77 @@ Automatically generated HTML file from Doconce source
     .question { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
+    .alert {
+      padding:8px 35px 8px 14px; margin-bottom:18px;
+      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
+      background-color:#fcf8e3; border:1px solid #fbeed5;
+      -webkit-border-radius:4px; -moz-border-radius:4px;
+       border-radius:4px}
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
+       color: #555;
+       background-color: whiteSmoke;
+       background-position: 10px 10px;
+       background-repeat: no-repeat;
+       padding-left: 52px;
+       font-size: 0.8em;
+      }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
 </style>
 
 </head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' What Does Doconce Look Like? ', 1, None, '___sec0'),
+              (' A Subsection with Sample Text ',
+               2,
+               'my:first:sec',
+               'my:first:sec'),
+              (' Mathematics and Computer Code ', 2, None, '___sec2'),
+              (' Macros (Newcommands), Cross-References, Index, and Bibliography ',
+               2,
+               'newcommands',
+               'newcommands'),
+              (' From Doconce to Other Formats ',
+               1,
+               'doconce2formats',
+               'doconce2formats'),
+              (' Preprocessing ', 2, None, '___sec5'),
+              (' Removal of inline comments ', 2, None, '___sec6'),
+              (' HTML ', 2, None, '___sec7'),
+              (' Blogs ', 2, None, '___sec8'),
+              (' Pandoc and Markdown ', 2, None, '___sec9'),
+              (' LaTeX ', 2, None, '___sec10'),
+              (' PDFLaTeX ', 2, None, '___sec11'),
+              (' Plain ASCII Text ', 2, None, '___sec12'),
+              (' reStructuredText ', 2, None, '___sec13'),
+              (' Sphinx ', 2, None, '___sec14'),
+              (' Wiki Formats ', 2, None, '___sec15'),
+              (' Tweaking the Doconce Output ', 2, None, '___sec16'),
+              (' Demos ', 2, None, '___sec17'),
+              (' Installation of Doconce and its Dependencies ',
+               1,
+               None,
+               '___sec18'),
+              (' Doconce ', 2, None, '___sec19'),
+              (' Dependencies ', 2, None, '___sec20'),
+              (' Preprocessors ', 3, None, '___sec21'),
+              (' Image file handling ', 3, None, '___sec22'),
+              (' Spellcheck ', 3, None, '___sec23'),
+              (' Ptex2tex for LaTeX Output ', 3, None, '___sec24'),
+              (' reStructuredText (reST) Output ', 3, None, '___sec25'),
+              (' Markdown and Pandoc Output ', 3, None, '___sec26'),
+              (' Epydoc Output ', 3, None, '___sec27')]}
+end of tocinfo -->
+
 <body>
 
 
@@ -70,17 +137,19 @@ MathJax.Hub.Config({
 
 
 
-<!-- ------------------- main content ------------------------>
-    <!-- Missing: FIGURE, MOVIE, environments -->
+    
+<!-- ------------------- main content ---------------------- -->
+
+<!-- Missing: FIGURE, MOVIE, environments -->
 
 <p>
 
 <title>Doconce: Document Once, Include Anywhere</title>
 
-<center><h1>Doconce: Document Once, Include Anywhere</h1></center>  <! -- document title -->
+<center><h1>Doconce: Document Once, Include Anywhere</h1></center>  <!-- document title -->
 
 <p>
-<! -- author(s) -->
+<!-- author(s): Hans Petter Langtangen -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
@@ -93,7 +162,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Feb 16, 2013</h4></center> <!-- date -->
+<center><h4>Feb 23, 2013</h4></center> <!-- date -->
 <p>
 
 
@@ -130,13 +199,13 @@ som examples.
 <p>
 
 <ul>
-  <li> Bullet lists arise from lines starting with <tt>*</tt>.</li>
-  <li> <em>Emphasized words</em> are surrounded by <tt>*</tt>.</li>
+  <li> Bullet lists arise from lines starting with <code>*</code>.</li>
+  <li> <em>Emphasized words</em> are surrounded by <code>*</code>.</li>
   <li> <b>Words in boldface</b> are surrounded by underscores.</li>
   <li> Words from computer code are enclosed in back quotes and
-    then typeset <tt>verbatim (in a monospace font)</tt>.</li>
-  <li> Section headings are recognied by equality (<tt>=</tt>) signs before
-    and after the title, and the number of <tt>=</tt> signs indicates the
+    then typeset <code>verbatim (in a monospace font)</code>.</li>
+  <li> Section headings are recognied by equality (<code>=</code>) signs before
+    and after the title, and the number of <code>=</code> signs indicates the
     level of the section: 7 for main section, 5 for subsection, and
     3 for subsubsection.</li>
   <li> Paragraph headings are recognized by a double underscore
@@ -144,11 +213,11 @@ som examples.
   <li> The abstract of a document starts with <em>Abstract</em> as paragraph
     heading, and all text up to the next heading makes up the abstract,</li>
   <li> Blocks of computer code can easily be included by placing
-    <tt>!bc</tt> (begin code) and <tt>!ec</tt> (end code) commands at separate lines
+    <code>!bc</code> (begin code) and <code>!ec</code> (end code) commands at separate lines
     before and after the code block.</li>
   <li> Blocks of computer code can also be imported from source files.</li>
   <li> Blocks of LaTeX mathematics can easily be included by placing
-    <tt>!bt</tt> (begin TeX) and <tt>!et</tt> (end TeX) commands at separate lines
+    <code>!bt</code> (begin TeX) and <code>!et</code> (end TeX) commands at separate lines
     before and after the math block.</li>
   <li> There is support for both LaTeX and text-like inline mathematics.</li>
   <li> Figures and movies with captions, simple tables,
@@ -213,7 +282,7 @@ Tables are also supperted, e.g.,
 
 # lines beginning with # are comment lines
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The Doconce text above results in the following little document:
 
 <p>
@@ -221,7 +290,7 @@ The Doconce text above results in the following little document:
 <h3>A Subsection with Sample Text <a name="my:first:sec"></a></h3>
 <p>
 Ordinary text looks like ordinary text, and the tags used for
-<b>boldface</b> words, <em>emphasized</em> words, and <tt>computer</tt> words look
+<b>boldface</b> words, <em>emphasized</em> words, and <code>computer</code> words look
 natural in plain text.  Lists are typeset as you would do in an email,
 
 <p>
@@ -232,7 +301,7 @@ natural in plain text.  Lists are typeset as you would do in an email,
   <li> item 3</li>
 </ul>
 
-Lists can also have numbered items instead of bullets, just use an <tt>o</tt>
+Lists can also have numbered items instead of bullets, just use an <code>o</code>
 (for ordered) instead of the asterisk:
 
 <p>
@@ -288,10 +357,10 @@ typeset as
 <pre>
 $\nu = \sin(x)$|$v = sin(x)$
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula. If you write a lot of mathematics, only the
-output formats <tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>, <tt>sphinx</tt>, and <tt>pandoc</tt>
+output formats <code>latex</code>, <code>pdflatex</code>, <code>html</code>, <code>sphinx</code>, and <code>pandoc</code>
 are of interest
 and all these support inline LaTeX mathematics so then you will naturally
 drop the pipe symbol and write just
@@ -301,14 +370,14 @@ drop the pipe symbol and write just
 <pre>
 $\nu = \sin(x)$
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 However, if you want more textual formats, like plain text or reStructuredText,
 the text after the pipe symbol may help to make the math formula more readable
 if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 <p>
 Blocks of mathematics are typeset with raw LaTeX, inside
-<tt>!bt</tt> and <tt>!et</tt> (begin TeX, end TeX) instructions:
+<code>!bt</code> and <code>!et</code> (begin TeX, end TeX) instructions:
 
 <p>
 <!-- begin verbatim block -->
@@ -320,7 +389,7 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 \end{align}
 !et
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 <!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
 <!-- tex and code blocks in inside verbatim blocks and are replaced -->
 <!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
@@ -336,13 +405,13 @@ $$
 
 Of course, such blocks only looks nice in formats with support
 for LaTeX mathematics, and here the align environment in particular
-(this includes <tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>, and <tt>sphinx</tt>). The raw
+(this includes <code>latex</code>, <code>pdflatex</code>, <code>html</code>, and <code>sphinx</code>). The raw
 LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 <p>
 You can have blocks of computer code, starting and ending with
-<tt>!bc</tt> and <tt>!ec</tt> instructions, respectively.
+<code>!bc</code> and <code>!ec</code> instructions, respectively.
 
 <p>
 <!-- begin verbatim block -->
@@ -356,7 +425,7 @@ import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 !ec
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 Such blocks are formatted as
 
 <p>
@@ -369,9 +438,9 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 A code block must come after some plain sentence (at least for successful
-output to <tt>sphinx</tt>, <tt>rst</tt>, and ASCII-close formats),
+output to <code>sphinx</code>, <code>rst</code>, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.
 
 <p>
@@ -382,10 +451,10 @@ duplicated in the documentation (important for the principle of
 avoiding copying information!).
 
 <p>
-Another document can be included by writing <tt># #include "mynote.do.txt"</tt>
+Another document can be included by writing <code># #include "mynote.do.txt"</code>
 at the beginning of a line.  Doconce documents have
-extension <tt>do.txt</tt>. The <tt>do</tt> part stands for doconce, while the
-trailing <tt>.txt</tt> denotes a text document so that editors gives you
+extension <code>do.txt</code>. The <code>do</code> part stands for doconce, while the
+trailing <code>.txt</code> denotes a text document so that editors gives you
 plain text editing capabilities.
 
 <p>
@@ -395,20 +464,20 @@ plain text editing capabilities.
 <p>
 Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
 construction.  The newcommands defined in a file with name
-<tt>newcommand_replace.tex</tt> are expanded when Doconce is filtered to
+<code>newcommand_replace.tex</code> are expanded when Doconce is filtered to
 other formats, except for LaTeX (since LaTeX performs the expansion
-itself).  Newcommands in files with names <tt>newcommands.tex</tt> and
-<tt>newcommands_keep.tex</tt> are kept unaltered when Doconce text is
+itself).  Newcommands in files with names <code>newcommands.tex</code> and
+<code>newcommands_keep.tex</code> are kept unaltered when Doconce text is
 filtered to other formats, except for the Sphinx format. Since Sphinx
 understands LaTeX math, but not newcommands if the Sphinx output is
 HTML, it makes most sense to expand all newcommands.  Normally, a user
 will put all newcommands that appear in math blocks surrounded by
-<tt>!bt</tt> and <tt>!et</tt> in <tt>newcommands_keep.tex</tt> to keep them unchanged, at
+<code>!bt</code> and <code>!et</code> in <code>newcommands_keep.tex</code> to keep them unchanged, at
 least if they contribute to make the raw LaTeX math text easier to
 read in the formats that cannot render LaTeX.  Newcommands used
 elsewhere throughout the text will usually be placed in
-<tt>newcommands_replace.tex</tt> and expanded by Doconce.  The definitions of
-newcommands in the <tt>newcommands*.tex</tt> files <em>must</em> appear on a single
+<code>newcommands_replace.tex</code> and expanded by Doconce.  The definitions of
+newcommands in the <code>newcommands*.tex</code> files <em>must</em> appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
@@ -422,7 +491,7 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the <tt>doc/manual/manual.do.txt</tt> file (see the
+syntax we refer to the <code>doc/manual/manual.do.txt</code> file (see the
 <a href="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo page</a>
 for various formats of this document).
 
@@ -435,38 +504,38 @@ for various formats of this document).
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
 <p>
-Transformation of a Doconce document <tt>mydoc.do.txt</tt> to various other
-formats applies the script <tt>doconce format</tt>:
+Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
+formats applies the script <code>doconce format</code>:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format format mydoc.do.txt
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 or just
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format format mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
 <h3>Preprocessing  <a name="___sec5"></a></h3>
 <p>
-The <tt>preprocess</tt> and <tt>mako</tt> programs are used to preprocess the
-file, and options to <tt>preprocess</tt> and/or <tt>mako</tt> can be added after the
+The <code>preprocess</code> and <code>mako</code> programs are used to preprocess the
+file, and options to <code>preprocess</code> and/or <code>mako</code> can be added after the
 filename. For example,
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </pre>
-<! -- end verbatim block -->
-The variable <tt>FORMAT</tt> is always defined as the current format when
-running <tt>preprocess</tt> or <tt>mako</tt>. That is, in the last example, <tt>FORMAT</tt> is
-defined as <tt>latex</tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt>#if FORMAT == "latex"</tt>
-(for <tt>preprocess</tt>) or <tt>% if FORMAT == "latex":</tt> (for <tt>mako</tt>).
+<!-- end verbatim block -->
+The variable <code>FORMAT</code> is always defined as the current format when
+running <code>preprocess</code> or <code>mako</code>. That is, in the last example, <code>FORMAT</code> is
+defined as <code>latex</code>. Inside the Doconce document one can then perform
+format specific actions through tests like <code>#if FORMAT == "latex"</code>
+(for <code>preprocess</code>) or <code>% if FORMAT == "latex":</code> (for <code>mako</code>).
 
 <p>
 
@@ -475,8 +544,8 @@ format specific actions through tests like <tt>#if FORMAT == "latex"</tt>
 <!-- mention notes also -->
 
 <p>
-The command-line arguments <tt>--no-preprocess</tt> and <tt>--no-mako</tt> turn off
-running <tt>preprocess</tt> and <tt>mako</tt>, respectively.
+The command-line arguments <code>--no-preprocess</code> and <code>--no-mako</code> turn off
+running <code>preprocess</code> and <code>mako</code>, respectively.
 
 <p>
 Inline comments in the text are removed from the output by
@@ -484,14 +553,14 @@ Inline comments in the text are removed from the output by
 <pre>
 Terminal&gt; doconce format latex mydoc --skip_inline_comments
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 One can also remove all such comments from the original Doconce
 file by running:
 <!-- begin verbatim block -->
 <pre>
 Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
@@ -500,61 +569,84 @@ and comments by different authors should be removed.
 
 <h3>HTML  <a name="___sec7"></a></h3>
 <p>
-Making an HTML version of a Doconce file <tt>mydoc.do.txt</tt>
+Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format html mydoc
 </pre>
-<! -- end verbatim block -->
-The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
+<!-- end verbatim block -->
+The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
 <p>
-The HTML style can be defined either in the header of the HTML file or
-in an external CSS file. The latter is enabled by the command-line
-argument <tt>--css=filename</tt>. There is a default style with blue headings,
-and a style with the <a href="http://ethanschoonover.com/solarized">solarized</a>
-color palette, specified by the <tt>--html-solarized</tt> command line
-argument. If there is no file with name <tt>filename</tt> in the <tt>--css=filename</tt>
-specification, the blue or solarized styles are written to <tt>filename</tt>
-and linked from the HTML document. You can provide your own style sheet
-either by replacing the content inside the <tt>style</tt> tags or by
-specifying a CSS file through the <tt>--css=filename</tt> option.
+The HTML style can be defined either in the header of the HTML file,
+using a named built-in style;
+in an external CSS file; or in a template file.
 
 <p>
-If the Pygments package (including the <tt>pygmentize</tt> program)
+An external CSS file <code>filename</code> used by setting the command-line
+argument <code>--css=filename</code>. There available built-in styles are
+specified as <code>--html-style=name</code>, where <code>name</code> can be
+
+<p>
+
+<ul>
+ <li> <code>solarized</code>: the famous <a href="http://ethanschoonover.com/solarized">solarized</a>
+   style (yellowish),</li>
+ <li> <code>blueish</code>: a simple style with blue headings (default),</li>
+ <li> <code>blueish2</code>: a variant of <em>bluish</em>,</li>
+ <li> <code>bloodish</code>: as <code>bluish</code>, but dark read as color.</li>
+</ul>
+
+Using <code>--css=filename</code> where <code>filename</code> is a non-existing file makes
+Doconce write the built-in style to that file. Otherwise the HTML
+links to the CSS stylesheet in <code>filename</code>. Several stylesheets can
+be specified: <code>--ccs=file1.css,file2.css,file3.css</code>.
+
+<p>
+Templates are HTML files with "slots" <code>%(main)s</code> for the main body
+of text, <code>%(title)s</code> for the title, and <code>%(date)s</code> for the date.
+Doconce comes with a few templates. The usage of templates is
+described in a <a href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html">separate document</a>. That document describes how you your Doconce-generated
+HTML file can have any specified layout.
+
+<p>
+If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument <tt>--no-pygments-html</tt>
+aid of this package. The command-line argument <code>--no-pygments-html</code>
 turns off the use of Pygments and makes code blocks appear with
-plain (<tt>pre</tt>) HTML tags. The option <tt>--pygments-html-linenos</tt> turns
-on line numbers in Pygments-formatted code blocks.
+plain (<code>pre</code>) HTML tags. The option <code>--pygments-html-linenos</code> turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by <code>--pygments-html-style=style</code>, where <code>style</code>
+can be <code>default</code>, <code>emacs</code>, <code>perldoc</code>, and other valid names for
+Pygments styles.
 
 <p>
 The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be
 no header and footer in the HTML file). The template file must contain
-valid HTML code and can have three "slots": <tt>%(title)s</tt> for a title,
-<tt>%(date)s</tt> for a date, and <tt>%(main)s</tt> for the main body of text, i.e., the
+valid HTML code and can have three "slots": <code>%(title)s</code> for a title,
+<code>%(date)s</code> for a date, and <code>%(main)s</code> for the main body of text, i.e., the
 Doconce document translated to HTML. The title becomes the first
 heading in the Doconce document, and the date is extracted from the
-<tt>DATE:</tt> line, if present. With the template feature one can easily embed
+<code>DATE:</code> line, if present. With the template feature one can easily embed
 the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert <tt>%(title)s</tt> and
-<tt>%(date)s</tt> at appropriate places and replace the main bod of text
-by <tt>%(main)s</tt>. Here is an example:
+from the source code of a page at the site; just insert <code>%(title)s</code> and
+<code>%(date)s</code> at appropriate places and replace the main bod of text
+by <code>%(main)s</code>. Here is an example:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
 <h3>Blogs  <a name="___sec8"></a></h3>
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
-raw HTML code. Google's Blogger service (<tt>blogger.com</tt> or
-<tt>blogname.blogspot.com</tt>)
+raw HTML code. Google's Blogger service (<code>blogger.com</code> or
+<code>blogname.blogspot.com</code>)
 is particularly well suited since it also allows extensive LaTeX mathematics via
 MathJax.
 Write the blog text as a Doconce document without any title, author, and
@@ -572,19 +664,16 @@ See a <a href="http://doconce.blogspot.no">blog example</a> for details on blogg
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
 <th align="left" valign="middle"><b>Warning</b></th>
 </tr>
-<tr>
-<td>&nbsp;</td>
-<td align="left" valign="top">
-<p>In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.</p>
-</td>
-</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+In the comments after the blog one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
+</p></td></tr>
 </table>
 <p>
-WordPress (<tt>wordpress.com</tt>) allows raw HTML code in blogs,
+WordPress (<code>wordpress.com</code>) allows raw HTML code in blogs,
 but has very limited
-LaTeX support, basically only formulas. The <tt>--wordpress</tt> option to
-<tt>doconce</tt> modifies the HTML code such that all equations are typeset
+LaTeX support, basically only formulas. The <code>--wordpress</code> option to
+<code>doconce</code> modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
 There is a <a href="http://doconce.wordpress.com">doconce example</a>
 on blogging with mathematics and code on WordPress.
@@ -598,27 +687,27 @@ Output in Pandoc's extended Markdown format results from
 <pre>
 Terminal&gt; doconce format pandoc mydoc
 </pre>
-<! -- end verbatim block -->
-The name of the output file is <tt>mydoc.mkd</tt>.
+<!-- end verbatim block -->
+The name of the output file is <code>mydoc.mkd</code>.
 From this format one can go to numerous other formats:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 </pre>
-<! -- end verbatim block -->
-Pandoc supports <tt>latex</tt>, <tt>html</tt>, <tt>odt</tt> (OpenOffice), <tt>docx</tt> (Microsoft
-Word), <tt>rtf</tt>, <tt>texinfo</tt>, to mention some. The <tt>-R</tt> option makes
+<!-- end verbatim block -->
+Pandoc supports <code>latex</code>, <code>html</code>, <code>odt</code> (OpenOffice), <code>docx</code> (Microsoft
+Word), <code>rtf</code>, <code>texinfo</code>, to mention some. The <code>-R</code> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
-while the <tt>--toc</tt> option generates a table of contents.
+while the <code>--toc</code> option generates a table of contents.
 See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
-for the many features of the <tt>pandoc</tt> program.
+for the many features of the <code>pandoc</code> program.
 
 <p>
 Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
 There are two ways (experiment to find the best one for your document):
-<tt>doconce format pandoc</tt> and then translating using <tt>pandoc</tt>, or
-<tt>doconce format latex</tt>, and then going from LaTeX to the desired format
-using <tt>pandoc</tt>.
+<code>doconce format pandoc</code> and then translating using <code>pandoc</code>, or
+<code>doconce format latex</code>, and then going from LaTeX to the desired format
+using <code>pandoc</code>.
 Here is an example on the latter strategy:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -627,16 +716,16 @@ Terminal&gt; doconce ptex2tex mydoc
 Terminal&gt; doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
-<! -- end verbatim block -->
-When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
+<!-- end verbatim block -->
+When we go through <code>pandoc</code>, only single equations or <code>align*</code>
 environments are well understood.
 
 <p>
-Note that Doconce applies the <tt>Verb</tt> macro from the <tt>fancyvrb</tt> package
-while <tt>pandoc</tt> only supports the standard <tt>verb</tt> construction for
-inline verbatim text.  Moreover, quite some additional <tt>doconce
-replace</tt> and <tt>doconce subst</tt> edits might be needed on the <tt>.mkd</tt> or
-<tt>.tex</tt> files to successfully have mathematics that is well translated
+Note that Doconce applies the <code>Verb</code> macro from the <code>fancyvrb</code> package
+while <code>pandoc</code> only supports the standard <code>verb</code> construction for
+inline verbatim text.  Moreover, quite some additional <code>doconce
+replace</code> and <code>doconce subst</code> edits might be needed on the <code>.mkd</code> or
+<code>.tex</code> files to successfully have mathematics that is well translated
 to MS Word.  Also when going to reStructuredText using Pandoc, it can
 be advantageous to go via LaTeX.
 
@@ -649,8 +738,8 @@ HTML with mathematics displayed my MathJax:
 Terminal&gt; doconce format pandoc mydoc
 Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 </pre>
-<! -- end verbatim block -->
-The <tt>-s</tt> option adds a proper header and footer to the <tt>mydoc.html</tt> file.
+<!-- end verbatim block -->
+The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <p>
@@ -658,48 +747,48 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <h3>LaTeX  <a name="___sec10"></a></h3>
 <p>
-Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two steps:
+Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is done in two steps:
 <!-- Note: putting code blocks inside a list is not successful in many -->
 <!-- formats - the text may be messed up. A better choice is a paragraph -->
 <!-- environment, as used here. -->
 
 <p>
 <b>Step 1.</b>
-Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
-the <tt>ptex2tex</tt> program (or <tt>doconce ptex2tex</tt>):
+Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
+the <code>ptex2tex</code> program (or <code>doconce ptex2tex</code>):
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in files <tt>newcommands.tex</tt>, <tt>newcommands_keep.tex</tt>, or
-<tt>newcommands_replace.tex</tt> (see the section <a href="#newcommands">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
+can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex</code>, or
+<code>newcommands_replace.tex</code> (see the section <a href="#newcommands">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
 <p>
-An option <tt>--latex-printed</tt> makes some adjustments for documents
+An option <code>--latex-printed</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
 <p>
 <b>Step 2.</b>
-Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
+Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex mydoc
 </pre>
-<! -- end verbatim block -->
-In case you do not have <tt>ptex2tex</tt>, you may run a (very) simplified version:
+<!-- end verbatim block -->
+In case you do not have <code>ptex2tex</code>, you may run a (very) simplified version:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce ptex2tex mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
-Note that Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
+Note that Doconce generates a <code>.p.tex</code> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -708,13 +797,13 @@ Computer Modern font, run
 Terminal&gt; ptex2tex -DHELVETICA mydoc
 Terminal&gt; doconce ptex2tex mydoc -DHELVETICA  # alternative
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
-is also available through <tt>-DLATEX_HEADING=traditional</tt>.
+is also available through <code>-DLATEX_HEADING=traditional</code>.
 A separate titlepage can be generate by
-<tt>-DLATEX_HEADING=titlepage</tt>.
+<code>-DLATEX_HEADING=titlepage</code>.
 
 <p>
 Preprocessor variables to be defined or undefined are
@@ -722,40 +811,40 @@ Preprocessor variables to be defined or undefined are
 <p>
 
 <ul>
- <li> <tt>BOOK</tt> for the "book" documentclass rather than the standard
+ <li> <code>BOOK</code> for the "book" documentclass rather than the standard
    "article" class (necessary if you apply chapter headings)</li>
- <li> <tt>PALATINO</tt> for the Palatino font</li>
- <li> <tt>HELVETIA</tt> for the Helvetica font</li>
- <li> <tt>A4PAPER</tt> for A4 paper size</li>
- <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
- <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies</li>
- <li> <tt>PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
+ <li> <code>PALATINO</code> for the Palatino font</li>
+ <li> <code>HELVETIA</code> for the Helvetica font</li>
+ <li> <code>A4PAPER</code> for A4 paper size</li>
+ <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices)</li>
+ <li> <code>MOVIE15</code> for using the movie15 LaTeX package to display movies</li>
+ <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere)</li>
- <li> <tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
-   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)</li>
+ <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
+   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)</li>
 </ul>
 
 If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option <tt>--latex-preamble=myfile</tt>.
-In case <tt>myfile</tt> contains a documentclass definition, Doconce assumes
+your own preamble by adding the command-line option <code>--latex-preamble=myfile</code>.
+In case <code>myfile</code> contains a documentclass definition, Doconce assumes
 that the file contains the <em>complete</em> preamble you want (not that all
 the packages listed in the default preamble are required and must be
-present in <tt>myfile</tt>). Otherwise, <tt>myfile</tt> is assumed to contain
+present in <code>myfile</code>). Otherwise, <code>myfile</code> is assumed to contain
 <em>additional</em> LaTeX code to be added to the Doconce default preamble.
 
 <p>
-The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
+The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents. After any <tt>!bc</tt> command in the Doconce source you can
-insert verbatim block styles as defined in your <tt>.ptex2tex.cfg</tt>
-file, e.g., <tt>!bc sys</tt> for a terminal session, where <tt>sys</tt> is set to
-a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeTerminal</tt>).
+documents. After any <code>!bc</code> command in the Doconce source you can
+insert verbatim block styles as defined in your <code>.ptex2tex.cfg</code>
+file, e.g., <code>!bc sys</code> for a terminal session, where <code>sys</code> is set to
+a certain environment in <code>.ptex2tex.cfg</code> (e.g., <code>CodeTerminal</code>).
 There are about 40 styles to choose from, and you can easily add
 new ones.
 
 <p>
-Also the <tt>doconce ptex2tex</tt> command supports preprocessor directives
-for processing the <tt>.p.tex</tt> file. The command allows specifications
+Also the <code>doconce ptex2tex</code> command supports preprocessor directives
+for processing the <code>.p.tex</code> file. The command allows specifications
 of code environments as well. Here is an example:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -764,25 +853,25 @@ Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           &quot;sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}&quot; \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
-<! -- end verbatim block -->
-Note that <tt>@</tt> must be used to separate the begin and end LaTeX
-commands, unless only the environment name is given (such as <tt>minted</tt>
-above, which implies <tt>\begin{minted}{fortran}</tt> and <tt>\end{minted}</tt> as
-begin and end for blocks inside <tt>!bc fpro</tt> and <tt>!ec</tt>).  Specifying
-<tt>envir=ans:nt</tt> means that all other environments are typeset with the
-<tt>anslistings.sty</tt> package, e.g., <tt>!bc cppcod</tt> will then result in
-<tt>\begin{c++}</tt>. If no environments like <tt>sys</tt>, <tt>fpro</tt>, or the common
-<tt>envir</tt> are defined on the command line, the plain <tt>\begin{verbatim}</tt>
-and <tt>\end{verbatim}</tt> used.
+<!-- end verbatim block -->
+Note that <code>@</code> must be used to separate the begin and end LaTeX
+commands, unless only the environment name is given (such as <code>minted</code>
+above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}</code> as
+begin and end for blocks inside <code>!bc fpro</code> and <code>!ec</code>).  Specifying
+<code>envir=ans:nt</code> means that all other environments are typeset with the
+<code>anslistings.sty</code> package, e.g., <code>!bc cppcod</code> will then result in
+<code>\begin{c++}</code>. If no environments like <code>sys</code>, <code>fpro</code>, or the common
+<code>envir</code> are defined on the command line, the plain <code>\begin{verbatim}</code>
+and <code>\end{verbatim}</code> used.
 
 <p>
 
 <b>Step 2b (optional).</b>
-Edit the <tt>mydoc.tex</tt> file to your needs.
-For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
+Edit the <code>mydoc.tex</code> file to your needs.
+For example, you may want to substitute <code>section</code> by <code>section*</code> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
-edited with the aid of the <tt>doconce replace</tt> and <tt>doconce subst</tt>
+edited with the aid of the <code>doconce replace</code> and <code>doconce subst</code>
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
 Here are two examples:
@@ -792,7 +881,7 @@ Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
 Terminal&gt; doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g&lt;1&gt; \\\\ [1.5mm] Using \g&lt;2&gt;' mydoc.tex
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
@@ -800,7 +889,7 @@ generating PDF from the LaTeX file.
 
 <p>
 <b>Step 3.</b>
-Compile <tt>mydoc.tex</tt>
+Compile <code>mydoc.tex</code>
 and create the PDF file:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -811,22 +900,22 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
-If one wishes to run <tt>ptex2tex</tt> and use the minted LaTeX package for
-typesetting code blocks (<tt>Minted_Python</tt>, <tt>Minted_Cpp</tt>, etc., in
-<tt>ptex2tex</tt> specified through the <tt>*pro</tt> and <tt>*cod</tt> variables in
-<tt>.ptex2tex.cfg</tt> or <tt>$HOME/.ptex2tex.cfg</tt>), the minted LaTeX package is
-needed.  This package is included by running <tt>ptex2tex</tt> with the
-<tt>-DMINTED</tt> option:
+If one wishes to run <code>ptex2tex</code> and use the minted LaTeX package for
+typesetting code blocks (<code>Minted_Python</code>, <code>Minted_Cpp</code>, etc., in
+<code>ptex2tex</code> specified through the <code>*pro</code> and <code>*cod</code> variables in
+<code>.ptex2tex.cfg</code> or <code>$HOME/.ptex2tex.cfg</code>), the minted LaTeX package is
+needed.  This package is included by running <code>ptex2tex</code> with the
+<code>-DMINTED</code> option:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex -DMINTED mydoc
 </pre>
-<! -- end verbatim block -->
-In this case, <tt>latex</tt> must be run with the
-<tt>-shell-escape</tt> option:
+<!-- end verbatim block -->
+In this case, <code>latex</code> must be run with the
+<code>-shell-escape</code> option:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; latex -shell-escape mydoc
@@ -836,24 +925,24 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-<! -- end verbatim block -->
-When running <tt>doconce ptex2tex mydoc envir=minted</tt> (or other minted
-specifications with <tt>doconce ptex2tex</tt>), the minted package is automatically
-included so there is no need for the <tt>-DMINTED</tt> option.
+<!-- end verbatim block -->
+When running <code>doconce ptex2tex mydoc envir=minted</code> (or other minted
+specifications with <code>doconce ptex2tex</code>), the minted package is automatically
+included so there is no need for the <code>-DMINTED</code> option.
 
 <p>
 
 
 <h3>PDFLaTeX  <a name="___sec11"></a></h3>
 <p>
-Running <tt>pdflatex</tt> instead of <tt>latex</tt> follows almost the same steps,
+Running <code>pdflatex</code> instead of <code>latex</code> follows almost the same steps,
 but the start is
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
 </pre>
-<! -- end verbatim block -->
-Then <tt>ptex2tex</tt> is run as explained above, and finally
+<!-- end verbatim block -->
+Then <code>ptex2tex</code> is run as explained above, and finally
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; pdflatex -shell-escape mydoc
@@ -861,7 +950,7 @@ Terminal&gt; makeindex mydoc   # if index
 Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; pdflatex -shell-escape mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -874,7 +963,7 @@ computer source code:
 <pre>
 Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -882,12 +971,12 @@ Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 <p>
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
-reStructuredText file <tt>mydoc.rst</tt>:
+reStructuredText file <code>mydoc.rst</code>:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format rst mydoc.do.txt
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 We may now produce various other formats:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -896,22 +985,22 @@ Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # latex
 Terminal&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
 Terminal&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
-The OpenOffice file <tt>mydoc.odt</tt> can be loaded into OpenOffice and
+The OpenOffice file <code>mydoc.odt</code> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-However, it is more convenient to use the program <tt>unovonv</tt>
+However, it is more convenient to use the program <code>unovonv</code>
 to convert between the many formats OpenOffice supports <em>on the command line</em>.
 Run
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; unoconv --show
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 to see all the formats that are supported.
 For example, the following commands take
-<tt>mydoc.odt</tt> to Microsoft Office Open XML format,
+<code>mydoc.odt</code> to Microsoft Office Open XML format,
 classic MS Word format, and PDF:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -919,14 +1008,14 @@ Terminal&gt; unoconv -f ooxml mydoc.odt
 Terminal&gt; unoconv -f doc mydoc.odt
 Terminal&gt; unoconv -f pdf mydoc.odt
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 <b>Remark about Mathematical Typesetting.</b>
 At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
-"MS Word world". Mathematics is only fully supported by <tt>latex</tt> as
-output and to a wide extent also supported by the <tt>sphinx</tt> output format.
+"MS Word world". Mathematics is only fully supported by <code>latex</code> as
+output and to a wide extent also supported by the <code>sphinx</code> output format.
 Some links for going from LaTeX to Word are listed below.
 
 <p>
@@ -940,82 +1029,82 @@ Some links for going from LaTeX to Word are listed below.
 <h3>Sphinx  <a name="___sec14"></a></h3>
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
-most of the steps through the <tt>doconce sphinx_dir</tt> command:
+most of the steps through the <code>doconce sphinx_dir</code> command:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
           title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
 </pre>
-<! -- end verbatim block -->
-The keywords <tt>author</tt>, <tt>title</tt>, and <tt>version</tt> are used in the headings
-of the Sphinx document. By default, <tt>version</tt> is 1.0 and the script
-will try to deduce authors and title from the doconce files <tt>file1</tt>,
-<tt>file2</tt>, etc. that together represent the whole document. Note that
-none of the individual Doconce files <tt>file1</tt>, <tt>file2</tt>, etc. should
+<!-- end verbatim block -->
+The keywords <code>author</code>, <code>title</code>, and <code>version</code> are used in the headings
+of the Sphinx document. By default, <code>version</code> is 1.0 and the script
+will try to deduce authors and title from the doconce files <code>file1</code>,
+<code>file2</code>, etc. that together represent the whole document. Note that
+none of the individual Doconce files <code>file1</code>, <code>file2</code>, etc. should
 include the rest as their union makes up the whole document.
-The default value of <tt>dirname</tt> is <tt>sphinx-rootdir</tt>. The <tt>theme</tt>
+The default value of <code>dirname</code> is <code>sphinx-rootdir</code>. The <code>theme</code>
 keyword is used to set the theme for design of HTML output from
-Sphinx (the default theme is <tt>'default'</tt>).
+Sphinx (the default theme is <code>'default'</code>).
 
 <p>
-With a single-file document in <tt>mydoc.do.txt</tt> one often just runs
+With a single-file document in <code>mydoc.do.txt</code> one often just runs
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce sphinx_dir mydoc
 </pre>
-<! -- end verbatim block -->
-and then an appropriate Sphinx directory <tt>sphinx-rootdir</tt> is made with
+<!-- end verbatim block -->
+and then an appropriate Sphinx directory <code>sphinx-rootdir</code> is made with
 relevant files.
 
 <p>
-The <tt>doconce sphinx_dir</tt> command generates a script
-<tt>automake_sphinx.py</tt> for compiling the Sphinx document into an HTML
-document.  One can either run <tt>automake_sphinx.py</tt> or perform the
+The <code>doconce sphinx_dir</code> command generates a script
+<code>automake_sphinx.py</code> for compiling the Sphinx document into an HTML
+document.  One can either run <code>automake_sphinx.py</code> or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
 <p>
-The <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or
-<tt>figures</tt> over to the Sphinx directory so that figures are accessible
+The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
+<code>figures</code> over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake_sphinx.py</tt> must be edited accordingly.  Files,
-to which there are local links (not <tt>http:</tt> or <tt>file:</tt> URLs), must be
-placed in the <tt>_static</tt> subdirectory of the Sphinx directory. The
-utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local links
-in the Doconce file: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it
-replaces the link by <tt>_static/myfile.txt</tt> and copies
-<tt>dir1/dir2/myfile.txt</tt> to a local <tt>_static</tt> directory (in the same
+directories, <code>automake_sphinx.py</code> must be edited accordingly.  Files,
+to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
+placed in the <code>_static</code> subdirectory of the Sphinx directory. The
+utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
+in the Doconce file: for each such link, say <code>dir1/dir2/myfile.txt</code> it
+replaces the link by <code>_static/myfile.txt</code> and copies
+<code>dir1/dir2/myfile.txt</code> to a local <code>_static</code> directory (in the same
 directory as the script is run).  However, we recommend instead that
-the writer of the document places files in <tt>_static</tt> or lets a script
-do it automatically. The user must copy all <tt>_static/*</tt> files to the
-<tt>_static</tt> subdirectory of the Sphinx directory.  It may be wise to
+the writer of the document places files in <code>_static</code> or lets a script
+do it automatically. The user must copy all <code>_static/*</code> files to the
+<code>_static</code> subdirectory of the Sphinx directory.  It may be wise to
 always put files, to which there are local links in the Doconce
-document, in a <tt>_static</tt> or <tt>_static-name</tt> directory and use these
+document, in a <code>_static</code> or <code>_static-name</code> directory and use these
 local links. Then links do not need to be modified when creating a
 Sphinx version of the document.
 
 <p>
 Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the <tt>conf.py</tt>
+These are packed out in the Sphinx directory, the <code>conf.py</code>
 configuration file for Sphinx is edited accordingly, and a script
-<tt>make-themes.sh</tt> can make HTML documents with one or more themes.
+<code>make-themes.sh</code> can make HTML documents with one or more themes.
 For example,
-to realize the themes <tt>fenics</tt> and <tt>pyramid</tt>, one writes
+to realize the themes <code>fenics</code> and <code>pyramid</code>, one writes
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ./make-themes.sh fenics pyramid
 </pre>
-<! -- end verbatim block -->
-The resulting directories with HTML documents are <tt>_build/html_fenics</tt>
-and <tt>_build/html_pyramid</tt>, respectively. Without arguments,
-<tt>make-themes.sh</tt> makes all available themes (!).
+<!-- end verbatim block -->
+The resulting directories with HTML documents are <code>_build/html_fenics</code>
+and <code>_build/html_pyramid</code>, respectively. Without arguments,
+<code>make-themes.sh</code> makes all available themes (!).
 
 <p>
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
-Sphinx document from a file <tt>mydoc.do.txt</tt>.
+Sphinx document from a file <code>mydoc.do.txt</code>.
 
 <p>
 <b>Step 1.</b>
@@ -1024,12 +1113,12 @@ Translate Doconce into the Sphinx format:
 <pre>
 Terminal&gt; doconce format sphinx mydoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 <b>Step 2.</b>
 Create a Sphinx root directory
-either manually or by using the interactive <tt>sphinx-quickstart</tt>
+either manually or by using the interactive <code>sphinx-quickstart</code>
 program. Here is a scripted version of the steps with the latter:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -1058,33 +1147,33 @@ y
 y
 EOF
 </pre>
-<! -- end verbatim block -->
-The autogenerated <tt>conf.py</tt> file
+<!-- end verbatim block -->
+The autogenerated <code>conf.py</code> file
 may need some edits if you want to specific layout (Sphinx themes)
-of HTML pages. The <tt>doconce sphinx_dir</tt> generator makes an extended <tt>conv.py</tt>
+of HTML pages. The <code>doconce sphinx_dir</code> generator makes an extended <code>conv.py</code>
 file where, among other things, several useful Sphinx extensions
 are included.
 
 <p>
 
 <b>Step 3.</b>
-Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
+Copy the <code>mydoc.rst</code> file to the Sphinx root directory:
 <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; cp mydoc.rst sphinx-rootdir
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 If you have figures in your document, the relative paths to those will
-be invalid when you work with <tt>mydoc.rst</tt> in the <tt>sphinx-rootdir</tt>
-directory. Either edit <tt>mydoc.rst</tt> so that figure file paths are correct,
-or simply copy your figure directories to <tt>sphinx-rootdir</tt>.
-Links to local files in <tt>mydoc.rst</tt> must be modified to links to
-files in the <tt>_static</tt> directory, see comment above.
+be invalid when you work with <code>mydoc.rst</code> in the <code>sphinx-rootdir</code>
+directory. Either edit <code>mydoc.rst</code> so that figure file paths are correct,
+or simply copy your figure directories to <code>sphinx-rootdir</code>.
+Links to local files in <code>mydoc.rst</code> must be modified to links to
+files in the <code>_static</code> directory, see comment above.
 
 <p>
 <b>Step 4.</b>
-Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
-is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it becomes
+Edit the generated <code>index.rst</code> file so that <code>mydoc.rst</code>
+is included, i.e., add <code>mydoc</code> to the <code>toctree</code> section so that it becomes
 <!-- begin verbatim block -->
 <pre>
 .. toctree::
@@ -1092,8 +1181,8 @@ is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it
 
    mydoc
 </pre>
-<! -- end verbatim block -->
-(The spaces before <tt>mydoc</tt> are important!)
+<!-- end verbatim block -->
+(The spaces before <code>mydoc</code> are important!)
 
 <p>
 <b>Step 5.</b>
@@ -1103,11 +1192,11 @@ Generate, for instance, an HTML version of the Sphinx source:
 make clean   # remove old versions
 make html
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 Sphinx can generate a range of different formats:
-standalone HTML, HTML in separate directories with <tt>index.html</tt> files,
+standalone HTML, HTML in separate directories with <code>index.html</code> files,
 a large single HTML file, JSON files, various help files (the qthelp, HTML,
 and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
 and Texinfo files.
@@ -1119,12 +1208,12 @@ View the result:
 <pre>
 Terminal&gt; firefox _build/html/index.html
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 Note that verbatim code blocks can be typeset in a variety of ways
-depending the argument that follows <tt>!bc</tt>: <tt>cod</tt> gives Python
-(<tt>code-block:: python</tt> in Sphinx syntax) and <tt>cppcod</tt> gives C++, but
+depending the argument that follows <code>!bc</code>: <code>cod</code> gives Python
+(<code>code-block:: python</code> in Sphinx syntax) and <code>cppcod</code> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.
 
 <p>
@@ -1137,7 +1226,7 @@ There are many different wiki formats, but Doconce only supports three:
 <a href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki</a>, and
 <a href="http://www.wikicreole.org/wiki/Creole1.0">Creole Wiki</a>.
 These formats are called
-<tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
+<code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <!-- begin verbatim block  sys-->
 <pre>
@@ -1145,7 +1234,7 @@ Terminal&gt; doconce format gwiki mydoc.do.txt
 Terminal&gt; doconce format mwiki mydoc.do.txt
 Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 The produced MediaWiki can be tested in the <a href="http://en.wikibooks.org/wiki/Sandbox">sandbox of
@@ -1167,14 +1256,14 @@ standard LaTeX book, a Sphinx web document, or a collection of HTML files.
 
 <p>
 
-The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
+The Googlecode wiki document, <code>mydoc.gwiki</code>, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
 This is far easier than copying and pasting the entire text into the
 wiki editor in a web browser.
 
 <p>
 When the Doconce file contains figures, each figure filename must in
-the <tt>.gwiki</tt> file be replaced by a URL where the figure is
+the <code>.gwiki</code> file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
@@ -1185,13 +1274,13 @@ one performs this substitution automatically (see next section).
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
 Doconce to reStructuredText. Since Doconce does not know if the
-<tt>.rst</tt> file is going to be filtered to LaTeX or HTML, it cannot know
-if <tt>.eps</tt> or <tt>.png</tt> is the most appropriate image filename.
+<code>.rst</code> file is going to be filtered to LaTeX or HTML, it cannot know
+if <code>.eps</code> or <code>.png</code> is the most appropriate image filename.
 The solution is to use a text substitution command or code with, e.g., sed,
 perl, python, or scitools subst, to automatically edit the output file
 from Doconce. It is then wise to run Doconce and the editing commands
 from a script to automate all steps in going from Doconce to the final
-format(s). The <tt>make.sh</tt> files in <tt>docs/manual</tt> and <tt>docs/tutorial</tt>
+format(s). The <code>make.sh</code> files in <code>docs/manual</code> and <code>docs/tutorial</code>
 constitute comprehensive examples on how such scripts can be made.
 
 <p>
@@ -1204,20 +1293,20 @@ The current text is generated from a Doconce format stored in the file
 <pre>
 docs/tutorial/tutorial.do.txt
 </pre>
-<! -- end verbatim block -->
-The file <tt>make.sh</tt> in the <tt>tutorial</tt> directory of the
+<!-- end verbatim block -->
+The file <code>make.sh</code> in the <code>tutorial</code> directory of the
 Doconce source code contains a demo of how to produce a variety of
-formats.  The source of this tutorial, <tt>tutorial.do.txt</tt> is the
-starting point.  Running <tt>make.sh</tt> and studying the various generated
-files and comparing them with the original <tt>tutorial.do.txt</tt> file,
+formats.  The source of this tutorial, <code>tutorial.do.txt</code> is the
+starting point.  Running <code>make.sh</code> and studying the various generated
+files and comparing them with the original <code>tutorial.do.txt</code> file,
 gives a quick introduction to how Doconce is used in a real case.
 <a href="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html">Here</a>
 is a sample of how this tutorial looks in different formats.
 
 <p>
-There is another demo in the <tt>docs/manual</tt> directory which
-translates the more comprehensive documentation, <tt>manual.do.txt</tt>, to
-various formats. The <tt>make.sh</tt> script runs a set of translations.
+There is another demo in the <code>docs/manual</code> directory which
+translates the more comprehensive documentation, <code>manual.do.txt</code>, to
+various formats. The <code>make.sh</code> script runs a set of translations.
 
 <p>
 
@@ -1227,7 +1316,7 @@ various formats. The <tt>make.sh</tt> script runs a set of translations.
 <h3>Doconce  <a name="___sec19"></a></h3>
 <p>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
-Mercurial (<tt>hg</tt>) source follows the standard procedure:
+Mercurial (<code>hg</code>) source follows the standard procedure:
 <!-- begin verbatim block  sys-->
 <pre>
 # Doconce
@@ -1236,7 +1325,7 @@ cd doconce
 sudo python setup.py install
 cd ..
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 Since Doconce is frequently updated, it is recommended to use the
 above procedure and whenever a problem occurs, make sure to
 update to the most recent version:
@@ -1247,7 +1336,7 @@ hg pull
 hg update
 sudo python setup.py install
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 Debian GNU/Linux users can also run
@@ -1255,7 +1344,7 @@ Debian GNU/Linux users can also run
 <pre>
 sudo apt-get install doconce
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 This installs the latest release and not the most updated and bugfixed
 version.
 On Ubuntu one needs to run
@@ -1265,7 +1354,7 @@ sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -1286,20 +1375,20 @@ cd doconce
 sudo python setup.py install
 cd ..
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 A much more advanced alternative to Preprocess is
 <a href="http://www.makotemplates.org">Mako</a>. Its installation is most
-conveniently done by <tt>pip</tt>,
+conveniently done by <code>pip</code>,
 
 <p>
 <!-- begin verbatim block  sys-->
 <pre>
 pip install Mako
 </pre>
-<! -- end verbatim block -->
-This command requires <tt>pip</tt> to be installed. On Debian Linux systems,
+<!-- end verbatim block -->
+This command requires <code>pip</code> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
 <p>
@@ -1307,21 +1396,21 @@ such as Ubuntu, the installation is simply done by
 <pre>
 sudo apt-get install python-pip
 </pre>
-<! -- end verbatim block -->
-Alternatively, one can install from the <tt>pip</tt> <a href="http://pypi.python.org/pypi/pip">source code</a>.
+<!-- end verbatim block -->
+Alternatively, one can install from the <code>pip</code> <a href="http://pypi.python.org/pypi/pip">source code</a>.
 
 <p>
 Mako can also be installed directly from
 <a href="http://www.makotemplates.org/download.html">source</a>: download the
 tarball, pack it out, go to the directory and run
-the usual <tt>sudo python setup.py install</tt>.
+the usual <code>sudo python setup.py install</code>.
 
 <p>
 
 <h4>Image file handling  <a name="___sec22"></a></h4>
 <p>
 Different output formats require different formats of image files.
-For example, PostScript or Encapuslated PostScript is required for <tt>latex</tt>
+For example, PostScript or Encapuslated PostScript is required for <code>latex</code>
 output, while HTML needs JPEG, GIF, or PNG formats.
 Doconce calls up programs from the ImageMagick suite for converting
 image files to a proper format if needed. The <a href="http://www.imagemagick.org/script/index.php">ImageMagick suite</a> can be installed on all major platforms.
@@ -1332,12 +1421,12 @@ On Debian Linux (including Ubuntu) systems one can simply write
 <pre>
 sudo apt-get install imagemagick
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
-The convenience program <tt>doconce combine_images</tt>, for combining several
-images into one, will use <tt>montage</tt> and <tt>convert</tt> from ImageMagick and
-the <tt>pdftk</tt>, <tt>pdfnup</tt>, and <tt>pdfcrop</tt> programs from the <tt>texlive-extra-utils</tt>
+The convenience program <code>doconce combine_images</code>, for combining several
+images into one, will use <code>montage</code> and <code>convert</code> from ImageMagick and
+the <code>pdftk</code>, <code>pdfnup</code>, and <code>pdfcrop</code> programs from the <code>texlive-extra-utils</code>
 Debian package. The latter gets installed by
 
 <p>
@@ -1345,13 +1434,13 @@ Debian package. The latter gets installed by
 <pre>
 sudo apt-get install texlive-extra-utils
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
 <h4>Spellcheck  <a name="___sec23"></a></h4>
 <p>
-The utility <tt>doconce spellcheck</tt> applies the <tt>ispell</tt> program for
+The utility <code>doconce spellcheck</code> applies the <code>ispell</code> program for
 spellcheck. On Debian (including Ubuntu) it is installed by
 
 <p>
@@ -1359,7 +1448,7 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 <pre>
 sudo apt-get install ispell
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
@@ -1376,9 +1465,9 @@ svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 It may happen that you need additional style files, you can run
-a script, <tt>cp2texmf.sh</tt>:
+a script, <code>cp2texmf.sh</code>:
 
 <p>
 <!-- begin verbatim block  sys-->
@@ -1387,9 +1476,9 @@ cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 This script copies some special stylefiles that
-that <tt>ptex2tex</tt> potentially makes use of. Some more standard stylefiles
+that <code>ptex2tex</code> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 <p>
@@ -1397,18 +1486,18 @@ are also needed. These are installed by
 <pre>
 sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
-manually in the <tt>~/texmf/tex/latex/misc</tt> directory).
+manually in the <code>~/texmf/tex/latex/misc</code> directory).
 
 <p>
-Note that the <tt>doconce ptex2tex</tt> command, which needs no installation
-beyond Doconce itself, can be used as a simpler alternative to the <tt>ptex2tex</tt>
+Note that the <code>doconce ptex2tex</code> command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the <code>ptex2tex</code>
 program.
 
 <p>
-The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
+The <em>minted</em> LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
 and popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
 to be installed. On Debian Linux,
@@ -1416,7 +1505,7 @@ to be installed. On Debian Linux,
 <pre>
 sudo apt-get install python-pygments
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 Alternatively, the package can be installed manually:
 <!-- begin verbatim block  sys-->
 <pre>
@@ -1424,18 +1513,18 @@ hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
-If you use the minted style together with <tt>ptex2tex</tt>, you have to
-enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.
-This is not necessary if you run the alternative <tt>doconce ptex2tex</tt> program.
+If you use the minted style together with <code>ptex2tex</code>, you have to
+enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
+This is not necessary if you run the alternative <code>doconce ptex2tex</code> program.
 
 <p>
 All
-use of the minted style requires the <tt>-shell-escape</tt> command-line
-argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
--shell-escape</tt>.
+use of the minted style requires the <code>-shell-escape</code> command-line
+argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
+-shell-escape</code>.
 
 <p>
 <!-- Say something about anslistings.sty -->
@@ -1444,7 +1533,7 @@ argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
 
 <h4>reStructuredText (reST) Output  <a name="___sec25"></a></h4>
 <p>
-The <tt>rst</tt> output from Doconce allows further transformation to LaTeX,
+The <code>rst</code> output from Doconce allows further transformation to LaTeX,
 HTML, XML, OpenOffice, and so on, through the <a href="http://docutils.sourceforge.net">docutils</a> package.  The installation of the
 most recent version can be done by
 
@@ -1456,24 +1545,24 @@ cd docutils
 sudo python setup.py install
 cd ..
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 To use the OpenOffice suite you will typically on Debian systems install
 <!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 <a href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
-or clone the svn repository, go to the <tt>rst2pdf</tt> directory and
-run the usual <tt>sudo python setup.py install</tt>.
+or clone the svn repository, go to the <code>rst2pdf</code> directory and
+run the usual <code>sudo python setup.py install</code>.
 
 <p>
 
-Output to <tt>sphinx</tt> requires of course the
+Output to <code>sphinx</code> requires of course the
 <a href="http://sphinx.pocoo.org">Sphinx software</a>,
 installed by
 
@@ -1485,14 +1574,14 @@ cd sphinx
 sudo python setup.py install
 cd ..
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 
 <h4>Markdown and Pandoc Output  <a name="___sec26"></a></h4>
 <p>
-The Doconce format <tt>pandoc</tt> outputs the document in the Pandoc
-extended Markdown format, which via the <tt>pandoc</tt> program can be
+The Doconce format <code>pandoc</code> outputs the document in the Pandoc
+extended Markdown format, which via the <code>pandoc</code> program can be
 translated to a range of other formats. Installation of <a href="http://johnmacfarlane.net/pandoc/">Pandoc</a>, written in Haskell, is most
 easily done by
 
@@ -1501,14 +1590,14 @@ easily done by
 <pre>
 sudo apt-get install pandoc
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 on Debian (Ubuntu) systems.
 
 <p>
 
 <h4>Epydoc Output  <a name="___sec27"></a></h4>
 <p>
-When the output format is <tt>epydoc</tt> one needs that program too, installed
+When the output format is <code>epydoc</code> one needs that program too, installed
 by
 <!-- begin verbatim block  sys-->
 <pre>
@@ -1517,20 +1606,21 @@ cd epydoc
 sudo make install
 cd ..
 </pre>
-<! -- end verbatim block -->
+<!-- end verbatim block -->
 
 <p>
 <b>Remark.</b>
 Several of the packages above installed from source code
 are also available in Debian-based system through the
-<tt>apt-get install</tt> command. However, we recommend installation directly
+<code>apt-get install</code> command. However, we recommend installation directly
 from the version control system repository as there might be important
-updates and bug fixes. For <tt>svn</tt> directories, go to the directory,
-run <tt>svn update</tt>, and then <tt>sudo python setup.py install</tt>. For
-Mercurial (<tt>hg</tt>) directories, go to the directory, run
-<tt>hg pull; hg update</tt>, and then <tt>sudo python setup.py install</tt>.
+updates and bug fixes. For <code>svn</code> directories, go to the directory,
+run <code>svn update</code>, and then <code>sudo python setup.py install</code>. For
+Mercurial (<code>hg</code>) directories, go to the directory, run
+<code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
+<!-- ------------------- end of main content --------------- -->
 
-<!-- ------------------- end of main content ----------------->
+
 </body>
 </html>
     

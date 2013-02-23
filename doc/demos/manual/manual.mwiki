@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Feb 16, 2013 ====
+==== Feb 23, 2013 ====
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -411,23 +411,43 @@ Terminal> doconce format html mydoc
 </syntaxhighlight>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
-The HTML style can be defined either in the header of the HTML file or
-in an external CSS file. The latter is enabled by the command-line
-argument <code>--css=filename</code>. There is a default style with blue headings,
-and a style with the [http://ethanschoonover.com/solarized solarized]
-color palette, specified by the <code>--html-solarized</code> command line
-argument. If there is no file with name <code>filename</code> in the <code>--css=filename</code>
-specification, the blue or solarized styles are written to <code>filename</code>
-and linked from the HTML document. You can provide your own style sheet
-either by replacing the content inside the <code>style</code> tags or by
-specifying a CSS file through the <code>--css=filename</code> option.
+The HTML style can be defined either in the header of the HTML file,
+using a named built-in style;
+in an external CSS file; or in a template file.
+
+An external CSS file <code>filename</code> used by setting the command-line
+argument <code>--css=filename</code>. There available built-in styles are
+specified as <code>--html-style=name</code>, where <code>name</code> can be
+
+
+<ul>
+ <li> <code>solarized</code>: the famous [http://ethanschoonover.com/solarized solarized]
+   style (yellowish),
+ <li> <code>blueish</code>: a simple style with blue headings (default),
+ <li> <code>blueish2</code>: a variant of ''bluish'',
+ <li> <code>bloodish</code>: as <code>bluish</code>, but dark read as color.
+</ul>
+
+Using <code>--css=filename</code> where <code>filename</code> is a non-existing file makes
+Doconce write the built-in style to that file. Otherwise the HTML
+links to the CSS stylesheet in <code>filename</code>. Several stylesheets can
+be specified: <code>--ccs=file1.css,file2.css,file3.css</code>.
+
+Templates are HTML files with "slots" <code>%(main)s</code> for the main body
+of text, <code>%(title)s</code> for the title, and <code>%(date)s</code> for the date.
+Doconce comes with a few templates. The usage of templates is
+described in a [https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html separate document]. That document describes how you your Doconce-generated
+HTML file can have any specified layout.
 
 If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <code>--no-pygments-html</code>
 turns off the use of Pygments and makes code blocks appear with
 plain (<code>pre</code>) HTML tags. The option <code>--pygments-html-linenos</code> turns
-on line numbers in Pygments-formatted code blocks.
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by <code>--pygments-html-style=style</code>, where <code>style</code>
+can be <code>default</code>, <code>emacs</code>, <code>perldoc</code>, and other valid names for
+Pygments styles.
 
 The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be
@@ -2462,7 +2482,6 @@ as ordinary text.)
 Here is how to get the Doconce Editing Mode in Emacs: Download [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] and save it in your home directory, then add these lines to <code>~/.emacs</code>:
 <syntaxhighlight lang="text">
 (load-file "~/.doconce-mode.el")
-(setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 </syntaxhighlight>
 Emacs will now recognize files with extension <code>.do.txt</code> and enter
 the Doconce Editing Mode.

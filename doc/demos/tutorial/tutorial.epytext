@@ -1,7 +1,7 @@
 
 TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Feb 16, 2013
+DATE: Feb 23, 2013
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
@@ -352,23 +352,40 @@ is performed by::
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style can be defined either in the header of the HTML file or
-in an external CSS file. The latter is enabled by the command-line
-argument C{--css=filename}. There is a default style with blue headings,
-and a style with the U{solarized<http://ethanschoonover.com/solarized>}
-color palette, specified by the C{--html-solarized} command line
-argument. If there is no file with name C{filename} in the C{--css=filename}
-specification, the blue or solarized styles are written to C{filename}
-and linked from the HTML document. You can provide your own style sheet
-either by replacing the content inside the C{style} tags or by
-specifying a CSS file through the C{--css=filename} option.
+The HTML style can be defined either in the header of the HTML file,
+using a named built-in style;
+in an external CSS file; or in a template file.
+
+An external CSS file C{filename} used by setting the command-line
+argument C{--css=filename}. There available built-in styles are
+specified as C{--html-style=name}, where C{name} can be
+
+ - C{solarized}: the famous U{solarized<http://ethanschoonover.com/solarized>}
+   style (yellowish),
+ - C{blueish}: a simple style with blue headings (default),
+ - C{blueish2}: a variant of I{bluish},
+ - C{bloodish}: as C{bluish}, but dark read as color.
+
+Using C{--css=filename} where C{filename} is a non-existing file makes
+Doconce write the built-in style to that file. Otherwise the HTML
+links to the CSS stylesheet in C{filename}. Several stylesheets can
+be specified: C{--ccs=file1.css,file2.css,file3.css}.
+
+Templates are HTML files with "slots" C{%(main)s} for the main body
+of text, C{%(title)s} for the title, and C{%(date)s} for the date.
+Doconce comes with a few templates. The usage of templates is
+described in a U{separate document<https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html>}. That document describes how you your Doconce-generated
+HTML file can have any specified layout.
 
 If the Pygments package (including the C{pygmentize} program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument C{--no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
 plain (C{pre}) HTML tags. The option C{--pygments-html-linenos} turns
-on line numbers in Pygments-formatted code blocks.
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by C{--pygments-html-style=style}, where C{style}
+can be C{default}, C{emacs}, C{perldoc}, and other valid names for
+Pygments styles.
 
 The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be
