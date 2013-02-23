@@ -543,7 +543,7 @@ MathJax.Hub.Config({
             for title, level, label, href in tocinfo['sections']:
                 nspaces = 1
                 indent = '&nbsp; '*(nspaces*(level - level_min))
-                toc_html += '     <!-- vagrant nav toc: "%s" --> <li> %s <a href="%s">%s</a>\n' % (title, indent, href, title)
+                toc_html += '     <!-- vagrant nav toc: "%s" --> <li> %s <a href="#%s">%s</a>\n' % (title, indent, href, title)
 
         f = open(template, 'r'); template = f.read(); f.close()
         # template can only have slots for title, date, main
