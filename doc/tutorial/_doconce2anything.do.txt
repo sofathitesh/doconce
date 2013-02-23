@@ -56,16 +56,30 @@ Terminal> doconce format html mydoc
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style can be defined either in the header of the HTML file or
-in an external CSS file. The latter is enabled by the command-line
-argument `--css=filename`. There is a default style with blue headings,
-and a style with the "solarized": "http://ethanschoonover.com/solarized"
-color palette, specified by the `--html-solarized` command line
-argument. If there is no file with name `filename` in the `--css=filename`
-specification, the blue or solarized styles are written to `filename`
-and linked from the HTML document. You can provide your own style sheet
-either by replacing the content inside the `style` tags or by
-specifying a CSS file through the `--css=filename` option.
+The HTML style can be defined either in the header of the HTML file,
+using a named built-in style;
+in an external CSS file; or in a template file.
+
+An external CSS file `filename` used by setting the command-line
+argument `--css=filename`. There available built-in styles are
+specified as `--html-style=name`, where `name` can be
+
+ * `solarized`: the famous "solarized": "http://ethanschoonover.com/solarized"
+   style (yellowish),
+ * `blueish`: a simple style with blue headings (default),
+ * `blueish2`: a variant of *bluish*,
+ * `bloodish`: as `bluish`, but dark read as color.
+
+Using `--css=filename` where `filename` is a non-existing file makes
+Doconce write the built-in style to that file. Otherwise the HTML
+links to the CSS stylesheet in `filename`. Several stylesheets can
+be specified: `--ccs=file1.css,file2.css,file3.css`.
+
+Templates are HTML files with "slots" `%(main)s` for the main body
+of text, `%(title)s` for the title, and `%(date)s` for the date.
+Doconce comes with a few templates. The usage of templates is
+described in a "separate document": "https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html". That document describes how you your Doconce-generated
+HTML file can have any specified layout.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with

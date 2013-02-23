@@ -70,7 +70,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MINTED
@@ -127,6 +127,36 @@ final,                   % or draft (marks overfull hboxes)
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -212,13 +242,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Feb 20, 2013}
+\date{Feb 23, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Feb 20, 2013}}
+{\large\textsf{Feb 23, 2013}}
 
 \end{center}
 \vfill
@@ -227,7 +257,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Feb 20, 2013
+Feb 23, 2013
 \end{center}
 
 \vspace{1cm}
@@ -641,7 +671,7 @@ the following rules are recommended:
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
