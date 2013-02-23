@@ -171,7 +171,7 @@ css_blueish2 = """\
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 """ +  admon_styles
 
-css_cbcred = """\
+css_bloodish = """\
     body {
       font-family: Helvetica, Verdana, Arial, Sans-serif;
       color: #404040;
@@ -1055,8 +1055,8 @@ def define(FILENAME_EXTENSION,
         css = css_blueish
     elif option('html-style=') == 'blueish2':
         css = css_blueish2
-    elif option('html-style=') == 'cbcred':
-        css = css_cbcred
+    elif option('html-style=') == 'bloodish':
+        css = css_bloodish
     else:
         css = css_blueish # default
 
