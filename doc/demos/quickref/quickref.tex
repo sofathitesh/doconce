@@ -16,7 +16,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 
-\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{fancyvrb} % packages needed for verbatim environments
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
@@ -65,6 +65,17 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+
 
 % insert custom LaTeX commands...
 
@@ -107,7 +118,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Feb 20, 2013
+Feb 23, 2013
 \end{center}
 
 \vspace{1cm}
@@ -520,7 +531,7 @@ the following rules are recommended:
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
+\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \Verb!sphinx!, makes it necessary

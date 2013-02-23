@@ -456,6 +456,11 @@ Newton-Cotes with percentage in URL too:
 URL: "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"
 and URL: "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" which has a shebang.
 
+For the `--latex-printed` it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+"`decay_mod`":
+"https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py".
+
 # Comments should be inserted outside paragraphs (because in the rst
 # format extra blanks make a paragraph break).
 
@@ -2062,6 +2067,10 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
+For the \code{--latex-printed} it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
 
@@ -3372,6 +3381,10 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
+For the {\fontsize{10pt}{10pt}\Verb!--latex-printed!} it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
 
@@ -4646,6 +4659,10 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
+For the \Verb!--latex-printed! it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
 
@@ -5741,6 +5758,10 @@ and a `good book <http://www.springer.com/mathematics/computational+science+%26+
 Newton-Cotes with percentage in URL too:
 `<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_
 and `<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>`_ which has a shebang.
+
+For the ``--latex-printed`` it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+`decay_mod <https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>`_.
 
 .. Comments should be inserted outside paragraphs (because in the rst
 
@@ -6858,6 +6879,10 @@ and a `good book <http://www.springer.com/mathematics/computational+science+%26+
 Newton-Cotes with percentage in URL too:
 `<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_
 and `<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>`_ which has a shebang.
+
+For the ``--latex-printed`` it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+`decay_mod <https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>`_.
 
 .. Comments should be inserted outside paragraphs (because in the rst
 
@@ -7999,6 +8024,10 @@ Newton-Cotes with percentage in URL too:
 http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
 
+For the `--latex-printed` it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+[https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py `decay_mod`].
+
 <wiki:comment> Comments should be inserted outside paragraphs (because in the rst </wiki:comment>
 <wiki:comment> format extra blanks make a paragraph break). </wiki:comment>
 
@@ -8876,6 +8905,10 @@ and a [http://www.springer.com/mathematics/computational+science+%26+engineering
 Newton-Cotes with percentage in URL too:
 http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
+
+For the <code>--latex-printed</code> it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+[https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py <code>decay_mod</code>].
 
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -9755,6 +9788,10 @@ Newton-Cotes with percentage in URL too:
 [[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas]]
 and [[http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae]] which has a shebang.
 
+For the {{{--latex-printed}}} it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+[[https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py|{{{decay_mod}}}]].
+
 <wiki:comment> Comments should be inserted outside paragraphs (because in the rst </wiki:comment>
 <wiki:comment> format extra blanks make a paragraph break). </wiki:comment>
 
@@ -10584,6 +10621,10 @@ Newton-Cotes with percentage in URL too:
 "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas":http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae":http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
 
+For the '--latex-printed' it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py:'decay_mod'.
+
 
 
 More tough tests: repeated URLs whose footnotes when using the
@@ -11301,6 +11342,10 @@ and a U{good book<http://www.springer.com/mathematics/computational+science+%26+
 Newton-Cotes with percentage in URL too:
 U{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>}
 and U{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>} which has a shebang.
+
+For the C{--latex-printed} it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+U{C{decay_mod}<https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>}.
 
 
 
@@ -12162,6 +12207,10 @@ and a good book (http://www.springer.com/mathematics/computational+science+%26+e
 Newton-Cotes with percentage in URL too:
 http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
+
+For the --latex-printed it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+decay_mod (https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py).
 
 
 
@@ -13028,6 +13077,10 @@ and a [good book](http://www.springer.com/mathematics/computational+science+%26+
 Newton-Cotes with percentage in URL too:
 <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>
 and <http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae> which has a shebang.
+
+For the `--latex-printed` it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+[`decay_mod`](https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py).
 
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -14174,6 +14227,10 @@ $$
       "<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>\n",
       "and <http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae> which has a shebang.\n",
       "\n",
+      "For the `--latex-printed` it is important to test that URLs with\n",
+      "monofont link text get a footnote, as in this reference to\n",
+      "[`decay_mod`](https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py).\n",
+      "\n",
       "<!-- Comments should be inserted outside paragraphs (because in the rst -->\n",
       "<!-- format extra blanks make a paragraph break). -->\n",
       "\n",
@@ -15283,6 +15340,7 @@ output2</code></pre>
 <p>[subsubsec:ex]</p>
 <p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}"></a>. Here is a plain file link <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also <code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="{http://folk.uio.no/hpl}"></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}"></a> and <a href="{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}"></a> which has a shebang.</p>
+<p>For the <code>--latex-printed</code> it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}"></a>.</p>
 <p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
 <p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
@@ -15918,6 +15976,7 @@ output2</code></pre>
 <h2 id="urls">URLs</h2>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"><code class="url">http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</code></a> and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><code class="url">http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</code></a> which has a shebang.</p>
+<p>For the <code>--latex-printed</code> it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><code>decay_mod</code></a>.</p>
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
 
@@ -19020,6 +19079,11 @@ Newton-Cotes with percentage in URL too:
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
 
 <p>
+For the <code>--latex-printed</code> it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
+
+<p>
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
 
@@ -20947,6 +21011,11 @@ Newton-Cotes with percentage in URL too:
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
 
 <p>
+For the <code>--latex-printed</code> it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
+
+<p>
 
 
 
@@ -22440,6 +22509,11 @@ and a <a href="http://www.springer.com/mathematics/computational+science+%26+eng
 Newton-Cotes with percentage in URL too:
 <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"><tt>http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+
+<p>
+For the <code>--latex-printed</code> it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
 
 <p>
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
@@ -23964,6 +24038,10 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
+For the \code{--latex-printed} it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+\href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
 
@@ -25233,7 +25311,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 20 Feb 2013 (05:27)</center>
+<center>Sat, 23 Feb 2013 (04:06)</center>
 
 
 
@@ -25364,7 +25442,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 20 Feb 2013 (05:27)</center>
+<center>Sat, 23 Feb 2013 (04:06)</center>
 
 
 
@@ -36934,8 +37012,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 78
-8.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 79
+2.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -36967,11 +37045,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 814.
+ 818.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] [16]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1174
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1178
 .
 
 
@@ -36982,27 +37060,27 @@ LaTeX Warning: Reference `demo:ex:2' on page 17
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1192.
+ 1196.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1193
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1197
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 17 
 
-<latex_figs/hint.pdf, id=262, 89.33376pt x 89.33376pt>
+<latex_figs/hint.pdf, id=263, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf> [17]
-<latex_figs/warning.pdf, id=279, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=280, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=280, 89.33376pt x 89.33376pt>
+<latex_figs/summary.pdf, id=281, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=281, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=282, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=282, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=283, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
