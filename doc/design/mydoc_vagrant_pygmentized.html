@@ -77,30 +77,90 @@ body .il { color: #666666 } /* Literal.Number.Integer.Long */
 <body>
 <h2></h2>
 
-<div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content=</span><span class="s">&quot;chrome=1&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Solve the world&#39;s simplest differential equation<span class="nt">&lt;/title&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="c">&lt;!--</span>
+<span class="c">Style adopted from the vagrant web pages. The vagrant style</span>
+<span class="c">builds on the Twitter Bootstrap style.</span>
+<span class="c">Modifications by Hans Petter Langtangen, hpl@simula.no.</span>
+<span class="c">--&gt;</span>
 
-    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;css/styles.css&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span>
-     <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1, user-scalable=no&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;wrapper&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;header&gt;</span>
-        <span class="nt">&lt;h1&gt;</span>Exercise<span class="nt">&lt;/h1&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Differential Equations<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;generator&quot;</span> <span class="na">content=</span><span class="s">&quot;Doconce: http://code.google.com/p/doconce/&quot;</span> <span class="nt">/&gt;</span>
 
-        <span class="c">&lt;!-- picture below the heading on the left --&gt;</span>
-	<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;fig/discrete_function.png&quot;</span> <span class="na">width=</span><span class="s">220</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;css/twitter_bootstrap.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;css/vagrant.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
 
-      <span class="nt">&lt;/header&gt;</span>
+<span class="nt">&lt;title&gt;</span> Numerical experiments <span class="nt">&lt;/title&gt;</span>
 
-      <span class="c">&lt;!-- Here goes the main page ---&gt;</span>
-      <span class="nt">&lt;section&gt;</span>
+<span class="c">&lt;!-- ------------------- main content ------------------------&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row Header with-border&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span3 Module logo&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>DiffEq<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;subtitle&quot;</span><span class="nt">&gt;</span>101<span class="nt">&lt;/span&gt;&lt;/a&gt;&lt;/h1&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span9&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;Module navigation&quot;</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!-- Navigation at the top of the page --&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+     <span class="nt">&lt;li&gt;</span> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://wikipedia.org&quot;</span><span class="nt">&gt;</span>Wikipedia<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+     <span class="nt">&lt;li&gt;</span> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://wolframalpha.com&quot;</span><span class="nt">&gt;</span>WolframAlpha<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+   <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+ <span class="nt">&lt;/div&gt;</span>
+<span class="err">&lt;</span>/div
+
+<span class="c">&lt;!-- can extract all 7 and/or 9 headings (dep. on how many)</span>
+<span class="c">make a doconce vagrantcss command that creates the css and header?</span>
+<span class="c">should be some easy customization. Needs integration with split_html.</span>
+<span class="c">Maybe a style choice, or more general, a navigation panel?</span>
+<span class="c">Can probably easily in split_html grep for h1 and h2 titles and spit</span>
+<span class="c">out the navigation panel. Can let parts be equipped with a list of</span>
+<span class="c">headings in each part. For example [(heading, level), ...].</span>
+<span class="c">--vagrant-css option turns on these constructions and adds a</span>
+<span class="c">customized header. Can provide a python file that defines</span>
+<span class="c">navigation, logo word. The vagrant css file with bootstrap</span>
+<span class="c">can be stored along with the .zip files and just included from</span>
+<span class="c">there (no - what if the html file is deployed? must have it locally,</span>
+<span class="c">being copied like images).</span>
+
+<span class="c">Can this file be made as an HTML template? Seems so! But we need</span>
+<span class="c">more: toc, navigation at the top, &quot;button&quot; to next page at the bottom.</span>
+<span class="c">Can just provide this in the dict and the template may or may not</span>
+<span class="c">use them. The toc to be generated is just a set of li points.</span>
+<span class="c">YES: try to make a template out of this file. The nav at the top</span>
+<span class="c">is hardcoded in the template. Likewise the logo word.</span>
+<span class="c">--&gt;</span>
+
+<span class="c">&lt;!-- Here goes the table of contents in the sidebar</span>
+<span class="c">     &lt;li class=&quot;active&quot;&gt; means dark blue background for current section</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span3 Module sidebar&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;well&quot;</span> <span class="na">style=</span><span class="s">&quot;padding: 8px 0px;&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav nav-list&quot;</span><span class="nt">&gt;</span>
+     <span class="c">&lt;!-- Syntax:</span>
+<span class="c">     &lt;li&gt; &lt;a href=&quot;...&quot;&gt;Section 1&lt;/a&gt;&lt;/li&gt;</span>
+<span class="c">     &lt;li&gt; &lt;a href=&quot;...&quot;&gt;Section 2&lt;/a&gt;&lt;/li&gt;</span>
+<span class="c">     &lt;li&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;...&quot;&gt;Section 2a&lt;/a&gt;&lt;/li&gt;</span>
+<span class="c">     &lt;li&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;...&quot;&gt;Section 2b&lt;/a&gt;&lt;/li&gt;</span>
+<span class="c">     --&gt;</span>
+     <span class="c">&lt;!-- Doconce automatically fills in the table of contents --&gt;</span>
+          <span class="c">&lt;!-- vagrant nav toc: &quot; Solve the world&#39;s simplest differential equation &quot; --&gt;</span> <span class="nt">&lt;li&gt;</span>  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;___sec0&quot;</span><span class="nt">&gt;</span> Solve the world&#39;s simplest differential equation <span class="nt">&lt;/a&gt;</span>
+     <span class="c">&lt;!-- vagrant nav toc: &quot; Mathematical problem &quot; --&gt;</span> <span class="nt">&lt;li&gt;</span> <span class="ni">&amp;nbsp;</span>  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;___sec1&quot;</span><span class="nt">&gt;</span> Mathematical problem <span class="nt">&lt;/a&gt;</span>
+     <span class="c">&lt;!-- vagrant nav toc: &quot; Numerical solution method &quot; --&gt;</span> <span class="nt">&lt;li&gt;</span> <span class="ni">&amp;nbsp;</span>  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;___sec2&quot;</span><span class="nt">&gt;</span> Numerical solution method <span class="nt">&lt;/a&gt;</span>
+     <span class="c">&lt;!-- vagrant nav toc: &quot; Implementation &quot; --&gt;</span> <span class="nt">&lt;li&gt;</span> <span class="ni">&amp;nbsp;</span>  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;___sec3&quot;</span><span class="nt">&gt;</span> Implementation <span class="nt">&lt;/a&gt;</span>
+     <span class="c">&lt;!-- vagrant nav toc: &quot; Numerical experiments &quot; --&gt;</span> <span class="nt">&lt;li&gt;</span> <span class="ni">&amp;nbsp;</span>  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;___sec4&quot;</span><span class="nt">&gt;</span> Numerical experiments <span class="nt">&lt;/a&gt;</span>
+
+    <span class="nt">&lt;/ul&gt;</span>
+   <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span9&quot;</span><span class="nt">&gt;</span>
 
 
 <span class="c">&lt;!-- tocinfo</span>
@@ -177,19 +237,8 @@ $$
 Here, \( n=0,1,\ldots,N-1 \).
 
 <span class="nt">&lt;p&gt;</span>
-
-<span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">&quot;95%&quot;</span> <span class="na">border=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;tr&gt;</span>
-<span class="nt">&lt;td</span> <span class="na">width=</span><span class="s">&quot;25&quot;</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span> <span class="na">valign=</span><span class="s">&quot;top&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png&quot;</span> <span class="na">hspace=</span><span class="s">&quot;5&quot;</span> <span class="na">alt=</span><span class="s">&quot;Hint&quot;</span><span class="nt">&gt;&lt;/td&gt;</span>
-<span class="nt">&lt;th</span> <span class="na">align=</span><span class="s">&quot;left&quot;</span> <span class="na">valign=</span><span class="s">&quot;middle&quot;</span><span class="nt">&gt;&lt;b&gt;</span>Hint<span class="nt">&lt;/b&gt;&lt;/th&gt;</span>
-<span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;tr&gt;&lt;td&gt;</span><span class="ni">&amp;nbsp;</span><span class="nt">&lt;/td&gt;</span> <span class="nt">&lt;td</span> <span class="na">align=</span><span class="s">&quot;left&quot;</span> <span class="na">valign=</span><span class="s">&quot;top&quot;</span><span class="nt">&gt;&lt;p&gt;</span>
-Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
-Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.
-<span class="nt">&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
-<span class="nt">&lt;p&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alert alert-block alert-hint&quot;</span><span class="nt">&gt;</span>Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
+Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.<span class="nt">&lt;/div&gt;&lt;p&gt;</span>
 
 <span class="nt">&lt;h3&gt;</span>Implementation  <span class="nt">&lt;a</span> <span class="na">name=</span><span class="s">&quot;___sec3&quot;</span><span class="nt">&gt;&lt;/a&gt;&lt;/h3&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -232,17 +281,43 @@ rate for \( \theta=0,1/2,1 \).
 <span class="c">&lt;!-- ------------------- end of main content --------------- --&gt;</span>
 
 
-      <span class="nt">&lt;/section&gt;</span>
+<span class="c">&lt;!--</span>
+<span class="c">Preliminary examples/discussion on vagrant style syntax</span>
 
-      <span class="nt">&lt;footer&gt;</span>
-        <span class="nt">&lt;p&gt;</span>This project is maintained by ...<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p&gt;&lt;small&gt;</span>Hosted on GitHub Pages <span class="ni">&amp;mdash;</span> Theme by <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/orderedlist&quot;</span><span class="nt">&gt;</span>orderedlist<span class="nt">&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;</span>
-      <span class="nt">&lt;/footer&gt;</span>
+<span class="c">&lt;div class=&#39;alert alert-block alert-notice&#39;&gt;</span>
+<span class="c">  &lt;h3&gt;What about PHP? Python? Java?&lt;/h3&gt;</span>
+<span class="c">&lt;p&gt;</span>
+<span class="c">We need to extend the concept of templates to title, date,</span>
+<span class="c">body, toc, next_page, previous_page.</span>
+<span class="c">&lt;/div&gt;</span>
 
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;js/scale.fix.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;p&gt;</span>
+<span class="c">While the &lt;div class=&quot;deep-blue&quot;&gt;rest of the&lt;/div&gt; getting started</span>
+<span class="c">--&gt;</span>
 
-  <span class="nt">&lt;/body&gt;</span>
+<span class="c">&lt;!-- bottom navigation buttons --&gt;</span>
+<span class="c">&lt;!-- Doconce will automatically fill in the right URL in these</span>
+<span class="c">     buttons when doconce html_split is run. Otherwise they are empty.</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;pager&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;previous&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span><span class="ni">&amp;larr;</span> <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;next&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> <span class="ni">&amp;rarr;</span><span class="nt">&lt;/a&gt;</span>
+ <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="c">&lt;!--- end of bottom navigation buttons --&gt;</span>
+
+ <span class="nt">&lt;/div&gt;</span>
+
+ <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row Footer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span12&quot;</span><span class="nt">&gt;</span>
+  <span class="ni">&amp;copy;</span> 2013
+  <span class="nt">&lt;/div&gt;</span>
+ <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </body>

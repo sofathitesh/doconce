@@ -1501,12 +1501,13 @@ def handle_cross_referencing(filestr, format):
     #print 'sections:'
     #import pprint; pprint.pprint(sections)
 
+    toc = TOC[format](sections)  # Always call TOC[format] to make a toc
+    # See if the toc string is to be inserted in filestr
     pattern = re.compile(r'^TOC:\s*(on|off).*$', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
         value = m.group(1)
         if value == 'on':
-            toc = TOC[format](sections)
             toc_fixed = toc.replace('\\', '\\\\') # re.sub swallows backslashes
             filestr = pattern.sub('\n%s\n\n' % toc_fixed, filestr)
         else:
