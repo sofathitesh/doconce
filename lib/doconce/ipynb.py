@@ -7,69 +7,6 @@ from html import html_movie
 from pandoc import pandoc_table, pandoc_ref_and_label, \
      pandoc_index_bib, pandoc_quote, pandoc_figure
 
-"""
-Ideas:
-
- * Translate the standard doconce elements to markdown or latex and
-   wrap with json_markdown etc.
- * Paragraph and lists are just output as std markdown text, which
-   must be wrapped in json_markdown probably at the very end.
-   Every piece of text that is outside the json cell structures at
-   the very end must be placed inside a cell structure.
-"""
-
-def _quote_double_quotes(text):
-    return text.replace('"', r'\"')
-
-def json_markdown(text):
-    """Return a string (text) as a json markdown cell."""
-    text = _quote_double_quotes(text)
-    lines = text.splitlines()
-    out = """\
-   {
-    "cell_type": "markdown",
-    "metadata": {},
-    "source": [
-%s
-    ]
-   },
-""" % '\n'.join([r'    "%s\n",' % line for line in lines[:-1]] +
-                [r'    "%s"' % lines[-1]])
-    return out
-
-def json_pycode(code_block, prompt_number, language='python'):
-    """Return a code string (code_block) as a json code cell."""
-    if code_block == '':
-        return """\
-   {
-    "cell_type": "code",
-    "collapsed": false,
-    "metadata": {},
-    "input": [],
-    "language": "%s",
-    "outputs": [],
-    "prompt_number": %s
-   },
-""" % (language, prompt_number)
-
-    code_block = _quote_double_quotes(code_block)
-    lines = code_block.splitlines()
-    out = """\
-   {
-    "cell_type": "code",
-    "collapsed": false,
-    "metadata": {},
-    "input": [
-%s
-    ],
-    "language": "%s",
-    "metadata": {},
-    "outputs": [],
-    "prompt_number": %s
-   },
-""" % ('\n'.join([r'    "%s\n",' % line for line in lines[:-1]] +
-                 [r'    "%s"' % lines[-1]]), language, prompt_number)
-    return out
 
 def ipynb_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
@@ -84,6 +21,14 @@ def ipynb_author(authors_and_institutions, auth2index,
         authors.append(author_str)
     s ='authors = [%s]' % (', '.join(authors))
     return s
+
+def ipynb_figure(m):
+    filename = m.group('filename')
+    caption = m.group('caption').strip()
+    text = '![%s](%s)' % (caption, filename)
+    # Hack...
+    text = '![%s](files/%s)' % (caption, filename)
+    return text
 
 def ipynb_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
@@ -107,11 +52,13 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     if isinstance(blocks[-1], list):
         blocks[-1] = '\n'.join(blocks[-1]).strip()
 
+
     # Add block type info
+    pattern = r'(\d+) +%s'
     for i in range(len(blocks)):
-        if blocks[i].startswith(_CODE_BLOCK):
+        if re.match(pattern % _CODE_BLOCK, blocks[i]):
             blocks[i] = ['code', blocks[i]]
-        elif blocks[i].startswith(_MATH_BLOCK):
+        elif re.match(pattern % _MATH_BLOCK, blocks[i]):
             blocks[i] = ['math', blocks[i]]
         else:
             blocks[i] = ['text', blocks[i]]
@@ -133,24 +80,30 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     Labels in equations do not work with pandoc-extended markdown
     output.
 """ % envir
+        eq_type = 'heading'  # or '$$'
+        eq_type = '$$'
         # Markdown: add $$ on each side of the equation
-        #tex_blocks[i] = '$$\n' + tex_blocks[i] + '\n$$'
-        # Here: use heading (###) and simple formula, remove newline
-        # in math expressions
-        tex_blocks[i] = '### $ ' + '  '.join(tex_blocks[i].splitlines()) + ' $'
+        if eq_type == '$$':
+            # Make sure there are no newline after equation
+            tex_blocks[i] = '$$\n' + tex_blocks[i].strip() + '\n$$'
+        # Here: use heading (###) and simple formula (remove newline
+        # in math expressions to keep everything within a heading) as
+        # the equation then looks bigger
+        elif eq_type == 'heading':
+            tex_blocks[i] = '### $ ' + '  '.join(tex_blocks[i].splitlines()) + ' $'
 
     # blocks is now a list of text chunks in markdown and math/code line
     # instructions. Insert code and tex blocks
-    for code in code_blocks:
-        for i in range(len(blocks)):
+    for i in range(len(blocks)):
+        if _CODE_BLOCK in blocks[i][1] or _MATH_BLOCK in blocks[i][1]:
+            words = blocks[i][1].split()
+            # start of blocks[i]: number block-indicator code-type
+            n = int(words[0])
             if _CODE_BLOCK in blocks[i][1]:
-                blocks[i][1] = code
-                break
-    for tex in tex_blocks:
-        for i in range(len(blocks)):
+                blocks[i][1] = code_blocks[n]
             if _MATH_BLOCK in blocks[i][1]:
-                blocks[i][1] = tex
-                break
+                blocks[i][1] = tex_blocks[n]
+
     # Make IPython structures
     from IPython.nbformat.v3 import (
          NotebookNode,
@@ -223,10 +176,6 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     '''
     return filestr
 
-def ipynb_table(table):
-    return json_markdown(pandoc_table(table))
-
-
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -254,7 +203,7 @@ def define(FILENAME_EXTENSION,
         'math2':     r'\g<begin>$\g<latexmath>$\g<end>',
         'emphasize': None,
         'bold':      None,
-        'figure':    pandoc_figure,
+        'figure':    ipynb_figure,
         #'movie':     default_movie,
         'movie':     html_movie,
         'verbatim':  None,
@@ -298,7 +247,7 @@ def define(FILENAME_EXTENSION,
         }
     CROSS_REFS['ipynb'] = pandoc_ref_and_label
 
-    TABLE['ipynb'] = ipynb_table
+    TABLE['ipynb'] = pandoc_table
     INDEX_BIB['ipynb'] = pandoc_index_bib
     EXERCISE['ipynb'] = plain_exercise
     TOC['ipynb'] = lambda s: ''

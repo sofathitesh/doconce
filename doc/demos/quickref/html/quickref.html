@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
+        URL_ROOT:    '',
         VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Feb 23, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 3, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -87,18 +87,16 @@
 <p>A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads</p>
-<div class="highlight-text"><div class="highlight"><pre>TITLE: On an Ultimate Markup Language
+<div class="highlight-text"><pre>TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
-TOC: on
-</pre></div>
+TOC: on</pre>
 </div>
 <p>The entire title must appear on a single line.
 The author syntax is</p>
-<div class="highlight-text"><div class="highlight"><pre>name Email: somename@adr.net at institution1 and institution2
-</pre></div>
+<div class="highlight-text"><pre>name Email: somename@adr.net at institution1 and institution2</pre>
 </div>
 <p>where the email is optional, the &#8220;at&#8221; keyword is required if one or
 more institutions are to be specified, and the &#8220;and&#8221; keyword
@@ -164,7 +162,7 @@ with <tt class="docutils literal"><span class="pre">*</span></tt>, <em>enumerati
 consqutive numbers,
 and <em>description</em> lists, where each item starts with <tt class="docutils literal"><span class="pre">-</span></tt> followed
 by a keyword and a colon.</p>
-<div class="highlight-text"><div class="highlight"><pre>Here is a bullet list:
+<div class="highlight-text"><pre>Here is a bullet list:
 
  * item1
  * item2
@@ -191,8 +189,7 @@ And finally a description list:
    lines
  - keyword2:
    followed by text on the next line
- - keyword3: and its description may fit on one line
-</pre></div>
+ - keyword3: and its description may fit on one line</pre>
 </div>
 <p>The code above follows.</p>
 <p>Here is a bullet list:</p>
@@ -258,30 +255,26 @@ inside the comment directives <tt class="docutils literal"><span class="pre">%&l
 <p>Inline comments, in the text, that are meant as messages or notes to readers
 (authors in particular)
 are often useful and enabled by the syntax</p>
-<div class="highlight-text"><div class="highlight"><pre>[name: running text]
-</pre></div>
+<div class="highlight-text"><pre>[name: running text]</pre>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is the name or ID of an author or reader making the comment,
 and <tt class="docutils literal"><span class="pre">running</span> <span class="pre">text</span></tt> is the comment. There must be a space after the colon.
 Running</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">doconce format html mydoc.do.txt --skip_inline_comments</span>
-</pre></div>
+<div class="highlight-console"><pre>doconce format html mydoc.do.txt --skip_inline_comments</pre>
 </div>
 <p>removes all such inline comments from the output. This feature makes it easy
 to turn on and off notes to readers and is frequently used while writing
 a document.</p>
 <p>All inline comments to readers can also be physically
 removed from the Doconce source if desired:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">doconce remove_inline_comments mydoc.do.txt</span>
-</pre></div>
+<div class="highlight-console"><pre>doconce remove_inline_comments mydoc.do.txt</pre>
 </div>
 <p>This action is appropriate when all issues with such comments are resolved.</p>
 </div>
 <div class="section" id="verbatim-computer-code">
 <h1>Verbatim/Computer Code<a class="headerlink" href="#verbatim-computer-code" title="Permalink to this headline">¶</a></h1>
 <p>Inline verbatim code is typeset within back-ticks, as in</p>
-<div class="highlight-text"><div class="highlight"><pre>Some sentence with `words in verbatim style`.
-</pre></div>
+<div class="highlight-text"><pre>Some sentence with `words in verbatim style`.</pre>
 </div>
 <p>resulting in Some sentence with <tt class="docutils literal"><span class="pre">words</span> <span class="pre">in</span> <span class="pre">verbatim</span> <span class="pre">style</span></tt>.</p>
 <p>Multi-line blocks of verbatim text, typically computer code, is typeset
@@ -298,8 +291,7 @@ in programming <tt class="docutils literal"><span class="pre">X</span></tt>, whe
 <tt class="docutils literal"><span class="pre">pl</span></tt> for Perl. For output in <tt class="docutils literal"><span class="pre">latex</span></tt> one can let <tt class="docutils literal"><span class="pre">xxx</span></tt> reflect any
 defined verbatim environment in the <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> configuration file
 (<tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>). For <tt class="docutils literal"><span class="pre">sphinx</span></tt> output one can insert a comment</p>
-<div class="highlight-text"><div class="highlight"><pre># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-</pre></div>
+<div class="highlight-text"><pre># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console</pre>
 </div>
 <p>that maps environments (<tt class="docutils literal"><span class="pre">xxx</span></tt>) onto valid language types for
 Pygments (which is what <tt class="docutils literal"><span class="pre">sphinx</span></tt> applies to typeset computer code).</p>
@@ -308,17 +300,15 @@ Pygments (which is what <tt class="docutils literal"><span class="pre">sphinx</s
 kinds of verbatim output.</p>
 <p>Here is an example of computer code (see the source of this document
 for exact syntax):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">pi</span>
+<div class="highlight-python"><pre>from numpy import sin, cos, exp, pi
 
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
-</pre></div>
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)</pre>
 </div>
 <p>Computer code can also be copied from a file:</p>
-<div class="highlight-text"><div class="highlight"><pre>@@@CODE doconce_program.sh
+<div class="highlight-text"><pre>@@@CODE doconce_program.sh
 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
-@@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
-</pre></div>
+@@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst</pre>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <tt class="docutils literal"><span class="pre">doconce_program.sh</span></tt>.
@@ -358,8 +348,7 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 <span class="math">\(Ax=b\)</span>. To help increase readability in other formats than <tt class="docutils literal"><span class="pre">sphinx</span></tt>,
 <tt class="docutils literal"><span class="pre">latex</span></tt>, and <tt class="docutils literal"><span class="pre">pdflatex</span></tt>, inline mathematics may have a more human
 readable companion expression. The syntax is like</p>
-<div class="highlight-text"><div class="highlight"><pre>$\sin(\norm{\bf u})$|$sin(||u||)$
-</pre></div>
+<div class="highlight-text"><pre>$\sin(\norm{\bf u})$|$sin(||u||)$</pre>
 </div>
 <p>That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
@@ -369,23 +358,21 @@ will applied the expression to the right.</p>
 <tt class="docutils literal"><span class="pre">!bt</span></tt>
 and
 <tt class="docutils literal"><span class="pre">!et</span></tt> (begin/end TeX) directives starting on the beginning of a line:</p>
-<div class="highlight-text"><div class="highlight"><pre>!bt
+<div class="highlight-text"><pre>!bt
 \begin{align*}
 \nabla\cdot \pmb{u} &amp;= 0,\\
 \nabla\times \pmb{u} &amp;= 0.
 \end{align*}
-!et
-</pre></div>
+!et</pre>
 </div>
 <p>This LaTeX code gets rendered as</p>
 <div class="math">
 \[\begin{split}\nabla\cdot \pmb{u} &amp;= 0,\\
 \nabla\times \pmb{u} &amp;= 0.\end{split}\]</div>
 <p>Here is a single equation:</p>
-<div class="highlight-text"><div class="highlight"><pre>!bt
+<div class="highlight-text"><pre>!bt
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
-!et
-</pre></div>
+!et</pre>
 </div>
 <p>which results in</p>
 <div class="math">
@@ -427,10 +414,9 @@ PDF document.</p>
 <div class="section" id="figures-and-movies">
 <h1>Figures and Movies<a class="headerlink" href="#figures-and-movies" title="Permalink to this headline">¶</a></h1>
 <p>Figures and movies have almost equal syntax:</p>
-<div class="highlight-text"><div class="highlight"><pre>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+<div class="highlight-text"><pre>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
-</pre></div>
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}</pre>
 </div>
 <p>Note the mandatory comma after the figure/movie file.</p>
 <p>The figure file can be listed without extension. Doconce will then find
@@ -442,12 +428,11 @@ series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.</p>
 <p>Combining several image files into one can be done by the
 <tt class="docutils literal"><span class="pre">convert</span></tt> and <tt class="docutils literal"><span class="pre">montage</span></tt> programs from the ImageMagick suite:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">montage file1.png file2.png ... file4.png -geometry +2+2  result.png</span>
-<span class="go">montage file1.png file2.png -tile x1 result.png</span>
-<span class="go">montage file1.png file2.png -tile 1x result.png</span>
+<div class="highlight-console"><pre>montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+montage file1.png file2.png -tile x1 result.png
+montage file1.png file2.png -tile 1x result.png
 
-<span class="go">convert -background white file1.png file2.png +append tmp.png</span>
-</pre></div>
+convert -background white file1.png file2.png +append tmp.png</pre>
 </div>
 <p>Use <tt class="docutils literal"><span class="pre">+append</span></tt> for stacking left to right, <tt class="docutils literal"><span class="pre">-append</span></tt> for top to bottom.
 The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
@@ -456,7 +441,7 @@ The positioning of the figures can be controlled by <tt class="docutils literal"
 <h1>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h1>
 <p>The table in the section <a class="reference internal" href="#quick-sections"><em>Section Types</em></a> was written with this
 syntax:</p>
-<div class="highlight-text"><div class="highlight"><pre>|----------------c--------|------------------c--------------------|
+<div class="highlight-text"><pre>|----------------c--------|------------------c--------------------|
 |      Section type       |        Syntax                         |
 |----------------l--------|------------------l--------------------|
 | chapter                 | `========= Heading ========` (9 `=`)  |
@@ -464,8 +449,7 @@ syntax:</p>
 | subsection              | `===== Heading =====`        (5 `=`)  |
 | subsubsection           | `=== Heading ===`            (3 `=`)  |
 | paragraph               | `__Heading.__`               (2 `_`)  |
-|-----------------------------------------------------------------|
-</pre></div>
+|-----------------------------------------------------------------|</pre>
 </div>
 <p>Note that</p>
 <blockquote>
@@ -492,8 +476,7 @@ have no effect.</li>
 <p>The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax</p>
-<div class="highlight-text"><div class="highlight"><pre>label{name}
-</pre></div>
+<div class="highlight-text"><pre>label{name}</pre>
 </div>
 <p>with no backslash
 preceding the label keyword! It is common practice to choose <tt class="docutils literal"><span class="pre">name</span></tt>
@@ -501,13 +484,11 @@ as some hierarchical name, say <tt class="docutils literal"><span class="pre">a:
 some abbreviations for a section and/or subsection for the topic and
 <tt class="docutils literal"><span class="pre">c</span></tt> is some name for the particular unit that has a label.</p>
 <p>A reference to the label <tt class="docutils literal"><span class="pre">name</span></tt> is written as</p>
-<div class="highlight-text"><div class="highlight"><pre>ref{name}
-</pre></div>
+<div class="highlight-text"><pre>ref{name}</pre>
 </div>
 <p>again with no backslash before <tt class="docutils literal"><span class="pre">ref</span></tt>.</p>
 <p>Single citations are written as</p>
-<div class="highlight-text"><div class="highlight"><pre>cite{name}
-</pre></div>
+<div class="highlight-text"><pre>cite{name}</pre>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
@@ -516,8 +497,7 @@ Bibliography citations often have <tt class="docutils literal"><span class="pre"
 <tt class="docutils literal"><span class="pre">YYYY</span></tt> is the year of the publication.
 Multiple citations at once is possible by separating the logical names
 by comma:</p>
-<div class="highlight-text"><div class="highlight"><pre>cite{name1,name2,name3}
-</pre></div>
+<div class="highlight-text"><pre>cite{name1,name2,name3}</pre>
 </div>
 <p>The bibliography is specified by a line <tt class="docutils literal"><span class="pre">BIBFILE:</span> <span class="pre">name_bib.bib,</span>
 <span class="pre">name_bib.rst,</span> <span class="pre">name_bib.py</span></tt>, where <tt class="docutils literal"><span class="pre">name</span></tt> is the logical name of the
@@ -532,15 +512,14 @@ a reference with <tt class="docutils literal"><span class="pre">ref</span></tt> 
 in the same document and another formulation if the reference is
 to an item in an external document. The syntax of a generalized
 reference is</p>
-<div class="highlight-text"><div class="highlight"><pre>ref[internal][cite][external]
+<div class="highlight-text"><pre>ref[internal][cite][external]
 
 # Example:
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
-&quot;testdoc.html#___sec2&quot; in the document
-&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
-Doconce documents may include movies.
-</pre></div>
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+"testdoc.html#___sec2" in the document
+"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
+Doconce documents may include movies.</pre>
 </div>
 <p>The output from a generalized reference is the text <tt class="docutils literal"><span class="pre">internal</span></tt> if all
 <cite>:ref:`label`</cite> references in <tt class="docutils literal"><span class="pre">internal</span></tt> are references to labels in the
@@ -555,8 +534,7 @@ documents.  If none of the two situations above applies, the
 <p>Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)</p>
-<div class="highlight-text"><div class="highlight"><pre>index{name}
-</pre></div>
+<div class="highlight-text"><pre>index{name}</pre>
 </div>
 <p>It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
@@ -570,108 +548,113 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 <p>The <tt class="docutils literal"><span class="pre">doconce</span></tt> program can be used for a number of purposes besides
 transforming a <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file to some format. Here is the
 list of capabilities:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
-commands: format <span class="nb">help </span>sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+<div class="highlight-bash"><pre>Usage: doconce command [optional arguments]
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize
 
 
-<span class="c"># transform doconce file to another format</span>
+# transform doconce file to another format
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
-<span class="c"># substitute a phrase by another using regular expressions</span>
-doconce subst <span class="o">[</span>-s -m -x --restore<span class="o">]</span> regex-pattern regex-replacement file1 file2 ...
-<span class="o">(</span>-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
- -x is the re.VERBOSE modifier, --restore copies backup files back again<span class="o">)</span>
+# substitute a phrase by another using regular expressions
+doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
+(-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
+ -x is the re.VERBOSE modifier, --restore copies backup files back again)
 
-<span class="c"># replace a phrase by another literally</span>
+# replace a phrase by another literally
 doconce replace from-text to-text file1 file2 ...
-<span class="o">(</span>exact text substutition<span class="o">)</span>
+(exact text substutition)
 
-<span class="c"># doconce replace using from and to phrases from file</span>
+# doconce replace using from and to phrases from file
 doconce replace_from_file file-with-from-to file1 file2 ...
-<span class="o">(</span>exact text substitution, but a <span class="nb">set </span>of from-to relations<span class="o">)</span>
+(exact text substitution, but a set of from-to relations)
 
-<span class="c"># gwiki format requires substitution of figure file names by URLs</span>
+# gwiki format requires substitution of figure file names by URLs
 doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
-<span class="c"># remove all inline comments in a doconce file</span>
+# remove all inline comments in a doconce file
 doconce remove_inline_comments file.do.txt
 
-<span class="c"># create a directory for the sphinx format</span>
-doconce sphinx_dir <span class="nv">author</span><span class="o">=</span><span class="s1">&#39;John Doe&#39;</span> <span class="nv">title</span><span class="o">=</span><span class="s1">&#39;Long title&#39;</span> <span class="se">\</span>
-    <span class="nv">short_title</span><span class="o">=</span><span class="s2">&quot;Short title&quot;</span> <span class="nv">version</span><span class="o">=</span>0.1 <span class="se">\</span>
-    <span class="nv">dirname</span><span class="o">=</span>sphinx-rootdir <span class="nv">theme</span><span class="o">=</span>default <span class="nv">logo</span><span class="o">=</span>mylogo.png <span class="se">\</span>
-    do_file <span class="o">[</span>do_file2 do_file3 ...<span class="o">]</span>
-<span class="o">(</span>requires sphinx version &gt;<span class="o">=</span> 1.1<span class="o">)</span>
+# create a directory for the sphinx format
+doconce sphinx_dir author='John Doe' title='Long title' \
+    short_title="Short title" version=0.1 \
+    dirname=sphinx-rootdir theme=default logo=mylogo.png \
+    do_file [do_file2 do_file3 ...]
+(requires sphinx version &gt;= 1.1)
 
-<span class="c"># replace latex-1 (non-ascii) characters by html codes</span>
+# replace latex-1 (non-ascii) characters by html codes
 doconce latin2html file.html
 
-<span class="c"># walk through a directory tree and insert doconce files as</span>
-<span class="c"># docstrings in *.p.py files</span>
+# walk through a directory tree and insert doconce files as
+# docstrings in *.p.py files
 doconce insertdocstr rootdir
 
-<span class="c"># remove all files that the doconce format can regenerate</span>
+# remove all files that the doconce format can regenerate
 doconce clean
 
-<span class="c"># print the header (preamble) for latex file</span>
+# print the header (preamble) for latex file
 doconce latex_header
 
-<span class="c"># print the footer for latex files</span>
+# print the footer for latex files
 doconce latex_footer
 
-<span class="c"># change encoding</span>
+# change encoding
 doconce change_encoding utf-8 latin1 filename
 
-<span class="c"># guess the encoding in a text</span>
+# guess the encoding in a text
 doconce guess_encoding filename
 
-<span class="c"># transform a .bbl file to a .rst file with reST bibliography format</span>
+# transform a .bbl file to a .rst file with reST bibliography format
 doconce bbl2rst file.bbl
 
-<span class="c"># split a sphinx/rst file into parts</span>
+# split a sphinx/rst file into parts
 doconce split_rst complete_file.rst
 
-<span class="c"># edit URLs to local files and place them in _static</span>
+# edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
 
-<span class="c"># split an html file into parts according to !split commands</span>
+# split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-<span class="c"># create slides from a (doconce) html file</span>
+# create slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
 
-<span class="c"># replace bullets in lists by colored bullets</span>
+# replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
 
-<span class="c"># grab selected text from a file</span>
-doconce grab   --from<span class="o">[</span>-<span class="o">]</span> from-text <span class="o">[</span>--to<span class="o">[</span>-<span class="o">]</span> to-text<span class="o">]</span> somefile
+# grab selected text from a file
+doconce grab   --from[-] from-text [--to[-] to-text] somefile
 
-<span class="c"># remove selected text from a file</span>
-doconce remove --from<span class="o">[</span>-<span class="o">]</span> from-text <span class="o">[</span>--to<span class="o">[</span>-<span class="o">]</span> to-text<span class="o">]</span> somefile
+# remove selected text from a file
+doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-<span class="c"># remove answers to exercises</span>
+# remove answers to exercises
 doconce remove_exercise_answers file_in_some_format
 
-<span class="c"># run spellcheck on a set of files</span>
-doconce spellcheck <span class="o">[</span>-d .mydict.txt<span class="o">]</span> *.do.txt
+# run spellcheck on a set of files
+doconce spellcheck [-d .mydict.txt] *.do.txt
 
-<span class="c"># transform ptex2tex files (.p.tex) to ordinary latex file</span>
-<span class="c"># and manage the code environments</span>
-doconce ptex2tex mydoc -DMINTED <span class="nv">pycod</span><span class="o">=</span>minted <span class="nv">sys</span><span class="o">=</span>Verbatim <span class="se">\</span>
-        <span class="nv">dat</span><span class="o">=</span><span class="se">\b</span>egin<span class="o">{</span>quote<span class="o">}</span><span class="se">\b</span>egin<span class="o">{</span>verbatim<span class="o">}</span>;<span class="se">\e</span>nd<span class="o">{</span>verbatim<span class="o">}</span><span class="se">\e</span>nd<span class="o">{</span>quote<span class="o">}</span>
+# transform ptex2tex files (.p.tex) to ordinary latex file
+# and manage the code environments
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
-<span class="c"># expand short cut commands to full form in files</span>
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
+
+# expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
 
-<span class="c"># combine several images into one</span>
+# combine several images into one
 doconce combine_images image1 image2 ... output_file
 
-<span class="c"># insert a table of exercises in a latex file myfile.p.tex</span>
+# insert a table of exercises in a latex file myfile.p.tex
 doconce latex_exercise_toc myfile
 
-<span class="c"># list all labels in a document (for purposes of cleaning them up)</span>
-doconce list_labels myfile
-</pre></div>
+# list all labels in a document (for purposes of cleaning them up)
+doconce list_labels myfile</pre>
 </div>
 </div>
 <div class="section" id="exercises">
@@ -698,7 +681,7 @@ to be handed in, and one or more hints (optional)</li>
 </ul>
 </div></blockquote>
 <p>A typical sketch of a a problem without subexercises goes as follows:</p>
-<div class="highlight-text"><div class="highlight"><pre>===== Problem: Derive the Formula for the Area of an Ellipse =====
+<div class="highlight-text"><pre>===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
@@ -712,21 +695,19 @@ Wikipedia has the formula for the curve.
 !ehint
 
 !bhint
-&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
-!ehint
-</pre></div>
+!ehint</pre>
 </div>
 <p>If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
 output. For example, the if the title line above reads</p>
-<div class="highlight-text"><div class="highlight"><pre>===== {Problem}: Derive the Formula for the Area of an Ellipse =====
-</pre></div>
+<div class="highlight-text"><pre>===== {Problem}: Derive the Formula for the Area of an Ellipse =====</pre>
 </div>
 <p>the title becomes just &#8220;Derive the ...&#8221;.</p>
 <p>An exercise with subproblems, answers and full solutions has this
 setup-up:</p>
-<div class="highlight-text"><div class="highlight"><pre>===== Exercise: Determine the Distance to the Moon =====
+<div class="highlight-text"><pre>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -771,8 +752,7 @@ directives is always typeset at the end of the exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
-!esol
-</pre></div>
+!esol</pre>
 </div>
 <p>By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <tt class="docutils literal"><span class="pre">--without-answers</span></tt> and <tt class="docutils literal"><span class="pre">--without-solutions</span></tt>
@@ -828,9 +808,9 @@ programming language, very similar to Python.</p>
 Here is a typical example on utilizing <tt class="docutils literal"><span class="pre">preprocess</span></tt> to include another
 document, &#8220;comment out&#8221; a large portion of text, and to write format-specific
 constructions:</p>
-<div class="highlight-text"><div class="highlight"><pre># #include &quot;myotherdoc.do.txt&quot;
+<div class="highlight-text"><pre># #include "myotherdoc.do.txt"
 
-# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
+# #if FORMAT in ("latex", "pdflatex")
 \begin{table}
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
@@ -855,8 +835,7 @@ constructions:</p>
 
 # #ifdef EXTRA_MATERIAL
 ....large portions of text...
-# #endif
-</pre></div>
+# #endif</pre>
 </div>
 <p>With the <tt class="docutils literal"><span class="pre">mako</span></tt> preprocessor the if-else tests have slightly different syntax.
 An <a class="reference external" href="http://hplgit.github.com/bioinf-py/">example document</a> contains
@@ -939,7 +918,7 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
     </div>
     <div class="footer">
         &copy; Copyright 2013, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

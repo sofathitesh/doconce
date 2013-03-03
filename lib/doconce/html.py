@@ -116,7 +116,7 @@ css_solarized = """\
     p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-""" + admon_styles
+"""
 
 css_blueish = """\
     /* Color definitions:  http://www.december.com/html/spec/color0.html
@@ -138,7 +138,7 @@ css_blueish = """\
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-""" + admon_styles
+"""
 
 css_blueish2 = """\
     /* Color definitions:  http://www.december.com/html/spec/color0.html
@@ -169,7 +169,7 @@ css_blueish2 = """\
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-""" +  admon_styles
+"""
 
 css_bloodish = """\
     body {
@@ -191,7 +191,7 @@ css_bloodish = """\
     border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
     background-repeat: no-repeat; background-position: 10px center;
     }
-""" + admon_styles
+"""
 
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
@@ -330,10 +330,12 @@ def html_code(filestr, code_blocks, code_block_types,
         debugpr('\n\nAfter replacement of !bc and !ec (pygmntized code)\n%s' % filestr)
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-        # Do not use <code> here, it gives an extra line at the top
-        filestr = c.sub(r'<!-- begin verbatim block \g<1>-->\n<pre>\n', filestr)
+        # <code> gives an extra line at the top unless the code starts
+        # right after (do that - <pre><code> might be important for many
+        # HTML/CSS styles).
+        filestr = c.sub(r'<!-- begin verbatim block \g<1>-->\n<pre><code>', filestr)
         filestr = re.sub(r'!ec\n',
-                r'</pre>\n<!-- end verbatim block -->\n',
+                r'</code></pre>\n<!-- end verbatim block -->\n',
                 filestr)
 
     if option('wordpress'):
@@ -553,8 +555,6 @@ MathJax.Hub.Config({
         # The keywords list holds the names of these variables (can define
         # more than we actually use).
         keywords = ['title', 'date', 'main', 'table_of_contents',
-                    'previous_page_title', 'previous_page_url',
-                    'next_page_title', 'next_page_url',
                     ]
         for keyword in keywords:
             from_ = '%%(%s)s' % keyword
@@ -1061,6 +1061,13 @@ def define(FILENAME_EXTENSION,
     else:
         css = css_blueish # default
 
+    # Need to add admon_styles?
+    admons = 'quote', 'notice', 'summary', 'warning', 'question'
+    for admon in admons:
+        if '!b'+admon in filestr and '!e'+admon in filestr:
+            css += admon_styles
+            break
+
     style = """
 <style type="text/css">
 %s
@@ -1082,8 +1089,22 @@ def define(FILENAME_EXTENSION,
                     f.close()
                 style += '<link rel="stylesheet" href="%s">\n' % css_filename
 
+    meta_tags = """\
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+"""
+    m = re.search(r'^TITLE: *(.+)$', filestr, flags=re.MULTILINE)
+    if m:
+        meta_tags += '<meta name="description" content="%s">\n' % \
+                     m.group(1).strip()
+    keywords = re.findall(r'idx\{(.+?)\}', filestr)
+    # idx with verbatim is usually too specialized - remove them
+    keywords = [keyword for keyword in keywords
+                if not '`' in keyword]
+    if keywords:
+        meta_tags += '<meta name="keywords" content="%s">\n' % \
+                     ','.join(keywords)
 
-    # Document start
     INTRO['html'] = """\
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
@@ -1093,14 +1114,13 @@ Automatically generated HTML file from Doconce source
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+%s
 
 %s
 </head>
 <body>
 
-    """ % style
+    """ % (meta_tags, style)
 
     # document ending:
     OUTRO['html'] = """

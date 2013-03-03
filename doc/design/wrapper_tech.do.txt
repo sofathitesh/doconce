@@ -369,7 +369,8 @@ Translation of the original Doconce writings in `mydoc.do.txt` is
 done by
 
 !bc sys
-doconce format html mydoc.do.txt --html-style=vagrant --html-template=vagrant/template_vagrant.html
+doconce format html mydoc.do.txt --html-style=vagrant \
+        --html-template=style_vagrant/template_vagrant.html
 !ec
 The resulting "HTML file": "mydoc_vagrant_pygmentized.html" has
 a "nice look": "mydoc_vagrant.html":
