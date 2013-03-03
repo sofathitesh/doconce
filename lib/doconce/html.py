@@ -690,6 +690,19 @@ def html_movie(m):
 """ % (width, height, filename)
         if caption:
             text += """\n<em>%s</em>\n\n""" % caption
+    elif 'vimeo.com' in filename:
+        if not 'player.vimeo.com/video/' in filename:
+            if not filename.startswith('http://'):
+                filename = 'http://' + filename
+            filename = filename.replace('http://vimeo.com', 'http://player.vimeo.com/video')
+        # Make html for a local Vimeo frame
+        width = kwargs.get('width', 640)
+        height = kwargs.get('height', 365)
+        text = """
+<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
+""" % (width, height, filename)
+        if caption:
+            text += """\n<em>%s</em>\n\n""" % caption
     else:
         text = """
 <embed src="%s" %s autoplay="false" loop="true"></embed>
