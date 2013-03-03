@@ -8,6 +8,8 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Doconce Quick Reference">
+
 
 
 <style type="text/css">
@@ -142,7 +144,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Feb 23, 2013</h4></center> <!-- date -->
+<center><h4>Mar 3, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -207,21 +209,19 @@ A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads
 <!-- begin verbatim block -->
-<pre>
-TITLE: On an Ultimate Markup Language
+<pre><code>TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
 TOC: on
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The entire title must appear on a single line.
 The author syntax is
 <!-- begin verbatim block -->
-<pre>
-name Email: somename@adr.net at institution1 and institution2
-</pre>
+<pre><code>name Email: somename@adr.net at institution1 and institution2
+</code></pre>
 <!-- end verbatim block -->
 where the email is optional, the "at" keyword is required if one or
 more institutions are to be specified, and the "and" keyword
@@ -280,8 +280,7 @@ consqutive numbers,
 and <em>description</em> lists, where each item starts with <code>-</code> followed
 by a keyword and a colon.
 <!-- begin verbatim block -->
-<pre>
-Here is a bullet list:
+<pre><code>Here is a bullet list:
 
  * item1
  * item2
@@ -309,7 +308,7 @@ And finally a description list:
  - keyword2:
    followed by text on the next line
  - keyword3: and its description may fit on one line
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The code above follows.
 
@@ -385,17 +384,15 @@ Inline comments, in the text, that are meant as messages or notes to readers
 (authors in particular)
 are often useful and enabled by the syntax
 <!-- begin verbatim block -->
-<pre>
-[name: running text]
-</pre>
+<pre><code>[name: running text]
+</code></pre>
 <!-- end verbatim block -->
 where <code>name</code> is the name or ID of an author or reader making the comment,
 and <code>running text</code> is the comment. There must be a space after the colon.
 Running
 <!-- begin verbatim block  sys-->
-<pre>
-doconce format html mydoc.do.txt --skip_inline_comments
-</pre>
+<pre><code>doconce format html mydoc.do.txt --skip_inline_comments
+</code></pre>
 <!-- end verbatim block -->
 removes all such inline comments from the output. This feature makes it easy
 to turn on and off notes to readers and is frequently used while writing
@@ -405,9 +402,8 @@ a document.
 All inline comments to readers can also be physically
 removed from the Doconce source if desired:
 <!-- begin verbatim block  sys-->
-<pre>
-doconce remove_inline_comments mydoc.do.txt
-</pre>
+<pre><code>doconce remove_inline_comments mydoc.do.txt
+</code></pre>
 <!-- end verbatim block -->
 This action is appropriate when all issues with such comments are resolved.
 
@@ -417,9 +413,8 @@ This action is appropriate when all issues with such comments are resolved.
 <p>
 Inline verbatim code is typeset within back-ticks, as in
 <!-- begin verbatim block -->
-<pre>
-Some sentence with `words in verbatim style`.
-</pre>
+<pre><code>Some sentence with `words in verbatim style`.
+</code></pre>
 <!-- end verbatim block -->
 resulting in Some sentence with <code>words in verbatim style</code>.
 
@@ -439,9 +434,8 @@ in programming <code>X</code>, where <code>X</code> may be <code>py</code> for P
 defined verbatim environment in the <code>ptex2tex</code> configuration file
 (<code>.ptex2tex.cfg</code>). For <code>sphinx</code> output one can insert a comment
 <!-- begin verbatim block -->
-<pre>
-# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-</pre>
+<pre><code># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+</code></pre>
 <!-- end verbatim block -->
 that maps environments (<code>xxx</code>) onto valid language types for
 Pygments (which is what <code>sphinx</code> applies to typeset computer code).
@@ -457,12 +451,11 @@ for exact syntax):
 
 <p>
 <!-- begin verbatim block  cod-->
-<pre>
-from numpy import sin, cos, exp, pi
+<pre><code>from numpy import sin, cos, exp, pi
 
 def f(x, y, z, t):
     return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -470,11 +463,10 @@ def f(x, y, z, t):
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <!-- begin verbatim block -->
-<pre>
- @@@CODE doconce_program.sh
+<pre><code> @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The <code>@@@CODE</code> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <code>doconce_program.sh</code>.
@@ -522,9 +514,8 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 <code>latex</code>, and <code>pdflatex</code>, inline mathematics may have a more human
 readable companion expression. The syntax is like
 <!-- begin verbatim block -->
-<pre>
-$\sin(\norm{\bf u})$|$sin(||u||)$
-</pre>
+<pre><code>$\sin(\norm{\bf u})$|$sin(||u||)$
+</code></pre>
 <!-- end verbatim block -->
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
@@ -539,14 +530,13 @@ and
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-!bt
+<pre><code>!bt
 \begin{align*}
 \nabla\cdot \pmb{u} &amp;= 0,\\
 \nabla\times \pmb{u} &amp;= 0.
 \end{align*}
 !et
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 <!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
 <!-- tex and code blocks in inside verbatim blocks and are replaced -->
@@ -565,11 +555,10 @@ Here is a single equation:
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-!bt
+<pre><code>!bt
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 which results in
 
@@ -633,12 +622,11 @@ Text missing...
 <p>
 Figures and movies have almost equal syntax:
 <!-- begin verbatim block -->
-<pre>
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+<pre><code>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 Note the mandatory comma after the figure/movie file.
 
@@ -657,13 +645,12 @@ will display the individual frame files as a movie.
 Combining several image files into one can be done by the
 <code>convert</code> and <code>montage</code> programs from the ImageMagick suite:
 <!-- begin verbatim block  sys-->
-<pre>
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+<pre><code>montage file1.png file2.png ... file4.png -geometry +2+2  result.png
 montage file1.png file2.png -tile x1 result.png
 montage file1.png file2.png -tile 1x result.png
 
 convert -background white file1.png file2.png +append tmp.png
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 Use <code>+append</code> for stacking left to right, <code>-append</code> for top to bottom.
 The positioning of the figures can be controlled by <code>-gravity</code>.
@@ -676,8 +663,7 @@ The positioning of the figures can be controlled by <code>-gravity</code>.
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
 syntax:
 <!-- begin verbatim block -->
-<pre>
-|----------------c--------|------------------c--------------------|
+<pre><code>|----------------c--------|------------------c--------------------|
 |      Section type       |        Syntax                         |
 |----------------l--------|------------------l--------------------|
 | chapter                 | `========= Heading ========` (9 `=`)  |
@@ -686,7 +672,7 @@ syntax:
 | subsubsection           | `=== Heading ===`            (3 `=`)  |
 | paragraph               | `__Heading.__`               (2 `_`)  |
 |-----------------------------------------------------------------|
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -717,9 +703,8 @@ The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <!-- begin verbatim block -->
-<pre>
-label{name}
-</pre>
+<pre><code>label{name}
+</code></pre>
 <!-- end verbatim block -->
 with no backslash
 preceding the label keyword! It is common practice to choose <code>name</code>
@@ -730,18 +715,16 @@ some abbreviations for a section and/or subsection for the topic and
 <p>
 A reference to the label <code>name</code> is written as
 <!-- begin verbatim block -->
-<pre>
-ref{name}
-</pre>
+<pre><code>ref{name}
+</code></pre>
 <!-- end verbatim block -->
 again with no backslash before <code>ref</code>.
 
 <p>
 Single citations are written as
 <!-- begin verbatim block -->
-<pre>
-cite{name}
-</pre>
+<pre><code>cite{name}
+</code></pre>
 <!-- end verbatim block -->
 where <code>name</code> is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
@@ -751,9 +734,8 @@ Bibliography citations often have <code>name</code> on the form
 Multiple citations at once is possible by separating the logical names
 by comma:
 <!-- begin verbatim block -->
-<pre>
-cite{name1,name2,name3}
-</pre>
+<pre><code>cite{name1,name2,name3}
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -773,8 +755,7 @@ in the same document and another formulation if the reference is
 to an item in an external document. The syntax of a generalized
 reference is
 <!-- begin verbatim block -->
-<pre>
-ref[internal][cite][external]
+<pre><code>ref[internal][cite][external]
 
 # Example:
 As explained in
@@ -782,7 +763,7 @@ ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
 &quot;testdoc.html#___sec2&quot; in the document
 &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 Doconce documents may include movies.
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The output from a generalized reference is the text <code>internal</code> if all
 <code>ref{label}</code> references in <code>internal</code> are references to labels in the
@@ -800,9 +781,8 @@ Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
 <!-- begin verbatim block -->
-<pre>
-index{name}
-</pre>
+<pre><code>index{name}
+</code></pre>
 <!-- end verbatim block -->
 It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
@@ -821,9 +801,8 @@ list of capabilities:
 
 <p>
 <!-- begin verbatim block  shpro-->
-<pre>
-Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+<pre><code>Usage: doconce command [optional arguments]
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize
 
 
 # transform doconce file to another format
@@ -912,6 +891,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
+
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
 
@@ -923,7 +908,7 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -955,8 +940,7 @@ Exercise, problem, project, or example sections contains certain <em>elements</e
 
 A typical sketch of a a problem without subexercises goes as follows:
 <!-- begin verbatim block -->
-<pre>
-===== Problem: Derive the Formula for the Area of an Ellipse =====
+<pre><code>===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
@@ -973,7 +957,7 @@ Wikipedia has the formula for the curve.
 &quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
 !ehint
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
@@ -981,9 +965,8 @@ output. For example, the if the title line above reads
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-===== {Problem}: Derive the Formula for the Area of an Ellipse =====
-</pre>
+<pre><code>===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+</code></pre>
 <!-- end verbatim block -->
 the title becomes just "Derive the ...".
 
@@ -993,8 +976,7 @@ setup-up:
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-===== Exercise: Determine the Distance to the Moon =====
+<pre><code>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -1041,7 +1023,7 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <code>--without-answers</code> and <code>--without-solutions</code>
@@ -1093,8 +1075,7 @@ constructions:
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-# #include &quot;myotherdoc.do.txt&quot;
+<pre><code># #include &quot;myotherdoc.do.txt&quot;
 
 # #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 \begin{table}
@@ -1122,7 +1103,7 @@ constructions:
 # #ifdef EXTRA_MATERIAL
 ....large portions of text...
 # #endif
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>

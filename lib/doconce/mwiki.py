@@ -12,6 +12,9 @@ Just using plan ASCII solutions for index_bib (requires some work to
 port to MediaWiki, but is straightforward - use rst as template) and
 exercise (probably ok with the plain solution).
 
+GitHub wiki pages understand MediaWiki, see
+https://github.com/github/gollum
+
 The page http://en.wikibooks.org/wiki/Wikibooks:Sandbox is fine for
 short-lived experiments.
 
@@ -132,7 +135,7 @@ def mwiki_figure(m):
             cmd = 'convert %s png:%s' % (filename, root+'.png')
             failure, output = commands.getstatusoutput(cmd)
             if failure:
-                print '\n**** Warning: could not run', cmd
+                print '\n**** warning: could not run\n', cmd
                 print 'Convert %s to PNG format manually' % filename
                 sys.exit(1)
             filename = root + '.png'
@@ -166,7 +169,9 @@ def mwiki_figure(m):
 [[File:%s|frame%s|link=%s|alt=%s%s]]
 """ % (filename, size, link, filename, caption)
     else:
-        # We link to a file at wikimedia.org.
+        # We try to link to a file at wikimedia.org.
+        found_wikimedia = False
+        orig_filename = filename
         # Check if the file exists and find the appropriate wikimedia name.
         # http://en.wikipedia.org/w/api.php?action=query&titles=Image:filename&prop=imageinfo&format=xml
 
@@ -178,44 +183,51 @@ def mwiki_figure(m):
             'prop': 'imageinfo', 'format': 'xml'})
         url = 'http://en.wikipedia.org/w/api.php?' + prms
         try:
+            print ' ...checking if %s is stored at en.wikipedia.org/w/api.php...' % filename
             f = urllib.urlopen(url)
-        except IOError:
-            print '*** error: cannot treat mediawiki figure on the net (no connection or invalid URL)'
-            sys.exit(1)
-        imageinfo = f.read()
-        f.close()
-        def get_data(name, text):
-            pattern = '%s="(.*?)"' % name
-            m = re.search(pattern, text)
-            if m:
-                match = m.group(1)
-                if 'Image:' in match:
-                    return match.split('Image:')[1]
-                if 'File:' in match:
-                    return match.split('File:')[1]
-                else:
-                    return match
-            else:
-                return None
 
-        data = ['from', 'to', 'title', 'missing', 'imagerepository',
-                'timestamp', 'user']
-        orig_filename = filename
-        filename = get_data('title', imageinfo)
-        user = get_data('user', imageinfo)
-        timestamp = get_data('timestamp', imageinfo)
-        if not user:
-            print 'NOTE: You must upload image file %s to common.wikimedia.org' % orig_filename
+            imageinfo = f.read()
+            f.close()
+            def get_data(name, text):
+                pattern = '%s="(.*?)"' % name
+                m = re.search(pattern, text)
+                if m:
+                    match = m.group(1)
+                    if 'Image:' in match:
+                        return match.split('Image:')[1]
+                    if 'File:' in match:
+                        return match.split('File:')[1]
+                    else:
+                        return match
+                else:
+                    return None
+
+            data = ['from', 'to', 'title', 'missing', 'imagerepository',
+                    'timestamp', 'user']
+            orig_filename = filename
+            filename = get_data('title', imageinfo)
+            user = get_data('user', imageinfo)
+            timestamp = get_data('timestamp', imageinfo)
+            if user:
+                found_wikimedia = True
+                print ' ...found %s at wikimedia' % filename
+                result = r"""
+    [[File:%s|frame%s|alt=%s%s]] <!-- user: %s, filename: %s, timestamp: %s -->
+    """ % (filename, size, filename, caption, user, orig_filename, timestamp)
+        except IOError:
+            print ' ...no Internet connection...'
+
+        if not found_wikimedia:
+            print ' ...for wikipedia/wikibooks you must upload image file %s to\n    common.wikimedia.org' % orig_filename
             # see http://commons.wikimedia.org/wiki/Commons:Upload
             # and http://commons.wikimedia.org/wiki/Special:UploadWizard
+            print ' ...for now we use local file %s' % filename
+            # This is fine if we use github wiki
 
             result = r"""
 [[File:%s|frame%s|alt=%s%s]] <!-- not yet uploaded to common.wikimedia.org -->
 """ % (filename, size, filename, caption)
-        else:
-            result = r"""
-[[File:%s|frame%s|alt=%s%s]] <!-- user: %s, filename: %s, timestamp: %s -->
-""" % (filename, size, filename, caption, user, orig_filename, timestamp)
+
     return result
 
 from common import table_analysis

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys
+import sys, os, shutil, glob
 
 def system(cmd):
     print cmd
@@ -18,14 +18,52 @@ def zip_dir(dirname):
     os.system('rm -rf %s/.git' % dirname)  # remove .git, all will be removed...
     system('zip -r %s.zip %s' % (dirname, dirname))
 
-if __name__ == '__main__':
-    import os, shutil, glob
-    software_dir = 'bundled'
-    os.chdir(software_dir)
-    system('sh clean.sh')
-    # pack zip files distributed as data with doconce
+def insertdoc():
+    # To run from the root dir
+    system('python bin/doconce insertdocstr plain lib/doconce')
+
+def wide_clean():
+    # remove files that are to be regenerated:
+    #system('sh clean.sh')
+    # (must be in the root directory)
+    thisdir = os.getcwd()
+    dirs = [os.path.join('lib', 'doconce', 'docstrings'),
+            os.path.join('doc', 'tutorial'),
+            os.path.join('doc', 'manual'),
+            os.path.join('doc', 'quickref'),
+            os.path.join('doc', 'slides'),
+            os.path.join('doc', 'blog'),
+            'test',
+            'bundled',
+            ]
+    for d in dirs:
+        os.chdir(d)
+        system('sh ./clean.sh')
+        os.chdir(thisdir)
+
+def pack_local_dirs():
     system('zip -r sphinx_themes.zip sphinx_themes')
     system('zip -r html_images.zip html_images')
+
+    # Pack latex styles and figures in a zip file without any directory.
+    # minted.sty and anslistings.sty are not copied from some
+    # repo every time, so get the latest versions from ptex2tex manually.
+    os.chdir('latex_styles')
+    system('zip latex_styles.zip *.sty *.pdf *.pdf *.eps')
+    system('mv -f latex_styles.zip ..')
+    os.chdir(os.pardir)
+
+    zipfiles2lib()
+
+
+def zipfiles2lib():
+    for zfile in glob.glob('*.zip'):
+        shutil.copy(zfile, os.path.join(os.pardir, 'lib', 'doconce', zfile))
+
+
+def pack_reveal_deck_csss():
+    system('sh clean.sh')
+
     rmtree('reveal.js')
     system('git clone git://github.com/hakimel/reveal.js.git')
     os.system('cp doconce_modifications/reveal/css/reveal*.css reveal.js/css/')
@@ -69,37 +107,32 @@ if __name__ == '__main__':
     os.system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
     zip_dir('deck.js')
 
-    # Pack latex styles and figures in a zip file without any directory
-    # minted.sty and anslistings.sty are not copied from some
-    # repo every time, so get the latest versions from ptex2tex (manually)
-    os.chdir('latex_styles')
-    system('zip latex_styles.zip *.sty *.pdf *.pdf *.eps')
-    system('mv -f latex_styles.zip ..')
-    os.chdir(os.pardir)
+    zipfiles2lib()
 
-    for zfile in glob.glob('*.zip'):
-        shutil.copy(zfile, os.path.join(os.pardir, 'lib', 'doconce', zfile))
+def run_all():
+    # pack zip files distributed as data with doconce
+    pack_local_dirs()
+    pack_reveal_deck_csss()
 
     # back to root dir
     os.chdir(os.pardir)
 
-    system('python bin/doconce insertdocstr plain lib/doconce')
+    insertdoc()
+    wide_clean()
 
-    # remove files that are to be regenerated:
-    #system('sh clean.sh')
-    thisdir = os.getcwd()
-    dirs = [os.path.join('lib', 'doconce', 'docstrings'),
-            os.path.join('doc', 'tutorial'),
-            os.path.join('doc', 'manual'),
-            os.path.join('doc', 'quickref'),
-            os.path.join('doc', 'slides'),
-            os.path.join('doc', 'blog'),
-            'test',
-            'bundled',
-            ]
-    for d in dirs:
-        os.chdir(d)
-        system('sh ./clean.sh')
-        os.chdir(thisdir)
+
+if __name__ == '__main__':
+    software_dir = 'bundled'
+    os.chdir(software_dir)
+
+    if len(sys.argv) == 1:
+        print 'Usage: python _update.py all | local'
+        sys.exit(1)
+    if sys.argv[1] == 'all':
+        run_all()
+    else:
+        #func = sys.argv[1]
+        #eval(func + '()')
+        pack_local_dirs()
+
     print 'Successful execution of', sys.argv[0]
-

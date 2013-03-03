@@ -455,7 +455,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
 
     if multiple_math_labels_with_refs:
         print """
-Detected (align) equation systems with multiple labels
+Detected non-align equation systems with multiple labels
 (that Sphinx will not handle - labels will be removed
 and references to them will be empty):"""
         for label in multiple_math_labels_with_refs:

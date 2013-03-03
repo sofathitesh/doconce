@@ -150,13 +150,21 @@ Word), `rtf`, `texinfo`, to mention some. The `-R` option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
 while the `--toc` option generates a table of contents.
 See the "Pandoc documentation": "http://johnmacfarlane.net/pandoc/README.html"
-for the many features of the `pandoc` program.
+for the many features of the `pandoc` program. The HTML output from
+`pandoc` needs adjustments to provide full support for MathJax LaTeX
+mathematics, and for this purpose one should use `doconce md2html`:
 
-Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-`doconce format pandoc` and then translating using `pandoc`, or
-`doconce format latex`, and then going from LaTeX to the desired format
-using `pandoc`.
+!bc sys
+Terminal> doconce format pandoc mydoc
+Terminal> doconce m2html mydoc
+!ec
+The result `mydoc.html` can be viewed in a browser.
+
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): `doconce format pandoc` and then translating using `doconce
+md2latex` (which runs `pandoc`), or `doconce format latex`, and then
+going from LaTeX to the desired format using `pandoc`.
 Here is an example on the latter strategy:
 !bc sys
 Terminal> doconce format latex mydoc
@@ -164,8 +172,8 @@ Terminal> doconce ptex2tex mydoc
 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 !ec
-When we go through `pandoc`, only single equations or `align*`
-environments are well understood.
+When we go through `pandoc`, only single equations, `align`, or `align*`
+environments are well understood for output to HTML.
 
 Note that Doconce applies the `Verb` macro from the `fancyvrb` package
 while `pandoc` only supports the standard `verb` construction for
@@ -437,40 +445,64 @@ The `doconce sphinx_dir` command generates a script
 `automake_sphinx.py` for compiling the Sphinx document into an HTML
 document.  One can either run `automake_sphinx.py` or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the `automake_sphinx.py`
+file.
 
-The `doconce sphinx_dir` script copies directories named `figs` or
-`figures` over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, `automake_sphinx.py` must be edited accordingly.  Files,
-to which there are local links (not `http:` or `file:` URLs), must be
-placed in the `_static` subdirectory of the Sphinx directory. The
-utility `doconce sphinxfix_localURLs` is run to check for local links
-in the Doconce file: for each such link, say `dir1/dir2/myfile.txt` it
-replaces the link by `_static/myfile.txt` and copies
-`dir1/dir2/myfile.txt` to a local `_static` directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in `_static` or lets a script
-do it automatically. The user must copy all `_static/*` files to the
-`_static` subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a `_static` or `_static-name` directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.
+__Links.__
+The `automake_sphinx.py` script copies directories named `fig*`
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines `MOVIE:` and `FIGURE:`
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not `http:` or `file:` URLs) in
+a directory named `_static`. The `automake_sphinx.py` copies
+`_static*` to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.
 
+There is a utility `doconce sphinxfix_localURLs` for checking links to
+local files and moving the files to `_static` and changing the links
+accordingly. For example, a link to `dir1/dir2/myfile.txt` is changed
+to `_static/myfile.txt` and `myfile.txt` is copied to `_static`.
+However, I recommend instead that you manually copy
+files to `_static` when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.
+
+__Themes.__
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the `conf.py`
 configuration file for Sphinx is edited accordingly, and a script
 `make-themes.sh` can make HTML documents with one or more themes.
 For example,
-to realize the themes `fenics` and `pyramid`, one writes
+to realize the themes `fenics`, `pyramid`, and `pylon` one writes
 !bc sys
-Terminal> ./make-themes.sh fenics pyramid
+Terminal> ./make-themes.sh fenics pyramid pylong
 !ec
 The resulting directories with HTML documents are `_build/html_fenics`
 and `_build/html_pyramid`, respectively. Without arguments,
-`make-themes.sh` makes all available themes (!).
+`make-themes.sh` makes all available themes (!). With `make-themes.sh`
+it is easy to check out various themes to find the one that is most
+attractive for your document.
+
+__Using your own customized theme.__
+When the theme is decided for a project, you often want to fine tune
+the features of the Sphinx HTML document by adjusting variables in
+the `conf.py` file. The `doconce sphinx_dir` command autogenerates
+a `conf.py` file, but if you have your own (edited) file, you can
+run `doconce sphinx_dir` with the command-line option `conf.py=conf.py`
+to ensure that your `conf.py` file (or whatever name it has) is used
+as `conf.py` in the Sphinx directory.
+
+You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+`theme_dir=path` on the command line, where `path` is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by `conf.py=path`, where `path` is the
+relative path to a `conf.py` file.
+
+
+=== The manual Sphinx procedure ===
 
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a

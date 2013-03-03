@@ -18,6 +18,11 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
+cp -r ../bundled/html_styles/style_vagrant .
+doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp testdoc.html testdoc_vagrant.html
+
 doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
@@ -82,8 +87,6 @@ mv -f testdoc.rst testdoc.sphinx.rst
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-# Note: the chapter heading must be removed
-# for successful compilation of the sphinx document.
 doconce format rst testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
@@ -168,6 +171,21 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce format plain author1
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test math
+name=math_test
+doconce format html $name
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp $name.html ${name}_html.html
+doconce format sphinx $name
+#doconce sphinx_dir dirname=sphinx-rootdir-math $name
+#python automake_sphinx.py
+doconce format pandoc $name
+# Do not use pandoc directly because it does not support MathJax enough
+doconce md2html $name.md
+cp $name.html ${name}_pandoc.html
+doconce format pandoc $name
+doconce md2latex $name
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt

@@ -1710,7 +1710,10 @@ def get_header_parts_footer(filename, format='html'):
     header = []
     footer = []
     parts = [[]]
-    loc = 'header'
+    if format in ('latex', 'pdflatex', 'html'):
+        loc = 'header'
+    else:
+        loc = 'body'  # no header
     #comment_pattern = INLINE_TAGS_SUBST[format]['comment']
     begin_comment, end_comment = _format_comments(format)
     f = open(filename, 'r')
@@ -1736,10 +1739,44 @@ def get_header_parts_footer(filename, format='html'):
 def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
     import html
+    s = 'The vagrant style builds on the Twitter Bootstrap style'
+    vagrant = s in '\n'.join(footer)
 
-    local_navigation_pics = False    # avoid copying images to subdir...
-    if local_navigation_pics:
-        copy_datafiles(html_images)  # copy html_images subdir if needed
+    if vagrant:
+        vagrant_navigation_passive = """\
+<!-- Navigation buttons at the bottom:
+     Doconce will automatically fill in the right URL in these
+     buttons when doconce html_split is run. Otherwise they are empty.
+<ul class="pager">
+  <li class="previous">
+    <a href="">&larr; </a>
+  </li>
+  <li class="next">
+    <a href=""> &rarr;</a>
+ </li>
+</ul>
+-->
+"""
+        vagrant_navigation_active = """\
+<ul class="pager">
+  %s
+  %s
+</ul>
+"""
+        vagrant_navigation_prev = """\
+  <li class="previous">
+    <a href="%s">&larr; %s</a>
+  </li>
+"""
+        vagrant_navigation_next = """\
+  <li class="next">
+    <a href="%s">%s &rarr;</a>
+ </li>
+"""
+    else:
+        local_navigation_pics = False    # avoid copying images to subdir...
+        if local_navigation_pics:
+            copy_datafiles(html_images)  # copy html_images subdir if needed
 
     prev_part = 'prev1'  # "Knob_Left"
     next_part = 'next1'  # "Knob_Forward"
@@ -1767,11 +1804,11 @@ def doconce_html_split(header, parts, footer, basename, filename):
                     '<a href="%s#%s">' % (part_filename, href))
                 parts[i] = text.splitlines(True)
     if local_navigation_pics:
-        prev_filename = html_imagefile(prev_part)
-        next_filename = html_imagefile(next_part)
+        button_prev_filename = html_imagefile(prev_part)
+        button_next_filename = html_imagefile(next_part)
     else:
-        prev_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % prev_part
-        next_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % next_part
+        button_prev_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % prev_part
+        button_next_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % next_part
 
     generated_files = []
     for pn, part in enumerate(parts):
@@ -1779,7 +1816,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
         lines.append('<a name="part%04d"></a>\n' % pn)
 
         # Decoration line?
-        if header_part_line:
+        if header_part_line and not vagrant:
             if local_navigation_pics:
                 header_part_line_filename = html_imagefile(header_part_line)
                 header_part_line_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % header_part_line
@@ -1792,30 +1829,42 @@ def doconce_html_split(header, parts, footer, basename, filename):
         next_part_filename = '._part%04d_%s.html' % (pn+1, basename)
         generated_files.append(part_filename)
 
-        # Navigation in the top of the page
-        if pn > 0:
-            lines.append("""
-<a href="%s"><img src="%s" border=0 alt="previous"></a>
-""" % (prev_part_filename, prev_filename))
-        if pn < len(parts)-1:
-            lines.append("""
-<a href="%s"><img src="%s" border=0 alt="next"></a>
-""" % (next_part_filename, next_filename))
-        lines.append('<p>\n')
+        if vagrant:
+            prev_ = next_ = ''
+            if pn > 0:
+               prev_ = vagrant_naviation_prev % (prev_part_filename, "Prev")
+            if pn < len(parts)-1:
+               next_ = vagrant_naviation_next % (next_part_filename, "Next")
+            buttons = vagrant_navigation_active % (prev_, next_)
+            text = '\n'.join(part)
+            text = text.replace(vagrant_navigation_passive, buttons)
+            part = text.splitlines()
+        else:
+            # Simple navigation buttons at the top and bottom of the page
+            if pn > 0:
+                lines.append("""
+    <a href="%s"><img src="%s" border=0 alt="previous"></a>
+    """ % (prev_part_filename, button_prev_filename))
+            if pn < len(parts)-1:
+                lines.append("""
+    <a href="%s"><img src="%s" border=0 alt="next"></a>
+    """ % (next_part_filename, button_next_filename))
+            lines.append('<p>\n')
+
 
         # Main body of text
         lines += part
 
         # Navigation in the bottom of the page
         lines.append('<p>\n')
-        if pn > 0:
+        if not vagrant and pn > 0:
             lines.append("""
 <a href="%s"><img src="%s" border=0 alt="previous"></a>
-""" % (prev_part_filename, prev_filename))
+""" % (prev_part_filename, button_prev_filename))
         if pn < len(parts)-1:
             lines.append("""
 <a href="%s"><img src="%s" border=0 alt="next"></a>
-""" % (next_part_filename, next_filename))
+""" % (next_part_filename, button_next_filename))
         lines += footer
         html.add_to_file_collection(part_filename, filename, 'a')
         f = open(part_filename, 'w')
@@ -3067,6 +3116,14 @@ def split_rst():
         #print 'Extracted part', parts[i], 'in', filename
     print ' '.join(parts)
 
+# split_rst2:
+# see html !split
+# call get_header_parts_footer, write parts to .rst files a la doconce_...
+# check that the first heading is at the same level? Test...
+# sensible names based on the first heading after the splitting? no...too long
+# sensible names based on !split filename? Need to make sure html split works
+#
+#
 
 def _usage_list_labels():
     print 'Usage: doconce list_labels doconcefile.do.txt | latexfile.tex'
@@ -3847,6 +3904,107 @@ def spellcheck():
     _spellcheck_all(newdict='misspellings.txt~', remove_multiplicity=False,
                     dictionaries=dictionary,)
 
+def _usage_md2html():
+    print 'Usage: doconce md2html doconce-file'
+    print 'Make HTML from pandoc-exteded Markdown'
+    print '(.html file from .md pandoc file)'
+    print 'The purpose is to fix the HTML code with full MathJax support.'
+
+def md2html():
+    """
+    Read the .md file and add MathJax.Hub.Config such that HTML
+    generated from Markdown (via pandoc) gets full LaTeX math support.
+    """
+    if len(sys.argv) < 2:
+        _usage_md2html()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.md'):
+        if os.path.isfile(filename + '.md'):
+            filename += '.md'
+        else:
+            raise IOError('no file %s.md' % filename)
+    # First make sure \eqref survives the pandoc translation
+    f = open(filename ,'r'); text = f.read(); f.close()
+    text = text.replace('\\eqref{', 'EQREF{')
+    f = open(filename ,'w'); f.write(text); f.close()
+
+    # Translate to HTML and fix the MathJax things
+    basename = filename[:-3]
+    cmd = 'pandoc -f markdown -t html --mathjax -s -o %s.html %s.md' % \
+          (basename, basename)
+    print cmd
+    failure = os.system(cmd)
+    if failure:
+        print 'could not run\n', cmd
+        sys.exit(1)
+    f = open('%s.html' % basename, 'r')
+    text = f.read()
+    f.close()
+    # Add extra info
+    pattern = r'(<script src=".+?MathJax\.js)'
+    replacement = r"""
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+\g<1>"""
+    text = re.sub(pattern, replacement, text)
+    text = text.replace('EQREF{', '\\eqref{')
+
+    f = open('%s.html' % basename, 'w')
+    f.write(text)
+    f.close()
+    print 'output in %s.html' % basename
+
+
+def _usage_md2latex():
+    print 'Usage: doconce md2latex doconce-file'
+    print 'Make LaTeX from pandoc-exteded Markdown'
+    print '(.tex file from .md file).'
+    print 'The purpose is to fix the LaTeX code so it compiles.'
+
+def md2latex():
+    """
+    Read the .md file and fix equation syntax such that LaTeX
+    generated from Markdown (via pandoc) compiles.
+    """
+    if len(sys.argv) < 2:
+        _usage_md2html()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.md'):
+        if os.path.isfile(filename + '.md'):
+            filename += '.md'
+        else:
+            raise IOError('no file %s.md' % filename)
+
+    # Remove $$ around begin-end structures
+    basename = filename[:-3]
+    cmd = 'pandoc -f markdown -t latex -s -o %s.tex %s.md' % \
+          (basename, basename)
+    print cmd
+    failure = os.system(cmd)
+    if failure:
+        print 'could not run\n', cmd
+        sys.exit(1)
+    f = open('%s.tex' % basename, 'r')
+    text = f.read()
+    f.close()
+    pattern = r'\$\$(\s*\\begin\{.+?\\end\{.+?)\$\$'
+    text = re.sub(pattern, r'\g<1>', text)
+    f = open('%s.tex' % basename, 'w')
+    f.write(text)
+    f.close()
+    print 'output in %s.tex' % basename
+
+
 # ----------------------- functions for insertdocstr -----------------------
 
 def insertdocstr():
@@ -4002,3 +4160,648 @@ def which(program):
                 program_path = d
                 break
     return program_path
+
+def latex2doconce():
+    filename = sys.argv[1]
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+
+    # cf. doconce.latex.fix_latex_command_regex to see how important
+    # it is to quote the backslash correctly for matching, substitution
+    # and output strings when using re.sub for latex text!
+    subst = dict(
+    author=(r'\\author\{(?P<subst>.+)\}', r'# AUTHOR: \g<subst>'),
+    title=(r'\\title\{(?P<subst>.+)\}', r'# TITLE: \g<subst>'),
+    section=(r'\\section\*?\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
+    subsection=(r'\\subsection\*?\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
+    subsubsection=(r'\\subsubsection\*?\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
+    paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+    para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+    emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
+    em=(r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
+    #ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'), # gives tab hinspace .
+    ep1=(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
+    ep2=(r'\ep\n', r' \\thinspace .\n'),
+    ep3=(r'\ep\s*\\\]', r' \\thinspace . \]'),
+    ep4=(r'\ep\s*\\e', r' \\thinspace . \e'),
+    ep5=(r'\\thinspace', 'thinspace'),
+    bf=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
+    code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    codett=(r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    refeq=(r'\\refeq\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+    eqref=(r'\\eqref\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+    label_space=(r'(\S)\\label\{', r'\g<1> \\label{'),
+    idx_space=(r'(\S)\\idx(.?)\{', r'\g<1> \\idx\g<2>{'),
+    index_space=(r'(\S)\\index\{', r'\g<1> \\index{'),
+    label=(r'\\label\{(?P<subst>.+?)\}', r'label{\g<subst>}'),
+    idx=(r'\\idx\{(?P<subst>.+?)\}', r'idx{`\g<subst>`}'),
+    idxf=(r'\\idxf\{(?P<subst>.+?)\}', r'idx{`\g<subst>` function}'),
+    idxs=(r'\\idxs\{(?P<subst>.+?)\}', r'idx{`\g<subst>` script}'),
+    idxp=(r'\\idxp\{(?P<subst>.+?)\}', r'idx{`\g<subst>` program}'),
+    idxc=(r'\\idxc\{(?P<subst>.+?)\}', r'idx{`\g<subst>` class}'),
+    idxm=(r'\\idxm\{(?P<subst>.+?)\}', r'idx{`\g<subst>` module}'),
+    idxnumpy=(r'\\idxnumpy\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `numpy`)}'),
+    idxst=(r'\\idxst\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `scitools`)}'),
+    idxfn=(r'\\idxfn\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (FEniCS)}'),
+    index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
+    )
+
+    for item in subst:
+        if len(subst[item]) == 2:
+            pattern, replacement = subst[item]
+            cpattern = re.compile(pattern)
+        elif len(subst[item]) == 3:
+            pattern, replacement, flags = subst[item]
+            cpattern = re.compile(pattern, flags)
+        if cpattern.search(filestr):
+            print 'substituting', item, subst[item][0]
+            filestr = cpattern.sub(replacement, filestr)
+        else:
+            print 'no occurence of', item, subst[item][0]
+
+    replace = [
+        # make sure \beqan comes before \beqa and \beq in replacements...
+        (r'\beqan', r'\begin{eqnarray*}'),
+        (r'\eeqan', r'\end{eqnarray*}'),
+        (r'\beqa', r'\begin{eqnarray}'),
+        (r'\eeqa', r'\end{eqnarray}'),
+        (r'\beq', r'\begin{equation}'),
+        (r'\eeq', r'\end{equation}'),
+        (r'\[', r'\begin{equation*}'),
+        (r'\]', r'\end{equation*}'),
+        (r'\ben', r'\begin{enumerate}'),
+        (r'\een', r'\end{enumerate}'),
+        (r'\bit', r'\begin{itemize}'),
+        (r'\eit', r'\end{itemize}'),
+        (r'\para{', r'\paragraph{'),
+        (r'\refeq', r'\eqref'),
+        ("''", '"'),
+        ("``", '"'),
+        ("Chapter~", "Chapter "),
+        ("Section~", "Section "),
+        ("Figure~", "Figure "),
+        ("Table~", "Table "),
+        ("Chapters~", "Chapters "),
+        ("Sections~", "Sections "),
+        ("Figures~", "Figures "),
+        ("Tables~", "Tables "),
+        ("Chap.~", "Chap. "),
+        ("Sec.~", "Sec. "),
+        ("Fig.~", "Fig. "),
+        ("Tab.~", "Tab. "),
+        ]
+
+    # Pure string replacements:
+    for from_, to_ in replace:
+        if from_ in filestr:
+            if filestr != filestr.replace(from_, to_):
+                filestr = filestr.replace(from_, to_)
+                print '   ....replacing', from_
+
+    # problems:
+    problems = [
+        r'\Sindex\{',
+        r'\Sidx.?\{',
+        r'\Slabel\{',
+        ]
+    for problem in problems:
+        p = re.findall(problem, filestr)
+        if len(p) > 0:
+            print 'PROBLEM:', problem, '\n', p
+
+    # \item alone on line: join with next line (indentation is fixed later)
+    filestr = re.sub(r'\\item\s+(\w)', r'\item \g<1>', filestr)
+
+    # process lists and comment lines:
+    inside_enumerate = False
+    inside_itemize = False
+    lines = filestr.splitlines()
+    for i in range(len(lines)):
+        if lines[i].lstrip().startswith('%'):
+            lines[i] = '# ' + lines[i].lstrip()[1:]
+        if '%' in lines[i]:
+            w = lines[i].split('%')
+            lines[i] = w[0] + '\n#' + ''.join(w[1:])
+
+        # two types of lists (but not nested lists):
+        if r'\begin{enumerate}' in lines[i] or r'\ben' in lines[i]:
+            inside_enumerate = True
+            lines[i] = ''
+        if r'\begin{itemize}' in lines[i] or r'\bit' in lines[i]:
+            inside_itemize = True
+            lines[i] = ''
+        if inside_enumerate or inside_itemize:
+            if lines[i].lstrip().startswith(r'\item'):
+                l = re.sub(r'\s*\\item\s*', '', lines[i]).strip()
+                lines[i] = '  * ' + l
+        if r'\end{enumerate}' in lines[i] or r'\een' in lines[i]:
+            inside_enumerate = False
+            lines[i] = ''
+        if r'\end{itemize}' in lines[i] or r'\eit' in lines[i]:
+            inside_itemize = False
+            lines[i] = ''
+
+
+    # put all newcommands in a file (note: newcommands must occupy only one line!)
+    newcommands_file = 'newcommands_keep.tex'
+    nf = open(newcommands_file, 'w')
+    newlines = []
+    for line in lines:
+        l = line.lstrip()
+        if l.startswith('\\newcommand{'):
+            nf.write(l)
+        else:
+            newlines.append(line)
+
+    filestr = '\n'.join(newlines)
+
+    math_envirs = 'equation', 'eqnarray', 'eqnarray*', 'align', 'align*', 'equation*'
+    math_starters = [r'\begin{%s}' % envir for envir in math_envirs]
+    math_starters.append(r'\[')
+    math_enders = [r'\end{%s}' % envir for envir in math_envirs]
+    math_enders.append(r'\]')
+
+    # add !bt before and !et after math environments:
+    for e in math_starters:
+        filestr = filestr.replace(e, '\n!bt\n' + e)
+    for e in math_enders:
+        filestr = filestr.replace(e, e + '\n!et')
+
+    # ptex2tex code environments:
+    code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'rpy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
+    for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
+        for tp in 'cod', 'pro':
+            code_envirs.append(language + tp)
+
+    for e in code_envirs:
+        s = r'\b%s' % e
+        filestr = filestr.replace(s, '\n!bc ' + e)
+        s = r'\e%s' % e
+        filestr = filestr.replace(s, '!ec')
+
+    filestr = filestr.replace('bc rpy', 'bc sys')
+
+    # eqnarray -> align
+    filestr = filestr.replace(r'{eqnarray', '{align')
+    filestr = re.sub(r'&(\s*)=(\s*)&', '&\g<1>=\g<2>', filestr)
+
+    # exercises of the following particular format
+    pattern = re.compile(r'\\begin\{exercise\}\s*\label\{(.*?)\}\s*\\exerentry\{(.*?)\}\s*$\s*(.+?)\\hfill\s*\$\\diamond\$\s*\\end\{exercise\}', re.DOTALL|re.MULTILINE)
+    filestr = pattern.sub(r'===== \g<2> =====\n\label{\g<1>}\nfile=\n\n\g<3>\n', filestr)
+
+    # fix "Name of program file:" construction in exercises
+    lines = filestr.splitlines()
+    for i in range(len(lines)-1, -1, -1):
+        if 'Name of program file' in lines[i]:
+            m = re.search(r'Name of program file:\s*`([^`]+?)`', lines[i])
+            if m:
+                program_file = m.group(1)
+        if 'file=' in lines[i]:
+            if re.search(r'^file=$', lines[i]):
+                try:
+                    lines[i] = 'file=' + program_file
+                except:
+                    print 'Found file= without filename, but no "Name of program file" found after this construction'
+                    pass
+    filestr = '\n'.join(lines)
+
+    # figures: psfig, group1: filename, group2: caption
+    pattern = re.compile(r'\\begin{figure}.*?\psfig\{.*?=([^,]+).*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
+    filestr = pattern.sub(r'FIGURE: [\g<1>, width=400] {{{{\g<2>}}}}', filestr)
+    # figures: includegraphics, group1: width, group2: filename, group3: caption
+    pattern = re.compile(r'\\begin{figure}.*?\includegraphics\[width=(.+?)\\linewidth\]\{(.+?)\}.*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
+    filestr = pattern.sub(r'FIGURE: [\g<2>, width=400, frac=\g<1>] {{{{\g<3>}}}}', filestr)
+
+    captions = re.findall(r'\{\{\{\{(.*?)\}\}\}\}', filestr, flags=re.DOTALL)
+    for caption in captions:
+        orig_caption = caption
+        # Add label to end of caption
+        pattern = r'(label\{.*?\})'
+        m = re.search(pattern, caption)
+        if m:
+            label = m.group(1)
+            caption = caption.replace(label, '')
+            caption = caption + ' ' + label
+        # Make one line
+        caption = ' '.join(caption.splitlines())
+        filestr = filestr.replace('{{{{%s}}}}' % orig_caption, caption)
+
+    #filestr = filestr.replace(r'\label{', 'label{')  # done above
+    filestr = filestr.replace(r'\ref{', 'ref{')
+    filestr = filestr.replace(r'\cite{', 'cite{')
+    filestr = filestr.replace(r'\_', '_')
+    filestr = filestr.replace(r' -- ', ' - ')
+    filestr = filestr.replace(r'}--ref', '}-ref')
+    filestr = filestr.replace(r'~', ' ')
+
+    # Treat footnotes
+    pattern = r'\\footnote\{(.+?)\}\.'
+    filestr = re.sub(pattern, '. (\g<1>)', filestr, flags=re.DOTALL)
+    # Without final . means footnote in the middle of a sentence
+    pattern = r'\\footnote\{(.+?)\}([^.])'
+    filestr = re.sub(pattern, ' (FIX FOOTNOTE: \g<1>)\g<2>', filestr, flags=re.DOTALL)
+
+    # Check idx{} inside paragraphs
+    lines = filestr.splitlines()
+    last_blank_line = -1
+    pattern = r'idx\{.+?\}'
+    for i in range(len(lines)):
+        if lines[i].strip() == '':
+            last_blank_line = i
+        if 'idx{' in lines[i]:
+            # Check if we have only idx{} constructions on this line
+            line = re.sub(pattern, '', lines[i]).strip()
+            if line != '':
+                # We have idx{} in the middle of a paragraph, try move
+                idx = re.findall(pattern, filestr)
+                lines[i] = line
+                lines[last_blank_line] = ' '.join(idx) + \
+                                         '\n' + lines[last_blank_line]
+    # Tables are difficult: require manual editing?
+    inside_table = False
+    new_lines = []
+    for i in range(len(lines)):
+        if inside_table:
+            if '&' in lines[i]:
+                table_lines.append(lines[i])
+        else:
+            new_lines.append(lines[i])
+
+        if 'begin{table}' or 'begin{tabular}' in lines[i]:
+            inside_table = True
+            table_lines = []
+            if '{tabular}{' in lines[i]:
+                align = lines[i].split('{tabular}{')[-1].split('}')[0]
+            else:
+                align = None
+        if 'end{table}' or 'end{tabular}' in lines[i]:
+            inside_table = False
+            if table_lines:
+                max_column_width = 0
+                for j in range(len(table_lines)):
+                    columns = [s.strip()
+                               for s in table_lines[j].split('&')]
+                    table_lines[j] = column
+                    max_column_with = max([max_column_width] + \
+                                          [len(c) for c in columns])
+                # Construct doconce table
+                import pprint; pprint.pprint(table)
+                # use align, max_column_width, ...
+                table = ''
+                #...
+                new_lines[i] += '\n' + table + '\n'
+
+    filestr = '\n'.join(new_lines)
+
+    f = open(filename, 'w')
+    f.write(filestr)()
+    f.close()
+
+
+try:
+    import pygments as pygm
+    from pygments.lexer import RegexLexer, \
+         bygroups, include, using, this, do_insertions
+    from pygments.token import Punctuation, Text, Comment, Keyword, \
+         Name, String, Generic, Operator, Number, Whitespace, Literal
+    from pygments.formatters import HtmlFormatter
+    from pygments import highlight
+    from pygments.styles import get_all_styles
+except ImportError:
+    pygm = None
+    print 'pygments is not installed...abort'
+    sys.exit(1)
+
+class DoconceLexer(RegexLexer):
+    """
+    Lexer for Doconce files.
+    """
+
+    name = 'Doconce'
+    aliases = ['doconce']
+    filenames = ['*.do.txt']
+    mimetypes = ['text/x-doconce']
+
+    tokens = {
+        'general': [
+            (r'\#.*\n', Comment),
+            (r'[{}]', Name.Builtin),
+        ],
+        'root': [
+            (r' .*\n', Text),
+            (r'\#.*\n', Comment),
+            (r'idx', Name.Builtin),
+            (r'label\{.+?\}', Name.Builtin),
+            (r'TITLE:', Generic.Heading),
+            (r'AUTHOR:', Generic.Heading),
+            (r'DATE:', Generic.Heading),
+            (r'TOC:', Generic.Heading),
+            (r'FIGURE:', Name.Builtin),
+            (r'MOVIE:', Name.Builtin),
+            #(r'!.+\n', Generic.Strong),
+            (r'!.+\n', Name.Builtin),
+            (r'@@@CODE .*\n', Generic.Subheading),
+            (r'=== .*\n', Generic.Subheading),
+            (r'__.+?__\n', Generic.Subheading),
+            (r'={3,9} .*\n', Generic.Heading),
+            (r'\\\[', String.Backtick, 'displaymath'),
+            (r'\\\(', String, 'inlinemath'),
+            (r'\$\$', String.Backtick, 'displaymath'),
+            (r'\$', String, 'inlinemath'),
+            (r'\\([a-zA-Z]+|.)', Keyword, 'command'),
+            (r'.*\n', Text),
+        ],
+        'math': [
+            (r'\\([a-zA-Z]+|.)', Name.Variable),
+            include('general'),
+            (r'[0-9]+', Number),
+            (r'[-=!+*/()\[\]]', Operator),
+            (r'[^=!+*/()\[\]\\$%&_^{}0-9-]+', Name.Builtin),
+        ],
+        'inlinemath': [
+            (r'\\\)', String, '#pop'),
+            (r'\$', String, '#pop'),
+            include('math'),
+        ],
+        'displaymath': [
+            (r'\\\]', String, '#pop'),
+            (r'\$\$', String, '#pop'),
+            (r'\$', Name.Builtin),
+            include('math'),
+        ],
+        'command': [
+            (r'\[.*?\]', Name.Attribute),
+            (r'\*', Keyword),
+            (r'', Text, '#pop'),
+        ],
+    }
+
+    def analyse_text(text):
+        if text[:7] == 'Index: ':
+            return True
+        if text[:5] == 'diff ':
+            return True
+        if text[:4] == '--- ':
+            return 0.9
+
+class DoconceLexer(RegexLexer):
+    """
+    Lexer for Doconce files.
+
+    Built this one from TexLexer and extended with Doconce stuff.
+    Difficult to get both to work
+    """
+
+    name = 'Doconce'
+    aliases = ['doconce']
+    filenames = ['*.do.txt']
+    mimetypes = ['text/x-doconce']
+
+    tokens = {
+        'general': [
+            (r'#.*?\n', Comment),
+            (r'[{}]', Name.Builtin),
+            (r'[&_^]', Name.Builtin),
+        ],
+        'root': [
+            (r'\\\[', String.Backtick, 'displaymath'),
+            (r'\\\(', String, 'inlinemath'),
+            (r'\$\$', String.Backtick, 'displaymath'),
+            (r'\$', String, 'inlinemath'),
+            (r'\\([a-zA-Z]+|.)', Keyword, 'command'),
+            (r'!.+\n', Name.Builtin),
+            (r'@@@CODE .*\n', Generic.Subheading),
+            (r'=== .*\n', Generic.Subheading),
+            (r'__.+?__\n', Generic.Subheading),
+            (r'={3,9} .+? ={3,9}\n', Generic.Heading),
+            (r'idx', Name.Builtin),
+            (r'label\{.+?\}', Name.Builtin),
+            (r'TITLE:', Generic.Heading),
+            (r'AUTHOR:', Generic.Heading),
+            (r'DATE:', Generic.Heading),
+            (r'TOC:', Generic.Heading),
+            (r'FIGURE:', Name.Builtin),
+            (r'MOVIE:', Name.Builtin),
+            include('general'),
+            # these two are crucial - no 2 turns on latex math everywhere
+            # but not doconce, no 1 does the other way around
+            #(r'.*\n', Text),
+            (r'[A-Za-z0-9 ]?\n', Text),  # makes latex stuff correct
+            (r'[^\\$%&_^{}]+', Text),
+            (r'.*\n', Text),
+        ],
+        'math': [
+            (r'\\([a-zA-Z]+|.)', Name.Variable),
+            include('general'),
+            (r'[0-9]+', Number),
+            (r'[-=!+*/()\[\]]', Operator),
+            (r'[^=!+*/()\[\]\\$%&_^{}0-9-]+', Name.Builtin),
+        ],
+        'inlinemath': [
+            (r'\\\)', String, '#pop'),
+            (r'\$', String, '#pop'),
+            include('math'),
+        ],
+        'displaymath': [
+            (r'\\\]', String, '#pop'),
+            (r'\$\$', String, '#pop'),
+            (r'\$', Name.Builtin),
+            include('math'),
+        ],
+        'command': [
+            (r'\[.*?\]', Name.Attribute),
+            (r'\*', Keyword),
+            (r'', Text, '#pop'),
+        ],
+    }
+    """
+    tokens = {
+        'general': [
+            (r'\#.*\n', Comment),
+            (r'[{}]', Name.Builtin),
+        ],
+        'root': [
+            (r' .*\n', Text),
+            #(r'!.+\n', Generic.Strong),
+            (r'\\\[', String.Backtick, 'displaymath'),
+            (r'\\\(', String, 'inlinemath'),
+            (r'\$\$', String.Backtick, 'displaymath'),
+            (r'\$', String, 'inlinemath'),
+            (r'\\([a-zA-Z]+|.)', Keyword, 'command'),
+        ],
+        'math': [
+            (r'\\([a-zA-Z]+|.)', Name.Variable),
+            include('general'),
+            (r'[0-9]+', Number),
+            (r'[-=!+*/()\[\]]', Operator),
+            (r'[^=!+*/()\[\]\\$%&_^{}0-9-]+', Name.Builtin),
+        ],
+        'inlinemath': [
+            (r'\\\)', String, '#pop'),
+            (r'\$', String, '#pop'),
+            include('math'),
+        ],
+        'displaymath': [
+            (r'\\\]', String, '#pop'),
+            (r'\$\$', String, '#pop'),
+            (r'\$', Name.Builtin),
+            include('math'),
+        ],
+        'command': [
+            (r'\[.*?\]', Name.Attribute),
+            (r'\*', Keyword),
+            (r'', Text, '#pop'),
+        ],
+    }
+    """
+
+    def analyse_text(text):
+        return True
+
+# This is the best one so far (still far from complete, it was
+# made from a text lexer: DiffLexer, IniLexer, ... need to
+# understand such lexers to make progress)
+
+class DoconceLexer(RegexLexer):
+    """
+    Lexer for Doconce files.
+    """
+
+    name = 'Doconce'
+    aliases = ['doconce']
+    filenames = ['*.do.txt']
+    mimetypes = ['text/x-doconce']
+
+    tokens = {
+        'root': [
+            (r' .*\n', Text),
+            (r'\#.*\n', Comment),
+            (r'label\{.+?\}', Name.Builtin),
+            (r'TITLE:', Generic.Heading),
+            (r'AUTHOR:', Generic.Heading),
+            (r'DATE:', Generic.Heading),
+            (r'TOC:', Generic.Heading),
+            (r'FIGURE:.*\n', Name.Builtin),
+            (r'MOVIE:.*\n', Name.Builtin),
+            (r'!.+\n', Name.Builtin),
+            (r'@@@CODE .*\n', Generic.Subheading),
+            (r'__.+?__', Generic.Subheading),
+            (r'`(?s).*?`', String.Backtick),
+            (r'"(?s).*?"', String),
+            #(r'".+?"', String),  # does not work
+            (r'={5,9} .* ={5,9}\n', Generic.Heading),
+            (r'.*\n', Text),
+        ],
+    }
+
+    def analyse_text(text):
+        True
+
+def _usage_pygmentize():
+    print 'Usage: doconce pygmentize doconce-file [style]'
+
+def pygmentize():
+    """Typeset a Doconce file with pygmentize, using DoconceLexer above."""
+    if len(sys.argv) < 2:
+        _usge_pygmentize()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.do.txt'):
+        filename += '.do.txt'
+    try:
+        pygm_style = sys.argv[2]
+    except IndexError:
+        pygm_style = 'default'
+
+    f = open(filename, 'r');  text = f.read();  f.close()
+    lexer = DoconceLexer()
+    formatter = HtmlFormatter(noclasses=True, style=pygm_style)
+    text = highlight(text, lexer, formatter)
+    f = open(filename + '.html', 'w');  f.write(text);  f.close()
+
+def _usage_makefile():
+    print 'Usage: doconce makefile docname doconce-file [html pdflatex sphinx] ...'
+
+def makefile():
+    """Generate a generic makefile."""
+    if len(sys.argv) < 3:
+        _usge_makefile()
+        sys.exit(1)
+
+    docname = sys.argv[1]
+    dofile = sys.argv[2]
+    if dofile.endswith('.do.txt'):
+        dofile = dofile[:-7]
+
+    formats = sys.argv[3:]
+    if not formats:
+        formats = ['pdflatex', 'html', 'sphinx']
+
+    f = open('make.sh', 'w')
+    f.write("""\
+#!/bin/sh
+name="%s"
+
+# Perform spellcheck
+doconce spellcheck -d .dict4spell.txt *.do.txt
+if [ $? -ne 0 ]; then echo "make.sh aborts due to misspellings"; exit 1; fi
+rm -rf tmp_stripped*
+
+options="--skip_inline_comments"
+""" % (dofile))
+    for format in formats:
+        if format == 'pdflatex':
+            f.write("""
+
+# --- pdflatex ---
+#doconce format pdflatex $name $options --latex-printed
+doconce format pdflatex $name $options
+if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
+pdflatex $name
+makeindex $name
+pdflatex $name
+pdflatex $name
+""")
+        elif format == 'latex':
+            f.write("""
+
+# --- latex ---
+#doconce format latex $name $options --latex-printed
+doconce format latex $name $options
+if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
+
+#ptex2tex $name -DA4PAPER -DLATEX_HEADING=traditional  # requires .ptex2tex.fcg
+doconce ptex2tex $name  # -DA4PAPER -DPALATINO envir=ans
+latex $name
+makeindex $name
+latex $name
+latex $name
+dvipdf $name
+""")
+        elif format == 'html':
+            f.write("""
+
+# --- html ---
+# options: --pygments-html-lineos --no-pygments-html
+#doconce format html $name $options --html-style=solarized --pygments-html-style=perldoc
+#if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
+#cp $name.html ${name}_solarized.html
+doconce format latex $name $options --html-style=blueish --pygments-html-style=default
+if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
+""")
+        elif format == 'sphinx':
+            f.write("""
+
+# --- sphinx ---
+doconce format sphinx $name $options
+if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
+#doconce sphinx_dir author="name(s) of author" title="the full title of the document" short-title="some short title" version=0.1 theme=themename dirname=sphinx-rootdir
+doconce sphinx_dir theme=pyramid dirname=sphinx-rootdir $name
+python automake_sphinx.py
+""")
+
+
+

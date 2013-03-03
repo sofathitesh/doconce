@@ -75,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Feb 23, 2013
+Mar 3, 2013
 
 \end{DUfieldlist}
 
@@ -909,7 +909,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format\\
+commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~pygmentize\\
 ~\\
 ~\\
 \#~transform~doconce~file~to~another~format\\
@@ -997,6 +997,12 @@ doconce~spellcheck~{[}-d~.mydict.txt{]}~*.do.txt\\
 \#~and~manage~the~code~environments\\
 doconce~ptex2tex~mydoc~-DMINTED~pycod=minted~sys=Verbatim~\textbackslash{}\\
 ~~~~~~~~dat=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\};\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}\\
+~\\
+\#~make~HTML~file~via~pandoc~from~Markdown~(.md)~file\\
+doconce~md2html~file\\
+~\\
+\#~make~LaTeX~file~via~pandoc~from~Markdown~(.md)~file\\
+doconce~md2latex~file\\
 ~\\
 \#~expand~short~cut~commands~to~full~form~in~files\\
 doconce~expand\_commands~file1~file2~...\\

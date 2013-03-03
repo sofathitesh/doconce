@@ -23,6 +23,8 @@ from doconce.misc import (
     slides_html,
     split_html,
     html_colorbullets,
+    md2html,
+    md2latex,
     bbl2rst,
     change_encoding,
     guess_encoding,
@@ -34,6 +36,9 @@ from doconce.misc import (
     expand_commands,
     combine_images,
     latex_exercise_toc,
+    pygmentize,
+    makefile,
+    latex2doconce,
     )
 
 def remove_options_from_command_line():
@@ -116,6 +121,7 @@ def sphinx_dir():
     doconce_files = []
     sphinx_rootdir = 'sphinx-rootdir'
     conf_py = None
+    theme_dir = None
     logo = None
     for arg in sys.argv[1:]:
         if arg.startswith('title='):
@@ -131,7 +137,9 @@ def sphinx_dir():
         elif arg.startswith('theme='):
             theme = arg.split('=')[1]
         elif arg.startswith('conf.py='):
-            sphinx_py = arg.split('=')[1]
+            conf_py = arg.split('=')[1]
+        elif arg.startswith('theme_dir='):
+            theme_dir = arg.split('=')[1]
         elif arg.startswith('logo='):
             logo = arg.split('=')[1]
         else:
@@ -147,7 +155,6 @@ def sphinx_dir():
         print 'Unable to import sphinx. Install sphinx from sphinx.pocoo.org.'
         print 'On Debian systems, install the \'python-sphinx\' package.'
         sys.exit(1)
-    print dir(sphinx), '__version__' in dir(sphinx)
     if float(sphinx.__version__[:3]) < 1.1:
         print 'Abort: sphinx version >= 1.1 required'
         sys.exit(1)
@@ -209,6 +216,11 @@ def sphinx_dir():
         print 'and no author="..." given on the command line'
         sys.exit(1)
 
+    if theme_dir is not None and conf_py is None:
+        print 'theme_dir is given, but then also conf_py must be specified'
+        print 'Abort!'
+        sys.exit(1)
+
     print 'title:', title
     print 'author:', author
     print 'theme:', theme,
@@ -251,20 +263,27 @@ EOF
     os.remove('tmp_sphinx_gen.sh')
     os.chdir(sphinx_rootdir)
 
-    # Copy themes
-    import doconce.common
-    install_dir = doconce.common.where()
-    shutil.copy(os.path.join(install_dir, 'sphinx_themes.zip'), os.curdir)
-    system('unzip sphinx_themes.zip > /dev/null')
-    os.remove('sphinx_themes.zip')
-    os.rename('sphinx_themes', '_themes')
-    files = sorted(glob.glob(os.path.join('_themes', '*')))
-    themes = [name[8:] for name in files if os.path.isdir(name)] + ['default']
-    print 'These Sphinx themes were found:', ', '.join(themes)
+    if theme_dir is None:
+        # Copy themes
+        import doconce.common
+        install_dir = doconce.common.where()
+        shutil.copy(os.path.join(install_dir, 'sphinx_themes.zip'), os.curdir)
+        system('unzip sphinx_themes.zip > /dev/null')
+        os.remove('sphinx_themes.zip')
+        os.rename('sphinx_themes', '_themes')
+        files = sorted(glob.glob(os.path.join('_themes', '*')))
+        themes = [name[8:] for name in files
+                  if os.path.isdir(name)] + ['default']
+        print 'These Sphinx themes were found:', ', '.join(themes)
 
-    if conf_py is None:
-        make_conf_py(themes, theme, title, short_title, author, logo)
+        if conf_py is None:
+            make_conf_py(themes, theme, title, short_title, author, logo)
     else:
+        # Copy theme_dir
+        os.mkdir('_themes')
+        shutil.copy(theme_dir, os.path.join('_themes', theme_dir))
+
+    if conf_py is not None:
         shutil.copy(os.path.join(os.pardir, conf_py), os.basename(conf.py))
 
     f = open('make_themes.sh', 'w')
@@ -491,6 +510,7 @@ if html_theme == 'solarized':
     extensions = """\
 extensions = [
           #'sphinx.ext.pngmath',
+          #'sphinx.ext.jsmath',
           'sphinx.ext.mathjax',
           #'matplotlib.sphinxext.mathmpl',
           'matplotlib.sphinxext.only_directives',
@@ -504,6 +524,17 @@ extensions = [
 #pngmath_dvipng_args = ['-D 200', '-bg Transparent', '-gamma 1.5']  # large math fonts (200)
 
 #intersphinx_mapping = {}
+# Example configuration for intersphinx: refer to the Python standard library.
+# (Domos in http://scipy-lectures.github.com/)
+'''
+intersphinx_mapping = {
+    _python_doc_base: None,
+    'http://docs.scipy.org/doc/numpy': None,
+    'http://docs.scipy.org/doc/scipy/reference': None,
+    'http://matplotlib.org/': None,
+}
+'''
+
 
 # Check which additional themes that are installed
 additional_themes_installed = []
@@ -657,6 +688,16 @@ elif html_theme == 'bootstrap':
         #'navbar_page_separate': True,
     }
 
+elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'true',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }
+
+
+
+
 
 """)
 
@@ -694,6 +735,7 @@ combine_images
 guess_encoding
 change_encoding
 gwiki_figsubst
+md2html
 remove_inline_comments
 grab
 remove
@@ -713,6 +755,9 @@ make_figure_code_links
 latex_exercise_toc
 insertdocstr
 old2new_format
+latex2doconce
+pygmentize
+makefile
 """.split()
 
 # -----------------------------------------------------------------------
@@ -795,9 +840,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -805,6 +847,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -817,6 +865,15 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 """
 #doconce teamod name
 #doconce assemble name master.do.txt

@@ -23,24 +23,25 @@ def pandoc_author(authors_and_institutions, auth2index,
 
 def pandoc_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
+    # Note: the tex code require the MathJax fix of doconce md2html
     for i in range(len(tex_blocks)):
         # Remove \[ and \] in single equations
         tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
         tex_blocks[i] = tex_blocks[i].replace(r'\]', '')
+        #tex_blocks[i] = tex_blocks[i].replace(r'\[', '$$')
+        #tex_blocks[i] = tex_blocks[i].replace(r'\]', '$$')
         # Check for illegal environments
         m = re.search(r'\\begin\{(.+?)\}', tex_blocks[i])
         if m:
             envir = m.group(1)
             if envir not in ('equation', 'align*', 'align'):
                 print """\
-*** warning: latex envir \\begin{%s} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \\begin{%s} does not work well
 """ % envir
         # Add $$ on each side of the equation
         tex_blocks[i] = '$$\n' + tex_blocks[i] + '$$\n'
+    # Note: HTML output from pandoc requires $$ while latex cannot have
+    # them if begin-end inside ($$\begin{...} \end{...}$$)
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
@@ -254,10 +255,14 @@ def define(FILENAME_EXTENSION,
         'title':     r'% \g<subst>',
         'author':    pandoc_author,
         'date':      '% \g<subst>\n',
-        'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('utf-8'))),
-        'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
-        'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
-        'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
+        #'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('utf-8'))),
+        #'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
+        #'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
+        #'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
+        'chapter':       lambda m: r'# \g<subst>',
+        'section':       lambda m: r'## \g<subst>',
+        'subsection':    lambda m: r'### \g<subst>',
+        'subsubsection': lambda m: r'#### \g<subst>',
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'*\g<type>.* \g<text>\n\n\g<rest>',
         'comment':       '<!-- %s -->',

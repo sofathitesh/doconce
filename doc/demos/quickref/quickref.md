@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Feb 23, 2013
+% Mar 3, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -11,8 +11,7 @@
 _WARNING: This quick reference is very incomplete!_
 
 
-Supported Formats
------------------
+### Supported Formats
 
 Doconce currently translates files to the following formats:
 
@@ -40,8 +39,7 @@ Doconce currently translates files to the following formats:
 
 The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
 
-Title, Authors, and Date
-------------------------
+### Title, Authors, and Date
 
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
@@ -77,8 +75,7 @@ current date is wanted, e.g., `Feb 22, 2016`.
 The table of contents is removed by writing `TOC: off`.
 
 
-Section Types
--------------
+### Section Types
 
 
             Section type                             Syntax                 
@@ -99,15 +96,13 @@ Appendix is supported: just let the heading start with "Appendix: "
 (this affects only `latex` output, where the appendix formatting
 is used - all other formats just leave the heading as it is written).
 
-Inline Formatting
------------------
+### Inline Formatting
 
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
 appear in boldface: `_boldface_` become _boldface_.
 
-Lists
------
+### Lists
 
 There are three types of lists: *bullet lists*, where each item starts
 with `*`, *enumeration lists*, where each item starts with `o` and gets
@@ -194,8 +189,7 @@ And finally a description list:
   :    
    and its description may fit on one line
 
-Comments
---------
+### Comments
 
 Lines starting with `#` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -238,8 +232,7 @@ doconce remove_inline_comments mydoc.do.txt
 
 This action is appropriate when all issues with such comments are resolved.
 
-Verbatim/Computer Code
-----------------------
+### Verbatim/Computer Code
 
 Inline verbatim code is typeset within back-ticks, as in
 
@@ -323,8 +316,7 @@ Important warnings:
    output formats. A more robust approach is to replace the list by
    paragraphs with headings.
 
-LaTeX Mathematics
------------------
+### LaTeX Mathematics
 
 Doconce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats `sphinx`, `latex`, and `pdflatex`
@@ -423,8 +415,7 @@ PDF document.
 *LaTeX Newcommands.* Text missing...
 
 
-Figures and Movies
-------------------
+### Figures and Movies
 
 Figures and movies have almost equal syntax:
 
@@ -461,8 +452,7 @@ Use `+append` for stacking left to right, `-append` for top to bottom.
 The positioning of the figures can be controlled by `-gravity`.
 
 
-Tables
-------
+### Tables
 
 The table in the section [Section Types](#s) was written with this
 syntax:
@@ -500,8 +490,7 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
-----------------------------------------
+### Labels, References, Citations, and Index
 
 The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
@@ -595,8 +584,7 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the `latex`, `rst`, and
 `sphinx` formats.
 
-Capabilities of the "doconce" Program
--------------------------------------
+### Capabilities of the "doconce" Program
 
 The `doconce` program can be used for a number of purposes besides
 transforming a `.do.txt` file to some format. Here is the
@@ -605,7 +593,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize
 
 
 # transform doconce file to another format
@@ -694,6 +682,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
+
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
 
@@ -707,8 +701,7 @@ doconce latex_exercise_toc myfile
 doconce list_labels myfile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Exercises
----------
+### Exercises
 
 Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
 These are typeset
@@ -830,8 +823,7 @@ turn off output of answers and solutions, respectively, except for
 examples.
 
 
-Environments
-------------
+### Environments
 
 Doconce environments start with `!benvirname` and end with `!eenvirname`,
 where `envirname` is the name of the environment. Here is a listing of
@@ -859,11 +851,9 @@ the environments:
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide
 
-Labels, Index, and Citations
-----------------------------
+### Labels, Index, and Citations
 
-Preprocessing
--------------
+### Preprocessing
 
 Doconce documents may utilize a preprocessor, either `preprocess` and/or
 `mako`. The former is a C-style preprocessor that allows if-tests
@@ -913,8 +903,7 @@ An [example document](http://hplgit.github.com/bioinf-py/) contains
 some illustrations on how to utilize `mako` (clone the GitHub project and
 examine the Doconce source and the `doc/src/make.sh` script).
 
-Resources
----------
+### Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
