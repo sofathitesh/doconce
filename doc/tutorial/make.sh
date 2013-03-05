@@ -1,5 +1,5 @@
 #!/bin/sh -x
-./clean.sh
+sh -x ./clean.sh
 
 # html
 doconce format html tutorial  --no-pygments-html

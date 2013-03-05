@@ -248,13 +248,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Feb 23, 2013}
+\date{Mar 5, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Feb 23, 2013}}
+{\large\textsf{Mar 5, 2013}}
 
 \end{center}
 \vfill
@@ -263,7 +263,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Feb 23, 2013
+Mar 5, 2013
 \end{center}
 
 \vspace{1cm}
@@ -639,6 +639,29 @@ or just
 Terminal> doconce format format mydoc
 \esys
 
+\subsection{Generating a makefile}
+
+Producing HTML, Sphinx, and in particular {\LaTeX} documents from
+Doconce sources requires a few commands. Often you want to
+produce several different formats. The relevant commands should
+then be placed in a script that acts as a "makefile".
+
+The \code{doconce makefile} can be used to automatically generate
+such a makefile, more precisely a Bash script \code{make.sh}, which
+carries out the commands explained below. If our Doconce source
+is in \code{main_myproj.do.txt}, we run
+
+\bsys
+doconce makefile main_myproj html pdflatex sphinx
+\esys
+to produce the necessary output for generating HTML, \textsc{pdf}{\LaTeX}, and
+Sphinx. Usually, you need to edit \code{make.sh} to really fit your
+needs. Some examples lines are inserted as comments to show
+various options that can be added to the basic commands.
+A handy feature of the generated \code{make.sh} script is that it
+inserts checks for successful runs of the \code{doconce format} commands,
+and if something goes wrong, the \code{make.sh} exits.
+
 \subsection{Preprocessing}
 
 The \code{preprocess} and \code{mako} programs are used to preprocess the
@@ -656,8 +679,6 @@ format specific actions through tests like \code{#if FORMAT == "latex"}
 
 \subsection{Removal of inline comments}
 
-% mention notes also
-
 The command-line arguments \code{--no-preprocess} and \code{--no-mako} turn off
 running \code{preprocess} and \code{mako}, respectively.
 
@@ -672,6 +693,25 @@ Terminal> doconce remove_inline_comments mydoc
 \eccq
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
+
+\subsection{Notes}
+
+Doconce does not have a tag for longer notes, because implementation
+of a "notes feature" is so easy using the \code{preprocess} or \code{mako}
+programs. Just introduce some variable, say \code{NOTES}, that you define
+through \code{-DNOTES} (or not) when running \code{doconce format ...}. Inside
+the document you place your notes between \code{# #ifdef NOTES} and
+\code{# #endif} preprocess tags. Alternatively you use \code{% if NOTES:}
+and \code{% endif} that \code{mako} will recognize. In the same way you may
+encapsulate unfinished material, extra material to be removed
+for readers but still nice to archive as part of the document for
+future revisions.
+
+\subsection{Demo of different formats}
+
+A simple scientific report is available in \href{{http://hplgit.github.com/teamods/writing_reports/doconce_commands.html}}{a lot of different formats}.
+How to create the different formats is explained in more depth
+in the coming sections.
 
 \subsection{HTML}
 
@@ -743,15 +783,24 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (\code{blogger.com} or
-\code{blogname.blogspot.com})
-is particularly well suited since it also allows extensive {\LaTeX} mathematics via
-MathJax.
-Write the blog text as a Doconce document without any title, author, and
-date. Then generate HTML as described above. Copy the text and paste it
-into the text area in the blog, making sure the input format is HTML.
-On Google's Blogger service you can use Doconce to generate blogs with
-{\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
-See a \href{{http://doconce.blogspot.no}}{blog example} for details on blogging.
+\code{blogname.blogspot.com}) is particularly well suited since it also
+allows extensive {\LaTeX} mathematics via MathJax.
+
+\begin{enumerate}
+\item Write the blog text as a Doconce document without any
+   title, author, and date.
+
+\item Generate HTML as described above.
+
+\item Copy the text and paste it into the
+   text area in the blog (just delete the HTML code that initially
+   pops up in the text area). Make sure the input format is HTML.
+\end{enumerate}
+
+\noindent
+See a \href{{http://doconce.blogspot.no}}{simple blog example} and
+a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
+for demonstrations of blogs at \code{blogspot.no}.
 
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
@@ -771,8 +820,9 @@ but has very limited
 {\LaTeX} support, basically only formulas. The \code{--wordpress} option to
 \code{doconce} modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
-There is a \href{{http://doconce.wordpress.com}}{doconce example}
-on blogging with mathematics and code on WordPress.
+Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
+and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
+to see blogging with mathematics and code on WordPress.
 
 \subsection{Pandoc and Markdown}
 
@@ -790,13 +840,21 @@ Word), \code{rtf}, \code{texinfo}, to mention some. The \code{-R} option makes
 Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it,
 while the \code{--toc} option generates a table of contents.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
-for the many features of the \code{pandoc} program.
+for the many features of the \code{pandoc} program. The HTML output from
+\code{pandoc} needs adjustments to provide full support for MathJax {\LaTeX}
+mathematics, and for this purpose one should use \code{doconce md2html}:
 
-Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-\code{doconce format pandoc} and then translating using \code{pandoc}, or
-\code{doconce format latex}, and then going from {\LaTeX} to the desired format
-using \code{pandoc}.
+\bsys
+Terminal> doconce format pandoc mydoc
+Terminal> doconce m2html mydoc
+\esys
+The result \code{mydoc.html} can be viewed in a browser.
+
+Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): \code{doconce format pandoc} and then translating using \code{doconce
+md2latex} (which runs \code{pandoc}), or \code{doconce format latex}, and then
+going from {\LaTeX} to the desired format using \code{pandoc}.
 Here is an example on the latter strategy:
 \bsys
 Terminal> doconce format latex mydoc
@@ -804,8 +862,8 @@ Terminal> doconce ptex2tex mydoc
 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \esys
-When we go through \code{pandoc}, only single equations or \code{align*}
-environments are well understood.
+When we go through \code{pandoc}, only single equations, \code{align}, or \code{align*}
+environments are well understood for output to HTML.
 
 Note that Doconce applies the \code{Verb} macro from the \code{fancyvrb} package
 while \code{pandoc} only supports the standard \code{verb} construction for
@@ -877,22 +935,25 @@ Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
  \item \code{BOOK} for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
+   "article" class (necessary if you apply chapter headings with 9 \code{=})
 
  \item \code{PALATINO} for the Palatino font
 
- \item \code{HELVETIA} for the Helvetica font
+ \item \code{HELVETICA} for the Helvetica font
 
  \item \code{A4PAPER} for A4 paper size
 
- \item \code{A6PAPER} for A6 paper size (suitable for reading on small devices)
+ \item \code{A6PAPER} for A6 paper size (suitable for reading PDFs on phones)
 
  \item \code{MOVIE15} for using the movie15 {\LaTeX} package to display movies
 
  \item \code{PREAMBLE} to turn the {\LaTeX} preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere - and note that
+   the preamble is only included
+   if the document has a title, author, and date)
 
- \item \code{MINTED} for inclusion of the minted package (which requires \code{latex}
+ \item \code{MINTED} for inclusion of the minted package for typesetting of
+   code with the Pygments tool (which requires \code{latex}
    or \code{pdflatex} to be run with the \code{-shell-escape} option)
 \end{itemize}
 
@@ -942,16 +1003,24 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the \code{doconce replace} and \code{doconce subst}
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are two examples:
+You will use \code{doconce replace} to edit \code{section{} to \code{section*{}:
 \bsys
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+\esys
+For fixing the line break of a title, you may pick a word in the
+title, say "Using", and insert a break after than word. With
+\code{doconce subst} this is easy employing regular expressions with
+a group before "Using" and a group after:
+
+\bsys
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 \esys
 A lot of tailored fixes to the {\LaTeX} document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
-generating PDF from the {\LaTeX} file.
+generating PDF from the {\LaTeX} file so the \code{doconce subst} or
+\code{doconce replace} commands can be put inside the script.
 
 \paragraph{Step 3.}
 Compile \code{mydoc.tex}
@@ -1093,41 +1162,122 @@ The \code{doconce sphinx_dir} command generates a script
 \code{automake_sphinx.py} for compiling the Sphinx document into an HTML
 document.  One can either run \code{automake_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the \code{automake_sphinx.py}
+file.
 
-The \code{doconce sphinx_dir} script copies directories named \code{figs} or
-\code{figures} over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake_sphinx.py} must be edited accordingly.  Files,
-to which there are local links (not \code{http:} or \code{file:} URLs), must be
-placed in the \code{_static} subdirectory of the Sphinx directory. The
-utility \code{doconce sphinxfix_localURLs} is run to check for local links
-in the Doconce file: for each such link, say \code{dir1/dir2/myfile.txt} it
-replaces the link by \code{_static/myfile.txt} and copies
-\code{dir1/dir2/myfile.txt} to a local \code{_static} directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in \code{_static} or lets a script
-do it automatically. The user must copy all \code{_static/*} files to the
-\code{_static} subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a \code{_static} or \code{_static-name} directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.
+\paragraph{Links.}
+The \code{automake_sphinx.py} script copies directories named \code{fig*}
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines \code{MOVIE:} and \code{FIGURE:}
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not \code{http:} or \code{file:} URLs) in
+a directory named \code{_static}. The \code{automake_sphinx.py} copies
+\code{_static*} to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.
 
-Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the \code{conf.py}
-configuration file for Sphinx is edited accordingly, and a script
+There is a utility \code{doconce sphinxfix_localURLs} for checking links to
+local files and moving the files to \code{_static} and changing the links
+accordingly. For example, a link to \code{dir1/dir2/myfile.txt} is changed
+to \code{_static/myfile.txt} and \code{myfile.txt} is copied to \code{_static}.
+However, I recommend instead that you manually copy
+files to \code{_static} when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.
+
+\paragraph{Themes.}
+Doconce comes with a rich collection of HTML themes for Sphinx documents,
+much larger than what is found in the standard Sphinx distribution.
+Additional themes include
+\code{agni},
+\code{basicstrap},
+\code{bootstrap},
+\code{cloud},
+\code{fenics},
+\code{fenics_minimal},
+\code{flask},
+\code{haiku},
+\code{impressjs},
+\code{jal},
+\code{pylons},
+\code{redcloud},
+\code{scipy_lectures},
+\code{slim-agogo}, and
+\code{vlinux-theme}.
+
+All the themes are packed out in the Sphinx directory, and the
+\code{doconce sphinx_dir} insert lots of extra code in the \code{conf.py}
+file to enable easy specification and customization of themes.
+For example, modules are loaded for the additional themes that
+come with Doconce, code is inserted to allow customization of
+the look and feel of themes, etc. The \code{conf.py} file is a
+good starting point for fine-tuning your favorite team, and your
+own \code{conf.py} file can later be supplied and used when running
+\code{doconce sphinx_dir}: simply add the command-line option
+\code{conf.py=conf.py}.
+
+A script
 \code{make-themes.sh} can make HTML documents with one or more themes.
 For example,
-to realize the themes \code{fenics} and \code{pyramid}, one writes
+to realize the themes \code{fenics}, \code{pyramid}, and \code{pylon} one writes
 \bsys
-Terminal> ./make-themes.sh fenics pyramid
+Terminal> ./make-themes.sh fenics pyramid pylon
 \esys
 The resulting directories with HTML documents are \code{_build/html_fenics}
 and \code{_build/html_pyramid}, respectively. Without arguments,
-\code{make-themes.sh} makes all available themes (!).
+\code{make-themes.sh} makes all available themes (!). With \code{make-themes.sh}
+it is easy to check out various themes to find the one that is most
+attractive for your document.
 
+You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+\code{theme_dir=path} on the command line, where \code{path} is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by \code{conf.py=path}, where \code{path} is the
+relative path to your \code{conf.py} file.
+
+\paragraph{Example.}
+Say you like the \code{scipy_lectures} theme, but you want
+a table of contents to appear \emph{to the right}, much in the same style
+as in the \code{default} theme (where the table of contents is to the left).
+You can then run \code{doconce sphinx_dir}, invoke a text editor with the
+\code{conf.py} file, find the line \code{html_theme == 'scipy_lectures'},
+edit the following \code{nosidebar} to \code{false} and \code{rightsidebar} to \code{true}.
+Alternatively, you may write a little script using \code{doconce replace}
+to replace a portion of text in \code{conf.py} by a new one:
+
+\bshpro
+doconce replace "elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'true',
+        'rightsidebar': 'false',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }" "elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'false',
+        'rightsidebar': 'true',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }" conf.py
+\eshpro
+Obviously, we could also have changed colors in the edit above.
+The final alternative is to save the edited \code{conf.py} file somewhere
+and reuse it the next time \code{doconce sphinx_dir} is run
+
+\bsys
+doconce sphinx_dir theme=scipy_lectures \
+                   conf.py=../some/path/conf.py mydoc
+\esys
+
+\paragraph{The manual Sphinx procedure.}
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file \code{mydoc.do.txt}.
@@ -1639,17 +1789,15 @@ The HTML, reST, and Sphinx formats can also treat filenames of the form
 is generated, and a link to this file is inserted in the output document.
 That is, a simple "movie viewer" for the frames is made.
 
-Many publish their scientific movies on YouTube, and Doconce recognizes
-YouTube URLs as movies. When the output from Doconce
+Many publish their scientific movies on YouTube or Vimeo, and Doconce recognizes
+YouTube and Vimeo URLs as movies. When the output from Doconce
 is an HTML file, the movie will
-be embedded, otherwise a URL to the YouTube page is inserted.
+be embedded, otherwise a URL to the YouTube or Vimeo page is inserted.
 You should equip the \code{MOVIE:} command with the right width and height
-of \emph{embedded} YouTube movies. The recipe goes as follows:
+of \emph{embedded} YouTube and Vimeo movies. The recipe goes as follows:
 
 \begin{enumerate}
-\item click on \emph{Share} and then \emph{Embed}
-
-\item copy the URL for the embedded movie
+\item click on \emph{Share} (and on YouTube then \emph{Embed})
 
 \item note the height and width of the embedded movie
 \end{enumerate}
@@ -1658,10 +1806,13 @@ of \emph{embedded} YouTube movies. The recipe goes as follows:
 A typical \code{MOVIE} command with a YouTube movie is then
 
 \bccq
-MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 height=315]
+MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Computational fluid dynamics movie.
 \eccq
-Doconce will be able to embed standard YouTube URLs also, but then
-the width and height might be inappropriate.
+Note that there must be a blank line after every \code{MOVIE:} command.
+The width and height parameters are not required, but leaving them out
+may lead to movie sizes you do not want.
 
 \subsection{Copying Computer Code from Source Files}
 

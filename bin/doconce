@@ -689,11 +689,23 @@ elif html_theme == 'bootstrap':
     }
 
 elif html_theme == 'scipy_lectures':
+    # inherits the default theme and has all those options
+    # set rightsidebar to true and nodesidebar to true to get
+    # sidebar with the matching colors
     html_theme_options = {
         'nosidebar': 'true',
+        'rightsidebar': 'false',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
         'footerbgcolor': '#000000',
         'relbarbgcolor': '#000000',
     }
+
+elif html_theme == 'cbc':
+    pygments_style = "friendly"
+    html_logo = "cbc_logo.png"
+
 
 
 

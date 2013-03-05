@@ -1,3 +1,5 @@
+.. This file has extension .txt to avoid translation during sphinx build.
+
 .. https://bitbucket.org/ecollins/cloud_sptheme/src/3aaf8776f1bd8d7aa785bfab78b8ffdaff04db67/docs/cloud_theme.rst?at=default
 
 .. index:: cloud; sphinx theme, sphinx theme; cloud

@@ -1,3 +1,5 @@
+.. This file has extension .txt to avoid translation during sphinx build.
+
 ==============
 How To Install
 ==============

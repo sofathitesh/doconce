@@ -986,6 +986,7 @@ following points are important:
  * Place index entries (`idx{keyword}`) before the paragraph where they
    are introduced (not inside the text). Also place index entries before
    `===` headings.
+ * Use labels only right after section headings and in equations.
  * Be careful with labels in `align` math environments: `pandoc`
    and `mwiki` cannot refer to them.
  * Always have a line of running text before a code snippet or program.

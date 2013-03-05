@@ -3,7 +3,7 @@
 # formats to exemplify how different formats may look like.
 # This is both a test of Doconce and an example.
 
-./clean.sh
+sh -x ./clean.sh
 echo; echo # Make space in output after deleting many files...
 
 # The following packages must be installed for this script to run:
