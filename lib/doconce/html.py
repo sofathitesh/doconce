@@ -1074,8 +1074,37 @@ def define(FILENAME_EXTENSION,
     else:
         css = css_blueish # default
 
+    # Fonts
+    body_font_family = option('html-body-font=', None)
+    heading_font_family = option('html-heading-font=', None)
+    google_fonts = ('Patrick+Hand+SC', 'Molle:400italic', 'Happy+Monkey',
+                    'Roboto+Condensed', 'Fenix', 'Yesteryear',
+                    'Clicker+Script', 'Stalemate',
+                    'Herr+Von+Muellerhoff', 'Sacramento',
+                    'Architects+Daughter', 'Kotta+One',)
+    if body_font_family == '?' or body_font_family == 'help' or \
+       heading_font_family == '?' or heading_font_family == 'help':
+        print ' '.join(google_fonts)
+        sys.exit(1)
+    link = "@import url(http://fonts.googleapis.com/css?family=%s);"
+    import_body_font = ''
+    if body_font_family is not None:
+        if body_font_family in google_fonts:
+            import_body_font = link % body_font_family
+    import_heading_font = ''
+    if heading_font_family is not None:
+        if heading_font_family in google_fonts:
+            import_heading_font = link % heading_font_family
+    css = '    ' + '\n    '.join([import_body_font, import_heading_font]) + '\n' + css
+    if body_font_family is not None:
+        css = re.sub(r'font-family:.+;',
+                     "font-family: '%s';" % body_font_family.replace('+', ' '),
+                     css)
+    if heading_font_family is not None:
+        css += "\n    h1, h2, h3 { font-family: '%s'; }\n" % heading_font_family.replace('+', ' ')
+
     # Need to add admon_styles?
-    admons = 'quote', 'notice', 'summary', 'warning', 'question'
+    admons = 'hint', 'notice', 'summary', 'warning', 'question'
     for admon in admons:
         if '!b'+admon in filestr and '!e'+admon in filestr:
             css += admon_styles

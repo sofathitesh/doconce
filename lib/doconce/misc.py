@@ -36,6 +36,10 @@ such that the verbatim environments become like
     ('--html-template=',
      """Specify an HTML template with header/footer in which the doconce
 document is embedded."""),
+    ('--html-body-font=',
+     """Specify HTML font for text body. =? lists available Google fonts."""),
+    ('--html-heading-font=',
+     """Specify HTML font for headings. =? lists available Google fonts."""),
     ('--html-slide-theme=',
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
