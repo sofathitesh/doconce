@@ -121,7 +121,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Feb 23, 2013
+Mar 5, 2013
 \end{center}
 
 \vspace{1cm}
@@ -495,6 +495,29 @@ or just
 Terminal> doconce format format mydoc
 \end{Verbatim}
 
+\subsection{Generating a makefile}
+
+Producing HTML, Sphinx, and in particular {\LaTeX} documents from
+Doconce sources requires a few commands. Often you want to
+produce several different formats. The relevant commands should
+then be placed in a script that acts as a "makefile".
+
+The \Verb!doconce makefile! can be used to automatically generate
+such a makefile, more precisely a Bash script \Verb!make.sh!, which
+carries out the commands explained below. If our Doconce source
+is in \Verb!main_myproj.do.txt!, we run
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+doconce makefile main_myproj html pdflatex sphinx
+\end{Verbatim}
+to produce the necessary output for generating HTML, \textsc{pdf}{\LaTeX}, and
+Sphinx. Usually, you need to edit \Verb!make.sh! to really fit your
+needs. Some examples lines are inserted as comments to show
+various options that can be added to the basic commands.
+A handy feature of the generated \Verb!make.sh! script is that it
+inserts checks for successful runs of the \Verb!doconce format! commands,
+and if something goes wrong, the \Verb!make.sh! exits.
+
 \subsection{Preprocessing}
 
 The \Verb!preprocess! and \Verb!mako! programs are used to preprocess the
@@ -512,8 +535,6 @@ format specific actions through tests like \Verb!#if FORMAT == "latex"!
 
 \subsection{Removal of inline comments}
 
-% mention notes also
-
 The command-line arguments \Verb!--no-preprocess! and \Verb!--no-mako! turn off
 running \Verb!preprocess! and \Verb!mako!, respectively.
 
@@ -528,6 +549,25 @@ Terminal> doconce remove_inline_comments mydoc
 \end{Verbatim}
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
+
+\subsection{Notes}
+
+Doconce does not have a tag for longer notes, because implementation
+of a "notes feature" is so easy using the \Verb!preprocess! or \Verb!mako!
+programs. Just introduce some variable, say \Verb!NOTES!, that you define
+through \Verb!-DNOTES! (or not) when running \Verb!doconce format ...!. Inside
+the document you place your notes between \Verb!# #ifdef NOTES! and
+\Verb!# #endif! preprocess tags. Alternatively you use \Verb!% if NOTES:!
+and \Verb!% endif! that \Verb!mako! will recognize. In the same way you may
+encapsulate unfinished material, extra material to be removed
+for readers but still nice to archive as part of the document for
+future revisions.
+
+\subsection{Demo of different formats}
+
+A simple scientific report is available in \href{{http://hplgit.github.com/teamods/writing_reports/doconce_commands.html}}{a lot of different formats}.
+How to create the different formats is explained in more depth
+in the coming sections.
 
 \subsection{HTML}
 
@@ -599,15 +639,24 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (\Verb!blogger.com! or
-\Verb!blogname.blogspot.com!)
-is particularly well suited since it also allows extensive {\LaTeX} mathematics via
-MathJax.
-Write the blog text as a Doconce document without any title, author, and
-date. Then generate HTML as described above. Copy the text and paste it
-into the text area in the blog, making sure the input format is HTML.
-On Google's Blogger service you can use Doconce to generate blogs with
-{\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
-See a \href{{http://doconce.blogspot.no}}{blog example} for details on blogging.
+\Verb!blogname.blogspot.com!) is particularly well suited since it also
+allows extensive {\LaTeX} mathematics via MathJax.
+
+\begin{enumerate}
+\item Write the blog text as a Doconce document without any
+   title, author, and date.
+
+\item Generate HTML as described above.
+
+\item Copy the text and paste it into the
+   text area in the blog (just delete the HTML code that initially
+   pops up in the text area). Make sure the input format is HTML.
+\end{enumerate}
+
+\noindent
+See a \href{{http://doconce.blogspot.no}}{simple blog example} and
+a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
+for demonstrations of blogs at \Verb!blogspot.no!.
 
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
@@ -627,8 +676,9 @@ but has very limited
 {\LaTeX} support, basically only formulas. The \Verb!--wordpress! option to
 \Verb!doconce! modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
-There is a \href{{http://doconce.wordpress.com}}{doconce example}
-on blogging with mathematics and code on WordPress.
+Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
+and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
+to see blogging with mathematics and code on WordPress.
 
 \subsection{Pandoc and Markdown}
 
@@ -646,13 +696,20 @@ Word), \Verb!rtf!, \Verb!texinfo!, to mention some. The \Verb!-R! option makes
 Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it,
 while the \Verb!--toc! option generates a table of contents.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
-for the many features of the \Verb!pandoc! program.
+for the many features of the \Verb!pandoc! program. The HTML output from
+\Verb!pandoc! needs adjustments to provide full support for MathJax {\LaTeX}
+mathematics, and for this purpose one should use \Verb!doconce md2html!:
 
-Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-\Verb!doconce format pandoc! and then translating using \Verb!pandoc!, or
-\Verb!doconce format latex!, and then going from {\LaTeX} to the desired format
-using \Verb!pandoc!.
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce format pandoc mydoc
+Terminal> doconce m2html mydoc
+\end{Verbatim}
+The result \Verb!mydoc.html! can be viewed in a browser.
+
+Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): \Verb!doconce format pandoc! and then translating using \Verb!doconce md2latex! (which runs \Verb!pandoc!), or \Verb!doconce format latex!, and then
+going from {\LaTeX} to the desired format using \Verb!pandoc!.
 Here is an example on the latter strategy:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Terminal> doconce format latex mydoc
@@ -660,8 +717,8 @@ Terminal> doconce ptex2tex mydoc
 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \end{Verbatim}
-When we go through \Verb!pandoc!, only single equations or \Verb!align*!
-environments are well understood.
+When we go through \Verb!pandoc!, only single equations, \Verb!align!, or \Verb!align*!
+environments are well understood for output to HTML.
 
 Note that Doconce applies the \Verb!Verb! macro from the \Verb!fancyvrb! package
 while \Verb!pandoc! only supports the standard \Verb!verb! construction for
@@ -732,22 +789,25 @@ Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
  \item \Verb!BOOK! for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
+   "article" class (necessary if you apply chapter headings with 9 \Verb!=!)
 
  \item \Verb!PALATINO! for the Palatino font
 
- \item \Verb!HELVETIA! for the Helvetica font
+ \item \Verb!HELVETICA! for the Helvetica font
 
  \item \Verb!A4PAPER! for A4 paper size
 
- \item \Verb!A6PAPER! for A6 paper size (suitable for reading on small devices)
+ \item \Verb!A6PAPER! for A6 paper size (suitable for reading PDFs on phones)
 
  \item \Verb!MOVIE15! for using the movie15 {\LaTeX} package to display movies
 
  \item \Verb!PREAMBLE! to turn the {\LaTeX} preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere - and note that
+   the preamble is only included
+   if the document has a title, author, and date)
 
- \item \Verb!MINTED! for inclusion of the minted package (which requires \Verb!latex!
+ \item \Verb!MINTED! for inclusion of the minted package for typesetting of
+   code with the Pygments tool (which requires \Verb!latex!
    or \Verb!pdflatex! to be run with the \Verb!-shell-escape! option)
 \end{itemize}
 
@@ -797,16 +857,24 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the \Verb!doconce replace! and \Verb!doconce subst!
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are two examples:
+You will use \Verb!doconce replace! to edit \Verb!section{! to \Verb!section*{!:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+\end{Verbatim}
+For fixing the line break of a title, you may pick a word in the
+title, say "Using", and insert a break after than word. With
+\Verb!doconce subst! this is easy employing regular expressions with
+a group before "Using" and a group after:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 \end{Verbatim}
 A lot of tailored fixes to the {\LaTeX} document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
-generating PDF from the {\LaTeX} file.
+generating PDF from the {\LaTeX} file so the \Verb!doconce subst! or
+\Verb!doconce replace! commands can be put inside the script.
 
 \paragraph{Step 3.}
 Compile \Verb!mydoc.tex!
@@ -948,41 +1016,122 @@ The \Verb!doconce sphinx_dir! command generates a script
 \Verb!automake_sphinx.py! for compiling the Sphinx document into an HTML
 document.  One can either run \Verb!automake_sphinx.py! or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the \Verb!automake_sphinx.py!
+file.
 
-The \Verb!doconce sphinx_dir! script copies directories named \Verb!figs! or
-\Verb!figures! over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, \Verb!automake_sphinx.py! must be edited accordingly.  Files,
-to which there are local links (not \Verb!http:! or \Verb!file:! URLs), must be
-placed in the \Verb!_static! subdirectory of the Sphinx directory. The
-utility \Verb!doconce sphinxfix_localURLs! is run to check for local links
-in the Doconce file: for each such link, say \Verb!dir1/dir2/myfile.txt! it
-replaces the link by \Verb!_static/myfile.txt! and copies
-\Verb!dir1/dir2/myfile.txt! to a local \Verb!_static! directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in \Verb!_static! or lets a script
-do it automatically. The user must copy all \Verb!_static/*! files to the
-\Verb!_static! subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a \Verb!_static! or \Verb!_static-name! directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.
+\paragraph{Links.}
+The \Verb!automake_sphinx.py! script copies directories named \Verb!fig*!
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines \Verb!MOVIE:! and \Verb!FIGURE:!
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not \Verb!http:! or \Verb!file:! URLs) in
+a directory named \Verb!_static!. The \Verb!automake_sphinx.py! copies
+\Verb!_static*! to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.
 
-Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the \Verb!conf.py!
-configuration file for Sphinx is edited accordingly, and a script
+There is a utility \Verb!doconce sphinxfix_localURLs! for checking links to
+local files and moving the files to \Verb!_static! and changing the links
+accordingly. For example, a link to \Verb!dir1/dir2/myfile.txt! is changed
+to \Verb!_static/myfile.txt! and \Verb!myfile.txt! is copied to \Verb!_static!.
+However, I recommend instead that you manually copy
+files to \Verb!_static! when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.
+
+\paragraph{Themes.}
+Doconce comes with a rich collection of HTML themes for Sphinx documents,
+much larger than what is found in the standard Sphinx distribution.
+Additional themes include
+\Verb!agni!,
+\Verb!basicstrap!,
+\Verb!bootstrap!,
+\Verb!cloud!,
+\Verb!fenics!,
+\Verb!fenics_minimal!,
+\Verb!flask!,
+\Verb!haiku!,
+\Verb!impressjs!,
+\Verb!jal!,
+\Verb!pylons!,
+\Verb!redcloud!,
+\Verb!scipy_lectures!,
+\Verb!slim-agogo!, and
+\Verb!vlinux-theme!.
+
+All the themes are packed out in the Sphinx directory, and the
+\Verb!doconce sphinx_dir! insert lots of extra code in the \Verb!conf.py!
+file to enable easy specification and customization of themes.
+For example, modules are loaded for the additional themes that
+come with Doconce, code is inserted to allow customization of
+the look and feel of themes, etc. The \Verb!conf.py! file is a
+good starting point for fine-tuning your favorite team, and your
+own \Verb!conf.py! file can later be supplied and used when running
+\Verb!doconce sphinx_dir!: simply add the command-line option
+\Verb!conf.py=conf.py!.
+
+A script
 \Verb!make-themes.sh! can make HTML documents with one or more themes.
 For example,
-to realize the themes \Verb!fenics! and \Verb!pyramid!, one writes
+to realize the themes \Verb!fenics!, \Verb!pyramid!, and \Verb!pylon! one writes
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-Terminal> ./make-themes.sh fenics pyramid
+Terminal> ./make-themes.sh fenics pyramid pylon
 \end{Verbatim}
 The resulting directories with HTML documents are \Verb!_build/html_fenics!
 and \Verb!_build/html_pyramid!, respectively. Without arguments,
-\Verb!make-themes.sh! makes all available themes (!).
+\Verb!make-themes.sh! makes all available themes (!). With \Verb!make-themes.sh!
+it is easy to check out various themes to find the one that is most
+attractive for your document.
 
+You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+\Verb!theme_dir=path! on the command line, where \Verb!path! is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by \Verb!conf.py=path!, where \Verb!path! is the
+relative path to your \Verb!conf.py! file.
+
+\paragraph{Example.}
+Say you like the \Verb!scipy_lectures! theme, but you want
+a table of contents to appear \emph{to the right}, much in the same style
+as in the \Verb!default! theme (where the table of contents is to the left).
+You can then run \Verb!doconce sphinx_dir!, invoke a text editor with the
+\Verb!conf.py! file, find the line \Verb!html_theme == 'scipy_lectures'!,
+edit the following \Verb!nosidebar! to \Verb!false! and \Verb!rightsidebar! to \Verb!true!.
+Alternatively, you may write a little script using \Verb!doconce replace!
+to replace a portion of text in \Verb!conf.py! by a new one:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+doconce replace "elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'true',
+        'rightsidebar': 'false',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }" "elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'false',
+        'rightsidebar': 'true',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }" conf.py
+\end{Verbatim}
+Obviously, we could also have changed colors in the edit above.
+The final alternative is to save the edited \Verb!conf.py! file somewhere
+and reuse it the next time \Verb!doconce sphinx_dir! is run
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+doconce sphinx_dir theme=scipy_lectures \
+                   conf.py=../some/path/conf.py mydoc
+\end{Verbatim}
+
+\paragraph{The manual Sphinx procedure.}
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file \Verb!mydoc.do.txt!.
@@ -1470,17 +1619,15 @@ The HTML, reST, and Sphinx formats can also treat filenames of the form
 is generated, and a link to this file is inserted in the output document.
 That is, a simple "movie viewer" for the frames is made.
 
-Many publish their scientific movies on YouTube, and Doconce recognizes
-YouTube URLs as movies. When the output from Doconce
+Many publish their scientific movies on YouTube or Vimeo, and Doconce recognizes
+YouTube and Vimeo URLs as movies. When the output from Doconce
 is an HTML file, the movie will
-be embedded, otherwise a URL to the YouTube page is inserted.
+be embedded, otherwise a URL to the YouTube or Vimeo page is inserted.
 You should equip the \Verb!MOVIE:! command with the right width and height
-of \emph{embedded} YouTube movies. The recipe goes as follows:
+of \emph{embedded} YouTube and Vimeo movies. The recipe goes as follows:
 
 \begin{enumerate}
-\item click on \emph{Share} and then \emph{Embed}
-
-\item copy the URL for the embedded movie
+\item click on \emph{Share} (and on YouTube then \emph{Embed})
 
 \item note the height and width of the embedded movie
 \end{enumerate}
@@ -1489,10 +1636,13 @@ of \emph{embedded} YouTube movies. The recipe goes as follows:
 A typical \Verb!MOVIE! command with a YouTube movie is then
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 height=315]
+MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Computational fluid dynamics movie.
 \end{Verbatim}
-Doconce will be able to embed standard YouTube URLs also, but then
-the width and height might be inappropriate.
+Note that there must be a blank line after every \Verb!MOVIE:! command.
+The width and height parameters are not required, but leaving them out
+may lead to movie sizes you do not want.
 
 \subsection{Copying Computer Code from Source Files}
 

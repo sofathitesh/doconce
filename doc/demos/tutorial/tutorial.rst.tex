@@ -5,6 +5,7 @@
 \usepackage{ifthen}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{color}
 \usepackage{longtable,ltcaption,array}
 \setlength{\extrarowheight}{2pt}
 \newlength{\DUtablewidth} % internal use in tables
@@ -77,7 +78,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Feb 23, 2013
+Mar 5, 2013
 %
 \begin{itemize}
 
@@ -530,6 +531,38 @@ Terminal>~doconce~format~format~mydoc
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
+  Generating a makefile%
+  \addcontentsline{toc}{subsection}{Generating a makefile}%
+  \label{generating-a-makefile}%
+}
+
+Producing HTML, Sphinx, and in particular LaTeX documents from
+Doconce sources requires a few commands. Often you want to
+produce several different formats. The relevant commands should
+then be placed in a script that acts as a ``makefile''.
+
+The \texttt{doconce makefile} can be used to automatically generate
+such a makefile, more precisely a Bash script \texttt{make.sh}, which
+carries out the commands explained below. If our Doconce source
+is in \texttt{main\_myproj.do.txt}, we run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+doconce~makefile~main\_myproj~html~pdflatex~sphinx
+}
+\end{quote}
+
+to produce the necessary output for generating HTML, pdfLaTeX, and
+Sphinx. Usually, you need to edit \texttt{make.sh} to really fit your
+needs. Some examples lines are inserted as comments to show
+various options that can be added to the basic commands.
+A handy feature of the generated \texttt{make.sh} script is that it
+inserts checks for successful runs of the \texttt{doconce format} commands,
+and if something goes wrong, the \texttt{make.sh} exits.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
   Preprocessing%
   \addcontentsline{toc}{subsection}{Preprocessing}%
   \label{preprocessing}%
@@ -560,8 +593,6 @@ format specific actions through tests like \texttt{\#if FORMAT == "latex"}
   \label{removal-of-inline-comments}%
 }
 
-% mention notes also
-
 The command-line arguments \texttt{-{}-no-preprocess} and \texttt{-{}-no-mako} turn off
 running \texttt{preprocess} and \texttt{mako}, respectively.
 
@@ -582,6 +613,39 @@ Terminal>~doconce~remove\_inline\_comments~mydoc
 
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Notes%
+  \addcontentsline{toc}{subsection}{Notes}%
+  \label{notes}%
+}
+
+Doconce does not have a tag for longer notes, because implementation
+of a ``notes feature'' is so easy using the \texttt{preprocess} or \texttt{mako}
+programs. Just introduce some variable, say \texttt{NOTES}, that you define
+through \texttt{-DNOTES} (or not) when running \texttt{doconce format ...}. Inside
+the document you place your notes between \texttt{\# \#ifdef NOTES} and
+\texttt{\# \#endif} preprocess tags. Alternatively you use \texttt{\% if NOTES:}
+and \texttt{\% endif} that \texttt{mako} will recognize. In the same way you may
+encapsulate unfinished material, extra material to be removed
+for readers but still nice to archive as part of the document for
+future revisions.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Demo of different formats%
+  \addcontentsline{toc}{subsection}{Demo of different formats}%
+  \label{demo-of-different-formats}%
+}
+
+A simple scientific report is available in \href{http://hplgit.github.com/teamods/writing_reports/doconce_commands.html}{a lot of different formats}.
+How to create the different formats is explained in more depth
+in the coming sections.
 
 
 %___________________________________________________________________________
@@ -677,15 +741,28 @@ Terminal>~doconce~format~html~mydoc~-{}-html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (\texttt{blogger.com} or
-\texttt{blogname.blogspot.com})
-is particularly well suited since it also allows extensive LaTeX mathematics via
-MathJax.
-Write the blog text as a Doconce document without any title, author, and
-date. Then generate HTML as described above. Copy the text and paste it
-into the text area in the blog, making sure the input format is HTML.
-On Google's Blogger service you can use Doconce to generate blogs with
-LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See a \href{http://doconce.blogspot.no}{blog example} for details on blogging.
+\texttt{blogname.blogspot.com}) is particularly well suited since it also
+allows extensive LaTeX mathematics via MathJax.
+\setcounter{listcnt0}{0}
+\begin{list}{\arabic{listcnt0}.}
+{
+\usecounter{listcnt0}
+\setlength{\rightmargin}{\leftmargin}
+}
+
+\item Write the blog text as a Doconce document without any
+title, author, and date.
+
+\item Generate HTML as described above.
+
+\item Copy the text and paste it into the
+text area in the blog (just delete the HTML code that initially
+pops up in the text area). Make sure the input format is HTML.
+\end{list}
+
+See a \href{http://doconce.blogspot.no}{simple blog example} and
+a \href{http://doconce-report-demo.blogspot.no/}{scientific report}
+for demonstrations of blogs at \texttt{blogspot.no}.
 
 \DUadmonition[warning]{
 \DUtitle[warning]{Warning}
@@ -694,13 +771,24 @@ In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 }
 
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+
+
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~331
+
+\hyperlink{id2}{
+Duplicate explicit target name: ``scientific report''.
+}}
+
 WordPress (\texttt{wordpress.com}) allows raw HTML code in blogs,
 but has very limited
 LaTeX support, basically only formulas. The \texttt{-{}-wordpress} option to
 \texttt{doconce} modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
-There is a \href{http://doconce.wordpress.com}{doconce example}
-on blogging with mathematics and code on WordPress.
+Look at a \href{http://doconce.wordpress.com}{simple doconce example}
+and a \href{http://doconcereportdemo.wordpress.com/}{scientific report}
+to see blogging with mathematics and code on WordPress.
 
 
 %___________________________________________________________________________
@@ -731,13 +819,23 @@ Word), \texttt{rtf}, \texttt{texinfo}, to mention some. The \texttt{-R} option m
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
 while the \texttt{-{}-toc} option generates a table of contents.
 See the \href{http://johnmacfarlane.net/pandoc/README.html}{Pandoc documentation}
-for the many features of the \texttt{pandoc} program.
+for the many features of the \texttt{pandoc} program. The HTML output from
+\texttt{pandoc} needs adjustments to provide full support for MathJax LaTeX
+mathematics, and for this purpose one should use \texttt{doconce md2html}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~pandoc~mydoc\\
+Terminal>~doconce~m2html~mydoc
+}
+\end{quote}
 
-Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-\texttt{doconce format pandoc} and then translating using \texttt{pandoc}, or
-\texttt{doconce format latex}, and then going from LaTeX to the desired format
-using \texttt{pandoc}.
+The result \texttt{mydoc.html} can be viewed in a browser.
+
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): \texttt{doconce format pandoc} and then translating using \texttt{doconce
+md2latex} (which runs \texttt{pandoc}), or \texttt{doconce format latex}, and then
+going from LaTeX to the desired format using \texttt{pandoc}.
 Here is an example on the latter strategy:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -748,8 +846,8 @@ Terminal>~pandoc~-f~latex~-t~docx~-o~mydoc.docx~mydoc.tex
 }
 \end{quote}
 
-When we go through \texttt{pandoc}, only single equations or \texttt{align*}
-environments are well understood.
+When we go through \texttt{pandoc}, only single equations, \texttt{align}, or \texttt{align*}
+environments are well understood for output to HTML.
 
 Note that Doconce applies the \texttt{Verb} macro from the \texttt{fancyvrb} package
 while \texttt{pandoc} only supports the standard \texttt{verb} construction for
@@ -778,7 +876,7 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 \subsection*{\phantomsection%
   LaTeX%
   \addcontentsline{toc}{subsection}{LaTeX}%
-  \label{id2}%
+  \label{id3}%
 }
 
 Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two steps:
@@ -845,22 +943,25 @@ Preprocessor variables to be defined or undefined are
 \begin{itemize}
 
 \item \texttt{BOOK} for the ``book'' documentclass rather than the standard
-``article'' class (necessary if you apply chapter headings)
+``article'' class (necessary if you apply chapter headings with 9 \texttt{=})
 
 \item \texttt{PALATINO} for the Palatino font
 
-\item \texttt{HELVETIA} for the Helvetica font
+\item \texttt{HELVETICA} for the Helvetica font
 
 \item \texttt{A4PAPER} for A4 paper size
 
-\item \texttt{A6PAPER} for A6 paper size (suitable for reading on small devices)
+\item \texttt{A6PAPER} for A6 paper size (suitable for reading PDFs on phones)
 
 \item \texttt{MOVIE15} for using the movie15 LaTeX package to display movies
 
 \item \texttt{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
-or document to be included elsewhere)
+or document to be included elsewhere - and note that
+the preamble is only included
+if the document has a title, author, and date)
 
-\item \texttt{MINTED} for inclusion of the minted package (which requires \texttt{latex}
+\item \texttt{MINTED} for inclusion of the minted package for typesetting of
+code with the Pygments tool (which requires \texttt{latex}
 or \texttt{pdflatex} to be run with the \texttt{-shell-escape} option)
 
 \end{itemize}
@@ -913,10 +1014,19 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the \texttt{doconce replace} and \texttt{doconce subst}
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are two examples:
+You will use \texttt{doconce replace} to edit \texttt{section\{} to \texttt{section*\{}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~replace~'section\{'~'section*\{'~mydoc.tex\\
+Terminal>~doconce~replace~'section\{'~'section*\{'~mydoc.tex
+}
+\end{quote}
+
+For fixing the line break of a title, you may pick a word in the
+title, say ``Using'', and insert a break after than word. With
+\texttt{doconce subst} this is easy employing regular expressions with
+a group before ``Using'' and a group after:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~subst~'title\textbackslash{}\{(.+)Using~(.+)\textbackslash{}\}'~\textbackslash{}\\
 ~~~~~~~~~~'title\{\textbackslash{}g<1>~\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}~{[}1.5mm{]}~Using~\textbackslash{}g<2>'~mydoc.tex
 }
@@ -925,7 +1035,8 @@ Terminal>~doconce~subst~'title\textbackslash{}\{(.+)Using~(.+)\textbackslash{}\}
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
-generating PDF from the LaTeX file.
+generating PDF from the LaTeX file so the \texttt{doconce subst} or
+\texttt{doconce replace} commands can be put inside the script.
 
 \emph{Step 3.} Compile \texttt{mydoc.tex}
 and create the PDF file:
@@ -1020,7 +1131,7 @@ Terminal>~doconce~format~plain~mydoc.do.txt~~\#~results~in~mydoc.txt
 \subsection*{\phantomsection%
   reStructuredText%
   \addcontentsline{toc}{subsection}{reStructuredText}%
-  \label{id3}%
+  \label{id4}%
 }
 
 Going from Doconce to reStructuredText gives a lot of possibilities to
@@ -1091,7 +1202,7 @@ Some links for going from LaTeX to Word are listed below.
 \subsection*{\phantomsection%
   Sphinx%
   \addcontentsline{toc}{subsection}{Sphinx}%
-  \label{id4}%
+  \label{id5}%
 }
 
 Sphinx documents demand quite some steps in their creation. We have automated
@@ -1128,43 +1239,132 @@ The \texttt{doconce sphinx\_dir} command generates a script
 \texttt{automake\_sphinx.py} for compiling the Sphinx document into an HTML
 document.  One can either run \texttt{automake\_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the \texttt{automake\_sphinx.py}
+file.
 
-The \texttt{doconce sphinx\_dir} script copies directories named \texttt{figs} or
-\texttt{figures} over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, \texttt{automake\_sphinx.py} must be edited accordingly.  Files,
-to which there are local links (not \texttt{http:} or \texttt{file:} URLs), must be
-placed in the \texttt{\_static} subdirectory of the Sphinx directory. The
-utility \texttt{doconce sphinxfix\_localURLs} is run to check for local links
-in the Doconce file: for each such link, say \texttt{dir1/dir2/myfile.txt} it
-replaces the link by \texttt{\_static/myfile.txt} and copies
-\texttt{dir1/dir2/myfile.txt} to a local \texttt{\_static} directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in \texttt{\_static} or lets a script
-do it automatically. The user must copy all \texttt{\_static/*} files to the
-\texttt{\_static} subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a \texttt{\_static} or \texttt{\_static-name} directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.
+\emph{Links.} The \texttt{automake\_sphinx.py} script copies directories named \texttt{fig*}
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines \texttt{MOVIE:} and \texttt{FIGURE:}
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not \texttt{http:} or \texttt{file:} URLs) in
+a directory named \texttt{\_static}. The \texttt{automake\_sphinx.py} copies
+\texttt{\_static*} to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.
 
-Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the \texttt{conf.py}
-configuration file for Sphinx is edited accordingly, and a script
+There is a utility \texttt{doconce sphinxfix\_localURLs} for checking links to
+local files and moving the files to \texttt{\_static} and changing the links
+accordingly. For example, a link to \texttt{dir1/dir2/myfile.txt} is changed
+to \texttt{\_static/myfile.txt} and \texttt{myfile.txt} is copied to \texttt{\_static}.
+However, I recommend instead that you manually copy
+files to \texttt{\_static} when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.
+
+\emph{Themes.} Doconce comes with a rich collection of HTML themes for Sphinx documents,
+much larger than what is found in the standard Sphinx distribution.
+Additional themes include
+\texttt{agni},
+\texttt{basicstrap},
+\texttt{bootstrap},
+\texttt{cloud},
+\texttt{fenics},
+\texttt{fenics\_minimal},
+\texttt{flask},
+\texttt{haiku},
+\texttt{impressjs},
+\texttt{jal},
+\texttt{pylons},
+\texttt{redcloud},
+\texttt{scipy\_lectures},
+\texttt{slim-agogo}, and
+\texttt{vlinux-theme}.
+
+All the themes are packed out in the Sphinx directory, and the
+\texttt{doconce sphinx\_dir} insert lots of extra code in the \texttt{conf.py}
+file to enable easy specification and customization of themes.
+For example, modules are loaded for the additional themes that
+come with Doconce, code is inserted to allow customization of
+the look and feel of themes, etc. The \texttt{conf.py} file is a
+good starting point for fine-tuning your favorite team, and your
+own \texttt{conf.py} file can later be supplied and used when running
+\texttt{doconce sphinx\_dir}: simply add the command-line option
+\texttt{conf.py=conf.py}.
+
+A script
 \texttt{make-themes.sh} can make HTML documents with one or more themes.
 For example,
-to realize the themes \texttt{fenics} and \texttt{pyramid}, one writes:
+to realize the themes \texttt{fenics}, \texttt{pyramid}, and \texttt{pylon} one writes:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~./make-themes.sh~fenics~pyramid
+Terminal>~./make-themes.sh~fenics~pyramid~pylon
 }
 \end{quote}
 
 The resulting directories with HTML documents are \texttt{\_build/html\_fenics}
 and \texttt{\_build/html\_pyramid}, respectively. Without arguments,
-\texttt{make-themes.sh} makes all available themes (!).
+\texttt{make-themes.sh} makes all available themes (!). With \texttt{make-themes.sh}
+it is easy to check out various themes to find the one that is most
+attractive for your document.
+
+You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+\texttt{theme\_dir=path} on the command line, where \texttt{path} is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by \texttt{conf.py=path}, where \texttt{path} is the
+relative path to your \texttt{conf.py} file.
+
+\emph{Example.} Say you like the \texttt{scipy\_lectures} theme, but you want
+a table of contents to appear \emph{to the right}, much in the same style
+as in the \texttt{default} theme (where the table of contents is to the left).
+You can then run \texttt{doconce sphinx\_dir}, invoke a text editor with the
+\texttt{conf.py} file, find the line \texttt{html\_theme == 'scipy\_lectures'},
+edit the following \texttt{nosidebar} to \texttt{false} and \texttt{rightsidebar} to \texttt{true}.
+Alternatively, you may write a little script using \texttt{doconce replace}
+to replace a portion of text in \texttt{conf.py} by a new one:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+doconce~replace~"elif~html\_theme~==~'scipy\_lectures':\\
+~~~~html\_theme\_options~=~\{\\
+~~~~~~~~'nosidebar':~'true',\\
+~~~~~~~~'rightsidebar':~'false',\\
+~~~~~~~~'sidebarbgcolor':~'\#f2f2f2',\\
+~~~~~~~~'sidebartextcolor':~'\#20435c',\\
+~~~~~~~~'sidebarlinkcolor':~'\#20435c',\\
+~~~~~~~~'footerbgcolor':~'\#000000',\\
+~~~~~~~~'relbarbgcolor':~'\#000000',\\
+~~~~\}"~"elif~html\_theme~==~'scipy\_lectures':\\
+~~~~html\_theme\_options~=~\{\\
+~~~~~~~~'nosidebar':~'false',\\
+~~~~~~~~'rightsidebar':~'true',\\
+~~~~~~~~'sidebarbgcolor':~'\#f2f2f2',\\
+~~~~~~~~'sidebartextcolor':~'\#20435c',\\
+~~~~~~~~'sidebarlinkcolor':~'\#20435c',\\
+~~~~~~~~'footerbgcolor':~'\#000000',\\
+~~~~~~~~'relbarbgcolor':~'\#000000',\\
+~~~~\}"~conf.py
+}
+\end{quote}
+
+Obviously, we could also have changed colors in the edit above.
+The final alternative is to save the edited \texttt{conf.py} file somewhere
+and reuse it the next time \texttt{doconce sphinx\_dir} is run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+doconce~sphinx\_dir~theme=scipy\_lectures~\textbackslash{}\\
+~~~~~~~~~~~~~~~~~~~conf.py=../some/path/conf.py~mydoc
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  The manual Sphinx procedure%
+  \addcontentsline{toc}{subsubsection}{The manual Sphinx procedure}%
+  \label{the-manual-sphinx-procedure}%
+}
 
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a

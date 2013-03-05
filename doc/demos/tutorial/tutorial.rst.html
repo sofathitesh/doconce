@@ -329,7 +329,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 23, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 5, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -632,6 +632,27 @@ Terminal&gt; doconce format format mydoc.do.txt
 <pre class="literal-block">
 Terminal&gt; doconce format format mydoc
 </pre>
+<div class="section" id="generating-a-makefile">
+<h2>Generating a makefile</h2>
+<p>Producing HTML, Sphinx, and in particular LaTeX documents from
+Doconce sources requires a few commands. Often you want to
+produce several different formats. The relevant commands should
+then be placed in a script that acts as a &quot;makefile&quot;.</p>
+<p>The <tt class="docutils literal">doconce makefile</tt> can be used to automatically generate
+such a makefile, more precisely a Bash script <tt class="docutils literal">make.sh</tt>, which
+carries out the commands explained below. If our Doconce source
+is in <tt class="docutils literal">main_myproj.do.txt</tt>, we run:</p>
+<pre class="literal-block">
+doconce makefile main_myproj html pdflatex sphinx
+</pre>
+<p>to produce the necessary output for generating HTML, pdfLaTeX, and
+Sphinx. Usually, you need to edit <tt class="docutils literal">make.sh</tt> to really fit your
+needs. Some examples lines are inserted as comments to show
+various options that can be added to the basic commands.
+A handy feature of the generated <tt class="docutils literal">make.sh</tt> script is that it
+inserts checks for successful runs of the <tt class="docutils literal">doconce format</tt> commands,
+and if something goes wrong, the <tt class="docutils literal">make.sh</tt> exits.</p>
+</div>
 <div class="section" id="preprocessing">
 <h2>Preprocessing</h2>
 <p>The <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt> programs are used to preprocess the
@@ -649,7 +670,6 @@ format specific actions through tests like <tt class="docutils literal">#if FORM
 </div>
 <div class="section" id="removal-of-inline-comments">
 <h2>Removal of inline comments</h2>
-<!-- mention notes also -->
 <p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
 running <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by:</p>
@@ -663,6 +683,25 @@ Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
 <p>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</p>
+</div>
+<div class="section" id="notes">
+<h2>Notes</h2>
+<p>Doconce does not have a tag for longer notes, because implementation
+of a &quot;notes feature&quot; is so easy using the <tt class="docutils literal">preprocess</tt> or <tt class="docutils literal">mako</tt>
+programs. Just introduce some variable, say <tt class="docutils literal">NOTES</tt>, that you define
+through <tt class="docutils literal"><span class="pre">-DNOTES</span></tt> (or not) when running <tt class="docutils literal">doconce format ...</tt>. Inside
+the document you place your notes between <tt class="docutils literal"># #ifdef NOTES</tt> and
+<tt class="docutils literal"># #endif</tt> preprocess tags. Alternatively you use <tt class="docutils literal">% if NOTES:</tt>
+and <tt class="docutils literal">% endif</tt> that <tt class="docutils literal">mako</tt> will recognize. In the same way you may
+encapsulate unfinished material, extra material to be removed
+for readers but still nice to archive as part of the document for
+future revisions.</p>
+</div>
+<div class="section" id="demo-of-different-formats">
+<h2>Demo of different formats</h2>
+<p>A simple scientific report is available in <a class="reference external" href="http://hplgit.github.com/teamods/writing_reports/doconce_commands.html">a lot of different formats</a>.
+How to create the different formats is explained in more depth
+in the coming sections.</p>
 </div>
 <div class="section" id="id1">
 <h2>HTML</h2>
@@ -725,27 +764,35 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 <h2>Blogs</h2>
 <p>Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<tt class="docutils literal">blogger.com</tt> or
-<tt class="docutils literal">blogname.blogspot.com</tt>)
-is particularly well suited since it also allows extensive LaTeX mathematics via
-MathJax.
-Write the blog text as a Doconce document without any title, author, and
-date. Then generate HTML as described above. Copy the text and paste it
-into the text area in the blog, making sure the input format is HTML.
-On Google's Blogger service you can use Doconce to generate blogs with
-LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See a <a class="reference external" href="http://doconce.blogspot.no">blog example</a> for details on blogging.</p>
+<tt class="docutils literal">blogname.blogspot.com</tt>) is particularly well suited since it also
+allows extensive LaTeX mathematics via MathJax.</p>
+<ol class="arabic simple">
+<li>Write the blog text as a Doconce document without any
+title, author, and date.</li>
+<li>Generate HTML as described above.</li>
+<li>Copy the text and paste it into the
+text area in the blog (just delete the HTML code that initially
+pops up in the text area). Make sure the input format is HTML.</li>
+</ol>
+<p>See a <a class="reference external" href="http://doconce.blogspot.no">simple blog example</a> and
+a <a class="reference external" href="http://doconce-report-demo.blogspot.no/">scientific report</a>
+for demonstrations of blogs at <tt class="docutils literal">blogspot.no</tt>.</p>
 <div class="warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.</p>
 </div>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 331); <em><a href="#id2">backlink</a></em></p>
+Duplicate explicit target name: &quot;scientific report&quot;.</div>
 <p>WordPress (<tt class="docutils literal">wordpress.com</tt>) allows raw HTML code in blogs,
 but has very limited
 LaTeX support, basically only formulas. The <tt class="docutils literal"><span class="pre">--wordpress</span></tt> option to
 <tt class="docutils literal">doconce</tt> modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
-There is a <a class="reference external" href="http://doconce.wordpress.com">doconce example</a>
-on blogging with mathematics and code on WordPress.</p>
+Look at a <a class="reference external" href="http://doconce.wordpress.com">simple doconce example</a>
+and a <a class="reference external" href="http://doconcereportdemo.wordpress.com/">scientific report</a>
+to see blogging with mathematics and code on WordPress.</p>
 </div>
 <div class="section" id="pandoc-and-markdown">
 <h2>Pandoc and Markdown</h2>
@@ -763,12 +810,19 @@ Word), <tt class="docutils literal">rtf</tt>, <tt class="docutils literal">texin
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
 while the <tt class="docutils literal"><span class="pre">--toc</span></tt> option generates a table of contents.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
-for the many features of the <tt class="docutils literal">pandoc</tt> program.</p>
-<p>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-<tt class="docutils literal">doconce format pandoc</tt> and then translating using <tt class="docutils literal">pandoc</tt>, or
-<tt class="docutils literal">doconce format latex</tt>, and then going from LaTeX to the desired format
-using <tt class="docutils literal">pandoc</tt>.
+for the many features of the <tt class="docutils literal">pandoc</tt> program. The HTML output from
+<tt class="docutils literal">pandoc</tt> needs adjustments to provide full support for MathJax LaTeX
+mathematics, and for this purpose one should use <tt class="docutils literal">doconce md2html</tt>:</p>
+<pre class="literal-block">
+Terminal&gt; doconce format pandoc mydoc
+Terminal&gt; doconce m2html mydoc
+</pre>
+<p>The result <tt class="docutils literal">mydoc.html</tt> can be viewed in a browser.</p>
+<p>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): <tt class="docutils literal">doconce format pandoc</tt> and then translating using <tt class="docutils literal">doconce
+md2latex</tt> (which runs <tt class="docutils literal">pandoc</tt>), or <tt class="docutils literal">doconce format latex</tt>, and then
+going from LaTeX to the desired format using <tt class="docutils literal">pandoc</tt>.
 Here is an example on the latter strategy:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format latex mydoc
@@ -776,8 +830,8 @@ Terminal&gt; doconce ptex2tex mydoc
 Terminal&gt; doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
-<p>When we go through <tt class="docutils literal">pandoc</tt>, only single equations or <tt class="docutils literal">align*</tt>
-environments are well understood.</p>
+<p>When we go through <tt class="docutils literal">pandoc</tt>, only single equations, <tt class="docutils literal">align</tt>, or <tt class="docutils literal">align*</tt>
+environments are well understood for output to HTML.</p>
 <p>Note that Doconce applies the <tt class="docutils literal">Verb</tt> macro from the <tt class="docutils literal">fancyvrb</tt> package
 while <tt class="docutils literal">pandoc</tt> only supports the standard <tt class="docutils literal">verb</tt> construction for
 inline verbatim text.  Moreover, quite some additional <tt class="docutils literal">doconce
@@ -795,7 +849,7 @@ Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 <p>The <tt class="docutils literal"><span class="pre">-s</span></tt> option adds a proper header and footer to the <tt class="docutils literal">mydoc.html</tt> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
 </div>
-<div class="section" id="id2">
+<div class="section" id="id3">
 <h2>LaTeX</h2>
 <p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many</p>
@@ -840,15 +894,18 @@ A separate titlepage can be generate by
 <blockquote>
 <ul class="simple">
 <li><tt class="docutils literal">BOOK</tt> for the &quot;book&quot; documentclass rather than the standard
-&quot;article&quot; class (necessary if you apply chapter headings)</li>
+&quot;article&quot; class (necessary if you apply chapter headings with 9 <tt class="docutils literal">=</tt>)</li>
 <li><tt class="docutils literal">PALATINO</tt> for the Palatino font</li>
-<li><tt class="docutils literal">HELVETIA</tt> for the Helvetica font</li>
+<li><tt class="docutils literal">HELVETICA</tt> for the Helvetica font</li>
 <li><tt class="docutils literal">A4PAPER</tt> for A4 paper size</li>
-<li><tt class="docutils literal">A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
+<li><tt class="docutils literal">A6PAPER</tt> for A6 paper size (suitable for reading PDFs on phones)</li>
 <li><tt class="docutils literal">MOVIE15</tt> for using the movie15 LaTeX package to display movies</li>
 <li><tt class="docutils literal">PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
-or document to be included elsewhere)</li>
-<li><tt class="docutils literal">MINTED</tt> for inclusion of the minted package (which requires <tt class="docutils literal">latex</tt>
+or document to be included elsewhere - and note that
+the preamble is only included
+if the document has a title, author, and date)</li>
+<li><tt class="docutils literal">MINTED</tt> for inclusion of the minted package for typesetting of
+code with the Pygments tool (which requires <tt class="docutils literal">latex</tt>
 or <tt class="docutils literal">pdflatex</tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option)</li>
 </ul>
 </blockquote>
@@ -892,16 +949,23 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt>
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are two examples:</p>
+You will use <tt class="docutils literal">doconce replace</tt> to edit <tt class="docutils literal">section{</tt> to <tt class="docutils literal">section*{</tt>:</p>
 <pre class="literal-block">
 Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
+</pre>
+<p>For fixing the line break of a title, you may pick a word in the
+title, say &quot;Using&quot;, and insert a break after than word. With
+<tt class="docutils literal">doconce subst</tt> this is easy employing regular expressions with
+a group before &quot;Using&quot; and a group after:</p>
+<pre class="literal-block">
 Terminal&gt; doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g&lt;1&gt; \\\\ [1.5mm] Using \g&lt;2&gt;' mydoc.tex
 </pre>
 <p>A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
-generating PDF from the LaTeX file.</p>
+generating PDF from the LaTeX file so the <tt class="docutils literal">doconce subst</tt> or
+<tt class="docutils literal">doconce replace</tt> commands can be put inside the script.</p>
 <p><em>Step 3.</em> Compile <tt class="docutils literal">mydoc.tex</tt>
 and create the PDF file:</p>
 <pre class="literal-block">
@@ -959,7 +1023,7 @@ computer source code:</p>
 Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 </pre>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id4">
 <h2>reStructuredText</h2>
 <p>Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -1004,7 +1068,7 @@ Some links for going from LaTeX to Word are listed below.</p>
 </ul>
 </blockquote>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id5">
 <h2>Sphinx</h2>
 <p>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt class="docutils literal">doconce sphinx_dir</tt> command:</p>
@@ -1032,38 +1096,110 @@ relevant files.</p>
 <tt class="docutils literal">automake_sphinx.py</tt> for compiling the Sphinx document into an HTML
 document.  One can either run <tt class="docutils literal">automake_sphinx.py</tt> or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.</p>
-<p>The <tt class="docutils literal">doconce sphinx_dir</tt> script copies directories named <tt class="docutils literal">figs</tt> or
-<tt class="docutils literal">figures</tt> over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, <tt class="docutils literal">automake_sphinx.py</tt> must be edited accordingly.  Files,
-to which there are local links (not <tt class="docutils literal">http:</tt> or <tt class="docutils literal">file:</tt> URLs), must be
-placed in the <tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory. The
-utility <tt class="docutils literal">doconce sphinxfix_localURLs</tt> is run to check for local links
-in the Doconce file: for each such link, say <tt class="docutils literal">dir1/dir2/myfile.txt</tt> it
-replaces the link by <tt class="docutils literal">_static/myfile.txt</tt> and copies
-<tt class="docutils literal">dir1/dir2/myfile.txt</tt> to a local <tt class="docutils literal">_static</tt> directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in <tt class="docutils literal">_static</tt> or lets a script
-do it automatically. The user must copy all <tt class="docutils literal">_static/*</tt> files to the
-<tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a <tt class="docutils literal">_static</tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.</p>
-<p>Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the <tt class="docutils literal">conf.py</tt>
-configuration file for Sphinx is edited accordingly, and a script
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the <tt class="docutils literal">automake_sphinx.py</tt>
+file.</p>
+<p><em>Links.</em> The <tt class="docutils literal">automake_sphinx.py</tt> script copies directories named <tt class="docutils literal">fig*</tt>
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines <tt class="docutils literal">MOVIE:</tt> and <tt class="docutils literal">FIGURE:</tt>
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not <tt class="docutils literal">http:</tt> or <tt class="docutils literal">file:</tt> URLs) in
+a directory named <tt class="docutils literal">_static</tt>. The <tt class="docutils literal">automake_sphinx.py</tt> copies
+<tt class="docutils literal">_static*</tt> to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.</p>
+<p>There is a utility <tt class="docutils literal">doconce sphinxfix_localURLs</tt> for checking links to
+local files and moving the files to <tt class="docutils literal">_static</tt> and changing the links
+accordingly. For example, a link to <tt class="docutils literal">dir1/dir2/myfile.txt</tt> is changed
+to <tt class="docutils literal">_static/myfile.txt</tt> and <tt class="docutils literal">myfile.txt</tt> is copied to <tt class="docutils literal">_static</tt>.
+However, I recommend instead that you manually copy
+files to <tt class="docutils literal">_static</tt> when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.</p>
+<p><em>Themes.</em> Doconce comes with a rich collection of HTML themes for Sphinx documents,
+much larger than what is found in the standard Sphinx distribution.
+Additional themes include
+<tt class="docutils literal">agni</tt>,
+<tt class="docutils literal">basicstrap</tt>,
+<tt class="docutils literal">bootstrap</tt>,
+<tt class="docutils literal">cloud</tt>,
+<tt class="docutils literal">fenics</tt>,
+<tt class="docutils literal">fenics_minimal</tt>,
+<tt class="docutils literal">flask</tt>,
+<tt class="docutils literal">haiku</tt>,
+<tt class="docutils literal">impressjs</tt>,
+<tt class="docutils literal">jal</tt>,
+<tt class="docutils literal">pylons</tt>,
+<tt class="docutils literal">redcloud</tt>,
+<tt class="docutils literal">scipy_lectures</tt>,
+<tt class="docutils literal"><span class="pre">slim-agogo</span></tt>, and
+<tt class="docutils literal"><span class="pre">vlinux-theme</span></tt>.</p>
+<p>All the themes are packed out in the Sphinx directory, and the
+<tt class="docutils literal">doconce sphinx_dir</tt> insert lots of extra code in the <tt class="docutils literal">conf.py</tt>
+file to enable easy specification and customization of themes.
+For example, modules are loaded for the additional themes that
+come with Doconce, code is inserted to allow customization of
+the look and feel of themes, etc. The <tt class="docutils literal">conf.py</tt> file is a
+good starting point for fine-tuning your favorite team, and your
+own <tt class="docutils literal">conf.py</tt> file can later be supplied and used when running
+<tt class="docutils literal">doconce sphinx_dir</tt>: simply add the command-line option
+<tt class="docutils literal">conf.py=conf.py</tt>.</p>
+<p>A script
 <tt class="docutils literal"><span class="pre">make-themes.sh</span></tt> can make HTML documents with one or more themes.
 For example,
-to realize the themes <tt class="docutils literal">fenics</tt> and <tt class="docutils literal">pyramid</tt>, one writes:</p>
+to realize the themes <tt class="docutils literal">fenics</tt>, <tt class="docutils literal">pyramid</tt>, and <tt class="docutils literal">pylon</tt> one writes:</p>
 <pre class="literal-block">
-Terminal&gt; ./make-themes.sh fenics pyramid
+Terminal&gt; ./make-themes.sh fenics pyramid pylon
 </pre>
 <p>The resulting directories with HTML documents are <tt class="docutils literal">_build/html_fenics</tt>
 and <tt class="docutils literal">_build/html_pyramid</tt>, respectively. Without arguments,
-<tt class="docutils literal"><span class="pre">make-themes.sh</span></tt> makes all available themes (!).</p>
+<tt class="docutils literal"><span class="pre">make-themes.sh</span></tt> makes all available themes (!). With <tt class="docutils literal"><span class="pre">make-themes.sh</span></tt>
+it is easy to check out various themes to find the one that is most
+attractive for your document.</p>
+<p>You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+<tt class="docutils literal">theme_dir=path</tt> on the command line, where <tt class="docutils literal">path</tt> is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by <tt class="docutils literal">conf.py=path</tt>, where <tt class="docutils literal">path</tt> is the
+relative path to your <tt class="docutils literal">conf.py</tt> file.</p>
+<p><em>Example.</em> Say you like the <tt class="docutils literal">scipy_lectures</tt> theme, but you want
+a table of contents to appear <em>to the right</em>, much in the same style
+as in the <tt class="docutils literal">default</tt> theme (where the table of contents is to the left).
+You can then run <tt class="docutils literal">doconce sphinx_dir</tt>, invoke a text editor with the
+<tt class="docutils literal">conf.py</tt> file, find the line <tt class="docutils literal">html_theme == 'scipy_lectures'</tt>,
+edit the following <tt class="docutils literal">nosidebar</tt> to <tt class="docutils literal">false</tt> and <tt class="docutils literal">rightsidebar</tt> to <tt class="docutils literal">true</tt>.
+Alternatively, you may write a little script using <tt class="docutils literal">doconce replace</tt>
+to replace a portion of text in <tt class="docutils literal">conf.py</tt> by a new one:</p>
+<pre class="literal-block">
+doconce replace &quot;elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'true',
+        'rightsidebar': 'false',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }&quot; &quot;elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'false',
+        'rightsidebar': 'true',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }&quot; conf.py
+</pre>
+<p>Obviously, we could also have changed colors in the edit above.
+The final alternative is to save the edited <tt class="docutils literal">conf.py</tt> file somewhere
+and reuse it the next time <tt class="docutils literal">doconce sphinx_dir</tt> is run:</p>
+<pre class="literal-block">
+doconce sphinx_dir theme=scipy_lectures \
+                   conf.py=../some/path/conf.py mydoc
+</pre>
+<div class="section" id="the-manual-sphinx-procedure">
+<h3>The manual Sphinx procedure</h3>
 <p>If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file <tt class="docutils literal">mydoc.do.txt</tt>.</p>
@@ -1142,6 +1278,7 @@ Terminal&gt; firefox _build/html/index.html
 depending the argument that follows <tt class="docutils literal">!bc</tt>: <tt class="docutils literal">cod</tt> gives Python
 (<tt class="docutils literal"><span class="pre">code-block::</span> python</tt> in Sphinx syntax) and <tt class="docutils literal">cppcod</tt> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.</p>
+</div>
 </div>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats</h2>

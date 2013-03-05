@@ -8,7 +8,7 @@ Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
-:Date: Feb 23, 2013
+:Date: Mar 5, 2013
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -369,6 +369,33 @@ or just
         Terminal> doconce format format mydoc
 
 
+Generating a makefile
+---------------------
+
+Producing HTML, Sphinx, and in particular LaTeX documents from
+Doconce sources requires a few commands. Often you want to
+produce several different formats. The relevant commands should
+then be placed in a script that acts as a "makefile".
+
+The ``doconce makefile`` can be used to automatically generate
+such a makefile, more precisely a Bash script ``make.sh``, which
+carries out the commands explained below. If our Doconce source
+is in ``main_myproj.do.txt``, we run
+
+
+.. code-block:: console
+
+        doconce makefile main_myproj html pdflatex sphinx
+
+to produce the necessary output for generating HTML, pdfLaTeX, and
+Sphinx. Usually, you need to edit ``make.sh`` to really fit your
+needs. Some examples lines are inserted as comments to show
+various options that can be added to the basic commands.
+A handy feature of the generated ``make.sh`` script is that it
+inserts checks for successful runs of the ``doconce format`` commands,
+and if something goes wrong, the ``make.sh`` exits.
+
+
 Preprocessing
 -------------
 
@@ -390,9 +417,6 @@ format specific actions through tests like ``#if FORMAT == "latex"``
 Removal of inline comments
 --------------------------
 
-.. mention notes also
-
-
 The command-line arguments ``--no-preprocess`` and ``--no-mako`` turn off
 running ``preprocess`` and ``mako``, respectively.
 
@@ -413,6 +437,26 @@ file by running:
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
+Notes
+-----
+
+Doconce does not have a tag for longer notes, because implementation
+of a "notes feature" is so easy using the ``preprocess`` or ``mako``
+programs. Just introduce some variable, say ``NOTES``, that you define
+through ``-DNOTES`` (or not) when running ``doconce format ...``. Inside
+the document you place your notes between ``# #ifdef NOTES`` and
+``# #endif`` preprocess tags. Alternatively you use ``% if NOTES:``
+and ``% endif`` that ``mako`` will recognize. In the same way you may
+encapsulate unfinished material, extra material to be removed
+for readers but still nice to archive as part of the document for
+future revisions.
+
+Demo of different formats
+-------------------------
+
+A simple scientific report is available in `a lot of different formats <http://hplgit.github.com/teamods/writing_reports/doconce_commands.html>`_.
+How to create the different formats is explained in more depth
+in the coming sections.
 
 HTML
 ----
@@ -487,15 +531,21 @@ Blogs
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (``blogger.com`` or
-``blogname.blogspot.com``)
-is particularly well suited since it also allows extensive LaTeX mathematics via
-MathJax.
-Write the blog text as a Doconce document without any title, author, and
-date. Then generate HTML as described above. Copy the text and paste it
-into the text area in the blog, making sure the input format is HTML.
-On Google's Blogger service you can use Doconce to generate blogs with
-LaTeX mathematics and pretty (pygmentized) blocks of computer code.
-See a `blog example <http://doconce.blogspot.no>`_ for details on blogging.
+``blogname.blogspot.com``) is particularly well suited since it also
+allows extensive LaTeX mathematics via MathJax.
+
+1. Write the blog text as a Doconce document without any
+   title, author, and date.
+
+2. Generate HTML as described above.
+
+3. Copy the text and paste it into the
+   text area in the blog (just delete the HTML code that initially
+   pops up in the text area). Make sure the input format is HTML.
+
+See a `simple blog example <http://doconce.blogspot.no>`_ and
+a `scientific report <http://doconce-report-demo.blogspot.no/>`_
+for demonstrations of blogs at ``blogspot.no``.
 
 
 .. warning::
@@ -507,8 +557,9 @@ but has very limited
 LaTeX support, basically only formulas. The ``--wordpress`` option to
 ``doconce`` modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
-There is a `doconce example <http://doconce.wordpress.com>`_
-on blogging with mathematics and code on WordPress.
+Look at a `simple doconce example <http://doconce.wordpress.com>`_
+and a `scientific report <http://doconcereportdemo.wordpress.com/>`_
+to see blogging with mathematics and code on WordPress.
 
 Pandoc and Markdown
 -------------------
@@ -531,13 +582,23 @@ Word), ``rtf``, ``texinfo``, to mention some. The ``-R`` option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
 while the ``--toc`` option generates a table of contents.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
-for the many features of the ``pandoc`` program.
+for the many features of the ``pandoc`` program. The HTML output from
+``pandoc`` needs adjustments to provide full support for MathJax LaTeX
+mathematics, and for this purpose one should use ``doconce md2html``:
 
-Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-``doconce format pandoc`` and then translating using ``pandoc``, or
-``doconce format latex``, and then going from LaTeX to the desired format
-using ``pandoc``.
+
+.. code-block:: console
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> doconce m2html mydoc
+
+The result ``mydoc.html`` can be viewed in a browser.
+
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): ``doconce format pandoc`` and then translating using ``doconce
+md2latex`` (which runs ``pandoc``), or ``doconce format latex``, and then
+going from LaTeX to the desired format using ``pandoc``.
 Here is an example on the latter strategy:
 
 .. code-block:: console
@@ -547,8 +608,8 @@ Here is an example on the latter strategy:
         Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
-When we go through ``pandoc``, only single equations or ``align*``
-environments are well understood.
+When we go through ``pandoc``, only single equations, ``align``, or ``align*``
+environments are well understood for output to HTML.
 
 Note that Doconce applies the ``Verb`` macro from the ``fancyvrb`` package
 while ``pandoc`` only supports the standard ``verb`` construction for
@@ -632,22 +693,25 @@ A separate titlepage can be generate by
 Preprocessor variables to be defined or undefined are
 
  * ``BOOK`` for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
+   "article" class (necessary if you apply chapter headings with 9 ``=``)
 
  * ``PALATINO`` for the Palatino font
 
- * ``HELVETIA`` for the Helvetica font
+ * ``HELVETICA`` for the Helvetica font
 
  * ``A4PAPER`` for A4 paper size
 
- * ``A6PAPER`` for A6 paper size (suitable for reading on small devices)
+ * ``A6PAPER`` for A6 paper size (suitable for reading PDFs on phones)
 
  * ``MOVIE15`` for using the movie15 LaTeX package to display movies
 
  * ``PREAMBLE`` to turn the LaTeX preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere - and note that
+   the preamble is only included
+   if the document has a title, author, and date)
 
- * ``MINTED`` for inclusion of the minted package (which requires ``latex``
+ * ``MINTED`` for inclusion of the minted package for typesetting of
+   code with the Pygments tool (which requires ``latex``
    or ``pdflatex`` to be run with the ``-shell-escape`` option)
 
 If you are not satisfied with the Doconce preamble, you can provide
@@ -696,18 +760,28 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the ``doconce replace`` and ``doconce subst``
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are two examples:
+You will use ``doconce replace`` to edit ``section{`` to ``section*{``:
 
 .. code-block:: console
 
         Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+
+For fixing the line break of a title, you may pick a word in the
+title, say "Using", and insert a break after than word. With
+``doconce subst`` this is easy employing regular expressions with
+a group before "Using" and a group after:
+
+
+.. code-block:: console
+
         Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
                   'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
-generating PDF from the LaTeX file.
+generating PDF from the LaTeX file so the ``doconce subst`` or
+``doconce replace`` commands can be put inside the script.
 
 *Step 3.* Compile ``mydoc.tex``
 and create the PDF file:
@@ -872,42 +946,126 @@ The ``doconce sphinx_dir`` command generates a script
 ``automake_sphinx.py`` for compiling the Sphinx document into an HTML
 document.  One can either run ``automake_sphinx.py`` or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the ``automake_sphinx.py``
+file.
 
-The ``doconce sphinx_dir`` script copies directories named ``figs`` or
-``figures`` over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, ``automake_sphinx.py`` must be edited accordingly.  Files,
-to which there are local links (not ``http:`` or ``file:`` URLs), must be
-placed in the ``_static`` subdirectory of the Sphinx directory. The
-utility ``doconce sphinxfix_localURLs`` is run to check for local links
-in the Doconce file: for each such link, say ``dir1/dir2/myfile.txt`` it
-replaces the link by ``_static/myfile.txt`` and copies
-``dir1/dir2/myfile.txt`` to a local ``_static`` directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in ``_static`` or lets a script
-do it automatically. The user must copy all ``_static/*`` files to the
-``_static`` subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a ``_static`` or ``_static-name`` directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.
+*Links.* The ``automake_sphinx.py`` script copies directories named ``fig*``
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines ``MOVIE:`` and ``FIGURE:``
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not ``http:`` or ``file:`` URLs) in
+a directory named ``_static``. The ``automake_sphinx.py`` copies
+``_static*`` to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.
 
-Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the ``conf.py``
-configuration file for Sphinx is edited accordingly, and a script
+There is a utility ``doconce sphinxfix_localURLs`` for checking links to
+local files and moving the files to ``_static`` and changing the links
+accordingly. For example, a link to ``dir1/dir2/myfile.txt`` is changed
+to ``_static/myfile.txt`` and ``myfile.txt`` is copied to ``_static``.
+However, I recommend instead that you manually copy
+files to ``_static`` when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.
+
+*Themes.* Doconce comes with a rich collection of HTML themes for Sphinx documents,
+much larger than what is found in the standard Sphinx distribution.
+Additional themes include
+``agni``,
+``basicstrap``,
+``bootstrap``,
+``cloud``,
+``fenics``,
+``fenics_minimal``,
+``flask``,
+``haiku``,
+``impressjs``,
+``jal``,
+``pylons``,
+``redcloud``,
+``scipy_lectures``,
+``slim-agogo``, and
+``vlinux-theme``.
+
+All the themes are packed out in the Sphinx directory, and the
+``doconce sphinx_dir`` insert lots of extra code in the ``conf.py``
+file to enable easy specification and customization of themes.
+For example, modules are loaded for the additional themes that
+come with Doconce, code is inserted to allow customization of
+the look and feel of themes, etc. The ``conf.py`` file is a
+good starting point for fine-tuning your favorite team, and your
+own ``conf.py`` file can later be supplied and used when running
+``doconce sphinx_dir``: simply add the command-line option
+``conf.py=conf.py``.
+
+A script
 ``make-themes.sh`` can make HTML documents with one or more themes.
 For example,
-to realize the themes ``fenics`` and ``pyramid``, one writes
+to realize the themes ``fenics``, ``pyramid``, and ``pylon`` one writes
 
 .. code-block:: console
 
-        Terminal> ./make-themes.sh fenics pyramid
+        Terminal> ./make-themes.sh fenics pyramid pylon
 
 The resulting directories with HTML documents are ``_build/html_fenics``
 and ``_build/html_pyramid``, respectively. Without arguments,
-``make-themes.sh`` makes all available themes (!).
+``make-themes.sh`` makes all available themes (!). With ``make-themes.sh``
+it is easy to check out various themes to find the one that is most
+attractive for your document.
+
+You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+``theme_dir=path`` on the command line, where ``path`` is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by ``conf.py=path``, where ``path`` is the
+relative path to your ``conf.py`` file.
+
+*Example.* Say you like the ``scipy_lectures`` theme, but you want
+a table of contents to appear *to the right*, much in the same style
+as in the ``default`` theme (where the table of contents is to the left).
+You can then run ``doconce sphinx_dir``, invoke a text editor with the
+``conf.py`` file, find the line ``html_theme == 'scipy_lectures'``,
+edit the following ``nosidebar`` to ``false`` and ``rightsidebar`` to ``true``.
+Alternatively, you may write a little script using ``doconce replace``
+to replace a portion of text in ``conf.py`` by a new one:
+
+
+.. code-block:: bash
+
+        doconce replace "elif html_theme == 'scipy_lectures':
+            html_theme_options = {
+                'nosidebar': 'true',
+                'rightsidebar': 'false',
+                'sidebarbgcolor': '#f2f2f2',
+                'sidebartextcolor': '#20435c',
+                'sidebarlinkcolor': '#20435c',
+                'footerbgcolor': '#000000',
+                'relbarbgcolor': '#000000',
+            }" "elif html_theme == 'scipy_lectures':
+            html_theme_options = {
+                'nosidebar': 'false',
+                'rightsidebar': 'true',
+                'sidebarbgcolor': '#f2f2f2',
+                'sidebartextcolor': '#20435c',
+                'sidebarlinkcolor': '#20435c',
+                'footerbgcolor': '#000000',
+                'relbarbgcolor': '#000000',
+            }" conf.py
+
+Obviously, we could also have changed colors in the edit above.
+The final alternative is to save the edited ``conf.py`` file somewhere
+and reuse it the next time ``doconce sphinx_dir`` is run
+
+
+.. code-block:: console
+
+        doconce sphinx_dir theme=scipy_lectures \
+                           conf.py=../some/path/conf.py mydoc
+
+
+The manual Sphinx procedure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a

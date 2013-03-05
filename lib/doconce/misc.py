@@ -4723,20 +4723,31 @@ def pygmentize():
     f = open(filename + '.html', 'w');  f.write(text);  f.close()
 
 def _usage_makefile():
-    print 'Usage: doconce makefile docname doconce-file [html pdflatex sphinx] ...'
+    print 'Usage:   doconce makefile doconce-file [html pdflatex latex sphinx] ...'
+    print 'Example: doconce makefile main_wave.do.txt html sphinx'
+    print """
+A script make.sh is generated with the basic steps for running a
+spellcheck on .do.txt files followed by commands for producing html,
+pdflatex, latex, and/or a sphinx document depending on which of these
+name that appear on the command line. If no formats are specified on
+the command line, html, pdflatex, and sphinx are produced.
+
+Some extra lines added that exemplify typical options can be used
+to the various commands (HTML styles, latex/pdflatex paper size
+and font, extra info about sphinx theme, authors, version, etc.).
+"""
 
 def makefile():
     """Generate a generic makefile."""
     if len(sys.argv) < 3:
-        _usge_makefile()
+        _usage_makefile()
         sys.exit(1)
 
-    docname = sys.argv[1]
-    dofile = sys.argv[2]
+    dofile = sys.argv[1]
     if dofile.endswith('.do.txt'):
         dofile = dofile[:-7]
 
-    formats = sys.argv[3:]
+    formats = sys.argv[2:]
     if not formats:
         formats = ['pdflatex', 'html', 'sphinx']
 
@@ -4802,6 +4813,6 @@ if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
 doconce sphinx_dir theme=pyramid dirname=sphinx-rootdir $name
 python automake_sphinx.py
 """)
-
+    print 'output in make.sh'
 
 

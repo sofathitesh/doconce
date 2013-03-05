@@ -120,7 +120,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Feb 23, 2013
+Mar 5, 2013
 \end{center}
 
 \vspace{1cm}
@@ -477,6 +477,31 @@ labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce format format mydoc
 \end{Verbatim}
 
+\subsection{Generating a makefile}
+
+Producing HTML, Sphinx, and in particular {\LaTeX} documents from
+Doconce sources requires a few commands. Often you want to
+produce several different formats. The relevant commands should
+then be placed in a script that acts as a "makefile".
+
+The {\fontsize{10pt}{10pt}\Verb!doconce makefile!} can be used to automatically generate
+such a makefile, more precisely a Bash script {\fontsize{10pt}{10pt}\Verb!make.sh!}, which
+carries out the commands explained below. If our Doconce source
+is in {\fontsize{10pt}{10pt}\Verb!main_myproj.do.txt!}, we run
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+doconce makefile main_myproj html pdflatex sphinx
+\end{Verbatim}
+to produce the necessary output for generating HTML, \textsc{pdf}{\LaTeX}, and
+Sphinx. Usually, you need to edit {\fontsize{10pt}{10pt}\Verb!make.sh!} to really fit your
+needs. Some examples lines are inserted as comments to show
+various options that can be added to the basic commands.
+A handy feature of the generated {\fontsize{10pt}{10pt}\Verb!make.sh!} script is that it
+inserts checks for successful runs of the {\fontsize{10pt}{10pt}\Verb!doconce format!} commands,
+and if something goes wrong, the {\fontsize{10pt}{10pt}\Verb!make.sh!} exits.
+
 \subsection{Preprocessing}
 
 The {\fontsize{10pt}{10pt}\Verb!preprocess!} and {\fontsize{10pt}{10pt}\Verb!mako!} programs are used to preprocess the
@@ -496,8 +521,6 @@ format specific actions through tests like {\fontsize{10pt}{10pt}\Verb!#if FORMA
 
 \subsection{Removal of inline comments}
 
-% mention notes also
-
 The command-line arguments {\fontsize{10pt}{10pt}\Verb!--no-preprocess!} and {\fontsize{10pt}{10pt}\Verb!--no-mako!} turn off
 running {\fontsize{10pt}{10pt}\Verb!preprocess!} and {\fontsize{10pt}{10pt}\Verb!mako!}, respectively.
 
@@ -516,6 +539,25 @@ Terminal> doconce remove_inline_comments mydoc
 \noindent
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
+
+\subsection{Notes}
+
+Doconce does not have a tag for longer notes, because implementation
+of a "notes feature" is so easy using the {\fontsize{10pt}{10pt}\Verb!preprocess!} or {\fontsize{10pt}{10pt}\Verb!mako!}
+programs. Just introduce some variable, say {\fontsize{10pt}{10pt}\Verb!NOTES!}, that you define
+through {\fontsize{10pt}{10pt}\Verb!-DNOTES!} (or not) when running {\fontsize{10pt}{10pt}\Verb!doconce format ...!}. Inside
+the document you place your notes between {\fontsize{10pt}{10pt}\Verb!# #ifdef NOTES!} and
+{\fontsize{10pt}{10pt}\Verb!# #endif!} preprocess tags. Alternatively you use {\fontsize{10pt}{10pt}\Verb!% if NOTES:!}
+and {\fontsize{10pt}{10pt}\Verb!% endif!} that {\fontsize{10pt}{10pt}\Verb!mako!} will recognize. In the same way you may
+encapsulate unfinished material, extra material to be removed
+for readers but still nice to archive as part of the document for
+future revisions.
+
+\subsection{Demo of different formats}
+
+A simple scientific report is available in \href{{http://hplgit.github.com/teamods/writing_reports/doconce_commands.html}}{a lot of different formats}.
+How to create the different formats is explained in more depth
+in the coming sections.
 
 \subsection{HTML}
 
@@ -591,15 +633,24 @@ Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service ({\fontsize{10pt}{10pt}\Verb!blogger.com!} or
-{\fontsize{10pt}{10pt}\Verb!blogname.blogspot.com!})
-is particularly well suited since it also allows extensive {\LaTeX} mathematics via
-MathJax.
-Write the blog text as a Doconce document without any title, author, and
-date. Then generate HTML as described above. Copy the text and paste it
-into the text area in the blog, making sure the input format is HTML.
-On Google's Blogger service you can use Doconce to generate blogs with
-{\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
-See a \href{{http://doconce.blogspot.no}}{blog example} for details on blogging.
+{\fontsize{10pt}{10pt}\Verb!blogname.blogspot.com!}) is particularly well suited since it also
+allows extensive {\LaTeX} mathematics via MathJax.
+
+\begin{enumerate}
+\item Write the blog text as a Doconce document without any
+   title, author, and date.
+
+\item Generate HTML as described above.
+
+\item Copy the text and paste it into the
+   text area in the blog (just delete the HTML code that initially
+   pops up in the text area). Make sure the input format is HTML.
+\end{enumerate}
+
+\noindent
+See a \href{{http://doconce.blogspot.no}}{simple blog example} and
+a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
+for demonstrations of blogs at {\fontsize{10pt}{10pt}\Verb!blogspot.no!}.
 
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
@@ -619,8 +670,9 @@ but has very limited
 {\LaTeX} support, basically only formulas. The {\fontsize{10pt}{10pt}\Verb!--wordpress!} option to
 {\fontsize{10pt}{10pt}\Verb!doconce!} modifies the HTML code such that all equations are typeset
 in a way that is acceptable to WordPress.
-There is a \href{{http://doconce.wordpress.com}}{doconce example}
-on blogging with mathematics and code on WordPress.
+Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
+and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
+to see blogging with mathematics and code on WordPress.
 
 \subsection{Pandoc and Markdown}
 
@@ -642,13 +694,22 @@ Word), {\fontsize{10pt}{10pt}\Verb!rtf!}, {\fontsize{10pt}{10pt}\Verb!texinfo!},
 Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it,
 while the {\fontsize{10pt}{10pt}\Verb!--toc!} option generates a table of contents.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
-for the many features of the {\fontsize{10pt}{10pt}\Verb!pandoc!} program.
+for the many features of the {\fontsize{10pt}{10pt}\Verb!pandoc!} program. The HTML output from
+{\fontsize{10pt}{10pt}\Verb!pandoc!} needs adjustments to provide full support for MathJax {\LaTeX}
+mathematics, and for this purpose one should use {\fontsize{10pt}{10pt}\Verb!doconce md2html!}:
 
-Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS Word.
-There are two ways (experiment to find the best one for your document):
-{\fontsize{10pt}{10pt}\Verb!doconce format pandoc!} and then translating using {\fontsize{10pt}{10pt}\Verb!pandoc!}, or
-{\fontsize{10pt}{10pt}\Verb!doconce format latex!}, and then going from {\LaTeX} to the desired format
-using {\fontsize{10pt}{10pt}\Verb!pandoc!}.
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format pandoc mydoc
+Terminal> doconce m2html mydoc
+\end{Verbatim}
+The result {\fontsize{10pt}{10pt}\Verb!mydoc.html!} can be viewed in a browser.
+
+Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS
+Word.  There are two ways (experiment to find the best one for your
+document): {\fontsize{10pt}{10pt}\Verb!doconce format pandoc!} and then translating using {\fontsize{10pt}{10pt}\Verb!doconce md2latex!} (which runs {\fontsize{10pt}{10pt}\Verb!pandoc!}), or {\fontsize{10pt}{10pt}\Verb!doconce format latex!}, and then
+going from {\LaTeX} to the desired format using {\fontsize{10pt}{10pt}\Verb!pandoc!}.
 Here is an example on the latter strategy:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -658,8 +719,8 @@ Terminal> doconce ptex2tex mydoc
 Terminal> doconce replace '\Verb!' '\verb!' mydoc.tex
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \end{Verbatim}
-When we go through {\fontsize{10pt}{10pt}\Verb!pandoc!}, only single equations or {\fontsize{10pt}{10pt}\Verb!align*!}
-environments are well understood.
+When we go through {\fontsize{10pt}{10pt}\Verb!pandoc!}, only single equations, {\fontsize{10pt}{10pt}\Verb!align!}, or {\fontsize{10pt}{10pt}\Verb!align*!}
+environments are well understood for output to HTML.
 
 Note that Doconce applies the {\fontsize{10pt}{10pt}\Verb!Verb!} macro from the {\fontsize{10pt}{10pt}\Verb!fancyvrb!} package
 while {\fontsize{10pt}{10pt}\Verb!pandoc!} only supports the standard {\fontsize{10pt}{10pt}\Verb!verb!} construction for
@@ -740,22 +801,25 @@ Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
  \item {\fontsize{10pt}{10pt}\Verb!BOOK!} for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
+   "article" class (necessary if you apply chapter headings with 9 {\fontsize{10pt}{10pt}\Verb!=!})
 
  \item {\fontsize{10pt}{10pt}\Verb!PALATINO!} for the Palatino font
 
- \item {\fontsize{10pt}{10pt}\Verb!HELVETIA!} for the Helvetica font
+ \item {\fontsize{10pt}{10pt}\Verb!HELVETICA!} for the Helvetica font
 
  \item {\fontsize{10pt}{10pt}\Verb!A4PAPER!} for A4 paper size
 
- \item {\fontsize{10pt}{10pt}\Verb!A6PAPER!} for A6 paper size (suitable for reading on small devices)
+ \item {\fontsize{10pt}{10pt}\Verb!A6PAPER!} for A6 paper size (suitable for reading PDFs on phones)
 
  \item {\fontsize{10pt}{10pt}\Verb!MOVIE15!} for using the movie15 {\LaTeX} package to display movies
 
  \item {\fontsize{10pt}{10pt}\Verb!PREAMBLE!} to turn the {\LaTeX} preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere - and note that
+   the preamble is only included
+   if the document has a title, author, and date)
 
- \item {\fontsize{10pt}{10pt}\Verb!MINTED!} for inclusion of the minted package (which requires {\fontsize{10pt}{10pt}\Verb!latex!}
+ \item {\fontsize{10pt}{10pt}\Verb!MINTED!} for inclusion of the minted package for typesetting of
+   code with the Pygments tool (which requires {\fontsize{10pt}{10pt}\Verb!latex!}
    or {\fontsize{10pt}{10pt}\Verb!pdflatex!} to be run with the {\fontsize{10pt}{10pt}\Verb!-shell-escape!} option)
 \end{itemize}
 
@@ -807,18 +871,28 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the {\fontsize{10pt}{10pt}\Verb!doconce replace!} and {\fontsize{10pt}{10pt}\Verb!doconce subst!}
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are two examples:
+You will use {\fontsize{10pt}{10pt}\Verb!doconce replace!} to edit {\fontsize{10pt}{10pt}\Verb!section{!} to {\fontsize{10pt}{10pt}\Verb!section*{!}:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+\end{Verbatim}
+For fixing the line break of a title, you may pick a word in the
+title, say "Using", and insert a break after than word. With
+{\fontsize{10pt}{10pt}\Verb!doconce subst!} this is easy employing regular expressions with
+a group before "Using" and a group after:
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 \end{Verbatim}
 A lot of tailored fixes to the {\LaTeX} document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
-generating PDF from the {\LaTeX} file.
+generating PDF from the {\LaTeX} file so the {\fontsize{10pt}{10pt}\Verb!doconce subst!} or
+{\fontsize{10pt}{10pt}\Verb!doconce replace!} commands can be put inside the script.
 
 \paragraph{Step 3.}
 Compile {\fontsize{10pt}{10pt}\Verb!mydoc.tex!}
@@ -984,43 +1058,127 @@ The {\fontsize{10pt}{10pt}\Verb!doconce sphinx_dir!} command generates a script
 {\fontsize{10pt}{10pt}\Verb!automake_sphinx.py!} for compiling the Sphinx document into an HTML
 document.  One can either run {\fontsize{10pt}{10pt}\Verb!automake_sphinx.py!} or perform the
 steps in the script manually, possibly with necessary modifications.
-You should at least read the script prior to executing it to have
-some idea of what is done.
+Normally, executing the script works well, but if you are new
+to Sphinx and end up producing quite some Sphinx documents, I encourave
+you to read the Sphinx documentation and study the {\fontsize{10pt}{10pt}\Verb!automake_sphinx.py!}
+file.
 
-The {\fontsize{10pt}{10pt}\Verb!doconce sphinx_dir!} script copies directories named {\fontsize{10pt}{10pt}\Verb!figs!} or
-{\fontsize{10pt}{10pt}\Verb!figures!} over to the Sphinx directory so that figures are accessible
-in the Sphinx compilation.  If figures or movies are located in other
-directories, {\fontsize{10pt}{10pt}\Verb!automake_sphinx.py!} must be edited accordingly.  Files,
-to which there are local links (not {\fontsize{10pt}{10pt}\Verb!http:!} or {\fontsize{10pt}{10pt}\Verb!file:!} URLs), must be
-placed in the {\fontsize{10pt}{10pt}\Verb!_static!} subdirectory of the Sphinx directory. The
-utility {\fontsize{10pt}{10pt}\Verb!doconce sphinxfix_localURLs!} is run to check for local links
-in the Doconce file: for each such link, say {\fontsize{10pt}{10pt}\Verb!dir1/dir2/myfile.txt!} it
-replaces the link by {\fontsize{10pt}{10pt}\Verb!_static/myfile.txt!} and copies
-{\fontsize{10pt}{10pt}\Verb!dir1/dir2/myfile.txt!} to a local {\fontsize{10pt}{10pt}\Verb!_static!} directory (in the same
-directory as the script is run).  However, we recommend instead that
-the writer of the document places files in {\fontsize{10pt}{10pt}\Verb!_static!} or lets a script
-do it automatically. The user must copy all {\fontsize{10pt}{10pt}\Verb!_static/*!} files to the
-{\fontsize{10pt}{10pt}\Verb!_static!} subdirectory of the Sphinx directory.  It may be wise to
-always put files, to which there are local links in the Doconce
-document, in a {\fontsize{10pt}{10pt}\Verb!_static!} or {\fontsize{10pt}{10pt}\Verb!_static-name!} directory and use these
-local links. Then links do not need to be modified when creating a
-Sphinx version of the document.
+\paragraph{Links.}
+The {\fontsize{10pt}{10pt}\Verb!automake_sphinx.py!} script copies directories named {\fontsize{10pt}{10pt}\Verb!fig*!}
+over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  It also examines {\fontsize{10pt}{10pt}\Verb!MOVIE:!} and {\fontsize{10pt}{10pt}\Verb!FIGURE:!}
+commands in the Doconce file to find other image files and copies
+these too. I strongly recommend to put files
+to which there are local links (not {\fontsize{10pt}{10pt}\Verb!http:!} or {\fontsize{10pt}{10pt}\Verb!file:!} URLs) in
+a directory named {\fontsize{10pt}{10pt}\Verb!_static!}. The {\fontsize{10pt}{10pt}\Verb!automake_sphinx.py!} copies
+{\fontsize{10pt}{10pt}\Verb!_static*!} to the Sphinx directory, which guarantees that the links
+to the local files will work in the Sphinx document.
 
-Doconce comes with a collection of HTML themes for Sphinx documents.
-These are packed out in the Sphinx directory, the {\fontsize{10pt}{10pt}\Verb!conf.py!}
-configuration file for Sphinx is edited accordingly, and a script
+There is a utility {\fontsize{10pt}{10pt}\Verb!doconce sphinxfix_localURLs!} for checking links to
+local files and moving the files to {\fontsize{10pt}{10pt}\Verb!_static!} and changing the links
+accordingly. For example, a link to {\fontsize{10pt}{10pt}\Verb!dir1/dir2/myfile.txt!} is changed
+to {\fontsize{10pt}{10pt}\Verb!_static/myfile.txt!} and {\fontsize{10pt}{10pt}\Verb!myfile.txt!} is copied to {\fontsize{10pt}{10pt}\Verb!_static!}.
+However, I recommend instead that you manually copy
+files to {\fontsize{10pt}{10pt}\Verb!_static!} when you want to link to them, or let your
+script which compiles the Doconce document do it automatically.
+
+\paragraph{Themes.}
+Doconce comes with a rich collection of HTML themes for Sphinx documents,
+much larger than what is found in the standard Sphinx distribution.
+Additional themes include
+{\fontsize{10pt}{10pt}\Verb!agni!},
+{\fontsize{10pt}{10pt}\Verb!basicstrap!},
+{\fontsize{10pt}{10pt}\Verb!bootstrap!},
+{\fontsize{10pt}{10pt}\Verb!cloud!},
+{\fontsize{10pt}{10pt}\Verb!fenics!},
+{\fontsize{10pt}{10pt}\Verb!fenics_minimal!},
+{\fontsize{10pt}{10pt}\Verb!flask!},
+{\fontsize{10pt}{10pt}\Verb!haiku!},
+{\fontsize{10pt}{10pt}\Verb!impressjs!},
+{\fontsize{10pt}{10pt}\Verb!jal!},
+{\fontsize{10pt}{10pt}\Verb!pylons!},
+{\fontsize{10pt}{10pt}\Verb!redcloud!},
+{\fontsize{10pt}{10pt}\Verb!scipy_lectures!},
+{\fontsize{10pt}{10pt}\Verb!slim-agogo!}, and
+{\fontsize{10pt}{10pt}\Verb!vlinux-theme!}.
+
+All the themes are packed out in the Sphinx directory, and the
+{\fontsize{10pt}{10pt}\Verb!doconce sphinx_dir!} insert lots of extra code in the {\fontsize{10pt}{10pt}\Verb!conf.py!}
+file to enable easy specification and customization of themes.
+For example, modules are loaded for the additional themes that
+come with Doconce, code is inserted to allow customization of
+the look and feel of themes, etc. The {\fontsize{10pt}{10pt}\Verb!conf.py!} file is a
+good starting point for fine-tuning your favorite team, and your
+own {\fontsize{10pt}{10pt}\Verb!conf.py!} file can later be supplied and used when running
+{\fontsize{10pt}{10pt}\Verb!doconce sphinx_dir!}: simply add the command-line option
+{\fontsize{10pt}{10pt}\Verb!conf.py=conf.py!}.
+
+A script
 {\fontsize{10pt}{10pt}\Verb!make-themes.sh!} can make HTML documents with one or more themes.
 For example,
-to realize the themes {\fontsize{10pt}{10pt}\Verb!fenics!} and {\fontsize{10pt}{10pt}\Verb!pyramid!}, one writes
+to realize the themes {\fontsize{10pt}{10pt}\Verb!fenics!}, {\fontsize{10pt}{10pt}\Verb!pyramid!}, and {\fontsize{10pt}{10pt}\Verb!pylon!} one writes
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> ./make-themes.sh fenics pyramid
+Terminal> ./make-themes.sh fenics pyramid pylon
 \end{Verbatim}
 The resulting directories with HTML documents are {\fontsize{10pt}{10pt}\Verb!_build/html_fenics!}
 and {\fontsize{10pt}{10pt}\Verb!_build/html_pyramid!}, respectively. Without arguments,
-{\fontsize{10pt}{10pt}\Verb!make-themes.sh!} makes all available themes (!).
+{\fontsize{10pt}{10pt}\Verb!make-themes.sh!} makes all available themes (!). With {\fontsize{10pt}{10pt}\Verb!make-themes.sh!}
+it is easy to check out various themes to find the one that is most
+attractive for your document.
 
+You may supply your own theme and avoid copying all the themes
+that come with Doconce into the Sphinx directory. Just specify
+{\fontsize{10pt}{10pt}\Verb!theme_dir=path!} on the command line, where {\fontsize{10pt}{10pt}\Verb!path!} is the relative
+path to the directory containing the Sphinx theme. You must also
+specify a configure file by {\fontsize{10pt}{10pt}\Verb!conf.py=path!}, where {\fontsize{10pt}{10pt}\Verb!path!} is the
+relative path to your {\fontsize{10pt}{10pt}\Verb!conf.py!} file.
+
+\paragraph{Example.}
+Say you like the {\fontsize{10pt}{10pt}\Verb!scipy_lectures!} theme, but you want
+a table of contents to appear \emph{to the right}, much in the same style
+as in the {\fontsize{10pt}{10pt}\Verb!default!} theme (where the table of contents is to the left).
+You can then run {\fontsize{10pt}{10pt}\Verb!doconce sphinx_dir!}, invoke a text editor with the
+{\fontsize{10pt}{10pt}\Verb!conf.py!} file, find the line {\fontsize{10pt}{10pt}\Verb!html_theme == 'scipy_lectures'!},
+edit the following {\fontsize{10pt}{10pt}\Verb!nosidebar!} to {\fontsize{10pt}{10pt}\Verb!false!} and {\fontsize{10pt}{10pt}\Verb!rightsidebar!} to {\fontsize{10pt}{10pt}\Verb!true!}.
+Alternatively, you may write a little script using {\fontsize{10pt}{10pt}\Verb!doconce replace!}
+to replace a portion of text in {\fontsize{10pt}{10pt}\Verb!conf.py!} by a new one:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{bash}
+doconce replace "elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'true',
+        'rightsidebar': 'false',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }" "elif html_theme == 'scipy_lectures':
+    html_theme_options = {
+        'nosidebar': 'false',
+        'rightsidebar': 'true',
+        'sidebarbgcolor': '#f2f2f2',
+        'sidebartextcolor': '#20435c',
+        'sidebarlinkcolor': '#20435c',
+        'footerbgcolor': '#000000',
+        'relbarbgcolor': '#000000',
+    }" conf.py
+\end{minted}
+\noindent
+Obviously, we could also have changed colors in the edit above.
+The final alternative is to save the edited {\fontsize{10pt}{10pt}\Verb!conf.py!} file somewhere
+and reuse it the next time {\fontsize{10pt}{10pt}\Verb!doconce sphinx_dir!} is run
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+doconce sphinx_dir theme=scipy_lectures \
+                   conf.py=../some/path/conf.py mydoc
+\end{Verbatim}
+
+\paragraph{The manual Sphinx procedure.}
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file {\fontsize{10pt}{10pt}\Verb!mydoc.do.txt!}.
