@@ -511,6 +511,34 @@ def doconce_exercise_output(exer,
 def plain_exercise(exer):
     return doconce_exercise_output(exer)
 
+def bibliography(pubdata, citations, format='doconce'):
+    """
+    Return Doconce formatted list of references, based on the keys
+    in the ordered dictionary ``citations`` (``pubdata`` is a list
+    of dicts loaded from a Publish database file).
+    """
+    import publish_doconce
+    if format == 'doconce':
+        formatter = publish_doconce.doconce_format
+    elif format in ('rst', 'sphinx'):
+        formatter = publish_doconce.rst_format
+
+    citation_keys = list(citations.keys())
+    # Reduce the database
+    pubdata = [pub for pub in pubdata if pub['key'] in citation_keys]
+    # Sort publications in the order of citations
+    pubs = []
+    for key in citations:
+        for pub in pubdata:
+            if pub['key'] == key:
+                pubs.append(pub)
+                break
+    text = '\n'
+    for pub in pubs:
+        text += formatter[pub['category']](pub)
+    text += '\n\n'
+    return text
+
 BLANKLINE = {}
 FILENAME_EXTENSION = {}
 LIST = {}

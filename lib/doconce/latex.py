@@ -623,7 +623,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def latex_index_bib(filestr, index, citations, bibfile):
+def latex_index_bib(filestr, index, citations, pubfile, pubdata):
     #print 'index:', index
     #print 'citations:', citations
     filestr = filestr.replace('cite{', r'\cite{')
@@ -643,12 +643,17 @@ def latex_index_bib(filestr, index, citations, bibfile):
             word = word.replace('_', r'\_')
         replacement = r'\index{%s}' % word
         filestr = filestr.replace(pattern, replacement)
-    if 'bib' in bibfile:
+
+    if pubfile is not None:
+        # Always produce a new bibtex file
+        bibtexfile = pubfile[:-3] + 'bib'
+        failure = os.system('publish export %s' % bibtexfile)
+
         bibtext = fix_latex_command_regex(r"""
 
 \bibliographystyle{plain}
 \bibliography{%s}
-""" % bibfile['bib'], application='replacement')
+""" % bibtexfile, application='replacement')
         #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr,
         #                 flags=re.MULTILINE)
         cpattern = re.compile(r'^BIBFILE:.+$', re.MULTILINE)

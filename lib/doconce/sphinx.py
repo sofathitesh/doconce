@@ -2,7 +2,7 @@
 
 # can reuse most of rst module:
 from rst import *
-from common import align2equations, python_online_tutor
+from common import align2equations, python_online_tutor, bibliography
 
 legal_pygments_languages = [
     'Cucumber', 'cucumber', 'Gherkin', 'gherkin',
@@ -522,8 +522,8 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def sphinx_index_bib(filestr, index, citations, bibfile):
-    filestr = rst_bib(filestr, citations, bibfile)
+def sphinx_index_bib(filestr, index, citations, pubfile, pubdata):
+    filestr = rst_bib(filestr, citations, pubfile, pubdata)
 
     for word in index:
         # Drop verbatim and math in index

@@ -5,7 +5,7 @@ for syntax.
 
 import re, sys
 from common import default_movie, plain_exercise, table_analysis, \
-     insert_code_and_tex
+     insert_code_and_tex, bibliography
 from html import html_movie
 
 def pandoc_author(authors_and_institutions, auth2index,
@@ -192,15 +192,15 @@ def pandoc_ref_and_label(section_label2title, format, filestr):
     return filestr
 
 
-def pandoc_index_bib(filestr, index, citations, bibfile):
+def pandoc_index_bib(filestr, index, citations, pubfile, pubdata):
     # pandoc citations are of the form
     # bla-bla, see [@Smith04, ch. 1; @Langtangen_2008]
     # Method: cite{..} -> [...], doconce.py has already fixed @ and ;
     filestr = re.sub(r'cite\{(.+?)\}', r'[\g<1>]', filestr)
 
-    #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-    cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
-    filestr = cpattern.sub('# References', filestr)
+    if pubfile is not None:
+        bibtext = bibliography(pubdata, citations, format='doconce')
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
     # pandoc does not support index entries,
     # remove all index entries

@@ -3,11 +3,29 @@
 # formats to exemplify how different formats may look like.
 # This is both a test of Doconce and an example.
 
+# The following packages must be installed for this script to run:
+# doconce, docutils, preprocess, sphinx, publish
+
 sh -x ./clean.sh
 echo; echo # Make space in output after deleting many files...
 
-# The following packages must be installed for this script to run:
-# doconce, docutils, preprocess, sphinx
+# First make the publish database
+rm -rf papers.pub  venues.list # clean
+
+publish import refs1.bib <<EOF
+1
+2
+EOF
+publish import refs2.bib <<EOF
+2
+2
+EOF
+# Simulate that we get new data, which is best put
+# in a new file
+publish import refs3.bib <<EOF
+1
+2
+EOF
 
 d2f="doconce format"
 # doconce html format:
