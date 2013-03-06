@@ -524,7 +524,7 @@ def bibliography(pubdata, citations, format='doconce'):
         formatter = publish_doconce.rst_format
 
     citation_keys = list(citations.keys())
-    # Reduce the database
+    # Reduce the database to the minimum
     pubdata = [pub for pub in pubdata if pub['key'] in citation_keys]
     # Sort publications in the order of citations
     pubs = []

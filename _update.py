@@ -124,6 +124,7 @@ def run_all():
 if __name__ == '__main__':
     software_dir = 'bundled'
     os.chdir(software_dir)
+    os.system('rm -f *.zip')
 
     if len(sys.argv) == 1:
         print 'Usage: python _update.py all | local'
