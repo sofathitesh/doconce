@@ -12,6 +12,7 @@ def doconce_format_articles(paper):
 
     # Key
     values.append(_doconce_get_key_string(paper))
+
     # Author
     values.append(_doconce_get_authors_string(paper["author"]))
 
@@ -191,7 +192,7 @@ def _doconce_format_title(paper):
 
 def _doconce_format_editors(paper):
     "Convert editor tuple to author string"
-    return "Edited by %s" % _doconce_get_authors_string(paper["editor"])
+    return "edited by %s" % _doconce_get_authors_string(paper["editor"])
 
 def _doconce_get_authors_string(authors):
     "Convert author tuple to author string"
@@ -444,7 +445,7 @@ def _rst_format_title(paper):
 
 def _rst_format_editors(paper):
     "Convert editor tuple to author string"
-    return "Edited by %s" % _rst_get_authors_string(paper["editor"])
+    return "edited by %s" % _rst_get_authors_string(paper["editor"])
 
 def _rst_get_authors_string(authors):
     "Convert author tuple to author string"
@@ -484,7 +485,7 @@ def _rst_format_arxiv(arxiv):
 
 def _rst_join(values):
     "Join values for reST entry"
-    entry = ".. " + values[0] + "\n   " + ",\n   ".join(values[1:]) + "." + "\n"
+    entry = ".. " + values[0] + "\n   " + values[1] + "." + ",\n   ".join(values[2:]) + "." + "\n"
     entry = entry.replace("{", "")
     entry = entry.replace("}", "")
     return entry

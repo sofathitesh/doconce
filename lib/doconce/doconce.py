@@ -1566,7 +1566,8 @@ def handle_index_and_bib(filestr, format, has_title):
                 # note: line numbers in the .do.txt file are of very limited
                 # value for the end format file...anyway, we make them...
 
-            cite_args = re.findall(r'cite\{(.+?)\}', line)
+            cite_args = re.findall(r'[^`]cite\{(.+?)\}[^`]', line)
+            # (Above: we avoid matching `cite{...}`)
             if cite_args:
                 # multiple labels can be separated by comma:
                 cite_labels = []

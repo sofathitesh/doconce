@@ -298,11 +298,38 @@ def rst_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def rst_bib(filestr, citations, pubfile, pubdata):
+def rst_bib(filestr, citations, pubfile, pubdata, numbering=True):
+    """
+    Replace doconce citations and bibliography with reST syntax.
+    If numbering is True, the keys used in the bibliography are
+    replaced by numbers (RefX). This will often look better.
+    """
+    # Fix cite{key1,key2,key3} to cite{key1}cite[key2]cite[key3]
+    cite_args = re.findall(r'[^`]cite\{(.+?)\}[^`]', filestr)
+    if cite_args:
+        for arg in cite_args:
+            args = [a.strip() for a in arg.split(',')]
+            if len(args) > 1:
+                args = ' '.join(['cite{%s}' % a for a in args])
+                filestr = filestr.replace('cite{%s}' % arg, args)
+
+    if numbering:
+        # Find max no of digits
+        n = len(str(max(citations.values())))
+        cite = '[Ref%%%dd]' % n
     for label in citations:
-        filestr = filestr.replace('cite{%s}' % label, '[%s]_' % label)
+        if numbering:
+            filestr = filestr.replace('cite{%s}' % label,
+                                      cite % citations[label] + '_')
+        else:
+            filestr = filestr.replace('cite{%s}' % label, '[%s]_' % label)
+
     if pubfile is not None:
         bibtext = bibliography(pubdata, citations, format='rst')
+        if numbering:
+            for label in citations:
+                bibtext = bibtext.replace('[%s]' % label,
+                                          cite % citations[label])
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
     return filestr
 

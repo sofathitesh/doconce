@@ -784,13 +784,14 @@ your version control system).
 
 === Requirements to input data ===
 
-Note that Publish only accepts BibTeX files where the keys (author, title,
-etc.) are in lower case and where the data are enclosed in curly braces.
-You may need to edit your BibTeX files to meet this demand. Even more
-important is the fact that the Sphinx, reST, and HTML output formats
-displays the BibTeX keys as identifiers when referring to publications.
-Therefore, your keys should have a nice, consistent typesetting. It
-is suggested to use the following scheme:
+Note that Publish only accepts BibTeX files where the keys (author,
+title, etc.) are in lower case and where the data are enclosed in
+curly braces.  You may need to edit your BibTeX files to meet this
+demand. Even more important is the fact that the HTML output format
+displays the BibTeX keys as identifiers when referring to publications
+(Sphinx, reST, and LaTeX apply numbering).  Therefore, your keys
+should have a nice, consistent typesetting. It is suggested to use the
+following scheme:
 
 !bc
 Langtangen_2003a          # single author
@@ -822,7 +823,7 @@ done).
 === Referring to publications ===
 
 We use the command `cite{key}` to refer to a publication with key `key`.
-For example, cite{Langtangen_Pedersen_20002} discussed propagation of
+For example, cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solvin the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
@@ -830,7 +831,7 @@ random vibrations was investigated in cite{Langtangen_1994a}.
 The book chapter cite{Mardal_et_al_2003a} contains information on
 C++ software tools for programming multigrid methods. Multiple
 references are also possible, e.g., see
-cite{Langtangen_Pedersen_20002,Mardal_et_al_2003a}.
+cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 In LaTeX, the `cite{key}` command is directly
 translated to the corresponding `cite` command with a backslash; in reST
