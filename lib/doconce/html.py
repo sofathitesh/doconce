@@ -1,6 +1,6 @@
 import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines, python_online_tutor
+     indent_lines, python_online_tutor, bibliography
 from misc import option
 
 global _file_collection_filename
@@ -878,16 +878,17 @@ def bibdict2htmllist(pyfile, citations):
     text += '</ol>\n\n'
     return text
 
-def html_index_bib(filestr, index, citations, bibfile):
+def html_index_bib(filestr, index, citations, pubfile, pubdata):
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
                                   '<a href="#%s">[%d]</a>' % \
                                   (label, citations[label]))
-    if 'py' in bibfile:
-        bibtext = bibdict2htmllist(bibfile['py'], citations)
-        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
-        filestr = cpattern.sub(bibtext, filestr) # v2.6
+    if pubfile is not None:
+        bibtext = bibliography(pubdata, citations, format='doconce')
+        for label in citations:
+            bibtext = bibtext.replace('label{%s}' % label,
+                                      '<a name="%s">' % label)
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
     # could use anchors for idx{...}, but multiple entries of an index
     # would lead to multiple anchors, so remove them all:

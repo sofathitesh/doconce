@@ -25,7 +25,7 @@ def debugpr(out):
 
 
 from common import *
-from misc import option
+from misc import option, which
 import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb
 
 def supported_format_names():
@@ -1528,27 +1528,33 @@ def handle_cross_referencing(filestr, format):
 
 def handle_index_and_bib(filestr, format, has_title):
     """Process idx{...} and cite{...} instructions."""
+    pubfile = None
+    pubdata = None
     index = {}  # index[word] = lineno
     citations = OrderedDict()  # citations[label] = no_in_list (1,2,3,...)
     line_counter = 0
     cite_counter = 0
-    bibfile = {}
     for line in filestr.splitlines():
         line_counter += 1
         line = line.strip()
         if line.startswith('BIBFILE:'):
-            files = re.split(r'\s*,\s*', line[8:].strip())
-            for filename in files:
-                stem, ext = os.path.splitext(filename)
-                if ext == '.bib':
-                    bibfile['bib'] = stem
-                elif ext == '.rst':
-                    bibfile['rst'] = filename
-                elif ext == '.py':
-                    bibfile['py'] = filename
-                else:
-                    print '\nUnknown extension of BIBFILE:', filename
-                    _abort()
+            pubfile = line.split()
+            if len(pubfile) == 1:
+                print line
+                print '*** error: missing name of publish database'
+                _abort()
+            else:
+                pubfile = pubfile[1]
+            if not pubfile.endswith('.pub'):
+                print line
+                print '*** error: illegal publish database', pubfile
+                _abort()
+            if not os.path.isfile(pubfile):
+                print '*** error: cannot find publish database', pubfile
+                _abort()
+            import publish
+            pubdata = publish.database.read_database(pubfile)
+
         else:
             index_words = re.findall(r'idx\{(.+?)\}', line)
             if index_words:
@@ -1591,7 +1597,12 @@ def handle_index_and_bib(filestr, format, has_title):
     # version < 2.7 warning
     if len(citations) > 0 and OrderedDict is dict:
         print '*** warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
-    filestr = INDEX_BIB[format](filestr, index, citations, bibfile)
+    if which('publish') is None:
+        print '*** error: you have a bibliography but publish is not installed.'
+        print '    Download publish from https://bitbucket.org/logg/publish.'
+        _abort()
+
+    filestr = INDEX_BIB[format](filestr, index, citations, pubfile, pubdata)
     return filestr
 
 def interpret_authors(filestr, format):
@@ -2161,6 +2172,10 @@ def preprocess(filename, format, preprocessor_options=[]):
     """
 
     f = open(filename, 'r'); filestr = f.read(); f.close()
+    if filestr.strip() == '':
+        print '*** error: empty file', filename
+        _abort()
+
     preprocessor = None
 
     # First guess if preprocess or mako is used

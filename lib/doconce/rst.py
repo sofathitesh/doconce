@@ -1,6 +1,6 @@
 import re, os, sys
 from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
-    table_analysis, plain_exercise
+    table_analysis, plain_exercise, bibliography
 from html import html_movie
 
 # replacement patterns for substitutions of inline tags
@@ -298,18 +298,16 @@ def rst_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def rst_bib(filestr, citations, bibfile):
+def rst_bib(filestr, citations, pubfile, pubdata):
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label, '[%s]_' % label)
-    if 'rst' in bibfile:
-        f = open(bibfile['rst'], 'r');  bibtext = f.read();  f.close()
-        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-        cpattern = re.compile(r'^BIBFILE:.+$', re.MULTILINE)
-        filestr = cpattern.sub(bibtext, filestr)
+    if pubfile is not None:
+        bibtext = bibliography(pubdata, citations, format='rst')
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
     return filestr
 
-def rst_index_bib(filestr, index, citations, bibfile):
-    filestr = rst_bib(filestr, citations, bibfile)
+def rst_index_bib(filestr, index, citations, pubfile, pubdata):
+    filestr = rst_bib(filestr, citations, pubfile, pubdata)
 
     # reStructuredText does not have index/glossary
     filestr = re.sub(r'idx\{.+?\}\n?', '', filestr)

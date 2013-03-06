@@ -1,6 +1,6 @@
 
 import re, sys
-from common import default_movie, plain_exercise
+from common import default_movie, plain_exercise, bibliography
 
 def plain_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
@@ -66,15 +66,13 @@ def bibdict2doconcelist(pyfile, citations):
     text += '\n\n'
     return text
 
-def plain_index_bib(filestr, index, citations, bibfile):
+def plain_index_bib(filestr, index, citations, pubfile, pubdata):
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
                                   '[%d]' % citations[label])
-    if 'py' in bibfile:
-        bibtext = bibdict2doconcelist(bibfile['py'], citations)
-        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
-        filestr = cpattern.sub(bibtext, filestr)
+    if pubfile is not None:
+        bibtext = bibliography(pubdata, citations, format='doconce')
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
     # remove all index entries:
     filestr = re.sub(r'idx\{.+?\}\n?', '', filestr)
