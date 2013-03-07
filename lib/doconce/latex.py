@@ -392,7 +392,7 @@ def latex_title(m):
     title = m.group('subst')
     # Make appropriate linebreaks for the default typesetting
     import textwrap
-    multiline_title = r' \\\\ [1.5mm] '.join(textwrap.wrap(title, width=38))
+    multiline_title = r' \\ [1.5mm] '.join(textwrap.wrap(title, width=38))
 
     text = r"""
 
@@ -660,13 +660,17 @@ def latex_index_bib(filestr, index, citations, pubfile, pubdata):
         print '\nexporting publish database %s to %s:' % (pubfile, bibtexfile)
         failure = os.system('publish export %s' % bibtexfile)
 
+        # Remove heading right before BIBFILE
+        pattern = '={5,9} .+? ={5,9}\s+^BIBFILE'
+        filestr = re.sub(pattern, 'BIBFILE', filestr, flags=re.MULTILINE)
+
         bibtext = fix_latex_command_regex(r"""
 
 \bibliographystyle{plain}
 \bibliography{%s}
 """ % bibtexfile, application='replacement')
-        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr,
-        #                 flags=re.MULTILINE)
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr,
+                         flags=re.MULTILINE)
         cpattern = re.compile(r'^BIBFILE:.+$', re.MULTILINE)
         filestr = cpattern.sub(bibtext, filestr)
     return filestr
@@ -829,11 +833,11 @@ def define(FILENAME_EXTENSION,
         'linkURL3v':     r'\href{{\g<url>}}{\\nolinkurl{\g<link>}}',
         'plainURL':      r'\href{{\g<url>}}{\\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
         'inlinecomment': latex_inline_comment,
-        'chapter':       r'\n\n\chapter{\g<subst>}\n',
-        'section':       r'\n\n\section{\g<subst>}\n',
-        'subsection':    r'\n\subsection{\g<subst>}\n',
+        'chapter':       r'\chapter{\g<subst>}',
+        'section':       r'\section{\g<subst>}',
+        'subsection':    r'\subsection{\g<subst>}',
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
-        'subsubsection': r'\n\paragraph{\g<subst>.}',
+        'subsubsection': r'\paragraph{\g<subst>.}',
         'paragraph':     r'\paragraph{\g<subst>}\n',
         #'abstract':      '\n\n' + r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n' + r'\g<rest>', # not necessary with separate \n
         #'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',

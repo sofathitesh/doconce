@@ -62,8 +62,6 @@
 % Automatically generated reST file from Doconce source
 % (http://code.google.com/p/doconce/)
 
-% Missing: FIGURE, MOVIE, environments
-
 
 %___________________________________________________________________________
 
@@ -78,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 5, 2013
+Mar 7, 2013
 %
 \begin{itemize}
 
@@ -116,9 +114,9 @@ If any of these questions are of interest, you should keep on reading.
   \label{what-does-doconce-look-like}%
 }
 
-Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. Here are
-som examples.
+Doconce text looks like ordinary text (much like Markdown), but there
+are some almost invisible text constructions that allow you to control
+the formating. Here are some examples.
 %
 \begin{quote}
 %
@@ -154,23 +152,25 @@ before and after the code block.
 \texttt{!bt} (begin TeX) and \texttt{!et} (end TeX) commands at separate lines
 before and after the math block.
 
-\item There is support for both LaTeX and text-like inline mathematics.
+\item There is support for both LaTeX and text-like inline mathematics
+such that formulas make sense also when not rendered by LaTeX
+or MathJax.
 
 \item Figures and movies with captions, simple tables,
 URLs with links, index list, labels and references are supported.
+YouTube and Vimeo videos are automatically embedded in web documents.
 
-\item Invisible comments in the output format can be inserted throughout
-the text.
+\item Special comment lines are not visible in the output.
 
-\item Visible comments can be inserted so that authors and readers can
-comment upon the text (and at any time turn on/off output of such
-comments).
+\item Comments to authors can be inserted throughout the text and
+made visible or invisible as desired.
 
 \item There is an exercise environment with many advanced features.
 
 \item With a preprocessor, Preprocess or Mako, one can include
-other documents (files) and large portions of text can be defined
-in or out of the text.
+other documents (files), large portions of text can be defined
+in or out of the text, and tailored format-specific constructs can easily
+be included.
 
 \item With Mako one can also have Python code
 embedded in the Doconce document and thereby parameterize the
@@ -179,6 +179,32 @@ text (e.g., one text can describe programming in two languages).
 \end{itemize}
 
 \end{quote}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  What Can Doconce Be Used For?%
+  \addcontentsline{toc}{subsection}{What Can Doconce Be Used For?}%
+  \label{what-can-doconce-be-used-for}%
+}
+
+LaTeX is ideal for articles, thesis, and books, but not so suited
+for web documents. Nice environments for web documents, such as
+Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+What about migrating a part of a book for blogging? What about
+making an MS Word version or an untagged text for inclusion in email?
+Doconce enables all this with just \emph{one source}. Doconce also has
+extra features for supporting documents with much code and mathematics.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Basic Syntax Examples%
+  \addcontentsline{toc}{subsection}{Basic Syntax Examples}%
+  \label{basic-syntax-examples}%
+}
 
 Here is an example of some simple text written in the Doconce format:
 %
@@ -355,7 +381,8 @@ acceleration
 
 Inline mathematics, such as v = sin(x),
 allows the formula to be specified both as LaTeX and as plain text.
-This results in a professional LaTeX typesetting, but in other formats
+This results in a professional LaTeX typesetting, but in formats
+not supporting LaTeX mathematics
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like v = sin(x) is
 typeset as:
@@ -444,7 +471,7 @@ I~=~integrate.trapezoidal(myfunc,~0,~pi,~100)
 \end{quote}
 
 A code block must come after some plain sentence (at least for successful
-output to \texttt{sphinx}, \texttt{rst}, and ASCII-close formats),
+output to \texttt{sphinx}, \texttt{rst}, and formats close to plain text),
 not directly after a section/paragraph heading or a table.
 
 One can also copy computer code directly from files, either the
@@ -469,38 +496,51 @@ plain text editing capabilities.
 }
 
 Doconce supports a type of macros via a LaTeX-style \emph{newcommand}
-construction.  The newcommands defined in a file with name
-\texttt{newcommand\_replace.tex} are expanded when Doconce is filtered to
-other formats, except for LaTeX (since LaTeX performs the expansion
-itself).  Newcommands in files with names \texttt{newcommands.tex} and
-\texttt{newcommands\_keep.tex} are kept unaltered when Doconce text is
-filtered to other formats, except for the Sphinx format. Since Sphinx
-understands LaTeX math, but not newcommands if the Sphinx output is
-HTML, it makes most sense to expand all newcommands.  Normally, a user
-will put all newcommands that appear in math blocks surrounded by
-\texttt{!bt} and \texttt{!et} in \texttt{newcommands\_keep.tex} to keep them unchanged, at
-least if they contribute to make the raw LaTeX math text easier to
-read in the formats that cannot render LaTeX.  Newcommands used
-elsewhere throughout the text will usually be placed in
-\texttt{newcommands\_replace.tex} and expanded by Doconce.  The definitions of
-newcommands in the \texttt{newcommands*.tex} files \emph{must} appear on a single
-line (multi-line newcommands are too hard to parse with regular
-expressions).
+construction.  The newcommands are defined in files with names
+\texttt{newcommands*.tex}, using standard LaTeX syntax. Only newcommands
+for use inside math environments are supported.
 
-Recent versions of Doconce also offer cross referencing, typically one
-can define labels below (sub)sections, in figure captions, or in
-equations, and then refer to these later. Entries in an index can be
-defined and result in an index at the end for the LaTeX and Sphinx
-formats. Citations to literature, with an accompanying bibliography in
-a file, are also supported. The syntax of labels, references,
-citations, and the bibliography closely resembles that of LaTeX,
-making it easy for Doconce documents to be integrated in LaTeX
-projects (manuals, books). For further details on functionality and
+Labels, corss-references, citations, and support of an index and
+bibliography are much inspired by LaTeX syntax, but Doconce features
+no backslashes. Here is an example:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+=====~My~Section~=====\\
+label\{sec:mysec\}\\
+~\\
+idx\{key~equation\}~idx\{\$\textbackslash{}u\$~conservation\}\\
+~\\
+We~refer~to~ref\{sec:yoursec\}~for~background~material~on\\
+the~*key~equation*.~Here~we~focus~on~the~extension\\
+~\\
+\#~\textbackslash{}Ddt,~\textbackslash{}u~and~\textbackslash{}mycommand~are~defined~in~newcommands\_keep.tex\\
+~\\
+!bt\\
+\textbackslash{}begin\{equation\}\\
+\textbackslash{}Ddt\{\textbackslash{}u\}~=~\textbackslash{}mycommand\{v\},\\
+label\{mysec:eq:Dudt\}\\
+\textbackslash{}end\{equation\}\\
+!et\\
+where~\$\textbackslash{}Ddt\{\textbackslash{}u\}\$~is~the~material~derivative~of~\$\textbackslash{}u\$.\\
+Equation~(ref\{mysec:eq:Dudt\})~is~important~in~a~number\\
+of~contexts,~see~cite\{Larsen\_et\_al\_2002,Johnson\_Friedman\_2010a\}.\\
+Also,~cite\{Miller\_2000\}~supports~such~a~view.\\
+~\\
+As~see~in~Figure~ref\{mysec:fig:myfig\},~the~key~equation\\
+features~large,~smooth~regions~*and*~abrupt~changes.\\
+~\\
+FIGURE:~{[}fig/myfile,~width=600{]}~My~figure.~label\{mysec:fig:myfig\}\\
+~\\
+=====~References~=====\\
+~\\
+BIBFILE:~papers.pub
+}
+\end{quote}
+
+For further details on functionality and
 syntax we refer to the \texttt{doc/manual/manual.do.txt} file (see the
 \href{https://doconce.googlecode.com/hg/doc/demos/manual/index.html}{demo page}
 for various formats of this document).
-
-% Example on including another Doconce file (using preprocess):
 
 
 %___________________________________________________________________________
@@ -775,7 +815,7 @@ scripts so there is no support for mathematics in the comments.
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~331
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~358
 
 \hyperlink{id2}{
 Duplicate explicit target name: ``scientific report''.
@@ -1637,6 +1677,13 @@ sudo~apt-get~install~doconce
   \label{dependencies}%
 }
 
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 
 %___________________________________________________________________________
 
@@ -1727,6 +1774,33 @@ spellcheck. On Debian (including Ubuntu) it is installed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 sudo~apt-get~install~ispell
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Bibliography%
+  \addcontentsline{toc}{subsubsection}{Bibliography}%
+  \label{bibliography}%
+}
+
+The Python package \href{https://bitbucket.org/logg/publish}{Publish} is needed if you use a bibliography
+in your document. On the website, click on \emph{Clone}, copy the
+command and run it:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+hg~clone~~ssh://hg@bitbucket.org/logg/publish
+}
+\end{quote}
+
+Thereafter go to the \texttt{publish} directory and run the \texttt{setup.py} script
+for installing Publish:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+cd~publish\\
+sudo~python~setup.py
 }
 \end{quote}
 

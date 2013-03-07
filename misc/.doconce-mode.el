@@ -23,9 +23,12 @@
 |  Ctrl+c ma     | math environment: !bt align !et       |
 |  Ctrl+c ce     | code environment: !bc !ec             |
 |  Ctrl+c cf     | code from file: @@@CODE               |
-|  Ctrl+c table  | table                                 |
+|  Ctrl+c table2 | table with 2 columns                  |
+|  Ctrl+c table3 | table with 3 columns                  |
+|  Ctrl+c table4 | table with 4 columns                  |
 |  Ctrl+c exer   | exercise outline                      |
 |  Ctrl+c slide  | slide outline                         |
+|  Ctrl+c help   | print this table                      |
 |--------------------------------------------------------|
 ")
  (local-set-key (kbd "\C-cf") "FIGURE: [path, width=400 frac=1.0] caption on one line. label{}")
@@ -52,12 +55,28 @@ FIGURE: [path, width=400]
 !eslidecell
 
 ")
- (local-set-key (kbd "\C-ctable") "
+ (local-set-key (kbd "\C-ctable2") "
 |------------------------|
 | heading1 | heading2    |
 |----l-----------r-------|
 |  1.0     | 2.0         |
 |------------------------|
+")
+ (local-set-key (kbd "\C-ctable3") "
+|-----------------------------------|
+| heading1 | heading2    | heading3 |
+|----l-----------r-------|----c-----|
+|  1.0     | 2.0         |          |
+|          |             |          |
+|-----------------------------------|
+")
+ (local-set-key (kbd "\C-ctable4") "
+|----------------------------------------------|
+| heading1 | heading2    | heading3 | heading4 |
+|----l-----------r-------|----c-----|-----r----|
+|  1.0     | 2.0         |          |          |
+|          |             |          |          |
+|----------------------------------------------|
 ")
  (local-set-key (kbd "\C-cme") "!bt
 \\begin{equation}

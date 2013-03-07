@@ -2677,12 +2677,10 @@ your version control system).
 <p>
 Note that Publish only accepts BibTeX files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
-curly braces.  You may need to edit your BibTeX files to meet this
-demand. Even more important is the fact that the HTML output format
-displays the BibTeX keys as identifiers when referring to publications
-(Sphinx, reST, and LaTeX apply numbering).  Therefore, your keys
-should have a nice, consistent typesetting. It is suggested to use the
-following scheme:
+curly braces. You may need to edit your BibTeX files to meet this
+demand. Although references are visible as numbers only in the
+output, it is recommended to have apply a nice, consistent
+typesetting of your keys. It is suggested to use the following scheme:
 
 <p>
 <!-- begin verbatim block -->
@@ -3653,10 +3651,7 @@ has a title), the header and footer are included, otherwise not.
 
 <p>
 The file <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
-the reST Editing Mode for Emacs. Many Doconce features are recognized,
-but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.)
+gives a "Doconce Editing Mode" in Emacs.
 
 <p>
 Here is how to get the Doconce Editing Mode in Emacs: Download <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> and save it in your home directory, then add these lines to <code>~/.emacs</code>:
@@ -3684,9 +3679,12 @@ many keyboard shortcuts are defined:
 <tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
 <tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
 <tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
-<tr><td align="left">   Ctrl+c table                          </td> <td align="left">   table                                 </td> </tr>
+<tr><td align="left">   Ctrl+c table2                         </td> <td align="left">   table with 2 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table3                         </td> <td align="left">   table with 3 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table4                         </td> <td align="left">   table with 4 columns                  </td> </tr>
 <tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
 <tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+<tr><td align="left">   Ctrl+c help                           </td> <td align="left">   print this table                      </td> </tr>
 </table>
 <p>
 Typing <code>Ctrl+c help</code> prints the above table in Emacs. Try out

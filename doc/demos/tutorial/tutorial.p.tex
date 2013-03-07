@@ -69,10 +69,10 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
@@ -106,7 +106,7 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -122,40 +122,17 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
 
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
-
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% #ifdef A4PAPER
-\usepackage{wrapfig,calc}
-\newdimen\barheight
-\def\barthickness{0.5pt}
-
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
-\begin{minipage}{0.5\textwidth-6pt-\columnsep}
-\hspace*{3mm}
-\setbox2=\hbox{\parbox[t]{55mm}{
-#1 \rule[-8pt]{0pt}{10pt}}}%
-\barheight=\ht2 \advance\barheight by \dp2
-\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
-\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
-}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
-\end{wrapfigure}}
+% #ifndef NOTODONOTES
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
 % #endif
 
 
@@ -172,7 +149,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ------------------- main content ----------------------
 
-% Missing: FIGURE, MOVIE, environments
 
 
 
@@ -202,8 +178,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 
 % #endif
-
-
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -244,13 +218,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Mar 5, 2013}
+\date{Mar 7, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 5, 2013}}
+{\large\textsf{Mar 7, 2013}}
 
 \end{center}
 \vfill
@@ -259,7 +233,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Mar 5, 2013
+Mar 7, 2013
 \end{center}
 
 \vspace{1cm}
@@ -294,9 +268,9 @@ If any of these questions are of interest, you should keep on reading.
 
 \section{What Does Doconce Look Like?}
 
-Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. Here are
-som examples.
+Doconce text looks like ordinary text (much like Markdown), but there
+are some almost invisible text constructions that allow you to control
+the formating. Here are some examples.
 
 \begin{itemize}
   \item Bullet lists arise from lines starting with \code{*}.
@@ -329,23 +303,25 @@ som examples.
     \code{!bt} (begin TeX) and \code{!et} (end TeX) commands at separate lines
     before and after the math block.
 
-  \item There is support for both {\LaTeX} and text-like inline mathematics.
+  \item There is support for both {\LaTeX} and text-like inline mathematics
+    such that formulas make sense also when not rendered by {\LaTeX}
+    or MathJax.
 
   \item Figures and movies with captions, simple tables,
     URLs with links, index list, labels and references are supported.
+    YouTube and Vimeo videos are automatically embedded in web documents.
 
-  \item Invisible comments in the output format can be inserted throughout
-    the text.
+  \item Special comment lines are not visible in the output.
 
-  \item Visible comments can be inserted so that authors and readers can
-    comment upon the text (and at any time turn on/off output of such
-    comments).
+  \item Comments to authors can be inserted throughout the text and
+    made visible or invisible as desired.
 
   \item There is an exercise environment with many advanced features.
 
   \item With a preprocessor, Preprocess or Mako, one can include
-    other documents (files) and large portions of text can be defined
-    in or out of the text.
+    other documents (files), large portions of text can be defined
+    in or out of the text, and tailored format-specific constructs can easily
+    be included.
 
   \item With Mako one can also have Python code
     embedded in the Doconce document and thereby parameterize the
@@ -353,6 +329,18 @@ som examples.
 \end{itemize}
 
 \noindent
+\subsection{What Can Doconce Be Used For?}
+
+{\LaTeX} is ideal for articles, thesis, and books, but not so suited
+for web documents. Nice environments for web documents, such as
+Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+What about migrating a part of a book for blogging? What about
+making an MS Word version or an untagged text for inclusion in email?
+Doconce enables all this with just \emph{one source}. Doconce also has
+extra features for supporting documents with much code and mathematics.
+
+\subsection{Basic Syntax Examples}
+
 Here is an example of some simple text written in the Doconce format:
 \bccq
 ===== A Subsection with Sample Text =====
@@ -401,7 +389,6 @@ Tables are also supperted, e.g.,
 The Doconce text above results in the following little document:
 
 \subsection{A Subsection with Sample Text}
-
 \label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
@@ -437,8 +424,8 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 Section~\ref{my:first:sec}.
 
-Doconce also allows inline comments such as \inlinecomment{hpl}{here I will make
-some remarks to the text} for allowing authors to make notes. Inline
+Doconce also allows inline comments such as \shortinlinecomment{hpl}{here I will make
+some remarks to the text}{here I will make some remarks to the text} for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see Section~\ref{doconce2formats} for an example).
 
@@ -456,12 +443,12 @@ Tables are also supperted, e.g.,
 \end{tabular}\end{quote}
 
 \noindent
-
 \subsection{Mathematics and Computer Code}
 
 Inline mathematics, such as $\nu = \sin(x)$,
 allows the formula to be specified both as {\LaTeX} and as plain text.
-This results in a professional {\LaTeX} typesetting, but in other formats
+This results in a professional {\LaTeX} typesetting, but in formats
+not supporting {\LaTeX} mathematics
 the text version normally looks better than raw {\LaTeX} mathematics with
 backslashes. An inline formula like $\nu = \sin(x)$ is
 typeset as
@@ -533,7 +520,7 @@ import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 \epycod
 A code block must come after some plain sentence (at least for successful
-output to \code{sphinx}, \code{rst}, and ASCII-close formats),
+output to \code{sphinx}, \code{rst}, and formats close to plain text),
 not directly after a section/paragraph heading or a table.
 
 
@@ -548,48 +535,60 @@ extension \code{do.txt}. The \code{do} part stands for doconce, while the
 trailing \code{.txt} denotes a text document so that editors gives you
 plain text editing capabilities.
 
-\subsection{Macros (Newcommands), Cross-References, Index, and Bibliography}
 
+\subsection{Macros (Newcommands), Cross-References, Index, and Bibliography}
 \label{newcommands}
 
 Doconce supports a type of macros via a LaTeX-style \emph{newcommand}
-construction.  The newcommands defined in a file with name
-\code{newcommand_replace.tex} are expanded when Doconce is filtered to
-other formats, except for {\LaTeX} (since {\LaTeX} performs the expansion
-itself).  Newcommands in files with names \code{newcommands.tex} and
-\code{newcommands_keep.tex} are kept unaltered when Doconce text is
-filtered to other formats, except for the Sphinx format. Since Sphinx
-understands {\LaTeX} math, but not newcommands if the Sphinx output is
-HTML, it makes most sense to expand all newcommands.  Normally, a user
-will put all newcommands that appear in math blocks surrounded by
-\code{!bt} and \code{!et} in \code{newcommands_keep.tex} to keep them unchanged, at
-least if they contribute to make the raw {\LaTeX} math text easier to
-read in the formats that cannot render {\LaTeX}.  Newcommands used
-elsewhere throughout the text will usually be placed in
-\code{newcommands_replace.tex} and expanded by Doconce.  The definitions of
-newcommands in the \code{newcommands*.tex} files \emph{must} appear on a single
-line (multi-line newcommands are too hard to parse with regular
-expressions).
+construction.  The newcommands are defined in files with names
+\code{newcommands*.tex}, using standard {\LaTeX} syntax. Only newcommands
+for use inside math environments are supported.
 
-Recent versions of Doconce also offer cross referencing, typically one
-can define labels below (sub)sections, in figure captions, or in
-equations, and then refer to these later. Entries in an index can be
-defined and result in an index at the end for the {\LaTeX} and Sphinx
-formats. Citations to literature, with an accompanying bibliography in
-a file, are also supported. The syntax of labels, references,
-citations, and the bibliography closely resembles that of {\LaTeX},
-making it easy for Doconce documents to be integrated in {\LaTeX}
-projects (manuals, books). For further details on functionality and
+Labels, corss-references, citations, and support of an index and
+bibliography are much inspired by {\LaTeX} syntax, but Doconce features
+no backslashes. Here is an example:
+
+\bccq
+===== My Section =====
+label{sec:mysec}
+
+idx{key equation} idx{$\u$ conservation}
+
+We refer to ref{sec:yoursec} for background material on
+the *key equation*. Here we focus on the extension
+
+# \Ddt, \u and \mycommand are defined in newcommands_keep.tex
+
+!bt
+\begin{equation}
+\Ddt{\u} = \mycommand{v},
+label{mysec:eq:Dudt}
+\end{equation}
+!et
+where $\Ddt{\u}$ is the material derivative of $\u$.
+Equation (ref{mysec:eq:Dudt}) is important in a number
+of contexts, see cite{Larsen_et_al_2002,Johnson_Friedman_2010a}.
+Also, cite{Miller_2000} supports such a view.
+
+As see in Figure ref{mysec:fig:myfig}, the key equation
+features large, smooth regions *and* abrupt changes.
+
+FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+
+===== References =====
+
+BIBFILE: papers.pub
+\eccq
+
+For further details on functionality and
 syntax we refer to the \code{doc/manual/manual.do.txt} file (see the
 \href{{https://doconce.googlecode.com/hg/doc/demos/manual/index.html}}{demo page}
 for various formats of this document).
 
 
-% Example on including another Doconce file (using preprocess):
 
 
 \section{From Doconce to Other Formats}
-
 \label{doconce2formats}
 
 Transformation of a Doconce document \code{mydoc.do.txt} to various other
@@ -624,6 +623,7 @@ various options that can be added to the basic commands.
 A handy feature of the generated \code{make.sh} script is that it
 inserts checks for successful runs of the \code{doconce format} commands,
 and if something goes wrong, the \code{make.sh} exits.
+
 
 \subsection{Preprocessing}
 
@@ -846,6 +846,7 @@ Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The \code{-s} option adds a proper header and footer to the \code{mydoc.html} file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+
 \subsection{{\LaTeX}}
 
 Making a {\LaTeX} file \code{mydoc.tex} from \code{mydoc.do.txt} is done in two steps:
@@ -1020,6 +1021,7 @@ When running \code{doconce ptex2tex mydoc envir=minted} (or other minted
 specifications with \code{doconce ptex2tex}), the minted package is automatically
 included so there is no need for the \code{-DMINTED} option.
 
+
 \subsection{PDFLaTeX}
 
 Running \code{pdflatex} instead of \code{latex} follows almost the same steps,
@@ -1094,7 +1096,6 @@ Some links for going from {\LaTeX} to Word are listed below.
 \end{itemize}
 
 \noindent
-
 \subsection{Sphinx}
 
 Sphinx documents demand quite some steps in their creation. We have automated
@@ -1241,6 +1242,7 @@ doconce sphinx_dir theme=scipy_lectures \
 \esys
 
 \paragraph{The manual Sphinx procedure.}
+
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file \code{mydoc.do.txt}.
@@ -1335,6 +1337,7 @@ depending the argument that follows \code{!bc}: \code{cod} gives Python
 (\code{code-block:: python} in Sphinx syntax) and \code{cppcod} gives C++, but
 all such arguments can be customized both for Sphinx and {\LaTeX} output.
 
+
 \subsection{Wiki Formats}
 
 There are many different wiki formats, but Doconce only supports three:
@@ -1392,6 +1395,7 @@ from a script to automate all steps in going from Doconce to the final
 format(s). The \code{make.sh} files in \code{docs/manual} and \code{docs/tutorial}
 constitute comprehensive examples on how such scripts can be made.
 
+
 \subsection{Demos}
 
 The current text is generated from a Doconce format stored in the file
@@ -1410,7 +1414,6 @@ is a sample of how this tutorial looks in different formats.
 There is another demo in the \code{docs/manual} directory which
 translates the more comprehensive documentation, \code{manual.do.txt}, to
 various formats. The \code{make.sh} script runs a set of translations.
-
 
 \section{Installation of Doconce and its Dependencies}
 
@@ -1450,7 +1453,15 @@ sudo apt-get install doconce
 
 \subsection{Dependencies}
 
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+({\LaTeX}, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 \paragraph{Preprocessors.}
+
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
 
@@ -1483,6 +1494,7 @@ tarball, pack it out, go to the directory and run
 the usual \code{sudo python setup.py install}.
 
 \paragraph{Image file handling.}
+
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for \code{latex}
 output, while HTML needs JPEG, GIF, or PNG formats.
@@ -1504,6 +1516,7 @@ sudo apt-get install texlive-extra-utils
 \esys
 
 \paragraph{Spellcheck.}
+
 The utility \code{doconce spellcheck} applies the \code{ispell} program for
 spellcheck. On Debian (including Ubuntu) it is installed by
 
@@ -1511,7 +1524,27 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 sudo apt-get install ispell
 \esys
 
+
+\paragraph{Bibliography.}
+
+The Python package \href{{https://bitbucket.org/logg/publish}}{Publish} is needed if you use a bibliography
+in your document. On the website, click on \emph{Clone}, copy the
+command and run it:
+
+\bsys
+hg clone  ssh://hg@bitbucket.org/logg/publish
+\esys
+Thereafter go to the \code{publish} directory and run the \code{setup.py} script
+for installing Publish:
+
+\bsys
+cd publish
+sudo python setup.py
+\esys
+
+
 \paragraph{Ptex2tex for {\LaTeX} Output.}
+
 To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
 which is installed by
@@ -1570,6 +1603,7 @@ argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflat
 % Say something about anslistings.sty
 
 \paragraph{reStructuredText (reST) Output.}
+
 The \code{rst} output from Doconce allows further transformation to {\LaTeX},
 HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
 most recent version can be done by
@@ -1604,6 +1638,7 @@ cd ..
 \esys
 
 \paragraph{Markdown and Pandoc Output.}
+
 The Doconce format \code{pandoc} outputs the document in the Pandoc
 extended Markdown format, which via the \code{pandoc} program can be
 translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
@@ -1615,6 +1650,7 @@ sudo apt-get install pandoc
 on Debian (Ubuntu) systems.
 
 \paragraph{Epydoc Output.}
+
 When the output format is \code{epydoc} one needs that program too, installed
 by
 \bsys
@@ -1633,6 +1669,8 @@ updates and bug fixes. For \code{svn} directories, go to the directory,
 run \code{svn update}, and then \code{sudo python setup.py install}. For
 Mercurial (\code{hg}) directories, go to the directory, run
 \code{hg pull; hg update}, and then \code{sudo python setup.py install}.
+
+
 % ------------------- end of main content ---------------
 
 

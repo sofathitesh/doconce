@@ -6,10 +6,15 @@
 
 
 
-<!-- Very preliminary -->
-
 _WARNING: This quick reference is very incomplete!_
 
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's `blogger.com`, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 ### Supported Formats
 
@@ -25,11 +30,13 @@ Doconce currently translates files to the following formats:
 
  * Sphinx (format `sphinx`)
 
+ * IPython notebook (format `ipynb`)
+
+ * MediaWiki (format `mwiki`)
+
  * (Pandoc extended) Markdown (format `pandoc`)
 
  * Googlecode wiki (format `gwiki`)
-
- * MediaWiki for Wikipedia and Wikibooks (format `mwiki`)
 
  * Creoloe wiki (format `cwiki`)
 
@@ -37,7 +44,42 @@ Doconce currently translates files to the following formats:
 
  * StructuredText (format `st`)
 
-The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
+For documents with much code and mathematics, the best (and most supported)
+formats are `latex`, `pdflatex`, `sphinx`, and `html`; and to a slightly
+less extent `mwiki` and `pandoc`. The HTML format supports blogging on
+Google and Wordpress.
+
+
+### Emacs syntax support
+
+The file [.doconce-mode.el](https://doconce.googlecode.com/hg/misc/.doconce-mode.el) in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add `(load-file "~/.doconce-mode.el")` to the `.emacs`
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+
+            Emacs key                             Action                
+----------------------------------  ----------------------------------  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+
 
 ### Title, Authors, and Date
 
@@ -78,23 +120,28 @@ The table of contents is removed by writing `TOC: off`.
 ### Section Types
 
 
-            Section type                             Syntax                 
-------------------------------------  ------------------------------------  
-chapter                               `========= Heading ========` (9 `=`)  
-section                               `======= Heading =======`    (7 `=`)  
-subsection                            `===== Heading =====`        (5 `=`)  
-subsubsection                         `=== Heading ===`            (3 `=`)  
-paragraph                             `__Heading.__`               (2 `_`)  
-abstract                              `__Abstract.__` Running text...       
+                Section type                                    Syntax                    
+-------------------------------------------  -------------------------------------------  
+chapter                                      `========= Heading ========` (9 `=`)         
+section                                      `======= Heading =======`    (7 `=`)         
+subsection                                   `===== Heading =====`        (5 `=`)         
+subsubsection                                `=== Heading ===`            (3 `=`)         
+paragraph                                    `__Heading.__`               (2 `_`)         
+abstract                                     `__Abstract.__` Running text...              
+appendix                                     `======= Appendix: heading =======` (7 `=`)  
+appendix                                     `===== Appendix: heading =====` (5 `=`)      
+exercise                                     `======= Exercise: heading =======` (7 `=`)  
+exercise                                     `===== Exercise: heading =====` (5 `=`)      
 
 
-Note that abstracts are recognized by starting with `__Abstract.__` at
-the beginning of a line and ending with three or more `=` signs of the
-next heading.
+Note that abstracts are recognized by starting with `__Abstract.__` or
+`__Summary.__` at the beginning of a line and ending with three or
+more `=` signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only `latex` output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The `Exercise:` keyword kan be substituted by `Problem:` or `Project:`.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 ### Inline Formatting
 
@@ -189,7 +236,7 @@ And finally a description list:
   :    
    and its description may fit on one line
 
-### Comments
+### Comment lines
 
 Lines starting with `#` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -197,40 +244,48 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats `rst` and
 `sphinx` are desired.
 
+Comment lines starting with `##` are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes `##` or by blocks of text
-inside the comment directives `%<doc>` (beginning) and `<%doc/>` (end).
+Doconce starts processing the file. Mako block comments start
+with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+`# #ifdef EXTRA` and `# #endif` around the text. The command line
+option `-DEXTRA` will bring the text alive again.
+
+### Inline comments
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [name: running text]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 where `name` is the name or ID of an author or reader making the comment,
-and `running text` is the comment. There must be a space after the colon.
+and `running text` is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 doconce format html mydoc.do.txt --skip_inline_comments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 doconce remove_inline_comments mydoc.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This action is appropriate when all issues with such comments are resolved.
 
 ### Verbatim/Computer Code
 
@@ -319,9 +374,9 @@ Important warnings:
 ### LaTeX Mathematics
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats `sphinx`, `latex`, and `pdflatex`
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats `html`, `sphinx`, `latex`,
+pdflatex`, `pandoc`, and `mwiki` work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -335,8 +390,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 `!bt`
@@ -353,9 +407,6 @@ and
 !et
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!-- tex and code blocks in inside verbatim blocks and are replaced -->
-<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
 This LaTeX code gets rendered as
 
 $$
@@ -379,25 +430,17 @@ $$
  \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 $$
 
-One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (`#else`) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-`mwiki`, or `html` formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` or `pdflatex` *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+`mwiki`, `html`, or `ipynb` formats
+is also important, one should follow these rules:
 
   * Use only the equation environments `\[`, `\]`,
     `equation`, `equation*`, `align`, and `align*`.
 
-  * Labels in multiple equation environments such as `align` are
-    not (yet) handled by `pandoc`.
-
   * MediaWiki (`mwiki`) does not support references to equations.
+
+(Doconce performs extensions to `sphinx` and other formats such that
+labels in `align` environments work well.)
 
 
 
@@ -412,7 +455,16 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define `newcommand` statements in files with names
+`newcommands*.tex`. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that `newcommands_keep.tex`
+contains the newcommands that are kept in the document, while
+those in `newcommands_replace.tex` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
+`mwiki`, `ipynb`, and `pandoc`, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 ### Figures and Movies
@@ -426,30 +478,51 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+
+ 2. all of the command must appear on a single line,
+
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-`convert` and `montage` programs from the ImageMagick suite:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use `+append` for stacking left to right, `-append` for top to bottom.
-The positioning of the figures can be controlled by `-gravity`.
+This command applies `montage` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in `html` and `sphinx` documents
+and otherwise be represented by a link. The syntax is
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The latter results in
+
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Vimeo movie.</em>
+
+
 
 
 ### Tables
@@ -490,9 +563,10 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-### Labels, References, Citations, and Index
+### Labels and References
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 
@@ -514,6 +588,8 @@ ref{name}
 
 again with no backslash before `ref`.
 
+### Citations and Bibliography
+
 Single citations are written as
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -532,20 +608,22 @@ by comma:
 cite{name1,name2,name3}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The bibliography is specified by a line `BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py`, where `name` is the logical name of the
-document (the doconce file will then normally have the name
-`name.do.txt`), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the `BIBFILE` keyword appears.
+The bibliography is specified by a line `BIBFILE: papers.pub`,
+where `papers.pub` is a publication database in the
+[Publish](https://bitbucket.org/logg/publish) format.
+BibTeX `.bib` files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+### Generalized Citations
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with `ref` to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ref[internal][cite][external]
@@ -568,6 +646,8 @@ and date). In this case the output text is `internal cite` and the
 LaTeX package `xr` is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 `external` text will be the output.
+
+### Index of Keywords
 
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
@@ -845,8 +925,6 @@ the environments:
 
  * `sol`: full solution to exercise or sub-exercise
 
- * `notes`: multi-line notes to be included or not
-
  * `quote`: indented text
 
  * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
@@ -856,8 +934,6 @@ the environments:
 
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide
-
-### Labels, Index, and Citations
 
 ### Preprocessing
 

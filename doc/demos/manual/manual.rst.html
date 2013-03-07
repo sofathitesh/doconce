@@ -2032,12 +2032,10 @@ your version control system).</p>
 <h3>Requirements to input data</h3>
 <p>Note that Publish only accepts BibTeX files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
-curly braces.  You may need to edit your BibTeX files to meet this
-demand. Even more important is the fact that the HTML output format
-displays the BibTeX keys as identifiers when referring to publications
-(Sphinx, reST, and LaTeX apply numbering).  Therefore, your keys
-should have a nice, consistent typesetting. It is suggested to use the
-following scheme:</p>
+curly braces. You may need to edit your BibTeX files to meet this
+demand. Although references are visible as numbers only in the
+output, it is recommended to have apply a nice, consistent
+typesetting of your keys. It is suggested to use the following scheme:</p>
 <pre class="literal-block">
 Langtangen_2003a          # single author
 Langtangen_Pedersen_2002  # two authors
@@ -2822,10 +2820,7 @@ has a title), the header and footer are included, otherwise not.</p>
 <div class="section" id="emacs-doconce-formatter">
 <span id="emacs-doconce"></span><h2>Emacs Doconce Formatter</h2>
 <p>The file <a class="reference external" href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
-gives a &quot;Doconce Editing Mode&quot; in Emacs. (The file is just a rough edit of
-the reST Editing Mode for Emacs. Many Doconce features are recognized,
-but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.)</p>
+gives a &quot;Doconce Editing Mode&quot; in Emacs.</p>
 <p>Here is how to get the Doconce Editing Mode in Emacs: Download <a class="reference external" href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> and save it in your home directory, then add these lines to <tt class="docutils literal"><span class="pre">~/.emacs</span></tt>:</p>
 <pre class="literal-block">
 (load-file &quot;~/.doconce-mode.el&quot;)
@@ -2875,14 +2870,23 @@ many keyboard shortcuts are defined:</p>
 <tr><td>Ctrl+c cf</td>
 <td>code from file: &#64;&#64;&#64;CODE</td>
 </tr>
-<tr><td>Ctrl+c table</td>
-<td>table</td>
+<tr><td>Ctrl+c table2</td>
+<td>table with 2 columns</td>
+</tr>
+<tr><td>Ctrl+c table3</td>
+<td>table with 3 columns</td>
+</tr>
+<tr><td>Ctrl+c table4</td>
+<td>table with 4 columns</td>
 </tr>
 <tr><td>Ctrl+c exer</td>
 <td>exercise outline</td>
 </tr>
 <tr><td>Ctrl+c slide</td>
 <td>slide outline</td>
+</tr>
+<tr><td>Ctrl+c help</td>
+<td>print this table</td>
 </tr>
 </tbody>
 </table>

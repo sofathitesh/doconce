@@ -9,10 +9,13 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 <meta name="description" content="Doconce: Document Once, Include Anywhere">
+<meta name="keywords" content="key equation,$\u$ conservation">
 
 
 
 <style type="text/css">
+    
+    
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -77,11 +80,13 @@ Automatically generated HTML file from Doconce source
 <!-- tocinfo
 {'highest level': 1,
  'sections': [(' What Does Doconce Look Like? ', 1, None, '___sec0'),
+              (' What Can Doconce Be Used For? ', 2, None, '___sec1'),
+              (' Basic Syntax Examples ', 2, None, '___sec2'),
               (' A Subsection with Sample Text ',
                2,
                'my:first:sec',
                'my:first:sec'),
-              (' Mathematics and Computer Code ', 2, None, '___sec2'),
+              (' Mathematics and Computer Code ', 2, None, '___sec4'),
               (' Macros (Newcommands), Cross-References, Index, and Bibliography ',
                2,
                'newcommands',
@@ -90,36 +95,37 @@ Automatically generated HTML file from Doconce source
                1,
                'doconce2formats',
                'doconce2formats'),
-              (' Generating a makefile ', 2, None, '___sec5'),
-              (' Preprocessing ', 2, None, '___sec6'),
-              (' Removal of inline comments ', 2, None, '___sec7'),
-              (' Notes ', 2, None, '___sec8'),
-              (' Demo of different formats ', 2, None, '___sec9'),
-              (' HTML ', 2, None, '___sec10'),
-              (' Blogs ', 2, None, '___sec11'),
-              (' Pandoc and Markdown ', 2, None, '___sec12'),
-              (' LaTeX ', 2, None, '___sec13'),
-              (' PDFLaTeX ', 2, None, '___sec14'),
-              (' Plain ASCII Text ', 2, None, '___sec15'),
-              (' reStructuredText ', 2, None, '___sec16'),
-              (' Sphinx ', 2, None, '___sec17'),
-              (' The manual Sphinx procedure ', 3, None, '___sec18'),
-              (' Wiki Formats ', 2, None, '___sec19'),
-              (' Tweaking the Doconce Output ', 2, None, '___sec20'),
-              (' Demos ', 2, None, '___sec21'),
+              (' Generating a makefile ', 2, None, '___sec7'),
+              (' Preprocessing ', 2, None, '___sec8'),
+              (' Removal of inline comments ', 2, None, '___sec9'),
+              (' Notes ', 2, None, '___sec10'),
+              (' Demo of different formats ', 2, None, '___sec11'),
+              (' HTML ', 2, None, '___sec12'),
+              (' Blogs ', 2, None, '___sec13'),
+              (' Pandoc and Markdown ', 2, None, '___sec14'),
+              (' LaTeX ', 2, None, '___sec15'),
+              (' PDFLaTeX ', 2, None, '___sec16'),
+              (' Plain ASCII Text ', 2, None, '___sec17'),
+              (' reStructuredText ', 2, None, '___sec18'),
+              (' Sphinx ', 2, None, '___sec19'),
+              (' The manual Sphinx procedure ', 3, None, '___sec20'),
+              (' Wiki Formats ', 2, None, '___sec21'),
+              (' Tweaking the Doconce Output ', 2, None, '___sec22'),
+              (' Demos ', 2, None, '___sec23'),
               (' Installation of Doconce and its Dependencies ',
                1,
                None,
-               '___sec22'),
-              (' Doconce ', 2, None, '___sec23'),
-              (' Dependencies ', 2, None, '___sec24'),
-              (' Preprocessors ', 3, None, '___sec25'),
-              (' Image file handling ', 3, None, '___sec26'),
-              (' Spellcheck ', 3, None, '___sec27'),
-              (' Ptex2tex for LaTeX Output ', 3, None, '___sec28'),
-              (' reStructuredText (reST) Output ', 3, None, '___sec29'),
-              (' Markdown and Pandoc Output ', 3, None, '___sec30'),
-              (' Epydoc Output ', 3, None, '___sec31')]}
+               '___sec24'),
+              (' Doconce ', 2, None, '___sec25'),
+              (' Dependencies ', 2, None, '___sec26'),
+              (' Preprocessors ', 3, None, '___sec27'),
+              (' Image file handling ', 3, None, '___sec28'),
+              (' Spellcheck ', 3, None, '___sec29'),
+              (' Bibliography ', 3, None, '___sec30'),
+              (' Ptex2tex for LaTeX Output ', 3, None, '___sec31'),
+              (' reStructuredText (reST) Output ', 3, None, '___sec32'),
+              (' Markdown and Pandoc Output ', 3, None, '___sec33'),
+              (' Epydoc Output ', 3, None, '___sec34')]}
 end of tocinfo -->
 
 <body>
@@ -146,7 +152,6 @@ MathJax.Hub.Config({
     
 <!-- ------------------- main content ---------------------- -->
 
-<!-- Missing: FIGURE, MOVIE, environments -->
 
 <p>
 
@@ -168,7 +173,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Mar 5, 2013</h4></center> <!-- date -->
+<center><h4>Mar 7, 2013</h4></center> <!-- date -->
 <p>
 
 
@@ -197,10 +202,11 @@ If any of these questions are of interest, you should keep on reading.
 
 
 <h2>What Does Doconce Look Like?  <a name="___sec0"></a></h2>
+
 <p>
-Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. Here are
-som examples.
+Doconce text looks like ordinary text (much like Markdown), but there
+are some almost invisible text constructions that allow you to control
+the formating. Here are some examples.
 
 <p>
 
@@ -225,23 +231,42 @@ som examples.
   <li> Blocks of LaTeX mathematics can easily be included by placing
     <code>!bt</code> (begin TeX) and <code>!et</code> (end TeX) commands at separate lines
     before and after the math block.</li>
-  <li> There is support for both LaTeX and text-like inline mathematics.</li>
+  <li> There is support for both LaTeX and text-like inline mathematics
+    such that formulas make sense also when not rendered by LaTeX
+    or MathJax.</li>
   <li> Figures and movies with captions, simple tables,
-    URLs with links, index list, labels and references are supported.</li>
-  <li> Invisible comments in the output format can be inserted throughout
-    the text.</li>
-  <li> Visible comments can be inserted so that authors and readers can
-    comment upon the text (and at any time turn on/off output of such
-    comments).</li>
+    URLs with links, index list, labels and references are supported.
+    YouTube and Vimeo videos are automatically embedded in web documents.</li>
+  <li> Special comment lines are not visible in the output.</li>
+  <li> Comments to authors can be inserted throughout the text and
+    made visible or invisible as desired.</li>
   <li> There is an exercise environment with many advanced features.</li>
   <li> With a preprocessor, Preprocess or Mako, one can include
-    other documents (files) and large portions of text can be defined
-    in or out of the text.</li>
+    other documents (files), large portions of text can be defined
+    in or out of the text, and tailored format-specific constructs can easily
+    be included.</li>
   <li> With Mako one can also have Python code
     embedded in the Doconce document and thereby parameterize the
     text (e.g., one text can describe programming in two languages).</li>
 </ul>
 
+
+<h3>What Can Doconce Be Used For?  <a name="___sec1"></a></h3>
+
+<p>
+LaTeX is ideal for articles, thesis, and books, but not so suited
+for web documents. Nice environments for web documents, such as
+Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+What about migrating a part of a book for blogging? What about
+making an MS Word version or an untagged text for inclusion in email?
+Doconce enables all this with just <em>one source</em>. Doconce also has
+extra features for supporting documents with much code and mathematics.
+
+<p>
+
+<h3>Basic Syntax Examples  <a name="___sec2"></a></h3>
+
+<p>
 Here is an example of some simple text written in the Doconce format:
 <!-- begin verbatim block -->
 <pre><code>===== A Subsection with Sample Text =====
@@ -293,6 +318,7 @@ The Doconce text above results in the following little document:
 <p>
 
 <h3>A Subsection with Sample Text <a name="my:first:sec"></a></h3>
+
 <p>
 Ordinary text looks like ordinary text, and the tags used for
 <b>boldface</b> words, <em>emphasized</em> words, and <code>computer</code> words look
@@ -348,11 +374,13 @@ Tables are also supperted, e.g.,
 </table>
 <p>
 
-<h3>Mathematics and Computer Code  <a name="___sec2"></a></h3>
+<h3>Mathematics and Computer Code  <a name="___sec4"></a></h3>
+
 <p>
 Inline mathematics, such as \( \nu = \sin(x) \),
 allows the formula to be specified both as LaTeX and as plain text.
-This results in a professional LaTeX typesetting, but in other formats
+This results in a professional LaTeX typesetting, but in formats
+not supporting LaTeX mathematics
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like \( \nu = \sin(x) \) is
 typeset as
@@ -440,7 +468,7 @@ I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </code></pre>
 <!-- end verbatim block -->
 A code block must come after some plain sentence (at least for successful
-output to <code>sphinx</code>, <code>rst</code>, and ASCII-close formats),
+output to <code>sphinx</code>, <code>rst</code>, and formats close to plain text),
 not directly after a section/paragraph heading or a table.
 
 <p>
@@ -461,48 +489,64 @@ plain text editing capabilities.
 
 
 <h3>Macros (Newcommands), Cross-References, Index, and Bibliography <a name="newcommands"></a></h3>
-<p>
-Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
-construction.  The newcommands defined in a file with name
-<code>newcommand_replace.tex</code> are expanded when Doconce is filtered to
-other formats, except for LaTeX (since LaTeX performs the expansion
-itself).  Newcommands in files with names <code>newcommands.tex</code> and
-<code>newcommands_keep.tex</code> are kept unaltered when Doconce text is
-filtered to other formats, except for the Sphinx format. Since Sphinx
-understands LaTeX math, but not newcommands if the Sphinx output is
-HTML, it makes most sense to expand all newcommands.  Normally, a user
-will put all newcommands that appear in math blocks surrounded by
-<code>!bt</code> and <code>!et</code> in <code>newcommands_keep.tex</code> to keep them unchanged, at
-least if they contribute to make the raw LaTeX math text easier to
-read in the formats that cannot render LaTeX.  Newcommands used
-elsewhere throughout the text will usually be placed in
-<code>newcommands_replace.tex</code> and expanded by Doconce.  The definitions of
-newcommands in the <code>newcommands*.tex</code> files <em>must</em> appear on a single
-line (multi-line newcommands are too hard to parse with regular
-expressions).
 
 <p>
-Recent versions of Doconce also offer cross referencing, typically one
-can define labels below (sub)sections, in figure captions, or in
-equations, and then refer to these later. Entries in an index can be
-defined and result in an index at the end for the LaTeX and Sphinx
-formats. Citations to literature, with an accompanying bibliography in
-a file, are also supported. The syntax of labels, references,
-citations, and the bibliography closely resembles that of LaTeX,
-making it easy for Doconce documents to be integrated in LaTeX
-projects (manuals, books). For further details on functionality and
+Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
+construction.  The newcommands are defined in files with names
+<code>newcommands*.tex</code>, using standard LaTeX syntax. Only newcommands
+for use inside math environments are supported.
+
+<p>
+Labels, corss-references, citations, and support of an index and
+bibliography are much inspired by LaTeX syntax, but Doconce features
+no backslashes. Here is an example:
+
+<p>
+<!-- begin verbatim block -->
+<pre><code>===== My Section =====
+label{sec:mysec}
+
+idx{key equation} idx{$\u$ conservation}
+
+We refer to ref{sec:yoursec} for background material on
+the *key equation*. Here we focus on the extension
+
+# \Ddt, \u and \mycommand are defined in newcommands_keep.tex
+
+!bt
+\begin{equation}
+\Ddt{\u} = \mycommand{v},
+label{mysec:eq:Dudt}
+\end{equation}
+!et
+where $\Ddt{\u}$ is the material derivative of $\u$.
+Equation \eqref{mysec:eq:Dudt} is important in a number
+of contexts, see cite{Larsen_et_al_2002,Johnson_Friedman_2010a}.
+Also, cite{Miller_2000} supports such a view.
+
+As see in Figure ref{mysec:fig:myfig}, the key equation
+features large, smooth regions *and* abrupt changes.
+
+FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+
+===== References =====
+
+BIBFILE: papers.pub
+</code></pre>
+<!-- end verbatim block -->
+
+<p>
+For further details on functionality and
 syntax we refer to the <code>doc/manual/manual.do.txt</code> file (see the
 <a href="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo page</a>
 for various formats of this document).
 
 <p>
 
-<!-- Example on including another Doconce file (using preprocess): -->
-
-<p>
 
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
+
 <p>
 Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
 formats applies the script <code>doconce format</code>:
@@ -518,7 +562,8 @@ or just
 
 <p>
 
-<h3>Generating a makefile  <a name="___sec5"></a></h3>
+<h3>Generating a makefile  <a name="___sec7"></a></h3>
+
 <p>
 Producing HTML, Sphinx, and in particular LaTeX documents from
 Doconce sources requires a few commands. Often you want to
@@ -547,7 +592,8 @@ and if something goes wrong, the <code>make.sh</code> exits.
 <p>
 
 
-<h3>Preprocessing  <a name="___sec6"></a></h3>
+<h3>Preprocessing  <a name="___sec8"></a></h3>
+
 <p>
 The <code>preprocess</code> and <code>mako</code> programs are used to preprocess the
 file, and options to <code>preprocess</code> and/or <code>mako</code> can be added after the
@@ -565,7 +611,8 @@ format specific actions through tests like <code>#if FORMAT == "latex"</code>
 
 <p>
 
-<h3>Removal of inline comments  <a name="___sec7"></a></h3>
+<h3>Removal of inline comments  <a name="___sec9"></a></h3>
+
 <p>
 The command-line arguments <code>--no-preprocess</code> and <code>--no-mako</code> turn off
 running <code>preprocess</code> and <code>mako</code>, respectively.
@@ -587,7 +634,8 @@ and comments by different authors should be removed.
 
 <p>
 
-<h3>Notes  <a name="___sec8"></a></h3>
+<h3>Notes  <a name="___sec10"></a></h3>
+
 <p>
 Doconce does not have a tag for longer notes, because implementation
 of a "notes feature" is so easy using the <code>preprocess</code> or <code>mako</code>
@@ -602,7 +650,8 @@ future revisions.
 
 <p>
 
-<h3>Demo of different formats  <a name="___sec9"></a></h3>
+<h3>Demo of different formats  <a name="___sec11"></a></h3>
+
 <p>
 A simple scientific report is available in <a href="http://hplgit.github.com/teamods/writing_reports/doconce_commands.html">a lot of different formats</a>.
 How to create the different formats is explained in more depth
@@ -610,7 +659,8 @@ in the coming sections.
 
 <p>
 
-<h3>HTML  <a name="___sec10"></a></h3>
+<h3>HTML  <a name="___sec12"></a></h3>
+
 <p>
 Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
@@ -683,7 +733,8 @@ by <code>%(main)s</code>. Here is an example:
 
 <p>
 
-<h3>Blogs  <a name="___sec11"></a></h3>
+<h3>Blogs  <a name="___sec13"></a></h3>
+
 <p>
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (<code>blogger.com</code> or
@@ -730,7 +781,8 @@ to see blogging with mathematics and code on WordPress.
 
 <p>
 
-<h3>Pandoc and Markdown  <a name="___sec12"></a></h3>
+<h3>Pandoc and Markdown  <a name="___sec14"></a></h3>
+
 <p>
 Output in Pandoc's extended Markdown format results from
 <!-- begin verbatim block  sys-->
@@ -801,7 +853,8 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 <p>
 
 
-<h3>LaTeX  <a name="___sec13"></a></h3>
+<h3>LaTeX  <a name="___sec15"></a></h3>
+
 <p>
 Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is done in two steps:
 <!-- Note: putting code blocks inside a list is not successful in many -->
@@ -993,7 +1046,8 @@ included so there is no need for the <code>-DMINTED</code> option.
 <p>
 
 
-<h3>PDFLaTeX  <a name="___sec14"></a></h3>
+<h3>PDFLaTeX  <a name="___sec16"></a></h3>
+
 <p>
 Running <code>pdflatex</code> instead of <code>latex</code> follows almost the same steps,
 but the start is
@@ -1012,7 +1066,8 @@ Terminal&gt; pdflatex -shell-escape mydoc
 
 <p>
 
-<h3>Plain ASCII Text  <a name="___sec15"></a></h3>
+<h3>Plain ASCII Text  <a name="___sec17"></a></h3>
+
 <p>
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -1024,7 +1079,8 @@ computer source code:
 
 <p>
 
-<h3>reStructuredText  <a name="___sec16"></a></h3>
+<h3>reStructuredText  <a name="___sec18"></a></h3>
+
 <p>
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -1079,7 +1135,9 @@ Some links for going from LaTeX to Word are listed below.
  <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
-<h3>Sphinx  <a name="___sec17"></a></h3>
+
+<h3>Sphinx  <a name="___sec19"></a></h3>
+
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <code>doconce sphinx_dir</code> command:
@@ -1242,7 +1300,8 @@ and reuse it the next time <code>doconce sphinx_dir</code> is run
 
 <p>
 
-<h4>The manual Sphinx procedure  <a name="___sec18"></a></h4>
+<h4>The manual Sphinx procedure  <a name="___sec20"></a></h4>
+
 <p>
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
@@ -1355,7 +1414,8 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 
 
-<h3>Wiki Formats  <a name="___sec19"></a></h3>
+<h3>Wiki Formats  <a name="___sec21"></a></h3>
+
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>,
@@ -1404,7 +1464,8 @@ one performs this substitution automatically (see next section).
 
 <p>
 
-<h3>Tweaking the Doconce Output  <a name="___sec20"></a></h3>
+<h3>Tweaking the Doconce Output  <a name="___sec22"></a></h3>
+
 <p>
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
@@ -1421,7 +1482,8 @@ constitute comprehensive examples on how such scripts can be made.
 <p>
 
 
-<h3>Demos  <a name="___sec21"></a></h3>
+<h3>Demos  <a name="___sec23"></a></h3>
+
 <p>
 The current text is generated from a Doconce format stored in the file
 <!-- begin verbatim block -->
@@ -1444,10 +1506,12 @@ various formats. The <code>make.sh</code> script runs a set of translations.
 
 <p>
 
-<h2>Installation of Doconce and its Dependencies  <a name="___sec22"></a></h2>
+<h2>Installation of Doconce and its Dependencies  <a name="___sec24"></a></h2>
+
 <p>
 
-<h3>Doconce  <a name="___sec23"></a></h3>
+<h3>Doconce  <a name="___sec25"></a></h3>
+
 <p>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
 Mercurial (<code>hg</code>) source follows the standard procedure:
@@ -1488,10 +1552,20 @@ sudo apt-get install doconce
 
 <p>
 
-<h3>Dependencies  <a name="___sec24"></a></h3>
+<h3>Dependencies  <a name="___sec26"></a></h3>
+
+<p>
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 <p>
 
-<h4>Preprocessors  <a name="___sec25"></a></h4>
+<h4>Preprocessors  <a name="___sec27"></a></h4>
+
 <p>
 If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess</a>
 preprocessor, this program must be installed:
@@ -1534,7 +1608,8 @@ the usual <code>sudo python setup.py install</code>.
 
 <p>
 
-<h4>Image file handling  <a name="___sec26"></a></h4>
+<h4>Image file handling  <a name="___sec28"></a></h4>
+
 <p>
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for <code>latex</code>
@@ -1563,7 +1638,8 @@ Debian package. The latter gets installed by
 
 <p>
 
-<h4>Spellcheck  <a name="___sec27"></a></h4>
+<h4>Spellcheck  <a name="___sec29"></a></h4>
+
 <p>
 The utility <code>doconce spellcheck</code> applies the <code>ispell</code> program for
 spellcheck. On Debian (including Ubuntu) it is installed by
@@ -1576,7 +1652,34 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 
 <p>
 
-<h4>Ptex2tex for LaTeX Output  <a name="___sec28"></a></h4>
+
+<h4>Bibliography  <a name="___sec30"></a></h4>
+
+<p>
+The Python package <a href="https://bitbucket.org/logg/publish">Publish</a> is needed if you use a bibliography
+in your document. On the website, click on <em>Clone</em>, copy the
+command and run it:
+
+<p>
+<!-- begin verbatim block  sys-->
+<pre><code>hg clone  ssh://hg@bitbucket.org/logg/publish
+</code></pre>
+<!-- end verbatim block -->
+Thereafter go to the <code>publish</code> directory and run the <code>setup.py</code> script
+for installing Publish:
+
+<p>
+<!-- begin verbatim block  sys-->
+<pre><code>cd publish
+sudo python setup.py
+</code></pre>
+<!-- end verbatim block -->
+
+<p>
+
+
+<h4>Ptex2tex for LaTeX Output  <a name="___sec31"></a></h4>
+
 <p>
 To make LaTeX documents with very flexible choice of typesetting of
 verbatim code blocks you need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>,
@@ -1650,7 +1753,8 @@ argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdf
 
 <p>
 
-<h4>reStructuredText (reST) Output  <a name="___sec29"></a></h4>
+<h4>reStructuredText (reST) Output  <a name="___sec32"></a></h4>
+
 <p>
 The <code>rst</code> output from Doconce allows further transformation to LaTeX,
 HTML, XML, OpenOffice, and so on, through the <a href="http://docutils.sourceforge.net">docutils</a> package.  The installation of the
@@ -1694,7 +1798,8 @@ cd ..
 
 <p>
 
-<h4>Markdown and Pandoc Output  <a name="___sec30"></a></h4>
+<h4>Markdown and Pandoc Output  <a name="___sec33"></a></h4>
+
 <p>
 The Doconce format <code>pandoc</code> outputs the document in the Pandoc
 extended Markdown format, which via the <code>pandoc</code> program can be
@@ -1710,7 +1815,8 @@ on Debian (Ubuntu) systems.
 
 <p>
 
-<h4>Epydoc Output  <a name="___sec31"></a></h4>
+<h4>Epydoc Output  <a name="___sec34"></a></h4>
+
 <p>
 When the output format is <code>epydoc</code> one needs that program too, installed
 by
@@ -1732,6 +1838,7 @@ updates and bug fixes. For <code>svn</code> directories, go to the directory,
 run <code>svn update</code>, and then <code>sudo python setup.py install</code>. For
 Mercurial (<code>hg</code>) directories, go to the directory, run
 <code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
+
 <!-- ------------------- end of main content --------------- -->
 
 
