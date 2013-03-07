@@ -75,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 3, 2013
+Mar 7, 2013
 
 \end{DUfieldlist}
 
@@ -909,7 +909,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~pygmentize\\
+commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~pygmentize~makefile\\
 ~\\
 ~\\
 \#~transform~doconce~file~to~another~format\\
@@ -987,9 +987,6 @@ doconce~grab~~~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
 \#~remove~selected~text~from~a~file\\
 doconce~remove~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
 ~\\
-\#~remove~answers~to~exercises\\
-doconce~remove\_exercise\_answers~file\_in\_some\_format\\
-~\\
 \#~run~spellcheck~on~a~set~of~files\\
 doconce~spellcheck~{[}-d~.mydict.txt{]}~*.do.txt\\
 ~\\
@@ -1014,7 +1011,16 @@ doconce~combine\_images~image1~image2~...~output\_file\\
 doconce~latex\_exercise\_toc~myfile\\
 ~\\
 \#~list~all~labels~in~a~document~(for~purposes~of~cleaning~them~up)\\
-doconce~list\_labels~myfile
+doconce~list\_labels~myfile\\
+~\\
+\#~translate~a~latex~document~to~doconce~(requires~usually~manual~fixing)\\
+doconce~latex2doconce~latexfile\\
+~\\
+\#~typeset~a~doconce~document~with~pygments\\
+doconce~pygmentize~myfile~{[}pygments-style{]}\\
+~\\
+\#~generate~a~make.sh~script~for~translating~a~doconce~file~to~various~formats\\
+doconce~makefile~docname~doconcefile~{[}html~sphinx~pdflatex~...{]}
 }
 \end{quote}
 

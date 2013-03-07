@@ -183,12 +183,20 @@ def latex_figure(m, includegraphics=True):
         os.chdir(figdir)
         import urllib
         try:
-            urllib.urlretrieve(filename, filename=basename)
+            f = urllib.urlopen(filename)
             print 'downloading', filename, '.......'
         except IOError, e:
             print 'tried to download %s, but failure:' % filename, e
             print '*** error: cannot treat latex figure on the net (no connection or invalid URL)'
             sys.exit(1)
+        file_content = f.read()
+        f.close()
+        if 'DOCTYPE html' in file_content:
+            print '*** error: could not download', filename
+            sys.exit(1)
+        f = open(basename, 'w')
+        f.write(file_content)
+        f.close()
         filename = os.path.join(figdir, basename)
         os.chdir(this_dir)
 
@@ -261,8 +269,10 @@ def latex_figure(m, includegraphics=True):
     return result
 
 def latex_movie(m):
-    from plaintext import default_movie
+    from common import default_movie
     text = default_movie(m)
+    filename = m.group('filename')
+    caption = m.group('caption')
 
     # URL to HTML viewer file must have absolute path in \href
     html_viewer_file_pattern = r'Movie of files `.+` in URL:"(.+)"'
@@ -278,41 +288,41 @@ def latex_movie(m):
     if ': play URL:' in text:
         # Drop default_movie, embed in PDF instead using the movie15 package
         text = r"""
-\\begin{figure}[ht]
-\\begin{center}
+\begin{figure}[ht]
+\begin{center}
 
-% #ifdef MOVIE15
+%% #ifdef MOVIE15
 \includemovie[poster,
-label=\g<filename>,
+label=%(filename)s,
 autoplay,
-%controls,
-%toolbar,
-% #ifdef EXTERNAL_MOVIE_VIEWER
+%%controls,
+%%toolbar,
+%% #ifdef EXTERNAL_MOVIE_VIEWER
 externalviewer,
-% #endif
-text={\small (Loading \g<filename>)},
+%% #endif
+text={\small (Loading %(filename)s)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{\g<filename>}    % requires \usepackage{movie15}
-% #ifndef EXTERNAL_MOVIE_VIEWER
-\movieref[rate=0.5]{\g<filename>}{Slower}
-\movieref[rate=2]{\g<filename>}{Faster}
-\movieref[default]{\g<filename>}{Normal}
-\movieref[pause]{\g<filename>}{Play/Pause}
-\movieref[stop]{\g<filename>}{Stop}
-% #else
-\href{run:\g<filename>}{\g<filename>}
-% #endif
+]{0.9\linewidth}{0.9\linewidth}{%(filename)s}    %% requires \usepackage{movie15}
+%% #ifndef EXTERNAL_MOVIE_VIEWER
+\movieref[rate=0.5]{%(filename)s}{Slower}
+\movieref[rate=2]{%(filename)s}{Faster}
+\movieref[default]{%(filename)s}{Normal}
+\movieref[pause]{%(filename)s}{Play/Pause}
+\movieref[stop]{%(filename)s}{Stop}
+%% #else
+\href{run:%(filename)s}{%(filename)s}
+%% #endif
 
-% #else
-\href{run:\g<filename>}{\g<filename>}
+%% #else
+\href{run:%(filename)s}{%(filename)s}
 
-% alternative: \movie command that comes with beamer
-% \movie[options]{\g<filename>}{\g<filename>}
-% #endif
+%% alternative: \movie command that comes with beamer
+%% \movie[options]{%(filename)s}{%(filename)s}
+%% #endif
 \end{center}
-\caption{\g<caption>}
+\caption{%(caption)s}
 \end{figure}
-"""
+""" % {'filename': filename, 'caption': caption}
     return text
 
 def latex_table(table):
@@ -384,7 +394,7 @@ def latex_title(m):
     import textwrap
     multiline_title = r' \\\\ [1.5mm] '.join(textwrap.wrap(title, width=38))
 
-    text = fix_latex_command_regex(pattern=r"""
+    text = r"""
 
 %% ----------------- title -------------------------
 %% #if LATEX_HEADING == "traditional"
@@ -412,7 +422,7 @@ def latex_title(m):
 \end{center}
 
 %% #endif
-""" % (title, title, title, multiline_title), application='replacement')
+""" % (title, title, title, multiline_title)
     return text
 
 def latex_author(authors_and_institutions, auth2index,
@@ -761,6 +771,19 @@ for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
 def latex_summary(block, format):
     return '\\summarybox{\n' + block + '}\n'
 
+def latex_inline_comment(m):
+    name = m.group('name')
+    comment = m.group('comment')
+    import textwrap
+    caption_comment = textwrap.wrap(comment, width=60,
+                                    break_long_words=False)[0]
+    if len(comment) <= 100:
+        return r'\shortinlinecomment{%s}{%s}{%s}' % \
+               (name, comment, caption_comment)
+    else:
+        return r'\longinlinecomment{%s}{%s}{%s}' % \
+               (name, comment, caption_comment)
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -805,7 +828,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2v':     r'\href{{\g<url>}}{\\nolinkurl{\g<link>}}',
         'linkURL3v':     r'\href{{\g<url>}}{\\nolinkurl{\g<link>}}',
         'plainURL':      r'\href{{\g<url>}}{\\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
-        'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
+        'inlinecomment': latex_inline_comment,
         'chapter':       r'\n\n\chapter{\g<subst>}\n',
         'section':       r'\n\n\section{\g<subst>}\n',
         'subsection':    r'\n\subsection{\g<subst>}\n',
@@ -918,7 +941,17 @@ def define(FILENAME_EXTENSION,
     TABLE['latex'] = latex_table
     EXERCISE['latex'] = latex_exercise
     INDEX_BIB['latex'] = latex_index_bib
-    TOC['latex'] = lambda s: r'\tableofcontents' + '\n\n' + r'\vspace{1cm} % after toc' + '\n\n'
+    if option('skip_inline_comments'):
+        TOC['latex'] = lambda s: r'\tableofcontents' + '\n\n' + r'\vspace{1cm} % after toc' + '\n\n'
+    else:
+        TOC['latex'] = lambda s: r"""\tableofcontents'
+% #ifndef NOTODONOTES
+\listoftodos[List of inline comments]
+% #endif
+
+\vspace{1cm} % after toc
+
+"""
 
     preamble = ''
     preamble_complete = False
@@ -1001,20 +1034,19 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 """
-    m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr)
+    m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr, flags=re.MULTILINE)
     if m:
-        INTRO['latex'] = r"""
+        INTRO['latex'] += r"""
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
 % #endif
 """
-        INTRO['latex'] = r"""
+    INTRO['latex'] += r"""
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -1046,7 +1078,7 @@ final,                   % or draft (marks overfull hboxes)
 \setcounter{tocdepth}{2}  % number chapter, section, subsection
 """
     if 'FIGURE:' in filestr:
-        INTRO['latex'] = r"""
+        INTRO['latex'] += r"""
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -1062,18 +1094,18 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 """
 
-    exer_envirs = 'Exercise', 'Problem', 'Project'
+    exer_envirs = ['Exercise', 'Problem', 'Project']
     exer_envirs = exer_envirs + ['{%s}' % e for e in exer_envirs]
     for exer_envir in exer_envirs:
         if exer_envir + ':' in filestr:
-            INTRO['latex'] = r"""
+            INTRO['latex'] += r"""
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
 """
             break
 
     if '!bsummary' in filestr and '!esummary' in filestr:
-        INTRO['latex'] = r"""
+        INTRO['latex'] += r"""
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
@@ -1104,9 +1136,32 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 """
-    INTRO['latex'] = r"""
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+    INTRO['latex'] += r"""
+
+% #ifndef NOTODONOTES
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}"""
+    if option('skip_inline_comments'):
+        INTRO['latex'] += r"""
+\usepackage[shadow,disable]{todonotes}"""
+    else:
+        INTRO['latex'] += r"""
+\usepackage[shadow]{todonotes}"""
+    INTRO['latex'] += r"""
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+% #else"""
+    if option('skip_inline_comments'):
+        INTRO['latex'] += r"""
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}"""
+    else:
+        INTRO['latex'] += r"""
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}"""
+    INTRO['latex'] += r"""
+% #endif
 
 % USER PREAMBLE
 % insert custom LaTeX commands...

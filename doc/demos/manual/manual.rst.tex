@@ -79,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 6, 2013
+Mar 7, 2013
 
 \end{DUfieldlist}
 
@@ -2735,16 +2735,16 @@ cite\{key\}
 \end{quote}
 
 to refer to a publication with bibliographic key \texttt{key}.
-Here is an example: \hyperlink{langtangen-pedersen-2002}{[Langtangen\_Pedersen\_2002]} discussed propagation of
-large destructive water waves, \hyperlink{langtangen-et-al-2002}{[Langtangen\_et\_al\_2002]} gave
+Here is an example: \hyperlink{ref1}{[Ref1]} discussed propagation of
+large destructive water waves, \hyperlink{ref2}{[Ref2]} gave
 an overview of numerical methods for solvin the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in \hyperlink{langtangen-1994a}{[Langtangen\_1994a]}.
-The book chapter \hyperlink{mardal-et-al-2003a}{[Mardal\_et\_al\_2003a]} contains information on
+random vibrations was investigated in \hyperlink{ref3}{[Ref3]}.
+The book chapter \hyperlink{ref4}{[Ref4]} contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is \hyperlink{langtangen-1988d}{[Langtangen\_1988d]} about a big FORTRAN package.
+reference is \hyperlink{ref5}{[Ref5]} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-\hyperlink{langtangen-pedersen-2002}{[Langtangen\_Pedersen\_2002]} \hyperlink{mardal-et-al-2003a}{[Mardal\_et\_al\_2003a]}.
+\hyperlink{ref1}{[Ref1]} \hyperlink{ref4}{[Ref4]}.
 
 In LaTeX, the \texttt{cite} command is directly translated to the
 corresponding LaTeX version of the command with a backslash; in reST
@@ -3608,6 +3608,12 @@ From~the~above~equations~it~follows~that\\
 \$x+y\$~is~8.
 }
 \end{quote}
+
+A variable \texttt{DEVICE} is also defined. It equals \texttt{screen} by default,
+but the command-line argument \texttt{-{}-device=paper} can set \texttt{DEVICE} to
+\texttt{paper} (or another value). Testing on \texttt{DEVICE} inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.
 
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}.
@@ -4884,35 +4890,35 @@ the iterations.
   \addcontentsline{toc}{section}{References}%
   \label{references}%
 }
-\begin{figure}[b]\raisebox{1em}{\hypertarget{langtangen-pedersen-2002}{}}[Langtangen\_Pedersen\_2002]
+\begin{figure}[b]\raisebox{1em}{\hypertarget{ref1}{}}[Ref1]
 \textbf{H. P. Langtangen and G. Pedersen}. Propagation of Large Destructive Waves,
 \emph{International Journal of Applied Mechanics and Engineering},
 7(1),
 pp. 187-204,
 2002.
 \end{figure}
-\begin{figure}[b]\raisebox{1em}{\hypertarget{langtangen-et-al-2002}{}}[Langtangen\_et\_al\_2002]
+\begin{figure}[b]\raisebox{1em}{\hypertarget{ref2}{}}[Ref2]
 \textbf{H. P. Langtangen, K.-A. Mardal and R. Winther}. Numerical Methods for Incompressible Viscous Flow,
 \emph{Advances in Water Resources},
 25,
 pp. 1125-1146,
 2002.
 \end{figure}
-\begin{figure}[b]\raisebox{1em}{\hypertarget{langtangen-1994a}{}}[Langtangen\_1994a]
+\begin{figure}[b]\raisebox{1em}{\hypertarget{ref3}{}}[Ref3]
 \textbf{H. P. Langtangen}. Numerical Solution of First Passage Problems in Random Vibrations,
 \emph{SIAM Journal of Scientific and Statistical Computing},
 15,
 pp. 997-996,
 1994.
 \end{figure}
-\begin{figure}[b]\raisebox{1em}{\hypertarget{mardal-et-al-2003a}{}}[Mardal\_et\_al\_2003a]
+\begin{figure}[b]\raisebox{1em}{\hypertarget{ref4}{}}[Ref4]
 \textbf{K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen}. Software Tools for Multigrid Methods,
 Advanced Topics in Computational Partial Differential Equations -{}- Numerical Methods and Diffpack Programming,
 edited by \textbf{H. P. Langtangen and A. Tveito},
 Springer,
 2003.
 \end{figure}
-\begin{figure}[b]\raisebox{1em}{\hypertarget{langtangen-1988d}{}}[Langtangen\_1988d]
+\begin{figure}[b]\raisebox{1em}{\hypertarget{ref5}{}}[Ref5]
 \textbf{H. P. Langtangen}. The FEMDEQS Program System,
 \emph{Department of Mathematics, University of Oslo},
 1989.

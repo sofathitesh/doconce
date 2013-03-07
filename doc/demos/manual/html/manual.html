@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 6, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 7, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -1764,16 +1764,16 @@ the output format is <tt class="docutils literal"><span class="pre">latex</span>
 </pre></div>
 </div>
 <p>to refer to a publication with bibliographic key <tt class="docutils literal"><span class="pre">key</span></tt>.
-Here is an example: <a class="reference internal" href="#langtangen-pedersen-2002">[Langtangen_Pedersen_2002]</a> discussed propagation of
-large destructive water waves, <a class="reference internal" href="#langtangen-et-al-2002">[Langtangen_et_al_2002]</a> gave
+Here is an example: <a class="reference internal" href="#ref1">[Ref1]</a> discussed propagation of
+large destructive water waves, <a class="reference internal" href="#ref2">[Ref2]</a> gave
 an overview of numerical methods for solvin the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in <a class="reference internal" href="#langtangen-1994a">[Langtangen_1994a]</a>.
-The book chapter <a class="reference internal" href="#mardal-et-al-2003a">[Mardal_et_al_2003a]</a> contains information on
+random vibrations was investigated in <a class="reference internal" href="#ref3">[Ref3]</a>.
+The book chapter <a class="reference internal" href="#ref4">[Ref4]</a> contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is <a class="reference internal" href="#langtangen-1988d">[Langtangen_1988d]</a> about a big FORTRAN package.
+reference is <a class="reference internal" href="#ref5">[Ref5]</a> about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-<a class="reference internal" href="#langtangen-pedersen-2002">[Langtangen_Pedersen_2002]</a> <a class="reference internal" href="#mardal-et-al-2003a">[Mardal_et_al_2003a]</a>.</p>
+<a class="reference internal" href="#ref1">[Ref1]</a> <a class="reference internal" href="#ref4">[Ref4]</a>.</p>
 <p>In LaTeX, the <tt class="docutils literal"><span class="pre">cite</span></tt> command is directly translated to the
 corresponding LaTeX version of the command with a backslash; in reST
 and Sphinx the citations becomes links, with the citation keys as
@@ -2401,6 +2401,11 @@ From the above equations it follows that
 # #endif
 $x+y$ is 8.</pre>
 </div>
+<p>A variable <tt class="docutils literal"><span class="pre">DEVICE</span></tt> is also defined. It equals <tt class="docutils literal"><span class="pre">screen</span></tt> by default,
+but the command-line argument <tt class="docutils literal"><span class="pre">--device=paper</span></tt> can set <tt class="docutils literal"><span class="pre">DEVICE</span></tt> to
+<tt class="docutils literal"><span class="pre">paper</span></tt> (or another value). Testing on <tt class="docutils literal"><span class="pre">DEVICE</span></tt> inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.</p>
 <p>Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>.</p>
 <p>More advanced use of mako can include Python code that may automate
@@ -3149,50 +3154,50 @@ the iterations.</td>
 </div>
 <div class="section" id="references">
 <h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
-<table class="docutils citation" frame="void" id="langtangen-pedersen-2002" rules="none">
+<table class="docutils citation" frame="void" id="ref1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Langtangen_Pedersen_2002]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> <strong>H. P. Langtangen and G. Pedersen</strong>. Propagation of Large Destructive Waves,
+<tr><td class="label">[Ref1]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> <strong>H. P. Langtangen and G. Pedersen</strong>. Propagation of Large Destructive Waves,
 <em>International Journal of Applied Mechanics and Engineering</em>,
 7(1),
 pp. 187-204,
 2002.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="langtangen-et-al-2002" rules="none">
+<table class="docutils citation" frame="void" id="ref2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[Langtangen_et_al_2002]</a></td><td><strong>H. P. Langtangen, K.-A. Mardal and R. Winther</strong>. Numerical Methods for Incompressible Viscous Flow,
+<tr><td class="label"><a class="fn-backref" href="#id7">[Ref2]</a></td><td><strong>H. P. Langtangen, K.-A. Mardal and R. Winther</strong>. Numerical Methods for Incompressible Viscous Flow,
 <em>Advances in Water Resources</em>,
 25,
 pp. 1125-1146,
 2002.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="langtangen-1994a" rules="none">
+<table class="docutils citation" frame="void" id="ref3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[Langtangen_1994a]</a></td><td><strong>H. P. Langtangen</strong>. Numerical Solution of First Passage Problems in Random Vibrations,
+<tr><td class="label"><a class="fn-backref" href="#id8">[Ref3]</a></td><td><strong>H. P. Langtangen</strong>. Numerical Solution of First Passage Problems in Random Vibrations,
 <em>SIAM Journal of Scientific and Statistical Computing</em>,
 15,
 pp. 997-996,
 1994.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="mardal-et-al-2003a" rules="none">
+<table class="docutils citation" frame="void" id="ref4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Mardal_et_al_2003a]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id12">2</a>)</em> <strong>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</strong>. Software Tools for Multigrid Methods,
+<tr><td class="label">[Ref4]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id12">2</a>)</em> <strong>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</strong>. Software Tools for Multigrid Methods,
 Advanced Topics in Computational Partial Differential Equations &#8211; Numerical Methods and Diffpack Programming,
 edited by <strong>H. P. Langtangen and A. Tveito</strong>,
 Springer,
 2003.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="langtangen-1988d" rules="none">
+<table class="docutils citation" frame="void" id="ref5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[Langtangen_1988d]</a></td><td><strong>H. P. Langtangen</strong>. The FEMDEQS Program System,
+<tr><td class="label"><a class="fn-backref" href="#id10">[Ref5]</a></td><td><strong>H. P. Langtangen</strong>. The FEMDEQS Program System,
 <em>Department of Mathematics, University of Oslo</em>,
 1989.</td></tr>
 </tbody>

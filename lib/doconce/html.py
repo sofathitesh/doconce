@@ -854,7 +854,8 @@ def html_ref_and_label(section_label2title, format, filestr):
 
 
 def html_index_bib(filestr, index, citations, pubfile, pubdata):
-    filestr = cite_with_multiple_args2multiple_cites(filestr)
+    if citations:
+        filestr = cite_with_multiple_args2multiple_cites(filestr)
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
                                   '<a href="#%s">[%d]</a>' % \

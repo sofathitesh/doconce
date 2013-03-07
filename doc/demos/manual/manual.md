@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Mar 6, 2013
+% Mar 7, 2013
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -2828,6 +2828,12 @@ From the above equations it follows that
 $x+y$ is 8.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+A variable `DEVICE` is also defined. It equals `screen` by default,
+but the command-line argument `--device=paper` can set `DEVICE` to
+`paper` (or another value). Testing on `DEVICE` inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.
+
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section [From Doconce to Other Formats](#s).
 
@@ -3649,4 +3655,5 @@ and Sphinx just typeset the list as a list with keywords.
     The FEMDEQS Program System,
     *Department of Mathematics, University of Oslo*,
     1989.
+
 

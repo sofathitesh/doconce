@@ -69,7 +69,8 @@ def bibdict2doconcelist(pyfile, citations):
     return text
 
 def plain_index_bib(filestr, index, citations, pubfile, pubdata):
-    filestr = cite_with_multiple_args2multiple_cites(filestr)
+    if citations:
+        filestr = cite_with_multiple_args2multiple_cites(filestr)
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
                                   '[%d]' % citations[label])
@@ -140,10 +141,10 @@ def define(FILENAME_EXTENSION,
         'title':     r'======= \g<subst> =======\n',  # doconce top section, to be substituted later
         'author':    plain_author,
         'date':      r'\nDate: \g<subst>\n',
-        'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('utf-8'))),
-        'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
-        'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
-        'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
+        'chapter':       lambda m: '%s\n%s' % (m.group('subst'), '%'*len(m.group('subst').decode('latin-1'))),
+        'section':       lambda m: '%s\n%s' % (m.group('subst'), '='*len(m.group('subst').decode('latin-1'))),
+        'subsection':    lambda m: '%s\n%s' % (m.group('subst'), '-'*len(m.group('subst').decode('latin-1'))),
+        'subsubsection': lambda m: '%s\n%s' % (m.group('subst'), '~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'\n*\g<type>.* \g<text>\g<rest>',
         }

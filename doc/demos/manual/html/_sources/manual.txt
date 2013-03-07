@@ -5,7 +5,7 @@ Doconce Description
 ===================
 
 :Author: Hans Petter Langtangen
-:Date: Mar 6, 2013
+:Date: Mar 7, 2013
 
 .. lines beginning with # are doconce comment lines
 
@@ -2325,16 +2325,16 @@ We use the command
         cite{key}
 
 to refer to a publication with bibliographic key ``key``.
-Here is an example: [Langtangen_Pedersen_2002]_ discussed propagation of
-large destructive water waves, [Langtangen_et_al_2002]_ gave
+Here is an example: [Ref1]_ discussed propagation of
+large destructive water waves, [Ref2]_ gave
 an overview of numerical methods for solvin the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in [Langtangen_1994a]_.
-The book chapter [Mardal_et_al_2003a]_ contains information on
+random vibrations was investigated in [Ref3]_.
+The book chapter [Ref4]_ contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is [Langtangen_1988d]_ about a big FORTRAN package.
+reference is [Ref5]_ about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-[Langtangen_Pedersen_2002]_ [Mardal_et_al_2003a]_.
+[Ref1]_ [Ref4]_.
 
 In LaTeX, the ``cite`` command is directly translated to the
 corresponding LaTeX version of the command with a backslash; in reST
@@ -3108,6 +3108,12 @@ formats. Below is an example:
         # #endif
         $x+y$ is 8.
 
+
+A variable ``DEVICE`` is also defined. It equals ``screen`` by default,
+but the command-line argument ``--device=paper`` can set ``DEVICE`` to
+``paper`` (or another value). Testing on ``DEVICE`` inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.
 
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section :ref:`doconce2formats`.
@@ -3981,31 +3987,33 @@ References
 ==========
 
 
-.. [Langtangen_Pedersen_2002]
+.. [Ref1]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
    7(1),
    pp. 187-204,
    2002.
-.. [Langtangen_et_al_2002]
+.. [Ref2]
    **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
    *Advances in Water Resources*,
    25,
    pp. 1125-1146,
    2002.
-.. [Langtangen_1994a]
+.. [Ref3]
    **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
    *SIAM Journal of Scientific and Statistical Computing*,
    15,
    pp. 997-996,
    1994.
-.. [Mardal_et_al_2003a]
+.. [Ref4]
    **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
    Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
    edited by **H. P. Langtangen and A. Tveito**,
    Springer,
    2003.
-.. [Langtangen_1988d]
+.. [Ref5]
    **H. P. Langtangen**. The FEMDEQS Program System,
    *Department of Mathematics, University of Oslo*,
    1989.
+
+

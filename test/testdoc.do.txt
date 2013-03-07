@@ -933,3 +933,26 @@ With math:
 So, how many admonition environments does Doconce support?
 !equestion
 
+===== Appendix: Testing inline comments =====
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to URL:"http://dropbox.com" and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
