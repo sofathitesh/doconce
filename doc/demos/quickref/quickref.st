@@ -634,7 +634,7 @@ forthcoming text. The index is only produced for the 'latex',
 'pdflatex', 'rst', and 'sphinx' formats.
 
 
-Capabilities of the doconce Program
+Capabilities of The Program 'doconce'
 
 
 The 'doconce' program can be used for a number of purposes besides

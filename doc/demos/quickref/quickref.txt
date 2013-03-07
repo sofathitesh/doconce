@@ -26,7 +26,7 @@ Table of contents:
  Citations and Bibliography 
  Generalized Citations 
  Index of Keywords 
- Capabilities of the doconce Program 
+ Capabilities of The Program doconce 
  Exercises 
  Environments 
  Preprocessing 
@@ -680,7 +680,7 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the latex,
 pdflatex, rst, and sphinx formats.
 
-Capabilities of the doconce Program
+Capabilities of The Program doconce
 -----------------------------------
 
 The doconce program can be used for a number of purposes besides

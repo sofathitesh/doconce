@@ -956,3 +956,9 @@ you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
 
+===== Appendix: Testing headings ending with `verbatim inline` =====
+
+The point here is to test 1) `verbatim` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+

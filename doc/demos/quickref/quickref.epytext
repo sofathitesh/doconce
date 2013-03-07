@@ -622,8 +622,8 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the C{latex},
 C{pdflatex}, C{rst}, and C{sphinx} formats.
 
-Capabilities of the doconce Program
------------------------------------
+Capabilities of The Program C{doconce}
+--------------------------------------
 
 The C{doconce} program can be used for a number of purposes besides
 transforming a C{.do.txt} file to some format. Here is the
