@@ -162,10 +162,11 @@ usepackage{ptex2tex}
             new_heading = re.sub(r'\\code\{(.*?)\}', underscore_in_code,
                                  heading)
             new_heading = new_heading.replace(r'\code{', r'\protect\code{')
+            # Fix double }} for code ending (\section{...\code{...}})
+            new_heading = re.sub(r'\\code\{(.*?)\}\}', r'\code{\g<1>} }',
+                                 new_heading)
             filestr = filestr.replace(r'%s{%s}' % (tp, heading),
                                       r'%s{%s}' % (tp, new_heading))
-            # Fix double }} for code ending (\section{...\code{...}})
-            filestr = re.sub(r'\\code\{(.*?)\}\}', r'\code{\g<1>} }', filestr)
 
     return filestr
 

@@ -292,7 +292,11 @@ for use inside math environments are supported.
 
 Labels, corss-references, citations, and support of an index and
 bibliography are much inspired by LaTeX syntax, but Doconce features
-no backslashes. Here is an example:
+no backslashes. Use labels for sections and equations only, and
+preceed the reference by "Section" or "Chapter", or in case of
+an equation, surround the reference by parenthesis.
+
+Here is an example:
 
 !bc
 ===== My Section =====
@@ -300,7 +304,7 @@ label{sec:mysec}
 
 idx{key equation} idx{$\u$ conservation}
 
-We refer to ref{sec:yoursec} for background material on
+We refer to Section ref{sec:yoursec} for background material on
 the *key equation*. Here we focus on the extension
 
 # \Ddt, \u and \mycommand are defined in newcommands_keep.tex
