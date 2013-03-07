@@ -319,7 +319,6 @@ ul.auto-toc {
 
 <!-- Automatically generated reST file from Doconce source
 (http://code.google.com/p/doconce/) -->
-<!-- Missing: FIGURE, MOVIE, environments -->
 <div class="section" id="doconce-document-once-include-anywhere">
 <h1>Doconce: Document Once, Include Anywhere</h1>
 <table class="docutils field-list" frame="void" rules="none">
@@ -329,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 5, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 7, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -356,9 +355,9 @@ include it anywhere?</li>
 </div>
 <div class="section" id="what-does-doconce-look-like">
 <h1>What Does Doconce Look Like?</h1>
-<p>Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. Here are
-som examples.</p>
+<p>Doconce text looks like ordinary text (much like Markdown), but there
+are some almost invisible text constructions that allow you to control
+the formating. Here are some examples.</p>
 <blockquote>
 <ul class="simple">
 <li>Bullet lists arise from lines starting with <tt class="docutils literal">*</tt>.</li>
@@ -381,23 +380,37 @@ before and after the code block.</li>
 <li>Blocks of LaTeX mathematics can easily be included by placing
 <tt class="docutils literal">!bt</tt> (begin TeX) and <tt class="docutils literal">!et</tt> (end TeX) commands at separate lines
 before and after the math block.</li>
-<li>There is support for both LaTeX and text-like inline mathematics.</li>
+<li>There is support for both LaTeX and text-like inline mathematics
+such that formulas make sense also when not rendered by LaTeX
+or MathJax.</li>
 <li>Figures and movies with captions, simple tables,
-URLs with links, index list, labels and references are supported.</li>
-<li>Invisible comments in the output format can be inserted throughout
-the text.</li>
-<li>Visible comments can be inserted so that authors and readers can
-comment upon the text (and at any time turn on/off output of such
-comments).</li>
+URLs with links, index list, labels and references are supported.
+YouTube and Vimeo videos are automatically embedded in web documents.</li>
+<li>Special comment lines are not visible in the output.</li>
+<li>Comments to authors can be inserted throughout the text and
+made visible or invisible as desired.</li>
 <li>There is an exercise environment with many advanced features.</li>
 <li>With a preprocessor, Preprocess or Mako, one can include
-other documents (files) and large portions of text can be defined
-in or out of the text.</li>
+other documents (files), large portions of text can be defined
+in or out of the text, and tailored format-specific constructs can easily
+be included.</li>
 <li>With Mako one can also have Python code
 embedded in the Doconce document and thereby parameterize the
 text (e.g., one text can describe programming in two languages).</li>
 </ul>
 </blockquote>
+<div class="section" id="what-can-doconce-be-used-for">
+<h2>What Can Doconce Be Used For?</h2>
+<p>LaTeX is ideal for articles, thesis, and books, but not so suited
+for web documents. Nice environments for web documents, such as
+Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+What about migrating a part of a book for blogging? What about
+making an MS Word version or an untagged text for inclusion in email?
+Doconce enables all this with just <em>one source</em>. Doconce also has
+extra features for supporting documents with much code and mathematics.</p>
+</div>
+<div class="section" id="basic-syntax-examples">
+<h2>Basic Syntax Examples</h2>
 <p>Here is an example of some simple text written in the Doconce format:</p>
 <pre class="literal-block">
 ===== A Subsection with Sample Text =====
@@ -444,6 +457,7 @@ Tables are also supperted, e.g.,
 # lines beginning with # are comment lines
 </pre>
 <p>The Doconce text above results in the following little document:</p>
+</div>
 <div class="section" id="a-subsection-with-sample-text">
 <span id="my-first-sec"></span><h2>A Subsection with Sample Text</h2>
 <p>Ordinary text looks like ordinary text, and the tags used for
@@ -508,7 +522,8 @@ comments can be removed from the output by a command-line argument
 <h2>Mathematics and Computer Code</h2>
 <p>Inline mathematics, such as v = sin(x),
 allows the formula to be specified both as LaTeX and as plain text.
-This results in a professional LaTeX typesetting, but in other formats
+This results in a professional LaTeX typesetting, but in formats
+not supporting LaTeX mathematics
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like v = sin(x) is
 typeset as:</p>
@@ -574,7 +589,7 @@ import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </pre>
 <p>A code block must come after some plain sentence (at least for successful
-output to <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">rst</tt>, and ASCII-close formats),
+output to <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">rst</tt>, and formats close to plain text),
 not directly after a section/paragraph heading or a table.</p>
 <p>One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
@@ -589,36 +604,47 @@ plain text editing capabilities.</p>
 <div class="section" id="macros-newcommands-cross-references-index-and-bibliography">
 <span id="newcommands"></span><h2>Macros (Newcommands), Cross-References, Index, and Bibliography</h2>
 <p>Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
-construction.  The newcommands defined in a file with name
-<tt class="docutils literal">newcommand_replace.tex</tt> are expanded when Doconce is filtered to
-other formats, except for LaTeX (since LaTeX performs the expansion
-itself).  Newcommands in files with names <tt class="docutils literal">newcommands.tex</tt> and
-<tt class="docutils literal">newcommands_keep.tex</tt> are kept unaltered when Doconce text is
-filtered to other formats, except for the Sphinx format. Since Sphinx
-understands LaTeX math, but not newcommands if the Sphinx output is
-HTML, it makes most sense to expand all newcommands.  Normally, a user
-will put all newcommands that appear in math blocks surrounded by
-<tt class="docutils literal">!bt</tt> and <tt class="docutils literal">!et</tt> in <tt class="docutils literal">newcommands_keep.tex</tt> to keep them unchanged, at
-least if they contribute to make the raw LaTeX math text easier to
-read in the formats that cannot render LaTeX.  Newcommands used
-elsewhere throughout the text will usually be placed in
-<tt class="docutils literal">newcommands_replace.tex</tt> and expanded by Doconce.  The definitions of
-newcommands in the <tt class="docutils literal"><span class="pre">newcommands*.tex</span></tt> files <em>must</em> appear on a single
-line (multi-line newcommands are too hard to parse with regular
-expressions).</p>
-<p>Recent versions of Doconce also offer cross referencing, typically one
-can define labels below (sub)sections, in figure captions, or in
-equations, and then refer to these later. Entries in an index can be
-defined and result in an index at the end for the LaTeX and Sphinx
-formats. Citations to literature, with an accompanying bibliography in
-a file, are also supported. The syntax of labels, references,
-citations, and the bibliography closely resembles that of LaTeX,
-making it easy for Doconce documents to be integrated in LaTeX
-projects (manuals, books). For further details on functionality and
+construction.  The newcommands are defined in files with names
+<tt class="docutils literal"><span class="pre">newcommands*.tex</span></tt>, using standard LaTeX syntax. Only newcommands
+for use inside math environments are supported.</p>
+<p>Labels, corss-references, citations, and support of an index and
+bibliography are much inspired by LaTeX syntax, but Doconce features
+no backslashes. Here is an example:</p>
+<pre class="literal-block">
+===== My Section =====
+label{sec:mysec}
+
+idx{key equation} idx{$\u$ conservation}
+
+We refer to ref{sec:yoursec} for background material on
+the *key equation*. Here we focus on the extension
+
+# \Ddt, \u and \mycommand are defined in newcommands_keep.tex
+
+!bt
+\begin{equation}
+\Ddt{\u} = \mycommand{v},
+label{mysec:eq:Dudt}
+\end{equation}
+!et
+where $\Ddt{\u}$ is the material derivative of $\u$.
+Equation (ref{mysec:eq:Dudt}) is important in a number
+of contexts, see cite{Larsen_et_al_2002,Johnson_Friedman_2010a}.
+Also, cite{Miller_2000} supports such a view.
+
+As see in Figure ref{mysec:fig:myfig}, the key equation
+features large, smooth regions *and* abrupt changes.
+
+FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+
+===== References =====
+
+BIBFILE: papers.pub
+</pre>
+<p>For further details on functionality and
 syntax we refer to the <tt class="docutils literal">doc/manual/manual.do.txt</tt> file (see the
 <a class="reference external" href="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo page</a>
 for various formats of this document).</p>
-<!-- Example on including another Doconce file (using preprocess): -->
 </div>
 </div>
 <div class="section" id="from-doconce-to-other-formats">
@@ -783,7 +809,7 @@ for demonstrations of blogs at <tt class="docutils literal">blogspot.no</tt>.</p
 scripts so there is no support for mathematics in the comments.</p>
 </div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 331); <em><a href="#id2">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 358); <em><a href="#id2">backlink</a></em></p>
 Duplicate explicit target name: &quot;scientific report&quot;.</div>
 <p>WordPress (<tt class="docutils literal">wordpress.com</tt>) allows raw HTML code in blogs,
 but has very limited
@@ -1387,6 +1413,12 @@ sudo apt-get install doconce
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies</h2>
+<p>Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.</p>
 <div class="section" id="preprocessors">
 <h3>Preprocessors</h3>
 <p>If you make use of the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a>
@@ -1440,6 +1472,21 @@ sudo apt-get install texlive-extra-utils
 spellcheck. On Debian (including Ubuntu) it is installed by:</p>
 <pre class="literal-block">
 sudo apt-get install ispell
+</pre>
+</div>
+<div class="section" id="bibliography">
+<h3>Bibliography</h3>
+<p>The Python package <a class="reference external" href="https://bitbucket.org/logg/publish">Publish</a> is needed if you use a bibliography
+in your document. On the website, click on <em>Clone</em>, copy the
+command and run it:</p>
+<pre class="literal-block">
+hg clone  ssh://hg&#64;bitbucket.org/logg/publish
+</pre>
+<p>Thereafter go to the <tt class="docutils literal">publish</tt> directory and run the <tt class="docutils literal">setup.py</tt> script
+for installing Publish:</p>
+<pre class="literal-block">
+cd publish
+sudo python setup.py
 </pre>
 </div>
 <div class="section" id="ptex2tex-for-latex-output">

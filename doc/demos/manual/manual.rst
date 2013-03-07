@@ -2060,12 +2060,10 @@ Requirements to input data
 
 Note that Publish only accepts BibTeX files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
-curly braces.  You may need to edit your BibTeX files to meet this
-demand. Even more important is the fact that the HTML output format
-displays the BibTeX keys as identifiers when referring to publications
-(Sphinx, reST, and LaTeX apply numbering).  Therefore, your keys
-should have a nice, consistent typesetting. It is suggested to use the
-following scheme::
+curly braces. You may need to edit your BibTeX files to meet this
+demand. Although references are visible as numbers only in the
+output, it is recommended to have apply a nice, consistent
+typesetting of your keys. It is suggested to use the following scheme::
 
 
         Langtangen_2003a          # single author
@@ -2946,10 +2944,7 @@ Emacs Doconce Formatter
 -----------------------
 
 The file `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
-the reST Editing Mode for Emacs. Many Doconce features are recognized,
-but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.)
+gives a "Doconce Editing Mode" in Emacs.
 
 Here is how to get the Doconce Editing Mode in Emacs: Download `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ and save it in your home directory, then add these lines to ``~/.emacs``::
 
@@ -2975,9 +2970,12 @@ Ctrl+c me                           math environment: !bt equation !et
 Ctrl+c ma                           math environment: !bt align !et     
 Ctrl+c ce                           code environment: !bc !ec           
 Ctrl+c cf                           code from file: @@@CODE             
-Ctrl+c table                        table                               
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
 Ctrl+c exer                         exercise outline                    
 Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
 ==================================  ==================================  
 
 Typing ``Ctrl+c help`` prints the above table in Emacs. Try out

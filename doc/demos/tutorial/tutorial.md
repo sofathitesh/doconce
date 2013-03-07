@@ -1,8 +1,6 @@
-<!-- Missing: FIGURE, MOVIE, environments -->
-
 % Doconce: Document Once, Include Anywhere
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Mar 5, 2013
+% Mar 7, 2013
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -28,9 +26,9 @@ If any of these questions are of interest, you should keep on reading.
 
 ## What Does Doconce Look Like?
 
-Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. Here are
-som examples.
+Doconce text looks like ordinary text (much like Markdown), but there
+are some almost invisible text constructions that allow you to control
+the formating. Here are some examples.
 
   * Bullet lists arise from lines starting with `*`.
 
@@ -62,27 +60,41 @@ som examples.
     `!bt` (begin TeX) and `!et` (end TeX) commands at separate lines
     before and after the math block.
 
-  * There is support for both LaTeX and text-like inline mathematics.
+  * There is support for both LaTeX and text-like inline mathematics
+    such that formulas make sense also when not rendered by LaTeX
+    or MathJax.
 
   * Figures and movies with captions, simple tables,
     URLs with links, index list, labels and references are supported.
+    YouTube and Vimeo videos are automatically embedded in web documents.
 
-  * Invisible comments in the output format can be inserted throughout
-    the text.
+  * Special comment lines are not visible in the output.
 
-  * Visible comments can be inserted so that authors and readers can
-    comment upon the text (and at any time turn on/off output of such
-    comments).
+  * Comments to authors can be inserted throughout the text and
+    made visible or invisible as desired.
 
   * There is an exercise environment with many advanced features.
 
   * With a preprocessor, Preprocess or Mako, one can include
-    other documents (files) and large portions of text can be defined
-    in or out of the text.
+    other documents (files), large portions of text can be defined
+    in or out of the text, and tailored format-specific constructs can easily
+    be included.
 
   * With Mako one can also have Python code
     embedded in the Doconce document and thereby parameterize the
     text (e.g., one text can describe programming in two languages).
+
+### What Can Doconce Be Used For?
+
+LaTeX is ideal for articles, thesis, and books, but not so suited
+for web documents. Nice environments for web documents, such as
+Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+What about migrating a part of a book for blogging? What about
+making an MS Word version or an untagged text for inclusion in email?
+Doconce enables all this with just *one source*. Doconce also has
+extra features for supporting documents with much code and mathematics.
+
+### Basic Syntax Examples
 
 Here is an example of some simple text written in the Doconce format:
 
@@ -181,7 +193,8 @@ Tables are also supperted, e.g.,
 
 Inline mathematics, such as $\nu = \sin(x)$,
 allows the formula to be specified both as LaTeX and as plain text.
-This results in a professional LaTeX typesetting, but in other formats
+This results in a professional LaTeX typesetting, but in formats
+not supporting LaTeX mathematics
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like $\nu = \sin(x)$ is
 typeset as
@@ -270,7 +283,7 @@ I = integrate.trapezoidal(myfunc, 0, pi, 100)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A code block must come after some plain sentence (at least for successful
-output to `sphinx`, `rst`, and ASCII-close formats),
+output to `sphinx`, `rst`, and formats close to plain text),
 not directly after a section/paragraph heading or a table.
 
 
@@ -289,39 +302,53 @@ plain text editing capabilities.
 ### Macros (Newcommands), Cross-References, Index, and Bibliography
 
 Doconce supports a type of macros via a LaTeX-style *newcommand*
-construction.  The newcommands defined in a file with name
-`newcommand_replace.tex` are expanded when Doconce is filtered to
-other formats, except for LaTeX (since LaTeX performs the expansion
-itself).  Newcommands in files with names `newcommands.tex` and
-`newcommands_keep.tex` are kept unaltered when Doconce text is
-filtered to other formats, except for the Sphinx format. Since Sphinx
-understands LaTeX math, but not newcommands if the Sphinx output is
-HTML, it makes most sense to expand all newcommands.  Normally, a user
-will put all newcommands that appear in math blocks surrounded by
-`!bt` and `!et` in `newcommands_keep.tex` to keep them unchanged, at
-least if they contribute to make the raw LaTeX math text easier to
-read in the formats that cannot render LaTeX.  Newcommands used
-elsewhere throughout the text will usually be placed in
-`newcommands_replace.tex` and expanded by Doconce.  The definitions of
-newcommands in the `newcommands*.tex` files *must* appear on a single
-line (multi-line newcommands are too hard to parse with regular
-expressions).
+construction.  The newcommands are defined in files with names
+`newcommands*.tex`, using standard LaTeX syntax. Only newcommands
+for use inside math environments are supported.
 
-Recent versions of Doconce also offer cross referencing, typically one
-can define labels below (sub)sections, in figure captions, or in
-equations, and then refer to these later. Entries in an index can be
-defined and result in an index at the end for the LaTeX and Sphinx
-formats. Citations to literature, with an accompanying bibliography in
-a file, are also supported. The syntax of labels, references,
-citations, and the bibliography closely resembles that of LaTeX,
-making it easy for Doconce documents to be integrated in LaTeX
-projects (manuals, books). For further details on functionality and
+Labels, corss-references, citations, and support of an index and
+bibliography are much inspired by LaTeX syntax, but Doconce features
+no backslashes. Here is an example:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== My Section =====
+\label{sec:mysec}
+
+idx{key equation} idx{$\u$ conservation}
+
+We refer to ref{sec:yoursec} for background material on
+the *key equation*. Here we focus on the extension
+
+# \Ddt, \u and \mycommand are defined in newcommands_keep.tex
+
+!bt
+\begin{equation}
+\Ddt{\u} = \mycommand{v},
+\label{mysec:eq:Dudt}
+\end{equation}
+!et
+where $\Ddt{\u}$ is the material derivative of $\u$.
+Equation \eqref{mysec:eq:Dudt} is important in a number
+of contexts, see cite{Larsen_et_al_2002,Johnson_Friedman_2010a}.
+Also, cite{Miller_2000} supports such a view.
+
+As see in Figure ref{mysec:fig:myfig}, the key equation
+features large, smooth regions *and* abrupt changes.
+
+FIGURE: [fig/myfile, width=600] My figure. \label{mysec:fig:myfig}
+
+===== References =====
+
+BIBFILE: papers.pub
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For further details on functionality and
 syntax we refer to the `doc/manual/manual.do.txt` file (see the
 [demo page](https://doconce.googlecode.com/hg/doc/demos/manual/index.html)
 for various formats of this document).
 
 
-<!-- Example on including another Doconce file (using preprocess): -->
 
 
 ## From Doconce to Other Formats
@@ -1233,6 +1260,13 @@ sudo apt-get install doconce
 
 ### Dependencies
 
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 #### Preprocessors
 
 If you make use of the [Preprocess](http://code.google.com/p/preprocess)
@@ -1303,6 +1337,26 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 sudo apt-get install ispell
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#### Bibliography
+
+The Python package [Publish](https://bitbucket.org/logg/publish) is needed if you use a bibliography
+in your document. On the website, click on *Clone*, copy the
+command and run it:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+hg clone  ssh://hg@bitbucket.org/logg/publish
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Thereafter go to the `publish` directory and run the `setup.py` script
+for installing Publish:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+cd publish
+sudo python setup.py
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #### Ptex2tex for LaTeX Output

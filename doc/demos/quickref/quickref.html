@@ -79,28 +79,29 @@ Automatically generated HTML file from Doconce source
 <!-- tocinfo
 {'highest level': 2,
  'sections': [(' Supported Formats ', 2, None, '___sec0'),
-              (' Title, Authors, and Date ', 2, None, '___sec1'),
+              (' Emacs syntax support ', 2, None, '___sec1'),
+              (' Title, Authors, and Date ', 2, None, '___sec2'),
               (' Section Types ', 2, 'quick:sections', 'quick:sections'),
-              (' Inline Formatting ', 2, None, '___sec3'),
-              (' Lists ', 2, None, '___sec4'),
-              (' Comments ', 2, None, '___sec5'),
-              (' Verbatim/Computer Code ', 2, None, '___sec6'),
-              (' LaTeX Mathematics ', 2, None, '___sec7'),
-              (' Figures and Movies ', 2, None, '___sec8'),
-              (' Tables ', 2, None, '___sec9'),
-              (' Labels, References, Citations, and Index ',
-               2,
-               None,
-               '___sec10'),
+              (' Inline Formatting ', 2, None, '___sec4'),
+              (' Lists ', 2, None, '___sec5'),
+              (' Comment lines ', 2, None, '___sec6'),
+              (' Inline comments ', 2, None, '___sec7'),
+              (' Verbatim/Computer Code ', 2, None, '___sec8'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Figures and Movies ', 2, None, '___sec10'),
+              (' Tables ', 2, None, '___sec11'),
+              (' Labels and References ', 2, None, '___sec12'),
+              (' Citations and Bibliography ', 2, None, '___sec13'),
+              (' Generalized Citations ', 2, None, '___sec14'),
+              (' Index of Keywords ', 2, None, '___sec15'),
               (' Capabilities of the "doconce" Program ',
                2,
                None,
-               '___sec11'),
-              (' Exercises ', 2, None, '___sec12'),
-              (' Environments ', 2, None, '___sec13'),
-              (' Labels, Index, and Citations ', 2, None, '___sec14'),
-              (' Preprocessing ', 2, None, '___sec15'),
-              (' Resources ', 2, None, '___sec16')]}
+               '___sec16'),
+              (' Exercises ', 2, None, '___sec17'),
+              (' Environments ', 2, None, '___sec18'),
+              (' Preprocessing ', 2, None, '___sec19'),
+              (' Resources ', 2, None, '___sec20')]}
 end of tocinfo -->
 
 <body>
@@ -153,33 +154,43 @@ MathJax.Hub.Config({
 <p>
 
 <a href="#___sec0"> Supported Formats </a><br>
-<a href="#___sec1"> Title, Authors, and Date </a><br>
+<a href="#___sec1"> Emacs syntax support </a><br>
+<a href="#___sec2"> Title, Authors, and Date </a><br>
 <a href="#quick:sections"> Section Types </a><br>
-<a href="#___sec3"> Inline Formatting </a><br>
-<a href="#___sec4"> Lists </a><br>
-<a href="#___sec5"> Comments </a><br>
-<a href="#___sec6"> Verbatim/Computer Code </a><br>
-<a href="#___sec7"> LaTeX Mathematics </a><br>
-<a href="#___sec8"> Figures and Movies </a><br>
-<a href="#___sec9"> Tables </a><br>
-<a href="#___sec10"> Labels, References, Citations, and Index </a><br>
-<a href="#___sec11"> Capabilities of the "doconce" Program </a><br>
-<a href="#___sec12"> Exercises </a><br>
-<a href="#___sec13"> Environments </a><br>
-<a href="#___sec14"> Labels, Index, and Citations </a><br>
-<a href="#___sec15"> Preprocessing </a><br>
-<a href="#___sec16"> Resources </a><br>
+<a href="#___sec4"> Inline Formatting </a><br>
+<a href="#___sec5"> Lists </a><br>
+<a href="#___sec6"> Comment lines </a><br>
+<a href="#___sec7"> Inline comments </a><br>
+<a href="#___sec8"> Verbatim/Computer Code </a><br>
+<a href="#___sec9"> LaTeX Mathematics </a><br>
+<a href="#___sec10"> Figures and Movies </a><br>
+<a href="#___sec11"> Tables </a><br>
+<a href="#___sec12"> Labels and References </a><br>
+<a href="#___sec13"> Citations and Bibliography </a><br>
+<a href="#___sec14"> Generalized Citations </a><br>
+<a href="#___sec15"> Index of Keywords </a><br>
+<a href="#___sec16"> Capabilities of the "doconce" Program </a><br>
+<a href="#___sec17"> Exercises </a><br>
+<a href="#___sec18"> Environments </a><br>
+<a href="#___sec19"> Preprocessing </a><br>
+<a href="#___sec20"> Resources </a><br>
 
 <p>
 
 
-<!-- Very preliminary -->
-
-<p>
 <b>WARNING: This quick reference is very incomplete!</b>
 
 <p>
+<b>Mission.</b>
+Enable writing documentation with much mathematics and
+computer code <em>once, in one place</em> and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
+<p>
 
 <h3>Supported Formats  <a name="___sec0"></a></h3>
 
@@ -194,19 +205,58 @@ Doconce currently translates files to the following formats:
  <li> reStructuredText (format <code>rst</code>)</li>
  <li> plain (untagged) ASCII (format <code>plain</code>)</li>
  <li> Sphinx (format <code>sphinx</code>)</li>
+ <li> IPython notebook (format <code>ipynb</code>)</li>
+ <li> MediaWiki (format <code>mwiki</code>)</li>
  <li> (Pandoc extended) Markdown (format <code>pandoc</code>)</li>
  <li> Googlecode wiki (format <code>gwiki</code>)</li>
- <li> MediaWiki for Wikipedia and Wikibooks (format <code>mwiki</code>)</li>
  <li> Creoloe wiki (format <code>cwiki</code>)</li>
  <li> Epydoc (format <code>epydoc</code>)</li>
  <li> StructuredText (format <code>st</code>)</li>
 </ul>
 
-The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>html</code>, and <code>plain</code>.
+For documents with much code and mathematics, the best (and most supported)
+formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code>; and to a slightly
+less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blogging on
+Google and Wordpress.
 
 <p>
 
-<h3>Title, Authors, and Date  <a name="___sec1"></a></h3>
+
+<h3>Emacs syntax support  <a name="___sec1"></a></h3>
+
+<p>
+The file <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add <code>(load-file "~/.doconce-mode.el")</code> to the <code>.emacs</code>
+file.
+
+<p>
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table2                         </td> <td align="left">   table with 2 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table3                         </td> <td align="left">   table with 3 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table4                         </td> <td align="left">   table with 4 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+<tr><td align="left">   Ctrl+c help                           </td> <td align="left">   print this table                      </td> </tr>
+</table>
+<p>
+
+<h3>Title, Authors, and Date  <a name="___sec2"></a></h3>
 
 <p>
 A typical example of giving a title, a set of authors, a date,
@@ -249,27 +299,32 @@ The table of contents is removed by writing <code>TOC: off</code>.
 
 <p>
 <table border="1">
-<tr><td align="center"><b>                        Section type                        </b></td> <td align="center"><b>                           Syntax                           </b></td> </tr>
-<tr><td align="left">   chapter                                                       </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
-<tr><td align="left">   section                                                       </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsection                                                    </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsubsection                                                 </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)    </td> </tr>
-<tr><td align="left">   paragraph                                                     </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)    </td> </tr>
-<tr><td align="left">   abstract                                                      </td> <td align="left">   <code>__Abstract.__</code> Running text...                    </td> </tr>
+<tr><td align="center"><b>                            Section type                           </b></td> <td align="center"><b>                               Syntax                              </b></td> </tr>
+<tr><td align="left">   chapter                                                              </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)           </td> </tr>
+<tr><td align="left">   section                                                              </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsection                                                           </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsubsection                                                        </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)           </td> </tr>
+<tr><td align="left">   paragraph                                                            </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)           </td> </tr>
+<tr><td align="left">   abstract                                                             </td> <td align="left">   <code>__Abstract.__</code> Running text...                           </td> </tr>
+<tr><td align="left">   appendix                                                             </td> <td align="left">   <code>======= Appendix: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   appendix                                                             </td> <td align="left">   <code>===== Appendix: heading =====</code> (5 <code>=</code>)        </td> </tr>
+<tr><td align="left">   exercise                                                             </td> <td align="left">   <code>======= Exercise: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   exercise                                                             </td> <td align="left">   <code>===== Exercise: heading =====</code> (5 <code>=</code>)        </td> </tr>
 </table>
 <p>
-Note that abstracts are recognized by starting with <code>__Abstract.__</code> at
-the beginning of a line and ending with three or more <code>=</code> signs of the
-next heading.
+Note that abstracts are recognized by starting with <code>__Abstract.__</code> or
+<code>__Summary.__</code> at the beginning of a line and ending with three or
+more <code>=</code> signs of the next heading.
 
 <p>
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only <code>latex</code> output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The <code>Exercise:</code> keyword kan be substituted by <code>Problem:</code> or <code>Project:</code>.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 <p>
 
-<h3>Inline Formatting  <a name="___sec3"></a></h3>
+<h3>Inline Formatting  <a name="___sec4"></a></h3>
 
 <p>
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
@@ -278,7 +333,7 @@ appear in boldface: <code>_boldface_</code> become <b>boldface</b>.
 
 <p>
 
-<h3>Lists  <a name="___sec4"></a></h3>
+<h3>Lists  <a name="___sec5"></a></h3>
 
 <p>
 There are three types of lists: <em>bullet lists</em>, where each item starts
@@ -372,7 +427,7 @@ And finally a description list:
 </dl>
 
 
-<h3>Comments  <a name="___sec5"></a></h3>
+<h3>Comment lines  <a name="___sec6"></a></h3>
 
 <p>
 Lines starting with <code>#</code> are treated as comments in the document and
@@ -382,43 +437,60 @@ blocks, verbatim code blocks, or lists if the formats <code>rst</code> and
 <code>sphinx</code> are desired.
 
 <p>
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes <code>##</code> or by blocks of text
-inside the comment directives <code>%<doc></code> (beginning) and <code><%doc/></code> (end).
+Comment lines starting with <code>##</code> are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
 
 <p>
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file. Mako block comments start
+with <code>%<doc></code> and end with <code><%doc/></code>, both at the beginning of the line.
+
+<p>
+Large portions of text can be left out using Preprocess. Just place
+<code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
+option <code>-DEXTRA</code> will bring the text alive again.
+
+<p>
+
+<h3>Inline comments  <a name="___sec7"></a></h3>
+
+<p>
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 <!-- begin verbatim block -->
 <pre><code>[name: running text]
 </code></pre>
 <!-- end verbatim block -->
 where <code>name</code> is the name or ID of an author or reader making the comment,
-and <code>running text</code> is the comment. There must be a space after the colon.
+and <code>running text</code> is the comment. Here goes an example.
+
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>There must be a space after the colon,
+but the running text can occupy multiple lines.</em>]
+<!-- end inline comment -->
+
 Running
 <!-- begin verbatim block  sys-->
 <pre><code>doconce format html mydoc.do.txt --skip_inline_comments
 </code></pre>
 <!-- end verbatim block -->
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 <p>
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 <!-- begin verbatim block  sys-->
 <pre><code>doconce remove_inline_comments mydoc.do.txt
 </code></pre>
 <!-- end verbatim block -->
-This action is appropriate when all issues with such comments are resolved.
 
 <p>
 
-<h3>Verbatim/Computer Code  <a name="___sec6"></a></h3>
+<h3>Verbatim/Computer Code  <a name="___sec8"></a></h3>
 
 <p>
 Inline verbatim code is typeset within back-ticks, as in
@@ -511,13 +583,13 @@ Important warnings:
 </ul>
 
 
-<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
 
 <p>
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats <code>sphinx</code>, <code>latex</code>, and <code>pdflatex</code>
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats <code>html</code>, <code>sphinx</code>, <code>latex</code>,
+pdflatex`, <code>pandoc</code>, and <code>mwiki</code> work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 <p>
 Inline expressions are written in the standard
@@ -531,8 +603,7 @@ readable companion expression. The syntax is like
 <!-- end verbatim block -->
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 <p>
 Blocks of LaTeX mathematics are written within
@@ -550,9 +621,8 @@ and
 !et
 </code></pre>
 <!-- end verbatim block -->
-<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!-- tex and code blocks in inside verbatim blocks and are replaced -->
-<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+
+<p>
 This LaTeX code gets rendered as
 
 <p>
@@ -579,29 +649,22 @@ $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
 
 <p>
-One can use <code>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</code>
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (<code>#else</code>) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
-<p>
 Any LaTeX syntax is accepted, but if output in the <code>sphinx</code>, <code>pandoc</code>,
-<code>mwiki</code>, or <code>html</code> formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <code>latex</code> or <code>pdflatex</code> <em>and</em>
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+<code>mwiki</code>, <code>html</code>, or <code>ipynb</code> formats
+is also important, one should follow these rules:
 
 <p>
 
 <ul>
   <li> Use only the equation environments <code>\[</code>, <code>\]</code>,
     <code>equation</code>, <code>equation*</code>, <code>align</code>, and <code>align*</code>.</li>
-  <li> Labels in multiple equation environments such as <code>align</code> are
-    not (yet) handled by <code>pandoc</code>.</li>
   <li> MediaWiki (<code>mwiki</code>) does not support references to equations.</li>
 </ul>
 
+(Doconce performs extensions to <code>sphinx</code> and other formats such that
+labels in <code>align</code> environments work well.)
+
+<p>
 
 <table width="95%" border="0">
 <tr>
@@ -623,14 +686,22 @@ PDF document.
 </p></td></tr>
 </table>
 <p>
-
 <b>LaTeX Newcommands.</b>
-Text missing...
+The author can define <code>newcommand</code> statements in files with names
+<code>newcommands*.tex</code>. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that <code>newcommands_keep.tex</code>
+contains the newcommands that are kept in the document, while
+those in <code>newcommands_replace.tex</code> will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</code>, <code>pdflatex</code>,
+<code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
+rendered nicely anyway.
 
 <p>
 
 
-<h3>Figures and Movies  <a name="___sec8"></a></h3>
+<h3>Figures and Movies  <a name="___sec10"></a></h3>
 
 <p>
 Figures and movies have almost equal syntax:
@@ -641,13 +712,20 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 
 </code></pre>
 <!-- end verbatim block -->
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
 
 <p>
+
+<ol>
+ <li> A mandatory comma after the figure/movie filename,</li>
+ <li> all of the command must appear on a single line,</li>
+ <li> there must be a blank line after the command.</li>
+</ol>
+
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 <p>
 Movie files can either be a video or a wildcard expression for a
@@ -656,22 +734,39 @@ will display the individual frame files as a movie.
 
 <p>
 Combining several image files into one can be done by the
-<code>convert</code> and <code>montage</code> programs from the ImageMagick suite:
 <!-- begin verbatim block  sys-->
-<pre><code>montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+<pre><code>doconce combine_images image1 image2 ... output_image
 </code></pre>
 <!-- end verbatim block -->
-Use <code>+append</code> for stacking left to right, <code>-append</code> for top to bottom.
-The positioning of the figures can be controlled by <code>-gravity</code>.
+This command applies <code>montage</code> or PDF-based tools to combine the images
+to get the highest quality.
+
+<p>
+YouTube and Vimeo movies will be embedded in <code>html</code> and <code>sphinx</code> documents
+and otherwise be represented by a link. The syntax is
+
+<p>
+<!-- begin verbatim block -->
+<pre><code>MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+</code></pre>
+<!-- end verbatim block -->
+The latter results in
+
+<p>
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Vimeo movie.</em>
+
+
 
 <p>
 
 
-<h3>Tables  <a name="___sec9"></a></h3>
+<h3>Tables  <a name="___sec11"></a></h3>
 
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
@@ -712,10 +807,11 @@ Note that
 </ul>
 
 
-<h3>Labels, References, Citations, and Index  <a name="___sec10"></a></h3>
+<h3>Labels and References  <a name="___sec12"></a></h3>
 
 <p>
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <!-- begin verbatim block -->
@@ -737,6 +833,10 @@ A reference to the label <code>name</code> is written as
 again with no backslash before <code>ref</code>.
 
 <p>
+
+<h3>Citations and Bibliography  <a name="___sec13"></a></h3>
+
+<p>
 Single citations are written as
 <!-- begin verbatim block -->
 <pre><code>cite{name}
@@ -755,21 +855,25 @@ by comma:
 <!-- end verbatim block -->
 
 <p>
-The bibliography is specified by a line <code>BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py</code>, where <code>name</code> is the logical name of the
-document (the doconce file will then normally have the name
-<code>name.do.txt</code>), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the <code>BIBFILE</code> keyword appears.
+The bibliography is specified by a line <code>BIBFILE: papers.pub</code>,
+where <code>papers.pub</code> is a publication database in the
+<a href="https://bitbucket.org/logg/publish">Publish</a> format.
+BibTeX <code>.bib</code> files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+<p>
+
+<h3>Generalized Citations  <a name="___sec14"></a></h3>
 
 <p>
 There is a <em>generalized referencing</em> feature in Doconce that allows
 a reference with <code>ref</code> to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 <!-- begin verbatim block -->
 <pre><code>ref[internal][cite][external]
 
@@ -793,6 +897,10 @@ documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
 <p>
+
+<h3>Index of Keywords  <a name="___sec15"></a></h3>
+
+<p>
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -809,7 +917,7 @@ forthcoming text. The index is only produced for the <code>latex</code>, <code>r
 
 <p>
 
-<h3>Capabilities of the "doconce" Program  <a name="___sec11"></a></h3>
+<h3>Capabilities of the "doconce" Program  <a name="___sec16"></a></h3>
 
 <p>
 The <code>doconce</code> program can be used for a number of purposes besides
@@ -936,7 +1044,7 @@ doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 <p>
 
-<h3>Exercises  <a name="___sec12"></a></h3>
+<h3>Exercises  <a name="___sec17"></a></h3>
 
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
@@ -1057,7 +1165,7 @@ examples.
 <p>
 
 
-<h3>Environments  <a name="___sec13"></a></h3>
+<h3>Environments  <a name="___sec18"></a></h3>
 
 <p>
 Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
@@ -1072,7 +1180,6 @@ the environments:
  <li> <code>subex</code>: sub-exercise</li>
  <li> <code>ans</code>: short answer to exercise or sub-exercise</li>
  <li> <code>sol</code>: full solution to exercise or sub-exercise</li>
- <li> <code>notes</code>: multi-line notes to be included or not</li>
  <li> <code>quote</code>: indented text</li>
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
     specialy typesetting (or symbols)</li>
@@ -1082,11 +1189,7 @@ the environments:
 </ul>
 
 
-<h3>Labels, Index, and Citations  <a name="___sec14"></a></h3>
-
-<p>
-
-<h3>Preprocessing  <a name="___sec15"></a></h3>
+<h3>Preprocessing  <a name="___sec19"></a></h3>
 
 <p>
 Doconce documents may utilize a preprocessor, either <code>preprocess</code> and/or
@@ -1142,7 +1245,7 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 
 <p>
 
-<h3>Resources  <a name="___sec16"></a></h3>
+<h3>Resources  <a name="___sec20"></a></h3>
 
 <p>
 

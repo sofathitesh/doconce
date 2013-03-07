@@ -253,10 +253,7 @@ Mar 7, 2013
 % (documents can also have mako comment lines)
 
 
-
-
 \section{What Is Doconce?}
-
 \label{what:is:doconce}
 \index{doconce!short explanation}
 
@@ -341,14 +338,9 @@ formats.
 
 
 
-
-
 \section{Installation of Doconce and its Dependencies}
 
-
-
 \subsection{Doconce}
-
 
 Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
 Mercurial (\code{hg}) source follows the standard procedure:
@@ -382,9 +374,7 @@ sudo apt-get update
 sudo apt-get install doconce
 \esys
 
-
 \subsection{Dependencies}
-
 
 Producing HTML documents, plain text, pandoc-extended Markdown,
 and wikis can be done without installing any other
@@ -392,7 +382,6 @@ software. However, if you want other formats as output
 ({\LaTeX}, Sphinx, reStructuredText) and assisting utilities such
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.
-
 
 \paragraph{Preprocessors.}
 
@@ -427,7 +416,6 @@ Mako can also be installed directly from
 tarball, pack it out, go to the directory and run
 the usual \code{sudo python setup.py install}.
 
-
 \paragraph{Image file handling.}
 
 Different output formats require different formats of image files.
@@ -450,7 +438,6 @@ Debian package. The latter gets installed by
 sudo apt-get install texlive-extra-utils
 \esys
 
-
 \paragraph{Spellcheck.}
 
 The utility \code{doconce spellcheck} applies the \code{ispell} program for
@@ -459,7 +446,6 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 \bsys
 sudo apt-get install ispell
 \esys
-
 
 
 \paragraph{Bibliography.}
@@ -478,7 +464,6 @@ for installing Publish:
 cd publish
 sudo python setup.py
 \esys
-
 
 
 \paragraph{Ptex2tex for {\LaTeX} Output.}
@@ -540,7 +525,6 @@ argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflat
 
 % Say something about anslistings.sty
 
-
 \paragraph{reStructuredText (reST) Output.}
 
 The \code{rst} output from Doconce allows further transformation to {\LaTeX},
@@ -576,7 +560,6 @@ sudo python setup.py install
 cd ..
 \esys
 
-
 \paragraph{Markdown and Pandoc Output.}
 
 The Doconce format \code{pandoc} outputs the document in the Pandoc
@@ -588,7 +571,6 @@ easily done by
 sudo apt-get install pandoc
 \esys
 on Debian (Ubuntu) systems.
-
 
 \paragraph{Epydoc Output.}
 
@@ -626,9 +608,7 @@ Mercurial (\code{hg}) directories, go to the directory, run
 % 
 
 
-
 \subsection{Demos}
-
 
 \index{demos}
 
@@ -657,10 +637,7 @@ of the results.
 % Example on including another Doconce file:
 
 
-
-
 \section{From Doconce to Other Formats}
-
 \label{doconce2formats}
 
 Transformation of a Doconce document \code{mydoc.do.txt} to various other
@@ -673,9 +650,7 @@ or just
 Terminal> doconce format format mydoc
 \esys
 
-
 \subsection{Generating a makefile}
-
 
 Producing HTML, Sphinx, and in particular {\LaTeX} documents from
 Doconce sources requires a few commands. Often you want to
@@ -699,9 +674,7 @@ inserts checks for successful runs of the \code{doconce format} commands,
 and if something goes wrong, the \code{make.sh} exits.
 
 
-
 \subsection{Preprocessing}
-
 
 The \code{preprocess} and \code{mako} programs are used to preprocess the
 file, and options to \code{preprocess} and/or \code{mako} can be added after the
@@ -716,9 +689,7 @@ defined as \code{latex}. Inside the Doconce document one can then perform
 format specific actions through tests like \code{#if FORMAT == "latex"}
 (for \code{preprocess}) or \code{% if FORMAT == "latex":} (for \code{mako}).
 
-
 \subsection{Removal of inline comments}
-
 
 The command-line arguments \code{--no-preprocess} and \code{--no-mako} turn off
 running \code{preprocess} and \code{mako}, respectively.
@@ -735,9 +706,7 @@ Terminal> doconce remove_inline_comments mydoc
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
-
 \subsection{Notes}
-
 
 Doconce does not have a tag for longer notes, because implementation
 of a "notes feature" is so easy using the \code{preprocess} or \code{mako}
@@ -750,17 +719,13 @@ encapsulate unfinished material, extra material to be removed
 for readers but still nice to archive as part of the document for
 future revisions.
 
-
 \subsection{Demo of different formats}
-
 
 A simple scientific report is available in \href{{http://hplgit.github.com/teamods/writing_reports/doconce_commands.html}}{a lot of different formats}.
 How to create the different formats is explained in more depth
 in the coming sections.
 
-
 \subsection{HTML}
-
 
 Making an HTML version of a Doconce file \code{mydoc.do.txt}
 is performed by
@@ -826,9 +791,7 @@ by \code{%(main)s}. Here is an example:
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 \esys
 
-
 \subsection{Blogs}
-
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service (\code{blogger.com} or
@@ -873,9 +836,7 @@ Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
 and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
 to see blogging with mathematics and code on WordPress.
 
-
 \subsection{Pandoc and Markdown}
-
 
 Output in Pandoc's extended Markdown format results from
 \bsys
@@ -935,9 +896,7 @@ The \code{-s} option adds a proper header and footer to the \code{mydoc.html} fi
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
-
 \subsection{{\LaTeX}}
-
 
 Making a {\LaTeX} file \code{mydoc.tex} from \code{mydoc.do.txt} is done in two steps:
 % Note: putting code blocks inside a list is not successful in many
@@ -1112,9 +1071,7 @@ specifications with \code{doconce ptex2tex}), the minted package is automaticall
 included so there is no need for the \code{-DMINTED} option.
 
 
-
 \subsection{PDFLaTeX}
-
 
 Running \code{pdflatex} instead of \code{latex} follows almost the same steps,
 but the start is
@@ -1129,9 +1086,7 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 \esys
 
-
 \subsection{Plain ASCII Text}
-
 
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -1140,9 +1095,7 @@ computer source code:
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 \esys
 
-
 \subsection{reStructuredText}
-
 
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -1192,9 +1145,7 @@ Some links for going from {\LaTeX} to Word are listed below.
 \end{itemize}
 
 \noindent
-
 \subsection{Sphinx}
-
 
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the \code{doconce sphinx_dir} command:
@@ -1339,7 +1290,6 @@ doconce sphinx_dir theme=scipy_lectures \
                    conf.py=../some/path/conf.py mydoc
 \esys
 
-
 \paragraph{The manual Sphinx procedure.}
 
 If it is not desirable to use the autogenerated scripts explained
@@ -1437,9 +1387,7 @@ depending the argument that follows \code{!bc}: \code{cod} gives Python
 all such arguments can be customized both for Sphinx and {\LaTeX} output.
 
 
-
 \subsection{Wiki Formats}
-
 
 There are many different wiki formats, but Doconce only supports three:
 \href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki},
@@ -1482,9 +1430,7 @@ the \code{.gwiki} file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
-
 \subsection{Tweaking the Doconce Output}
-
 
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
@@ -1500,17 +1446,12 @@ constitute comprehensive examples on how such scripts can be made.
 
 
 
-
-
 \section{The Doconce Markup Language}
-
 
 The Doconce format introduces four constructs to markup text:
 lists, special lines, inline tags, and environments.
 
-
 \subsection{Lists}
-
 
 An unordered bullet list makes use of the \code{*} as bullet sign
 and is indented as follows
@@ -1611,9 +1552,7 @@ The result becomes
 \end{description}
 
 \noindent
-
 \subsection{Special Lines}
-
 
 The Doconce markup language has a concept called \emph{special lines}.
 Such lines starts with a markup at the very beginning of the
@@ -1736,14 +1675,9 @@ The running text goes here.
 __A Paragraph.__ The running text goes here.
 \eccq
 
-
-
 \section{Special Lines}
 
-
-
 \subsection{Figures}
-
 
 % Note: need extra blank after FIGURE and MOVIE in !bc environments
 % because doconce treats !ec as part of the caption and moves the
@@ -1791,9 +1725,7 @@ The option \code{-tile XxY} gives \code{X} figures in the horizontal direction a
 \code{Y} in the vertical direction (\code{tile 2x} means two figures per row
 and \code{-tile x2} means two rows).
 
-
 \subsection{Movies}
-
 
 Here is an example on the \code{MOVIE:} keyword for embedding movies. This
 feature works well for the \code{latex}, \code{html}, \code{rst}, and \code{sphinx} formats.
@@ -1896,18 +1828,14 @@ Note that there must be a blank line after every \code{MOVIE:} command.
 The width and height parameters are not required, but leaving them out
 may lead to movie sizes you do not want.
 
-
 \subsection{Copying Computer Code from Source Files}
-
 
 Another type of special lines starts with \code{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see
 Section~\ref{sec:verbatim:blocks} below.
 
 
-
 \subsection{Inline Tagging}
-
 \label{inline:tagging}
 \index{inline tagging} \index{emphasized words} \index{boldface words} \index{verbatim text}
 \index{inline comments}
@@ -1915,7 +1843,6 @@ Section~\ref{sec:verbatim:blocks} below.
 Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
 and \code{verbatim text} (also called type writer text, for inline code)
 plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
-
 
 \paragraph{Emphasized Words.}
 
@@ -1931,7 +1858,6 @@ _several words in boldface_ followed by *ephasized text*.
 \eccq
 The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
-
 
 \paragraph{Inline Verbatim Text.}
 
@@ -1966,7 +1892,6 @@ very simple formatting usually avoids such problems).
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
-
 \paragraph{Links to Web Addresses.}
 
 Web addresses with links are typeset as
@@ -1988,7 +1913,6 @@ Click on this link: \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
-
 
 \paragraph{Links to Local Files.}
 
@@ -2061,7 +1985,6 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % \code{_static} directory - links in the \code{.rst} files are automatically
 % adjusted.)
 
-
 \paragraph{Inline Comments.}
 
 Doconce also supports inline comments in the text:
@@ -2081,7 +2004,6 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the \code{.do.txt} file
 (see Section~\ref{doconce2formats}).
-
 
 \paragraph{Inline Mathematics.}
 
@@ -2110,9 +2032,7 @@ on a linear system ${\bf A}{\bf x} = {\bf b}$, where $\bf A$
 is an $n\times n$ matrix, and $\bf x$ and $\bf b$
 are vectors of length $n$."
 
-
 \subsection{Comments}
-
 
 Comments intended to be (sometimes) visible in the output document and
 read by readers are known as \emph{inline comments} in Doconce and
@@ -2147,9 +2067,7 @@ preprocessor and an if-else block with a variable that is undefined
 (typically something like a test \code{# #ifdef EXTRA} in Preprocess).
 
 
-
 \subsection{Cross-Referencing}
-
 \index{cross referencing} \index{labels} \index{references}
 
 References and labels are supported. The syntax is simple:
@@ -2182,9 +2100,7 @@ are handled by the format in question.
 Hyperlinks to files or web addresses are handled as explained
 in Section~\ref{inline:tagging}.
 
-
 \subsection{Generalized Cross-Referencing}
-
 \label{manual:genrefs}
 
 Sometimes a series of individual documents may be assembled to one
@@ -2269,9 +2185,7 @@ the document [A Document for Testing Doconce](testdoc.html)
 @testdoc:12, Doconce documents may include movies.
 \eccq
 
-
 \subsection{Index}
-
 \index{index} \index{citations} \index{bibliography}
 
 An index can be created for the \code{latex}, \code{rst}, and \code{sphinx} formats
@@ -2297,9 +2211,7 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 {\LaTeX} is the output format).
 
-
 \subsection{Bibliography}
-
 
 Doconce applies the software tool \href{{https://bitbucket.org/logg/publish}}{Publish} to handle the bibliography in a
 document. With Publish it is easy to import BibTeX data and maintain a
@@ -2311,7 +2223,6 @@ on).
 Installing Publish is straightforward: just checkout the code on
 \href{{https://bitbucket.org/logg/publish}}{\nolinkurl{bitbucket.org}}, move to the
 \code{publish} directory and run \code{sudo python setup.py install}.
-
 
 \paragraph{Importing your data to the Publish database.}
 
@@ -2332,17 +2243,14 @@ for future imports in this directory. Make sure you store \code{publish.pub}
 and \code{venues.list} along with your Doconce document files (e.g., add them to
 your version control system).
 
-
 \paragraph{Requirements to input data.}
 
 Note that Publish only accepts BibTeX files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
-curly braces.  You may need to edit your BibTeX files to meet this
-demand. Even more important is the fact that the HTML output format
-displays the BibTeX keys as identifiers when referring to publications
-(Sphinx, reST, and {\LaTeX} apply numbering).  Therefore, your keys
-should have a nice, consistent typesetting. It is suggested to use the
-following scheme:
+curly braces. You may need to edit your BibTeX files to meet this
+demand. Although references are visible as numbers only in the
+output, it is recommended to have apply a nice, consistent
+typesetting of your keys. It is suggested to use the following scheme:
 
 \bccq
 Langtangen_2003a          # single author
@@ -2352,14 +2260,12 @@ Langtangen_et_al_2002     # three or more authors
 One can add a, b, c, and so forth if several keys feature the same
 authors and year.
 
-
 \paragraph{Adding new references to the database.}
 
 When you get some new BibTeX references you simply put them in
 a file, say \code{refs3.pub} and run the \code{publish import refs3.pub} command
 to update the database. You may also consider editing the \code{papers.pub}
 file directly when adding new references.
-
 
 \paragraph{Exporting the database.}
 
@@ -2373,7 +2279,6 @@ You can easily export subsets of the database, e.g., only papers associated
 with a particular author (the Publish manual has details on how this is
 done). Doconce will automatically export the database to BibTeX if
 the output format is \code{latex} or \code{pdflatex}.
-
 
 \paragraph{Referring to publications.}
 
@@ -2403,7 +2308,6 @@ in other formats the citations are simply the keys inside square
 brackets and the corresponding references are listed in the order they
 are cited.
 
-
 \paragraph{Specifying the Publish database.}
 
 The specification of the Publish database file in the Doconce document
@@ -2424,7 +2328,6 @@ In {\LaTeX} and \textsc{pdf}{\LaTeX} the \code{papers.pub} file is exported to B
 and included in the document, while in all other formats, suitable
 text is produced from the database.
 
-
 \paragraph{{\LaTeX} bibliography style.}
 
 The bibliography style is "plain" in {\LaTeX} output. To change this, just
@@ -2435,9 +2338,7 @@ doconce format latex mydoc
 doconce replace 'bibliographystyle{plain}' 'bibliographystyle{abbrev}' mydoc.p.tex
 \esys
 
-
 \subsection{Tables}
-
 
 A table like
 
@@ -2479,9 +2380,7 @@ the format and insert format-specific code for tables.
 
 
 
-
 \subsection{Exercises, Problems, Projects, and Examples}
-
 
 Doconce has special support for four types of "exercises", named
 \emph{exercise}, \emph{problem}, \emph{project}, or \emph{example}.
@@ -2643,9 +2542,7 @@ typesetting of the example looks like an exercise equipped with a solution.
 
 
 
-
 \subsection{Blocks of Verbatim Computer Code}
-
 \label{sec:verbatim:blocks}
 
 Blocks of computer code, to be typeset verbatim, must appear inside a
@@ -2875,9 +2772,7 @@ pro or cod environment which are defined in the \code{ptex2tex} configuration
 file.)
 
 
-
 \subsection{{\LaTeX} Blocks of Mathematical Text}
-
 \label{mathtext}
 
 Blocks of mathematical text are like computer code blocks, but
@@ -2947,7 +2842,6 @@ alternatively:
 \eccq
 
 
-
 \paragraph{Mathematics for PowerPoint/OpenOffice.}
 
 If you have {\LaTeX} mathematics written in Doconce, it is fairly easy
@@ -2982,9 +2876,7 @@ use with PowerPoint or OpenOffice presentations.
 \end{enumerate}
 
 \noindent
-
 \subsection{Macros (Newcommands)}
-
 \label{newcommands}
 
 Doconce supports a type of macros via a LaTeX-style \emph{newcommand}
@@ -3041,9 +2933,7 @@ will then be rendered to
 \eeqa
 in the current format.
 
-
 \subsection{Preprocessing Steps}
-
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
@@ -3115,9 +3005,7 @@ the writing of parts of the document.
 
 
 
-
 \subsection{Splitting Documents into Smaller Pieces}
-
 
 Long documents are conveniently split into smaller Doconce files.
 However, there must be a master document including all the pieces,
@@ -3171,9 +3059,7 @@ This set is the output of \code{doconce split_rst}, which we catch in a
 variable \code{files} above.
 
 
-
 \subsection{Missing Features}
-
 
 Doconce does not aim to support sophisticated typesetting, simply because
 sophisticated typesetting usually depend quite strongly on the particular
@@ -3202,9 +3088,7 @@ a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
 
-
 \subsection{Header and Footer}
-
 
 Some formats use a header and footer in the document. {\LaTeX} and
 HTML are two examples of such formats. When the document is to be
@@ -3216,16 +3100,11 @@ is found at the beginning of the line (i.e., the document
 has a title), the header and footer are included, otherwise not.
 
 
-
 \subsection{Emacs Doconce Formatter}
-
 \label{emacs:doconce}
 
 The file \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} in the Doconce source distribution
-gives a "Doconce Editing Mode" in Emacs. (The file is just a rough edit of
-the reST Editing Mode for Emacs. Many Doconce features are recognized,
-but far from all, and sometimes portions of Doconce text just appear
-as ordinary text.)
+gives a "Doconce Editing Mode" in Emacs.
 
 Here is how to get the Doconce Editing Mode in Emacs: Download \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} and save it in your home directory, then add these lines to \code{~/.emacs}:
 \bccq
@@ -3252,9 +3131,12 @@ Ctrl+c me                          & math environment: !bt equation !et \\
 Ctrl+c ma                          & math environment: !bt align !et    \\
 Ctrl+c ce                          & code environment: !bc !ec          \\
 Ctrl+c cf                          & code from file: @@@CODE            \\
-Ctrl+c table                       & table                              \\
+Ctrl+c table2                      & table with 2 columns               \\
+Ctrl+c table3                      & table with 3 columns               \\
+Ctrl+c table4                      & table with 4 columns               \\
 Ctrl+c exer                        & exercise outline                   \\
 Ctrl+c slide                       & slide outline                      \\
+Ctrl+c help                        & print this table                   \\
 \hline
 \end{tabular}\end{quote}
 
@@ -3264,14 +3146,9 @@ the different shortcuts and see how handy they are in learning
 Doconce and saving much typing!
 
 
-
-
 \section{Troubleshooting}
 
-
-
 \subsection{Disclaimer}
-
 
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running \code{doconce format}, the reason for the error is
@@ -3282,10 +3159,7 @@ regular expressions may sometimes fail. Therefore, there is a chance that legal
 Doconce syntax is not treated properly.
 
 
-
 \subsection{General Problems}
-
-
 
 \paragraph{Doconce aborts because of a syntax error that is not an error.}
 
@@ -3296,7 +3170,6 @@ that are not errors. To continue execution, simply add the
 \code{--no-abort} option on the command line. You may send an email
 to the Doconce author at \code{hpl@simula.no} and report the problem.
 
-
 \paragraph{The Mako preprocessor is seemingly not run.}
 
 If you have lines starting with \code{%} inside code segments (for example,
@@ -3304,7 +3177,6 @@ SWIG code or Matlab comment lines), the Mako preprocessor will crash
 because it thinks these lines are Mako statements. Doconce detects
 this problem and avoids running Mako.  Examine the output from
 Doconce: warnings are issued if Mako is not run.
-
 
 \paragraph{Something goes wrong in the preprocessing step.}
 
@@ -3315,7 +3187,6 @@ something goes wrong in this stage (i.e., when \code{mako} and
 \code{doconce} command to (both make a debug file and) avoid that
 \code{__tmp.do.txt} is deleted.
 
-
 \paragraph{Figure captions are incomplete.}
 
 If only the first part of a figure caption in the Doconce file is seen
@@ -3323,19 +3194,16 @@ in the target output format, the reason is usually that the caption
 occupies multiple lines in the Doconce file. The figure caption must
 be written as \emph{one line}, at the same line as the FIGURE keyword.
 
-
 \paragraph{Preprocessor directives do not work.}
 
 Make sure the preprocessor instructions, in Preprocess or Mako, have
 correct syntax. Also make sure that you do not mix Preprocess and Mako
 instructions. Doconce will then only run Preprocess.
 
-
 \paragraph{Problems with boldface and emphasize.}
 
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
-
 
 \paragraph{Links to local directories do not work.}
 
@@ -3347,7 +3215,6 @@ do not work well. You need to link to a specific HTML file:
 \bccq
 see the "examples directory": "src/examples/index.html"
 \eccq
-
 
 \paragraph{Links are not typeset correctly.}
 
@@ -3364,16 +3231,13 @@ The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
-
 \paragraph{Inline verbatim code is not detected.}
 
 Make sure there is a space before the first back-tick.
 
-
 \paragraph{Inline verbatim text is not formatted correctly.}
 
 Make sure there is whitespace surrounding the text in back-ticks.
-
 
 \paragraph{Strange non-English characters.}
 
@@ -3390,7 +3254,6 @@ Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 \eccq
 
-
 \paragraph{Wrong Norwegian charcters.}
 
 When Doconce documents have characters not in the standard ASCII set,
@@ -3398,12 +3261,10 @@ the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run \code{doconce change_encoding} to change the encoding of the Doconce file.
 
-
 \paragraph{Too short underlining of reST headlines.}
 
 This may happen if there is a paragraph heading without
 proceeding text before some section heading.
-
 
 
 \paragraph{Found !bt but no tex blocks extracted (BUG).}
@@ -3412,7 +3273,6 @@ This message points to a bug, but has been resolved by removing blank lines
 between the text and the first \code{!bt} (inserting the blanks again did not
 trigger the error message again...).
 
-
 \paragraph{Examples are typset with environment delimiters visible.}
 
 If you see an Example section containing \code{!bsubex}, \code{!bsol}, or other
@@ -3420,7 +3280,6 @@ begin and end tags for environments, it means that you have intended
 to typeset examples as exercises, but forgotten the command-line
 option \code{--examples-as-exercises}. The text in the example is typeset
 as is unless this option is included.
-
 
 \paragraph{Emacs editing does not work properly because of "regexp overflow".}
 
@@ -3432,10 +3291,7 @@ the pieces using the \code{preprocess} directive \code{#include "piece.do.txt"}.
 The error message comes with the Doconce file contains too much text
 for Emacs to handle.
 
-
 \subsection{Problems with code or Tex Blocks}
-
-
 
 \paragraph{Code or math block errors in reST.}
 
@@ -3457,7 +3313,6 @@ mentioned. Then \code{!bc} will most likely be replaced and a double colon
 at the preceding line will appear (which is the right way in reST to
 indicate a verbatim block of text).
 
-
 \paragraph{Strange errors around code or TeX blocks in reST.}
 
 If \code{idx} commands for defining indices are placed inside paragraphs,
@@ -3467,20 +3322,17 @@ code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
 
-
 \paragraph{Something is wrong with a verbatim code block.}
 
 Check first that there is a "normal" sentence right before
 the block (this is important for reST and similar
 "ASCII-close" formats).
 
-
 \paragraph{Code/TeX block is not shown in reST format.}
 
 A comment right before a code or tex block will treat the whole
 block also as a comment. It is important that there is normal
 running text right before \code{!bt} and \code{!bc} environments.
-
 
 \paragraph{Verbatim code blocks inside lists look ugly.}
 
@@ -3491,7 +3343,6 @@ you cannot resolve the problem this way, get rid of the list and use
 paragraph headings instead. In fact, that is what is recommended:
 avoid verbatim code blocks inside lists (it makes life easier).
 
-
 \paragraph{{\LaTeX} code blocks inside lists look ugly.}
 
 Same solution as for computer code blocks as described in the
@@ -3500,10 +3351,7 @@ and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
 
-
 \subsection{Problems with reST/Sphinx Output}
-
-
 
 \paragraph{Title level inconsistent.}
 
@@ -3511,12 +3359,10 @@ reST does not like jumps in the levels of headings. For example, you cannot
 have a \code{===} (paragraph) heading after a \code{=======} (section) heading without
 a \code{=====} (subsection) heading in between.
 
-
 \paragraph{Lists do not appear in .rst files.}
 
 Check if you have a comment right above the list. That comment
 will include the list if the list is indentend. Remove the comment.
-
 
 \paragraph{Error message "Undefined substitution..." from reST.}
 
@@ -3524,13 +3370,11 @@ This may happen if there is much inline math in the text. reST cannot
 understand inline {\LaTeX} commands and interprets them as illegal code.
 Just ignore these error messages.
 
-
 \paragraph{Warning about duplicate link names.}
 
 Link names should be unique, but if (e.g.) "file" is used as link text
 several places in a reST file, the links still work. The warning can
 therefore be ignorned.
-
 
 \paragraph{Inconsistent headings in reST.}
 
@@ -3541,7 +3385,6 @@ a subsubsection directly under a section). Search for \code{===},
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
 
-
 \paragraph{No code environment appears before "bc ipy" blocks.}
 
 The \code{!bc ipy} directive behaves this way for \code{sphinx} output because
@@ -3549,10 +3392,7 @@ interactive sessions are automatically handled. If this is not
 appropriate, shift to \code{!bc cod} or another specification of the
 verbatim environment.
 
-
 \subsection{Problems with {\LaTeX} Output}
-
-
 
 \paragraph{{\LaTeX} does not like underscores in URLs.}
 
@@ -3573,7 +3413,6 @@ The remedy is to format the link text with inline verbatim tags (backticks):
 \eccq
 Verbatim text in links works fine with underscores.
 
-
 \paragraph{Error when running latex: You must have 'pygmentize' installed.}
 
 This message points to the use of the minted style for typesetting verbatim
@@ -3588,7 +3427,6 @@ environment on the command line, while using \code{ptex2tex} requires the
 preprocessor option \code{-DMINTED} to turn on the minted package.
 When this package is included, \code{latex} or \code{pdflatex} runs the
 \code{pygmentize} program and the \code{shell-escape} option is required.
-
 
 \paragraph{How can I use my fancy {\LaTeX} environments?.}
 
@@ -3695,7 +3533,6 @@ the \code{ptex2tex} program with all its flexibility for choosing environments.
 Also \code{doconce ptex2tex} has some flexibility for typesetting computer code.
 
 
-
 \paragraph{The {\LaTeX} file does not compile.}
 
 If the problem is undefined control sequence involving
@@ -3705,7 +3542,6 @@ If the problem is undefined control sequence involving
 the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
-
 
 \paragraph{Inline verbatim gives error.}
 
@@ -3725,7 +3561,6 @@ blocks - that is safe.
 % configured to be \fontsize... directly, not via ptex2tex \code{}.
 
 
-
 \paragraph{Errors in figure captions.}
 
 Such errors typically arise from unbalanced curly braces, or dollar signs
@@ -3736,13 +3571,11 @@ but Doconce will automatically replace verbatim text in back-ticks by
 a proper \code{texttt} command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
-
 \paragraph{Chapters are ignored.}
 
 The default {\LaTeX} style is "article". If you chapters in the Doconce file,
 you need to run \code{ptex2tex} with the option \code{-DBOOK} to set the {\LaTeX}
 documentstyle to "book".
-
 
 \paragraph{I want to tune the top of the {\LaTeX} file.}
 
@@ -3771,16 +3604,12 @@ two ways out of it:
 \end{enumerate}
 
 \noindent
-
 \subsection{Problems with gwiki Output}
-
-
 
 \paragraph{Strange nested lists in gwiki.}
 
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the \code{.gwiki} file directly.
-
 
 \paragraph{Lists in gwiki look ugly in the gwiki source.}
 
@@ -3791,10 +3620,7 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
-
 \subsection{Problems with HTML Output}
-
-
 
 \paragraph{How can I change the layout of the HTML page?.}
 
@@ -3817,7 +3643,6 @@ A third, more primitive alternative is to edit the style in the top of
 the HTML file (preferably done automatically via \code{doconce replace} and
 \code{doconce subst} in the script that generates the final documents).
 
-
 \paragraph{Why do figures look ugly when using HTML templates?.}
 
 The HTML header that Doconce generates contain special styles for
@@ -3835,9 +3660,7 @@ doconce replace '<hr class="figure">' \
 \eccq
 
 
-
 \subsection{Debugging}
-
 
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -3851,10 +3674,7 @@ format, and you need to know these steps to make use of the logfile.
 
 
 
-
-
 \section{Basic Parsing Ideas}
-
 
 % avoid list here since we have code in between (never a good idea)
 
@@ -3898,9 +3718,7 @@ the document to another, more complex format, say reST or
 {\LaTeX}, and work further on the document in this format.
 
 
-
 \subsection{Typesetting of Function Arguments, Return Values, and Variables}
-
 
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return
@@ -3939,13 +3757,6 @@ and Sphinx just typeset the list as a list with keywords.
 \end{description}
 
 \noindent
-
-
-\section{References}
-
-
-
-
 \bibliographystyle{plain}
 \bibliography{papers.bib}
 

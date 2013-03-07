@@ -1746,7 +1746,6 @@ def inline_tag_subst(filestr, format):
                 debugpr('First occurence: "%s"\ngroups: %s\nnamed groups: %s' % (m.group(0), m.groups(), m.groupdict()))
 
         if isinstance(replacement, basestring):
-
             filestr = c.sub(replacement, filestr)
         elif callable(replacement):
             filestr = c.sub(replacement, filestr)
