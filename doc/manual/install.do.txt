@@ -37,6 +37,13 @@ sudo apt-get install doconce
 
 ===== Dependencies =====
 
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 === Preprocessors ===
 
 If you make use of the "Preprocess": "http://code.google.com/p/preprocess"
@@ -100,6 +107,26 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 !bc sys
 sudo apt-get install ispell
 !ec
+
+
+=== Bibliography ===
+
+The Python package "Publish":
+"https://bitbucket.org/logg/publish" is needed if you use a bibliography
+in your document. On the website, click on *Clone*, copy the
+command and run it:
+
+!bc sys
+hg clone  ssh://hg@bitbucket.org/logg/publish
+!ec
+Thereafter go to the `publish` directory and run the `setup.py` script
+for installing Publish:
+
+!bc sys
+cd publish
+sudo python setup.py
+!ec
+
 
 === Ptex2tex for LaTeX Output ===
 

@@ -818,29 +818,36 @@ publish export mybibtexfile.bib
 !ec
 You can easily export subsets of the database, e.g., only papers associated
 with a particular author (the Publish manual has details on how this is
-done).
+done). Doconce will automatically export the database to BibTeX if
+the output format is `latex` or `pdflatex`.
 
 === Referring to publications ===
 
-We use the command `cite{key}` to refer to a publication with key `key`.
-For example, cite{Langtangen_Pedersen_2002} discussed propagation of
+We use the command
+
+!bc
+cite{key}
+!ec
+to refer to a publication with bibliographic key `key`.
+Here is an example: cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solvin the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in cite{Langtangen_1994a}.
 The book chapter cite{Mardal_et_al_2003a} contains information on
-C++ software tools for programming multigrid methods. Multiple
-references are also possible, e.g., see
+C++ software tools for programming multigrid methods. A real retro
+reference is cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
 cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
-In LaTeX, the `cite{key}` command is directly
-translated to the corresponding `cite` command with a backslash; in reST
+In LaTeX, the `cite` command is directly translated to the
+corresponding LaTeX version of the command with a backslash; in reST
 and Sphinx the citations becomes links, with the citation keys as
-names; in HTML the citations are
-numbered from 1, 2, and so forth according to their appearance, and the
-numbers appear as links; while in other formats the citations are
-simply the keys inside square brackets and the corresponding references
-are listed in the order they are cited.
+names; in HTML the citations are numbered from 1, 2, and so forth
+according to their appearance, and the numbers appear as links; while
+in other formats the citations are simply the keys inside square
+brackets and the corresponding references are listed in the order they
+are cited.
 
 === Specifying the Publish database ===
 
@@ -862,6 +869,15 @@ In LaTeX and pdfLaTeX the `papers.pub` file is exported to BibTeX format
 and included in the document, while in all other formats, suitable
 text is produced from the database.
 
+=== LaTeX bibliography style ===
+
+The bibliography style is "plain" in LaTeX output. To change this, just
+edit the `.p.tex` file. For example,
+
+!bc sys
+doconce format latex mydoc
+doconce replace 'bibliographystyle{plain}' 'bibliographystyle{abbrev}' mydoc.p.tex
+!ec
 
 ===== Tables =====
 
@@ -1428,6 +1444,12 @@ the value of `FORMAT` and take different actions for different
 formats. Below is an example:
 
 @@@CODE _format_specific1.do.txt
+
+A variable `DEVICE` is also defined. It equals `screen` by default,
+but the command-line argument `--device=paper` can set `DEVICE` to
+`paper` (or another value). Testing on `DEVICE` inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.
 
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in Section ref{doconce2formats}.

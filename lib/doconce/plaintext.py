@@ -1,6 +1,8 @@
 
 import re, sys
-from common import default_movie, plain_exercise, bibliography
+from common import default_movie, plain_exercise, bibliography, \
+     cite_with_multiple_args2multiple_cites
+
 
 def plain_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
@@ -67,12 +69,14 @@ def bibdict2doconcelist(pyfile, citations):
     return text
 
 def plain_index_bib(filestr, index, citations, pubfile, pubdata):
+    filestr = cite_with_multiple_args2multiple_cites(filestr)
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
                                   '[%d]' % citations[label])
     if pubfile is not None:
         bibtext = bibliography(pubdata, citations, format='doconce')
         bibtext = re.sub(r'label\{.+?\} ', '', bibtext)
+        bibtext = bibtext.replace('_', '')
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
     # remove all index entries:

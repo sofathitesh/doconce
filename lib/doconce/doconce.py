@@ -1566,8 +1566,7 @@ def handle_index_and_bib(filestr, format, has_title):
                 # note: line numbers in the .do.txt file are of very limited
                 # value for the end format file...anyway, we make them...
 
-            cite_args = re.findall(r'[^`]cite\{(.+?)\}[^`]', line)
-            # (Above: we avoid matching `cite{...}`)
+            cite_args = re.findall(r'cite\{(.+?)\}', line)
             if cite_args:
                 # multiple labels can be separated by comma:
                 cite_labels = []
@@ -2171,6 +2170,7 @@ def preprocess(filename, format, preprocessor_options=[]):
     In addition, the preprocessor option FORMAT (=format) is
     always defined.
     """
+    device = 'paper' if option('device=', '') == 'paper' else 'screen'
 
     f = open(filename, 'r'); filestr = f.read(); f.close()
     if filestr.strip() == '':
@@ -2191,7 +2191,7 @@ def preprocess(filename, format, preprocessor_options=[]):
             preprocess_options.append('-D' + opt)
 
     # Look for mako variables
-    mako_kwargs = {'FORMAT': format}
+    mako_kwargs = {'FORMAT': format, 'DEVICE': device}
     for opt in preprocessor_options:
         if opt.startswith('-D'):
             opt2 = opt[2:]
@@ -2251,8 +2251,8 @@ preprocess package (sudo apt-get install preprocess).
             print 'Found preprocess-like statements, but --no-preprocess prevents running preprocess'
             shutil.copy(filename, resultfile)  # just copy
         else:
-            cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
-                  (format, preprocess_options, filename, resultfile)
+            cmd = 'preprocess -DFORMAT=%s -DDEVICE=%s %s %s > %s' % \
+                  (format, device, preprocess_options, filename, resultfile)
             print 'running', cmd
             failure, outtext = commands.getstatusoutput(cmd)
             if failure:

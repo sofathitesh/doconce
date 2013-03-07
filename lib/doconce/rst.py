@@ -1,6 +1,7 @@
 import re, os, sys
 from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
-    table_analysis, plain_exercise, bibliography
+    table_analysis, plain_exercise, bibliography, \
+    cite_with_multiple_args2multiple_cites
 from html import html_movie
 
 # replacement patterns for substitutions of inline tags
@@ -304,15 +305,7 @@ def rst_bib(filestr, citations, pubfile, pubdata, numbering=True):
     If numbering is True, the keys used in the bibliography are
     replaced by numbers (RefX). This will often look better.
     """
-    # Fix cite{key1,key2,key3} to cite{key1}cite[key2]cite[key3]
-    cite_args = re.findall(r'[^`]cite\{(.+?)\}[^`]', filestr)
-    if cite_args:
-        for arg in cite_args:
-            args = [a.strip() for a in arg.split(',')]
-            if len(args) > 1:
-                args = ' '.join(['cite{%s}' % a for a in args])
-                filestr = filestr.replace('cite{%s}' % arg, args)
-
+    filestr = cite_with_multiple_args2multiple_cites(filestr)
     if numbering:
         # Find max no of digits
         n = len(str(max(citations.values())))

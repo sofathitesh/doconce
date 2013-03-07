@@ -396,6 +396,18 @@ __Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
 is
 some text.
 
+===== Bibliography test =====
+
+Here is an example: cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in cite{Langtangen_1994a}.
+The book chapter cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 ===== Example: Examples can be typeset as exercises =====
 label{Example}
@@ -857,6 +869,11 @@ Refer to the previous exercise as Exercise ref{exer:some:formula},
 the two before that as Projects ref{demo:ex:2} and ref{proj:circle1},
 and this one as Project ref{exer:you}.
 
+======= References =======
+
+BIBFILE: papers.pub
+
+
 ======= Appendix: Just for testing; part I =======
 
 This is the first appendix.
@@ -892,7 +909,12 @@ Here is a hint.
 !ehint
 
 !bwarning
-And here is a warning about something to pay attention to.
+
+=== Let's try a little heading ===
+
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
 !ewarning
 
 !bsummary
