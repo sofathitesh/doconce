@@ -49,7 +49,6 @@ make clean
 make html
 cd ..
 
-
 # rst:
 $d2f rst manual.do.txt --no-mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi

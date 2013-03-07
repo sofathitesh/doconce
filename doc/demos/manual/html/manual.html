@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 5, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 6, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -166,6 +166,12 @@ On Ubuntu one needs to run</p>
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.</p>
 <div class="section" id="preprocessors">
 <h3>Preprocessors<a class="headerlink" href="#preprocessors" title="Permalink to this headline">¶</a></h3>
 <p>If you make use of the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a>
@@ -218,6 +224,21 @@ Debian package. The latter gets installed by</p>
 <p>The utility <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">spellcheck</span></tt> applies the <tt class="docutils literal"><span class="pre">ispell</span></tt> program for
 spellcheck. On Debian (including Ubuntu) it is installed by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install ispell</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bibliography-1">
+<h3>Bibliography  (1)<a class="headerlink" href="#bibliography-1" title="Permalink to this headline">¶</a></h3>
+<p>The Python package <a class="reference external" href="https://bitbucket.org/logg/publish">Publish</a> is needed if you use a bibliography
+in your document. On the website, click on <em>Clone</em>, copy the
+command and run it:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone  ssh://hg@bitbucket.org/logg/publish</span>
+</pre></div>
+</div>
+<p>Thereafter go to the <tt class="docutils literal"><span class="pre">publish</span></tt> directory and run the <tt class="docutils literal"><span class="pre">setup.py</span></tt> script
+for installing Publish:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">cd publish</span>
+<span class="go">sudo python setup.py</span>
 </pre></div>
 </div>
 </div>
@@ -1645,8 +1666,8 @@ the document [A Document for Testing Doconce](testdoc.html)
 </pre></div>
 </div>
 </div>
-<div class="section" id="index-and-bibliography">
-<h2>Index and Bibliography<a class="headerlink" href="#index-and-bibliography" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-16"></span><span class="target" id="index-17"></span><p id="index-18">An index can be created for the <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats
 by the <tt class="docutils literal"><span class="pre">idx</span></tt> keyword, following a LaTeX-inspired syntax:</p>
 <div class="highlight-text"><div class="highlight"><pre>idx{some index entry}
@@ -1669,62 +1690,126 @@ index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 LaTeX is the output format).</p>
-<p>Literature citations also follow a LaTeX-inspired style:</p>
-<div class="highlight-text"><div class="highlight"><pre>as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
+</div>
+<div class="section" id="bibliography-2">
+<h2>Bibliography  (2)<a class="headerlink" href="#bibliography-2" title="Permalink to this headline">¶</a></h2>
+<p>Doconce applies the software tool <a class="reference external" href="https://bitbucket.org/logg/publish">Publish</a> to handle the bibliography in a
+document. With Publish it is easy to import BibTeX data and maintain a
+database in a clean, self-explaining textual format. From the Publish
+format it is easy to go BibTeX and reST or straightforward Doconce
+typesetting (and from there to HTML, plain text, wiki formats, and so
+on).</p>
+<p>Installing Publish is straightforward: just checkout the code on
+<a class="reference external" href="https://bitbucket.org/logg/publish">bitbucket.org</a>, move to the
+<tt class="docutils literal"><span class="pre">publish</span></tt> directory and run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>.</p>
+<div class="section" id="importing-your-data-to-the-publish-database">
+<h3>Importing your data to the Publish database<a class="headerlink" href="#importing-your-data-to-the-publish-database" title="Permalink to this headline">¶</a></h3>
+<p>Many scientists have their bibliographic data in the BibTex format. Here we
+assume that you have two files, <tt class="docutils literal"><span class="pre">refs1.bib</span></tt> and <tt class="docutils literal"><span class="pre">refs2.bib</span></tt>. These can
+be imported to a Publish database, residing in the file <tt class="docutils literal"><span class="pre">papers.pub</span></tt>,
+by the commands</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">publish import refs1.bib</span>
+<span class="go">publish import refs2.bib</span>
 </pre></div>
 </div>
-<p>Citation labels can be separated by comma. In LaTeX, this is directly
-translated to the corresponding <tt class="docutils literal"><span class="pre">cite</span></tt> command; in reST
-and Sphinx the labels can be clicked, while in all the other text
-formats the labels are consecutively numbered so the above citation
-will typically look like</p>
-<div class="highlight-text"><div class="highlight"><pre>as found in [3][14]
+<p>During import, Publish may ask you for accepting the name of new
+institutions or journals. Publish already have a database of journals
+and institutions/departments, but when you add new, you also get
+a file <tt class="docutils literal"><span class="pre">venues.list</span></tt> (in the current working directory) which will be used
+for future imports in this directory. Make sure you store <tt class="docutils literal"><span class="pre">publish.pub</span></tt>
+and <tt class="docutils literal"><span class="pre">venues.list</span></tt> along with your Doconce document files (e.g., add them to
+your version control system).</p>
+</div>
+<div class="section" id="requirements-to-input-data">
+<h3>Requirements to input data<a class="headerlink" href="#requirements-to-input-data" title="Permalink to this headline">¶</a></h3>
+<p>Note that Publish only accepts BibTeX files where the keys (author,
+title, etc.) are in lower case and where the data are enclosed in
+curly braces.  You may need to edit your BibTeX files to meet this
+demand. Even more important is the fact that the HTML output format
+displays the BibTeX keys as identifiers when referring to publications
+(Sphinx, reST, and LaTeX apply numbering).  Therefore, your keys
+should have a nice, consistent typesetting. It is suggested to use the
+following scheme:</p>
+<div class="highlight-text"><div class="highlight"><pre>Langtangen_2003a          # single author
+Langtangen_Pedersen_2002  # two authors
+Langtangen_et_al_2002     # three or more authors
 </pre></div>
 </div>
-<p>if <tt class="docutils literal"><span class="pre">Larsen_1986</span></tt> has already appeared in the 3rd citation in the document
-and <tt class="docutils literal"><span class="pre">Nielsen_Kjeldstrup_1999</span></tt> is a new (the 14th) citation. The citation labels
-can be any sequence of characters, except for curly braces and comma.</p>
-<p>The bibliography itself is specified by the special keyword <tt class="docutils literal"><span class="pre">BIBFILE:</span></tt>,
-followed by a BibTeX file with extension <tt class="docutils literal"><span class="pre">.bib</span></tt>,
-a corresponding reST bibliography with extension <tt class="docutils literal"><span class="pre">.rst</span></tt>,
-or simply a Python dictionary written in a file with extension <tt class="docutils literal"><span class="pre">.py</span></tt>.
-The dictionary in the latter file should have the citation labels as
-keys, with corresponding values as the full reference text for an item
-in the bibliography. Doconce markup can be used in this text, e.g.,</p>
-<div class="highlight-text"><div class="highlight"><pre>{
-&#39;Nielsen_Kjeldstrup_1999&#39;: &quot;&quot;&quot;
-K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
-URL:&quot;http://some.where.net/nielsen/comments&quot;, 1999.
-&quot;&quot;&quot;,
-&#39;Larsen_1986&#39;:
-&quot;&quot;&quot;
-O. B. Larsen. On Markup and Generality.
-*Personal Press*. 1986.
-&quot;&quot;&quot;
-}
+<p>One can add a, b, c, and so forth if several keys feature the same
+authors and year.</p>
+</div>
+<div class="section" id="adding-new-references-to-the-database">
+<h3>Adding new references to the database<a class="headerlink" href="#adding-new-references-to-the-database" title="Permalink to this headline">¶</a></h3>
+<p>When you get some new BibTeX references you simply put them in
+a file, say <tt class="docutils literal"><span class="pre">refs3.pub</span></tt> and run the <tt class="docutils literal"><span class="pre">publish</span> <span class="pre">import</span> <span class="pre">refs3.pub</span></tt> command
+to update the database. You may also consider editing the <tt class="docutils literal"><span class="pre">papers.pub</span></tt>
+file directly when adding new references.</p>
+</div>
+<div class="section" id="exporting-the-database">
+<h3>Exporting the database<a class="headerlink" href="#exporting-the-database" title="Permalink to this headline">¶</a></h3>
+<p>Export of everything in the database to
+BibTeX is done by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">publish export mybibtexfile.bib</span>
 </pre></div>
 </div>
-<p>In the <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> formats, the <tt class="docutils literal"><span class="pre">.bib</span></tt> file will be used in
-the standard BibTeX way.  In the <tt class="docutils literal"><span class="pre">rst</span></tt> and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats, the
-<tt class="docutils literal"><span class="pre">.rst</span></tt> file will be copied into the document at the place where the
-<tt class="docutils literal"><span class="pre">BIBFILE:</span></tt> keyword appears, while all other formats will make use of
-the Python dictionary typeset as an ordered Doconce list inserted at
-the <tt class="docutils literal"><span class="pre">BIBFILE:</span></tt> line in the document.</p>
-<p>Only one file with bibliographic references can be used. It is recommended
-to create all references in BibTeX format. Say the file is <tt class="docutils literal"><span class="pre">myfile.bib</span></tt>.
-Insert <tt class="docutils literal"><span class="pre">BIBFILE:</span> <span class="pre">myfile.bib</span></tt> at the end of the file (for instance).
-Then make a LaTeX document and check that the references appear correctly.
-A next step can be to create the <tt class="docutils literal"><span class="pre">.rst</span></tt> file, either by manual editing
-of <tt class="docutils literal"><span class="pre">myfile.bbl</span></tt> or using <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">bbl2rst</span> <span class="pre">myfile.bbl</span></tt> to automate (most of)
-this editing. From the <tt class="docutils literal"><span class="pre">myfile.rst</span></tt> file it is easy to create <tt class="docutils literal"><span class="pre">myfile.py</span></tt>
-with the dictionary version of the references.</p>
-<p>Conversion of BibTeX databases to reST format can be
-done by the <a class="reference external" href="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</a> tool.</p>
-<p>Finally, we here test the citation command and bibliography by
-citing a book <a class="reference internal" href="#python-primer-09">[Python:Primer:09]</a>, a paper <a class="reference internal" href="#osnes-98">[Osnes:98]</a>,
-and both of them simultaneously <a class="reference internal" href="#python-primer-09">[Python:Primer:09]</a> <a class="reference internal" href="#osnes-98">[Osnes:98]</a>.</p>
-<p>(<strong>somereader</strong>: comments, citations, and references in the latex style
-is a special feature of doconce :-) )</p>
+<p>You can easily export subsets of the database, e.g., only papers associated
+with a particular author (the Publish manual has details on how this is
+done). Doconce will automatically export the database to BibTeX if
+the output format is <tt class="docutils literal"><span class="pre">latex</span></tt> or <tt class="docutils literal"><span class="pre">pdflatex</span></tt>.</p>
+</div>
+<div class="section" id="referring-to-publications">
+<h3>Referring to publications<a class="headerlink" href="#referring-to-publications" title="Permalink to this headline">¶</a></h3>
+<p>We use the command</p>
+<div class="highlight-text"><div class="highlight"><pre>cite{key}
+</pre></div>
+</div>
+<p>to refer to a publication with bibliographic key <tt class="docutils literal"><span class="pre">key</span></tt>.
+Here is an example: <a class="reference internal" href="#langtangen-pedersen-2002">[Langtangen_Pedersen_2002]</a> discussed propagation of
+large destructive water waves, <a class="reference internal" href="#langtangen-et-al-2002">[Langtangen_et_al_2002]</a> gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a class="reference internal" href="#langtangen-1994a">[Langtangen_1994a]</a>.
+The book chapter <a class="reference internal" href="#mardal-et-al-2003a">[Mardal_et_al_2003a]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a class="reference internal" href="#langtangen-1988d">[Langtangen_1988d]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a class="reference internal" href="#langtangen-pedersen-2002">[Langtangen_Pedersen_2002]</a> <a class="reference internal" href="#mardal-et-al-2003a">[Mardal_et_al_2003a]</a>.</p>
+<p>In LaTeX, the <tt class="docutils literal"><span class="pre">cite</span></tt> command is directly translated to the
+corresponding LaTeX version of the command with a backslash; in reST
+and Sphinx the citations becomes links, with the citation keys as
+names; in HTML the citations are numbered from 1, 2, and so forth
+according to their appearance, and the numbers appear as links; while
+in other formats the citations are simply the keys inside square
+brackets and the corresponding references are listed in the order they
+are cited.</p>
+</div>
+<div class="section" id="specifying-the-publish-database">
+<h3>Specifying the Publish database<a class="headerlink" href="#specifying-the-publish-database" title="Permalink to this headline">¶</a></h3>
+<p>The specification of the Publish database file in the Doconce document
+is done one a line containing <tt class="docutils literal"><span class="pre">BIBFILE:</span> <span class="pre">papers.pub</span></tt> (you may give
+the database file another name and store it in another directory).
+The references will be inserted at the place where this command appears.
+Before the command you will often want to have a headline with
+&#8220;References&#8221;, &#8220;Bibliography&#8221;, or similar.
+Here is an example:</p>
+<div class="highlight-text"><div class="highlight"><pre>======= References =======
+
+BIBFILE: papers.pub
+</pre></div>
+</div>
+<p>In LaTeX and pdfLaTeX the <tt class="docutils literal"><span class="pre">papers.pub</span></tt> file is exported to BibTeX format
+and included in the document, while in all other formats, suitable
+text is produced from the database.</p>
+</div>
+<div class="section" id="latex-bibliography-style">
+<h3>LaTeX bibliography style<a class="headerlink" href="#latex-bibliography-style" title="Permalink to this headline">¶</a></h3>
+<p>The bibliography style is &#8220;plain&#8221; in LaTeX output. To change this, just
+edit the <tt class="docutils literal"><span class="pre">.p.tex</span></tt> file. For example,</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">doconce format latex mydoc</span>
+<span class="go">doconce replace &#39;bibliographystyle{plain}&#39; &#39;bibliographystyle{abbrev}&#39; mydoc.p.tex</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="tables">
 <h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
@@ -3060,24 +3145,58 @@ the iterations.</td>
 </tbody>
 </table>
 </div></blockquote>
-<table class="docutils citation" frame="void" id="python-primer-09" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> H. P. Langtangen.
-<em>A Primer on Scientific Programming with Python</em>.
-Springer, 2009.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="osnes-98" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id8">2</a>)</em> H. Osnes and H. P. Langtangen.
-An efficient probabilistic finite element method for stochastic
-groundwater flow.
-<em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>
-</tbody>
-</table>
 </div>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<table class="docutils citation" frame="void" id="langtangen-pedersen-2002" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[Langtangen_Pedersen_2002]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> <strong>H. P. Langtangen and G. Pedersen</strong>. Propagation of Large Destructive Waves,
+<em>International Journal of Applied Mechanics and Engineering</em>,
+7(1),
+pp. 187-204,
+2002.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="langtangen-et-al-2002" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[Langtangen_et_al_2002]</a></td><td><strong>H. P. Langtangen, K.-A. Mardal and R. Winther</strong>. Numerical Methods for Incompressible Viscous Flow,
+<em>Advances in Water Resources</em>,
+25,
+pp. 1125-1146,
+2002.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="langtangen-1994a" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[Langtangen_1994a]</a></td><td><strong>H. P. Langtangen</strong>. Numerical Solution of First Passage Problems in Random Vibrations,
+<em>SIAM Journal of Scientific and Statistical Computing</em>,
+15,
+pp. 997-996,
+1994.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="mardal-et-al-2003a" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[Mardal_et_al_2003a]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id12">2</a>)</em> <strong>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</strong>. Software Tools for Multigrid Methods,
+Advanced Topics in Computational Partial Differential Equations &#8211; Numerical Methods and Diffpack Programming,
+edited by <strong>H. P. Langtangen and A. Tveito</strong>,
+Springer,
+2003.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="langtangen-1988d" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[Langtangen_1988d]</a></td><td><strong>H. P. Langtangen</strong>. The FEMDEQS Program System,
+<em>Department of Mathematics, University of Oslo</em>,
+1989.</td></tr>
+</tbody>
+</table>
 </div>
 
 
@@ -3096,6 +3215,7 @@ groundwater flow.
 <li><a class="reference internal" href="#preprocessors">Preprocessors</a></li>
 <li><a class="reference internal" href="#image-file-handling">Image file handling</a></li>
 <li><a class="reference internal" href="#spellcheck">Spellcheck</a></li>
+<li><a class="reference internal" href="#bibliography-1">Bibliography  (1)</a></li>
 <li><a class="reference internal" href="#ptex2tex-for-latex-output">Ptex2tex for LaTeX Output</a></li>
 <li><a class="reference internal" href="#restructuredtext-rest-output">reStructuredText (reST) Output</a></li>
 <li><a class="reference internal" href="#markdown-and-pandoc-output">Markdown and Pandoc Output</a></li>
@@ -3147,7 +3267,17 @@ groundwater flow.
 <li><a class="reference internal" href="#comments">Comments</a></li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
 <li><a class="reference internal" href="#generalized-cross-referencing">Generalized Cross-Referencing</a></li>
-<li><a class="reference internal" href="#index-and-bibliography">Index and Bibliography</a></li>
+<li><a class="reference internal" href="#index">Index</a></li>
+<li><a class="reference internal" href="#bibliography-2">Bibliography  (2)</a><ul>
+<li><a class="reference internal" href="#importing-your-data-to-the-publish-database">Importing your data to the Publish database</a></li>
+<li><a class="reference internal" href="#requirements-to-input-data">Requirements to input data</a></li>
+<li><a class="reference internal" href="#adding-new-references-to-the-database">Adding new references to the database</a></li>
+<li><a class="reference internal" href="#exporting-the-database">Exporting the database</a></li>
+<li><a class="reference internal" href="#referring-to-publications">Referring to publications</a></li>
+<li><a class="reference internal" href="#specifying-the-publish-database">Specifying the Publish database</a></li>
+<li><a class="reference internal" href="#latex-bibliography-style">LaTeX bibliography style</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#tables">Tables</a></li>
 <li><a class="reference internal" href="#exercises-problems-projects-and-examples">Exercises, Problems, Projects, and Examples</a></li>
 <li><a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a></li>
@@ -3230,6 +3360,7 @@ groundwater flow.
 <li><a class="reference internal" href="#typesetting-of-function-arguments-return-values-and-variables">Typesetting of Function Arguments, Return Values, and Variables</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#references">References</a></li>
 </ul>
 
   <h4>Previous topic</h4>

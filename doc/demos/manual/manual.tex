@@ -121,7 +121,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Mar 5, 2013
+Mar 6, 2013
 \end{center}
 
 \vspace{1cm}
@@ -255,6 +255,13 @@ sudo apt-get install doconce
 
 \subsection{Dependencies}
 
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+({\LaTeX}, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 \paragraph{Preprocessors.}
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
@@ -314,6 +321,22 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 sudo apt-get install ispell
+\end{Verbatim}
+
+\paragraph{Bibliography.}
+The Python package \href{{https://bitbucket.org/logg/publish}}{Publish} is needed if you use a bibliography
+in your document. On the website, click on \emph{Clone}, copy the
+command and run it:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+hg clone  ssh://hg@bitbucket.org/logg/publish
+\end{Verbatim}
+Thereafter go to the \Verb!publish! directory and run the \Verb!setup.py! script
+for installing Publish:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+cd publish
+sudo python setup.py
 \end{Verbatim}
 
 \paragraph{Ptex2tex for {\LaTeX} Output.}
@@ -1996,7 +2019,7 @@ the document [A Document for Testing Doconce](testdoc.html)
 @testdoc:12, Doconce documents may include movies.
 \end{Verbatim}
 
-\subsection{Index and Bibliography}
+\subsection{Index}
 
 \index{index} \index{citations} \index{bibliography}
 
@@ -2023,71 +2046,127 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 {\LaTeX} is the output format).
 
-Literature citations also follow a LaTeX-inspired style:
+\subsection{Bibliography}
+
+Doconce applies the software tool \href{{https://bitbucket.org/logg/publish}}{Publish} to handle the bibliography in a
+document. With Publish it is easy to import BibTeX data and maintain a
+database in a clean, self-explaining textual format. From the Publish
+format it is easy to go BibTeX and reST or straightforward Doconce
+typesetting (and from there to HTML, plain text, wiki formats, and so
+on).
+
+Installing Publish is straightforward: just checkout the code on
+\href{{https://bitbucket.org/logg/publish}}{\nolinkurl{bitbucket.org}}, move to the
+\Verb!publish! directory and run \Verb!sudo python setup.py install!.
+
+\paragraph{Importing your data to the Publish database.}
+Many scientists have their bibliographic data in the BibTex format. Here we
+assume that you have two files, \Verb!refs1.bib! and \Verb!refs2.bib!. These can
+be imported to a Publish database, residing in the file \Verb!papers.pub!,
+by the commands
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
+publish import refs1.bib
+publish import refs2.bib
 \end{Verbatim}
-Citation labels can be separated by comma. In {\LaTeX}, this is directly
-translated to the corresponding \Verb!cite! command; in reST
-and Sphinx the labels can be clicked, while in all the other text
-formats the labels are consecutively numbered so the above citation
-will typically look like
+During import, Publish may ask you for accepting the name of new
+institutions or journals. Publish already have a database of journals
+and institutions/departments, but when you add new, you also get
+a file \Verb!venues.list! (in the current working directory) which will be used
+for future imports in this directory. Make sure you store \Verb!publish.pub!
+and \Verb!venues.list! along with your Doconce document files (e.g., add them to
+your version control system).
+
+\paragraph{Requirements to input data.}
+Note that Publish only accepts BibTeX files where the keys (author,
+title, etc.) are in lower case and where the data are enclosed in
+curly braces.  You may need to edit your BibTeX files to meet this
+demand. Even more important is the fact that the HTML output format
+displays the BibTeX keys as identifiers when referring to publications
+(Sphinx, reST, and {\LaTeX} apply numbering).  Therefore, your keys
+should have a nice, consistent typesetting. It is suggested to use the
+following scheme:
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-as found in [3][14]
+Langtangen_2003a          # single author
+Langtangen_Pedersen_2002  # two authors
+Langtangen_et_al_2002     # three or more authors
 \end{Verbatim}
-if \Verb!Larsen_1986! has already appeared in the 3rd citation in the document
-and \Verb!Nielsen_Kjeldstrup_1999! is a new (the 14th) citation. The citation labels
-can be any sequence of characters, except for curly braces and comma.
+One can add a, b, c, and so forth if several keys feature the same
+authors and year.
 
-The bibliography itself is specified by the special keyword \Verb!BIBFILE:!,
-followed by a BibTeX file with extension \Verb!.bib!,
-a corresponding reST bibliography with extension \Verb!.rst!,
-or simply a Python dictionary written in a file with extension \Verb!.py!.
-The dictionary in the latter file should have the citation labels as
-keys, with corresponding values as the full reference text for an item
-in the bibliography. Doconce markup can be used in this text, e.g.,
+\paragraph{Adding new references to the database.}
+When you get some new BibTeX references you simply put them in
+a file, say \Verb!refs3.pub! and run the \Verb!publish import refs3.pub! command
+to update the database. You may also consider editing the \Verb!papers.pub!
+file directly when adding new references.
+
+\paragraph{Exporting the database.}
+Export of everything in the database to
+BibTeX is done by
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-{
-'Nielsen_Kjeldstrup_1999': """
-K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
-URL:"http://some.where.net/nielsen/comments", 1999.
-""",
-'Larsen_1986':
-"""
-O. B. Larsen. On Markup and Generality.
-*Personal Press*. 1986.
-"""
-}
+publish export mybibtexfile.bib
 \end{Verbatim}
+You can easily export subsets of the database, e.g., only papers associated
+with a particular author (the Publish manual has details on how this is
+done). Doconce will automatically export the database to BibTeX if
+the output format is \Verb!latex! or \Verb!pdflatex!.
 
-In the \Verb!latex! and \Verb!pdflatex! formats, the \Verb!.bib! file will be used in
-the standard BibTeX way.  In the \Verb!rst! and \Verb!sphinx! formats, the
-\Verb!.rst! file will be copied into the document at the place where the
-\Verb!BIBFILE:! keyword appears, while all other formats will make use of
-the Python dictionary typeset as an ordered Doconce list inserted at
-the \Verb!BIBFILE:! line in the document.
+\paragraph{Referring to publications.}
+We use the command
 
-Only one file with bibliographic references can be used. It is recommended
-to create all references in BibTeX format. Say the file is \Verb!myfile.bib!.
-Insert \Verb!BIBFILE: myfile.bib! at the end of the file (for instance).
-Then make a {\LaTeX} document and check that the references appear correctly.
-A next step can be to create the \Verb!.rst! file, either by manual editing
-of \Verb!myfile.bbl! or using \Verb!doconce bbl2rst myfile.bbl! to automate (most of)
-this editing. From the \Verb!myfile.rst! file it is easy to create \Verb!myfile.py!
-with the dictionary version of the references.
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+cite{key}
+\end{Verbatim}
+to refer to a publication with bibliographic key \Verb!key!.
+Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, \cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in \cite{Langtangen_1994a}.
+The book chapter \cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is \cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+\cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
-% see ketch/tex2rst for nice bibtex to rst converter which could
-% be used here
+In {\LaTeX}, the \Verb!cite! command is directly translated to the
+corresponding {\LaTeX} version of the command with a backslash; in reST
+and Sphinx the citations becomes links, with the citation keys as
+names; in HTML the citations are numbered from 1, 2, and so forth
+according to their appearance, and the numbers appear as links; while
+in other formats the citations are simply the keys inside square
+brackets and the corresponding references are listed in the order they
+are cited.
 
-Conversion of BibTeX databases to reST format can be
-done by the \href{{http://pypi.python.org/pypi/bibliograph.parsing/}}{bibliograph.parsing} tool.
+\paragraph{Specifying the Publish database.}
+The specification of the Publish database file in the Doconce document
+is done one a line containing \Verb!BIBFILE: papers.pub! (you may give
+the database file another name and store it in another directory).
+The references will be inserted at the place where this command appears.
+Before the command you will often want to have a headline with
+"References", "Bibliography", or similar.
+Here is an example:
 
-Finally, we here test the citation command and bibliography by
-citing a book \cite{Python:Primer:09}, a paper \cite{Osnes:98},
-and both of them simultaneously \cite{Python:Primer:09,Osnes:98}.
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 
-\inlinecomment{somereader}{comments, citations, and references in the latex style
-is a special feature of doconce :-) }
+======= References =======
+
+BIBFILE: papers.pub
+\end{Verbatim}
+In {\LaTeX} and \textsc{pdf}{\LaTeX} the \Verb!papers.pub! file is exported to BibTeX format
+and included in the document, while in all other formats, suitable
+text is produced from the database.
+
+\paragraph{{\LaTeX} bibliography style.}
+The bibliography style is "plain" in {\LaTeX} output. To change this, just
+edit the \Verb!.p.tex! file. For example,
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+doconce format latex mydoc
+doconce replace 'bibliographystyle{plain}' 'bibliographystyle{abbrev}' mydoc.p.tex
+\end{Verbatim}
 
 \subsection{Tables}
 
@@ -3446,8 +3525,13 @@ and Sphinx just typeset the list as a list with keywords.
 \end{description}
 
 \noindent
+
+
+\section{References}
+
 \bibliographystyle{plain}
-\bibliography{manual_bib}
+\bibliography{papers.bib}
+
 % ------------------- end of main content ---------------
 
 

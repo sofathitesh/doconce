@@ -91,7 +91,7 @@ def doconce_format_proceedings(paper):
     values += [_doconce_get_key_string(paper)]
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
-    values += [paper["booktitle"]]
+    values += [_doconce_format_booktitle(paper)]
     values += [_doconce_format_editors(paper)]
     values += [paper["publisher"]]
     values += [paper["year"]]
@@ -103,8 +103,8 @@ def doconce_format_reports(paper):
     values += [_doconce_get_key_string(paper)]
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
-    values += [paper["institution"]]
-    values += [paper["number"]]
+    if "institution" in paper: values += [_doconce_format_institution(paper)]
+    if "number" in paper: values += [paper["number"]]
     values += [paper["year"]]
     return _doconce_join(values)
 
@@ -124,7 +124,7 @@ def doconce_format_theses(paper):
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
     values += [thesistype_strings[paper["thesistype"]]]
-    values += [paper["school"]]
+    if "school" in paper: values += [paper["school"]]
     values += [paper["year"]]
     return _doconce_join(values)
 
@@ -134,8 +134,8 @@ def doconce_format_courses(paper):
     values += [_doconce_get_key_string(paper)]
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
-    values += [paper["institution"]]
-    values += [paper["year"]]
+    if "institution" in paper: values += [_doconce_format_institution(paper)]
+    if "year" in paper: values += [paper["year"]]
     return _doconce_join(values)
 
 def doconce_format_talks(paper):
@@ -144,7 +144,7 @@ def doconce_format_talks(paper):
     values += [_doconce_get_key_string(paper)]
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
-    values += [paper["meeting"]]
+    if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
     return _doconce_join(values)
 
@@ -154,7 +154,7 @@ def doconce_format_posters(paper):
     values += [_doconce_get_key_string(paper)]
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
-    values += [paper["meeting"]]
+    if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
     return _doconce_join(values)
 
@@ -190,6 +190,9 @@ def _doconce_format_title(paper):
     #return "*%s*" % title
     return title
 
+def _doconce_format_booktitle(paper):
+    return '*%s*' % paper["booktitle"]
+
 def _doconce_format_editors(paper):
     "Convert editor tuple to author string"
     return "edited by %s" % _doconce_get_authors_string(paper["editor"])
@@ -222,6 +225,9 @@ def _doconce_format_pages(pages):
         pages = pages.replace("--", "-")
     return "pp. %s" % pages
 
+def _doconce_format_institution(paper):
+    return '*%s*' % paper["institution"]
+
 def _doconce_format_doi(doi):
     "Format DOI"
     return '"doi: %s": "http://dx.doi.org/%s"' % (doi, doi)
@@ -232,7 +238,7 @@ def _doconce_format_arxiv(arxiv):
 
 def _doconce_join(values):
     "Join values for Doconce entry"
-    entry = values[1] + ".\n    " + ",\n    ".join(values[2:]) + "." + "\n"
+    entry = values[1] + ". \n    " + ",\n    ".join(values[2:]) + "." + "\n"
     entry = entry.replace("{", "")
     entry = entry.replace("}", "")
     entry = "  o " + values[0] + " " + entry
@@ -355,8 +361,8 @@ def rst_format_reports(paper):
     values += [_rst_get_key_string(paper)]
     values += [_rst_get_authors_string(paper["author"])]
     values += [_rst_format_title(paper)]
-    values += [paper["institution"]]
-    values += [paper["number"]]
+    if "institution" in paper: values += [_rst_format_institution(paper)]
+    if "number" in paper: values += [paper["number"]]
     values += [paper["year"]]
     return _rst_join(values)
 
@@ -386,7 +392,7 @@ def rst_format_courses(paper):
     values += [_rst_get_key_string(paper)]
     values += [_rst_get_authors_string(paper["author"])]
     values += [_rst_format_title(paper)]
-    values += [paper["institution"]]
+    if "institution" in paper: values += [_rst_format_institution(paper)]
     values += [paper["year"]]
     return _rst_join(values)
 
@@ -396,7 +402,7 @@ def rst_format_talks(paper):
     values += [_rst_get_key_string(paper)]
     values += [_rst_get_authors_string(paper["author"])]
     values += [_rst_format_title(paper)]
-    values += [paper["meeting"]]
+    if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
     return _rst_join(values)
 
@@ -406,7 +412,7 @@ def rst_format_posters(paper):
     values += [_rst_get_key_string(paper)]
     values += [_rst_get_authors_string(paper["author"])]
     values += [_rst_format_title(paper)]
-    values += [paper["meeting"]]
+    if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
     return _rst_join(values)
 
@@ -475,6 +481,9 @@ def _rst_format_pages(pages):
         pages = pages.replace("--", "-")
     return "pp. %s" % pages
 
+def _rst_format_institution(paper):
+    return '*%s*' % paper["institution"]
+
 def _rst_format_doi(doi):
     "Format DOI"
     return '"doi: %s": "http://dx.doi.org/%s"' % (doi, doi)
@@ -485,7 +494,7 @@ def _rst_format_arxiv(arxiv):
 
 def _rst_join(values):
     "Join values for reST entry"
-    entry = ".. " + values[0] + "\n   " + values[1] + "." + ",\n   ".join(values[2:]) + "." + "\n"
+    entry = ".. " + values[0] + "\n   " + values[1] + ". " + ",\n   ".join(values[2:]) + "." + "\n"
     entry = entry.replace("{", "")
     entry = entry.replace("}", "")
     return entry

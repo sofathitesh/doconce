@@ -78,6 +78,17 @@ def indent_lines(text, format, indentation=' '*8, trailing_newline=True):
         text += '\n'
     return text
 
+def cite_with_multiple_args2multiple_cites(filestr):
+    """Fix cite{key1,key2,key3} to cite{key1}cite[key2]cite[key3]."""
+    cite_args = re.findall(r'cite\{(.+?)\}', filestr)
+    if cite_args:
+        for arg in cite_args:
+            args = [a.strip() for a in arg.split(',')]
+            if len(args) > 1:
+                args = ' '.join(['cite{%s}' % a for a in args])
+                filestr = filestr.replace('cite{%s}' % arg, args)
+    return filestr
+
 def table_analysis(table):
     """Return max width of each column."""
     column_list = []

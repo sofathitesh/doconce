@@ -43,9 +43,8 @@ document is embedded."""),
     ('--html-slide-theme=',
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
-    ('--latex-printed',
-     """True if the LaTeX output is to be printed on paper such that links
-will not work (the full URL of links then appear as footnotes)."""),
+    ('--device=',
+     """Set device to paper, screen, or other (paper impacts LaTeX output."""),
     ('--latex-preamble=',
      """User-provided LaTeX preamble file, either complete or additions."""),
     ('--html-color-admon',

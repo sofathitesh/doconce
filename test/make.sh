@@ -3,6 +3,24 @@ rm -rf html_images reveal.js downloaded_figures
 
 # Note:  --examples-as-exercises is required to avoid abortion
 
+# Make publish database
+rm -rf papers.pub  venues.list # clean
+
+publish import refs1.bib <<EOF
+1
+2
+EOF
+publish import refs2.bib <<EOF
+2
+2
+EOF
+# Simulate that we get new data, which is best put
+# in a new file
+publish import refs3.bib <<EOF
+1
+2
+EOF
+
 doconce format html testdoc --wordpress  --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
@@ -39,7 +57,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
+doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc

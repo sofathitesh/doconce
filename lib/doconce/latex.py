@@ -49,7 +49,7 @@ def latex_code(filestr, code_blocks, code_block_types,
             words = lines[i].split()
             n = int(words[0])
             if len(words) >= 3 and words[2] == 'pyoptpro' and \
-                       not option('latex-printed'):
+                       not option('device=', '') == 'paper':
                 # Insert an Online Python Tutorial link and add to lines[i]
                 post = '\n\\noindent\n(\\href{{%s}}{Visualize execution}) ' % \
                        python_online_tutor(code_blocks[n], return_tp='url')
@@ -126,7 +126,7 @@ def latex_code(filestr, code_blocks, code_block_types,
         return '\\href{{%s}}{%s}' % (url, text)
     filestr = re.sub(pattern, subst, filestr)
 
-    if option('latex-printed'):
+    if option('device=', '') == 'paper':
         # Make adjustments for printed versions of the PDF document.
         # Fix links so that the complete URL is in a footnote
         def subst(m):  # m is match object
@@ -647,6 +647,7 @@ def latex_index_bib(filestr, index, citations, pubfile, pubdata):
     if pubfile is not None:
         # Always produce a new bibtex file
         bibtexfile = pubfile[:-3] + 'bib'
+        print '\nexporting publish database %s to %s:' % (pubfile, bibtexfile)
         failure = os.system('publish export %s' % bibtexfile)
 
         bibtext = fix_latex_command_regex(r"""
@@ -1004,11 +1005,16 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+"""
+    m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr)
+    if m:
+        INTRO['latex'] = r"""
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
 % #endif
-
+"""
+        INTRO['latex'] = r"""
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -1037,8 +1043,10 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
-
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+"""
+    if 'FIGURE:' in filestr:
+        INTRO['latex'] = r"""
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -1052,13 +1060,20 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+"""
 
+    exer_envirs = 'Exercise', 'Problem', 'Project'
+    exer_envirs = exer_envirs + ['{%s}' % e for e in exer_envirs]
+    for exer_envir in exer_envirs:
+        if exer_envir + ':' in filestr:
+            INTRO['latex'] = r"""
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
+"""
+            break
 
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
-
+    if '!bsummary' in filestr and '!esummary' in filestr:
+        INTRO['latex'] = r"""
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
@@ -1088,6 +1103,10 @@ final,                   % or draft (marks overfull hboxes)
 {\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
 \rule{6pt}{0pt}}\end{center}}
 % #endif
+"""
+    INTRO['latex'] = r"""
+\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
+%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
 % USER PREAMBLE
 % insert custom LaTeX commands...
@@ -1112,9 +1131,11 @@ final,                   % or draft (marks overfull hboxes)
     else:
         INTRO['latex'] = INTRO['latex'].replace('% USER PREAMBLE', '')
 
-    if option('latex-printed'):
+    if option('device=', '') == 'paper':
         INTRO['latex'] = INTRO['latex'].replace('oneside,', 'twoside,')
 
+    # (We do replacement rather than parameter in the preamble since
+    # that will imply double %% in a lot of places)
     pygm_style = option('minted-latex-style=', default='default')
     if not pygm_style == 'default':
         INTRO['latex'] = INTRO['latex'].replace('usemintedstyle{default}',

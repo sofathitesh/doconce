@@ -1,6 +1,6 @@
 TITLE: Doconce Description
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 5, 2013
+DATE: Mar 6, 2013
 
 What Is Doconce?
 
@@ -113,6 +113,13 @@ On Ubuntu one needs to run::
 
 Dependencies
 
+Producing HTML documents, plain text, pandoc-extended Markdown,
+and wikis can be done without installing any other
+software. However, if you want other formats as output
+(LaTeX, Sphinx, reStructuredText) and assisting utilities such
+as preprocesors, spellcheck, file differences, bibliographies,
+and so on, the software below must be installed.
+
 Preprocessors
 
 If you make use of the "http://code.google.com/p/preprocess":Preprocess
@@ -175,6 +182,23 @@ spellcheck. On Debian (including Ubuntu) it is installed by::
 
 
         sudo apt-get install ispell
+
+
+Bibliography
+
+The Python package "https://bitbucket.org/logg/publish":Publish is needed if you use a bibliography
+in your document. On the website, click on *Clone*, copy the
+command and run it::
+
+
+        hg clone  ssh://hg@bitbucket.org/logg/publish
+
+Thereafter go to the 'publish' directory and run the 'setup.py' script
+for installing Publish::
+
+
+        cd publish
+        sudo python setup.py
 
 
 Ptex2tex for LaTeX Output
@@ -1757,7 +1781,7 @@ And in Pandoc-exteded Markdown we have::
         @testdoc:12, Doconce documents may include movies.
 
 
-Index and Bibliography
+Index
 
 An index can be created for the 'latex', 'rst', and 'sphinx' formats
 by the 'idx' keyword, following a LaTeX-inspired syntax::
@@ -1784,72 +1808,134 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 LaTeX is the output format).
 
-Literature citations also follow a LaTeX-inspired style::
+Bibliography
+
+Doconce applies the software tool "https://bitbucket.org/logg/publish":Publish to handle the bibliography in a
+document. With Publish it is easy to import BibTeX data and maintain a
+database in a clean, self-explaining textual format. From the Publish
+format it is easy to go BibTeX and reST or straightforward Doconce
+typesetting (and from there to HTML, plain text, wiki formats, and so
+on).
+
+Installing Publish is straightforward: just checkout the code on
+https://bitbucket.org/logg/publish:'bitbucket.org', move to the
+'publish' directory and run 'sudo python setup.py install'.
+
+Importing your data to the Publish database
+
+Many scientists have their bibliographic data in the BibTex format. Here we
+assume that you have two files, 'refs1.bib' and 'refs2.bib'. These can
+be imported to a Publish database, residing in the file 'papers.pub',
+by the commands::
 
 
-        as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
+        publish import refs1.bib
+        publish import refs2.bib
 
-Citation labels can be separated by comma. In LaTeX, this is directly
-translated to the corresponding 'cite' command; in reST
-and Sphinx the labels can be clicked, while in all the other text
-formats the labels are consecutively numbered so the above citation
-will typically look like::
+During import, Publish may ask you for accepting the name of new
+institutions or journals. Publish already have a database of journals
+and institutions/departments, but when you add new, you also get
+a file 'venues.list' (in the current working directory) which will be used
+for future imports in this directory. Make sure you store 'publish.pub'
+and 'venues.list' along with your Doconce document files (e.g., add them to
+your version control system).
 
+Requirements to input data
 
-        as found in [3][14]
-
-if 'Larsen_1986' has already appeared in the 3rd citation in the document
-and 'Nielsen_Kjeldstrup_1999' is a new (the 14th) citation. The citation labels
-can be any sequence of characters, except for curly braces and comma.
-
-The bibliography itself is specified by the special keyword 'BIBFILE:',
-followed by a BibTeX file with extension '.bib',
-a corresponding reST bibliography with extension '.rst',
-or simply a Python dictionary written in a file with extension '.py'.
-The dictionary in the latter file should have the citation labels as
-keys, with corresponding values as the full reference text for an item
-in the bibliography. Doconce markup can be used in this text, e.g.::
-
-
-        {
-        'Nielsen_Kjeldstrup_1999': """
-        K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
-        URL:"http://some.where.net/nielsen/comments", 1999.
-        """,
-        'Larsen_1986':
-        """
-        O. B. Larsen. On Markup and Generality.
-        *Personal Press*. 1986.
-        """
-        }
+Note that Publish only accepts BibTeX files where the keys (author,
+title, etc.) are in lower case and where the data are enclosed in
+curly braces.  You may need to edit your BibTeX files to meet this
+demand. Even more important is the fact that the HTML output format
+displays the BibTeX keys as identifiers when referring to publications
+(Sphinx, reST, and LaTeX apply numbering).  Therefore, your keys
+should have a nice, consistent typesetting. It is suggested to use the
+following scheme::
 
 
-In the 'latex' and 'pdflatex' formats, the '.bib' file will be used in
-the standard BibTeX way.  In the 'rst' and 'sphinx' formats, the
-'.rst' file will be copied into the document at the place where the
-'BIBFILE:' keyword appears, while all other formats will make use of
-the Python dictionary typeset as an ordered Doconce list inserted at
-the 'BIBFILE:' line in the document.
+        Langtangen_2003a          # single author
+        Langtangen_Pedersen_2002  # two authors
+        Langtangen_et_al_2002     # three or more authors
 
-Only one file with bibliographic references can be used. It is recommended
-to create all references in BibTeX format. Say the file is 'myfile.bib'.
-Insert 'BIBFILE: myfile.bib' at the end of the file (for instance).
-Then make a LaTeX document and check that the references appear correctly.
-A next step can be to create the '.rst' file, either by manual editing
-of 'myfile.bbl' or using 'doconce bbl2rst myfile.bbl' to automate (most of)
-this editing. From the 'myfile.rst' file it is easy to create 'myfile.py'
-with the dictionary version of the references.
+One can add a, b, c, and so forth if several keys feature the same
+authors and year.
+
+Adding new references to the database
+
+When you get some new BibTeX references you simply put them in
+a file, say 'refs3.pub' and run the 'publish import refs3.pub' command
+to update the database. You may also consider editing the 'papers.pub'
+file directly when adding new references.
+
+Exporting the database
+
+Export of everything in the database to
+BibTeX is done by::
 
 
-Conversion of BibTeX databases to reST format can be
-done by the "http://pypi.python.org/pypi/bibliograph.parsing/":bibliograph.parsing tool.
+        publish export mybibtexfile.bib
 
-Finally, we here test the citation command and bibliography by
-citing a book [1], a paper [2],
-and both of them simultaneously [1] [2].
+You can easily export subsets of the database, e.g., only papers associated
+with a particular author (the Publish manual has details on how this is
+done). Doconce will automatically export the database to BibTeX if
+the output format is 'latex' or 'pdflatex'.
 
-[somereader: comments, citations, and references in the latex style
-is a special feature of doconce :-) ]
+Referring to publications
+
+We use the command::
+
+
+        cite{key}
+
+to refer to a publication with bibliographic key 'key'.
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
+
+In LaTeX, the 'cite' command is directly translated to the
+corresponding LaTeX version of the command with a backslash; in reST
+and Sphinx the citations becomes links, with the citation keys as
+names; in HTML the citations are numbered from 1, 2, and so forth
+according to their appearance, and the numbers appear as links; while
+in other formats the citations are simply the keys inside square
+brackets and the corresponding references are listed in the order they
+are cited.
+
+Specifying the Publish database
+
+The specification of the Publish database file in the Doconce document
+is done one a line containing 'BIBFILE: papers.pub' (you may give
+the database file another name and store it in another directory).
+The references will be inserted at the place where this command appears.
+Before the command you will often want to have a headline with
+"References", "Bibliography", or similar.
+Here is an example::
+
+
+        
+        ======= References =======
+        
+        BIBFILE: papers.pub
+
+In LaTeX and pdfLaTeX the 'papers.pub' file is exported to BibTeX format
+and included in the document, while in all other formats, suitable
+text is produced from the database.
+
+LaTeX bibliography style
+
+The bibliography style is "plain" in LaTeX output. To change this, just
+edit the '.p.tex' file. For example::
+
+
+        doconce format latex mydoc
+        doconce replace 'bibliographystyle{plain}' 'bibliographystyle{abbrev}' mydoc.p.tex
+
 
 Tables
 
@@ -3215,7 +3301,33 @@ and Sphinx just typeset the list as a list with keywords.
       tolerance (float) for stopping
       the iterations.
 
-Bibliography
+References
 
-  1. H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
-  2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
+ 1. H. P. Langtangen and G. Pedersen. 
+    Propagation of Large Destructive Waves,
+    *International Journal of Applied Mechanics and Engineering*,
+    7(1),
+    pp. 187-204,
+    2002.
+ 2. H. P. Langtangen, K.-A. Mardal and R. Winther. 
+    Numerical Methods for Incompressible Viscous Flow,
+    *Advances in Water Resources*,
+    25,
+    pp. 1125-1146,
+    2002.
+ 3. H. P. Langtangen. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    *SIAM Journal of Scientific and Statistical Computing*,
+    15,
+    pp. 997-996,
+    1994.
+ 4. K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen. 
+    Software Tools for Multigrid Methods,
+    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,
+    edited by H. P. Langtangen and A. Tveito,
+    Springer,
+    2003.
+ 5. H. P. Langtangen. 
+    The FEMDEQS Program System,
+    *Department of Mathematics, University of Oslo*,
+    1989.

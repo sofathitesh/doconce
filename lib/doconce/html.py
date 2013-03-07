@@ -1,6 +1,7 @@
 import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines, python_online_tutor, bibliography
+     indent_lines, python_online_tutor, bibliography, \
+     cite_with_multiple_args2multiple_cites
 from misc import option
 
 global _file_collection_filename
@@ -179,18 +180,14 @@ css_bloodish = """\
     }
     h1 { font-size: 1.8em;  color: #8A0808; }
     h2 { font-size: 1.5em;  color: #8A0808; }
-    h3 { color:  color: #8A0808; }
-    a { color:  color: #8A0808; text-decoration:none; }
+    h3, h4 { color: #8A0808; }
+    a { color: #8A0808; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
     pre { background: #ededed; color: #000; padding: 15px;}
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
 """
 
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
@@ -855,30 +852,9 @@ def html_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def bibdict2htmllist(pyfile, citations):
-    """Transform dict with bibliography to an HTML ordered list with anchors."""
-    f = open(pyfile, 'r')
-    bibstr = f.read()
-    try:
-        bibdict = eval(bibstr)
-    except Exception, e:
-        print 'Error in Python dictionary for bibliography in', pyfile
-        print e
-        sys.exit(1)
-    text = '\n\n<h1>Bibliography</h1>\n\n<ol>\n'
-    for label in citations:
-        if label in bibdict:
-            bibdict[label] = latin2html(bibdict[label])
-            # remove newlines in reference data:
-            text += '  <p><li><a name="%s"> ' % label + \
-                    ' '.join(bibdict[label].splitlines()) + '\n'
-        else:
-            print 'ERROR: cite{%s}: %s is not defined in %s' % \
-                  (label, label, pyfile)
-    text += '</ol>\n\n'
-    return text
 
 def html_index_bib(filestr, index, citations, pubfile, pubdata):
+    filestr = cite_with_multiple_args2multiple_cites(filestr)
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
                                   '<a href="#%s">[%d]</a>' % \
@@ -887,7 +863,7 @@ def html_index_bib(filestr, index, citations, pubfile, pubdata):
         bibtext = bibliography(pubdata, citations, format='doconce')
         for label in citations:
             bibtext = bibtext.replace('label{%s}' % label,
-                                      '<a name="%s">' % label)
+                                      '<a name="%s"></a>' % label)
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
     # could use anchors for idx{...}, but multiple entries of an index
