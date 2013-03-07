@@ -69,10 +69,10 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
@@ -106,7 +106,7 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -125,37 +125,17 @@ final,                   % or draft (marks overfull hboxes)
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
 
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% #ifdef A4PAPER
-\usepackage{wrapfig,calc}
-\newdimen\barheight
-\def\barthickness{0.5pt}
-
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
-\begin{minipage}{0.5\textwidth-6pt-\columnsep}
-\hspace*{3mm}
-\setbox2=\hbox{\parbox[t]{55mm}{
-#1 \rule[-8pt]{0pt}{10pt}}}%
-\barheight=\ht2 \advance\barheight by \dp2
-\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
-\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
-}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
-\end{wrapfigure}}
+% #ifndef NOTODONOTES
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
 % #endif
 
 
@@ -201,8 +181,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % #endif
 
-
-
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
 \author{Hans Petter Langtangen\footnote{Simula Research Laboratory and University of Oslo.}}
@@ -242,13 +220,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Mar 3, 2013}
+\date{Mar 7, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 3, 2013}}
+{\large\textsf{Mar 7, 2013}}
 
 \end{center}
 \vfill
@@ -257,7 +235,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Mar 3, 2013
+Mar 7, 2013
 \end{center}
 
 \vspace{1cm}
@@ -265,7 +243,10 @@ Mar 3, 2013
 % #endif
 
 
-\tableofcontents
+\tableofcontents'
+% #ifndef NOTODONOTES
+\listoftodos[List of inline comments]
+% #endif
 
 \vspace{1cm} % after toc
 
@@ -277,7 +258,10 @@ Mar 3, 2013
 
 \textbf{WARNING: This quick reference is very incomplete!}
 
+
+
 \subsection{Supported Formats}
+
 
 Doconce currently translates files to the following formats:
 
@@ -308,7 +292,9 @@ Doconce currently translates files to the following formats:
 \noindent
 The best supported formats are \code{latex}, \code{sphinx}, \code{html}, and \code{plain}.
 
+
 \subsection{Title, Authors, and Date}
+
 
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
@@ -339,6 +325,8 @@ current date is wanted, e.g., \code{Feb 22, 2016}.
 
 The table of contents is removed by writing \code{TOC: off}.
 
+
+
 \subsection{Section Types}
 
 \label{quick:sections}
@@ -366,13 +354,17 @@ Appendix is supported: just let the heading start with "Appendix: "
 (this affects only \code{latex} output, where the appendix formatting
 is used - all other formats just leave the heading as it is written).
 
+
 \subsection{Inline Formatting}
+
 
 Words surrounded by \code{*} are emphasized: \code{*emphasized words*} becomes
 \emph{emphasized words}. Similarly, an underscore surrounds words that
 appear in boldface: \code{_boldface_} become \textbf{boldface}.
 
+
 \subsection{Lists}
+
 
 There are three types of lists: \emph{bullet lists}, where each item starts
 with \code{*}, \emph{enumeration lists}, where each item starts with \code{o} and gets
@@ -472,6 +464,7 @@ And finally a description list:
 
 \subsection{Comments}
 
+
 Lines starting with \code{#} are treated as comments in the document and
 translated to the proper syntax for comments in the output
 document. Such comment lines should not appear before {\LaTeX} math
@@ -507,7 +500,9 @@ doconce remove_inline_comments mydoc.do.txt
 \esys
 This action is appropriate when all issues with such comments are resolved.
 
+
 \subsection{Verbatim/Computer Code}
+
 
 Inline verbatim code is typeset within back-ticks, as in
 \bccq
@@ -589,6 +584,7 @@ Important warnings:
 \noindent
 
 \subsection{{\LaTeX} Mathematics}
+
 
 Doconce supports inline mathematics and blocks of mathematics, using
 standard {\LaTeX} syntax. The output formats \code{sphinx}, \code{latex}, and \code{pdflatex}
@@ -688,7 +684,10 @@ PDF document.
 \paragraph{LaTeX Newcommands.}
 Text missing...
 
+
+
 \subsection{Figures and Movies}
+
 
 Figures and movies have almost equal syntax:
 \bccq
@@ -720,7 +719,10 @@ convert -background white file1.png file2.png +append tmp.png
 Use \code{+append} for stacking left to right, \code{-append} for top to bottom.
 The positioning of the figures can be controlled by \code{-gravity}.
 
+
+
 \subsection{Tables}
+
 
 The table in Section~\ref{quick:sections} was written with this
 syntax:
@@ -762,6 +764,7 @@ Note that
 \noindent
 
 \subsection{Labels, References, Citations, and Index}
+
 
 The notion of labels, references, citations, and an index is adopted
 from {\LaTeX} with a very similar syntax. As in {\LaTeX}, a label can be
@@ -844,7 +847,9 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the \code{latex}, \code{rst}, and
 \code{sphinx} formats.
 
+
 \subsection{Capabilities of the "doconce" Program}
+
 
 The \code{doconce} program can be used for a number of purposes besides
 transforming a \code{.do.txt} file to some format. Here is the
@@ -852,7 +857,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -930,9 +935,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -958,9 +960,20 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 \eshpro
 
+
 \subsection{Exercises}
+
 
 Doconce supports \emph{Exercise}, \emph{Problem}, \emph{Project}, and \emph{Example}.
 These are typeset
@@ -1078,7 +1091,10 @@ The command-line arguments \code{--without-answers} and \code{--without-solution
 turn off output of answers and solutions, respectively, except for
 examples.
 
+
+
 \subsection{Environments}
+
 
 Doconce environments start with \code{!benvirname} and end with \code{!eenvirname},
 where \code{envirname} is the name of the environment. Here is a listing of
@@ -1112,7 +1128,10 @@ the environments:
 
 \subsection{Labels, Index, and Citations}
 
+
+
 \subsection{Preprocessing}
+
 
 Doconce documents may utilize a preprocessor, either \code{preprocess} and/or
 \code{mako}. The former is a C-style preprocessor that allows if-tests
@@ -1161,13 +1180,16 @@ An \href{{http://hplgit.github.com/bioinf-py/}}{example document} contains
 some illustrations on how to utilize \code{mako} (clone the GitHub project and
 examine the Doconce source and the \code{doc/src/make.sh} script).
 
+
 \subsection{Resources}
+
 
 \begin{itemize}
  \item Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 \end{itemize}
 
 \noindent
+
 % ------------------- end of main content ---------------
 
 

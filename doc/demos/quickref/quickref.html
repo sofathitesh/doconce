@@ -13,6 +13,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    
+    
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -144,7 +146,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Mar 3, 2013</h4></center> <!-- date -->
+<center><h4>Mar 7, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -180,6 +182,7 @@ MathJax.Hub.Config({
 
 
 <h3>Supported Formats  <a name="___sec0"></a></h3>
+
 <p>
 Doconce currently translates files to the following formats:
 
@@ -204,6 +207,7 @@ The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>ht
 <p>
 
 <h3>Title, Authors, and Date  <a name="___sec1"></a></h3>
+
 <p>
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
@@ -242,6 +246,7 @@ The table of contents is removed by writing <code>TOC: off</code>.
 
 
 <h3>Section Types <a name="quick:sections"></a></h3>
+
 <p>
 <table border="1">
 <tr><td align="center"><b>                        Section type                        </b></td> <td align="center"><b>                           Syntax                           </b></td> </tr>
@@ -265,6 +270,7 @@ is used - all other formats just leave the heading as it is written).
 <p>
 
 <h3>Inline Formatting  <a name="___sec3"></a></h3>
+
 <p>
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
@@ -273,6 +279,7 @@ appear in boldface: <code>_boldface_</code> become <b>boldface</b>.
 <p>
 
 <h3>Lists  <a name="___sec4"></a></h3>
+
 <p>
 There are three types of lists: <em>bullet lists</em>, where each item starts
 with <code>*</code>, <em>enumeration lists</em>, where each item starts with <code>o</code> and gets
@@ -364,7 +371,9 @@ And finally a description list:
    and its description may fit on one line
 </dl>
 
+
 <h3>Comments  <a name="___sec5"></a></h3>
+
 <p>
 Lines starting with <code>#</code> are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -410,6 +419,7 @@ This action is appropriate when all issues with such comments are resolved.
 <p>
 
 <h3>Verbatim/Computer Code  <a name="___sec6"></a></h3>
+
 <p>
 Inline verbatim code is typeset within back-ticks, as in
 <!-- begin verbatim block -->
@@ -500,7 +510,9 @@ Important warnings:
    paragraphs with headings.</li>
 </ul>
 
+
 <h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
+
 <p>
 Doconce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats <code>sphinx</code>, <code>latex</code>, and <code>pdflatex</code>
@@ -619,6 +631,7 @@ Text missing...
 
 
 <h3>Figures and Movies  <a name="___sec8"></a></h3>
+
 <p>
 Figures and movies have almost equal syntax:
 <!-- begin verbatim block -->
@@ -659,6 +672,7 @@ The positioning of the figures can be controlled by <code>-gravity</code>.
 
 
 <h3>Tables  <a name="___sec9"></a></h3>
+
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
 syntax:
@@ -697,7 +711,9 @@ Note that
    have no effect.</li>
 </ul>
 
+
 <h3>Labels, References, Citations, and Index  <a name="___sec10"></a></h3>
+
 <p>
 The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
@@ -794,6 +810,7 @@ forthcoming text. The index is only produced for the <code>latex</code>, <code>r
 <p>
 
 <h3>Capabilities of the "doconce" Program  <a name="___sec11"></a></h3>
+
 <p>
 The <code>doconce</code> program can be used for a number of purposes besides
 transforming a <code>.do.txt</code> file to some format. Here is the
@@ -802,7 +819,7 @@ list of capabilities:
 <p>
 <!-- begin verbatim block  shpro-->
 <pre><code>Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -880,9 +897,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -908,12 +922,22 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 </code></pre>
 <!-- end verbatim block -->
 
 <p>
 
 <h3>Exercises  <a name="___sec12"></a></h3>
+
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
 These are typeset
@@ -1034,6 +1058,7 @@ examples.
 
 
 <h3>Environments  <a name="___sec13"></a></h3>
+
 <p>
 Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
 where <code>envirname</code> is the name of the environment. Here is a listing of
@@ -1056,10 +1081,13 @@ the environments:
    slide</li>
 </ul>
 
+
 <h3>Labels, Index, and Citations  <a name="___sec14"></a></h3>
+
 <p>
 
 <h3>Preprocessing  <a name="___sec15"></a></h3>
+
 <p>
 Doconce documents may utilize a preprocessor, either <code>preprocess</code> and/or
 <code>mako</code>. The former is a C-style preprocessor that allows if-tests
@@ -1115,11 +1143,13 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 <p>
 
 <h3>Resources  <a name="___sec16"></a></h3>
+
 <p>
 
 <ul>
  <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>
 </ul>
+
 
 <!-- ------------------- end of main content --------------- -->
 

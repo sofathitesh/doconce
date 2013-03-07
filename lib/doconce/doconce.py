@@ -1722,7 +1722,7 @@ def inline_tag_subst(filestr, format):
         debugpr('\n*************** Working with tag "%s"' % tag)
         tag_pattern = INLINE_TAGS[tag]
         #print 'working with tag "%s" = "%s"' % (tag, tag_pattern)
-        if tag in ('abstract', ):
+        if tag in ('abstract', 'inlinecomment'):
             c = re.compile(tag_pattern, re.MULTILINE|re.DOTALL)
         else:
             c = re.compile(tag_pattern, re.MULTILINE)
@@ -1733,20 +1733,24 @@ def inline_tag_subst(filestr, format):
         if replacement is None:
             continue  # no substitution
 
+        findlist = c.findall(filestr)
+        occurences = len(findlist)
+        findlist = pprint.pformat(findlist)
+
+        # first some info for debug output:
+        if occurences > 0:
+            debugpr('Found %d occurences of "%s":\nfindall list: %s' % (occurences, tag, findlist))
+            debugpr('%s is to be replaced using %s' % (tag, replacement))
+            m = c.search(filestr)
+            if m:
+                debugpr('First occurence: "%s"\ngroups: %s\nnamed groups: %s' % (m.group(0), m.groups(), m.groupdict()))
+
         if isinstance(replacement, basestring):
-            # first some info for debug output:
-            findlist = c.findall(filestr)
-            occurences = len(findlist)
-            findlist = pprint.pformat(findlist)
-            if occurences > 0:
-                debugpr('Found %d occurences of "%s":\nfindall list: %s' % (occurences, tag, findlist))
-                debugpr('%s is to be replaced using %s' % (tag, replacement))
-                m = c.search(filestr)
-                if m:
-                    debugpr('First occurence: "%s"\ngroups: %s\nnamed groups: %s' % (m.group(0), m.groups(), m.groupdict()))
 
             filestr = c.sub(replacement, filestr)
         elif callable(replacement):
+            filestr = c.sub(replacement, filestr)
+        elif False:
             # treat line by line because replacement string depends
             # on the match object for each occurence
             # (this is mainly for headlines in rst format)

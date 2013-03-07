@@ -1,6 +1,6 @@
 TITLE: Doconce Description
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 6, 2013
+DATE: Mar 7, 2013
 What Is Doconce?
 ================
 
@@ -2655,6 +2655,12 @@ formats. Below is an example::
         $x+y$ is 8.
 
 
+A variable C{DEVICE} is also defined. It equals C{screen} by default,
+but the command-line argument C{--device=paper} can set C{DEVICE} to
+C{paper} (or another value). Testing on C{DEVICE} inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.
+
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section "From Doconce to Other Formats".
 
@@ -3482,3 +3488,4 @@ References
     The FEMDEQS Program System,
     I{Department of Mathematics, University of Oslo},
     1989.
+

@@ -202,6 +202,9 @@ def default_movie(m):
         if opt.startswith('height') or opt.startswith('HEIGHT'):
             kwargs['height'] = int(opt.split('=')[1])
 
+    if 'youtu.be' in filename:
+        filename = filename.replace('youtu.be', 'youtube.com')
+
     if '*' in filename:
         # Glob files and use DocWriter.html_movie to make a separate
         # HTML page for viewing the set of files
@@ -224,6 +227,11 @@ def default_movie(m):
     elif 'youtube.com' in filename:
         # Rename embedded files to ordinary YouTube
         filename = filename.replace('embed/', 'watch?v=')
+        text = '%s: URL:"%s"' % (caption, filename)
+    elif 'vimeo.com' in filename:
+        # Rename embedded files to ordinary Vimeo
+        filename = filename.replace('http://player.vimeo.com/video',
+                                    'http://vimeo.com')
         text = '%s: URL:"%s"' % (caption, filename)
     else:
         # Make an HTML file where the movie file can be played
@@ -643,7 +651,7 @@ INLINE_TAGS = {
     r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
 
     'inlinecomment':
-    r'''\[(?P<name>[A-Za-z0-9_'-]+?):\s+(?P<comment>[^\]]*?)\]''',
+    r'''\[(?P<name>[A-Za-z0-9_'+-]+?): +(?P<comment>.*?)\]''',
 
     # __Abstract.__ Any text up to a headline === or toc-like keywords
     # (TOC is already processed)
@@ -658,23 +666,23 @@ INLINE_TAGS = {
     # previous: r'^\s*_{7}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{7}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     #r'^\s*[_=]{7}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
-    r'^\s*[_=]{7}\s*(?P<subst>[^ =-].+?)\s*[_=]{7}\s*$',
+    r'^ *[_=]{7}\s*(?P<subst>[^ =-].+?)\s*[_=]{7} *$',
 
     'chapter':
     #r'^\s*[_=]{9}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
-    r'^\s*[_=]{9}\s*(?P<subst>[^ =-].+?)\s*[_=]{9}\s*$',
+    r'^ *[_=]{9}\s*(?P<subst>[^ =-].+?)\s*[_=]{9} *$',
 
     'subsection':
     #r'^\s*_{5}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{5}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     #r'^\s*[_=]{5}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
-    r'^\s*[_=]{5}\s*(?P<subst>[^ =-].+?)\s*[_=]{5}\s*$',
+    r'^ *[_=]{5}\s*(?P<subst>[^ =-].+?)\s*[_=]{5} *$',
 
     'subsubsection':
     #r'^\s*_{3}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{3}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     #r'^\s*[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
-    r'^\s*[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]{3}\s*$',
+    r'^ *[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]{3} *$',
 
     # __Two underscores for Inline Paragraph Title.__
     'paragraph':

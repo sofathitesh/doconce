@@ -305,6 +305,9 @@ def rst_bib(filestr, citations, pubfile, pubdata, numbering=True):
     If numbering is True, the keys used in the bibliography are
     replaced by numbers (RefX). This will often look better.
     """
+    if not citations:
+        return filestr
+
     filestr = cite_with_multiple_args2multiple_cites(filestr)
     if numbering:
         # Find max no of digits
@@ -417,14 +420,11 @@ def define(FILENAME_EXTENSION,
         # the replacement string differs, depending on the match object m:
         # (note len(m.group('subst')) gives wrong length for non-ascii strings,
         # better with m.group('subst').decode('utf-8')) or latin-1
-        #'section':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
-        # note: r'\g<subst>\n%s' also works fine ?), despite being different...
-        # (it just works in substitution...)
-        'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('latin-1'))),
-        'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
-        #'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
-        'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('latin-1'))),
-        'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
+        'chapter':       lambda m: '%s\n%s' % (m.group('subst'), '%'*len(m.group('subst').decode('latin-1'))),
+        'section':       lambda m: '%s\n%s' % (m.group('subst'), '='*len(m.group('subst').decode('latin-1'))),
+        #'section':       lambda m: '%s\n%s' % (m.group('subst'), '='*len(m.group('subst').decode('latin-1'))),
+        'subsection':    lambda m: '%s\n%s' % (m.group('subst'), '-'*len(m.group('subst').decode('latin-1'))),
+        'subsubsection': lambda m: '%s\n%s' % (m.group('subst'), '~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'\n*\g<type>.* \g<text>\n\g<rest>',
         #'title':         r'======= \g<subst> =======\n',  # doconce top section, must be the highest section level (but no higher than others, need more code)

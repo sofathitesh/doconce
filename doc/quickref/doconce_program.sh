@@ -1,5 +1,5 @@
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -77,9 +77,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -105,4 +102,13 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 

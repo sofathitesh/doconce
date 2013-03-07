@@ -54,7 +54,7 @@ doconce split_html testdoc.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 
-doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
+doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises

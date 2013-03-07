@@ -1445,6 +1445,12 @@ formats. Below is an example:
 
 @@@CODE _format_specific1.do.txt
 
+A variable `DEVICE` is also defined. It equals `screen` by default,
+but the command-line argument `--device=paper` can set `DEVICE` to
+`paper` (or another value). Testing on `DEVICE` inside the document
+makes it possible to test if the output is on paper media, a sreen,
+or a particular device.
+
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in Section ref{doconce2formats}.
 
