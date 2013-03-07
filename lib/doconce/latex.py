@@ -944,7 +944,7 @@ def define(FILENAME_EXTENSION,
     if option('skip_inline_comments'):
         TOC['latex'] = lambda s: r'\tableofcontents' + '\n\n' + r'\vspace{1cm} % after toc' + '\n\n'
     else:
-        TOC['latex'] = lambda s: r"""\tableofcontents'
+        TOC['latex'] = lambda s: r"""\tableofcontents
 % #ifndef NOTODONOTES
 \listoftodos[List of inline comments]
 % #endif

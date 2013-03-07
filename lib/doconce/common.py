@@ -651,7 +651,7 @@ INLINE_TAGS = {
     r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
 
     'inlinecomment':
-    r'''\[(?P<name>[A-Za-z0-9_'+-]+?): +(?P<comment>.*?)\]''',
+    r'''\[(?P<name>[A-Za-z0-9_'+-]+?):\s+(?P<comment>.*?)\]''',
 
     # __Abstract.__ Any text up to a headline === or toc-like keywords
     # (TOC is already processed)
