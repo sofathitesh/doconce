@@ -575,7 +575,7 @@ inserted anywhere, using the syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 with no backslash
-preceding the label keyword! It is common practice to choose `name`
+preceding the label keyword. It is common practice to choose `name`
 as some hierarchical name, say `a:b:c`, where `a` and `b` indicate
 some abbreviations for a section and/or subsection for the topic and
 `c` is some name for the particular unit that has a label.
@@ -587,6 +587,11 @@ ref{name}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 again with no backslash before `ref`.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
 
 ### Citations and Bibliography
 
@@ -661,10 +666,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the `latex`, `rst`, and
-`sphinx` formats.
+forthcoming text. The index is only produced for the `latex`,
+`pdflatex`, `rst`, and `sphinx` formats.
 
-### Capabilities of the "doconce" Program
+### Capabilities of the doconce Program
 
 The `doconce` program can be used for a number of purposes besides
 transforming a `.do.txt` file to some format. Here is the

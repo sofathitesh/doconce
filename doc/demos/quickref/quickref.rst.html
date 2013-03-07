@@ -351,7 +351,7 @@ ul.auto-toc {
 <li><a class="reference internal" href="#citations-and-bibliography" id="id15">Citations and Bibliography</a></li>
 <li><a class="reference internal" href="#generalized-citations" id="id16">Generalized Citations</a></li>
 <li><a class="reference internal" href="#index-of-keywords" id="id17">Index of Keywords</a></li>
-<li><a class="reference internal" href="#capabilities-of-the-doconce-program" id="id18">Capabilities of the &quot;doconce&quot; Program</a></li>
+<li><a class="reference internal" href="#capabilities-of-the-doconce-program" id="id18">Capabilities of the doconce Program</a></li>
 <li><a class="reference internal" href="#exercises" id="id19">Exercises</a></li>
 <li><a class="reference internal" href="#environments" id="id20">Environments</a></li>
 <li><a class="reference internal" href="#preprocessing" id="id21">Preprocessing</a></li>
@@ -916,7 +916,7 @@ inserted anywhere, using the syntax:</p>
 label{name}
 </pre>
 <p>with no backslash
-preceding the label keyword! It is common practice to choose <tt class="docutils literal">name</tt>
+preceding the label keyword. It is common practice to choose <tt class="docutils literal">name</tt>
 as some hierarchical name, say <tt class="docutils literal">a:b:c</tt>, where <tt class="docutils literal">a</tt> and <tt class="docutils literal">b</tt> indicate
 some abbreviations for a section and/or subsection for the topic and
 <tt class="docutils literal">c</tt> is some name for the particular unit that has a label.</p>
@@ -925,6 +925,9 @@ some abbreviations for a section and/or subsection for the topic and
 ref{name}
 </pre>
 <p>again with no backslash before <tt class="docutils literal">ref</tt>.</p>
+<p>Use labels for sections and equations only, and preceed the reference
+by &quot;Section&quot; or &quot;Chapter&quot;, or in case of an equation, surround the
+reference by parenthesis.</p>
 </div>
 <div class="section" id="citations-and-bibliography">
 <h1><a class="toc-backref" href="#id15">Citations and Bibliography</a></h1>
@@ -991,11 +994,11 @@ index{name}
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the <tt class="docutils literal">latex</tt>, <tt class="docutils literal">rst</tt>, and
-<tt class="docutils literal">sphinx</tt> formats.</p>
+forthcoming text. The index is only produced for the <tt class="docutils literal">latex</tt>,
+<tt class="docutils literal">pdflatex</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats.</p>
 </div>
 <div class="section" id="capabilities-of-the-doconce-program">
-<h1><a class="toc-backref" href="#id18">Capabilities of the &quot;doconce&quot; Program</a></h1>
+<h1><a class="toc-backref" href="#id18">Capabilities of the doconce Program</a></h1>
 <p>The <tt class="docutils literal">doconce</tt> program can be used for a number of purposes besides
 transforming a <tt class="docutils literal">.do.txt</tt> file to some format. Here is the
 list of capabilities:</p>

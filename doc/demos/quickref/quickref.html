@@ -94,10 +94,7 @@ Automatically generated HTML file from Doconce source
               (' Citations and Bibliography ', 2, None, '___sec13'),
               (' Generalized Citations ', 2, None, '___sec14'),
               (' Index of Keywords ', 2, None, '___sec15'),
-              (' Capabilities of the "doconce" Program ',
-               2,
-               None,
-               '___sec16'),
+              (' Capabilities of the doconce Program ', 2, None, '___sec16'),
               (' Exercises ', 2, None, '___sec17'),
               (' Environments ', 2, None, '___sec18'),
               (' Preprocessing ', 2, None, '___sec19'),
@@ -169,7 +166,7 @@ MathJax.Hub.Config({
 <a href="#___sec13"> Citations and Bibliography </a><br>
 <a href="#___sec14"> Generalized Citations </a><br>
 <a href="#___sec15"> Index of Keywords </a><br>
-<a href="#___sec16"> Capabilities of the "doconce" Program </a><br>
+<a href="#___sec16"> Capabilities of the doconce Program </a><br>
 <a href="#___sec17"> Exercises </a><br>
 <a href="#___sec18"> Environments </a><br>
 <a href="#___sec19"> Preprocessing </a><br>
@@ -819,7 +816,7 @@ inserted anywhere, using the syntax
 </code></pre>
 <!-- end verbatim block -->
 with no backslash
-preceding the label keyword! It is common practice to choose <code>name</code>
+preceding the label keyword. It is common practice to choose <code>name</code>
 as some hierarchical name, say <code>a:b:c</code>, where <code>a</code> and <code>b</code> indicate
 some abbreviations for a section and/or subsection for the topic and
 <code>c</code> is some name for the particular unit that has a label.
@@ -833,6 +830,12 @@ A reference to the label <code>name</code> is written as
 again with no backslash before <code>ref</code>.
 
 <p>
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+<p>
+
 
 <h3>Citations and Bibliography  <a name="___sec13"></a></h3>
 
@@ -912,12 +915,12 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the <code>latex</code>, <code>rst</code>, and
-<code>sphinx</code> formats.
+forthcoming text. The index is only produced for the <code>latex</code>,
+<code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
 
 <p>
 
-<h3>Capabilities of the "doconce" Program  <a name="___sec16"></a></h3>
+<h3>Capabilities of the doconce Program  <a name="___sec16"></a></h3>
 
 <p>
 The <code>doconce</code> program can be used for a number of purposes besides
