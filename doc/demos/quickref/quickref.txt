@@ -6,7 +6,7 @@ Hans Petter Langtangen [1, 2]
 [1] Simula Research Laboratory
 [2] University of Oslo
 
-Date: Mar 7, 2013
+Date: Mar 8, 2013
 
 Table of contents:
 
@@ -533,7 +533,7 @@ and otherwise be represented by a link. The syntax is::
 
 The latter results in
 
- Vimeo movie.: http://vimeo.com/55562330
+ Vimeo movie. http://vimeo.com/55562330
 
 
 Tables

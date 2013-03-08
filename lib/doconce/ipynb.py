@@ -25,9 +25,10 @@ def ipynb_author(authors_and_institutions, auth2index,
 def ipynb_figure(m):
     filename = m.group('filename')
     caption = m.group('caption').strip()
-    text = '![%s](%s)' % (caption, filename)
-    # Hack...
-    text = '![%s](files/%s)' % (caption, filename)
+    if not filename.startswith('http'):
+        text = '![%s](files/%s)' % (caption, filename)  # hack for plain file
+    else:
+        text = '![%s](%s)' % (caption, filename)
     return text
 
 def ipynb_code(filestr, code_blocks, code_block_types,
@@ -220,7 +221,7 @@ def define(FILENAME_EXTENSION,
         'chapter':       lambda m: '# '    + m.group('subst'),
         'section':       lambda m: '## '   + m.group('subst'),
         'subsection':    lambda m: '### '  + m.group('subst'),
-        'subsubsection': lambda m: '#### ' + m.group('subst'),
+        'subsubsection': lambda m: '#### ' + m.group('subst') + '\n',
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'\n*\g<type>.* \g<text>\n\n\g<rest>',
         'comment':       '<!-- %s -->',

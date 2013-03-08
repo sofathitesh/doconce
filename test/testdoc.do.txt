@@ -392,8 +392,7 @@ and `|` right after verbatim word (with no space):
 
 ===== A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` =====
 
-__Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
-is
+__Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here is
 some text.
 
 ===== Bibliography test =====
@@ -909,12 +908,12 @@ Here is a hint.
 !ehint
 
 !bwarning
-
-=== Let's try a little heading ===
-
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
+  * and a list
+  * with items
 !ewarning
 
 !bsummary

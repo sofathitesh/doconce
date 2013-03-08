@@ -144,7 +144,7 @@ def define(FILENAME_EXTENSION,
         'chapter':       lambda m: '%s\n%s' % (m.group('subst'), '%'*len(m.group('subst').decode('latin-1'))),
         'section':       lambda m: '%s\n%s' % (m.group('subst'), '='*len(m.group('subst').decode('latin-1'))),
         'subsection':    lambda m: '%s\n%s' % (m.group('subst'), '-'*len(m.group('subst').decode('latin-1'))),
-        'subsubsection': lambda m: '%s\n%s' % (m.group('subst'), '~'*len(m.group('subst').decode('latin-1'))),
+        'subsubsection': lambda m: '%s\n%s\n' % (m.group('subst'), '~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'\n*\g<type>.* \g<text>\g<rest>',
         }

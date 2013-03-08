@@ -10,6 +10,8 @@ publish import refs1.bib <<EOF
 1
 2
 EOF
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 publish import refs2.bib <<EOF
 2
 2
@@ -80,6 +82,11 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # test that pdflatex works
 pdflatex -shell-escape testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+pdflatex -shell-escape testdoc
+makeindex testdoc
+bibtex testdoc
+pdflatex -shell-escape testdoc
+pdflatex -shell-escape testdoc
 
 cp testdoc.tex testdoc.tex_ptex2tex
 

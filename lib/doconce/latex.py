@@ -754,7 +754,7 @@ def latex_%s(block, format):
 \\fcolorbox{black}{%sbackground}{
 \\begin{minipage}{0.8\\textwidth}
 \includegraphics[height=0.3in]{%s/%s%%s}
-\\vskip-0.3in\hskip1.9in{\large\sc %s} \\\\[0.4cm]
+\\vskip-0.3in\centerline{{\large\sc %s}}
 %%s
 \end{minipage}}
 \end{center}
@@ -762,6 +762,8 @@ def latex_%s(block, format):
 """ %% (ext, block)
 ''' % (admon, admon, admon, ', '.join(rgb), admon, latexfigdir, figname, admon_name)
     return text
+
+#\\vskip-0.3in\hskip1.9in{\large\sc %s} \\\\[0.4cm]
 
 _admon2rgb = dict(warning=(1.0, 0.8235294, 0.8235294),   # pink
                   question=(0.87843, 0.95686, 1.0),      # light blue
@@ -807,6 +809,9 @@ def define(FILENAME_EXTENSION,
            OUTRO,
            filestr):
     # all arguments are dicts and accept in-place modifications (extensions)
+    from common import INLINE_TAGS
+    m = re.search(INLINE_TAGS['inlinecomment'], filestr, flags=re.DOTALL)
+    has_inline_comments = True if m else False
 
     FILENAME_EXTENSION['latex'] = '.p.tex'
     BLANKLINE['latex'] = '\n'
@@ -946,7 +951,7 @@ def define(FILENAME_EXTENSION,
     TABLE['latex'] = latex_table
     EXERCISE['latex'] = latex_exercise
     INDEX_BIB['latex'] = latex_index_bib
-    if option('skip_inline_comments'):
+    if option('skip_inline_comments') or not has_inline_comments:
         TOC['latex'] = lambda s: r'\tableofcontents' + '\n\n' + r'\vspace{1cm} % after toc' + '\n\n'
     else:
         TOC['latex'] = lambda s: r"""\tableofcontents
@@ -1141,32 +1146,36 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 """
-    INTRO['latex'] += r"""
+    if has_inline_comments:
+        INTRO['latex'] += r"""
 
 % #ifndef NOTODONOTES
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}"""
-    if option('skip_inline_comments'):
-        INTRO['latex'] += r"""
+        if option('skip_inline_comments'):
+            INTRO['latex'] += r"""
 \usepackage[shadow,disable]{todonotes}"""
-    else:
-        INTRO['latex'] += r"""
+        else:
+            INTRO['latex'] += r"""
 \usepackage[shadow]{todonotes}"""
-    INTRO['latex'] += r"""
+        INTRO['latex'] += r"""
 \newcommand{\shortinlinecomment}[3]{%
-\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else"""
-    if option('skip_inline_comments'):
-        INTRO['latex'] += r"""
+        if option('skip_inline_comments'):
+            INTRO['latex'] += r"""
 \newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
 \newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}"""
-    else:
-        INTRO['latex'] += r"""
+        else:
+            INTRO['latex'] += r"""
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}"""
-    INTRO['latex'] += r"""
+        INTRO['latex'] += r"""
 % #endif
+"""
+    INTRO['latex'] += r"""
 
 % USER PREAMBLE
 % insert custom LaTeX commands...

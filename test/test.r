@@ -195,9 +195,12 @@ based on collection of frames
 label{mymov}
 
 # Check out the correct with and height of YouTube movies from the
-# embed command that the YouTube page can generate
+# embed command that the YouTube page can generate. Similar for Vimeo.
 
 MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Computational fluid dynamics movie.
+
 
 # Test multi-line caption in figure
 
@@ -391,10 +394,21 @@ and `|` right after verbatim word (with no space):
 
 ===== A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` =====
 
-__Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
-is
+__Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here is
 some text.
 
+===== Bibliography test =====
+
+Here is an example: cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in cite{Langtangen_1994a}.
+The book chapter cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 ===== Example: Examples can be typeset as exercises =====
 label{Example}
@@ -856,6 +870,11 @@ Refer to the previous exercise as Exercise ref{exer:some:formula},
 the two before that as Projects ref{demo:ex:2} and ref{proj:circle1},
 and this one as Project ref{exer:you}.
 
+======= References =======
+
+BIBFILE: papers.pub
+
+
 ======= Appendix: Just for testing; part I =======
 
 This is the first appendix.
@@ -891,7 +910,12 @@ Here is a hint.
 !ehint
 
 !bwarning
-And here is a warning about something to pay attention to.
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+  * and a list
+  * with items
 !ewarning
 
 !bsummary
@@ -910,6 +934,35 @@ With math:
 So, how many admonition environments does Doconce support?
 !equestion
 
+===== Appendix: Testing inline comments =====
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to URL:"http://dropbox.com" and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+===== Appendix: Testing headings ending with `verbatim inline` =====
+
+The point here is to test 1) `verbatim` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 
 ************** File: testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -922,6 +975,9 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="A Document for Testing Doconce">
+<meta name="keywords" content="figures,movies,index with subindex,index, with comma, and one more">
+
 
 
 <style type="text/css">
@@ -1019,16 +1075,17 @@ Automatically generated HTML file from Doconce source
                2,
                None,
                '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Exercises ', 1, None, '___sec10'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec12'),
-              (' Not an exercise ', 2, None, '___sec13'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -1037,19 +1094,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec16'),
+              (' Remarks ', 3, None, '___sec17'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec18'),
+              (' Remarks ', 3, None, '___sec19'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec19'),
-              (' Example 2: Just an example ', 2, None, '___sec20'),
-              (' Here goes another section ', 1, None, '___sec21'),
-              (' More Exercises ', 1, None, '___sec22'),
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -1058,10 +1115,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
-              (' A subsection within an appendix ', 2, None, '___sec26'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -1070,7 +1128,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
 end of tocinfo -->
 
 <body>
@@ -1108,8 +1171,8 @@ $$
     
 <a name="part0000"></a>
 
-<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-<p>
+    <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+    <p>
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -1169,31 +1232,35 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec9"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec10"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec10"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec11"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec12"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec17"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec18"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec19"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Example 2: Just an example </a><br>
-<a href="._part0002_testdoc.html#___sec21"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec22"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc.html#___sec22"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec23"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec25"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec27"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec28"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc.html#___sec26"> References </a><br>
+<a href="._part0002_testdoc.html#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec28"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec30"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec31"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
 
@@ -1279,13 +1346,13 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
 \usepackage{movie15}
 % #endif
+
 
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
@@ -1320,7 +1387,7 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -1338,9 +1405,6 @@ final,                   % or draft (marks overfull hboxes)
 
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
-
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
@@ -1371,6 +1435,21 @@ final,                   % or draft (marks overfull hboxes)
 {\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
 \rule{6pt}{0pt}}\end{center}}
 % #endif
+
+
+% #ifndef NOTODONOTES
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+% #else
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
+% #endif
+
 
 
 % insert custom LaTeX commands...
@@ -1417,8 +1496,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 
 % #endif
-
-
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -1525,6 +1602,9 @@ Jan 32, 2100
 
 
 \tableofcontents
+% #ifndef NOTODONOTES
+\listoftodos[List of inline comments]
+% #endif
 
 \vspace{1cm} % after toc
 
@@ -1559,8 +1639,8 @@ is part of the abstract.
 % #endif
 
 
-\section{Section 1}
 
+\section{Section 1}
 \label{sec1}
 
 Here is a nested list:
@@ -1745,7 +1825,6 @@ we use ! in the \code{verb} typesetting... Also test backslashes
 like \code{\begin} and \code{\end} in inline verbatim text.
 
 \subsection{Subsection 2}
-
 \label{subsec:ex}
 \index{figures}
 
@@ -1852,13 +1931,16 @@ repeat,
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}})
 
 
 % Check out the correct with and height of YouTube movies from the
-% embed command that the YouTube page can generate
+% embed command that the YouTube page can generate. Similar for Vimeo.
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+
+ Computational fluid dynamics movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
+
 
 % Test multi-line caption in figure
 
@@ -1892,7 +1974,6 @@ Movie~\ref{mymov} has a similar problem.
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
 \subsection{The $\theta$ parameter (not $\nabla$?)}
-
 \label{decay:sec:theta}
 
 Functions do not always need to be advanced, here is one
@@ -1926,6 +2007,7 @@ Or with align with label and numbers:
 \label{aligneq2}
 \end{align}
 
+
 \subsection{Custom Environments}
 
 Here is an attempt to create a theorem environment via Mako
@@ -1952,8 +2034,8 @@ $\Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-\subsection{Tables}
 
+\subsection{Tables}
 \label{subsec:table}
 
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
@@ -2052,10 +2134,21 @@ and \code{|} right after verbatim word (with no space):
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\code{my\_file\_v1} and \protect\code{my\_file\_v2} }
 
 \paragraph{Files \protect\code{my\_file\_v1.py} and \protect\code{my\_file\_v2.py} define some math $a_{i-1}$.}
-Here
-is
+Here is
 some text.
 
+\subsection{Bibliography test}
+
+Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, \cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in \cite{Langtangen_1994a}.
+The book chapter \cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is \cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+\cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 
 
@@ -2064,7 +2157,6 @@ some text.
 \refstepcounter{exerno}
 
 \subsection{Example 1: Examples can be typeset as exercises}
-
 \label{Example}
 
 Examples can start with a subsection heading starting with \code{Example:}
@@ -2095,8 +2187,8 @@ maybe over multiple doconce input lines.
 \end{exercise}
 % --- end exercise ---
 
-\subsection{URLs}
 
+\subsection{URLs}
 \label{subsubsec:ex}
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}, or
@@ -2104,7 +2196,7 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
 file} is
 fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
@@ -2134,6 +2226,8 @@ More tough tests: repeated URLs whose footnotes when using the
 \href{{http://google.com}}{google}, \href{{http://google.com}}{google}, and
 \href{{http://google.com}}{google}, which should result in exactly three
 footnotes.
+
+
 
 \subsection{Test of Some {\LaTeX} Fixes}
 
@@ -2212,15 +2306,15 @@ Below, we have Problem~\ref{demo:ex:1} and Project~\ref{demo:ex:2},
 as well as Projects~\ref{proj:circle1} and~\ref{exer:you}, and in
 between there we have Exercise~\ref{exer:some:formula}.
 
-
 \section{Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Problem 1: Flip a Coin}
-
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation
 
@@ -2232,6 +2326,9 @@ let the program count the number of heads.
 
 
 % Test syntax error
+
+
+
 
 \paragraph{Remarks.}
 Remarks with such a subsubsection heading would previously mark
@@ -2284,6 +2381,7 @@ Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 \end{exercise}
 % --- end exercise ---
 
+
 \subsection{Not an exercise}
 
 Should be possible to stick a normal section in the middle of many
@@ -2296,7 +2394,6 @@ exercises.
 \refstepcounter{exerno}
 
 \subsection*{Project 1: Compute a Probability}
-
 \label{demo:ex:2}
 
 % Minimalistic exercise
@@ -2325,7 +2422,6 @@ compute the probability as $M/N$.
 \refstepcounter{exerno}
 
 \subsection*{Project 2: Explore Distributions of Random Circles}
-
 \label{proj:circle1}
 
 The formula for a circle is given by
@@ -2408,7 +2504,6 @@ and give some perspectives.
 \refstepcounter{exerno}
 
 \subsection*{Exercise 1: Determine some Distance}
-
 \label{exer:dist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -2551,15 +2646,15 @@ Oslo.
 
 With some text, before we continue with exercises.
 
-
 \section{More Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Exercise 3: Make references to projects and problems}
-
 \label{exer:some:formula}
 
 Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
@@ -2577,7 +2672,6 @@ Filename: \code{verify_formula.py}.
 \refstepcounter{exerno}
 
 \subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for latex}
-
 \label{exer:you}
 
 Refer to the previous exercise as Exercise~\ref{exer:some:formula},
@@ -2587,6 +2681,13 @@ Filename: \code{selc_composed.pdf}.
 
 \end{exercise}
 % --- end exercise ---
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{papers.bib}
+
 
 
 
@@ -2601,7 +2702,6 @@ This is the first appendix.
 
 Some text.
 
-
 \section{Just for testing; part II}
 
 This is more stuff for an appendix.
@@ -2611,13 +2711,11 @@ This is more stuff for an appendix.
 Without label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id1}
 
 With label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id2}
 
 With label.
@@ -2633,7 +2731,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Hint}}
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -2645,8 +2743,18 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
-And here is a warning about something to pay attention to.
+\vskip-0.3in\centerline{{\large\sc Warning}}
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -2658,7 +2766,7 @@ Much testing in this document, otherwise stupid content.}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Notice}}
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -2672,11 +2780,39 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Question}}
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+\subsection{Appendix: Testing inline comments}
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
+go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+
+\subsection{Appendix: Testing headings ending with \protect\code{verbatim inline} }
+
+The point here is to test 1) \code{verbatim} code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in {\LaTeX}.
+
 % ------------------- end of main content ---------------
 
 
@@ -2705,11 +2841,11 @@ final,                   % or draft (marks overfull hboxes)
 \listfiles               % print all files needed to compile this document
 
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 \usepackage{movie15}
+
 
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
@@ -2732,7 +2868,7 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -2751,9 +2887,6 @@ final,                   % or draft (marks overfull hboxes)
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
 
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
-
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 \newcommand{\summarybox}[1]{\begin{center}
@@ -2764,6 +2897,16 @@ final,                   % or draft (marks overfull hboxes)
 \parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
 {\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
 \rule{6pt}{0pt}}\end{center}}
+
+
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+
 
 
 \usepackage{theorem}
@@ -2791,8 +2934,6 @@ final,                   % or draft (marks overfull hboxes)
 \vfill
 \begin{center}
 {\huge{\bfseries{A Document for Testing Doconce}}}
-
-
 
 
 % ----------------- author(s) -------------------------
@@ -2847,6 +2988,7 @@ Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 % --- end of table of exercises
 
 
+\listoftodos[List of inline comments]
 
 \clearpage % after toc
 
@@ -2873,8 +3015,8 @@ is part of the abstract.
 \end{abstract}
 
 
-\section{Section 1}
 
+\section{Section 1}
 \label{sec1}
 
 Here is a nested list:
@@ -3085,7 +3227,6 @@ we use ! in the {\fontsize{10pt}{10pt}\Verb!verb!} typesetting... Also test back
 like {\fontsize{10pt}{10pt}\Verb!\begin!} and {\fontsize{10pt}{10pt}\Verb!\end!} in inline verbatim text.
 
 \subsection{Subsection 2}
-
 \label{subsec:ex}
 \index{figures}
 
@@ -3164,13 +3305,16 @@ repeat,
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\Verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html} }})
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\Verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html}}})
 
 
 % Check out the correct with and height of YouTube movies from the
-% embed command that the YouTube page can generate
+% embed command that the YouTube page can generate. Similar for Vimeo.
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+
+ Computational fluid dynamics movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
+
 
 % Test multi-line caption in figure
 
@@ -3204,7 +3348,6 @@ Movie~\ref{mymov} has a similar problem.
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
 \subsection{The $\theta$ parameter (not $\nabla$?)}
-
 \label{decay:sec:theta}
 
 Functions do not always need to be advanced, here is one
@@ -3240,6 +3383,7 @@ Or with align with label and numbers:
 \label{aligneq2}
 \end{align}
 
+
 \subsection{Custom Environments}
 
 Here is an attempt to create a theorem environment via Mako
@@ -3266,8 +3410,8 @@ $\Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-\subsection{Tables}
 
+\subsection{Tables}
 \label{subsec:table}
 
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
@@ -3368,10 +3512,21 @@ and {\fontsize{10pt}{10pt}\Verb!|!} right after verbatim word (with no space):
 \subsection{A test of verbatim words in heading with subscript $a_i$: {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v1!} and {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v2!} }
 
 \paragraph{Files {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v1.py!} and {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v2.py!} define some math $a_{i-1}$.}
-Here
-is
+Here is
 some text.
 
+\subsection{Bibliography test}
+
+Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, \cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in \cite{Langtangen_1994a}.
+The book chapter \cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is \cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+\cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 
 
@@ -3380,7 +3535,6 @@ some text.
 \refstepcounter{exerno}
 
 \subsection{Example 1: Examples can be typeset as exercises}
-
 \label{Example}
 
 Examples can start with a subsection heading starting with {\fontsize{10pt}{10pt}\Verb!Example:!}
@@ -3411,8 +3565,8 @@ maybe over multiple doconce input lines.
 \end{exercise}
 % --- end exercise ---
 
-\subsection{URLs}
 
+\subsection{URLs}
 \label{subsubsec:ex}
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}, or
@@ -3420,7 +3574,7 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\Verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\Verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
 file} is
 fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
@@ -3450,6 +3604,8 @@ More tough tests: repeated URLs whose footnotes when using the
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
 footnotes.
+
+
 
 \subsection{{\LaTeX} Mathematics}
 
@@ -3518,15 +3674,15 @@ Below, we have Problem~\ref{demo:ex:1} and Project~\ref{demo:ex:2},
 as well as Projects~\ref{proj:circle1} and~\ref{exer:you}, and in
 between there we have Exercise~\ref{exer:some:formula}.
 
-
 \section{Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Problem 1: Flip a Coin}
-
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation
 
@@ -3538,6 +3694,9 @@ let the program count the number of heads.
 
 
 % Test syntax error
+
+
+
 
 \paragraph{Remarks.}
 Remarks with such a subsubsection heading would previously mark
@@ -3591,6 +3750,7 @@ Filenames: {\fontsize{10pt}{10pt}\Verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\Ve
 \end{exercise}
 % --- end exercise ---
 
+
 \subsection{Not an exercise}
 
 Should be possible to stick a normal section in the middle of many
@@ -3603,7 +3763,6 @@ exercises.
 \refstepcounter{exerno}
 
 \subsection*{Project 1: Compute a Probability}
-
 \label{demo:ex:2}
 
 % Minimalistic exercise
@@ -3632,7 +3791,6 @@ compute the probability as $M/N$.
 \refstepcounter{exerno}
 
 \subsection*{Project 2: Explore Distributions of Random Circles}
-
 \label{proj:circle1}
 
 The formula for a circle is given by
@@ -3716,7 +3874,6 @@ and give some perspectives.
 \refstepcounter{exerno}
 
 \subsection*{Exercise 1: Determine some Distance}
-
 \label{exer:dist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -3865,15 +4022,15 @@ Oslo.
 
 With some text, before we continue with exercises.
 
-
 \section{More Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Exercise 3: Make references to projects and problems}
-
 \label{exer:some:formula}
 
 Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
@@ -3891,7 +4048,6 @@ Filename: {\fontsize{10pt}{10pt}\Verb!verify_formula.py!}.
 \refstepcounter{exerno}
 
 \subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
-
 \label{exer:you}
 
 Refer to the previous exercise as Exercise~\ref{exer:some:formula},
@@ -3901,6 +4057,13 @@ Filename: {\fontsize{10pt}{10pt}\Verb!selc_composed.pdf!}.
 
 \end{exercise}
 % --- end exercise ---
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{papers.bib}
+
 
 
 
@@ -3915,7 +4078,6 @@ This is the first appendix.
 
 Some text.
 
-
 \section{Just for testing; part II}
 
 This is more stuff for an appendix.
@@ -3925,13 +4087,11 @@ This is more stuff for an appendix.
 Without label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id1}
 
 With label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id2}
 
 With label.
@@ -3947,7 +4107,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Hint}}
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -3959,8 +4119,18 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
-And here is a warning about something to pay attention to.
+\vskip-0.3in\centerline{{\large\sc Warning}}
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -3972,7 +4142,7 @@ Much testing in this document, otherwise stupid content.}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Notice}}
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -3986,11 +4156,39 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Question}}
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+\subsection{Appendix: Testing inline comments}
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
+go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+
+\subsection{Appendix: Testing headings ending with {\fontsize{10pt}{10pt}\protect\Verb!verbatim inline!} }
+
+The point here is to test 1) {\fontsize{10pt}{10pt}\Verb!verbatim!} code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in {\LaTeX}.
+
 % ------------------- end of main content ---------------
 
 
@@ -4029,10 +4227,10 @@ open=right               % start new chapters on odd-numbered pages
 \listfiles               % print all files needed to compile this document
 
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{anslistings,minted,fancyvrb} % packages needed for verbatim environments
+
 
 
 % Set palatino as the default font family:
@@ -4056,7 +4254,7 @@ open=right               % start new chapters on odd-numbered pages
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -4075,9 +4273,6 @@ open=right               % start new chapters on odd-numbered pages
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
 
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
-
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 \newcommand{\summarybox}[1]{\begin{center}
@@ -4088,6 +4283,16 @@ open=right               % start new chapters on odd-numbered pages
 \parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
 {\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
 \rule{6pt}{0pt}}\end{center}}
+
+
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+
 
 
 \usepackage{theorem}
@@ -4113,8 +4318,6 @@ open=right               % start new chapters on odd-numbered pages
 \begin{center}
 {\LARGE\bf A Document for Testing Doconce}
 \end{center}
-
-
 
 
 % ----------------- author(s) -------------------------
@@ -4182,6 +4385,7 @@ Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 % --- end of table of exercises
 
 
+\listoftodos[List of inline comments]
 
 \clearpage % after toc
 
@@ -4208,8 +4412,8 @@ is part of the abstract.
 \end{abstract}
 
 
-\section{Section 1}
 
+\section{Section 1}
 \label{sec1}
 
 Here is a nested list:
@@ -4390,7 +4594,6 @@ we use ! in the \Verb!verb! typesetting... Also test backslashes
 like \Verb!\begin! and \Verb!\end! in inline verbatim text.
 
 \subsection{Subsection 2}
-
 \label{subsec:ex}
 \index{figures}
 
@@ -4449,13 +4652,16 @@ Test of movies.
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \Verb!../doc/manual/figs/wavepacket_*.png! in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html} }})
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \Verb!../doc/manual/figs/wavepacket_*.png! in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html}}})
 
 
 % Check out the correct with and height of YouTube movies from the
-% embed command that the YouTube page can generate
+% embed command that the YouTube page can generate. Similar for Vimeo.
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+
+ Computational fluid dynamics movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
+
 
 % Test multi-line caption in figure
 
@@ -4489,7 +4695,6 @@ Movie~\ref{mymov} has a similar problem.
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
 \subsection{The $\theta$ parameter (not $\nabla$?)}
-
 \label{decay:sec:theta}
 
 Functions do not always need to be advanced, here is one
@@ -4523,6 +4728,7 @@ Or with align with label and numbers:
 \label{aligneq2}
 \end{align}
 
+
 \subsection{Custom Environments}
 
 Here is an attempt to create a theorem environment via Mako
@@ -4549,8 +4755,8 @@ $\Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-\subsection{Tables}
 
+\subsection{Tables}
 \label{subsec:table}
 
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
@@ -4649,10 +4855,21 @@ and \Verb!|! right after verbatim word (with no space):
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2! }
 
 \paragraph{Files \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
-Here
-is
+Here is
 some text.
 
+\subsection{Bibliography test}
+
+Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, \cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in \cite{Langtangen_1994a}.
+The book chapter \cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is \cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+\cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 
 
@@ -4661,7 +4878,6 @@ some text.
 \refstepcounter{exerno}
 
 \subsection{Example 1: Examples can be typeset as exercises}
-
 \label{Example}
 
 Examples can start with a subsection heading starting with \Verb!Example:!
@@ -4692,8 +4908,8 @@ maybe over multiple doconce input lines.
 \end{exercise}
 % --- end exercise ---
 
-\subsection{URLs}
 
+\subsection{URLs}
 \label{subsubsec:ex}
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}, or
@@ -4701,7 +4917,7 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also \Verb!file:///! works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also \Verb!file:///! works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
 file} is
 fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
@@ -4731,6 +4947,8 @@ More tough tests: repeated URLs whose footnotes when using the
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
 footnotes.
+
+
 
 \subsection{{\LaTeX} Mathematics}
 
@@ -4799,15 +5017,15 @@ Below, we have Problem~\ref{demo:ex:1} and Project~\ref{demo:ex:2},
 as well as Projects~\ref{proj:circle1} and~\ref{exer:you}, and in
 between there we have Exercise~\ref{exer:some:formula}.
 
-
 \section{Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Problem 1: Flip a Coin}
-
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation
 
@@ -4819,6 +5037,9 @@ let the program count the number of heads.
 
 
 % Test syntax error
+
+
+
 
 \paragraph{Remarks.}
 Remarks with such a subsubsection heading would previously mark
@@ -4871,6 +5092,7 @@ Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 \end{exercise}
 % --- end exercise ---
 
+
 \subsection{Not an exercise}
 
 Should be possible to stick a normal section in the middle of many
@@ -4883,7 +5105,6 @@ exercises.
 \refstepcounter{exerno}
 
 \subsection*{Project 1: Compute a Probability}
-
 \label{demo:ex:2}
 
 % Minimalistic exercise
@@ -4912,7 +5133,6 @@ compute the probability as $M/N$.
 \refstepcounter{exerno}
 
 \subsection*{Project 2: Explore Distributions of Random Circles}
-
 \label{proj:circle1}
 
 The formula for a circle is given by
@@ -4995,7 +5215,6 @@ and give some perspectives.
 \refstepcounter{exerno}
 
 \subsection*{Exercise 1: Determine some Distance}
-
 \label{exer:dist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -5138,15 +5357,15 @@ Oslo.
 
 With some text, before we continue with exercises.
 
-
 \section{More Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Exercise 3: Make references to projects and problems}
-
 \label{exer:some:formula}
 
 Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
@@ -5164,7 +5383,6 @@ Filename: \Verb!verify_formula.py!.
 \refstepcounter{exerno}
 
 \subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
-
 \label{exer:you}
 
 Refer to the previous exercise as Exercise~\ref{exer:some:formula},
@@ -5174,6 +5392,13 @@ Filename: \Verb!selc_composed.pdf!.
 
 \end{exercise}
 % --- end exercise ---
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{papers.bib}
+
 
 
 
@@ -5188,7 +5413,6 @@ This is the first appendix.
 
 Some text.
 
-
 \section{Just for testing; part II}
 
 This is more stuff for an appendix.
@@ -5198,13 +5422,11 @@ This is more stuff for an appendix.
 Without label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id1}
 
 With label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id2}
 
 With label.
@@ -5220,7 +5442,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Hint}}
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -5232,8 +5454,18 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
-And here is a warning about something to pay attention to.
+\vskip-0.3in\centerline{{\large\sc Warning}}
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -5245,7 +5477,7 @@ Much testing in this document, otherwise stupid content.}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Notice}}
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -5259,11 +5491,39 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.pdf}
-\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Question}}
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+\subsection{Appendix: Testing inline comments}
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
+go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+
+\subsection{Appendix: Testing headings ending with \protect\Verb!verbatim inline! }
+
+The point here is to test 1) \Verb!verbatim! code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in {\LaTeX}.
+
 % ------------------- end of main content ---------------
 
 
@@ -5554,7 +5814,7 @@ Test of movies.
 
 .. Check out the correct with and height of YouTube movies from the
 
-.. embed command that the YouTube page can generate
+.. embed command that the YouTube page can generate. Similar for Vimeo.
 
 
 .. raw:: html
@@ -5563,6 +5823,16 @@ Test of movies.
         
         <em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
         
+
+
+
+.. raw:: html
+        
+        <iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Computational fluid dynamics movie.</em>
+        
+
 
 
 
@@ -5744,10 +6014,22 @@ and ``|`` right after verbatim word (with no space):
 A test of verbatim words in heading with subscript a_i: ``my_file_v1`` and ``my_file_v2``
 -----------------------------------------------------------------------------------------
 
-*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math a_{i-1}.* Here
-is
+*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math a_{i-1}.* Here is
 some text.
 
+Bibliography test
+-----------------
+
+Here is an example: [Ref1]_ discussed propagation of
+large destructive water waves, [Ref2]_ gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [Ref3]_.
+The book chapter [Ref4]_ contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [Ref5]_ about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[Ref1]_ [Ref4]_.
 
 
 
@@ -6279,6 +6561,43 @@ Filename: ``selc_composed.pdf``.
 
 
 
+References
+==========
+
+
+.. [Ref1]
+   **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
+   *International Journal of Applied Mechanics and Engineering*,
+   7(1),
+   pp. 187-204,
+   2002.
+.. [Ref2]
+   **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
+   *Advances in Water Resources*,
+   25,
+   pp. 1125-1146,
+   2002.
+.. [Ref3]
+   **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
+   *SIAM Journal of Scientific and Statistical Computing*,
+   15,
+   pp. 997-996,
+   1994.
+.. [Ref4]
+   **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
+   Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
+   edited by **H. P. Langtangen and A. Tveito**,
+   Springer,
+   2003.
+.. [Ref5]
+   **H. P. Langtangen**. The FEMDEQS Program System,
+   *Department of Mathematics, University of Oslo*,
+   1989.
+
+
+
+
+
 Appendix: Just for testing; part I
 ==================================
 
@@ -6324,7 +6643,13 @@ Without label.
 
 
 .. warning::
-    And here is a warning about something to pay attention to.
+    And here is a warning about something to pay attention to. We
+    test how the heading behave and add quite some extra texts
+    in comparison with the other admons.
+    
+      * and a list
+    
+      * with items
 
 .. important::
    Much testing in this document, otherwise stupid content.
@@ -6339,6 +6664,36 @@ Without label.
 
 .. attention::
    So, how many admonition environments does Doconce support?
+
+Appendix: Testing inline comments
+---------------------------------
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. (**hpl**: not sure if in the cloud is understood by all.) I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. (**mp**: Simply
+go to `<http://dropbox.com>`_ and watch the video.) It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  (**hpl**: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.)
+
+Appendix: Testing headings ending with ``verbatim inline``
+----------------------------------------------------------
+
+The point here is to test 1) ``verbatim`` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 ************** File: testdoc.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
@@ -6637,7 +6992,7 @@ Test of movies.
 
 .. Check out the correct with and height of YouTube movies from the
 
-.. embed command that the YouTube page can generate
+.. embed command that the YouTube page can generate. Similar for Vimeo.
 
 
 .. raw:: html
@@ -6646,6 +7001,16 @@ Test of movies.
         
         <em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
         
+
+
+
+.. raw:: html
+        
+        <iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Computational fluid dynamics movie.</em>
+        
+
 
 
 
@@ -6865,10 +7230,22 @@ and ``|`` right after verbatim word (with no space):
 A test of verbatim words in heading with subscript :math:`a_i`: ``my_file_v1`` and ``my_file_v2``
 -------------------------------------------------------------------------------------------------
 
-*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math :math:`a_{i-1}`.* Here
-is
+*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math :math:`a_{i-1}`.* Here is
 some text.
 
+Bibliography test
+-----------------
+
+Here is an example: [Ref1]_ discussed propagation of
+large destructive water waves, [Ref2]_ gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [Ref3]_.
+The book chapter [Ref4]_ contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [Ref5]_ about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[Ref1]_ [Ref4]_.
 
 
 
@@ -7501,6 +7878,43 @@ Filename: ``selc_composed.pdf``.
 
 
 
+References
+==========
+
+
+.. [Ref1]
+   **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
+   *International Journal of Applied Mechanics and Engineering*,
+   7(1),
+   pp. 187-204,
+   2002.
+.. [Ref2]
+   **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
+   *Advances in Water Resources*,
+   25,
+   pp. 1125-1146,
+   2002.
+.. [Ref3]
+   **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
+   *SIAM Journal of Scientific and Statistical Computing*,
+   15,
+   pp. 997-996,
+   1994.
+.. [Ref4]
+   **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
+   Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
+   edited by **H. P. Langtangen and A. Tveito**,
+   Springer,
+   2003.
+.. [Ref5]
+   **H. P. Langtangen**. The FEMDEQS Program System,
+   *Department of Mathematics, University of Oslo*,
+   1989.
+
+
+
+
+
 Appendix: Just for testing; part I
 ==================================
 
@@ -7546,7 +7960,13 @@ Without label.
 
 
 .. warning::
-    And here is a warning about something to pay attention to.
+    And here is a warning about something to pay attention to. We
+    test how the heading behave and add quite some extra texts
+    in comparison with the other admons.
+    
+      * and a list
+    
+      * with items
 
 .. important::
    Much testing in this document, otherwise stupid content.
@@ -7563,13 +7983,42 @@ Without label.
 .. attention::
    So, how many admonition environments does Doconce support?
 
+Appendix: Testing inline comments
+---------------------------------
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. (**hpl**: not sure if in the cloud is understood by all.) I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. (**mp**: Simply
+go to `<http://dropbox.com>`_ and watch the video.) It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  (**hpl**: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.)
+
+Appendix: Testing headings ending with ``verbatim inline``
+----------------------------------------------------------
+
+The point here is to test 1) ``verbatim`` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 ************** File: testdoc.gwiki *****************
 
 
 #summary A Document for Testing Doconce
 
 By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*, *I. S. Overworked*, and *J. Doe* (j_doe at cyberspace.com)
-
 ==== Jan 32, 2100 ====
 
 <wiki: toc max_depth="2" />
@@ -7591,9 +8040,8 @@ is part of the abstract.
 <wiki:comment> Cannot demonstrate chapter headings since abstract and chapter </wiki:comment>
 <wiki:comment> is mutually exclusive in LaTeX </wiki:comment>
 
-
-
 == Section 1 ==
+
 
 Here is a nested list:
 
@@ -7810,9 +8258,12 @@ Test of movies.
 
 
 <wiki:comment> Check out the correct with and height of YouTube movies from the </wiki:comment>
-<wiki:comment> embed command that the YouTube page can generate </wiki:comment>
+<wiki:comment> embed command that the YouTube page can generate. Similar for Vimeo. </wiki:comment>
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=_O7iUiftbKU
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. http://www.youtube.com/watch?v=_O7iUiftbKU
+
+ Computational fluid dynamics movie. http://vimeo.com/55562330
+
 
 <wiki:comment> Test multi-line caption in figure </wiki:comment>
 
@@ -7931,6 +8382,7 @@ label{aligneq2}
 \end{align}
 }}}
 
+
 ==== Custom Environments ====
 
 Here is an attempt to create a theorem environment via Mako
@@ -7954,6 +8406,7 @@ Should look nice in most formats!
 
 As we see, the proof of Theorem 5 is a modest
 achievement.
+
 
 ==== Tables ====
 
@@ -8016,12 +8469,25 @@ and `|` right after verbatim word (with no space):
  ||  10                ||  17.74             ||  -4.50             ||  9.96              ||
  ||  0                 ||  -9.19             ||  4.13              ||  -0.26             ||
 
+
+
 ==== A test of verbatim words in heading with subscript `a_i`: `my_file_v1` and `my_file_v2` ====
 
-*Files `my_file_v1.py` and `my_file_v2.py` define some math `a_{i-1}`.* Here
-is
+*Files `my_file_v1.py` and `my_file_v2.py` define some math `a_{i-1}`.* Here is
 some text.
 
+==== Bibliography test ====
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
 
 
 
@@ -8049,6 +8515,7 @@ environments as part of the example.
 maybe over multiple doconce input lines.
 
 <wiki:comment> --- end exercise --- </wiki:comment>
+
 
 ==== URLs ====
 
@@ -8088,6 +8555,8 @@ More tough tests: repeated URLs whose footnotes when using the
 [http://google.com google], which should result in exactly three
 footnotes.
 
+
+
 ==== LaTeX Mathematics ====
 
 Here is an equation without label using backslash-bracket environment:
@@ -8118,9 +8587,9 @@ Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_1:_Compute_a_Probability]
 as well as [#Project_2:_Explore_Distributions_of_Random_Circles] and [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
 between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
-
-
 == Exercises ==
+
+
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
@@ -8136,6 +8605,9 @@ let the program count the number of heads.
 
 
 <wiki:comment> Test syntax error </wiki:comment>
+
+
+
 
 ==== Remarks ====
 
@@ -8180,6 +8652,7 @@ Filenames: `flip_coin.py`, `flip_coin.pdf`.
 <wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
 
 <wiki:comment> --- end exercise --- </wiki:comment>
+
 
 ==== Not an exercise ====
 
@@ -8418,14 +8891,13 @@ lambda x: x+2
 <wiki:comment> --- end exercise --- </wiki:comment>
 
 
-
 == Here goes another section ==
 
 With some text, before we continue with exercises.
 
-
-
 == More Exercises ==
+
+
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
@@ -8452,6 +8924,15 @@ Filename: `selc_composed.pdf`.
 <wiki:comment> --- end exercise --- </wiki:comment>
 
 
+== References ==
+
+
+
+ # H. P. Langtangen and G. Pedersen.     Propagation of Large Destructive Waves,    *International Journal of Applied Mechanics and Engineering*,    7(1),    pp. 187-204,    2002.
+ # H. P. Langtangen, K.-A. Mardal and R. Winther.     Numerical Methods for Incompressible Viscous Flow,    *Advances in Water Resources*,    25,    pp. 1125-1146,    2002.
+ # H. P. Langtangen.     Numerical Solution of First Passage Problems in Random Vibrations,    *SIAM Journal of Scientific and Statistical Computing*,    15,    pp. 997-996,    1994.
+ # K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen.     Software Tools for Multigrid Methods,    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,    edited by H. P. Langtangen and A. Tveito,    Springer,    2003.
+ # H. P. Langtangen.     The FEMDEQS Program System,    *Department of Mathematics, University of Oslo*,    1989.
 
 == Appendix: Just for testing; part I ==
 
@@ -8460,8 +8941,6 @@ This is the first appendix.
 ==== A subsection within an appendix ====
 
 Some text.
-
-
 
 == Appendix: Just for testing; part II ==
 
@@ -8489,7 +8968,13 @@ Without label.
 
 
 
-*Warning.* And here is a warning about something to pay attention to.
+*Warning.* And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+
+  * and a list
+  * with items
 
 *Summary.* Much testing in this document, otherwise stupid content.
 
@@ -8503,6 +8988,29 @@ With math:
 
 *Question.* So, how many admonition environments does Doconce support?
 
+==== Appendix: Testing inline comments ====
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  ===== Appendix: Testing headings ending with `verbatim inline` =====
+
+The point here is to test 1) `verbatim` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 
 ************** File: testdoc.mwiki *****************
 
@@ -8510,7 +9018,6 @@ With math:
 #TITLE (actually governed by the filename): A Document for Testing Doconce
 
 By '''Hans Petter Langtangen''' (hpl at simula.no), '''Kaare Dump''', '''A. Dummy Author''', '''I. S. Overworked''', and '''J. Doe''' (j_doe at cyberspace.com)
-
 ==== Jan 32, 2100 ====
 
 __TOC__
@@ -8532,9 +9039,8 @@ is part of the abstract.
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- is mutually exclusive in LaTeX -->
 
-
-
 == Section 1 ==
+
 
 Here is a nested list:
 
@@ -8732,9 +9238,12 @@ Test of movies.
 
 
 <!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
+<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=_O7iUiftbKU
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. http://www.youtube.com/watch?v=_O7iUiftbKU
+
+ Computational fluid dynamics movie. http://vimeo.com/55562330
+
 
 <!-- Test multi-line caption in figure -->
 
@@ -8757,7 +9266,7 @@ Movie mymov has a similar problem.
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
-[[File:Df plot.png|frame|800px|alt=Df plot.png|This is a wikimedia figure file.]] <!-- user: Hplwp, filename: df_plot.png, timestamp: 2013-01-10T11:37:05Z -->
+    [[File:Df plot.png|frame|800px|alt=Df plot.png|This is a wikimedia figure file.]] <!-- user: Hplwp, filename: df_plot.png, timestamp: 2013-01-10T11:37:05Z -->
 
 
 <!-- Non-uploaded file with no caption -->
@@ -8832,6 +9341,7 @@ Since <math>c=a+b</math>, the result follows from straightforward addition.
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
+
 ==== Tables ====
 
 <!-- index with comma could fool sphinx -->
@@ -8894,10 +9404,21 @@ and <code>|</code> right after verbatim word (with no space):
 ==== A test of verbatim words in heading with subscript <math>a_i</math>: <code>my_file_v1</code> and <code>my_file_v2</code> ====
 
 ''Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math <math>a_{i-1}</math>.''
-Here
-is
+Here is
 some text.
 
+==== Bibliography test ====
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
 
 
 
@@ -8931,6 +9452,7 @@ The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 
 <!-- --- end exercise --- -->
+
 
 ==== URLs ====
 
@@ -8970,6 +9492,8 @@ More tough tests: repeated URLs whose footnotes when using the
 [http://google.com google], which should result in exactly three
 footnotes.
 
+
+
 ==== LaTeX Mathematics ====
 
 Here is an equation without label using backslash-bracket environment:
@@ -8997,9 +9521,9 @@ Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_1:_Compute_a_Probability]
 as well as [#Project_2:_Explore_Distributions_of_Random_Circles] and [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
 between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
-
-
 == Exercises ==
+
+
 
 <!-- --- begin exercise --- -->
 
@@ -9015,6 +9539,9 @@ let the program count the number of heads.
 
 
 <!-- Test syntax error -->
+
+
+
 
 ==== Remarks ====
 
@@ -9065,6 +9592,7 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
 <!-- --- end exercise --- -->
+
 
 ==== Not an exercise ====
 
@@ -9320,14 +9848,13 @@ Oslo.
 <!-- --- end exercise --- -->
 
 
-
 == Here goes another section ==
 
 With some text, before we continue with exercises.
 
-
-
 == More Exercises ==
+
+
 
 <!-- --- begin exercise --- -->
 
@@ -9354,6 +9881,40 @@ Filename: <code>selc_composed.pdf</code>.
 <!-- --- end exercise --- -->
 
 
+== References ==
+
+
+
+<ol>
+ <li> H. P. Langtangen and G. Pedersen. 
+    Propagation of Large Destructive Waves,
+    ''International Journal of Applied Mechanics and Engineering'',
+    7(1),
+    pp. 187-204,
+    2002.
+ <li> H. P. Langtangen, K.-A. Mardal and R. Winther. 
+    Numerical Methods for Incompressible Viscous Flow,
+    ''Advances in Water Resources'',
+    25,
+    pp. 1125-1146,
+    2002.
+ <li> H. P. Langtangen. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    ''SIAM Journal of Scientific and Statistical Computing'',
+    15,
+    pp. 997-996,
+    1994.
+ <li> K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen. 
+    Software Tools for Multigrid Methods,
+    ''Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming'',
+    edited by H. P. Langtangen and A. Tveito,
+    Springer,
+    2003.
+ <li> H. P. Langtangen. 
+    The FEMDEQS Program System,
+    ''Department of Mathematics, University of Oslo'',
+    1989.
+</ol>
 
 == Appendix: Just for testing; part I ==
 
@@ -9362,8 +9923,6 @@ This is the first appendix.
 ==== A subsection within an appendix ====
 
 Some text.
-
-
 
 == Appendix: Just for testing; part II ==
 
@@ -9391,10 +9950,17 @@ Without label.
 Here is a hint.
 
 
-{{warning|And here is a warning about something to pay attention to.}}
+{{warning|And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
 
-''Summary.''
-Much testing in this document, otherwise stupid content.
+
+<ul>
+  <li> and a list
+  <li> with items
+</ul>}}
+
+''Summary.'' Much testing in this document, otherwise stupid content.
 
 ''Notice.''
 Ah, we are close to the end.
@@ -9408,6 +9974,35 @@ With math:
 ''Question.''
 So, how many admonition environments does Doconce support?
 
+==== Appendix: Testing inline comments ====
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to http://dropbox.com and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+==== Appendix: Testing headings ending with <code>verbatim inline</code> ====
+
+The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 
 ************** File: testdoc.cwiki *****************
 
@@ -9415,7 +10010,6 @@ So, how many admonition environments does Doconce support?
 #summary A Document for Testing Doconce
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen** (hpl at simula.no), **Kaare Dump**, **A. Dummy Author**, **I. S. Overworked**, and **J. Doe** (j_doe at cyberspace.com)
-
 === Jan 32, 2100 ===
 
 <<TableOfContents>>
@@ -9437,9 +10031,8 @@ is part of the abstract.
 <wiki:comment> Cannot demonstrate chapter headings since abstract and chapter </wiki:comment>
 <wiki:comment> is mutually exclusive in LaTeX </wiki:comment>
 
-
-
 = Section 1 =
+
 
 Here is a nested list:
 
@@ -9464,7 +10057,6 @@ Here is a nested list:
     a block quote.
 
 <wiki:comment> !split and check if these extra words are included properly in the comment </wiki:comment>
-
 
 == Subsection 1 ==
 
@@ -9603,8 +10195,8 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the {{{verb}}} typesetting... Also test backslashes
 like {{{\begin}}} and {{{\end}}} in inline verbatim text.
 
-
 == Subsection 2 ==
+
 
 Test of figures. In particular we refer to Figure fig:impact in which
 there is a flow.
@@ -9630,9 +10222,12 @@ Test of movies.
 
 
 <wiki:comment> Check out the correct with and height of YouTube movies from the </wiki:comment>
-<wiki:comment> embed command that the YouTube page can generate </wiki:comment>
+<wiki:comment> embed command that the YouTube page can generate. Similar for Vimeo. </wiki:comment>
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: [[http://www.youtube.com/watch?v=_O7iUiftbKU]]
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. [[http://www.youtube.com/watch?v=_O7iUiftbKU]]
+
+ Computational fluid dynamics movie. [[http://vimeo.com/55562330]]
+
 
 <wiki:comment> Test multi-line caption in figure </wiki:comment>
 
@@ -9653,8 +10248,8 @@ Movie mymov has a similar problem.
 
 <wiki:comment> Somewhat challenging heading with latex math, \t, \n, ? and parenthesis </wiki:comment>
 
-
 == The {{{\theta}}} parameter (not {{{\nabla}}}?) ==
+
 
 Functions do not always need to be advanced, here is one
 involving {{{\theta}}}:
@@ -9718,6 +10313,8 @@ achievement.
 
 == Tables ==
 
+
+
 <wiki:comment> index with comma could fool sphinx </wiki:comment>
 
 Let us take this table from the manual:
@@ -9778,19 +10375,31 @@ and {{{|}}} right after verbatim word (with no space):
  |  0                         |  -9.19                     |  4.13                      |  -0.26                     |
 
 
+
 == A test of verbatim words in heading with subscript {{{a_i}}}: {{{my_file_v1}}} and {{{my_file_v2}}} ==
 
-//Files {{{my_file_v1.py}}} and {{{my_file_v2.py}}} define some math {{{a_{i-1}}}}.// Here
-is
+//Files {{{my_file_v1.py}}} and {{{my_file_v2.py}}} define some math {{{a_{i-1}}}}.// Here is
 some text.
 
+== Bibliography test ==
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
 
 
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Example 1: Examples can be typeset as exercises ==
+
 
 Examples can start with a subsection heading starting with {{{Example:}}}
 and then, with the command-line option {{{--examples-as-exercises}}} be
@@ -9815,6 +10424,7 @@ maybe over multiple doconce input lines.
 
 
 == URLs ==
+
 
 Testing of URLs: hpl's home page [[http://folk.uio.no/hpl|hpl]], or
 the entire URL if desired, [[http://folk.uio.no/hpl]].  Here is a
@@ -9853,6 +10463,7 @@ More tough tests: repeated URLs whose footnotes when using the
 footnotes.
 
 
+
 == LaTeX Mathematics ==
 
 Here is an equation without label using backslash-bracket environment:
@@ -9883,12 +10494,11 @@ Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_1:_Compute_a_Probability]
 as well as [#Project_2:_Explore_Distributions_of_Random_Circles] and [#Project_3:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
 between there we have [#Exercise_3:_Make_references_to_projects_and_problems].
 
-
-
 = Exercises =
 
-<wiki:comment> --- begin exercise --- </wiki:comment>
 
+
+<wiki:comment> --- begin exercise --- </wiki:comment>
 
 == Problem 1: Flip a Coin ==
 
@@ -9902,6 +10512,9 @@ let the program count the number of heads.
 
 
 <wiki:comment> Test syntax error </wiki:comment>
+
+
+
 
 === Remarks ===
 
@@ -9957,8 +10570,8 @@ exercises.
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Project 1: Compute a Probability ==
+
 
 <wiki:comment> Minimalistic exercise </wiki:comment>
 
@@ -9981,8 +10594,8 @@ compute the probability as {{{M/N}}}.
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Project 2: Explore Distributions of Random Circles ==
+
 
 The formula for a circle is given by
 
@@ -10057,8 +10670,8 @@ and give some perspectives.
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Exercise 1: Determine some Distance ==
+
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -10151,7 +10764,6 @@ remarks will appear at the end of the typeset exercise.
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Some exercise without the "Exercise:" prefix ==
 
 <wiki:comment> Another minimalistic exercise </wiki:comment>
@@ -10176,7 +10788,6 @@ lambda x: x+2
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Example 2: Just an example ==
 
 <wiki:comment> This example needs the --examples-as-exercises option, otherwise </wiki:comment>
@@ -10190,19 +10801,18 @@ lambda x: x+2
 <wiki:comment> --- end exercise --- </wiki:comment>
 
 
-
 = Here goes another section =
 
 With some text, before we continue with exercises.
 
-
-
 = More Exercises =
+
+
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Exercise 3: Make references to projects and problems ==
+
 
 Pick a statement from [#Project_2:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -10215,8 +10825,8 @@ Filename: {{{verify_formula.py}}}.
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
 
-
 == Project 3: References to [#Project_1:_Compute_a_Probability] in a heading works for cwiki ==
+
 
 Refer to the previous exercise as [#Exercise_3:_Make_references_to_projects_and_problems],
 the two before that as [#Project_1:_Compute_a_Probability] and [#Project_2:_Explore_Distributions_of_Random_Circles],
@@ -10226,37 +10836,41 @@ Filename: {{{selc_composed.pdf}}}.
 <wiki:comment> --- end exercise --- </wiki:comment>
 
 
+= References =
+
+
+
+ # H. P. Langtangen and G. Pedersen.     Propagation of Large Destructive Waves,    //International Journal of Applied Mechanics and Engineering//,    7(1),    pp. 187-204,    2002.
+ # H. P. Langtangen, K.-A. Mardal and R. Winther.     Numerical Methods for Incompressible Viscous Flow,    //Advances in Water Resources//,    25,    pp. 1125-1146,    2002.
+ # H. P. Langtangen.     Numerical Solution of First Passage Problems in Random Vibrations,    //SIAM Journal of Scientific and Statistical Computing//,    15,    pp. 997-996,    1994.
+ # K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen.     Software Tools for Multigrid Methods,    //Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming//,    edited by H. P. Langtangen and A. Tveito,    Springer,    2003.
+ # H. P. Langtangen.     The FEMDEQS Program System,    //Department of Mathematics, University of Oslo//,    1989.
 
 = Appendix: Just for testing; part I =
 
 This is the first appendix.
 
-
 == A subsection within an appendix ==
 
 Some text.
-
-
 
 = Appendix: Just for testing; part II =
 
 This is more stuff for an appendix.
 
-
 == Appendix: Testing identical titles ==
 
 Without label.
 
-
 == Appendix: Testing identical titles ==
+
 
 With label.
 
-
 == Appendix: Testing identical titles ==
 
-With label.
 
+With label.
 
 == Appendix: Testing identical titles ==
 
@@ -10268,7 +10882,13 @@ Without label.
 
 
 
-//Warning.// And here is a warning about something to pay attention to.
+//Warning.// And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+
+  * and a list
+  * with items
 
 //Summary.// Much testing in this document, otherwise stupid content.
 
@@ -10281,6 +10901,35 @@ With math:
 
 
 //Question.// So, how many admonition environments does Doconce support?
+
+== Appendix: Testing inline comments ==
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to [[http://dropbox.com]] and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+== Appendix: Testing headings ending with {{{verbatim inline}}} ==
+
+The point here is to test 1) {{{verbatim}}} code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 
 ************** File: testdoc.st *****************
@@ -10299,6 +10948,8 @@ numerous constructions, also special and less common cases.
 
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
+
 
 Section 1
 
@@ -10466,6 +11117,7 @@ like '\begin' and '\end' in inline verbatim text.
 
 Subsection 2
 
+
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
 there is a flow.
 
@@ -10488,7 +11140,10 @@ Test of movies.
 
 
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: "http://www.youtube.com/watch?v=_O7iUiftbKU":http://www.youtube.com/watch?v=_O7iUiftbKU
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. "http://www.youtube.com/watch?v=_O7iUiftbKU":http://www.youtube.com/watch?v=_O7iUiftbKU
+
+ Computational fluid dynamics movie. "http://vimeo.com/55562330":http://vimeo.com/55562330
+
 
 
 Here is figure ref{myfig} with a long multi-line caption
@@ -10501,6 +11156,8 @@ Movie ref{mymov} has a similar problem.
 
 
 FIGURE: [https://doconce.googlecode.com/hg/doc/blog/f_plot.png, width=500, frac=0.8]
+
+
 
 The \theta parameter (not \nabla?)
 
@@ -10537,6 +11194,7 @@ Or with align with label and numbers::
         \end{align}
 
 
+
 Custom Environments
 
 Here is an attempt to create a theorem environment via Mako
@@ -10555,7 +11213,10 @@ END
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
+
 Tables
+
+
 
 Let us take this table from the manual:
 
@@ -10620,11 +11281,27 @@ and '|' right after verbatim word (with no space):
           0        -9.19         4.13        -0.26  
 ===========  ===========  ===========  ===========  
 
+
 A test of verbatim words in heading with subscript a_i: 'my_file_v1' and 'my_file_v2'
 
-*Files 'my_file_v1.py' and 'my_file_v2.py' define some math a_{i-1}.* Here
-is
+*Files 'my_file_v1.py' and 'my_file_v2.py' define some math a_{i-1}.* Here is
 some text.
+
+Bibliography test
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
+
+
+
 
 Example 1: Examples can be typeset as exercises
 
@@ -10646,6 +11323,8 @@ environments as part of the example.
 
 *Solution.* The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
+
 
 URLs
 
@@ -10680,6 +11359,8 @@ More tough tests: repeated URLs whose footnotes when using the
 "http://google.com":google, which should result in exactly three
 footnotes.
 
+
+
 LaTeX Mathematics
 
 Here is an equation without label using backslash-bracket environment::
@@ -10712,11 +11393,21 @@ between there we have  "Exercise 3: Make references to projects and problems".
 
 Exercises
 
+
+
+
 Problem 1: Flip a Coin
+
+
 
 Make a program that simulates flipping a coin N times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+
+
+
+
+
 
 Remarks
 
@@ -10751,12 +11442,19 @@ head, otherwise tail. Repeat this N number of times.
 
 Filenames: 'flip_coin.py', 'flip_coin.pdf'.
 
+
+
 Not an exercise
 
 Should be possible to stick a normal section in the middle of many
 exercises.
 
+
+
+
 Project 1: Compute a Probability
+
+
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
@@ -10766,6 +11464,11 @@ drawing uniformly distributed random numbers from the interval [0,1)?
 draw N such random numbers using Python's standard 'random' module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
 compute the probability as M/N.
+
+
+
+
+
 
 Project 2: Explore Distributions of Random Circles
 
@@ -10818,10 +11521,17 @@ Filename: 'norm.py'.
 
 Filename: 'circles.pdf'.
 
+
 Remarks
 
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
+
+
+
+
+
+
 
 Exercise 1: Determine some Distance
 
@@ -10886,13 +11596,21 @@ Filename: 'subexer_b.pdf'.
 
 *Solution.* Here goes the solution of this subexercise.
 
+
 Remarks
 
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
+
+
+
+
+
+
 Some exercise without the "Exercise:" prefix
+
 
 Just some text. And some math saying that e^0=1 on a single line,
 to test that math block insertion is correct::
@@ -10906,11 +11624,20 @@ And a test that the code 'lambda x: x+2' is correctly placed here::
         lambda x: x+2
 
 
+
+
+
+
+
 Example 2: Just an example
+
+
 
 *a)* What is the capital of Norway?
 
 *Answer.* Oslo.
+
+
 
 Here goes another section
 
@@ -10918,11 +11645,19 @@ With some text, before we continue with exercises.
 
 More Exercises
 
+
+
+
 Exercise 3: Make references to projects and problems
 
 Pick a statement from  "Project 2: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
 and verify it.
 Filename: 'verify_formula.py'.
+
+
+
+
+
 
 Project 3: References to  "Project 1: Compute a Probability" in a heading works for st
 
@@ -10930,6 +11665,40 @@ Refer to the previous exercise as  "Exercise 3: Make references to projects and 
 the two before that as  "Project 1: Compute a Probability" and "Project 2: Explore Distributions of Random Circles",
 and this one as  "Project 3: References to Project ref{demo:ex:2} in a heading works for st".
 Filename: 'selc_composed.pdf'.
+
+
+
+References
+
+
+ 1. H. P. Langtangen and G. Pedersen. 
+    Propagation of Large Destructive Waves,
+    *International Journal of Applied Mechanics and Engineering*,
+    7(1),
+    pp. 187-204,
+    2002.
+ 2. H. P. Langtangen, K.-A. Mardal and R. Winther. 
+    Numerical Methods for Incompressible Viscous Flow,
+    *Advances in Water Resources*,
+    25,
+    pp. 1125-1146,
+    2002.
+ 3. H. P. Langtangen. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    *SIAM Journal of Scientific and Statistical Computing*,
+    15,
+    pp. 997-996,
+    1994.
+ 4. K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen. 
+    Software Tools for Multigrid Methods,
+    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,
+    edited by H. P. Langtangen and A. Tveito,
+    Springer,
+    2003.
+ 5. H. P. Langtangen. 
+    The FEMDEQS Program System,
+    *Department of Mathematics, University of Oslo*,
+    1989.
 
 Appendix: Just for testing; part I
 
@@ -10965,8 +11734,12 @@ Without label.
 
 
 
-*Warning.* And here is a warning about something to pay attention to.
+*Warning.* And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
 
+  - and a list
+  - with items
 *Summary.* Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
@@ -10978,6 +11751,36 @@ With math::
 
 
 *Question.* So, how many admonition environments does Doconce support?
+
+
+Appendix: Testing inline comments
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to "http://dropbox.com":http://dropbox.com and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+Appendix: Testing headings ending with 'verbatim inline'
+
+The point here is to test 1) 'verbatim' code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 ************** File: testdoc.epytext *****************
 
@@ -11191,7 +11994,10 @@ Test of movies.
 
 
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: U{http://www.youtube.com/watch?v=_O7iUiftbKU<http://www.youtube.com/watch?v=_O7iUiftbKU>}
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. U{http://www.youtube.com/watch?v=_O7iUiftbKU<http://www.youtube.com/watch?v=_O7iUiftbKU>}
+
+ Computational fluid dynamics movie. U{http://vimeo.com/55562330<http://vimeo.com/55562330>}
+
 
 
 Here is figure ref{myfig} with a long multi-line caption
@@ -11336,10 +12142,22 @@ and C{|} right after verbatim word (with no space):
 A test of verbatim words in heading with subscript M{a_i}: C{my_file_v1} and C{my_file_v2}
 ------------------------------------------------------------------------------------------
 
-I{Files C{my_file_v1.py} and C{my_file_v2.py} define some math M{a_{i-1}}.} Here
-is
+I{Files C{my_file_v1.py} and C{my_file_v2.py} define some math M{a_{i-1}}.} Here is
 some text.
 
+Bibliography test
+-----------------
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
 
 
 
@@ -11728,6 +12546,39 @@ Filename: C{selc_composed.pdf}.
 
 
 
+References
+==========
+
+
+ 1. H. P. Langtangen and G. Pedersen. 
+    Propagation of Large Destructive Waves,
+    I{International Journal of Applied Mechanics and Engineering},
+    7(1),
+    pp. 187-204,
+    2002.
+ 2. H. P. Langtangen, K.-A. Mardal and R. Winther. 
+    Numerical Methods for Incompressible Viscous Flow,
+    I{Advances in Water Resources},
+    25,
+    pp. 1125-1146,
+    2002.
+ 3. H. P. Langtangen. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    I{SIAM Journal of Scientific and Statistical Computing},
+    15,
+    pp. 997-996,
+    1994.
+ 4. K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen. 
+    Software Tools for Multigrid Methods,
+    I{Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming},
+    edited by H. P. Langtangen and A. Tveito,
+    Springer,
+    2003.
+ 5. H. P. Langtangen. 
+    The FEMDEQS Program System,
+    I{Department of Mathematics, University of Oslo},
+    1989.
+
 Appendix: Just for testing; part I
 ==================================
 
@@ -11769,7 +12620,12 @@ I{Hint.} Here is a hint.
 
 
 
-I{Warning.} And here is a warning about something to pay attention to.
+I{Warning.} And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+  - and a list
+  - with items
 
 I{Summary.} Much testing in this document, otherwise stupid content.
 
@@ -11782,6 +12638,38 @@ With math::
 
 
 I{Question.} So, how many admonition environments does Doconce support?
+
+
+Appendix: Testing inline comments
+---------------------------------
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to U{http://dropbox.com<http://dropbox.com>} and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+Appendix: Testing headings ending with C{verbatim inline}
+---------------------------------------------------------
+
+The point here is to test 1) C{verbatim} code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 ************** File: testdoc.txt *****************
 
@@ -11814,6 +12702,7 @@ Table of contents:
    Custom Environments 
    Tables 
    A test of verbatim words in heading with subscript a_i: my_file_v1 and my_file_v2 
+   Bibliography test 
    Example 1: Examples can be typeset as exercises 
    URLs 
    LaTeX Mathematics 
@@ -11832,6 +12721,7 @@ Table of contents:
  More Exercises 
    Exercise 3: Make references to projects and problems 
    Project 3: References to  "Project 1: Compute a Probability" in a heading works for plain 
+ References 
  Appendix: Just for testing; part I 
    A subsection within an appendix 
  Appendix: Just for testing; part II 
@@ -11839,6 +12729,8 @@ Table of contents:
    Appendix: Testing identical titles 
    Appendix: Testing identical titles 
    Appendix: Testing identical titles 
+   Appendix: Testing inline comments 
+   Appendix: Testing headings ending with verbatim inline 
 
 
 
@@ -12056,7 +12948,10 @@ Test of movies.
 
 
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=_O7iUiftbKU
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. http://www.youtube.com/watch?v=_O7iUiftbKU
+
+ Computational fluid dynamics movie. http://vimeo.com/55562330
+
 
 
 Here is figure ref{myfig} with a long multi-line caption
@@ -12201,10 +13096,22 @@ and | right after verbatim word (with no space):
 A test of verbatim words in heading with subscript a_i: my_file_v1 and my_file_v2
 ---------------------------------------------------------------------------------
 
-*Files my_file_v1.py and my_file_v2.py define some math a_{i-1}.* Here
-is
+*Files my_file_v1.py and my_file_v2.py define some math a_{i-1}.* Here is
 some text.
 
+Bibliography test
+-----------------
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
 
 
 
@@ -12593,6 +13500,43 @@ Filename: selc_composed.pdf.
 
 
 
+References
+==========
+
+
+ 1. H. P. Langtangen and G. Pedersen. 
+    Propagation of Large Destructive Waves,
+    *International Journal of Applied Mechanics and Engineering*,
+    7(1),
+    pp. 187-204,
+    2002.
+
+ 2. H. P. Langtangen, K.-A. Mardal and R. Winther. 
+    Numerical Methods for Incompressible Viscous Flow,
+    *Advances in Water Resources*,
+    25,
+    pp. 1125-1146,
+    2002.
+
+ 3. H. P. Langtangen. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    *SIAM Journal of Scientific and Statistical Computing*,
+    15,
+    pp. 997-996,
+    1994.
+
+ 4. K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen. 
+    Software Tools for Multigrid Methods,
+    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,
+    edited by H. P. Langtangen and A. Tveito,
+    Springer,
+    2003.
+
+ 5. H. P. Langtangen. 
+    The FEMDEQS Program System,
+    *Department of Mathematics, University of Oslo*,
+    1989.
+
 Appendix: Just for testing; part I
 ==================================
 
@@ -12634,7 +13578,13 @@ Without label.
 
 
 
-*Warning.* And here is a warning about something to pay attention to.
+*Warning.* And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+  * and a list
+
+  * with items
 
 *Summary.* Much testing in this document, otherwise stupid content.
 
@@ -12647,6 +13597,37 @@ With math::
 
 
 *Question.* So, how many admonition environments does Doconce support?
+
+Appendix: Testing inline comments
+---------------------------------
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to http://dropbox.com and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+Appendix: Testing headings ending with verbatim inline
+------------------------------------------------------
+
+The point here is to test 1) verbatim code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 ************** File: testdoc.md *****************
 % A Document for Testing Doconce
@@ -12673,8 +13654,7 @@ is part of the abstract.
 
 
 
-Section 1
-=========
+## Section 1
 
 Here is a nested list:
 
@@ -12705,8 +13685,7 @@ Here is a nested list:
 
 <!-- !split and check if these extra words are included properly in the comment -->
 
-Subsection 1
-------------
+### Subsection 1
 
 More text, with a reference back to the section [Section 1](#n-1) and further
 to the section [URLs](#s). 
@@ -12857,8 +13836,7 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the `verb` typesetting... Also test backslashes
 like `\begin` and `\end` in inline verbatim text.
 
-Subsection 2
-------------
+### Subsection 2
 
 
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
@@ -12895,12 +13873,20 @@ Test of movies.
 <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>
 
 <!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
+<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->
 
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
 
 <em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+
+
+
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Computational fluid dynamics movie.</em>
+
 
 
 
@@ -12923,8 +13909,7 @@ Movie ref{mymov} has a similar problem.
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
-The $\theta$ parameter (not $\nabla$?)
---------------------------------------
+### The $\theta$ parameter (not $\nabla$?)
 
 Functions do not always need to be advanced, here is one
 involving $\theta$:
@@ -12972,8 +13957,7 @@ $$
 $$
 
 
-Custom Environments
--------------------
+### Custom Environments
 
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
@@ -12996,8 +13980,7 @@ As we see, the proof of Theorem 5 is a modest
 achievement.
 
 
-Tables
-------
+### Tables
 
 
 <!-- index with comma could fool sphinx -->
@@ -13066,20 +14049,29 @@ and `|` right after verbatim word (with no space):
 
 
 
-A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2`
----------------------------------------------------------------------------------------
+### A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2`
 
-*Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here
-is
+*Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here is
 some text.
 
+### Bibliography test
+
+Here is an example: @Langtangen_Pedersen_2002 discussed propagation of
+large destructive water waves, @Langtangen_et_al_2002 gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in @Langtangen_1994a.
+The book chapter @Mardal_et_al_2003a contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is @Langtangen_1988d about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+@Langtangen_Pedersen_2002;@Mardal_et_al_2003a.
 
 
 
 <!-- --- begin exercise --- -->
 
-Example 1: Examples can be typeset as exercises
------------------------------------------------
+### Example 1: Examples can be typeset as exercises
 
 Examples can start with a subsection heading starting with `Example:`
 and then, with the command-line option `--examples-as-exercises` be
@@ -13103,8 +14095,7 @@ maybe over multiple doconce input lines.
 <!-- --- end exercise --- -->
 
 
-URLs
-----
+### URLs
 
 Testing of URLs: hpl's home page [hpl](http://folk.uio.no/hpl), or
 the entire URL if desired, <http://folk.uio.no/hpl>.  Here is a
@@ -13144,8 +14135,7 @@ footnotes.
 
 
 
-LaTeX Mathematics
------------------
+### LaTeX Mathematics
 
 Here is an equation without label using backslash-bracket environment:
 $$
@@ -13235,15 +14225,13 @@ Below, we have  [Problem 1: Flip a Coin](#n) and  [Project 1: Compute a Probabil
 as well as  [Project 2: Explore Distributions of Random Circles](#s) and [Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
 between there we have  [Exercise 3: Make references to projects and problems](#s).
 
-Exercises
-=========
+## Exercises
 
 
 
 <!-- --- begin exercise --- -->
 
-Problem 1: Flip a Coin
-----------------------
+### Problem 1: Flip a Coin
 
 <!-- keywords = random numbers; Monte Carlo simulation -->
 
@@ -13259,8 +14247,7 @@ let the program count the number of heads.
 
 
 
-Remarks
-~~~~~~~
+#### Remarks
 
 Remarks with such a subsubsection heading would previously mark
 the beginning of a new exercise and cause trouble. Maybe a list
@@ -13307,8 +14294,7 @@ Filenames: `flip_coin.py`, `flip_coin.pdf`.
 <!-- --- end exercise --- -->
 
 
-Not an exercise
----------------
+### Not an exercise
 
 Should be possible to stick a normal section in the middle of many
 exercises.
@@ -13317,8 +14303,7 @@ exercises.
 
 <!-- --- begin exercise --- -->
 
-Project 1: Compute a Probability
---------------------------------
+### Project 1: Compute a Probability
 
 <!-- Minimalistic exercise -->
 
@@ -13341,8 +14326,7 @@ compute the probability as $M/N$.
 
 <!-- --- begin exercise --- -->
 
-Project 2: Explore Distributions of Random Circles
---------------------------------------------------
+### Project 2: Explore Distributions of Random Circles
 
 The formula for a circle is given by
 
@@ -13410,8 +14394,7 @@ Filename: `circles.pdf`.
 
 <!-- Closing remarks for this Project -->
 
-Remarks
-~~~~~~~
+#### Remarks
 
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -13424,8 +14407,7 @@ and give some perspectives.
 
 <!-- --- begin exercise --- -->
 
-Exercise 1: Determine some Distance
------------------------------------
+### Exercise 1: Determine some Distance
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -13508,8 +14490,7 @@ Filename: `subexer_b.pdf`.
 
 <!-- Closing remarks for this Exercise -->
 
-Remarks
-~~~~~~~
+#### Remarks
 
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -13523,8 +14504,7 @@ remarks will appear at the end of the typeset exercise.
 
 <!-- --- begin exercise --- -->
 
-Some exercise without the "Exercise:" prefix
---------------------------------------------
+### Some exercise without the "Exercise:" prefix
 
 <!-- Another minimalistic exercise -->
 
@@ -13549,8 +14529,7 @@ lambda x: x+2
 
 <!-- --- begin exercise --- -->
 
-Example 2: Just an example
---------------------------
+### Example 2: Just an example
 
 <!-- This example needs the --examples-as-exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
@@ -13563,20 +14542,17 @@ Example 2: Just an example
 <!-- --- end exercise --- -->
 
 
-Here goes another section
-=========================
+## Here goes another section
 
 With some text, before we continue with exercises.
 
-More Exercises
-==============
+## More Exercises
 
 
 
 <!-- --- begin exercise --- -->
 
-Exercise 3: Make references to projects and problems
-----------------------------------------------------
+### Exercise 3: Make references to projects and problems
 
 Pick a statement from  [Project 2: Explore Distributions of Random Circles](#s) or  [Problem 1: Flip a Coin](#n)
 and verify it.
@@ -13589,8 +14565,7 @@ Filename: `verify_formula.py`.
 
 <!-- --- begin exercise --- -->
 
-Project 3: References to  [Project 1: Compute a Probability](#y) in a heading works for pandoc
-----------------------------------------------------------------------------------------------
+### Project 3: References to  [Project 1: Compute a Probability](#y) in a heading works for pandoc
 
 Refer to the previous exercise as  [Exercise 3: Make references to projects and problems](#s),
 the two before that as  [Project 1: Compute a Probability](#y) and [Project 2: Explore Distributions of Random Circles](#s),
@@ -13600,38 +14575,67 @@ Filename: `selc_composed.pdf`.
 <!-- --- end exercise --- -->
 
 
-Appendix: Just for testing; part I
-==================================
+## References
+
+
+ 1. \label{Langtangen_Pedersen_2002} _H. P. Langtangen and G. Pedersen_. 
+    Propagation of Large Destructive Waves,
+    *International Journal of Applied Mechanics and Engineering*,
+    7(1),
+    pp. 187-204,
+    2002.
+
+ 2. \label{Langtangen_et_al_2002} _H. P. Langtangen, K.-A. Mardal and R. Winther_. 
+    Numerical Methods for Incompressible Viscous Flow,
+    *Advances in Water Resources*,
+    25,
+    pp. 1125-1146,
+    2002.
+
+ 3. \label{Langtangen_1994a} _H. P. Langtangen_. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    *SIAM Journal of Scientific and Statistical Computing*,
+    15,
+    pp. 997-996,
+    1994.
+
+ 4. \label{Mardal_et_al_2003a} _K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen_. 
+    Software Tools for Multigrid Methods,
+    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,
+    edited by _H. P. Langtangen and A. Tveito_,
+    Springer,
+    2003.
+
+ 5. \label{Langtangen_1988d} _H. P. Langtangen_. 
+    The FEMDEQS Program System,
+    *Department of Mathematics, University of Oslo*,
+    1989.
+
+## Appendix: Just for testing; part I
 
 This is the first appendix.
 
-A subsection within an appendix
--------------------------------
+### A subsection within an appendix
 
 Some text.
 
-Appendix: Just for testing; part II
-===================================
+## Appendix: Just for testing; part II
 
 This is more stuff for an appendix.
 
-Appendix: Testing identical titles
-----------------------------------
+### Appendix: Testing identical titles
 
 Without label.
 
-Appendix: Testing identical titles
-----------------------------------
+### Appendix: Testing identical titles
 
 With label.
 
-Appendix: Testing identical titles
-----------------------------------
+### Appendix: Testing identical titles
 
 With label.
 
-Appendix: Testing identical titles
-----------------------------------
+### Appendix: Testing identical titles
 
 Without label.
 
@@ -13641,8 +14645,13 @@ Without label.
 
 
 
-*Warning.* And here is a warning about something to pay attention to.
+*Warning.* And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
 
+  * and a list
+
+  * with items
 *Summary.* Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
@@ -13654,6 +14663,37 @@ $$
 
 
 *Question.* So, how many admonition environments does Doconce support?
+
+
+
+### Appendix: Testing inline comments
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. [hpl:
+not sure if in the cloud is understood by all.] I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. [mp: Simply
+go to <http://dropbox.com> and watch the video.] It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  [hpl: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.]
+
+### Appendix: Testing headings ending with `verbatim inline`
+
+The point here is to test 1) `verbatim` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 
 ************** File: testdoc.ipynb *****************
@@ -13729,9 +14769,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "      subroutine test()\n",
       "      integer i\n",
       "      real*8 r\n",
@@ -13745,7 +14785,11 @@ $$
       "      program testme\n",
       "      call test()\n",
       "      return\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13755,9 +14799,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "\n",
       "      subroutine test()\n",
       "      integer i\n",
@@ -13767,7 +14811,11 @@ $$
       "         r = r + i\n",
       "      end do\n",
       "      return\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13777,9 +14825,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "C     a comment\n",
       "\n",
       "      subroutine test()\n",
@@ -13795,7 +14843,11 @@ $$
       "      program testme\n",
       "      call test()\n",
       "      return\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13805,14 +14857,18 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "!bc pycod\n",
       "def f(x):\n",
       "    return x+1\n",
       "!ec\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13822,12 +14878,16 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "def f(x):\n",
       "    return x+1\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13837,9 +14897,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "def f(x):\n",
       "    return x + 1\n",
       "\n",
@@ -13848,7 +14908,11 @@ $$
       "a = 1\n",
       "v = f(x)\n",
       "print v\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13858,12 +14922,16 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "cpdef f(double x):\n",
       "    return x + 1\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13874,9 +14942,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "#include <iostream>\n",
       "\n",
       "int main()\n",
@@ -13884,7 +14952,11 @@ $$
       "   std::cout << \"Sample output\" << std::endl;\n",
       "   return 0\n",
       "}\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13895,9 +14967,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "!bc cod\n",
       "      subroutine midpt(x, length, a, b)\n",
       "      real*8 a, b, x\n",
@@ -13906,7 +14978,11 @@ $$
       "      return\n",
       "      end\n",
       "!ec\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13916,16 +14992,20 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "      subroutine midpt(x, length, a, b)\n",
       "      real*8 a, b, x\n",
       "      x = (a + b)/2\n",
       "      length = b - a\n",
       "      return\n",
       "      end\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13935,15 +15015,19 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "Terminal> mkdir test\n",
       "Terminal> cd test\n",
       "Terminal> myprog -f\n",
       "output1\n",
       "output2\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -13961,11 +15045,11 @@ $$
       "Test of figures. In particular we refer to Figure ref{fig:impact} in which\n",
       "there is a flow.\n",
       "\n",
-      "![Visualization of flow by streamtubes. ](../doc/manual/figs/streamtubes.png)\n",
+      "![Visualization of flow by streamtubes. ](files/../doc/manual/figs/streamtubes.png)\n",
       "\n",
       "Figures without captions are allowed.\n",
       "\n",
-      "![](../doc/manual/figs/streamtubes.png)\n",
+      "![](files/../doc/manual/figs/streamtubes.png)\n",
       "\n",
       "Test of movies.\n",
       "\n",
@@ -13992,7 +15076,7 @@ $$
       "<em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>\n",
       "\n",
       "<!-- Check out the correct with and height of YouTube movies from the -->\n",
-      "<!-- embed command that the YouTube page can generate -->\n",
+      "<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->\n",
       "\n",
       "\n",
       "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/_O7iUiftbKU\" frameborder=\"0\" allowfullscreen></iframe>\n",
@@ -14001,12 +15085,20 @@ $$
       "\n",
       "\n",
       "\n",
+      "\n",
+      "<iframe width=\"500\" height=\"278\" src=\"http://player.vimeo.com/video/55562330\" frameborder=\"0\" allowfullscreen></iframe>\n",
+      "\n",
+      "<em>Computational fluid dynamics movie.</em>\n",
+      "\n",
+      "\n",
+      "\n",
+      "\n",
       "<!-- Test multi-line caption in figure -->\n",
       "\n",
       "Here is figure ref{myfig} with a long multi-line caption\n",
       "and an extra space before the FIGURE keyword.\n",
       "\n",
-      "![A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. ](../doc/manual/figs/wavepacket_0001.png)\n",
+      "![A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. ](files/../doc/manual/figs/wavepacket_0001.png)\n",
       "\n",
       "Movie ref{mymov} has a similar problem.\n",
       "\n",
@@ -14027,12 +15119,16 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "def f(theta):\n",
       "    return theta**2\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14049,7 +15145,14 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{align*}  \\frac{Du}{dt} &= 0  \\\\   \\frac{1}{2} &= {1/2}\\\\   \\frac{1}{2}\\pmb{x} &= \\pmb{n}  \\end{align*} $"
+      "$$\n",
+      "\\begin{align*}\n",
+      "\\frac{Du}{dt} &= 0\n",
+      "\\\\ \n",
+      "\\frac{1}{2} &= {1/2}\\\\ \n",
+      "\\frac{1}{2}\\pmb{x} &= \\pmb{n}\n",
+      "\\end{align*}\n",
+      "$$"
      ]
     },
     {
@@ -14063,7 +15166,12 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{equation}  \\frac{Du}{dt} = 0  \\label{aligneq1}  \\end{equation} $"
+      "$$\n",
+      "\\begin{equation}\n",
+      "\\frac{Du}{dt} = 0\n",
+      "label{aligneq1}\n",
+      "\\end{equation}\n",
+      "$$"
      ]
     },
     {
@@ -14075,7 +15183,11 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{equation}    \\frac{1}{2} = {1/2}  \\end{equation} $"
+      "$$\n",
+      "\\begin{equation}  \n",
+      "\\frac{1}{2} = {1/2}\n",
+      "\\end{equation}\n",
+      "$$"
      ]
     },
     {
@@ -14087,7 +15199,12 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{equation}    \\frac{1}{2}\\pmb{x} = \\pmb{n}  \\label{aligneq2}  \\end{equation} $"
+      "$$\n",
+      "\\begin{equation}  \n",
+      "\\frac{1}{2}\\pmb{x} = \\pmb{n}\n",
+      "label{aligneq2}\n",
+      "\\end{equation}\n",
+      "$$"
      ]
     },
     {
@@ -14125,28 +15242,22 @@ $$
       "Let us take this table from the manual:\n",
       "\n",
       "\n",
-      "   {\n",
-      "    \"cell_type\": \"markdown\",\n",
-      "    \"metadata\": {},\n",
-      "    \"source\": [\n",
-      "    \"\\n\",\n",
-      "    \"    time        velocity    acceleration  \\n\",\n",
-      "    \"------------  ------------  ------------  \\n\",\n",
-      "    \"0.0                 1.4186         -5.01  \\n\",\n",
-      "    \"2.0               1.376512        11.919  \\n\",\n",
-      "    \"4.0                 1.1E+1     14.717624  \\n\",\n",
-      "    \"\\n\",\n",
-      "    \"\"\n",
-      "    ]\n",
-      "   },\n",
+      "\n",
+      "    time        velocity    acceleration  \n",
+      "------------  ------------  ------------  \n",
+      "0.0                 1.4186         -5.01  \n",
+      "2.0               1.376512        11.919  \n",
+      "4.0                 1.1E+1     14.717624  \n",
+      "\n",
+      "\n",
       "\n",
       "The Doconce source code reads"
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "  |--------------------------------|\n",
       "  |time  | velocity | acceleration |\n",
       "  |--l--------r-----------r--------|\n",
@@ -14154,7 +15265,11 @@ $$
       "  | 2.0  | 1.376512 | 11.919       |\n",
       "  | 4.0  | 1.1E+1   | 14.717624    |\n",
       "  |--------------------------------|\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14163,67 +15278,60 @@ $$
       "Here is yet another table to test that we can handle more than\n",
       "one table:\n",
       "\n",
-      "   {\n",
-      "    \"cell_type\": \"markdown\",\n",
-      "    \"metadata\": {},\n",
-      "    \"source\": [\n",
-      "    \"\\n\",\n",
-      "    \"    time        velocity    acceleration  \\n\",\n",
-      "    \"------------  ------------  ------------  \\n\",\n",
-      "    \"0.0           1.4186        -5.01         \\n\",\n",
-      "    \"1.0           1.376512      11.919        \\n\",\n",
-      "    \"3.0           1.1E+1        14.717624     \\n\",\n",
-      "    \"\\n\",\n",
-      "    \"\"\n",
-      "    ]\n",
-      "   },\n",
+      "\n",
+      "    time        velocity    acceleration  \n",
+      "------------  ------------  ------------  \n",
+      "0.0           1.4186        -5.01         \n",
+      "1.0           1.376512      11.919        \n",
+      "3.0           1.1E+1        14.717624     \n",
+      "\n",
+      "\n",
       "And one with math headings (that are expanded and must be treated\n",
       "accordingly) and verbatim heading and entry:\n",
       "\n",
-      "   {\n",
-      "    \"cell_type\": \"markdown\",\n",
-      "    \"metadata\": {},\n",
-      "    \"source\": [\n",
-      "    \"\\n\",\n",
-      "    \"   $i$        $h_i$     $\\bar T_i$    `L_i`     \\n\",\n",
-      "    \"----------  ----------  ----------  ----------  \\n\",\n",
-      "    \"0                    0         288     -0.0065  \\n\",\n",
-      "    \"1               11,000         216         0.0  \\n\",\n",
-      "    \"2               20,000         216       0.001  \\n\",\n",
-      "    \"3               32,000         228      0.0028  \\n\",\n",
-      "    \"4               47,000         270         0.0  \\n\",\n",
-      "    \"5               51,000         270     -0.0028  \\n\",\n",
-      "    \"6               71,000         214       `NaN`  \\n\",\n",
-      "    \"\\n\",\n",
-      "    \"\"\n",
-      "    ]\n",
-      "   },\n",
+      "\n",
+      "   $i$        $h_i$     $\\bar T_i$    `L_i`     \n",
+      "----------  ----------  ----------  ----------  \n",
+      "0                    0         288     -0.0065  \n",
+      "1               11,000         216         0.0  \n",
+      "2               20,000         216       0.001  \n",
+      "3               32,000         228      0.0028  \n",
+      "4               47,000         270         0.0  \n",
+      "5               51,000         270     -0.0028  \n",
+      "6               71,000         214       `NaN`  \n",
+      "\n",
+      "\n",
       "And add one with verbatim headings (with underscores),\n",
       "and rows starting with `|-` because of a negative number,\n",
       "and `|` right after verbatim word (with no space):\n",
       "\n",
-      "   {\n",
-      "    \"cell_type\": \"markdown\",\n",
-      "    \"metadata\": {},\n",
-      "    \"source\": [\n",
-      "    \"\\n\",\n",
-      "    \"    exact          `v_1`      $a_i$ + `v_2`    `verb_3_`    \\n\",\n",
-      "    \"-------------  -------------  -------------  -------------  \\n\",\n",
-      "    \"            9           9.62           5.57           8.98  \\n\",\n",
-      "    \"          -20         -23.39          -7.65         -19.93  \\n\",\n",
-      "    \"           10          17.74          -4.50           9.96  \\n\",\n",
-      "    \"            0          -9.19           4.13          -0.26  \\n\",\n",
-      "    \"\\n\",\n",
-      "    \"\"\n",
-      "    ]\n",
-      "   },\n",
+      "\n",
+      "    exact          `v_1`      $a_i$ + `v_2`    `verb_3_`    \n",
+      "-------------  -------------  -------------  -------------  \n",
+      "            9           9.62           5.57           8.98  \n",
+      "          -20         -23.39          -7.65         -19.93  \n",
+      "           10          17.74          -4.50           9.96  \n",
+      "            0          -9.19           4.13          -0.26  \n",
+      "\n",
+      "\n",
       "\n",
       "### A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2`\n",
       "\n",
-      "*Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here\n",
-      "is\n",
+      "*Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here is\n",
       "some text.\n",
       "\n",
+      "### Bibliography test\n",
+      "\n",
+      "Here is an example: [Langtangen_Pedersen_2002] discussed propagation of\n",
+      "large destructive water waves, [Langtangen_et_al_2002] gave\n",
+      "an overview of numerical methods for solvin the Navier-Stokes equations,\n",
+      "while the use of Backward Kolmogorov equations for analyzing\n",
+      "random vibrations was investigated in [Langtangen_1994a].\n",
+      "The book chapter [Mardal_et_al_2003a] contains information on\n",
+      "C++ software tools for programming multigrid methods. A real retro\n",
+      "reference is [Langtangen_1988d] about a big FORTRAN package.\n",
+      "Multiple references are also possible, e.g., see\n",
+      "[Langtangen_Pedersen_2002] [Mardal_et_al_2003a].\n",
       "\n",
       "\n",
       "\n",
@@ -14302,7 +15410,9 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $  a = b + c  $"
+      "$$\n",
+      "a = b + c\n",
+      "$$"
      ]
     },
     {
@@ -14316,7 +15426,11 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{equation}  {\\partial u\\over\\partial t} = \\nabla^2 u \\label{my:eq1}  \\end{equation} $"
+      "$$\n",
+      "\\begin{equation}\n",
+      "{\\partial u\\over\\partial t} = \\nabla^2 u \\label{my:eq1}\n",
+      "\\end{equation}\n",
+      "$$"
      ]
     },
     {
@@ -14332,7 +15446,12 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{align*}  \\pmb{a} &= \\pmb{q}\\times\\pmb{n} \\\\   b &= \\nabla^2 u + \\nabla^4 v  \\end{align*} $"
+      "$$\n",
+      "\\begin{align*}\n",
+      "\\pmb{a} &= \\pmb{q}\\times\\pmb{n} \\\\ \n",
+      "b &= \\nabla^2 u + \\nabla^4 v\n",
+      "\\end{align*}\n",
+      "$$"
      ]
     },
     {
@@ -14398,9 +15517,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "import sys, random\n",
       "N = int(sys.argv[1])\n",
       "heads = 0\n",
@@ -14409,7 +15528,11 @@ $$
       "    if r <= 0.5:\n",
       "        heads += 1\n",
       "print 'Flipping a coin %d times gave %d heads' % (N, heads)\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14463,7 +15586,11 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{equation}  x = x_0 + R\\cos 2\\pi t,  \\end{equation} $"
+      "$$\n",
+      "\\begin{equation}\n",
+      "x = x_0 + R\\cos 2\\pi t,\n",
+      "\\end{equation}\n",
+      "$$"
      ]
     },
     {
@@ -14475,7 +15602,11 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $ \\begin{equation}    y = y_0 + R\\sin 2\\pi t,  \\end{equation} $"
+      "$$\n",
+      "\\begin{equation}  \n",
+      "y = y_0 + R\\sin 2\\pi t,\n",
+      "\\end{equation}\n",
+      "$$"
      ]
     },
     {
@@ -14489,9 +15620,9 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "import numpy as np\n",
       "\n",
       "def circle(R, x0, y0, n=501):\n",
@@ -14501,7 +15632,11 @@ $$
       "    return x, y\n",
       "\n",
       "x, y = circle(2.0, 0, 0)\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14577,7 +15712,9 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $  a=b.  $"
+      "$$\n",
+      "\\hbox{math in solution: } a = b\n",
+      "$$"
      ]
     },
     {
@@ -14588,12 +15725,15 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "a = b  # code in solution\n"
+     ],
+     "language": "python",
      "metadata": {},
-     "source": [
-      "def func(x):\n",
-      "    return x + 1  # with code in hint\n"
-     ]
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14615,7 +15755,9 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $  \\cos^2 x + \\sin^2 x = 1 \\thinspace . $"
+      "$$\n",
+      "a=b.\n",
+      "$$"
      ]
     },
     {
@@ -14626,11 +15768,16 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "def func(x):\n",
+      "    return x + 1  # with code in hint\n"
+     ],
+     "language": "python",
      "metadata": {},
-     "source": [
-      "a = b  # code in solution\n"
-     ]
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14660,7 +15807,9 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $  \\hbox{math in solution: } a = b  $"
+      "$$\n",
+      "\\cos^2 x + \\sin^2 x = 1 \\thinspace .\n",
+      "$$"
      ]
     },
     {
@@ -14706,7 +15855,9 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $  \\exp{(0)} = 1  $"
+      "$$\n",
+      "\\exp{(0)} = 1\n",
+      "$$"
      ]
     },
     {
@@ -14717,11 +15868,15 @@ $$
      ]
     },
     {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
       "lambda x: x+2\n"
-     ]
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
     },
     {
      "cell_type": "markdown",
@@ -14780,6 +15935,42 @@ $$
       "<!-- --- end exercise --- -->\n",
       "\n",
       "\n",
+      "## References\n",
+      "\n",
+      "\n",
+      " 1. \\label{Langtangen_Pedersen_2002} _H. P. Langtangen and G. Pedersen_. \n",
+      "    Propagation of Large Destructive Waves,\n",
+      "    *International Journal of Applied Mechanics and Engineering*,\n",
+      "    7(1),\n",
+      "    pp. 187-204,\n",
+      "    2002.\n",
+      "\n",
+      " 2. \\label{Langtangen_et_al_2002} _H. P. Langtangen, K.-A. Mardal and R. Winther_. \n",
+      "    Numerical Methods for Incompressible Viscous Flow,\n",
+      "    *Advances in Water Resources*,\n",
+      "    25,\n",
+      "    pp. 1125-1146,\n",
+      "    2002.\n",
+      "\n",
+      " 3. \\label{Langtangen_1994a} _H. P. Langtangen_. \n",
+      "    Numerical Solution of First Passage Problems in Random Vibrations,\n",
+      "    *SIAM Journal of Scientific and Statistical Computing*,\n",
+      "    15,\n",
+      "    pp. 997-996,\n",
+      "    1994.\n",
+      "\n",
+      " 4. \\label{Mardal_et_al_2003a} _K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen_. \n",
+      "    Software Tools for Multigrid Methods,\n",
+      "    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,\n",
+      "    edited by _H. P. Langtangen and A. Tveito_,\n",
+      "    Springer,\n",
+      "    2003.\n",
+      "\n",
+      " 5. \\label{Langtangen_1988d} _H. P. Langtangen_. \n",
+      "    The FEMDEQS Program System,\n",
+      "    *Department of Mathematics, University of Oslo*,\n",
+      "    1989.\n",
+      "\n",
       "## Appendix: Just for testing; part I\n",
       "\n",
       "This is the first appendix.\n",
@@ -14814,7 +16005,13 @@ $$
       "\n",
       "\n",
       "\n",
-      "*Warning.* And here is a warning about something to pay attention to.\n",
+      "*Warning.* And here is a warning about something to pay attention to. We\n",
+      "test how the heading behave and add quite some extra texts\n",
+      "in comparison with the other admons.\n",
+      "\n",
+      "  * and a list\n",
+      "\n",
+      "  * with items\n",
       "\n",
       "*Summary.* Much testing in this document, otherwise stupid content.\n",
       "\n",
@@ -14826,14 +16023,47 @@ $$
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "### $  p=q $"
+      "$$\n",
+      "p=q\n",
+      "$$"
      ]
     },
     {
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "*Question.* So, how many admonition environments does Doconce support?"
+      "*Question.* So, how many admonition environments does Doconce support?\n",
+      "\n",
+      "\n",
+      "\n",
+      "### Appendix: Testing inline comments\n",
+      "\n",
+      "Projects that you want to share among several computers or project\n",
+      "workers are today most conveniently stored at some web site \"in the\n",
+      "cloud\" and updated through communication with that site. [hpl:\n",
+      "not sure if in the cloud is understood by all.] I strongly\n",
+      "recommend you to use such sites for all serious programming and\n",
+      "scientific writing work -- and all other important files.\n",
+      "\n",
+      "The simplest services for hosting project files is Dropbox. [mp: Simply\n",
+      "go to <http://dropbox.com> and watch the video.] It is very easy to get\n",
+      "started with Dropbox, and it allows you to share files among\n",
+      "laptops and mobile units.\n",
+      "\n",
+      "When several people may edit files simultaneously, it can be difficult\n",
+      "detect who did what when, roll back to previous versions, and to\n",
+      "manually merge the edits when these are incompatible. Then one needs\n",
+      "more sophisticated tools than Dropbox: project hosting services with\n",
+      "true version control systems.  [hpl: The following text aims at providing\n",
+      "you with the minimum information to started with such\n",
+      "systems. Numerous other tutorials contain more comprehensive material\n",
+      "and in-depth explanations of the concepts and tools.]\n",
+      "\n",
+      "### Appendix: Testing headings ending with `verbatim inline`\n",
+      "\n",
+      "The point here is to test 1) `verbatim` code in headings, and 2)\n",
+      "ending a heading with verbatim code as this triggers a special\n",
+      "case in LaTeX."
      ]
     }
    ],
@@ -15194,7 +16424,8 @@ output2</code></pre>
 <p>[ht]</p>
 <p><a href="run:../doc/manual/figs/wavepacket.mpeg">../doc/manual/figs/wavepacket.mpeg</a></p>
 <p>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). [mymov] (Movie of files <code>../doc/manual/figs/wavepacket_*.png</code> in <a href="{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}"></a>)</p>
-<p>Movies can be uploaded to YouTube and embedded as HTML or as a link.: <a href="{http://www.youtube.com/watch?v=_O7iUiftbKU}"></a></p>
+<p>Movies can be uploaded to YouTube and embedded as HTML or as a link. <a href="{http://www.youtube.com/watch?v=_O7iUiftbKU}"></a></p>
+<p>Computational fluid dynamics movie. <a href="{http://vimeo.com/55562330}"></a></p>
 <p>Here is figure [myfig] with a long multi-line caption and an extra space before the FIGURE keyword.</p>
 <p>[ht]</p>
 <div class="figure">
@@ -15368,6 +16599,8 @@ output2</code></pre>
 </blockquote>
 <h4 id="files-my_file_v1.py-and-my_file_v2.py-define-some-math-a_i-1.">Files <code>my\_file\_v1.py</code> and <code>my\_file\_v2.py</code> define some math \(a_{i-1}\).</h4>
 <p>Here is some text.</p>
+<h2 id="bibliography-test">Bibliography test</h2>
+<p>Here is an example:  discussed propagation of large destructive water waves,  gave an overview of numerical methods for solvin the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in . The book chapter  contains information on C++ software tools for programming multigrid methods. A real retro reference is  about a big FORTRAN package. Multiple references are also possible, e.g., see .</p>
 <h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
 <p>[Example]</p>
 <p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
@@ -15561,6 +16794,12 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>With label.</p>
 <h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
 <p>Without label.</p>
+<h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h2>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work – and all other important files.</p>
+<p>The simplest services for hosting project files is Dropbox. It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
+<p>When several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox: project hosting services with true version control systems.</p>
+<h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code></h2>
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
 </body>
 </html>
 pandoc 1.9.4.2
@@ -15638,7 +16877,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 
 
-<h1 id="section-1">Section 1</h1>
+<h2 id="section-1">Section 1</h2>
 <p>Here is a nested list:</p>
 <ul>
 <li><p>item1</p></li>
@@ -15660,7 +16899,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </blockquote>
 <!-- !split and check if these extra words are included properly in the comment -->
 
-<h2 id="subsection-1">Subsection 1</h2>
+<h3 id="subsection-1">Subsection 1</h3>
 <p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console --></p>
 <p>Let's do some copying from files too. First from subroutine up to the very end,</p>
 <pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span> test()
@@ -15752,7 +16991,7 @@ Terminal<span class="kw">&gt;</span> myprog -f
 output1
 output2</code></pre>
 <p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
-<h2 id="subsection-2">Subsection 2</h2>
+<h3 id="subsection-2">Subsection 2</h3>
 <p>Test of figures. In particular we refer to Figure ref{fig:impact} in which there is a flow.</p>
 <div class="figure">
 <img src="../doc/manual/figs/streamtubes.png" alt="Visualization of flow by streamtubes." /><p class="caption">Visualization of flow by streamtubes.</p>
@@ -15785,12 +17024,15 @@ output2</code></pre>
 </p>
 
 <!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
+<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->
 
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
 
 <p><em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em></p>
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<p><em>Computational fluid dynamics movie.</em></p>
 <!-- Test multi-line caption in figure -->
 
 <p>Here is figure ref{myfig} with a long multi-line caption and an extra space before the FIGURE keyword.</p>
@@ -15809,7 +17051,7 @@ output2</code></pre>
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
-<h2 id="the-theta-parameter-not-nabla">The \(\theta\) parameter (not \(\nabla\)?)</h2>
+<h3 id="the-theta-parameter-not-nabla">The \(\theta\) parameter (not \(\nabla\)?)</h3>
 <p>Functions do not always need to be advanced, here is one involving \(\theta\):</p>
 <pre><code>def f(theta):
     return theta**2</code></pre>
@@ -15841,14 +17083,14 @@ output2</code></pre>
 \label{aligneq2}
 \end{equation}
 \]</p>
-<h2 id="custom-environments">Custom Environments</h2>
+<h3 id="custom-environments">Custom Environments</h3>
 <p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
 <!-- begin theorem -->
 
 <p><em>Theorem 5.</em> Let \(a=1\) and \(b=2\). Then \(c=3\). <!-- end theorem --></p>
 <p><!-- begin proof --> <em>Proof.</em> Since \(c=a+b\), the result follows from straightforward addition. \(\Diamond\) <!-- end proof --></p>
 <p>As we see, the proof of Theorem 5 is a modest achievement.</p>
-<h2 id="tables">Tables</h2>
+<h3 id="tables">Tables</h3>
 <!-- index with comma could fool sphinx -->
 
 <p>Let us take this table from the manual:</p>
@@ -16005,11 +17247,13 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
-<h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h2>
+<h3 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h3>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
+<h3 id="bibliography-test">Bibliography test</h3>
+<p>Here is an example: @Langtangen_Pedersen_2002 discussed propagation of large destructive water waves, @Langtangen_et_al_2002 gave an overview of numerical methods for solvin the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in @Langtangen_1994a. The book chapter @Mardal_et_al_2003a contains information on C++ software tools for programming multigrid methods. A real retro reference is @Langtangen_1988d about a big FORTRAN package. Multiple references are also possible, e.g., see @Langtangen_Pedersen_2002;@Mardal_et_al_2003a.</p>
 <!-- --- begin exercise --- -->
 
-<h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
+<h3 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h3>
 <p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
 <p><em>a)</em> State some problem.</p>
 <p><em>Solution.</em> The answer to this subproblem can be written here.</p>
@@ -16020,7 +17264,7 @@ output2</code></pre>
 <!-- --- end exercise --- -->
 
 
-<h2 id="urls">URLs</h2>
+<h3 id="urls">URLs</h3>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"><code class="url">http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</code></a> and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><code class="url">http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</code></a> which has a shebang.</p>
 <p>For the <code>--latex-printed</code> it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><code>decay_mod</code></a>.</p>
@@ -16032,7 +17276,7 @@ output2</code></pre>
 <!-- if rst output is desired, but placed in a `_static*` folder. -->
 
 <p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and <a href="http://google.com">google</a>, which should result in exactly three footnotes.</p>
-<h2 id="latex-mathematics">LaTeX Mathematics</h2>
+<h3 id="latex-mathematics">LaTeX Mathematics</h3>
 <p>Here is an equation without label using backslash-bracket environment: \[
  a = b + c 
 \] or with number and label, as in , using the equation environment: \[
@@ -16091,10 +17335,10 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 \]</p>
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 <p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 1: Compute a Probability</a>, as well as <a href="#s">Project 2: Explore Distributions of Random Circles</a> and <a href="#c">Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 3: Make references to projects and problems</a>.</p>
-<h1 id="exercises">Exercises</h1>
+<h2 id="exercises">Exercises</h2>
 <!-- --- begin exercise --- -->
 
-<h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
+<h3 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h3>
 <!-- keywords = random numbers; Monte Carlo simulation -->
 
 <!-- Torture tests -->
@@ -16105,7 +17349,7 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 
 
 
-<p>Remarks ~~~~~~~</p>
+<h4 id="remarks">Remarks</h4>
 <p>Remarks with such a subsubsection heading would previously mark the beginning of a new exercise and cause trouble. Maybe a list</p>
 <ol style="list-style-type: decimal">
 <li><p>Mark 1.</p></li>
@@ -16129,11 +17373,11 @@ heads = <span class="dv">0</span>
 <!-- --- end exercise --- -->
 
 
-<h2 id="not-an-exercise">Not an exercise</h2>
+<h3 id="not-an-exercise">Not an exercise</h3>
 <p>Should be possible to stick a normal section in the middle of many exercises.</p>
 <!-- --- begin exercise --- -->
 
-<h2 id="project-1-compute-a-probability">Project 1: Compute a Probability</h2>
+<h3 id="project-1-compute-a-probability">Project 1: Compute a Probability</h3>
 <!-- Minimalistic exercise -->
 
 
@@ -16148,7 +17392,7 @@ heads = <span class="dv">0</span>
 
 <!-- --- begin exercise --- -->
 
-<h2 id="project-2-explore-distributions-of-random-circles">Project 2: Explore Distributions of Random Circles</h2>
+<h3 id="project-2-explore-distributions-of-random-circles">Project 2: Explore Distributions of Random Circles</h3>
 <p>The formula for a circle is given by</p>
 <p>\[
 \begin{equation}
@@ -16184,7 +17428,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p>Filename: <code>circles.pdf</code>.</p>
 <!-- Closing remarks for this Project -->
 
-<p>Remarks ~~~~~~~</p>
+<h4 id="remarks-1">Remarks</h4>
 <p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
 <!-- --- end exercise --- -->
 
@@ -16193,7 +17437,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise --- -->
 
-<h2 id="exercise-1-determine-some-distance">Exercise 1: Determine some Distance</h2>
+<h3 id="exercise-1-determine-some-distance">Exercise 1: Determine some Distance</h3>
 <p>Intro to this exercise. Questions are in subexercises below.</p>
 <p><!-- No meaning in this weired test example: --> The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
 <p><!-- --- begin solution of exercise --- --> <em>Solution.</em> Here goes a full solution of the whole exercise. With some math \(a=b\) in this solution: \[
@@ -16227,7 +17471,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><!-- --- begin solution of exercise --- --> <em>Solution.</em> Here goes the solution of this subexercise. <!-- --- end solution of exercise --- --></p>
 <!-- Closing remarks for this Exercise -->
 
-<p>Remarks ~~~~~~~</p>
+<h4 id="remarks-2">Remarks</h4>
 <p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
 <!-- --- end exercise --- -->
 
@@ -16236,7 +17480,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise --- -->
 
-<h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h2>
+<h3 id="some-exercise-without-the-exercise-prefix">Some exercise without the &quot;Exercise:&quot; prefix</h3>
 <!-- Another minimalistic exercise -->
 
 <p>Just some text. And some math saying that \(e^0=1\) on a single line, to test that math block insertion is correct:</p>
@@ -16252,7 +17496,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise --- -->
 
-<h2 id="example-2-just-an-example">Example 2: Just an example</h2>
+<h3 id="example-2-just-an-example">Example 2: Just an example</h3>
 <!-- This example needs the --examples-as-exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
@@ -16262,12 +17506,12 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <!-- --- end exercise --- -->
 
 
-<h1 id="here-goes-another-section">Here goes another section</h1>
+<h2 id="here-goes-another-section">Here goes another section</h2>
 <p>With some text, before we continue with exercises.</p>
-<h1 id="more-exercises">More Exercises</h1>
+<h2 id="more-exercises">More Exercises</h2>
 <!-- --- begin exercise --- -->
 
-<h2 id="exercise-3-make-references-to-projects-and-problems">Exercise 3: Make references to projects and problems</h2>
+<h3 id="exercise-3-make-references-to-projects-and-problems">Exercise 3: Make references to projects and problems</h3>
 <p>Pick a statement from <a href="#s">Project 2: Explore Distributions of Random Circles</a> or <a href="#n">Problem 1: Flip a Coin</a> and verify it. Filename: <code>verify_formula.py</code>.</p>
 <!-- --- end exercise --- -->
 
@@ -16276,32 +17520,49 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- --- begin exercise --- -->
 
-<h2 id="project-3-references-to-project-1-compute-a-probability-in-a-heading-works-for-pandoc">Project 3: References to <a href="#y">Project 1: Compute a Probability</a> in a heading works for pandoc</h2>
+<h3 id="project-3-references-to-project-1-compute-a-probability-in-a-heading-works-for-pandoc">Project 3: References to <a href="#y">Project 1: Compute a Probability</a> in a heading works for pandoc</h3>
 <p>Refer to the previous exercise as <a href="#s">Exercise 3: Make references to projects and problems</a>, the two before that as <a href="#y">Project 1: Compute a Probability</a> and <a href="#s">Project 2: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 3: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
 <!-- --- end exercise --- -->
 
 
-<h1 id="appendix-just-for-testing-part-i">Appendix: Just for testing; part I</h1>
+<h2 id="references">References</h2>
+<ol style="list-style-type: decimal">
+<li><p> <em>H. P. Langtangen and G. Pedersen</em>. Propagation of Large Destructive Waves, <em>International Journal of Applied Mechanics and Engineering</em>, 7(1), pp. 187-204, 2002.</p></li>
+<li><p> <em>H. P. Langtangen, K.-A. Mardal and R. Winther</em>. Numerical Methods for Incompressible Viscous Flow, <em>Advances in Water Resources</em>, 25, pp. 1125-1146, 2002.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Numerical Solution of First Passage Problems in Random Vibrations, <em>SIAM Journal of Scientific and Statistical Computing</em>, 15, pp. 997-996, 1994.</p></li>
+<li><p> <em>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</em>. Software Tools for Multigrid Methods, <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>, edited by <em>H. P. Langtangen and A. Tveito</em>, Springer, 2003.</p></li>
+<li><p> <em>H. P. Langtangen</em>. The FEMDEQS Program System, <em>Department of Mathematics, University of Oslo</em>, 1989.</p></li>
+</ol>
+<h2 id="appendix-just-for-testing-part-i">Appendix: Just for testing; part I</h2>
 <p>This is the first appendix.</p>
-<h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
+<h3 id="a-subsection-within-an-appendix">A subsection within an appendix</h3>
 <p>Some text.</p>
-<h1 id="appendix-just-for-testing-part-ii">Appendix: Just for testing; part II</h1>
+<h2 id="appendix-just-for-testing-part-ii">Appendix: Just for testing; part II</h2>
 <p>This is more stuff for an appendix.</p>
-<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
+<h3 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h3>
 <p>Without label.</p>
-<h2 id="appendix-testing-identical-titles-1">Appendix: Testing identical titles</h2>
+<h3 id="appendix-testing-identical-titles-1">Appendix: Testing identical titles</h3>
 <p>With label.</p>
-<h2 id="appendix-testing-identical-titles-2">Appendix: Testing identical titles</h2>
+<h3 id="appendix-testing-identical-titles-2">Appendix: Testing identical titles</h3>
 <p>With label.</p>
-<h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
+<h3 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h3>
 <p>Without label.</p>
 <p><em>Hint.</em> Here is a hint.</p>
-<p><em>Warning.</em> And here is a warning about something to pay attention to.</p>
-<p><em>Summary.</em> Much testing in this document, otherwise stupid content.</p>
+<p><em>Warning.</em> And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<ul>
+<li><p>and a list</p></li>
+<li><p>with items <em>Summary.</em> Much testing in this document, otherwise stupid content.</p></li>
+</ul>
 <p><em>Notice.</em> Ah, we are close to the end. With math: \[
  p=q
 \]</p>
 <p><em>Question.</em> So, how many admonition environments does Doconce support?</p>
+<h3 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h3>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. [hpl: not sure if in the cloud is understood by all.] I strongly recommend you to use such sites for all serious programming and scientific writing work -- and all other important files.</p>
+<p>The simplest services for hosting project files is Dropbox. [mp: Simply go to <a href="http://dropbox.com"><code class="url">http://dropbox.com</code></a> and watch the video.] It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
+<p>When several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox: project hosting services with true version control systems. [hpl: The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.]</p>
+<h3 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code></h3>
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
 </body>
 </html>
 pandoc 1.9.4.2
@@ -16431,6 +17692,7 @@ end of tocinfo -->
 <p>
 
 <h3>This is a test of HTML templates  <a name="___sec0"></a></h3>
+
 <p>
 Note: When using HTML templates, the Doconce file cannot have a title
 (to avoid generating a header). It should neither have an author.
@@ -16438,11 +17700,11 @@ Note: When using HTML templates, the Doconce file cannot have a title
 <p>
 
 <h2>This is a 7 heading  <a name="___sec1"></a></h2>
+
 <p>
 Here is some code:
 <!-- begin verbatim block  pycod-->
-<pre>
-class Diff:
+<pre><code>class Diff:
     def __init__(self, f, h=1E-5):
         self.f = f
         self.h = float(h)
@@ -16451,18 +17713,20 @@ class Forward1(Diff):
     def __call__(self, x):
         f, h = self.f, self.h
         return (f(x+h) - f(x))/h
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
 
 <h3>This is a 5 heading  <a name="___sec2"></a></h3>
+
 <p>
 The template can be any HTML file with header and footer and
 three possible slots: <em>title</em>, <em>date</em> and <em>main</em>,
 where <em>main</em> will become the Doconce file (the main body of text),
 <em>title</em> is the first heading in the Doconce file, and
 <em>date</em> is extracted from the Doconce file (if present).
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -16679,6 +17943,7 @@ end of tocinfo -->
 <p>
 
 <h3>This is a test of HTML templates  <a name="___sec0"></a></h3>
+
 <p>
 Note: When using HTML templates, the Doconce file cannot have a title
 (to avoid generating a header). It should neither have an author.
@@ -16686,6 +17951,7 @@ Note: When using HTML templates, the Doconce file cannot have a title
 <p>
 
 <h2>This is a 7 heading  <a name="___sec1"></a></h2>
+
 <p>
 Here is some code:
 <p>
@@ -16705,12 +17971,14 @@ Here is some code:
 
 
 <h3>This is a 5 heading  <a name="___sec2"></a></h3>
+
 <p>
 The template can be any HTML file with header and footer and
 three possible slots: <em>title</em>, <em>date</em> and <em>main</em>,
 where <em>main</em> will become the Doconce file (the main body of text),
 <em>title</em> is the first heading in the Doconce file, and
 <em>date</em> is extracted from the Doconce file (if present).
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -17250,6 +18518,8 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Test of one author at one institution">
+
 
 
 <style type="text/css">
@@ -17272,43 +18542,6 @@ Automatically generated HTML file from Doconce source
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
-    .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
-     .alert-block {padding-top:14px; padding-bottom:14px}
-     .alert-block > p, .alert-block > ul {margin-bottom:0}
-     .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
 </style>
 
@@ -17349,6 +18582,7 @@ end of tocinfo -->
 <p>
 
 <h2>Generalized References <a name="genrefs"></a></h2>
+
 <p>
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
@@ -17413,6 +18647,7 @@ the document *author1*].
 <p>
 The text is rendered to "Generalized references are described in
 the section <a href="#genrefs">Generalized References</a>."
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -17493,10 +18728,10 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
@@ -17530,57 +18765,8 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
-% Tricks for having figures close to where they are defined:
-% 1. define less restrictive rules for where to put figures
-\setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
-\setcounter{totalnumber}{4}
-\renewcommand{\topfraction}{0.85}
-\renewcommand{\bottomfraction}{0.85}
-\renewcommand{\textfraction}{0.15}
-\renewcommand{\floatpagefraction}{0.7}
-% 2. ensure all figures are flushed before next section
-\usepackage[section]{placeins}
-% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
-%\usepackage{float}\restylefloat{figure}
-
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
-
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% #ifdef A4PAPER
-\usepackage{wrapfig,calc}
-\newdimen\barheight
-\def\barthickness{0.5pt}
-
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
-\begin{minipage}{0.5\textwidth-6pt-\columnsep}
-\hspace*{3mm}
-\setbox2=\hbox{\parbox[t]{55mm}{
-#1 \rule[-8pt]{0pt}{10pt}}}%
-\barheight=\ht2 \advance\barheight by \dp2
-\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
-\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
-}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
-\end{wrapfigure}}
-% #else
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
-% #endif
 
 
 
@@ -17632,8 +18818,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 
 % #endif
-
-
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -17697,9 +18881,7 @@ Jan 32, 2100
 
 % Externaldocument: testdoc
 
-
 \section{Generalized References}
-
 \label{genrefs}
 
 Sometimes a series of individual documents may be assembled to one
@@ -17752,6 +18934,7 @@ the document *author1*].
 \eccq
 The text is rendered to "Generalized references are described in
 Section~\ref{genrefs}."
+
 % ------------------- end of main content ---------------
 
 
@@ -17828,7 +19011,7 @@ This is rendered to the following text:
 As explained in
 a `section <testdoc.html#___sec2>`_ in
 the document `A Document for Testing Doconce <testdoc.html>`_
-[testdoc:12]_, Doconce documents may include movies.
+[Ref1]_, Doconce documents may include movies.
 
 And here is another example with internal references only:
 
@@ -17920,6 +19103,9 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="A Document for Testing Doconce">
+<meta name="keywords" content="figures,movies,index with subindex,index, with comma, and one more">
+
 
 
 <style type="text/css">
@@ -18017,16 +19203,17 @@ Automatically generated HTML file from Doconce source
                2,
                None,
                '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Exercises ', 1, None, '___sec10'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec12'),
-              (' Not an exercise ', 2, None, '___sec13'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -18035,19 +19222,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec16'),
+              (' Remarks ', 3, None, '___sec17'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec18'),
+              (' Remarks ', 3, None, '___sec19'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec19'),
-              (' Example 2: Just an example ', 2, None, '___sec20'),
-              (' Here goes another section ', 1, None, '___sec21'),
-              (' More Exercises ', 1, None, '___sec22'),
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -18056,10 +19243,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
-              (' A subsection within an appendix ', 2, None, '___sec26'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -18068,7 +19256,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
 end of tocinfo -->
 
 <body>
@@ -18106,8 +19299,8 @@ $$
     
 <a name="part0000"></a>
 
-<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-<p>
+    <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+    <p>
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -18167,31 +19360,35 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec9"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec10"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec10"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec11"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec12"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec17"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec18"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec19"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Example 2: Just an example </a><br>
-<a href="._part0002_testdoc.html#___sec21"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec22"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc.html#___sec22"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec23"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec25"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec27"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec28"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc.html#___sec26"> References </a><br>
+<a href="._part0002_testdoc.html#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec28"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec30"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec31"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
 
@@ -18216,6 +19413,9 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="A Document for Testing Doconce">
+<meta name="keywords" content="figures,movies,index with subindex,index, with comma, and one more">
+
 
 
 <style type="text/css">
@@ -18313,16 +19513,17 @@ Automatically generated HTML file from Doconce source
                2,
                None,
                '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Exercises ', 1, None, '___sec10'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec12'),
-              (' Not an exercise ', 2, None, '___sec13'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -18331,19 +19532,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec16'),
+              (' Remarks ', 3, None, '___sec17'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec18'),
+              (' Remarks ', 3, None, '___sec19'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec19'),
-              (' Example 2: Just an example ', 2, None, '___sec20'),
-              (' Here goes another section ', 1, None, '___sec21'),
-              (' More Exercises ', 1, None, '___sec22'),
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -18352,10 +19553,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
-              (' A subsection within an appendix ', 2, None, '___sec26'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -18364,7 +19566,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
 end of tocinfo -->
 
 <body>
@@ -18402,10 +19609,10 @@ $$
     
 <a name="part0001"></a>
 
-<a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-
-<a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-<p>
+    <a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+    
+    <a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+    <p>
 <!-- !split -->
 
 <p>
@@ -18428,7 +19635,9 @@ is part of the abstract.
 
 <p>
 
+
 <h2>Section 1 <a name="sec1"></a></h2>
+
 <p>
 Here is a nested list:
 
@@ -18487,6 +19696,9 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="A Document for Testing Doconce">
+<meta name="keywords" content="figures,movies,index with subindex,index, with comma, and one more">
+
 
 
 <style type="text/css">
@@ -18584,16 +19796,17 @@ Automatically generated HTML file from Doconce source
                2,
                None,
                '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Exercises ', 1, None, '___sec10'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec12'),
-              (' Not an exercise ', 2, None, '___sec13'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -18602,19 +19815,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec16'),
+              (' Remarks ', 3, None, '___sec17'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec18'),
+              (' Remarks ', 3, None, '___sec19'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec19'),
-              (' Example 2: Just an example ', 2, None, '___sec20'),
-              (' Here goes another section ', 1, None, '___sec21'),
-              (' More Exercises ', 1, None, '___sec22'),
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -18623,10 +19836,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
-              (' A subsection within an appendix ', 2, None, '___sec26'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -18635,7 +19849,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
 end of tocinfo -->
 
 <body>
@@ -18673,13 +19892,14 @@ $$
     
 <a name="part0002"></a>
 
-<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-<p>
+    <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+    <p>
 <!-- !split and check if these extra words are included properly in the comment -->
 
 <p>
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
+
 <p>
 More text, with a reference back to the section <a href="._part0001_testdoc.html#sec1">Section 1</a> and further
 to the section <a href="#subsubsec:ex">URLs</a>. 
@@ -18908,6 +20128,7 @@ like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 <p>
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
+
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
@@ -18958,7 +20179,7 @@ Test of movies.
 
 <p>
 <!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
+<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->
 
 <p>
 
@@ -18969,6 +20190,15 @@ Test of movies.
 
 
 <p>
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Computational fluid dynamics movie.</em>
+
+
+
+<p>
+
 <!-- Test multi-line caption in figure -->
 
 <p>
@@ -19005,6 +20235,7 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <p>
 
 <h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
+
 <p>
 Functions do not always need to be advanced, here is one
 involving \( \theta \):
@@ -19055,6 +20286,7 @@ $$
 
 
 <h3>Custom Environments  <a name="___sec4"></a></h3>
+
 <p>
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
@@ -19087,6 +20319,7 @@ achievement.
 
 
 <h3>Tables <a name="subsec:table"></a></h3>
+
 <p>
 
 <!-- index with comma could fool sphinx -->
@@ -19166,20 +20399,36 @@ and <code>|</code> right after verbatim word (with no space):
 
 
 <h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
-Here
-is
+Here is
 some text.
 
 <p>
 
+<h3>Bibliography test  <a name="___sec7"></a></h3>
+
+<p>
+Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+
+<p>
 
 <!-- --- begin exercise --- -->
 
 <p>
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
+
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
 and then, with the command-line option <code>--examples-as-exercises</code> be
@@ -19219,6 +20468,7 @@ maybe over multiple doconce input lines.
 
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
+
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
 the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
@@ -19264,7 +20514,8 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
@@ -19366,7 +20617,8 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 
 <p>
 
-<h2>Exercises  <a name="___sec10"></a></h2>
+<h2>Exercises  <a name="___sec11"></a></h2>
+
 <p>
 
 <!-- --- begin exercise --- -->
@@ -19392,7 +20644,8 @@ let the program count the number of heads.
 
 
 
-<h4>Remarks  <a name="___sec12"></a></h4>
+<h4>Remarks  <a name="___sec13"></a></h4>
+
 <p>
 Remarks with such a subsubsection heading would previously mark
 the beginning of a new exercise and cause trouble. Maybe a list
@@ -19437,7 +20690,8 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <p>
 
 
-<h3>Not an exercise  <a name="___sec13"></a></h3>
+<h3>Not an exercise  <a name="___sec14"></a></h3>
+
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
@@ -19449,6 +20703,7 @@ exercises.
 <p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
+
 <p>
 <!-- Minimalistic exercise -->
 
@@ -19479,6 +20734,7 @@ compute the probability as \( M/N \).
 <p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
 <p>
 The formula for a circle is given by
 
@@ -19568,7 +20824,8 @@ Filename: <code>circles.pdf</code>.
 
 <p>
 
-<h4>Remarks  <a name="___sec16"></a></h4>
+<h4>Remarks  <a name="___sec17"></a></h4>
+
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -19585,6 +20842,7 @@ and give some perspectives.
 <p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
 <p>
 Intro to this exercise. Questions are in subexercises below.
 
@@ -19672,7 +20930,8 @@ Filename: <code>subexer_b.pdf</code>.
 
 <p>
 
-<h4>Remarks  <a name="___sec18"></a></h4>
+<h4>Remarks  <a name="___sec19"></a></h4>
+
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -19689,7 +20948,8 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec19"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+
 <p>
 <!-- Another minimalistic exercise -->
 
@@ -19721,7 +20981,8 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 
 <p>
 
-<h3>Example 2: Just an example  <a name="___sec20"></a></h3>
+<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+
 <p>
 <!-- This example needs the --examples-as-exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
@@ -19741,13 +21002,15 @@ Oslo.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec21"></a></h2>
+<h2>Here goes another section  <a name="___sec22"></a></h2>
+
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec22"></a></h2>
+<h2>More Exercises  <a name="___sec23"></a></h2>
+
 <p>
 
 <!-- --- begin exercise --- -->
@@ -19755,6 +21018,7 @@ With some text, before we continue with exercises.
 <p>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+
 <p>
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -19771,6 +21035,7 @@ Filename: <code>verify_formula.py</code>.
 <p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
+
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
@@ -19783,43 +21048,87 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec25"></a></h2>
+<h2>References  <a name="___sec26"></a></h2>
+
+<p>
+
+
+<ol>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Propagation of Large Destructive Waves,
+    <em>International Journal of Applied Mechanics and Engineering</em>,
+    7(1),
+    pp. 187-204,
+    2002.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+    Numerical Methods for Incompressible Viscous Flow,
+    <em>Advances in Water Resources</em>,
+    25,
+    pp. 1125-1146,
+    2002.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    <em>SIAM Journal of Scientific and Statistical Computing</em>,
+    15,
+    pp. 997-996,
+    1994.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+    Software Tools for Multigrid Methods,
+    <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
+    edited by <b>H. P. Langtangen and A. Tveito</b>,
+    Springer,
+    2003.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
+    The FEMDEQS Program System,
+    <em>Department of Mathematics, University of Oslo</em>,
+    1989.</li>
+</ol>
+
+
+<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec26"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+
 <p>
 Some text.
 
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec28"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+
 <p>
 Without label.
 
 <p>
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+
 <p>
 With label.
 
 <p>
 
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+
 <p>
 With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+
 <p>
 Without label.
 
@@ -19844,7 +21153,18 @@ Here is a hint.
 <th align="left" valign="middle"><b>Warning</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-And here is a warning about something to pay attention to.
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<table border="0">
+
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> and a list</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> with items</li>
+</td></tr></table>
+
 </p></td></tr>
 </table>
 <p>
@@ -19886,6 +21206,54 @@ $$ p=q$$
 So, how many admonition environments does Doconce support?
 </p></td></tr>
 </table>
+<p>
+
+<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+
+<p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. 
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+<!-- end inline comment -->
+ I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files is Dropbox. 
+<!-- begin inline comment -->
+[<b>mp</b>: <em>Simply
+go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+<!-- end inline comment -->
+ It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+<p>
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.</em>]
+<!-- end inline comment -->
+
+
+<p>
+
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+
+<p>
+The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 <p>
 
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
@@ -20078,6 +21446,7 @@ MathJax.Hub.Config({
 <p>
 
 <h3>Figure and bullet list  <a name="___sec0"></a></h3>
+
 <p>
 
 <table border="0">
@@ -20130,6 +21499,7 @@ And a line more
 <p>
 
 <h3>Scientific writing needs to address many new media  <a name="___sec1"></a></h3>
+
 <p>
 
 
@@ -20164,6 +21534,7 @@ And a line more
 <p>
 
 <h3>Some math and computer code  <a name="___sec2"></a></h3>
+
 <p>
 $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 
@@ -20188,6 +21559,7 @@ Python implementation:
 f2 <span style="color: #666666">=</span> Fancy()
 </pre></div>
 <p>
+
 
 </section>
 
@@ -20449,6 +21821,9 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="A Document for Testing Doconce">
+<meta name="keywords" content="figures,movies,index with subindex,index, with comma, and one more">
+
 
 
 <style type="text/css">
@@ -20577,31 +21952,35 @@ Automatically generated HTML file from Doconce source
 &nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec7"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec9"> LaTeX Mathematics </a><br>
-<a href="#___sec10"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec10"> LaTeX Mathematics </a><br>
+<a href="#___sec11"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec12"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec13"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec14"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec18"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec19"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Example 2: Just an example </a><br>
-<a href="#___sec21"> Here goes another section </a><br>
-<a href="#___sec22"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Example 2: Just an example </a><br>
+<a href="#___sec22"> Here goes another section </a><br>
+<a href="#___sec23"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="#___sec25"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec26"> A subsection within an appendix </a><br>
-<a href="#___sec27"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec28"> Appendix: Testing identical titles </a><br>
+<a href="#___sec26"> References </a><br>
+<a href="#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec28"> A subsection within an appendix </a><br>
+<a href="#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec30"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec31"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
 
@@ -20628,7 +22007,9 @@ is part of the abstract.
 
 <p>
 
+
 <h2>Section 1 <a name="sec1"></a></h2>
+
 <p>
 Here is a nested list:
 
@@ -20666,6 +22047,7 @@ Here is a nested list:
 <p>
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
+
 <p>
 More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
 to the section <a href="#subsubsec:ex">URLs</a>. 
@@ -20834,6 +22216,7 @@ like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 <p>
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
+
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
@@ -20896,6 +22279,15 @@ Test of movies.
 
 <p>
 
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Computational fluid dynamics movie.</em>
+
+
+
+<p>
+
+
 
 <p>
 Here is figure <a href="#myfig">2</a> with a long multi-line caption
@@ -20931,6 +22323,7 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <p>
 
 <h3>The $latex \theta$ parameter (not $latex \nabla$?) <a name="decay:sec:theta"></a></h3>
+
 <p>
 Functions do not always need to be advanced, here is one
 involving $latex \theta$:
@@ -20988,6 +22381,7 @@ $latex
 
 
 <h3>Custom Environments  <a name="___sec4"></a></h3>
+
 <p>
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
@@ -21020,6 +22414,7 @@ achievement.
 
 
 <h3>Tables <a name="subsec:table"></a></h3>
+
 <p>
 
 
@@ -21093,20 +22488,36 @@ and <code>|</code> right after verbatim word (with no space):
 
 
 <h3>A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math $latex a_{i-1}$.</b>
-Here
-is
+Here is
 some text.
 
 <p>
 
+<h3>Bibliography test  <a name="___sec7"></a></h3>
+
+<p>
+Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+
+<p>
 
 
 
 <p>
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
+
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
 and then, with the command-line option <code>--examples-as-exercises</code> be
@@ -21146,6 +22557,7 @@ maybe over multiple doconce input lines.
 
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
+
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
 the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
@@ -21191,7 +22603,8 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+
 <p>
 Here is an equation without label using backslash-bracket environment:
 
@@ -21297,7 +22710,8 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 
 <p>
 
-<h2>Exercises  <a name="___sec10"></a></h2>
+<h2>Exercises  <a name="___sec11"></a></h2>
+
 <p>
 
 
@@ -21323,7 +22737,8 @@ let the program count the number of heads.
 
 
 
-<h4>Remarks  <a name="___sec12"></a></h4>
+<h4>Remarks  <a name="___sec13"></a></h4>
+
 <p>
 Remarks with such a subsubsection heading would previously mark
 the beginning of a new exercise and cause trouble. Maybe a list
@@ -21385,7 +22800,8 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <p>
 
 
-<h3>Not an exercise  <a name="___sec13"></a></h3>
+<h3>Not an exercise  <a name="___sec14"></a></h3>
+
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
@@ -21397,6 +22813,7 @@ exercises.
 <p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
+
 <p>
 
 
@@ -21427,6 +22844,7 @@ compute the probability as $latex M/N$.
 <p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
 <p>
 The formula for a circle is given by
 
@@ -21514,7 +22932,8 @@ Filename: <code>circles.pdf</code>.
 
 <p>
 
-<h4>Remarks  <a name="___sec16"></a></h4>
+<h4>Remarks  <a name="___sec17"></a></h4>
+
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -21531,6 +22950,7 @@ and give some perspectives.
 <p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
 <p>
 Intro to this exercise. Questions are in subexercises below.
 
@@ -21642,7 +23062,8 @@ Here goes the solution of this subexercise.
 
 <p>
 
-<h4>Remarks  <a name="___sec18"></a></h4>
+<h4>Remarks  <a name="___sec19"></a></h4>
+
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -21659,7 +23080,8 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec19"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+
 <p>
 
 
@@ -21693,7 +23115,8 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 
 <p>
 
-<h3>Example 2: Just an example  <a name="___sec20"></a></h3>
+<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+
 <p>
 
 
@@ -21713,13 +23136,15 @@ Oslo.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec21"></a></h2>
+<h2>Here goes another section  <a name="___sec22"></a></h2>
+
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec22"></a></h2>
+<h2>More Exercises  <a name="___sec23"></a></h2>
+
 <p>
 
 
@@ -21727,6 +23152,7 @@ With some text, before we continue with exercises.
 <p>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+
 <p>
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -21743,6 +23169,7 @@ Filename: <code>verify_formula.py</code>.
 <p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
+
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
@@ -21755,43 +23182,87 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec25"></a></h2>
+<h2>References  <a name="___sec26"></a></h2>
+
+<p>
+
+
+<ol>
+ <li> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Propagation of Large Destructive Waves,
+    <em>International Journal of Applied Mechanics and Engineering</em>,
+    7(1),
+    pp. 187-204,
+    2002.</li>
+ <li> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+    Numerical Methods for Incompressible Viscous Flow,
+    <em>Advances in Water Resources</em>,
+    25,
+    pp. 1125-1146,
+    2002.</li>
+ <li> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    <em>SIAM Journal of Scientific and Statistical Computing</em>,
+    15,
+    pp. 997-996,
+    1994.</li>
+ <li> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+    Software Tools for Multigrid Methods,
+    <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
+    edited by <b>H. P. Langtangen and A. Tveito</b>,
+    Springer,
+    2003.</li>
+ <li> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
+    The FEMDEQS Program System,
+    <em>Department of Mathematics, University of Oslo</em>,
+    1989.</li>
+</ol>
+
+
+<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec26"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+
 <p>
 Some text.
 
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec28"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+
 <p>
 Without label.
 
 <p>
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+
 <p>
 With label.
 
 <p>
 
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+
 <p>
 With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+
 <p>
 Without label.
 
@@ -21816,7 +23287,16 @@ Here is a hint.
 <th align="left" valign="middle"><b>Warning</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-And here is a warning about something to pay attention to.
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
 </p></td></tr>
 </table>
 <p>
@@ -21860,6 +23340,54 @@ $latex  p=q $
 So, how many admonition environments does Doconce support?
 </p></td></tr>
 </table>
+<p>
+
+<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+
+<p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. 
+
+[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+
+ I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files is Dropbox. 
+
+[<b>mp</b>: <em>Simply
+go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+
+ It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+<p>
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  
+
+[<b>hpl</b>: <em>The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.</em>]
+
+
+
+<p>
+
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+
+<p>
+The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 
 
 
@@ -21879,6 +23407,9 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="A Document for Testing Doconce">
+<meta name="keywords" content="figures,movies,index with subindex,index, with comma, and one more">
+
 
 
 <style type="text/css">
@@ -21958,16 +23489,17 @@ Automatically generated HTML file from Doconce source
                2,
                None,
                '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Exercises ', 1, None, '___sec10'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec12'),
-              (' Not an exercise ', 2, None, '___sec13'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -21976,19 +23508,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec16'),
+              (' Remarks ', 3, None, '___sec17'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec18'),
+              (' Remarks ', 3, None, '___sec19'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec19'),
-              (' Example 2: Just an example ', 2, None, '___sec20'),
-              (' Here goes another section ', 1, None, '___sec21'),
-              (' More Exercises ', 1, None, '___sec22'),
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -21997,10 +23529,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec25'),
-              (' A subsection within an appendix ', 2, None, '___sec26'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec27'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec28'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -22009,7 +23542,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec31')]}
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
 end of tocinfo -->
 
 <body>
@@ -22104,31 +23642,35 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec7"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec9"> LaTeX Mathematics </a><br>
-<a href="#___sec10"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec10"> LaTeX Mathematics </a><br>
+<a href="#___sec11"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec12"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec13"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec14"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec16"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec18"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec19"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Example 2: Just an example </a><br>
-<a href="#___sec21"> Here goes another section </a><br>
-<a href="#___sec22"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Example 2: Just an example </a><br>
+<a href="#___sec22"> Here goes another section </a><br>
+<a href="#___sec23"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="#___sec25"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec26"> A subsection within an appendix </a><br>
-<a href="#___sec27"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec28"> Appendix: Testing identical titles </a><br>
+<a href="#___sec26"> References </a><br>
+<a href="#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec28"> A subsection within an appendix </a><br>
+<a href="#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec30"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec31"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
 
@@ -22157,7 +23699,9 @@ is part of the abstract.
 
 <p>
 
+
 <h2>Section 1 <a name="sec1"></a></h2>
+
 <p>
 Here is a nested list:
 
@@ -22195,6 +23739,7 @@ Here is a nested list:
 <p>
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
+
 <p>
 More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
 to the section <a href="#subsubsec:ex">URLs</a>. 
@@ -22363,6 +23908,7 @@ like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 <p>
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
+
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
@@ -22413,7 +23959,7 @@ Test of movies.
 
 <p>
 <!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
+<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->
 
 <p>
 
@@ -22424,6 +23970,15 @@ Test of movies.
 
 
 <p>
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Computational fluid dynamics movie.</em>
+
+
+
+<p>
+
 <!-- Test multi-line caption in figure -->
 
 <p>
@@ -22460,6 +24015,7 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <p>
 
 <h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
+
 <p>
 Functions do not always need to be advanced, here is one
 involving \( \theta \):
@@ -22509,6 +24065,7 @@ $$
 
 
 <h3>Custom Environments  <a name="___sec4"></a></h3>
+
 <p>
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
@@ -22541,6 +24098,7 @@ achievement.
 
 
 <h3>Tables <a name="subsec:table"></a></h3>
+
 <p>
 
 <!-- index with comma could fool sphinx -->
@@ -22614,20 +24172,36 @@ and <code>|</code> right after verbatim word (with no space):
 
 
 <h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
-Here
-is
+Here is
 some text.
 
 <p>
 
+<h3>Bibliography test  <a name="___sec7"></a></h3>
+
+<p>
+Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+
+<p>
 
 <!-- --- begin exercise --- -->
 
 <p>
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
+
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
 and then, with the command-line option <code>--examples-as-exercises</code> be
@@ -22667,6 +24241,7 @@ maybe over multiple doconce input lines.
 
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
+
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
 the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
@@ -22712,7 +24287,8 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
@@ -22814,7 +24390,8 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 
 <p>
 
-<h2>Exercises  <a name="___sec10"></a></h2>
+<h2>Exercises  <a name="___sec11"></a></h2>
+
 <p>
 
 <!-- --- begin exercise --- -->
@@ -22840,7 +24417,8 @@ let the program count the number of heads.
 
 
 
-<h4>Remarks  <a name="___sec12"></a></h4>
+<h4>Remarks  <a name="___sec13"></a></h4>
+
 <p>
 Remarks with such a subsubsection heading would previously mark
 the beginning of a new exercise and cause trouble. Maybe a list
@@ -22884,7 +24462,8 @@ Draw an integer among \( \{1,2\} \) with
 <p>
 
 
-<h3>Not an exercise  <a name="___sec13"></a></h3>
+<h3>Not an exercise  <a name="___sec14"></a></h3>
+
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
@@ -22896,6 +24475,7 @@ exercises.
 <p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
+
 <p>
 <!-- Minimalistic exercise -->
 
@@ -22926,6 +24506,7 @@ compute the probability as \( M/N \).
 <p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
 <p>
 The formula for a circle is given by
 
@@ -23007,7 +24588,8 @@ Filename: <code>circles.pdf</code>.
 
 <p>
 
-<h4>Remarks  <a name="___sec16"></a></h4>
+<h4>Remarks  <a name="___sec17"></a></h4>
+
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -23024,6 +24606,7 @@ and give some perspectives.
 <p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
 <p>
 Intro to this exercise. Questions are in subexercises below.
 
@@ -23111,7 +24694,8 @@ Filename: <code>subexer_b.pdf</code>.
 
 <p>
 
-<h4>Remarks  <a name="___sec18"></a></h4>
+<h4>Remarks  <a name="___sec19"></a></h4>
+
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -23128,7 +24712,8 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec19"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+
 <p>
 <!-- Another minimalistic exercise -->
 
@@ -23160,7 +24745,8 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 
 <p>
 
-<h3>Example 2: Just an example  <a name="___sec20"></a></h3>
+<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+
 <p>
 <!-- This example needs the --examples-as-exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
@@ -23180,13 +24766,15 @@ Oslo.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec21"></a></h2>
+<h2>Here goes another section  <a name="___sec22"></a></h2>
+
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec22"></a></h2>
+<h2>More Exercises  <a name="___sec23"></a></h2>
+
 <p>
 
 <!-- --- begin exercise --- -->
@@ -23194,6 +24782,7 @@ With some text, before we continue with exercises.
 <p>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+
 <p>
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -23210,6 +24799,7 @@ Filename: <code>verify_formula.py</code>.
 <p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
+
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
@@ -23222,43 +24812,87 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec25"></a></h2>
+<h2>References  <a name="___sec26"></a></h2>
+
+<p>
+
+
+<ol>
+ <li> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Propagation of Large Destructive Waves,
+    <em>International Journal of Applied Mechanics and Engineering</em>,
+    7(1),
+    pp. 187-204,
+    2002.</li>
+ <li> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+    Numerical Methods for Incompressible Viscous Flow,
+    <em>Advances in Water Resources</em>,
+    25,
+    pp. 1125-1146,
+    2002.</li>
+ <li> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    <em>SIAM Journal of Scientific and Statistical Computing</em>,
+    15,
+    pp. 997-996,
+    1994.</li>
+ <li> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+    Software Tools for Multigrid Methods,
+    <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
+    edited by <b>H. P. Langtangen and A. Tveito</b>,
+    Springer,
+    2003.</li>
+ <li> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
+    The FEMDEQS Program System,
+    <em>Department of Mathematics, University of Oslo</em>,
+    1989.</li>
+</ol>
+
+
+<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec26"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+
 <p>
 Some text.
 
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec28"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+
 <p>
 Without label.
 
 <p>
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+
 <p>
 With label.
 
 <p>
 
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+
 <p>
 With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+
 <p>
 Without label.
 
@@ -23283,7 +24917,16 @@ Here is a hint.
 <th align="left" valign="middle"><b>Warning</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-And here is a warning about something to pay attention to.
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
 </p></td></tr>
 </table>
 <p>
@@ -23325,6 +24968,54 @@ $$ p=q$$
 So, how many admonition environments does Doconce support?
 </p></td></tr>
 </table>
+<p>
+
+<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+
+<p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. 
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+<!-- end inline comment -->
+ I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files is Dropbox. 
+<!-- begin inline comment -->
+[<b>mp</b>: <em>Simply
+go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+<!-- end inline comment -->
+ It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+<p>
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.</em>]
+<!-- end inline comment -->
+
+
+<p>
+
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+
+<p>
+The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -23405,13 +25096,13 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
 \usepackage{movie15}
 % #endif
+
 
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
@@ -23446,7 +25137,7 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -23464,9 +25155,6 @@ final,                   % or draft (marks overfull hboxes)
 
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
-
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
@@ -23497,6 +25185,21 @@ final,                   % or draft (marks overfull hboxes)
 {\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
 \rule{6pt}{0pt}}\end{center}}
 % #endif
+
+
+% #ifndef NOTODONOTES
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+% #else
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
+% #endif
+
 
 
 % insert custom LaTeX commands...
@@ -23543,8 +25246,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 
 % #endif
-
-
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -23651,6 +25352,9 @@ Jan 32, 2100
 
 
 \tableofcontents
+% #ifndef NOTODONOTES
+\listoftodos[List of inline comments]
+% #endif
 
 \vspace{1cm} % after toc
 
@@ -23687,8 +25391,8 @@ is part of the abstract.
 % #endif
 
 
-\section{Section 1}
 
+\section{Section 1}
 \label{sec1}
 
 Here is a nested list:
@@ -23873,7 +25577,6 @@ we use ! in the \code{verb} typesetting... Also test backslashes
 like \code{\begin} and \code{\end} in inline verbatim text.
 
 \subsection{Subsection 2}
-
 \label{subsec:ex}
 \index{figures}
 
@@ -23980,13 +25683,16 @@ repeat,
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}})
 
 
 % Check out the correct with and height of YouTube movies from the
-% embed command that the YouTube page can generate
+% embed command that the YouTube page can generate. Similar for Vimeo.
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+ Movies can be uploaded to YouTube and embedded as HTML or as a link. \href{{http://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{http://www.youtube.com/watch?v=_O7iUiftbKU}}
+
+ Computational fluid dynamics movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
+
 
 % Test multi-line caption in figure
 
@@ -24020,7 +25726,6 @@ Movie~\ref{mymov} has a similar problem.
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
 \subsection{The $\theta$ parameter (not $\nabla$?)}
-
 \label{decay:sec:theta}
 
 Functions do not always need to be advanced, here is one
@@ -24054,6 +25759,7 @@ Or with align with label and numbers:
 \label{aligneq2}
 \end{align}
 
+
 \subsection{Custom Environments}
 
 Here is an attempt to create a theorem environment via Mako
@@ -24080,8 +25786,8 @@ $\Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-\subsection{Tables}
 
+\subsection{Tables}
 \label{subsec:table}
 
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
@@ -24180,10 +25886,21 @@ and \code{|} right after verbatim word (with no space):
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\code{my\_file\_v1} and \protect\code{my\_file\_v2} }
 
 \paragraph{Files \protect\code{my\_file\_v1.py} and \protect\code{my\_file\_v2.py} define some math $a_{i-1}$.}
-Here
-is
+Here is
 some text.
 
+\subsection{Bibliography test}
+
+Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
+large destructive water waves, \cite{Langtangen_et_al_2002} gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in \cite{Langtangen_1994a}.
+The book chapter \cite{Mardal_et_al_2003a} contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is \cite{Langtangen_1988d} about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+\cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
 
 
@@ -24192,7 +25909,6 @@ some text.
 \refstepcounter{exerno}
 
 \subsection{Example 1: Examples can be typeset as exercises}
-
 \label{Example}
 
 Examples can start with a subsection heading starting with \code{Example:}
@@ -24223,8 +25939,8 @@ maybe over multiple doconce input lines.
 \end{exercise}
 % --- end exercise ---
 
-\subsection{URLs}
 
+\subsection{URLs}
 \label{subsubsec:ex}
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}, or
@@ -24232,7 +25948,7 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
 file} is
 fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
@@ -24262,6 +25978,8 @@ More tough tests: repeated URLs whose footnotes when using the
 \href{{http://google.com}}{google}, \href{{http://google.com}}{google}, and
 \href{{http://google.com}}{google}, which should result in exactly three
 footnotes.
+
+
 
 \subsection{Test of Some {\LaTeX} Fixes}
 
@@ -24340,15 +26058,15 @@ Below, we have Problem~\ref{demo:ex:1} and Project~\ref{demo:ex:2},
 as well as Projects~\ref{proj:circle1} and~\ref{exer:you}, and in
 between there we have Exercise~\ref{exer:some:formula}.
 
-
 \section{Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Problem 1: Flip a Coin}
-
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation
 
@@ -24360,6 +26078,9 @@ let the program count the number of heads.
 
 
 % Test syntax error
+
+
+
 
 \paragraph{Remarks.}
 Remarks with such a subsubsection heading would previously mark
@@ -24397,6 +26118,7 @@ Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 \end{exercise}
 % --- end exercise ---
 
+
 \subsection{Not an exercise}
 
 Should be possible to stick a normal section in the middle of many
@@ -24409,7 +26131,6 @@ exercises.
 \refstepcounter{exerno}
 
 \subsection*{Project 1: Compute a Probability}
-
 \label{demo:ex:2}
 
 % Minimalistic exercise
@@ -24438,7 +26159,6 @@ compute the probability as $M/N$.
 \refstepcounter{exerno}
 
 \subsection*{Project 2: Explore Distributions of Random Circles}
-
 \label{proj:circle1}
 
 The formula for a circle is given by
@@ -24517,7 +26237,6 @@ and give some perspectives.
 \refstepcounter{exerno}
 
 \subsection*{Exercise 1: Determine some Distance}
-
 \label{exer:dist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -24646,15 +26365,15 @@ Oslo.
 
 With some text, before we continue with exercises.
 
-
 \section{More Exercises}
+
+
 
 % --- begin exercise ---
 \begin{exercise}
 \refstepcounter{exerno}
 
 \subsection*{Exercise 3: Make references to projects and problems}
-
 \label{exer:some:formula}
 
 Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
@@ -24672,7 +26391,6 @@ Filename: \code{verify_formula.py}.
 \refstepcounter{exerno}
 
 \subsection*{Project 3: References to Project~\ref{demo:ex:2} in a heading works for latex}
-
 \label{exer:you}
 
 Refer to the previous exercise as Exercise~\ref{exer:some:formula},
@@ -24682,6 +26400,13 @@ Filename: \code{selc_composed.pdf}.
 
 \end{exercise}
 % --- end exercise ---
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{papers.bib}
+
 
 
 
@@ -24696,7 +26421,6 @@ This is the first appendix.
 
 Some text.
 
-
 \section{Just for testing; part II}
 
 This is more stuff for an appendix.
@@ -24706,13 +26430,11 @@ This is more stuff for an appendix.
 Without label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id1}
 
 With label.
 
 \subsection{Appendix: Testing identical titles}
-
 \label{test:title:id2}
 
 With label.
@@ -24728,7 +26450,7 @@ Without label.
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Hint} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Hint}}
 Here is a hint.
 \end{minipage}}
 \end{center}
@@ -24740,8 +26462,18 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
-And here is a warning about something to pay attention to.
+\vskip-0.3in\centerline{{\large\sc Warning}}
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
@@ -24753,7 +26485,7 @@ Much testing in this document, otherwise stupid content.}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Notice}}
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -24767,11 +26499,39 @@ With math:
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Question} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Question}}
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+\subsection{Appendix: Testing inline comments}
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
+go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+
+\subsection{Appendix: Testing headings ending with \protect\code{verbatim inline} }
+
+The point here is to test 1) \code{verbatim} code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in {\LaTeX}.
+
 % ------------------- end of main content ---------------
 
 
@@ -24795,6 +26555,7 @@ end of tocinfo -->
 
 <p>
 This document is translated to the format html.
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -24813,8 +26574,7 @@ end of tocinfo -->
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-/* Here is some SWIG code code */
+<pre><code>/* Here is some SWIG code code */
 %module MyMod
 %{
 ...
@@ -24823,17 +26583,17 @@ end of tocinfo -->
 %init %{
 import_array();
 %}
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
 And more code:
 <!-- begin verbatim block -->
-<pre>
-% Matlab comment only
+<pre><code>% Matlab comment only
 ...
-</pre>
+</code></pre>
 <!-- end verbatim block -->
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -24861,8 +26621,7 @@ end of tocinfo -->
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-/* Here is some SWIG code code */
+<pre><code>/* Here is some SWIG code code */
 %module MyMod
 %{
 ...
@@ -24871,7 +26630,7 @@ end of tocinfo -->
 %init %{
 import_array();
 %}
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -24880,11 +26639,11 @@ import_array();
 <p>
 And more code:
 <!-- begin verbatim block -->
-<pre>
-% Matlab comment only
+<pre><code>% Matlab comment only
 ...
-</pre>
+</code></pre>
 <!-- end verbatim block -->
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -24912,8 +26671,7 @@ end of tocinfo -->
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-/* Here is some SWIG code code */
+<pre><code>/* Here is some SWIG code code */
 %module MyMod
 %{
 ...
@@ -24922,7 +26680,7 @@ end of tocinfo -->
 %init %{
 import_array();
 %}
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -24931,11 +26689,11 @@ import_array();
 <p>
 And more code:
 <!-- begin verbatim block -->
-<pre>
-% Matlab comment only
+<pre><code>% Matlab comment only
 ...
-</pre>
+</code></pre>
 <!-- end verbatim block -->
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -24956,8 +26714,7 @@ end of tocinfo -->
 <p>
 
 <!-- begin verbatim block -->
-<pre>
-/* Here is some SWIG code code */
+<pre><code>/* Here is some SWIG code code */
 %module MyMod
 %{
 ...
@@ -24966,18 +26723,18 @@ end of tocinfo -->
 %init %{
 import_array();
 %}
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
 
 And more code:
 <!-- begin verbatim block -->
-<pre>
-% Matlab comment only
+<pre><code>% Matlab comment only
 ...
-</pre>
+</code></pre>
 <!-- end verbatim block -->
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -25075,11 +26832,1723 @@ testdoc.html
 ._part0001_testdoc.html
 ._part0002_testdoc.html
 
+************** File: testdoc_vagrant.html *****************
+<html>
+<head>
+<!--
+Style adopted from the vagrant web pages.
+The vagrant style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Appendix: Testing headings ending with `verbatim inline` </title>
+
+<!-- ------------------- main content ------------------------>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="#sec1"> Section 1 </a>
+     <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="#___sec1"> Subsection 1 </a>
+     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="#subsec:table"> Tables </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="#Example"> Example 1: Examples can be typeset as exercises </a>
+     <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="#subsubsec:ex"> URLs </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="#___sec10"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="#demo:ex:1"> Problem 1: Flip a Coin </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="#___sec13"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="#demo:ex:2"> Project 1: Compute a Probability </a>
+     <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="#exer:dist"> Exercise 1: Determine some Distance </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="#___sec19"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="#___sec21"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="#___sec22"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
+     <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="#exer:you"> Project 3: References in a headings do not work well in html </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="#___sec26"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="#___sec27"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="#___sec28"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="#___sec29"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#test:title:id1"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#test:title:id2"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#___sec33"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="#___sec34"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' The $\\theta$ parameter (not $\\nabla$?) ',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
+              (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
+               2,
+               None,
+               '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
+              (' Example 1: Examples can be typeset as exercises ',
+               2,
+               'Example',
+               'Example'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
+              (' Project 2: Explore Distributions of Random Circles ',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              (' Remarks ', 3, None, '___sec17'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec19'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
+              (' Exercise 3: Make references to projects and problems ',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              (' Project 3: References in a headings do not work well in html ',
+               2,
+               'exer:you',
+               'exer:you'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+<!-- ------------------- main content ---------------------- -->
+
+
+<p>
+
+
+<h1>A Document for Testing Doconce</h1>
+
+<center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked, and J. Doe -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
+</center>
+
+<center>
+<b>Kaare Dump</b> [3]
+</center>
+
+<center>
+<b>A. Dummy Author</b> 
+</center>
+
+<center>
+<b>I. S. Overworked</b> [4, 5, 6, 7]
+</center>
+
+<center>
+<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<center>[3] <b>Segfault Inc, Cyberspace</b></center>
+<center>[4] <b>Inst1</b></center>
+<center>[5] <b>Inst2, Somewhere</b></center>
+<center>[6] <b>Third Inst, Elsewhere</b></center>
+<center>[7] <b>Fourth Inst</b></center>
+<p>
+
+<p>
+
+<h2>Table of contents</h2>
+
+<p>
+
+<a href="#sec1"> Section 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec1"> Subsection 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec10"> LaTeX Mathematics </a><br>
+<a href="#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Example 2: Just an example </a><br>
+<a href="#___sec22"> Here goes another section </a><br>
+<a href="#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="#___sec26"> References </a><br>
+<a href="#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec28"> A subsection within an appendix </a><br>
+<a href="#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec30"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+
+<p>
+
+
+<!-- !split -->
+
+<p>
+The format of this document is
+plain, homemade HTML (from Doconce).
+
+<p>
+
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+
+<p>
+And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+
+<p>
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- is mutually exclusive in LaTeX -->
+
+<p>
+
+
+<h2>Section 1 <a name="sec1"></a></h2>
+
+<p>
+Here is a nested list:
+
+<p>
+
+<ul>
+  <li> item1</li>
+  <li> item2</li>
+  <li> item3 which continues
+    on the next line to test that feature</li>
+  <li> and a sublist</li>
+
+<ul>
+    <li> with indented subitem1</li>
+    <li> and a subitem2</li>
+</ul>
+
+  <li> and perhaps an ordered sublist</li>
+
+<ol>
+   <li> first item</li>
+   <li> second item,
+      continuing on a new line</li>
+</ol>
+
+</ul>
+
+<blockquote>
+    Here are two lines that make up
+    a block quote.
+</blockquote>
+<p>
+<!-- !split and check if these extra words are included properly in the comment -->
+
+<p>
+
+<h3>Subsection 1  <a name="___sec1"></a></h3>
+
+<p>
+More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
+to the section <a href="#subsubsec:ex">URLs</a>. 
+<!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
+
+<p>
+Let's do some copying from files too. First from subroutine up to the very end,
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
+      <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
+      <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
+      <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #008000; font-weight: bold">do </span><span style="color: #19177C">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #19177C">i</span>
+         <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #19177C">r</span> <span style="color: #666666">+</span> <span style="color: #19177C">i</span>
+      <span style="color: #008000; font-weight: bold">end do</span>
+<span style="color: #008000; font-weight: bold">      return</span>
+<span style="color: #19177C">C</span>     <span style="color: #19177C">END1</span>
+
+      <span style="color: #008000; font-weight: bold">program </span><span style="color: #19177C">testme</span>
+      <span style="color: #008000; font-weight: bold">call </span><span style="color: #19177C">test</span>()
+      <span style="color: #008000; font-weight: bold">return</span>
+</pre></div>
+<p>
+and then just the subroutine,
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
+      <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
+      <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
+      <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #008000; font-weight: bold">do </span><span style="color: #19177C">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #19177C">i</span>
+         <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #19177C">r</span> <span style="color: #666666">+</span> <span style="color: #19177C">i</span>
+      <span style="color: #008000; font-weight: bold">end do</span>
+<span style="color: #008000; font-weight: bold">      return</span>
+</pre></div>
+<p>
+and finally the complete file:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">C</span>     <span style="color: #19177C">a</span> <span style="color: #19177C">comment</span>
+
+      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
+      <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
+      <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
+      <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #008000; font-weight: bold">do </span><span style="color: #19177C">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #19177C">i</span>
+         <span style="color: #19177C">r</span> <span style="color: #666666">=</span> <span style="color: #19177C">r</span> <span style="color: #666666">+</span> <span style="color: #19177C">i</span>
+      <span style="color: #008000; font-weight: bold">end do</span>
+<span style="color: #008000; font-weight: bold">      return</span>
+<span style="color: #19177C">C</span>     <span style="color: #19177C">END1</span>
+
+      <span style="color: #008000; font-weight: bold">program </span><span style="color: #19177C">testme</span>
+      <span style="color: #008000; font-weight: bold">call </span><span style="color: #19177C">test</span>()
+      <span style="color: #008000; font-weight: bold">return</span>
+</pre></div>
+<p>
+
+Testing other code environments. First Python:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
+def f(x):
+    return x+1
+!ec
+</pre></div>
+<p>
+which gets rendered as
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
+</pre></div>
+<p>
+
+Now a complete program to be shown via Python Online Tutorial:
+<p>
+
+<iframe width="950" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
+</iframe>
+<p>
+
+Then Cython:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">cpdef</span> <span style="color: #0000FF">f</span>(double x):
+    <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
+</pre></div>
+<p>
+
+<!-- This one tests a + sign before a code environment -->
+C++:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+
+<span style="color: #B00040">int</span> main()
+{
+   std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Sample output&quot;</span> <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
+   <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>
+}
+</pre></div>
+<p>
+<!-- The next should get correctly typset in sphinx (cod is fcod) -->
+And a little bit of Fortran:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+!ec
+</pre></div>
+<p>
+which then is typeset as
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+</pre></div>
+<p>
+
+System call:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #008000">test</span>
+Terminal&gt; <span style="color: #008000">cd test</span>
+Terminal&gt; myprog -f
+output1
+output2
+</pre></div>
+<p>
+
+It is time to test <code>verbatim inline font</code> especially with <code>a newline
+inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The
+exclamation mark inside the verbatim text is not smart for latex as
+we use ! in the <code>verb</code> typesetting... Also test backslashes
+like <code>\begin</code> and <code>\end</code> in inline verbatim text.
+
+<p>
+
+<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+
+<p>
+Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+
+<p>
+
+<center> <!-- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
+<p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
+</center>
+
+<p>
+
+Figures without captions are allowed.
+
+<p>
+<center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
+
+<p>
+Test of movies.
+
+<p>
+
+<embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
+</p>
+
+
+<p>
+<!-- Test empty caption: -->
+
+<p>
+
+<embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em></em>
+</p>
+
+
+<p>
+<!-- Test wrong syntax and multi-line caption -->
+
+<p>
+<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
+
+<p>
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate. Similar for Vimeo. -->
+
+<p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+
+<em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+
+
+
+<p>
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Computational fluid dynamics movie.</em>
+
+
+
+<p>
+
+<!-- Test multi-line caption in figure -->
+
+<p>
+Here is figure <a href="#myfig">2</a> with a long multi-line caption
+and an extra space before the FIGURE keyword.
+
+<p>
+
+<center> <!-- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
+<p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
+</center>
+
+<p>
+
+Movie <a href="#mymov">mymov</a> has a similar problem.
+
+<p>
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
+<p>
+<!-- Test URL as figure name -->
+
+<p>
+<center><p><img src="https://doconce.googlecode.com/hg/doc/blog/f_plot.png" align="bottom" width=500,></p></center>
+
+<p>
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
+
+<p>
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+
+<p>
+
+<h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
+
+<p>
+Functions do not always need to be advanced, here is one
+involving \( \theta \):
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
+    return theta**2
+</pre></div>
+<p>
+
+<b>More on \( \theta \).</b>
+Here is more text following headline with math.
+
+<p>
+Newcommands must also be tested in this test report:
+\( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \),
+both inline and in block:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+Or with align with label and numbers:
+
+<p>
+$$
+\begin{align}
+\frac{Du}{dt} &= 0
+\label{aligneq1}\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\label{aligneq2}
+\end{align}
+$$
+
+
+<p>
+
+
+<h3>Custom Environments  <a name="___sec4"></a></h3>
+
+<p>
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+
+<p>
+
+<!-- begin theorem -->
+<a name="theorem:fundamental1"></a>
+
+<p>
+
+<b>Theorem 5.</b>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+<!-- end theorem -->
+
+<p>
+<!-- begin proof -->
+<b>Proof.</b>
+Since \( c=a+b \), the result follows from straightforward addition.
+\( \Diamond \)
+<!-- end proof -->
+
+<p>
+As we see, the proof of Theorem 5 is a modest
+achievement.
+
+<p>
+
+
+<h3>Tables <a name="subsec:table"></a></h3>
+
+<p>
+
+<!-- index with comma could fool sphinx -->
+
+<p>
+Let us take this table from the manual:
+
+<p>
+
+<table border="1">
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
+<tr><td align="left">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
+<tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
+</table>
+<p>
+
+The Doconce source code reads
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+</pre></div>
+<p>
+
+Here is yet another table to test that we can handle more than
+one table:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="left">   0.0             </td> <td align="left">   1.4186          </td> <td align="left">   -5.01           </td> </tr>
+<tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
+<tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
+</table>
+<p>
+And one with math headings (that are expanded and must be treated
+accordingly) and verbatim heading and entry:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>     \( i \)      </b></td> <td align="center"><b>    \( h_i \)     </b></td> <td align="center"><b>  \( \bar T_i \)  </b></td> <td align="center"><b> <code>L_i</code> </b></td> </tr>
+<tr><td align="left">   0                   </td> <td align="right">   0                   </td> <td align="right">   288                 </td> <td align="right">   -0.0065             </td> </tr>
+<tr><td align="left">   1                   </td> <td align="right">   11,000              </td> <td align="right">   216                 </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   2                   </td> <td align="right">   20,000              </td> <td align="right">   216                 </td> <td align="right">   0.001               </td> </tr>
+<tr><td align="left">   3                   </td> <td align="right">   32,000              </td> <td align="right">   228                 </td> <td align="right">   0.0028              </td> </tr>
+<tr><td align="left">   4                   </td> <td align="right">   47,000              </td> <td align="right">   270                 </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   5                   </td> <td align="right">   51,000              </td> <td align="right">   270                 </td> <td align="right">   -0.0028             </td> </tr>
+<tr><td align="left">   6                   </td> <td align="right">   71,000              </td> <td align="right">   214                 </td> <td align="right">   <code>NaN</code>    </td> </tr>
+</table>
+<p>
+And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right after verbatim word (with no space):
+
+<p>
+<table border="1">
+<tr><td align="center"><b>            exact             </b></td> <td align="center"><b>       <code>v_1</code>       </b></td> <td align="center"><b> \( a_i \) + <code>v_2</code> </b></td> <td align="center"><b>     <code>verb_3_</code>     </b></td> </tr>
+<tr><td align="right">   9                               </td> <td align="right">   9.62                            </td> <td align="right">   5.57                            </td> <td align="right">   8.98                            </td> </tr>
+<tr><td align="right">   -20                             </td> <td align="right">   -23.39                          </td> <td align="right">   -7.65                           </td> <td align="right">   -19.93                          </td> </tr>
+<tr><td align="right">   10                              </td> <td align="right">   17.74                           </td> <td align="right">   -4.50                           </td> <td align="right">   9.96                            </td> </tr>
+<tr><td align="right">   0                               </td> <td align="right">   -9.19                           </td> <td align="right">   4.13                            </td> <td align="right">   -0.26                           </td> </tr>
+</table>
+<p>
+
+
+<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+
+<p>
+<b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
+Here is
+some text.
+
+<p>
+
+<h3>Bibliography test  <a name="___sec7"></a></h3>
+
+<p>
+Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solvin the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+
+<p>
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
+
+<p>
+Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples-as-exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+<p>
+
+<b>a)</b>
+State some problem.
+
+<p>
+<b>Solution.</b>
+The answer to this subproblem can be written here.
+
+<p>
+<b>b)</b>
+State some other problem.
+
+<p>
+<b>Hint 1.</b>
+A hint can be given.
+
+<p>
+<b>Hint 2.</b>
+Maybe even another hint?
+
+<p>
+<b>Solution.</b>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<h3>URLs <a name="subsubsec:ex"></a></h3>
+
+<p>
+Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
+the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a
+file</a> is
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+
+<p>
+Here are some tough tests of URLs, especially for the <code>latex</code> format:
+<a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas
+and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>. Need to test
+Newton-Cotes with percentage in URL too:
+<a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"><tt>http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
+and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+
+<p>
+For the <code>--latex-printed</code> it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
+
+<p>
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
+
+<p>
+<!-- Note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
+
+<p>
+More tough tests: repeated URLs whose footnotes when using the
+<code>--latex-printed</code> option must be correct. We have
+<a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
+<a href="http://google.com">google</a>, which should result in exactly three
+footnotes.
+
+<p>
+
+
+<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+
+<p>
+Here is an equation without label using backslash-bracket environment:
+$$ a = b + c $$
+
+or with number and label, as in \eqref{my:eq1}, using the equation environment:
+$$
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
+\end{equation}
+$$
+
+We can refer to this equation by \eqref{my:eq1}.
+
+<p>
+Here is a system without equation numbers, using the align-astrisk environment:
+$$
+\begin{align*}
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
+\end{align*}
+$$
+
+
+<p>
+
+And here is a system of equations with labels in an align environment:
+$$
+\begin{align}
+a &= q + 4 + 5+ 6 \label{eq1} \\ 
+b &= \nabla^2 u + \nabla^4 x \label{eq2}
+\end{align}
+$$
+
+We can refer to \eqref{eq1}-\eqref{eq2}.
+
+<p>
+Many of the next environments will fail in non-latex formats.
+Testing multiline:
+$$
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}
+\end{multline}
+$$
+
+Testing split:
+$$
+\begin{equation}
+\label{split:envir:eq}
+\begin{split}
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
+\end{split}
+\end{equation}
+$$
+
+We can refer to the last equation by \eqref{split:envir:eq}.
+
+<p>
+Testing gather:
+$$
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+$$
+
+
+<p>
+Testing alignat:
+$$
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
+\end{alignat}
+$$
+
+Let us refer to \eqref{eq1}-\eqref{eq2} again, and to the
+alignat variant \eqref{eq1a}-\eqref{eq2a}, and to \eqref{my:eq1}.
+
+<p>
+Testing eqnarray:
+$$
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
+\end{eqnarray}
+$$
+
+
+<p>
+More mathematical typesetting is demonstrated in the coming exercises.
+
+<p>
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 1: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
+
+<p>
+
+<h2>Exercises  <a name="___sec11"></a></h2>
+
+<p>
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
+<!-- keywords = random numbers; Monte Carlo simulation -->
+
+<p>
+<!-- Torture tests -->
+
+<p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+<p>
+
+<!-- Test syntax error -->
+
+<p>
+
+
+
+<h4>Remarks  <a name="___sec13"></a></h4>
+
+<p>
+Remarks with such a subsubsection heading would previously mark
+the beginning of a new exercise and cause trouble. Maybe a list
+
+<p>
+
+<ol>
+<li> Mark 1.</li>
+<li> Mark 2.
+<!-- --- begin hint in exercise --- --></li>
+</ol>
+
+<b>Hint 1.</b>
+Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 2.</b>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+<!-- --- end hint in exercise --- -->
+
+<p>
+
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+If the <code>random.random()</code> function returns a number \( <1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+<!-- --- end answer of exercise --- -->
+
+<p>
+
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+Code:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
+N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
+heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(N):
+    r <span style="color: #666666">=</span> random<span style="color: #666666">.</span>random()
+    <span style="color: #008000; font-weight: bold">if</span> r <span style="color: #666666">&lt;=</span> <span style="color: #666666">0.5</span>:
+        heads <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Flipping a coin </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> times gave </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> heads&#39;</span> <span style="color: #666666">%</span> (N, heads)
+</pre></div>
+<p>
+<!-- --- end solution of exercise --- -->
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<h3>Not an exercise  <a name="___sec14"></a></h3>
+
+<p>
+Should be possible to stick a normal section in the middle of many
+exercises.
+
+<p>
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
+
+<p>
+<!-- Minimalistic exercise -->
+
+<p>
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
+<p>
+The formula for a circle is given by
+
+<p>
+$$
+\begin{align}
+x &= x_0 + R\cos 2\pi t,\\ 
+y &= y_0 + R\sin 2\pi t,
+\end{align}
+$$
+
+where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
+    t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, n)
+    x <span style="color: #666666">=</span> x0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>cos(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    y <span style="color: #666666">=</span> y0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    <span style="color: #008000; font-weight: bold">return</span> x, y
+
+x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
+</pre></div>
+<p>
+
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+
+<p>
+The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+
+<p>
+
+<b>a)</b>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+<!-- --- end hint in exercise --- -->
+
+<p>
+
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+Here goes the short answer to part a).
+<!-- --- end answer of exercise --- -->
+
+<p>
+
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+Here goes a full solution to part a).
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>b)</b>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm.py</code>.
+
+<p>
+<b>c)</b>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+
+<p>
+Filename: <code>circles.pdf</code>.
+
+<p>
+<!-- Closing remarks for this Project -->
+
+<p>
+
+<h4>Remarks  <a name="___sec17"></a></h4>
+
+<p>
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+<p>
+
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
+<p>
+Intro to this exercise. Questions are in subexercises below.
+
+<p>
+
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+<p>
+
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+Here goes a full solution of the whole exercise.
+With some math \( a=b \) in this solution:
+$$ \hbox{math in solution: } a = b $$
+
+And code <code>a=b</code> in this solution:
+<p>
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">a = b  # code in solution
+</pre></div>
+<p>
+End of solution is here.
+<!-- --- end solution of exercise --- -->
+
+<p>
+
+<b>a)</b>
+Subexercises are numbered a), b), etc.
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 1.</b>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+
+<p>
+$$ a=b. $$
+
+And with code returning \( x+1 \) in hint:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
+    return x + 1  # with code in hint
+</pre></div>
+<p>
+<!-- --- end hint in exercise --- -->
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint 2.</b>
+Second hint to subexercise a).
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_a.pdf</code>.
+
+<p>
+
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+<!-- --- end answer of exercise --- -->
+
+<p>
+<b>b)</b>
+Here goes the text for subexercise b).
+
+<p>
+
+Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
+
+<p>
+$$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
+
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+A hint for this subexercise.
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_b.pdf</code>.
+
+<p>
+
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+Here goes the solution of this subexercise.
+<!-- --- end solution of exercise --- -->
+
+<p>
+<!-- Closing remarks for this Exercise -->
+
+<p>
+
+<h4>Remarks  <a name="___sec19"></a></h4>
+
+<p>
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+<p>
+
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+
+<p>
+<!-- Another minimalistic exercise -->
+
+<p>
+Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+
+<p>
+$$ \exp{(0)} = 1 $$
+
+
+<p>
+And a test that the code <code>lambda x: x+2</code> is correctly placed here:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
+</pre></div>
+<p>
+
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+
+<p>
+<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
+
+<p>
+
+<b>a)</b>
+What is the capital of Norway?
+
+<p>
+<b>Answer.</b>
+Oslo.
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<h2>Here goes another section  <a name="___sec22"></a></h2>
+
+<p>
+With some text, before we continue with exercises.
+
+<p>
+
+<h2>More Exercises  <a name="___sec23"></a></h2>
+
+<p>
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+
+<p>
+Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+and verify it.
+Filename: <code>verify_formula.py</code>.
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
+
+<p>
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 3: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+<h2>References  <a name="___sec26"></a></h2>
+
+<p>
+
+
+<ol>
+ <li> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Propagation of Large Destructive Waves,
+    <em>International Journal of Applied Mechanics and Engineering</em>,
+    7(1),
+    pp. 187-204,
+    2002.</li>
+ <li> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+    Numerical Methods for Incompressible Viscous Flow,
+    <em>Advances in Water Resources</em>,
+    25,
+    pp. 1125-1146,
+    2002.</li>
+ <li> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    <em>SIAM Journal of Scientific and Statistical Computing</em>,
+    15,
+    pp. 997-996,
+    1994.</li>
+ <li> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+    Software Tools for Multigrid Methods,
+    <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
+    edited by <b>H. P. Langtangen and A. Tveito</b>,
+    Springer,
+    2003.</li>
+ <li> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
+    The FEMDEQS Program System,
+    <em>Department of Mathematics, University of Oslo</em>,
+    1989.</li>
+</ol>
+
+
+<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+
+<p>
+This is the first appendix.
+
+<p>
+
+<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+
+<p>
+Some text.
+
+<p>
+
+<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+
+<p>
+This is more stuff for an appendix.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+
+<p>
+Without label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+
+<p>
+Without label.
+
+<p>
+<div class="alert alert-block alert-hint">Here is a hint.</div><p>
+<div class="alert alert-block alert-warning">And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul></div><p>
+<div class="alert alert-block alert-summary">Much testing in this document, otherwise stupid content.</div><p>
+<div class="alert alert-block alert-notice">Ah, we are close to the end.
+With math:
+$$ p=q$$
+
+<div class="alert alert-block alert-question">So, how many admonition environments does Doconce support?</div><p>
+
+<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+
+<p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. 
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+<!-- end inline comment -->
+ I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files is Dropbox. 
+<!-- begin inline comment -->
+[<b>mp</b>: <em>Simply
+go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+<!-- end inline comment -->
+ It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+<p>
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.</em>]
+<!-- end inline comment -->
+
+
+<p>
+
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+
+<p>
+The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<!-- Navigation buttons at the bottom:
+     Doconce will automatically fill in the right URL in these
+     buttons when doconce html_split is run. Otherwise they are empty.
+<ul class="pager">
+  <li class="previous">
+    <a href="">&larr; </a>
+  </li>
+  <li class="next">
+    <a href=""> &rarr;</a>
+ </li>
+</ul>
+-->
+
+ </div>
+
+<!-- ------------------- end of main content --------------- -->
+
+ <div class="row Footer">
+  <div class="span12">
+  Here goes a footer, if desired, maybe with a Copyright &copy;
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+
+
 ************** File: make.sh *****************
 #!/bin/sh -x
 rm -rf html_images reveal.js downloaded_figures
 
 # Note:  --examples-as-exercises is required to avoid abortion
+
+# Make publish database
+rm -rf papers.pub  venues.list # clean
+
+publish import refs1.bib <<EOF
+1
+2
+EOF
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+publish import refs2.bib <<EOF
+2
+2
+EOF
+# Simulate that we get new data, which is best put
+# in a new file
+publish import refs3.bib <<EOF
+1
+2
+EOF
 
 doconce format html testdoc --wordpress  --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -25096,6 +28565,11 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
+cp -r ../bundled/html_styles/style_vagrant .
+doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp testdoc.html testdoc_vagrant.html
+
 doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
@@ -25109,10 +28583,10 @@ doconce split_html testdoc.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 
-doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
+doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
+doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc
@@ -25135,6 +28609,11 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # test that pdflatex works
 pdflatex -shell-escape testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+pdflatex -shell-escape testdoc
+makeindex testdoc
+bibtex testdoc
+pdflatex -shell-escape testdoc
+pdflatex -shell-escape testdoc
 
 cp testdoc.tex testdoc.tex_ptex2tex
 
@@ -25160,8 +28639,6 @@ mv -f testdoc.rst testdoc.sphinx.rst
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-# Note: the chapter heading must be removed
-# for successful compilation of the sphinx document.
 doconce format rst testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
@@ -25247,6 +28724,21 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce format plain author1
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
+# Test math
+name=math_test
+doconce format html $name
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp $name.html ${name}_html.html
+doconce format sphinx $name
+#doconce sphinx_dir dirname=sphinx-rootdir-math $name
+#python automake_sphinx.py
+doconce format pandoc $name
+# Do not use pandoc directly because it does not support MathJax enough
+doconce md2html $name.md
+cp $name.html ${name}_pandoc.html
+doconce format pandoc $name
+doconce md2latex $name
+
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -25312,6 +28804,981 @@ doconce replace '# Comment before list' '' tmp2.do.txt
 doconce format rst tmp2
 
 
+
+************** File: math_test.do.txt *****************
+TITLE: How various formats can deal with LaTeX math
+AUTHOR: HPL
+DATE: today
+
+
+This document is translated to the format _${FORMAT}_.
+
+__Test 1: Inline math.__ Here is a sentence contains the equation $u(t)=e^{-at}$.
+
+__Test 2: A single equation without label.__ Here it is
+
+!bt
+\[ u(t)=e^{-at} \]
+!et
+
+__Test 3: A single equation with label.__ Here it is as a one-line
+latex code,
+
+!bc
+|bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+|et
+!ec
+looking like
+
+!bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+!et
+and as a three-line latex code:
+
+!bc
+|bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+|et
+!ec
+looking like
+
+!bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+!et
+This equation has label (ref{eq1b}).
+
+
+__Test 4: Multiple, aligned equations without label.__ Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+!bc
+|bt
+\begin{align*}
+u(t)&=e^{-at}\\
+v(t) &= \frac{du}{dt}
+\end{align*}
+|et
+!ec
+and results in
+
+!bt
+\begin{align*}
+u(t)&=e^{-at}\\
+v(t) &= \frac{du}{dt}
+\end{align*}
+!et
+
+__Test 5: Multiple, aligned equations with label.__ We use align with
+labels:
+
+!bc
+|bt
+\begin{align}
+u(t)&=e^{-at}
+label{eq2b}\\
+v(t) &= \frac{du}{dt}
+label{eq3b}
+\end{align}
+|et
+!ec
+and results in
+
+!bt
+\begin{align}
+u(t)&=e^{-at} label{eq2b}\\
+v(t) &= \frac{du}{dt} label{eq3b}
+\end{align}
+!et
+We can refer to the last equations as the system (ref{eq2b})-(ref{eq3b}).
+
+# #if FORMAT == "sphinx"
+Actually, *Sphinx does not support the align environment with labels*,
+such as we write above,
+but Doconce splits in this case the equations into separate, single equations
+with labels. Hence the user can write one code with align and labels
+and have to work in LaTeX, HTML, and Sphinx. The generated Sphinx code
+in the present case is
+
+!bc rst
+.. math::
+   :label: eq2b
+
+        u(t)=e^{-at}
+
+
+.. math::
+   :label: eq3b
+
+        v(t) = \frac{du}{dt}
+
+!ec
+# #endif
+
+# #if FORMAT == "pandoc"
+Original Pandoc-extended Markdown transformed to HTML via Pandoc
+does not work with labels and multiple equations. `doconce md2html`
+fixes the trouble by adding full support for MathJax and avoiding
+that eqref references become empty.
+
+One can write with align and labels in the Doconce document and get excellent
+output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without
+`doconce md2html` one must accept that labeles have very limited support
+compared to more advanced MathJax.
+# #endif
+
+
+__Test 6: Multiple, aligned eqnarray equations without label.__ Let us
+try the old eqnarray environment.
+
+!bc
+|bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+|et
+!ec
+and results in
+
+!bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+!et
+
+__Test 5: Multiple, eqnarrayed equations with label.__ We use eqnarray with
+labels:
+
+!bc
+|bt
+\begin{eqnarray}
+u(t)&=& e^{-at}
+label{eq2c}\\
+v(t) &=& \frac{du}{dt}
+label{eq3c}
+\end{eqnarray}
+|et
+!ec
+and results in
+
+!bt
+\begin{eqnarray}
+u(t)&=& e^{-at} label{eq2c}\\
+v(t) &=& \frac{du}{dt} label{eq3c}
+\end{eqnarray}
+!et
+Can we refer to the last equations as the system (ref{eq2c})-(ref{eq3c})?
+
+# #if FORMAT == "sphinx"
+Note: Doconce takes the eqnarray with labels and replaces it automatically
+by the Sphinx code
+
+!bc rst
+.. math::
+
+        u(t) &=  e^{-at} \\
+        v(t)  &=  \frac{du}{dt}
+!ec
+That is why the equation numbers are gone and that eqnarray seemingly
+works. MathJax does not support eqnarray with labels so Sphinx would
+probably fail to show them (unless one tries PNG images or other
+math engines?).
+# #endif
+
+************** File: math_test.md *****************
+% How various formats can deal with LaTeX math
+% HPL
+% Jan 32, 2100
+
+This document is translated to the format _pandoc_.
+
+*Test 1: Inline math.* Here is a sentence contains the equation $u(t)=e^{-at}$.
+
+*Test 2: A single equation without label.* Here it is
+
+$$
+ u(t)=e^{-at} 
+$$
+
+*Test 3: A single equation with label.* Here it is as a one-line
+latex code,
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+looking like
+
+$$
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+$$
+and as a three-line latex code:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+looking like
+
+$$
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+$$
+This equation has label \eqref{eq1b}.
+
+
+*Test 4: Multiple, aligned equations without label.* Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) &= \frac{du}{dt}
+\end{align*}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) &= \frac{du}{dt}
+\end{align*}
+$$
+
+*Test 5: Multiple, aligned equations with label.* We use align with
+labels:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{align}
+u(t)&=e^{-at}
+\label{eq2b}\\ 
+v(t) &= \frac{du}{dt}
+\label{eq3b}
+\end{align}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{equation}
+u(t)=e^{-at} \label{eq2b}
+\end{equation}
+$$
+
+$$
+\begin{equation}  
+v(t) = \frac{du}{dt} \label{eq3b}
+\end{equation}
+$$
+We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
+
+
+Original Pandoc-extended Markdown transformed to HTML via Pandoc
+does not work with labels and multiple equations. `doconce md2html`
+fixes the trouble by adding full support for MathJax and avoiding
+that eqref references become empty.
+
+One can write with align and labels in the Doconce document and get excellent
+output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without
+`doconce md2html` one must accept that labeles have very limited support
+compared to more advanced MathJax.
+
+
+*Test 6: Multiple, aligned eqnarray equations without label.* Let us
+try the old eqnarray environment.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+$$
+
+*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
+labels:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{eqnarray}
+u(t)&=& e^{-at}
+\label{eq2c}\\ 
+v(t) &=& \frac{du}{dt}
+\label{eq3c}
+\end{eqnarray}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{eqnarray}
+u(t)&=& e^{-at} \label{eq2c}\\ 
+v(t) &=& \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+$$
+Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
+
+
+************** File: math_test_html.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="How various formats can deal with LaTeX math">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>How various formats can deal with LaTeX math</title>
+
+<center><h1>How various formats can deal with LaTeX math</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): HPL -->
+
+<center>
+<b>HPL</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+This document is translated to the format <b>html</b>.
+
+<p>
+<b>Test 1: Inline math.</b>
+Here is a sentence contains the equation \( u(t)=e^{-at} \).
+
+<p>
+<b>Test 2: A single equation without label.</b>
+Here it is
+
+<p>
+$$ u(t)=e^{-at} $$
+
+
+<p>
+<b>Test 3: A single equation with label.</b>
+Here it is as a one-line
+latex code,
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+!et
+</pre></div>
+<p>
+looking like
+
+<p>
+$$
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+$$
+
+and as a three-line latex code:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+!et
+</pre></div>
+<p>
+looking like
+
+<p>
+$$
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+$$
+
+This equation has label \eqref{eq1b}.
+
+<p>
+
+<b>Test 4: Multiple, aligned equations without label.</b>
+Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{align*}
+u(t)&amp;=e^{-at}\\ 
+v(t) &amp;= \frac{du}{dt}
+\end{align*}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) &= \frac{du}{dt}
+\end{align*}
+$$
+
+
+<p>
+<b>Test 5: Multiple, aligned equations with label.</b>
+We use align with
+labels:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{align}
+u(t)&amp;=e^{-at}
+label{eq2b}\\ 
+v(t) &amp;= \frac{du}{dt}
+label{eq3b}
+\end{align}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{align}
+u(t)&=e^{-at} \label{eq2b}\\ 
+v(t) &= \frac{du}{dt} \label{eq3b}
+\end{align}
+$$
+
+We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
+
+<p>
+
+
+<b>Test 6: Multiple, aligned eqnarray equations without label.</b>
+Let us
+try the old eqnarray environment.
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{eqnarray*}
+u(t)&amp;=&amp; e^{-at}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\end{eqnarray*}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+$$
+
+
+<p>
+<b>Test 5: Multiple, eqnarrayed equations with label.</b>
+We use eqnarray with
+labels:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{eqnarray}
+u(t)&amp;=&amp; e^{-at}
+label{eq2c}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+label{eq3c}
+\end{eqnarray}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{eqnarray}
+u(t)&=& e^{-at} \label{eq2c}\\ 
+v(t) &=& \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+$$
+
+Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
+
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: math_test_pandoc.html *****************
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="HPL" />
+  <title>How various formats can deal with LaTeX math</title>
+  
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How various formats can deal with LaTeX math</h1>
+<h2 class="author">HPL</h2>
+<h3 class="date">Jan 32, 2100</h3>
+</div>
+<p>This document is translated to the format <em>pandoc</em>.</p>
+<p><em>Test 1: Inline math.</em> Here is a sentence contains the equation \(u(t)=e^{-at}\).</p>
+<p><em>Test 2: A single equation without label.</em> Here it is</p>
+<p>\[
+ u(t)=e^{-at} 
+\]</p>
+<p><em>Test 3: A single equation with label.</em> Here it is as a one-line latex code,</p>
+<pre><code>!bt
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+!et</code></pre>
+<p>looking like</p>
+<p>\[
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+\] and as a three-line latex code:</p>
+<pre><code>!bt
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+!et</code></pre>
+<p>looking like</p>
+<p>\[
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+\] This equation has label \eqref{eq1b}.</p>
+<p><em>Test 4: Multiple, aligned equations without label.</em> Only the align environment is supported by other formats than LaTeX for typesetting multiple, aligned equations. The code reads</p>
+<pre><code>!bt
+\begin{align*}
+u(t)&amp;=e^{-at}\\ 
+v(t) &amp;= \frac{du}{dt}
+\end{align*}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{align*}
+u(t)&amp;=e^{-at}\\ 
+v(t) &amp;= \frac{du}{dt}
+\end{align*}
+\]</p>
+<p><em>Test 5: Multiple, aligned equations with label.</em> We use align with labels:</p>
+<pre><code>!bt
+\begin{align}
+u(t)&amp;=e^{-at}
+\label{eq2b}\\ 
+v(t) &amp;= \frac{du}{dt}
+\label{eq3b}
+\end{align}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{equation}
+u(t)=e^{-at} \label{eq2b}
+\end{equation}
+\]</p>
+<p>\[
+\begin{equation}  
+v(t) = \frac{du}{dt} \label{eq3b}
+\end{equation}
+\] We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.</p>
+<p>Original Pandoc-extended Markdown transformed to HTML via Pandoc does not work with labels and multiple equations. <code>doconce md2html</code> fixes the trouble by adding full support for MathJax and avoiding that eqref references become empty.</p>
+<p>One can write with align and labels in the Doconce document and get excellent output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without <code>doconce md2html</code> one must accept that labeles have very limited support compared to more advanced MathJax.</p>
+<p><em>Test 6: Multiple, aligned eqnarray equations without label.</em> Let us try the old eqnarray environment.</p>
+<pre><code>!bt
+\begin{eqnarray*}
+u(t)&amp;=&amp; e^{-at}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\end{eqnarray*}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{eqnarray*}
+u(t)&amp;=&amp; e^{-at}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\end{eqnarray*}
+\]</p>
+<p><em>Test 5: Multiple, eqnarrayed equations with label.</em> We use eqnarray with labels:</p>
+<pre><code>!bt
+\begin{eqnarray}
+u(t)&amp;=&amp; e^{-at}
+\label{eq2c}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\label{eq3c}
+\end{eqnarray}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{eqnarray}
+u(t)&amp;=&amp; e^{-at} \label{eq2c}\\ 
+v(t) &amp;=&amp; \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+\] Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?</p>
+</body>
+</html>
+
+************** File: math_test.tex *****************
+NOT FOUND!
+************** File: math_test.rst *****************
+.. Automatically generated reST file from Doconce source
+   (http://code.google.com/p/doconce/)
+
+How various formats can deal with LaTeX math
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:Author: HPL
+:Date: Jan 32, 2100
+
+This document is translated to the format **sphinx**.
+
+*Test 1: Inline math.* Here is a sentence contains the equation :math:`u(t)=e^{-at}`.
+
+*Test 2: A single equation without label.* Here it is
+
+
+.. math::
+         u(t)=e^{-at} 
+
+
+*Test 3: A single equation with label.* Here it is as a one-line
+latex code,
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+        !et
+
+looking like
+
+
+.. math::
+   :label: eq1
+         u(t)=e^{-at} 
+
+and as a three-line latex code:
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{equation}
+        u(t)=e^{-at} label{eq1b}
+        \end{equation}
+        !et
+
+looking like
+
+
+.. math::
+   :label: eq1b
+        
+        u(t)=e^{-at} 
+        
+
+This equation has label :eq:`eq1b`.
+
+
+*Test 4: Multiple, aligned equations without label.* Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{align*}
+        u(t)&=e^{-at}\\ 
+        v(t) &= \frac{du}{dt}
+        \end{align*}
+        !et
+
+and results in
+
+
+.. math::
+        
+        u(t)&=e^{-at}\\ 
+        v(t) &= \frac{du}{dt}
+        
+
+
+*Test 5: Multiple, aligned equations with label.* We use align with
+labels:
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{align}
+        u(t)&=e^{-at}
+        label{eq2b}\\ 
+        v(t) &= \frac{du}{dt}
+        label{eq3b}
+        \end{align}
+        !et
+
+and results in
+
+
+.. math::
+   :label: eq2b
+        
+        u(t)=e^{-at} 
+        
+
+
+
+.. math::
+   :label: eq3b
+          
+        v(t) = \frac{du}{dt} 
+        
+
+We can refer to the last equations as the system :eq:`eq2b`-:eq:`eq3b`.
+
+Actually, *Sphinx does not support the align environment with labels*,
+such as we write above,
+but Doconce splits in this case the equations into separate, single equations
+with labels. Hence the user can write one code with align and labels
+and have to work in LaTeX, HTML, and Sphinx. The generated Sphinx code
+in the present case is
+
+
+.. code-block:: rst
+
+        .. math::
+           :label: eq2b
+        
+                u(t)=e^{-at}
+        
+        
+        .. math::
+           :label: eq3b
+        
+                v(t) = \frac{du}{dt}
+        
+
+
+
+
+*Test 6: Multiple, aligned eqnarray equations without label.* Let us
+try the old eqnarray environment.
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{eqnarray*}
+        u(t)&=& e^{-at}\\ 
+        v(t) &=& \frac{du}{dt}
+        \end{eqnarray*}
+        !et
+
+and results in
+
+
+.. math::
+        
+        u(t) &=  e^{-at}\\ 
+        v(t)  &=  \frac{du}{dt}
+        
+
+
+*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
+labels:
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{eqnarray}
+        u(t)&=& e^{-at}
+        label{eq2c}\\ 
+        v(t) &=& \frac{du}{dt}
+        label{eq3c}
+        \end{eqnarray}
+        !et
+
+and results in
+
+
+.. math::
+        
+        u(t) &=  e^{-at} \\ 
+        v(t)  &=  \frac{du}{dt} 
+        
+
+Can we refer to the last equations as the system :eq:`eq2c`-:eq:`eq3c`?
+
+Note: Doconce takes the eqnarray with labels and replaces it automatically
+by the Sphinx code
+
+
+.. code-block:: rst
+
+        .. math::
+        
+                u(t) &=  e^{-at} \\ 
+                v(t)  &=  \frac{du}{dt}
+
+That is why the equation numbers are gone and that eqnarray seemingly
+works. MathJax does not support eqnarray with labels so Sphinx would
+probably fail to show them (unless one tries PNG images or other
+math engines?).
 
 ************** File: tmp_Doconce.do.txt *****************
 
@@ -25535,7 +30002,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Feb 2013 (07:46)</center>
+<center>Fri, 08 Mar 2013 (04:14)</center>
 
 
 
@@ -25666,7 +30133,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Feb 2013 (07:46)</center>
+<center>Fri, 08 Mar 2013 (04:14)</center>
 
 
 
@@ -25897,10 +30364,15 @@ AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of O
 DATE: today
 TOC: on
 
-# Very preliminary
-
 _WARNING: This quick reference is very incomplete!_
 
+__Mission.__ Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's `blogger.com`, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 ===== Supported Formats =====
 
@@ -25911,14 +30383,50 @@ Doconce currently translates files to the following formats:
  * reStructuredText (format `rst`)
  * plain (untagged) ASCII (format `plain`)
  * Sphinx (format `sphinx`)
+ * IPython notebook (format `ipynb`)
+ * MediaWiki (format `mwiki`)
  * (Pandoc extended) Markdown (format `pandoc`)
  * Googlecode wiki (format `gwiki`)
- * MediaWiki for Wikipedia and Wikibooks (format `mwiki`)
  * Creoloe wiki (format `cwiki`)
  * Epydoc (format `epydoc`)
  * StructuredText (format `st`)
 
-The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
+For documents with much code and mathematics, the best (and most supported)
+formats are `latex`, `pdflatex`, `sphinx`, and `html`; and to a slightly
+less extent `mwiki` and `pandoc`. The HTML format supports blogging on
+Google and Wordpress.
+
+
+===== Emacs syntax support =====
+
+The file ".doconce-mode.el": "https://doconce.googlecode.com/hg/misc/.doconce-mode.el" in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add `(load-file "~/.doconce-mode.el")` to the `.emacs`
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+|--------------------------------------------------------|
+| Emacs key      | Action                                |
+|----l-------------------------l-------------------------|
+|  Ctrl+c f      | figure                                |
+|  Ctrl+c v      | movie/video                           |
+|  Ctrl+c h1     | heading level 1 (section/h1)          |
+|  Ctrl+c h2     | heading level 2 (subsection/h2)       |
+|  Ctrl+c h3     | heading level 2 (subsection/h3)       |
+|  Ctrl+c hp     | heading for paragraph                 |
+|  Ctrl+c me     | math environment: !bt equation !et    |
+|  Ctrl+c ma     | math environment: !bt align !et       |
+|  Ctrl+c ce     | code environment: !bc !ec             |
+|  Ctrl+c cf     | code from file: @@@CODE               |
+|  Ctrl+c table2 | table with 2 columns                  |
+|  Ctrl+c table3 | table with 3 columns                  |
+|  Ctrl+c table4 | table with 4 columns                  |
+|  Ctrl+c exer   | exercise outline                      |
+|  Ctrl+c slide  | slide outline                         |
+|  Ctrl+c help   | print this table                      |
+|--------------------------------------------------------|
 
 ===== Title, Authors, and Date =====
 
@@ -25955,24 +30463,29 @@ The table of contents is removed by writing `TOC: off`.
 ===== Section Types =====
 label{quick:sections}
 
-|----------------c--------|------------------c--------------------|
-|      Section type       |        Syntax                         |
-|----------------l--------|------------------l--------------------|
-| chapter                 | `========= Heading ========` (9 `=`)  |
-| section                 | `======= Heading =======`    (7 `=`)  |
-| subsection              | `===== Heading =====`        (5 `=`)  |
-| subsubsection           | `=== Heading ===`            (3 `=`)  |
-| paragraph               | `__Heading.__`               (2 `_`)  |
-| abstract                | `__Abstract.__` Running text...       |
-|-----------------------------------------------------------------|
+|----------------c--------|------------------c---------------------------|
+|      Section type       |        Syntax                                |
+|----------------l--------|------------------l---------------------------|
+| chapter                 | `========= Heading ========` (9 `=`)         |
+| section                 | `======= Heading =======`    (7 `=`)         |
+| subsection              | `===== Heading =====`        (5 `=`)         |
+| subsubsection           | `=== Heading ===`            (3 `=`)         |
+| paragraph               | `__Heading.__`               (2 `_`)         |
+| abstract                | `__Abstract.__` Running text...              |
+| appendix                | `======= Appendix: heading =======` (7 `=`)  |
+| appendix                | `===== Appendix: heading =====` (5 `=`)      |
+| exercise                | `======= Exercise: heading =======` (7 `=`)  |
+| exercise                | `===== Exercise: heading =====` (5 `=`)      |
+|------------------------------------------------------------------------|
 
-Note that abstracts are recognized by starting with `__Abstract.__` at
-the beginning of a line and ending with three or more `=` signs of the
-next heading.
+Note that abstracts are recognized by starting with `__Abstract.__` or
+`__Summary.__` at the beginning of a line and ending with three or
+more `=` signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only `latex` output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The `Exercise:` keyword kan be substituted by `Problem:` or `Project:`.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 ===== Inline Formatting =====
 
@@ -26049,7 +30562,7 @@ And finally a description list:
  - keyword3: and its description may fit on one line
 
 
-===== Comments =====
+===== Comment lines =====
 
 Lines starting with `#` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -26057,34 +30570,43 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats `rst` and
 `sphinx` are desired.
 
+Comment lines starting with `##` are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes `##` or by blocks of text
-inside the comment directives `%<doc>` (beginning) and `<%doc/>` (end).
+Doconce starts processing the file. Mako block comments start
+with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+`# #ifdef EXTRA` and `# #endif` around the text. The command line
+option `-DEXTRA` will bring the text alive again.
+
+===== Inline comments =====
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 !bc
 [name: running text]
 !ec
 where `name` is the name or ID of an author or reader making the comment,
-and `running text` is the comment. There must be a space after the colon.
+and `running text` is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running
 !bc sys
 doconce format html mydoc.do.txt --skip_inline_comments
 !ec
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 !bc sys
 doconce remove_inline_comments mydoc.do.txt
 !ec
-This action is appropriate when all issues with such comments are resolved.
 
 ===== Verbatim/Computer Code =====
 
@@ -26165,9 +30687,9 @@ Important warnings:
 ===== LaTeX Mathematics =====
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats `sphinx`, `latex`, and `pdflatex`
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats `html`, `sphinx`, `latex`,
+pdflatex`, `pandoc`, and `mwiki` work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -26179,8 +30701,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 !ec
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 `!bt`
@@ -26195,9 +30716,10 @@ and
 \end{align*}
 |et
 !ec
-# Note: |bt and |et (and |bc and |ec below) are used to illustrate
-# tex and code blocks in inside verbatim blocks and are replaced
-# by !bt, !et, !bc, and !ec after all other formatting is finished.
+## Note: |bt and |et (and |bc and |ec below) are used to illustrate
+## tex and code blocks in inside verbatim blocks and are replaced
+## by !bt, !et, !bc, and !ec after all other formatting is finished.
+
 This LaTeX code gets rendered as
 
 !bt
@@ -26219,23 +30741,16 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
 
-One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (`#else`) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-`mwiki`, or `html` formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` or `pdflatex` *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+`mwiki`, `html`, or `ipynb` formats
+is also important, one should follow these rules:
 
   * Use only the equation environments `\[`, `\]`,
     `equation`, `equation*`, `align`, and `align*`.
-  * Labels in multiple equation environments such as `align` are
-    not (yet) handled by `pandoc`.
   * MediaWiki (`mwiki`) does not support references to equations.
+
+(Doconce performs extensions to `sphinx` and other formats such that
+labels in `align` environments work well.)
 
 !bnotice
 LaTeX supports lots of fancy formatting, for example, multiple
@@ -26250,9 +30765,17 @@ also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 !enotice
 
-
 __LaTeX Newcommands.__
-Text missing...
+The author can define `newcommand` statements in files with names
+`newcommands*.tex`. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that `newcommands_keep.tex`
+contains the newcommands that are kept in the document, while
+those in `newcommands_replace.tex` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
+`mwiki`, `ipynb`, and `pandoc`, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 ===== Figures and Movies =====
@@ -26264,28 +30787,40 @@ FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which mus
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 !ec
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+  o A mandatory comma after the figure/movie filename,
+  o all of the command must appear on a single line,
+  o there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-`convert` and `montage` programs from the ImageMagick suite:
 !bc sys
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 !ec
-Use `+append` for stacking left to right, `-append` for top to bottom.
-The positioning of the figures can be controlled by `-gravity`.
+This command applies `montage` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in `html` and `sphinx` documents
+and otherwise be represented by a link. The syntax is
+
+!bc
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+!ec
+The latter results in
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 
 
 ===== Tables =====
@@ -26321,16 +30856,17 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-===== Labels, References, Citations, and Index =====
+===== Labels and References =====
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 !bc
 label{name}
 !ec
 with no backslash
-preceding the label keyword! It is common practice to choose `name`
+preceding the label keyword. It is common practice to choose `name`
 as some hierarchical name, say `a:b:c`, where `a` and `b` indicate
 some abbreviations for a section and/or subsection for the topic and
 `c` is some name for the particular unit that has a label.
@@ -26340,6 +30876,13 @@ A reference to the label `name` is written as
 ref{name}
 !ec
 again with no backslash before `ref`.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+===== Citations and Bibliography =====
 
 Single citations are written as
 !bc
@@ -26356,20 +30899,22 @@ by comma:
 cite{name1,name2,name3}
 !ec
 
-The bibliography is specified by a line `BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py`, where `name` is the logical name of the
-document (the doconce file will then normally have the name
-`name.do.txt`), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the `BIBFILE` keyword appears.
+The bibliography is specified by a line `BIBFILE: papers.pub`,
+where `papers.pub` is a publication database in the
+"Publish": "https://bitbucket.org/logg/publish" format.
+BibTeX `.bib` files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+===== Generalized Citations =====
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with `ref` to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 !bc
 ref[internal][cite][external]
 
@@ -26391,6 +30936,8 @@ LaTeX package `xr` is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 `external` text will be the output.
 
+===== Index of Keywords =====
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -26401,10 +30948,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the `latex`, `rst`, and
-`sphinx` formats.
+forthcoming text. The index is only produced for the `latex`,
+`pdflatex`, `rst`, and `sphinx` formats.
 
-===== Capabilities of the "doconce" Program =====
+===== Capabilities of The Program `doconce` =====
 
 The `doconce` program can be used for a number of purposes besides
 transforming a `.do.txt` file to some format. Here is the
@@ -26531,7 +31078,6 @@ the environments:
  * `subex`: sub-exercise
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
- * `notes`: multi-line notes to be included or not
  * `quote`: indented text
  * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
     specialy typesetting (or symbols)
@@ -26539,8 +31085,6 @@ the environments:
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide
 
-
-===== Labels, Index, and Citations =====
 
 ===== Preprocessing =====
 
@@ -26607,6 +31151,8 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Doconce Quick Reference">
+
 
 
 <style type="text/css">
@@ -26674,28 +31220,29 @@ Automatically generated HTML file from Doconce source
 <!-- tocinfo
 {'highest level': 2,
  'sections': [(' Supported Formats ', 2, None, '___sec0'),
-              (' Title, Authors, and Date ', 2, None, '___sec1'),
+              (' Emacs syntax support ', 2, None, '___sec1'),
+              (' Title, Authors, and Date ', 2, None, '___sec2'),
               (' Section Types ', 2, 'quick:sections', 'quick:sections'),
-              (' Inline Formatting ', 2, None, '___sec3'),
-              (' Lists ', 2, None, '___sec4'),
-              (' Comments ', 2, None, '___sec5'),
-              (' Verbatim/Computer Code ', 2, None, '___sec6'),
-              (' LaTeX Mathematics ', 2, None, '___sec7'),
-              (' Figures and Movies ', 2, None, '___sec8'),
-              (' Tables ', 2, None, '___sec9'),
-              (' Labels, References, Citations, and Index ',
+              (' Inline Formatting ', 2, None, '___sec4'),
+              (' Lists ', 2, None, '___sec5'),
+              (' Comment lines ', 2, None, '___sec6'),
+              (' Inline comments ', 2, None, '___sec7'),
+              (' Verbatim/Computer Code ', 2, None, '___sec8'),
+              (' LaTeX Mathematics ', 2, None, '___sec9'),
+              (' Figures and Movies ', 2, None, '___sec10'),
+              (' Tables ', 2, None, '___sec11'),
+              (' Labels and References ', 2, None, '___sec12'),
+              (' Citations and Bibliography ', 2, None, '___sec13'),
+              (' Generalized Citations ', 2, None, '___sec14'),
+              (' Index of Keywords ', 2, None, '___sec15'),
+              (' Capabilities of The Program `doconce` ',
                2,
                None,
-               '___sec10'),
-              (' Capabilities of the "doconce" Program ',
-               2,
-               None,
-               '___sec11'),
-              (' Exercises ', 2, None, '___sec12'),
-              (' Environments ', 2, None, '___sec13'),
-              (' Labels, Index, and Citations ', 2, None, '___sec14'),
-              (' Preprocessing ', 2, None, '___sec15'),
-              (' Resources ', 2, None, '___sec16')]}
+               '___sec16'),
+              (' Exercises ', 2, None, '___sec17'),
+              (' Environments ', 2, None, '___sec18'),
+              (' Preprocessing ', 2, None, '___sec19'),
+              (' Resources ', 2, None, '___sec20')]}
 end of tocinfo -->
 
 <body>
@@ -26748,35 +31295,46 @@ MathJax.Hub.Config({
 <p>
 
 <a href="#___sec0"> Supported Formats </a><br>
-<a href="#___sec1"> Title, Authors, and Date </a><br>
+<a href="#___sec1"> Emacs syntax support </a><br>
+<a href="#___sec2"> Title, Authors, and Date </a><br>
 <a href="#quick:sections"> Section Types </a><br>
-<a href="#___sec3"> Inline Formatting </a><br>
-<a href="#___sec4"> Lists </a><br>
-<a href="#___sec5"> Comments </a><br>
-<a href="#___sec6"> Verbatim/Computer Code </a><br>
-<a href="#___sec7"> LaTeX Mathematics </a><br>
-<a href="#___sec8"> Figures and Movies </a><br>
-<a href="#___sec9"> Tables </a><br>
-<a href="#___sec10"> Labels, References, Citations, and Index </a><br>
-<a href="#___sec11"> Capabilities of the "doconce" Program </a><br>
-<a href="#___sec12"> Exercises </a><br>
-<a href="#___sec13"> Environments </a><br>
-<a href="#___sec14"> Labels, Index, and Citations </a><br>
-<a href="#___sec15"> Preprocessing </a><br>
-<a href="#___sec16"> Resources </a><br>
+<a href="#___sec4"> Inline Formatting </a><br>
+<a href="#___sec5"> Lists </a><br>
+<a href="#___sec6"> Comment lines </a><br>
+<a href="#___sec7"> Inline comments </a><br>
+<a href="#___sec8"> Verbatim/Computer Code </a><br>
+<a href="#___sec9"> LaTeX Mathematics </a><br>
+<a href="#___sec10"> Figures and Movies </a><br>
+<a href="#___sec11"> Tables </a><br>
+<a href="#___sec12"> Labels and References </a><br>
+<a href="#___sec13"> Citations and Bibliography </a><br>
+<a href="#___sec14"> Generalized Citations </a><br>
+<a href="#___sec15"> Index of Keywords </a><br>
+<a href="#___sec16"> Capabilities of The Program <code>doconce</code> </a><br>
+<a href="#___sec17"> Exercises </a><br>
+<a href="#___sec18"> Environments </a><br>
+<a href="#___sec19"> Preprocessing </a><br>
+<a href="#___sec20"> Resources </a><br>
 
 <p>
 
 
-<!-- Very preliminary -->
-
-<p>
 <b>WARNING: This quick reference is very incomplete!</b>
 
 <p>
+<b>Mission.</b>
+Enable writing documentation with much mathematics and
+computer code <em>once, in one place</em> and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
+<p>
 
 <h3>Supported Formats  <a name="___sec0"></a></h3>
+
 <p>
 Doconce currently translates files to the following formats:
 
@@ -26788,39 +31346,77 @@ Doconce currently translates files to the following formats:
  <li> reStructuredText (format <code>rst</code>)</li>
  <li> plain (untagged) ASCII (format <code>plain</code>)</li>
  <li> Sphinx (format <code>sphinx</code>)</li>
+ <li> IPython notebook (format <code>ipynb</code>)</li>
+ <li> MediaWiki (format <code>mwiki</code>)</li>
  <li> (Pandoc extended) Markdown (format <code>pandoc</code>)</li>
  <li> Googlecode wiki (format <code>gwiki</code>)</li>
- <li> MediaWiki for Wikipedia and Wikibooks (format <code>mwiki</code>)</li>
  <li> Creoloe wiki (format <code>cwiki</code>)</li>
  <li> Epydoc (format <code>epydoc</code>)</li>
  <li> StructuredText (format <code>st</code>)</li>
 </ul>
 
-The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>html</code>, and <code>plain</code>.
+For documents with much code and mathematics, the best (and most supported)
+formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code>; and to a slightly
+less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blogging on
+Google and Wordpress.
 
 <p>
 
-<h3>Title, Authors, and Date  <a name="___sec1"></a></h3>
+
+<h3>Emacs syntax support  <a name="___sec1"></a></h3>
+
+<p>
+The file <a href="https://doconce.googlecode.com/hg/misc/.doconce-mode.el">.doconce-mode.el</a> in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add <code>(load-file "~/.doconce-mode.el")</code> to the <code>.emacs</code>
+file.
+
+<p>
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table2                         </td> <td align="left">   table with 2 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table3                         </td> <td align="left">   table with 3 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table4                         </td> <td align="left">   table with 4 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+<tr><td align="left">   Ctrl+c help                           </td> <td align="left">   print this table                      </td> </tr>
+</table>
+<p>
+
+<h3>Title, Authors, and Date  <a name="___sec2"></a></h3>
+
 <p>
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads
 <!-- begin verbatim block -->
-<pre>
-TITLE: On an Ultimate Markup Language
+<pre><code>TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
 TOC: on
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The entire title must appear on a single line.
 The author syntax is
 <!-- begin verbatim block -->
-<pre>
-name Email: somename@adr.net at institution1 and institution2
-</pre>
+<pre><code>name Email: somename@adr.net at institution1 and institution2
+</code></pre>
 <!-- end verbatim block -->
 where the email is optional, the "at" keyword is required if one or
 more institutions are to be specified, and the "and" keyword
@@ -26841,29 +31437,36 @@ The table of contents is removed by writing <code>TOC: off</code>.
 
 
 <h3>Section Types <a name="quick:sections"></a></h3>
+
 <p>
 <table border="1">
-<tr><td align="center"><b>                        Section type                        </b></td> <td align="center"><b>                           Syntax                           </b></td> </tr>
-<tr><td align="left">   chapter                                                       </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
-<tr><td align="left">   section                                                       </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsection                                                    </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsubsection                                                 </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)    </td> </tr>
-<tr><td align="left">   paragraph                                                     </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)    </td> </tr>
-<tr><td align="left">   abstract                                                      </td> <td align="left">   <code>__Abstract.__</code> Running text...                    </td> </tr>
+<tr><td align="center"><b>                            Section type                           </b></td> <td align="center"><b>                               Syntax                              </b></td> </tr>
+<tr><td align="left">   chapter                                                              </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)           </td> </tr>
+<tr><td align="left">   section                                                              </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsection                                                           </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsubsection                                                        </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)           </td> </tr>
+<tr><td align="left">   paragraph                                                            </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)           </td> </tr>
+<tr><td align="left">   abstract                                                             </td> <td align="left">   <code>__Abstract.__</code> Running text...                           </td> </tr>
+<tr><td align="left">   appendix                                                             </td> <td align="left">   <code>======= Appendix: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   appendix                                                             </td> <td align="left">   <code>===== Appendix: heading =====</code> (5 <code>=</code>)        </td> </tr>
+<tr><td align="left">   exercise                                                             </td> <td align="left">   <code>======= Exercise: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   exercise                                                             </td> <td align="left">   <code>===== Exercise: heading =====</code> (5 <code>=</code>)        </td> </tr>
 </table>
 <p>
-Note that abstracts are recognized by starting with <code>__Abstract.__</code> at
-the beginning of a line and ending with three or more <code>=</code> signs of the
-next heading.
+Note that abstracts are recognized by starting with <code>__Abstract.__</code> or
+<code>__Summary.__</code> at the beginning of a line and ending with three or
+more <code>=</code> signs of the next heading.
 
 <p>
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only <code>latex</code> output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The <code>Exercise:</code> keyword kan be substituted by <code>Problem:</code> or <code>Project:</code>.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 <p>
 
-<h3>Inline Formatting  <a name="___sec3"></a></h3>
+<h3>Inline Formatting  <a name="___sec4"></a></h3>
+
 <p>
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
@@ -26871,7 +31474,8 @@ appear in boldface: <code>_boldface_</code> become <b>boldface</b>.
 
 <p>
 
-<h3>Lists  <a name="___sec4"></a></h3>
+<h3>Lists  <a name="___sec5"></a></h3>
+
 <p>
 There are three types of lists: <em>bullet lists</em>, where each item starts
 with <code>*</code>, <em>enumeration lists</em>, where each item starts with <code>o</code> and gets
@@ -26879,8 +31483,7 @@ consqutive numbers,
 and <em>description</em> lists, where each item starts with <code>-</code> followed
 by a keyword and a colon.
 <!-- begin verbatim block -->
-<pre>
-Here is a bullet list:
+<pre><code>Here is a bullet list:
 
  * item1
  * item2
@@ -26908,7 +31511,7 @@ And finally a description list:
  - keyword2:
    followed by text on the next line
  - keyword3: and its description may fit on one line
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The code above follows.
 
@@ -26964,7 +31567,9 @@ And finally a description list:
    and its description may fit on one line
 </dl>
 
-<h3>Comments  <a name="___sec5"></a></h3>
+
+<h3>Comment lines  <a name="___sec6"></a></h3>
+
 <p>
 Lines starting with <code>#</code> are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -26973,52 +31578,66 @@ blocks, verbatim code blocks, or lists if the formats <code>rst</code> and
 <code>sphinx</code> are desired.
 
 <p>
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes <code>##</code> or by blocks of text
-inside the comment directives <code>%<doc></code> (beginning) and <code><%doc/></code> (end).
+Comment lines starting with <code>##</code> are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
 
 <p>
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file. Mako block comments start
+with <code>%<doc></code> and end with <code><%doc/></code>, both at the beginning of the line.
+
+<p>
+Large portions of text can be left out using Preprocess. Just place
+<code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
+option <code>-DEXTRA</code> will bring the text alive again.
+
+<p>
+
+<h3>Inline comments  <a name="___sec7"></a></h3>
+
+<p>
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 <!-- begin verbatim block -->
-<pre>
-[name: running text]
-</pre>
+<pre><code>[name: running text]
+</code></pre>
 <!-- end verbatim block -->
 where <code>name</code> is the name or ID of an author or reader making the comment,
-and <code>running text</code> is the comment. There must be a space after the colon.
+and <code>running text</code> is the comment. Here goes an example.
+
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>There must be a space after the colon,
+but the running text can occupy multiple lines.</em>]
+<!-- end inline comment -->
+
 Running
 <!-- begin verbatim block  sys-->
-<pre>
-doconce format html mydoc.do.txt --skip_inline_comments
-</pre>
+<pre><code>doconce format html mydoc.do.txt --skip_inline_comments
+</code></pre>
 <!-- end verbatim block -->
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 <p>
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 <!-- begin verbatim block  sys-->
-<pre>
-doconce remove_inline_comments mydoc.do.txt
-</pre>
+<pre><code>doconce remove_inline_comments mydoc.do.txt
+</code></pre>
 <!-- end verbatim block -->
-This action is appropriate when all issues with such comments are resolved.
 
 <p>
 
-<h3>Verbatim/Computer Code  <a name="___sec6"></a></h3>
+<h3>Verbatim/Computer Code  <a name="___sec8"></a></h3>
+
 <p>
 Inline verbatim code is typeset within back-ticks, as in
 <!-- begin verbatim block -->
-<pre>
-Some sentence with `words in verbatim style`.
-</pre>
+<pre><code>Some sentence with `words in verbatim style`.
+</code></pre>
 <!-- end verbatim block -->
 resulting in Some sentence with <code>words in verbatim style</code>.
 
@@ -27038,9 +31657,8 @@ in programming <code>X</code>, where <code>X</code> may be <code>py</code> for P
 defined verbatim environment in the <code>ptex2tex</code> configuration file
 (<code>.ptex2tex.cfg</code>). For <code>sphinx</code> output one can insert a comment
 <!-- begin verbatim block -->
-<pre>
-# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-</pre>
+<pre><code># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+</code></pre>
 <!-- end verbatim block -->
 that maps environments (<code>xxx</code>) onto valid language types for
 Pygments (which is what <code>sphinx</code> applies to typeset computer code).
@@ -27056,12 +31674,11 @@ for exact syntax):
 
 <p>
 <!-- begin verbatim block  cod-->
-<pre>
-from numpy import sin, cos, exp, pi
+<pre><code>from numpy import sin, cos, exp, pi
 
 def f(x, y, z, t):
     return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -27069,11 +31686,10 @@ def f(x, y, z, t):
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <!-- begin verbatim block -->
-<pre>
- @@@CODE doconce_program.sh
+<pre><code> @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The <code>@@@CODE</code> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <code>doconce_program.sh</code>.
@@ -27107,12 +31723,14 @@ Important warnings:
    paragraphs with headings.</li>
 </ul>
 
-<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
+
+<h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
+
 <p>
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats <code>sphinx</code>, <code>latex</code>, and <code>pdflatex</code>
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats <code>html</code>, <code>sphinx</code>, <code>latex</code>,
+pdflatex`, <code>pandoc</code>, and <code>mwiki</code> work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 <p>
 Inline expressions are written in the standard
@@ -27121,14 +31739,12 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 <code>latex</code>, and <code>pdflatex</code>, inline mathematics may have a more human
 readable companion expression. The syntax is like
 <!-- begin verbatim block -->
-<pre>
-$\sin(\norm{\bf u})$|$sin(||u||)$
-</pre>
+<pre><code>$\sin(\norm{\bf u})$|$sin(||u||)$
+</code></pre>
 <!-- end verbatim block -->
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 <p>
 Blocks of LaTeX mathematics are written within
@@ -27138,18 +31754,16 @@ and
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-!bt
+<pre><code>!bt
 \begin{align*}
 \nabla\cdot \pmb{u} &amp;= 0,\\
 \nabla\times \pmb{u} &amp;= 0.
 \end{align*}
 !et
-</pre>
+</code></pre>
 <!-- end verbatim block -->
-<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!-- tex and code blocks in inside verbatim blocks and are replaced -->
-<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+
+<p>
 This LaTeX code gets rendered as
 
 <p>
@@ -27164,11 +31778,10 @@ Here is a single equation:
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-!bt
+<pre><code>!bt
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 which results in
 
@@ -27177,29 +31790,22 @@ $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
 
 <p>
-One can use <code>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</code>
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (<code>#else</code>) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
-<p>
 Any LaTeX syntax is accepted, but if output in the <code>sphinx</code>, <code>pandoc</code>,
-<code>mwiki</code>, or <code>html</code> formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <code>latex</code> or <code>pdflatex</code> <em>and</em>
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+<code>mwiki</code>, <code>html</code>, or <code>ipynb</code> formats
+is also important, one should follow these rules:
 
 <p>
 
 <ul>
   <li> Use only the equation environments <code>\[</code>, <code>\]</code>,
     <code>equation</code>, <code>equation*</code>, <code>align</code>, and <code>align*</code>.</li>
-  <li> Labels in multiple equation environments such as <code>align</code> are
-    not (yet) handled by <code>pandoc</code>.</li>
   <li> MediaWiki (<code>mwiki</code>) does not support references to equations.</li>
 </ul>
 
+(Doconce performs extensions to <code>sphinx</code> and other formats such that
+labels in <code>align</code> environments work well.)
+
+<p>
 
 <table width="95%" border="0">
 <tr>
@@ -27221,31 +31827,46 @@ PDF document.
 </p></td></tr>
 </table>
 <p>
-
 <b>LaTeX Newcommands.</b>
-Text missing...
+The author can define <code>newcommand</code> statements in files with names
+<code>newcommands*.tex</code>. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that <code>newcommands_keep.tex</code>
+contains the newcommands that are kept in the document, while
+those in <code>newcommands_replace.tex</code> will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</code>, <code>pdflatex</code>,
+<code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
+rendered nicely anyway.
 
 <p>
 
 
-<h3>Figures and Movies  <a name="___sec8"></a></h3>
+<h3>Figures and Movies  <a name="___sec10"></a></h3>
+
 <p>
 Figures and movies have almost equal syntax:
 <!-- begin verbatim block -->
-<pre>
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+<pre><code>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
-</pre>
+</code></pre>
 <!-- end verbatim block -->
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
 
 <p>
+
+<ol>
+ <li> A mandatory comma after the figure/movie filename,</li>
+ <li> all of the command must appear on a single line,</li>
+ <li> there must be a blank line after the command.</li>
+</ol>
+
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 <p>
 Movie files can either be a video or a wildcard expression for a
@@ -27254,29 +31875,45 @@ will display the individual frame files as a movie.
 
 <p>
 Combining several image files into one can be done by the
-<code>convert</code> and <code>montage</code> programs from the ImageMagick suite:
 <!-- begin verbatim block  sys-->
-<pre>
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
-</pre>
+<pre><code>doconce combine_images image1 image2 ... output_image
+</code></pre>
 <!-- end verbatim block -->
-Use <code>+append</code> for stacking left to right, <code>-append</code> for top to bottom.
-The positioning of the figures can be controlled by <code>-gravity</code>.
+This command applies <code>montage</code> or PDF-based tools to combine the images
+to get the highest quality.
+
+<p>
+YouTube and Vimeo movies will be embedded in <code>html</code> and <code>sphinx</code> documents
+and otherwise be represented by a link. The syntax is
+
+<p>
+<!-- begin verbatim block -->
+<pre><code>MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+</code></pre>
+<!-- end verbatim block -->
+The latter results in
+
+<p>
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Vimeo movie.</em>
+
+
 
 <p>
 
 
-<h3>Tables  <a name="___sec9"></a></h3>
+<h3>Tables  <a name="___sec11"></a></h3>
+
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
 syntax:
 <!-- begin verbatim block -->
-<pre>
-|----------------c--------|------------------c--------------------|
+<pre><code>|----------------c--------|------------------c--------------------|
 |      Section type       |        Syntax                         |
 |----------------l--------|------------------l--------------------|
 | chapter                 | `========= Heading ========` (9 `=`)  |
@@ -27285,7 +31922,7 @@ syntax:
 | subsubsection           | `=== Heading ===`            (3 `=`)  |
 | paragraph               | `__Heading.__`               (2 `_`)  |
 |-----------------------------------------------------------------|
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -27310,18 +31947,20 @@ Note that
    have no effect.</li>
 </ul>
 
-<h3>Labels, References, Citations, and Index  <a name="___sec10"></a></h3>
+
+<h3>Labels and References  <a name="___sec12"></a></h3>
+
 <p>
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <!-- begin verbatim block -->
-<pre>
-label{name}
-</pre>
+<pre><code>label{name}
+</code></pre>
 <!-- end verbatim block -->
 with no backslash
-preceding the label keyword! It is common practice to choose <code>name</code>
+preceding the label keyword. It is common practice to choose <code>name</code>
 as some hierarchical name, say <code>a:b:c</code>, where <code>a</code> and <code>b</code> indicate
 some abbreviations for a section and/or subsection for the topic and
 <code>c</code> is some name for the particular unit that has a label.
@@ -27329,18 +31968,26 @@ some abbreviations for a section and/or subsection for the topic and
 <p>
 A reference to the label <code>name</code> is written as
 <!-- begin verbatim block -->
-<pre>
-ref{name}
-</pre>
+<pre><code>ref{name}
+</code></pre>
 <!-- end verbatim block -->
 again with no backslash before <code>ref</code>.
 
 <p>
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+<p>
+
+
+<h3>Citations and Bibliography  <a name="___sec13"></a></h3>
+
+<p>
 Single citations are written as
 <!-- begin verbatim block -->
-<pre>
-cite{name}
-</pre>
+<pre><code>cite{name}
+</code></pre>
 <!-- end verbatim block -->
 where <code>name</code> is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
@@ -27350,30 +31997,32 @@ Bibliography citations often have <code>name</code> on the form
 Multiple citations at once is possible by separating the logical names
 by comma:
 <!-- begin verbatim block -->
-<pre>
-cite{name1,name2,name3}
-</pre>
+<pre><code>cite{name1,name2,name3}
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
-The bibliography is specified by a line <code>BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py</code>, where <code>name</code> is the logical name of the
-document (the doconce file will then normally have the name
-<code>name.do.txt</code>), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the <code>BIBFILE</code> keyword appears.
+The bibliography is specified by a line <code>BIBFILE: papers.pub</code>,
+where <code>papers.pub</code> is a publication database in the
+<a href="https://bitbucket.org/logg/publish">Publish</a> format.
+BibTeX <code>.bib</code> files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+<p>
+
+<h3>Generalized Citations  <a name="___sec14"></a></h3>
 
 <p>
 There is a <em>generalized referencing</em> feature in Doconce that allows
 a reference with <code>ref</code> to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 <!-- begin verbatim block -->
-<pre>
-ref[internal][cite][external]
+<pre><code>ref[internal][cite][external]
 
 # Example:
 As explained in
@@ -27381,7 +32030,7 @@ ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
 &quot;testdoc.html#___sec2&quot; in the document
 &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 Doconce documents may include movies.
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 The output from a generalized reference is the text <code>internal</code> if all
 <code>ref{label}</code> references in <code>internal</code> are references to labels in the
@@ -27395,24 +32044,28 @@ documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
 <p>
+
+<h3>Index of Keywords  <a name="___sec15"></a></h3>
+
+<p>
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
 <!-- begin verbatim block -->
-<pre>
-index{name}
-</pre>
+<pre><code>index{name}
+</code></pre>
 <!-- end verbatim block -->
 It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the <code>latex</code>, <code>rst</code>, and
-<code>sphinx</code> formats.
+forthcoming text. The index is only produced for the <code>latex</code>,
+<code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
 
 <p>
 
-<h3>Capabilities of the "doconce" Program  <a name="___sec11"></a></h3>
+<h3>Capabilities of The Program <code>doconce</code>  <a name="___sec16"></a></h3>
+
 <p>
 The <code>doconce</code> program can be used for a number of purposes besides
 transforming a <code>.do.txt</code> file to some format. Here is the
@@ -27420,9 +32073,8 @@ list of capabilities:
 
 <p>
 <!-- begin verbatim block  shpro-->
-<pre>
-Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+<pre><code>Usage: doconce command [optional arguments]
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -27500,9 +32152,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -27510,6 +32159,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -27522,12 +32177,22 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
-</pre>
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
 
-<h3>Exercises  <a name="___sec12"></a></h3>
+<h3>Exercises  <a name="___sec17"></a></h3>
+
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
 These are typeset
@@ -27554,8 +32219,7 @@ Exercise, problem, project, or example sections contains certain <em>elements</e
 
 A typical sketch of a a problem without subexercises goes as follows:
 <!-- begin verbatim block -->
-<pre>
-===== Problem: Derive the Formula for the Area of an Ellipse =====
+<pre><code>===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
@@ -27572,7 +32236,7 @@ Wikipedia has the formula for the curve.
 &quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
 !ehint
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
@@ -27580,9 +32244,8 @@ output. For example, the if the title line above reads
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-===== {Problem}: Derive the Formula for the Area of an Ellipse =====
-</pre>
+<pre><code>===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+</code></pre>
 <!-- end verbatim block -->
 the title becomes just "Derive the ...".
 
@@ -27592,8 +32255,7 @@ setup-up:
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-===== Exercise: Determine the Distance to the Moon =====
+<pre><code>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -27640,7 +32302,7 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the whole exercise.
 !esol
 
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <code>--without-answers</code> and <code>--without-solutions</code>
@@ -27650,7 +32312,8 @@ examples.
 <p>
 
 
-<h3>Environments  <a name="___sec13"></a></h3>
+<h3>Environments  <a name="___sec18"></a></h3>
+
 <p>
 Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
 where <code>envirname</code> is the name of the environment. Here is a listing of
@@ -27664,7 +32327,6 @@ the environments:
  <li> <code>subex</code>: sub-exercise</li>
  <li> <code>ans</code>: short answer to exercise or sub-exercise</li>
  <li> <code>sol</code>: full solution to exercise or sub-exercise</li>
- <li> <code>notes</code>: multi-line notes to be included or not</li>
  <li> <code>quote</code>: indented text</li>
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
     specialy typesetting (or symbols)</li>
@@ -27673,10 +32335,9 @@ the environments:
    slide</li>
 </ul>
 
-<h3>Labels, Index, and Citations  <a name="___sec14"></a></h3>
-<p>
 
-<h3>Preprocessing  <a name="___sec15"></a></h3>
+<h3>Preprocessing  <a name="___sec19"></a></h3>
+
 <p>
 Doconce documents may utilize a preprocessor, either <code>preprocess</code> and/or
 <code>mako</code>. The former is a C-style preprocessor that allows if-tests
@@ -27692,8 +32353,7 @@ constructions:
 
 <p>
 <!-- begin verbatim block -->
-<pre>
-# #include &quot;myotherdoc.do.txt&quot;
+<pre><code># #include &quot;myotherdoc.do.txt&quot;
 
 # #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 \begin{table}
@@ -27721,7 +32381,7 @@ constructions:
 # #ifdef EXTRA_MATERIAL
 ....large portions of text...
 # #endif
-</pre>
+</code></pre>
 <!-- end verbatim block -->
 
 <p>
@@ -27732,12 +32392,14 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 
 <p>
 
-<h3>Resources  <a name="___sec16"></a></h3>
+<h3>Resources  <a name="___sec20"></a></h3>
+
 <p>
 
 <ul>
  <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>
 </ul>
+
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -27819,10 +32481,10 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 \usemintedstyle{default}
@@ -27856,7 +32518,7 @@ final,                   % or draft (marks overfull hboxes)
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -27875,38 +32537,20 @@ final,                   % or draft (marks overfull hboxes)
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
 
-\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
-%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% #ifdef A4PAPER
-\usepackage{wrapfig,calc}
-\newdimen\barheight
-\def\barthickness{0.5pt}
-
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
-\begin{minipage}{0.5\textwidth-6pt-\columnsep}
-\hspace*{3mm}
-\setbox2=\hbox{\parbox[t]{55mm}{
-#1 \rule[-8pt]{0pt}{10pt}}}%
-\barheight=\ht2 \advance\barheight by \dp2
-\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
-\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
-}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
-\end{wrapfigure}}
+% #ifndef NOTODONOTES
+\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
 % #endif
+
 
 
 % insert custom LaTeX commands...
@@ -27950,8 +32594,6 @@ final,                   % or draft (marks overfull hboxes)
 \end{center}
 
 % #endif
-
-
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -28016,6 +32658,9 @@ Jan 32, 2100
 
 
 \tableofcontents
+% #ifndef NOTODONOTES
+\listoftodos[List of inline comments]
+% #endif
 
 \vspace{1cm} % after toc
 
@@ -28023,9 +32668,16 @@ Jan 32, 2100
 
 
 
-% Very preliminary
-
 \textbf{WARNING: This quick reference is very incomplete!}
+
+\paragraph{Mission.}
+Enable writing documentation with much mathematics and
+computer code \emph{once, in one place} and include it in traditional {\LaTeX}
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's \code{blogger.com}, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 \subsection{Supported Formats}
 
@@ -28042,11 +32694,13 @@ Doconce currently translates files to the following formats:
 
  \item Sphinx (format \code{sphinx})
 
+ \item IPython notebook (format \code{ipynb})
+
+ \item MediaWiki (format \code{mwiki})
+
  \item (Pandoc extended) Markdown (format \code{pandoc})
 
  \item Googlecode wiki (format \code{gwiki})
-
- \item MediaWiki for Wikipedia and Wikibooks (format \code{mwiki})
 
  \item Creoloe wiki (format \code{cwiki})
 
@@ -28056,8 +32710,47 @@ Doconce currently translates files to the following formats:
 \end{itemize}
 
 \noindent
-The best supported formats are \code{latex}, \code{sphinx}, \code{html}, and \code{plain}.
+For documents with much code and mathematics, the best (and most supported)
+formats are \code{latex}, \code{pdflatex}, \code{sphinx}, and \code{html}; and to a slightly
+less extent \code{mwiki} and \code{pandoc}. The HTML format supports blogging on
+Google and Wordpress.
 
+
+\subsection{Emacs syntax support}
+
+The file \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add \code{(load-file "~/.doconce-mode.el")} to the \code{.emacs}
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+
+\begin{quote}\begin{tabular}{ll}
+\hline
+\multicolumn{1}{c}{ Emacs key } & \multicolumn{1}{c}{ Action } \\
+\hline
+Ctrl+c f                           & figure                             \\
+Ctrl+c v                           & movie/video                        \\
+Ctrl+c h1                          & heading level 1 (section/h1)       \\
+Ctrl+c h2                          & heading level 2 (subsection/h2)    \\
+Ctrl+c h3                          & heading level 2 (subsection/h3)    \\
+Ctrl+c hp                          & heading for paragraph              \\
+Ctrl+c me                          & math environment: !bt equation !et \\
+Ctrl+c ma                          & math environment: !bt align !et    \\
+Ctrl+c ce                          & code environment: !bc !ec          \\
+Ctrl+c cf                          & code from file: @@@CODE            \\
+Ctrl+c table2                      & table with 2 columns               \\
+Ctrl+c table3                      & table with 3 columns               \\
+Ctrl+c table4                      & table with 4 columns               \\
+Ctrl+c exer                        & exercise outline                   \\
+Ctrl+c slide                       & slide outline                      \\
+Ctrl+c help                        & print this table                   \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
 \subsection{Title, Authors, and Date}
 
 A typical example of giving a title, a set of authors, a date,
@@ -28089,8 +32782,8 @@ current date is wanted, e.g., \code{Feb 22, 2016}.
 
 The table of contents is removed by writing \code{TOC: off}.
 
-\subsection{Section Types}
 
+\subsection{Section Types}
 \label{quick:sections}
 
 
@@ -28098,23 +32791,28 @@ The table of contents is removed by writing \code{TOC: off}.
 \hline
 \multicolumn{1}{c}{ Section type } & \multicolumn{1}{c}{ Syntax } \\
 \hline
-chapter                                        & \code{========= Heading ========} (9 \code{=}) \\
-section                                        & \code{======= Heading =======}    (7 \code{=}) \\
-subsection                                     & \code{===== Heading =====}        (5 \code{=}) \\
-subsubsection                                  & \code{=== Heading ===}            (3 \code{=}) \\
-paragraph                                      & \code{__Heading.__}               (2 \code{_}) \\
-abstract                                       & \code{__Abstract.__} Running text...           \\
+chapter                                               & \code{========= Heading ========} (9 \code{=})        \\
+section                                               & \code{======= Heading =======}    (7 \code{=})        \\
+subsection                                            & \code{===== Heading =====}        (5 \code{=})        \\
+subsubsection                                         & \code{=== Heading ===}            (3 \code{=})        \\
+paragraph                                             & \code{__Heading.__}               (2 \code{_})        \\
+abstract                                              & \code{__Abstract.__} Running text...                  \\
+appendix                                              & \code{======= Appendix: heading =======} (7 \code{=}) \\
+appendix                                              & \code{===== Appendix: heading =====} (5 \code{=})     \\
+exercise                                              & \code{======= Exercise: heading =======} (7 \code{=}) \\
+exercise                                              & \code{===== Exercise: heading =====} (5 \code{=})     \\
 \hline
 \end{tabular}\end{quote}
 
 \noindent
-Note that abstracts are recognized by starting with \code{__Abstract.__} at
-the beginning of a line and ending with three or more \code{=} signs of the
-next heading.
+Note that abstracts are recognized by starting with \code{__Abstract.__} or
+\code{__Summary.__} at the beginning of a line and ending with three or
+more \code{=} signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only \code{latex} output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The \code{Exercise:} keyword kan be substituted by \code{Problem:} or \code{Project:}.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 \subsection{Inline Formatting}
 
@@ -28219,8 +32917,7 @@ And finally a description list:
 \end{description}
 
 \noindent
-
-\subsection{Comments}
+\subsection{Comment lines}
 
 Lines starting with \code{#} are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -28228,34 +32925,43 @@ document. Such comment lines should not appear before {\LaTeX} math
 blocks, verbatim code blocks, or lists if the formats \code{rst} and
 \code{sphinx} are desired.
 
+Comment lines starting with \code{##} are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes \code{##} or by blocks of text
-inside the comment directives \code{%<doc>} (beginning) and \code{<%doc/>} (end).
+Doconce starts processing the file. Mako block comments start
+with \code{%<doc>} and end with \code{<%doc/>}, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+\code{# #ifdef EXTRA} and \code{# #endif} around the text. The command line
+option \code{-DEXTRA} will bring the text alive again.
+
+\subsection{Inline comments}
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 \bccq
 [name: running text]
 \eccq
 where \code{name} is the name or ID of an author or reader making the comment,
-and \code{running text} is the comment. There must be a space after the colon.
+and \code{running text} is the comment. Here goes an example.
+\shortinlinecomment{hpl}{There must be a space after the colon,
+but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
 Running
 \bsys
 doconce format html mydoc.do.txt --skip_inline_comments
 \esys
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 \bsys
 doconce remove_inline_comments mydoc.do.txt
 \esys
-This action is appropriate when all issues with such comments are resolved.
 
 \subsection{Verbatim/Computer Code}
 
@@ -28337,13 +33043,12 @@ Important warnings:
 \end{itemize}
 
 \noindent
-
 \subsection{{\LaTeX} Mathematics}
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard {\LaTeX} syntax. The output formats \code{sphinx}, \code{latex}, and \code{pdflatex}
-work with this syntax while all other formats will just display the
-raw {\LaTeX} code.
+standard {\LaTeX} syntax. The output formats \code{html}, \code{sphinx}, \code{latex},
+pdflatex`, \code{pandoc}, and \code{mwiki} work with this syntax while all other
+formats will just display the raw {\LaTeX} code.
 
 Inline expressions are written in the standard
 {\LaTeX} way with the mathematics surrounded by dollar signs, as in
@@ -28355,8 +33060,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 \eccq
 That is, the {\LaTeX} expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of {\LaTeX} mathematics are written within
 \code{!bt}
@@ -28371,9 +33075,7 @@ and
 \end{align*}
 !et
 \eccq
-% Note: !bt and !et (and !bc and !ec below) are used to illustrate
-% tex and code blocks in inside verbatim blocks and are replaced
-% by !bt, !et, !bc, and !ec after all other formatting is finished.
+
 This {\LaTeX} code gets rendered as
 
 \begin{align*}
@@ -28391,29 +33093,21 @@ which results in
 
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
-One can use \code{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}
-to let the preprocessor choose a block of mathematics in {\LaTeX} format
-or (\code{#else}) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any {\LaTeX} syntax is accepted, but if output in the \code{sphinx}, \code{pandoc},
-\code{mwiki}, or \code{html} formats
-is important, one must know that these formats does not support many
-{\LaTeX} constructs. For output both in \code{latex} or \code{pdflatex} \emph{and}
-the mentioned formats with {\LaTeX} support,
-the following rules are recommended:
+\code{mwiki}, \code{html}, or \code{ipynb} formats
+is also important, one should follow these rules:
 
 \begin{itemize}
   \item Use only the equation environments \code{\[}, \code{\]},
     \code{equation}, \code{equation*}, \code{align}, and \code{align*}.
 
-  \item Labels in multiple equation environments such as \code{align} are
-    not (yet) handled by \code{pandoc}.
-
   \item MediaWiki (\code{mwiki}) does not support references to equations.
 \end{itemize}
 
 \noindent
+(Doconce performs extensions to \code{sphinx} and other formats such that
+labels in \code{align} environments work well.)
+
 
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
@@ -28421,7 +33115,7 @@ the following rules are recommended:
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Notice}}
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -28436,7 +33130,17 @@ PDF document.
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 \paragraph{LaTeX Newcommands.}
-Text missing...
+The author can define \code{newcommand} statements in files with names
+\code{newcommands*.tex}. Such commands should only be used for mathematics
+(other {\LaTeX} constructions are only understood by {\LaTeX} itself).
+The convention is that \code{newcommands_keep.tex}
+contains the newcommands that are kept in the document, while
+those in \code{newcommands_replace.tex} will be replaced by their full
+{\LaTeX} code. This conventions helps make readable documents in formats
+without {\LaTeX} support. For \code{html}, \code{sphinx}, \code{latex}, \code{pdflatex},
+\code{mwiki}, \code{ipynb}, and \code{pandoc}, the mathematics in newcommands is
+rendered nicely anyway.
+
 
 \subsection{Figures and Movies}
 
@@ -28447,28 +33151,46 @@ FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which mus
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 \eccq
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
 
+\begin{enumerate}
+ \item A mandatory comma after the figure/movie filename,
+
+ \item all of the command must appear on a single line,
+
+ \item there must be a blank line after the command.
+\end{enumerate}
+
+\noindent
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-\code{convert} and \code{montage} programs from the ImageMagick suite:
 \bsys
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 \esys
-Use \code{+append} for stacking left to right, \code{-append} for top to bottom.
-The positioning of the figures can be controlled by \code{-gravity}.
+This command applies \code{montage} or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in \code{html} and \code{sphinx} documents
+and otherwise be represented by a link. The syntax is
+
+\bccq
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+\eccq
+The latter results in
+
+ Vimeo movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
+
 
 \subsection{Tables}
 
@@ -28510,17 +33232,17 @@ Note that
 \end{itemize}
 
 \noindent
+\subsection{Labels and References}
 
-\subsection{Labels, References, Citations, and Index}
-
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from {\LaTeX} with a very similar syntax. As in {\LaTeX}, a label can be
 inserted anywhere, using the syntax
 \bccq
 label{name}
 \eccq
 with no backslash
-preceding the label keyword! It is common practice to choose \code{name}
+preceding the label keyword. It is common practice to choose \code{name}
 as some hierarchical name, say \code{a:b:c}, where \code{a} and \code{b} indicate
 some abbreviations for a section and/or subsection for the topic and
 \code{c} is some name for the particular unit that has a label.
@@ -28530,6 +33252,13 @@ A reference to the label \code{name} is written as
 ref{name}
 \eccq
 again with no backslash before \code{ref}.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+\subsection{Citations and Bibliography}
 
 Single citations are written as
 \bccq
@@ -28546,20 +33275,22 @@ by comma:
 cite{name1,name2,name3}
 \eccq
 
-The bibliography is specified by a line \code{BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py}, where \code{name} is the logical name of the
-document (the doconce file will then normally have the name
-\code{name.do.txt}), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the \code{BIBFILE} keyword appears.
+The bibliography is specified by a line \code{BIBFILE: papers.pub},
+where \code{papers.pub} is a publication database in the
+\href{{https://bitbucket.org/logg/publish}}{Publish} format.
+BibTeX \code{.bib} files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than {\LaTeX}).
+
+\subsection{Generalized Citations}
 
 There is a \emph{generalized referencing} feature in Doconce that allows
 a reference with \code{ref} to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 \bccq
 ref[internal][cite][external]
 
@@ -28581,6 +33312,8 @@ and date). In this case the output text is \code{internal cite} and the
 documents.  If none of the two situations above applies, the
 \code{external} text will be the output.
 
+\subsection{Index of Keywords}
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -28591,10 +33324,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the \code{latex}, \code{rst}, and
-\code{sphinx} formats.
+forthcoming text. The index is only produced for the \code{latex},
+\code{pdflatex}, \code{rst}, and \code{sphinx} formats.
 
-\subsection{Capabilities of the "doconce" Program}
+\subsection{Capabilities of The Program \protect\code{doconce} }
 
 The \code{doconce} program can be used for a number of purposes besides
 transforming a \code{.do.txt} file to some format. Here is the
@@ -28602,7 +33335,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -28680,9 +33413,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -28690,6 +33420,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -28702,6 +33438,15 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 \eshpro
 
 \subsection{Exercises}
@@ -28822,6 +33567,7 @@ The command-line arguments \code{--without-answers} and \code{--without-solution
 turn off output of answers and solutions, respectively, except for
 examples.
 
+
 \subsection{Environments}
 
 Doconce environments start with \code{!benvirname} and end with \code{!eenvirname},
@@ -28839,8 +33585,6 @@ the environments:
 
  \item \code{sol}: full solution to exercise or sub-exercise
 
- \item \code{notes}: multi-line notes to be included or not
-
  \item \code{quote}: indented text
 
  \item \code{notice}, \code{summary}, \code{warning}, \code{question}, \code{hint}: boxes with
@@ -28853,9 +33597,6 @@ the environments:
 \end{itemize}
 
 \noindent
-
-\subsection{Labels, Index, and Citations}
-
 \subsection{Preprocessing}
 
 Doconce documents may utilize a preprocessor, either \code{preprocess} and/or
@@ -28912,6 +33653,7 @@ examine the Doconce source and the \code{doc/src/make.sh} script).
 \end{itemize}
 
 \noindent
+
 % ------------------- end of main content ---------------
 
 
@@ -28937,11 +33679,15 @@ Doconce Quick Reference
 
 
 
-.. Very preliminary
-
-
 **WARNING: This quick reference is very incomplete!**
 
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's ``blogger.com``, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 Supported Formats
 -----------------
@@ -28958,11 +33704,13 @@ Doconce currently translates files to the following formats:
 
  * Sphinx (format ``sphinx``)
 
+ * IPython notebook (format ``ipynb``)
+
+ * MediaWiki (format ``mwiki``)
+
  * (Pandoc extended) Markdown (format ``pandoc``)
 
  * Googlecode wiki (format ``gwiki``)
-
- * MediaWiki for Wikipedia and Wikibooks (format ``mwiki``)
 
  * Creoloe wiki (format ``cwiki``)
 
@@ -28970,7 +33718,43 @@ Doconce currently translates files to the following formats:
 
  * StructuredText (format ``st``)
 
-The best supported formats are ``latex``, ``sphinx``, ``html``, and ``plain``.
+For documents with much code and mathematics, the best (and most supported)
+formats are ``latex``, ``pdflatex``, ``sphinx``, and ``html``; and to a slightly
+less extent ``mwiki`` and ``pandoc``. The HTML format supports blogging on
+Google and Wordpress.
+
+
+Emacs syntax support
+--------------------
+
+The file `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add ``(load-file "~/.doconce-mode.el")`` to the ``.emacs``
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+==================================  ==================================  
 
 Title, Authors, and Date
 ------------------------
@@ -29012,24 +33796,29 @@ The table of contents is removed by writing ``TOC: off``.
 Section Types
 -------------
 
-========================================  ========================================  
-              Section type                                 Syntax                   
-========================================  ========================================  
-chapter                                   ``========= Heading ========`` (9 ``=``)  
-section                                   ``======= Heading =======``    (7 ``=``)  
-subsection                                ``===== Heading =====``        (5 ``=``)  
-subsubsection                             ``=== Heading ===``            (3 ``=``)  
-paragraph                                 ``__Heading.__``               (2 ``_``)  
-abstract                                  ``__Abstract.__`` Running text...         
-========================================  ========================================  
+===============================================  ===============================================  
+                  Section type                                        Syntax                      
+===============================================  ===============================================  
+chapter                                          ``========= Heading ========`` (9 ``=``)         
+section                                          ``======= Heading =======``    (7 ``=``)         
+subsection                                       ``===== Heading =====``        (5 ``=``)         
+subsubsection                                    ``=== Heading ===``            (3 ``=``)         
+paragraph                                        ``__Heading.__``               (2 ``_``)         
+abstract                                         ``__Abstract.__`` Running text...                
+appendix                                         ``======= Appendix: heading =======`` (7 ``=``)  
+appendix                                         ``===== Appendix: heading =====`` (5 ``=``)      
+exercise                                         ``======= Exercise: heading =======`` (7 ``=``)  
+exercise                                         ``===== Exercise: heading =====`` (5 ``=``)      
+===============================================  ===============================================  
 
-Note that abstracts are recognized by starting with ``__Abstract.__`` at
-the beginning of a line and ending with three or more ``=`` signs of the
-next heading.
+Note that abstracts are recognized by starting with ``__Abstract.__`` or
+``__Summary.__`` at the beginning of a line and ending with three or
+more ``=`` signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only ``latex`` output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The ``Exercise:`` keyword kan be substituted by ``Problem:`` or ``Project:``.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 Inline Formatting
 -----------------
@@ -29122,8 +33911,8 @@ And finally a description list:
  keyword3: 
    and its description may fit on one line
 
-Comments
---------
+Comment lines
+-------------
 
 Lines starting with ``#`` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -29131,37 +33920,47 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats ``rst`` and
 ``sphinx`` are desired.
 
+Comment lines starting with ``##`` are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes ``##`` or by blocks of text
-inside the comment directives ``%<doc>`` (beginning) and ``<%doc/>`` (end).
+Doconce starts processing the file. Mako block comments start
+with ``%<doc>`` and end with ``<%doc/>``, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax::
+Large portions of text can be left out using Preprocess. Just place
+``# #ifdef EXTRA`` and ``# #endif`` around the text. The command line
+option ``-DEXTRA`` will bring the text alive again.
+
+Inline comments
+---------------
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax::
 
 
         [name: running text]
 
 where ``name`` is the name or ID of an author or reader making the comment,
-and ``running text`` is the comment. There must be a space after the colon.
+and ``running text`` is the comment. Here goes an example.
+(**hpl**: There must be a space after the colon,
+but the running text can occupy multiple lines.)
 Running::
 
 
         doconce format html mydoc.do.txt --skip_inline_comments
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired::
+removed from the Doconce source by::
 
 
         doconce remove_inline_comments mydoc.do.txt
 
-This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 ----------------------
@@ -29250,9 +34049,9 @@ LaTeX Mathematics
 -----------------
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats ``sphinx``, ``latex``, and ``pdflatex``
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats ``html``, ``sphinx``, ``latex``,
+pdflatex`, ``pandoc``, and ``mwiki`` work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -29265,8 +34064,7 @@ readable companion expression. The syntax is like::
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 ``!bt``
@@ -29281,11 +34079,6 @@ and
         \end{align*}
         !et
 
-.. Note: !bt and !et (and !bc and !ec below) are used to illustrate
-
-.. tex and code blocks in inside verbatim blocks and are replaced
-
-.. by !bt, !et, !bc, and !ec after all other formatting is finished.
 
 This LaTeX code gets rendered as::
 
@@ -29306,25 +34099,17 @@ which results in::
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
-One can use ``#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")``
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (``#else``) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the ``sphinx``, ``pandoc``,
-``mwiki``, or ``html`` formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in ``latex`` or ``pdflatex`` *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+``mwiki``, ``html``, or ``ipynb`` formats
+is also important, one should follow these rules:
 
   * Use only the equation environments ``\[``, ``\]``,
     ``equation``, ``equation*``, ``align``, and ``align*``.
 
-  * Labels in multiple equation environments such as ``align`` are
-    not (yet) handled by ``pandoc``.
-
   * MediaWiki (``mwiki``) does not support references to equations.
+
+(Doconce performs extensions to ``sphinx`` and other formats such that
+labels in ``align`` environments work well.)
 
 
 .. note::
@@ -29339,7 +34124,16 @@ the following rules are recommended:
    also allow advanced LaTeX features and fine tuning of resulting
    PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define ``newcommand`` statements in files with names
+``newcommands*.tex``. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that ``newcommands_keep.tex``
+contains the newcommands that are kept in the document, while
+those in ``newcommands_replace.tex`` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For ``html``, ``sphinx``, ``latex``, ``pdflatex``,
+``mwiki``, ``ipynb``, and ``pandoc``, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 Figures and Movies
@@ -29353,29 +34147,50 @@ Figures and movies have almost equal syntax::
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+
+ 2. all of the command must appear on a single line,
+
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
-Combining several image files into one can be done by the
-``convert`` and ``montage`` programs from the ImageMagick suite::
+Combining several image files into one can be done by the::
 
 
-        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-        montage file1.png file2.png -tile x1 result.png
-        montage file1.png file2.png -tile 1x result.png
+        doconce combine_images image1 image2 ... output_image
+
+This command applies ``montage`` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in ``html`` and ``sphinx`` documents
+and otherwise be represented by a link. The syntax is::
+
+
+        MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
         
-        convert -background white file1.png file2.png +append tmp.png
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+        
 
-Use ``+append`` for stacking left to right, ``-append`` for top to bottom.
-The positioning of the figures can be controlled by ``-gravity``.
+The latter results in
+
+.. raw:: html
+        
+        <iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Vimeo movie.</em>
+        
+
+
 
 
 Tables
@@ -29417,10 +34232,11 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
-----------------------------------------
+Labels and References
+---------------------
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax::
 
@@ -29428,7 +34244,7 @@ inserted anywhere, using the syntax::
         label{name}
 
 with no backslash
-preceding the label keyword! It is common practice to choose ``name``
+preceding the label keyword. It is common practice to choose ``name``
 as some hierarchical name, say ``a:b:c``, where ``a`` and ``b`` indicate
 some abbreviations for a section and/or subsection for the topic and
 ``c`` is some name for the particular unit that has a label.
@@ -29439,6 +34255,14 @@ A reference to the label ``name`` is written as::
         ref{name}
 
 again with no backslash before ``ref``.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+Citations and Bibliography
+--------------------------
 
 Single citations are written as::
 
@@ -29457,20 +34281,23 @@ by comma::
         cite{name1,name2,name3}
 
 
-The bibliography is specified by a line ``BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py``, where ``name`` is the logical name of the
-document (the doconce file will then normally have the name
-``name.do.txt``), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the ``BIBFILE`` keyword appears.
+The bibliography is specified by a line ``BIBFILE: papers.pub``,
+where ``papers.pub`` is a publication database in the
+`Publish <https://bitbucket.org/logg/publish>`_ format.
+BibTeX ``.bib`` files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+Generalized Citations
+---------------------
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with ``ref`` to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is::
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is::
 
 
         ref[internal][cite][external]
@@ -29493,6 +34320,9 @@ LaTeX package ``xr`` is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 ``external`` text will be the output.
 
+Index of Keywords
+-----------------
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)::
@@ -29504,11 +34334,11 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the ``latex``, ``rst``, and
-``sphinx`` formats.
+forthcoming text. The index is only produced for the ``latex``,
+``pdflatex``, ``rst``, and ``sphinx`` formats.
 
-Capabilities of the "doconce" Program
--------------------------------------
+Capabilities of The Program ``doconce``
+---------------------------------------
 
 The ``doconce`` program can be used for a number of purposes besides
 transforming a ``.do.txt`` file to some format. Here is the
@@ -29516,7 +34346,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
         
         
         # transform doconce file to another format
@@ -29594,9 +34424,6 @@ list of capabilities::
         # remove selected text from a file
         doconce remove --from[-] from-text [--to[-] to-text] somefile
         
-        # remove answers to exercises
-        doconce remove_exercise_answers file_in_some_format
-        
         # run spellcheck on a set of files
         doconce spellcheck [-d .mydict.txt] *.do.txt
         
@@ -29604,6 +34431,12 @@ list of capabilities::
         # and manage the code environments
         doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+        
+        # make HTML file via pandoc from Markdown (.md) file
+        doconce md2html file
+        
+        # make LaTeX file via pandoc from Markdown (.md) file
+        doconce md2latex file
         
         # expand short cut commands to full form in files
         doconce expand_commands file1 file2 ...
@@ -29616,6 +34449,15 @@ list of capabilities::
         
         # list all labels in a document (for purposes of cleaning them up)
         doconce list_labels myfile
+        
+        # translate a latex document to doconce (requires usually manual fixing)
+        doconce latex2doconce latexfile
+        
+        # typeset a doconce document with pygments
+        doconce pygmentize myfile [pygments-style]
+        
+        # generate a make.sh script for translating a doconce file to various formats
+        doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 
 Exercises
@@ -29753,8 +34595,6 @@ the environments:
 
  * ``sol``: full solution to exercise or sub-exercise
 
- * ``notes``: multi-line notes to be included or not
-
  * ``quote``: indented text
 
  * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: boxes with
@@ -29764,9 +34604,6 @@ the environments:
 
  * ``slidecell``: indication of cells in a grid layout for elements on a
    slide
-
-Labels, Index, and Citations
-----------------------------
 
 Preprocessing
 -------------
@@ -29823,6 +34660,7 @@ Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
+
 ************** File: quickref.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -29833,11 +34671,15 @@ Doconce Quick Reference
 :Author: Hans Petter Langtangen
 :Date: Jan 32, 2100
 
-.. Very preliminary
-
-
 **WARNING: This quick reference is very incomplete!**
 
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's ``blogger.com``, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 Supported Formats
 -----------------
@@ -29854,11 +34696,13 @@ Doconce currently translates files to the following formats:
 
  * Sphinx (format ``sphinx``)
 
+ * IPython notebook (format ``ipynb``)
+
+ * MediaWiki (format ``mwiki``)
+
  * (Pandoc extended) Markdown (format ``pandoc``)
 
  * Googlecode wiki (format ``gwiki``)
-
- * MediaWiki for Wikipedia and Wikibooks (format ``mwiki``)
 
  * Creoloe wiki (format ``cwiki``)
 
@@ -29866,7 +34710,43 @@ Doconce currently translates files to the following formats:
 
  * StructuredText (format ``st``)
 
-The best supported formats are ``latex``, ``sphinx``, ``html``, and ``plain``.
+For documents with much code and mathematics, the best (and most supported)
+formats are ``latex``, ``pdflatex``, ``sphinx``, and ``html``; and to a slightly
+less extent ``mwiki`` and ``pandoc``. The HTML format supports blogging on
+Google and Wordpress.
+
+
+Emacs syntax support
+--------------------
+
+The file `.doconce-mode.el <https://doconce.googlecode.com/hg/misc/.doconce-mode.el>`_ in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add ``(load-file "~/.doconce-mode.el")`` to the ``.emacs``
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+==================================  ==================================  
 
 Title, Authors, and Date
 ------------------------
@@ -29912,24 +34792,29 @@ The table of contents is removed by writing ``TOC: off``.
 Section Types
 -------------
 
-========================================  ========================================  
-              Section type                                 Syntax                   
-========================================  ========================================  
-chapter                                   ``========= Heading ========`` (9 ``=``)  
-section                                   ``======= Heading =======``    (7 ``=``)  
-subsection                                ``===== Heading =====``        (5 ``=``)  
-subsubsection                             ``=== Heading ===``            (3 ``=``)  
-paragraph                                 ``__Heading.__``               (2 ``_``)  
-abstract                                  ``__Abstract.__`` Running text...         
-========================================  ========================================  
+===============================================  ===============================================  
+                  Section type                                        Syntax                      
+===============================================  ===============================================  
+chapter                                          ``========= Heading ========`` (9 ``=``)         
+section                                          ``======= Heading =======``    (7 ``=``)         
+subsection                                       ``===== Heading =====``        (5 ``=``)         
+subsubsection                                    ``=== Heading ===``            (3 ``=``)         
+paragraph                                        ``__Heading.__``               (2 ``_``)         
+abstract                                         ``__Abstract.__`` Running text...                
+appendix                                         ``======= Appendix: heading =======`` (7 ``=``)  
+appendix                                         ``===== Appendix: heading =====`` (5 ``=``)      
+exercise                                         ``======= Exercise: heading =======`` (7 ``=``)  
+exercise                                         ``===== Exercise: heading =====`` (5 ``=``)      
+===============================================  ===============================================  
 
-Note that abstracts are recognized by starting with ``__Abstract.__`` at
-the beginning of a line and ending with three or more ``=`` signs of the
-next heading.
+Note that abstracts are recognized by starting with ``__Abstract.__`` or
+``__Summary.__`` at the beginning of a line and ending with three or
+more ``=`` signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only ``latex`` output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The ``Exercise:`` keyword kan be substituted by ``Problem:`` or ``Project:``.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 Inline Formatting
 -----------------
@@ -30024,8 +34909,8 @@ And finally a description list:
  keyword3: 
    and its description may fit on one line
 
-Comments
---------
+Comment lines
+-------------
 
 Lines starting with ``#`` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -30033,15 +34918,25 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats ``rst`` and
 ``sphinx`` are desired.
 
+Comment lines starting with ``##`` are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes ``##`` or by blocks of text
-inside the comment directives ``%<doc>`` (beginning) and ``<%doc/>`` (end).
+Doconce starts processing the file. Mako block comments start
+with ``%<doc>`` and end with ``<%doc/>``, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+``# #ifdef EXTRA`` and ``# #endif`` around the text. The command line
+option ``-DEXTRA`` will bring the text alive again.
+
+Inline comments
+---------------
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 
 .. code-block:: text
 
@@ -30049,25 +34944,25 @@ are often useful and enabled by the syntax
         [name: running text]
 
 where ``name`` is the name or ID of an author or reader making the comment,
-and ``running text`` is the comment. There must be a space after the colon.
+and ``running text`` is the comment. Here goes an example.
+(**hpl**: There must be a space after the colon,
+but the running text can occupy multiple lines.)
 Running
 
 .. code-block:: console
 
         doconce format html mydoc.do.txt --skip_inline_comments
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 
 .. code-block:: console
 
         doconce remove_inline_comments mydoc.do.txt
 
-This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 ----------------------
@@ -30164,9 +35059,9 @@ LaTeX Mathematics
 -----------------
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats ``sphinx``, ``latex``, and ``pdflatex``
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats ``html``, ``sphinx``, ``latex``,
+pdflatex`, ``pandoc``, and ``mwiki`` work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -30181,8 +35076,7 @@ readable companion expression. The syntax is like
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 ``!bt``
@@ -30200,11 +35094,6 @@ and
         \end{align*}
         !et
 
-.. Note: !bt and !et (and !bc and !ec below) are used to illustrate
-
-.. tex and code blocks in inside verbatim blocks and are replaced
-
-.. by !bt, !et, !bc, and !ec after all other formatting is finished.
 
 This LaTeX code gets rendered as
 
@@ -30232,25 +35121,17 @@ which results in
          \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 
 
-One can use ``#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")``
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (``#else``) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the ``sphinx``, ``pandoc``,
-``mwiki``, or ``html`` formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in ``latex`` or ``pdflatex`` *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+``mwiki``, ``html``, or ``ipynb`` formats
+is also important, one should follow these rules:
 
   * Use only the equation environments ``\[``, ``\]``,
     ``equation``, ``equation*``, ``align``, and ``align*``.
 
-  * Labels in multiple equation environments such as ``align`` are
-    not (yet) handled by ``pandoc``.
-
   * MediaWiki (``mwiki``) does not support references to equations.
+
+(Doconce performs extensions to ``sphinx`` and other formats such that
+labels in ``align`` environments work well.)
 
 
 .. note::
@@ -30265,7 +35146,16 @@ the following rules are recommended:
    also allow advanced LaTeX features and fine tuning of resulting
    PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define ``newcommand`` statements in files with names
+``newcommands*.tex``. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that ``newcommands_keep.tex``
+contains the newcommands that are kept in the document, while
+those in ``newcommands_replace.tex`` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For ``html``, ``sphinx``, ``latex``, ``pdflatex``,
+``mwiki``, ``ipynb``, and ``pandoc``, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 Figures and Movies
@@ -30281,30 +35171,54 @@ Figures and movies have almost equal syntax:
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+
+ 2. all of the command must appear on a single line,
+
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-``convert`` and ``montage`` programs from the ImageMagick suite:
 
 .. code-block:: console
 
-        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-        montage file1.png file2.png -tile x1 result.png
-        montage file1.png file2.png -tile 1x result.png
-        
-        convert -background white file1.png file2.png +append tmp.png
+        doconce combine_images image1 image2 ... output_image
 
-Use ``+append`` for stacking left to right, ``-append`` for top to bottom.
-The positioning of the figures can be controlled by ``-gravity``.
+This command applies ``montage`` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in ``html`` and ``sphinx`` documents
+and otherwise be represented by a link. The syntax is
+
+
+.. code-block:: text
+
+
+        MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+        
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+        
+
+The latter results in
+
+.. raw:: html
+        
+        <iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Vimeo movie.</em>
+        
+
+
 
 
 Tables
@@ -30348,10 +35262,11 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
-----------------------------------------
+Labels and References
+---------------------
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 
@@ -30361,7 +35276,7 @@ inserted anywhere, using the syntax
         label{name}
 
 with no backslash
-preceding the label keyword! It is common practice to choose ``name``
+preceding the label keyword. It is common practice to choose ``name``
 as some hierarchical name, say ``a:b:c``, where ``a`` and ``b`` indicate
 some abbreviations for a section and/or subsection for the topic and
 ``c`` is some name for the particular unit that has a label.
@@ -30374,6 +35289,14 @@ A reference to the label ``name`` is written as
         ref{name}
 
 again with no backslash before ``ref``.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+Citations and Bibliography
+--------------------------
 
 Single citations are written as
 
@@ -30396,20 +35319,23 @@ by comma:
         cite{name1,name2,name3}
 
 
-The bibliography is specified by a line ``BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py``, where ``name`` is the logical name of the
-document (the doconce file will then normally have the name
-``name.do.txt``), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the ``BIBFILE`` keyword appears.
+The bibliography is specified by a line ``BIBFILE: papers.pub``,
+where ``papers.pub`` is a publication database in the
+`Publish <https://bitbucket.org/logg/publish>`_ format.
+BibTeX ``.bib`` files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+Generalized Citations
+---------------------
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with ``ref`` to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 
 .. code-block:: text
 
@@ -30434,6 +35360,9 @@ LaTeX package ``xr`` is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 ``external`` text will be the output.
 
+Index of Keywords
+-----------------
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -30447,11 +35376,11 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the ``latex``, ``rst``, and
-``sphinx`` formats.
+forthcoming text. The index is only produced for the ``latex``,
+``pdflatex``, ``rst``, and ``sphinx`` formats.
 
-Capabilities of the "doconce" Program
--------------------------------------
+Capabilities of The Program ``doconce``
+---------------------------------------
 
 The ``doconce`` program can be used for a number of purposes besides
 transforming a ``.do.txt`` file to some format. Here is the
@@ -30461,7 +35390,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
         
         
         # transform doconce file to another format
@@ -30539,9 +35468,6 @@ list of capabilities:
         # remove selected text from a file
         doconce remove --from[-] from-text [--to[-] to-text] somefile
         
-        # remove answers to exercises
-        doconce remove_exercise_answers file_in_some_format
-        
         # run spellcheck on a set of files
         doconce spellcheck [-d .mydict.txt] *.do.txt
         
@@ -30549,6 +35475,12 @@ list of capabilities:
         # and manage the code environments
         doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+        
+        # make HTML file via pandoc from Markdown (.md) file
+        doconce md2html file
+        
+        # make LaTeX file via pandoc from Markdown (.md) file
+        doconce md2latex file
         
         # expand short cut commands to full form in files
         doconce expand_commands file1 file2 ...
@@ -30561,6 +35493,15 @@ list of capabilities:
         
         # list all labels in a document (for purposes of cleaning them up)
         doconce list_labels myfile
+        
+        # translate a latex document to doconce (requires usually manual fixing)
+        doconce latex2doconce latexfile
+        
+        # typeset a doconce document with pygments
+        doconce pygmentize myfile [pygments-style]
+        
+        # generate a make.sh script for translating a doconce file to various formats
+        doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 
 Exercises
@@ -30706,8 +35647,6 @@ the environments:
 
  * ``sol``: full solution to exercise or sub-exercise
 
- * ``notes``: multi-line notes to be included or not
-
  * ``quote``: indented text
 
  * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: boxes with
@@ -30717,9 +35656,6 @@ the environments:
 
  * ``slidecell``: indication of cells in a grid layout for elements on a
    slide
-
-Labels, Index, and Citations
-----------------------------
 
 Preprocessing
 -------------
@@ -30779,20 +35715,26 @@ Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
+
 ************** File: quickref.gwiki *****************
 #summary Doconce Quick Reference
 
 By *Hans Petter Langtangen*
-
 ==== Jan 32, 2100 ====
 
 <wiki: toc max_depth="2" />
 
 
 
-<wiki:comment> Very preliminary </wiki:comment>
-
 *WARNING: This quick reference is very incomplete!*
+
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's `blogger.com`, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 ==== Supported Formats ====
 
@@ -30804,14 +35746,49 @@ Doconce currently translates files to the following formats:
  * reStructuredText (format `rst`)
  * plain (untagged) ASCII (format `plain`)
  * Sphinx (format `sphinx`)
+ * IPython notebook (format `ipynb`)
+ * MediaWiki (format `mwiki`)
  * (Pandoc extended) Markdown (format `pandoc`)
  * Googlecode wiki (format `gwiki`)
- * MediaWiki for Wikipedia and Wikibooks (format `mwiki`)
  * Creoloe wiki (format `cwiki`)
  * Epydoc (format `epydoc`)
  * StructuredText (format `st`)
 
-The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
+For documents with much code and mathematics, the best (and most supported)
+formats are `latex`, `pdflatex`, `sphinx`, and `html`; and to a slightly
+less extent `mwiki` and `pandoc`. The HTML format supports blogging on
+Google and Wordpress.
+
+
+==== Emacs syntax support ====
+
+The file [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add `(load-file "~/.doconce-mode.el")` to the `.emacs`
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+
+ ||              *Emacs key*                ||                *Action*                 ||
+ ||  Ctrl+c f                               ||  figure                                 ||
+ ||  Ctrl+c v                               ||  movie/video                            ||
+ ||  Ctrl+c h1                              ||  heading level 1 (section/h1)           ||
+ ||  Ctrl+c h2                              ||  heading level 2 (subsection/h2)        ||
+ ||  Ctrl+c h3                              ||  heading level 2 (subsection/h3)        ||
+ ||  Ctrl+c hp                              ||  heading for paragraph                  ||
+ ||  Ctrl+c me                              ||  math environment: !bt equation !et     ||
+ ||  Ctrl+c ma                              ||  math environment: !bt align !et        ||
+ ||  Ctrl+c ce                              ||  code environment: !bc !ec              ||
+ ||  Ctrl+c cf                              ||  code from file: @@@CODE                ||
+ ||  Ctrl+c table2                          ||  table with 2 columns                   ||
+ ||  Ctrl+c table3                          ||  table with 3 columns                   ||
+ ||  Ctrl+c table4                          ||  table with 4 columns                   ||
+ ||  Ctrl+c exer                            ||  exercise outline                       ||
+ ||  Ctrl+c slide                           ||  slide outline                          ||
+ ||  Ctrl+c help                            ||  print this table                       ||
+
 
 ==== Title, Authors, and Date ====
 
@@ -30844,24 +35821,30 @@ current date is wanted, e.g., `Feb 22, 2016`.
 
 The table of contents is removed by writing `TOC: off`.
 
+
 ==== Section Types ====
 
- ||              *Section type*               ||                 *Syntax*                  ||
- ||  chapter                                  ||  `========= Heading ========` (9 `=`)     ||
- ||  section                                  ||  `======= Heading =======`    (7 `=`)     ||
- ||  subsection                               ||  `===== Heading =====`        (5 `=`)     ||
- ||  subsubsection                            ||  `=== Heading ===`            (3 `=`)     ||
- ||  paragraph                                ||  `__Heading.__`               (2 `_`)     ||
- ||  abstract                                 ||  `__Abstract.__` Running text...          ||
+ ||                  *Section type*                  ||                     *Syntax*                     ||
+ ||  chapter                                         ||  `========= Heading ========` (9 `=`)            ||
+ ||  section                                         ||  `======= Heading =======`    (7 `=`)            ||
+ ||  subsection                                      ||  `===== Heading =====`        (5 `=`)            ||
+ ||  subsubsection                                   ||  `=== Heading ===`            (3 `=`)            ||
+ ||  paragraph                                       ||  `__Heading.__`               (2 `_`)            ||
+ ||  abstract                                        ||  `__Abstract.__` Running text...                 ||
+ ||  appendix                                        ||  `======= Appendix: heading =======` (7 `=`)     ||
+ ||  appendix                                        ||  `===== Appendix: heading =====` (5 `=`)         ||
+ ||  exercise                                        ||  `======= Exercise: heading =======` (7 `=`)     ||
+ ||  exercise                                        ||  `===== Exercise: heading =====` (5 `=`)         ||
 
 
-Note that abstracts are recognized by starting with `__Abstract.__` at
-the beginning of a line and ending with three or more `=` signs of the
-next heading.
+Note that abstracts are recognized by starting with `__Abstract.__` or
+`__Summary.__` at the beginning of a line and ending with three or
+more `=` signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only `latex` output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The `Exercise:` keyword kan be substituted by `Problem:` or `Project:`.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 ==== Inline Formatting ====
 
@@ -30942,7 +35925,7 @@ And finally a description list:
  * keyword3:  
    and its description may fit on one line
 
-==== Comments ====
+==== Comment lines ====
 
 Lines starting with `#` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -30950,34 +35933,43 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats `rst` and
 `sphinx` are desired.
 
+Comment lines starting with `##` are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes `##` or by blocks of text
-inside the comment directives `%<doc>` (beginning) and `<%doc/>` (end).
+Doconce starts processing the file. Mako block comments start
+with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+`# #ifdef EXTRA` and `# #endif` around the text. The command line
+option `-DEXTRA` will bring the text alive again.
+
+==== Inline comments ====
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 {{{
 [name: running text]
 }}}
 where `name` is the name or ID of an author or reader making the comment,
-and `running text` is the comment. There must be a space after the colon.
+and `running text` is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running
 {{{
 doconce format html mydoc.do.txt --skip_inline_comments
 }}}
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 {{{
 doconce remove_inline_comments mydoc.do.txt
 }}}
-This action is appropriate when all issues with such comments are resolved.
 
 ==== Verbatim/Computer Code ====
 
@@ -31055,9 +36047,9 @@ Important warnings:
 ==== LaTeX Mathematics ====
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats `sphinx`, `latex`, and `pdflatex`
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats `html`, `sphinx`, `latex`,
+pdflatex`, `pandoc`, and `mwiki` work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -31069,8 +36061,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 }}}
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 `!bt`
@@ -31085,9 +36076,7 @@ and
 \end{align*}
 !et
 }}}
-<wiki:comment> Note: !bt and !et (and !bc and !ec below) are used to illustrate </wiki:comment>
-<wiki:comment> tex and code blocks in inside verbatim blocks and are replaced </wiki:comment>
-<wiki:comment> by !bt, !et, !bc, and !ec after all other formatting is finished. </wiki:comment>
+
 This LaTeX code gets rendered as
 
 {{{
@@ -31109,22 +36098,16 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 }}}
 
-One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (`#else`) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-`mwiki`, or `html` formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` or `pdflatex` *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+`mwiki`, `html`, or `ipynb` formats
+is also important, one should follow these rules:
 
 
   * Use only the equation environments `\[`, `\]`,    `equation`, `equation*`, `align`, and `align*`.
-  * Labels in multiple equation environments such as `align` are    not (yet) handled by `pandoc`.
   * MediaWiki (`mwiki`) does not support references to equations.
+
+(Doconce performs extensions to `sphinx` and other formats such that
+labels in `align` environments work well.)
 
 
 
@@ -31139,7 +36122,17 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define `newcommand` statements in files with names
+`newcommands*.tex`. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that `newcommands_keep.tex`
+contains the newcommands that are kept in the document, while
+those in `newcommands_replace.tex` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
+`mwiki`, `ipynb`, and `pandoc`, the mathematics in newcommands is
+rendered nicely anyway.
+
 
 ==== Figures and Movies ====
 
@@ -31150,28 +36143,42 @@ FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which mus
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 }}}
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+
+ # A mandatory comma after the figure/movie filename,
+ # all of the command must appear on a single line,
+ # there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-`convert` and `montage` programs from the ImageMagick suite:
 {{{
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 }}}
-Use `+append` for stacking left to right, `-append` for top to bottom.
-The positioning of the figures can be controlled by `-gravity`.
+This command applies `montage` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in `html` and `sphinx` documents
+and otherwise be represented by a link. The syntax is
+
+{{{
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+}}}
+The latter results in
+
+ Vimeo movie. http://vimeo.com/55562330
+
 
 ==== Tables ====
 
@@ -31198,16 +36205,17 @@ Note that
  * If the horizontal rules are without alignment information there should   be no vertical bar (pipe symbol) between the columns. Otherwise, such   a bar indicates a vertical bar between columns in LaTeX.
  * Many output formats are so primitive that heading and column alignment   have no effect.
 
-==== Labels, References, Citations, and Index ====
+==== Labels and References ====
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 {{{
 label{name}
 }}}
 with no backslash
-preceding the label keyword! It is common practice to choose `name`
+preceding the label keyword. It is common practice to choose `name`
 as some hierarchical name, say `a:b:c`, where `a` and `b` indicate
 some abbreviations for a section and/or subsection for the topic and
 `c` is some name for the particular unit that has a label.
@@ -31217,6 +36225,13 @@ A reference to the label `name` is written as
 ref{name}
 }}}
 again with no backslash before `ref`.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+==== Citations and Bibliography ====
 
 Single citations are written as
 {{{
@@ -31233,20 +36248,22 @@ by comma:
 cite{name1,name2,name3}
 }}}
 
-The bibliography is specified by a line `BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py`, where `name` is the logical name of the
-document (the doconce file will then normally have the name
-`name.do.txt`), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the `BIBFILE` keyword appears.
+The bibliography is specified by a line `BIBFILE: papers.pub`,
+where `papers.pub` is a publication database in the
+[https://bitbucket.org/logg/publish Publish] format.
+BibTeX `.bib` files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+==== Generalized Citations ====
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with `ref` to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 {{{
 ref[internal][cite][external]
 
@@ -31268,6 +36285,8 @@ LaTeX package `xr` is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 `external` text will be the output.
 
+==== Index of Keywords ====
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -31278,10 +36297,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the `latex`, `rst`, and
-`sphinx` formats.
+forthcoming text. The index is only produced for the `latex`,
+`pdflatex`, `rst`, and `sphinx` formats.
 
-==== Capabilities of the "doconce" Program ====
+==== Capabilities of The Program `doconce` ====
 
 The `doconce` program can be used for a number of purposes besides
 transforming a `.do.txt` file to some format. Here is the
@@ -31289,7 +36308,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -31367,9 +36386,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -31377,6 +36393,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -31389,6 +36411,15 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 }}}
 
 ==== Exercises ====
@@ -31495,6 +36526,7 @@ The command-line arguments `--without-answers` and `--without-solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
+
 ==== Environments ====
 
 Doconce environments start with `!benvirname` and end with `!eenvirname`,
@@ -31507,13 +36539,10 @@ the environments:
  * `subex`: sub-exercise
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
- * `notes`: multi-line notes to be included or not
  * `quote`: indented text
  * `notice`, `summary`, `warning`, `question`, `hint`: boxes with    specialy typesetting (or symbols)
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a   slide
-
-==== Labels, Index, and Citations ====
 
 ==== Preprocessing ====
 
@@ -31569,20 +36598,27 @@ examine the Doconce source and the `doc/src/make.sh` script).
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
 
+
 ************** File: quickref.mwiki *****************
 #TITLE (actually governed by the filename): Doconce Quick Reference
 
 By '''Hans Petter Langtangen'''
-
 ==== Jan 32, 2100 ====
 
 __TOC__
 
 
 
-<!-- Very preliminary -->
-
 '''WARNING: This quick reference is very incomplete!'''
+
+''Mission.''
+Enable writing documentation with much mathematics and
+computer code ''once, in one place'' and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 ==== Supported Formats ====
 
@@ -31595,16 +36631,50 @@ Doconce currently translates files to the following formats:
  <li> reStructuredText (format <code>rst</code>)
  <li> plain (untagged) ASCII (format <code>plain</code>)
  <li> Sphinx (format <code>sphinx</code>)
+ <li> IPython notebook (format <code>ipynb</code>)
+ <li> MediaWiki (format <code>mwiki</code>)
  <li> (Pandoc extended) Markdown (format <code>pandoc</code>)
  <li> Googlecode wiki (format <code>gwiki</code>)
- <li> MediaWiki for Wikipedia and Wikibooks (format <code>mwiki</code>)
  <li> Creoloe wiki (format <code>cwiki</code>)
  <li> Epydoc (format <code>epydoc</code>)
  <li> StructuredText (format <code>st</code>)
 </ul>
 
-The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>html</code>, and <code>plain</code>.
+For documents with much code and mathematics, the best (and most supported)
+formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code>; and to a slightly
+less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blogging on
+Google and Wordpress.
 
+
+==== Emacs syntax support ====
+
+The file [https://doconce.googlecode.com/hg/misc/.doconce-mode.el .doconce-mode.el] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add <code>(load-file "~/.doconce-mode.el")</code> to the <code>.emacs</code>
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+<table border="1">
+<tr><td align="center"><b>             Emacs key              </b></td> <td align="center"><b>               Action               </b></td> </tr>
+<tr><td align="left">   Ctrl+c f                              </td> <td align="left">   figure                                </td> </tr>
+<tr><td align="left">   Ctrl+c v                              </td> <td align="left">   movie/video                           </td> </tr>
+<tr><td align="left">   Ctrl+c h1                             </td> <td align="left">   heading level 1 (section/h1)          </td> </tr>
+<tr><td align="left">   Ctrl+c h2                             </td> <td align="left">   heading level 2 (subsection/h2)       </td> </tr>
+<tr><td align="left">   Ctrl+c h3                             </td> <td align="left">   heading level 2 (subsection/h3)       </td> </tr>
+<tr><td align="left">   Ctrl+c hp                             </td> <td align="left">   heading for paragraph                 </td> </tr>
+<tr><td align="left">   Ctrl+c me                             </td> <td align="left">   math environment: !bt equation !et    </td> </tr>
+<tr><td align="left">   Ctrl+c ma                             </td> <td align="left">   math environment: !bt align !et       </td> </tr>
+<tr><td align="left">   Ctrl+c ce                             </td> <td align="left">   code environment: !bc !ec             </td> </tr>
+<tr><td align="left">   Ctrl+c cf                             </td> <td align="left">   code from file: @@@CODE               </td> </tr>
+<tr><td align="left">   Ctrl+c table2                         </td> <td align="left">   table with 2 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table3                         </td> <td align="left">   table with 3 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c table4                         </td> <td align="left">   table with 4 columns                  </td> </tr>
+<tr><td align="left">   Ctrl+c exer                           </td> <td align="left">   exercise outline                      </td> </tr>
+<tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
+<tr><td align="left">   Ctrl+c help                           </td> <td align="left">   print this table                      </td> </tr>
+</table>
 ==== Title, Authors, and Date ====
 
 A typical example of giving a title, a set of authors, a date,
@@ -31636,24 +36706,30 @@ current date is wanted, e.g., <code>Feb 22, 2016</code>.
 
 The table of contents is removed by writing <code>TOC: off</code>.
 
+
 ==== Section Types ====
 
 <table border="1">
-<tr><td align="center"><b>                        Section type                        </b></td> <td align="center"><b>                           Syntax                           </b></td> </tr>
-<tr><td align="left">   chapter                                                       </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
-<tr><td align="left">   section                                                       </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsection                                                    </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsubsection                                                 </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)    </td> </tr>
-<tr><td align="left">   paragraph                                                     </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)    </td> </tr>
-<tr><td align="left">   abstract                                                      </td> <td align="left">   <code>__Abstract.__</code> Running text...                    </td> </tr>
+<tr><td align="center"><b>                            Section type                           </b></td> <td align="center"><b>                               Syntax                              </b></td> </tr>
+<tr><td align="left">   chapter                                                              </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)           </td> </tr>
+<tr><td align="left">   section                                                              </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsection                                                           </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsubsection                                                        </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)           </td> </tr>
+<tr><td align="left">   paragraph                                                            </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)           </td> </tr>
+<tr><td align="left">   abstract                                                             </td> <td align="left">   <code>__Abstract.__</code> Running text...                           </td> </tr>
+<tr><td align="left">   appendix                                                             </td> <td align="left">   <code>======= Appendix: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   appendix                                                             </td> <td align="left">   <code>===== Appendix: heading =====</code> (5 <code>=</code>)        </td> </tr>
+<tr><td align="left">   exercise                                                             </td> <td align="left">   <code>======= Exercise: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   exercise                                                             </td> <td align="left">   <code>===== Exercise: heading =====</code> (5 <code>=</code>)        </td> </tr>
 </table>
-Note that abstracts are recognized by starting with <code>__Abstract.__</code> at
-the beginning of a line and ending with three or more <code>=</code> signs of the
-next heading.
+Note that abstracts are recognized by starting with <code>__Abstract.__</code> or
+<code>__Summary.__</code> at the beginning of a line and ending with three or
+more <code>=</code> signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only <code>latex</code> output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The <code>Exercise:</code> keyword kan be substituted by <code>Problem:</code> or <code>Project:</code>.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 ==== Inline Formatting ====
 
@@ -31748,7 +36824,7 @@ And finally a description list:
    and its description may fit on one line
 </dl>
 
-==== Comments ====
+==== Comment lines ====
 
 Lines starting with <code>#</code> are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -31756,34 +36832,43 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats <code>rst</code> and
 <code>sphinx</code> are desired.
 
+Comment lines starting with <code>##</code> are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes <code>##</code> or by blocks of text
-inside the comment directives <code>%<doc></code> (beginning) and <code><%doc/></code> (end).
+Doconce starts processing the file. Mako block comments start
+with <code>%<doc></code> and end with <code><%doc/></code>, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+<code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
+option <code>-DEXTRA</code> will bring the text alive again.
+
+==== Inline comments ====
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 <syntaxhighlight lang="text">
 [name: running text]
 </syntaxhighlight>
 where <code>name</code> is the name or ID of an author or reader making the comment,
-and <code>running text</code> is the comment. There must be a space after the colon.
+and <code>running text</code> is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running
 <syntaxhighlight lang="bash">
 doconce format html mydoc.do.txt --skip_inline_comments
 </syntaxhighlight>
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 <syntaxhighlight lang="bash">
 doconce remove_inline_comments mydoc.do.txt
 </syntaxhighlight>
-This action is appropriate when all issues with such comments are resolved.
 
 ==== Verbatim/Computer Code ====
 
@@ -31867,9 +36952,9 @@ Important warnings:
 ==== LaTeX Mathematics ====
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats <code>sphinx</code>, <code>latex</code>, and <code>pdflatex</code>
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats <code>html</code>, <code>sphinx</code>, <code>latex</code>,
+pdflatex`, <code>pandoc</code>, and <code>mwiki</code> work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -31881,8 +36966,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 </syntaxhighlight>
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 <code>!bt</code>
@@ -31897,9 +36981,7 @@ and
 \end{align*}
 !et
 </syntaxhighlight>
-<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!-- tex and code blocks in inside verbatim blocks and are replaced -->
-<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+
 This LaTeX code gets rendered as
 
 :<math>
@@ -31921,26 +37003,19 @@ which results in
  \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 </math>
 
-One can use <code>#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")</code>
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (<code>#else</code>) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the <code>sphinx</code>, <code>pandoc</code>,
-<code>mwiki</code>, or <code>html</code> formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in <code>latex</code> or <code>pdflatex</code> ''and''
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+<code>mwiki</code>, <code>html</code>, or <code>ipynb</code> formats
+is also important, one should follow these rules:
 
 
 <ul>
   <li> Use only the equation environments <code>\[</code>, <code>\]</code>,
     <code>equation</code>, <code>equation*</code>, <code>align</code>, and <code>align*</code>.
-  <li> Labels in multiple equation environments such as <code>align</code> are
-    not (yet) handled by <code>pandoc</code>.
   <li> MediaWiki (<code>mwiki</code>) does not support references to equations.
 </ul>
+
+(Doconce performs extensions to <code>sphinx</code> and other formats such that
+labels in <code>align</code> environments work well.)
 
 
 
@@ -31957,7 +37032,17 @@ also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
 ''LaTeX Newcommands.''
-Text missing...
+The author can define <code>newcommand</code> statements in files with names
+<code>newcommands*.tex</code>. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that <code>newcommands_keep.tex</code>
+contains the newcommands that are kept in the document, while
+those in <code>newcommands_replace.tex</code> will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</code>, <code>pdflatex</code>,
+<code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
+rendered nicely anyway.
+
 
 ==== Figures and Movies ====
 
@@ -31968,28 +37053,44 @@ FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which mus
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 </syntaxhighlight>
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+
+<ol>
+ <li> A mandatory comma after the figure/movie filename,
+ <li> all of the command must appear on a single line,
+ <li> there must be a blank line after the command.
+</ol>
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-<code>convert</code> and <code>montage</code> programs from the ImageMagick suite:
 <syntaxhighlight lang="bash">
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 </syntaxhighlight>
-Use <code>+append</code> for stacking left to right, <code>-append</code> for top to bottom.
-The positioning of the figures can be controlled by <code>-gravity</code>.
+This command applies <code>montage</code> or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in <code>html</code> and <code>sphinx</code> documents
+and otherwise be represented by a link. The syntax is
+
+<syntaxhighlight lang="text">
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+</syntaxhighlight>
+The latter results in
+
+ Vimeo movie. http://vimeo.com/55562330
+
 
 ==== Tables ====
 
@@ -32027,16 +37128,17 @@ Note that
    have no effect.
 </ul>
 
-==== Labels, References, Citations, and Index ====
+==== Labels and References ====
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <syntaxhighlight lang="text">
 label{name}
 </syntaxhighlight>
 with no backslash
-preceding the label keyword! It is common practice to choose <code>name</code>
+preceding the label keyword. It is common practice to choose <code>name</code>
 as some hierarchical name, say <code>a:b:c</code>, where <code>a</code> and <code>b</code> indicate
 some abbreviations for a section and/or subsection for the topic and
 <code>c</code> is some name for the particular unit that has a label.
@@ -32046,6 +37148,13 @@ A reference to the label <code>name</code> is written as
 ref{name}
 </syntaxhighlight>
 again with no backslash before <code>ref</code>.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+==== Citations and Bibliography ====
 
 Single citations are written as
 <syntaxhighlight lang="text">
@@ -32062,20 +37171,22 @@ by comma:
 cite{name1,name2,name3}
 </syntaxhighlight>
 
-The bibliography is specified by a line <code>BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py</code>, where <code>name</code> is the logical name of the
-document (the doconce file will then normally have the name
-<code>name.do.txt</code>), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the <code>BIBFILE</code> keyword appears.
+The bibliography is specified by a line <code>BIBFILE: papers.pub</code>,
+where <code>papers.pub</code> is a publication database in the
+[https://bitbucket.org/logg/publish Publish] format.
+BibTeX <code>.bib</code> files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+==== Generalized Citations ====
 
 There is a ''generalized referencing'' feature in Doconce that allows
 a reference with <code>ref</code> to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 <syntaxhighlight lang="text">
 ref[internal][cite][external]
 
@@ -32097,6 +37208,8 @@ LaTeX package <code>xr</code> is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
+==== Index of Keywords ====
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -32107,10 +37220,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the <code>latex</code>, <code>rst</code>, and
-<code>sphinx</code> formats.
+forthcoming text. The index is only produced for the <code>latex</code>,
+<code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
 
-==== Capabilities of the "doconce" Program ====
+==== Capabilities of The Program <code>doconce</code> ====
 
 The <code>doconce</code> program can be used for a number of purposes besides
 transforming a <code>.do.txt</code> file to some format. Here is the
@@ -32118,7 +37231,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -32196,9 +37309,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -32206,6 +37316,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -32218,6 +37334,15 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 </syntaxhighlight>
 
 ==== Exercises ====
@@ -32330,6 +37455,7 @@ The command-line arguments <code>--without-answers</code> and <code>--without-so
 turn off output of answers and solutions, respectively, except for
 examples.
 
+
 ==== Environments ====
 
 Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
@@ -32343,7 +37469,6 @@ the environments:
  <li> <code>subex</code>: sub-exercise
  <li> <code>ans</code>: short answer to exercise or sub-exercise
  <li> <code>sol</code>: full solution to exercise or sub-exercise
- <li> <code>notes</code>: multi-line notes to be included or not
  <li> <code>quote</code>: indented text
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
     specialy typesetting (or symbols)
@@ -32351,8 +37476,6 @@ the environments:
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide
 </ul>
-
-==== Labels, Index, and Citations ====
 
 ==== Preprocessing ====
 
@@ -32410,21 +37533,26 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 </ul>
 
 
+
 ************** File: quickref.cwiki *****************
 #summary Doconce Quick Reference
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen**
-
 === Jan 32, 2100 ===
 
 <<TableOfContents>>
 
 
 
-<wiki:comment> Very preliminary </wiki:comment>
-
 **WARNING: This quick reference is very incomplete!**
 
+//Mission.// Enable writing documentation with much mathematics and
+computer code //once, in one place// and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's {{{blogger.com}}}, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 == Supported Formats ==
 
@@ -32436,14 +37564,48 @@ Doconce currently translates files to the following formats:
  * reStructuredText (format {{{rst}}})
  * plain (untagged) ASCII (format {{{plain}}})
  * Sphinx (format {{{sphinx}}})
+ * IPython notebook (format {{{ipynb}}})
+ * MediaWiki (format {{{mwiki}}})
  * (Pandoc extended) Markdown (format {{{pandoc}}})
  * Googlecode wiki (format {{{gwiki}}})
- * MediaWiki for Wikipedia and Wikibooks (format {{{mwiki}}})
  * Creoloe wiki (format {{{cwiki}}})
  * Epydoc (format {{{epydoc}}})
  * StructuredText (format {{{st}}})
 
-The best supported formats are {{{latex}}}, {{{sphinx}}}, {{{html}}}, and {{{plain}}}.
+For documents with much code and mathematics, the best (and most supported)
+formats are {{{latex}}}, {{{pdflatex}}}, {{{sphinx}}}, and {{{html}}}; and to a slightly
+less extent {{{mwiki}}} and {{{pandoc}}}. The HTML format supports blogging on
+Google and Wordpress.
+
+
+== Emacs syntax support ==
+
+The file [[https://doconce.googlecode.com/hg/misc/.doconce-mode.el|.doconce-mode.el]] in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add {{{(load-file "~/.doconce-mode.el")}}} to the {{{.emacs}}}
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+
+ | =Emacs key                              | =Action                                 |
+ |  Ctrl+c f                               |  figure                                 |
+ |  Ctrl+c v                               |  movie/video                            |
+ |  Ctrl+c h1                              |  heading level 1 (section/h1)           |
+ |  Ctrl+c h2                              |  heading level 2 (subsection/h2)        |
+ |  Ctrl+c h3                              |  heading level 2 (subsection/h3)        |
+ |  Ctrl+c hp                              |  heading for paragraph                  |
+ |  Ctrl+c me                              |  math environment: !bt equation !et     |
+ |  Ctrl+c ma                              |  math environment: !bt align !et        |
+ |  Ctrl+c ce                              |  code environment: !bc !ec              |
+ |  Ctrl+c cf                              |  code from file: @@@CODE                |
+ |  Ctrl+c table2                          |  table with 2 columns                   |
+ |  Ctrl+c table3                          |  table with 3 columns                   |
+ |  Ctrl+c table4                          |  table with 4 columns                   |
+ |  Ctrl+c exer                            |  exercise outline                       |
+ |  Ctrl+c slide                           |  slide outline                          |
+ |  Ctrl+c help                            |  print this table                       |
 
 
 == Title, Authors, and Date ==
@@ -32480,30 +37642,35 @@ The table of contents is removed by writing {{{TOC: off}}}.
 
 == Section Types ==
 
- | =Section type                                     | =Syntax                                           |
- |  chapter                                          |  {{{========= Heading ========}}} (9 {{{=}}})     |
- |  section                                          |  {{{======= Heading =======}}}    (7 {{{=}}})     |
- |  subsection                                       |  {{{===== Heading =====}}}        (5 {{{=}}})     |
- |  subsubsection                                    |  {{{=== Heading ===}}}            (3 {{{=}}})     |
- |  paragraph                                        |  {{{__Heading.__}}}               (2 {{{_}}})     |
- |  abstract                                         |  {{{__Abstract.__}}} Running text...              |
 
 
-Note that abstracts are recognized by starting with {{{__Abstract.__}}} at
-the beginning of a line and ending with three or more {{{=}}} signs of the
-next heading.
+ | =Section type                                            | =Syntax                                                  |
+ |  chapter                                                 |  {{{========= Heading ========}}} (9 {{{=}}})            |
+ |  section                                                 |  {{{======= Heading =======}}}    (7 {{{=}}})            |
+ |  subsection                                              |  {{{===== Heading =====}}}        (5 {{{=}}})            |
+ |  subsubsection                                           |  {{{=== Heading ===}}}            (3 {{{=}}})            |
+ |  paragraph                                               |  {{{__Heading.__}}}               (2 {{{_}}})            |
+ |  abstract                                                |  {{{__Abstract.__}}} Running text...                     |
+ |  appendix                                                |  {{{======= Appendix: heading =======}}} (7 {{{=}}})     |
+ |  appendix                                                |  {{{===== Appendix: heading =====}}} (5 {{{=}}})         |
+ |  exercise                                                |  {{{======= Exercise: heading =======}}} (7 {{{=}}})     |
+ |  exercise                                                |  {{{===== Exercise: heading =====}}} (5 {{{=}}})         |
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only {{{latex}}} output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
 
+Note that abstracts are recognized by starting with {{{__Abstract.__}}} or
+{{{__Summary.__}}} at the beginning of a line and ending with three or
+more {{{=}}} signs of the next heading.
+
+The {{{Exercise:}}} keyword kan be substituted by {{{Problem:}}} or {{{Project:}}}.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 == Inline Formatting ==
 
 Words surrounded by {{{*}}} are emphasized: {{{*emphasized words*}}} becomes
 //emphasized words//. Similarly, an underscore surrounds words that
 appear in boldface: {{{_boldface_}}} become **boldface**.
-
 
 == Lists ==
 
@@ -32578,8 +37745,7 @@ And finally a description list:
  * keyword3:  
    and its description may fit on one line
 
-
-== Comments ==
+== Comment lines ==
 
 Lines starting with {{{#}}} are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -32587,35 +37753,43 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats {{{rst}}} and
 {{{sphinx}}} are desired.
 
+Comment lines starting with {{{##}}} are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes {{{##}}} or by blocks of text
-inside the comment directives {{{%<doc>}}} (beginning) and {{{<%doc/>}}} (end).
+Doconce starts processing the file. Mako block comments start
+with {{{%<doc>}}} and end with {{{<%doc/>}}}, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+{{{# #ifdef EXTRA}}} and {{{# #endif}}} around the text. The command line
+option {{{-DEXTRA}}} will bring the text alive again.
+
+== Inline comments ==
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 {{{
 [name: running text]
 }}}
 where {{{name}}} is the name or ID of an author or reader making the comment,
-and {{{running text}}} is the comment. There must be a space after the colon.
+and {{{running text}}} is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running
 {{{
 doconce format html mydoc.do.txt --skip_inline_comments
 }}}
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 {{{
 doconce remove_inline_comments mydoc.do.txt
 }}}
-This action is appropriate when all issues with such comments are resolved.
-
 
 == Verbatim/Computer Code ==
 
@@ -32690,13 +37864,12 @@ Important warnings:
  * A code block must come after some plain sentence (at least for successful   output in reStructredText), not directly after a section/paragraph heading,   table, comment, figure, or movie.
  * Verbatim code blocks inside lists can be ugly typeset in some   output formats. A more robust approach is to replace the list by   paragraphs with headings.
 
-
 == LaTeX Mathematics ==
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats {{{sphinx}}}, {{{latex}}}, and {{{pdflatex}}}
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats {{{html}}}, {{{sphinx}}}, {{{latex}}},
+pdflatex`, {{{pandoc}}}, and {{{mwiki}}} work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -32708,8 +37881,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 }}}
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 {{{!bt}}}
@@ -32724,9 +37896,7 @@ and
 \end{align*}
 !et
 }}}
-<wiki:comment> Note: !bt and !et (and !bc and !ec below) are used to illustrate </wiki:comment>
-<wiki:comment> tex and code blocks in inside verbatim blocks and are replaced </wiki:comment>
-<wiki:comment> by !bt, !et, !bc, and !ec after all other formatting is finished. </wiki:comment>
+
 This LaTeX code gets rendered as
 
 {{{
@@ -32748,22 +37918,16 @@ which results in
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 }}}
 
-One can use {{{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}}}
-to let the preprocessor choose a block of mathematics in LaTeX format
-or ({{{#else}}}) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the {{{sphinx}}}, {{{pandoc}}},
-{{{mwiki}}}, or {{{html}}} formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in {{{latex}}} or {{{pdflatex}}} //and//
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+{{{mwiki}}}, {{{html}}}, or {{{ipynb}}} formats
+is also important, one should follow these rules:
 
 
   * Use only the equation environments {{{\[}}}, {{{\]}}},    {{{equation}}}, {{{equation*}}}, {{{align}}}, and {{{align*}}}.
-  * Labels in multiple equation environments such as {{{align}}} are    not (yet) handled by {{{pandoc}}}.
   * MediaWiki ({{{mwiki}}}) does not support references to equations.
+
+(Doconce performs extensions to {{{sphinx}}} and other formats such that
+labels in {{{align}}} environments work well.)
 
 
 
@@ -32778,7 +37942,16 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-//LaTeX Newcommands.// Text missing...
+//LaTeX Newcommands.// The author can define {{{newcommand}}} statements in files with names
+{{{newcommands*.tex}}}. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that {{{newcommands_keep.tex}}}
+contains the newcommands that are kept in the document, while
+those in {{{newcommands_replace.tex}}} will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For {{{html}}}, {{{sphinx}}}, {{{latex}}}, {{{pdflatex}}},
+{{{mwiki}}}, {{{ipynb}}}, and {{{pandoc}}}, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 == Figures and Movies ==
@@ -32790,28 +37963,41 @@ FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which mus
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 }}}
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+
+ # A mandatory comma after the figure/movie filename,
+ # all of the command must appear on a single line,
+ # there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-{{{convert}}} and {{{montage}}} programs from the ImageMagick suite:
 {{{
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 }}}
-Use {{{+append}}} for stacking left to right, {{{-append}}} for top to bottom.
-The positioning of the figures can be controlled by {{{-gravity}}}.
+This command applies {{{montage}}} or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in {{{html}}} and {{{sphinx}}} documents
+and otherwise be represented by a link. The syntax is
+
+{{{
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+}}}
+The latter results in
+
+ Vimeo movie. [[http://vimeo.com/55562330]]
 
 
 == Tables ==
@@ -32839,17 +38025,17 @@ Note that
  * If the horizontal rules are without alignment information there should   be no vertical bar (pipe symbol) between the columns. Otherwise, such   a bar indicates a vertical bar between columns in LaTeX.
  * Many output formats are so primitive that heading and column alignment   have no effect.
 
+== Labels and References ==
 
-== Labels, References, Citations, and Index ==
-
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 {{{
 label{name}
 }}}
 with no backslash
-preceding the label keyword! It is common practice to choose {{{name}}}
+preceding the label keyword. It is common practice to choose {{{name}}}
 as some hierarchical name, say {{{a:b:c}}}, where {{{a}}} and {{{b}}} indicate
 some abbreviations for a section and/or subsection for the topic and
 {{{c}}} is some name for the particular unit that has a label.
@@ -32859,6 +38045,13 @@ A reference to the label {{{name}}} is written as
 ref{name}
 }}}
 again with no backslash before {{{ref}}}.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+== Citations and Bibliography ==
 
 Single citations are written as
 {{{
@@ -32875,20 +38068,22 @@ by comma:
 cite{name1,name2,name3}
 }}}
 
-The bibliography is specified by a line {{{BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py}}}, where {{{name}}} is the logical name of the
-document (the doconce file will then normally have the name
-{{{name.do.txt}}}), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the {{{BIBFILE}}} keyword appears.
+The bibliography is specified by a line {{{BIBFILE: papers.pub}}},
+where {{{papers.pub}}} is a publication database in the
+[[https://bitbucket.org/logg/publish|Publish]] format.
+BibTeX {{{.bib}}} files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+== Generalized Citations ==
 
 There is a //generalized referencing// feature in Doconce that allows
 a reference with {{{ref}}} to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 {{{
 ref[internal][cite][external]
 
@@ -32910,6 +38105,8 @@ LaTeX package {{{xr}}} is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 {{{external}}} text will be the output.
 
+== Index of Keywords ==
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -32920,11 +38117,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the {{{latex}}}, {{{rst}}}, and
-{{{sphinx}}} formats.
+forthcoming text. The index is only produced for the {{{latex}}},
+{{{pdflatex}}}, {{{rst}}}, and {{{sphinx}}} formats.
 
-
-== Capabilities of the "doconce" Program ==
+== Capabilities of The Program {{{doconce}}} ==
 
 The {{{doconce}}} program can be used for a number of purposes besides
 transforming a {{{.do.txt}}} file to some format. Here is the
@@ -32932,7 +38128,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -33010,9 +38206,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -33020,6 +38213,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -33032,8 +38231,16 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
-}}}
 
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
+}}}
 
 == Exercises ==
 
@@ -33152,15 +38359,10 @@ the environments:
  * {{{subex}}}: sub-exercise
  * {{{ans}}}: short answer to exercise or sub-exercise
  * {{{sol}}}: full solution to exercise or sub-exercise
- * {{{notes}}}: multi-line notes to be included or not
  * {{{quote}}}: indented text
  * {{{notice}}}, {{{summary}}}, {{{warning}}}, {{{question}}}, {{{hint}}}: boxes with    specialy typesetting (or symbols)
  * {{{pop}}}: text to gradually pop up in slide presentations
  * {{{slidecell}}}: indication of cells in a grid layout for elements on a   slide
-
-
-== Labels, Index, and Citations ==
-
 
 == Preprocessing ==
 
@@ -33211,10 +38413,11 @@ An [[http://hplgit.github.com/bioinf-py/|example document]] contains
 some illustrations on how to utilize {{{mako}}} (clone the GitHub project and
 examine the Doconce source and the {{{doc/src/make.sh}}} script).
 
-
 == Resources ==
 
+
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+
 
 
 ************** File: quickref.st *****************
@@ -33222,6 +38425,14 @@ TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
 DATE: Jan 32, 2100
 **WARNING: This quick reference is very incomplete!**
+
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's 'blogger.com', Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 Supported Formats
 
@@ -33232,14 +38443,50 @@ Doconce currently translates files to the following formats:
  - reStructuredText (format 'rst')
  - plain (untagged) ASCII (format 'plain')
  - Sphinx (format 'sphinx')
+ - IPython notebook (format 'ipynb')
+ - MediaWiki (format 'mwiki')
  - (Pandoc extended) Markdown (format 'pandoc')
  - Googlecode wiki (format 'gwiki')
- - MediaWiki for Wikipedia and Wikibooks (format 'mwiki')
  - Creoloe wiki (format 'cwiki')
  - Epydoc (format 'epydoc')
  - StructuredText (format 'st')
 
-The best supported formats are 'latex', 'sphinx', 'html', and 'plain'.
+For documents with much code and mathematics, the best (and most supported)
+formats are 'latex', 'pdflatex', 'sphinx', and 'html'; and to a slightly
+less extent 'mwiki' and 'pandoc'. The HTML format supports blogging on
+Google and Wordpress.
+
+
+Emacs syntax support
+
+The file "https://doconce.googlecode.com/hg/misc/.doconce-mode.el":.doconce-mode.el in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add '(load-file "~/.doconce-mode.el")' to the '.emacs'
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+==================================  ==================================  
 
 Title, Authors, and Date
 
@@ -33274,26 +38521,32 @@ current date is wanted, e.g., 'Feb 22, 2016'.
 
 The table of contents is removed by writing 'TOC: off'.
 
+
 Section Types
 
-====================================  ====================================  
-            Section type                             Syntax                 
-====================================  ====================================  
-chapter                               '========= Heading ========' (9 '=')  
-section                               '======= Heading ======='    (7 '=')  
-subsection                            '===== Heading ====='        (5 '=')  
-subsubsection                         '=== Heading ==='            (3 '=')  
-paragraph                             '__Heading.__'               (2 '_')  
-abstract                              '__Abstract.__' Running text...       
-====================================  ====================================  
+===========================================  ===========================================  
+                Section type                                    Syntax                    
+===========================================  ===========================================  
+chapter                                      '========= Heading ========' (9 '=')         
+section                                      '======= Heading ======='    (7 '=')         
+subsection                                   '===== Heading ====='        (5 '=')         
+subsubsection                                '=== Heading ==='            (3 '=')         
+paragraph                                    '__Heading.__'               (2 '_')         
+abstract                                     '__Abstract.__' Running text...              
+appendix                                     '======= Appendix: heading =======' (7 '=')  
+appendix                                     '===== Appendix: heading =====' (5 '=')      
+exercise                                     '======= Exercise: heading =======' (7 '=')  
+exercise                                     '===== Exercise: heading =====' (5 '=')      
+===========================================  ===========================================  
 
-Note that abstracts are recognized by starting with '__Abstract.__' at
-the beginning of a line and ending with three or more '=' signs of the
-next heading.
+Note that abstracts are recognized by starting with '__Abstract.__' or
+'__Summary.__' at the beginning of a line and ending with three or
+more '=' signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only 'latex' output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The 'Exercise:' keyword kan be substituted by 'Problem:' or 'Project:'.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 Inline Formatting
 
@@ -33374,7 +38627,7 @@ And finally a description list:
  keyword3: --  
    and its description may fit on one line
 
-Comments
+Comment lines
 
 Lines starting with '#' are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -33382,37 +38635,46 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats 'rst' and
 'sphinx' are desired.
 
+Comment lines starting with '##' are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes '##' or by blocks of text
-inside the comment directives '%<doc>' (beginning) and '<%doc/>' (end).
+Doconce starts processing the file. Mako block comments start
+with '%<doc>' and end with '<%doc/>', both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax::
+Large portions of text can be left out using Preprocess. Just place
+'# #ifdef EXTRA' and '# #endif' around the text. The command line
+option '-DEXTRA' will bring the text alive again.
+
+Inline comments
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax::
 
 
         [name: running text]
 
 where 'name' is the name or ID of an author or reader making the comment,
-and 'running text' is the comment. There must be a space after the colon.
+and 'running text' is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running::
 
 
         doconce format html mydoc.do.txt --skip_inline_comments
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired::
+removed from the Doconce source by::
 
 
         doconce remove_inline_comments mydoc.do.txt
 
-This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 
@@ -33494,9 +38756,9 @@ Important warnings:
 LaTeX Mathematics
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats 'sphinx', 'latex', and 'pdflatex'
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats 'html', 'sphinx', 'latex',
+pdflatex`, 'pandoc', and 'mwiki' work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -33509,8 +38771,7 @@ readable companion expression. The syntax is like::
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 '!bt'
@@ -33524,6 +38785,7 @@ and
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
+
 
 This LaTeX code gets rendered as::
 
@@ -33544,23 +38806,16 @@ which results in::
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
-One can use '#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")'
-to let the preprocessor choose a block of mathematics in LaTeX format
-or ('#else') a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the 'sphinx', 'pandoc',
-'mwiki', or 'html' formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in 'latex' or 'pdflatex' *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+'mwiki', 'html', or 'ipynb' formats
+is also important, one should follow these rules:
 
   - Use only the equation environments '\[', '\]',
     'equation', 'equation*', 'align', and 'align*'.
-  - Labels in multiple equation environments such as 'align' are
-    not (yet) handled by 'pandoc'.
   - MediaWiki ('mwiki') does not support references to equations.
+
+(Doconce performs extensions to 'sphinx' and other formats such that
+labels in 'align' environments work well.)
 
 
 
@@ -33575,7 +38830,17 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define 'newcommand' statements in files with names
+'newcommands*.tex'. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that 'newcommands_keep.tex'
+contains the newcommands that are kept in the document, while
+those in 'newcommands_replace.tex' will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For 'html', 'sphinx', 'latex', 'pdflatex',
+'mwiki', 'ipynb', and 'pandoc', the mathematics in newcommands is
+rendered nicely anyway.
+
 
 Figures and Movies
 
@@ -33587,29 +38852,42 @@ Figures and movies have almost equal syntax::
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+ 2. all of the command must appear on a single line,
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
-Combining several image files into one can be done by the
-'convert' and 'montage' programs from the ImageMagick suite::
+Combining several image files into one can be done by the::
 
 
-        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-        montage file1.png file2.png -tile x1 result.png
-        montage file1.png file2.png -tile 1x result.png
+        doconce combine_images image1 image2 ... output_image
+
+This command applies 'montage' or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in 'html' and 'sphinx' documents
+and otherwise be represented by a link. The syntax is::
+
+
+        MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
         
-        convert -background white file1.png file2.png +append tmp.png
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+        
 
-Use '+append' for stacking left to right, '-append' for top to bottom.
-The positioning of the figures can be controlled by '-gravity'.
+The latter results in
+
+ Vimeo movie. "http://vimeo.com/55562330":http://vimeo.com/55562330
+
 
 Tables
 
@@ -33645,9 +38923,10 @@ Note that
  - Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
+Labels and References
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax::
 
@@ -33655,7 +38934,7 @@ inserted anywhere, using the syntax::
         label{name}
 
 with no backslash
-preceding the label keyword! It is common practice to choose 'name'
+preceding the label keyword. It is common practice to choose 'name'
 as some hierarchical name, say 'a:b:c', where 'a' and 'b' indicate
 some abbreviations for a section and/or subsection for the topic and
 'c' is some name for the particular unit that has a label.
@@ -33666,6 +38945,13 @@ A reference to the label 'name' is written as::
         ref{name}
 
 again with no backslash before 'ref'.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+Citations and Bibliography
 
 Single citations are written as::
 
@@ -33684,20 +38970,22 @@ by comma::
         cite{name1,name2,name3}
 
 
-The bibliography is specified by a line 'BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py', where 'name' is the logical name of the
-document (the doconce file will then normally have the name
-'name.do.txt'), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the 'BIBFILE' keyword appears.
+The bibliography is specified by a line 'BIBFILE: papers.pub',
+where 'papers.pub' is a publication database in the
+"https://bitbucket.org/logg/publish":Publish format.
+BibTeX '.bib' files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+Generalized Citations
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with 'ref' to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is::
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is::
 
 
         ref[internal][cite][external]
@@ -33720,6 +39008,8 @@ LaTeX package 'xr' is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 'external' text will be the output.
 
+Index of Keywords
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)::
@@ -33731,10 +39021,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the 'latex', 'rst', and
-'sphinx' formats.
+forthcoming text. The index is only produced for the 'latex',
+'pdflatex', 'rst', and 'sphinx' formats.
 
-Capabilities of the "doconce" Program
+Capabilities of The Program 'doconce'
 
 The 'doconce' program can be used for a number of purposes besides
 transforming a '.do.txt' file to some format. Here is the
@@ -33742,7 +39032,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
         
         
         # transform doconce file to another format
@@ -33820,9 +39110,6 @@ list of capabilities::
         # remove selected text from a file
         doconce remove --from[-] from-text [--to[-] to-text] somefile
         
-        # remove answers to exercises
-        doconce remove_exercise_answers file_in_some_format
-        
         # run spellcheck on a set of files
         doconce spellcheck [-d .mydict.txt] *.do.txt
         
@@ -33830,6 +39117,12 @@ list of capabilities::
         # and manage the code environments
         doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+        
+        # make HTML file via pandoc from Markdown (.md) file
+        doconce md2html file
+        
+        # make LaTeX file via pandoc from Markdown (.md) file
+        doconce md2latex file
         
         # expand short cut commands to full form in files
         doconce expand_commands file1 file2 ...
@@ -33842,6 +39135,15 @@ list of capabilities::
         
         # list all labels in a document (for purposes of cleaning them up)
         doconce list_labels myfile
+        
+        # translate a latex document to doconce (requires usually manual fixing)
+        doconce latex2doconce latexfile
+        
+        # typeset a doconce document with pygments
+        doconce pygmentize myfile [pygments-style]
+        
+        # generate a make.sh script for translating a doconce file to various formats
+        doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 
 Exercises
@@ -33952,6 +39254,7 @@ The command-line arguments '--without-answers' and '--without-solutions'
 turn off output of answers and solutions, respectively, except for
 examples.
 
+
 Environments
 
 Doconce environments start with '!benvirname' and end with '!eenvirname',
@@ -33963,15 +39266,12 @@ the environments:
  - 'subex': sub-exercise
  - 'ans': short answer to exercise or sub-exercise
  - 'sol': full solution to exercise or sub-exercise
- - 'notes': multi-line notes to be included or not
  - 'quote': indented text
  - 'notice', 'summary', 'warning', 'question', 'hint': boxes with
     specialy typesetting (or symbols)
  - 'pop': text to gradually pop up in slide presentations
  - 'slidecell': indication of cells in a grid layout for elements on a
    slide
-
-Labels, Index, and Citations
 
 Preprocessing
 
@@ -34026,12 +39326,20 @@ Resources
 
  - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
+
 ************** File: quickref.epytext *****************
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
 DATE: Jan 32, 2100
 B{WARNING: This quick reference is very incomplete!}
 
+I{Mission.} Enable writing documentation with much mathematics and
+computer code I{once, in one place} and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's C{blogger.com}, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 Supported Formats
 -----------------
@@ -34043,14 +39351,51 @@ Doconce currently translates files to the following formats:
  - reStructuredText (format C{rst})
  - plain (untagged) ASCII (format C{plain})
  - Sphinx (format C{sphinx})
+ - IPython notebook (format C{ipynb})
+ - MediaWiki (format C{mwiki})
  - (Pandoc extended) Markdown (format C{pandoc})
  - Googlecode wiki (format C{gwiki})
- - MediaWiki for Wikipedia and Wikibooks (format C{mwiki})
  - Creoloe wiki (format C{cwiki})
  - Epydoc (format C{epydoc})
  - StructuredText (format C{st})
 
-The best supported formats are C{latex}, C{sphinx}, C{html}, and C{plain}.
+For documents with much code and mathematics, the best (and most supported)
+formats are C{latex}, C{pdflatex}, C{sphinx}, and C{html}; and to a slightly
+less extent C{mwiki} and C{pandoc}. The HTML format supports blogging on
+Google and Wordpress.
+
+
+Emacs syntax support
+--------------------
+
+The file U{.doconce-mode.el<https://doconce.googlecode.com/hg/misc/.doconce-mode.el>} in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add C{(load-file "~/.doconce-mode.el")} to the C{.emacs}
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+==================================  ==================================  
 
 Title, Authors, and Date
 ------------------------
@@ -34090,24 +39435,29 @@ The table of contents is removed by writing C{TOC: off}.
 Section Types
 -------------
 
-======================================  ======================================  
-             Section type                               Syntax                  
-======================================  ======================================  
-chapter                                 C{========= Heading ========} (9 C{=})  
-section                                 C{======= Heading =======}    (7 C{=})  
-subsection                              C{===== Heading =====}        (5 C{=})  
-subsubsection                           C{=== Heading ===}            (3 C{=})  
-paragraph                               C{__Heading.__}               (2 C{_})  
-abstract                                C{__Abstract.__} Running text...        
-======================================  ======================================  
+=============================================  =============================================  
+                 Section type                                      Syntax                     
+=============================================  =============================================  
+chapter                                        C{========= Heading ========} (9 C{=})         
+section                                        C{======= Heading =======}    (7 C{=})         
+subsection                                     C{===== Heading =====}        (5 C{=})         
+subsubsection                                  C{=== Heading ===}            (3 C{=})         
+paragraph                                      C{__Heading.__}               (2 C{_})         
+abstract                                       C{__Abstract.__} Running text...               
+appendix                                       C{======= Appendix: heading =======} (7 C{=})  
+appendix                                       C{===== Appendix: heading =====} (5 C{=})      
+exercise                                       C{======= Exercise: heading =======} (7 C{=})  
+exercise                                       C{===== Exercise: heading =====} (5 C{=})      
+=============================================  =============================================  
 
-Note that abstracts are recognized by starting with C{__Abstract.__} at
-the beginning of a line and ending with three or more C{=} signs of the
-next heading.
+Note that abstracts are recognized by starting with C{__Abstract.__} or
+C{__Summary.__} at the beginning of a line and ending with three or
+more C{=} signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only C{latex} output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The C{Exercise:} keyword kan be substituted by C{Problem:} or C{Project:}.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 Inline Formatting
 -----------------
@@ -34190,8 +39540,8 @@ And finally a description list:
  - keyword3: 
    and its description may fit on one line
 
-Comments
---------
+Comment lines
+-------------
 
 Lines starting with C{#} are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -34199,37 +39549,47 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats C{rst} and
 C{sphinx} are desired.
 
+Comment lines starting with C{##} are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes C{##} or by blocks of text
-inside the comment directives C{%<doc>} (beginning) and C{<%doc/>} (end).
+Doconce starts processing the file. Mako block comments start
+with C{%<doc>} and end with C{<%doc/>}, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax::
+Large portions of text can be left out using Preprocess. Just place
+C{# #ifdef EXTRA} and C{# #endif} around the text. The command line
+option C{-DEXTRA} will bring the text alive again.
+
+Inline comments
+---------------
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax::
 
 
         [name: running text]
 
 where C{name} is the name or ID of an author or reader making the comment,
-and C{running text} is the comment. There must be a space after the colon.
+and C{running text} is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running::
 
 
         doconce format html mydoc.do.txt --skip_inline_comments
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired::
+removed from the Doconce source by::
 
 
         doconce remove_inline_comments mydoc.do.txt
 
-This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 ----------------------
@@ -34313,9 +39673,9 @@ LaTeX Mathematics
 -----------------
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats C{sphinx}, C{latex}, and C{pdflatex}
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats C{html}, C{sphinx}, C{latex},
+pdflatex`, C{pandoc}, and C{mwiki} work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -34331,8 +39691,7 @@ readable companion expression. The syntax is like::
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 C{!bt}
@@ -34343,6 +39702,7 @@ C{!et} (begin/end TeX) directives starting on the beginning of a line::
 
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
+
 
 
 This LaTeX code gets rendered as::
@@ -34368,23 +39728,16 @@ which results in::
 
 
 
-One can use C{#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")}
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (C{#else}) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the C{sphinx}, C{pandoc},
-C{mwiki}, or C{html} formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in C{latex} or C{pdflatex} I{and}
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+C{mwiki}, C{html}, or C{ipynb} formats
+is also important, one should follow these rules:
 
   - Use only the equation environments C{\[}, C{\]},
     C{equation}, C{equation*}, C{align}, and C{align*}.
-  - Labels in multiple equation environments such as C{align} are
-    not (yet) handled by C{pandoc}.
   - MediaWiki (C{mwiki}) does not support references to equations.
+
+(Doconce performs extensions to C{sphinx} and other formats such that
+labels in C{align} environments work well.)
 
 
 
@@ -34399,7 +39752,16 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-I{LaTeX Newcommands.} Text missing...
+I{LaTeX Newcommands.} The author can define C{newcommand} statements in files with names
+C{newcommands*.tex}. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that C{newcommands_keep.tex}
+contains the newcommands that are kept in the document, while
+those in C{newcommands_replace.tex} will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For C{html}, C{sphinx}, C{latex}, C{pdflatex},
+C{mwiki}, C{ipynb}, and C{pandoc}, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 Figures and Movies
@@ -34413,29 +39775,41 @@ Figures and movies have almost equal syntax::
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+ 2. all of the command must appear on a single line,
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
-Combining several image files into one can be done by the
-C{convert} and C{montage} programs from the ImageMagick suite::
+Combining several image files into one can be done by the::
 
 
-        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-        montage file1.png file2.png -tile x1 result.png
-        montage file1.png file2.png -tile 1x result.png
+        doconce combine_images image1 image2 ... output_image
+
+This command applies C{montage} or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in C{html} and C{sphinx} documents
+and otherwise be represented by a link. The syntax is::
+
+
+        MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
         
-        convert -background white file1.png file2.png +append tmp.png
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+        
 
-Use C{+append} for stacking left to right, C{-append} for top to bottom.
-The positioning of the figures can be controlled by C{-gravity}.
+The latter results in
+
+ Vimeo movie. U{http://vimeo.com/55562330<http://vimeo.com/55562330>}
 
 
 Tables
@@ -34473,10 +39847,11 @@ Note that
  - Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
-----------------------------------------
+Labels and References
+---------------------
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax::
 
@@ -34484,7 +39859,7 @@ inserted anywhere, using the syntax::
         label{name}
 
 with no backslash
-preceding the label keyword! It is common practice to choose C{name}
+preceding the label keyword. It is common practice to choose C{name}
 as some hierarchical name, say C{a:b:c}, where C{a} and C{b} indicate
 some abbreviations for a section and/or subsection for the topic and
 C{c} is some name for the particular unit that has a label.
@@ -34495,6 +39870,14 @@ A reference to the label C{name} is written as::
         ref{name}
 
 again with no backslash before C{ref}.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+Citations and Bibliography
+--------------------------
 
 Single citations are written as::
 
@@ -34513,20 +39896,23 @@ by comma::
         cite{name1,name2,name3}
 
 
-The bibliography is specified by a line C{BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py}, where C{name} is the logical name of the
-document (the doconce file will then normally have the name
-C{name.do.txt}), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the C{BIBFILE} keyword appears.
+The bibliography is specified by a line C{BIBFILE: papers.pub},
+where C{papers.pub} is a publication database in the
+U{Publish<https://bitbucket.org/logg/publish>} format.
+BibTeX C{.bib} files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+Generalized Citations
+---------------------
 
 There is a I{generalized referencing} feature in Doconce that allows
 a reference with C{ref} to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is::
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is::
 
 
         ref[internal][cite][external]
@@ -34549,6 +39935,9 @@ LaTeX package C{xr} is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 C{external} text will be the output.
 
+Index of Keywords
+-----------------
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)::
@@ -34560,11 +39949,11 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the C{latex}, C{rst}, and
-C{sphinx} formats.
+forthcoming text. The index is only produced for the C{latex},
+C{pdflatex}, C{rst}, and C{sphinx} formats.
 
-Capabilities of the "doconce" Program
--------------------------------------
+Capabilities of The Program C{doconce}
+--------------------------------------
 
 The C{doconce} program can be used for a number of purposes besides
 transforming a C{.do.txt} file to some format. Here is the
@@ -34572,7 +39961,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
         
         
         # transform doconce file to another format
@@ -34650,9 +40039,6 @@ list of capabilities::
         # remove selected text from a file
         doconce remove --from[-] from-text [--to[-] to-text] somefile
         
-        # remove answers to exercises
-        doconce remove_exercise_answers file_in_some_format
-        
         # run spellcheck on a set of files
         doconce spellcheck [-d .mydict.txt] *.do.txt
         
@@ -34660,6 +40046,12 @@ list of capabilities::
         # and manage the code environments
         doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+        
+        # make HTML file via pandoc from Markdown (.md) file
+        doconce md2html file
+        
+        # make LaTeX file via pandoc from Markdown (.md) file
+        doconce md2latex file
         
         # expand short cut commands to full form in files
         doconce expand_commands file1 file2 ...
@@ -34672,6 +40064,15 @@ list of capabilities::
         
         # list all labels in a document (for purposes of cleaning them up)
         doconce list_labels myfile
+        
+        # translate a latex document to doconce (requires usually manual fixing)
+        doconce latex2doconce latexfile
+        
+        # typeset a doconce document with pygments
+        doconce pygmentize myfile [pygments-style]
+        
+        # generate a make.sh script for translating a doconce file to various formats
+        doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 
 Exercises
@@ -34796,16 +40197,12 @@ the environments:
  - C{subex}: sub-exercise
  - C{ans}: short answer to exercise or sub-exercise
  - C{sol}: full solution to exercise or sub-exercise
- - C{notes}: multi-line notes to be included or not
  - C{quote}: indented text
  - C{notice}, C{summary}, C{warning}, C{question}, C{hint}: boxes with
     specialy typesetting (or symbols)
  - C{pop}: text to gradually pop up in slide presentations
  - C{slidecell}: indication of cells in a grid layout for elements on a
    slide
-
-Labels, Index, and Citations
-----------------------------
 
 Preprocessing
 -------------
@@ -34838,6 +40235,7 @@ Resources
 
  - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
+
 ************** File: quickref.txt *****************
 Doconce Quick Reference
 =======================
@@ -34852,29 +40250,39 @@ Date: Jan 32, 2100
 Table of contents:
 
  Supported Formats 
+ Emacs syntax support 
  Title, Authors, and Date 
  Section Types 
  Inline Formatting 
  Lists 
- Comments 
+ Comment lines 
+ Inline comments 
  Verbatim/Computer Code 
  LaTeX Mathematics 
  Figures and Movies 
  Tables 
- Labels, References, Citations, and Index 
- Capabilities of the "doconce" Program 
+ Labels and References 
+ Citations and Bibliography 
+ Generalized Citations 
+ Index of Keywords 
+ Capabilities of The Program doconce 
  Exercises 
  Environments 
- Labels, Index, and Citations 
  Preprocessing 
  Resources 
 
 
 
 
-
 _WARNING: This quick reference is very incomplete!_
 
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's blogger.com, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
 Supported Formats
 -----------------
@@ -34891,11 +40299,13 @@ Doconce currently translates files to the following formats:
 
  * Sphinx (format sphinx)
 
+ * IPython notebook (format ipynb)
+
+ * MediaWiki (format mwiki)
+
  * (Pandoc extended) Markdown (format pandoc)
 
  * Googlecode wiki (format gwiki)
-
- * MediaWiki for Wikipedia and Wikibooks (format mwiki)
 
  * Creoloe wiki (format cwiki)
 
@@ -34903,7 +40313,43 @@ Doconce currently translates files to the following formats:
 
  * StructuredText (format st)
 
-The best supported formats are latex, sphinx, html, and plain.
+For documents with much code and mathematics, the best (and most supported)
+formats are latex, pdflatex, sphinx, and html; and to a slightly
+less extent mwiki and pandoc. The HTML format supports blogging on
+Google and Wordpress.
+
+
+Emacs syntax support
+--------------------
+
+The file .doconce-mode.el (https://doconce.googlecode.com/hg/misc/.doconce-mode.el) in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add (load-file "~/.doconce-mode.el") to the .emacs
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+==================================  ==================================  
+            Emacs key                             Action                
+==================================  ==================================  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+==================================  ==================================  
 
 Title, Authors, and Date
 ------------------------
@@ -34943,24 +40389,29 @@ The table of contents is removed by writing TOC: off.
 Section Types
 -------------
 
-================================  ================================  
-          Section type                         Syntax               
-================================  ================================  
-chapter                           ========= Heading ======== (9 =)  
-section                           ======= Heading =======    (7 =)  
-subsection                        ===== Heading =====        (5 =)  
-subsubsection                     === Heading ===            (3 =)  
-paragraph                         __Heading.__               (2 _)  
-abstract                          __Abstract.__ Running text...     
-================================  ================================  
+=======================================  =======================================  
+              Section type                                Syntax                  
+=======================================  =======================================  
+chapter                                  ========= Heading ======== (9 =)         
+section                                  ======= Heading =======    (7 =)         
+subsection                               ===== Heading =====        (5 =)         
+subsubsection                            === Heading ===            (3 =)         
+paragraph                                __Heading.__               (2 _)         
+abstract                                 __Abstract.__ Running text...            
+appendix                                 ======= Appendix: heading ======= (7 =)  
+appendix                                 ===== Appendix: heading ===== (5 =)      
+exercise                                 ======= Exercise: heading ======= (7 =)  
+exercise                                 ===== Exercise: heading ===== (5 =)      
+=======================================  =======================================  
 
-Note that abstracts are recognized by starting with __Abstract.__ at
-the beginning of a line and ending with three or more = signs of the
-next heading.
+Note that abstracts are recognized by starting with __Abstract.__ or
+*Summary.* at the beginning of a line and ending with three or
+more = signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only latex output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The Exercise: keyword kan be substituted by Problem: or Project:.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
 Inline Formatting
 -----------------
@@ -35053,8 +40504,8 @@ And finally a description list:
  keyword3: 
    and its description may fit on one line
 
-Comments
---------
+Comment lines
+-------------
 
 Lines starting with # are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -35062,37 +40513,47 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats rst and
 sphinx are desired.
 
+Comment lines starting with ## are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes ## or by blocks of text
-inside the comment directives %<doc> (beginning) and <%doc/> (end).
+Doconce starts processing the file. Mako block comments start
+with %<doc> and end with <%doc/>, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax::
+Large portions of text can be left out using Preprocess. Just place
+# #ifdef EXTRA and # #endif around the text. The command line
+option -DEXTRA will bring the text alive again.
+
+Inline comments
+---------------
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax::
 
 
         [name: running text]
 
 where name is the name or ID of an author or reader making the comment,
-and running text is the comment. There must be a space after the colon.
+and running text is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running::
 
 
         doconce format html mydoc.do.txt --skip_inline_comments
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired::
+removed from the Doconce source by::
 
 
         doconce remove_inline_comments mydoc.do.txt
 
-This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 ----------------------
@@ -35177,9 +40638,9 @@ LaTeX Mathematics
 -----------------
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats sphinx, latex, and pdflatex
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats html, sphinx, latex,
+pdflatex`, pandoc, and mwiki work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -35192,8 +40653,7 @@ readable companion expression. The syntax is like::
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
   !bt
@@ -35207,6 +40667,7 @@ and
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
+
 
 This LaTeX code gets rendered as::
 
@@ -35227,25 +40688,17 @@ which results in::
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
-One can use #if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (#else) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the sphinx, pandoc,
-mwiki, or html formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in latex or pdflatex *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+mwiki, html, or ipynb formats
+is also important, one should follow these rules:
 
   * Use only the equation environments \[, \],
     equation, equation*, align, and align*.
 
-  * Labels in multiple equation environments such as align are
-    not (yet) handled by pandoc.
-
   * MediaWiki (mwiki) does not support references to equations.
+
+(Doconce performs extensions to sphinx and other formats such that
+labels in align environments work well.)
 
 
 
@@ -35260,7 +40713,16 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define newcommand statements in files with names
+newcommands*.tex. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that newcommands_keep.tex
+contains the newcommands that are kept in the document, while
+those in newcommands_replace.tex will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For html, sphinx, latex, pdflatex,
+mwiki, ipynb, and pandoc, the mathematics in newcommands is
+rendered nicely anyway.
 
 
 Figures and Movies
@@ -35274,29 +40736,43 @@ Figures and movies have almost equal syntax::
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+
+ 2. all of the command must appear on a single line,
+
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
-Combining several image files into one can be done by the
-convert and montage programs from the ImageMagick suite::
+Combining several image files into one can be done by the::
 
 
-        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-        montage file1.png file2.png -tile x1 result.png
-        montage file1.png file2.png -tile 1x result.png
+        doconce combine_images image1 image2 ... output_image
+
+This command applies montage or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in html and sphinx documents
+and otherwise be represented by a link. The syntax is::
+
+
+        MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
         
-        convert -background white file1.png file2.png +append tmp.png
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+        
 
-Use +append for stacking left to right, -append for top to bottom.
-The positioning of the figures can be controlled by -gravity.
+The latter results in
+
+ Vimeo movie. http://vimeo.com/55562330
 
 
 Tables
@@ -35338,10 +40814,11 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
-----------------------------------------
+Labels and References
+---------------------
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax::
 
@@ -35349,7 +40826,7 @@ inserted anywhere, using the syntax::
         label{name}
 
 with no backslash
-preceding the label keyword! It is common practice to choose name
+preceding the label keyword. It is common practice to choose name
 as some hierarchical name, say a:b:c, where a and b indicate
 some abbreviations for a section and/or subsection for the topic and
 c is some name for the particular unit that has a label.
@@ -35360,6 +40837,14 @@ A reference to the label name is written as::
         ref{name}
 
 again with no backslash before ref.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+Citations and Bibliography
+--------------------------
 
 Single citations are written as::
 
@@ -35378,20 +40863,23 @@ by comma::
         cite{name1,name2,name3}
 
 
-The bibliography is specified by a line BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py, where name is the logical name of the
-document (the doconce file will then normally have the name
-name.do.txt), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the BIBFILE keyword appears.
+The bibliography is specified by a line BIBFILE: papers.pub,
+where papers.pub is a publication database in the
+Publish (https://bitbucket.org/logg/publish) format.
+BibTeX .bib files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+Generalized Citations
+---------------------
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with ref to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is::
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is::
 
 
         ref[internal][cite][external]
@@ -35414,6 +40902,9 @@ LaTeX package xr is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 external text will be the output.
 
+Index of Keywords
+-----------------
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)::
@@ -35425,11 +40916,11 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the latex, rst, and
-sphinx formats.
+forthcoming text. The index is only produced for the latex,
+pdflatex, rst, and sphinx formats.
 
-Capabilities of the "doconce" Program
--------------------------------------
+Capabilities of The Program doconce
+-----------------------------------
 
 The doconce program can be used for a number of purposes besides
 transforming a .do.txt file to some format. Here is the
@@ -35437,7 +40928,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
         
         
         # transform doconce file to another format
@@ -35515,9 +41006,6 @@ list of capabilities::
         # remove selected text from a file
         doconce remove --from[-] from-text [--to[-] to-text] somefile
         
-        # remove answers to exercises
-        doconce remove_exercise_answers file_in_some_format
-        
         # run spellcheck on a set of files
         doconce spellcheck [-d .mydict.txt] *.do.txt
         
@@ -35525,6 +41013,12 @@ list of capabilities::
         # and manage the code environments
         doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+        
+        # make HTML file via pandoc from Markdown (.md) file
+        doconce md2html file
+        
+        # make LaTeX file via pandoc from Markdown (.md) file
+        doconce md2latex file
         
         # expand short cut commands to full form in files
         doconce expand_commands file1 file2 ...
@@ -35537,6 +41031,15 @@ list of capabilities::
         
         # list all labels in a document (for purposes of cleaning them up)
         doconce list_labels myfile
+        
+        # translate a latex document to doconce (requires usually manual fixing)
+        doconce latex2doconce latexfile
+        
+        # typeset a doconce document with pygments
+        doconce pygmentize myfile [pygments-style]
+        
+        # generate a make.sh script for translating a doconce file to various formats
+        doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 
 Exercises
@@ -35674,8 +41177,6 @@ the environments:
 
  * sol: full solution to exercise or sub-exercise
 
- * notes: multi-line notes to be included or not
-
  * quote: indented text
 
  * notice, summary, warning, question, hint: boxes with
@@ -35685,9 +41186,6 @@ the environments:
 
  * slidecell: indication of cells in a grid layout for elements on a
    slide
-
-Labels, Index, and Citations
-----------------------------
 
 Preprocessing
 -------------
@@ -35744,6 +41242,7 @@ Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
+
 ************** File: quickref.md *****************
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
@@ -35753,13 +41252,17 @@ Resources
 
 
 
-<!-- Very preliminary -->
-
 _WARNING: This quick reference is very incomplete!_
 
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and without extra efforts also make
+professionally looking web versions with Sphinx or HTML. Other outlets
+include Google's `blogger.com`, Wikipedia/Wikibooks, IPython
+notebooks, plus a wide variety of formats for documents without
+mathematics and code.
 
-Supported Formats
------------------
+### Supported Formats
 
 Doconce currently translates files to the following formats:
 
@@ -35773,11 +41276,13 @@ Doconce currently translates files to the following formats:
 
  * Sphinx (format `sphinx`)
 
+ * IPython notebook (format `ipynb`)
+
+ * MediaWiki (format `mwiki`)
+
  * (Pandoc extended) Markdown (format `pandoc`)
 
  * Googlecode wiki (format `gwiki`)
-
- * MediaWiki for Wikipedia and Wikibooks (format `mwiki`)
 
  * Creoloe wiki (format `cwiki`)
 
@@ -35785,10 +41290,44 @@ Doconce currently translates files to the following formats:
 
  * StructuredText (format `st`)
 
-The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
+For documents with much code and mathematics, the best (and most supported)
+formats are `latex`, `pdflatex`, `sphinx`, and `html`; and to a slightly
+less extent `mwiki` and `pandoc`. The HTML format supports blogging on
+Google and Wordpress.
 
-Title, Authors, and Date
-------------------------
+
+### Emacs syntax support
+
+The file [.doconce-mode.el](https://doconce.googlecode.com/hg/misc/.doconce-mode.el) in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. Store the file in the home
+directory and add `(load-file "~/.doconce-mode.el")` to the `.emacs`
+file.
+
+Besides syntax highlighting of Doconce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+
+            Emacs key                             Action                
+----------------------------------  ----------------------------------  
+Ctrl+c f                            figure                              
+Ctrl+c v                            movie/video                         
+Ctrl+c h1                           heading level 1 (section/h1)        
+Ctrl+c h2                           heading level 2 (subsection/h2)     
+Ctrl+c h3                           heading level 2 (subsection/h3)     
+Ctrl+c hp                           heading for paragraph               
+Ctrl+c me                           math environment: !bt equation !et  
+Ctrl+c ma                           math environment: !bt align !et     
+Ctrl+c ce                           code environment: !bc !ec           
+Ctrl+c cf                           code from file: @@@CODE             
+Ctrl+c table2                       table with 2 columns                
+Ctrl+c table3                       table with 3 columns                
+Ctrl+c table4                       table with 4 columns                
+Ctrl+c exer                         exercise outline                    
+Ctrl+c slide                        slide outline                       
+Ctrl+c help                         print this table                    
+
+
+### Title, Authors, and Date
 
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
@@ -35824,37 +41363,39 @@ current date is wanted, e.g., `Feb 22, 2016`.
 The table of contents is removed by writing `TOC: off`.
 
 
-Section Types
--------------
+### Section Types
 
 
-            Section type                             Syntax                 
-------------------------------------  ------------------------------------  
-chapter                               `========= Heading ========` (9 `=`)  
-section                               `======= Heading =======`    (7 `=`)  
-subsection                            `===== Heading =====`        (5 `=`)  
-subsubsection                         `=== Heading ===`            (3 `=`)  
-paragraph                             `__Heading.__`               (2 `_`)  
-abstract                              `__Abstract.__` Running text...       
+                Section type                                    Syntax                    
+-------------------------------------------  -------------------------------------------  
+chapter                                      `========= Heading ========` (9 `=`)         
+section                                      `======= Heading =======`    (7 `=`)         
+subsection                                   `===== Heading =====`        (5 `=`)         
+subsubsection                                `=== Heading ===`            (3 `=`)         
+paragraph                                    `__Heading.__`               (2 `_`)         
+abstract                                     `__Abstract.__` Running text...              
+appendix                                     `======= Appendix: heading =======` (7 `=`)  
+appendix                                     `===== Appendix: heading =====` (5 `=`)      
+exercise                                     `======= Exercise: heading =======` (7 `=`)  
+exercise                                     `===== Exercise: heading =====` (5 `=`)      
 
 
-Note that abstracts are recognized by starting with `__Abstract.__` at
-the beginning of a line and ending with three or more `=` signs of the
-next heading.
+Note that abstracts are recognized by starting with `__Abstract.__` or
+`__Summary.__` at the beginning of a line and ending with three or
+more `=` signs of the next heading.
 
-Appendix is supported: just let the heading start with "Appendix: "
-(this affects only `latex` output, where the appendix formatting
-is used - all other formats just leave the heading as it is written).
+The `Exercise:` keyword kan be substituted by `Problem:` or `Project:`.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
 
-Inline Formatting
------------------
+### Inline Formatting
 
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
 appear in boldface: `_boldface_` become _boldface_.
 
-Lists
------
+### Lists
 
 There are three types of lists: *bullet lists*, where each item starts
 with `*`, *enumeration lists*, where each item starts with `o` and gets
@@ -35941,8 +41482,7 @@ And finally a description list:
   :    
    and its description may fit on one line
 
-Comments
---------
+### Comment lines
 
 Lines starting with `#` are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -35950,43 +41490,50 @@ document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats `rst` and
 `sphinx` are desired.
 
+Comment lines starting with `##` are not propagated to the output
+document and can be used for comments that are only interest in
+the Doconce file.
+
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako comments are recognized
-by lines starting with two hashes `##` or by blocks of text
-inside the comment directives `%<doc>` (beginning) and `<%doc/>` (end).
+Doconce starts processing the file. Mako block comments start
+with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
 
-Inline comments, in the text, that are meant as messages or notes to readers
-(authors in particular)
-are often useful and enabled by the syntax
+Large portions of text can be left out using Preprocess. Just place
+`# #ifdef EXTRA` and `# #endif` around the text. The command line
+option `-DEXTRA` will bring the text alive again.
+
+### Inline comments
+
+Inline comments meant as messages or notes to
+co-authors in particular
+are enabled by the syntax
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [name: running text]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 where `name` is the name or ID of an author or reader making the comment,
-and `running text` is the comment. There must be a space after the colon.
+and `running text` is the comment. Here goes an example.
+[hpl: There must be a space after the colon,
+but the running text can occupy multiple lines.]
 Running
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 doconce format html mydoc.do.txt --skip_inline_comments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to readers and is frequently used while writing
-a document.
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
 
 All inline comments to readers can also be physically
-removed from the Doconce source if desired:
+removed from the Doconce source by
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 doconce remove_inline_comments mydoc.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This action is appropriate when all issues with such comments are resolved.
-
-Verbatim/Computer Code
-----------------------
+### Verbatim/Computer Code
 
 Inline verbatim code is typeset within back-ticks, as in
 
@@ -36070,13 +41617,12 @@ Important warnings:
    output formats. A more robust approach is to replace the list by
    paragraphs with headings.
 
-LaTeX Mathematics
------------------
+### LaTeX Mathematics
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats `sphinx`, `latex`, and `pdflatex`
-work with this syntax while all other formats will just display the
-raw LaTeX code.
+standard LaTeX syntax. The output formats `html`, `sphinx`, `latex`,
+pdflatex`, `pandoc`, and `mwiki` work with this syntax while all other
+formats will just display the raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
@@ -36090,8 +41636,7 @@ $\sin(\norm{\bf u})$|$sin(||u||)$
 
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs. Plain text formats and HTML
-will applied the expression to the right.
+expressions are surrounded by dollar signs.
 
 Blocks of LaTeX mathematics are written within
 `!bt`
@@ -36108,9 +41653,6 @@ and
 !et
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
-<!-- tex and code blocks in inside verbatim blocks and are replaced -->
-<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
 This LaTeX code gets rendered as
 
 $$
@@ -36134,25 +41676,17 @@ $$
  \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 $$
 
-One can use `#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki")`
-to let the preprocessor choose a block of mathematics in LaTeX format
-or (`#else`) a modified form more suited for plain text and wiki
-formats without support for mathematics.
-
 Any LaTeX syntax is accepted, but if output in the `sphinx`, `pandoc`,
-`mwiki`, or `html` formats
-is important, one must know that these formats does not support many
-LaTeX constructs. For output both in `latex` or `pdflatex` *and*
-the mentioned formats with LaTeX support,
-the following rules are recommended:
+`mwiki`, `html`, or `ipynb` formats
+is also important, one should follow these rules:
 
   * Use only the equation environments `\[`, `\]`,
     `equation`, `equation*`, `align`, and `align*`.
 
-  * Labels in multiple equation environments such as `align` are
-    not (yet) handled by `pandoc`.
-
   * MediaWiki (`mwiki`) does not support references to equations.
+
+(Doconce performs extensions to `sphinx` and other formats such that
+labels in `align` environments work well.)
 
 
 
@@ -36167,11 +41701,19 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
 
-*LaTeX Newcommands.* Text missing...
+*LaTeX Newcommands.* The author can define `newcommand` statements in files with names
+`newcommands*.tex`. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that `newcommands_keep.tex`
+contains the newcommands that are kept in the document, while
+those in `newcommands_replace.tex` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
+`mwiki`, `ipynb`, and `pandoc`, the mathematics in newcommands is
+rendered nicely anyway.
 
 
-Figures and Movies
-------------------
+### Figures and Movies
 
 Figures and movies have almost equal syntax:
 
@@ -36182,34 +41724,54 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note the mandatory comma after the figure/movie file.
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+
+ 2. all of the command must appear on a single line,
+
+ 3. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
-another format to the desired one.
+another format to the needed one.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
 Combining several image files into one can be done by the
-`convert` and `montage` programs from the ImageMagick suite:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+doconce combine_images image1 image2 ... output_image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use `+append` for stacking left to right, `-append` for top to bottom.
-The positioning of the figures can be controlled by `-gravity`.
+This command applies `montage` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in `html` and `sphinx` documents
+and otherwise be represented by a link. The syntax is
 
 
-Tables
-------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The latter results in
+
+
+<iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Vimeo movie.</em>
+
+
+
+
+### Tables
 
 The table in the section [Section Types](#s) was written with this
 syntax:
@@ -36247,10 +41809,10 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
-Labels, References, Citations, and Index
-----------------------------------------
+### Labels and References
 
-The notion of labels, references, citations, and an index is adopted
+The notion of labels and references (as well as bibliography and index)
+is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 
@@ -36259,7 +41821,7 @@ inserted anywhere, using the syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 with no backslash
-preceding the label keyword! It is common practice to choose `name`
+preceding the label keyword. It is common practice to choose `name`
 as some hierarchical name, say `a:b:c`, where `a` and `b` indicate
 some abbreviations for a section and/or subsection for the topic and
 `c` is some name for the particular unit that has a label.
@@ -36271,6 +41833,13 @@ ref{name}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 again with no backslash before `ref`.
+
+Use labels for sections and equations only, and preceed the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+
+### Citations and Bibliography
 
 Single citations are written as
 
@@ -36290,20 +41859,22 @@ by comma:
 cite{name1,name2,name3}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The bibliography is specified by a line `BIBFILE: name_bib.bib,
-name_bib.rst, name_bib.py`, where `name` is the logical name of the
-document (the doconce file will then normally have the name
-`name.do.txt`), and the various files reflect different formattings of
-the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
-bibliography, and '.py' a Python list of dictionaries for specifying
-the entries in the bibliography. The bibliography (as read from file)
-is inserted where the `BIBFILE` keyword appears.
+The bibliography is specified by a line `BIBFILE: papers.pub`,
+where `papers.pub` is a publication database in the
+[Publish](https://bitbucket.org/logg/publish) format.
+BibTeX `.bib` files can easily be combined to a Publish database
+(which Doconce needs to create bibliographies in other formats
+than LaTeX).
+
+### Generalized Citations
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with `ref` to have one formulation if the label is
 in the same document and another formulation if the reference is
-to an item in an external document. The syntax of a generalized
-reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ref[internal][cite][external]
@@ -36327,6 +41898,8 @@ LaTeX package `xr` is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 `external` text will be the output.
 
+### Index of Keywords
+
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -36339,11 +41912,10 @@ It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the `latex`, `rst`, and
-`sphinx` formats.
+forthcoming text. The index is only produced for the `latex`,
+`pdflatex`, `rst`, and `sphinx` formats.
 
-Capabilities of the "doconce" Program
--------------------------------------
+### Capabilities of The Program `doconce`
 
 The `doconce` program can be used for a number of purposes besides
 transforming a `.do.txt` file to some format. Here is the
@@ -36352,7 +41924,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
 
 
 # transform doconce file to another format
@@ -36430,9 +42002,6 @@ doconce grab   --from[-] from-text [--to[-] to-text] somefile
 # remove selected text from a file
 doconce remove --from[-] from-text [--to[-] to-text] somefile
 
-# remove answers to exercises
-doconce remove_exercise_answers file_in_some_format
-
 # run spellcheck on a set of files
 doconce spellcheck [-d .mydict.txt] *.do.txt
 
@@ -36440,6 +42009,12 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 # and manage the code environments
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
+
+# make HTML file via pandoc from Markdown (.md) file
+doconce md2html file
+
+# make LaTeX file via pandoc from Markdown (.md) file
+doconce md2latex file
 
 # expand short cut commands to full form in files
 doconce expand_commands file1 file2 ...
@@ -36452,10 +42027,18 @@ doconce latex_exercise_toc myfile
 
 # list all labels in a document (for purposes of cleaning them up)
 doconce list_labels myfile
+
+# translate a latex document to doconce (requires usually manual fixing)
+doconce latex2doconce latexfile
+
+# typeset a doconce document with pygments
+doconce pygmentize myfile [pygments-style]
+
+# generate a make.sh script for translating a doconce file to various formats
+doconce makefile docname doconcefile [html sphinx pdflatex ...]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Exercises
----------
+### Exercises
 
 Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
 These are typeset
@@ -36577,8 +42160,7 @@ turn off output of answers and solutions, respectively, except for
 examples.
 
 
-Environments
-------------
+### Environments
 
 Doconce environments start with `!benvirname` and end with `!eenvirname`,
 where `envirname` is the name of the environment. Here is a listing of
@@ -36594,8 +42176,6 @@ the environments:
 
  * `sol`: full solution to exercise or sub-exercise
 
- * `notes`: multi-line notes to be included or not
-
  * `quote`: indented text
 
  * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
@@ -36606,11 +42186,7 @@ the environments:
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide
 
-Labels, Index, and Citations
-----------------------------
-
-Preprocessing
--------------
+### Preprocessing
 
 Doconce documents may utilize a preprocessor, either `preprocess` and/or
 `mako`. The former is a C-style preprocessor that allows if-tests
@@ -36660,14 +42236,272 @@ An [example document](http://hplgit.github.com/bioinf-py/) contains
 some illustrations on how to utilize `mako` (clone the GitHub project and
 examine the Doconce source and the `doc/src/make.sh` script).
 
-Resources
----------
+### Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
+
 + rm -rf html_images reveal.js downloaded_figures
++ rm -rf papers.pub venues.list
++ publish import refs1.bib
+
+Importing papers from BibTeX
+----------------------------
+
+Found paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Found paper: (Langtangen_2008a) - Python Scripting for Computational Science
+Found paper: (Langtangen_2012) - A Primer on Scientific Programming with Python
+Found paper: (Langtangen_1992c) - Stochastic breakthrough time analysis of an enhanced o...
+Found paper: (Langtangen_1994a) - Numerical solution of first passage problems in random...
+
+Validating papers
+-----------------
+
+Validating paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen_2008a) - Python Scripting for Computational Science
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen_2012) - A Primer on Scientific Programming with Python
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen_1992c) - Stochastic breakthrough time analysis of an enhanced o...
+  Status is not defined, assuming status is "published".
+
+  Unknown journal: "SIAM Journal of Scientific and Statistical Computing"
+  Suggested journal: "SIAM Journal on Scientific Computing"
+  Unknown journal, what should I do?
+  [1] Replace journal.
+  [2] Add journal.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
+Validating paper: (Langtangen_1994a) - Numerical solution of first passage problems in random...
+  Status is not defined, assuming status is "published".
+
+  Unknown journal: "SIAM Journal of Scientific and Statistical Computing"
+  Suggested journal: "SIAM Journal on Scientific Computing"
+  Unknown journal, what should I do?
+  [1] Replace journal.
+  [2] Add journal.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
+
+Validated 5 paper(s) ok.
+Found 0 invalid paper(s).
+
+
+Imported 5 paper(s) from "refs1.bib".
+
+Merging papers
+--------------
+
+Need to merge 0 + 5 = 5 papers.
+
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 2
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             0
+Technical Reports:                  0
+Manuals:                            0
+Theses:                             0
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 0
+Total:                              5
+
+Saving database to file "papers.pub"
++ [ 0 -ne 0 ]
++ publish import refs2.bib
+
+Validating papers
+-----------------
+
+Validating paper: (Langtangen_1992c) - Stochastic Breakthrough Time Analysis of an Enhanced O...
+Validating paper: (Langtangen_1994a) - Numerical Solution of First Passage Problems in Random...
+Validating paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Validating paper: (Langtangen_2008a) - {P}ython Scripting for Computational Science
+Validating paper: (Langtangen_2012) - A Primer on Scientific Programming With {P}ython
+
+Validated 5 paper(s) ok.
+Found 0 invalid paper(s).
+
+
+Importing papers from BibTeX
+----------------------------
+
+Found paper: (Mortensen_et_al_2011) - A {FEniCS}-Based Programming Framework for Modelin...
+Found paper: (Mardal_et_al_2003a) - Software Tools for Multigrid Methods
+Found paper: (Jeberg_et_al_2004) - Optimization with {Diffpack}: Practical Example from ...
+Found paper: (Langtangen_1988d) - The {FEMDEQS} Program System
+Found paper: (Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...
+Found paper: (Langtangen_talk_2007a) - Computational Modeling of Huge Tsunamis from Aste...
+
+Validating papers
+-----------------
+
+Validating paper: (Mortensen_et_al_2011) - A {FEniCS}-Based Programming Framework for Modelin...
+  Status is not defined, assuming status is "published".
+Validating paper: (Mardal_et_al_2003a) - Software Tools for Multigrid Methods
+  Status is not defined, assuming status is "published".
+Validating paper: (Jeberg_et_al_2004) - Optimization with {Diffpack}: Practical Example from ...
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen_1988d) - The {FEMDEQS} Program System
+  Status is not defined, assuming status is "published".
+
+  Unknown institution: "Department of Mathematics, University of Oslo"
+  Suggested institution: "InterMedia, University of Oslo"
+  Unknown institution, what should I do?
+  [1] Replace institution.
+  [2] Add institution.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
+Validating paper: (Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...
+  Status is not defined, assuming status is "published".
+
+  Unknown school: "Mechanics Division, Department of Mathematics, University of Oslo"
+  Suggested school: "Department of Informatics, University of Oslo"
+  Unknown school, what should I do?
+  [1] Replace school.
+  [2] Add school.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
+Validating paper: (Langtangen_talk_2007a) - Computational Modeling of Huge Tsunamis from Aste...
+  Status is not defined, assuming status is "published".
+
+Validated 6 paper(s) ok.
+Found 0 invalid paper(s).
+
+
+Imported 6 paper(s) from "refs2.bib".
+
+Merging papers
+--------------
+
+Need to merge 5 + 6 = 11 papers.
+
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 3
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             1
+Technical Reports:                  2
+Manuals:                            0
+Theses:                             1
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              11
+
+Saving backup copy of database to file "papers.pub.bak"
+Saving database to file "papers.pub"
++ publish import refs3.bib
+
+Validating papers
+-----------------
+
+Validating paper: (Langtangen_1992c) - Stochastic Breakthrough Time Analysis of an Enhanced O...
+Validating paper: (Langtangen_1994a) - Numerical Solution of First Passage Problems in Random...
+Validating paper: (Mortensen_et_al_2011) - A {FEniCS}-Based Programming Framework for Modelin...
+Validating paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Validating paper: (Langtangen_2008a) - {P}ython Scripting for Computational Science
+Validating paper: (Langtangen_2012) - A Primer on Scientific Programming With {P}ython
+Validating paper: (Mardal_et_al_2003a) - Software Tools for Multigrid Methods
+Validating paper: (Jeberg_et_al_2004) - Optimization With {Diffpack}: Practical Example From ...
+Validating paper: (Langtangen_1988d) - The {FEMDEQS} Program System
+Validating paper: (Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...
+Validating paper: (Langtangen_talk_2007a) - Computational Modeling of Huge Tsunamis From Aste...
+
+Validated 11 paper(s) ok.
+Found 0 invalid paper(s).
+
+
+Importing papers from BibTeX
+----------------------------
+
+Found paper: (Langtangen_Pedersen_2002) - Propagation of Large Destructive Waves
+Found paper: (Langtangen_et_al_2002) - Numerical Methods for Incompressible Viscous Flow
+Found paper: (Glimsdal_et_al_20006) - Propagation of the {Dec.~26}, 2004 {Indian Ocean T...
+Found paper: (Rahman_et_al_2006b) - Numerical Investigation of a Piezoelectric Surface A...
+Found paper: (Haga_et_al_2011a) - On the causes of pressure oscillations in low-permeabl...
+
+Validating papers
+-----------------
+
+Validating paper: (Langtangen_Pedersen_2002) - Propagation of Large Destructive Waves
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen_et_al_2002) - Numerical Methods for Incompressible Viscous Flow
+  Status is not defined, assuming status is "published".
+Validating paper: (Glimsdal_et_al_20006) - Propagation of the {Dec.~26}, 2004 {Indian Ocean T...
+  Status is not defined, assuming status is "published".
+Validating paper: (Rahman_et_al_2006b) - Numerical Investigation of a Piezoelectric Surface A...
+  Status is not defined, assuming status is "published".
+
+  Unknown journal: "Physical Review B"
+  Suggested journal: "Physical Review B: Condensed Matter and Materials Physics"
+  Unknown journal, what should I do?
+  [1] Replace journal.
+  [2] Add journal.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
+Validating paper: (Haga_et_al_2011a) - On the causes of pressure oscillations in low-permeabl...
+  Status is not defined, assuming status is "published".
+
+  Unknown journal: "International Journal of Analytical and Numerical Methods in Geomechanics"
+  Suggested journal: "International Journal for Numerical Methods in Engineering"
+  Unknown journal, what should I do?
+  [1] Replace journal.
+  [2] Add journal.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
+
+Validated 5 paper(s) ok.
+Found 0 invalid paper(s).
+
+
+Imported 5 paper(s) from "refs3.bib".
+
+Merging papers
+--------------
+
+Need to merge 11 + 5 = 16 papers.
+
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 8
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             1
+Technical Reports:                  2
+Manuals:                            0
+Theses:                             1
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              16
+
+Saving backup copy of database to file "papers.pub.bak"
+Saving database to file "papers.pub"
 + doconce format html testdoc --wordpress --examples-as-exercises
-running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to html
 
@@ -36724,9 +42558,9 @@ output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_wordpress.html
 + doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
-running preprocess -DFORMAT=html -DSOMEVAR testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html -DDEVICE=screen -DSOMEVAR testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'SOMEVAR': True, 'FORMAT': 'html'}
+mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'html'}
 translating preprocessed doconce text in __tmp.do.txt to html
 
 FIX: multi-line caption
@@ -36782,9 +42616,30 @@ output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_no_solutions.html
 + doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
-running preprocess -DFORMAT=latex -DSOMEVAR testdoc.do.txt > __tmp.do.txt
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 8
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             1
+Technical Reports:                  2
+Manuals:                            0
+Theses:                             1
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              16
+
+Exported 16 paper(s) to papers.bib.
+running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'SOMEVAR': True, 'FORMAT': 'latex'}
+mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'latex'}
 translating preprocessed doconce text in __tmp.do.txt to latex
 
 FIX: multi-line caption
@@ -36837,11 +42692,76 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
+
+exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + cp testdoc.p.tex testdoc_no_solutions.p.tex
++ cp -r ../bundled/html_styles/style_vagrant .
++ doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to html
+
+FIX: multi-line caption
+
+ Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
+
+-- fixed to one line
+
+FIX: multi-line caption
+
+ A long
+caption spanning
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
+
+-- fixed to one line
+
+FIX: FIGURE not at the beginning of the line - 1 fixes
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
+
+
+FIX: MOVIE not at the beginning of the line - 1 fixes
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). label{mymov} 
+
+
+FIX: !bhint not at the beginning of the line - 1 fixes
+  !bhint
+
+
+FIX: !ehint not at the beginning of the line - 1 fixes
+  !ehint
+
+
+*** The total of 6 fixes above should be incorporated in the file!
+
+
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open the solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
+found info about 9 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format html
+*** warning: TITLE may look strange with a template -
+             it is recommended to comment out the title: #TITLE:
+*** warning: AUTHOR may look strange with a template -
+             it is recommended to comment out all authors: #AUTHOR.
+             Better to hardcode authors in a footer in the template.
+output in testdoc.html
++ [ 0 -ne 0 ]
++ cp testdoc.html testdoc_vagrant.html
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
-running preprocess -DFORMAT=html  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to html
 
@@ -36905,10 +42825,31 @@ no answers/solutions to exercises found in testdoc.html
 testdoc.html now links to the generated files
 ._part0000_testdoc.html, ._part0001_testdoc.html, ._part0002_testdoc.html
 + [ 0 -ne 0 ]
-+ doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True
-running preprocess -DFORMAT=latex -DSOMEVAR=True testdoc.do.txt > __tmp.do.txt
++ doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 8
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             1
+Technical Reports:                  2
+Manuals:                            0
+Theses:                             1
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              16
+
+Exported 16 paper(s) to papers.bib.
+running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR=True testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'SOMEVAR': True, 'FORMAT': 'latex'}
+mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'latex'}
 translating preprocessed doconce text in __tmp.do.txt to latex
 
 FIX: multi-line caption
@@ -36961,10 +42902,33 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
+
+exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
-+ doconce format pdflatex testdoc.do.txt --latex-printed --examples-as-exercises
-running preprocess -DFORMAT=pdflatex  testdoc.do.txt > __tmp.do.txt
++ doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 8
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             1
+Technical Reports:                  2
+Manuals:                            0
+Theses:                             1
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              16
+
+Exported 16 paper(s) to papers.bib.
+running preprocess -DFORMAT=pdflatex -DDEVICE=paper  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pdflatex
 
@@ -37018,6 +42982,8 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
+
+exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce latex_exercise_toc testdoc
@@ -37125,6 +43091,75 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) 
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
+ws.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
+gs.code.tex
+
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
@@ -37155,10 +43190,13 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-154.
+159.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
+
+
+Package hyperref Warning: old tdo file detected, not used; run LaTeX again.
 
 [2] 
 
@@ -37175,7 +43213,7 @@ Overfull \hbox (43.91478pt too wide)
 
 LaTeX Warning: Reference `fig:impact' on page 5 
 
-<../doc/manual/figs/streamtubes.png, id=40, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=60, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
 Underfull \vbox (badness 2310) has occurred while \output is active [5]
@@ -37185,12 +43223,12 @@ Overfull \hbox (47.04507pt too wide)
 
 LaTeX Warning: Reference `myfig' on page 7 
 
-<../doc/manual/figs/wavepacket_0001.png, id=89, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=110, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
 LaTeX Warning: Reference `mymov' on page 7 
 
-<downloaded_figures/f_plot.png, id=90, 578.16pt x 433.62pt>
+<downloaded_figures/f_plot.png, id=111, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
 /manual/figs/mjolnir.mpeg>>]
@@ -37241,24 +43279,53 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
+
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 694.
+
+
+LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
+ine 695.
+
+
+LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 6
+98.
+
+
+LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
+ 699.
+
+
+LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
+01.
+
+
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 703.
+
+
+LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
+ 703.
+
 [11]
 Overfull \hbox (78.30609pt too wide) 
-[][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
-+%26+engineering/book/978-3-642-23098-1| 
+[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
+26+engineering/book/978-3-642-23098-1| 
 
 Overfull \hbox (1.55275pt too wide) 
 \OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
  / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
 
 Overfull \hbox (17.6152pt too wide) 
-[][][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay
-/experiments/decay[]mod.py| 
+[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
+xperiments/decay[]mod.py| 
 
 Overfull \hbox (31.36086pt too wide) 
 []\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
  the []
+[12]
 
-LaTeX Warning: Reference `my:eq1' on page 12 
+LaTeX Warning: Reference `my:eq1' on page 13 
 
 
 Package amsmath Warning: Foreign command \over;
@@ -37266,9 +43333,8 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                 on 
 
 
-LaTeX Warning: Reference `my:eq1' on page 12 
+LaTeX Warning: Reference `my:eq1' on page 13 
 
-[12]
 
 LaTeX Warning: Reference `eq1' on page 13 
 
@@ -37276,7 +43342,7 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 80
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 82
 3.
 
 
@@ -37294,26 +43360,27 @@ LaTeX Warning: Reference `eq2a' on page 13
 
 LaTeX Warning: Reference `my:eq1' on page 13 
 
+[13]
 
-LaTeX Warning: Reference `demo:ex:1' on page 13 
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 13 
+LaTeX Warning: Reference `demo:ex:1' on page 14 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 
+LaTeX Warning: Reference `demo:ex:2' on page 14 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 14 
 
 
 
-LaTeX Warning: Reference `exer:you' on page 13 
+LaTeX Warning: Reference `exer:you' on page 14 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 829.
+LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
+ 849.
 
-[13] (./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
+(./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1189
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1210
 .
 
 
@@ -37324,34 +43391,48 @@ LaTeX Warning: Reference `demo:ex:2' on page 17
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1207.
+ 1227.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1208
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1228
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 17 
 
-[17] <latex_figs/hint.pdf, id=290, 89.33376pt x 89.33376pt>
+(./testdoc.bbl [17]) <latex_figs/hint.pdf, id=311, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=291, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
-<latex_figs/notice.pdf, id=292, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=312, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
+<latex_figs/notice.pdf, id=331, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=293, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=332, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
-No file testdoc.ind.
+
+LaTeX Warning: Marginpar on page 19 moved.
+
+
+Overfull \hbox (5.40623pt too wide) 
+[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+(./testdoc.ind [19 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>]
+Overfull \hbox (20.05458pt too wide) 
+[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
+mtt/m/n/10 verbatim expressions
+[20])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[18 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/notice.pdf
-> <./latex_figs/question.pdf>] (./testdoc.aux)
+(./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -37431,6 +43512,27 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+ xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
+ xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+setspace.sty    2011/12/19 v6.7a set line spacing
+todonotes.sty    2011/10/22
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
 supp-pdf.mkii
@@ -37456,10 +43558,12 @@ newcommands_replace.tex
 downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.out.pyg
+ testdoc.bbl
 latex_figs/hint.pdf
 latex_figs/warning.pdf
 latex_figs/notice.pdf
 latex_figs/question.pdf
+ testdoc.ind
  ***********
 
 
@@ -37474,41 +43578,1583 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (18 pages, ).
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
+.pfb>
+Output written on testdoc.pdf (20 pages, ).
 Transcript written on testdoc.log.
 + [ 0 -ne 0 ]
++ pdflatex -shell-escape testdoc
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./testdoc.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+
+
+(/home/hpl/texmf/tex/latex/misc/anslistings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/home/hpl/texmf/tex/latex/misc/movie15.sty
+
+
+
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./testdoc.w18))/usr/local/bin/pygmentize
+) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) 
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
+ws.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
+gs.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
+
+Writing index file testdoc.idx
+(./testdoc.aux) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+ABD: EveryShipout initializing macros
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
+
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc
+Overfull \hbox (0.59077pt too wide) 
+ [][] [][][]\OT1/cmr/m/n/10 A test of ver-ba-tim words in head-ing with sub-scr
+ipt $\OML/cmm/m/it/10 a[]$\OT1/cmr/m/n/10 : [] 
+) (./testdoc.tdo [2]) [3]
+
+(./testdoc.out.pyg [4]) (./testdoc.out.pyg) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [5]
+Overfull \hbox (43.91478pt too wide) 
+[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
+<../doc/manual/figs/streamtubes.png, id=218, 583.17876pt x 437.635pt>
+<use ../doc/manual/figs/streamtubes.png>
+<use ../doc/manual/figs/streamtubes.png>
+Underfull \vbox (badness 2310) has occurred while \output is active [6]
+Overfull \hbox (47.04507pt too wide) 
+\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
+[7 <../doc/manual/figs/streamtubes.png>]
+<../doc/manual/figs/wavepacket_0001.png, id=269, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png>
+<downloaded_figures/f_plot.png, id=271, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (29.43953pt too high) has occurred while \output is active
+[9<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\theta' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\nabla' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+[10 <../doc/manual/figs/wavepacket_0001.png>] [11]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+[12]
+Overfull \hbox (78.30609pt too wide) 
+[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
+26+engineering/book/978-3-642-23098-1| 
+
+Overfull \hbox (1.55275pt too wide) 
+\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
+ / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
+
+Overfull \hbox (17.6152pt too wide) 
+[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
+xperiments/decay[]mod.py| 
+
+Overfull \hbox (31.36086pt too wide) 
+[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
+ the []
+[13]
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on 
+
+[14] (./testdoc.out.pyg) [15] (./testdoc.out.pyg) [16] [17]
+Overfull \hbox (47.40718pt too wide) 
+\OT1/cmr/m/n/10 Pick a state-ment from Project [][]4[][] or Prob-lem [][]2[][] 
+and ver-ify it. File-name: []. 
+(./testdoc.bbl [18]) <latex_figs/hint.pdf, id=479, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf>
+<latex_figs/warning.pdf, id=480, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf>]
+<latex_figs/notice.pdf, id=491, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+<latex_figs/question.pdf, id=492, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
+
+LaTeX Warning: Marginpar on page 20 moved.
+
+
+Overfull \hbox (5.40623pt too wide) 
+[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+(./testdoc.ind [20 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>]
+Overfull \hbox (20.05458pt too wide) 
+[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
+mtt/m/n/10 verbatim expressions
+[21])
+
+Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(movie15)                @@ Rerun to get object references right! @@
+(movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
+
+(./testdoc.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+ptex2tex.sty    
+fancyvrb.sty    2008/02/07
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
+livier@maths.lth.se>
+listings.sty    2007/02/22 1.4 (Carsten Heinz)
+ lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
+listings.cfg    2007/02/22 1.4 listings configuration
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ movie15.sty    2009/07/07
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+ ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+ testdoc.w18
+ testdoc.pyg
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+ xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
+ xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+setspace.sty    2011/12/19 v6.7a set line spacing
+todonotes.sty    2011/10/22
+ theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+     thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+ testdoc.out
+ testdoc.out
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/wavepacket_0001.png
+downloaded_figures/f_plot.png
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.bbl
+latex_figs/hint.pdf
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+latex_figs/question.pdf
+ testdoc.ind
+ ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
+.pfb>
+Output written on testdoc.pdf (21 pages, ).
+Transcript written on testdoc.log.
++ makeindex testdoc
+This is makeindex, version 2.15 [TeX Live 2012] (kpathsea + Thai support).
+Scanning input file testdoc.idx....done (7 entries accepted, 0 rejected).
+Sorting entries....done (23 comparisons).
+Generating output file testdoc.ind....done (26 lines written, 0 warnings).
+Output written in testdoc.ind.
+Transcript written in testdoc.ilg.
++ bibtex testdoc
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+The top-level auxiliary file: testdoc.aux
+The style file: plain.bst
+Database file #1: papers.bib.bib
++ pdflatex -shell-escape testdoc
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./testdoc.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+
+
+(/home/hpl/texmf/tex/latex/misc/anslistings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/home/hpl/texmf/tex/latex/misc/movie15.sty
+
+
+
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./testdoc.w18))/usr/local/bin/pygmentize
+) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) 
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
+ws.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
+gs.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
+
+Writing index file testdoc.idx
+(./testdoc.aux) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+ABD: EveryShipout initializing macros
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
+
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc
+Overfull \hbox (0.59077pt too wide) 
+ [][] [][][]\OT1/cmr/m/n/10 A test of ver-ba-tim words in head-ing with sub-scr
+ipt $\OML/cmm/m/it/10 a[]$\OT1/cmr/m/n/10 : [] 
+) (./testdoc.tdo [2]) [3]
+
+(./testdoc.out.pyg [4]) (./testdoc.out.pyg) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [5]
+Overfull \hbox (43.91478pt too wide) 
+[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
+<../doc/manual/figs/streamtubes.png, id=218, 583.17876pt x 437.635pt>
+<use ../doc/manual/figs/streamtubes.png>
+<use ../doc/manual/figs/streamtubes.png>
+Underfull \vbox (badness 2310) has occurred while \output is active [6]
+Overfull \hbox (47.04507pt too wide) 
+\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
+[7 <../doc/manual/figs/streamtubes.png>]
+<../doc/manual/figs/wavepacket_0001.png, id=270, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png>
+<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (29.43953pt too high) has occurred while \output is active
+[9<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\theta' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\nabla' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+[10 <../doc/manual/figs/wavepacket_0001.png>] [11]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+[12]
+Overfull \hbox (78.30609pt too wide) 
+[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
+26+engineering/book/978-3-642-23098-1| 
+
+Overfull \hbox (1.55275pt too wide) 
+\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
+ / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
+
+Overfull \hbox (17.6152pt too wide) 
+[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
+xperiments/decay[]mod.py| 
+
+Overfull \hbox (31.36086pt too wide) 
+[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
+ the []
+[13]
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on 
+
+[14] (./testdoc.out.pyg) [15] (./testdoc.out.pyg) [16] [17]
+Overfull \hbox (47.40718pt too wide) 
+\OT1/cmr/m/n/10 Pick a state-ment from Project [][]4[][] or Prob-lem [][]2[][] 
+and ver-ify it. File-name: []. 
+(./testdoc.bbl [18]) <latex_figs/hint.pdf, id=479, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf>
+<latex_figs/warning.pdf, id=480, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf>]
+<latex_figs/notice.pdf, id=491, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+<latex_figs/question.pdf, id=492, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
+
+LaTeX Warning: Marginpar on page 20 moved.
+
+
+Overfull \hbox (5.40623pt too wide) 
+[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+(./testdoc.ind [20 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>]
+Overfull \hbox (20.05458pt too wide) 
+[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
+mtt/m/n/10 verbatim expressions
+[21])
+
+Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(movie15)                @@ Rerun to get object references right! @@
+(movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
+
+(./testdoc.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+ptex2tex.sty    
+fancyvrb.sty    2008/02/07
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
+livier@maths.lth.se>
+listings.sty    2007/02/22 1.4 (Carsten Heinz)
+ lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
+listings.cfg    2007/02/22 1.4 listings configuration
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ movie15.sty    2009/07/07
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+ ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+ testdoc.w18
+ testdoc.pyg
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+ xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
+ xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+setspace.sty    2011/12/19 v6.7a set line spacing
+todonotes.sty    2011/10/22
+ theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+     thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+ testdoc.out
+ testdoc.out
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/wavepacket_0001.png
+downloaded_figures/f_plot.png
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.bbl
+latex_figs/hint.pdf
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+latex_figs/question.pdf
+ testdoc.ind
+ ***********
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
+.pfb>
+Output written on testdoc.pdf (21 pages, ).
+Transcript written on testdoc.log.
++ pdflatex -shell-escape testdoc
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./testdoc.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+
+
+(/home/hpl/texmf/tex/latex/misc/anslistings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/home/hpl/texmf/tex/latex/misc/movie15.sty
+
+
+
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./testdoc.w18))/usr/local/bin/pygmentize
+) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) 
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
+ws.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
+gs.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
+
+Writing index file testdoc.idx
+(./testdoc.aux) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+ABD: EveryShipout initializing macros
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
+
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc
+Overfull \hbox (0.59077pt too wide) 
+ [][] [][][]\OT1/cmr/m/n/10 A test of ver-ba-tim words in head-ing with sub-scr
+ipt $\OML/cmm/m/it/10 a[]$\OT1/cmr/m/n/10 : [] 
+) (./testdoc.tdo [2]) [3]
+
+(./testdoc.out.pyg [4]) (./testdoc.out.pyg) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [5]
+Overfull \hbox (43.91478pt too wide) 
+[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
+<../doc/manual/figs/streamtubes.png, id=218, 583.17876pt x 437.635pt>
+<use ../doc/manual/figs/streamtubes.png>
+<use ../doc/manual/figs/streamtubes.png>
+Underfull \vbox (badness 2310) has occurred while \output is active [6]
+Overfull \hbox (47.04507pt too wide) 
+\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
+[7 <../doc/manual/figs/streamtubes.png>]
+<../doc/manual/figs/wavepacket_0001.png, id=270, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png>
+<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (29.43953pt too high) has occurred while \output is active
+[9<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\theta' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\nabla' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+[10 <../doc/manual/figs/wavepacket_0001.png>] [11]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+[12]
+Overfull \hbox (78.30609pt too wide) 
+[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
+26+engineering/book/978-3-642-23098-1| 
+
+Overfull \hbox (1.55275pt too wide) 
+\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
+ / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
+
+Overfull \hbox (17.6152pt too wide) 
+[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
+xperiments/decay[]mod.py| 
+
+Overfull \hbox (31.36086pt too wide) 
+[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
+ the []
+[13]
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on 
+
+[14] (./testdoc.out.pyg) [15] (./testdoc.out.pyg) [16] [17]
+Overfull \hbox (47.40718pt too wide) 
+\OT1/cmr/m/n/10 Pick a state-ment from Project [][]4[][] or Prob-lem [][]2[][] 
+and ver-ify it. File-name: []. 
+(./testdoc.bbl [18]) <latex_figs/hint.pdf, id=479, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf>
+<latex_figs/warning.pdf, id=480, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf>]
+<latex_figs/notice.pdf, id=491, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+<latex_figs/question.pdf, id=492, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
+
+LaTeX Warning: Marginpar on page 20 moved.
+
+
+Overfull \hbox (5.40623pt too wide) 
+[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+(./testdoc.ind [20 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>]
+Overfull \hbox (20.05458pt too wide) 
+[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
+mtt/m/n/10 verbatim expressions
+[21]) (./testdoc.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+ptex2tex.sty    
+fancyvrb.sty    2008/02/07
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
+livier@maths.lth.se>
+listings.sty    2007/02/22 1.4 (Carsten Heinz)
+ lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
+listings.cfg    2007/02/22 1.4 listings configuration
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ movie15.sty    2009/07/07
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+ ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+ testdoc.w18
+ testdoc.pyg
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+ xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
+ xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+setspace.sty    2011/12/19 v6.7a set line spacing
+todonotes.sty    2011/10/22
+ theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+     thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+ testdoc.out
+ testdoc.out
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/wavepacket_0001.png
+downloaded_figures/f_plot.png
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.bbl
+latex_figs/hint.pdf
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+latex_figs/question.pdf
+ testdoc.ind
+ ***********
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
+.pfb>
+Output written on testdoc.pdf (21 pages, ).
+Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
 + echo ----------- end of doconce ptex2tex output ----------------
 + [ 0 -ne 0 ]
 + cat testdoc.tex
 + doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
-running preprocess -DFORMAT=plain -DSOMEVAR=1 testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=plain -DDEVICE=screen -DSOMEVAR=1 testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'SOMEVAR': 1, 'FORMAT': 'plain'}
+mako variables: {'DEVICE': 'screen', 'SOMEVAR': 1, 'FORMAT': 'plain'}
 translating preprocessed doconce text in __tmp.do.txt to plain
 
 FIX: multi-line caption
@@ -37561,7 +45207,7 @@ found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + [ 0 -ne 0 ]
 + doconce format st testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=st  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=st -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to st
 
@@ -37615,7 +45261,7 @@ found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + [ 0 -ne 0 ]
 + doconce format sphinx testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=sphinx  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to sphinx
 
@@ -37687,7 +45333,7 @@ Warning: the "alignat" environment will give errors in Sphinx:
 
 
 
-Detected (align) equation systems with multiple labels
+Detected non-align equation systems with multiple labels
 (that Sphinx will not handle - labels will be removed
 and references to them will be empty):
 label{eq1a}
@@ -37750,11 +45396,10 @@ source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-['__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__', '__released__', '__version__', 'err', 'main', 'out', 'p', 'package_dir', 'path', 'subprocess', 'sys'] True
 title: Just a test
 author: HPL
 theme: agni
-These Sphinx themes were found: ADCtheme, agni, agogo, basic, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
+These Sphinx themes were found: ADCtheme, agni, agogo, basic, basicstrap, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scipy_lectures, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
 
 'automake_sphinx.py' contains the steps to (re)compile the sphinx
 version. You may want to edit this file, or run the steps manually,
@@ -37764,7 +45409,7 @@ or just run it by
 
 + [ 0 -ne 0 ]
 + doconce format rst testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=rst  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=rst -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to rst
 
@@ -37820,7 +45465,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.rst
 + [ 0 -ne 0 ]
 + doconce format epytext testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=epytext  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=epytext -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to epytext
 
@@ -37874,7 +45519,7 @@ found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + [ 0 -ne 0 ]
 + doconce format pandoc testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 
@@ -37927,34 +45572,18 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pandoc
-*** warning: latex envir \begin{multline} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{multline} does not work well
 
-*** warning: latex envir \begin{gather} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{gather} does not work well
 
-*** warning: latex envir \begin{alignat} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{alignat} does not work well
 
-*** warning: latex envir \begin{eqnarray} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{eqnarray} does not work well
 
 output in testdoc.md
 + [ 0 -ne 0 ]
 + doconce format mwiki testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=mwiki  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=mwiki -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 
@@ -38007,15 +45636,29 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
-NOTE: You must upload image file streamtubes.png to common.wikimedia.org
-NOTE: You must upload image file streamtubes.png to common.wikimedia.org
-NOTE: You must upload image file wavepacket_0001.png to common.wikimedia.org
-NOTE: You must upload image file df2s8765s_plot.png to common.wikimedia.org
+ ...checking if streamtubes.png is stored at en.wikipedia.org/w/api.php...
+ ...for wikipedia/wikibooks you must upload image file streamtubes.png to
+    common.wikimedia.org
+ ...for now we use local file Streamtubes.png
+ ...checking if streamtubes.png is stored at en.wikipedia.org/w/api.php...
+ ...for wikipedia/wikibooks you must upload image file streamtubes.png to
+    common.wikimedia.org
+ ...for now we use local file Streamtubes.png
+ ...checking if wavepacket_0001.png is stored at en.wikipedia.org/w/api.php...
+ ...for wikipedia/wikibooks you must upload image file wavepacket_0001.png to
+    common.wikimedia.org
+ ...for now we use local file Wavepacket 0001.png
+ ...checking if df_plot.png is stored at en.wikipedia.org/w/api.php...
+ ...found Df plot.png at wikimedia
+ ...checking if df2s8765s_plot.png is stored at en.wikipedia.org/w/api.php...
+ ...for wikipedia/wikibooks you must upload image file df2s8765s_plot.png to
+    common.wikimedia.org
+ ...for now we use local file Df2s8765s plot.png
 *** warning: reference to label "my:eq1" in an equation does not work in MediaWiki
 output in testdoc.mwiki
 + [ 0 -ne 0 ]
 + doconce format cwiki testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=cwiki  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=cwiki -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 
@@ -38071,7 +45714,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.cwiki
 + [ 0 -ne 0 ]
 + doconce format ipynb testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=ipynb  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to ipynb
 
@@ -38129,7 +45772,7 @@ output in testdoc.ipynb
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --no-preprocess --examples-as-exercises
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 running mako on __tmp.do.txt to make __tmp.do.txt
-mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
+mako variables: {'DEVICE': 'screen', 'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 
 FIX: multi-line caption
@@ -38220,7 +45863,28 @@ NOTE: Place testfigs/df2s8765s_plot.png at some place on the web and edit the
 output in testdoc.gwiki
 + [ 0 -ne 0 ]
 + doconce format latex testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=latex  testdoc.do.txt > __tmp.do.txt
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 8
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  0
+Refereed Proceedings:               0
+Conference Proceedings:             1
+Technical Reports:                  2
+Manuals:                            0
+Theses:                             1
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              16
+
+Exported 16 paper(s) to papers.bib.
+running preprocess -DFORMAT=latex -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
 
@@ -38274,6 +45938,8 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
+
+exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
@@ -38295,7 +45961,7 @@ replacing \Verb! by \verb! in testdoc.tex
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -v
 + doconce format pandoc testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=pandoc  testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 
@@ -38348,29 +46014,13 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pandoc
-*** warning: latex envir \begin{multline} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{multline} does not work well
 
-*** warning: latex envir \begin{gather} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{gather} does not work well
 
-*** warning: latex envir \begin{alignat} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{alignat} does not work well
 
-*** warning: latex envir \begin{eqnarray} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \begin{eqnarray} does not work well
 
 output in testdoc.md
 + [ 0 -ne 0 ]
@@ -38430,6 +46080,57 @@ output in author1.rst
 translating doconce text in author1.do.txt to plain
 output in author1.txt
 + [ 0 -ne 0 ]
++ name=math_test
++ doconce format html math_test
+running preprocess -DFORMAT=html -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to html
+output in math_test.html
++ [ 0 -ne 0 ]
++ cp math_test.html math_test_html.html
++ doconce format sphinx math_test
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to sphinx
+
+*** warning:
+Not recommended for sphinx output: math environment {eqnarray}
+(use equation, \[ \], or align/align*)
+Not recommended for sphinx output: math environment {eqnarray*}
+
+Detected non-align equation systems with multiple labels
+(that Sphinx will not handle - labels will be removed
+and references to them will be empty):
+label{eq2c}
+label{eq3c}
+
+output in math_test.rst
++ doconce format pandoc math_test
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to pandoc
+*** warning: latex envir \begin{eqnarray*} does not work well
+
+*** warning: latex envir \begin{eqnarray} does not work well
+
+output in math_test.md
++ doconce md2html math_test.md
+pandoc -f markdown -t html --mathjax -s -o math_test.html math_test.md
+output in math_test.html
++ cp math_test.html math_test_pandoc.html
++ doconce format pandoc math_test
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to pandoc
+*** warning: latex envir \begin{eqnarray*} does not work well
+
+*** warning: latex envir \begin{eqnarray} does not work well
+
+output in math_test.md
++ doconce md2latex math_test
+command md2latex not legal, must be among
+
+format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, pygmentize, makefile
 + doconce guess_encoding encoding1.do.txt
 + [ 0 -ne 0 ]
 + cp encoding1.do.txt tmp1.do.txt
@@ -38721,6 +46422,83 @@ Package hyperref Message: Driver (default): hdvips.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) 
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
+ws.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
+gs.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+
+Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
+ngs. This warning is given only once on 
+
+))))
 Writing index file quickref.idx
 No file quickref.aux.
 
@@ -38729,12 +46507,24 @@ No file quickref.aux.
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
+ABD: EveryShipout initializing macros
 
 
 
 Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
- [1] [2] [3] [4]
+
+Package hyperref Warning: old tdo file detected, not used; run LaTeX again.
+
+ [1] [2]
+Overfull \hbox (19.14615pt too wide) 
+\OT1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or [
+]
+[3] [4]
+Overfull \hbox (29.35596pt too wide) 
+[]\OT1/phv/m/n/10 Large por-tions of text can be left out us-ing Pre-pro-cess. 
+Just place []
+[5]
 Overfull \hbox (4.40137pt too wide) 
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []
@@ -38742,10 +46532,7 @@ sl/10 reg-u-lar ex-pres-sion []
 Overfull \hbox (27.8928pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
-[5]
-Overfull \hbox (52.99661pt too wide) 
-[]\OT1/phv/m/n/10 One can use []
-[6] <latex_figs/notice.eps>
+[6] [7] <latex_figs/notice.eps>
 Underfull \hbox (badness 1924) 
 \OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
 
@@ -38754,19 +46541,24 @@ Underfull \hbox (badness 1701)
 
 Underfull \hbox (badness 2564) 
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
-[7]
+[8]
 
-LaTeX Warning: Reference `quick:sections' on page 8 undefined on input line 585
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 657
 .
 
-[8]
+[9]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
  on the form [],
 
-Overfull \hbox (88.21638pt too wide) 
-[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [],
-[9] [10] [11] [12]
+Overfull \hbox (20.06894pt too wide) 
+[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [], where []
+[10]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+[11] [12] [13] [14]
 Overfull \hbox (3.50804pt too wide) 
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
@@ -38778,12 +46570,12 @@ and/or [].
 Overfull \hbox (0.18839pt too wide) 
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
  doc-u-ment, "com-
-[13]
+[15]
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
-[14] (./quickref.aux)
+[16] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -38797,7 +46589,7 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -38852,6 +46644,30 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
+ xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+setspace.sty    2011/12/19 v6.7a set line spacing
+todonotes.sty    2011/10/22
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
@@ -38874,7 +46690,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, ).
+Output written on quickref.dvi (16 pages, ).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -38950,14 +46766,100 @@ Package hyperref Message: Driver (default): hdvips.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) 
+(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
+ws.code.tex
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
+gs.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+
+Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
+ngs. This warning is given only once on 
+
+))))
 Writing index file quickref.idx
 (./quickref.aux) 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./quickref.out) (./quickref.out)
+(./quickref.out) (./quickref.out) ABD: EveryShipout initializing macros
 
 
- [1] [2] [3] [4]
+(./quickref.tdo) [1] 
+[2] [3]
+Overfull \hbox (19.14615pt too wide) 
+\OT1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or [
+]
+[4]
+Overfull \hbox (29.35596pt too wide) 
+[]\OT1/phv/m/n/10 Large por-tions of text can be left out us-ing Pre-pro-cess. 
+Just place []
+[5] [6]
 Overfull \hbox (4.40137pt too wide) 
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []
@@ -38965,10 +46867,7 @@ sl/10 reg-u-lar ex-pres-sion []
 Overfull \hbox (27.8928pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
-[5]
-Overfull \hbox (52.99661pt too wide) 
-[]\OT1/phv/m/n/10 One can use []
-[6] <latex_figs/notice.eps>
+[7] <latex_figs/notice.eps>
 Underfull \hbox (badness 1924) 
 \OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
 
@@ -38977,18 +46876,23 @@ Underfull \hbox (badness 1701)
 
 Underfull \hbox (badness 2564) 
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
-[7] [8]
+[8] [9] [10]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
  on the form [],
 
-Overfull \hbox (88.21638pt too wide) 
-[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [],
-[9] [10] [11] [12]
+Overfull \hbox (20.06894pt too wide) 
+[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [], where []
+[11]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+[12] [13] [14] [15]
 Overfull \hbox (3.50804pt too wide) 
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
-[13]
+
 Overfull \hbox (2.40855pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
@@ -38996,13 +46900,12 @@ and/or [].
 Overfull \hbox (0.18839pt too wide) 
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
  doc-u-ment, "com-
-
+[16]
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
-[14]
 No file quickref.ind.
-[15] (./quickref.aux)
+[17] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -39016,7 +46919,7 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -39071,6 +46974,30 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
+ xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+setspace.sty    2011/12/19 v6.7a set line spacing
+todonotes.sty    2011/10/22
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
@@ -39082,9 +47009,12 @@ quickref.out
 latex_figs/notice.eps
  ***********
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (15 pages, ).
+Output written on quickref.dvi (17 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -39151,13 +47081,12 @@ source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-['__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__', '__released__', '__version__', 'err', 'main', 'out', 'p', 'package_dir', 'path', 'subprocess', 'sys'] True
 searching for TITLE in quickref.do.txt
 Using title "Doconce Quick Reference" from quickref.do.txt
 title: Doconce Quick Reference
 author: HPL
 theme: default
-These Sphinx themes were found: ADCtheme, agni, agogo, basic, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
+These Sphinx themes were found: ADCtheme, agni, agogo, basic, basicstrap, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scipy_lectures, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
 
 'automake_sphinx.py' contains the steps to (re)compile the sphinx
 version. You may want to edit this file, or run the steps manually,
@@ -39181,37 +47110,23 @@ sphinx-build -b html -d _build/doctrees   . _build/html
 Making output directory...
 Running Sphinx v1.2pre
 loading pickled environment... not yet created
-building [html]: targets for 5 source files that are out of date
-updating environment: 5 added, 0 changed, 0 removed
-reading sources... [ 20%] _themes/ADCtheme/README
-reading sources... [ 40%] _themes/cloud/doc
-reading sources... [ 60%] _themes/redcloud/doc
-reading sources... [ 80%] index
+building [html]: targets for 2 source files that are out of date
+updating environment: 2 added, 0 changed, 0 removed
+reading sources... [ 50%] index
 reading sources... [100%] quickref
 
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/ADCtheme/README.rst:45: WARNING: nonlocal image URI found: https://github.com/coordt/ADCtheme/raw/master/static/scrn1.png
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/ADCtheme/README.rst:47: WARNING: nonlocal image URI found: https://github.com/coordt/ADCtheme/raw/master/static/scrn2.png
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/redcloud/doc.rst:134: WARNING: duplicate label cloud-theme-usage, other instance in /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/cloud/doc.rst
 looking for now-outdated files... none found
 pickling environment... done
-checking consistency... /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/ADCtheme/README.rst:: WARNING: document isn't included in any toctree
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/cloud/doc.rst:: WARNING: document isn't included in any toctree
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/redcloud/doc.rst:: WARNING: document isn't included in any toctree
-done
+checking consistency... done
 preparing documents... done
-writing output... [ 20%] _themes/ADCtheme/README
-writing output... [ 40%] _themes/cloud/doc
-writing output... [ 60%] _themes/redcloud/doc
-writing output... [ 80%] index
+writing output... [ 50%] index
 writing output... [100%] quickref
 
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/cloud/doc.rst:161: WARNING: unknown document: cloud_theme_test
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir/_themes/redcloud/doc.rst:161: WARNING: unknown document: cloud_theme_test
 writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 8 warnings.
+build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 
@@ -39295,7 +47210,10 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
 
-
+Overfull \hbox (4.55762pt too wide) 
+\T1/ptm/m/n/10 HTML. Other out-lets in-clude Google's \T1/pcr/m/n/10 blogger.co
+m\T1/ptm/m/n/10 , Wikipedia/Wikibooks, IPython
+ [1]
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
@@ -39307,24 +47225,40 @@ rspace Inc.
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
-[1]
-Overfull \hbox (4.50082pt too wide) in alignment at lines 191--199
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 338--346
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 199--207
+Overfull \hbox (4.50082pt too wide) in alignment at lines 346--354
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 207--209
+Overfull \hbox (4.50082pt too wide) in alignment at lines 354--356
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 209--210
+Overfull \hbox (4.50082pt too wide) in alignment at lines 356--357
  [] [] 
 
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ========= Heading ========
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 210--247
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ======= Appendix: heading
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ===== Appendix: heading
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ======= Exercise: heading
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ===== Exercise: heading
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 357--418
  [] [] 
+[2]
+Overfull \hbox (15.61775pt too wide) 
+\T1/ptm/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with \T1/pcr/
+m/n/10 __Abstract.__ \T1/ptm/m/n/10 or \T1/pcr/m/n/10 __Summary.__
 
 Overfull \hbox (27.20697pt too wide) 
 \T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
@@ -39333,17 +47267,17 @@ unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 Note that sublists are consistently indented by one or more bl
 anks..  
-[2]
+[3]
 Overfull \hbox (17.00006pt too wide) 
 [] \T1/pcr/m/n/10 - keyword3: and its description may fit on one line 
-[3]
+[4]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments 
 
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[4]
+[5]
 Overfull \hbox (5.00006pt too wide) 
 []    \T1/pcr/m/n/10 return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z) 
 
@@ -39362,7 +47296,7 @@ eg-u-lar ex-pres-sion \T1/pcr/m/n/10 ^doconce split_rst\T1/ptm/m/n/10 .
 Overfull \hbox (8.347pt too wide) 
 \T1/ptm/m/n/10 cess-ful out-put in re-Struc-tred-Text), not di-rectly af-ter a 
 sec-tion/paragraph
-[5]
+[6]
 Overfull \hbox (137.00006pt too wide) 
 []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
 {u} = 0.\]  
@@ -39370,10 +47304,6 @@ Overfull \hbox (137.00006pt too wide)
 Overfull \hbox (137.00006pt too wide) 
 []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
 {u} = 0.\] 
-
-Overfull \hbox (37.5697pt too wide) 
-[]\T1/ptm/m/n/10 One can use \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex",
- "html", "sphinx",
 
 Overfull \hbox (12.58893pt too wide) 
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
@@ -39383,29 +47313,28 @@ m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 
 
 
-
+ [7]
 Overfull \hbox (449.00006pt too wide) 
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label}  
-[6]
+
 Overfull \hbox (437.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label} 
 
-Overfull \hbox (2.15817pt too wide) 
-[]\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
-1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_image 
 
-Overfull \hbox (113.00006pt too wide) 
-\T1/pcr/m/n/10 montage file1.png file2.png ... file4.png -geometry +2+2  result
-.png  
+Overfull \hbox (233.00006pt too wide) 
+\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 he
+ight=315] YouTube movie.  
 
-Overfull \hbox (71.00006pt too wide) 
-[]\T1/pcr/m/n/10 convert -background white file1.png file2.png +append tmp.png 
+Overfull \hbox (119.00006pt too wide) 
+[]\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo
+ movie. 
 
-
-LaTeX Warning: Hyper reference `section-types' on page 7 undefined on input lin
-e 745.
+LaTeX Warning: Hyper reference `section-types' on page 8 undefined on input lin
+e 950.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -39423,7 +47352,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `=
 `)  |  
-
+[8]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | section                 | `======= Heading =======`    (7 `=
 `)  |  
@@ -39443,15 +47372,15 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
-[7]
+
 Overfull \hbox (54.34767pt too wide) 
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
 \T1/ptm/m/n/10 ,
-
-Overfull \hbox (37.56873pt too wide) 
+[9]
+Overfull \hbox (26.41858pt too wide) 
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
-IBFILE: name_bib.bib, name_bib.rst,
+IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
 
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
@@ -39460,14 +47389,15 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
-[8]
-Overfull \hbox (2291.00006pt too wide) 
+[10]
+Overfull \hbox (2543.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
-ge_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_a
-nswers split_rst split_html slides_html latin2html latex_header latex_footer bb
-l2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code
-_links latex_exercise_toc insertdocstr old2new_format  
+ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
+ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
+ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
+ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pyg
+mentize makefile  
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -39500,7 +47430,7 @@ Overfull \hbox (47.00006pt too wide)
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 # gwiki format requires substitution of figure file names by U
 RLs  
-[9]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
 
@@ -39512,7 +47442,7 @@ Overfull \hbox (29.00006pt too wide)
 
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as  
-
+[11]
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 # remove all files that the doconce format can regenerate  
 
@@ -39529,7 +47459,7 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
-[10]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
@@ -39537,9 +47467,6 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
-
-Overfull \hbox (11.00006pt too wide) 
-[]\T1/pcr/m/n/10 doconce remove_exercise_answers file_in_some_format  
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
@@ -39552,6 +47479,12 @@ Overfull \hbox (107.00006pt too wide)
 uote}  
 
 Overfull \hbox (17.00006pt too wide) 
+[]\T1/pcr/m/n/10 # make HTML file via pandoc from Markdown (.md) file  
+[12]
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 # make LaTeX file via pandoc from Markdown (.md) file  
+
+Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
 
 Overfull \hbox (53.00006pt too wide) 
@@ -39560,11 +47493,23 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning them
  up)  
-[11]
+
+Overfull \hbox (137.00006pt too wide) 
+[]\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually manu
+al fixing)  
+
+Overfull \hbox (167.00006pt too wide) 
+[]\T1/pcr/m/n/10 # generate a make.sh script for translating a doconce file to 
+various formats  
+
+Overfull \hbox (83.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce makefile docname doconcefile [html sphinx pdflatex ...
+] 
+
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
-
+[13]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
@@ -39585,7 +47530,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-[12]
+[14]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -39603,7 +47548,7 @@ Overfull \hbox (2.38828pt too wide)
 
 Overfull \hbox (28.47902pt too wide) 
 []\T1/ptm/m/n/10 specialy
-[13]
+[15]
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
@@ -39615,7 +47560,7 @@ Overfull \hbox (4.19656pt too wide)
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[14] (./quickref.rst.aux)
+[16] (./quickref.rst.aux)
 
 Package rerunfilecheck Warning: File `quickref.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -39629,7 +47574,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (14 pages, ).
+Output written on quickref.rst.dvi (16 pages, ).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -39685,7 +47630,10 @@ Package hyperref Message: Driver (default): hdvips.
 
 (./quickref.rst.out) (./quickref.rst.out) (./quickref.rst.toc)
 
- [1]
+Overfull \hbox (4.55762pt too wide) 
+\T1/ptm/m/n/10 HTML. Other out-lets in-clude Google's \T1/pcr/m/n/10 blogger.co
+m\T1/ptm/m/n/10 , Wikipedia/Wikibooks, IPython
+[1]  [2]
 Overfull \hbox (467.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
@@ -39698,26 +47646,40 @@ Overfull \hbox (71.00006pt too wide)
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 191--199
+Overfull \hbox (4.50082pt too wide) in alignment at lines 338--346
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 199--207
+Overfull \hbox (4.50082pt too wide) in alignment at lines 346--354
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 207--209
+Overfull \hbox (4.50082pt too wide) in alignment at lines 354--356
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 209--210
+Overfull \hbox (4.50082pt too wide) in alignment at lines 356--357
  [] [] 
 
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ========= Heading ========
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 210--247
- [] [] 
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ======= Appendix: heading
 
-Overfull \vbox (8.32294pt too high) has occurred while \output is active
-[2]
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ===== Appendix: heading
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ======= Exercise: heading
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ===== Exercise: heading
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 357--418
+ [] [] 
+[3]
+Overfull \hbox (15.61775pt too wide) 
+\T1/ptm/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with \T1/pcr/
+m/n/10 __Abstract.__ \T1/ptm/m/n/10 or \T1/pcr/m/n/10 __Summary.__
+
 Overfull \hbox (27.20697pt too wide) 
 \T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
 unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
@@ -39725,17 +47687,17 @@ unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 Note that sublists are consistently indented by one or more bl
 anks..  
-
+[4]
 Overfull \hbox (17.00006pt too wide) 
 [] \T1/pcr/m/n/10 - keyword3: and its description may fit on one line 
-[3]
+[5]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments 
-[4]
+
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-
+[6]
 Overfull \hbox (5.00006pt too wide) 
 []    \T1/pcr/m/n/10 return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z) 
 
@@ -39754,7 +47716,7 @@ eg-u-lar ex-pres-sion \T1/pcr/m/n/10 ^doconce split_rst\T1/ptm/m/n/10 .
 Overfull \hbox (8.347pt too wide) 
 \T1/ptm/m/n/10 cess-ful out-put in re-Struc-tred-Text), not di-rectly af-ter a 
 sec-tion/paragraph
-[5]
+[7]
 Overfull \hbox (137.00006pt too wide) 
 []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
 {u} = 0.\]  
@@ -39763,10 +47725,6 @@ Overfull \hbox (137.00006pt too wide)
 []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
 {u} = 0.\] 
 
-Overfull \hbox (37.5697pt too wide) 
-[]\T1/ptm/m/n/10 One can use \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex",
- "html", "sphinx",
-[6]
 Overfull \hbox (12.58893pt too wide) 
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
 m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
@@ -39775,7 +47733,7 @@ m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 
 
 
-
+ [8]
 Overfull \hbox (449.00006pt too wide) 
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label}  
@@ -39784,18 +47742,17 @@ Overfull \hbox (437.00006pt too wide)
 []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label} 
 
-Overfull \hbox (2.15817pt too wide) 
-[]\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
-1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_image 
 
-Overfull \hbox (113.00006pt too wide) 
-\T1/pcr/m/n/10 montage file1.png file2.png ... file4.png -geometry +2+2  result
-.png  
+Overfull \hbox (233.00006pt too wide) 
+\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 he
+ight=315] YouTube movie.  
 
-Overfull \hbox (71.00006pt too wide) 
-[]\T1/pcr/m/n/10 convert -background white file1.png file2.png +append tmp.png 
+Overfull \hbox (119.00006pt too wide) 
+[]\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo
+ movie. 
 
-[7]
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 |----------------c--------|------------------c------------------
 --|  
@@ -39831,16 +47788,16 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
-
+[9]
 Overfull \hbox (54.34767pt too wide) 
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
 \T1/ptm/m/n/10 ,
-[8]
-Overfull \hbox (37.56873pt too wide) 
-[]\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
-IBFILE: name_bib.bib, name_bib.rst,
 
+Overfull \hbox (26.41858pt too wide) 
+[]\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
+IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
+[10]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
  
@@ -39849,14 +47806,15 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 
-Overfull \hbox (2291.00006pt too wide) 
+Overfull \hbox (2543.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
-ge_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_a
-nswers split_rst split_html slides_html latin2html latex_header latex_footer bb
-l2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code
-_links latex_exercise_toc insertdocstr old2new_format  
-[9]
+ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
+ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
+ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
+ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pyg
+mentize makefile  
+
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
 i|cwiki|pandoc|st|epytext file.do.txt  
@@ -39867,7 +47825,7 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (197.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce subst [-s -m -x --restore] regex-pattern regex-replace
 ment file1 file2 ...  
-
+[11]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier
 ,  
@@ -39903,11 +47861,11 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 # remove all files that the doconce format can regenerate  
-[10]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
-
+[12]
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # edit URLs to local files and place them in _static  
 
@@ -39926,9 +47884,6 @@ Overfull \hbox (71.00006pt too wide)
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (11.00006pt too wide) 
-[]\T1/pcr/m/n/10 doconce remove_exercise_answers file_in_some_format  
-
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
 
@@ -39940,6 +47895,12 @@ Overfull \hbox (107.00006pt too wide)
 uote}  
 
 Overfull \hbox (17.00006pt too wide) 
+[]\T1/pcr/m/n/10 # make HTML file via pandoc from Markdown (.md) file  
+
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 # make LaTeX file via pandoc from Markdown (.md) file  
+
+Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
 
 Overfull \hbox (53.00006pt too wide) 
@@ -39948,7 +47909,19 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning them
  up)  
-[11]
+
+Overfull \hbox (137.00006pt too wide) 
+[]\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually manu
+al fixing)  
+[13]
+Overfull \hbox (167.00006pt too wide) 
+[]\T1/pcr/m/n/10 # generate a make.sh script for translating a doconce file to 
+various formats  
+
+Overfull \hbox (83.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce makefile docname doconcefile [html sphinx pdflatex ...
+] 
+
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
@@ -39962,14 +47935,14 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
-
+[14]
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
  ===== 
 
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[12]
+
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
@@ -39984,7 +47957,7 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[13]
+[15]
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
@@ -39995,7 +47968,7 @@ Overfull \hbox (28.47902pt too wide)
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[14]
+[16]
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
@@ -40003,13 +47976,13 @@ Overfull \hbox (4.19656pt too wide)
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[15] (./quickref.rst.aux)
+[17] (./quickref.rst.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (15 pages, ).
+Output written on quickref.rst.dvi (17 pages, ).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
