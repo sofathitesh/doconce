@@ -258,7 +258,7 @@ def define(FILENAME_EXTENSION,
         'chapter':       lambda m: '# '    + m.group('subst'),
         'section':       lambda m: '## '   + m.group('subst'),
         'subsection':    lambda m: '### '  + m.group('subst'),
-        'subsubsection': lambda m: '#### ' + m.group('subst'),
+        'subsubsection': lambda m: '#### ' + m.group('subst') + '\n',
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'*\g<type>.* \g<text>\n\n\g<rest>',
         'comment':       '<!-- %s -->',

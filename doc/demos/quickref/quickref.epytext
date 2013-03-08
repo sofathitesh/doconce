@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 7, 2013
+DATE: Mar 8, 2013
 B{WARNING: This quick reference is very incomplete!}
 
 I{Mission.} Enable writing documentation with much mathematics and
@@ -479,7 +479,7 @@ and otherwise be represented by a link. The syntax is::
 
 The latter results in
 
- Vimeo movie.: U{http://vimeo.com/55562330<http://vimeo.com/55562330>}
+ Vimeo movie. U{http://vimeo.com/55562330<http://vimeo.com/55562330>}
 
 
 Tables

@@ -117,7 +117,7 @@ in your document. On the website, click on *Clone*, copy the
 command and run it:
 
 !bc sys
-hg clone  ssh://hg@bitbucket.org/logg/publish
+hg clone https://bitbucket.org/logg/publish
 !ec
 Thereafter go to the `publish` directory and run the `setup.py` script
 for installing Publish:

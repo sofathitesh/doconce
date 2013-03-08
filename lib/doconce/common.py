@@ -227,12 +227,12 @@ def default_movie(m):
     elif 'youtube.com' in filename:
         # Rename embedded files to ordinary YouTube
         filename = filename.replace('embed/', 'watch?v=')
-        text = '%s: URL:"%s"' % (caption, filename)
+        text = '%s URL:"%s"' % (caption, filename)
     elif 'vimeo.com' in filename:
         # Rename embedded files to ordinary Vimeo
         filename = filename.replace('http://player.vimeo.com/video',
                                     'http://vimeo.com')
-        text = '%s: URL:"%s"' % (caption, filename)
+        text = '%s URL:"%s"' % (caption, filename)
     else:
         # Make an HTML file where the movie file can be played
         # (alternative to launching a player manually)
@@ -650,12 +650,12 @@ INLINE_TAGS = {
     #r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
     r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
 
-    'inlinecomment':
+    'inlinecomment':  # needs re.DOTALL
     r'''\[(?P<name>[A-Za-z0-9_'+-]+?):\s+(?P<comment>.*?)\]''',
 
     # __Abstract.__ Any text up to a headline === or toc-like keywords
     # (TOC is already processed)
-    'abstract':
+    'abstract':  # needs re.DOTALL | re.MULTILINE
     r"""^\s*__(?P<type>Abstract|Summary).__\s*(?P<text>.+?)(?P<rest>TOC:|\\tableofcontents|Table of [Cc]ontents|\s*[_=]{3,9})""",
     #r"""^\s*__(?P<type>Abstract|Summary).__\s*(?P<text>.+?)(?P<rest>\s*[_=]{3,9})""",
 
@@ -682,7 +682,7 @@ INLINE_TAGS = {
     #r'^\s*_{3}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{3}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     #r'^\s*[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
-    r'^ *[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]{3} *$',
+    r'^ *[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]{3}\s*$',  # final \s for latex
 
     # __Two underscores for Inline Paragraph Title.__
     'paragraph':

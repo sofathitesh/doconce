@@ -66,9 +66,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
-\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+
 
 
 % insert custom LaTeX commands...
@@ -110,7 +112,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Mar 7, 2013
+Mar 8, 2013
 \end{center}
 
 \vspace{1cm}
@@ -573,7 +575,7 @@ labels in \Verb!align! environments work well.)
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\vskip-0.3in\centerline{{\large\sc Notice}}
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \Verb!sphinx!, makes it necessary
@@ -647,7 +649,7 @@ MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 \end{Verbatim}
 The latter results in
 
- Vimeo movie.: \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
+ Vimeo movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
 
 
 \subsection{Tables}

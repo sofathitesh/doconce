@@ -980,7 +980,7 @@ def define(FILENAME_EXTENSION,
         'chapter':       r'\n<h1>\g<subst></h1>',
         'section':       r'\n<h2>\g<subst></h2>',
         'subsection':    r'\n<h3>\g<subst></h3>',
-        'subsubsection': r'\n<h4>\g<subst></h4>',
+        'subsubsection': r'\n<h4>\g<subst></h4>\n',
         'paragraph':     r'<b>\g<subst></b>\n',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
         'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <!-- document title -->\n',
@@ -1073,7 +1073,9 @@ def define(FILENAME_EXTENSION,
     if heading_font_family is not None:
         if heading_font_family in google_fonts:
             import_heading_font = link % heading_font_family
-    css = '    ' + '\n    '.join([import_body_font, import_heading_font]) + '\n' + css
+    if import_body_font or import_heading_font:
+        css = '    ' + '\n    '.join([import_body_font, import_heading_font]) \
+              + '\n' + css
     if body_font_family is not None:
         css = re.sub(r'font-family:.+;',
                      "font-family: '%s';" % body_font_family.replace('+', ' '),
@@ -1121,9 +1123,12 @@ def define(FILENAME_EXTENSION,
     # idx with verbatim is usually too specialized - remove them
     keywords = [keyword for keyword in keywords
                 if not '`' in keyword]
+    # keyword!subkeyword -> keyword subkeyword
+    keywords = ','.join(keywords).replace('!', ' ')
+
     if keywords:
-        meta_tags += '<meta name="keywords" content="%s">\n' % \
-                     ','.join(keywords)
+        meta_tags += '<meta name="keywords" content="%s">\n' % keywords
+
 
     INTRO['html'] = """\
 <?xml version="1.0" encoding="utf-8" ?>

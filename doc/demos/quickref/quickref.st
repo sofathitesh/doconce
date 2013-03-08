@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 7, 2013
+DATE: Mar 8, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -11,9 +11,7 @@ include Google's 'blogger.com', Wikipedia/Wikibooks, IPython
 notebooks, plus a wide variety of formats for documents without
 mathematics and code.
 
-
 Supported Formats
-
 
 Doconce currently translates files to the following formats:
 
@@ -36,9 +34,7 @@ less extent 'mwiki' and 'pandoc'. The HTML format supports blogging on
 Google and Wordpress.
 
 
-
 Emacs syntax support
-
 
 The file "https://doconce.googlecode.com/hg/misc/.doconce-mode.el":.doconce-mode.el in the Doconce source distribution
 gives a "Doconce Editing Mode" in Emacs. Store the file in the home
@@ -69,9 +65,7 @@ Ctrl+c slide                        slide outline
 Ctrl+c help                         print this table                    
 ==================================  ==================================  
 
-
 Title, Authors, and Date
-
 
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
@@ -105,9 +99,7 @@ current date is wanted, e.g., 'Feb 22, 2016'.
 The table of contents is removed by writing 'TOC: off'.
 
 
-
 Section Types
-
 
 ===========================================  ===========================================  
                 Section type                                    Syntax                    
@@ -133,17 +125,13 @@ A recommended convention is that an exercise is tied to the text,
 a problem can stand on its own, and a project is a comprehensive
 problem.
 
-
 Inline Formatting
-
 
 Words surrounded by '*' are emphasized: '*emphasized words*' becomes
 *emphasized words*. Similarly, an underscore surrounds words that
 appear in boldface: '_boldface_' become **boldface**.
 
-
 Lists
-
 
 There are three types of lists: *bullet lists*, where each item starts
 with '*', *enumeration lists*, where each item starts with 'o' and gets
@@ -216,9 +204,7 @@ And finally a description list:
  keyword3: --  
    and its description may fit on one line
 
-
 Comment lines
-
 
 Lines starting with '#' are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -239,9 +225,7 @@ Large portions of text can be left out using Preprocess. Just place
 '# #ifdef EXTRA' and '# #endif' around the text. The command line
 option '-DEXTRA' will bring the text alive again.
 
-
 Inline comments
-
 
 Inline comments meant as messages or notes to
 co-authors in particular
@@ -269,9 +253,7 @@ removed from the Doconce source by::
         doconce remove_inline_comments mydoc.do.txt
 
 
-
 Verbatim/Computer Code
-
 
 Inline verbatim code is typeset within back-ticks, as in::
 
@@ -348,9 +330,7 @@ Important warnings:
    output formats. A more robust approach is to replace the list by
    paragraphs with headings.
 
-
 LaTeX Mathematics
-
 
 Doconce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats 'html', 'sphinx', 'latex',
@@ -439,9 +419,7 @@ without LaTeX support. For 'html', 'sphinx', 'latex', 'pdflatex',
 rendered nicely anyway.
 
 
-
 Figures and Movies
-
 
 Figures and movies have almost equal syntax::
 
@@ -485,12 +463,10 @@ and otherwise be represented by a link. The syntax is::
 
 The latter results in
 
- Vimeo movie.: "http://vimeo.com/55562330":http://vimeo.com/55562330
-
+ Vimeo movie. "http://vimeo.com/55562330":http://vimeo.com/55562330
 
 
 Tables
-
 
 The table in the section "Section Types" was written with this
 syntax::
@@ -524,9 +500,7 @@ Note that
  - Many output formats are so primitive that heading and column alignment
    have no effect.
 
-
 Labels and References
-
 
 The notion of labels and references (as well as bibliography and index)
 is adopted
@@ -554,9 +528,7 @@ by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
 
-
 Citations and Bibliography
-
 
 Single citations are written as::
 
@@ -582,9 +554,7 @@ BibTeX '.bib' files can easily be combined to a Publish database
 (which Doconce needs to create bibliographies in other formats
 than LaTeX).
 
-
 Generalized Citations
-
 
 There is a *generalized referencing* feature in Doconce that allows
 a reference with 'ref' to have one formulation if the label is
@@ -615,9 +585,7 @@ LaTeX package 'xr' is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 'external' text will be the output.
 
-
 Index of Keywords
-
 
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
@@ -633,9 +601,7 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the 'latex',
 'pdflatex', 'rst', and 'sphinx' formats.
 
-
 Capabilities of The Program 'doconce'
-
 
 The 'doconce' program can be used for a number of purposes besides
 transforming a '.do.txt' file to some format. Here is the
@@ -757,9 +723,7 @@ list of capabilities::
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
 
 
-
 Exercises
-
 
 Doconce supports *Exercise*, *Problem*, *Project*, and *Example*.
 These are typeset
@@ -868,9 +832,7 @@ turn off output of answers and solutions, respectively, except for
 examples.
 
 
-
 Environments
-
 
 Doconce environments start with '!benvirname' and end with '!eenvirname',
 where 'envirname' is the name of the environment. Here is a listing of
@@ -888,9 +850,7 @@ the environments:
  - 'slidecell': indication of cells in a grid layout for elements on a
    slide
 
-
 Preprocessing
-
 
 Doconce documents may utilize a preprocessor, either 'preprocess' and/or
 'mako'. The former is a C-style preprocessor that allows if-tests
@@ -939,9 +899,7 @@ An "http://hplgit.github.com/bioinf-py/":example document contains
 some illustrations on how to utilize 'mako' (clone the GitHub project and
 examine the Doconce source and the 'doc/src/make.sh' script).
 
-
 Resources
-
 
  - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
