@@ -163,7 +163,7 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the `verb` typesetting... Also test backslashes
 like `\begin` and `\end` in inline verbatim text.
 
-Here is some color{red}{red} color and an attempt to write \color{green}{with
+Here is some color{red}{red} color and an attempt to write color{green}{with
 green color containing a linebreak.
 And one more.} Some formats will only display this correctly when
 HTML is the output format.
@@ -924,7 +924,7 @@ in comparison with the other admons.
 !ewarning
 
 !bsummary
-_Summary:_ Make some text with this summary.
+_Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.

@@ -126,7 +126,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcounter{exerno}
 
 
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
@@ -222,13 +222,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Mar 8, 2013}
+\date{Mar 11, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 8, 2013}}
+{\large\textsf{Mar 11, 2013}}
 
 \end{center}
 \vfill
@@ -237,7 +237,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Mar 8, 2013
+Mar 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -246,7 +246,7 @@ Mar 8, 2013
 
 
 \tableofcontents
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \listoftodos[List of inline comments]
 % #endif
 
@@ -406,7 +406,12 @@ problem.
 
 Words surrounded by \code{*} are emphasized: \code{*emphasized words*} becomes
 \emph{emphasized words}. Similarly, an underscore surrounds words that
-appear in boldface: \code{_boldface_} become \textbf{boldface}.
+appear in boldface: \code{_boldface_} becomes \textbf{boldface}. Colored words
+are also possible: the text
+\bccq
+`color{red}{two red words}`
+\eccq
+becomes \textcolor{red}{two red words}.
 
 \subsection{Lists}
 
@@ -528,8 +533,8 @@ option \code{-DEXTRA} will bring the text alive again.
 
 \subsection{Inline comments}
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 \bccq
 [name: running text]
@@ -538,6 +543,12 @@ where \code{name} is the name or ID of an author or reader making the comment,
 and \code{running text} is the comment. Here goes an example.
 \shortinlinecomment{hpl}{There must be a space after the colon,
 but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with {\LaTeX}
+output and the \code{-DTOTONOTES} option to \code{ptex2tex} or \code{doconce ptex2tex},
+colorful margin or inline boxes (using the \code{todonotes} package)
+make it very easy to spot the comments.
+
 Running
 \bsys
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -923,7 +934,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -1035,6 +1046,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 \eshpro
 
 \subsection{Exercises}
