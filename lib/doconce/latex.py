@@ -19,6 +19,21 @@ def underscore_in_code(m):
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
 
+    # Replace - by -- in some cases for nicer LaTeX look of hyphens:
+    from_to = [
+        # equation refs
+        (r'(\(ref\{.+?\}\))-(\(ref\{.+?\}\))', r'\g<1>--\g<2>'),
+        # like Navier-Stokes, but not `Q-1`
+        (r'([^`]\w)-(\w[^`])', r'\g<1>--\g<2>'),
+        # single - at end of line
+        (r' +-$', ' --'),
+        # single - at beginning of line
+        (r'^ *- +', ' -- '),
+               ]
+    for pattern, replacement in from_to:
+        filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
+
+
     # References to external documents (done before !bc blocks in
     # case such blocks explain the syntax of the external doc. feature)
     pattern = r'^%\s*[Ee]xternaldocuments?:\s*(.+)$'

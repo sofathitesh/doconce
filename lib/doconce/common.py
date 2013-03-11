@@ -124,32 +124,40 @@ def python_online_tutor(code, return_tp='iframe'):
     else:
         print 'BUG'; sys.exit(1)
 
-def align2equations(filestr):
+def align2equations(filestr, format):
     """Turn align environments into separate equation environments."""
     if not '{align}' in filestr:
         return filestr
 
+    # sphinx: just replace align, pandoc/ipynb: replace align and align*
+    # technique: add } if sphinx
+    postfixes = ['}'] if format == 'sphinx' else ['}', '*}']
+
     lines = filestr.splitlines()
     inside_align = False
     inside_code = False
-    for i in range(len(lines)):
-        if lines[i].startswith('!bc'):
-            inside_code = True
-        if lines[i].startswith('!ec'):
-            inside_code = False
-        if inside_code:
-            continue
+    for postfix in postfixes:
+        for i in range(len(lines)):
+            if lines[i].startswith('!bc'):
+                inside_code = True
+            if lines[i].startswith('!ec'):
+                inside_code = False
+            if inside_code:
+                continue
 
-        if r'\begin{align}' in lines[i]:
-            inside_align = True
-            lines[i] = lines[i].replace(r'\begin{align}', r'\begin{equation}')
-        if inside_align and '\\\\' in lines[i]:
-            lines[i] = lines[i].replace('\\\\', '\n' + r'\end{equation}' + '\n!et\n\n!bt\n' + r'\begin{equation} ')
-        if inside_align and '&' in lines[i]:
-            lines[i] = lines[i].replace('&', '')
-        if r'\end{align}' in lines[i]:
-            inside_align = False
-            lines[i] = lines[i].replace(r'\end{align}', r'\end{equation}')
+            if r'\begin{align%s' % postfix in lines[i]:
+                inside_align = True
+                lines[i] = lines[i].replace(
+                r'\begin{align%s' % postfix, r'\begin{equation%s' % postfix)
+            if inside_align and '\\\\' in lines[i]:
+                lines[i] = lines[i].replace(
+                '\\\\', '\n' + r'\end{equation%s' % postfix + '\n!et\n\n!bt\n' + r'\begin{equation%s ' % postfix)
+            if inside_align and '&' in lines[i]:
+                lines[i] = lines[i].replace('&', '')
+            if r'\end{align%s' % postfix in lines[i]:
+                inside_align = False
+                lines[i] = lines[i].replace(
+                r'\end{align%s' % postfix, r'\end{equation%s' % postfix)
     filestr = '\n'.join(lines)
     return filestr
 

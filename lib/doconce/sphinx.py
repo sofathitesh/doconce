@@ -380,8 +380,11 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     #
     # After transforming align environments to separate equations
     # the problem with multiple math labels has disappeared.
-    # Any output of such labels means an error in the align -> equation
-    # transformation...
+    # (doconce.py applies align2equations, which takes all align
+    # envirs and translates them to separate equations, but align*
+    # environments are allowed.
+    # Any output of labels in align means an error in the
+    # align -> equation transformation...)
     math_labels = []
     multiple_math_labels = []  # sphinx has problems with multiple math labels
     for i in range(len(tex_blocks)):

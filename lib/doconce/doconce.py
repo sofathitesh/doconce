@@ -303,7 +303,7 @@ def syntax_check(filestr, format):
         for command in commands:
             if '\\' + command in lines[i] and not inside_bt:
                 if '`' not in lines[i] and not inside_bc:  # not verbatim
-                    print '\nError: math equation with \n%s\nis not inside !bt - !et environment' % command
+                    print '\n*** error in math equation: command\n%s\nis not inside !bt - !et environment' % command
                     print '\n'.join(lines[i-3:i+3])
                     _abort()
 
@@ -330,7 +330,7 @@ def syntax_check(filestr, format):
                     print '\n*** warning:'
                 print 'Not recommended for sphinx output: math environment %s' % command
                 if not warning_given:
-                    print '(use equation, \[ \], or align/align*)'
+                    print '(use equation, equation*, \[ \], or align/align*)'
                     warning_given = True
     """
     """
@@ -1962,9 +1962,9 @@ def doconce2format(filestr, format):
         if filestr.endswith('!ec') or filestr.endswith('!et'):
             filestr += '\n'*10
 
-    # Sphinx hack for transforming align envirs to separate equations
+    # Hack for transforming align envirs to separate equations
     if format in ("sphinx", "pandoc", "ipynb"):
-        filestr = align2equations(filestr)
+        filestr = align2equations(filestr, format)
         debugpr('%s\n**** The file after {align} envirs are rewritten as separate equations:\n\n%s\n\n' % \
           ('*'*80, filestr))
 

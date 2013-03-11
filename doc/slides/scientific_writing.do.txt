@@ -66,7 +66,7 @@ FIGURE: [fig/jungle_with_mess.jpg, width=500]
 !eslidecell
 
 !split
-======= Popular tools anno 2012 =======
+======= Popular tools anno 2013 =======
 
 !bpop
  * _LaTeX_: de facto standard in math-instensive sciences
@@ -300,24 +300,24 @@ __This is a paragraph heading.__
 !bc
  * Bullet list items start with `*`
    and may span several lines
- * Ordered (enumerated) list items start with `o`
  * *Emphasized words* are possible
  * _Boldface words_ are also possible
+ * color{red}{colored words} too
  * `inline verbatim code` is featured
-   * sublists too
-   * just indent...
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
 !ec
 
 This gets rendered as
 
  * Bullet lists start with `*`
    and may span several lines
- * Ordered (enumerated) list items start with `o`
  * *Emphasized words* are possible
  * _Boldface words_ are also possible
+ * color{red}{colored words} too
  * `inline verbatim code` is featured
-   * sublists too
-   * just indent...
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
 
 !split
 ======= Doconce: labels, references, index items =======

@@ -24,19 +24,25 @@ def pandoc_author(authors_and_institutions, auth2index,
 def pandoc_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
     # Note: the tex code require the MathJax fix of doconce md2html
+    # to insert right MathJax extensions to interpret align and labels
+    # correctly.
+    # (Also, doconce.py runs align2equations so there are no align/align*
+    # environments in tex blocks.)
     for i in range(len(tex_blocks)):
-        # Remove \[ and \] in single equations
+        # Remove latex envir in single equations
         tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
         tex_blocks[i] = tex_blocks[i].replace(r'\]', '')
+        tex_blocks[i] = tex_blocks[i].replace(r'\begin{equation*}', '')
+        tex_blocks[i] = tex_blocks[i].replace(r'\end{equation*}', '')
         #tex_blocks[i] = tex_blocks[i].replace(r'\[', '$$')
         #tex_blocks[i] = tex_blocks[i].replace(r'\]', '$$')
         # Check for illegal environments
         m = re.search(r'\\begin\{(.+?)\}', tex_blocks[i])
         if m:
             envir = m.group(1)
-            if envir not in ('equation', 'align*', 'align'):
+            if envir not in ('equation', 'equation*', 'align*', 'align'):
                 print """\
-*** warning: latex envir \\begin{%s} does not work well
+*** warning: latex envir \\begin{%s} does not work well.
 """ % envir
         # Add $$ on each side of the equation
         tex_blocks[i] = '$$\n' + tex_blocks[i] + '$$\n'

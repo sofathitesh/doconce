@@ -65,21 +65,23 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             blocks[i] = ['text', blocks[i]]
 
     # Go through tex_blocks and wrap in $$
+    # (doconce.py runs align2equations so there are no align/align*
+    # environments in tex blocks)
     for i in range(len(tex_blocks)):
-        # Remove \[ and \] in single equations
+        # Remove \[ and \] or \begin/end{equation*} in single equations
         tex_blocks[i] = tex_blocks[i].replace(r'\[', '')
         tex_blocks[i] = tex_blocks[i].replace(r'\]', '')
+        tex_blocks[i] = tex_blocks[i].replace(r'\begin{equation*}', '')
+        tex_blocks[i] = tex_blocks[i].replace(r'\end{equation*}', '')
         # Check for illegal environments
         m = re.search(r'\\begin\{(.+?)\}', tex_blocks[i])
         if m:
             envir = m.group(1)
-            if envir not in ('equation', 'align*', 'align'):
+            if envir not in ('equation', 'equation*', 'align*', 'align'):
                 print """\
-*** warning: latex envir \\begin{%s} does not work well:
-    pandoc-extended markdown syntax handles only single equations
-    (but doconce splits align environments into single equations).
-    Labels in equations do not work with pandoc-extended markdown
-    output.
+*** warning: latex envir \\begin{%s} does not work well in Markdown.
+    Stick to \\[ ... \\], equation, equation*, align, or align*
+    environments in math environments.
 """ % envir
         eq_type = 'heading'  # or '$$'
         eq_type = '$$'
@@ -114,9 +116,9 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     ws = new_worksheet()
     prompt_number = 1
     for block_tp, block in blocks:
-        if block_tp == 'text' or block_tp == 'math':
+        if (block_tp == 'text' or block_tp == 'math') and block != '':
             ws.cells.append(new_text_cell(u'markdown', source=block))
-        elif block_tp == 'code':
+        elif block_tp == 'code' and block != '':
             ws.cells.append(new_code_cell(input=block,
                                           prompt_number=prompt_number,
                                           collapsed=False))
@@ -135,10 +137,9 @@ def ipynb_code(filestr, code_blocks, code_block_types,
 
     # must do the replacements here at the very end when json is written out
     # \eqref and labels will not work, but labels do no harm
-    filestr = filestr.replace(' label{', ' \\\\label{')
-    pattern = r'^label\{'
-    filestr = re.sub(pattern, '\\\\label{', filestr, flags=re.MULTILINE)
-    # \eqref crashes the notebook
+    filestr = re.sub(r'([^\\])label\{', r'\g<1>\\\\label{', filestr,
+                     flags=re.MULTILINE)
+    # \eqref crashes the notebook, may be better with full MathJax support?
     #filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'Eq (\g<1>)', filestr)
 
