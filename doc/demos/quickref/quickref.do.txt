@@ -130,7 +130,12 @@ problem.
 
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: `_boldface_` become _boldface_.
+appear in boldface: `_boldface_` becomes _boldface_. Colored words
+are also possible: the text
+!bc
+`color{red}{two red words}`
+!ec
+becomes color{red}{two red words}.
 
 ===== Lists =====
 
@@ -224,8 +229,8 @@ option `-DEXTRA` will bring the text alive again.
 
 ===== Inline comments =====
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 !bc
 [name: running text]
@@ -234,6 +239,12 @@ where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the `-DTOTONOTES` option to `ptex2tex` or `doconce ptex2tex`,
+colorful margin or inline boxes (using the `todonotes` package)
+make it very easy to spot the comments.
+
 Running
 !bc sys
 doconce format html mydoc.do.txt --skip_inline_comments

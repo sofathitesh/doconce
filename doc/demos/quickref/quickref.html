@@ -145,7 +145,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Mar 8, 2013</h4></center> <!-- date -->
+<center><h4>Mar 11, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -327,7 +327,13 @@ problem.
 <p>
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
-appear in boldface: <code>_boldface_</code> become <b>boldface</b>.
+appear in boldface: <code>_boldface_</code> becomes <b>boldface</b>. Colored words
+are also possible: the text
+<!-- begin verbatim block -->
+<pre><code>`color{red}{two red words}`
+</code></pre>
+<!-- end verbatim block -->
+becomes <font color="red">two red words</font>.
 
 <p>
 
@@ -455,8 +461,8 @@ option <code>-DEXTRA</code> will bring the text alive again.
 <h3>Inline comments  <a name="___sec7"></a></h3>
 
 <p>
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 <!-- begin verbatim block -->
 <pre><code>[name: running text]
@@ -470,6 +476,13 @@ and <code>running text</code> is the comment. Here goes an example.
 but the running text can occupy multiple lines.</em>]
 <!-- end inline comment -->
 
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the <code>-DTOTONOTES</code> option to <code>ptex2tex</code> or <code>doconce ptex2tex</code>,
+colorful margin or inline boxes (using the <code>todonotes</code> package)
+make it very easy to spot the comments.
+
+<p>
 Running
 <!-- begin verbatim block  sys-->
 <pre><code>doconce format html mydoc.do.txt --skip_inline_comments
@@ -931,7 +944,7 @@ list of capabilities:
 <p>
 <!-- begin verbatim block  shpro-->
 <pre><code>Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -1043,6 +1056,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 </code></pre>
 <!-- end verbatim block -->
 

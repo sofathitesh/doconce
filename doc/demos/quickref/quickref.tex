@@ -63,13 +63,8 @@ final,                   % or draft (marks overfull hboxes)
 \newcounter{exerno}
 
 
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
-\usepackage[shadow]{todonotes}
-\newcommand{\shortinlinecomment}[3]{%
-\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
- \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
-\newcommand{\longinlinecomment}[3]{%
-\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
 
 
 
@@ -112,7 +107,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Mar 8, 2013
+Mar 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -120,7 +115,6 @@ Mar 8, 2013
 
 
 \tableofcontents
-\listoftodos[List of inline comments]
 
 \vspace{1cm} % after toc
 
@@ -278,7 +272,12 @@ problem.
 
 Words surrounded by \Verb!*! are emphasized: \Verb!*emphasized words*! becomes
 \emph{emphasized words}. Similarly, an underscore surrounds words that
-appear in boldface: \Verb!_boldface_! become \textbf{boldface}.
+appear in boldface: \Verb!_boldface_! becomes \textbf{boldface}. Colored words
+are also possible: the text
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+`color{red}{two red words}`
+\end{Verbatim}
+becomes \textcolor{red}{two red words}.
 
 \subsection{Lists}
 
@@ -400,8 +399,8 @@ option \Verb!-DEXTRA! will bring the text alive again.
 
 \subsection{Inline comments}
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 [name: running text]
@@ -410,6 +409,12 @@ where \Verb!name! is the name or ID of an author or reader making the comment,
 and \Verb!running text! is the comment. Here goes an example.
 \shortinlinecomment{hpl}{There must be a space after the colon,
 but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with {\LaTeX}
+output and the \Verb!-DTOTONOTES! option to \Verb!ptex2tex! or \Verb!doconce ptex2tex!,
+colorful margin or inline boxes (using the \Verb!todonotes! package)
+make it very easy to spot the comments.
+
 Running
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -794,7 +799,7 @@ list of capabilities:
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -906,6 +911,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 \end{Verbatim}
 
 \subsection{Exercises}

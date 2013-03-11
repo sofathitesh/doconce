@@ -1136,6 +1136,7 @@ final,                   % or draft (marks overfull hboxes)
 }\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
 \end{wrapfigure}}
 % #else
+% gray box of 80% width
 \newcommand{\summarybox}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
@@ -1149,7 +1150,7 @@ final,                   % or draft (marks overfull hboxes)
     if has_inline_comments:
         INTRO['latex'] += r"""
 
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}"""
         if option('skip_inline_comments'):
             INTRO['latex'] += r"""

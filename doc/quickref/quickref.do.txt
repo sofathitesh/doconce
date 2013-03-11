@@ -239,10 +239,11 @@ where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
-The inline comments have simple typesetting in most formats (boldface
-name and everything surrounded by parenthesis), but with LaTeX
-output colorful margin or inline boxes (using the `todonotes` package)
-make it easy to spot the comments.
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the `-DTOTONOTES` option to `ptex2tex` or `doconce ptex2tex`,
+colorful margin or inline boxes (using the `todonotes` package)
+make it very easy to spot the comments.
 
 Running
 !bc sys
