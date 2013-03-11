@@ -75,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 8, 2013
+Mar 11, 2013
 
 \end{DUfieldlist}
 
@@ -437,7 +437,15 @@ problem.
 
 Words surrounded by \texttt{*} are emphasized: \texttt{*emphasized words*} becomes
 \emph{emphasized words}. Similarly, an underscore surrounds words that
-appear in boldface: \texttt{\_boldface\_} become \textbf{boldface}.
+appear in boldface: \texttt{\_boldface\_} becomes \textbf{boldface}. Colored words
+are also possible: the text:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+`color\{red\}\{two~red~words\}`
+}
+\end{quote}
+
+becomes <font color=``red''>two red words</font>.
 
 
 %___________________________________________________________________________
@@ -619,8 +627,8 @@ option \texttt{-DEXTRA} will bring the text alive again.
   \label{inline-comments}%
 }
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -632,6 +640,12 @@ where \texttt{name} is the name or ID of an author or reader making the comment,
 and \texttt{running text} is the comment. Here goes an example.
 (\textbf{hpl}: There must be a space after the colon,
 but the running text can occupy multiple lines.)
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the \texttt{-DTOTONOTES} option to \texttt{ptex2tex} or \texttt{doconce ptex2tex},
+colorful margin or inline boxes (using the \texttt{todonotes} package)
+make it very easy to spot the comments.
+
 Running:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -1146,7 +1160,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~pygmentize~makefile\\
+commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~pygmentize~makefile~diff~gitdiff~fix\_bibtex4publish\\
 ~\\
 ~\\
 \#~transform~doconce~file~to~another~format\\
@@ -1257,7 +1271,17 @@ doconce~latex2doconce~latexfile\\
 doconce~pygmentize~myfile~{[}pygments-style{]}\\
 ~\\
 \#~generate~a~make.sh~script~for~translating~a~doconce~file~to~various~formats\\
-doconce~makefile~docname~doconcefile~{[}html~sphinx~pdflatex~...{]}
+doconce~makefile~docname~doconcefile~{[}html~sphinx~pdflatex~...{]}\\
+~\\
+\#~fix~common~problems~in~bibtex~files~for~publish~import\\
+doconce~fix\_bibtex4publish~file1.bib~file2.bib~...\\
+~\\
+\#~find~differences~between~two~files\\
+doconce~diff~file1.do.txt~file2.do.txt~{[}diffprog{]}\\
+(diffprog~can~be~difflib,~diff,~pdiff,~latexdiff,~kdiff3,~diffuse,~...)\\
+~\\
+\#~find~differences~between~the~last~two~Git~versions~of~several~files\\
+doconce~gitdiff~file1~file2~file3~...
 }
 \end{quote}
 
