@@ -302,6 +302,8 @@ Preprocessor variables to be defined or undefined are
  * `MINTED` for inclusion of the minted package for typesetting of
    code with the Pygments tool (which requires `latex`
    or `pdflatex` to be run with the `-shell-escape` option)
+ * `TOTONOTES` for using the fancy `todonotes` package for typesetting
+   inline comments (looks much like track changes in MS Word).
 
 If you are not satisfied with the Doconce preamble, you can provide
 your own preamble by adding the command-line option `--latex-preamble=myfile`.

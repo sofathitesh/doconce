@@ -76,7 +76,9 @@ doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
 doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage testdoc
+# A4PAPER trigger summary environment to be smaller paragraph
+# within the text (fine for proposals or articles).
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works

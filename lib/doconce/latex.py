@@ -831,7 +831,7 @@ def define(FILENAME_EXTENSION,
         # \code{\latexcommand{arg1}} style formatting does not work well
         # with ptex2tex (the regex will not include the proper second }
         #'verbatim':      r'\g<begin>{\footnotesize{10pt}{10pt}\Verb!\g<subst>!\g<end>',
-        'citation':      r'~\\cite{\g<subst>}',
+        'colortext':     r'\\textcolor{\g<color>}{\g<text>}',
         #'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'linkURL2':      r'\href{{\g<url>}}{\g<link>}',
         'linkURL3':      r'\href{{\g<url>}}{\g<link>}',
@@ -955,7 +955,7 @@ def define(FILENAME_EXTENSION,
         TOC['latex'] = lambda s: r'\tableofcontents' + '\n\n' + r'\vspace{1cm} % after toc' + '\n\n'
     else:
         TOC['latex'] = lambda s: r"""\tableofcontents
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \listoftodos[List of inline comments]
 % #endif
 

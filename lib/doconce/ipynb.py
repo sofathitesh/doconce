@@ -214,7 +214,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2v': r'[`\g<link>`](\g<url>)',
         'linkURL3v': r'[`\g<link>`](\g<url>)',
         'plainURL':  r'<\g<url>>',
-        # "Reference links" in pandoc are not yet supported
+        'colortext': r'<font color="\g<color>">\g<text></font>',
         'title':     r'# \g<subst>',
         'author':    ipynb_author,
         'date':      '_\g<subst>_\n',

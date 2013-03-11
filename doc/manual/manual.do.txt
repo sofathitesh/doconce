@@ -392,7 +392,8 @@ idx{inline tagging} idx{emphasized words} idx{boldface words} idx{verbatim text}
 idx{inline comments}
 
 Doconce supports tags for *emphasized phrases*, _boldface phrases_,
-and `verbatim text` (also called type writer text, for inline code)
+and `verbatim text` (also called type writer text, for inline code),
+color{blue}{colored words},
 plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$|$v = sin(x)$.
 
 === Emphasized Words ===
@@ -531,10 +532,11 @@ Doconce also supports inline comments in the text:
 !ec
 where `name` is the name of the author of the command, and `comment` is a
 plain text text. Note that there must be a space after the colon,
-otherwise the comment is not recognized. Inline comments
+otherwise the comment is not recognized. [hpl: Inline comments
 can span
 several lines,
-if desired.
+if desired.]
+
 The name and comment are visible in the output unless `doconce format`
 is run with a command-line argument `--skip_inline_comments`
 (see Section ref{doconce2formats} for an example). Inline comments
@@ -542,6 +544,11 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
 (see Section ref{doconce2formats}).
+
+Inline comments are typeset in a simple way (boldface name and the
+comment in parenthesis), but in LaTeX very visible color boxes
+are used (via the `todonotes` package).
+
 
 === Inline Mathematics ===
 
@@ -784,10 +791,20 @@ your version control system).
 
 === Requirements to input data ===
 
+!bnotice
 Note that Publish only accepts BibTeX files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
 curly braces. You may need to edit your BibTeX files to meet this
-demand. Although references are visible as numbers only in the
+demand.
+!enotice
+
+The utility `doconce fix_bibtex4publish file.bib` fixes several known
+issues with BibTeX files such that Publish has a better chance of
+accepting the entries. Run this utility first, then run Publish,
+respond to any requirements that Publish spits out, remove `papers.pub`
+if it exists, and run the import statements again.
+
+Although references are visible as numbers only in the
 output, it is recommended to have apply a nice, consistent
 typesetting of your keys. It is suggested to use the following scheme:
 
