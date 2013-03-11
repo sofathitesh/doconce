@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 8, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 11, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -547,7 +547,12 @@ problem.</p>
 <h1><a class="toc-backref" href="#id6">Inline Formatting</a></h1>
 <p>Words surrounded by <tt class="docutils literal">*</tt> are emphasized: <tt class="docutils literal">*emphasized words*</tt> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
-appear in boldface: <tt class="docutils literal">_boldface_</tt> become <strong>boldface</strong>.</p>
+appear in boldface: <tt class="docutils literal">_boldface_</tt> becomes <strong>boldface</strong>. Colored words
+are also possible: the text:</p>
+<pre class="literal-block">
+`color{red}{two red words}`
+</pre>
+<p>becomes &lt;font color=&quot;red&quot;&gt;two red words&lt;/font&gt;.</p>
 </div>
 <div class="section" id="lists">
 <h1><a class="toc-backref" href="#id7">Lists</a></h1>
@@ -655,8 +660,8 @@ option <tt class="docutils literal"><span class="pre">-DEXTRA</span></tt> will b
 </div>
 <div class="section" id="inline-comments">
 <h1><a class="toc-backref" href="#id9">Inline comments</a></h1>
-<p>Inline comments meant as messages or notes to
-co-authors in particular
+<p>Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax:</p>
 <pre class="literal-block">
 [name: running text]
@@ -665,7 +670,12 @@ are enabled by the syntax:</p>
 and <tt class="docutils literal">running text</tt> is the comment. Here goes an example.
 (<strong>hpl</strong>: There must be a space after the colon,
 but the running text can occupy multiple lines.)
-Running:</p>
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the <tt class="docutils literal"><span class="pre">-DTOTONOTES</span></tt> option to <tt class="docutils literal">ptex2tex</tt> or <tt class="docutils literal">doconce ptex2tex</tt>,
+colorful margin or inline boxes (using the <tt class="docutils literal">todonotes</tt> package)
+make it very easy to spot the comments.</p>
+<p>Running:</p>
 <pre class="literal-block">
 doconce format html mydoc.do.txt --skip_inline_comments
 </pre>
@@ -1004,7 +1014,7 @@ transforming a <tt class="docutils literal">.do.txt</tt> file to some format. He
 list of capabilities:</p>
 <pre class="literal-block">
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -1116,6 +1126,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 </pre>
 </div>
 <div class="section" id="exercises">

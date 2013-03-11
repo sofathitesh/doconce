@@ -5,7 +5,7 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-:Date: Mar 8, 2013
+:Date: Mar 11, 2013
 
 .. contents:: Table of Contents
    :depth: 2
@@ -158,7 +158,13 @@ Inline Formatting
 
 Words surrounded by ``*`` are emphasized: ``*emphasized words*`` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: ``_boldface_`` become **boldface**.
+appear in boldface: ``_boldface_`` becomes **boldface**. Colored words
+are also possible: the text::
+
+
+        `color{red}{two red words}`
+
+becomes <font color="red">two red words</font>.
 
 Lists
 -----
@@ -269,8 +275,8 @@ option ``-DEXTRA`` will bring the text alive again.
 Inline comments
 ---------------
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax::
 
 
@@ -280,6 +286,12 @@ where ``name`` is the name or ID of an author or reader making the comment,
 and ``running text`` is the comment. Here goes an example.
 (**hpl**: There must be a space after the colon,
 but the running text can occupy multiple lines.)
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the ``-DTOTONOTES`` option to ``ptex2tex`` or ``doconce ptex2tex``,
+colorful margin or inline boxes (using the ``todonotes`` package)
+make it very easy to spot the comments.
+
 Running::
 
 
@@ -679,7 +691,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -791,6 +803,16 @@ list of capabilities::
         
         # generate a make.sh script for translating a doconce file to various formats
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
+        
+        # fix common problems in bibtex files for publish import
+        doconce fix_bibtex4publish file1.bib file2.bib ...
+        
+        # find differences between two files
+        doconce diff file1.do.txt file2.do.txt [diffprog]
+        (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        # find differences between the last two Git versions of several files
+        doconce gitdiff file1 file2 file3 ...
 
 
 Exercises
