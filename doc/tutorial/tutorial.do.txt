@@ -91,13 +91,18 @@ the formating. Here are some examples.
 
 LaTeX is ideal for articles, thesis, and books, but not so suited
 for web documents. Nice environments for web documents, such as
-Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+Sphinx, Markdown, or plain HTML, are not particularly well
+suited for thesis and books. IPython notebooks are ideal for
+documenting computational experiments, but do not (yet) meet the
+requirements of books and thesis.
+
 What about migrating a part of a book for blogging? What about
 making an MS Word version or an untagged text for inclusion in email?
+What about efficiently generating slides in modern HTML5/CSS3 style?
 Doconce enables all this with just *one source*. Doconce also has
 extra features for supporting documents with much code and mathematics.
 
-===== Basic Syntax Examples =====
+===== Basic Syntax =====
 
 Here is an example of some simple text written in the Doconce format:
 !bc

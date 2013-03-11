@@ -35,6 +35,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2v': r"""\g<url>:'\g<link>'""",
         'linkURL3v': r"""\g<url>:'\g<link>'""",
         'plainURL':  r'"\g<url>":\g<url>',
+        'colortext': '\g<text>',
         # the replacement string differs, depending on the match object m:
         'chapter':       r'\g<subst>',
         'section':       r'\g<subst>',

@@ -969,7 +969,7 @@ def define(FILENAME_EXTENSION,
         'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
         'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
         'verbatim':      r'\g<begin><code>\g<subst></code>\g<end>',
-        'citation':      '',  # no citations
+        'colortext':     r'<font color="\g<color>">\g<text></font>',
         #'linkURL':       r'\g<begin><a href="\g<url>">\g<link></a>\g<end>',
         'linkURL2':      r'<a href="\g<url>">\g<link></a>',
         'linkURL3':      r'<a href="\g<url>">\g<link></a>',

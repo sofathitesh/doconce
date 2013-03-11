@@ -4819,3 +4819,283 @@ python automake_sphinx.py
     print 'output in make.sh'
 
 
+def _usage_fix_bibtex4publish():
+    print 'Usage: doconce fix_bibtex4publish fil1e.bib file2.bib ...'
+    print """
+Fix a bibtex file so that the values are enclosed by braces (only)
+and publish can import the data.
+"""
+
+def fix_bibtex4publish():
+    """Edit BibTeX files so that publish can import them."""
+    if len(sys.argv) < 1:
+        _usage_makefile()
+        sys.exit(1)
+
+    bibfiles = sys.argv[1:]
+    for bibfile in bibfiles:
+        if not bibfile.endswith('.bib'):
+            print bibfile, 'is not a BibTeX file - abort'
+            sys.exit(1)
+        shutil.copy(bibfile, bibfile + '.old~~')
+        f = open(bibfile, 'r')
+        lines = f.readlines()
+        f.close()
+        print '\n*** working with', bibfile, '\n'
+
+        for line in lines:
+            print line
+        keys = []
+        for i in range(len(lines)):
+            # Classification line? Fix to lower case publication type
+            if lines[i].lstrip().startswith('@'):
+                m = re.search(r'^\s*@(.+?)\{(.+), *$', lines[i])
+                if m:
+                    pub_type = m.group(1)
+                    key = m.group(2)
+                    print '\n--- found %s (key %s)\n' % (pub_type, key)
+                    pub_type = pub_type.lower()
+                    if pub_type == 'incollection':
+                        pub_type = 'inproceedings'
+                    keys.append(key)
+                    lines[i] = '@%s{%s,\n' % (pub_type, key)
+            # Data line? Enclose value in {}, lower case variable, etc.
+            elif re.search(r'^\s*[A-Za-z ]+=', lines[i]):
+                words = lines[i].split('=')
+                old_variable = words[0]
+                variable = old_variable.lower().strip()
+                if len(words) > 2:
+                    # A = in the value..
+                    print words
+                    value = '='.join(words[1:]).strip()
+                else:
+                    value = words[1].strip()
+                if value[-1] == ',':
+                    value = value[:-1]
+                old_value = value
+                fixed = False
+                if value.startswith('"'):
+                    value = '{' + value[1:-1].lstrip()
+                    fixed = True
+                if value.endswith('"'):
+                    value = value[:-1].rstrip() + '}'
+                    fixed = True
+                if value[0] != '{':
+                    value = '{' + value.lstrip()
+                    fixed = True
+                if value[-1] != '}':
+                    value = value.rstrip() + '}'
+                    fixed = True
+                lines[i] = '%-15s = %s,\n' % (variable, value)
+                if fixed:
+                    print '%s = %s' % (old_variable, old_value)
+                    print '...fixed to...'
+                    print '%-15s = %s\n' % (variable, value)
+            elif lines[i].strip() == '':
+                pass # ok
+            elif lines[i].strip() == '}':
+                pass # ok
+            elif lines[i].lstrip().startswith('%'):
+                pass # ok
+            else:
+                # Loose sentence, this one should be glued with the
+                # former one
+                # NOT IMPLEMENTED
+                print '*** error: broken line'
+                print lines[i]
+                print 'Glue with previous line!'
+                print 'Abort!'
+                sys.exit(1)
+
+        f = open(bibfile, 'w')
+        f.writelines(lines)
+        f.close()
+
+# ---------- diff two files ----------------
+_diff_programs = {
+    'latexdiff': ('http://www.ctan.org/pkg/latexdiff', 'latexdiff'),
+    'pdiff': ('http://www.gnu.org/software/a2ps/ http://www.gnu.org/software/wdiff/', 'a2ps wdiff texlive-latex-extra texlive-latex-recommended'),
+    'kdiff3': ('http://www.gnu.org/software/wdiff/', 'kdiff3'),
+    'diffuse': ('http://diffuse.sourceforge.net/', 'diffuse'),
+    'xxdiff': ('http://xxdiff.sourceforge.net/local/', 'xxdiff'),
+    'meld': ('http://meldmerge.org/', 'meld'),
+    'tkdiff.tcl': ('https://sourceforge.net/projects/tkdiff/', 'not in Debian')
+    }
+
+def _missing_diff_program(program_name):
+    print program_name, 'is not installed.'
+    print 'see', _diff_programs[program_name][0]
+    if not _diff_programs[program_name][1].startswith('not in'):
+        print 'Ubuntu/Debian Linux: sudo apt-get install', \
+              _diff_programs[program_name][1]
+    sys.exit(1)
+
+def _usage_diff():
+    print 'Usage: doconce diff file1 file2 [diffprog]'
+    print 'diffprogram may be difflib (default),'
+    print 'pdiff, diff, diffuse, kdiff3, xxdiff, meld, latexdiff'
+    print 'Output in diff.*'
+
+def diff():
+    """Find differences between two files."""
+    if len(sys.argv) < 3:
+        _usage_diff()
+        sys.exit(1)
+    system('rm -f _diff.*')
+
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
+    try:
+        diffprog = sys.argv[3]
+    except:
+        diffprog = 'difflib'
+
+    if diffprog == 'difflib':
+        pydiff(file1, file2)
+    elif diffprog == 'latexdiff':
+        if which('latexdiff'):
+            latexdiff(file1, file2)
+        else:
+            _missing_diff_program('latexdiff')
+    else:
+        diff_files(file1, file2, diffprog)
+
+def pydiff(files1, files2, n=3):
+    """Use Python's difflib to produce text and html diff."""
+    import difflib, time, os
+    if isinstance(files1, str):
+        files1 = [files1]
+    if isinstance(files2, str):
+        files2 = [files2]
+
+    for fromfile, tofile in zip(files1, files2):
+
+        fromdate = time.ctime(os.stat(fromfile).st_mtime)
+        todate = time.ctime(os.stat(tofile).st_mtime)
+
+        fromlines = open(fromfile, 'U').readlines()
+        tolines = open(tofile, 'U').readlines()
+
+        diff_html = difflib.HtmlDiff().make_file(
+            fromlines, tolines, fromfile,tofile, context=True, numlines=n)
+        diff_plain = difflib.unified_diff(
+            fromlines, tolines, fromfile, tofile, fromdate, todate, n=n)
+        filename_plain = '__diff.txt'
+        filename_html  = '__diff.html'
+
+        if os.path.isfile(filename_plain):
+            os.remove(filename_plain)
+        f = open(filename_plain, 'w')
+        f.writelines(diff_plain)
+        f.close()
+
+        if os.path.isfile(filename_html):
+            os.remove(filename_html)
+        f = open(filename_html, 'w')
+        f.writelines(diff_html)
+        f.close()
+        size = os.path.getsize(filename_plain)
+        if size > 4:
+            print 'diff in __diff.txt and __diff.html'
+
+def check_diff(diff_file):
+    size = os.path.getsize(diff_file)
+    if size > 4:
+        print 'diff in', diff_file
+
+
+def latexdiff(files1, files2):
+    """Highlight file differences with latexdiff."""
+    if not which('latexdiff'):
+        _missing_diff_program('latexdiff')
+
+    if isinstance(files1, str):
+        files1 = [files1]
+    if isinstance(files2, str):
+        files2 = [files2]
+
+    for fromfile, tofile in zip(files1, files2):
+
+        if fromfile.endswith('.do.txt'):
+            basename = fromfile[:-7]
+            failure1 = os.system('doconce format pdflatex %s' % basename)
+            failure2 = os.system('doconce ptex2tex %s' % basename)
+            fromfile = basename + '.tex'
+
+        if tofile.endswith('.do.txt'):
+            basename = tofile[:-7]
+            failure1 = os.system('doconce format pdflatex %s' % basename)
+            failure2 = os.system('doconce ptex2tex %s' % basename)
+            tofile = basename + '.tex'
+
+        failure = os.system('latexdiff %s %s > __diff.tex' % (fromfile, tofile))
+        failure = os.system('pdflatex __diff.tex')
+        size = os.path.getsize('__diff.tex')
+        if size > 4:
+            print 'output in __diff.pdf'
+        print 'diff in __diff.pdf'
+
+
+def diff_files(files1, files2, program='diff'):
+    """
+    Run some diff program:
+
+          diffprog file1 file2 > __diff.txt/.pdf/.html
+
+    for file1, file2 in zip(files1, files2).
+    """
+    if isinstance(files1, str):
+        files1 = [files1]
+    if isinstance(files2, str):
+        files2 = [files2]
+
+    for fromfile, tofile in zip(files1, files2):
+        cmd = '%s %s %s' % (program, fromfile, tofile)
+        if program in ['diffuse', 'kdiff3', 'xxdiff', 'meld', 'tkdiff.tcl']:
+            # GUI program
+            if which(prorgram):
+                system(cmd, verbose=True)
+            else:
+                __missing_diff_program(program)
+        elif program == 'diff':
+            system(cmd + ' > __diff.txt', verbose=True)
+            check_diff('__diff.txt')
+        elif program == 'pdiff':
+            if which('pdiff'):
+                system(cmd + ' -- -1 -o __diff.ps')
+                system('ps2pdf -sPAPERSIZE=a4 __diff.ps; rm -f __diff.ps')
+            else:
+                __missing_diff_program(program)
+            print 'diff in _diff.pdf'
+        else:
+            print program, 'not supported'
+            sys.exit(1)
+
+def _usage_diffgit():
+    #print 'Usage: doconce gitdiff diffprog file1 file2 file3'
+    print 'Usage: doconce gitdiff file1 file2 file3'
+
+def gitdiff():
+    """Make diff of newest and previous version of files (under Git)."""
+    if len(sys.argv) < 2:
+        _usage_diffgit()
+        sys.exit(1)
+
+    #diffprog = sys.argv[1]
+    filenames = sys.argv[1:]
+    old_files = []
+    for filename in filenames:
+        failure, output = commands.getstatusoutput('git log %s' % filename)
+        if not failure:
+            commits = re.findall(r'^commit\s+(.+)$', output,
+                                 flags=re.MULTILINE)
+            dates = re.findall(r'^Date:\s+(.+)\d\d:\d\d:\d\d .+$', output,
+                               flags=re.MULTILINE)
+            system('git checkout %s %s' % (commits[1], filename))
+            old_filename = '__' + dates[1].replace(' ', '_') + filename
+            shutil.copy(filename, old_filename)
+            system('git checkout %s %s' % (commits[0], filename))
+            old_files.append(old_filename)
+            print 'comparing', filename, old_filename
+            pydiff(filenames, old_files)
+

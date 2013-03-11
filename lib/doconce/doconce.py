@@ -1708,8 +1708,8 @@ def inline_tag_subst(filestr, format):
         'chapter', 'section', 'subsection', 'subsubsection',
         'bold',
         'inlinecomment',
+        'colortext',
         'verbatim',
-        'citation',
         'paragraph',  # after bold and emphasize
         'plainURL',   # before linkURL2 to avoid "URL" as link name
         'linkURL2v',

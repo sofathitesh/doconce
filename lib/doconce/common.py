@@ -622,9 +622,9 @@ INLINE_TAGS = {
     r'%s_(?P<subst>[^ `][^\]_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
 
-    # cite{labelname}
-    'citation':
-    r' cite\{(?P<subst>[^}]+)\}',
+    # color{col}{text} (\b is useful, but :.;`? is not word boundary)
+    'colortext':
+    r'\bcolor\{(?P<color>.+?)\}\{(?P<text>[^}]+)\}',
 
     # http://some.where.org/mypage<link text>  # old outdated syntax
     'linkURL':

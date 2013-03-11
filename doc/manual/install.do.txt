@@ -180,10 +180,16 @@ If you use the minted style together with `ptex2tex`, you have to
 enable it by the `-DMINTED` command-line argument to `ptex2tex`.
 This is not necessary if you run the alternative `doconce ptex2tex` program.
 
-All
-use of the minted style requires the `-shell-escape` command-line
+All use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
+
+Inline comments apply the `todonotes` LaTeX package if the `ptex2tex`
+or `doconce ptex2tex` command is run with `-DTODONOTES`.  The
+`todonotes` package requires several other packages: `xcolor`,
+`ifthen`, `xkeyval`, `tikz`, `calc`, `graphicx`, and `setspace`. The
+relevant Debian package for installing all this is
+`texlive-latex-extra`.
 
 # Say something about anslistings.sty
 
@@ -211,6 +217,7 @@ using ReportLab instead of LaTeX. The enabling software is
 or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
+=== Sphinx Output ===
 
 Output to `sphinx` requires of course the
 "Sphinx software": "http://sphinx.pocoo.org",
@@ -222,6 +229,18 @@ cd sphinx
 sudo python setup.py install
 cd ..
 !ec
+
+Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:
+
+ * could and redcloud: URL: "https://bitbucket.org/ecollins/cloud_sptheme"
+ * bootstrap: URL: "https://github.com/ryan-roemer/sphinx-bootstrap-theme"
+ * solarized: URL: "https://bitbucket.org/miiton/sphinxjp.themes.solarized"
+ * impressjs: URL: "https://github.com/shkumagai/sphinxjp.themes.impressjs"
+
+These must be downloaded or cloned, and `setup.py` must be run as shown
+above.
 
 === Markdown and Pandoc Output ===
 
@@ -255,4 +274,26 @@ updates and bug fixes. For `svn` directories, go to the directory,
 run `svn update`, and then `sudo python setup.py install`. For
 Mercurial (`hg`) directories, go to the directory, run
 `hg pull; hg update`, and then `sudo python setup.py install`.
+
+=== The `doconce diff` command ===
+
+The `doconce diff file1 file prog` command for illustrating differences between
+two files `file1` and `file2` using the program `prog` requires `prog`
+to be installed. By default, `prog` is `difflib` which comes with Python
+and is always present if you have Doconce installed. Another choice, `diff`,
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their `sudo apt-get install` command on Debian (Ubuntu) systems
+appear in the table below.
+
+|---------------------------------------------------------------------------|
+| Program      | URL                      | Debian/Ubuntu install           |
+|-------l--------------------l----------------------------l-----------------|
+| `pdiff`      | "a2ps": "http://www.gnu.org/software/a2ps/" "wdiff": "http://www.gnu.org/software/wdiff/" | `sudo apt-get install a2ps wdiff texlive-latex-extra texlive-latex-recommended` |
+| `latexdiff`  | "latexdiff": "http://www.ctan.org/pkg/latexdiff" | `sudo apt-get install latexdiff` |
+| `kdiff3`     | "kdiff3": "http://kdiff3.sourceforge.net/" | `sudo apt-get install kdiff3` |
+| `diffuse`    | "diffuse": "http://diffuse.sourceforge.net/" | `sudo apt-get install diffuse` |
+| `xxdiff`     | "xxdiff": "http://xxdiff.sourceforge.net/local/" | `sudo apt-get install xxdiff` |
+| `meld`       | "meld": "http://meldmerge.org/" | `sudo apt-get install meld` |
+| `tkdiff.tcl` | "tkdiff": "https://sourceforge.net/projects/tkdiff/" | `sudo apt-get install not in Debian` |
+|---------------------------------------------------------------------------|
 

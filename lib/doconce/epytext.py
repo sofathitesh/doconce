@@ -75,6 +75,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2v': r'U{C{\g<link>}<\g<url>>}',
         'linkURL3v': r'U{C{\g<link>}<\g<url>>}',
         'plainURL':  r'U{\g<url><\g<url>>}',
+        'colortext': '\g<text>',
         # the replacement string differs, depending on the match object m:
         'chapter':       lambda m: '%s\n%s' % (m.group('subst'), '%'*len(m.group('subst'))),
         'section':       lambda m: '%s\n%s' % (m.group('subst'), '='*len(m.group('subst'))),
