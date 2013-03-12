@@ -19,19 +19,23 @@ def underscore_in_code(m):
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
 
-    # Replace - by -- in some cases for nicer LaTeX look of hyphens:
-    from_to = [
-        # equation refs
-        (r'(\(ref\{.+?\}\))-(\(ref\{.+?\}\))', r'\g<1>--\g<2>'),
-        # like Navier-Stokes, but not `Q-1`
-        (r'([^`]\w)-(\w[^`])', r'\g<1>--\g<2>'),
-        # single - at end of line
-        (r' +-$', ' --'),
-        # single - at beginning of line
-        (r'^ *- +', ' -- '),
-               ]
-    for pattern, replacement in from_to:
-        filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
+    if option('latex-double-hyphen'):
+        print '*** warning: --latex-double-hyphen may lead to unwanted edits.'
+        print '             search for all -- in the .p.tex file and check.'
+        # Replace - by -- in some cases for nicer LaTeX look of hyphens:
+        # Note: really dangerous for inline mathematics: $kx-wt$.
+        from_to = [
+            # equation refs
+            (r'(\(ref\{.+?\}\))-(\(ref\{.+?\}\))', r'\g<1>--\g<2>'),
+            # like Navier-Stokes, but not `Q-1`
+            (r'([^$`\\/{!][A-Za-z]{2,})-([^\\/{][A-Za-z]{2,}[^`$/}])', r'\g<1>--\g<2>'),
+            # single - at end of line
+            (r' +-$', ' --'),
+            # single - at beginning of line
+            (r'^ *- +', ' -- '),
+                   ]
+        for pattern, replacement in from_to:
+            filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
 
 
     # References to external documents (done before !bc blocks in
@@ -425,7 +429,7 @@ def latex_title(m):
 \begin{center}
 {\huge{\bfseries{%s}}}
 
-%% #elif LATEX_HEADING == "Springer-collection"
+%% #elif LATEX_HEADING == "Springer_collection"
 
 \title*{%s}
 %% Short version of title:
@@ -528,7 +532,7 @@ def latex_author(authors_and_institutions, auth2index,
 {\large\textsf{${}^%d$%s} \\ [1.5mm]}""" % (index, index2inst[index])
 
     text += r"""
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 """
     text += r"""
 \author{%s}
@@ -864,13 +868,13 @@ def define(FILENAME_EXTENSION,
         #'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
         'abstract':      r"""
 
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 \\abstract{
 % #else
 \\begin{abstract}
 % #endif
 \g<text>
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 }
 % #else
 \end{abstract}
@@ -1007,11 +1011,12 @@ def define(FILENAME_EXTENSION,
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -1019,7 +1024,7 @@ def define(FILENAME_EXTENSION,
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -1049,11 +1054,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},              % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -1067,7 +1072,7 @@ final,                   % or draft (marks overfull hboxes)
     if m:
         INTRO['latex'] += r"""
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 """

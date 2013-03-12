@@ -75,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 11, 2013
+Mar 12, 2013
 
 \end{DUfieldlist}
 
@@ -609,14 +609,13 @@ Comment lines starting with \texttt{\#\#} are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with \texttt{\%<doc>} and end with \texttt{<\%doc/>}, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 \texttt{\# \#ifdef EXTRA} and \texttt{\# \#endif} around the text. The command line
 option \texttt{-DEXTRA} will bring the text alive again.
+
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
 
 
 %___________________________________________________________________________

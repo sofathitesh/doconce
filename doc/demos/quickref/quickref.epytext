@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 11, 2013
+DATE: Mar 12, 2013
 B{WARNING: This quick reference is very incomplete!}
 
 I{Mission.} Enable writing documentation with much mathematics and
@@ -229,14 +229,14 @@ Comment lines starting with C{##} are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with C{%<doc>} and end with C{<%doc/>}, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 C{# #ifdef EXTRA} and C{# #endif} around the text. The command line
 option C{-DEXTRA} will bring the text alive again.
+
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
 
 Inline comments
 ---------------

@@ -1605,6 +1605,63 @@ the different shortcuts and see how handy they are in learning
 Doconce and saving much typing!
 
 
+======= Mako Programming =======
+
+The "Mako": "http://docs.makotemplates.org/" templating engine is used
+as preprocessor for Doconce documents, but the "Preprocess": "http://code.google.com/p/preprocess" is run prior to Mako and is recommended for
+including other files via `# #include "filename"`.
+
+!bc
+# Define variables
+<%
+mycounter = 1
+mydict = {}
+%>
+
+# Assume MYVAR is given on the command line as MYVAR=mytext (e.g.)
+% if MYVAR is not UNDEFINED:
+The value of MYVAR is ${MYVAR}.
+% endif
+
+<%
+## Manipulation of variables
+mycounter += 1
+%>
+
+% if MYVAR in (2,4,6):
+MYVAR is even integer in [2,6].
+% elif MYVAR > 1000000:
+MYVAR is big.
+% else:
+MYVAR=${MYVAR}, mycounter=${mycounter}.
+% endif
+
+# Function
+<%
+# Define Python function: FORMAT and DEVICE
+# are always defined
+
+def link(filename):
+    url = "https://github.com/some/path/to/' + filename + '"'
+    if DEVICE == 'screen':
+        # make link to url
+        return '"filename":' + url
+    elif DEVICE == 'paper':
+        # write URL explicit on paper
+        return 'URL:' + url
+%>
+
+<%doc>
+This
+is
+a
+block
+comment in Mako.
+<%doc/>
+!ec
+
+
+
 ======= Troubleshooting =======
 
 ===== Disclaimer =====

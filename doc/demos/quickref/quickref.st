@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 11, 2013
+DATE: Mar 12, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -222,14 +222,14 @@ Comment lines starting with '##' are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with '%<doc>' and end with '<%doc/>', both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 '# #ifdef EXTRA' and '# #endif' around the text. The command line
 option '-DEXTRA' will bring the text alive again.
+
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
 
 Inline comments
 
@@ -370,7 +370,7 @@ and
 
         !bt
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
@@ -379,7 +379,7 @@ and
 This LaTeX code gets rendered as::
 
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
 
@@ -893,11 +893,11 @@ constructions::
         \caption{Some words... label{mytab}}
         \begin{tabular}{lrr}
         \hline\noalign{\smallskip}
-        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
         \hline
-        0.0          & 1.4186       & -5.01        \\
-        2.0          & 1.376512     & 11.919       \\
-        4.0          & 1.1E+1       & 14.717624    \\
+        0.0          & 1.4186       & -5.01        \\ 
+        2.0          & 1.376512     & 11.919       \\ 
+        4.0          & 1.1E+1       & 14.717624    \\ 
         \hline
         \end{tabular}
         \end{table}

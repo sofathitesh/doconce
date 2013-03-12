@@ -288,6 +288,7 @@ A separate titlepage can be generate by
 
 Preprocessor variables to be defined or undefined are
 
+ * `LATEX_HEADING` for the typesetting of the title, author, etc.
  * `BOOK` for the "book" documentclass rather than the standard
    "article" class (necessary if you apply chapter headings with 9 `=`)
  * `PALATINO` for the Palatino font

@@ -28,7 +28,7 @@ plain, homemade pdfLaTeX (from Doconce).
 ${FORMAT}
 % endif
 
-% if SOMEVAR:
+% if SOMEVAR is not UNDEFINED:
 # Just a comment
 % endif
 
@@ -164,6 +164,12 @@ inside the text` and an exclamation mark at the end: `BEGIN`! The
 exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the `verb` typesetting... Also test backslashes
 like `\begin` and `\end` in inline verbatim text.
+
+Here is some color{red}{red} color and an attempt to write color{green}{with
+green color containing a linebreak.
+And one more.} Some formats will only display this correctly when
+HTML is the output format.
+
 
 ===== Subsection 2 =====
 label{subsec:ex}
@@ -401,7 +407,7 @@ some text.
 
 Here is an example: cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in cite{Langtangen_1994a}.
 The book chapter cite{Mardal_et_al_2003a} contains information on
@@ -470,7 +476,7 @@ Newton-Cotes with percentage in URL too:
 URL: "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"
 and URL: "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" which has a shebang.
 
-For the `--latex-printed` it is important to test that URLs with
+For the `--device=paper` option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 "`decay_mod`":
 "https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py".
@@ -483,7 +489,7 @@ monofont link text get a footnote, as in this reference to
 # if rst output is desired, but placed in a `_static*` folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-`--latex-printed` option must be correct. We have
+`--device=paper` option must be correct. We have
 "google": "http://google.com", "google": "http://google.com", and
 "google": "http://google.com", which should result in exactly three
 footnotes.
@@ -533,7 +539,9 @@ a &= q + 4 + 5+ 6 label{eq1} \\
 b &= \nabla^2 u + \nabla^4 x label{eq2}
 \end{align}
 !et
-We can refer to (ref{eq1})-(ref{eq2}).
+We can refer to (ref{eq1})-(ref{eq2}). They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in `CG-2`.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -919,6 +927,15 @@ in comparison with the other admons.
 !ewarning
 
 !bsummary
+_Bold remark:_ Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 !esummary
 
@@ -1294,11 +1311,12 @@ $$
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -1306,7 +1324,7 @@ $$
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -1336,11 +1354,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},              % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -1355,7 +1373,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 
@@ -1426,6 +1444,7 @@ final,                   % or draft (marks overfull hboxes)
 }\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
 \end{wrapfigure}}
 % #else
+% gray box of 80% width
 \newcommand{\summarybox}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
@@ -1437,7 +1456,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
@@ -1483,7 +1502,7 @@ final,                   % or draft (marks overfull hboxes)
 \begin{center}
 {\huge{\bfseries{A Document for Testing Doconce}}}
 
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \title*{A Document for Testing Doconce}
 % Short version of title:
@@ -1527,7 +1546,7 @@ final,                   % or draft (marks overfull hboxes)
 {\large\textsf{${}^5$Inst2, Somewhere} \\ [1.5mm]}
 {\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
 {\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen and Kaare Dump and A. Dummy Author and I. S. Overworked and J. Doe}
 % Short version of authors:
@@ -1602,7 +1621,7 @@ Jan 32, 2100
 
 
 \tableofcontents
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \listoftodos[List of inline comments]
 % #endif
 
@@ -1618,7 +1637,7 @@ The format of this document is
 plain, homemade {\LaTeX} (from Doconce).
 
 
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 \abstract{
 % #else
 \begin{abstract}
@@ -1632,7 +1651,7 @@ is part of the abstract.
 
 % Cannot demonstrate chapter headings since abstract and chapter
 % is mutually exclusive in {\LaTeX}
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 }
 % #else
 \end{abstract}
@@ -1823,6 +1842,12 @@ inside the text} and an exclamation mark at the end: \code{BEGIN}! The
 exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the \code{verb} typesetting... Also test backslashes
 like \code{\begin} and \code{\end} in inline verbatim text.
+
+Here is some \textcolor{red}{red} color and an attempt to write \textcolor{green}{with
+green color containing a linebreak.
+And one more.} Some formats will only display this correctly when
+HTML is the output format.
+
 
 \subsection{Subsection 2}
 \label{subsec:ex}
@@ -2141,7 +2166,7 @@ some text.
 
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in \cite{Langtangen_1994a}.
 The book chapter \cite{Mardal_et_al_2003a} contains information on
@@ -2210,7 +2235,7 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
-For the \code{--latex-printed} it is important to test that URLs with
+For the \code{--device=paper} option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
 
@@ -2222,7 +2247,7 @@ monofont link text get a footnote, as in this reference to
 % if rst output is desired, but placed in a \code{_static*} folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-\code{--latex-printed} option must be correct. We have
+\code{--device=paper} option must be correct. We have
 \href{{http://google.com}}{google}, \href{{http://google.com}}{google}, and
 \href{{http://google.com}}{google}, which should result in exactly three
 footnotes.
@@ -2261,7 +2286,9 @@ And here is a system of equations with labels in an align environment:
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
-We can refer to (\ref{eq1})-(\ref{eq2}).
+We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
+the Navier-Stokes equations. And test {\LaTeX} hyphen in \code{CG-2}.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -2759,6 +2786,15 @@ in comparison with the other admons.
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 \summarybox{
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
@@ -2840,6 +2876,7 @@ final,                   % or draft (marks overfull hboxes)
 
 \listfiles               % print all files needed to compile this document
 
+\usepackage[a4paper]{geometry}
 
 \usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
@@ -2847,7 +2884,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{movie15}
 
 
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 
 
@@ -2889,14 +2926,22 @@ final,                   % or draft (marks overfull hboxes)
 
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth--6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
 
 
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
@@ -3064,7 +3109,7 @@ Here is a nested list:
 More text, with a reference back to Section~\ref{sec1} and further
 to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 
-% sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+% sphinx code--blocks: pycod=python cod=fortran cppcod=c++ sys=console
 
 Let's do some copying from files too. First from subroutine up to the very end,
 
@@ -3226,6 +3271,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the {\fontsize{10pt}{10pt}\Verb!verb!} typesetting... Also test backslashes
 like {\fontsize{10pt}{10pt}\Verb!\begin!} and {\fontsize{10pt}{10pt}\Verb!\end!} in inline verbatim text.
 
+Here is some \textcolor{red}{red} color and an attempt to write \textcolor{green}{with
+green color containing a linebreak.
+And one more.} Some formats will only display this correctly when
+HTML is the output format.
+
+
 \subsection{Subsection 2}
 \label{subsec:ex}
 \index{figures}
@@ -3302,7 +3353,7 @@ repeat,
 \end{figure}
 
 
-% Test wrong syntax and multi-line caption
+% Test wrong syntax and multi--line caption
 
 
  Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\Verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html}}})
@@ -3316,9 +3367,9 @@ repeat,
  Computational fluid dynamics movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
 
 
-% Test multi-line caption in figure
+% Test multi--line caption in figure
 
-Here is figure~\ref{myfig} with a long multi-line caption
+Here is figure~\ref{myfig} with a long multi--line caption
 and an extra space before the FIGURE keyword.
 
 
@@ -3388,7 +3439,7 @@ Or with align with label and numbers:
 
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
-the {\fontsize{10pt}{10pt}\Verb!.tex!} by proper begin-end {\LaTeX} environments for theorems.
+the {\fontsize{10pt}{10pt}\Verb!.tex!} by proper begin--end {\LaTeX} environments for theorems.
 Should look nice in most formats!
 
 
@@ -3519,7 +3570,7 @@ some text.
 
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier--Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in \cite{Langtangen_1994a}.
 The book chapter \cite{Mardal_et_al_2003a} contains information on
@@ -3538,7 +3589,7 @@ Multiple references are also possible, e.g., see
 \label{Example}
 
 Examples can start with a subsection heading starting with {\fontsize{10pt}{10pt}\Verb!Example:!}
-and then, with the command-line option {\fontsize{10pt}{10pt}\Verb!--examples-as-exercises!} be
+and then, with the command--line option {\fontsize{10pt}{10pt}\Verb!--examples-as-exercises!} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -3578,7 +3629,7 @@ too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hp
 file} is
 fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
-colon, semi-colon, question mark, exclamation mark, but not a period
+colon, semi--colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\Verb!latex!} format:
@@ -3588,7 +3639,7 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
-For the {\fontsize{10pt}{10pt}\Verb!--latex-printed!} it is important to test that URLs with
+For the {\fontsize{10pt}{10pt}\Verb!--device=paper!} option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}\footnote{\texttt{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay\_mod.py}}}.
 
@@ -3600,7 +3651,7 @@ monofont link text get a footnote, as in this reference to
 % if rst output is desired, but placed in a {\fontsize{10pt}{10pt}\Verb!_static*!} folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-{\fontsize{10pt}{10pt}\Verb!--latex-printed!} option must be correct. We have
+{\fontsize{10pt}{10pt}\Verb!--device=paper!} option must be correct. We have
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
 footnotes.
@@ -3609,7 +3660,7 @@ footnotes.
 
 \subsection{{\LaTeX} Mathematics}
 
-Here is an equation without label using backslash-bracket environment:
+Here is an equation without label using backslash--bracket environment:
 \[ a = b + c \]
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
 \begin{equation}
@@ -3617,7 +3668,7 @@ or with number and label, as in (\ref{my:eq1}), using the equation environment:
 \end{equation}
 We can refer to this equation by (\ref{my:eq1}).
 
-Here is a system without equation numbers, using the align-astrisk environment:
+Here is a system without equation numbers, using the align--astrisk environment:
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
@@ -3629,9 +3680,11 @@ And here is a system of equations with labels in an align environment:
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
-We can refer to (\ref{eq1})-(\ref{eq2}).
+We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
+the Navier--Stokes equations. And test {\LaTeX} hyphen in {\fontsize{10pt}{10pt}\Verb!CG-2!}.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
-Many of the next environments will fail in non-latex formats.
+Many of the next environments will fail in non--latex formats.
 Testing multiline:
 \begin{multline}
 a = b = q + \\ 
@@ -4135,6 +4188,15 @@ in comparison with the other admons.
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 \summarybox{
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
@@ -4181,7 +4243,7 @@ more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+and in--depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
 
 \subsection{Appendix: Testing headings ending with {\fontsize{10pt}{10pt}\protect\Verb!verbatim inline!} }
 
@@ -4221,7 +4283,7 @@ output in testdoc.tex
 twoside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
+open=right               % start new chapters on odd--numbered pages
 10pt]{book}
 
 \listfiles               % print all files needed to compile this document
@@ -4275,6 +4337,7 @@ open=right               % start new chapters on odd-numbered pages
 
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% gray box of 80% width
 \newcommand{\summarybox}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
@@ -4285,13 +4348,8 @@ open=right               % start new chapters on odd-numbered pages
 \rule{6pt}{0pt}}\end{center}}
 
 
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
-\usepackage[shadow]{todonotes}
-\newcommand{\shortinlinecomment}[3]{%
-\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
- \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
-\newcommand{\longinlinecomment}[3]{%
-\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
 
 
 
@@ -4385,7 +4443,6 @@ Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 % --- end of table of exercises
 
 
-\listoftodos[List of inline comments]
 
 \clearpage % after toc
 
@@ -4461,7 +4518,7 @@ Here is a nested list:
 More text, with a reference back to Section~\ref{sec1} and further
 to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 
-% sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+% sphinx code--blocks: pycod=python cod=fortran cppcod=c++ sys=console
 
 Let's do some copying from files too. First from subroutine up to the very end,
 
@@ -4593,6 +4650,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the \Verb!verb! typesetting... Also test backslashes
 like \Verb!\begin! and \Verb!\end! in inline verbatim text.
 
+Here is some \textcolor{red}{red} color and an attempt to write \textcolor{green}{with
+green color containing a linebreak.
+And one more.} Some formats will only display this correctly when
+HTML is the output format.
+
+
 \subsection{Subsection 2}
 \label{subsec:ex}
 \index{figures}
@@ -4649,7 +4712,7 @@ Test of movies.
 \end{figure}
 
 
-% Test wrong syntax and multi-line caption
+% Test wrong syntax and multi--line caption
 
 
  Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \Verb!../doc/manual/figs/wavepacket_*.png! in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}\footnote{\texttt{file:///home/hpl/vc/doconce/test/wavepacket\_0001.html}}})
@@ -4663,9 +4726,9 @@ Test of movies.
  Computational fluid dynamics movie. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
 
 
-% Test multi-line caption in figure
+% Test multi--line caption in figure
 
-Here is figure~\ref{myfig} with a long multi-line caption
+Here is figure~\ref{myfig} with a long multi--line caption
 and an extra space before the FIGURE keyword.
 
 
@@ -4733,7 +4796,7 @@ Or with align with label and numbers:
 
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
-the \Verb!.tex! by proper begin-end {\LaTeX} environments for theorems.
+the \Verb!.tex! by proper begin--end {\LaTeX} environments for theorems.
 Should look nice in most formats!
 
 
@@ -4862,7 +4925,7 @@ some text.
 
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier--Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in \cite{Langtangen_1994a}.
 The book chapter \cite{Mardal_et_al_2003a} contains information on
@@ -4881,7 +4944,7 @@ Multiple references are also possible, e.g., see
 \label{Example}
 
 Examples can start with a subsection heading starting with \Verb!Example:!
-and then, with the command-line option \Verb!--examples-as-exercises! be
+and then, with the command--line option \Verb!--examples-as-exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -4921,7 +4984,7 @@ too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hp
 file} is
 fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
-colon, semi-colon, question mark, exclamation mark, but not a period
+colon, semi--colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the \Verb!latex! format:
@@ -4931,7 +4994,7 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
-For the \Verb!--latex-printed! it is important to test that URLs with
+For the \Verb!--device=paper! option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}\footnote{\texttt{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay\_mod.py}}}.
 
@@ -4943,7 +5006,7 @@ monofont link text get a footnote, as in this reference to
 % if rst output is desired, but placed in a \Verb!_static*! folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-\Verb!--latex-printed! option must be correct. We have
+\Verb!--device=paper! option must be correct. We have
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
 footnotes.
@@ -4952,7 +5015,7 @@ footnotes.
 
 \subsection{{\LaTeX} Mathematics}
 
-Here is an equation without label using backslash-bracket environment:
+Here is an equation without label using backslash--bracket environment:
 \[ a = b + c \]
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
 \begin{equation}
@@ -4960,7 +5023,7 @@ or with number and label, as in (\ref{my:eq1}), using the equation environment:
 \end{equation}
 We can refer to this equation by (\ref{my:eq1}).
 
-Here is a system without equation numbers, using the align-astrisk environment:
+Here is a system without equation numbers, using the align--astrisk environment:
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
@@ -4972,9 +5035,11 @@ And here is a system of equations with labels in an align environment:
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
-We can refer to (\ref{eq1})-(\ref{eq2}).
+We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
+the Navier--Stokes equations. And test {\LaTeX} hyphen in \Verb!CG-2!.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
-Many of the next environments will fail in non-latex formats.
+Many of the next environments will fail in non--latex formats.
 Testing multiline:
 \begin{multline}
 a = b = q + \\ 
@@ -5470,6 +5535,15 @@ in comparison with the other admons.
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 \summarybox{
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
@@ -5516,7 +5590,7 @@ more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+and in--depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
 
 \subsection{Appendix: Testing headings ending with \protect\Verb!verbatim inline! }
 
@@ -5753,6 +5827,12 @@ inside the text`` and an exclamation mark at the end: ``BEGIN``! The
 exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the ``verb`` typesetting... Also test backslashes
 like ``\begin`` and ``\end`` in inline verbatim text.
+
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
 
 .. _subsec:ex:
 
@@ -6022,7 +6102,7 @@ Bibliography test
 
 Here is an example: [Ref1]_ discussed propagation of
 large destructive water waves, [Ref2]_ gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [Ref3]_.
 The book chapter [Ref4]_ contains information on
@@ -6088,7 +6168,7 @@ Newton-Cotes with percentage in URL too:
 `<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_
 and `<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>`_ which has a shebang.
 
-For the ``--latex-printed`` it is important to test that URLs with
+For the ``--device=paper`` option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 `decay_mod <https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>`_.
 
@@ -6105,7 +6185,7 @@ monofont link text get a footnote, as in this reference to
 
 
 More tough tests: repeated URLs whose footnotes when using the
-``--latex-printed`` option must be correct. We have
+``--device=paper`` option must be correct. We have
 `google <http://google.com>`_, `google <http://google.com>`_, and
 `google <http://google.com>`_, which should result in exactly three
 footnotes.
@@ -6652,6 +6732,15 @@ Without label.
       * with items
 
 .. important::
+   **Bold remark:** Make some text with this summary.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
 
 .. note::
@@ -6925,6 +7014,12 @@ inside the text`` and an exclamation mark at the end: ``BEGIN``! The
 exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the ``verb`` typesetting... Also test backslashes
 like ``\begin`` and ``\end`` in inline verbatim text.
+
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
 
 .. _subsec:ex:
 
@@ -7238,7 +7333,7 @@ Bibliography test
 
 Here is an example: [Ref1]_ discussed propagation of
 large destructive water waves, [Ref2]_ gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [Ref3]_.
 The book chapter [Ref4]_ contains information on
@@ -7304,7 +7399,7 @@ Newton-Cotes with percentage in URL too:
 `<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_
 and `<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>`_ which has a shebang.
 
-For the ``--latex-printed`` it is important to test that URLs with
+For the ``--device=paper`` option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 `decay_mod <https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>`_.
 
@@ -7321,7 +7416,7 @@ monofont link text get a footnote, as in this reference to
 
 
 More tough tests: repeated URLs whose footnotes when using the
-``--latex-printed`` option must be correct. We have
+``--device=paper`` option must be correct. We have
 `google <http://google.com>`_, `google <http://google.com>`_, and
 `google <http://google.com>`_, which should result in exactly three
 footnotes.
@@ -7372,7 +7467,9 @@ And here is a system of equations with labels in an align environment:
         b = \nabla^2 u + \nabla^4 x 
         
 
-We can refer to :eq:`eq1`-:eq:`eq2`.
+We can refer to :eq:`eq1`-:eq:`eq2`. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in ``CG-2``.
+Also test :math:`a_{i-j}` as well as :math:`kx-wt`.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -7969,6 +8066,15 @@ Without label.
       * with items
 
 .. important::
+   **Bold remark:** Make some text with this summary.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
 
 .. note::
@@ -8203,6 +8309,12 @@ inside the text` and an exclamation mark at the end: `BEGIN`! The
 exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the `verb` typesetting... Also test backslashes
 like `\begin` and `\end` in inline verbatim text.
+
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
 
 ==== Subsection 2 ====
 
@@ -8480,7 +8592,7 @@ some text.
 
 Here is an example: [1] discussed propagation of
 large destructive water waves, [2] gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [3].
 The book chapter [4] contains information on
@@ -8538,7 +8650,7 @@ Newton-Cotes with percentage in URL too:
 http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
 
-For the `--latex-printed` it is important to test that URLs with
+For the `--device=paper` option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 [https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py `decay_mod`].
 
@@ -8550,7 +8662,7 @@ monofont link text get a footnote, as in this reference to
 <wiki:comment> if rst output is desired, but placed in a `_static*` folder. </wiki:comment>
 
 More tough tests: repeated URLs whose footnotes when using the
-`--latex-printed` option must be correct. We have
+`--device=paper` option must be correct. We have
 [http://google.com google], [http://google.com google], and
 [http://google.com google], which should result in exactly three
 footnotes.
@@ -8976,7 +9088,16 @@ in comparison with the other admons.
   * and a list
   * with items
 
-*Summary.* Much testing in this document, otherwise stupid content.
+*Summary.* _Bold remark:_ Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
 With math:
@@ -9208,6 +9329,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the <code>verb</code> typesetting... Also test backslashes
 like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+
 ==== Subsection 2 ====
 
 Test of figures. In particular we refer to Figure fig:impact in which
@@ -9411,7 +9538,7 @@ some text.
 
 Here is an example: [1] discussed propagation of
 large destructive water waves, [2] gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [3].
 The book chapter [4] contains information on
@@ -9475,7 +9602,7 @@ Newton-Cotes with percentage in URL too:
 http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
 
-For the <code>--latex-printed</code> it is important to test that URLs with
+For the <code>--device=paper</code> option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 [https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py <code>decay_mod</code>].
 
@@ -9487,7 +9614,7 @@ monofont link text get a footnote, as in this reference to
 <!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
 
 More tough tests: repeated URLs whose footnotes when using the
-<code>--latex-printed</code> option must be correct. We have
+<code>--device=paper</code> option must be correct. We have
 [http://google.com google], [http://google.com google], and
 [http://google.com google], which should result in exactly three
 footnotes.
@@ -9960,7 +10087,16 @@ in comparison with the other admons.
   <li> with items
 </ul>}}
 
-''Summary.'' Much testing in this document, otherwise stupid content.
+''Summary.'' '''Bold remark:''' Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 ''Notice.''
 Ah, we are close to the end.
@@ -10195,6 +10331,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the {{{verb}}} typesetting... Also test backslashes
 like {{{\begin}}} and {{{\end}}} in inline verbatim text.
 
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+
 == Subsection 2 ==
 
 
@@ -10385,7 +10527,7 @@ some text.
 
 Here is an example: [1] discussed propagation of
 large destructive water waves, [2] gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [3].
 The book chapter [4] contains information on
@@ -10445,7 +10587,7 @@ Newton-Cotes with percentage in URL too:
 [[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas]]
 and [[http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae]] which has a shebang.
 
-For the {{{--latex-printed}}} it is important to test that URLs with
+For the {{{--device=paper}}} option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 [[https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py|{{{decay_mod}}}]].
 
@@ -10457,7 +10599,7 @@ monofont link text get a footnote, as in this reference to
 <wiki:comment> if rst output is desired, but placed in a {{{_static*}}} folder. </wiki:comment>
 
 More tough tests: repeated URLs whose footnotes when using the
-{{{--latex-printed}}} option must be correct. We have
+{{{--device=paper}}} option must be correct. We have
 [[http://google.com|google]], [[http://google.com|google]], and
 [[http://google.com|google]], which should result in exactly three
 footnotes.
@@ -10890,7 +11032,16 @@ in comparison with the other admons.
   * and a list
   * with items
 
-//Summary.// Much testing in this document, otherwise stupid content.
+//Summary.// **Bold remark:** Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 //Notice.// Ah, we are close to the end.
 With math:
@@ -11115,6 +11266,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the 'verb' typesetting... Also test backslashes
 like '\begin' and '\end' in inline verbatim text.
 
+Here is some red color and an attempt to write with
+green color containing a linebreak.
+And one more. Some formats will only display this correctly when
+HTML is the output format.
+
+
 Subsection 2
 
 
@@ -11291,7 +11448,7 @@ Bibliography test
 
 Here is an example: [1] discussed propagation of
 large destructive water waves, [2] gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [3].
 The book chapter [4] contains information on
@@ -11347,14 +11504,14 @@ Newton-Cotes with percentage in URL too:
 "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas":http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae":http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
 
-For the '--latex-printed' it is important to test that URLs with
+For the '--device=paper' option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py:'decay_mod'.
 
 
 
 More tough tests: repeated URLs whose footnotes when using the
-'--latex-printed' option must be correct. We have
+'--device=paper' option must be correct. We have
 "http://google.com":google, "http://google.com":google, and
 "http://google.com":google, which should result in exactly three
 footnotes.
@@ -11740,7 +11897,16 @@ in comparison with the other admons.
 
   - and a list
   - with items
-*Summary.* Much testing in this document, otherwise stupid content.
+*Summary.* **Bold remark:** Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
 With math::
@@ -11968,6 +12134,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the C{verb} typesetting... Also test backslashes
 like C{\begin} and C{\end} in inline verbatim text.
 
+Here is some red color and an attempt to write with
+green color containing a linebreak.
+And one more. Some formats will only display this correctly when
+HTML is the output format.
+
+
 Subsection 2
 ------------
 
@@ -12150,7 +12322,7 @@ Bibliography test
 
 Here is an example: [1] discussed propagation of
 large destructive water waves, [2] gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [3].
 The book chapter [4] contains information on
@@ -12208,14 +12380,14 @@ Newton-Cotes with percentage in URL too:
 U{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>}
 and U{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>} which has a shebang.
 
-For the C{--latex-printed} it is important to test that URLs with
+For the C{--device=paper} option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 U{C{decay_mod}<https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>}.
 
 
 
 More tough tests: repeated URLs whose footnotes when using the
-C{--latex-printed} option must be correct. We have
+C{--device=paper} option must be correct. We have
 U{google<http://google.com>}, U{google<http://google.com>}, and
 U{google<http://google.com>}, which should result in exactly three
 footnotes.
@@ -12627,7 +12799,16 @@ in comparison with the other admons.
   - and a list
   - with items
 
-I{Summary.} Much testing in this document, otherwise stupid content.
+I{Summary.} B{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 I{Notice.} Ah, we are close to the end.
 With math::
@@ -12922,6 +13103,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the verb typesetting... Also test backslashes
 like \begin and \end in inline verbatim text.
 
+Here is some red color and an attempt to write with
+green color containing a linebreak.
+And one more. Some formats will only display this correctly when
+HTML is the output format.
+
+
 Subsection 2
 ------------
 
@@ -13104,7 +13291,7 @@ Bibliography test
 
 Here is an example: [1] discussed propagation of
 large destructive water waves, [2] gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in [3].
 The book chapter [4] contains information on
@@ -13162,14 +13349,14 @@ Newton-Cotes with percentage in URL too:
 http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
 and http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
 
-For the --latex-printed it is important to test that URLs with
+For the --device=paper option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 decay_mod (https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py).
 
 
 
 More tough tests: repeated URLs whose footnotes when using the
---latex-printed option must be correct. We have
+--device=paper option must be correct. We have
 google (http://google.com), google (http://google.com), and
 google (http://google.com), which should result in exactly three
 footnotes.
@@ -13586,7 +13773,16 @@ in comparison with the other admons.
 
   * with items
 
-*Summary.* Much testing in this document, otherwise stupid content.
+*Summary.* _Bold remark:_ Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
 With math::
@@ -13836,6 +14032,12 @@ exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the `verb` typesetting... Also test backslashes
 like `\begin` and `\end` in inline verbatim text.
 
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+
 ### Subsection 2
 
 
@@ -13926,12 +14128,22 @@ $\frac{1}{2}$, ${1/2}$, $\pmb{x}$, $\frac{Du}{dt}$,
 both inline and in block:
 
 $$
-\begin{align*}
-\frac{Du}{dt} &= 0
-\\ 
-\frac{1}{2} &= {1/2}\\ 
-\frac{1}{2}\pmb{x} &= \pmb{n}
-\end{align*}
+
+\frac{Du}{dt} = 0
+
+
+$$
+
+$$
+  
+\frac{1}{2} = {1/2}
+
+$$
+
+$$
+  
+\frac{1}{2}\pmb{x} = \pmb{n}
+
 $$
 
 Or with align with label and numbers:
@@ -14058,7 +14270,7 @@ some text.
 
 Here is an example: @Langtangen_Pedersen_2002 discussed propagation of
 large destructive water waves, @Langtangen_et_al_2002 gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in @Langtangen_1994a.
 The book chapter @Mardal_et_al_2003a contains information on
@@ -14116,7 +14328,7 @@ Newton-Cotes with percentage in URL too:
 <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>
 and <http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae> which has a shebang.
 
-For the `--latex-printed` it is important to test that URLs with
+For the `--device=paper` option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 [`decay_mod`](https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py).
 
@@ -14128,7 +14340,7 @@ monofont link text get a footnote, as in this reference to
 <!-- if rst output is desired, but placed in a `_static*` folder. -->
 
 More tough tests: repeated URLs whose footnotes when using the
-`--latex-printed` option must be correct. We have
+`--device=paper` option must be correct. We have
 [google](http://google.com), [google](http://google.com), and
 [google](http://google.com), which should result in exactly three
 footnotes.
@@ -14151,10 +14363,15 @@ We can refer to this equation by \eqref{my:eq1}.
 
 Here is a system without equation numbers, using the align-astrisk environment:
 $$
-\begin{align*}
-\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
-b &= \nabla^2 u + \nabla^4 v
-\end{align*}
+
+\pmb{a} = \pmb{q}\times\pmb{n} 
+
+$$
+
+$$
+  
+b = \nabla^2 u + \nabla^4 v
+
 $$
 
 
@@ -14170,7 +14387,9 @@ $$
 b = \nabla^2 u + \nabla^4 x \label{eq2}
 \end{equation}
 $$
-We can refer to \eqref{eq1}-\eqref{eq2}.
+We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in `CG-2`.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -14652,7 +14871,16 @@ in comparison with the other admons.
   * and a list
 
   * with items
-*Summary.* Much testing in this document, otherwise stupid content.
+*Summary.* _Bold remark:_ Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 
 *Notice.* Ah, we are close to the end.
 With math:
@@ -15039,6 +15267,12 @@ case in LaTeX.
       "we use ! in the `verb` typesetting... Also test backslashes\n",
       "like `\\begin` and `\\end` in inline verbatim text.\n",
       "\n",
+      "Here is some <font color=\"red\">red</font> color and an attempt to write <font color=\"green\">with\n",
+      "green color containing a linebreak.\n",
+      "And one more.</font> Some formats will only display this correctly when\n",
+      "HTML is the output format.\n",
+      "\n",
+      "\n",
       "### Subsection 2\n",
       "\n",
       "\n",
@@ -15146,12 +15380,25 @@ case in LaTeX.
      "metadata": {},
      "source": [
       "$$\n",
-      "\\begin{align*}\n",
-      "\\frac{Du}{dt} &= 0\n",
-      "\\\\ \n",
-      "\\frac{1}{2} &= {1/2}\\\\ \n",
-      "\\frac{1}{2}\\pmb{x} &= \\pmb{n}\n",
-      "\\end{align*}\n",
+      "\\frac{Du}{dt} = 0\n",
+      "$$"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "$$\n",
+      "\\frac{1}{2} = {1/2}\n",
+      "$$"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "$$\n",
+      "\\frac{1}{2}\\pmb{x} = \\pmb{n}\n",
       "$$"
      ]
     },
@@ -15169,15 +15416,10 @@ case in LaTeX.
       "$$\n",
       "\\begin{equation}\n",
       "\\frac{Du}{dt} = 0\n",
-      "label{aligneq1}\n",
+      "\\label{aligneq1}\n",
       "\\end{equation}\n",
       "$$"
      ]
-    },
-    {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": []
     },
     {
      "cell_type": "markdown",
@@ -15193,16 +15435,11 @@ case in LaTeX.
     {
      "cell_type": "markdown",
      "metadata": {},
-     "source": []
-    },
-    {
-     "cell_type": "markdown",
-     "metadata": {},
      "source": [
       "$$\n",
       "\\begin{equation}  \n",
       "\\frac{1}{2}\\pmb{x} = \\pmb{n}\n",
-      "label{aligneq2}\n",
+      "\\label{aligneq2}\n",
       "\\end{equation}\n",
       "$$"
      ]
@@ -15324,7 +15561,7 @@ case in LaTeX.
       "\n",
       "Here is an example: [Langtangen_Pedersen_2002] discussed propagation of\n",
       "large destructive water waves, [Langtangen_et_al_2002] gave\n",
-      "an overview of numerical methods for solvin the Navier-Stokes equations,\n",
+      "an overview of numerical methods for solving the Navier-Stokes equations,\n",
       "while the use of Backward Kolmogorov equations for analyzing\n",
       "random vibrations was investigated in [Langtangen_1994a].\n",
       "The book chapter [Mardal_et_al_2003a] contains information on\n",
@@ -15382,7 +15619,7 @@ case in LaTeX.
       "<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>\n",
       "and <http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae> which has a shebang.\n",
       "\n",
-      "For the `--latex-printed` it is important to test that URLs with\n",
+      "For the `--device=paper` option it is important to test that URLs with\n",
       "monofont link text get a footnote, as in this reference to\n",
       "[`decay_mod`](https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py).\n",
       "\n",
@@ -15394,7 +15631,7 @@ case in LaTeX.
       "<!-- if rst output is desired, but placed in a `_static*` folder. -->\n",
       "\n",
       "More tough tests: repeated URLs whose footnotes when using the\n",
-      "`--latex-printed` option must be correct. We have\n",
+      "`--device=paper` option must be correct. We have\n",
       "[google](http://google.com), [google](http://google.com), and\n",
       "[google](http://google.com), which should result in exactly three\n",
       "footnotes.\n",
@@ -15447,10 +15684,16 @@ case in LaTeX.
      "metadata": {},
      "source": [
       "$$\n",
-      "\\begin{align*}\n",
-      "\\pmb{a} &= \\pmb{q}\\times\\pmb{n} \\\\ \n",
-      "b &= \\nabla^2 u + \\nabla^4 v\n",
-      "\\end{align*}\n",
+      "\\pmb{a} = \\pmb{q}\\times\\pmb{n}\n",
+      "$$"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "$$\n",
+      "b = \\nabla^2 u + \\nabla^4 v\n",
       "$$"
      ]
     },
@@ -15592,11 +15835,6 @@ case in LaTeX.
       "\\end{equation}\n",
       "$$"
      ]
-    },
-    {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": []
     },
     {
      "cell_type": "markdown",
@@ -16013,7 +16251,16 @@ case in LaTeX.
       "\n",
       "  * with items\n",
       "\n",
-      "*Summary.* Much testing in this document, otherwise stupid content.\n",
+      "*Summary.* _Bold remark:_ Make some text with this summary.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
+      "Much testing in this document, otherwise stupid content.\n",
       "\n",
       "*Notice.* Ah, we are close to the end.\n",
       "With math:"
@@ -16195,7 +16442,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'solution_file': None,
   'subex': [{'answer': 'Short answer to subexercise a).\nWith math in answer: $a=b$.',
              'file': ['subexer_a.pdf'],
-             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n16 <<<!!MATH_BLOCK\nAnd with code returning $x+1$ in hint:\n\n15 <<<!!CODE_BLOCK',
+             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n19 <<<!!MATH_BLOCK\nAnd with code returning $x+1$ in hint:\n\n15 <<<!!CODE_BLOCK',
                        'Second hint to subexercise a).'],
              'solution': '',
              'text': 'Subexercises are numbered a), b), etc.'},
@@ -16407,6 +16654,7 @@ Terminal&gt; myprog -f
 output1
 output2</code></pre>
 <p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
+<p>Here is some color and an attempt to write Some formats will only display this correctly when HTML is the output format.</p>
 <h2 id="subsection-2">Subsection 2</h2>
 <p>[subsec:ex]</p>
 <p>Test of figures. In particular we refer to Figure [fig:impact] in which there is a flow.</p>
@@ -16600,7 +16848,7 @@ output2</code></pre>
 <h4 id="files-my_file_v1.py-and-my_file_v2.py-define-some-math-a_i-1.">Files <code>my\_file\_v1.py</code> and <code>my\_file\_v2.py</code> define some math \(a_{i-1}\).</h4>
 <p>Here is some text.</p>
 <h2 id="bibliography-test">Bibliography test</h2>
-<p>Here is an example:  discussed propagation of large destructive water waves,  gave an overview of numerical methods for solvin the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in . The book chapter  contains information on C++ software tools for programming multigrid methods. A real retro reference is  about a big FORTRAN package. Multiple references are also possible, e.g., see .</p>
+<p>Here is an example:  discussed propagation of large destructive water waves,  gave an overview of numerical methods for solving the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in . The book chapter  contains information on C++ software tools for programming multigrid methods. A real retro reference is  about a big FORTRAN package. Multiple references are also possible, e.g., see .</p>
 <h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
 <p>[Example]</p>
 <p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
@@ -16620,8 +16868,8 @@ output2</code></pre>
 <p>[subsubsec:ex]</p>
 <p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}"></a>. Here is a plain file link <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also <code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="{http://folk.uio.no/hpl}"></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}"></a> and <a href="{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}"></a> which has a shebang.</p>
-<p>For the <code>--latex-printed</code> it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}"></a>.</p>
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}"></a>.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
 <p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
@@ -16636,7 +16884,7 @@ b &amp;= \nabla^2 u + \nabla^4 v\end{aligned}\]</p>
 <p>\[\begin{aligned}
 a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
 b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}\end{aligned}\]</p>
-<p>We can refer to ([eq1])-([eq2]).</p>
+<p>We can refer to ([eq1])-([eq2]). They are a bit simpler than the Navier-Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \(a_{i-j}\) as well as \(kx-wt\).</p>
 <p>Many of the next environments will fail in non-latex formats. Testing multiline:</p>
 <p>\[\begin{gathered}
 a = b = q + \\ 
@@ -16991,6 +17239,7 @@ Terminal<span class="kw">&gt;</span> myprog -f
 output1
 output2</code></pre>
 <p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
+<p>Here is some <font color="red">red</font> color and an attempt to write <font color="green">with green color containing a linebreak. And one more.</font> Some formats will only display this correctly when HTML is the output format.</p>
 <h3 id="subsection-2">Subsection 2</h3>
 <p>Test of figures. In particular we refer to Figure ref{fig:impact} in which there is a flow.</p>
 <div class="figure">
@@ -17057,14 +17306,15 @@ output2</code></pre>
     return theta**2</code></pre>
 <p><em>More on \(\theta\).</em> Here is more text following headline with math.</p>
 <p>Newcommands must also be tested in this test report: \(\frac{1}{2}\), \({1/2}\), \(\pmb{x}\), \(\frac{Du}{dt}\), both inline and in block:</p>
-<p>\[
-\begin{align*}
-\frac{Du}{dt} &amp;= 0
-\\ 
-\frac{1}{2} &amp;= {1/2}\\ 
-\frac{1}{2}\pmb{x} &amp;= \pmb{n}
-\end{align*}
-\]</p>
+<p>$$</p>
+<p> = 0</p>
+<p>$$</p>
+<p>$$</p>
+<p> = {1/2}</p>
+<p>$$</p>
+<p>$$</p>
+<p> = </p>
+<p>$$</p>
 <p>Or with align with label and numbers:</p>
 <p>\[
 \begin{equation}
@@ -17250,7 +17500,7 @@ output2</code></pre>
 <h3 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h3>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
 <h3 id="bibliography-test">Bibliography test</h3>
-<p>Here is an example: @Langtangen_Pedersen_2002 discussed propagation of large destructive water waves, @Langtangen_et_al_2002 gave an overview of numerical methods for solvin the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in @Langtangen_1994a. The book chapter @Mardal_et_al_2003a contains information on C++ software tools for programming multigrid methods. A real retro reference is @Langtangen_1988d about a big FORTRAN package. Multiple references are also possible, e.g., see @Langtangen_Pedersen_2002;@Mardal_et_al_2003a.</p>
+<p>Here is an example: @Langtangen_Pedersen_2002 discussed propagation of large destructive water waves, @Langtangen_et_al_2002 gave an overview of numerical methods for solving the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in @Langtangen_1994a. The book chapter @Mardal_et_al_2003a contains information on C++ software tools for programming multigrid methods. A real retro reference is @Langtangen_1988d about a big FORTRAN package. Multiple references are also possible, e.g., see @Langtangen_Pedersen_2002;@Mardal_et_al_2003a.</p>
 <!-- --- begin exercise --- -->
 
 <h3 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h3>
@@ -17267,7 +17517,7 @@ output2</code></pre>
 <h3 id="urls">URLs</h3>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"><code class="url">http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</code></a> and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><code class="url">http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</code></a> which has a shebang.</p>
-<p>For the <code>--latex-printed</code> it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><code>decay_mod</code></a>.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><code>decay_mod</code></a>.</p>
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
 
@@ -17275,7 +17525,7 @@ output2</code></pre>
 <!-- if the link name is URL, url, "URL", or "url". Such files should, -->
 <!-- if rst output is desired, but placed in a `_static*` folder. -->
 
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and <a href="http://google.com">google</a>, which should result in exactly three footnotes.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and <a href="http://google.com">google</a>, which should result in exactly three footnotes.</p>
 <h3 id="latex-mathematics">LaTeX Mathematics</h3>
 <p>Here is an equation without label using backslash-bracket environment: \[
  a = b + c 
@@ -17284,12 +17534,12 @@ output2</code></pre>
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 \] We can refer to this equation by .</p>
-<p>Here is a system without equation numbers, using the align-astrisk environment: \[
-\begin{align*}
-\pmb{a} &amp;= \pmb{q}\times\pmb{n} \\ 
-b &amp;= \nabla^2 u + \nabla^4 v
-\end{align*}
-\]</p>
+<p>Here is a system without equation numbers, using the align-astrisk environment: $$</p>
+<p> = </p>
+<p>$$</p>
+<p>$$</p>
+<p>b = ^2 u + ^4 v</p>
+<p>$$</p>
 <p>And here is a system of equations with labels in an align environment: \[
 \begin{equation}
 a = q + 4 + 5+ 6 \label{eq1} 
@@ -17299,7 +17549,7 @@ a = q + 4 + 5+ 6 \label{eq1}
 \begin{equation}  
 b = \nabla^2 u + \nabla^4 x \label{eq2}
 \end{equation}
-\] We can refer to -.</p>
+\] We can refer to -. They are a bit simpler than the Navier-Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \(a_{i-j}\) as well as \(kx-wt\).</p>
 <p>Many of the next environments will fail in non-latex formats. Testing multiline: \[
 \begin{multline}
 a = b = q + \\ 
@@ -17551,7 +17801,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><em>Warning.</em> And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
 <ul>
 <li><p>and a list</p></li>
-<li><p>with items <em>Summary.</em> Much testing in this document, otherwise stupid content.</p></li>
+<li><p>with items <em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p></li>
 </ul>
 <p><em>Notice.</em> Ah, we are close to the end. With math: \[
  p=q
@@ -18676,11 +18926,12 @@ the section <a href="#genrefs">Generalized References</a>."
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -18688,7 +18939,7 @@ the section <a href="#genrefs">Generalized References</a>."
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -18718,11 +18969,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},              % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -18733,7 +18984,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 
@@ -18805,7 +19056,7 @@ final,                   % or draft (marks overfull hboxes)
 \begin{center}
 {\huge{\bfseries{Test of one author at one institution}}}
 
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \title*{Test of one author at one institution}
 % Short version of title:
@@ -18831,7 +19082,7 @@ final,                   % or draft (marks overfull hboxes)
 \ \\ [2mm]
 
 {\large\textsf{Cyberspace Inc.} \\ [1.5mm]}
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \author{John Doe}
 % Short version of authors:
@@ -20126,6 +20377,13 @@ we use ! in the <code>verb</code> typesetting... Also test backslashes
 like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 
 <p>
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+<p>
+
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
 
@@ -20412,7 +20670,7 @@ some text.
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
 large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
 The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
@@ -20491,7 +20749,7 @@ Newton-Cotes with percentage in URL too:
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
 
 <p>
-For the <code>--latex-printed</code> it is important to test that URLs with
+For the <code>--device=paper</code> option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
 
@@ -20506,7 +20764,7 @@ monofont link text get a footnote, as in this reference to
 
 <p>
 More tough tests: repeated URLs whose footnotes when using the
-<code>--latex-printed</code> option must be correct. We have
+<code>--device=paper</code> option must be correct. We have
 <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
@@ -20549,7 +20807,9 @@ b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 $$
 
-We can refer to \eqref{eq1}-\eqref{eq2}.
+We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
 
 <p>
 Many of the next environments will fail in non-latex formats.
@@ -21176,6 +21436,15 @@ in comparison with the other admons.
 <th align="left" valign="middle"><b>Summary</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 </p></td></tr>
 </table>
@@ -21601,7 +21870,7 @@ dependencies: [
 </html>
 reveal.js:
 css
-grunt.js
+Gruntfile.js
 index.html
 js
 lib
@@ -21625,21 +21894,24 @@ beige.css
 beigesmall.css
 darkgray.css
 default.css
+moon.css
 night.css
-README.md
 serif.css
 simple.css
 sky.css
+solarized.css
 source
 template
 
 reveal.js/css/theme/source:
 beige.scss
 default.scss
+moon.scss
 night.scss
 serif.scss
 simple.scss
 sky.scss
+solarized.scss
 
 reveal.js/css/theme/template:
 mixins.scss
@@ -21673,19 +21945,28 @@ html5shiv.js
 reveal.js/plugin:
 highlight
 markdown
+multiplex
 notes
 notes-server
 postmessage
 print-pdf
 remotes
+search
 zoom-js
 
 reveal.js/plugin/highlight:
 highlight.js
 
 reveal.js/plugin/markdown:
+example.html
+example.md
 markdown.js
 showdown.js
+
+reveal.js/plugin/multiplex:
+client.js
+index.js
+master.js
 
 reveal.js/plugin/notes:
 notes.html
@@ -21706,6 +21987,9 @@ print-pdf.js
 reveal.js/plugin/remotes:
 remotes.js
 
+reveal.js/plugin/search:
+search.js
+
 reveal.js/plugin/zoom-js:
 zoom.js
 
@@ -21715,95 +21999,95 @@ zoom.js
 doconce format html slides
 doconce slides_html slides doconce
 
-doconce format html slides --pygments-html-style=monokai
+doconce format html slides --pygments-html-style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
 doconce slides_html slides csss --html-slide-theme=csss_default
 cp slides.html slides_csss_csss_default.html
 
-doconce format html slides --pygments-html-style=perldoc
+doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
 doconce slides_html slides reveal --html-slide-theme=beigesmall
 cp slides.html slides_reveal_beigesmall.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
 doconce slides_html slides reveal --html-slide-theme=simple
 cp slides.html slides_reveal_simple.html
 
-doconce format html slides --pygments-html-style=native
+doconce format html slides --pygments-html-style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
 doconce slides_html slides reveal --html-slide-theme=darkgray
 cp slides.html slides_reveal_darkgray.html
 
-doconce format html slides --pygments-html-style=default
+doconce format html slides --pygments-html-style=default SLIDE_TYPE=reveal SLIDE_THEME=sky
 doconce slides_html slides reveal --html-slide-theme=sky
 cp slides.html slides_reveal_sky.html
 
-doconce format html slides --pygments-html-style=perldoc
+doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
 doconce slides_html slides reveal --html-slide-theme=serif
 cp slides.html slides_reveal_serif.html
 
-doconce format html slides --pygments-html-style=perldoc
+doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
 doconce slides_html slides reveal --html-slide-theme=beige
 cp slides.html slides_reveal_beige.html
 
-doconce format html slides --pygments-html-style=fruity
+doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
 doconce slides_html slides reveal --html-slide-theme=night
 cp slides.html slides_reveal_night.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
 doconce slides_html slides dzslides --html-slide-theme=dzslides_default
 cp slides.html slides_dzslides_dzslides_default.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-io2011
 doconce slides_html slides html5slides --html-slide-theme=template-io2011
 cp slides.html slides_html5slides_template-io2011.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-default
 doconce slides_html slides html5slides --html-slide-theme=template-default
 cp slides.html slides_html5slides_template-default.html
 
-doconce format html slides --pygments-html-style=fruity
+doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
 doconce slides_html slides deck --html-slide-theme=sandstone.mightly
 cp slides.html slides_deck_sandstone_mightly.html
 
-doconce format html slides --pygments-html-style=fruity
+doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
 doconce slides_html slides deck --html-slide-theme=neon
 cp slides.html slides_deck_neon.html
 
-doconce format html slides --pygments-html-style=perldoc
+doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
 doconce slides_html slides deck --html-slide-theme=sandstone.default
 cp slides.html slides_deck_sandstone_default.html
 
-doconce format html slides --pygments-html-style=native
+doconce format html slides --pygments-html-style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
 doconce slides_html slides deck --html-slide-theme=sandstone.dark
 cp slides.html slides_deck_sandstone_dark.html
 
-doconce format html slides --pygments-html-style=default
+doconce format html slides --pygments-html-style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
 doconce slides_html slides deck --html-slide-theme=sandstone.firefox
 cp slides.html slides_deck_sandstone_firefox.html
 
-doconce format html slides --pygments-html-style=emacs
+doconce format html slides --pygments-html-style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
 doconce slides_html slides deck --html-slide-theme=sandstone.light
 cp slides.html slides_deck_sandstone_light.html
 
-doconce format html slides --pygments-html-style=fruity
+doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mdn
 doconce slides_html slides deck --html-slide-theme=sandstone.mdn
 cp slides.html slides_deck_sandstone_mdn.html
 
-doconce format html slides --pygments-html-style=default
+doconce format html slides --pygments-html-style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
 doconce slides_html slides deck --html-slide-theme=mnml
 cp slides.html slides_deck_mnml.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
 doconce slides_html slides deck --html-slide-theme=web-2.0
 cp slides.html slides_deck_web-2_0.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
 doconce slides_html slides deck --html-slide-theme=swiss
 cp slides.html slides_deck_swiss.html
 
-doconce format html slides --pygments-html-style=fruity
+doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.aurora
 doconce slides_html slides deck --html-slide-theme=sandstone.aurora
 cp slides.html slides_deck_sandstone_aurora.html
 
-doconce format html slides --pygments-html-style=autumn
+doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
 doconce slides_html slides deck --html-slide-theme=beamer
 cp slides.html slides_deck_beamer.html
 
@@ -22214,6 +22498,13 @@ we use ! in the <code>verb</code> typesetting... Also test backslashes
 like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 
 <p>
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+<p>
+
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
 
@@ -22501,7 +22792,7 @@ some text.
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
 large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
 The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
@@ -22580,7 +22871,7 @@ Newton-Cotes with percentage in URL too:
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
 
 <p>
-For the <code>--latex-printed</code> it is important to test that URLs with
+For the <code>--device=paper</code> option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
 
@@ -22595,7 +22886,7 @@ monofont link text get a footnote, as in this reference to
 
 <p>
 More tough tests: repeated URLs whose footnotes when using the
-<code>--latex-printed</code> option must be correct. We have
+<code>--device=paper</code> option must be correct. We have
 <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
@@ -22644,7 +22935,9 @@ b = \nabla^2 u + \nabla^4 x
  $
 
 
-We can refer to <b>(REF to equation eq1 not supported)</b>-<b>(REF to equation eq2 not supported)</b>.
+We can refer to <b>(REF to equation eq1 not supported)</b>-<b>(REF to equation eq2 not supported)</b>. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test $latex a_{i-j}$ as well as $latex kx-wt$.
 
 <p>
 Many of the next environments will fail in non-latex formats.
@@ -23308,6 +23601,15 @@ in comparison with the other admons.
 <th align="left" valign="middle"><b>Summary</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 </p></td></tr>
 </table>
@@ -23906,6 +24208,13 @@ we use ! in the <code>verb</code> typesetting... Also test backslashes
 like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 
 <p>
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+<p>
+
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
 
@@ -24185,7 +24494,7 @@ some text.
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
 large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
 The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
@@ -24264,7 +24573,7 @@ Newton-Cotes with percentage in URL too:
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
 
 <p>
-For the <code>--latex-printed</code> it is important to test that URLs with
+For the <code>--device=paper</code> option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
 
@@ -24279,7 +24588,7 @@ monofont link text get a footnote, as in this reference to
 
 <p>
 More tough tests: repeated URLs whose footnotes when using the
-<code>--latex-printed</code> option must be correct. We have
+<code>--device=paper</code> option must be correct. We have
 <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
@@ -24322,7 +24631,9 @@ b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 $$
 
-We can refer to \eqref{eq1}-\eqref{eq2}.
+We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
 
 <p>
 Many of the next environments will fail in non-latex formats.
@@ -24938,6 +25249,15 @@ in comparison with the other admons.
 <th align="left" valign="middle"><b>Summary</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 </p></td></tr>
 </table>
@@ -25044,11 +25364,12 @@ case in LaTeX.
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -25056,7 +25377,7 @@ case in LaTeX.
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -25086,11 +25407,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},              % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -25105,7 +25426,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 
@@ -25176,6 +25497,7 @@ final,                   % or draft (marks overfull hboxes)
 }\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
 \end{wrapfigure}}
 % #else
+% gray box of 80% width
 \newcommand{\summarybox}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
@@ -25187,7 +25509,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
@@ -25233,7 +25555,7 @@ final,                   % or draft (marks overfull hboxes)
 \begin{center}
 {\huge{\bfseries{A Document for Testing Doconce}}}
 
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \title*{A Document for Testing Doconce}
 % Short version of title:
@@ -25277,7 +25599,7 @@ final,                   % or draft (marks overfull hboxes)
 {\large\textsf{${}^5$Inst2, Somewhere} \\ [1.5mm]}
 {\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
 {\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen and Kaare Dump and A. Dummy Author and I. S. Overworked and J. Doe}
 % Short version of authors:
@@ -25352,7 +25674,7 @@ Jan 32, 2100
 
 
 \tableofcontents
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \listoftodos[List of inline comments]
 % #endif
 
@@ -25370,7 +25692,7 @@ plain, homemade {\LaTeX} (from Doconce).
 % Just a comment
 
 
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 \abstract{
 % #else
 \begin{abstract}
@@ -25384,7 +25706,7 @@ is part of the abstract.
 
 % Cannot demonstrate chapter headings since abstract and chapter
 % is mutually exclusive in {\LaTeX}
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 }
 % #else
 \end{abstract}
@@ -25575,6 +25897,12 @@ inside the text} and an exclamation mark at the end: \code{BEGIN}! The
 exclamation mark inside the verbatim text is not smart for latex as
 we use ! in the \code{verb} typesetting... Also test backslashes
 like \code{\begin} and \code{\end} in inline verbatim text.
+
+Here is some \textcolor{red}{red} color and an attempt to write \textcolor{green}{with
+green color containing a linebreak.
+And one more.} Some formats will only display this correctly when
+HTML is the output format.
+
 
 \subsection{Subsection 2}
 \label{subsec:ex}
@@ -25893,7 +26221,7 @@ some text.
 
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in \cite{Langtangen_1994a}.
 The book chapter \cite{Mardal_et_al_2003a} contains information on
@@ -25962,7 +26290,7 @@ Newton-Cotes with percentage in URL too:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{http://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
 
-For the \code{--latex-printed} it is important to test that URLs with
+For the \code{--device=paper} option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}.
 
@@ -25974,7 +26302,7 @@ monofont link text get a footnote, as in this reference to
 % if rst output is desired, but placed in a \code{_static*} folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-\code{--latex-printed} option must be correct. We have
+\code{--device=paper} option must be correct. We have
 \href{{http://google.com}}{google}, \href{{http://google.com}}{google}, and
 \href{{http://google.com}}{google}, which should result in exactly three
 footnotes.
@@ -26013,7 +26341,9 @@ And here is a system of equations with labels in an align environment:
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
-We can refer to (\ref{eq1})-(\ref{eq2}).
+We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
+the Navier-Stokes equations. And test {\LaTeX} hyphen in \code{CG-2}.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -26478,6 +26808,15 @@ in comparison with the other admons.
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 \summarybox{
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
@@ -26816,6 +27155,11 @@ os.chdir(sphinx_rootdir)
 print os.getcwd()
 system('make clean')
 system('make html')
+
+print 'Fix double title in <title> tags in .html files:'
+os.chdir('_build/html')
+for filename in glob.glob('*.html'):
+    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename)
 print """
 google-chrome sphinx-rootdir/_build/html/index.html
 """
@@ -27384,6 +27728,13 @@ we use ! in the <code>verb</code> typesetting... Also test backslashes
 like <code>\begin</code> and <code>\end</code> in inline verbatim text.
 
 <p>
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+<p>
+
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
 
@@ -27663,7 +28014,7 @@ some text.
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
 large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
 The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
@@ -27742,7 +28093,7 @@ Newton-Cotes with percentage in URL too:
 and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae"><tt>http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
 
 <p>
-For the <code>--latex-printed</code> it is important to test that URLs with
+For the <code>--device=paper</code> option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
 
@@ -27757,7 +28108,7 @@ monofont link text get a footnote, as in this reference to
 
 <p>
 More tough tests: repeated URLs whose footnotes when using the
-<code>--latex-printed</code> option must be correct. We have
+<code>--device=paper</code> option must be correct. We have
 <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
@@ -27800,7 +28151,9 @@ b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 $$
 
-We can refer to \eqref{eq1}-\eqref{eq2}.
+We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
 
 <p>
 Many of the next environments will fail in non-latex formats.
@@ -28426,7 +28779,16 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul></div><p>
-<div class="alert alert-block alert-summary">Much testing in this document, otherwise stupid content.</div><p>
+<div class="alert alert-block alert-summary">_Bold remark:_ Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.</div><p>
 <div class="alert alert-block alert-notice">Ah, we are close to the end.
 With math:
 $$ p=q$$
@@ -28586,7 +28948,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises
+doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc
@@ -28602,8 +28964,13 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
 doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
+# because of --latex-double-hyphen:
+doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
+doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
 
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage testdoc
+# A4PAPER trigger summary environment to be smaller paragraph
+# within the text (fine for proposals or articles).
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works
@@ -29060,10 +29427,15 @@ v(t) &= \frac{du}{dt}
 and results in
 
 $$
-\begin{align*}
-u(t)&=e^{-at}\\ 
-v(t) &= \frac{du}{dt}
-\end{align*}
+
+u(t)=e^{-at}
+
+$$
+
+$$
+  
+v(t) = \frac{du}{dt}
+
 $$
 
 *Test 5: Multiple, aligned equations with label.* We use align with
@@ -29502,12 +29874,12 @@ v(t) &amp;= \frac{du}{dt}
 \end{align*}
 !et</code></pre>
 <p>and results in</p>
-<p>\[
-\begin{align*}
-u(t)&amp;=e^{-at}\\ 
-v(t) &amp;= \frac{du}{dt}
-\end{align*}
-\]</p>
+<p>$$</p>
+<p>u(t)=e^{-at}</p>
+<p>$$</p>
+<p>$$</p>
+<p>v(t) = </p>
+<p>$$</p>
 <p><em>Test 5: Multiple, aligned equations with label.</em> We use align with labels:</p>
 <pre><code>!bt
 \begin{align}
@@ -30002,7 +30374,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 08 Mar 2013 (04:14)</center>
+<center>Tue, 12 Mar 2013 (00:29)</center>
 
 
 
@@ -30133,7 +30505,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 08 Mar 2013 (04:14)</center>
+<center>Tue, 12 Mar 2013 (00:29)</center>
 
 
 
@@ -30491,7 +30863,12 @@ problem.
 
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: `_boldface_` become _boldface_.
+appear in boldface: `_boldface_` becomes _boldface_. Colored words
+are also possible: the text
+!bc
+`color{red}{two red words}`
+!ec
+becomes color{red}{two red words}.
 
 ===== Lists =====
 
@@ -30574,19 +30951,19 @@ Comment lines starting with `##` are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 `# #ifdef EXTRA` and `# #endif` around the text. The command line
 option `-DEXTRA` will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 ===== Inline comments =====
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 !bc
 [name: running text]
@@ -30595,6 +30972,12 @@ where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the `-DTOTONOTES` option to `ptex2tex` or `doconce ptex2tex`,
+colorful margin or inline boxes (using the `todonotes` package)
+make it very easy to spot the comments.
+
 Running
 !bc sys
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -31470,7 +31853,13 @@ problem.
 <p>
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
-appear in boldface: <code>_boldface_</code> become <b>boldface</b>.
+appear in boldface: <code>_boldface_</code> becomes <b>boldface</b>. Colored words
+are also possible: the text
+<!-- begin verbatim block -->
+<pre><code>`color{red}{two red words}`
+</code></pre>
+<!-- end verbatim block -->
+becomes <font color="red">two red words</font>.
 
 <p>
 
@@ -31583,23 +31972,23 @@ document and can be used for comments that are only interest in
 the Doconce file.
 
 <p>
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with <code>%<doc></code> and end with <code><%doc/></code>, both at the beginning of the line.
-
-<p>
 Large portions of text can be left out using Preprocess. Just place
 <code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
 option <code>-DEXTRA</code> will bring the text alive again.
 
 <p>
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+<p>
+
 
 <h3>Inline comments  <a name="___sec7"></a></h3>
 
 <p>
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 <!-- begin verbatim block -->
 <pre><code>[name: running text]
@@ -31613,6 +32002,13 @@ and <code>running text</code> is the comment. Here goes an example.
 but the running text can occupy multiple lines.</em>]
 <!-- end inline comment -->
 
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the <code>-DTOTONOTES</code> option to <code>ptex2tex</code> or <code>doconce ptex2tex</code>,
+colorful margin or inline boxes (using the <code>todonotes</code> package)
+make it very easy to spot the comments.
+
+<p>
 Running
 <!-- begin verbatim block  sys-->
 <pre><code>doconce format html mydoc.do.txt --skip_inline_comments
@@ -31756,7 +32152,7 @@ and
 <!-- begin verbatim block -->
 <pre><code>!bt
 \begin{align*}
-\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\cdot \pmb{u} &amp;= 0,\\ 
 \nabla\times \pmb{u} &amp;= 0.
 \end{align*}
 !et
@@ -31769,7 +32165,7 @@ This LaTeX code gets rendered as
 <p>
 $$
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
@@ -32074,7 +32470,7 @@ list of capabilities:
 <p>
 <!-- begin verbatim block  shpro-->
 <pre><code>Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -32186,6 +32582,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 </code></pre>
 <!-- end verbatim block -->
 
@@ -32360,11 +32766,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          &amp; 1.4186       &amp; -5.01        \\
-2.0          &amp; 1.376512     &amp; 11.919       \\
-4.0          &amp; 1.1E+1       &amp; 14.717624    \\
+0.0          &amp; 1.4186       &amp; -5.01        \\ 
+2.0          &amp; 1.376512     &amp; 11.919       \\ 
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -32429,11 +32835,12 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
 %%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -32441,7 +32848,7 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -32471,11 +32878,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},              % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -32486,7 +32893,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 
@@ -32538,7 +32945,7 @@ final,                   % or draft (marks overfull hboxes)
 \newcounter{exerno}
 
 
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
@@ -32581,7 +32988,7 @@ final,                   % or draft (marks overfull hboxes)
 \begin{center}
 {\huge{\bfseries{Doconce Quick Reference}}}
 
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \title*{Doconce Quick Reference}
 % Short version of title:
@@ -32608,7 +33015,7 @@ final,                   % or draft (marks overfull hboxes)
 
 {\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
 {\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen}
 % Short version of authors:
@@ -32658,7 +33065,7 @@ Jan 32, 2100
 
 
 \tableofcontents
-% #ifndef NOTODONOTES
+% #ifdef TODONOTES
 \listoftodos[List of inline comments]
 % #endif
 
@@ -32818,7 +33225,12 @@ problem.
 
 Words surrounded by \code{*} are emphasized: \code{*emphasized words*} becomes
 \emph{emphasized words}. Similarly, an underscore surrounds words that
-appear in boldface: \code{_boldface_} become \textbf{boldface}.
+appear in boldface: \code{_boldface_} becomes \textbf{boldface}. Colored words
+are also possible: the text
+\bccq
+`color{red}{two red words}`
+\eccq
+becomes \textcolor{red}{two red words}.
 
 \subsection{Lists}
 
@@ -32929,19 +33341,19 @@ Comment lines starting with \code{##} are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with \code{%<doc>} and end with \code{<%doc/>}, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 \code{# #ifdef EXTRA} and \code{# #endif} around the text. The command line
 option \code{-DEXTRA} will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 \subsection{Inline comments}
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 \bccq
 [name: running text]
@@ -32950,6 +33362,12 @@ where \code{name} is the name or ID of an author or reader making the comment,
 and \code{running text} is the comment. Here goes an example.
 \shortinlinecomment{hpl}{There must be a space after the colon,
 but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with {\LaTeX}
+output and the \code{-DTOTONOTES} option to \code{ptex2tex} or \code{doconce ptex2tex},
+colorful margin or inline boxes (using the \code{todonotes} package)
+make it very easy to spot the comments.
+
 Running
 \bsys
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -33070,7 +33488,7 @@ and
 \bccq
 !bt
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
@@ -33079,7 +33497,7 @@ and
 This {\LaTeX} code gets rendered as
 
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 Here is a single equation:
@@ -33335,7 +33753,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -33447,6 +33865,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 \eshpro
 
 \subsection{Exercises}
@@ -33618,11 +34046,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          & 1.4186       & -5.01        \\ 
+2.0          & 1.376512     & 11.919       \\ 
+4.0          & 1.1E+1       & 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -33825,7 +34253,13 @@ Inline Formatting
 
 Words surrounded by ``*`` are emphasized: ``*emphasized words*`` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: ``_boldface_`` become **boldface**.
+appear in boldface: ``_boldface_`` becomes **boldface**. Colored words
+are also possible: the text::
+
+
+        `color{red}{two red words}`
+
+becomes <font color="red">two red words</font>.
 
 Lists
 -----
@@ -33924,20 +34358,20 @@ Comment lines starting with ``##`` are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with ``%<doc>`` and end with ``<%doc/>``, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 ``# #ifdef EXTRA`` and ``# #endif`` around the text. The command line
 option ``-DEXTRA`` will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 Inline comments
 ---------------
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax::
 
 
@@ -33947,6 +34381,12 @@ where ``name`` is the name or ID of an author or reader making the comment,
 and ``running text`` is the comment. Here goes an example.
 (**hpl**: There must be a space after the colon,
 but the running text can occupy multiple lines.)
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the ``-DTOTONOTES`` option to ``ptex2tex`` or ``doconce ptex2tex``,
+colorful margin or inline boxes (using the ``todonotes`` package)
+make it very easy to spot the comments.
+
 Running::
 
 
@@ -34074,7 +34514,7 @@ and
 
         !bt
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
@@ -34083,7 +34523,7 @@ and
 This LaTeX code gets rendered as::
 
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
 
@@ -34346,7 +34786,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -34458,6 +34898,16 @@ list of capabilities::
         
         # generate a make.sh script for translating a doconce file to various formats
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
+        
+        # fix common problems in bibtex files for publish import
+        doconce fix_bibtex4publish file1.bib file2.bib ...
+        
+        # find differences between two files
+        doconce diff file1.do.txt file2.do.txt [diffprog]
+        (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        # find differences between the last two Git versions of several files
+        doconce gitdiff file1 file2 file3 ...
 
 
 Exercises
@@ -34627,11 +35077,11 @@ constructions::
         \caption{Some words... label{mytab}}
         \begin{tabular}{lrr}
         \hline\noalign{\smallskip}
-        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
         \hline
-        0.0          & 1.4186       & -5.01        \\
-        2.0          & 1.376512     & 11.919       \\
-        4.0          & 1.1E+1       & 14.717624    \\
+        0.0          & 1.4186       & -5.01        \\ 
+        2.0          & 1.376512     & 11.919       \\ 
+        4.0          & 1.1E+1       & 14.717624    \\ 
         \hline
         \end{tabular}
         \end{table}
@@ -34821,7 +35271,15 @@ Inline Formatting
 
 Words surrounded by ``*`` are emphasized: ``*emphasized words*`` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: ``_boldface_`` become **boldface**.
+appear in boldface: ``_boldface_`` becomes **boldface**. Colored words
+are also possible: the text
+
+.. code-block:: text
+
+
+        `color{red}{two red words}`
+
+becomes <font color="red">two red words</font>.
 
 Lists
 -----
@@ -34922,20 +35380,20 @@ Comment lines starting with ``##`` are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with ``%<doc>`` and end with ``<%doc/>``, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 ``# #ifdef EXTRA`` and ``# #endif`` around the text. The command line
 option ``-DEXTRA`` will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 Inline comments
 ---------------
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 
 .. code-block:: text
@@ -34947,6 +35405,12 @@ where ``name`` is the name or ID of an author or reader making the comment,
 and ``running text`` is the comment. Here goes an example.
 (**hpl**: There must be a space after the colon,
 but the running text can occupy multiple lines.)
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the ``-DTOTONOTES`` option to ``ptex2tex`` or ``doconce ptex2tex``,
+colorful margin or inline boxes (using the ``todonotes`` package)
+make it very easy to spot the comments.
+
 Running
 
 .. code-block:: console
@@ -35089,7 +35553,7 @@ and
 
         !bt
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
@@ -35100,7 +35564,7 @@ This LaTeX code gets rendered as
 
 .. math::
         
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         
 
@@ -35390,7 +35854,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -35502,6 +35966,16 @@ list of capabilities:
         
         # generate a make.sh script for translating a doconce file to various formats
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
+        
+        # fix common problems in bibtex files for publish import
+        doconce fix_bibtex4publish file1.bib file2.bib ...
+        
+        # find differences between two files
+        doconce diff file1.do.txt file2.do.txt [diffprog]
+        (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        # find differences between the last two Git versions of several files
+        doconce gitdiff file1 file2 file3 ...
 
 
 Exercises
@@ -35682,11 +36156,11 @@ constructions:
         \caption{Some words... label{mytab}}
         \begin{tabular}{lrr}
         \hline\noalign{\smallskip}
-        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
         \hline
-        0.0          & 1.4186       & -5.01        \\
-        2.0          & 1.376512     & 11.919       \\
-        4.0          & 1.1E+1       & 14.717624    \\
+        0.0          & 1.4186       & -5.01        \\ 
+        2.0          & 1.376512     & 11.919       \\ 
+        4.0          & 1.1E+1       & 14.717624    \\ 
         \hline
         \end{tabular}
         \end{table}
@@ -35850,7 +36324,12 @@ problem.
 
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: `_boldface_` become *boldface*.
+appear in boldface: `_boldface_` becomes *boldface*. Colored words
+are also possible: the text
+{{{
+`color{red}{two red words}`
+}}}
+becomes <font color="red">two red words</font>.
 
 ==== Lists ====
 
@@ -35937,19 +36416,19 @@ Comment lines starting with `##` are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 `# #ifdef EXTRA` and `# #endif` around the text. The command line
 option `-DEXTRA` will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 ==== Inline comments ====
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 {{{
 [name: running text]
@@ -35958,6 +36437,12 @@ where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the `-DTOTONOTES` option to `ptex2tex` or `doconce ptex2tex`,
+colorful margin or inline boxes (using the `todonotes` package)
+make it very easy to spot the comments.
+
 Running
 {{{
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -36071,7 +36556,7 @@ and
 {{{
 !bt
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
@@ -36081,7 +36566,7 @@ This LaTeX code gets rendered as
 
 {{{
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 }}}
@@ -36308,7 +36793,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -36420,6 +36905,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 }}}
 
 ==== Exercises ====
@@ -36565,11 +37060,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          & 1.4186       & -5.01        \\ 
+2.0          & 1.376512     & 11.919       \\ 
+4.0          & 1.1E+1       & 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -36735,7 +37230,12 @@ problem.
 
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
 ''emphasized words''. Similarly, an underscore surrounds words that
-appear in boldface: <code>_boldface_</code> become '''boldface'''.
+appear in boldface: <code>_boldface_</code> becomes '''boldface'''. Colored words
+are also possible: the text
+<syntaxhighlight lang="text">
+`color{red}{two red words}`
+</syntaxhighlight>
+becomes <font color="red">two red words</font>.
 
 ==== Lists ====
 
@@ -36836,19 +37336,19 @@ Comment lines starting with <code>##</code> are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with <code>%<doc></code> and end with <code><%doc/></code>, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 <code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
 option <code>-DEXTRA</code> will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 ==== Inline comments ====
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 <syntaxhighlight lang="text">
 [name: running text]
@@ -36857,6 +37357,12 @@ where <code>name</code> is the name or ID of an author or reader making the comm
 and <code>running text</code> is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the <code>-DTOTONOTES</code> option to <code>ptex2tex</code> or <code>doconce ptex2tex</code>,
+colorful margin or inline boxes (using the <code>todonotes</code> package)
+make it very easy to spot the comments.
+
 Running
 <syntaxhighlight lang="bash">
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -36976,7 +37482,7 @@ and
 <syntaxhighlight lang="text">
 !bt
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
@@ -36986,7 +37492,7 @@ This LaTeX code gets rendered as
 
 :<math>
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 </math>
@@ -37231,7 +37737,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -37343,6 +37849,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 </syntaxhighlight>
 
 ==== Exercises ====
@@ -37498,11 +38014,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          & 1.4186       & -5.01        \\ 
+2.0          & 1.376512     & 11.919       \\ 
+4.0          & 1.1E+1       & 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -37670,7 +38186,12 @@ problem.
 
 Words surrounded by {{{*}}} are emphasized: {{{*emphasized words*}}} becomes
 //emphasized words//. Similarly, an underscore surrounds words that
-appear in boldface: {{{_boldface_}}} become **boldface**.
+appear in boldface: {{{_boldface_}}} becomes **boldface**. Colored words
+are also possible: the text
+{{{
+`color{red}{two red words}`
+}}}
+becomes <font color="red">two red words</font>.
 
 == Lists ==
 
@@ -37757,19 +38278,19 @@ Comment lines starting with {{{##}}} are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with {{{%<doc>}}} and end with {{{<%doc/>}}}, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 {{{# #ifdef EXTRA}}} and {{{# #endif}}} around the text. The command line
 option {{{-DEXTRA}}} will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 == Inline comments ==
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 {{{
 [name: running text]
@@ -37778,6 +38299,12 @@ where {{{name}}} is the name or ID of an author or reader making the comment,
 and {{{running text}}} is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the {{{-DTOTONOTES}}} option to {{{ptex2tex}}} or {{{doconce ptex2tex}}},
+colorful margin or inline boxes (using the {{{todonotes}}} package)
+make it very easy to spot the comments.
+
 Running
 {{{
 doconce format html mydoc.do.txt --skip_inline_comments
@@ -37891,7 +38418,7 @@ and
 {{{
 !bt
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
@@ -37901,7 +38428,7 @@ This LaTeX code gets rendered as
 
 {{{
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 }}}
@@ -38128,7 +38655,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -38240,6 +38767,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 }}}
 
 == Exercises ==
@@ -38385,11 +38922,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          & 1.4186       & -5.01        \\ 
+2.0          & 1.376512     & 11.919       \\ 
+4.0          & 1.1E+1       & 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -38552,7 +39089,13 @@ Inline Formatting
 
 Words surrounded by '*' are emphasized: '*emphasized words*' becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: '_boldface_' become **boldface**.
+appear in boldface: '_boldface_' becomes **boldface**. Colored words
+are also possible: the text::
+
+
+        `color{red}{two red words}`
+
+becomes two red words.
 
 Lists
 
@@ -38639,19 +39182,19 @@ Comment lines starting with '##' are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with '%<doc>' and end with '<%doc/>', both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 '# #ifdef EXTRA' and '# #endif' around the text. The command line
 option '-DEXTRA' will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 Inline comments
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax::
 
 
@@ -38661,6 +39204,12 @@ where 'name' is the name or ID of an author or reader making the comment,
 and 'running text' is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the '-DTOTONOTES' option to 'ptex2tex' or 'doconce ptex2tex',
+colorful margin or inline boxes (using the 'todonotes' package)
+make it very easy to spot the comments.
+
 Running::
 
 
@@ -38781,7 +39330,7 @@ and
 
         !bt
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
@@ -38790,7 +39339,7 @@ and
 This LaTeX code gets rendered as::
 
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
 
@@ -39032,7 +39581,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -39144,6 +39693,16 @@ list of capabilities::
         
         # generate a make.sh script for translating a doconce file to various formats
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
+        
+        # fix common problems in bibtex files for publish import
+        doconce fix_bibtex4publish file1.bib file2.bib ...
+        
+        # find differences between two files
+        doconce diff file1.do.txt file2.do.txt [diffprog]
+        (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        # find differences between the last two Git versions of several files
+        doconce gitdiff file1 file2 file3 ...
 
 
 Exercises
@@ -39294,11 +39853,11 @@ constructions::
         \caption{Some words... label{mytab}}
         \begin{tabular}{lrr}
         \hline\noalign{\smallskip}
-        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
         \hline
-        0.0          & 1.4186       & -5.01        \\
-        2.0          & 1.376512     & 11.919       \\
-        4.0          & 1.1E+1       & 14.717624    \\
+        0.0          & 1.4186       & -5.01        \\ 
+        2.0          & 1.376512     & 11.919       \\ 
+        4.0          & 1.1E+1       & 14.717624    \\ 
         \hline
         \end{tabular}
         \end{table}
@@ -39464,7 +40023,13 @@ Inline Formatting
 
 Words surrounded by C{*} are emphasized: C{*emphasized words*} becomes
 I{emphasized words}. Similarly, an underscore surrounds words that
-appear in boldface: C{_boldface_} become B{boldface}.
+appear in boldface: C{_boldface_} becomes B{boldface}. Colored words
+are also possible: the text::
+
+
+        `color{red}{two red words}`
+
+becomes two red words.
 
 Lists
 -----
@@ -39553,20 +40118,20 @@ Comment lines starting with C{##} are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with C{%<doc>} and end with C{<%doc/>}, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 C{# #ifdef EXTRA} and C{# #endif} around the text. The command line
 option C{-DEXTRA} will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 Inline comments
 ---------------
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax::
 
 
@@ -39576,6 +40141,12 @@ where C{name} is the name or ID of an author or reader making the comment,
 and C{running text} is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the C{-DTOTONOTES} option to C{ptex2tex} or C{doconce ptex2tex},
+colorful margin or inline boxes (using the C{todonotes} package)
+make it very easy to spot the comments.
+
 Running::
 
 
@@ -39961,7 +40532,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -40073,6 +40644,16 @@ list of capabilities::
         
         # generate a make.sh script for translating a doconce file to various formats
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
+        
+        # fix common problems in bibtex files for publish import
+        doconce fix_bibtex4publish file1.bib file2.bib ...
+        
+        # find differences between two files
+        doconce diff file1.do.txt file2.do.txt [diffprog]
+        (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        # find differences between the last two Git versions of several files
+        doconce gitdiff file1 file2 file3 ...
 
 
 Exercises
@@ -40418,7 +40999,13 @@ Inline Formatting
 
 Words surrounded by * are emphasized: *emphasized words* becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: _boldface_ become _boldface_.
+appear in boldface: _boldface_ becomes _boldface_. Colored words
+are also possible: the text::
+
+
+        `color{red}{two red words}`
+
+becomes two red words.
 
 Lists
 -----
@@ -40517,20 +41104,20 @@ Comment lines starting with ## are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with %<doc> and end with <%doc/>, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 # #ifdef EXTRA and # #endif around the text. The command line
 option -DEXTRA will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 Inline comments
 ---------------
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax::
 
 
@@ -40540,6 +41127,12 @@ where name is the name or ID of an author or reader making the comment,
 and running text is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the -DTOTONOTES option to ptex2tex or doconce ptex2tex,
+colorful margin or inline boxes (using the todonotes package)
+make it very easy to spot the comments.
+
 Running::
 
 
@@ -40663,7 +41256,7 @@ and
 
         !bt
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
         !et
@@ -40672,7 +41265,7 @@ and
 This LaTeX code gets rendered as::
 
         \begin{align*}
-        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\cdot \pmb{u} &= 0,\\ 
         \nabla\times \pmb{u} &= 0.
         \end{align*}
 
@@ -40928,7 +41521,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -41040,6 +41633,16 @@ list of capabilities::
         
         # generate a make.sh script for translating a doconce file to various formats
         doconce makefile docname doconcefile [html sphinx pdflatex ...]
+        
+        # fix common problems in bibtex files for publish import
+        doconce fix_bibtex4publish file1.bib file2.bib ...
+        
+        # find differences between two files
+        doconce diff file1.do.txt file2.do.txt [diffprog]
+        (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        # find differences between the last two Git versions of several files
+        doconce gitdiff file1 file2 file3 ...
 
 
 Exercises
@@ -41209,11 +41812,11 @@ constructions::
         \caption{Some words... label{mytab}}
         \begin{tabular}{lrr}
         \hline\noalign{\smallskip}
-        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
         \hline
-        0.0          & 1.4186       & -5.01        \\
-        2.0          & 1.376512     & 11.919       \\
-        4.0          & 1.1E+1       & 14.717624    \\
+        0.0          & 1.4186       & -5.01        \\ 
+        2.0          & 1.376512     & 11.919       \\ 
+        4.0          & 1.1E+1       & 14.717624    \\ 
         \hline
         \end{tabular}
         \end{table}
@@ -41393,7 +41996,14 @@ problem.
 
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
-appear in boldface: `_boldface_` become _boldface_.
+appear in boldface: `_boldface_` becomes _boldface_. Colored words
+are also possible: the text
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`color{red}{two red words}`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+becomes <font color="red">two red words</font>.
 
 ### Lists
 
@@ -41494,19 +42104,19 @@ Comment lines starting with `##` are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with `%<doc>` and end with `<%doc/>`, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 `# #ifdef EXTRA` and `# #endif` around the text. The command line
 option `-DEXTRA` will bring the text alive again.
 
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+
 ### Inline comments
 
-Inline comments meant as messages or notes to
-co-authors in particular
+Inline comments meant as messages or notes, to authors during development
+in particular,
 are enabled by the syntax
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41517,6 +42127,12 @@ where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
 [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
+The inline comments have simple typesetting in most formats, typically boldface
+name and everything surrounded by parenthesis, but with LaTeX
+output and the `-DTOTONOTES` option to `ptex2tex` or `doconce ptex2tex`,
+colorful margin or inline boxes (using the `todonotes` package)
+make it very easy to spot the comments.
+
 Running
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
@@ -41647,7 +42263,7 @@ and
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !bt
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
@@ -41657,7 +42273,7 @@ This LaTeX code gets rendered as
 
 $$
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
@@ -41924,7 +42540,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -42036,6 +42652,16 @@ doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
 doconce makefile docname doconcefile [html sphinx pdflatex ...]
+
+# fix common problems in bibtex files for publish import
+doconce fix_bibtex4publish file1.bib file2.bib ...
+
+# find differences between two files
+doconce diff file1.do.txt file2.do.txt [diffprog]
+(diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+
+# find differences between the last two Git versions of several files
+doconce gitdiff file1 file2 file3 ...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Exercises
@@ -42208,11 +42834,11 @@ constructions:
 \caption{Some words... \label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          & 1.4186       & -5.01        \\ 
+2.0          & 1.376512     & 11.919       \\ 
+4.0          & 1.1E+1       & 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -42906,7 +43532,7 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
-+ doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises
++ doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
 
 Summary of papers
 -----------------
@@ -42984,6 +43610,8 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
+*** warning: --latex-double-hyphen may lead to unwanted edits.
+             search for all -- in the .p.tex file and check.
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce latex_exercise_toc testdoc
@@ -43002,8 +43630,12 @@ replacing vspace{1cm} % after toc by clearpage % after toc in testdoc.p.tex
 replacing % begin theorem by \begin{theorem} in testdoc.p.tex
 + doconce replace % end theorem \end{theorem} testdoc.p.tex
 replacing % end theorem by \end{theorem} in testdoc.p.tex
-+ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage testdoc
-running preprocessor on testdoc.p.tex...  defines: 'MINTED', 'LATEX_HEADING', 'MOVIE15'  done
++ doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
+replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
++ doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
+replacing --examples-as--exercises by --examples-as-exercises in testdoc.p.tex
++ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
+running preprocessor on testdoc.p.tex...  defines: 'TODONOTES', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15'  done
 done testdoc.p.tex -> testdoc.tex
 + [ 0 -ne 0 ]
 + pdflatex -shell-escape testdoc
@@ -43016,6 +43648,11 @@ Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
 aded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Examine \normalsize starts \@setfontsize size may be \@xpt. 
@@ -43030,7 +43667,6 @@ Examine \huge starts \@setfontsize size may be \@xxpt.
 Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
@@ -43066,7 +43702,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
@@ -43085,10 +43720,10 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -43164,6 +43799,8 @@ gs.code.tex
 
 Writing index file testdoc.idx
 No file testdoc.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
@@ -43190,7 +43827,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-159.
+168.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -43205,21 +43842,21 @@ LaTeX Warning: Reference `sec1' on page 3
 
 LaTeX Warning: Reference `subsubsec:ex' on page 3 
 
-(./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg [3])
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
 [4]
-Overfull \hbox (43.91478pt too wide) 
-[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
 
 LaTeX Warning: Reference `fig:impact' on page 5 
 
-<../doc/manual/figs/streamtubes.png, id=60, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=61, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 2310) has occurred while \output is active [5]
-Overfull \hbox (47.04507pt too wide) 
-\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (21.80258pt too wide) 
+[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
+ com-pared with the full wavepacket.mpeg
 
 LaTeX Warning: Reference `myfig' on page 7 
 
@@ -43228,12 +43865,12 @@ LaTeX Warning: Reference `myfig' on page 7
 
 LaTeX Warning: Reference `mymov' on page 7 
 
-<downloaded_figures/f_plot.png, id=111, 578.16pt x 433.62pt>
+[7<<../doc/manual/figs/mjolnir.mpeg>>]
+<downloaded_figures/f_plot.png, id=122, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
-/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (29.43953pt too high) has occurred while \output is active
-[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png> <./
+downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -43258,7 +43895,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -43281,48 +43918,36 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 694.
+t line 709.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 695.
+ine 710.
 
 
-LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 6
-98.
+LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
+13.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 699.
+ 714.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-01.
+16.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 703.
+t line 718.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 703.
+ 718.
 
 [11]
-Overfull \hbox (78.30609pt too wide) 
+Overfull \hbox (5.05241pt too wide) 
 [][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
 26+engineering/book/978-3-642-23098-1| 
-
-Overfull \hbox (1.55275pt too wide) 
-\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
- / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
-
-Overfull \hbox (17.6152pt too wide) 
-[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
-xperiments/decay[]mod.py| 
-
-Overfull \hbox (31.36086pt too wide) 
-[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
- the []
 [12]
 
 LaTeX Warning: Reference `my:eq1' on page 13 
@@ -43342,8 +43967,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 82
-3.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 84
+0.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -43360,72 +43985,95 @@ LaTeX Warning: Reference `eq2a' on page 13
 
 LaTeX Warning: Reference `my:eq1' on page 13 
 
-[13]
 
-LaTeX Warning: Reference `demo:ex:1' on page 14 
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 14 
+LaTeX Warning: Reference `demo:ex:1' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 14 
+LaTeX Warning: Reference `demo:ex:2' on page 13 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 13 
 
 
 
-LaTeX Warning: Reference `exer:you' on page 14 
+LaTeX Warning: Reference `exer:you' on page 13 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 849.
+LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
+ 866.
 
-(./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
+[13] (./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1210
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1227
 .
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 17 
+LaTeX Warning: Reference `demo:ex:1' on page 16 
 
+[16]
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1227.
+ 1244.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1228
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1245
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 17 
 
-(./testdoc.bbl [17]) <latex_figs/hint.pdf, id=311, 89.33376pt x 89.33376pt>
+(./testdoc.bbl) [17] <latex_figs/hint.pdf, id=318, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=312, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
-<latex_figs/notice.pdf, id=331, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=319, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1338.
+
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Overfull \hbox (11.33333pt too wide) 
+[][][][][][][] 
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+49.
+
+<latex_figs/notice.pdf, id=320, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=332, 89.33376pt x 89.33376pt>
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+61.
+
+<latex_figs/question.pdf, id=321, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
-LaTeX Warning: Marginpar on page 19 moved.
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+64.
 
-
-Overfull \hbox (5.40623pt too wide) 
-[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
+[18 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/notice.pdf
+> <./latex_figs/question.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [19 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>]
-Overfull \hbox (20.05458pt too wide) 
+(./testdoc.ind [19]
+Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions
+mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
 [20])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -43437,10 +44085,14 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
   size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+geometry.sty    2010/09/12 v5.6 Page Geometry
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
  relsize.sty    2011/09/21 ver 4.0
   epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
 graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
 graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
     trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
@@ -43472,7 +44124,6 @@ listings.cfg    2007/02/22 1.4 listings configuration
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
 everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
@@ -43489,7 +44140,6 @@ hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
   hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
  intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
 kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
 kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
@@ -43504,7 +44154,6 @@ atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
 atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
 refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
  hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
 kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
   pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -43512,6 +44161,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+ wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -43657,6 +44307,11 @@ aded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+
+
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Examine \normalsize starts \@setfontsize size may be \@xpt. 
 Examine \small starts \@setfontsize size may be \@ixpt. 
@@ -43670,7 +44325,6 @@ Examine \huge starts \@setfontsize size may be \@xxpt.
 Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
@@ -43706,7 +44360,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
@@ -43725,10 +44378,10 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -43803,7 +44456,10 @@ gs.code.tex
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
-(./testdoc.aux) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(./testdoc.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
@@ -43814,31 +44470,25 @@ ABD: EveryShipout initializing macros
 (./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
 
  [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc
-Overfull \hbox (0.59077pt too wide) 
- [][] [][][]\OT1/cmr/m/n/10 A test of ver-ba-tim words in head-ing with sub-scr
-ipt $\OML/cmm/m/it/10 a[]$\OT1/cmr/m/n/10 : [] 
-) (./testdoc.tdo [2]) [3]
+nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
-(./testdoc.out.pyg [4]) (./testdoc.out.pyg) (./testdoc.out.pyg)
-(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [5]
-Overfull \hbox (43.91478pt too wide) 
-[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
-<../doc/manual/figs/streamtubes.png, id=218, 583.17876pt x 437.635pt>
+(./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+<../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 2310) has occurred while \output is active [6]
-Overfull \hbox (47.04507pt too wide) 
-\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
-[7 <../doc/manual/figs/streamtubes.png>]
-<../doc/manual/figs/wavepacket_0001.png, id=269, 642.4pt x 481.8pt>
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Overfull \vbox (13.3931pt too high) has occurred while \output is active
+[6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (21.80258pt too wide) 
+[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
+ com-pared with the full wavepacket.mpeg
+<../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=271, 578.16pt x 433.62pt>
-<use downloaded_figures/f_plot.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
-/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (29.43953pt too high) has occurred while \output is active
-[9<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+<downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (97.7906pt too high) has occurred while \output is active
+[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -43863,7 +44513,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[10 <../doc/manual/figs/wavepacket_0001.png>] [11]
+[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -43884,56 +44534,62 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-[12]
-Overfull \hbox (78.30609pt too wide) 
+[11]
+Overfull \hbox (5.05241pt too wide) 
 [][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
 26+engineering/book/978-3-642-23098-1| 
-
-Overfull \hbox (1.55275pt too wide) 
-\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
- / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
-
-Overfull \hbox (17.6152pt too wide) 
-[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
-xperiments/decay[]mod.py| 
-
-Overfull \hbox (31.36086pt too wide) 
-[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
- the []
-[13]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[14] (./testdoc.out.pyg) [15] (./testdoc.out.pyg) [16] [17]
-Overfull \hbox (47.40718pt too wide) 
-\OT1/cmr/m/n/10 Pick a state-ment from Project [][]4[][] or Prob-lem [][]2[][] 
-and ver-ify it. File-name: []. 
-(./testdoc.bbl [18]) <latex_figs/hint.pdf, id=479, 89.33376pt x 89.33376pt>
+[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
+[16]) <latex_figs/hint.pdf, id=469, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=480, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf>]
-<latex_figs/notice.pdf, id=491, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=470, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1338.
+
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Overfull \hbox (11.33333pt too wide) 
+[][][][][][][] 
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+49.
+
+<latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=492, 89.33376pt x 89.33376pt>
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+61.
+
+<latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
-LaTeX Warning: Marginpar on page 20 moved.
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+64.
 
-
-Overfull \hbox (5.40623pt too wide) 
-[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>]
-Overfull \hbox (20.05458pt too wide) 
+(./testdoc.ind [18 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>] [19]
+Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions
-[21])
+mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+[20])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -43944,10 +44600,14 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
   size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+geometry.sty    2010/09/12 v5.6 Page Geometry
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
  relsize.sty    2011/09/21 ver 4.0
   epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
 graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
 graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
     trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
@@ -43979,7 +44639,6 @@ listings.cfg    2007/02/22 1.4 listings configuration
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
 everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
@@ -43996,7 +44655,6 @@ hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
   hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
  intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
 kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
 kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
@@ -44011,7 +44669,6 @@ atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
 atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
 refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
  hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
 kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
   pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -44019,6 +44676,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+ wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -44144,7 +44802,7 @@ fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
 9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
 .pfb>
-Output written on testdoc.pdf (21 pages, ).
+Output written on testdoc.pdf (20 pages, ).
 Transcript written on testdoc.log.
 + makeindex testdoc
 This is makeindex, version 2.15 [TeX Live 2012] (kpathsea + Thai support).
@@ -44169,6 +44827,11 @@ aded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+
+
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Examine \normalsize starts \@setfontsize size may be \@xpt. 
 Examine \small starts \@setfontsize size may be \@ixpt. 
@@ -44182,7 +44845,6 @@ Examine \huge starts \@setfontsize size may be \@xxpt.
 Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
@@ -44218,7 +44880,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
@@ -44237,10 +44898,10 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -44315,7 +44976,10 @@ gs.code.tex
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
-(./testdoc.aux) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(./testdoc.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
@@ -44326,31 +44990,25 @@ ABD: EveryShipout initializing macros
 (./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
 
  [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc
-Overfull \hbox (0.59077pt too wide) 
- [][] [][][]\OT1/cmr/m/n/10 A test of ver-ba-tim words in head-ing with sub-scr
-ipt $\OML/cmm/m/it/10 a[]$\OT1/cmr/m/n/10 : [] 
-) (./testdoc.tdo [2]) [3]
+nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
-(./testdoc.out.pyg [4]) (./testdoc.out.pyg) (./testdoc.out.pyg)
-(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [5]
-Overfull \hbox (43.91478pt too wide) 
-[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
-<../doc/manual/figs/streamtubes.png, id=218, 583.17876pt x 437.635pt>
+(./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+<../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 2310) has occurred while \output is active [6]
-Overfull \hbox (47.04507pt too wide) 
-\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
-[7 <../doc/manual/figs/streamtubes.png>]
-<../doc/manual/figs/wavepacket_0001.png, id=270, 642.4pt x 481.8pt>
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Overfull \vbox (13.3931pt too high) has occurred while \output is active
+[6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (21.80258pt too wide) 
+[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
+ com-pared with the full wavepacket.mpeg
+<../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
-<use downloaded_figures/f_plot.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
-/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (29.43953pt too high) has occurred while \output is active
-[9<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+<downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (97.7906pt too high) has occurred while \output is active
+[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -44375,7 +45033,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[10 <../doc/manual/figs/wavepacket_0001.png>] [11]
+[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -44396,56 +45054,62 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-[12]
-Overfull \hbox (78.30609pt too wide) 
+[11]
+Overfull \hbox (5.05241pt too wide) 
 [][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
 26+engineering/book/978-3-642-23098-1| 
-
-Overfull \hbox (1.55275pt too wide) 
-\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
- / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
-
-Overfull \hbox (17.6152pt too wide) 
-[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
-xperiments/decay[]mod.py| 
-
-Overfull \hbox (31.36086pt too wide) 
-[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
- the []
-[13]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[14] (./testdoc.out.pyg) [15] (./testdoc.out.pyg) [16] [17]
-Overfull \hbox (47.40718pt too wide) 
-\OT1/cmr/m/n/10 Pick a state-ment from Project [][]4[][] or Prob-lem [][]2[][] 
-and ver-ify it. File-name: []. 
-(./testdoc.bbl [18]) <latex_figs/hint.pdf, id=479, 89.33376pt x 89.33376pt>
+[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
+[16]) <latex_figs/hint.pdf, id=469, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=480, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf>]
-<latex_figs/notice.pdf, id=491, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=470, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1338.
+
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Overfull \hbox (11.33333pt too wide) 
+[][][][][][][] 
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+49.
+
+<latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=492, 89.33376pt x 89.33376pt>
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+61.
+
+<latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
-LaTeX Warning: Marginpar on page 20 moved.
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+64.
 
-
-Overfull \hbox (5.40623pt too wide) 
-[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>]
-Overfull \hbox (20.05458pt too wide) 
+(./testdoc.ind [18 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>] [19]
+Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions
-[21])
+mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+[20])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -44456,10 +45120,14 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
   size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+geometry.sty    2010/09/12 v5.6 Page Geometry
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
  relsize.sty    2011/09/21 ver 4.0
   epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
 graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
 graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
     trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
@@ -44491,7 +45159,6 @@ listings.cfg    2007/02/22 1.4 listings configuration
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
 everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
@@ -44508,7 +45175,6 @@ hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
   hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
  intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
 kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
 kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
@@ -44523,7 +45189,6 @@ atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
 atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
 refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
  hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
 kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
   pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -44531,6 +45196,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+ wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -44653,7 +45319,7 @@ fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
 9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
 .pfb>
-Output written on testdoc.pdf (21 pages, ).
+Output written on testdoc.pdf (20 pages, ).
 Transcript written on testdoc.log.
 + pdflatex -shell-escape testdoc
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -44666,6 +45332,11 @@ aded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+
+
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Examine \normalsize starts \@setfontsize size may be \@xpt. 
 Examine \small starts \@setfontsize size may be \@ixpt. 
@@ -44679,7 +45350,6 @@ Examine \huge starts \@setfontsize size may be \@xxpt.
 Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
@@ -44715,7 +45385,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
@@ -44734,10 +45403,10 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 
 
-
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -44812,7 +45481,10 @@ gs.code.tex
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
-(./testdoc.aux) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(./testdoc.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
@@ -44823,31 +45495,25 @@ ABD: EveryShipout initializing macros
 (./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
 
  [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc
-Overfull \hbox (0.59077pt too wide) 
- [][] [][][]\OT1/cmr/m/n/10 A test of ver-ba-tim words in head-ing with sub-scr
-ipt $\OML/cmm/m/it/10 a[]$\OT1/cmr/m/n/10 : [] 
-) (./testdoc.tdo [2]) [3]
+nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
-(./testdoc.out.pyg [4]) (./testdoc.out.pyg) (./testdoc.out.pyg)
-(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [5]
-Overfull \hbox (43.91478pt too wide) 
-[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
-<../doc/manual/figs/streamtubes.png, id=218, 583.17876pt x 437.635pt>
+(./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
+(./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+<../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 2310) has occurred while \output is active [6]
-Overfull \hbox (47.04507pt too wide) 
-\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
-[7 <../doc/manual/figs/streamtubes.png>]
-<../doc/manual/figs/wavepacket_0001.png, id=270, 642.4pt x 481.8pt>
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Overfull \vbox (13.3931pt too high) has occurred while \output is active
+[6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (21.80258pt too wide) 
+[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
+ com-pared with the full wavepacket.mpeg
+<../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
-<use downloaded_figures/f_plot.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
-/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (29.43953pt too high) has occurred while \output is active
-[9<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+<downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
+Overfull \vbox (97.7906pt too high) has occurred while \output is active
+[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -44872,7 +45538,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[10 <../doc/manual/figs/wavepacket_0001.png>] [11]
+[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -44893,64 +45559,74 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-[12]
-Overfull \hbox (78.30609pt too wide) 
+[11]
+Overfull \hbox (5.05241pt too wide) 
 [][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
 26+engineering/book/978-3-642-23098-1| 
-
-Overfull \hbox (1.55275pt too wide) 
-\OT1/cmtt/m/n/10 formulas$[][] \OT1/cmr/m/n/10 and [][]$\OT1/cmtt/m/n/10 http :
- / / en . wikipedia . org / wiki / Newton-[]Cotes # Open _ Newton .
-
-Overfull \hbox (17.6152pt too wide) 
-[][]\OT1/cmtt/m/n/8 https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/e
-xperiments/decay[]mod.py| 
-
-Overfull \hbox (31.36086pt too wide) 
-[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
- the []
-[13]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[14] (./testdoc.out.pyg) [15] (./testdoc.out.pyg) [16] [17]
-Overfull \hbox (47.40718pt too wide) 
-\OT1/cmr/m/n/10 Pick a state-ment from Project [][]4[][] or Prob-lem [][]2[][] 
-and ver-ify it. File-name: []. 
-(./testdoc.bbl [18]) <latex_figs/hint.pdf, id=479, 89.33376pt x 89.33376pt>
+[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
+[16]) <latex_figs/hint.pdf, id=469, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=480, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf>]
-<latex_figs/notice.pdf, id=491, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=470, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1338.
+
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Underfull \hbox (badness 1297) 
+\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
+
+Overfull \hbox (11.33333pt too wide) 
+[][][][][][][] 
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+49.
+
+<latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=492, 89.33376pt x 89.33376pt>
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+61.
+
+<latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
-LaTeX Warning: Marginpar on page 20 moved.
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
+64.
 
-
-Overfull \hbox (5.40623pt too wide) 
-[]\OT1/cmr/bx/n/12 Appendix: Test-ing head-ings end-ing with [] 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>]
-Overfull \hbox (20.05458pt too wide) 
+(./testdoc.ind [18 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
+x_figs/question.pdf>] [19]
+Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions
-[21]) (./testdoc.aux)
+mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+[20]) (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
   size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+geometry.sty    2010/09/12 v5.6 Page Geometry
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
  relsize.sty    2011/09/21 ver 4.0
   epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
 graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
 graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
     trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
@@ -44982,7 +45658,6 @@ listings.cfg    2007/02/22 1.4 listings configuration
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
 everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
@@ -44999,7 +45674,6 @@ hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
   hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
  intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
 kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
 kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
@@ -45014,7 +45688,6 @@ atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
 atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
 refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
  hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
 kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
   pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -45022,6 +45695,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+ wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -45144,7 +45818,7 @@ fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
 9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
 .pfb>
-Output written on testdoc.pdf (21 pages, ).
+Output written on testdoc.pdf (20 pages, ).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -45305,7 +45979,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 
 *** warning:
 Not recommended for sphinx output: math environment {eqnarray}
-(use equation, \[ \], or align/align*)
+(use equation, equation*, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
 *** warning: hyperlink to URL testdoc.do.txt is to a local file,
@@ -45572,13 +46246,13 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pandoc
-*** warning: latex envir \begin{multline} does not work well
+*** warning: latex envir \begin{multline} does not work well.
 
-*** warning: latex envir \begin{gather} does not work well
+*** warning: latex envir \begin{gather} does not work well.
 
-*** warning: latex envir \begin{alignat} does not work well
+*** warning: latex envir \begin{alignat} does not work well.
 
-*** warning: latex envir \begin{eqnarray} does not work well
+*** warning: latex envir \begin{eqnarray} does not work well.
 
 output in testdoc.md
 + [ 0 -ne 0 ]
@@ -46014,13 +46688,13 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pandoc
-*** warning: latex envir \begin{multline} does not work well
+*** warning: latex envir \begin{multline} does not work well.
 
-*** warning: latex envir \begin{gather} does not work well
+*** warning: latex envir \begin{gather} does not work well.
 
-*** warning: latex envir \begin{alignat} does not work well
+*** warning: latex envir \begin{alignat} does not work well.
 
-*** warning: latex envir \begin{eqnarray} does not work well
+*** warning: latex envir \begin{eqnarray} does not work well.
 
 output in testdoc.md
 + [ 0 -ne 0 ]
@@ -46095,7 +46769,7 @@ translating preprocessed doconce text in __tmp.do.txt to sphinx
 
 *** warning:
 Not recommended for sphinx output: math environment {eqnarray}
-(use equation, \[ \], or align/align*)
+(use equation, equation*, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {eqnarray*}
 
 Detected non-align equation systems with multiple labels
@@ -46109,9 +46783,9 @@ output in math_test.rst
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
-*** warning: latex envir \begin{eqnarray*} does not work well
+*** warning: latex envir \begin{eqnarray*} does not work well.
 
-*** warning: latex envir \begin{eqnarray} does not work well
+*** warning: latex envir \begin{eqnarray} does not work well.
 
 output in math_test.md
 + doconce md2html math_test.md
@@ -46122,15 +46796,15 @@ output in math_test.html
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
-*** warning: latex envir \begin{eqnarray*} does not work well
+*** warning: latex envir \begin{eqnarray*} does not work well.
 
-*** warning: latex envir \begin{eqnarray} does not work well
+*** warning: latex envir \begin{eqnarray} does not work well.
 
 output in math_test.md
 + doconce md2latex math_test
 command md2latex not legal, must be among
 
-format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, pygmentize, makefile
+format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
 + doconce guess_encoding encoding1.do.txt
 + [ 0 -ne 0 ]
 + cp encoding1.do.txt tmp1.do.txt
@@ -46335,11 +47009,13 @@ output in tmp2.rst
 Removing in /home/hpl/vc/doconce/doc/quickref:
 + doconce
 + doconce format html quickref --no-pygments-html --no-preprocess
-translating doconce text in quickref.do.txt to html
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to html
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.html
 + doconce format latex quickref --no-preprocess
-translating doconce text in quickref.do.txt to latex
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.p.tex
 + doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
@@ -46422,83 +47098,6 @@ Package hyperref Message: Driver (default): hdvips.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-
-(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
-
-(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
-
-
-(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-dvips.def
-
-
-
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-
-
-
-
-
-
-
-(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
-
-
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) 
-(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
-ioning.code.tex)
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
-ws.code.tex
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
-gs.code.tex
-(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-
-Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
-ngs. This warning is given only once on 
-
-))))
 Writing index file quickref.idx
 No file quickref.aux.
 
@@ -46507,14 +47106,10 @@ No file quickref.aux.
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
-ABD: EveryShipout initializing macros
 
 
 
 Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
-
-Package hyperref Warning: old tdo file detected, not used; run LaTeX again.
 
  [1] [2]
 Overfull \hbox (19.14615pt too wide) 
@@ -46543,7 +47138,7 @@ Underfull \hbox (badness 2564)
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 657
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 662
 .
 
 [9]
@@ -46589,7 +47184,7 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    1999/02/16
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -46644,30 +47239,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
- xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
- xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
-    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
-     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
-  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
-everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
-  pgfrcs.code.tex
- pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
-  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
-  pgfsys.code.tex
-pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
-pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
- pgfcore.code.tex
-pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
-pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
-  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
- pgfkeys.sty    
- pgfkeys.code.tex
-  pgffor.code.tex
-    tikz.code.tex
-setspace.sty    2011/12/19 v6.7a set line spacing
-todonotes.sty    2011/10/22
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
@@ -46766,92 +47337,14 @@ Package hyperref Message: Driver (default): hdvips.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-
-(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
-
-(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
-
-
-(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-dvips.def
-
-
-
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-
-
-
-
-
-
-
-(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
-
-
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) 
-(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
-ioning.code.tex)
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
-ws.code.tex
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
-gs.code.tex
-(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-
-Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
-ngs. This warning is given only once on 
-
-))))
 Writing index file quickref.idx
 (./quickref.aux) 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./quickref.out) (./quickref.out) ABD: EveryShipout initializing macros
+(./quickref.out) (./quickref.out)
 
 
-(./quickref.tdo) [1] 
-[2] [3]
+[1]  [2] [3]
 Overfull \hbox (19.14615pt too wide) 
 \OT1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or [
 ]
@@ -46919,7 +47412,7 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    1999/02/16
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -46974,30 +47467,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
- xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
- xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
-    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
-     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
-  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
-everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
-  pgfrcs.code.tex
- pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
-  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
-  pgfsys.code.tex
-pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
-pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
- pgfcore.code.tex
-pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
-pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
-  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
- pgfkeys.sty    
- pgfkeys.code.tex
-  pgffor.code.tex
-    tikz.code.tex
-setspace.sty    2011/12/19 v6.7a set line spacing
-todonotes.sty    2011/10/22
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
@@ -47018,7 +47487,8 @@ Output written on quickref.dvi (17 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
-translating doconce text in quickref.do.txt to sphinx
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to sphinx
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
   - should be _static/testdoc.html#___sec2 for sphinx.
 *** warning: hyperlink to URL testdoc.html is to a local file,
@@ -47097,7 +47567,8 @@ or just run it by
 + doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake_sphinx.py
 replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake_sphinx.py
 + python automake_sphinx.py
-translating doconce text in quickref.do.txt to sphinx
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to sphinx
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
   - should be _static/testdoc.html#___sec2 for sphinx.
 *** warning: hyperlink to URL testdoc.html is to a local file,
@@ -47129,6 +47600,10 @@ dumping object inventory... done
 build succeeded.
 
 Build finished. The HTML pages are in _build/html.
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in quickref.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in genindex.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in index.html
 
 
 
@@ -47138,12 +47613,18 @@ running doconce guess_encoding quickref.rst
 /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir
 running make clean
 running make html
+Fix double title in <title> tags in .html files:
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" search.html
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" quickref.html
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" genindex.html
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" index.html
 
 google-chrome sphinx-rootdir/_build/html/index.html
 
 + cp quickref.rst quickref.sphinx.rst
 + doconce format rst quickref --no-preprocess
-translating doconce text in quickref.do.txt to rst
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to rst
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 + rst2xml.py quickref.rst
@@ -47273,11 +47754,11 @@ Overfull \hbox (17.00006pt too wide)
 [4]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments 
-
+[5]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[5]
+
 Overfull \hbox (5.00006pt too wide) 
 []    \T1/pcr/m/n/10 return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z) 
 
@@ -47332,9 +47813,10 @@ ight=315] YouTube movie.
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo
  movie. 
+[8]
 
-LaTeX Warning: Hyper reference `section-types' on page 8 undefined on input lin
-e 950.
+LaTeX Warning: Hyper reference `section-types' on page 9 undefined on input lin
+e 963.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -47352,7 +47834,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `=
 `)  |  
-[8]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | section                 | `======= Heading =======`    (7 `=
 `)  |  
@@ -47372,12 +47854,12 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
-
+[9]
 Overfull \hbox (54.34767pt too wide) 
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
 \T1/ptm/m/n/10 ,
-[9]
+
 Overfull \hbox (26.41858pt too wide) 
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
@@ -47390,14 +47872,14 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [10]
-Overfull \hbox (2543.00006pt too wide) 
+Overfull \hbox (2735.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
 ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
 ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
 ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
 ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pyg
-mentize makefile  
+mentize makefile diff gitdiff fix_bibtex4publish  
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -47439,10 +47921,10 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes  
-
+[11]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as  
-[11]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 # remove all files that the doconce format can regenerate  
 
@@ -47470,7 +47952,7 @@ Overfull \hbox (71.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
-
+[12]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
@@ -47480,7 +47962,7 @@ uote}
 
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # make HTML file via pandoc from Markdown (.md) file  
-[12]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # make LaTeX file via pandoc from Markdown (.md) file  
 
@@ -47504,12 +47986,26 @@ various formats
 
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce makefile docname doconcefile [html sphinx pdflatex ...
-] 
+]  
 
+Overfull \hbox (41.00006pt too wide) 
+[]\T1/pcr/m/n/10 # fix common problems in bibtex files for publish import  
+
+Overfull \hbox (5.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce fix_bibtex4publish file1.bib file2.bib ...  
+
+Overfull \hbox (131.00006pt too wide) 
+[]\T1/pcr/m/n/10 (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diff
+use, ...)  
+
+Overfull \hbox (119.00006pt too wide) 
+[]\T1/pcr/m/n/10 # find differences between the last two Git versions of severa
+l files  
+[13]
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
-[13]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
@@ -47545,14 +48041,14 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
-
+[15]
 Overfull \hbox (28.47902pt too wide) 
 []\T1/ptm/m/n/10 specialy
-[15]
+
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-
+[16]
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
@@ -47560,7 +48056,7 @@ Overfull \hbox (4.19656pt too wide)
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[16] (./quickref.rst.aux)
+[17] (./quickref.rst.aux)
 
 Package rerunfilecheck Warning: File `quickref.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -47574,7 +48070,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (16 pages, ).
+Output written on quickref.rst.dvi (17 pages, ).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -47693,11 +48189,11 @@ Overfull \hbox (17.00006pt too wide)
 [5]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments 
-
+[6]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[6]
+
 Overfull \hbox (5.00006pt too wide) 
 []    \T1/pcr/m/n/10 return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z) 
 
@@ -47752,7 +48248,7 @@ ight=315] YouTube movie.
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo
  movie. 
-
+[9]
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 |----------------c--------|------------------c------------------
 --|  
@@ -47788,7 +48284,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
-[9]
+[10]
 Overfull \hbox (54.34767pt too wide) 
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
@@ -47797,7 +48293,7 @@ Overfull \hbox (54.34767pt too wide)
 Overfull \hbox (26.41858pt too wide) 
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
-[10]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
  
@@ -47805,15 +48301,15 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
-
-Overfull \hbox (2543.00006pt too wide) 
+[11]
+Overfull \hbox (2735.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
 ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
 ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
 ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
 ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pyg
-mentize makefile  
+mentize makefile diff gitdiff fix_bibtex4publish  
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -47825,7 +48321,7 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (197.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce subst [-s -m -x --restore] regex-pattern regex-replace
 ment file1 file2 ...  
-[11]
+
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier
 ,  
@@ -47855,7 +48351,7 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes  
-
+[12]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as  
 
@@ -47865,7 +48361,7 @@ Overfull \hbox (47.00006pt too wide)
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
-[12]
+
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # edit URLs to local files and place them in _static  
 
@@ -47886,7 +48382,7 @@ Overfull \hbox (71.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
-
+[13]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
@@ -47913,15 +48409,29 @@ Overfull \hbox (101.00006pt too wide)
 Overfull \hbox (137.00006pt too wide) 
 []\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually manu
 al fixing)  
-[13]
+
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 # generate a make.sh script for translating a doconce file to 
 various formats  
 
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce makefile docname doconcefile [html sphinx pdflatex ...
-] 
+]  
 
+Overfull \hbox (41.00006pt too wide) 
+[]\T1/pcr/m/n/10 # fix common problems in bibtex files for publish import  
+
+Overfull \hbox (5.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce fix_bibtex4publish file1.bib file2.bib ...  
+
+Overfull \hbox (131.00006pt too wide) 
+[]\T1/pcr/m/n/10 (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diff
+use, ...)  
+
+Overfull \hbox (119.00006pt too wide) 
+[]\T1/pcr/m/n/10 # find differences between the last two Git versions of severa
+l files  
+[14]
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
@@ -47935,7 +48445,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
-[14]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
  ===== 
@@ -47946,7 +48456,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-
+[15]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -47957,18 +48467,18 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[15]
+
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
-
+[16]
 Overfull \hbox (28.47902pt too wide) 
 []\T1/ptm/m/n/10 specialy
 
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[16]
+[17]
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
@@ -47976,41 +48486,48 @@ Overfull \hbox (4.19656pt too wide)
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[17] (./quickref.rst.aux)
+[18] (./quickref.rst.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (17 pages, ).
+Output written on quickref.rst.dvi (18 pages, ).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
-translating doconce text in quickref.do.txt to plain
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.txt
 + doconce format gwiki quickref --no-preprocess
-translating doconce text in quickref.do.txt to gwiki
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.gwiki
 + doconce format mwiki quickref --no-preprocess
-translating doconce text in quickref.do.txt to mwiki
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.mwiki
 + doconce format cwiki quickref --no-preprocess
-translating doconce text in quickref.do.txt to cwiki
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.cwiki
 + doconce format st quickref --no-preprocess
-translating doconce text in quickref.do.txt to st
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.st
 + doconce format epytext quickref --no-preprocess
-translating doconce text in quickref.do.txt to epytext
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
-translating doconce text in quickref.do.txt to pandoc
+running mako on quickref.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.md
 + rm -rf demo

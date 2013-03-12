@@ -2350,11 +2350,12 @@ python-mako package (sudo apt-get install python-mako).
         f.write(filestr)
         f.close()
 
+        strict_undefined = True if option('mako-strict-undefined') else False
         from mako.template import Template
         from mako.lookup import TemplateLookup
         lookup = TemplateLookup(directories=[os.curdir])
         temp = Template(filename=resultfile, lookup=lookup,
-                        strict_undefined=True)
+                        strict_undefined=strict_undefined)
 
         debugpr('Keyword arguments to be sent to mako: %s' % \
                 pprint.pformat(mako_kwargs))
@@ -2376,9 +2377,9 @@ python-mako package (sudo apt-get install python-mako).
 
         except NameError, e:
             if "Undefined" in str(e):
-                variables = '\n'.join(re.findall(r'\$\{[A-Za-z0-9_]+?\}', filestr))
-                print '*** mako error: NameError Undefined variable'
-                print '                one or more ${var} variables are undefined, check all!\n%s' % variables
+                print '*** mako error: NameError Undefined variable,'
+                print '                one or more ${var} variables are undefined.\n'
+                print '                Rerun with --mako-strict-undefined to see where the problem is.'
                 _abort()
             elif "is not defined" in str(e):
                 print '*** mako error: NameError', e

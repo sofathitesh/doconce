@@ -59,7 +59,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises
+doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc
@@ -75,6 +75,9 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
 doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
+# because of --latex-double-hyphen:
+doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
+doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).

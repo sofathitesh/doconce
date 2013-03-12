@@ -19,7 +19,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[latin1]{inputenc}
 \usepackage{fancyvrb} % packages needed for verbatim environments
 
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 
 % Set helvetica as the default font family:
@@ -107,7 +107,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Mar 11, 2013
+Mar 12, 2013
 \end{center}
 
 \vspace{1cm}
@@ -388,14 +388,14 @@ Comment lines starting with \Verb!##! are not propagated to the output
 document and can be used for comments that are only interest in
 the Doconce file.
 
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with \Verb!%<doc>! and end with \Verb!<%doc/>!, both at the beginning of the line.
-
 Large portions of text can be left out using Preprocess. Just place
 \Verb!# #ifdef EXTRA! and \Verb!# #endif! around the text. The command line
 option \Verb!-DEXTRA! will bring the text alive again.
+
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
 
 \subsection{Inline comments}
 
@@ -535,7 +535,7 @@ and
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 !bt
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
@@ -544,7 +544,7 @@ and
 This {\LaTeX} code gets rendered as
 
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 Here is a single equation:
@@ -1092,11 +1092,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          & 1.4186       & -5.01        \\ 
+2.0          & 1.376512     & 11.919       \\ 
+4.0          & 1.1E+1       & 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}

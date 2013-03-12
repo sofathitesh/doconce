@@ -145,7 +145,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 <p>
-<center><h4>Mar 11, 2013</h4></center> <!-- date -->
+<center><h4>Mar 12, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -446,17 +446,17 @@ document and can be used for comments that are only interest in
 the Doconce file.
 
 <p>
-When using the Mako preprocessor one can also place comments in
-the Doconce source file that will be removed by Mako before
-Doconce starts processing the file. Mako block comments start
-with <code>%<doc></code> and end with <code><%doc/></code>, both at the beginning of the line.
-
-<p>
 Large portions of text can be left out using Preprocess. Just place
 <code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
 option <code>-DEXTRA</code> will bring the text alive again.
 
 <p>
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file.
+
+<p>
+
 
 <h3>Inline comments  <a name="___sec7"></a></h3>
 
@@ -626,7 +626,7 @@ and
 <!-- begin verbatim block -->
 <pre><code>!bt
 \begin{align*}
-\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\cdot \pmb{u} &amp;= 0,\\ 
 \nabla\times \pmb{u} &amp;= 0.
 \end{align*}
 !et
@@ -639,7 +639,7 @@ This LaTeX code gets rendered as
 <p>
 $$
 \begin{align*}
-\nabla\cdot \pmb{u} &= 0,\\
+\nabla\cdot \pmb{u} &= 0,\\ 
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
@@ -1240,11 +1240,11 @@ constructions:
 \caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\ 
 \hline
-0.0          &amp; 1.4186       &amp; -5.01        \\
-2.0          &amp; 1.376512     &amp; 11.919       \\
-4.0          &amp; 1.1E+1       &amp; 14.717624    \\
+0.0          &amp; 1.4186       &amp; -5.01        \\ 
+2.0          &amp; 1.376512     &amp; 11.919       \\ 
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\ 
 \hline
 \end{tabular}
 \end{table}

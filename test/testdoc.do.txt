@@ -26,7 +26,7 @@ plain, homemade pdfLaTeX (from Doconce).
 ${FORMAT}
 % endif
 
-% if SOMEVAR:
+% if SOMEVAR is not UNDEFINED:
 # Just a comment
 % endif
 
@@ -405,7 +405,7 @@ some text.
 
 Here is an example: cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solvin the Navier-Stokes equations,
+an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in cite{Langtangen_1994a}.
 The book chapter cite{Mardal_et_al_2003a} contains information on
@@ -474,7 +474,7 @@ Newton-Cotes with percentage in URL too:
 URL: "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"
 and URL: "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" which has a shebang.
 
-For the `--latex-printed` it is important to test that URLs with
+For the `--device=paper` option it is important to test that URLs with
 monofont link text get a footnote, as in this reference to
 "`decay_mod`":
 "https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py".
@@ -487,7 +487,7 @@ monofont link text get a footnote, as in this reference to
 # if rst output is desired, but placed in a `_static*` folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-`--latex-printed` option must be correct. We have
+`--device=paper` option must be correct. We have
 "google": "http://google.com", "google": "http://google.com", and
 "google": "http://google.com", which should result in exactly three
 footnotes.
@@ -539,6 +539,7 @@ b &= \nabla^2 u + \nabla^4 x label{eq2}
 !et
 We can refer to (ref{eq1})-(ref{eq2}). They are a bit simpler than
 the Navier-Stokes equations. And test LaTeX hyphen in `CG-2`.
+Also test $a_{i-j}$ as well as $kx-wt$.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
