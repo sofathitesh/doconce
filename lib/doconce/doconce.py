@@ -2190,10 +2190,11 @@ def preprocess(filename, format, preprocessor_options=[]):
     preprocess_options = [opt for opt in preprocessor_options
                           if opt[:2] == '-D']
     # Add -D to mako name=value options so that such variables
-    # are set for preprocess too
+    # are set for preprocess too (but enclose value in quotes)
     for opt in preprocessor_options:
         if opt[0] != '-' and '=' in opt:
-            preprocess_options.append('-D' + opt)
+            var, value = opt.split('=')
+            preprocess_options.append('-D%s="%s"' % (var, value))
 
     # Look for mako variables
     mako_kwargs = {'FORMAT': format, 'DEVICE': device}
