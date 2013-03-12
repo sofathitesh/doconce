@@ -1615,7 +1615,7 @@ def slides_html():
          r = recommended_html_styles_and_pygments_styles()
          f = open('tmp_slides_html_all.sh', 'w')
          f.write('#!/bin/sh\n\n')
-         f.write('doconce format html %s\ndoconce slides_html %s doconce\n\n' %
+         f.write('doconce format html %s SLIDE_TYPE=dummy SLIDE_THEME=dummy\ndoconce slides_html %s doconce\n\n' %
                  (filestem, filestem))
          for sl_tp in r:
              for style in r[sl_tp]:
@@ -1912,15 +1912,6 @@ def generate_html5_slides(header, parts, footer, basename, filename,
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
-
-*_do.css have left-adjusted header and text:
-<link rel="stylesheet" href="reveal.js/css/reveal_do.css">
-<link rel="stylesheet" href="reveal.js/css/reveal.min_do.css">
-<link rel="stylesheet" href="reveal.js/css/theme/default_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/beige_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/night_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/simple_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/sky_do.css" id="theme">
 -->
 
 <script>

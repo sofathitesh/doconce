@@ -117,12 +117,8 @@ Numerical scheme:
 
 ===== Forward Euler explained =====
 
-% if SLIDE_TYPE == 'reveal':
-Embedding YouTube videos does not work with reveal.js slides.
-Here is the "link": "http://youtu.be/PtJrPEIHNJw".
-% else:
 MOVIE: [http://youtu.be/PtJrPEIHNJw, width=640 height=480]
-% endif
+
 # #endif
 
 !split
