@@ -1616,7 +1616,7 @@ def slides_html():
          for sl_tp in r:
              for style in r[sl_tp]:
                  pygm_style = r[sl_tp][style][0]
-                 f.write('doconce format html %s --pygments-html-style=%s\ndoconce slides_html %s %s --html-slide-theme=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
+                 f.write('doconce format html %s --pygments-html-style=%s SLIDE_TYPE=%s SLIDE_THEME=%s\ndoconce slides_html %s %s --html-slide-theme=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, sl_tp, style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
          f.write('echo "Here are the slide shows:"\n/bin/ls %s_*_*.html\n' % filestem)
          print 'run\n  sh tmp_slides_html_all.sh\nto generate the slides'
          #print 'names:', ' '.join(glob.glob('%s_*_*.html' % filestem))
@@ -1890,8 +1890,8 @@ def generate_html5_slides(header, parts, footer, basename, filename,
             main_style='reveal',
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
-            notes='<aside class="notes">\n\g<1>\n</aside>',
             pop=('fragment', 'li'),
+            notes='<aside class="notes">\n<!-- click "s" to activate -->\n\\g<1>\n</aside>\n',
             head_header="""
 <!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 
@@ -1971,8 +1971,8 @@ dependencies: [
             default_theme='csss_default',
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
-            notes='<p class="presenter-notes">\n\g<1>\n</p>',
             pop=('delayed', 'li'),
+            notes='<p class="presenter-notes">\n<!-- press "Ctrl+P" or "Shift+P" to activate -->\n\\g<1>\n</p>\n',
             head_header="""
 <!-- CSSS: http://leaverou.github.com/CSSS/ -->
 
@@ -2013,8 +2013,9 @@ for(var i=0; i<cssControls.length; i++) {
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
             #notes='<div role="note">\n\g<1>\n</div>',
-            notes='<details>\n\g<1>\n</details>',
             pop=('incremental', 'ul', 'ol'),
+            notes='<details>\n<!-- use onstage shell to activate: invoke https://doconce.googlecode.com/hg/bundled/dzslides/shells/onstage.html -->\n\\g<1>\n</details>\n',
+            #notes='<div role="note">\n<!-- use onstage shell to activate: invoke https://doconce.googlecode.com/hg/bundled/dzslides/shells/onstage.html -->\n\\g<1>\n</div>\n',
             head_header="""
 <!-- dzslides: http://paulrouget.com/dzslides/ -->
 
@@ -2673,8 +2674,8 @@ basically smaller fonts and left-adjusted titles.
             default_theme='web-2.0',
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
-            notes='<!-- \g<1> -->',  # no support of notes
             pop=('slide', 'li'),
+            notes='<div class="notes">\n<!-- press "n" to activate -->\n\\g<1>\n</div>\n',
             head_header="""
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
@@ -2716,6 +2717,7 @@ deck.pointer: Turn mouse into laser pointer (toggle with p).
 <link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
 <link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">
 <link rel="stylesheet" href="deck.js/extensions/pointer/deck.pointer.css">
+<link rel="stylesheet" href="deck.js/extensions/notes/deck.notes.css">
 <!--
 <link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
 <link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
@@ -2805,6 +2807,7 @@ git://github.com/barraq/deck.ext.js.git
 <script src="deck.js/extensions/status/deck.status.js"></script>
 <script src="deck.js/extensions/navigation/deck.navigation.js"></script>
 <script src="deck.js/extensions/scale/deck.scale.js"></script>
+<script src="deck.js/extensions/notes/deck.notes.js"></script>
 
 <!-- From https://github.com/mikeharris100/deck.pointer.js -->
 <script src="deck.js/extensions/pointer/deck.pointer.js"></script>
@@ -2828,11 +2831,11 @@ git://github.com/barraq/deck.ext.js.git
             title=None,
             ),
         html5slides=dict(
-            default_theme='template-default',  # template-io2011
+            default_theme='template-default',  # template-io2011, should use template-io2012: https://code.google.com/p/io-2012-slides/
             slide_envir_begin='<article>',
             slide_envir_end='</article>',
-            notes='',
             pop=('build', 'ul'),
+            notes='<aside class="note">\n<!-- press "p" to activate -->\n\\g<1>\n</aside>\n',
             head_header="""
 <!-- Google HTML5 Slides:
      http://code.google.com/p/html5slides/
@@ -2947,11 +2950,21 @@ MathJax.Hub.Config({
 %(body_header)s
 """ % slide_syntax[slide_tp]
 
-    cinline_comment_pattern = re.compile(r'<!-- begin inline comment -->\s*\[<b>.+?</b>:\s*<em>(.+?)</em>]\s*<!-- end inline comment -->', re.DOTALL)
     for part in parts:
         part = ''.join(part)
-        part = cinline_comment_pattern.sub(
-                  slide_syntax[slide_tp]['notes'], part)
+
+        if '<!-- begin inline comment' in part:
+            pattern = r'<!-- begin inline comment -->\s*\[<b>.+?</b>:\s*<em>(.+?)</em>]\s*<!-- end inline comment -->'
+            part = re.sub(pattern,
+                          slide_syntax[slide_tp]['notes'], part,
+                          flags=re.DOTALL)
+
+        if '<!-- !bnotes' in part:
+            pattern = r'<!-- !bnotes .*?-->(.+?)<!-- !enotes.*?-->'
+            part = re.sub(pattern,
+                          slide_syntax[slide_tp]['notes'], part,
+                          flags=re.DOTALL)
+
         if '!bpop' not in part:
             part = part.replace('<li>', '<p><li>')  # more space between bullets
         # else: the <p> destroys proper handling of incremental pop up
