@@ -120,10 +120,9 @@ Numerical scheme:
 % if SLIDE_TYPE == 'reveal':
 Embedding YouTube videos does not work with reveal.js slides.
 Here is the "link": "http://youtu.be/PtJrPEIHNJw".
-% endif
-
+% else:
 MOVIE: [http://youtu.be/PtJrPEIHNJw, width=640 height=480]
-
+% endif
 # #endif
 
 !split
