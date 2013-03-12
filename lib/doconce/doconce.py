@@ -31,13 +31,13 @@ import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki,
 def supported_format_names():
     return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc', 'ipynb'
 
-def doconce_envirs():
-    return ['c', 't',                 # verbatim and tex blocks
-            'ans', 'sol', 'subex',    # exercises
-            'pop', 'slidecell',       # slides
-            'hint', 'remarks', # exercises and general
-            'quote', 'notice',
-            'summary', 'warning', 'question']
+def doconce_envirs():                     # begin-end environments
+    return ['c', 't',                     # verbatim and tex blocks
+            'ans', 'sol', 'subex',        # exercises
+            'pop', 'slidecell', 'notes',  # slides
+            'hint', 'remarks',            # exercises and general
+            'quote',
+            'notice', 'summary', 'warning', 'question',]  # admon
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
@@ -1093,7 +1093,7 @@ def typeset_tables(filestr, format):
 def typeset_envirs(filestr, format):
     # Note: exercises are done (and translated to doconce syntax)
     # before this function is called
-    envirs = doconce_envirs()[7:]
+    envirs = doconce_envirs()[8:]
 
     for envir in envirs:
         if format in ENVIRS and envir in ENVIRS[format]:
@@ -1110,6 +1110,8 @@ def typeset_envirs(filestr, format):
                 def subst(m):
                     return '\n\n__%s.__\n%s\n\n' % \
                            (envir[0].upper() + envir[1:], m.group(1))
+            # else: other envirs for slides are treated later with
+            # the begin and end directives set in comments, see doconce2format
 
         pattern = r'^!b%s\s*(.+?)\s*^!e%s\s*' % (envir, envir)
         filestr = re.sub(pattern, subst, filestr,
@@ -2272,10 +2274,14 @@ preprocess package (sudo apt-get install preprocess).
     # mako. Also issue warnings if code blocks contain mako instructions
     # matching the mako_commands pattern
     match_percentage = re.search(mako_commands, filestr_without_code,
-                                 re.MULTILINE)
+                                 re.MULTILINE)  # match %
     match_mako_variable = False
     for name in mako_kwargs:
-        pattern = r'\$\{%s\}' % name
+        pattern = r'\$\{%s\}' % name  # ${name}
+        if re.search(pattern, filestr_without_code):
+            match_mako_variable = True
+            break
+        pattern = r'\b%s\b' % name    # e.g. % if name == 'a'
         if re.search(pattern, filestr_without_code):
             match_mako_variable = True
             break
@@ -2347,13 +2353,13 @@ python-mako package (sudo apt-get install python-mako).
         from mako.template import Template
         from mako.lookup import TemplateLookup
         lookup = TemplateLookup(directories=[os.curdir])
-        temp = Template(filename=resultfile, lookup=lookup)
+        temp = Template(filename=resultfile, lookup=lookup,
+                        strict_undefined=True)
 
         debugpr('Keyword arguments to be sent to mako: %s' % \
                 pprint.pformat(mako_kwargs))
         if preprocessor_options:
             print 'mako variables:', mako_kwargs
-
 
         try:
             filestr = temp.render(**mako_kwargs)
@@ -2371,7 +2377,11 @@ python-mako package (sudo apt-get install python-mako).
         except NameError, e:
             if "Undefined" in str(e):
                 variables = '\n'.join(re.findall(r'\$\{[A-Za-z0-9_]+?\}', filestr))
-                print '*** mako error: one or more ${var} variables are undefined, check all!\n%s' % variables
+                print '*** mako error: NameError Undefined variable'
+                print '                one or more ${var} variables are undefined, check all!\n%s' % variables
+                _abort()
+            elif "is not defined" in str(e):
+                print '*** mako error: NameError', e
                 _abort()
             else:
                 # Just dump everything mako has

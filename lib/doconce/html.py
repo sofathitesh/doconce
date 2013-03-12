@@ -6,6 +6,26 @@ from misc import option
 
 global _file_collection_filename
 
+# From http://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
+color_table = [
+('white', '#FFFFFF', 'rgb(255,255,255)'),
+('silver', '#C0C0C0', 'rgb(192,192,192)'),
+('gray', '#808080', 'rgb(128,128,128)'),
+('black', '#000000', 'rgb(0,0,0)'),
+('yellow', '#FFFF00', 'rgb(255,255,0)'),
+('fuchsia', '#FF00FF', 'rgb(255,0,255)'),
+('red', '#FF0000', 'rgb(255,0,0)'),
+('maroon', '#800000', 'rgb(128,0,0)'),
+('lime', '#00FF00', 'rgb(0,255,0)'),
+('olive', '#808000', 'rgb(128,128,0)'),
+('green', '#008000', 'rgb(0,128,0)'),
+('purple', '#800080', 'rgb(128,0,128)'),
+('aqua', '#00FFFF', 'rgb(0,255,255)'),
+('teal', '#008080', 'rgb(0,128,128)'),
+('blue', '#0000FF', 'rgb(0,0,255)'),
+('navy', '#000080', 'rgb(0,0,128)'),]
+
+
 def add_to_file_collection(filename, doconce_docname=None, mode='a'):
     """
     Add filename to the collection of needed files for the
@@ -678,7 +698,9 @@ def html_movie(m):
                (moviehtml, filename, caption)
     elif 'youtube.com' in filename:
         if not 'youtube.com/embed/' in filename:
-            filename = filename.replace('watch?v=', 'embed/')
+            filename = filename.replace('watch?v=', '')
+            filename = filename.replace('youtube.com/', 'youtube.com/embed/')
+            filename = filename.replace('http://youtube.com/', 'http://www.youtube.com/')
         # Make html for a local YouTube frame
         width = kwargs.get('width', 640)
         height = kwargs.get('height', 365)

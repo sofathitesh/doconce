@@ -100,6 +100,9 @@ def pack_reveal_deck_csss():
     rmtree('deck.annotate.js')
     system('git clone git://github.com/nemec/deck.annotate.js.git')
     system('cp -r deck.annotate.js deck.js/extensions/')
+    rmtree('deck.js-notes')
+    system('git clone git@github.com:freekh/deck.js-notes.git')
+    system('cp -r deck.js-notes deck.js/extensions/notes')
 
     system('cp doconce_modifications/deck/core/*.css deck.js/core/')
     system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
