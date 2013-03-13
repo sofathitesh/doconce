@@ -147,14 +147,24 @@ def sphinx_code_orig(filestr, format):
             defs[key] = value
     else:
         # default mappings:
-        defs = dict(cod='python', pycod='python', cycod='cython',
-                    fcod='fortran', ccod='c', cppcod='c++',
-                    mcod='matlab', plcod='perl', shcod='bash',
-                    pro='python', pypro='python', cypro='cython',
-                    fpro='fortran', cpro='c', cpppro='c++',
-                    mpro='matlab', plpro='perl', shpro='bash',
-                    sys='console', dat='python', ipy='python',
-                    xmlcod='xml', xmlpro='xml')
+        defs = dict(cod='python',
+                    pro='python',
+                    pycod='python', cycod='cython',
+                    pypro='python', cypro='cython',
+                    fcod='fortran', fpro='fortran',
+                    ccod='c', cppcod='c++',
+                    cpro='c', cpppro='c++',
+                    mcod='matlab', mpro='matlab',
+                    plcod='perl', plpro='perl',
+                    shcod='bash', shpro='bash',
+                    rbcod='ruby', rbpro='ruby',
+                    sys='console',
+                    dat='python',
+                    ipy='python',
+                    xmlcod='xml', xmlpro='xml',
+                    htmlcod='html', htmlpro='html'
+                    texcod='latex', texpro='latex'
+                    )
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
@@ -339,6 +349,28 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
 
+    # default mappings of !bc environments and pygments languages:
+    envir2lang = dict(
+        cod='python', pro='python',
+        pycod='python', cycod='cython',
+        pypro='python', cypro='cython',
+        fcod='fortran', fpro='fortran',
+        ccod='c', cppcod='c++',
+        cpro='c', cpppro='c++',
+        mcod='matlab', mpro='matlab',
+        plcod='perl', plpro='perl',
+        shcod='bash', shpro='bash',
+        rbcod='ruby', rbpro='ruby',
+        xml='xml',
+        sys='console',
+        rst='rst',
+        dat='python',
+        ipy='python',
+        html='html',
+        tex='latex', latex='latex',
+        pyoptpro='python'
+        )
+
     # grab #sphinx code-blocks: cod=python cpp=c++ etc line
     # (do this before code is inserted in case verbatim blocks contain
     # such specifications for illustration)
@@ -346,23 +378,9 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     if m:
         defs_line = m.group(1)
         # turn specifications into a dictionary:
-        envir2lang = {}
         for definition in defs_line.split():
             key, value = definition.split('=')
             envir2lang[key] = value
-    else:
-        # default mappings:
-        envir2lang = dict(cod='python', pycod='python', cycod='cython',
-                          fcod='fortran', ccod='c', cppcod='c++',
-                          mcod='matlab', plcod='perl', shcod='bash',
-                          rst='rst', ipy='python',
-                          pro='python', pypro='python', cypro='cython',
-                          fpro='fortran', cpro='c', cpppro='c++',
-                          mpro='matlab', plpro='perl', shpro='bash',
-                          sys='console', dat='python',
-                          pyoptpro='python')
-        # (the "python" typesetting is neutral if the text
-        # does not parse as python)
 
     # First indent all code blocks
 

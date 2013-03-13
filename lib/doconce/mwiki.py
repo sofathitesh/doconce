@@ -38,7 +38,10 @@ from common import default_movie, plain_exercise, insert_code_and_tex
 def align2equations(math_text):
     """
     Transform an align environment to a set of equation environments.
-    Used to handle multiple equations if align does not work well
+    Used to handle multiple equations if align does not work well.
+
+    Note: This version is outdated. common.align2equations is the
+    newest attempt to implement align in terms of single equations.
     """
     if not '{align' in math_text:
         return
@@ -95,6 +98,9 @@ def mwiki_code(filestr, code_blocks, code_block_types,
                       pro='python', pypro='python', cypro='python',
                       fpro='fortran', cpro='c', cpppro='cpp',
                       mpro='matlab', plpro='perl', shpro='bash',
+                      rbpro='ruby', rbcod='ruby',
+                      javacod='java', javapro='java',
+                      html='html5', xml='xml',
                       sys='bash', dat='python',
                       pyoptpro='python')
 
