@@ -28,19 +28,16 @@ color_table = [
 
 def add_to_file_collection(filename, doconce_docname=None, mode='a'):
     """
-    Add filename to the collection of needed files for the
+    Add filename to the collection of needed files for a Doconce-based
     HTML document to work.
-    The first time the function is called, doconce_docname != None
-    and this name is used to set the filename of the file with
-    the while file collection. Later, doconce_docname is not given
-    (otherwise previous info is erased).
+
+    The first time the function is called, `doconce_docname` != None
+    and this name is used to set the filename of the file collection.
+    Later, `doconce_docname` is not given (otherwise previous info is erased).
     """
-    # bin/doconce functions must provide doconce_docname and
-    # mode='a' in order to write correctly to an already existing
-    # file. Functions in lib/doconce, when accessed by doconce format,
-    # can just provide filename as the first call from doconce.py
-    # provides doconce_docname and initializes _file_collection_filename
-    # correctly.
+    # bin/doconce functions that add info to the file collection
+    # must provide the right doconce_docname and mode='a' in order
+    # to write correctly to an already existing file.
     global _file_collection_filename
     if isinstance(doconce_docname, str) and doconce_docname != '':
         if doconce_docname.endswith('.do.txt'):
@@ -49,7 +46,6 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
             doconce_docname = doconce_docname[:-5]
         _file_collection_filename = '.' + doconce_docname + \
                                     '_html_file_collection'
-
     try:
         f = open(_file_collection_filename, mode)
         f.write(filename + '\n')
@@ -219,9 +215,10 @@ def html_code(filestr, code_blocks, code_block_types,
 
     types2languages = dict(py='python', cy='cython', f='fortran',
                            c='c', cpp='c++', sh='bash', rst='rst',
-                           m ='matlab', pl='perl', swig='c++',
-                           latex='latex', html='html', js='js',
-                           sys='bash', xml='xml',
+                           m ='matlab', pl='perl', rb='ruby',
+                           swig='c++', latex='latex', tex='latex',
+                           html='html', xml='xml',
+                           js='js', sys='bash',
                            pyproopt='python')
     try:
         import pygments as pygm
