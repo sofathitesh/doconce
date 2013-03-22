@@ -1010,7 +1010,7 @@ def define(FILENAME_EXTENSION,
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
@@ -1034,20 +1034,26 @@ def define(FILENAME_EXTENSION,
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
+"""
+
+    if r'\chapter{' in filestr:
+        INTRO['latex'] += r"""
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 chapterprefix=true,      % "Chapter" word at beginning of each chapter
 open=right               % start new chapters on odd-numbered pages
 10pt]{book}
-% #else
+"""
+    else:
+        INTRO['latex'] += r"""
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 10pt]{article}
-% #endif
+"""
 
+    INTRO['latex'] += r"""
 \listfiles               % print all files needed to compile this document
 
 % #ifdef A4PAPER
@@ -1058,7 +1064,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}

@@ -91,21 +91,10 @@ is done by an automatically generated script:
 
   python automake_sphinx.py [doconce options]
 
-If there are many files to be translated to sphinx, have a
-master document including the others and with #>>>> part: ...
-syntax, such that doconce split_rst can first be run on the
-master document to produce the individual .rst files corresponding
-to each part.
+The master file can be split into parts. Here is the typical code:
 
-Here is the typical code:
-
-  doconce format sphinx master.do.txt
-
-Split master.rst into parts as defined by #>>>>> part: name >>>>> lines
-
-  files=`doconce split_rst master.rst`
-  echo $files
-  doconce sphinx_dir author='HPL' theme=pyramid $files
+  doconce format sphinx master
+  doconce split_rst master
   python automake_sphinx.py
 """
 
@@ -162,32 +151,30 @@ def sphinx_dir():
         print 'Abort: sphinx version >= 1.1 required'
         sys.exit(1)
 
+    if len(doconce_files) > 1:
+        print 'can only specify one main doconce file'
+        sys.exit(1)
+    filename = doconce_files[0]
+    if filename.endswith('do.txt'):
+        filename = filename[:-7]
+    else:
+        if not os.path.isfile(filename + '.do.txt'):
+            print '%s.do.txt does not exist' % filename
+            sys.exit(1)
 
-    # Make sure all files end with .do.txt
-    doconce_files_basename = []
-    for i in range(len(doconce_files)):
-        if doconce_files[i].endswith('.do.txt'):
-            pass
-        else:
-            doconce_files[i] += '.do.txt'
-        doconce_files_basename.append(doconce_files[i][:-7])
+    parts = glob.glob('._part*_%s.rst' % filename)
+    parts = [part[:-4] for part in sorted(parts)]
 
     if title is None:
-        for filename in doconce_files:
-            if not os.path.isfile(filename):
-                print filename, 'was not found'
-                continue
-            else:
-                print 'searching for TITLE in', filename
-            f = open(filename, 'r'); fstr = f.read(); f.close()
-            if 'TITLE:' in fstr:
-                for line in fstr.splitlines():
-                    if line.startswith('TITLE:'):
-                        title = line[6:].strip()
-                        print 'Using title "%s" from' % title, filename
-                        break
+        print 'searching for TITLE in %s.do.txt' % filename
+        f = open(filename + '.do.txt', 'r'); fstr = f.read(); f.close()
+        if 'TITLE:' in fstr:
+            for line in fstr.splitlines():
+                if line.startswith('TITLE:'):
+                    title = line[6:].strip()
+                    print 'Using title "%s" from' % title, filename
     if title is None:
-        print '\nNo TITLE: line found in the files', ', '.join(doconce_files)
+        print '\nNo TITLE: line found in %s.do.txt' % filename
         print 'and no title="..." given on the command line'
         sys.exit(1)
 
@@ -197,25 +184,23 @@ def sphinx_dir():
 
     if author is None:
         import doconce
-        for filename in doconce_files:
-            f = open(filename, 'r'); fstr = f.read(); f.close()
-            # The following can be misleading if there are examples on
-            # various AUTHOR: in e.g. vertabim code in the .do.txt file
-            authors_and_institutions, dummy1, dummy2, dummy3, dummy4, dummy5 = \
-                      doconce.doconce.interpret_authors(fstr, 'sphinx')
-            if authors_and_institutions:
-                author = [a for a, i, e in authors_and_institutions]
+        f = open(filename + '.do.txt', 'r'); fstr = f.read(); f.close()
+        # The following can be misleading if there are examples on
+        # various AUTHOR: in e.g. vertabim code in the .do.txt file
+        authors_and_institutions, dummy1, dummy2, dummy3, dummy4, dummy5 = \
+                  doconce.doconce.interpret_authors(fstr, 'sphinx')
+        if authors_and_institutions:
+            author = [a for a, i, e in authors_and_institutions]
 
-                print 'Author:', author
-                if len(author) == 1:
-                    author = author[0]
-                else:
-                    author = ', '.join(author[:-1]) + ' and ' + author[-1]
-                print 'Using author(s) "%s" from' % author, filename
-                break
+            print 'Author:', author
+            if len(author) == 1:
+                author = author[0]
+            else:
+                author = ', '.join(author[:-1]) + ' and ' + author[-1]
+            print 'Using author(s) "%s" from' % author, filename
 
     if author is None:
-        print '\nNo AUTHOR: line found in the files', ', '.join(doconce_files)
+        print '\nNo AUTHOR: line found in %s.do.txt' % filename
         print 'and no author="..." given on the command line'
         sys.exit(1)
 
@@ -317,7 +302,11 @@ echo "for i in sphinx-*; do google-chrome $i/index.html; done"
     os.chmod('make_themes.sh', 0755)
 
     f = open('index.rst', 'w')
-    files = '\n   '.join([filename[:-7] for filename in doconce_files])
+    if parts:
+        files = parts
+    else:
+        files = [filename]
+    filenames = '\n   '.join(files)
     title_underline = '='*len(title)
     f.write("""
 .. Master file automatically created by doconce sphinx_dir
@@ -330,7 +319,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   %(files)s
+   %(filenames)s
 
 
 Indices and tables
@@ -342,55 +331,11 @@ Indices and tables
 """ % vars())
     f.close()
     os.chdir(os.pardir)
-    doconce_files_basename_list = ' '.join(doconce_files_basename)
-    doconce_files_basename_pylist = str(doconce_files_basename)
-    f = open('automake_sphinx.py', 'w')
-    # Old Bash variant, now overwritten
-    f.write("""\
-#!/bin/bash -x
-# Autogenerated file (by doconce sphinx_dir)
-# Purpose: create HTML Sphinx version of %(doconce_files_basename_list)s
-
-# Filter doconce format to sphinx format and copy to sphinx directory
-files="%(doconce_files_basename_list)s"
-for file in $files; do
-  doconce format sphinx $file
-
-  enc=`doconce guess_encoding $file.rst`
-  if [ $enc = "iso-8859-1" ]; then
-    # sphinx does not like non-English characters in iso-8859-1
-    doconce change_encoding iso-8859-1 utf-8 $file.rst
-  fi
-  cp $file.rst %(sphinx_rootdir)s
-done
-
-# Copy figures
-for fig in figs*; do
-if [ -d $fig ]; then
-  cp -r $fig %(sphinx_rootdir)s
-fi
-done
-
-if [ -d _static ]; then
-  # _static must be used if there are local URLs in a file
-  cp -r _static/* %(sphinx_rootdir)s/_static/
-fi
-
-# Compile web version of the sphinx document
-cd %(sphinx_rootdir)s
-make clean
-make html
-echo
-echo "google-chrome %(sphinx_rootdir)s/_build/html/index.html"
-""" % vars())
-    f.close()
-    os.chmod('automake_sphinx.py', 0755)
-
     f = open('automake_sphinx.py', 'w')
     f.write('''\
 #!/usr/bin/env python
 # Autogenerated file (by doconce sphinx_dir)
-# Purpose: create HTML Sphinx version of %(doconce_files_basename_list)s
+# Purpose: create HTML Sphinx version of %(filename)s
 
 # Command-line arguments are transferred to the doconce format sphinx file
 # compilation command
@@ -413,13 +358,12 @@ def system(cmd, capture_output=False, echo=True):
         sys.exit(1)
     if capture_output:
         return outtext
-
-# Filter doconce format to sphinx format and copy to sphinx directory
-filenames = %(doconce_files_basename_pylist)s
-print """
-
-"""
-for filename in filenames:
+''' % vars())
+    if parts == []:
+        f.write('''
+filename = '%(filename)s'
+if not os.path.isfile(filename + '.rst'):
+    # Filter doconce format to sphinx format and copy to sphinx directory
     cmd = 'doconce format sphinx %%s %%s' %% (filename, command_line_options)
     print cmd
     system(cmd)
@@ -431,9 +375,19 @@ for filename in filenames:
         # sphinx does not like non-English characters in iso-8859-1
         system('doconce change_encoding iso-8859-1 utf-8 %%s.rst' %% filename)
 
-    # Copy generated sphinx file to sphinx root directory
-    shutil.copy('%%s.rst' %% filename, sphinx_rootdir)
+# Copy generated sphinx file to sphinx root directory
+shutil.copy('%%s.rst' %% filename, sphinx_rootdir)
+''' % vars())
+    else:
+        # user has run doconce split_rst so all parts must be copied
+        parts_names = str(parts)
+        f.write('''
+# Copy generated sphinx files to sphinx root directory
+for part in %(parts_names)s:
+    shutil.copy('%%s.rst' %% part, sphinx_rootdir)
+''' % vars())
 
+    f.write('''
 # Copy figures and movies directories
 figdirs = glob.glob('fig*') + glob.glob('mov*')
 for figdir in figdirs:
@@ -843,7 +797,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst

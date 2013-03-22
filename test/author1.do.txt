@@ -4,7 +4,7 @@ DATE: today
 
 # Externaldocument: testdoc
 
-======= Generalized References =======
+========= Generalized References =========
 label{genrefs}
 
 Sometimes a series of individual documents may be assembled to one
@@ -61,3 +61,10 @@ the document *author1*].
 The text is rendered to "Generalized references are described in
 ref[Section ref{genrefs}][][
 the document *author1*]."
+
+# We are testing chapter too to see if latex output then has
+# book style rather than article style.
+
+========= Test of math =========
+
+Inline math, $a=b$, is the only math in this document.

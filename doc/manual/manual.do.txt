@@ -1,5 +1,5 @@
 TITLE: Doconce Description
-AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
+AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
 DATE: today
 
 
@@ -188,12 +188,13 @@ associated with `TITLE:` and `AUTHOR:` keywords must appear on a single
 line.  Here is an example:
 !bc
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 !ec
-Note how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions
+(with `&` as separator between institutions),
 and no institution. In some formats (including `rst` and `sphinx`)
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
@@ -1693,6 +1694,13 @@ SWIG code or Matlab comment lines), the Mako preprocessor will crash
 because it thinks these lines are Mako statements. Doconce detects
 this problem and avoids running Mako.  Examine the output from
 Doconce: warnings are issued if Mako is not run.
+
+=== The Mako preprocessor is fooled by Doconce text ===
+
+Here are possible problems for Mako:
+
+ * Strings with `'T<%.1f'` look as openings of Mako blocks (`<%`); change
+   to `'T < %.1f'` to avoid this confusion.
 
 === Something goes wrong in the preprocessing step ===
 

@@ -358,10 +358,11 @@ def html_code(filestr, code_blocks, code_block_types,
         MATH_TYPESETTING = 'MathJax'
     c = re.compile(r'^!bt *\n', re.MULTILINE)
     m1 = c.search(filestr)
-    from common import INLINE_TAGS
-    m2 = re.search(INLINE_TAGS['math'], filestr)
-    m3 = re.search(INLINE_TAGS['math2'], filestr)
-    math = bool(m1) or bool(m2) or bool(m3)
+    # common.INLINE_TAGS['math'] won't work since we have replaced
+    # $...$ by \( ... \)
+    pattern = r'\\\( .+? \\\)'
+    m2 = re.search(pattern, filestr)
+    math = bool(m1) or bool(m2)
 
     if MATH_TYPESETTING == 'MathJax':
         # LaTeX blocks are surrounded by $$
@@ -483,12 +484,6 @@ MathJax.Hub.Config({
             # tocinfo to the beginning
             filestr = toc + filestr
 
-    # Wrap filestr in vagrant template here? Must prevent header from
-    # being added, and another problem: html_split needs to wrap
-    # each page in that template. It's the more general problem that
-    # a template is applied to the whole doc and to parts (last part
-    # will get the footer twice...)
-
     # Add header from external template
     template = option('html-template=', default='')
     if option('html-style=') == 'vagrant':
@@ -496,15 +491,16 @@ MathJax.Hub.Config({
         if not template:
             print """
 *** error: --html-style=vagrant requires
-    cp -r path/to/doconce/source/bundled/html_styles/vagrant .
-    --html-template=vagrant/template_vagrant.html
+    cp -r path/to/doconce-source-root/bundled/html_styles/style_vagrant/* .
+    # edit template_vargrant.html to template_mystyle.html
+    --html-template=template_mystyle.html
 """
             sys.exit(1)
     if 'template_vagrant.html' in template \
        and not option('html-style=') == 'vagrant':
         print """
-*** error: --html-template= with template_vagrant.html requires
-    --html-style=vagrant
+*** error: --html-template= with a template based on
+    template_vagrant.html requires --html-style=vagrant
 """
         sys.exit(1)
 
@@ -532,16 +528,18 @@ MathJax.Hub.Config({
 
         # Extract title
         if title == '':
+            # No real title found above.
             # The first section heading or a #TITLE: ... line becomes the title
             pattern = r'<!--\s+TITLE:\s*(.+?) -->'
             m = re.search(pattern, filestr)
             if m:
                 title = m.group(1).strip()
                 filestr = re.sub(pattern, '\n<h1>%s</h1>\n' % title, filestr)
-            else:
-                m = re.search(r'<h\d>(.+?)<a name=', filestr)
-                if m:
-                    title = m.group(1).strip()
+
+            # Now use the first heading as title
+            m = re.search(r'<h\d>(.+?)<a name=', filestr)
+            if m:
+                title = m.group(1).strip()
 
         # Extract date
         pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
@@ -583,6 +581,9 @@ MathJax.Hub.Config({
         variables = {keyword: '' for keyword in keywords} # init
         variables.update({'title': title, 'date': date, 'main': filestr,
                           'table_of_contents': toc_html})
+        if '%(date)s' in template and date == '':
+            print '*** warning: template contains date (%(date)s)'
+            print '    but no date is specified in the document'
         filestr = template % variables
 
     if MATH_TYPESETTING == 'WordPress':

@@ -832,6 +832,9 @@ def ptex2tex():
     # (Recall that the longest names must come first so that they
     # are substituted first, e.g., \bcc after \bccod)
     envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
+    envirs += ['htmlcod', 'htmlpro', 'html',
+               'rbpro', 'rbcod', 'rb',
+               'xmlpro', 'xmlcod', 'xml', ]
 
     # Process command-line options
 
@@ -1290,7 +1293,9 @@ def clean():
         for f in generated_files:
             removed.append(f)
     removed.extend(glob.glob('*~') + glob.glob('tmp*') +
-                   glob.glob('._part*.html') + glob.glob('.*.exerinfo') +
+                   glob.glob('._part*.html') +
+                   glob.glob('._part*.rst') +
+                   glob.glob('.*.exerinfo') +
                    glob.glob('.*_html_file_collection'))
     directories = ['sphinx-rootdir', 'html_images']
     for d in directories:
@@ -1709,6 +1714,8 @@ def _format_comments(format='html'):
         return '<!--', '-->'
     elif format == 'latex':
         return '%', ''
+    elif format == 'rst' or format == 'sphinx':
+        return '..', ''
     else:
         return None, None
 
@@ -1721,7 +1728,6 @@ def get_header_parts_footer(filename, format='html'):
         loc = 'header'
     else:
         loc = 'body'  # no header
-    #comment_pattern = INLINE_TAGS_SUBST[format]['comment']
     begin_comment, end_comment = _format_comments(format)
     f = open(filename, 'r')
     for line in f:
@@ -1746,10 +1752,10 @@ def get_header_parts_footer(filename, format='html'):
 def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
     import html
-    s = 'The vagrant style builds on the Twitter Bootstrap style'
-    vagrant = s in '\n'.join(footer)
+    vagrant = 'builds on the Twitter Bootstrap style' in '\n'.join(header)
 
     if vagrant:
+        local_navigation_pics = False    # navigation is in the template
         vagrant_navigation_passive = """\
 <!-- Navigation buttons at the bottom:
      Doconce will automatically fill in the right URL in these
@@ -1766,8 +1772,8 @@ def doconce_html_split(header, parts, footer, basename, filename):
 """
         vagrant_navigation_active = """\
 <ul class="pager">
-  %s
-  %s
+%s
+%s
 </ul>
 """
         vagrant_navigation_prev = """\
@@ -1778,12 +1784,13 @@ def doconce_html_split(header, parts, footer, basename, filename):
         vagrant_navigation_next = """\
   <li class="next">
     <a href="%s">%s &rarr;</a>
- </li>
+  </li>
 """
     else:
         local_navigation_pics = False    # avoid copying images to subdir...
-        if local_navigation_pics:
-            copy_datafiles(html_images)  # copy html_images subdir if needed
+
+    if local_navigation_pics:
+        copy_datafiles(html_images)  # copy html_images subdir if needed
 
     prev_part = 'prev1'  # "Knob_Left"
     next_part = 'next1'  # "Knob_Forward"
@@ -1793,23 +1800,41 @@ def doconce_html_split(header, parts, footer, basename, filename):
     name_pattern = r'<a name="(.+?)">'
     href_pattern = r'<a href="#(.+?)">'
     parts_name = [re.findall(name_pattern, ''.join(part)) for part in parts]
+    parts_name.append(re.findall(name_pattern, ''.join(header)))
+    parts_name.append(re.findall(name_pattern, ''.join(footer)))
     parts_href = [re.findall(href_pattern, ''.join(part)) for part in parts]
-    parts_name2part = {}
+    parts_href.append(re.findall(href_pattern, ''.join(header)))
+    parts_href.append(re.findall(href_pattern, ''.join(footer)))
+    # Add label to parts_name and eqref to parts_href? Might not work
+    parts_name2part = {}   # map a name to where it is defined
     for i in range(len(parts_name)):
         for name in parts_name[i]:
             parts_name2part[name] = i
 
     import pprint
-    for i in range(len(parts_name)):
-        for href in parts_href[i]:
-            n = parts_name2part[href]
+    # Substitute hrefs in each part, plus header and footer
+    for i in range(len(parts_href)):
+        for name in parts_href[i]:
+            n = parts_name2part[name]   # part where this name is defined
             if n != i:
                 # Reference to label in another file
-                part_filename = '._part%04d_%s.html' % (n, basename)
-                text = ''.join(parts[i]).replace(
-                    '<a href="#%s">' % href,
-                    '<a href="%s#%s">' % (part_filename, href))
-                parts[i] = text.splitlines(True)
+                name_def_filename = '._part%04d_%s.html' % (n, basename)
+                if i < len(parts):
+                    part = parts[i]
+                elif i == len(parts):
+                    part = header
+                elif i == len(parts)+1:
+                    part = footer
+                text = ''.join(part).replace(
+                    '<a href="#%s">' % name,
+                    '<a href="%s#%s">' % (name_def_filename, name))
+                if i < len(parts):
+                    parts[i] = text.splitlines(True)
+                elif i == len(parts):
+                    header = text.splitlines(True)
+                elif i == len(parts)+1:
+                    footer = text.splitlines(True)
+
     if local_navigation_pics:
         button_prev_filename = html_imagefile(prev_part)
         button_next_filename = html_imagefile(next_part)
@@ -1819,7 +1844,18 @@ def doconce_html_split(header, parts, footer, basename, filename):
 
     generated_files = []
     for pn, part in enumerate(parts):
-        lines = header[:]
+        header_copy = header[:]
+        if vagrant:
+            # Highligh first section in this part in the navigation in header
+            m = re.search(r'<h(2|3)>(.+?)<', ''.join(part))
+            if m:
+                first_header = m.group(2).strip()
+                for k in range(len(header_copy)):
+                    if 'nav toc' in header[k] and first_header in header[k]:
+                        header_copy[k] = header[k].replace(
+                            '<li>', '<li class="active">')
+
+        lines = header_copy[:]
         lines.append('<a name="part%04d"></a>\n' % pn)
 
         # Decoration line?
@@ -1837,15 +1873,13 @@ def doconce_html_split(header, parts, footer, basename, filename):
         generated_files.append(part_filename)
 
         if vagrant:
+            # Make navigation arrows
             prev_ = next_ = ''
             if pn > 0:
-               prev_ = vagrant_naviation_prev % (prev_part_filename, "Prev")
+               prev_ = vagrant_navigation_prev % (prev_part_filename, "Prev")
             if pn < len(parts)-1:
-               next_ = vagrant_naviation_next % (next_part_filename, "Next")
+               next_ = vagrant_navigation_next % (next_part_filename, "Next")
             buttons = vagrant_navigation_active % (prev_, next_)
-            text = '\n'.join(part)
-            text = text.replace(vagrant_navigation_passive, buttons)
-            part = text.splitlines()
         else:
             # Simple navigation buttons at the top and bottom of the page
             if pn > 0:
@@ -1864,19 +1898,27 @@ def doconce_html_split(header, parts, footer, basename, filename):
 
         # Navigation in the bottom of the page
         lines.append('<p>\n')
-        if not vagrant and pn > 0:
-            lines.append("""
-<a href="%s"><img src="%s" border=0 alt="previous"></a>
-""" % (prev_part_filename, button_prev_filename))
-        if pn < len(parts)-1:
-            lines.append("""
-<a href="%s"><img src="%s" border=0 alt="next"></a>
-""" % (next_part_filename, button_next_filename))
-        lines += footer
+        if vagrant:
+            footer_text = ''.join(footer).replace(
+                vagrant_navigation_passive, buttons)
+            lines += footer_text.splitlines(True)
+        else:
+            if pn > 0:
+                lines.append("""
+                <a href="%s"><img src="%s" border=0 alt="previous"></a>
+                """ % (prev_part_filename, button_prev_filename))
+            if pn < len(parts)-1:
+                lines.append("""
+                <a href="%s"><img src="%s" border=0 alt="next"></a>
+                """ % (next_part_filename, button_next_filename))
+            lines += footer
+
         html.add_to_file_collection(part_filename, filename, 'a')
+
         f = open(part_filename, 'w')
         f.write(''.join(lines))
         f.close()
+        # Make sure main html file equals the first part
         if pn == 0:
             shutil.copy(part_filename, filename)
     return generated_files
@@ -3050,10 +3092,10 @@ MathJax.Hub.Config({
     slides = re.sub(r'<!-- !split .*-->\n', '', slides)
     return slides
 
-def _usage_split_rst():
+def _usage_split_rst0():
     print 'Usage: doconce split_rst complete_file.rst'
 
-def split_rst():
+def split_rst0():
     """
     Split a large .rst file into smaller files corresponding
     to each main section (7= in headings).
@@ -3096,7 +3138,7 @@ def split_rst():
     """
 
     if len(sys.argv) <= 1:
-        _usage_split_rst()
+        _usage_split_rst0()
         sys.exit(1)
 
     complete_file = sys.argv[1]
@@ -3127,14 +3169,49 @@ def split_rst():
         #print 'Extracted part', parts[i], 'in', filename
     print ' '.join(parts)
 
-# split_rst2:
-# see html !split
-# call get_header_parts_footer, write parts to .rst files a la doconce_...
-# check that the first heading is at the same level? Test...
-# sensible names based on the first heading after the splitting? no...too long
-# sensible names based on !split filename? Need to make sure html split works
-#
-#
+
+def _usage_split_rst():
+    print 'Usage: doconce split_html mydoc.html'
+
+def split_rst():
+    """
+    Split rst file into parts. Use !split command as separator between
+    parts.
+    """
+    if len(sys.argv) <= 1:
+        _usage_split_html()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.rst'):
+        basename = filename
+        filename += '.rst'
+    else:
+        basename = filename[:-5]
+
+    header, parts, footer = get_header_parts_footer(filename, "rst")
+    import pprint
+    files = doconce_rst_split(parts, basename, filename)
+    #print ' '.join([name[:-4] for name in files])
+    print basename, 'split into'
+    print ' '.join(files)
+
+
+def doconce_rst_split(parts, basename, filename):
+    """Native doconce style splitting of rst file into parts."""
+    import pprint
+
+    generated_files = []
+    for pn, part in enumerate(parts):
+        part_filename = '._part%04d_%s.rst' % (pn, basename)
+        generated_files.append(part_filename)
+        f = open(part_filename, 'w')
+        f.write(''.join(part))
+        f.close()
+        # let rst html file equals the first part
+        if pn == 0:
+            shutil.copy(part_filename, filename)
+    return generated_files
 
 def _usage_list_labels():
     print 'Usage: doconce list_labels doconcefile.do.txt | latexfile.tex'
@@ -4181,32 +4258,53 @@ def latex2doconce():
     # cf. doconce.latex.fix_latex_command_regex to see how important
     # it is to quote the backslash correctly for matching, substitution
     # and output strings when using re.sub for latex text!
+
+    def subst_author(m):
+        author_str = m.group('subst')
+        authors = author_str.split(r'\and')
+        # footnotes with institutions?
+        if r'\footnote{' in author_str:
+            institutions = ['']*len(authors)
+            for i, author in enumerate(authors):
+                if r'\footnote{' in author:
+                    pattern = r'\footnote\{(.+?\}'
+                    m2 = re.search(pattern, author)
+                    if m2:
+                        institutions[i] = m2.group(1).strip()
+                        authors[i] = re.sub(pattern, '', authors[i])
+        authors = ['AUTHOR: %s' % a.strip() for a in authors]
+        for i in range(len(authors)):
+            if institutions[i] != '':
+                authors[i] += ' at ' + institutions[i]
+        return '\n'.join(authors)
+
     subst = dict(
-    author=(r'\\author\{(?P<subst>.+)\}', r'# AUTHOR: \g<subst>'),
-    title=(r'\\title\{(?P<subst>.+)\}', r'# TITLE: \g<subst>'),
+    author=(r'\\author\{(?P<subst>.+)\}', subst_author),
+    title=(r'\\title\{(?P<subst>.+)\}', r'TITLE: \g<subst>'),
     section=(r'\\section\*?\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
     subsection=(r'\\subsection\*?\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
     subsubsection=(r'\\subsubsection\*?\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
     paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
-    para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
     emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
     em=(r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
-    #ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'), # gives tab hinspace .
-    ep1=(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
-    ep2=(r'\ep\n', r' \\thinspace .\n'),
-    ep3=(r'\ep\s*\\\]', r' \\thinspace . \]'),
-    ep4=(r'\ep\s*\\e', r' \\thinspace . \e'),
-    ep5=(r'\\thinspace', 'thinspace'),
-    bf=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
-    code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
-    emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
-    codett=(r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
-    refeq=(r'\\refeq\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+    ##ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'), # gives tab hinspace .
+    #ep1=(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
+    #ep2=(r'\ep\n', r' \\thinspace .\n'),
+    #ep3=(r'\ep\s*\\\]', r' \\thinspace . \]'),
+    #ep4=(r'\ep\s*\\e', r' \\thinspace . \e'),
+    #ep5=(r'\\thinspace', 'thinspace'),
+    bf1=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
+    bf2=(r'\\textbf\{.+?)\}', r'_\g<subst>_'),
     eqref=(r'\\eqref\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
     label_space=(r'(\S)\\label\{', r'\g<1> \\label{'),
     idx_space=(r'(\S)\\idx(.?)\{', r'\g<1> \\idx\g<2>{'),
     index_space=(r'(\S)\\index\{', r'\g<1> \\index{'),
     label=(r'\\label\{(?P<subst>.+?)\}', r'label{\g<subst>}'),
+    index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
+        # hpl specific things:
+    code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    codett=(r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
     idx=(r'\\idx\{(?P<subst>.+?)\}', r'idx{`\g<subst>`}'),
     idxf=(r'\\idxf\{(?P<subst>.+?)\}', r'idx{`\g<subst>` function}'),
     idxs=(r'\\idxs\{(?P<subst>.+?)\}', r'idx{`\g<subst>` script}'),
@@ -4216,7 +4314,9 @@ def latex2doconce():
     idxnumpy=(r'\\idxnumpy\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `numpy`)}'),
     idxst=(r'\\idxst\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `scitools`)}'),
     idxfn=(r'\\idxfn\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (FEniCS)}'),
-    index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
+        # should not be relevant because of earlier replacements
+    para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+    refeq=(r'\\refeq\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
     )
 
     for item in subst:
@@ -4234,14 +4334,14 @@ def latex2doconce():
 
     replace = [
         # make sure \beqan comes before \beqa and \beq in replacements...
+        (r'\[', r'\begin{equation*}'),
+        (r'\]', r'\end{equation*}'),
         (r'\beqan', r'\begin{eqnarray*}'),
         (r'\eeqan', r'\end{eqnarray*}'),
         (r'\beqa', r'\begin{eqnarray}'),
         (r'\eeqa', r'\end{eqnarray}'),
         (r'\beq', r'\begin{equation}'),
         (r'\eeq', r'\end{equation}'),
-        (r'\[', r'\begin{equation*}'),
-        (r'\]', r'\end{equation*}'),
         (r'\ben', r'\begin{enumerate}'),
         (r'\een', r'\end{enumerate}'),
         (r'\bit', r'\begin{itemize}'),
@@ -4258,10 +4358,10 @@ def latex2doconce():
         ("Sections~", "Sections "),
         ("Figures~", "Figures "),
         ("Tables~", "Tables "),
-        ("Chap.~", "Chap. "),
-        ("Sec.~", "Sec. "),
-        ("Fig.~", "Fig. "),
-        ("Tab.~", "Tab. "),
+        ("Chap.~", "Chapter "),
+        ("Sec.~", "Section "),
+        ("Fig.~", "Figure "),
+        ("Tab.~", "Table "),
         ]
 
     # Pure string replacements:
@@ -4939,7 +5039,7 @@ def _missing_diff_program(program_name):
     sys.exit(1)
 
 def _usage_diff():
-    print 'Usage: doconce diff file1 file2 [diffprog]'
+    print 'Usage: doconce diff oldfile newfile [diffprog]'
     print 'diffprogram may be difflib (default),'
     print 'pdiff, diff, diffuse, kdiff3, xxdiff, meld, latexdiff'
     print 'Output in diff.*'
@@ -4988,8 +5088,8 @@ def pydiff(files1, files2, n=3):
             fromlines, tolines, fromfile,tofile, context=True, numlines=n)
         diff_plain = difflib.unified_diff(
             fromlines, tolines, fromfile, tofile, fromdate, todate, n=n)
-        filename_plain = '__diff.txt'
-        filename_html  = '__diff.html'
+        filename_plain = 'tmp_diff.txt'
+        filename_html  = 'tmp_diff.html'
 
         if os.path.isfile(filename_plain):
             os.remove(filename_plain)
@@ -5004,7 +5104,7 @@ def pydiff(files1, files2, n=3):
         f.close()
         size = os.path.getsize(filename_plain)
         if size > 4:
-            print 'diff in __diff.txt and __diff.html'
+            print 'diff in tmp_diff.txt and tmp_diff.html'
 
 def check_diff(diff_file):
     size = os.path.getsize(diff_file)
@@ -5036,19 +5136,19 @@ def latexdiff(files1, files2):
             failure2 = os.system('doconce ptex2tex %s' % basename)
             tofile = basename + '.tex'
 
-        failure = os.system('latexdiff %s %s > __diff.tex' % (fromfile, tofile))
-        failure = os.system('pdflatex __diff.tex')
-        size = os.path.getsize('__diff.tex')
+        failure = os.system('latexdiff %s %s > tmp_diff.tex' % (fromfile, tofile))
+        failure = os.system('pdflatex tmp_diff.tex')
+        size = os.path.getsize('tmp_diff.tex')
         if size > 4:
-            print 'output in __diff.pdf'
-        print 'diff in __diff.pdf'
+            print 'output in tmp_diff.pdf'
+        print 'diff in tmp_diff.pdf'
 
 
 def diff_files(files1, files2, program='diff'):
     """
     Run some diff program:
 
-          diffprog file1 file2 > __diff.txt/.pdf/.html
+          diffprog file1 file2 > tmp_diff.txt/.pdf/.html
 
     for file1, file2 in zip(files1, files2).
     """
@@ -5066,15 +5166,15 @@ def diff_files(files1, files2, program='diff'):
             else:
                 __missing_diff_program(program)
         elif program == 'diff':
-            system(cmd + ' > __diff.txt', verbose=True)
-            check_diff('__diff.txt')
+            system(cmd + ' > tmp_diff.txt', verbose=True)
+            check_diff('tmp_diff.txt')
         elif program == 'pdiff':
             if which('pdiff'):
-                system(cmd + ' -- -1 -o __diff.ps')
-                system('ps2pdf -sPAPERSIZE=a4 __diff.ps; rm -f __diff.ps')
+                system(cmd + ' -- -1 -o tmp_diff.ps')
+                system('ps2pdf -sPAPERSIZE=a4 tmp_diff.ps; rm -f tmp_diff.ps')
             else:
                 __missing_diff_program(program)
-            print 'diff in _diff.pdf'
+            print 'diff in tmp_diff.pdf'
         else:
             print program, 'not supported'
             sys.exit(1)
@@ -5104,6 +5204,6 @@ def gitdiff():
             shutil.copy(filename, old_filename)
             system('git checkout %s %s' % (commits[0], filename))
             old_files.append(old_filename)
-            print 'comparing', filename, old_filename
-            pydiff(filenames, old_files)
+            print 'doconce diff', old_filename, filename
+            #pydiff(filenames, old_files)
 
