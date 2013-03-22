@@ -101,41 +101,6 @@ def fix(filestr, format, verbose=0):
 def syntax_check(filestr, format):
     """Check for common errors in the doconce syntax."""
 
-    filestr = fix(filestr, format, verbose=1)
-
-    begin_end_consistency_checks(filestr, doconce_envirs())
-
-    # Check that headings have consistent use of = signs
-    for line in filestr.splitlines():
-        if line.strip().startswith('==='):
-            w = line.split()
-            if w[0] != w[-1]:
-                print '\ninconsistent no of = in heading:\n', line
-                print 'lengths: %d and %d, must be equal and odd' % \
-                      (len(w[0]), len(w[-1]))
-                _abort()
-
-    # Check that references have parenthesis (equations) or
-    # the right preceding keyword (Section, Chapter, Exercise, etc.)
-    pattern = re.compile(r'\s+([A-Za-z]+?)\s+(ref\{.+\})', re.MULTILINE)
-    refs = pattern.findall(filestr)
-    prefixes = ['chapter', 'ch.',
-                'section', 'sec.',
-                'appendix', 'app.',
-                'figure', 'fig.',
-                'movie',
-                'exercise',
-                'problem',
-                'project',
-                'example', 'ex.',
-                'and', 'or']
-    for prefix, ref in refs:
-        if prefix[-1] == 's':
-            prefix = prefix[:-1]  # skip plural
-        if not prefix.lower() in prefixes:
-            print 'found reference "%s %s" with unexpected word "%s" in front' % (prefix, ref, prefix),
-            print '(reference to equation, but missing parenthesis in (%s)?)' % (ref)
-
     # Check that are environments !bc, !ec, !bans, !eans, etc.
     # appear at the beginning of the line
     for envir in doconce_envirs():
@@ -170,61 +135,6 @@ def syntax_check(filestr, format):
             print '\nSyntax error: Must have a plain sentence before\na code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\ntable, or comment:'
             print filestr2[m.start()-40:m.start()+80]
             _abort()
-
-    # Code/tex blocks cannot have a comment, table, figure, etc.
-    # right before them
-    constructions = {'comment': r'^\s*#.*?$',
-                     'table': r'-\|\s*$',
-                     'figure': r'^\s*FIGURE:.+$',
-                     'movie': r'^\s*MOVIE:.+$',
-                     }
-    for construction in constructions:
-        pattern = re.compile(r'%s\s*^(!b[ct]\s*$|@@@CODE| +\* +| +o +)' % \
-                             constructions[construction],
-                             re.MULTILINE)
-        m = pattern.search(filestr)
-        if m and format in ('rst', 'sphinx'):
-            print '\nSyntax error: Line before list, !bc, !bt or @@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
-            print filestr[m.start():m.start()+80]
-            _abort()
-
-    matches = re.findall(r'\\cite\{.+?\}', filestr)
-    if matches:
-        print '\n*** warning: found \\cite{...} (cite{...} has no backslash)'
-        print '\n'.join(matches)
-
-    matches = re.findall(r'\\idx\{.+?\}', filestr)
-    if matches:
-        print '\n*** warning: found \\idx{...} (indx{...} has no backslash)'
-        print '\n'.join(matches)
-        _abort()
-
-    matches = re.findall(r'\\index\{.+?\}', filestr)
-    if matches:
-        print '\n*** warning: found \\index{...} (index is written idx{...})'
-        print '\n'.join(matches)
-
-    # There should only be ref and label *without* the latex-ish backslash
-    matches = re.findall(r'\\label\{.+?\}', filestr)
-    if matches:
-        print '\n*** warning: found \\label{...} (label{...} has no backslash)'
-        print '\n'.join(matches)
-
-    matches = re.findall(r'\\ref\{.+?\}', filestr)
-    if matches:
-        print '\n*** warning: found \\ref{...} (ref{...} has no backslash)'
-        print '\n'.join(matches)
-
-    # consistency check between label{} and ref{}:
-    # (does not work well without labels from the !bt environments)
-    """
-    labels = re.findall(r'label\{(.+?)\}', filestr)
-    refs = re.findall(r'ref\{(.+?)\}', filestr)
-    for ref in refs:
-        if not ref in labels:
-            print '...ref{%s} has no corresponding label{%s} (within this file)' % \
-                (ref, ref)
-    """
 
     # Double quotes and not double single quotes in *plain text*:
     inside_code = False
@@ -334,6 +244,98 @@ def syntax_check(filestr, format):
                     warning_given = True
     """
     """
+    # Remove tex and code blocks
+    filestr, code_blocks, code_block_types, tex_blocks = \
+             remove_code_and_tex(filestr)
+
+    begin_end_consistency_checks(filestr, doconce_envirs())
+
+    # Check that headings have consistent use of = signs
+    for line in filestr.splitlines():
+        if line.strip().startswith('==='):
+            w = line.split()
+            if w[0] != w[-1]:
+                print '\ninconsistent no of = in heading:\n', line
+                print 'lengths: %d and %d, must be equal and odd' % \
+                      (len(w[0]), len(w[-1]))
+                _abort()
+
+    # Check that references have parenthesis (equations) or
+    # the right preceding keyword (Section, Chapter, Exercise, etc.)
+    pattern = re.compile(r'\s+([A-Za-z]+?)\s+(ref\{.+\})', re.MULTILINE)
+    refs = pattern.findall(filestr)
+    prefixes = ['chapter', 'ch.',
+                'section', 'sec.',
+                'appendix', 'app.',
+                'figure', 'fig.',
+                'movie',
+                'exercise',
+                'problem',
+                'project',
+                'example', 'ex.',
+                'and', 'or']
+    for prefix, ref in refs:
+        if prefix[-1] == 's':
+            prefix = prefix[:-1]  # skip plural
+        if not prefix.lower() in prefixes:
+            print 'found reference "%s %s" with unexpected word "%s" in front' % (prefix, ref, prefix),
+            print '(reference to equation, but missing parenthesis in (%s)?)' % (ref)
+
+    # Code/tex blocks cannot have a comment, table, figure, etc.
+    # right before them
+    constructions = {'comment': r'^\s*#.*?$',
+                     'table': r'-\|\s*$',
+                     'figure': r'^\s*FIGURE:.+$',
+                     'movie': r'^\s*MOVIE:.+$',
+                     }
+    for construction in constructions:
+        pattern = re.compile(r'%s\s*^(!b[ct]\s*$|@@@CODE| +\* +| +o +)' % \
+                             constructions[construction],
+                             re.MULTILINE)
+        m = pattern.search(filestr)
+        if m and format in ('rst', 'sphinx'):
+            print '\nSyntax error: Line before list, !bc, !bt or @@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
+            print filestr[m.start():m.start()+80]
+            _abort()
+
+    matches = re.findall(r'\\cite\{.+?\}', filestr)
+    if matches:
+        print '\n*** warning: found \\cite{...} (cite{...} has no backslash)'
+        print '\n'.join(matches)
+
+    matches = re.findall(r'\\idx\{.+?\}', filestr)
+    if matches:
+        print '\n*** warning: found \\idx{...} (indx{...} has no backslash)'
+        print '\n'.join(matches)
+        _abort()
+
+    matches = re.findall(r'\\index\{.+?\}', filestr)
+    if matches:
+        print '\n*** warning: found \\index{...} (index is written idx{...})'
+        print '\n'.join(matches)
+
+    # There should only be ref and label *without* the latex-ish backslash
+    matches = re.findall(r'\\label\{.+?\}', filestr)
+    if matches:
+        print '\n*** warning: found \\label{...} (label{...} has no backslash)'
+        print '\n'.join(matches)
+
+    matches = re.findall(r'\\ref\{.+?\}', filestr)
+    if matches:
+        print '\n*** warning: found \\ref{...} (ref{...} has no backslash)'
+        print '\n'.join(matches)
+
+    # consistency check between label{} and ref{}:
+    # (does not work well without labels from the !bt environments)
+    """
+    labels = re.findall(r'label\{(.+?)\}', filestr)
+    refs = re.findall(r'ref\{(.+?)\}', filestr)
+    for ref in refs:
+        if not ref in labels:
+            print '...ref{%s} has no corresponding label{%s} (within this file)' % \
+                (ref, ref)
+    """
+
 
     # Cannot check on these since doconce documents about ptex2tex and
     # latex writings may contain these expressions in inline verbatim or
@@ -453,7 +455,7 @@ specified if one of them is present."""
             print 'Move files to _static and change URLs!'
             #_abort()  # no abort since some documentation has local URLs for illustration
 
-    return filestr  # fixes may have been performed
+    return None
 
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
@@ -536,11 +538,16 @@ def insert_code_from_file(filestr, format):
                 filetype = 'cy'
             elif filetype == 'ufl':  # UFL applies Python
                 filetype = 'py'
+            elif filetype == 'htm':
+                filetype = 'html'
             elif filetype in ('csh', 'ksh', 'zsh', 'tcsh'):
                 filetype = 'sh'
             if filetype in ('py', 'f', 'c', 'cpp', 'sh',
-                            'm', 'pl', 'cy', 'rst', 'pyopt'):
+                            'm', 'pl', 'cy', 'rst', 'pyopt',
+                            'rb', 'html', 'xml', 'js'):
                 code_envir = filetype
+            elif filetype == 'tex':
+                code_envir = 'latex'
             else:
                 code_envir = ''
 
@@ -1629,7 +1636,9 @@ def interpret_authors(filestr, format):
                 print 'Wrong syntax of author(s) and institution(s): too many "at":\n', line, '\nauthor at inst1, adr1 and inst2, adr2a, adr2b and inst3, adr3'
                 _abort()
             a = a.strip()
-            if ' and ' in i:
+            if ' & ' in i:
+                i = [w.strip() for w in i.split(' & ')]
+            elif ' and ' in i:
                 i = [w.strip() for w in i.split(' and ')]
             else:
                 i = (i.strip(),)
@@ -1911,7 +1920,8 @@ def doconce2format4docstrings(filestr, format):
     return filestr
 
 def doconce2format(filestr, format):
-    filestr = syntax_check(filestr, format)
+    filestr = fix(filestr, format, verbose=1)
+    syntax_check(filestr, format)
 
     global FILENAME_EXTENSION, BLANKLINE, INLINE_TAGS_SUBST, CODE, \
            LIST, ARGLIST,TABLE, EXERCISE, FIGURE_EXT, CROSS_REFS, INDEX_BIB, \
@@ -2267,6 +2277,8 @@ preprocess package (sudo apt-get install preprocess).
                 _abort()
             # Make filestr the result of preprocess in case mako shall be run
             f = open(resultfile, 'r'); filestr = f.read(); f.close()
+            filestr_without_code, code_blocks, code_block_types, tex_blocks = \
+                                  remove_code_and_tex(filestr)
 
 
     mako_commands = r'^ *<?%[^%]'

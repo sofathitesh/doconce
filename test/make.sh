@@ -39,9 +39,12 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp -r ../bundled/html_styles/style_vagrant .
+doconce replace 'css/' 'style_vagrant/css/' style_vagrant/template_vagrant.html
 doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp testdoc.html testdoc_vagrant.html
+# Test that a split of testdoc_vagrant.html becomes correct
+doconce split_html testdoc_vagrant.html
 
 doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
