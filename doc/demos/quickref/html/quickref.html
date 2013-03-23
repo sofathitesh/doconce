@@ -26,8 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Doconce Quick Reference" href="index.html" />
-    <link rel="prev" title="Doconce Quick Reference" href="index.html" /> 
+    <link rel="top" title="On an Ultimate Markup Language" href="index.html" />
+    <link rel="prev" title="On an Ultimate Markup Language" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,9 +37,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="index.html" title="Doconce Quick Reference"
+          <a href="index.html" title="On an Ultimate Markup Language"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Doconce Quick Reference</a> &raquo;</li> 
+        <li><a href="index.html">On an Ultimate Markup Language</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 12, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 23, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -169,7 +169,7 @@ provides a lot of shortcuts for setting up many elements in a document:</p>
 and an optional table of contents
 reads</p>
 <div class="highlight-text"><div class="highlight"><pre>TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory &amp; Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -178,12 +178,13 @@ TOC: on
 </div>
 <p>The entire title must appear on a single line.
 The author syntax is</p>
-<div class="highlight-text"><div class="highlight"><pre>name Email: somename@adr.net at institution1 and institution2
+<div class="highlight-text"><div class="highlight"><pre>name Email: somename@adr.net at institution1 &amp; institution2
 </pre></div>
 </div>
 <p>where the email is optional, the &#8220;at&#8221; keyword is required if one or
-more institutions are to be specified, and the &#8220;and&#8221; keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the <tt class="docutils literal"><span class="pre">&amp;</span></tt> keyword
+separates the institutions (the keyword <tt class="docutils literal"><span class="pre">and</span></tt> works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -766,7 +767,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 <span class="c"># split a sphinx/rst file into parts</span>
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        <span class="c"># !split delimiters</span>
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 <span class="c"># edit URLs to local files and place them in _static</span>
 doconce sphinxfix_local_URLs file.rst
@@ -1060,7 +1064,7 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Doconce Quick Reference</a></p>
+                        title="previous chapter">On an Ultimate Markup Language</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/quickref.txt"
@@ -1090,9 +1094,9 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="index.html" title="Doconce Quick Reference"
+          <a href="index.html" title="On an Ultimate Markup Language"
              >previous</a> |</li>
-        <li><a href="index.html">Doconce Quick Reference</a> &raquo;</li> 
+        <li><a href="index.html">On an Ultimate Markup Language</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

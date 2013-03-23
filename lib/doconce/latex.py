@@ -1036,7 +1036,8 @@ def define(FILENAME_EXTENSION,
 %-------------------- begin preamble ----------------------
 """
 
-    if r'\chapter{' in filestr:
+    m = re.search(r'^\s*=========\s*.+?=========', filestr, flags=re.MULTILINE)
+    if m:  # We have chapters, use book style
         INTRO['latex'] += r"""
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
@@ -1045,7 +1046,7 @@ chapterprefix=true,      % "Chapter" word at beginning of each chapter
 open=right               % start new chapters on odd-numbered pages
 10pt]{book}
 """
-    else:
+    else:  # Only sections, use article style
         INTRO['latex'] += r"""
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
