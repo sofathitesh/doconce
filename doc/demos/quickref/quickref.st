@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 12, 2013
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
+DATE: Mar 23, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -73,7 +73,7 @@ reads::
 
 
         TITLE: On an Ultimate Markup Language
-        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
@@ -83,11 +83,12 @@ The entire title must appear on a single line.
 The author syntax is::
 
 
-        name Email: somename@adr.net at institution1 and institution2
+        name Email: somename@adr.net at institution1 & institution2
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the '&' keyword
+separates the institutions (the keyword 'and' works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -679,7 +680,10 @@ list of capabilities::
         doconce bbl2rst file.bbl
         
         # split a sphinx/rst file into parts
-        doconce split_rst complete_file.rst
+        doconce format sphinx complete_file
+        doconce split_rst complete_file        # !split delimiters
+        doconce sphinx_dir complete_file
+        python automake_sphinx.py
         
         # edit URLs to local files and place them in _static
         doconce sphinxfix_local_URLs file.rst

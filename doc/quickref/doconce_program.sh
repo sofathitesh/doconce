@@ -57,7 +57,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst

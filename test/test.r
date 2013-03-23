@@ -1,10 +1,5 @@
 
 ************** File: testdoc.do.txt *****************
-<%doc>
-This is Mako comment block
-to test the use of Mako as preprocessor.
-</%doc>
-
 TITLE: A Document for Testing Doconce
 AUTHOR: Hans Petter Langtangen Email: hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 AUTHOR: Kaare Dump at Segfault Inc, Cyberspace
@@ -15,7 +10,17 @@ DATE: today
 
 TOC: on
 
+# #include "_testdoc.do.txt"
+
+
+************** File: _testdoc.do.txt *****************
 !split
+
+<%doc>
+This is Mako comment block
+to test the use of Mako as preprocessor.
+</%doc>
+
 
 The format of this document is
 % if FORMAT == 'html':
@@ -149,6 +154,15 @@ which then is typeset as
       end
 !ec
 
+HTML:
+
+!bc htmlcod
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+!ec
 
 System call:
 !bc sys
@@ -1193,9 +1207,6 @@ $$
 <!-- ------------------- main content ---------------------- -->
 
 
-<p>
-
-
 <title>A Document for Testing Doconce</title>
 
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
@@ -1284,8 +1295,8 @@ $$
 
 <p>
 
-<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-<!-- ------------------- end of main content --------------- -->
+                <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+                <!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -1310,7 +1321,7 @@ $$
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
@@ -1334,19 +1345,11 @@ $$
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
-10pt]{book}
-% #else
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -1358,7 +1361,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -1484,8 +1487,6 @@ final,                   % or draft (marks overfull hboxes)
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
-
-
 
 
 
@@ -1632,6 +1633,9 @@ Jan 32, 2100
 
 
 % !split
+
+
+
 
 The format of this document is
 plain, homemade {\LaTeX} (from Doconce).
@@ -1827,6 +1831,15 @@ which then is typeset as
       end
 \ecod
 
+HTML:
+
+\bhtmlcod
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+\ehtmlcod
 
 System call:
 \bsys
@@ -2869,6 +2882,7 @@ case in {\LaTeX}.
 
 
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 twoside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
@@ -2970,8 +2984,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 
-
-
 % ----------------- title -------------------------
 
 \thispagestyle{empty}
@@ -3042,6 +3054,9 @@ Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 
 
 % !split
+
+
+
 
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from Doconce).
@@ -3254,6 +3269,16 @@ which then is typeset as
 \end{shadedquoteBlue}
 \noindent
 
+HTML:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{html}
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+\end{minted}
+\noindent
 
 System call:
 \vspace{4pt}
@@ -4264,6 +4289,7 @@ case in {\LaTeX}.
 \bfcod (!bc fcod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 \bfpro (!bc fpro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bhtmlcod (!bc htmlcod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{html}
 \bcycod (!bc cycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{cython}
 \bcpppro (!bc cpppro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
 \bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -4279,12 +4305,11 @@ output in testdoc.tex
 
 
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 twoside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd--numbered pages
-10pt]{book}
+10pt]{article}
 
 \listfiles               % print all files needed to compile this document
 
@@ -4369,8 +4394,6 @@ open=right               % start new chapters on odd--numbered pages
 
 
 
-
-
 % ----------------- title -------------------------
 
 \begin{center}
@@ -4451,6 +4474,9 @@ Project & 3 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 
 
 % !split
+
+
+
 
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from Doconce).
@@ -4635,6 +4661,15 @@ which then is typeset as
       end
 \end{Verbatim}
 
+HTML:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{html}
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+\end{minted}
 
 System call:
 begin{quote}begin{Verbatim}
@@ -5610,8 +5645,6 @@ case in {\LaTeX}.
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
 
-
-
 A Document for Testing Doconce
 ==============================
 
@@ -5624,6 +5657,9 @@ A Document for Testing Doconce
 
 
 .. !split
+
+
+
 
 
 The format of this document is
@@ -5810,6 +5846,15 @@ which then is typeset as::
               return
               end
 
+
+HTML::
+
+
+        <table>
+        <tr><td>Column 1</td><td>Column 2</td></tr>
+        <tr><td>0.67526 </td><td>0.92871 </td></tr>
+        <!-- comment -->
+        </table>
 
 
 System call::
@@ -6788,8 +6833,6 @@ case in LaTeX.
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
 
-
-
 A Document for Testing Doconce
 ==============================
 
@@ -6797,6 +6840,9 @@ A Document for Testing Doconce
 :Date: Jan 32, 2100
 
 .. !split
+
+
+
 
 
 The format of this document is
@@ -6996,6 +7042,17 @@ which then is typeset as
               return
               end
 
+
+HTML:
+
+
+.. code-block:: html
+
+        <table>
+        <tr><td>Column 1</td><td>Column 2</td></tr>
+        <tr><td>0.67526 </td><td>0.92871 </td></tr>
+        <!-- comment -->
+        </table>
 
 
 System call:
@@ -8120,8 +8177,6 @@ ending a heading with verbatim code as this triggers a special
 case in LaTeX.
 
 ************** File: testdoc.gwiki *****************
-
-
 #summary A Document for Testing Doconce
 
 By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*, *I. S. Overworked*, and *J. Doe* (j_doe at cyberspace.com)
@@ -8132,6 +8187,9 @@ By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*,
 
 
 <wiki:comment> !split </wiki:comment>
+
+
+
 
 The format of this document is
 gwiki
@@ -8294,6 +8352,15 @@ which then is typeset as
       end
 }}}
 
+HTML:
+
+{{{
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+}}}
 
 System call:
 {{{
@@ -8421,40 +8488,6 @@ googlecode repository) and substitute the line above with the URL.
 
 
 <wiki:comment> Test wikimedia type of files that otherwise reside in subdirs </wiki:comment>
-<wiki:comment> #if FORMAT == "mwiki" </wiki:comment>
-
-
----------------------------------------------------------------
-
-Figure:  This is a wikimedia figure file.
-
-(the URL of the image file testfigs/df_plot.png must be inserted here)
-
-<wiki:comment>
-Put the figure file testfigs/df_plot.png on the web (e.g., as part of the
-googlecode repository) and substitute the line above with the URL.
-</wiki:comment>
----------------------------------------------------------------
-
-
-
-<wiki:comment> Non-uploaded file with no caption </wiki:comment>
-
-
----------------------------------------------------------------
-
-Figure: 
-
-(the URL of the image file testfigs/df2s8765s_plot.png must be inserted here)
-
-<wiki:comment>
-Put the figure file testfigs/df2s8765s_plot.png on the web (e.g., as part of the
-googlecode repository) and substitute the line above with the URL.
-</wiki:comment>
----------------------------------------------------------------
-
-
-<wiki:comment> #endif </wiki:comment>
 
 <wiki:comment> Somewhat challenging heading with latex math, \t, \n, ? and parenthesis </wiki:comment>
 
@@ -9134,8 +9167,6 @@ case in LaTeX.
 
 
 ************** File: testdoc.mwiki *****************
-
-
 #TITLE (actually governed by the filename): A Document for Testing Doconce
 
 By '''Hans Petter Langtangen''' (hpl at simula.no), '''Kaare Dump''', '''A. Dummy Author''', '''I. S. Overworked''', and '''J. Doe''' (j_doe at cyberspace.com)
@@ -9146,6 +9177,9 @@ __TOC__
 
 
 <!-- !split -->
+
+
+
 
 The format of this document is
 mwiki
@@ -9313,6 +9347,15 @@ which then is typeset as
       end
 </syntaxhighlight>
 
+HTML:
+
+<syntaxhighlight lang="html5">
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+</syntaxhighlight>
 
 System call:
 <syntaxhighlight lang="bash">
@@ -10141,8 +10184,6 @@ case in LaTeX.
 
 
 ************** File: testdoc.cwiki *****************
-
-
 #summary A Document for Testing Doconce
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen** (hpl at simula.no), **Kaare Dump**, **A. Dummy Author**, **I. S. Overworked**, and **J. Doe** (j_doe at cyberspace.com)
@@ -10153,6 +10194,9 @@ By **Hans Petter Langtangen** (hpl at simula.no), **Kaare Dump**, **A. Dummy Aut
 
 
 <wiki:comment> !split </wiki:comment>
+
+
+
 
 The format of this document is
 cwiki
@@ -10315,6 +10359,15 @@ which then is typeset as
       end
 }}}
 
+HTML:
+
+{{{
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+}}}
 
 System call:
 {{{
@@ -11084,12 +11137,13 @@ case in LaTeX.
 
 
 ************** File: testdoc.st *****************
-
-
 TITLE: A Document for Testing Doconce
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. Doe
 DATE: Jan 32, 2100
 # !split
+
+
+
 
 The format of this document is
 st
@@ -11248,6 +11302,15 @@ which then is typeset as::
               return
               end
 
+
+HTML::
+
+
+        <table>
+        <tr><td>Column 1</td><td>Column 2</td></tr>
+        <tr><td>0.67526 </td><td>0.92871 </td></tr>
+        <!-- comment -->
+        </table>
 
 
 System call::
@@ -11949,12 +12012,13 @@ ending a heading with verbatim code as this triggers a special
 case in LaTeX.
 
 ************** File: testdoc.epytext *****************
-
-
 TITLE: A Document for Testing Doconce
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. Doe
 DATE: Jan 32, 2100
 # !split
+
+
+
 
 The format of this document is
 epytext
@@ -12116,6 +12180,15 @@ which then is typeset as::
               return
               end
 
+
+HTML::
+
+
+        <table>
+        <tr><td>Column 1</td><td>Column 2</td></tr>
+        <tr><td>0.67526 </td><td>0.92871 </td></tr>
+        <!-- comment -->
+        </table>
 
 
 System call::
@@ -12853,8 +12926,6 @@ ending a heading with verbatim code as this triggers a special
 case in LaTeX.
 
 ************** File: testdoc.txt *****************
-
-
 A Document for Testing Doconce
 ==============================
 
@@ -12917,6 +12988,9 @@ Table of contents:
 
 
 # !split
+
+
+
 
 The format of this document is
 plain
@@ -13085,6 +13159,15 @@ which then is typeset as::
               return
               end
 
+
+HTML::
+
+
+        <table>
+        <tr><td>Column 1</td><td>Column 2</td></tr>
+        <tr><td>0.67526 </td><td>0.92871 </td></tr>
+        <!-- comment -->
+        </table>
 
 
 System call::
@@ -13836,6 +13919,9 @@ case in LaTeX.
 
 <!-- !split -->
 
+
+
+
 The format of this document is
 pandoc
 *Abstract.* This is a document with many test constructions for doconce syntax.
@@ -14014,6 +14100,17 @@ which then is typeset as
       length = b - a
       return
       end
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HTML:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 System call:
@@ -14941,6 +15038,9 @@ case in LaTeX.
       "\n",
       "<!-- !split -->\n",
       "\n",
+      "\n",
+      "\n",
+      "\n",
       "The format of this document is\n",
       "ipynb\n",
       "\n",
@@ -15229,6 +15329,28 @@ case in LaTeX.
       "      length = b - a\n",
       "      return\n",
       "      end\n"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "HTML:"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "<table>\n",
+      "<tr><td>Column 1</td><td>Column 2</td></tr>\n",
+      "<tr><td>0.67526 </td><td>0.92871 </td></tr>\n",
+      "<!-- comment -->\n",
+      "</table>\n"
      ],
      "language": "python",
      "metadata": {},
@@ -16442,7 +16564,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'solution_file': None,
   'subex': [{'answer': 'Short answer to subexercise a).\nWith math in answer: $a=b$.',
              'file': ['subexer_a.pdf'],
-             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n19 <<<!!MATH_BLOCK\nAnd with code returning $x+1$ in hint:\n\n15 <<<!!CODE_BLOCK',
+             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n19 <<<!!MATH_BLOCK\nAnd with code returning $x+1$ in hint:\n\n16 <<<!!CODE_BLOCK',
                        'Second hint to subexercise a).'],
              'solution': '',
              'text': 'Subexercises are numbered a), b), etc.'},
@@ -16647,6 +16769,12 @@ int main()
       length = b - a
       return
       end</code></pre>
+<p>HTML:</p>
+<pre><code>&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;Column 1&lt;/td&gt;&lt;td&gt;Column 2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.67526 &lt;/td&gt;&lt;td&gt;0.92871 &lt;/td&gt;&lt;/tr&gt;
+&lt;!-- comment --&gt;
+&lt;/table&gt;</code></pre>
 <p>System call:</p>
 <pre><code>Terminal&gt; mkdir test
 Terminal&gt; cd test
@@ -17118,6 +17246,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 <!-- !split -->
 
+
+
+
 <p>The format of this document is pandoc <em>Abstract.</em> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
 <p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
@@ -17232,6 +17363,12 @@ v = f(x)
       length = b - a
       <span class="kw">return</span>
       end</code></pre>
+<p>HTML:</p>
+<pre><code>&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;Column 1&lt;/td&gt;&lt;td&gt;Column 2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;0.67526 &lt;/td&gt;&lt;td&gt;0.92871 &lt;/td&gt;&lt;/tr&gt;
+&lt;!-- comment --&gt;
+&lt;/table&gt;</code></pre>
 <p>System call:</p>
 <pre class="sourceCode Bash"><code class="sourceCode bash">Terminal<span class="kw">&gt;</span> <span class="kw">mkdir</span> <span class="kw">test</span>
 Terminal<span class="kw">&gt;</span> <span class="kw">cd</span> <span class="kw">test</span>
@@ -18798,11 +18935,42 @@ Automatically generated HTML file from Doconce source
 </head>
 
 <!-- tocinfo
-{'highest level': 1,
- 'sections': [(' Generalized References ', 1, 'genrefs', 'genrefs')]}
+{'highest level': 0,
+ 'sections': [(' Generalized References ', 0, 'genrefs', 'genrefs'),
+              (' Test of math ', 0, None, '___sec1')]}
 end of tocinfo -->
 
 <body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
 
     
 <!-- ------------------- main content ---------------------- -->
@@ -18831,7 +18999,7 @@ end of tocinfo -->
 
 <p>
 
-<h2>Generalized References <a name="genrefs"></a></h2>
+<h1>Generalized References <a name="genrefs"></a></h1>
 
 <p>
 Sometimes a series of individual documents may be assembled to one
@@ -18898,6 +19066,17 @@ the document *author1*].
 The text is rendered to "Generalized references are described in
 the section <a href="#genrefs">Generalized References</a>."
 
+<p>
+<!-- We are testing chapter too to see if latex output then has -->
+<!-- book style rather than article style. -->
+
+<p>
+
+<h1>Test of math  <a name="___sec1"></a></h1>
+
+<p>
+Inline math, \( a=b \), is the only math in this document.
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -18925,7 +19104,7 @@ the section <a href="#genrefs">Generalized References</a>."
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
@@ -18949,19 +19128,13 @@ the section <a href="#genrefs">Generalized References</a>."
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 chapterprefix=true,      % "Chapter" word at beginning of each chapter
 open=right               % start new chapters on odd-numbered pages
 10pt]{book}
-% #else
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -18973,7 +19146,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -19132,7 +19305,7 @@ Jan 32, 2100
 
 % Externaldocument: testdoc
 
-\section{Generalized References}
+\chapter{Generalized References}
 \label{genrefs}
 
 Sometimes a series of individual documents may be assembled to one
@@ -19186,6 +19359,13 @@ the document *author1*].
 The text is rendered to "Generalized references are described in
 Section~\ref{genrefs}."
 
+% We are testing chapter too to see if latex output then has
+% book style rather than article style.
+
+\chapter{Test of math}
+
+Inline math, $a=b$, is the only math in this document.
+
 % ------------------- end of main content ---------------
 
 
@@ -19201,7 +19381,7 @@ Section~\ref{genrefs}."
    (http://code.google.com/p/doconce/)
 
 Test of one author at one institution
-=====================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 :Author: John Doe (doe at cyberspace.net)
 :Date: Jan 32, 2100
@@ -19212,7 +19392,7 @@ Test of one author at one institution
 .. _genrefs:
 
 Generalized References
-======================
+%%%%%%%%%%%%%%%%%%%%%%
 
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
@@ -19275,6 +19455,16 @@ And here is another example with internal references only:
 The text is rendered to "Generalized references are described in
 the section :ref:`genrefs`."
 
+.. We are testing chapter too to see if latex output then has
+
+.. book style rather than article style.
+
+
+Test of math
+%%%%%%%%%%%%
+
+Inline math, :math:`a=b`, is the only math in this document.
+
 ************** File: author1.txt *****************
 Test of one author at one institution
 =====================================
@@ -19286,7 +19476,7 @@ John Doe [1] (doe@cyberspace.net)
 Date: Jan 32, 2100
 
 Generalized References
-======================
+%%%%%%%%%%%%%%%%%%%%%%
 
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
@@ -19342,6 +19532,12 @@ And here is another example with internal references only::
 
 The text is rendered to "Generalized references are described in
 the section "Generalized References"."
+
+
+Test of math
+%%%%%%%%%%%%
+
+Inline math, a=b, is the only math in this document.
 
 ************** File: ._part0000_testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -19555,9 +19751,6 @@ $$
 <!-- ------------------- main content ---------------------- -->
 
 
-<p>
-
-
 <title>A Document for Testing Doconce</title>
 
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
@@ -19646,8 +19839,8 @@ $$
 
 <p>
 
-<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-<!-- ------------------- end of main content --------------- -->
+                <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+                <!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -19867,6 +20060,8 @@ $$
 <!-- !split -->
 
 <p>
+
+
 The format of this document is
 plain, homemade HTML (from Doconce).
 
@@ -19927,10 +20122,10 @@ Here is a nested list:
 <p>
 <p>
 
-<a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-
-<a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-<!-- ------------------- end of main content --------------- -->
+                <a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+                
+                <a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+                <!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -20351,6 +20546,24 @@ which then is typeset as
       length = b - a
       return
       end
+</pre></div>
+</td></tr></table><p>
+
+HTML:
+
+<p>
+
+
+<!-- code typeset with pygments style "emacs" -->
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>Column 1<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>Column 2<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>0.67526 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>0.92871 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #008800; font-style: italic">&lt;!-- comment --&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 </td></tr></table><p>
 
@@ -21525,8 +21738,8 @@ case in LaTeX.
 
 <p>
 
-<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-<!-- ------------------- end of main content --------------- -->
+                <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+                <!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -21633,15 +21846,6 @@ f2 = Fancy()
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
-
-*_do.css have left-adjusted header and text:
-<link rel="stylesheet" href="reveal.js/css/reveal_do.css">
-<link rel="stylesheet" href="reveal.js/css/reveal.min_do.css">
-<link rel="stylesheet" href="reveal.js/css/theme/default_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/beige_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/night_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/simple_do.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/sky_do.css" id="theme">
 -->
 
 <script>
@@ -21996,7 +22200,7 @@ zoom.js
 ************** File: tmp_slides_html_all.sh *****************
 #!/bin/sh
 
-doconce format html slides
+doconce format html slides SLIDE_TYPE=dummy SLIDE_THEME=dummy
 doconce slides_html slides doconce
 
 doconce format html slides --pygments-html-style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
@@ -22180,9 +22384,6 @@ Automatically generated HTML file from Doconce source
 
 
 
-<p>
-
-
 <title>A Document for Testing Doconce</title>
 
 <center><h1>A Document for Testing Doconce</h1></center>  
@@ -22272,6 +22473,8 @@ Automatically generated HTML file from Doconce source
 
 
 <p>
+
+
 The format of this document is
 plain, homemade HTML (from Doconce).
 
@@ -22476,6 +22679,20 @@ which then is typeset as
       length = b - a
       return
       end
+</pre></div>
+<p>
+
+HTML:
+
+<p>
+
+
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>Column 1<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>Column 2<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>0.67526 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>0.92871 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #408080; font-style: italic">&lt;!-- comment --&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 <p>
 
@@ -23888,9 +24105,6 @@ $$
 <!-- ------------------- main content ---------------------- -->
 
 
-<p>
-
-
 <title>A Document for Testing Doconce</title>
 
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
@@ -23980,6 +24194,8 @@ $$
 <!-- !split -->
 
 <p>
+
+
 The format of this document is
 plain, homemade HTML (from Doconce).
 
@@ -24186,6 +24402,20 @@ which then is typeset as
       length = b - a
       return
       end
+</pre></div>
+<p>
+
+HTML:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>Column 1<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>Column 2<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>0.67526 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>0.92871 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #408080; font-style: italic">&lt;!-- comment --&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 <p>
 
@@ -25363,7 +25593,7 @@ case in LaTeX.
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
@@ -25387,19 +25617,11 @@ case in LaTeX.
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
-10pt]{book}
-% #else
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -25411,7 +25633,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -25537,8 +25759,6 @@ final,                   % or draft (marks overfull hboxes)
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
-
-
 
 
 
@@ -25685,6 +25905,9 @@ Jan 32, 2100
 
 
 % !split
+
+
+
 
 The format of this document is
 plain, homemade {\LaTeX} (from Doconce).
@@ -25882,6 +26105,15 @@ which then is typeset as
       end
 \ecod
 
+HTML:
+
+\bhtmlcod
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+\ehtmlcod
 
 System call:
 \bsys
@@ -27104,25 +27336,9 @@ def system(cmd, capture_output=False, echo=True):
     if capture_output:
         return outtext
 
-# Filter doconce format to sphinx format and copy to sphinx directory
-filenames = ['testdoc']
-print """
-
-"""
-for filename in filenames:
-    cmd = 'doconce format sphinx %s %s' % (filename, command_line_options)
-    print cmd
-    system(cmd)
-
-    # Fix: utf-8 encoding for non-English chars
-    cmd = 'doconce guess_encoding %s.rst' % filename
-    enc = system(cmd, capture_output=True)
-    if enc == "iso-8859-1":
-        # sphinx does not like non-English characters in iso-8859-1
-        system('doconce change_encoding iso-8859-1 utf-8 %s.rst' % filename)
-
-    # Copy generated sphinx file to sphinx root directory
-    shutil.copy('%s.rst' % filename, sphinx_rootdir)
+# Copy generated sphinx files to sphinx root directory
+for part in ['._part0000_testdoc', '._part0001_testdoc', '._part0002_testdoc']:
+    shutil.copy('%s.rst' % part, sphinx_rootdir)
 
 # Copy figures and movies directories
 figdirs = glob.glob('fig*') + glob.glob('mov*')
@@ -27176,12 +27392,1283 @@ testdoc.html
 ._part0001_testdoc.html
 ._part0002_testdoc.html
 
+************** File: make.sh *****************
+#!/bin/sh -x
+rm -rf html_images reveal.js downloaded_figures
+
+# Note:  --examples-as-exercises is required to avoid abortion
+
+# Make publish database
+rm -rf papers.pub  venues.list # clean
+
+publish import refs1.bib <<EOF
+1
+2
+EOF
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+publish import refs2.bib <<EOF
+2
+2
+EOF
+# Simulate that we get new data, which is best put
+# in a new file
+publish import refs3.bib <<EOF
+1
+2
+EOF
+
+doconce format html testdoc --wordpress  --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp testdoc.html testdoc_wordpress.html
+
+doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp testdoc.html testdoc_no_solutions.html
+
+doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp testdoc.p.tex testdoc_no_solutions.p.tex
+
+cp -r ../bundled/html_styles/style_vagrant .
+doconce replace 'css/' 'style_vagrant/css/' style_vagrant/template_vagrant.html
+doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp testdoc.html testdoc_vagrant.html
+# Test that a split of testdoc_vagrant.html becomes correct
+doconce split_html testdoc_vagrant.html
+
+doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce remove_exercise_answers testdoc.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce html_colorbullets testdoc.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce split_html testdoc.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+
+doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce latex_exercise_toc testdoc
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
+doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
+doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
+doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
+# because of --latex-double-hyphen:
+doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
+doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
+
+# A4PAPER trigger summary environment to be smaller paragraph
+# within the text (fine for proposals or articles).
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# test that pdflatex works
+pdflatex -shell-escape testdoc
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+pdflatex -shell-escape testdoc
+makeindex testdoc
+bibtex testdoc
+pdflatex -shell-escape testdoc
+pdflatex -shell-escape testdoc
+
+cp testdoc.tex testdoc.tex_ptex2tex
+
+# -DBOOK will not work for latex/pdflatex since we have an abstract,
+# but here we just use the translated text for testing, not latex compiling
+doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted > testdoc.tex_doconce_ptex2tex
+echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
+
+doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format st testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format sphinx testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+mv -f testdoc.rst testdoc.sphinx.rst
+
+doconce format sphinx testdoc --examples-as-exercises
+doconce split_rst testdoc
+doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format rst testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format epytext testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format pandoc testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format mwiki testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format cwiki testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format ipynb testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test mako variables too
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test pandoc: from latex to markdown, from markdown to html
+doconce format latex testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+#doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
+# pandoc cannot work well with \Verb, needs \verb
+doconce replace '\Verb!' '\verb!' testdoc.tex
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+pandoc -f latex -t markdown -o testdoc.md testdoc.tex
+pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
+pandoc -v >> testdoc_pnd_l2h.html
+
+doconce format pandoc testdoc.do.txt --examples-as-exercises
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
+pandoc -v >> testdoc_pnd_d2h.html
+
+# Test slides
+doconce format html slides --pygments-html-style=emacs
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce slides_html slides reveal --html-slide-type=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+mv -f slides.html slides_reveal.html
+/bin/ls -R reveal.js >> slides_reveal.html
+
+doconce format html slides --pygments-html-style=emacs
+doconce slides_html slides all
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test grab
+doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
+doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt >> testdoc.tmp
+
+# Test html templates
+doconce format html html_template --html-template=template1.html --no-pygments-html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp html_template.html html_template1.html
+
+doconce format html html_template --html-template=template_inf1100.html  --pygments-html-style=emacs
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test author special case and generalized references
+doconce format html author1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format latex author1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format sphinx author1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format plain author1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test math
+name=math_test
+doconce format html $name
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp $name.html ${name}_html.html
+doconce format sphinx $name
+#doconce sphinx_dir dirname=sphinx-rootdir-math $name
+#python automake_sphinx.py
+doconce format pandoc $name
+# Do not use pandoc directly because it does not support MathJax enough
+doconce md2html $name.md
+cp $name.html ${name}_pandoc.html
+doconce format pandoc $name
+doconce md2latex $name
+
+# Test encoding
+doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp encoding1.do.txt tmp1.do.txt
+
+doconce change_encoding utf-8 latin1 tmp1.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce change_encoding latin1 utf-8 tmp1.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp encoding1.do.txt tmp2.do.txt
+
+doconce change_encoding utf-8 latin1 tmp2.do.txt
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
+
+# Test mako problems
+doconce format html mako_test1 --no-pygments-html  # mako variable only, no % lines
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html mako_test2 --no-pygments-html  # % lines inside code, but need for mako
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html mako_test3 --no-pygments-html  # % lines inside code
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp mako_test3.html mako_test3b.html
+
+doconce format html mako_test3 --no-mako --no-pygments-html # no problem message
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html mako_test4 --no-pygments-html  # works fine, lines start with %%
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Test error detection
+doconce format plain failures
+cp failures.do.txt tmp2.do.txt
+doconce subst 'failure\}\n\n!bc' 'failure}\n\nHello\n!bc' tmp2.do.txt
+doconce format rst tmp2
+doconce replace '\label' 'label' tmp2.do.txt
+doconce replace '\idx' 'idx' tmp2.do.txt
+doconce replace '\cite' 'cite' tmp2.do.txt
+doconce format rst tmp2
+doconce subst -s '__Paragraph before.+!bc' '!bc' tmp2.do.txt
+doconce format rst tmp2
+doconce replace 'streamtubes width' 'streamtubes,  width' tmp2.do.txt
+doconce format rst tmp2
+doconce replace '# Comment before math' '' tmp2.do.txt
+doconce format rst tmp2
+doconce replace '# Comment before list' '' tmp2.do.txt
+doconce format rst tmp2
+echo "Successful run of test/make.sh"
+
+
+************** File: math_test.do.txt *****************
+TITLE: How various formats can deal with LaTeX math
+AUTHOR: HPL
+DATE: today
+
+
+This document is translated to the format _${FORMAT}_.
+
+__Test 1: Inline math.__ Here is a sentence contains the equation $u(t)=e^{-at}$.
+
+__Test 2: A single equation without label.__ Here it is
+
+!bt
+\[ u(t)=e^{-at} \]
+!et
+
+__Test 3: A single equation with label.__ Here it is as a one-line
+latex code,
+
+!bc
+|bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+|et
+!ec
+looking like
+
+!bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+!et
+and as a three-line latex code:
+
+!bc
+|bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+|et
+!ec
+looking like
+
+!bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+!et
+This equation has label (ref{eq1b}).
+
+
+__Test 4: Multiple, aligned equations without label.__ Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+!bc
+|bt
+\begin{align*}
+u(t)&=e^{-at}\\
+v(t) &= \frac{du}{dt}
+\end{align*}
+|et
+!ec
+and results in
+
+!bt
+\begin{align*}
+u(t)&=e^{-at}\\
+v(t) &= \frac{du}{dt}
+\end{align*}
+!et
+
+__Test 5: Multiple, aligned equations with label.__ We use align with
+labels:
+
+!bc
+|bt
+\begin{align}
+u(t)&=e^{-at}
+label{eq2b}\\
+v(t) &= \frac{du}{dt}
+label{eq3b}
+\end{align}
+|et
+!ec
+and results in
+
+!bt
+\begin{align}
+u(t)&=e^{-at} label{eq2b}\\
+v(t) &= \frac{du}{dt} label{eq3b}
+\end{align}
+!et
+We can refer to the last equations as the system (ref{eq2b})-(ref{eq3b}).
+
+# #if FORMAT == "sphinx"
+Actually, *Sphinx does not support the align environment with labels*,
+such as we write above,
+but Doconce splits in this case the equations into separate, single equations
+with labels. Hence the user can write one code with align and labels
+and have to work in LaTeX, HTML, and Sphinx. The generated Sphinx code
+in the present case is
+
+!bc rst
+.. math::
+   :label: eq2b
+
+        u(t)=e^{-at}
+
+
+.. math::
+   :label: eq3b
+
+        v(t) = \frac{du}{dt}
+
+!ec
+# #endif
+
+# #if FORMAT == "pandoc"
+Original Pandoc-extended Markdown transformed to HTML via Pandoc
+does not work with labels and multiple equations. `doconce md2html`
+fixes the trouble by adding full support for MathJax and avoiding
+that eqref references become empty.
+
+One can write with align and labels in the Doconce document and get excellent
+output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without
+`doconce md2html` one must accept that labeles have very limited support
+compared to more advanced MathJax.
+# #endif
+
+
+__Test 6: Multiple, aligned eqnarray equations without label.__ Let us
+try the old eqnarray environment.
+
+!bc
+|bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+|et
+!ec
+and results in
+
+!bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+!et
+
+__Test 5: Multiple, eqnarrayed equations with label.__ We use eqnarray with
+labels:
+
+!bc
+|bt
+\begin{eqnarray}
+u(t)&=& e^{-at}
+label{eq2c}\\
+v(t) &=& \frac{du}{dt}
+label{eq3c}
+\end{eqnarray}
+|et
+!ec
+and results in
+
+!bt
+\begin{eqnarray}
+u(t)&=& e^{-at} label{eq2c}\\
+v(t) &=& \frac{du}{dt} label{eq3c}
+\end{eqnarray}
+!et
+Can we refer to the last equations as the system (ref{eq2c})-(ref{eq3c})?
+
+# #if FORMAT == "sphinx"
+Note: Doconce takes the eqnarray with labels and replaces it automatically
+by the Sphinx code
+
+!bc rst
+.. math::
+
+        u(t) &=  e^{-at} \\
+        v(t)  &=  \frac{du}{dt}
+!ec
+That is why the equation numbers are gone and that eqnarray seemingly
+works. MathJax does not support eqnarray with labels so Sphinx would
+probably fail to show them (unless one tries PNG images or other
+math engines?).
+# #endif
+
+************** File: math_test.md *****************
+% How various formats can deal with LaTeX math
+% HPL
+% Jan 32, 2100
+
+This document is translated to the format _pandoc_.
+
+*Test 1: Inline math.* Here is a sentence contains the equation $u(t)=e^{-at}$.
+
+*Test 2: A single equation without label.* Here it is
+
+$$
+ u(t)=e^{-at} 
+$$
+
+*Test 3: A single equation with label.* Here it is as a one-line
+latex code,
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+looking like
+
+$$
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+$$
+and as a three-line latex code:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+looking like
+
+$$
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+$$
+This equation has label \eqref{eq1b}.
+
+
+*Test 4: Multiple, aligned equations without label.* Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) &= \frac{du}{dt}
+\end{align*}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+
+u(t)=e^{-at}
+
+$$
+
+$$
+  
+v(t) = \frac{du}{dt}
+
+$$
+
+*Test 5: Multiple, aligned equations with label.* We use align with
+labels:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{align}
+u(t)&=e^{-at}
+\label{eq2b}\\ 
+v(t) &= \frac{du}{dt}
+\label{eq3b}
+\end{align}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{equation}
+u(t)=e^{-at} \label{eq2b}
+\end{equation}
+$$
+
+$$
+\begin{equation}  
+v(t) = \frac{du}{dt} \label{eq3b}
+\end{equation}
+$$
+We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
+
+
+Original Pandoc-extended Markdown transformed to HTML via Pandoc
+does not work with labels and multiple equations. `doconce md2html`
+fixes the trouble by adding full support for MathJax and avoiding
+that eqref references become empty.
+
+One can write with align and labels in the Doconce document and get excellent
+output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without
+`doconce md2html` one must accept that labeles have very limited support
+compared to more advanced MathJax.
+
+
+*Test 6: Multiple, aligned eqnarray equations without label.* Let us
+try the old eqnarray environment.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+$$
+
+*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
+labels:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!bt
+\begin{eqnarray}
+u(t)&=& e^{-at}
+\label{eq2c}\\ 
+v(t) &=& \frac{du}{dt}
+\label{eq3c}
+\end{eqnarray}
+!et
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+and results in
+
+$$
+\begin{eqnarray}
+u(t)&=& e^{-at} \label{eq2c}\\ 
+v(t) &=& \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+$$
+Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
+
+
+************** File: math_test_html.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="How various formats can deal with LaTeX math">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>How various formats can deal with LaTeX math</title>
+
+<center><h1>How various formats can deal with LaTeX math</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): HPL -->
+
+<center>
+<b>HPL</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+This document is translated to the format <b>html</b>.
+
+<p>
+<b>Test 1: Inline math.</b>
+Here is a sentence contains the equation \( u(t)=e^{-at} \).
+
+<p>
+<b>Test 2: A single equation without label.</b>
+Here it is
+
+<p>
+$$ u(t)=e^{-at} $$
+
+
+<p>
+<b>Test 3: A single equation with label.</b>
+Here it is as a one-line
+latex code,
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+!et
+</pre></div>
+<p>
+looking like
+
+<p>
+$$
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+$$
+
+and as a three-line latex code:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+!et
+</pre></div>
+<p>
+looking like
+
+<p>
+$$
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+$$
+
+This equation has label \eqref{eq1b}.
+
+<p>
+
+<b>Test 4: Multiple, aligned equations without label.</b>
+Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{align*}
+u(t)&amp;=e^{-at}\\ 
+v(t) &amp;= \frac{du}{dt}
+\end{align*}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) &= \frac{du}{dt}
+\end{align*}
+$$
+
+
+<p>
+<b>Test 5: Multiple, aligned equations with label.</b>
+We use align with
+labels:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{align}
+u(t)&amp;=e^{-at}
+label{eq2b}\\ 
+v(t) &amp;= \frac{du}{dt}
+label{eq3b}
+\end{align}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{align}
+u(t)&=e^{-at} \label{eq2b}\\ 
+v(t) &= \frac{du}{dt} \label{eq3b}
+\end{align}
+$$
+
+We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
+
+<p>
+
+
+<b>Test 6: Multiple, aligned eqnarray equations without label.</b>
+Let us
+try the old eqnarray environment.
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{eqnarray*}
+u(t)&amp;=&amp; e^{-at}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\end{eqnarray*}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) &=& \frac{du}{dt}
+\end{eqnarray*}
+$$
+
+
+<p>
+<b>Test 5: Multiple, eqnarrayed equations with label.</b>
+We use eqnarray with
+labels:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{eqnarray}
+u(t)&amp;=&amp; e^{-at}
+label{eq2c}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+label{eq3c}
+\end{eqnarray}
+!et
+</pre></div>
+<p>
+and results in
+
+<p>
+$$
+\begin{eqnarray}
+u(t)&=& e^{-at} \label{eq2c}\\ 
+v(t) &=& \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+$$
+
+Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
+
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: math_test_pandoc.html *****************
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="HPL" />
+  <title>How various formats can deal with LaTeX math</title>
+  
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How various formats can deal with LaTeX math</h1>
+<h2 class="author">HPL</h2>
+<h3 class="date">Jan 32, 2100</h3>
+</div>
+<p>This document is translated to the format <em>pandoc</em>.</p>
+<p><em>Test 1: Inline math.</em> Here is a sentence contains the equation \(u(t)=e^{-at}\).</p>
+<p><em>Test 2: A single equation without label.</em> Here it is</p>
+<p>\[
+ u(t)=e^{-at} 
+\]</p>
+<p><em>Test 3: A single equation with label.</em> Here it is as a one-line latex code,</p>
+<pre><code>!bt
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+!et</code></pre>
+<p>looking like</p>
+<p>\[
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+\] and as a three-line latex code:</p>
+<pre><code>!bt
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+!et</code></pre>
+<p>looking like</p>
+<p>\[
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+\] This equation has label \eqref{eq1b}.</p>
+<p><em>Test 4: Multiple, aligned equations without label.</em> Only the align environment is supported by other formats than LaTeX for typesetting multiple, aligned equations. The code reads</p>
+<pre><code>!bt
+\begin{align*}
+u(t)&amp;=e^{-at}\\ 
+v(t) &amp;= \frac{du}{dt}
+\end{align*}
+!et</code></pre>
+<p>and results in</p>
+<p>$$</p>
+<p>u(t)=e^{-at}</p>
+<p>$$</p>
+<p>$$</p>
+<p>v(t) = </p>
+<p>$$</p>
+<p><em>Test 5: Multiple, aligned equations with label.</em> We use align with labels:</p>
+<pre><code>!bt
+\begin{align}
+u(t)&amp;=e^{-at}
+\label{eq2b}\\ 
+v(t) &amp;= \frac{du}{dt}
+\label{eq3b}
+\end{align}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{equation}
+u(t)=e^{-at} \label{eq2b}
+\end{equation}
+\]</p>
+<p>\[
+\begin{equation}  
+v(t) = \frac{du}{dt} \label{eq3b}
+\end{equation}
+\] We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.</p>
+<p>Original Pandoc-extended Markdown transformed to HTML via Pandoc does not work with labels and multiple equations. <code>doconce md2html</code> fixes the trouble by adding full support for MathJax and avoiding that eqref references become empty.</p>
+<p>One can write with align and labels in the Doconce document and get excellent output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without <code>doconce md2html</code> one must accept that labeles have very limited support compared to more advanced MathJax.</p>
+<p><em>Test 6: Multiple, aligned eqnarray equations without label.</em> Let us try the old eqnarray environment.</p>
+<pre><code>!bt
+\begin{eqnarray*}
+u(t)&amp;=&amp; e^{-at}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\end{eqnarray*}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{eqnarray*}
+u(t)&amp;=&amp; e^{-at}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\end{eqnarray*}
+\]</p>
+<p><em>Test 5: Multiple, eqnarrayed equations with label.</em> We use eqnarray with labels:</p>
+<pre><code>!bt
+\begin{eqnarray}
+u(t)&amp;=&amp; e^{-at}
+\label{eq2c}\\ 
+v(t) &amp;=&amp; \frac{du}{dt}
+\label{eq3c}
+\end{eqnarray}
+!et</code></pre>
+<p>and results in</p>
+<p>\[
+\begin{eqnarray}
+u(t)&amp;=&amp; e^{-at} \label{eq2c}\\ 
+v(t) &amp;=&amp; \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+\] Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?</p>
+</body>
+</html>
+
+************** File: math_test.tex *****************
+NOT FOUND!
+************** File: math_test.rst *****************
+.. Automatically generated reST file from Doconce source
+   (http://code.google.com/p/doconce/)
+
+How various formats can deal with LaTeX math
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:Author: HPL
+:Date: Jan 32, 2100
+
+This document is translated to the format **sphinx**.
+
+*Test 1: Inline math.* Here is a sentence contains the equation :math:`u(t)=e^{-at}`.
+
+*Test 2: A single equation without label.* Here it is
+
+
+.. math::
+         u(t)=e^{-at} 
+
+
+*Test 3: A single equation with label.* Here it is as a one-line
+latex code,
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+        !et
+
+looking like
+
+
+.. math::
+   :label: eq1
+         u(t)=e^{-at} 
+
+and as a three-line latex code:
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{equation}
+        u(t)=e^{-at} label{eq1b}
+        \end{equation}
+        !et
+
+looking like
+
+
+.. math::
+   :label: eq1b
+        
+        u(t)=e^{-at} 
+        
+
+This equation has label :eq:`eq1b`.
+
+
+*Test 4: Multiple, aligned equations without label.* Only the align
+environment is supported by other formats than LaTeX for typesetting
+multiple, aligned equations. The code reads
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{align*}
+        u(t)&=e^{-at}\\ 
+        v(t) &= \frac{du}{dt}
+        \end{align*}
+        !et
+
+and results in
+
+
+.. math::
+        
+        u(t)&=e^{-at}\\ 
+        v(t) &= \frac{du}{dt}
+        
+
+
+*Test 5: Multiple, aligned equations with label.* We use align with
+labels:
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{align}
+        u(t)&=e^{-at}
+        label{eq2b}\\ 
+        v(t) &= \frac{du}{dt}
+        label{eq3b}
+        \end{align}
+        !et
+
+and results in
+
+
+.. math::
+   :label: eq2b
+        
+        u(t)=e^{-at} 
+        
+
+
+
+.. math::
+   :label: eq3b
+          
+        v(t) = \frac{du}{dt} 
+        
+
+We can refer to the last equations as the system :eq:`eq2b`-:eq:`eq3b`.
+
+Actually, *Sphinx does not support the align environment with labels*,
+such as we write above,
+but Doconce splits in this case the equations into separate, single equations
+with labels. Hence the user can write one code with align and labels
+and have to work in LaTeX, HTML, and Sphinx. The generated Sphinx code
+in the present case is
+
+
+.. code-block:: rst
+
+        .. math::
+           :label: eq2b
+        
+                u(t)=e^{-at}
+        
+        
+        .. math::
+           :label: eq3b
+        
+                v(t) = \frac{du}{dt}
+        
+
+
+
+
+*Test 6: Multiple, aligned eqnarray equations without label.* Let us
+try the old eqnarray environment.
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{eqnarray*}
+        u(t)&=& e^{-at}\\ 
+        v(t) &=& \frac{du}{dt}
+        \end{eqnarray*}
+        !et
+
+and results in
+
+
+.. math::
+        
+        u(t) &=  e^{-at}\\ 
+        v(t)  &=  \frac{du}{dt}
+        
+
+
+*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
+labels:
+
+
+.. code-block:: text
+
+
+        !bt
+        \begin{eqnarray}
+        u(t)&=& e^{-at}
+        label{eq2c}\\ 
+        v(t) &=& \frac{du}{dt}
+        label{eq3c}
+        \end{eqnarray}
+        !et
+
+and results in
+
+
+.. math::
+        
+        u(t) &=  e^{-at} \\ 
+        v(t)  &=  \frac{du}{dt} 
+        
+
+Can we refer to the last equations as the system :eq:`eq2c`-:eq:`eq3c`?
+
+Note: Doconce takes the eqnarray with labels and replaces it automatically
+by the Sphinx code
+
+
+.. code-block:: rst
+
+        .. math::
+        
+                u(t) &=  e^{-at} \\ 
+                v(t)  &=  \frac{du}{dt}
+
+That is why the equation numbers are gone and that eqnarray seemingly
+works. MathJax does not support eqnarray with labels so Sphinx would
+probably fail to show them (unless one tries PNG images or other
+math engines?).
+
 ************** File: testdoc_vagrant.html *****************
 <html>
 <head>
 <!--
-Style adopted from the vagrant web pages.
-The vagrant style builds on the Twitter Bootstrap style.
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
 Modifications by Hans Petter Langtangen, hpl@simula.no.
 
 This style file should be copied and the following
@@ -27206,8 +28693,8 @@ Footer at the end:
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
+<link rel="stylesheet" href="style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="style_vagrant/css/vagrant.css">
 <!-- Define color of headings here (last definition counts) -->
 <style type="text/css">
 h1, h2, h3, h4, h5, h6 {
@@ -27250,47 +28737,47 @@ h1, h2, h3, h4, h5, h6 {
    <ul class="nav nav-list">
      <!-- Syntax:
      <li> <a href="...">Section 1</a></li>
-     <li> <a href="...">Section 2</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
      <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
      <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
      -->
      <!-- Doconce automatically fills in the table of contents -->
-          <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="#sec1"> Section 1 </a>
-     <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="#___sec1"> Subsection 1 </a>
-     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="#subsec:ex"> Subsection 2 </a>
-     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
-     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="#___sec4"> Custom Environments </a>
-     <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
-     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="#___sec7"> Bibliography test </a>
-     <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="#Example"> Example 1: Examples can be typeset as exercises </a>
-     <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="#subsubsec:ex"> URLs </a>
-     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="#___sec10"> LaTeX Mathematics </a>
-     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="#___sec11"> Exercises </a>
-     <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="#demo:ex:1"> Problem 1: Flip a Coin </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="#___sec13"> Remarks </a>
-     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="#___sec14"> Not an exercise </a>
-     <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="#demo:ex:2"> Project 1: Compute a Probability </a>
-     <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="#___sec17"> Remarks </a>
-     <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="#exer:dist"> Exercise 1: Determine some Distance </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="#___sec19"> Remarks </a>
-     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a>
-     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="#___sec21"> Example 2: Just an example </a>
-     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="#___sec22"> Here goes another section </a>
-     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="#___sec23"> More Exercises </a>
-     <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
-     <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="#exer:you"> Project 3: References in a headings do not work well in html </a>
-     <!-- vagrant nav toc: " References " --> <li>  <a href="#___sec26"> References </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="#___sec27"> Appendix: Just for testing; part I </a>
-     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="#___sec28"> A subsection within an appendix </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="#___sec29"> Appendix: Just for testing; part II </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#___sec30"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#test:title:id1"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#test:title:id2"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="#___sec33"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+          <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
+     <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
+     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
+     <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
+     <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
+     <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
 
     </ul>
    </div>
@@ -27407,10 +28894,8 @@ $$
 
 
 
+<a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
-
-
-<p>
 
 
 <h1>A Document for Testing Doconce</h1>
@@ -27459,49 +28944,686 @@ $$
 
 <p>
 
-<a href="#sec1"> Section 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec7"> Bibliography test </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec10"> LaTeX Mathematics </a><br>
-<a href="#___sec11"> Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec14"> Not an exercise </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Example 2: Just an example </a><br>
-<a href="#___sec22"> Here goes another section </a><br>
-<a href="#___sec23"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="#___sec26"> References </a><br>
-<a href="#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec28"> A subsection within an appendix </a><br>
-<a href="#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec30"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+<a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec26"> References </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
 
 
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+
+  <li class="next">
+    <a href="._part0001_testdoc_vagrant.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+<!-- ------------------- end of main content --------------- -->
+
+ <div class="row Footer">
+  <div class="span12">
+  Here goes a footer, if desired, maybe with a Copyright &copy;
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+
+
+************** File: ._part0000_testdoc_vagrant.html *****************
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="style_vagrant/css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Appendix: Testing headings ending with `verbatim inline` </title>
+
+<!-- ------------------- main content ------------------------>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
+     <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
+     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
+     <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
+     <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
+     <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' The $\\theta$ parameter (not $\\nabla$?) ',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
+              (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
+               2,
+               None,
+               '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
+              (' Example 1: Examples can be typeset as exercises ',
+               2,
+               'Example',
+               'Example'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
+              (' Project 2: Explore Distributions of Random Circles ',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              (' Remarks ', 3, None, '___sec17'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec19'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
+              (' Exercise 3: Make references to projects and problems ',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              (' Project 3: References in a headings do not work well in html ',
+               2,
+               'exer:you',
+               'exer:you'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+<h1>A Document for Testing Doconce</h1>
+
+<center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked, and J. Doe -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
+</center>
+
+<center>
+<b>Kaare Dump</b> [3]
+</center>
+
+<center>
+<b>A. Dummy Author</b> 
+</center>
+
+<center>
+<b>I. S. Overworked</b> [4, 5, 6, 7]
+</center>
+
+<center>
+<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<center>[3] <b>Segfault Inc, Cyberspace</b></center>
+<center>[4] <b>Inst1</b></center>
+<center>[5] <b>Inst2, Somewhere</b></center>
+<center>[6] <b>Third Inst, Elsewhere</b></center>
+<center>[7] <b>Fourth Inst</b></center>
+<p>
+
+<p>
+
+<h2>Table of contents</h2>
+
+<p>
+
+<a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec26"> References </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+
+<p>
+
+
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+
+  <li class="next">
+    <a href="._part0001_testdoc_vagrant.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+<!-- ------------------- end of main content --------------- -->
+
+ <div class="row Footer">
+  <div class="span12">
+  Here goes a footer, if desired, maybe with a Copyright &copy;
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+
+
+************** File: ._part0001_testdoc_vagrant.html *****************
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="style_vagrant/css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Appendix: Testing headings ending with `verbatim inline` </title>
+
+<!-- ------------------- main content ------------------------>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Section 1 " --> <li class="active">  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
+     <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
+     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
+     <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
+     <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
+     <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' The $\\theta$ parameter (not $\\nabla$?) ',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
+              (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
+               2,
+               None,
+               '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
+              (' Example 1: Examples can be typeset as exercises ',
+               2,
+               'Example',
+               'Example'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
+              (' Project 2: Explore Distributions of Random Circles ',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              (' Remarks ', 3, None, '___sec17'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec19'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
+              (' Exercise 3: Make references to projects and problems ',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              (' Project 3: References in a headings do not work well in html ',
+               2,
+               'exer:you',
+               'exer:you'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+<a name="part0001"></a>
 <!-- !split -->
 
 <p>
+
+
 The format of this document is
 plain, homemade HTML (from Doconce).
 
@@ -27556,6 +29678,282 @@ Here is a nested list:
     a block quote.
 </blockquote>
 <p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<ul class="pager">
+  <li class="previous">
+    <a href="._part0000_testdoc_vagrant.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._part0002_testdoc_vagrant.html">Next &rarr;</a>
+  </li>
+
+</ul>
+
+ </div>
+
+<!-- ------------------- end of main content --------------- -->
+
+ <div class="row Footer">
+  <div class="span12">
+  Here goes a footer, if desired, maybe with a Copyright &copy;
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
+
+
+************** File: ._part0002_testdoc_vagrant.html *****************
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="style_vagrant/css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> Appendix: Testing headings ending with `verbatim inline` </title>
+
+<!-- ------------------- main content ------------------------>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
+     <!-- vagrant nav toc: " Subsection 1 " --> <li class="active"> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
+     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
+     <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
+     <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
+     <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
+              (' Subsection 1 ', 2, None, '___sec1'),
+              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' The $\\theta$ parameter (not $\\nabla$?) ',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              (' Custom Environments ', 2, None, '___sec4'),
+              (' Tables ', 2, 'subsec:table', 'subsec:table'),
+              (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
+               2,
+               None,
+               '___sec6'),
+              (' Bibliography test ', 2, None, '___sec7'),
+              (' Example 1: Examples can be typeset as exercises ',
+               2,
+               'Example',
+               'Example'),
+              (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              (' LaTeX Mathematics ', 2, None, '___sec10'),
+              (' Exercises ', 1, None, '___sec11'),
+              (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
+              (' Remarks ', 3, None, '___sec13'),
+              (' Not an exercise ', 2, None, '___sec14'),
+              (' Project 1: Compute a Probability ',
+               2,
+               'demo:ex:2',
+               'demo:ex:2'),
+              (' Project 2: Explore Distributions of Random Circles ',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              (' Remarks ', 3, None, '___sec17'),
+              (' Exercise 1: Determine some Distance ',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              (' Remarks ', 3, None, '___sec19'),
+              (' Some exercise without the "Exercise:" prefix ',
+               2,
+               None,
+               '___sec20'),
+              (' Example 2: Just an example ', 2, None, '___sec21'),
+              (' Here goes another section ', 1, None, '___sec22'),
+              (' More Exercises ', 1, None, '___sec23'),
+              (' Exercise 3: Make references to projects and problems ',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              (' Project 3: References in a headings do not work well in html ',
+               2,
+               'exer:you',
+               'exer:you'),
+              (' References ', 1, None, '___sec26'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
+              (' A subsection within an appendix ', 2, None, '___sec28'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              (' Appendix: Testing identical titles ',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing headings ending with `verbatim inline` ',
+               2,
+               None,
+               '___sec35')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+<a name="part0002"></a>
 <!-- !split and check if these extra words are included properly in the comment -->
 
 <p>
@@ -27563,7 +29961,7 @@ Here is a nested list:
 <h3>Subsection 1  <a name="___sec1"></a></h3>
 
 <p>
-More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
+More text, with a reference back to the section <a href="._part0001_testdoc_vagrant.html#sec1">Section 1</a> and further
 to the section <a href="#subsubsec:ex">URLs</a>. 
 <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 
@@ -27706,6 +30104,20 @@ which then is typeset as
       length = b - a
       return
       end
+</pre></div>
+<p>
+
+HTML:
+
+<p>
+
+
+<!-- code typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>Column 1<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>Column 2<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>0.67526 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>0.92871 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
+<span style="color: #408080; font-style: italic">&lt;!-- comment --&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 <p>
 
@@ -28841,6 +31253,7 @@ The point here is to test 1) <code>verbatim</code> code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in LaTeX.
 
+<p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -28857,18 +31270,13 @@ bla-bla.
 While the <div class="deep-blue">rest of the</div> getting started
 -->
 
-<!-- Navigation buttons at the bottom:
-     Doconce will automatically fill in the right URL in these
-     buttons when doconce html_split is run. Otherwise they are empty.
 <ul class="pager">
   <li class="previous">
-    <a href="">&larr; </a>
+    <a href="._part0001_testdoc_vagrant.html">&larr; Prev</a>
   </li>
-  <li class="next">
-    <a href=""> &rarr;</a>
- </li>
+
+
 </ul>
--->
 
  </div>
 
@@ -28886,1271 +31294,1356 @@ While the <div class="deep-blue">rest of the</div> getting started
 
 
 
-************** File: make.sh *****************
-#!/bin/sh -x
-rm -rf html_images reveal.js downloaded_figures
-
-# Note:  --examples-as-exercises is required to avoid abortion
-
-# Make publish database
-rm -rf papers.pub  venues.list # clean
-
-publish import refs1.bib <<EOF
-1
-2
-EOF
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-publish import refs2.bib <<EOF
-2
-2
-EOF
-# Simulate that we get new data, which is best put
-# in a new file
-publish import refs3.bib <<EOF
-1
-2
-EOF
-
-doconce format html testdoc --wordpress  --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp testdoc.html testdoc_wordpress.html
-
-doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp testdoc.html testdoc_no_solutions.html
-
-doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp testdoc.p.tex testdoc_no_solutions.p.tex
-
-cp -r ../bundled/html_styles/style_vagrant .
-doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp testdoc.html testdoc_vagrant.html
-
-doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce remove_exercise_answers testdoc.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce html_colorbullets testdoc.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce split_html testdoc.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-
-doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce latex_exercise_toc testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
-doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
-doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
-doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
-# because of --latex-double-hyphen:
-doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
-doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
-
-# A4PAPER trigger summary environment to be smaller paragraph
-# within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# test that pdflatex works
-pdflatex -shell-escape testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-pdflatex -shell-escape testdoc
-makeindex testdoc
-bibtex testdoc
-pdflatex -shell-escape testdoc
-pdflatex -shell-escape testdoc
-
-cp testdoc.tex testdoc.tex_ptex2tex
-
-# -DBOOK will not work for latex/pdflatex since we have an abstract,
-# but here we just use the translated text for testing, not latex compiling
-doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted > testdoc.tex_doconce_ptex2tex
-echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
-
-doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format st testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format sphinx testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-mv -f testdoc.rst testdoc.sphinx.rst
-
-doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format rst testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format epytext testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format pandoc testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format mwiki testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format cwiki testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format ipynb testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-#doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
-# pandoc cannot work well with \Verb, needs \verb
-doconce replace '\Verb!' '\verb!' testdoc.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-pandoc -f latex -t markdown -o testdoc.md testdoc.tex
-pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
-pandoc -v >> testdoc_pnd_l2h.html
-
-doconce format pandoc testdoc.do.txt --examples-as-exercises
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
-pandoc -v >> testdoc_pnd_d2h.html
-
-# Test slides
-doconce format html slides --pygments-html-style=emacs
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce slides_html slides reveal --html-slide-type=beigesmall
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-mv -f slides.html slides_reveal.html
-/bin/ls -R reveal.js >> slides_reveal.html
-
-doconce format html slides --pygments-html-style=emacs
-doconce slides_html slides all
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Test grab
-doconce grab --from- '={5} Subsection 1' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do.txt >> testdoc.tmp
-doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
-
-# Test html templates
-doconce format html html_template --html-template=template1.html --no-pygments-html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp html_template.html html_template1.html
-
-doconce format html html_template --html-template=template_inf1100.html  --pygments-html-style=emacs
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Test author special case and generalized references
-doconce format html author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format latex author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format sphinx author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format plain author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Test math
-name=math_test
-doconce format html $name
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp $name.html ${name}_html.html
-doconce format sphinx $name
-#doconce sphinx_dir dirname=sphinx-rootdir-math $name
-#python automake_sphinx.py
-doconce format pandoc $name
-# Do not use pandoc directly because it does not support MathJax enough
-doconce md2html $name.md
-cp $name.html ${name}_pandoc.html
-doconce format pandoc $name
-doconce md2latex $name
-
-# Test encoding
-doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp encoding1.do.txt tmp1.do.txt
-
-doconce change_encoding utf-8 latin1 tmp1.do.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce change_encoding latin1 utf-8 tmp1.do.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp encoding1.do.txt tmp2.do.txt
-
-doconce change_encoding utf-8 latin1 tmp2.do.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
-
-# Test mako problems
-doconce format html mako_test1 --no-pygments-html  # mako variable only, no % lines
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format html mako_test2 --no-pygments-html  # % lines inside code, but need for mako
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format html mako_test3 --no-pygments-html  # % lines inside code
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-cp mako_test3.html mako_test3b.html
-
-doconce format html mako_test3 --no-mako --no-pygments-html # no problem message
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format html mako_test4 --no-pygments-html  # works fine, lines start with %%
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Test error detection
-doconce format plain failures
-cp failures.do.txt tmp2.do.txt
-doconce subst 'failure\}\n\n!bc' 'failure}\n\nHello\n!bc' tmp2.do.txt
-doconce format rst tmp2
-doconce replace '\label' 'label' tmp2.do.txt
-doconce replace '\idx' 'idx' tmp2.do.txt
-doconce replace '\cite' 'cite' tmp2.do.txt
-doconce format rst tmp2
-doconce subst -s '__Paragraph before.+!bc' '!bc' tmp2.do.txt
-doconce format rst tmp2
-doconce replace 'streamtubes width' 'streamtubes,  width' tmp2.do.txt
-doconce format rst tmp2
-doconce replace '# Comment before math' '' tmp2.do.txt
-doconce format rst tmp2
-doconce replace '# Comment before list' '' tmp2.do.txt
-doconce format rst tmp2
-
-
-
-************** File: math_test.do.txt *****************
-TITLE: How various formats can deal with LaTeX math
-AUTHOR: HPL
-DATE: today
-
-
-This document is translated to the format _${FORMAT}_.
-
-__Test 1: Inline math.__ Here is a sentence contains the equation $u(t)=e^{-at}$.
-
-__Test 2: A single equation without label.__ Here it is
-
-!bt
-\[ u(t)=e^{-at} \]
-!et
-
-__Test 3: A single equation with label.__ Here it is as a one-line
-latex code,
-
-!bc
-|bt
-\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
-|et
-!ec
-looking like
-
-!bt
-\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
-!et
-and as a three-line latex code:
-
-!bc
-|bt
-\begin{equation}
-u(t)=e^{-at} label{eq1b}
-\end{equation}
-|et
-!ec
-looking like
-
-!bt
-\begin{equation}
-u(t)=e^{-at} label{eq1b}
-\end{equation}
-!et
-This equation has label (ref{eq1b}).
-
-
-__Test 4: Multiple, aligned equations without label.__ Only the align
-environment is supported by other formats than LaTeX for typesetting
-multiple, aligned equations. The code reads
-
-!bc
-|bt
-\begin{align*}
-u(t)&=e^{-at}\\
-v(t) &= \frac{du}{dt}
-\end{align*}
-|et
-!ec
-and results in
-
-!bt
-\begin{align*}
-u(t)&=e^{-at}\\
-v(t) &= \frac{du}{dt}
-\end{align*}
-!et
-
-__Test 5: Multiple, aligned equations with label.__ We use align with
-labels:
-
-!bc
-|bt
-\begin{align}
-u(t)&=e^{-at}
-label{eq2b}\\
-v(t) &= \frac{du}{dt}
-label{eq3b}
-\end{align}
-|et
-!ec
-and results in
-
-!bt
-\begin{align}
-u(t)&=e^{-at} label{eq2b}\\
-v(t) &= \frac{du}{dt} label{eq3b}
-\end{align}
-!et
-We can refer to the last equations as the system (ref{eq2b})-(ref{eq3b}).
-
-# #if FORMAT == "sphinx"
-Actually, *Sphinx does not support the align environment with labels*,
-such as we write above,
-but Doconce splits in this case the equations into separate, single equations
-with labels. Hence the user can write one code with align and labels
-and have to work in LaTeX, HTML, and Sphinx. The generated Sphinx code
-in the present case is
-
-!bc rst
-.. math::
-   :label: eq2b
-
-        u(t)=e^{-at}
-
-
-.. math::
-   :label: eq3b
-
-        v(t) = \frac{du}{dt}
-
-!ec
-# #endif
-
-# #if FORMAT == "pandoc"
-Original Pandoc-extended Markdown transformed to HTML via Pandoc
-does not work with labels and multiple equations. `doconce md2html`
-fixes the trouble by adding full support for MathJax and avoiding
-that eqref references become empty.
-
-One can write with align and labels in the Doconce document and get excellent
-output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without
-`doconce md2html` one must accept that labeles have very limited support
-compared to more advanced MathJax.
-# #endif
-
-
-__Test 6: Multiple, aligned eqnarray equations without label.__ Let us
-try the old eqnarray environment.
-
-!bc
-|bt
-\begin{eqnarray*}
-u(t)&=& e^{-at}\\
-v(t) &=& \frac{du}{dt}
-\end{eqnarray*}
-|et
-!ec
-and results in
-
-!bt
-\begin{eqnarray*}
-u(t)&=& e^{-at}\\
-v(t) &=& \frac{du}{dt}
-\end{eqnarray*}
-!et
-
-__Test 5: Multiple, eqnarrayed equations with label.__ We use eqnarray with
-labels:
-
-!bc
-|bt
-\begin{eqnarray}
-u(t)&=& e^{-at}
-label{eq2c}\\
-v(t) &=& \frac{du}{dt}
-label{eq3c}
-\end{eqnarray}
-|et
-!ec
-and results in
-
-!bt
-\begin{eqnarray}
-u(t)&=& e^{-at} label{eq2c}\\
-v(t) &=& \frac{du}{dt} label{eq3c}
-\end{eqnarray}
-!et
-Can we refer to the last equations as the system (ref{eq2c})-(ref{eq3c})?
-
-# #if FORMAT == "sphinx"
-Note: Doconce takes the eqnarray with labels and replaces it automatically
-by the Sphinx code
-
-!bc rst
-.. math::
-
-        u(t) &=  e^{-at} \\
-        v(t)  &=  \frac{du}{dt}
-!ec
-That is why the equation numbers are gone and that eqnarray seemingly
-works. MathJax does not support eqnarray with labels so Sphinx would
-probably fail to show them (unless one tries PNG images or other
-math engines?).
-# #endif
-
-************** File: math_test.md *****************
-% How various formats can deal with LaTeX math
-% HPL
-% Jan 32, 2100
-
-This document is translated to the format _pandoc_.
-
-*Test 1: Inline math.* Here is a sentence contains the equation $u(t)=e^{-at}$.
-
-*Test 2: A single equation without label.* Here it is
-
-$$
- u(t)=e^{-at} 
-$$
-
-*Test 3: A single equation with label.* Here it is as a one-line
-latex code,
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!bt
-\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
-!et
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-looking like
-
-$$
-\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
-$$
-and as a three-line latex code:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!bt
-\begin{equation}
-u(t)=e^{-at} \label{eq1b}
-\end{equation}
-!et
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-looking like
-
-$$
-\begin{equation}
-u(t)=e^{-at} \label{eq1b}
-\end{equation}
-$$
-This equation has label \eqref{eq1b}.
-
-
-*Test 4: Multiple, aligned equations without label.* Only the align
-environment is supported by other formats than LaTeX for typesetting
-multiple, aligned equations. The code reads
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!bt
-\begin{align*}
-u(t)&=e^{-at}\\ 
-v(t) &= \frac{du}{dt}
-\end{align*}
-!et
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-and results in
-
-$$
-
-u(t)=e^{-at}
-
-$$
-
-$$
-  
-v(t) = \frac{du}{dt}
-
-$$
-
-*Test 5: Multiple, aligned equations with label.* We use align with
-labels:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!bt
-\begin{align}
-u(t)&=e^{-at}
-\label{eq2b}\\ 
-v(t) &= \frac{du}{dt}
-\label{eq3b}
-\end{align}
-!et
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-and results in
-
-$$
-\begin{equation}
-u(t)=e^{-at} \label{eq2b}
-\end{equation}
-$$
-
-$$
-\begin{equation}  
-v(t) = \frac{du}{dt} \label{eq3b}
-\end{equation}
-$$
-We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
-
-
-Original Pandoc-extended Markdown transformed to HTML via Pandoc
-does not work with labels and multiple equations. `doconce md2html`
-fixes the trouble by adding full support for MathJax and avoiding
-that eqref references become empty.
-
-One can write with align and labels in the Doconce document and get excellent
-output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without
-`doconce md2html` one must accept that labeles have very limited support
-compared to more advanced MathJax.
-
-
-*Test 6: Multiple, aligned eqnarray equations without label.* Let us
-try the old eqnarray environment.
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!bt
-\begin{eqnarray*}
-u(t)&=& e^{-at}\\ 
-v(t) &=& \frac{du}{dt}
-\end{eqnarray*}
-!et
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-and results in
-
-$$
-\begin{eqnarray*}
-u(t)&=& e^{-at}\\ 
-v(t) &=& \frac{du}{dt}
-\end{eqnarray*}
-$$
-
-*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
-labels:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!bt
-\begin{eqnarray}
-u(t)&=& e^{-at}
-\label{eq2c}\\ 
-v(t) &=& \frac{du}{dt}
-\label{eq3c}
-\end{eqnarray}
-!et
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-and results in
-
-$$
-\begin{eqnarray}
-u(t)&=& e^{-at} \label{eq2c}\\ 
-v(t) &=& \frac{du}{dt} \label{eq3c}
-\end{eqnarray}
-$$
-Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
-
-
-************** File: math_test_html.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
-Automatically generated HTML file from Doconce source
-(http://code.google.com/p/doconce/)
--->
-
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
-<meta name="description" content="How various formats can deal with LaTeX math">
-
-
-
-<style type="text/css">
-    /* Color definitions:  http://www.december.com/html/spec/color0.html
-       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
-
-    body {
-      margin-top: 1.0em;
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    h1 { font-size: 1.8em; color: #1e36ce; }
-    h2 { font-size: 1.5em; color: #1e36ce; }
-    h3 { color: #1e36ce; }
-    a { color: #1e36ce; text-decoration:none; }
-    tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
-    p { text-indent: 0px; }
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-style: normal; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-
-</style>
-
-</head>
-
-<!-- tocinfo
-{'highest level': 4, 'sections': []}
-end of tocinfo -->
-
-<body>
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
-
-<!-- newcommands_replace.tex -->
-$$
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\halfi}{1/2}
-\newcommand{\half}{\frac{1}{2}}
-\newcommand{\report}{test report}
-$$
-
-
-
-
-    
-<!-- ------------------- main content ---------------------- -->
-
-
-<title>How various formats can deal with LaTeX math</title>
-
-<center><h1>How various formats can deal with LaTeX math</h1></center>  <!-- document title -->
-
-<p>
-<!-- author(s): HPL -->
-
-<center>
-<b>HPL</b> 
-</center>
-
-
-<p>
-<!-- institution(s) -->
-<p>
-<center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
-This document is translated to the format <b>html</b>.
-
-<p>
-<b>Test 1: Inline math.</b>
-Here is a sentence contains the equation \( u(t)=e^{-at} \).
-
-<p>
-<b>Test 2: A single equation without label.</b>
-Here it is
-
-<p>
-$$ u(t)=e^{-at} $$
-
-
-<p>
-<b>Test 3: A single equation with label.</b>
-Here it is as a one-line
-latex code,
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
-\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
-!et
-</pre></div>
-<p>
-looking like
-
-<p>
-$$
-\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
-$$
-
-and as a three-line latex code:
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
-\begin{equation}
-u(t)=e^{-at} label{eq1b}
-\end{equation}
-!et
-</pre></div>
-<p>
-looking like
-
-<p>
-$$
-\begin{equation}
-u(t)=e^{-at} \label{eq1b}
-\end{equation}
-$$
-
-This equation has label \eqref{eq1b}.
-
-<p>
-
-<b>Test 4: Multiple, aligned equations without label.</b>
-Only the align
-environment is supported by other formats than LaTeX for typesetting
-multiple, aligned equations. The code reads
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
-\begin{align*}
-u(t)&amp;=e^{-at}\\ 
-v(t) &amp;= \frac{du}{dt}
-\end{align*}
-!et
-</pre></div>
-<p>
-and results in
-
-<p>
-$$
-\begin{align*}
-u(t)&=e^{-at}\\ 
-v(t) &= \frac{du}{dt}
-\end{align*}
-$$
-
-
-<p>
-<b>Test 5: Multiple, aligned equations with label.</b>
-We use align with
-labels:
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
-\begin{align}
-u(t)&amp;=e^{-at}
-label{eq2b}\\ 
-v(t) &amp;= \frac{du}{dt}
-label{eq3b}
-\end{align}
-!et
-</pre></div>
-<p>
-and results in
-
-<p>
-$$
-\begin{align}
-u(t)&=e^{-at} \label{eq2b}\\ 
-v(t) &= \frac{du}{dt} \label{eq3b}
-\end{align}
-$$
-
-We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
-
-<p>
-
-
-<b>Test 6: Multiple, aligned eqnarray equations without label.</b>
-Let us
-try the old eqnarray environment.
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
-\begin{eqnarray*}
-u(t)&amp;=&amp; e^{-at}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
-\end{eqnarray*}
-!et
-</pre></div>
-<p>
-and results in
-
-<p>
-$$
-\begin{eqnarray*}
-u(t)&=& e^{-at}\\ 
-v(t) &=& \frac{du}{dt}
-\end{eqnarray*}
-$$
-
-
-<p>
-<b>Test 5: Multiple, eqnarrayed equations with label.</b>
-We use eqnarray with
-labels:
-
-<p>
-
-
-<!-- code typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
-\begin{eqnarray}
-u(t)&amp;=&amp; e^{-at}
-label{eq2c}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
-label{eq3c}
-\end{eqnarray}
-!et
-</pre></div>
-<p>
-and results in
-
-<p>
-$$
-\begin{eqnarray}
-u(t)&=& e^{-at} \label{eq2c}\\ 
-v(t) &=& \frac{du}{dt} \label{eq3c}
-\end{eqnarray}
-$$
-
-Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
-
-<!-- ------------------- end of main content --------------- -->
-
-
-</body>
-</html>
-    
-
-
-************** File: math_test_pandoc.html *****************
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="HPL" />
-  <title>How various formats can deal with LaTeX math</title>
-  
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head>
-<body>
-<div id="header">
-<h1 class="title">How various formats can deal with LaTeX math</h1>
-<h2 class="author">HPL</h2>
-<h3 class="date">Jan 32, 2100</h3>
-</div>
-<p>This document is translated to the format <em>pandoc</em>.</p>
-<p><em>Test 1: Inline math.</em> Here is a sentence contains the equation \(u(t)=e^{-at}\).</p>
-<p><em>Test 2: A single equation without label.</em> Here it is</p>
-<p>\[
- u(t)=e^{-at} 
-\]</p>
-<p><em>Test 3: A single equation with label.</em> Here it is as a one-line latex code,</p>
-<pre><code>!bt
-\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
-!et</code></pre>
-<p>looking like</p>
-<p>\[
-\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
-\] and as a three-line latex code:</p>
-<pre><code>!bt
-\begin{equation}
-u(t)=e^{-at} \label{eq1b}
-\end{equation}
-!et</code></pre>
-<p>looking like</p>
-<p>\[
-\begin{equation}
-u(t)=e^{-at} \label{eq1b}
-\end{equation}
-\] This equation has label \eqref{eq1b}.</p>
-<p><em>Test 4: Multiple, aligned equations without label.</em> Only the align environment is supported by other formats than LaTeX for typesetting multiple, aligned equations. The code reads</p>
-<pre><code>!bt
-\begin{align*}
-u(t)&amp;=e^{-at}\\ 
-v(t) &amp;= \frac{du}{dt}
-\end{align*}
-!et</code></pre>
-<p>and results in</p>
-<p>$$</p>
-<p>u(t)=e^{-at}</p>
-<p>$$</p>
-<p>$$</p>
-<p>v(t) = </p>
-<p>$$</p>
-<p><em>Test 5: Multiple, aligned equations with label.</em> We use align with labels:</p>
-<pre><code>!bt
-\begin{align}
-u(t)&amp;=e^{-at}
-\label{eq2b}\\ 
-v(t) &amp;= \frac{du}{dt}
-\label{eq3b}
-\end{align}
-!et</code></pre>
-<p>and results in</p>
-<p>\[
-\begin{equation}
-u(t)=e^{-at} \label{eq2b}
-\end{equation}
-\]</p>
-<p>\[
-\begin{equation}  
-v(t) = \frac{du}{dt} \label{eq3b}
-\end{equation}
-\] We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.</p>
-<p>Original Pandoc-extended Markdown transformed to HTML via Pandoc does not work with labels and multiple equations. <code>doconce md2html</code> fixes the trouble by adding full support for MathJax and avoiding that eqref references become empty.</p>
-<p>One can write with align and labels in the Doconce document and get excellent output in LaTeX, HTML, Sphinx, and Markdown-based HTML. Without <code>doconce md2html</code> one must accept that labeles have very limited support compared to more advanced MathJax.</p>
-<p><em>Test 6: Multiple, aligned eqnarray equations without label.</em> Let us try the old eqnarray environment.</p>
-<pre><code>!bt
-\begin{eqnarray*}
-u(t)&amp;=&amp; e^{-at}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
-\end{eqnarray*}
-!et</code></pre>
-<p>and results in</p>
-<p>\[
-\begin{eqnarray*}
-u(t)&amp;=&amp; e^{-at}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
-\end{eqnarray*}
-\]</p>
-<p><em>Test 5: Multiple, eqnarrayed equations with label.</em> We use eqnarray with labels:</p>
-<pre><code>!bt
-\begin{eqnarray}
-u(t)&amp;=&amp; e^{-at}
-\label{eq2c}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
-\label{eq3c}
-\end{eqnarray}
-!et</code></pre>
-<p>and results in</p>
-<p>\[
-\begin{eqnarray}
-u(t)&amp;=&amp; e^{-at} \label{eq2c}\\ 
-v(t) &amp;=&amp; \frac{du}{dt} \label{eq3c}
-\end{eqnarray}
-\] Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?</p>
-</body>
-</html>
-
-************** File: math_test.tex *****************
-NOT FOUND!
-************** File: math_test.rst *****************
+************** File: ._part0000_testdoc.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
 
-How various formats can deal with LaTeX math
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A Document for Testing Doconce
+==============================
 
-:Author: HPL
+:Author: Hans Petter Langtangen (hpl at simula.no), Kaare Dump, A. Dummy Author, I. S. Overworked, J. Doe (j_doe at cyberspace.com)
 :Date: Jan 32, 2100
 
-This document is translated to the format **sphinx**.
 
-*Test 1: Inline math.* Here is a sentence contains the equation :math:`u(t)=e^{-at}`.
-
-*Test 2: A single equation without label.* Here it is
+************** File: ._part0001_testdoc.rst *****************
+.. !split
 
 
-.. math::
-         u(t)=e^{-at} 
 
 
-*Test 3: A single equation with label.* Here it is as a one-line
-latex code,
+
+The format of this document is
+sphinx
+
+*Abstract.* This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+
+And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+
+.. Cannot demonstrate chapter headings since abstract and chapter
+
+.. is mutually exclusive in LaTeX
+
+
+.. _sec1:
+
+
+Section 1
+=========
+
+Here is a nested list:
+
+  * item1
+
+  * item2
+
+  * item3 which continues
+    on the next line to test that feature
+
+  * and a sublist
+
+    * with indented subitem1
+
+    * and a subitem2
+
+
+  * and perhaps an ordered sublist
+
+   1. first item
+
+   2. second item,
+      continuing on a new line
+
+
+
+..
+
+    Here are two lines that make up
+    a block quote.
+
+
+************** File: ._part0002_testdoc.rst *****************
+.. !split and check if these extra words are included properly in the comment
+
+
+Subsection 1
+------------
+
+More text, with a reference back to the section :ref:`sec1` and further
+to the section :ref:`subsubsec:ex`. 
+.. index:: somefunc function
+
+
+.. sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
+
+Let's do some copying from files too. First from subroutine up to the very end,
+
+
+.. code-block:: fortran
+
+              subroutine test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
+        C     END1
+        
+              program testme
+              call test()
+              return
+
+and then just the subroutine,
+
+.. code-block:: fortran
+
+              subroutine test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
+
+and finally the complete file:
+
+.. code-block:: fortran
+
+        C     a comment
+        
+              subroutine test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
+        C     END1
+        
+              program testme
+              call test()
+              return
+
+
+Testing other code environments. First Python:
+
+.. code-block:: text
+
+
+        !bc pycod
+        def f(x):
+            return x+1
+        !ec
+
+which gets rendered as
+
+
+.. code-block:: python
+
+        def f(x):
+            return x+1
+
+
+Now a complete program to be shown via Python Online Tutorial:
+
+.. raw:: html
+
+        <iframe width="950" height="500" frameborder="0"
+                src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
+        </iframe>
+
+
+Then Cython:
+
+.. code-block:: cython
+
+        cpdef f(double x):
+            return x + 1
+
+
+.. This one tests a + sign before a code environment
+
+C++:
+
+.. code-block:: c++
+
+        #include <iostream>
+        
+        int main()
+        {
+           std::cout << "Sample output" << std::endl;
+           return 0
+        }
+
+.. The next should get correctly typset in sphinx (cod is fcod)
+
+And a little bit of Fortran:
 
 
 .. code-block:: text
 
 
-        !bt
-        \begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
-        !et
+        !bc cod
+              subroutine midpt(x, length, a, b)
+              real*8 a, b, x
+              x = (a + b)/2
+              length = b - a
+              return
+              end
+        !ec
 
-looking like
+which then is typeset as
 
+
+.. code-block:: python
+
+              subroutine midpt(x, length, a, b)
+              real*8 a, b, x
+              x = (a + b)/2
+              length = b - a
+              return
+              end
+
+
+HTML:
+
+
+.. code-block:: html
+
+        <table>
+        <tr><td>Column 1</td><td>Column 2</td></tr>
+        <tr><td>0.67526 </td><td>0.92871 </td></tr>
+        <!-- comment -->
+        </table>
+
+
+System call:
+
+.. code-block:: console
+
+        Terminal> mkdir test
+        Terminal> cd test
+        Terminal> myprog -f
+        output1
+        output2
+
+
+It is time to test ``verbatim inline font`` especially with ``a newline
+inside the text`` and an exclamation mark at the end: ``BEGIN``! The
+exclamation mark inside the verbatim text is not smart for latex as
+we use ! in the ``verb`` typesetting... Also test backslashes
+like ``\begin`` and ``\end`` in inline verbatim text.
+
+Here is some <font color="red">red</font> color and an attempt to write <font color="green">with
+green color containing a linebreak.
+And one more.</font> Some formats will only display this correctly when
+HTML is the output format.
+
+
+.. _subsec:ex:
+
+Subsection 2
+------------
+
+.. index:: figures
+
+
+Test of figures. In particular we refer to Figure :ref:`fig:impact` in which
+there is a flow.
+
+
+.. _fig:impact:
+
+.. figure:: ../doc/manual/figs/streamtubes.png
+   :width: 200
+
+   *Visualization of flow by streamtubes*
+
+
+Figures without captions are allowed.
+
+
+.. figure:: ../doc/manual/figs/streamtubes.png
+   :width: 200
+
+
+
+
+.. index:: movies
+
+Test of movies.
+
+.. raw:: html
+        
+        <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+        <p>
+        <em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
+        </p>
+
+
+
+.. Test empty caption:
+
+
+.. raw:: html
+        
+        <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+        <p>
+        <em></em>
+        </p>
+
+
+
+.. Test wrong syntax and multi-line caption
+
+
+.. raw:: html
+        
+        <p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+        <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>
+
+
+
+.. Check out the correct with and height of YouTube movies from the
+
+.. embed command that the YouTube page can generate. Similar for Vimeo.
+
+
+.. raw:: html
+        
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Movies can be uploaded to YouTube and embedded as HTML or as a link.</em>
+        
+
+
+
+.. raw:: html
+        
+        <iframe width="500" height="278" src="http://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+        
+        <em>Computational fluid dynamics movie.</em>
+        
+
+
+
+
+.. Test multi-line caption in figure
+
+
+Here is figure :ref:`myfig` with a long multi-line caption
+and an extra space before the FIGURE keyword.
+
+
+.. _myfig:
+
+.. figure:: ../doc/manual/figs/wavepacket_0001.png
+   :width: 500
+
+   A long caption spanning several lines and containing verbatim words like ``my_file_v1`` and ``my_file_v2`` as well as math with subscript as in :math:`t_{i+1}`
+
+
+Movie :ref:`mymov` has a similar problem.
+
+.. Must be a blank line after MOVIE or FIGURE to detect this problem
+
+
+.. Test URL as figure name
+
+
+
+.. figure:: https://doconce.googlecode.com/hg/doc/blog/f_plot.png
+   :width: 500
+
+
+
+.. Test wikimedia type of files that otherwise reside in subdirs
+
+
+.. Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
+
+.. _decay:sec:theta:
+
+The :math:`\theta` parameter (not :math:`\nabla`?)
+--------------------------------------------------
+
+Functions do not always need to be advanced, here is one
+involving :math:`\theta`:
+
+.. code-block:: text
+
+
+        def f(theta):
+            return theta**2
+
+
+*More on :math:`\theta`.* Here is more text following headline with math.
+
+Newcommands must also be tested in this test report:
+:math:`\frac{1}{2}`, :math:`{1/2}`, :math:`\pmb{x}`, :math:`\frac{Du}{dt}`,
+both inline and in block:
+
+
+.. math::
+        
+        \frac{Du}{dt} &= 0
+        \\ 
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
+        
+
+
+Or with align with label and numbers:
+
+
+.. math::
+   :label: aligneq1
+        
+        \frac{Du}{dt} = 0
+        
+        
+
+
+
+.. math::
+          
+        \frac{1}{2} = {1/2}
+        
+
+
+
+.. math::
+   :label: aligneq2
+          
+        \frac{1}{2}\pmb{x} = \pmb{n}
+        
+        
+
+
+Sphinx makes a fix here and splits align into multiple equation
+environments.
+
+Custom Environments
+-------------------
+
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the ``.tex`` by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+
+
+
+.. begin theorem
+
+
+*Theorem 5.* Let :math:`a=1` and :math:`b=2`. Then :math:`c=3`.
+.. end theorem
+
+
+.. begin proof
+
+*Proof.* Since :math:`c=a+b`, the result follows from straightforward addition.
+:math:`\Diamond`
+.. end proof
+
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+
+
+.. _subsec:table:
+
+Tables
+------
+
+
+.. index:: test index with verbatim text which is possible
+
+
+.. index:: test two (separate) verbatim expressions which is also possible
+
+
+.. index::
+   single: index with; subindex
+
+
+.. index with comma could fool sphinx
+
+
+.. index::
+   single: index, with comma, and one more
+
+
+Let us take this table from the manual:
+
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0                 1.4186         -5.01  
+2.0               1.376512        11.919  
+4.0                 1.1E+1     14.717624  
+============  ============  ============  
+
+
+The Doconce source code reads
+
+.. code-block:: text
+
+
+          |--------------------------------|
+          |time  | velocity | acceleration |
+          |--l--------r-----------r--------|
+          | 0.0  | 1.4186   | -5.01        |
+          | 2.0  | 1.376512 | 11.919       |
+          | 4.0  | 1.1E+1   | 14.717624    |
+          |--------------------------------|
+
+
+Here is yet another table to test that we can handle more than
+one table:
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0           1.4186        -5.01         
+1.0           1.376512      11.919        
+3.0           1.1E+1        14.717624     
+============  ============  ============  
+
+And one with math headings (that are expanded and must be treated
+accordingly) and verbatim heading and entry:
+
+================  ================  ================  ================  
+   :math:`i`        :math:`h_i`     :math:`\bar T_i`      ``L_i``       
+================  ================  ================  ================  
+0                                0               288           -0.0065  
+1                           11,000               216               0.0  
+2                           20,000               216             0.001  
+3                           32,000               228            0.0028  
+4                           47,000               270               0.0  
+5                           51,000               270           -0.0028  
+6                           71,000               214           ``NaN``  
+================  ================  ================  ================  
+
+And add one with verbatim headings (with underscores),
+and rows starting with ``|-`` because of a negative number,
+and ``|`` right after verbatim word (with no space):
+
+=====================  =====================  =====================  =====================  
+        exact                 ``v_1``         :math:`a_i` + ``v_2``       ``verb_3_``       
+=====================  =====================  =====================  =====================  
+                    9                   9.62                   5.57                   8.98  
+                  -20                 -23.39                  -7.65                 -19.93  
+                   10                  17.74                  -4.50                   9.96  
+                    0                  -9.19                   4.13                  -0.26  
+=====================  =====================  =====================  =====================  
+
+
+A test of verbatim words in heading with subscript :math:`a_i`: ``my_file_v1`` and ``my_file_v2``
+-------------------------------------------------------------------------------------------------
+
+*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math :math:`a_{i-1}`.* Here is
+some text.
+
+Bibliography test
+-----------------
+
+Here is an example: [Ref1]_ discussed propagation of
+large destructive water waves, [Ref2]_ gave
+an overview of numerical methods for solving the Navier-Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [Ref3]_.
+The book chapter [Ref4]_ contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [Ref5]_ about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[Ref1]_ [Ref4]_.
+
+
+
+.. --- begin exercise ---
+
+
+.. _Example:
+
+Example 1: Examples can be typeset as exercises
+-----------------------------------------------
+
+Examples can start with a subsection heading starting with ``Example:``
+and then, with the command-line option ``--examples-as-exercises`` be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+
+*a)* State some problem.
+
+*Solution.* The answer to this subproblem can be written here.
+
+*b)* State some other problem.
+
+*Hint 1.* A hint can be given.
+
+*Hint 2.* Maybe even another hint?
+
+*Solution.* The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+.. --- end exercise ---
+
+
+
+.. _subsubsec:ex:
+
+URLs
+----
+
+Testing of URLs: hpl's home page `hpl <http://folk.uio.no/hpl>`_, or
+the entire URL if desired, `<http://folk.uio.no/hpl>`_.  Here is a
+plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_, or
+`<testdoc.do.txt>`_ or `<testdoc.do.txt>`_ or `a link with
+newline <testdoc.do.txt>`_. Can test spaces with the link with word
+too: `hpl <http://folk.uio.no/hpl>`_ or `hpl <http://folk.uio.no/hpl>`_. Also ``file:///`` works: `link to a
+file <file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>`_ is
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in `<http://folk.uio.no/hpl>`_, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+
+Here are some tough tests of URLs, especially for the ``latex`` format:
+`Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
+and a `good book <http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>`_. Need to test
+Newton-Cotes with percentage in URL too:
+`<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_
+and `<http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae>`_ which has a shebang.
+
+For the ``--device=paper`` option it is important to test that URLs with
+monofont link text get a footnote, as in this reference to
+`decay_mod <https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py>`_.
+
+.. Comments should be inserted outside paragraphs (because in the rst
+
+.. format extra blanks make a paragraph break).
+
+
+.. Note that when there is no http: or file:, it can be a file link
+
+.. if the link name is URL, url, "URL", or "url". Such files should,
+
+.. if rst output is desired, but placed in a ``_static*`` folder.
+
+
+More tough tests: repeated URLs whose footnotes when using the
+``--device=paper`` option must be correct. We have
+`google <http://google.com>`_, `google <http://google.com>`_, and
+`google <http://google.com>`_, which should result in exactly three
+footnotes.
+
+
+
+LaTeX Mathematics
+-----------------
+
+Here is an equation without label using backslash-bracket environment:
+
+.. math::
+         a = b + c 
+
+or with number and label, as in :eq:`my:eq1`, using the equation environment:
+
+.. math::
+   :label: my:eq1
+        
+        {\partial u\over\partial t} = \nabla^2 u 
+        
+
+We can refer to this equation by :eq:`my:eq1`.
+
+Here is a system without equation numbers, using the align-astrisk environment:
+
+.. math::
+        
+        \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+        b &= \nabla^2 u + \nabla^4 v
+        
+
+
+
+And here is a system of equations with labels in an align environment:
 
 .. math::
    :label: eq1
-         u(t)=e^{-at} 
-
-and as a three-line latex code:
-
-
-.. code-block:: text
-
-
-        !bt
-        \begin{equation}
-        u(t)=e^{-at} label{eq1b}
-        \end{equation}
-        !et
-
-looking like
-
-
-.. math::
-   :label: eq1b
         
-        u(t)=e^{-at} 
-        
-
-This equation has label :eq:`eq1b`.
-
-
-*Test 4: Multiple, aligned equations without label.* Only the align
-environment is supported by other formats than LaTeX for typesetting
-multiple, aligned equations. The code reads
-
-
-.. code-block:: text
-
-
-        !bt
-        \begin{align*}
-        u(t)&=e^{-at}\\ 
-        v(t) &= \frac{du}{dt}
-        \end{align*}
-        !et
-
-and results in
-
-
-.. math::
-        
-        u(t)&=e^{-at}\\ 
-        v(t) &= \frac{du}{dt}
-        
-
-
-*Test 5: Multiple, aligned equations with label.* We use align with
-labels:
-
-
-.. code-block:: text
-
-
-        !bt
-        \begin{align}
-        u(t)&=e^{-at}
-        label{eq2b}\\ 
-        v(t) &= \frac{du}{dt}
-        label{eq3b}
-        \end{align}
-        !et
-
-and results in
-
-
-.. math::
-   :label: eq2b
-        
-        u(t)=e^{-at} 
+        a = q + 4 + 5+ 6  
         
 
 
 
 .. math::
-   :label: eq3b
+   :label: eq2
           
-        v(t) = \frac{du}{dt} 
+        b = \nabla^2 u + \nabla^4 x 
         
 
-We can refer to the last equations as the system :eq:`eq2b`-:eq:`eq3b`.
+We can refer to :eq:`eq1`-:eq:`eq2`. They are a bit simpler than
+the Navier-Stokes equations. And test LaTeX hyphen in ``CG-2``.
+Also test :math:`a_{i-j}` as well as :math:`kx-wt`.
 
-Actually, *Sphinx does not support the align environment with labels*,
-such as we write above,
-but Doconce splits in this case the equations into separate, single equations
-with labels. Hence the user can write one code with align and labels
-and have to work in LaTeX, HTML, and Sphinx. The generated Sphinx code
-in the present case is
+Many of the next environments will fail in non-latex formats.
+Testing multiline:
 
-
-.. code-block:: rst
-
-        .. math::
-           :label: eq2b
+.. math::
+   :label: multiline:eq1
         
-                u(t)=e^{-at}
+        a = b = q + \\ 
+          f + \nabla\cdot\nabla u
         
         
-        .. math::
-           :label: eq3b
+
+Testing split:
+
+.. math::
+   :label: split:envir:eq
         
-                v(t) = \frac{du}{dt}
+        
+        
+        a = b = q &+ \\ 
+          & f + \nabla\cdot\nabla u
+        
+        
+
+We can refer to the last equation by :eq:`split:envir:eq`.
+
+Testing gather:
+
+.. math::
+        
+        a = b \\ 
+        c = d + 7 + 9
+        
+
+
+Testing alignat:
+
+.. math::
+        \begin{alignat}{2}
+        a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0  \\ 
+        b &= \nabla^2 u + \nabla^4 x & x\in\Omega 
+        \end{alignat}
+
+Let us refer to :eq:`eq1`-:eq:`eq2` again, and to the
+alignat variant :eq:`eq1a`-:eq:`eq2a`, and to :eq:`my:eq1`.
+
+Testing eqnarray:
+
+.. math::
+        
+        {\partial u\over\partial t}  &=  \nabla^2 u + f, \\ 
+        {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g 
+        
+
+
+More mathematical typesetting is demonstrated in the coming exercises.
+
+Below, we have :ref:`demo:ex:1` and :ref:`demo:ex:2`,
+as well as :ref:`proj:circle1` and :ref:`exer:you`, and in
+between there we have :ref:`exer:some:formula`.
+
+Exercises
+=========
+
+
+
+.. --- begin exercise ---
+
+
+.. _demo:ex:1:
+
+Problem 1: Flip a Coin
+----------------------
+.. keywords = random numbers; Monte Carlo simulation
+
+
+.. Torture tests
+
+
+Make a program that simulates flipping a coin :math:`N` times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+
+.. Test syntax error
+
+
+
+
+
+Remarks  (1)
+~~~~~~~~~~~~
+
+Remarks with such a subsubsection heading would previously mark
+the beginning of a new exercise and cause trouble. Maybe a list
+
+1. Mark 1.
+
+2. Mark 2.
+.. --- begin hint in exercise ---
+
+
+*Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+.. --- end hint in exercise ---
+
+
+.. --- begin hint in exercise ---
+
+
+*Hint 2.* Draw an integer among :math:`\{1,2\}` with
+``r = random.randint(1,2)`` and define head when ``r`` is 1.
+.. --- end hint in exercise ---
+
+
+
+.. --- begin answer of exercise ---
+
+*Answer.* If the ``random.random()`` function returns a number :math:`<1/2`, let it be
+head, otherwise tail. Repeat this :math:`N` number of times.
+.. --- end answer of exercise ---
+
+
+
+.. --- begin solution of exercise ---
+
+*Solution.* Code:
+
+.. code-block:: python
+
+        import sys, random
+        N = int(sys.argv[1])
+        heads = 0
+        for i in range(N):
+            r = random.random()
+            if r <= 0.5:
+                heads += 1
+        print 'Flipping a coin %d times gave %d heads' % (N, heads)
+
+.. --- end solution of exercise ---
+
+Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
+.. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
+
+.. --- end exercise ---
+
+
+
+Not an exercise
+---------------
+
+Should be possible to stick a normal section in the middle of many
+exercises.
+
+
+
+.. --- begin exercise ---
+
+
+.. _demo:ex:2:
+
+Project 1: Compute a Probability
+--------------------------------
+
+.. Minimalistic exercise
+
+
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval :math:`[0,1)`?
+
+.. --- begin hint in exercise ---
+
+
+*Hint.* To answer this question empirically, let a program
+draw :math:`N` such random numbers using Python's standard ``random`` module,
+count how many of them, :math:`M`, that fall in the interval :math:`(0.5,0.6)`, and
+compute the probability as :math:`M/N`.
+.. --- end hint in exercise ---
+
+
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
+
+
+.. _proj:circle1:
+
+Project 2: Explore Distributions of Random Circles
+--------------------------------------------------
+
+The formula for a circle is given by
+
+
+.. math::
+        
+        x = x_0 + R\cos 2\pi t,
         
 
 
 
+.. math::
+          
+        y = y_0 + R\sin 2\pi t,
+        
 
-*Test 6: Multiple, aligned eqnarray equations without label.* Let us
-try the old eqnarray environment.
+where :math:`R` is the radius of the circle, :math:`(x_0,y_0)` is the
+center point, and :math:`t` is a parameter in the unit interval :math:`[0,1]`.
+For any :math:`t`, :math:`(x,y)` is a point on the circle.
+The formula can be used to generate ``n`` points on a circle:
+
+
+.. code-block:: python
+
+        import numpy as np
+        
+        def circle(R, x0, y0, n=501):
+            t = np.linspace(0, 1, n)
+            x = x0 + R*np.cos(2*np.pi*t)
+            y = y0 + R*np.sin(2*np.pi*t)
+            return x, y
+        
+        x, y = circle(2.0, 0, 0)
+
+
+.. Often in an exercise we have some comments about the solution
+
+.. which we normally want to keep where they are.
+
+
+The goal of this project is to draw :math:`N` circles with random
+center and radius. Plot each circle using the ``circle`` function
+above.
+
+
+*a)* Let :math:`R` be normally distributed and :math:`(x_0,y_0)` uniformly distributed.
+
+.. --- begin hint in exercise ---
+
+
+*Hint.* Use the ``numpy.random`` module to draw the
+:math:`x_0`, :math:`y_0`, and :math:`R` quantities.
+.. --- end hint in exercise ---
+
+
+
+.. --- begin answer of exercise ---
+
+*Answer.* Here goes the short answer to part a).
+.. --- end answer of exercise ---
+
+
+
+.. --- begin solution of exercise ---
+
+*Solution.* Here goes a full solution to part a).
+.. --- end solution of exercise ---
+
+
+*b)* Let :math:`R` be uniformly distributed and :math:`(x_0,y_0)` normally distributed.
+Filename: ``norm.py``.
+
+*c)* Let :math:`R` and :math:`(x_0,y_0)` be normally distributed.
+
+Filename: ``circles.pdf``.
+
+.. Closing remarks for this Project
+
+
+Remarks  (2)
+~~~~~~~~~~~~
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
+
+
+.. _exer:dist:
+
+Exercise 1: Determine some Distance
+-----------------------------------
+
+Intro to this exercise. Questions are in subexercises below.
+
+
+
+
+
+.. No meaning in this weired test example:
+
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+
+.. --- begin solution of exercise ---
+
+*Solution.* Here goes a full solution of the whole exercise.
+With some math :math:`a=b` in this solution:
+
+.. math::
+         \hbox{math in solution: } a = b 
+
+And code ``a=b`` in this solution:
+
+.. code-block:: text
+
+
+        a = b  # code in solution
+
+End of solution is here.
+.. --- end solution of exercise ---
+
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+.. --- begin hint in exercise ---
+
+
+*Hint 1.* First hint to subexercise a).
+With math :math:`a=b` in hint:
+
+
+.. math::
+         a=b. 
+
+And with code returning :math:`x+1` in hint:
 
 
 .. code-block:: text
 
 
-        !bt
-        \begin{eqnarray*}
-        u(t)&=& e^{-at}\\ 
-        v(t) &=& \frac{du}{dt}
-        \end{eqnarray*}
-        !et
+        def func(x):
+            return x + 1  # with code in hint
 
-and results in
+.. --- end hint in exercise ---
+
+
+.. --- begin hint in exercise ---
+
+
+*Hint 2.* Second hint to subexercise a).
+.. --- end hint in exercise ---
+
+Filename: ``subexer_a.pdf``.
+
+
+.. --- begin answer of exercise ---
+
+*Answer.* Short answer to subexercise a).
+With math in answer: :math:`a=b`.
+.. --- end answer of exercise ---
+
+
+*b)* Here goes the text for subexercise b).
+
+
+Some math :math:`\cos^2 x + \sin^2 x = 1` written one a single line:
 
 
 .. math::
-        
-        u(t) &=  e^{-at}\\ 
-        v(t)  &=  \frac{du}{dt}
-        
+         \cos^2 x + \sin^2 x = 1 \thinspace .
 
 
-*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
-labels:
+.. --- begin hint in exercise ---
+
+
+*Hint.* A hint for this subexercise.
+.. --- end hint in exercise ---
+
+Filename: ``subexer_b.pdf``.
+
+
+.. --- begin solution of exercise ---
+
+*Solution.* Here goes the solution of this subexercise.
+.. --- end solution of exercise ---
+
+
+.. Closing remarks for this Exercise
+
+
+Remarks  (3)
+~~~~~~~~~~~~
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
+
+
+Some exercise without the "Exercise:" prefix
+--------------------------------------------
+
+.. Another minimalistic exercise
+
+
+Just some text. And some math saying that :math:`e^0=1` on a single line,
+to test that math block insertion is correct:
+
+
+.. math::
+         \exp{(0)} = 1 
+
+
+And a test that the code ``lambda x: x+2`` is correctly placed here:
 
 
 .. code-block:: text
 
 
-        !bt
-        \begin{eqnarray}
-        u(t)&=& e^{-at}
-        label{eq2c}\\ 
-        v(t) &=& \frac{du}{dt}
-        label{eq3c}
-        \end{eqnarray}
-        !et
+        lambda x: x+2
 
-and results in
 
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
+
+
+Example 2: Just an example
+--------------------------
+
+.. This example needs the --examples-as-exercises option, otherwise
+
+.. it is just typeset as it is written.
+
+
+
+*a)* What is the capital of Norway?
+
+*Answer.* Oslo.
+
+.. --- end exercise ---
+
+
+
+Here goes another section
+=========================
+
+With some text, before we continue with exercises.
+
+More Exercises
+==============
+
+
+
+.. --- begin exercise ---
+
+
+.. _exer:some:formula:
+
+Exercise 3: Make references to projects and problems
+----------------------------------------------------
+
+Pick a statement from :ref:`proj:circle1` or :ref:`demo:ex:1`
+and verify it.
+Filename: ``verify_formula.py``.
+
+.. --- end exercise ---
+
+
+
+
+
+.. --- begin exercise ---
+
+
+.. _exer:you:
+
+Project 3: References in a headings do not work well in sphinx
+--------------------------------------------------------------
+
+Refer to the previous exercise as :ref:`exer:some:formula`,
+the two before that as :ref:`demo:ex:2` and :ref:`proj:circle1`,
+and this one as :ref:`exer:you`.
+Filename: ``selc_composed.pdf``.
+
+.. --- end exercise ---
+
+
+
+References
+==========
+
+
+.. [Ref1]
+   **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
+   *International Journal of Applied Mechanics and Engineering*,
+   7(1),
+   pp. 187-204,
+   2002.
+.. [Ref2]
+   **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
+   *Advances in Water Resources*,
+   25,
+   pp. 1125-1146,
+   2002.
+.. [Ref3]
+   **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
+   *SIAM Journal of Scientific and Statistical Computing*,
+   15,
+   pp. 997-996,
+   1994.
+.. [Ref4]
+   **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
+   Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
+   edited by **H. P. Langtangen and A. Tveito**,
+   Springer,
+   2003.
+.. [Ref5]
+   **H. P. Langtangen**. The FEMDEQS Program System,
+   *Department of Mathematics, University of Oslo*,
+   1989.
+
+
+
+
+
+Appendix: Just for testing; part I
+==================================
+
+This is the first appendix.
+
+A subsection within an appendix
+-------------------------------
+
+Some text.
+
+Appendix: Just for testing; part II
+===================================
+
+This is more stuff for an appendix.
+
+Appendix: Testing identical titles  (1)
+---------------------------------------
+
+Without label.
+
+.. _test:title:id1:
+
+Appendix: Testing identical titles  (2)
+---------------------------------------
+
+With label.
+
+.. _test:title:id2:
+
+Appendix: Testing identical titles  (3)
+---------------------------------------
+
+With label.
+
+Appendix: Testing identical titles  (4)
+---------------------------------------
+
+Without label.
+
+
+.. hint::
+   Here is a hint.
+
+
+.. warning::
+    And here is a warning about something to pay attention to. We
+    test how the heading behave and add quite some extra texts
+    in comparison with the other admons.
+    
+      * and a list
+    
+      * with items
+
+.. important::
+   **Bold remark:** Make some text with this summary.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+   Much testing in this document, otherwise stupid content.
+
+.. note::
+   Ah, we are close to the end.
+   With math:
 
 .. math::
-        
-        u(t) &=  e^{-at} \\ 
-        v(t)  &=  \frac{du}{dt} 
-        
-
-Can we refer to the last equations as the system :eq:`eq2c`-:eq:`eq3c`?
-
-Note: Doconce takes the eqnarray with labels and replaces it automatically
-by the Sphinx code
+         p=q
 
 
-.. code-block:: rst
 
-        .. math::
-        
-                u(t) &=  e^{-at} \\ 
-                v(t)  &=  \frac{du}{dt}
+.. attention::
+   So, how many admonition environments does Doconce support?
 
-That is why the equation numbers are gone and that eqnarray seemingly
-works. MathJax does not support eqnarray with labels so Sphinx would
-probably fail to show them (unless one tries PNG images or other
-math engines?).
+Appendix: Testing inline comments
+---------------------------------
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. (**hpl**: not sure if in the cloud is understood by all.) I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files is Dropbox. (**mp**: Simply
+go to `<http://dropbox.com>`_ and watch the video.) It is very easy to get
+started with Dropbox, and it allows you to share files among
+laptops and mobile units.
+
+When several people may edit files simultaneously, it can be difficult
+detect who did what when, roll back to previous versions, and to
+manually merge the edits when these are incompatible. Then one needs
+more sophisticated tools than Dropbox: project hosting services with
+true version control systems.  (**hpl**: The following text aims at providing
+you with the minimum information to started with such
+systems. Numerous other tutorials contain more comprehensive material
+and in-depth explanations of the concepts and tools.)
+
+Appendix: Testing headings ending with ``verbatim inline``
+----------------------------------------------------------
+
+The point here is to test 1) ``verbatim`` code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
 
 ************** File: tmp_Doconce.do.txt *****************
 
@@ -30374,7 +32867,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 12 Mar 2013 (00:29)</center>
+<center>Sat, 23 Mar 2013 (01:59)</center>
 
 
 
@@ -30505,7 +32998,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 12 Mar 2013 (00:29)</center>
+<center>Sat, 23 Mar 2013 (01:59)</center>
 
 
 
@@ -30732,7 +33225,7 @@ cp quickref.gwiki ../../../doconce.wiki/Quickref.wiki
 
 ************** File: quickref.do.txt *****************
 TITLE: Doconce Quick Reference
-AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
+AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
 DATE: today
 TOC: on
 
@@ -30807,7 +33300,7 @@ and an optional table of contents
 reads
 !bc
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -30816,11 +33309,12 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 !bc
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 !ec
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the `&` keyword
+separates the institutions (the keyword `and` works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -31668,8 +34162,8 @@ MathJax.Hub.Config({
 <p>
 <!-- institution(s) -->
 
-<center>[1] <b>Simula Research Laboratory</b></center>
-<center>[2] <b>University of Oslo</b></center>
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
@@ -31788,7 +34282,7 @@ and an optional table of contents
 reads
 <!-- begin verbatim block -->
 <pre><code>TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory &amp; Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -31798,12 +34292,13 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 <!-- begin verbatim block -->
-<pre><code>name Email: somename@adr.net at institution1 and institution2
+<pre><code>name Email: somename@adr.net at institution1 &amp; institution2
 </code></pre>
 <!-- end verbatim block -->
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the <code>&</code> keyword
+separates the institutions (the keyword <code>and</code> works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -32528,7 +35023,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
@@ -32834,7 +35332,7 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
@@ -32858,19 +35356,11 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
-10pt]{book}
-% #else
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -32882,7 +35372,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -33004,7 +35494,7 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
-\author{Hans Petter Langtangen\footnote{Simula Research Laboratory and University of Oslo.}}
+\author{Hans Petter Langtangen\footnote{Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}}
 
 % #elif LATEX_HEADING == "titlepage"
 \vspace{1.3cm}
@@ -33013,14 +35503,14 @@ final,                   % or draft (marks overfull hboxes)
     
 \ \\ [2mm]
 
-{\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
-{\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
 % #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen}
 % Short version of authors:
 %\authorrunning{...}
-\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
+\institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
 
 % #else
 
@@ -33030,8 +35520,8 @@ final,                   % or draft (marks overfull hboxes)
 
 \begin{center}
 % List of all institutions:
-\centerline{{\small ${}^1$Simula Research Laboratory}}
-\centerline{{\small ${}^2$University of Oslo}}
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
@@ -33165,7 +35655,7 @@ and an optional table of contents
 reads
 \bccq
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -33174,11 +35664,12 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 \bccq
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 \eccq
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the \code{&} keyword
+separates the institutions (the keyword \code{and} works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -33811,7 +36302,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
@@ -34193,7 +36687,7 @@ reads::
 
 
         TITLE: On an Ultimate Markup Language
-        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
@@ -34203,11 +36697,12 @@ The entire title must appear on a single line.
 The author syntax is::
 
 
-        name Email: somename@adr.net at institution1 and institution2
+        name Email: somename@adr.net at institution1 & institution2
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the ``&`` keyword
+separates the institutions (the keyword ``and`` works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -34844,7 +37339,10 @@ list of capabilities::
         doconce bbl2rst file.bbl
         
         # split a sphinx/rst file into parts
-        doconce split_rst complete_file.rst
+        doconce format sphinx complete_file
+        doconce split_rst complete_file        # !split delimiters
+        doconce sphinx_dir complete_file
+        python automake_sphinx.py
         
         # edit URLs to local files and place them in _static
         doconce sphinxfix_local_URLs file.rst
@@ -35209,7 +37707,7 @@ reads
 
 
         TITLE: On an Ultimate Markup Language
-        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
@@ -35221,11 +37719,12 @@ The author syntax is
 .. code-block:: text
 
 
-        name Email: somename@adr.net at institution1 and institution2
+        name Email: somename@adr.net at institution1 & institution2
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the ``&`` keyword
+separates the institutions (the keyword ``and`` works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -35912,7 +38411,10 @@ list of capabilities:
         doconce bbl2rst file.bbl
         
         # split a sphinx/rst file into parts
-        doconce split_rst complete_file.rst
+        doconce format sphinx complete_file
+        doconce split_rst complete_file        # !split delimiters
+        doconce sphinx_dir complete_file
+        python automake_sphinx.py
         
         # edit URLs to local files and place them in _static
         doconce sphinxfix_local_URLs file.rst
@@ -36271,7 +38773,7 @@ and an optional table of contents
 reads
 {{{
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -36280,11 +38782,12 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 {{{
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 }}}
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the `&` keyword
+separates the institutions (the keyword `and` works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -36851,7 +39354,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
@@ -37177,7 +39683,7 @@ and an optional table of contents
 reads
 <syntaxhighlight lang="text">
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -37186,11 +39692,12 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 <syntaxhighlight lang="text">
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 </syntaxhighlight>
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the <code>&</code> keyword
+separates the institutions (the keyword <code>and</code> works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -37795,7 +40302,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
@@ -38131,7 +40641,7 @@ and an optional table of contents
 reads
 {{{
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -38140,11 +40650,12 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 {{{
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 }}}
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the {{{&}}} keyword
+separates the institutions (the keyword {{{and}}} works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -38713,7 +41224,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
@@ -38959,7 +41473,7 @@ examine the Doconce source and the {{{doc/src/make.sh}}} script).
 
 ************** File: quickref.st *****************
 TITLE: Doconce Quick Reference
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
 DATE: Jan 32, 2100
 **WARNING: This quick reference is very incomplete!**
 
@@ -39033,7 +41547,7 @@ reads::
 
 
         TITLE: On an Ultimate Markup Language
-        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
@@ -39043,11 +41557,12 @@ The entire title must appear on a single line.
 The author syntax is::
 
 
-        name Email: somename@adr.net at institution1 and institution2
+        name Email: somename@adr.net at institution1 & institution2
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the '&' keyword
+separates the institutions (the keyword 'and' works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -39639,7 +42154,10 @@ list of capabilities::
         doconce bbl2rst file.bbl
         
         # split a sphinx/rst file into parts
-        doconce split_rst complete_file.rst
+        doconce format sphinx complete_file
+        doconce split_rst complete_file        # !split delimiters
+        doconce sphinx_dir complete_file
+        python automake_sphinx.py
         
         # edit URLs to local files and place them in _static
         doconce sphinxfix_local_URLs file.rst
@@ -39888,7 +42406,7 @@ Resources
 
 ************** File: quickref.epytext *****************
 TITLE: Doconce Quick Reference
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
 DATE: Jan 32, 2100
 B{WARNING: This quick reference is very incomplete!}
 
@@ -39965,7 +42483,7 @@ reads::
 
 
         TITLE: On an Ultimate Markup Language
-        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
@@ -39975,11 +42493,12 @@ The entire title must appear on a single line.
 The author syntax is::
 
 
-        name Email: somename@adr.net at institution1 and institution2
+        name Email: somename@adr.net at institution1 & institution2
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the C{&} keyword
+separates the institutions (the keyword C{and} works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -40590,7 +43109,10 @@ list of capabilities::
         doconce bbl2rst file.bbl
         
         # split a sphinx/rst file into parts
-        doconce split_rst complete_file.rst
+        doconce format sphinx complete_file
+        doconce split_rst complete_file        # !split delimiters
+        doconce sphinx_dir complete_file
+        python automake_sphinx.py
         
         # edit URLs to local files and place them in _static
         doconce sphinxfix_local_URLs file.rst
@@ -40823,8 +43345,8 @@ Doconce Quick Reference
 
 Hans Petter Langtangen [1, 2] 
 
-[1] Simula Research Laboratory
-[2] University of Oslo
+[1] Center for Biomedical Computing, Simula Research Laboratory
+[2] Department of Informatics, University of Oslo
 
 Date: Jan 32, 2100
 
@@ -40941,7 +43463,7 @@ reads::
 
 
         TITLE: On an Ultimate Markup Language
-        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
@@ -40951,11 +43473,12 @@ The entire title must appear on a single line.
 The author syntax is::
 
 
-        name Email: somename@adr.net at institution1 and institution2
+        name Email: somename@adr.net at institution1 & institution2
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the & keyword
+separates the institutions (the keyword and works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -41579,7 +44102,10 @@ list of capabilities::
         doconce bbl2rst file.bbl
         
         # split a sphinx/rst file into parts
-        doconce split_rst complete_file.rst
+        doconce format sphinx complete_file
+        doconce split_rst complete_file        # !split delimiters
+        doconce sphinx_dir complete_file
+        python automake_sphinx.py
         
         # edit URLs to local files and place them in _static
         doconce sphinxfix_local_URLs file.rst
@@ -41848,7 +44374,7 @@ Resources
 
 ************** File: quickref.md *****************
 % Doconce Quick Reference
-% Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
+% Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 % Jan 32, 2100
 
 <!-- Table of contents: Run pandoc with --toc option -->
@@ -41938,7 +44464,7 @@ reads
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -41949,12 +44475,13 @@ The entire title must appear on a single line.
 The author syntax is
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the `&` keyword
+separates the institutions (the keyword `and` works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -42598,7 +45125,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst
@@ -43320,10 +45850,13 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
+Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + cp testdoc.p.tex testdoc_no_solutions.p.tex
 + cp -r ../bundled/html_styles/style_vagrant .
++ doconce replace css/ style_vagrant/css/ style_vagrant/template_vagrant.html
+replacing css/ by style_vagrant/css/ in style_vagrant/template_vagrant.html
 + doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
@@ -43386,6 +45919,9 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_vagrant.html
++ doconce split_html testdoc_vagrant.html
+testdoc_vagrant.html now links to the generated files
+._part0000_testdoc_vagrant.html, ._part0001_testdoc_vagrant.html, ._part0002_testdoc_vagrant.html
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
@@ -43473,7 +46009,7 @@ Other Publications:                 1
 Total:                              16
 
 Exported 16 paper(s) to papers.bib.
-running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR=True testdoc.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR="True" testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'latex'}
 translating preprocessed doconce text in __tmp.do.txt to latex
@@ -43530,6 +46066,7 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
+Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
@@ -43612,6 +46149,7 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 exporting publish database papers.pub to papers.bib:
 *** warning: --latex-double-hyphen may lead to unwanted edits.
              search for all -- in the .p.tex file and check.
+Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce latex_exercise_toc testdoc
@@ -43635,6 +46173,7 @@ replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
 + doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
 replacing --examples-as--exercises by --examples-as-exercises in testdoc.p.tex
 + ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
+using local config file .ptex2tex.cfg
 running preprocessor on testdoc.p.tex...  defines: 'TODONOTES', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15'  done
 done testdoc.p.tex -> testdoc.tex
 + [ 0 -ne 0 ]
@@ -43827,7 +46366,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-168.
+167.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -43844,14 +46383,14 @@ LaTeX Warning: Reference `subsubsec:ex' on page 3
 
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg [3])
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
-[4]
+[4] (./testdoc.out.pyg)
 
 LaTeX Warning: Reference `fig:impact' on page 5 
 
 <../doc/manual/figs/streamtubes.png, id=61, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (21.80258pt too wide) 
@@ -43918,31 +46457,31 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 709.
+t line 721.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 710.
+ine 722.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-13.
+25.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 714.
+ 726.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-16.
+28.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 718.
+t line 730.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 718.
+ 730.
 
 [11]
 Overfull \hbox (5.05241pt too wide) 
@@ -43967,8 +46506,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 84
-0.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 85
+2.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -44000,11 +46539,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 866.
+ 878.
 
 [13] (./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1227
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1239
 .
 
 
@@ -44016,13 +46555,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 17
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1244.
+ 1256.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1245
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1257
 .
 
 
@@ -44034,7 +46573,7 @@ LaTeX Warning: Reference `exer:you' on page 17
 <use latex_figs/warning.pdf>
 
 Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1338.
+put line 1350.
 
 
 Underfull \hbox (badness 1297) 
@@ -44050,19 +46589,19 @@ Overfull \hbox (11.33333pt too wide)
 [][][][][][][] 
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-49.
+61.
 
 <latex_figs/notice.pdf, id=320, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
+73.
 
 <latex_figs/question.pdf, id=321, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-64.
+76.
 
 [18 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/notice.pdf
 > <./latex_figs/question.pdf>]
@@ -44195,6 +46734,7 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
@@ -44474,10 +47014,11 @@ nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+(./testdoc.out.pyg)
 <../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (21.80258pt too wide) 
@@ -44550,7 +47091,7 @@ Package amsmath Warning: Foreign command \over;
 <use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
 
 Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1338.
+put line 1350.
 
 
 Underfull \hbox (badness 1297) 
@@ -44566,19 +47107,19 @@ Overfull \hbox (11.33333pt too wide)
 [][][][][][][] 
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-49.
+61.
 
 <latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
+73.
 
 <latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-64.
+76.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -44712,6 +47253,7 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
@@ -44994,10 +47536,11 @@ nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+(./testdoc.out.pyg)
 <../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (21.80258pt too wide) 
@@ -45070,7 +47613,7 @@ Package amsmath Warning: Foreign command \over;
 <use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
 
 Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1338.
+put line 1350.
 
 
 Underfull \hbox (badness 1297) 
@@ -45086,19 +47629,19 @@ Overfull \hbox (11.33333pt too wide)
 [][][][][][][] 
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-49.
+61.
 
 <latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
+73.
 
 <latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-64.
+76.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -45232,6 +47775,7 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
@@ -45499,10 +48043,11 @@ nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
+(./testdoc.out.pyg)
 <../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (21.80258pt too wide) 
@@ -45575,7 +48120,7 @@ Package amsmath Warning: Foreign command \over;
 <use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
 
 Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1338.
+put line 1350.
 
 
 Underfull \hbox (badness 1297) 
@@ -45591,19 +48136,19 @@ Overfull \hbox (11.33333pt too wide)
 [][][][][][][] 
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-49.
+61.
 
 <latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
+73.
 
 <latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-64.
+76.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -45731,6 +48276,7 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
  testdoc.out.pyg
@@ -46016,6 +48562,89 @@ label{eq2a}
 output in testdoc.rst
 + [ 0 -ne 0 ]
 + mv -f testdoc.rst testdoc.sphinx.rst
++ doconce format sphinx testdoc --examples-as-exercises
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
+running mako on __tmp.do.txt to make __tmp.do.txt
+translating preprocessed doconce text in __tmp.do.txt to sphinx
+
+FIX: multi-line caption
+
+ Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
+
+-- fixed to one line
+
+FIX: multi-line caption
+
+ A long
+caption spanning
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
+
+-- fixed to one line
+
+FIX: FIGURE not at the beginning of the line - 1 fixes
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
+
+
+FIX: MOVIE not at the beginning of the line - 1 fixes
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). label{mymov} 
+
+
+FIX: !bhint not at the beginning of the line - 1 fixes
+  !bhint
+
+
+FIX: !ehint not at the beginning of the line - 1 fixes
+  !ehint
+
+
+*** The total of 6 fixes above should be incorporated in the file!
+
+
+
+*** warning:
+Not recommended for sphinx output: math environment {eqnarray}
+(use equation, equation*, \[ \], or align/align*)
+Not recommended for sphinx output: math environment {multline}
+Not recommended for sphinx output: math environment {gather}
+*** warning: hyperlink to URL testdoc.do.txt is to a local file,
+  - should be _static/testdoc.do.txt for sphinx.
+Move files to _static and change URLs!
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open the solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
+found info about 9 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format sphinx
+
+Warning: the "alignat" environment will give errors in Sphinx:
+
+        \begin{alignat}{2}
+        a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0  \\ 
+        b &= \nabla^2 u + \nabla^4 x & x\in\Omega 
+        \end{alignat}
+
+
+
+Detected non-align equation systems with multiple labels
+(that Sphinx will not handle - labels will be removed
+and references to them will be empty):
+label{eq1a}
+label{eq2a}
+
+output in testdoc.rst
++ doconce split_rst testdoc
+testdoc split into
+._part0000_testdoc.rst ._part0001_testdoc.rst ._part0002_testdoc.rst
 + doconce sphinx_dir author=HPL title=Just a test version=0.1 theme=agni testdoc
 Making sphinx-rootdir
 Welcome to the Sphinx 1.2pre quickstart utility.
@@ -46443,8 +49072,8 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format ipynb
 output in testdoc.ipynb
 + [ 0 -ne 0 ]
-+ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --no-preprocess --examples-as-exercises
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
++ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --examples-as-exercises
+running preprocess -DFORMAT=gwiki -DDEVICE=screen -DMYVAR1="3" -DMYVAR2="a string" testdoc.do.txt > __tmp.do.txt
 running mako on __tmp.do.txt to make __tmp.do.txt
 mako variables: {'DEVICE': 'screen', 'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translating preprocessed doconce text in __tmp.do.txt to gwiki
@@ -46518,18 +49147,6 @@ NOTE: Place ../doc/manual/figs/wavepacket_0001.png at some place on the web and 
 
 
 NOTE: Place https://doconce.googlecode.com/hg/doc/blog/f_plot.png at some place on the web and edit the
-      .gwiki page, either manually (seach for 'Figure: ')
-      or use the doconce script:
-      doconce gwiki_figsubst.py mydoc.gwiki URL
-
-
-NOTE: Place testfigs/df_plot.png at some place on the web and edit the
-      .gwiki page, either manually (seach for 'Figure: ')
-      or use the doconce script:
-      doconce gwiki_figsubst.py mydoc.gwiki URL
-
-
-NOTE: Place testfigs/df2s8765s_plot.png at some place on the web and edit the
       .gwiki page, either manually (seach for 'Figure: ')
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
@@ -46614,6 +49231,7 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
+Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
@@ -46626,6 +49244,7 @@ output in testdoc.p.tex
 \bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bhtmlcod (!bc htmlcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 output in testdoc.tex
 + [ 0 -ne 0 ]
 + doconce replace \Verb! \verb! testdoc.tex
@@ -46720,10 +49339,10 @@ run
   sh tmp_slides_html_all.sh
 to generate the slides
 + [ 0 -ne 0 ]
-+ doconce grab --from- ={5} Subsection 1 --to subroutine@ testdoc.do.txt
++ doconce grab --from- ={5} Subsection 1 --to subroutine@ _testdoc.do.txt
 + [ 0 -ne 0 ]
-+ doconce grab --from Compute a Probability --to- drawing uniformly testdoc.do.txt
-+ doconce grab --from- \*\s+\$.+normally testdoc.do.txt
++ doconce grab --from Compute a Probability --to- drawing uniformly _testdoc.do.txt
++ doconce grab --from- \*\s+\$.+normally _testdoc.do.txt
 + doconce format html html_template --html-template=template1.html --no-pygments-html
 translating doconce text in html_template.do.txt to html
 output in html_template.html
@@ -46957,11 +49576,17 @@ translating doconce text in tmp2.do.txt to rst
 Syntax error: Line before list, !bc, !bt or @@@CODE block is a comment line
 which will "swallow" the block in reST format.
 Insert some extra line (text) to separate the two elements.
-# Comment before math
-!bt
-\begin{align}
-a &= b,  label{eq1}\\
-a &= b,  label{eq2
+
+# Comment before list
+
+ * A1
+ * A2
+
+Normal text.
+
+
+
+
 Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce replace streamtubes width streamtubes,  width tmp2.do.txt
 replacing streamtubes width by streamtubes,  width in tmp2.do.txt
@@ -46971,11 +49596,17 @@ translating doconce text in tmp2.do.txt to rst
 Syntax error: Line before list, !bc, !bt or @@@CODE block is a comment line
 which will "swallow" the block in reST format.
 Insert some extra line (text) to separate the two elements.
-# Comment before math
-!bt
-\begin{align}
-a &= b,  label{eq1}\\
-a &= b,  label{eq2
+
+# Comment before list
+
+ * A1
+ * A2
+
+Normal text.
+
+
+
+
 Abort! (add --no-abort on the command line to avoid this abortion)
 + doconce replace # Comment before math  tmp2.do.txt
 replacing # Comment before math by  in tmp2.do.txt
@@ -47004,6 +49635,8 @@ translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in tmp2.rst
++ echo Successful run of test/make.sh
+Successful run of test/make.sh
 
 + sh ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/quickref:
@@ -47138,7 +49771,7 @@ Underfull \hbox (badness 2564)
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 662
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 664
 .
 
 [9]
@@ -47489,11 +50122,6 @@ Transcript written on quickref.log.
 + doconce format sphinx quickref --no-preprocess
 running mako on quickref.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to sphinx
-*** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
-  - should be _static/testdoc.html#___sec2 for sphinx.
-*** warning: hyperlink to URL testdoc.html is to a local file,
-  - should be _static/testdoc.html for sphinx.
-Move files to _static and change URLs!
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 + rm -rf sphinx-rootdir
@@ -47552,8 +50180,9 @@ source files. Use the Makefile to build the docs, like so:
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 searching for TITLE in quickref.do.txt
-Using title "Doconce Quick Reference" from quickref.do.txt
-title: Doconce Quick Reference
+Using title "Doconce Quick Reference" from quickref
+Using title "On an Ultimate Markup Language" from quickref
+title: On an Ultimate Markup Language
 author: HPL
 theme: default
 These Sphinx themes were found: ADCtheme, agni, agogo, basic, basicstrap, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scipy_lectures, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
@@ -47567,15 +50196,6 @@ or just run it by
 + doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake_sphinx.py
 replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake_sphinx.py
 + python automake_sphinx.py
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to sphinx
-*** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
-  - should be _static/testdoc.html#___sec2 for sphinx.
-*** warning: hyperlink to URL testdoc.html is to a local file,
-  - should be _static/testdoc.html for sphinx.
-Move files to _static and change URLs!
-copy complete file doconce_program.sh  (format: shpro)
-output in quickref.rst
 rm -rf _build/*
 sphinx-build -b html -d _build/doctrees   . _build/html
 Making output directory...
@@ -47604,12 +50224,6 @@ Build finished. The HTML pages are in _build/html.
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in quickref.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in genindex.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in index.html
-
-
-
-doconce format sphinx quickref --no-preprocess 
-running doconce format sphinx quickref --no-preprocess 
-running doconce guess_encoding quickref.rst
 /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir
 running make clean
 running make html
@@ -47695,28 +50309,27 @@ Overfull \hbox (4.55762pt too wide)
 \T1/ptm/m/n/10 HTML. Other out-lets in-clude Google's \T1/pcr/m/n/10 blogger.co
 m\T1/ptm/m/n/10 , Wikipedia/Wikibooks, IPython
  [1]
-Overfull \hbox (467.00006pt too wide) 
+Overfull \hbox (455.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
-imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
+imula Research Laboratory & Dept. of Informatics, Univ. of Oslo  
 
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (71.00006pt too wide) 
-[]\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
+Overfull \hbox (59.00006pt too wide) 
+[]\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 & institution2 
 
-
-Overfull \hbox (4.50082pt too wide) in alignment at lines 338--346
+Overfull \hbox (4.50082pt too wide) in alignment at lines 339--347
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 346--354
+Overfull \hbox (4.50082pt too wide) in alignment at lines 347--355
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 354--356
+Overfull \hbox (4.50082pt too wide) in alignment at lines 355--357
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 356--357
+Overfull \hbox (4.50082pt too wide) in alignment at lines 357--358
  [] [] 
 
 Underfull \hbox (badness 10000) 
@@ -47734,7 +50347,7 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ===== Exercise: heading
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 357--418
+Overfull \hbox (4.50082pt too wide) in alignment at lines 358--419
  [] [] 
 [2]
 Overfull \hbox (15.61775pt too wide) 
@@ -47816,7 +50429,7 @@ Overfull \hbox (119.00006pt too wide)
 [8]
 
 LaTeX Warning: Hyper reference `section-types' on page 9 undefined on input lin
-e 963.
+e 964.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -47932,6 +50545,9 @@ Overfull \hbox (113.00006pt too wide)
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
 
+Overfull \hbox (53.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce split_rst complete_file        # !split delimiters  
+
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # edit URLs to local files and place them in _static  
 
@@ -47949,10 +50565,10 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
-
+[12]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
-[12]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
@@ -48130,28 +50746,27 @@ Overfull \hbox (4.55762pt too wide)
 \T1/ptm/m/n/10 HTML. Other out-lets in-clude Google's \T1/pcr/m/n/10 blogger.co
 m\T1/ptm/m/n/10 , Wikipedia/Wikibooks, IPython
 [1]  [2]
-Overfull \hbox (467.00006pt too wide) 
+Overfull \hbox (455.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
-imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
+imula Research Laboratory & Dept. of Informatics, Univ. of Oslo  
 
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (71.00006pt too wide) 
-[]\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
+Overfull \hbox (59.00006pt too wide) 
+[]\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 & institution2 
 
-
-Overfull \hbox (4.50082pt too wide) in alignment at lines 338--346
+Overfull \hbox (4.50082pt too wide) in alignment at lines 339--347
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 346--354
+Overfull \hbox (4.50082pt too wide) in alignment at lines 347--355
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 354--356
+Overfull \hbox (4.50082pt too wide) in alignment at lines 355--357
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 356--357
+Overfull \hbox (4.50082pt too wide) in alignment at lines 357--358
  [] [] 
 
 Underfull \hbox (badness 10000) 
@@ -48169,7 +50784,7 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ===== Exercise: heading
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 357--418
+Overfull \hbox (4.50082pt too wide) in alignment at lines 358--419
  [] [] 
 [3]
 Overfull \hbox (15.61775pt too wide) 
@@ -48362,6 +50977,9 @@ Overfull \hbox (113.00006pt too wide)
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
 
+Overfull \hbox (53.00006pt too wide) 
+[]\T1/pcr/m/n/10 doconce split_rst complete_file        # !split delimiters  
+
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # edit URLs to local files and place them in _static  
 
@@ -48379,10 +50997,10 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
-
+[13]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
-[13]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 

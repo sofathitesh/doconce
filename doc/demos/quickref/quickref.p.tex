@@ -16,7 +16,7 @@
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
 %%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
@@ -40,19 +40,11 @@
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
-10pt]{book}
-% #else
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -64,7 +56,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
@@ -186,7 +178,7 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
-\author{Hans Petter Langtangen\footnote{Simula Research Laboratory and University of Oslo.}}
+\author{Hans Petter Langtangen\footnote{Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}}
 
 % #elif LATEX_HEADING == "titlepage"
 \vspace{1.3cm}
@@ -195,14 +187,14 @@ final,                   % or draft (marks overfull hboxes)
     
 \ \\ [2mm]
 
-{\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
-{\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
 % #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen}
 % Short version of authors:
 %\authorrunning{...}
-\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
+\institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
 
 % #else
 
@@ -212,8 +204,8 @@ final,                   % or draft (marks overfull hboxes)
 
 \begin{center}
 % List of all institutions:
-\centerline{{\small ${}^1$Simula Research Laboratory}}
-\centerline{{\small ${}^2$University of Oslo}}
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
@@ -223,13 +215,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Mar 12, 2013}
+\date{Mar 23, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 12, 2013}}
+{\large\textsf{Mar 23, 2013}}
 
 \end{center}
 \vfill
@@ -238,7 +230,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Mar 12, 2013
+Mar 23, 2013
 \end{center}
 
 \vspace{1cm}
@@ -347,7 +339,7 @@ and an optional table of contents
 reads
 \bccq
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
@@ -356,11 +348,12 @@ TOC: on
 The entire title must appear on a single line.
 The author syntax is
 \bccq
-name Email: somename@adr.net at institution1 and institution2
+name Email: somename@adr.net at institution1 & institution2
 \eccq
 where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the "and" keyword
-separates the institutions. Each author specification must appear
+more institutions are to be specified, and the \code{&} keyword
+separates the institutions (the keyword \code{and} works too).
+Each author specification must appear
 on a single line.
 When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
@@ -993,7 +986,10 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 
 # split a sphinx/rst file into parts
-doconce split_rst complete_file.rst
+doconce format sphinx complete_file
+doconce split_rst complete_file        # !split delimiters
+doconce sphinx_dir complete_file
+python automake_sphinx.py
 
 # edit URLs to local files and place them in _static
 doconce sphinxfix_local_URLs file.rst

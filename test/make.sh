@@ -141,7 +141,7 @@ doconce format ipynb testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --no-preprocess --examples-as-exercises
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test pandoc: from latex to markdown, from markdown to html
@@ -180,10 +180,10 @@ doconce slides_html slides all
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test grab
-doconce grab --from- '={5} Subsection 1' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
+doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do.txt >> testdoc.tmp
-doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
+doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
+doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt >> testdoc.tmp
 
 # Test html templates
 doconce format html html_template --html-template=template1.html --no-pygments-html
@@ -285,5 +285,5 @@ doconce replace '# Comment before math' '' tmp2.do.txt
 doconce format rst tmp2
 doconce replace '# Comment before list' '' tmp2.do.txt
 doconce format rst tmp2
-
+echo "Successful run of test/make.sh"
 
