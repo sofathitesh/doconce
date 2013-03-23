@@ -3208,9 +3208,6 @@ def doconce_rst_split(parts, basename, filename):
         f = open(part_filename, 'w')
         f.write(''.join(part))
         f.close()
-        # let rst html file equals the first part
-        if pn == 0:
-            shutil.copy(part_filename, filename)
     return generated_files
 
 def _usage_list_labels():
