@@ -117,6 +117,8 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 mv -f testdoc.rst testdoc.sphinx.rst
 
+doconce format sphinx testdoc --examples-as-exercises
+doconce split_rst testdoc
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
