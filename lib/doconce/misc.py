@@ -4246,88 +4246,130 @@ def which(program):
                 break
     return program_path
 
+def subst_author_latex2doconce(m):
+    author_str = m.group('subst')
+    authors = author_str.split(r'\and')
+    # footnotes with institutions?
+    if r'\footnote{' in author_str:
+        institutions = ['']*len(authors)
+        for i, author in enumerate(authors):
+            if r'\footnote{' in author:
+                pattern = r'\footnote\{(.+?\}'
+                m2 = re.search(pattern, author)
+                if m2:
+                    institutions[i] = m2.group(1).strip()
+                    authors[i] = re.sub(pattern, '', authors[i])
+    authors = ['AUTHOR: %s' % a.strip() for a in authors]
+    for i in range(len(authors)):
+        if institutions[i] != '':
+            authors[i] += ' at ' + institutions[i]
+    return '\n'.join(authors)
+
 def latex2doconce():
+    """
+    Apply transformations to a latex file to help translate the
+    document into Doconce format.
+
+    Suggestions for preparations: avoid pageref, replace subfigures
+    by files combined to a single file, avoid footnotes, index inside
+    paragraphs, do not start code blocks with indentation, ...
+    """
+    print 'This is the result of the doconce latex2doconce program.'
+    print 'The translation from LaTeX is just a helper. The text must'
+    print 'be carefully examined! (Be prepared that some text might also'
+    print 'be lost in the translation - in seldom cases.)\n'
+
     filename = sys.argv[1]
     f = open(filename, 'r')
     filestr = f.read()
     f.close()
 
+    user_subst = []
+    user_replace = []
+    fixfile = 'doconce2latex_fix.py'
+    if os.path.isfile(fixfile):
+        # fixfile must contain subst and replace, to be
+        # applied _after_ the general subst and replace below
+        f = open(fixfile)
+        exec(f.read())
+        f.close()
+        try:
+            user_subst = subst
+            user_replace = replace
+        except NameError, e:
+            print fixfile, 'does not contain subst and replace lists'
+            print e
+            sys.exit(1)
+        except Exception, e:
+            print fixfile, 'has errors'
+            print e
+            sys.exit(1)
+
     # cf. doconce.latex.fix_latex_command_regex to see how important
     # it is to quote the backslash correctly for matching, substitution
     # and output strings when using re.sub for latex text!
 
-    def subst_author(m):
-        author_str = m.group('subst')
-        authors = author_str.split(r'\and')
-        # footnotes with institutions?
-        if r'\footnote{' in author_str:
-            institutions = ['']*len(authors)
-            for i, author in enumerate(authors):
-                if r'\footnote{' in author:
-                    pattern = r'\footnote\{(.+?\}'
-                    m2 = re.search(pattern, author)
-                    if m2:
-                        institutions[i] = m2.group(1).strip()
-                        authors[i] = re.sub(pattern, '', authors[i])
-        authors = ['AUTHOR: %s' % a.strip() for a in authors]
-        for i in range(len(authors)):
-            if institutions[i] != '':
-                authors[i] += ' at ' + institutions[i]
-        return '\n'.join(authors)
 
-    subst = dict(
-    author=(r'\\author\{(?P<subst>.+)\}', subst_author),
-    title=(r'\\title\{(?P<subst>.+)\}', r'TITLE: \g<subst>'),
-    section=(r'\\section\*?\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
-    subsection=(r'\\subsection\*?\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
-    subsubsection=(r'\\subsubsection\*?\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
-    paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
-    emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
-    em=(r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
-    ##ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'), # gives tab hinspace .
-    #ep1=(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
-    #ep2=(r'\ep\n', r' \\thinspace .\n'),
-    #ep3=(r'\ep\s*\\\]', r' \\thinspace . \]'),
-    #ep4=(r'\ep\s*\\e', r' \\thinspace . \e'),
-    #ep5=(r'\\thinspace', 'thinspace'),
-    bf1=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
-    bf2=(r'\\textbf\{.+?)\}', r'_\g<subst>_'),
-    eqref=(r'\\eqref\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
-    label_space=(r'(\S)\\label\{', r'\g<1> \\label{'),
-    idx_space=(r'(\S)\\idx(.?)\{', r'\g<1> \\idx\g<2>{'),
-    index_space=(r'(\S)\\index\{', r'\g<1> \\index{'),
-    label=(r'\\label\{(?P<subst>.+?)\}', r'label{\g<subst>}'),
-    index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
-        # hpl specific things:
-    code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
-    emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
-    codett=(r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
-    idx=(r'\\idx\{(?P<subst>.+?)\}', r'idx{`\g<subst>`}'),
-    idxf=(r'\\idxf\{(?P<subst>.+?)\}', r'idx{`\g<subst>` function}'),
-    idxs=(r'\\idxs\{(?P<subst>.+?)\}', r'idx{`\g<subst>` script}'),
-    idxp=(r'\\idxp\{(?P<subst>.+?)\}', r'idx{`\g<subst>` program}'),
-    idxc=(r'\\idxc\{(?P<subst>.+?)\}', r'idx{`\g<subst>` class}'),
-    idxm=(r'\\idxm\{(?P<subst>.+?)\}', r'idx{`\g<subst>` module}'),
-    idxnumpy=(r'\\idxnumpy\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `numpy`)}'),
-    idxst=(r'\\idxst\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `scitools`)}'),
-    idxfn=(r'\\idxfn\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (FEniCS)}'),
-        # should not be relevant because of earlier replacements
-    para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
-    refeq=(r'\\refeq\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
-    )
-
-    for item in subst:
-        if len(subst[item]) == 2:
-            pattern, replacement = subst[item]
-            cpattern = re.compile(pattern)
-        elif len(subst[item]) == 3:
-            pattern, replacement, flags = subst[item]
-            cpattern = re.compile(pattern, flags)
-        if cpattern.search(filestr):
-            print 'substituting', item, subst[item][0]
-            filestr = cpattern.sub(replacement, filestr)
-        else:
-            print 'no occurence of', item, subst[item][0]
+    subst = [
+                    # hpl specific things:
+    #(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'), # gives tab hinspace .
+    #(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
+    #(r'\ep\n', r' \\thinspace .\n'),
+    #(r'\ep\s*\\\]', r' \\thinspace . \]'),
+    #(r'\ep\s*\\e', r' \\thinspace . \e'),
+    #(r'\\thinspace', 'thinspace'),
+    (r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    (r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    (r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    (r'\{\\rm\\texttt\{(?P<subst>[^}]+)\}\}', r'`\g<subst>`'),
+    (r'\\idx\{(?P<subst>.+?)\}', r'idx{`\g<subst>`}'),
+    (r'\\idxf\{(?P<subst>.+?)\}', r'idx{`\g<subst>` function}'),
+    (r'\\idxs\{(?P<subst>.+?)\}', r'idx{`\g<subst>` script}'),
+    (r'\\idxp\{(?P<subst>.+?)\}', r'idx{`\g<subst>` program}'),
+    (r'\\idxc\{(?P<subst>.+?)\}', r'idx{`\g<subst>` class}'),
+    (r'\\idxm\{(?P<subst>.+?)\}', r'idx{`\g<subst>` module}'),
+    (r'\\idxnumpy\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `numpy`)}'),
+    (r'\\idxst\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `scitools`)}'),
+    (r'\\idxfn\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (FEniCS)}'),
+    (r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+    (r'\\refeq\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+    (r'^\bpy\s+', r'\bipy' + '\n', re.MULTILINE),
+    (r'^\epy\s+', r'\eipy' + '\n', re.MULTILINE),
+                    # general latex constructions
+    (r'\\author\{(?P<subst>.+)\}', subst_author_latex2doconce),
+    (r'\\title\{(?P<subst>.+)\}', r'TITLE: \g<subst>'),
+    (r'\\section\*?\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
+    (r'\\subsection\*?\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
+    (r'\\subsubsection\*?\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
+    (r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+    (r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
+    (r'\\texttt\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+    (r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
+    (r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
+    (r'\\textbf\{(?P<subst>.+?)\}', r'_\g<subst>_'),
+    (r'\\eqref\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+    (r'(\S)\\label\{', r'\g<1> \\label{'),
+    (r'(\S)\\idx(.?)\{', r'\g<1> \\idx\g<2>{'),
+    (r'(\S)\\index\{', r'\g<1> \\index{'),
+    (r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
+    ] + user_subst
+    try:
+        for item in subst:
+            if len(item) == 2:
+                pattern, replacement = item
+                cpattern = re.compile(pattern)
+            elif len(item) == 3:
+                pattern, replacement, flags = item
+                cpattern = re.compile(pattern, flags)
+            if cpattern.search(filestr):
+                #print 'substituting', item, item[0]
+                filestr = cpattern.sub(replacement, filestr)
+            else:
+                #print 'no occurence of', item, item[0]
+                pass
+    except Exception, e:
+        print 'pattern: %s, replacement: %s' % (pattern, replacement)
+        raise e
 
     replace = [
         # make sure \beqan comes before \beqa and \beq in replacements...
@@ -4359,16 +4401,21 @@ def latex2doconce():
         ("Sec.~", "Section "),
         ("Fig.~", "Figure "),
         ("Tab.~", "Table "),
-        ]
+        ] + user_replace
 
     # Pure string replacements:
     for from_, to_ in replace:
         if from_ in filestr:
             if filestr != filestr.replace(from_, to_):
                 filestr = filestr.replace(from_, to_)
-                print '   ....replacing', from_
+                #print '   ....replacing', from_
 
-    # problems:
+    # Add extra line after label after section
+    filestr = re.sub(r'(==={3,9}\n\\label\{.+?\}) *\n(\w)',
+                     r'\g<1>\n\n\g<2>', filestr)
+
+    # problems (cannot understand this code...):
+    """
     problems = [
         r'\Sindex\{',
         r'\Sidx.?\{',
@@ -4378,18 +4425,55 @@ def latex2doconce():
         p = re.findall(problem, filestr)
         if len(p) > 0:
             print 'PROBLEM:', problem, '\n', p
+    """
+
+    math_envirs = 'equation', 'eqnarray', 'eqnarray*', 'align', 'align*', 'equation*'
+    math_starters = [r'\begin{%s}' % envir for envir in math_envirs]
+    math_starters.append(r'\[')
+    math_enders = [r'\end{%s}' % envir for envir in math_envirs]
+    math_enders.append(r'\]')
+
+    # add !bt before and !et after math environments:
+    for e in math_starters:
+        filestr = filestr.replace(e, '\n!bt\n' + e)
+    for e in math_enders:
+        filestr = filestr.replace(e, e + '\n!et')
+
+    # ptex2tex code environments:
+    code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'rpy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
+    for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
+        for tp in 'cod', 'pro':
+            code_envirs.append(language + tp)
+
+    for e in code_envirs:
+        s = r'\b%s' % e
+        filestr = filestr.replace(s, '\n!bc ' + e)
+        s = r'\e%s' % e
+        filestr = filestr.replace(s, '!ec')
+
+    filestr = filestr.replace('bc rpy', 'bc sys')
+
+    # eqnarray -> align
+    filestr = filestr.replace(r'{eqnarray', '{align')
+    filestr = re.sub(r'&(\s*)=(\s*)&', '&\g<1>=\g<2>', filestr)
+    filestr = re.sub(r'&(\s*)\\approx(\s*)&', '&\g<1>\\approx\g<2>', filestr)
 
     # \item alone on line: join with next line (indentation is fixed later)
     filestr = re.sub(r'\\item\s+(\w)', r'\item \g<1>', filestr)
 
-    # process lists and comment lines:
+    # Process lists and comment lines
     inside_enumerate = False
     inside_itemize = False
+    inside_code = False
     lines = filestr.splitlines()
     for i in range(len(lines)):
-        if lines[i].lstrip().startswith('%'):
+        if lines[i].startswith('!bc'):
+            inside_code = True
+        if lines[i].startswith('!ec'):
+            inside_code = False
+        if not inside_code and lines[i].lstrip().startswith('%'):
             lines[i] = '# ' + lines[i].lstrip()[1:]
-        if '%' in lines[i]:
+        if not inside_code and '%' in lines[i]:
             w = lines[i].split('%')
             lines[i] = w[0] + '\n#' + ''.join(w[1:])
 
@@ -4425,148 +4509,206 @@ def latex2doconce():
 
     filestr = '\n'.join(newlines)
 
-    math_envirs = 'equation', 'eqnarray', 'eqnarray*', 'align', 'align*', 'equation*'
-    math_starters = [r'\begin{%s}' % envir for envir in math_envirs]
-    math_starters.append(r'\[')
-    math_enders = [r'\end{%s}' % envir for envir in math_envirs]
-    math_enders.append(r'\]')
+    # Exercises of the following particular format
+    pattern = re.compile(r'\\begin\{exercise\}\s*\\label\{(.*?)\}\s*\\exerentry\{(.*?)\}\s*$\s*(.+?)\\hfill\s*\$\\diamond\$\s*\\end\{exercise\}', re.DOTALL|re.MULTILINE)
+    filestr = pattern.sub(r'===== Exercise: \g<2> =====\n\label{\g<1>}\nfile=\n\n\g<3>\n', filestr)
 
-    # add !bt before and !et after math environments:
-    for e in math_starters:
-        filestr = filestr.replace(e, '\n!bt\n' + e)
-    for e in math_enders:
-        filestr = filestr.replace(e, e + '\n!et')
-
-    # ptex2tex code environments:
-    code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'rpy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
-    for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
-        for tp in 'cod', 'pro':
-            code_envirs.append(language + tp)
-
-    for e in code_envirs:
-        s = r'\b%s' % e
-        filestr = filestr.replace(s, '\n!bc ' + e)
-        s = r'\e%s' % e
-        filestr = filestr.replace(s, '!ec')
-
-    filestr = filestr.replace('bc rpy', 'bc sys')
-
-    # eqnarray -> align
-    filestr = filestr.replace(r'{eqnarray', '{align')
-    filestr = re.sub(r'&(\s*)=(\s*)&', '&\g<1>=\g<2>', filestr)
-
-    # exercises of the following particular format
-    pattern = re.compile(r'\\begin\{exercise\}\s*\label\{(.*?)\}\s*\\exerentry\{(.*?)\}\s*$\s*(.+?)\\hfill\s*\$\\diamond\$\s*\\end\{exercise\}', re.DOTALL|re.MULTILINE)
-    filestr = pattern.sub(r'===== \g<2> =====\n\label{\g<1>}\nfile=\n\n\g<3>\n', filestr)
-
-    # fix "Name of program file:" construction in exercises
+    # Fix "Name of program file:" construction in exercises
     lines = filestr.splitlines()
+    program_file = None
     for i in range(len(lines)-1, -1, -1):
         if 'Name of program file' in lines[i]:
             m = re.search(r'Name of program file:\s*`([^`]+?)`', lines[i])
             if m:
                 program_file = m.group(1)
-        if 'file=' in lines[i]:
-            if re.search(r'^file=$', lines[i]):
-                try:
-                    lines[i] = 'file=' + program_file
-                except:
-                    print 'Found file= without filename, but no "Name of program file" found after this construction'
-                    pass
+                lines[i] = ''
+        if lines[i] == 'file=':
+            if program_file is not None:
+                lines[i] = 'file=' + program_file
+                program_file = None
+            else:
+                # No "Name of program file" was found after last file=.
+                # This exercise does not have a program file specified.
+                lines[i] = ''
     filestr = '\n'.join(lines)
+
+    # Find subfigures (problems)
+    if filestr.count('\\subfigure{') > 0:
+        print 'found \\subfigure{...} - should be changed (combine individual'
+        print '      figure files into a single file; now subfigures are just removed)'
 
     # figures: psfig, group1: filename, group2: caption
     pattern = re.compile(r'\\begin{figure}.*?\psfig\{.*?=([^,]+).*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
     filestr = pattern.sub(r'FIGURE: [\g<1>, width=400] {{{{\g<2>}}}}', filestr)
     # figures: includegraphics, group1: width, group2: filename, group3: caption
     pattern = re.compile(r'\\begin{figure}.*?\includegraphics\[width=(.+?)\\linewidth\]\{(.+?)\}.*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
-    filestr = pattern.sub(r'FIGURE: [\g<2>, width=400, frac=\g<1>] {{{{\g<3>}}}}', filestr)
+    filestr = pattern.sub(r'FIGURE: [\g<2>, width=400 frac=\g<1>] {{{{\g<3>}}}}', filestr)
 
     captions = re.findall(r'\{\{\{\{(.*?)\}\}\}\}', filestr, flags=re.DOTALL)
     for caption in captions:
         orig_caption = caption
         # Add label to end of caption
-        pattern = r'(label\{.*?\})'
+        pattern = r'(\\label\{.*?\})'
         m = re.search(pattern, caption)
         if m:
             label = m.group(1)
             caption = caption.replace(label, '')
-            caption = caption + ' ' + label
+            caption = caption.strip() + ' ' + label
         # Make one line
         caption = ' '.join(caption.splitlines())
         filestr = filestr.replace('{{{{%s}}}}' % orig_caption, caption)
-
-    #filestr = filestr.replace(r'\label{', 'label{')  # done above
-    filestr = filestr.replace(r'\ref{', 'ref{')
-    filestr = filestr.replace(r'\cite{', 'cite{')
-    filestr = filestr.replace(r'\_', '_')
-    filestr = filestr.replace(r' -- ', ' - ')
-    filestr = filestr.replace(r'}--ref', '}-ref')
-    filestr = filestr.replace(r'~', ' ')
-
-    # Treat footnotes
-    pattern = r'\\footnote\{(.+?)\}\.'
-    filestr = re.sub(pattern, '. (\g<1>)', filestr, flags=re.DOTALL)
-    # Without final . means footnote in the middle of a sentence
-    pattern = r'\\footnote\{(.+?)\}([^.])'
-    filestr = re.sub(pattern, ' (FIX FOOTNOTE: \g<1>)\g<2>', filestr, flags=re.DOTALL)
 
     # Check idx{} inside paragraphs
     lines = filestr.splitlines()
     last_blank_line = -1
     pattern = r'idx\{.+?\}'
+    inside_code_or_math = False
     for i in range(len(lines)):
-        if lines[i].strip() == '':
+        if lines[i].startswith('!bc') or lines[i].startswith('!bt'):
+            inside_code_or_math = True
+        if lines[i].startswith('!ec') or lines[i].startswith('!et'):
+            inside_code_or_math = False
+        if lines[i].strip() == '' and not inside_code_or_math:
             last_blank_line = i
-        if 'idx{' in lines[i]:
-            # Check if we have only idx{} constructions on this line
+        if 'idx{' in lines[i] and i < len(lines)-1 \
+               and lines[i+1].strip() != '':
+            # idx on a line and next line is text
             line = re.sub(pattern, '', lines[i]).strip()
+            idx = re.findall(pattern, lines[i])
             if line != '':
                 # We have idx{} in the middle of a paragraph, try move
-                idx = re.findall(pattern, filestr)
                 lines[i] = line
-                lines[last_blank_line] = ' '.join(idx) + \
-                                         '\n' + lines[last_blank_line]
+            else:
+                lines[i] = '# REMOVE (there was just a single idx{...} on this line)'
+            lines[last_blank_line] = '\n' + ' '.join(idx) + \
+                                     ' ' + lines[last_blank_line]
+
     # Tables are difficult: require manual editing?
     inside_table = False
     new_lines = []
+    headings = []
+    nhlines = 0
+    align_headings = []
     for i in range(len(lines)):
-        if inside_table:
-            if '&' in lines[i]:
-                table_lines.append(lines[i])
-        else:
-            new_lines.append(lines[i])
-
-        if 'begin{table}' or 'begin{tabular}' in lines[i]:
+        if 'begin{table}' in lines[i] or 'begin{tabular}' in lines[i]:
             inside_table = True
             table_lines = []
             if '{tabular}{' in lines[i]:
                 align = lines[i].split('{tabular}{')[-1].split('}')[0]
+                align = align.replace('|', '')
             else:
                 align = None
-        if 'end{table}' or 'end{tabular}' in lines[i]:
+        if inside_table:
+            if '&' in lines[i]:
+                line = lines[i].replace('\\\\', '').strip()
+                if '\\hline' in line:
+                    line = line.replace('\\hline', '')
+                    nhlines += 1
+                if '\\multicolumn{' in line:
+                    m = re.findall(r'\\multicolumn\{\d+\}\{(.)\}\{(.+?)\}',
+                                   line)
+                    if m:
+                        headings = [heading for align_char, heading in m]
+                        align_headings = [align_char for align_char, heading in m]
+                        line = line.split('&')
+                        # Fill headings from right
+                        for j in range(len(line)):
+                            line[j] = ''
+                        for j, h in enumerate(reversed(headings)):
+                            line[len(line)-1-j] = h
+                        line = '&'.join(line)
+                table_lines.append(line)
+            else:
+                # \hline, end{table, caption
+                pass
+        else:
+            new_lines.append(lines[i])
+
+        if inside_table and ('end{table}' in lines[i] or 'end{tabular}' in lines[i]):
             inside_table = False
             if table_lines:
                 max_column_width = 0
+                num_columns = 0
                 for j in range(len(table_lines)):
                     columns = [s.strip()
                                for s in table_lines[j].split('&')]
-                    table_lines[j] = column
-                    max_column_with = max([max_column_width] + \
-                                          [len(c) for c in columns])
+                    max_column_width = max([max_column_width] + \
+                                           [len(c) for c in columns])
+                    num_columns = max(num_columns, len(columns))
+                    table_lines[j] = columns
+                max_column_width += 2   # add space before/after widest column
                 # Construct doconce table
-                import pprint; pprint.pprint(table)
-                # use align, max_column_width, ...
-                table = ''
-                #...
-                new_lines[i] += '\n' + table + '\n'
+                width = max_column_width*num_columns + num_columns+1
+                separator0 = '|' + '-'*(width-2) + '|'
+                separator1 = separator0
+                separator2 = separator0
+                if align_headings:
+                    # Insert align chars for header from the right
+                    # (sometimes 1st column may have no header)
+                    s = list(separator1)
+                    for j in range(len(align_headings)):
+                        s[len(s)-1-max_column_width/2 - j*max_column_width] = align_headings[len(align_headings)-1-j]
+                    separator1 = ''.join(s)
+                if align is not None:
+                    # As many chars in align as there are columns
+                    s = list(separator2)
+                    for j in range(len(align)):
+                        s[max_column_width/2 + j*max_column_width] = align[j]
+                    separator2 = ''.join(s)
+                column_format = ' %%-%ds ' % (max_column_width-2)
+                for j in range(len(table_lines)):
+                    table_lines[j] = [column_format % c for c in table_lines[j]]
+                    table_lines[j] = '|' + '|'.join(table_lines[j]) + '|'
+                table = '\n\n' + separator1 + '\n' + table_lines[0] + '\n' + \
+                        separator2 + '\n' + '\n'.join(table_lines[1:]) + \
+                        '\n' + separator0 + '\n\n'
+                new_lines[-1] += table
 
     filestr = '\n'.join(new_lines)
+    filestr = re.sub(r'^# REMOVE \(there was.+$\s*', '', filestr,
+                     flags=re.MULTILINE)
+    filestr = re.sub(r'(idx\{.+?\})\s+([^i\n ])', r'\g<1>\n\n\g<2>', filestr)
 
-    f = open(filename, 'w')
-    f.write(filestr)()
-    f.close()
+    # Find all labels and refs and notify about refs to external
+    # labels
+    problems = False
+    labels = re.findall(r'label\{(.+?)\}', filestr)  # figs have label, not \label
+    refs = re.findall(r'\\ref\{(.+?)\}', filestr)
+    eqrefs = re.findall(r'\\eqref\{(.+?)\}', filestr)
+    pagerefs = re.findall(r'\\pageref\{(.+?)\}', filestr)
+    refs = refs + eqrefs + pagerefs
+    for ref in refs:
+        if ref not in labels:
+            print 'found reference but no label{%s}' % ref
+            problems = True
+            filestr = filestr.replace(r'\ref{%s}' % ref,
+                r'(_PROBLEM: EXTERNAL REF_) ref{%s}' % ref)
+    for ref in pagerefs:
+        print 'pageref{%s} should be rewritten' % ref
+        filestr = filestr.replace(r'\pageref{%s}' % ref,
+            r'(_PROBLEM: PAGEREF_) pageref{%s}' % ref)
+        problems = True
 
+    if problems:
+        print '\n## search for PROBLEM: to see need for manual adjustments\n\n\n'
+    filestr = filestr.replace(r'\label{', 'label{')  # done above
+    filestr = filestr.replace(r'\ref{', 'ref{')
+    filestr = filestr.replace(r'\cite{', 'cite{')
+    filestr = filestr.replace(r'\noindent', '')
+    filestr = filestr.replace(r'\_', '_')
+    filestr = filestr.replace(r' -- ', ' - ')
+    filestr = filestr.replace(r'}--ref', '}-ref')
+    filestr = filestr.replace(r'~', ' ')
+    filestr = filestr.replace(r'\end{table}', '')
+
+    # Treat footnotes
+    pattern = r'\\footnote\{([^}]+)\}\.'
+    filestr = re.sub(pattern, '. (\g<1>) ', filestr)
+    # Without final . means footnote in the middle of a sentence
+    pattern = r'\\footnote\{([^}]+)\}'
+    filestr = re.sub(pattern, ' (_PROBLEM: FIX FOOTNOTE_ \g<1>)', filestr)
+
+    print filestr  # final output
 
 try:
     import pygments as pygm

@@ -115,6 +115,7 @@ FIGURE: [fig/jungle_with_mess.jpg, width=500]
  * Fixed tables: all
  * Algorithms: LaTeX
  * Margin notes: LaTeX
+ * Page references: LaTeX
  * Footnotes: LaTeX, Sphinx, reStructuredText, MediaWiki
  * Bibliography: LaTeX, Sphinx, reStructuredText, MediaWiki
  * Hyperlinks: all (but not on paper!)
@@ -1009,6 +1010,7 @@ doconce format plain  doconcefile  # plain, untagged text for email
    any size with much higher quality than PNG or other bitmap formats.)
  * Use `doconce combine_images` to combine several images into one.
  * Use `doconce spellcheck *.do.txt` to automatically spellcheck files.
+ * Avoid page references and footnotes.
 
 !split
 ======= Writing tips for sphinx and other formats =======
