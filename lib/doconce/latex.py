@@ -650,6 +650,11 @@ def latex_ref_and_label(section_label2title, format, filestr):
     for p in prefix:
         filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>',
                          filestr)
+    # Allow C# and F# languages
+    # (filestr is here without code so side effects for
+    # notes/chords/music notation should not be relevant)
+    filestr = filestr.replace('C#', 'C\\#')
+    filestr = filestr.replace('F#', 'F\\#')
 
     return filestr
 
