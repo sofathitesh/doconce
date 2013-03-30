@@ -1606,8 +1606,11 @@ def handle_index_and_bib(filestr, format, has_title):
     # version < 2.7 warning
     if len(citations) > 0 and OrderedDict is dict:
         print '*** warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
-    if which('publish') is None:
-        print '*** error: you have a bibliography but publish is not installed.'
+    if len(citations) > 0 ando 'BIBFILE:' not in filestr:
+        print '*** error: you have citations but no biblioraphy (BIBFILE: ...)'
+        _abort()
+    if len(citations) > 0 and which('publish') is None:
+        print '*** error: you have a citations but publish is not installed.'
         print '    Download publish from https://bitbucket.org/logg/publish.'
         _abort()
 
