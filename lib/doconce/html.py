@@ -94,6 +94,7 @@ admon_styles = """\
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 """
+# alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
 
 css_solarized = """\
     body {
@@ -934,6 +935,8 @@ def html_quote(block, format):
 
 for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     _Admon = _admon[0].upper() + _admon[1:]  # upper first char
+    # Below we could use
+    # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
     _text = '''
 def html_%s(block, format):
     lyx = """

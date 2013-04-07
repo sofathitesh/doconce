@@ -1704,12 +1704,13 @@ Here are possible problems for Mako:
 
 === Something goes wrong in the preprocessing step ===
 
-Doconce automatically removes the file `__tmp.do.txt`, which is the
-resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when `mako` and
-`preprocess` is run). Add the `--debug` flag at the end of the
-`doconce` command to (both make a debug file and) avoid that
-`__tmp.do.txt` is deleted.
+You can examine `tmp_preprocess__filename` and `tmp_mako__filename`,
+where `filename` is the complete name of the Doconce file, to see
+what the preprocessors actually to and if something is wrong in these
+files before Doconce starts translating the text.
+One or both of those files may be missing, but examine the beginning
+of the output from Doconce to see exactly which preprocessors are run
+and on which files.
 
 === Figure captions are incomplete ===
 

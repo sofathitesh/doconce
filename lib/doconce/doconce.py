@@ -1603,15 +1603,18 @@ def handle_index_and_bib(filestr, format, has_title):
                         filestr = filestr.replace('cite{%s}' % arg,
                                                   replacement)
 
-    # version < 2.7 warning
     if len(citations) > 0 and OrderedDict is dict:
+        # version < 2.7 warning
         print '*** warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
-    if len(citations) > 0 ando 'BIBFILE:' not in filestr:
+    if len(citations) > 0 and 'BIBFILE:' not in filestr:
         print '*** error: you have citations but no biblioraphy (BIBFILE: ...)'
         _abort()
-    if len(citations) > 0 and which('publish') is None:
-        print '*** error: you have a citations but publish is not installed.'
-        print '    Download publish from https://bitbucket.org/logg/publish.'
+    if 'BIBFILE:' in filestr and len(citations) > 0 and \
+           which('publish') is None:
+        print '*** error: you have citations and specified a BIBFILE, but'
+        print '    publish (needed to treat the BIBFILE) is not installed.'
+        print '    Download publish from https://bitbucket.org/logg/publish,'
+        print '    do cd publish; sudo python setup.py install'
         _abort()
 
     filestr = INDEX_BIB[format](filestr, index, citations, pubfile, pubdata)
@@ -2234,6 +2237,9 @@ def preprocess(filename, format, preprocessor_options=[]):
             except (NameError, TypeError, SyntaxError):
                 mako_kwargs[key] = value
 
+    resultfile = 'tmp_preprocess__' + filename
+    resultfile2 = 'tmp_mako__' + filename
+
     filestr_without_code, code_blocks, code_block_types, tex_blocks = \
                           remove_code_and_tex(filestr)
 
@@ -2242,7 +2248,6 @@ def preprocess(filename, format, preprocessor_options=[]):
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
         preprocess_options = ' '.join(preprocess_options)
-        resultfile = '__tmp.do.txt'
 
         # Syntax check: preprocess directives without leading #?
         pattern1 = r'^#if.*'; pattern2 = r'^#else'
@@ -2340,7 +2345,6 @@ need to include --no-mako on the command line.
             # The output is in resultfile, mako is run on that
             filename = resultfile
         preprocessor = 'mako'
-        resultfile = '__tmp.do.txt'
 
         try:
             import mako
@@ -2353,7 +2357,7 @@ python-mako package (sudo apt-get install python-mako).
 """ % filename
             _abort()
 
-        print 'running mako on', filename, 'to make', resultfile
+        print 'running mako on', filename, 'to make', resultfile2
         # add a space after \\ at the end of lines (otherwise mako
         # eats one of the backslashes in tex blocks)
         # same for a single \ before newline
@@ -2362,7 +2366,7 @@ python-mako package (sudo apt-get install python-mako).
         f.close()
         filestr = filestr.replace('\\\\\n', '\\\\ \n')
         filestr = filestr.replace('\\\n', '\\ \n')
-        f = open(resultfile, 'w')
+        f = open(resultfile2, 'w')
         f.write(filestr)
         f.close()
 
@@ -2370,7 +2374,7 @@ python-mako package (sudo apt-get install python-mako).
         from mako.template import Template
         from mako.lookup import TemplateLookup
         lookup = TemplateLookup(directories=[os.curdir])
-        temp = Template(filename=resultfile, lookup=lookup,
+        temp = Template(filename=resultfile2, lookup=lookup,
                         strict_undefined=strict_undefined)
 
         debugpr('Keyword arguments to be sent to mako: %s' % \
@@ -2405,9 +2409,10 @@ python-mako package (sudo apt-get install python-mako).
                 print '*** mako error:'
                 filestr = temp.render(**mako_kwargs)
 
-        f = open(resultfile, 'w')
+        f = open(resultfile2, 'w')
         f.write(filestr)
         f.close()
+        resultfile = resultfile2
 
     if preprocessor is None:
         # no preprocessor syntax detected

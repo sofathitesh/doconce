@@ -39,6 +39,7 @@ from doconce.misc import (
     pygmentize,
     makefile,
     latex2doconce,
+    latex_dislikes,
     fix_bibtex4publish,
     diff,
     gitdiff,
@@ -730,6 +731,7 @@ latex_exercise_toc
 insertdocstr
 old2new_format
 latex2doconce
+latex_dislikes
 pygmentize
 makefile
 diff
@@ -849,7 +851,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
