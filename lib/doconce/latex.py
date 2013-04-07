@@ -103,7 +103,7 @@ def latex_code(filestr, code_blocks, code_block_types,
     filestr = re.sub(r'!et\n', '', filestr)
 
     # Check for misspellings
-    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py pyoptpro'.split()
+    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod htmlcod htmlpro rstcod rstpro xmlcod xmlpro cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py pyoptpro'.split()
     for envir in code_block_types:
         if envir and envir not in envirs:
             print 'Warning: found "!bc %s", but %s is not a standard predefined ptex2tex environment' % (envir, envir)
@@ -772,17 +772,19 @@ def latex_%s(block, format):
     ext = '.eps' if format == 'latex' else '.pdf'
     _get_admon_figs('%s' + ext)
     return r"""
+
 \definecolor{%sbackground}{rgb}{%s}
 \setlength{\\fboxrule}{2pt}
 \\begin{center}
 \\fcolorbox{black}{%sbackground}{
 \\begin{minipage}{0.8\\textwidth}
 \includegraphics[height=0.3in]{%s/%s%%s}
-\\vskip-0.3in\centerline{{\large\sc %s}}
+\ \ \ {\large\sc %s}\\\\ [3mm]
 %%s
 \end{minipage}}
 \end{center}
 \setlength{\\fboxrule}{0.4pt} %%%% Back to default
+
 """ %% (ext, block)
 ''' % (admon, admon, admon, ', '.join(rgb), admon, latexfigdir, figname, admon_name)
     return text
