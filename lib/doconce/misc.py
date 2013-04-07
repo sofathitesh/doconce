@@ -864,7 +864,7 @@ def ptex2tex():
                                      c='c', cpp='c++', sh='bash', rst='rst',
                                      m ='matlab', pl='perl', swig='c++',
                                      latex='latex', html='html', js='js',
-                                     xml='xml')
+                                     xml='xml', rb='ruby')
                     if envir == 'envir':
                         for lang in languages:
                             begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{' \
@@ -4246,6 +4246,10 @@ def which(program):
                 break
     return program_path
 
+
+# subst_* below must be global because local functions in _latex2doconce
+# disable the use of the important exec(f.read()) statement.
+
 def subst_author_latex2doconce(m):
     author_str = m.group('subst')
     authors = author_str.split(r'\and')
@@ -4265,25 +4269,15 @@ def subst_author_latex2doconce(m):
             authors[i] += ' at ' + institutions[i]
     return '\n'.join(authors)
 
-def latex2doconce():
-    """
-    Apply transformations to a latex file to help translate the
-    document into Doconce format.
+def subst_minted_latex2doconce(m):
+    lang = m.group(1)
+    if lang in minted2bc:
+        return '!bc ' + minted2bc[lang]
+    else:
+        return '!bc'
 
-    Suggestions for preparations: avoid pageref, replace subfigures
-    by files combined to a single file, avoid footnotes, index inside
-    paragraphs, do not start code blocks with indentation, ...
-    """
-    print 'This is the result of the doconce latex2doconce program.'
-    print 'The translation from LaTeX is just a helper. The text must'
-    print 'be carefully examined! (Be prepared that some text might also'
-    print 'be lost in the translation - in seldom cases.)\n'
-
-    filename = sys.argv[1]
-    f = open(filename, 'r')
-    filestr = f.read()
-    f.close()
-
+def _latex2doconce(filestr):
+    """Run latex to doconce transformations on filestr."""
     user_subst = []
     user_replace = []
     fixfile = 'doconce2latex_fix.py'
@@ -4391,6 +4385,7 @@ def latex2doconce():
         ("``", '"'),
         ("Chapter~", "Chapter "),
         ("Section~", "Section "),
+        ("Appendix~", "Appendix "),
         ("Figure~", "Figure "),
         ("Table~", "Table "),
         ("Chapters~", "Chapters "),
@@ -4399,6 +4394,7 @@ def latex2doconce():
         ("Tables~", "Tables "),
         ("Chap.~", "Chapter "),
         ("Sec.~", "Section "),
+        ("App.~", "Appendix "),
         ("Fig.~", "Figure "),
         ("Tab.~", "Table "),
         ] + user_replace
@@ -4414,7 +4410,7 @@ def latex2doconce():
     filestr = re.sub(r'(==={3,9}\n\\label\{.+?\}) *\n(\w)',
                      r'\g<1>\n\n\g<2>', filestr)
 
-    # problems (cannot understand this code...):
+    # problems (cannot understand this old code...):
     """
     problems = [
         r'\Sindex\{',
@@ -4438,6 +4434,27 @@ def latex2doconce():
         filestr = filestr.replace(e, '\n!bt\n' + e)
     for e in math_enders:
         filestr = filestr.replace(e, e + '\n!et')
+
+    # minted
+    pattern = r'\\begin\{minted}\[?.*\]?{(.+?)\}'
+    minted2bc = dict(python='py', cython='cy', fortran='f',
+                     c='c', bash='sh', rst='rst',
+                     matlab='m', perl='pl',
+                     latex='latex', html='html', js='js',
+                     xml='xml', ruby='rb')
+    minted2bc['c++'] = 'cpp'
+    filestr = re.sub(pattern, subst_minted_latex2doconce, filestr)
+    filestr = filestr.replace('\\end{minted}', '!ec')
+    pattern = r'\\begin\{Verbatim}\[?.*\]?{(.+?)\}'
+    filestr = re.sub(pattern, '!bc', filestr)
+    filestr = filestr.replace('\\end{Verbatim}', '!ec')
+    filestr = filestr.replace('\\begin{verbatim}', '!bc')
+    filestr = filestr.replace('\\end{verbatim}', '!ec')
+    for lang in minted2bc:
+        begin_pattern = r'\\begin\{%s\}' % lang
+        end_pattern = r'\\end\{%s\}' % lang
+        filestr = re.sub(begin_pattern, '!bc ' + minted2bc[lang], filestr)
+        filestr = re.sub(end_pattern, '!ec', filestr)
 
     # ptex2tex code environments:
     code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'rpy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
@@ -4708,8 +4725,127 @@ def latex2doconce():
     pattern = r'\\footnote\{([^}]+)\}'
     filestr = re.sub(pattern, ' (_PROBLEM: FIX FOOTNOTE_ \g<1>)', filestr)
 
+    # Check that !bc, !ec, !bt, !ec are at the beginning of the line
+    for envir in 'c', 't':
+        for tag in '!b', '!e':
+            command = tag + envir
+            pattern = r'^ +' + command
+            filestr = re.sub(pattern, command, filestr, flags=re.MULTILINE)
+
+    return filestr
+
+def latex2doconce():
+    """
+    Apply transformations to a latex file to help translate the
+    document into Doconce format.
+
+    Suggestions for preparations: avoid pageref, replace subfigures
+    by files combined to a single file, avoid footnotes, index inside
+    paragraphs, do not start code blocks with indentation, ...
+    """
+    print 'This is the result of the doconce latex2doconce program.'
+    print 'The translation from LaTeX is just a helper. The text must'
+    print 'be carefully examined! (Be prepared that some text might also'
+    print 'be lost in the translation - in seldom cases.)\n'
+
+    filename = sys.argv[1]
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+    filestr = _latex2doconce(filestr)
+
     print filestr  # final output
 
+
+def latex_dislikes():
+    """
+    Report constructions in latex that will not translate to doconce
+    format by latex2dococe and constructions that are not recommended
+    for common other formats.
+
+    Rules:
+
+      * Collect all newcommands in a separate file, one definition
+        per line (i.e., multi-line definitions are not allowed).
+      * Do not use environments for algorithms.
+      * Do not use environments for computer code in floating figures.
+      * Tables will not be floating. Computer code, tables, algorithms,
+        anything but figures, will be inline at the position where they
+        are defined.
+      * Do not use `description` lists.
+    """
+    filename = sys.argv[1]
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+    # Should we first run through latex2doconce? Many fixes there
+    # simplifies things here...
+    filestr = _latex2doconce(filestr)
+
+    lines = filestr.splitlines()
+    # Add line numbers
+    for i in range(len(lines)):
+        lines[i] = '%4d: ' % (i+1) + lines[i]
+    lines = '\n'.join(lines).splitlines()
+
+    # add line numbers to each line in the latex file
+    # list matches (begin, commands) that are problematic
+    # and report them for every line
+    begin_likes = [
+        'equation',
+        'equation*',
+        'align',
+        'align*',
+        'itemize',
+        'enumerate',
+        ]
+    begin_ok = [
+        'eqnarray',
+        'eqnarray*',
+        ]
+
+    # dislikes: list of (regex, explanation)
+    dislikes = [(r'%s~?\s*\\ref\{(.+?)\}' % tp,
+                 r'use %s in \g<1>' % (tp[0].upper() + tp[1:]))
+                for tp in
+                ('section', 'chapter', 'appendix',
+                 'sec.', 'chap.', 'app.')]
+    dislikes += [
+        (r'\\footnote\{([^}]+?\}', 'Avoid footnotes - write them into the text with (e.g.) parenthesis.'),
+        (r'\\subfigure', 'Avoid \\subfigure, combine images to a single new image.'),
+        (r'\\pageref', 'Avoid \\pageref entirely (page numbers do not make sense in most electronic formats).'),
+        #(r'\\psfig\{', 'Avoid \\psfig, use \\includegraphics.'),
+        (r'\\begin\{table\}', 'Tables are handled, but can easily become problematic. Test outcome of doconce2latex for this table, make it inline (only tabular) and of a form that easily translates to doconce.'),
+        (r'\\begin\{tabular\}', 'Tables are handled, but can easily become problematic. Test outcome of doconce2latex for this tabular environment and adjust if necessary/possible.'),
+        ]
+    likes_commands = []
+
+    for line in lines:
+        if r'\begin{' in line:
+            m = re.search(r'\begin\{(.+?)\}', line)
+            if m:
+                envir = m.group(1)
+                if envir in begin_likes:
+                    pass # fine!
+                elif envir in begin_ok:
+                    print """
+Found \\begin{%s}, which can be handled, but it is
+recommended to avoid this construction.""" % envir
+                else:
+                    print """
+Found \\begin{%s}, which will not carry over to Doconce
+and other formats.""" % envir
+                    # Could have message here (begin_messages) that
+                    # guide rewrites, e.g., lstlisting etc.
+                print line + '\n'
+
+        for regex, message in dislikes:
+            if re.search(regex, line):
+                print message
+                print line + '\n'
+
+
+# ---- Attempt to make a pygments syntax highlighter for Doconce ----
 try:
     import pygments as pygm
     from pygments.lexer import RegexLexer, \
