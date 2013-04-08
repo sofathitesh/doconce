@@ -564,7 +564,7 @@ def insert_code_from_file(filestr, format):
                 # no from/to regex, read the whole file:
                 print 'copy complete file %s' % filename,
                 complete_file = True
-                code = codefile.read().strip()
+                code = codefile.read().rstrip()
                 debugpr('copy the whole file "%s" into a verbatim block\n' % filename)
 
             else:
@@ -581,9 +581,11 @@ def insert_code_from_file(filestr, format):
                     raise SyntaxError, \
                     'Syntax error: missing @ in regex in line\n  %s' % line
 
-                print 'copying %s regex "%s" until "%s"\n     file: %s,' % \
+                print 'copying %s regex "%s" until %s\n     file: %s,' % \
                       ('after' if fromto == 'from-to:' else 'from',
-                       from_, to_, filename),
+                       from_,
+                       ('"' + to_ + '"') if to_ != '' else 'end of file',
+                       filename),
                 # Note that from_ and to_ are regular expressions
                 # and to_ might be empty
                 cfrom = re.compile(from_)
@@ -639,11 +641,12 @@ def insert_code_from_file(filestr, format):
                 code = code.rstrip() # remove trailing whitespace
                 if code == '' or code.isspace():
                     if not from_found:
-                        print 'Could not find regex "%s".' % from_,
-                    if not to_found:
-                        print 'Could not find regex "%s".' % to_,
+                        print 'but could not find regex "%s"!' % from_,
+                    if not to_found and to_ != '':
+                        print 'but could not find regex "%s"!' % to_,
                     if from_found and to_found:
                         print '"From" and "to" regex match at the same line - empty text.',
+                    print
                     _abort()
                 print ' lines %d-%d' % (from_line, to_line),
             codefile.close()
@@ -2322,7 +2325,7 @@ preprocess package (sudo apt-get install preprocess).
                 print '\n\n*** warning: the code block\n---------------------------'
                 print code_block
                 print '''---------------------------
-contains a single %% on the beginning of a line: %s
+contains a single %% on the beginning of a line: (%s)
 Such lines cause problems for the mako preprocessor
 since it thinks this is a mako statement.
 ''' % (m.group(0))
@@ -2338,7 +2341,9 @@ or variables and rely on preprocess only in the
 preprocessing step. In the latter case you
 need to include --no-mako on the command line.
 '''
-            print 'mako is not run because of the lines starting with %!!\n'
+            print 'mako is not run because of lines starting with %,'
+            print 'fix the lines as described or remove all mako statements.'
+            _abort()
             return filename if preprocessor is None else resultfile
 
         if preprocessor is not None:  # already found preprocess commands?

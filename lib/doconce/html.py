@@ -722,11 +722,17 @@ def html_movie(m):
         if caption:
             text += """\n<em>%s</em>\n\n""" % caption
     else:
-        text = """
+        width = kwargs.get('width', 640)
+        height = kwargs.get('height', 365)
+        if filename.endswith('.mp4'):
+            text= """
+<video width='%s' height='%s' preload='none' controls ><source src='%s' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+<p><em>%s</em></p>
+""" % (width, height, filename, caption)
+        else:
+            text = """
 <embed src="%s" %s autoplay="false" loop="true"></embed>
-<p>
-<em>%s</em>
-</p>
+<p><em>%s</em></p>
 """ % (filename, ' '.join(options), caption)
     return text
 
