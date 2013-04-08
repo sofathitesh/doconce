@@ -3171,7 +3171,7 @@ def split_rst0():
 
 
 def _usage_split_rst():
-    print 'Usage: doconce split_html mydoc.html'
+    print 'Usage: doconce split_rst mydoc'
 
 def split_rst():
     """

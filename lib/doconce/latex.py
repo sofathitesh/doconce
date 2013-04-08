@@ -640,12 +640,15 @@ def latex_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(r'( [0-9]{1,3})%', r'\g<1>\%', filestr)
     filestr = re.sub(r'(^[0-9]{1,3})%', r'\g<1>\%', filestr, flags=re.MULTILINE)
 
+    # Fix errors such as et. al. cite{ (et. -> et)
+    filestr = re.sub(r'et\. +al +cite\{', 'et al. cite{', filestr)
+
     # fix periods followed by too long space:
     prefix = r'Prof\.', r'Profs\.', r'prof\.', r'profs\.', r'Dr\.', \
              r'assoc\.', r'Assoc.', r'Assist.', r'Mr\.', r'Ms\.', 'Mss\.', \
              r'Fig\.', r'Tab\.', r'Univ\.', r'Dept\.', r'abbr\.', r'cf\.', \
              r'e\.g\.', r'E\.g\.', r'i\.e\.', r'Approx\.', r'approx\.', \
-             r'Exer\.',
+             r'Exer\.', r'et al\.'
     # avoid r'assist\.' - matches too much
     for p in prefix:
         filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>',
@@ -807,14 +810,21 @@ def latex_summary(block, format):
 def latex_inline_comment(m):
     name = m.group('name')
     comment = m.group('comment')
-    import textwrap
-    caption_comment = textwrap.wrap(comment, width=60,
-                                    break_long_words=False)[0]
+    #import textwrap
+    #caption_comment = textwrap.wrap(comment, width=60,
+    #                                break_long_words=False)[0]
+    caption_comment = ' '.join(comment.split()[:4])
+
+    if '_' in comment:
+        # todonotes are bad at handling verbatim code with comments...
+        comment = comment.replace('_', '\\_')
+
     if len(comment) <= 100:
-        return r'\shortinlinecomment{%s}{%s}{%s}' % \
+        # Have some extra space for \code{} commands inside the comment,
+        return r'\shortinlinecomment{%s}{ %s }{ %s }' % \
                (name, comment, caption_comment)
     else:
-        return r'\longinlinecomment{%s}{%s}{%s}' % \
+        return r'\longinlinecomment{%s}{ %s }{ %s }' % \
                (name, comment, caption_comment)
 
 

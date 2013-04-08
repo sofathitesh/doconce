@@ -84,7 +84,7 @@ def format():
 # file...
 
 def _usage_sphinx_dir():
-    print 'Usage: doconce sphinx_dir author="name(s) of author" title="the full title of the document" short-title="some short title" version=0.1 theme=themename dirname=sphinx-rootdir  doconcefile1.do.txt'
+    print 'Usage: doconce sphinx_dir author="name(s) of author" title="the full title of the document" short-title="some short title" version=0.1 theme=themename dirname=sphinx-rootdir  doconcefile'
     print """
 
 The steps for copying files to sphinx-rootdir and compiling the document
