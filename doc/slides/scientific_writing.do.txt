@@ -7,13 +7,13 @@ DATE: Today
 
 <object width="800" height="796" type="application/x-shockwave-flash" data="http://cdn.tagul.com/cloud.swf">
    <param name="movie" value="http://cdn.tagul.com/cloud.swf"/>
-   <param name="flashvars" value="id=http://cdn.tagul.com/clouds/143809@1"/>
+   <param name="flashvars" value="id=http://cdn.tagul.com/clouds/143809@2"/>
    <param name="allowscriptaccess" value="always"/>
    <param name="swfversion" value="10"/>
    <param name="expressinstall" value="http://cdn.tagul.com/expressInstall.swf"/>
    <param name="wmode" value="transparent"/>
    <!--Embed svg if no flash installed-->
-   <object data="http://cdn.tagul.com/clouds/143809@1" type="image/svg+xml" width="800" height="796">
+   <object data="http://cdn.tagul.com/clouds/143809@2" type="image/svg+xml" width="800" height="796">
        <p><a href="http://www.adobe.com/go/getflashplayer">
           <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
        </a></p>
