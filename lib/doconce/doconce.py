@@ -2010,6 +2010,16 @@ def doconce2format(filestr, format):
     # Remove inline comments
     if option('skip_inline_comments'):
         filestr = subst_away_inline_comments(filestr)
+    else:
+        # Number inline comments
+        inline_comments = re.findall(INLINE_TAGS['inlinecomment'], filestr,
+                                     flags=re.DOTALL|re.MULTILINE)
+        counter = 1
+        for name, space, comment in inline_comments:
+            filestr = filestr.replace(
+                '[%s:%s%s]' % (name, space, comment),
+                '[%s %d: %s]' % (name, counter, comment))
+            counter += 1
 
     # Remove comments starting with ##
     pattern = r'^##.+$\n'
