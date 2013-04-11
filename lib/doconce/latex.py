@@ -410,10 +410,6 @@ def latex_table(table):
 
 def latex_title(m):
     title = m.group('subst')
-    # Make appropriate linebreaks for the default typesetting
-    import textwrap
-    multiline_title = r' \\ [1.5mm] '.join(textwrap.wrap(title, width=38))
-
     text = r"""
 
 %% ----------------- title -------------------------
@@ -427,7 +423,11 @@ def latex_title(m):
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{%s}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+%s
+\end{spacing}
+}}}
 
 %% #elif LATEX_HEADING == "Springer_collection"
 
@@ -438,11 +438,15 @@ def latex_title(m):
 %% #else
 
 \begin{center}
-{\LARGE\bf %s}
+{\LARGE\bf
+\begin{spacing}{1.25}
+%s
+\end{spacing}
+}
 \end{center}
 
 %% #endif
-""" % (title, title, title, multiline_title)
+""" % (title, title, title, title)
     return text
 
 def latex_author(authors_and_institutions, auth2index,
@@ -1088,7 +1092,7 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 """
