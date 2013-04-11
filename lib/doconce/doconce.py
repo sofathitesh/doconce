@@ -463,9 +463,11 @@ specified if one of them is present."""
                     link.startswith('_static')):
                 links2local.append(link)
         for link in links2local:
-            print '*** warning: hyperlink to URL %s is to a local file,\n  - should be _static/%s for sphinx.' % (link, link)
+            print '*** warning: hyperlink to URL %s is to a local file,\n  - recommended to be _static/%s for sphinx' % (link, link)
         if links2local:
-            print 'Move files to _static and change URLs!'
+            print '*** move linked files to _static and change URLs'
+            print '    (unless you really know that the links will be correct'
+            print '    when the sphinx build directory is moved to its final destination)'
             #_abort()  # no abort since some documentation has local URLs for illustration
 
     return None
