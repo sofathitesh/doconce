@@ -425,6 +425,7 @@ print 'Fix double title in <title> tags in .html files:'
 os.chdir('_build/html')
 for filename in glob.glob('*.html'):
     system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %%s' %% filename)
+    os.remove(filename + '.old~')
 print """
 google-chrome %(sphinx_rootdir)s/_build/html/index.html
 """

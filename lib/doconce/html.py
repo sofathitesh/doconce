@@ -274,8 +274,7 @@ def html_code(filestr, code_blocks, code_block_types,
                                       style=pygm_style)
             result = highlight(code_blocks[i], lexer, formatter)
 
-            result = '<!-- code typeset with pygments style "%s" -->\n' \
-                     % pygm_style + result
+            result = '<!-- code (%s) of type %s typeset with pygments style "%s" -->\n' % (code_block_types[i], language, pygm_style) + result
             # Fix ugly error boxes
             result = re.sub(r'<span style="border: 1px .*?">(.+?)</span>',
                             '\g<1>', result)
