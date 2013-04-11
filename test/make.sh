@@ -285,5 +285,7 @@ doconce replace '# Comment before math' '' tmp2.do.txt
 doconce format rst tmp2
 doconce replace '# Comment before list' '' tmp2.do.txt
 doconce format rst tmp2
+doconce replace '`Google`' '`Google` site' tmp2.do.txt
+doconce format rst tmp2
 echo "Successful run of test/make.sh"
 
