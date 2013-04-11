@@ -129,7 +129,11 @@ that %s is not preceded by text which can be extended with :: (required).
             sys.exit(1)
 
     # Final fixes
+
     filestr = fix_underlines_in_headings(filestr)
+    # Ensure blank line before comments
+    filestr = re.sub(r'([.:;?!])\n^\.\. ', r'\g<1>\n\n.. ',
+                     filestr, flags=re.MULTILINE)
 
     return filestr
 
@@ -312,7 +316,7 @@ def rst_bib(filestr, citations, pubfile, pubdata, numbering=True):
     if numbering:
         # Find max no of digits
         n = len(str(max(citations.values())))
-        cite = '[Ref%%%dd]' % n
+        cite = '[Ref%%0%dd]' % n  # cannot have blanks in ref label
     for label in citations:
         if numbering:
             filestr = filestr.replace('cite{%s}' % label,
@@ -416,7 +420,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2':  r'`\g<link> <\g<url>>`_',
         'linkURL3':  r'`\g<link> <\g<url>>`_',
         'linkURL2v': r'`\g<link> <\g<url>>`_', # no verbatim, does not work well
-        'linkURL3v': r'`\g<link> <\g<url>>`_', # with triple backticks...
+        'linkURL3v': r'`\g<link> <\g<url>>`_', # same
         'plainURL':  r'`<\g<url>>`_',
         'inlinecomment': r'(**\g<name>**: \g<comment>)',
         # the replacement string differs, depending on the match object m:

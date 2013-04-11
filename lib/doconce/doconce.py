@@ -111,6 +111,19 @@ def syntax_check(filestr, format):
             print repr(filestr[m.start():m.start()+120])
             _abort()
 
+    # Verbatim words must be the whole link, otherwise issue
+    # warnings for the formats where this may look strange
+    if format not in ('pandoc',):
+        links  = re.findall(INLINE_TAGS['linkURL2'], filestr)
+        links += re.findall(INLINE_TAGS['linkURL3'], filestr)
+        for link, url1, url2 in links:
+            if '`' in link[1:-1]:
+                print '\n*** error: verbatim code in part of link is not allowed in format', format
+                print '   ', '"%s": "%s"' % (link, url1)
+                print '    use either link as verbatim code only, %s,' % '"`%s`"' % link.replace('`', '')
+                print '    or no verbatim: "%s"' % link.replace('`', '')
+                _abort()
+
     pattern = re.compile(r'[^\n:.?!,]^(!b[ct]|@@@CODE)', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
