@@ -307,7 +307,12 @@ and references to them will be empty):"""
     filestr = re.sub(r'^!bt *\n', '\n.. math::\n', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'^!et *\n', '\n', filestr, flags=re.MULTILINE)
 
+    # Final fixes
+
     filestr = fix_underlines_in_headings(filestr)
+    # Ensure blank line before comments
+    filestr = re.sub(r'([.:;?!])\n^\.\. ', r'\g<1>\n\n.. ',
+                     filestr, flags=re.MULTILINE)
 
     return filestr
 

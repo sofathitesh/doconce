@@ -188,6 +188,11 @@ Look at a "simple doconce example": "http://doconce.wordpress.com"
 and a "scientific report": "http://doconcereportdemo.wordpress.com/"
 to see blogging with mathematics and code on WordPress.
 
+Speaking of WordPress, the related project URL:
+"http://pressbooks.com" can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.
+
 ===== Pandoc and Markdown =====
 
 Output in Pandoc's extended Markdown format results from
