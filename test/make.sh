@@ -21,6 +21,8 @@ EOF
 publish import refs3.bib <<EOF
 1
 2
+y
+1
 EOF
 
 doconce format html testdoc --wordpress  --examples-as-exercises
@@ -262,7 +264,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp mako_test3.html mako_test3b.html
 
-doconce format html mako_test3 --no-mako --no-pygments-html # no problem message
+doconce format html mako_test3 --no-pygments-html # no problem message
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce format html mako_test4 --no-pygments-html  # works fine, lines start with %%
@@ -287,5 +289,6 @@ doconce replace '# Comment before list' '' tmp2.do.txt
 doconce format rst tmp2
 doconce replace '`Google`' '`Google` site' tmp2.do.txt
 doconce format rst tmp2
-echo "Successful run of test/make.sh"
+echo
+echo "Successful run of test/make.sh !"
 

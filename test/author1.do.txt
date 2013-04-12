@@ -68,3 +68,6 @@ the document *author1*]."
 ========= Test of math =========
 
 Inline math, $a=b$, is the only math in this document.
+
+# Need BIBFILE because of cite{} examples
+BIBFILE: papers.pub

@@ -430,6 +430,21 @@ reference is cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
+and
+cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a,Langtangen:95}
+and all the work of
+cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
+old work cite{Langtangen_1988d} and cite{Langtangen_1989e}, and the
+talk cite{Langtangen_talk_2007a}.
+Langtangen also had two thesis cite{Langtangen:85,Langtangen:89d}.
+More retro citations are
+the old ME-IN323 book cite{Langtangen:91} and the
+cite{Langtangen:94b} OONSKI '94 paper.
+
+
 ===== Example: Examples can be typeset as exercises =====
 label{Example}
 
@@ -940,6 +955,19 @@ in comparison with the other admons.
   * with items
 !ewarning
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent "Script for Introduction to Version Control":
+"http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 !bsummary
 _Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
@@ -952,6 +980,54 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 !esummary
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are "Dropbox":
+"http://dropbox.com" and "Google Drive": "http://drive.google.com".
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
 
 !bnotice
 Ah, we are close to the end.
@@ -974,10 +1050,12 @@ not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to URL:"http://dropbox.com" and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp:
+Simply go to URL:"http://dropbox.com" and watch the video. It explains
+how files, like `myfile.py`, perhaps containing much math, like
+$\partial u/\partial t$, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
@@ -1367,7 +1445,7 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -1501,7 +1579,11 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{A Document for Testing Doconce}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+A Document for Testing Doconce
+\end{spacing}
+}}}
 
 % #elif LATEX_HEADING == "Springer_collection"
 
@@ -1512,7 +1594,11 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-{\LARGE\bf A Document for Testing Doconce}
+{\LARGE\bf
+\begin{spacing}{1.25}
+A Document for Testing Doconce
+\end{spacing}
+}
 \end{center}
 
 % #endif
@@ -2188,6 +2274,21 @@ reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+\cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
+and
+\cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a,Langtangen:95}
+and all the work of
+\cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
+old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
+talk \cite{Langtangen_talk_2007a}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+More retro citations are
+the old ME-IN323 book \cite{Langtangen:91} and the
+\cite{Langtangen:94b} OONSKI '94 paper.
+
+
 
 
 % --- begin exercise ---
@@ -2765,17 +2866,20 @@ With label.
 Without label.
 
 
+
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.eps}
-\vskip-0.3in\centerline{{\large\sc Hint}}
+\ \ \ {\large\sc Hint}\\ [3mm]
 Here is a hint.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 \setlength{\fboxrule}{2pt}
@@ -2783,7 +2887,7 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\centerline{{\large\sc Warning}}
+\ \ \ {\large\sc Warning}\\ [3mm]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -2798,6 +2902,19 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent \href{{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 \summarybox{
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
@@ -2809,13 +2926,62 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox} and \href{{http://drive.google.com}}{Google Drive}.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -2823,38 +2989,42 @@ With math:
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 
+
+
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.eps}
-\vskip-0.3in\centerline{{\large\sc Question}}
+\ \ \ {\large\sc Question}\\ [3mm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \subsection{Appendix: Testing inline comments}
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
-go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
+how files, like \code{myfile.py}, perhaps containing much math, like
+$\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} } It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+true version control systems.  \longinlinecomment{hpl 3}{ The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+and in-depth explanations of the concepts and tools. }{ The following text aims }
 
 \subsection{Appendix: Testing headings ending with \protect\code{verbatim inline} }
 
@@ -2892,7 +3062,7 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[a4paper]{geometry}
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 \usepackage{movie15}
@@ -2990,7 +3160,11 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{A Document for Testing Doconce}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+A Document for Testing Doconce
+\end{spacing}
+}}}
 
 
 % ----------------- author(s) -------------------------
@@ -3604,6 +3778,21 @@ reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+\cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
+and
+\cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a,Langtangen:95}
+and all the work of
+\cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
+old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
+talk \cite{Langtangen_talk_2007a}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+More retro citations are
+the old ME-IN323 book \cite{Langtangen:91} and the
+\cite{Langtangen:94b} OONSKI '94 paper.
+
+
 
 
 % --- begin exercise ---
@@ -4179,17 +4368,20 @@ With label.
 Without label.
 
 
+
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\vskip-0.3in\centerline{{\large\sc Hint}}
+\ \ \ {\large\sc Hint}\\ [3mm]
 Here is a hint.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 \setlength{\fboxrule}{2pt}
@@ -4197,7 +4389,7 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\vskip-0.3in\centerline{{\large\sc Warning}}
+\ \ \ {\large\sc Warning}\\ [3mm]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -4212,6 +4404,19 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent \href{{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}}{Script for Introduction to Version Control}\footnote{\texttt{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}} provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 \summarybox{
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
@@ -4223,13 +4428,62 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox}\footnote{\texttt{http://dropbox.com}} and \href{{http://drive.google.com}}{Google Drive}\footnote{\texttt{http://drive.google.com}}.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in--depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to--know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -4237,38 +4491,42 @@ With math:
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 
+
+
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.pdf}
-\vskip-0.3in\centerline{{\large\sc Question}}
+\ \ \ {\large\sc Question}\\ [3mm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \subsection{Appendix: Testing inline comments}
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
-go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
+how files, like {\fontsize{10pt}{10pt}\Verb!myfile.py!}, perhaps containing much math, like
+$\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} } It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+true version control systems.  \longinlinecomment{hpl 3}{ The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in--depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+and in--depth explanations of the concepts and tools. }{ The following text aims }
 
 \subsection{Appendix: Testing headings ending with {\fontsize{10pt}{10pt}\protect\Verb!verbatim inline!} }
 
@@ -4314,7 +4572,7 @@ final,                   % or draft (marks overfull hboxes)
 \listfiles               % print all files needed to compile this document
 
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{anslistings,minted,fancyvrb} % packages needed for verbatim environments
 
@@ -4397,7 +4655,11 @@ final,                   % or draft (marks overfull hboxes)
 % ----------------- title -------------------------
 
 \begin{center}
-{\LARGE\bf A Document for Testing Doconce}
+{\LARGE\bf
+\begin{spacing}{1.25}
+A Document for Testing Doconce
+\end{spacing}
+}
 \end{center}
 
 
@@ -4969,6 +5231,21 @@ reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+\cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
+and
+\cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a,Langtangen:95}
+and all the work of
+\cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
+old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
+talk \cite{Langtangen_talk_2007a}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+More retro citations are
+the old ME-IN323 book \cite{Langtangen:91} and the
+\cite{Langtangen:94b} OONSKI '94 paper.
+
+
 
 
 % --- begin exercise ---
@@ -5536,17 +5813,20 @@ With label.
 Without label.
 
 
+
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\vskip-0.3in\centerline{{\large\sc Hint}}
+\ \ \ {\large\sc Hint}\\ [3mm]
 Here is a hint.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 \setlength{\fboxrule}{2pt}
@@ -5554,7 +5834,7 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\vskip-0.3in\centerline{{\large\sc Warning}}
+\ \ \ {\large\sc Warning}\\ [3mm]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -5569,6 +5849,19 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent \href{{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}}{Script for Introduction to Version Control}\footnote{\texttt{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}} provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 \summarybox{
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
@@ -5580,13 +5873,62 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox}\footnote{\texttt{http://dropbox.com}} and \href{{http://drive.google.com}}{Google Drive}\footnote{\texttt{http://drive.google.com}}.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in--depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to--know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -5594,38 +5936,42 @@ With math:
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 
+
+
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.pdf}
-\vskip-0.3in\centerline{{\large\sc Question}}
+\ \ \ {\large\sc Question}\\ [3mm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \subsection{Appendix: Testing inline comments}
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
-go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
+how files, like \Verb!myfile.py!, perhaps containing much math, like
+$\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} } It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+true version control systems.  \longinlinecomment{hpl 3}{ The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in--depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+and in--depth explanations of the concepts and tools. }{ The following text aims }
 
 \subsection{Appendix: Testing headings ending with \protect\Verb!verbatim inline! }
 
@@ -5909,9 +6255,7 @@ Test of movies.
 .. raw:: html
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p>
-        <em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-        </p>
+        <p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 
@@ -5921,9 +6265,7 @@ Test of movies.
 .. raw:: html
         
         <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p>
-        <em></em>
-        </p>
+        <p><em></em></p>
 
 
 
@@ -6049,6 +6391,7 @@ Should look nice in most formats!
 
 
 *Theorem 5.* Let a=1 and b=2. Then c=3.
+
 .. end theorem
 
 
@@ -6145,16 +6488,31 @@ some text.
 Bibliography test
 -----------------
 
-Here is an example: [Ref1]_ discussed propagation of
-large destructive water waves, [Ref2]_ gave
+Here is an example: [Ref01]_ discussed propagation of
+large destructive water waves, [Ref02]_ gave
 an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in [Ref3]_.
-The book chapter [Ref4]_ contains information on
+random vibrations was investigated in [Ref03]_.
+The book chapter [Ref04]_ contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is [Ref5]_ about a big FORTRAN package.
+reference is [Ref05]_ about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-[Ref1]_ [Ref4]_.
+[Ref01]_ [Ref04]_.
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[Ref06]_ [Ref03]_ [Ref07]_ [Ref01]_
+and
+[Ref02]_ [Ref08]_ [Ref09]_ [Ref10]_ [Ref11]_ [Ref12]_ [Ref13]_
+and all the work of
+[Ref14]_ [Ref04]_ [Ref15]_ as well as
+old work [Ref05]_ and [Ref16]_, and the
+talk [Ref17]_.
+Langtangen also had two thesis [Ref18]_ [Ref19]_.
+More retro citations are
+the old ME-IN323 book [Ref20]_ and the
+[Ref21]_ OONSKI '94 paper.
+
 
 
 
@@ -6306,10 +6664,12 @@ the beginning of a new exercise and cause trouble. Maybe a list
 1. Mark 1.
 
 2. Mark 2.
+
 .. --- begin hint in exercise ---
 
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+
 .. --- end hint in exercise ---
 
 
@@ -6318,6 +6678,7 @@ the beginning of a new exercise and cause trouble. Maybe a list
 
 *Hint 2.* Draw an integer among \{1,2\} with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
+
 .. --- end hint in exercise ---
 
 
@@ -6326,6 +6687,7 @@ the beginning of a new exercise and cause trouble. Maybe a list
 
 *Answer.* If the ``random.random()`` function returns a number <1/2, let it be
 head, otherwise tail. Repeat this N number of times.
+
 .. --- end answer of exercise ---
 
 
@@ -6347,6 +6709,7 @@ head, otherwise tail. Repeat this N number of times.
 .. --- end solution of exercise ---
 
 Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
+
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
@@ -6384,6 +6747,7 @@ drawing uniformly distributed random numbers from the interval [0,1)?
 draw N such random numbers using Python's standard ``random`` module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
 compute the probability as M/N.
+
 .. --- end hint in exercise ---
 
 
@@ -6442,6 +6806,7 @@ above.
 
 *Hint.* Use the ``numpy.random`` module to draw the
 x_0, y_0, and R quantities.
+
 .. --- end hint in exercise ---
 
 
@@ -6449,6 +6814,7 @@ x_0, y_0, and R quantities.
 .. --- begin answer of exercise ---
 
 *Answer.* Here goes the short answer to part a).
+
 .. --- end answer of exercise ---
 
 
@@ -6456,6 +6822,7 @@ x_0, y_0, and R quantities.
 .. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution to part a).
+
 .. --- end solution of exercise ---
 
 
@@ -6515,6 +6882,7 @@ And code ``a=b`` in this solution::
         a = b  # code in solution
 
 End of solution is here.
+
 .. --- end solution of exercise ---
 
 
@@ -6542,6 +6910,7 @@ And with code returning x+1 in hint::
 
 
 *Hint 2.* Second hint to subexercise a).
+
 .. --- end hint in exercise ---
 
 Filename: ``subexer_a.pdf``.
@@ -6551,6 +6920,7 @@ Filename: ``subexer_a.pdf``.
 
 *Answer.* Short answer to subexercise a).
 With math in answer: a=b.
+
 .. --- end answer of exercise ---
 
 
@@ -6566,6 +6936,7 @@ Some math \cos^2 x + \sin^2 x = 1 written one a single line::
 
 
 *Hint.* A hint for this subexercise.
+
 .. --- end hint in exercise ---
 
 Filename: ``subexer_b.pdf``.
@@ -6574,6 +6945,7 @@ Filename: ``subexer_b.pdf``.
 .. --- begin solution of exercise ---
 
 *Solution.* Here goes the solution of this subexercise.
+
 .. --- end solution of exercise ---
 
 
@@ -6690,34 +7062,134 @@ References
 ==========
 
 
-.. [Ref1]
+.. [Ref01]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
    7(1),
    pp. 187-204,
    2002.
-.. [Ref2]
+
+.. [Ref02]
    **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
    *Advances in Water Resources*,
    25,
    pp. 1125-1146,
    2002.
-.. [Ref3]
+
+.. [Ref03]
    **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
    *SIAM Journal of Scientific and Statistical Computing*,
    15,
    pp. 997-996,
    1994.
-.. [Ref4]
+
+.. [Ref04]
    **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
    Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
    edited by **H. P. Langtangen and A. Tveito**,
    Springer,
    2003.
-.. [Ref5]
+
+.. [Ref05]
    **H. P. Langtangen**. The FEMDEQS Program System,
    *Department of Mathematics, University of Oslo*,
    1989.
+
+.. [Ref06]
+   **H. P. Langtangen**. Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+   *SIAM Journal on Scientific Computing*,
+   13,
+   pp. 1394-1417,
+   1992.
+
+.. [Ref07]
+   **M. Mortensen, H. P. Langtangen and G. N. Wells**. A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+   *Advances in Water Resources*,
+   34(9),
+   `doi: 10.1016/j.advwatres.2011.02.013 <http://dx.doi.org/10.1016/j.advwatres.2011.02.013>`_,
+   2011.
+
+.. [Ref08]
+   **S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt**. Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+   *International Journal of Fluid Mechanics Research*,
+   33(1),
+   pp. 15-43,
+   2006.
+
+.. [Ref09]
+   **S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen**. Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+   *Physical Review B: Condensed Matter and Materials Physics*,
+   74,
+   2006.
+
+.. [Ref10]
+   **J. B. Haga, H. Osnes and H. P. Langtangen**. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+   *International Journal of Analytical and Numerical Methods in Geomechanics*,
+   `doi: 10.1002/nag.1062 <http://dx.doi.org/10.1002/nag.1062>`_,
+   2011.
+
+.. [Ref11]
+   **H. P. Langtangen**. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+   Springer,
+   2003.
+
+.. [Ref12]
+   **H. P. Langtangen**. Python Scripting for Computational Science,
+   Springer,
+   2008.
+
+.. [Ref13]
+   **H. P. Langtangen and G. Pedersen**. Finite Elements for the Boussinesq Wave Equations,
+   Waves and Non-linear Processes in Hydrodynamics,
+   edited by **J. Grue, B. Gjevik and J. E. Weber**,
+   Kluwer Academic Publishers,
+   pp. pp. 117-126,
+   1995.
+
+.. [Ref14]
+   **H. P. Langtangen**. A Primer on Scientific Programming With Python,
+   Springer,
+   2012.
+
+.. [Ref15]
+   **P. V. Jeberg, H. P. Langtangen and C. B. Terp**. Optimization With Diffpack: Practical Example From Welding,
+   *Simula Research Laboratory*,
+   2004.
+
+.. [Ref16]
+   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
+   Ph.D. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1989.
+
+.. [Ref17]
+   [Ref17]. **H. P. Langtangen**,
+   Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+   Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+   2007.
+
+.. [Ref18]
+   **H. P. Langtangen**. Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+   M.Sc. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1985.
+
+.. [Ref19]
+   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
+   Ph.D. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1989.
+
+.. [Ref20]
+   **H. P. Langtangen and A. Tveito**. Numerical Methods in Continuum Mechanics,
+   *Center for Industrial Research*,
+   1991.
+
+.. [Ref21]
+   **H. P. Langtangen**. Diffpack: Software for Partial Differential Equations,
+   Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA,
+   edited by **A. Vermeulen**,
+   1994.
 
 
 
@@ -6776,6 +7248,19 @@ Without label.
     
       * with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent `Script for Introduction to Version Control <http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/>`_ provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+
 .. important::
    **Bold remark:** Make some text with this summary.
    Much testing in this document, otherwise stupid content.
@@ -6787,6 +7272,54 @@ Without label.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are `Dropbox <http://dropbox.com>`_ and `Google Drive <http://drive.google.com>`_.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
 
 .. note::
    Ah, we are close to the end.
@@ -6804,20 +7337,21 @@ Appendix: Testing inline comments
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. (**hpl**: not sure if in the cloud is understood by all.) I strongly
+cloud" and updated through communication with that site. (**hpl 1**: not sure if in the cloud is understood by all.) I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. (**mp**: Simply
-go to `<http://dropbox.com>`_ and watch the video.) It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. (**mp 2**: Simply go to `<http://dropbox.com>`_ and watch the video. It explains
+how files, like ``myfile.py``, perhaps containing much math, like
+\partial u/\partial t, are easily communicated between machines.) It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  (**hpl**: The following text aims at providing
+true version control systems.  (**hpl 3**: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.)
@@ -7114,9 +7648,7 @@ Test of movies.
 .. raw:: html
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p>
-        <em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-        </p>
+        <p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 
@@ -7126,9 +7658,7 @@ Test of movies.
 .. raw:: html
         
         <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p>
-        <em></em>
-        </p>
+        <p><em></em></p>
 
 
 
@@ -7276,6 +7806,7 @@ Should look nice in most formats!
 
 
 *Theorem 5.* Let :math:`a=1` and :math:`b=2`. Then :math:`c=3`.
+
 .. end theorem
 
 
@@ -7388,16 +7919,31 @@ some text.
 Bibliography test
 -----------------
 
-Here is an example: [Ref1]_ discussed propagation of
-large destructive water waves, [Ref2]_ gave
+Here is an example: [Ref01]_ discussed propagation of
+large destructive water waves, [Ref02]_ gave
 an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in [Ref3]_.
-The book chapter [Ref4]_ contains information on
+random vibrations was investigated in [Ref03]_.
+The book chapter [Ref04]_ contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is [Ref5]_ about a big FORTRAN package.
+reference is [Ref05]_ about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-[Ref1]_ [Ref4]_.
+[Ref01]_ [Ref04]_.
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[Ref06]_ [Ref03]_ [Ref07]_ [Ref01]_
+and
+[Ref02]_ [Ref08]_ [Ref09]_ [Ref10]_ [Ref11]_ [Ref12]_ [Ref13]_
+and all the work of
+[Ref14]_ [Ref04]_ [Ref15]_ as well as
+old work [Ref05]_ and [Ref16]_, and the
+talk [Ref17]_.
+Langtangen also had two thesis [Ref18]_ [Ref19]_.
+More retro citations are
+the old ME-IN323 book [Ref20]_ and the
+[Ref21]_ OONSKI '94 paper.
+
 
 
 
@@ -7626,10 +8172,12 @@ the beginning of a new exercise and cause trouble. Maybe a list
 1. Mark 1.
 
 2. Mark 2.
+
 .. --- begin hint in exercise ---
 
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+
 .. --- end hint in exercise ---
 
 
@@ -7638,6 +8186,7 @@ the beginning of a new exercise and cause trouble. Maybe a list
 
 *Hint 2.* Draw an integer among :math:`\{1,2\}` with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
+
 .. --- end hint in exercise ---
 
 
@@ -7646,6 +8195,7 @@ the beginning of a new exercise and cause trouble. Maybe a list
 
 *Answer.* If the ``random.random()`` function returns a number :math:`<1/2`, let it be
 head, otherwise tail. Repeat this :math:`N` number of times.
+
 .. --- end answer of exercise ---
 
 
@@ -7668,6 +8218,7 @@ head, otherwise tail. Repeat this :math:`N` number of times.
 .. --- end solution of exercise ---
 
 Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
+
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
@@ -7705,6 +8256,7 @@ drawing uniformly distributed random numbers from the interval :math:`[0,1)`?
 draw :math:`N` such random numbers using Python's standard ``random`` module,
 count how many of them, :math:`M`, that fall in the interval :math:`(0.5,0.6)`, and
 compute the probability as :math:`M/N`.
+
 .. --- end hint in exercise ---
 
 
@@ -7773,6 +8325,7 @@ above.
 
 *Hint.* Use the ``numpy.random`` module to draw the
 :math:`x_0`, :math:`y_0`, and :math:`R` quantities.
+
 .. --- end hint in exercise ---
 
 
@@ -7780,6 +8333,7 @@ above.
 .. --- begin answer of exercise ---
 
 *Answer.* Here goes the short answer to part a).
+
 .. --- end answer of exercise ---
 
 
@@ -7787,6 +8341,7 @@ above.
 .. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution to part a).
+
 .. --- end solution of exercise ---
 
 
@@ -7849,6 +8404,7 @@ And code ``a=b`` in this solution:
         a = b  # code in solution
 
 End of solution is here.
+
 .. --- end solution of exercise ---
 
 
@@ -7881,6 +8437,7 @@ And with code returning :math:`x+1` in hint:
 
 
 *Hint 2.* Second hint to subexercise a).
+
 .. --- end hint in exercise ---
 
 Filename: ``subexer_a.pdf``.
@@ -7890,6 +8447,7 @@ Filename: ``subexer_a.pdf``.
 
 *Answer.* Short answer to subexercise a).
 With math in answer: :math:`a=b`.
+
 .. --- end answer of exercise ---
 
 
@@ -7907,6 +8465,7 @@ Some math :math:`\cos^2 x + \sin^2 x = 1` written one a single line:
 
 
 *Hint.* A hint for this subexercise.
+
 .. --- end hint in exercise ---
 
 Filename: ``subexer_b.pdf``.
@@ -7915,6 +8474,7 @@ Filename: ``subexer_b.pdf``.
 .. --- begin solution of exercise ---
 
 *Solution.* Here goes the solution of this subexercise.
+
 .. --- end solution of exercise ---
 
 
@@ -8036,34 +8596,134 @@ References
 ==========
 
 
-.. [Ref1]
+.. [Ref01]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
    7(1),
    pp. 187-204,
    2002.
-.. [Ref2]
+
+.. [Ref02]
    **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
    *Advances in Water Resources*,
    25,
    pp. 1125-1146,
    2002.
-.. [Ref3]
+
+.. [Ref03]
    **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
    *SIAM Journal of Scientific and Statistical Computing*,
    15,
    pp. 997-996,
    1994.
-.. [Ref4]
+
+.. [Ref04]
    **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
    Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
    edited by **H. P. Langtangen and A. Tveito**,
    Springer,
    2003.
-.. [Ref5]
+
+.. [Ref05]
    **H. P. Langtangen**. The FEMDEQS Program System,
    *Department of Mathematics, University of Oslo*,
    1989.
+
+.. [Ref06]
+   **H. P. Langtangen**. Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+   *SIAM Journal on Scientific Computing*,
+   13,
+   pp. 1394-1417,
+   1992.
+
+.. [Ref07]
+   **M. Mortensen, H. P. Langtangen and G. N. Wells**. A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+   *Advances in Water Resources*,
+   34(9),
+   `doi: 10.1016/j.advwatres.2011.02.013 <http://dx.doi.org/10.1016/j.advwatres.2011.02.013>`_,
+   2011.
+
+.. [Ref08]
+   **S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt**. Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+   *International Journal of Fluid Mechanics Research*,
+   33(1),
+   pp. 15-43,
+   2006.
+
+.. [Ref09]
+   **S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen**. Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+   *Physical Review B: Condensed Matter and Materials Physics*,
+   74,
+   2006.
+
+.. [Ref10]
+   **J. B. Haga, H. Osnes and H. P. Langtangen**. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+   *International Journal of Analytical and Numerical Methods in Geomechanics*,
+   `doi: 10.1002/nag.1062 <http://dx.doi.org/10.1002/nag.1062>`_,
+   2011.
+
+.. [Ref11]
+   **H. P. Langtangen**. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+   Springer,
+   2003.
+
+.. [Ref12]
+   **H. P. Langtangen**. Python Scripting for Computational Science,
+   Springer,
+   2008.
+
+.. [Ref13]
+   **H. P. Langtangen and G. Pedersen**. Finite Elements for the Boussinesq Wave Equations,
+   Waves and Non-linear Processes in Hydrodynamics,
+   edited by **J. Grue, B. Gjevik and J. E. Weber**,
+   Kluwer Academic Publishers,
+   pp. pp. 117-126,
+   1995.
+
+.. [Ref14]
+   **H. P. Langtangen**. A Primer on Scientific Programming With Python,
+   Springer,
+   2012.
+
+.. [Ref15]
+   **P. V. Jeberg, H. P. Langtangen and C. B. Terp**. Optimization With Diffpack: Practical Example From Welding,
+   *Simula Research Laboratory*,
+   2004.
+
+.. [Ref16]
+   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
+   Ph.D. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1989.
+
+.. [Ref17]
+   [Ref17]. **H. P. Langtangen**,
+   Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+   Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+   2007.
+
+.. [Ref18]
+   **H. P. Langtangen**. Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+   M.Sc. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1985.
+
+.. [Ref19]
+   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
+   Ph.D. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1989.
+
+.. [Ref20]
+   **H. P. Langtangen and A. Tveito**. Numerical Methods in Continuum Mechanics,
+   *Center for Industrial Research*,
+   1991.
+
+.. [Ref21]
+   **H. P. Langtangen**. Diffpack: Software for Partial Differential Equations,
+   Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA,
+   edited by **A. Vermeulen**,
+   1994.
 
 
 
@@ -8122,6 +8782,19 @@ Without label.
     
       * with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent `Script for Introduction to Version Control <http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/>`_ provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+
 .. important::
    **Bold remark:** Make some text with this summary.
    Much testing in this document, otherwise stupid content.
@@ -8133,6 +8806,54 @@ Without label.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are `Dropbox <http://dropbox.com>`_ and `Google Drive <http://drive.google.com>`_.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
 
 .. note::
    Ah, we are close to the end.
@@ -8151,20 +8872,21 @@ Appendix: Testing inline comments
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. (**hpl**: not sure if in the cloud is understood by all.) I strongly
+cloud" and updated through communication with that site. (**hpl 1**: not sure if in the cloud is understood by all.) I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. (**mp**: Simply
-go to `<http://dropbox.com>`_ and watch the video.) It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. (**mp 2**: Simply go to `<http://dropbox.com>`_ and watch the video. It explains
+how files, like ``myfile.py``, perhaps containing much math, like
+:math:`\partial u/\partial t`, are easily communicated between machines.) It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  (**hpl**: The following text aims at providing
+true version control systems.  (**hpl 3**: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.)
@@ -8634,6 +9356,21 @@ reference is [5] about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 [1] [4].
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[6] [3] [7] [1]
+and
+[2] [8] [9] [10] [11] [12] [13]
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [19].
+More retro citations are
+the old ME-IN323 book [20] and the
+[21] OONSKI '94 paper.
+
+
 
 
 <wiki:comment> --- begin exercise --- </wiki:comment>
@@ -9078,6 +9815,22 @@ Filename: `selc_composed.pdf`.
  # H. P. Langtangen.     Numerical Solution of First Passage Problems in Random Vibrations,    *SIAM Journal of Scientific and Statistical Computing*,    15,    pp. 997-996,    1994.
  # K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen.     Software Tools for Multigrid Methods,    *Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming*,    edited by H. P. Langtangen and A. Tveito,    Springer,    2003.
  # H. P. Langtangen.     The FEMDEQS Program System,    *Department of Mathematics, University of Oslo*,    1989.
+ # H. P. Langtangen.     Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,    *SIAM Journal on Scientific Computing*,    13,    pp. 1394-1417,    1992.
+ # M. Mortensen, H. P. Langtangen and G. N. Wells.     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,    *Advances in Water Resources*,    34(9),    [http://dx.doi.org/10.1016/j.advwatres.2011.02.013 doi: 10.1016/j.advwatres.2011.02.013],    2011.
+ # S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt.     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,    *International Journal of Fluid Mechanics Research*,    33(1),    pp. 15-43,    2006.
+ # S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen.     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,    *Physical Review B: Condensed Matter and Materials Physics*,    74,    2006.
+# J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    *International Journal of Analytical and Numerical Methods in Geomechanics*,    [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],    2011.
+# H. P. Langtangen.     Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,    Springer,    2003.
+# H. P. Langtangen.     Python Scripting for Computational Science,    Springer,    2008.
+# H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995.
+# H. P. Langtangen.     A Primer on Scientific Programming With Python,    Springer,    2012.
+# P. V. Jeberg, H. P. Langtangen and C. B. Terp.     Optimization With Diffpack: Practical Example From Welding,    *Simula Research Laboratory*,    2004.
+# H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
+# H. P. Langtangen.     Computational Modeling of Huge Tsunamis From Asteroid Impacts,    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,    2007.
+# H. P. Langtangen.     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,    M.Sc. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1985.
+# H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
+# H. P. Langtangen and A. Tveito.     Numerical Methods in Continuum Mechanics,    *Center for Industrial Research*,    1991.
+# H. P. Langtangen.     Diffpack: Software for Partial Differential Equations,    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,    edited by A. Vermeulen,    1994.
 
 == Appendix: Just for testing; part I ==
 
@@ -9121,6 +9874,18 @@ in comparison with the other admons.
   * and a list
   * with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent [http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/ Script for Introduction to Version Control] provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 *Summary.* _Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -9131,6 +9896,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are [http://dropbox.com Dropbox] and [http://drive.google.com Google Drive].
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 *Notice.* Ah, we are close to the end.
 With math:
@@ -9151,9 +9965,12 @@ not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp:
+Simply go to http://dropbox.com and watch the video. It explains
+how files, like `myfile.py`, perhaps containing much math, like
+`\partial u/\partial t`, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
@@ -9589,6 +10406,21 @@ C++ software tools for programming multigrid methods. A real retro
 reference is [5] about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 [1] [4].
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[6] [3] [7] [1]
+and
+[2] [8] [9] [10] [11] [12] [13]
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [19].
+More retro citations are
+the old ME-IN323 book [20] and the
+[21] OONSKI '94 paper.
+
 
 
 
@@ -10084,6 +10916,85 @@ Filename: <code>selc_composed.pdf</code>.
     The FEMDEQS Program System,
     ''Department of Mathematics, University of Oslo'',
     1989.
+ <li> H. P. Langtangen. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    ''SIAM Journal on Scientific Computing'',
+    13,
+    pp. 1394-1417,
+    1992.
+ <li> M. Mortensen, H. P. Langtangen and G. N. Wells. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    ''Advances in Water Resources'',
+    34(9),
+    [http://dx.doi.org/10.1016/j.advwatres.2011.02.013 doi: 10.1016/j.advwatres.2011.02.013],
+    2011.
+ <li> S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    ''International Journal of Fluid Mechanics Research'',
+    33(1),
+    pp. 15-43,
+    2006.
+ <li> S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    ''Physical Review B: Condensed Matter and Materials Physics'',
+    74,
+    2006.
+<li> J. B. Haga, H. Osnes and H. P. Langtangen. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    ''International Journal of Analytical and Numerical Methods in Geomechanics'',
+    [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],
+    2011.
+<li> H. P. Langtangen. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.
+<li> H. P. Langtangen. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.
+<li> H. P. Langtangen and G. Pedersen. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by J. Grue, B. Gjevik and J. E. Weber,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.
+<li> H. P. Langtangen. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.
+<li> P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
+    Optimization With Diffpack: Practical Example From Welding,
+    ''Simula Research Laboratory'',
+    2004.
+<li> H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+<li> H. P. Langtangen. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.
+<li> H. P. Langtangen. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.
+<li> H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+<li> H. P. Langtangen and A. Tveito. 
+    Numerical Methods in Continuum Mechanics,
+    ''Center for Industrial Research'',
+    1991.
+<li> H. P. Langtangen. 
+    Diffpack: Software for Partial Differential Equations,
+    ''Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA'',
+    edited by A. Vermeulen,
+    1994.
 </ol>
 
 == Appendix: Just for testing; part I ==
@@ -10130,6 +11041,18 @@ in comparison with the other admons.
   <li> with items
 </ul>}}
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent [http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/ Script for Introduction to Version Control] provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 ''Summary.'' '''Bold remark:''' Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -10140,6 +11063,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are [http://dropbox.com Dropbox] and [http://drive.google.com Google Drive].
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 ''Notice.''
 Ah, we are close to the end.
@@ -10157,21 +11129,21 @@ So, how many admonition environments does Doconce support?
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. [hpl:
-not sure if in the cloud is understood by all.] I strongly
+cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to http://dropbox.com and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to http://dropbox.com and watch the video. It explains
+how files, like <code>myfile.py</code>, perhaps containing much math, like
+<math>\partial u/\partial t</math>, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  [hpl: The following text aims at providing
+true version control systems.  [hpl 3: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
@@ -10588,6 +11560,21 @@ C++ software tools for programming multigrid methods. A real retro
 reference is [5] about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 [1] [4].
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[6] [3] [7] [1]
+and
+[2] [8] [9] [10] [11] [12] [13]
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [19].
+More retro citations are
+the old ME-IN323 book [20] and the
+[21] OONSKI '94 paper.
+
 
 
 
@@ -11040,6 +12027,22 @@ Filename: {{{selc_composed.pdf}}}.
  # H. P. Langtangen.     Numerical Solution of First Passage Problems in Random Vibrations,    //SIAM Journal of Scientific and Statistical Computing//,    15,    pp. 997-996,    1994.
  # K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen.     Software Tools for Multigrid Methods,    //Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming//,    edited by H. P. Langtangen and A. Tveito,    Springer,    2003.
  # H. P. Langtangen.     The FEMDEQS Program System,    //Department of Mathematics, University of Oslo//,    1989.
+ # H. P. Langtangen.     Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,    //SIAM Journal on Scientific Computing//,    13,    pp. 1394-1417,    1992.
+ # M. Mortensen, H. P. Langtangen and G. N. Wells.     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,    //Advances in Water Resources//,    34(9),    [[http://dx.doi.org/10.1016/j.advwatres.2011.02.013|doi: 10.1016/j.advwatres.2011.02.013]],    2011.
+ # S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt.     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,    //International Journal of Fluid Mechanics Research//,    33(1),    pp. 15-43,    2006.
+ # S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen.     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,    //Physical Review B: Condensed Matter and Materials Physics//,    74,    2006.
+# J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    //International Journal of Analytical and Numerical Methods in Geomechanics//,    [[http://dx.doi.org/10.1002/nag.1062|doi: 10.1002/nag.1062]],    2011.
+# H. P. Langtangen.     Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,    Springer,    2003.
+# H. P. Langtangen.     Python Scripting for Computational Science,    Springer,    2008.
+# H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995.
+# H. P. Langtangen.     A Primer on Scientific Programming With Python,    Springer,    2012.
+# P. V. Jeberg, H. P. Langtangen and C. B. Terp.     Optimization With Diffpack: Practical Example From Welding,    //Simula Research Laboratory//,    2004.
+# H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
+# H. P. Langtangen.     Computational Modeling of Huge Tsunamis From Asteroid Impacts,    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,    2007.
+# H. P. Langtangen.     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,    M.Sc. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1985.
+# H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
+# H. P. Langtangen and A. Tveito.     Numerical Methods in Continuum Mechanics,    //Center for Industrial Research//,    1991.
+# H. P. Langtangen.     Diffpack: Software for Partial Differential Equations,    //Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA//,    edited by A. Vermeulen,    1994.
 
 = Appendix: Just for testing; part I =
 
@@ -11085,6 +12088,18 @@ in comparison with the other admons.
   * and a list
   * with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent [[http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/|Script for Introduction to Version Control]] provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 //Summary.// **Bold remark:** Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -11095,6 +12110,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are [[http://dropbox.com|Dropbox]] and [[http://drive.google.com|Google Drive]].
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 //Notice.// Ah, we are close to the end.
 With math:
@@ -11110,21 +12174,21 @@ With math:
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. [hpl:
-not sure if in the cloud is understood by all.] I strongly
+cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to [[http://dropbox.com]] and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to [[http://dropbox.com]] and watch the video. It explains
+how files, like {{{myfile.py}}}, perhaps containing much math, like
+{{{\partial u/\partial t}}}, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  [hpl: The following text aims at providing
+true version control systems.  [hpl 3: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
@@ -11519,6 +12583,21 @@ C++ software tools for programming multigrid methods. A real retro
 reference is [5] about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 [1] [4].
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[6] [3] [7] [1]
+and
+[2] [8] [9] [10] [11] [12] [13]
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [19].
+More retro citations are
+the old ME-IN323 book [20] and the
+[21] OONSKI '94 paper.
+
 
 
 
@@ -11919,6 +12998,85 @@ References
     The FEMDEQS Program System,
     *Department of Mathematics, University of Oslo*,
     1989.
+ 6. H. P. Langtangen. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    *SIAM Journal on Scientific Computing*,
+    13,
+    pp. 1394-1417,
+    1992.
+ 7. M. Mortensen, H. P. Langtangen and G. N. Wells. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    *Advances in Water Resources*,
+    34(9),
+    "http://dx.doi.org/10.1016/j.advwatres.2011.02.013":doi: 10.1016/j.advwatres.2011.02.013,
+    2011.
+ 8. S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    *International Journal of Fluid Mechanics Research*,
+    33(1),
+    pp. 15-43,
+    2006.
+ 9. S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    *Physical Review B: Condensed Matter and Materials Physics*,
+    74,
+    2006.
+10. J. B. Haga, H. Osnes and H. P. Langtangen. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    *International Journal of Analytical and Numerical Methods in Geomechanics*,
+    "http://dx.doi.org/10.1002/nag.1062":doi: 10.1002/nag.1062,
+    2011.
+11. H. P. Langtangen. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.
+12. H. P. Langtangen. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.
+13. H. P. Langtangen and G. Pedersen. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by J. Grue, B. Gjevik and J. E. Weber,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.
+14. H. P. Langtangen. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.
+15. P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
+    Optimization With Diffpack: Practical Example From Welding,
+    *Simula Research Laboratory*,
+    2004.
+16. H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+17. H. P. Langtangen. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.
+18. H. P. Langtangen. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.
+19. H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+20. H. P. Langtangen and A. Tveito. 
+    Numerical Methods in Continuum Mechanics,
+    *Center for Industrial Research*,
+    1991.
+21. H. P. Langtangen. 
+    Diffpack: Software for Partial Differential Equations,
+    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,
+    edited by A. Vermeulen,
+    1994.
 
 Appendix: Just for testing; part I
 
@@ -11960,6 +13118,18 @@ in comparison with the other admons.
 
   - and a list
   - with items
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent "http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/":Script for Introduction to Version Control provides a more detailed motivation why you will benefit greatly
+from using version control systems.
 *Summary.* **Bold remark:** Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -11970,6 +13140,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are "http://dropbox.com":Dropbox and "http://drive.google.com":Google Drive.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 *Notice.* Ah, we are close to the end.
 With math::
@@ -11986,21 +13205,21 @@ Appendix: Testing inline comments
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. [hpl:
-not sure if in the cloud is understood by all.] I strongly
+cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to "http://dropbox.com":http://dropbox.com and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to "http://dropbox.com":http://dropbox.com and watch the video. It explains
+how files, like 'myfile.py', perhaps containing much math, like
+\partial u/\partial t, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  [hpl: The following text aims at providing
+true version control systems.  [hpl 3: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
@@ -12403,6 +13622,21 @@ C++ software tools for programming multigrid methods. A real retro
 reference is [5] about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 [1] [4].
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[6] [3] [7] [1]
+and
+[2] [8] [9] [10] [11] [12] [13]
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [19].
+More retro citations are
+the old ME-IN323 book [20] and the
+[21] OONSKI '94 paper.
+
 
 
 
@@ -12823,6 +14057,85 @@ References
     The FEMDEQS Program System,
     I{Department of Mathematics, University of Oslo},
     1989.
+ 6. H. P. Langtangen. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    I{SIAM Journal on Scientific Computing},
+    13,
+    pp. 1394-1417,
+    1992.
+ 7. M. Mortensen, H. P. Langtangen and G. N. Wells. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    I{Advances in Water Resources},
+    34(9),
+    U{doi: 10.1016/j.advwatres.2011.02.013<http://dx.doi.org/10.1016/j.advwatres.2011.02.013>},
+    2011.
+ 8. S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    I{International Journal of Fluid Mechanics Research},
+    33(1),
+    pp. 15-43,
+    2006.
+ 9. S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    I{Physical Review B: Condensed Matter and Materials Physics},
+    74,
+    2006.
+10. J. B. Haga, H. Osnes and H. P. Langtangen. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    I{International Journal of Analytical and Numerical Methods in Geomechanics},
+    U{doi: 10.1002/nag.1062<http://dx.doi.org/10.1002/nag.1062>},
+    2011.
+11. H. P. Langtangen. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.
+12. H. P. Langtangen. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.
+13. H. P. Langtangen and G. Pedersen. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by J. Grue, B. Gjevik and J. E. Weber,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.
+14. H. P. Langtangen. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.
+15. P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
+    Optimization With Diffpack: Practical Example From Welding,
+    I{Simula Research Laboratory},
+    2004.
+16. H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+17. H. P. Langtangen. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.
+18. H. P. Langtangen. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.
+19. H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+20. H. P. Langtangen and A. Tveito. 
+    Numerical Methods in Continuum Mechanics,
+    I{Center for Industrial Research},
+    1991.
+21. H. P. Langtangen. 
+    Diffpack: Software for Partial Differential Equations,
+    I{Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA},
+    edited by A. Vermeulen,
+    1994.
 
 Appendix: Just for testing; part I
 ==================================
@@ -12872,6 +14185,18 @@ in comparison with the other admons.
   - and a list
   - with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent U{Script for Introduction to Version Control<http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/>} provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 I{Summary.} B{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -12882,6 +14207,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are U{Dropbox<http://dropbox.com>} and U{Google Drive<http://drive.google.com>}.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 I{Notice.} Ah, we are close to the end.
 With math::
@@ -12899,21 +14273,21 @@ Appendix: Testing inline comments
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. [hpl:
-not sure if in the cloud is understood by all.] I strongly
+cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to U{http://dropbox.com<http://dropbox.com>} and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to U{http://dropbox.com<http://dropbox.com>} and watch the video. It explains
+how files, like C{myfile.py}, perhaps containing much math, like
+M{\partial u/\partial t}, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  [hpl: The following text aims at providing
+true version control systems.  [hpl 3: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
@@ -13383,6 +14757,21 @@ reference is [5] about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 [1] [4].
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[6] [3] [7] [1]
+and
+[2] [8] [9] [10] [11] [12] [13]
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [19].
+More retro citations are
+the old ME-IN323 book [20] and the
+[21] OONSKI '94 paper.
+
+
 
 
 
@@ -13807,6 +15196,101 @@ References
     *Department of Mathematics, University of Oslo*,
     1989.
 
+ 6. H. P. Langtangen. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    *SIAM Journal on Scientific Computing*,
+    13,
+    pp. 1394-1417,
+    1992.
+
+ 7. M. Mortensen, H. P. Langtangen and G. N. Wells. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    *Advances in Water Resources*,
+    34(9),
+    doi: 10.1016/j.advwatres.2011.02.013 (http://dx.doi.org/10.1016/j.advwatres.2011.02.013),
+    2011.
+
+ 8. S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    *International Journal of Fluid Mechanics Research*,
+    33(1),
+    pp. 15-43,
+    2006.
+
+ 9. S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    *Physical Review B: Condensed Matter and Materials Physics*,
+    74,
+    2006.
+
+10. J. B. Haga, H. Osnes and H. P. Langtangen. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    *International Journal of Analytical and Numerical Methods in Geomechanics*,
+    doi: 10.1002/nag.1062 (http://dx.doi.org/10.1002/nag.1062),
+    2011.
+
+11. H. P. Langtangen. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.
+
+12. H. P. Langtangen. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.
+
+13. H. P. Langtangen and G. Pedersen. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by J. Grue, B. Gjevik and J. E. Weber,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.
+
+14. H. P. Langtangen. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.
+
+15. P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
+    Optimization With Diffpack: Practical Example From Welding,
+    *Simula Research Laboratory*,
+    2004.
+
+16. H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+
+17. H. P. Langtangen. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.
+
+18. H. P. Langtangen. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.
+
+19. H. P. Langtangen. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+
+20. H. P. Langtangen and A. Tveito. 
+    Numerical Methods in Continuum Mechanics,
+    *Center for Industrial Research*,
+    1991.
+
+21. H. P. Langtangen. 
+    Diffpack: Software for Partial Differential Equations,
+    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,
+    edited by A. Vermeulen,
+    1994.
+
 Appendix: Just for testing; part I
 ==================================
 
@@ -13856,6 +15340,18 @@ in comparison with the other admons.
 
   * with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent Script for Introduction to Version Control (http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/) provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 *Summary.* _Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -13866,6 +15362,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are Dropbox (http://dropbox.com) and Google Drive (http://drive.google.com).
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 *Notice.* Ah, we are close to the end.
 With math::
@@ -13882,21 +15427,21 @@ Appendix: Testing inline comments
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. [hpl:
-not sure if in the cloud is understood by all.] I strongly
+cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to http://dropbox.com and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to http://dropbox.com and watch the video. It explains
+how files, like myfile.py, perhaps containing much math, like
+\partial u/\partial t, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  [hpl: The following text aims at providing
+true version control systems.  [hpl 3: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
@@ -14151,18 +15696,14 @@ Test of movies.
 
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-</p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 <!-- Test empty caption: -->
 
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em></em>
-</p>
+<p><em></em></p>
 
 
 <!-- Test wrong syntax and multi-line caption -->
@@ -14375,6 +15916,21 @@ C++ software tools for programming multigrid methods. A real retro
 reference is @Langtangen_1988d about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 @Langtangen_Pedersen_2002;@Mardal_et_al_2003a.
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+@Langtangen_1992c;@Langtangen_1994a;@Mortensen_et_al_2011;@Langtangen_Pedersen_2002
+and
+@Langtangen_et_al_2002;@Glimsdal_et_al_20006;@Rahman_et_al_2006b;@Haga_et_al_2011a;@Langtangen_2003a;@Langtangen_2008a;@Langtangen:95
+and all the work of
+@Langtangen_2012;@Mardal_et_al_2003a;@Jeberg_et_al_2004 as well as
+old work @Langtangen_1988d and @Langtangen_1989e, and the
+talk @Langtangen_talk_2007a.
+Langtangen also had two thesis @Langtangen:85;@Langtangen:89d.
+More retro citations are
+the old ME-IN323 book @Langtangen:91 and the
+@Langtangen:94b OONSKI '94 paper.
+
 
 
 
@@ -14927,6 +16483,101 @@ Filename: `selc_composed.pdf`.
     *Department of Mathematics, University of Oslo*,
     1989.
 
+ 6. \label{Langtangen_1992c} _H. P. Langtangen_. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    *SIAM Journal on Scientific Computing*,
+    13,
+    pp. 1394-1417,
+    1992.
+
+ 7. \label{Mortensen_et_al_2011} _M. Mortensen, H. P. Langtangen and G. N. Wells_. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    *Advances in Water Resources*,
+    34(9),
+    [doi: 10.1016/j.advwatres.2011.02.013](http://dx.doi.org/10.1016/j.advwatres.2011.02.013),
+    2011.
+
+ 8. \label{Glimsdal_et_al_20006} _S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt_. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    *International Journal of Fluid Mechanics Research*,
+    33(1),
+    pp. 15-43,
+    2006.
+
+ 9. \label{Rahman_et_al_2006b} _S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen_. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    *Physical Review B: Condensed Matter and Materials Physics*,
+    74,
+    2006.
+
+10. \label{Haga_et_al_2011a} _J. B. Haga, H. Osnes and H. P. Langtangen_. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    *International Journal of Analytical and Numerical Methods in Geomechanics*,
+    [doi: 10.1002/nag.1062](http://dx.doi.org/10.1002/nag.1062),
+    2011.
+
+11. \label{Langtangen_2003a} _H. P. Langtangen_. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.
+
+12. \label{Langtangen_2008a} _H. P. Langtangen_. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.
+
+13. \label{Langtangen:95} _H. P. Langtangen and G. Pedersen_. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by _J. Grue, B. Gjevik and J. E. Weber_,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.
+
+14. \label{Langtangen_2012} _H. P. Langtangen_. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.
+
+15. \label{Jeberg_et_al_2004} _P. V. Jeberg, H. P. Langtangen and C. B. Terp_. 
+    Optimization With Diffpack: Practical Example From Welding,
+    *Simula Research Laboratory*,
+    2004.
+
+16. \label{Langtangen_1989e} _H. P. Langtangen_. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+
+17. \label{Langtangen_talk_2007a} _H. P. Langtangen_. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.
+
+18. \label{Langtangen:85} _H. P. Langtangen_. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.
+
+19. \label{Langtangen:89d} _H. P. Langtangen_. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.
+
+20. \label{Langtangen:91} _H. P. Langtangen and A. Tveito_. 
+    Numerical Methods in Continuum Mechanics,
+    *Center for Industrial Research*,
+    1991.
+
+21. \label{Langtangen:94b} _H. P. Langtangen_. 
+    Diffpack: Software for Partial Differential Equations,
+    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,
+    edited by _A. Vermeulen_,
+    1994.
+
 ## Appendix: Just for testing; part I
 
 This is the first appendix.
@@ -14968,6 +16619,18 @@ in comparison with the other admons.
   * and a list
 
   * with items
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent [Script for Introduction to Version Control](http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/) provides a more detailed motivation why you will benefit greatly
+from using version control systems.
 *Summary.* _Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -14978,6 +16641,55 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are [Dropbox](http://dropbox.com) and [Google Drive](http://drive.google.com).
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
 
 *Notice.* Ah, we are close to the end.
 With math:
@@ -14995,21 +16707,21 @@ $$
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. [hpl:
-not sure if in the cloud is understood by all.] I strongly
+cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. [mp: Simply
-go to <http://dropbox.com> and watch the video.] It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <http://dropbox.com> and watch the video. It explains
+how files, like `myfile.py`, perhaps containing much math, like
+$\partial u/\partial t$, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  [hpl: The following text aims at providing
+true version control systems.  [hpl 3: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.]
@@ -15411,18 +17123,14 @@ case in LaTeX.
       "\n",
       "\n",
       "<embed src=\"../doc/manual/figs/mjolnir.mpeg\" width=700 height=400 autoplay=\"false\" loop=\"true\"></embed>\n",
-      "<p>\n",
-      "<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>\n",
-      "</p>\n",
+      "<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>\n",
       "\n",
       "\n",
       "<!-- Test empty caption: -->\n",
       "\n",
       "\n",
       "<embed src=\"../doc/manual/figs/wavepacket.mpeg\" width=700 height=400 autoplay=\"false\" loop=\"true\"></embed>\n",
-      "<p>\n",
-      "<em></em>\n",
-      "</p>\n",
+      "<p><em></em></p>\n",
       "\n",
       "\n",
       "<!-- Test wrong syntax and multi-line caption -->\n",
@@ -15691,6 +17399,21 @@ case in LaTeX.
       "reference is [Langtangen_1988d] about a big FORTRAN package.\n",
       "Multiple references are also possible, e.g., see\n",
       "[Langtangen_Pedersen_2002] [Mardal_et_al_2003a].\n",
+      "\n",
+      "We need to cite more than 10 papers to reproduce an old formatting\n",
+      "problem with blanks in the keys in reST format:\n",
+      "[Langtangen_1992c] [Langtangen_1994a] [Mortensen_et_al_2011] [Langtangen_Pedersen_2002]\n",
+      "and\n",
+      "[Langtangen_et_al_2002] [Glimsdal_et_al_20006] [Rahman_et_al_2006b] [Haga_et_al_2011a] [Langtangen_2003a] [Langtangen_2008a] [Langtangen:95]\n",
+      "and all the work of\n",
+      "[Langtangen_2012] [Mardal_et_al_2003a] [Jeberg_et_al_2004] as well as\n",
+      "old work [Langtangen_1988d] and [Langtangen_1989e], and the\n",
+      "talk [Langtangen_talk_2007a].\n",
+      "Langtangen also had two thesis [Langtangen:85] [Langtangen:89d].\n",
+      "More retro citations are\n",
+      "the old ME-IN323 book [Langtangen:91] and the\n",
+      "[Langtangen:94b] OONSKI '94 paper.\n",
+      "\n",
       "\n",
       "\n",
       "\n",
@@ -16331,6 +18054,101 @@ case in LaTeX.
       "    *Department of Mathematics, University of Oslo*,\n",
       "    1989.\n",
       "\n",
+      " 6. \\label{Langtangen_1992c} _H. P. Langtangen_. \n",
+      "    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,\n",
+      "    *SIAM Journal on Scientific Computing*,\n",
+      "    13,\n",
+      "    pp. 1394-1417,\n",
+      "    1992.\n",
+      "\n",
+      " 7. \\label{Mortensen_et_al_2011} _M. Mortensen, H. P. Langtangen and G. N. Wells_. \n",
+      "    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,\n",
+      "    *Advances in Water Resources*,\n",
+      "    34(9),\n",
+      "    [doi: 10.1016/j.advwatres.2011.02.013](http://dx.doi.org/10.1016/j.advwatres.2011.02.013),\n",
+      "    2011.\n",
+      "\n",
+      " 8. \\label{Glimsdal_et_al_20006} _S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\\ovholt_. \n",
+      "    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,\n",
+      "    *International Journal of Fluid Mechanics Research*,\n",
+      "    33(1),\n",
+      "    pp. 15-43,\n",
+      "    2006.\n",
+      "\n",
+      " 9. \\label{Rahman_et_al_2006b} _S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen_. \n",
+      "    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,\n",
+      "    *Physical Review B: Condensed Matter and Materials Physics*,\n",
+      "    74,\n",
+      "    2006.\n",
+      "\n",
+      "10. \\label{Haga_et_al_2011a} _J. B. Haga, H. Osnes and H. P. Langtangen_. \n",
+      "    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,\n",
+      "    *International Journal of Analytical and Numerical Methods in Geomechanics*,\n",
+      "    [doi: 10.1002/nag.1062](http://dx.doi.org/10.1002/nag.1062),\n",
+      "    2011.\n",
+      "\n",
+      "11. \\label{Langtangen_2003a} _H. P. Langtangen_. \n",
+      "    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,\n",
+      "    Springer,\n",
+      "    2003.\n",
+      "\n",
+      "12. \\label{Langtangen_2008a} _H. P. Langtangen_. \n",
+      "    Python Scripting for Computational Science,\n",
+      "    Springer,\n",
+      "    2008.\n",
+      "\n",
+      "13. \\label{Langtangen:95} _H. P. Langtangen and G. Pedersen_. \n",
+      "    Finite Elements for the Boussinesq Wave Equations,\n",
+      "    Waves and Non-linear Processes in Hydrodynamics,\n",
+      "    edited by _J. Grue, B. Gjevik and J. E. Weber_,\n",
+      "    Kluwer Academic Publishers,\n",
+      "    pp. pp. 117-126,\n",
+      "    1995.\n",
+      "\n",
+      "14. \\label{Langtangen_2012} _H. P. Langtangen_. \n",
+      "    A Primer on Scientific Programming With Python,\n",
+      "    Springer,\n",
+      "    2012.\n",
+      "\n",
+      "15. \\label{Jeberg_et_al_2004} _P. V. Jeberg, H. P. Langtangen and C. B. Terp_. \n",
+      "    Optimization With Diffpack: Practical Example From Welding,\n",
+      "    *Simula Research Laboratory*,\n",
+      "    2004.\n",
+      "\n",
+      "16. \\label{Langtangen_1989e} _H. P. Langtangen_. \n",
+      "    Computational Methods for Two-Phase Flow in Oil Reservoirs,\n",
+      "    Ph.D. Thesis,\n",
+      "    Mechanics Division, Department of Mathematics, University of Oslo,\n",
+      "    1989.\n",
+      "\n",
+      "17. \\label{Langtangen_talk_2007a} _H. P. Langtangen_. \n",
+      "    Computational Modeling of Huge Tsunamis From Asteroid Impacts,\n",
+      "    Invited keynote lecture at the \\emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,\n",
+      "    2007.\n",
+      "\n",
+      "18. \\label{Langtangen:85} _H. P. Langtangen_. \n",
+      "    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,\n",
+      "    M.Sc. Thesis,\n",
+      "    Mechanics Division, Department of Mathematics, University of Oslo,\n",
+      "    1985.\n",
+      "\n",
+      "19. \\label{Langtangen:89d} _H. P. Langtangen_. \n",
+      "    Computational Methods for Two-Phase Flow in Oil Reservoirs,\n",
+      "    Ph.D. Thesis,\n",
+      "    Mechanics Division, Department of Mathematics, University of Oslo,\n",
+      "    1989.\n",
+      "\n",
+      "20. \\label{Langtangen:91} _H. P. Langtangen and A. Tveito_. \n",
+      "    Numerical Methods in Continuum Mechanics,\n",
+      "    *Center for Industrial Research*,\n",
+      "    1991.\n",
+      "\n",
+      "21. \\label{Langtangen:94b} _H. P. Langtangen_. \n",
+      "    Diffpack: Software for Partial Differential Equations,\n",
+      "    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,\n",
+      "    edited by _A. Vermeulen_,\n",
+      "    1994.\n",
+      "\n",
       "## Appendix: Just for testing; part I\n",
       "\n",
       "This is the first appendix.\n",
@@ -16373,6 +18191,18 @@ case in LaTeX.
       "\n",
       "  * with items\n",
       "\n",
+      "Need a lot of text to surround the summary box.\n",
+      "Version control systems allow you to record the history of files\n",
+      "and share files among several computers and collaborators in a\n",
+      "professional way. File changes on one computer are updated or\n",
+      "merged with changes on another computer. Especially when working\n",
+      "with programs or technical reports it is essential\n",
+      "to have changes documented and to\n",
+      "ensure that every computer and person involved in the project\n",
+      "have the latest updates of the files.\n",
+      "Greg Wilson' excellent [Script for Introduction to Version Control](http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/) provides a more detailed motivation why you will benefit greatly\n",
+      "from using version control systems.\n",
+      "\n",
       "*Summary.* _Bold remark:_ Make some text with this summary.\n",
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
@@ -16383,6 +18213,55 @@ case in LaTeX.
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
+      "\n",
+      "Projects that you want to share among several computers or project\n",
+      "workers are today most conveniently stored at some web site \"in the\n",
+      "cloud\" and updated through communication with that site. I strongly\n",
+      "recommend you to use such sites for all serious programming and\n",
+      "scientific writing work -- and all other important files.\n",
+      "\n",
+      "The simplest services for hosting project files are [Dropbox](http://dropbox.com) and [Google Drive](http://drive.google.com).\n",
+      "It is very easy to get started with these systems, and they allow you\n",
+      "to share files among laptops and mobile units with as many users as\n",
+      "you want. The systems offer a kind of version control in that the\n",
+      "files are stored frequently (several times per minute), and you can go\n",
+      "back to previous versions for the last 30 days. However, it is\n",
+      "challenging  to find the right version from the past when there are\n",
+      "so many of them.\n",
+      "\n",
+      "More seriously, when several people may edit files simultaneously, it\n",
+      "can be difficult detect who did what when, roll back to previous\n",
+      "versions, and to manually merge the edits when these are\n",
+      "incompatible. Then one needs more sophisticated tools than Dropbox or\n",
+      "Google Drive: project hosting services with true version control\n",
+      "systems.  The following text aims at providing you with the minimum\n",
+      "information to started with such systems. Numerous other tutorials\n",
+      "contain more comprehensive material and in-depth explanations of the\n",
+      "concepts and tools.\n",
+      "\n",
+      "The idea with project hosting services is that you have the files\n",
+      "associated with a project in the cloud. Many people may share these\n",
+      "files.  Every time you want to work on the project you explicitly\n",
+      "update your version of the files, edit the files as you like, and\n",
+      "synchronize the files with the \"master version\" at the site where the\n",
+      "project is hosted.  If you at some point need to go back to a\n",
+      "version of the files at some particular point in the past,\n",
+      "this is an easy operation. You can also use tools to see\n",
+      "what various people have done with the files in the various versions.\n",
+      "\n",
+      "All these services are very similar. Below we describe how you get\n",
+      "started with Bitbucket, GitHub, and Googlecode. Launchpad works very\n",
+      "similarly to the latter three. All the project hosting services have\n",
+      "excellent introductions available at their web sites, but the recipes\n",
+      "below are much shorter and aim at getting you started as quickly as\n",
+      "possible by concentrating on the most important need-to-know steps.\n",
+      "The Git tutorials we refer to later in this document contain more\n",
+      "detailed information and constitute of course very valuable readings\n",
+      "when you use version control systems every day. The point now is\n",
+      "to get started.\n",
+      "\n",
+      "\n",
+      "\n",
       "\n",
       "*Notice.* Ah, we are close to the end.\n",
       "With math:"
@@ -16409,21 +18288,21 @@ case in LaTeX.
       "\n",
       "Projects that you want to share among several computers or project\n",
       "workers are today most conveniently stored at some web site \"in the\n",
-      "cloud\" and updated through communication with that site. [hpl:\n",
-      "not sure if in the cloud is understood by all.] I strongly\n",
+      "cloud\" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly\n",
       "recommend you to use such sites for all serious programming and\n",
       "scientific writing work -- and all other important files.\n",
       "\n",
-      "The simplest services for hosting project files is Dropbox. [mp: Simply\n",
-      "go to <http://dropbox.com> and watch the video.] It is very easy to get\n",
-      "started with Dropbox, and it allows you to share files among\n",
-      "laptops and mobile units.\n",
+      "The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <http://dropbox.com> and watch the video. It explains\n",
+      "how files, like `myfile.py`, perhaps containing much math, like\n",
+      "$\\partial u/\\partial t$, are easily communicated between machines.] It\n",
+      "is very easy to get started with Dropbox, and it allows you to share\n",
+      "files among laptops and mobile units.\n",
       "\n",
       "When several people may edit files simultaneously, it can be difficult\n",
       "detect who did what when, roll back to previous versions, and to\n",
       "manually merge the edits when these are incompatible. Then one needs\n",
       "more sophisticated tools than Dropbox: project hosting services with\n",
-      "true version control systems.  [hpl: The following text aims at providing\n",
+      "true version control systems.  [hpl 3: The following text aims at providing\n",
       "you with the minimum information to started with such\n",
       "systems. Numerous other tutorials contain more comprehensive material\n",
       "and in-depth explanations of the concepts and tools.]\n",
@@ -16977,6 +18856,7 @@ output2</code></pre>
 <p>Here is some text.</p>
 <h2 id="bibliography-test">Bibliography test</h2>
 <p>Here is an example:  discussed propagation of large destructive water waves,  gave an overview of numerical methods for solving the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in . The book chapter  contains information on C++ software tools for programming multigrid methods. A real retro reference is  about a big FORTRAN package. Multiple references are also possible, e.g., see .</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:  and  and all the work of  as well as old work  and , and the talk . Langtangen also had two thesis . More retro citations are the old ME-IN323 book  and the  OONSKI ’94 paper.</p>
 <h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
 <p>[Example]</p>
 <p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
@@ -17170,6 +19050,12 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>With label.</p>
 <h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
 <p>Without label.</p>
+<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson’ excellent <a href="{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work – and all other important files.</p>
+<p>The simplest services for hosting project files are <a href="{http://dropbox.com}">Dropbox</a> and <a href="{http://drive.google.com}">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
+<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems. The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files. Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the &quot;master version&quot; at the site where the project is hosted. If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h2>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work – and all other important files.</p>
 <p>The simplest services for hosting project files is Dropbox. It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
@@ -17638,6 +19524,7 @@ output2</code></pre>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
 <h3 id="bibliography-test">Bibliography test</h3>
 <p>Here is an example: @Langtangen_Pedersen_2002 discussed propagation of large destructive water waves, @Langtangen_et_al_2002 gave an overview of numerical methods for solving the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in @Langtangen_1994a. The book chapter @Mardal_et_al_2003a contains information on C++ software tools for programming multigrid methods. A real retro reference is @Langtangen_1988d about a big FORTRAN package. Multiple references are also possible, e.g., see @Langtangen_Pedersen_2002;@Mardal_et_al_2003a.</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format: @Langtangen_1992c;@Langtangen_1994a;@Mortensen_et_al_2011;@Langtangen_Pedersen_2002 and @Langtangen_et_al_2002;@Glimsdal_et_al_20006;@Rahman_et_al_2006b;@Haga_et_al_2011a;@Langtangen_2003a;@Langtangen_2008a;@Langtangen:95 and all the work of @Langtangen_2012;@Mardal_et_al_2003a;@Jeberg_et_al_2004 as well as old work @Langtangen_1988d and @Langtangen_1989e, and the talk @Langtangen_talk_2007a. Langtangen also had two thesis @Langtangen:85;@Langtangen:89d. More retro citations are the old ME-IN323 book @Langtangen:91 and the @Langtangen:94b OONSKI '94 paper.</p>
 <!-- --- begin exercise --- -->
 
 <h3 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h3>
@@ -17919,6 +19806,22 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <li><p> <em>H. P. Langtangen</em>. Numerical Solution of First Passage Problems in Random Vibrations, <em>SIAM Journal of Scientific and Statistical Computing</em>, 15, pp. 997-996, 1994.</p></li>
 <li><p> <em>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</em>. Software Tools for Multigrid Methods, <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>, edited by <em>H. P. Langtangen and A. Tveito</em>, Springer, 2003.</p></li>
 <li><p> <em>H. P. Langtangen</em>. The FEMDEQS Program System, <em>Department of Mathematics, University of Oslo</em>, 1989.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process, <em>SIAM Journal on Scientific Computing</em>, 13, pp. 1394-1417, 1992.</p></li>
+<li><p> <em>M. Mortensen, H. P. Langtangen and G. N. Wells</em>. A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations, <em>Advances in Water Resources</em>, 34(9), <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>, 2011.</p></li>
+<li><p> <em>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L</em>. Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics, <em>International Journal of Fluid Mechanics Research</em>, 33(1), pp. 15-43, 2006.</p></li>
+<li><p> <em>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</em>. Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel, <em>Physical Review B: Condensed Matter and Materials Physics</em>, 74, 2006.</p></li>
+<li><p> <em>J. B. Haga, H. Osnes and H. P. Langtangen</em>. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media, <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>, <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>, 2011.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming, Springer, 2003.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Python Scripting for Computational Science, Springer, 2008.</p></li>
+<li><p> <em>H. P. Langtangen and G. Pedersen</em>. Finite Elements for the Boussinesq Wave Equations, Waves and Non-linear Processes in Hydrodynamics, edited by <em>J. Grue, B. Gjevik and J. E. Weber</em>, Kluwer Academic Publishers, pp. pp. 117-126, 1995.</p></li>
+<li><p> <em>H. P. Langtangen</em>. A Primer on Scientific Programming With Python, Springer, 2012.</p></li>
+<li><p> <em>P. V. Jeberg, H. P. Langtangen and C. B. Terp</em>. Optimization With Diffpack: Practical Example From Welding, <em>Simula Research Laboratory</em>, 2004.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Computational Modeling of Huge Tsunamis From Asteroid Impacts, Invited keynote lecture at the conference on Computational Science 2007 (ICCS'07), Beijing, China, 2007.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions, M.Sc. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1985.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989.</p></li>
+<li><p> <em>H. P. Langtangen and A. Tveito</em>. Numerical Methods in Continuum Mechanics, <em>Center for Industrial Research</em>, 1991.</p></li>
+<li><p> <em>H. P. Langtangen</em>. Diffpack: Software for Partial Differential Equations, <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>, edited by <em>A. Vermeulen</em>, 1994.</p></li>
 </ol>
 <h2 id="appendix-just-for-testing-part-i">Appendix: Just for testing; part I</h2>
 <p>This is the first appendix.</p>
@@ -17938,16 +19841,22 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><em>Warning.</em> And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
 <ul>
 <li><p>and a list</p></li>
-<li><p>with items <em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p></li>
+<li><p>with items</p></li>
 </ul>
+<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems. <em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work -- and all other important files.</p>
+<p>The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
+<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems. The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files. Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the &quot;master version&quot; at the site where the project is hosted. If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
 <p><em>Notice.</em> Ah, we are close to the end. With math: \[
  p=q
 \]</p>
 <p><em>Question.</em> So, how many admonition environments does Doconce support?</p>
 <h3 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h3>
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. [hpl: not sure if in the cloud is understood by all.] I strongly recommend you to use such sites for all serious programming and scientific writing work -- and all other important files.</p>
-<p>The simplest services for hosting project files is Dropbox. [mp: Simply go to <a href="http://dropbox.com"><code class="url">http://dropbox.com</code></a> and watch the video.] It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
-<p>When several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox: project hosting services with true version control systems. [hpl: The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.]</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly recommend you to use such sites for all serious programming and scientific writing work -- and all other important files.</p>
+<p>The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <a href="http://dropbox.com"><code class="url">http://dropbox.com</code></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \(\partial u/\partial t\), are easily communicated between machines.] It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
+<p>When several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox: project hosting services with true version control systems. [hpl 3: The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.]</p>
 <h3 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code></h3>
 <p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
 </body>
@@ -18343,7 +20252,7 @@ Note: When using HTML templates, the Doconce file cannot have a title
 Here is some code:
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Diff</span>:
     <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__init__</span>(<span style="color: #AA22FF">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #AA22FF">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
@@ -19020,7 +20929,7 @@ the <code>xr</code> feature in LaTeX.
 The syntax of generalized references reads
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">ref[internal][cite][external]
 </pre></div>
 <p>
@@ -19039,7 +20948,7 @@ text will be the output.
 Here is a specific example on a generalized reference:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">As explained in
 ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
 &quot;http://code.google.com/p/doconce/wiki/Description&quot;
@@ -19058,7 +20967,7 @@ the document <a href="testdoc.html">A Document for Testing Doconce</a>
 And here is another example with internal references only:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Generalized references are described in ref[Section ref{genrefs}][][
 the document *author1*].
 </pre></div>
@@ -19076,6 +20985,12 @@ the section <a href="#genrefs">Generalized References</a>."
 
 <p>
 Inline math, \( a=b \), is the only math in this document.
+
+<p>
+<!-- Need BIBFILE because of cite{} examples -->
+
+<p>
+
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -19152,7 +21067,7 @@ open=right               % start new chapters on odd-numbered pages
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
@@ -19227,7 +21142,11 @@ open=right               % start new chapters on odd-numbered pages
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{Test of one author at one institution}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Test of one author at one institution
+\end{spacing}
+}}}
 
 % #elif LATEX_HEADING == "Springer_collection"
 
@@ -19238,7 +21157,11 @@ open=right               % start new chapters on odd-numbered pages
 % #else
 
 \begin{center}
-{\LARGE\bf Test of one author at one institution}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Test of one author at one institution
+\end{spacing}
+}
 \end{center}
 
 % #endif
@@ -19366,6 +21289,12 @@ Section~\ref{genrefs}."
 
 Inline math, $a=b$, is the only math in this document.
 
+% Need BIBFILE because of \cite{} examples
+
+
+\bibliographystyle{plain}
+\bibliography{papers.bib}
+
 % ------------------- end of main content ---------------
 
 
@@ -19465,6 +21394,12 @@ Test of math
 
 Inline math, :math:`a=b`, is the only math in this document.
 
+.. Need BIBFILE because of cite{} examples
+
+
+
+
+
 ************** File: author1.txt *****************
 Test of one author at one institution
 =====================================
@@ -19538,6 +21473,10 @@ Test of math
 %%%%%%%%%%%%
 
 Inline math, a=b, is the only math in this document.
+
+
+
+
 
 ************** File: ._part0000_testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -20357,7 +22296,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=fortran (from !bc fcod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
  2
  3
@@ -20388,7 +22327,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 and then just the subroutine,
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=fortran (from !bc fcod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20409,7 +22348,7 @@ and then just the subroutine,
 and finally the complete file:
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=fortran (from !bc fpro) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
  2
  3
@@ -20445,7 +22384,7 @@ and finally the complete file:
 Testing other code environments. First Python:
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20460,7 +22399,7 @@ which gets rendered as
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x):
     <span style="color: #AA22FF; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
@@ -20478,7 +22417,7 @@ Now a complete program to be shown via Python Online Tutorial:
 Then Cython:
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=cython (from !bc cycod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">cpdef</span> <span style="color: #00A000">f</span>(double x):
     <span style="color: #AA22FF; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
@@ -20489,7 +22428,7 @@ Then Cython:
 C++:
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=c++ (from !bc cpppro) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20511,7 +22450,7 @@ And a little bit of Fortran:
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20534,7 +22473,7 @@ which then is typeset as
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text (from !bc cod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20554,7 +22493,7 @@ HTML:
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=html (from !bc htmlcod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20570,7 +22509,7 @@ HTML:
 System call:
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=bash (from !bc sys) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20625,9 +22564,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-</p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 <p>
@@ -20636,9 +22573,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em></em>
-</p>
+<p><em></em></p>
 
 
 <p>
@@ -20712,7 +22647,7 @@ Functions do not always need to be advanced, here is one
 involving \( \theta \):
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
     return theta**2
@@ -20811,7 +22746,7 @@ Let us take this table from the manual:
 The Doconce source code reads
 <p>
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text (from !bc ccq) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -20893,6 +22828,22 @@ Multiple references are also possible, e.g., see
 <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
 
 <p>
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+<a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
+and
+<a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
+and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
+<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+
+<p>
+
 
 <!-- --- begin exercise --- -->
 
@@ -21227,7 +23178,7 @@ The formula can be used to generate <code>n</code> points on a circle:
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=python (from !bc pypro) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
 3
@@ -21349,7 +23300,7 @@ And with code returning \( x+1 \) in hint:
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
     return x + 1  # with code in hint
@@ -21440,7 +23391,7 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
 </td></tr></table><p>
@@ -21555,6 +23506,85 @@ Filename: <code>selc_composed.pdf</code>.
     The FEMDEQS Program System,
     <em>Department of Mathematics, University of Oslo</em>,
     1989.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    <em>SIAM Journal on Scientific Computing</em>,
+    13,
+    pp. 1394-1417,
+    1992.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    <em>Advances in Water Resources</em>,
+    34(9),
+    <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>,
+    2011.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    <em>International Journal of Fluid Mechanics Research</em>,
+    33(1),
+    pp. 15-43,
+    2006.</li>
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    <em>Physical Review B: Condensed Matter and Materials Physics</em>,
+    74,
+    2006.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
+    <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
+    2011.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+    Optimization With Diffpack: Practical Example From Welding,
+    <em>Simula Research Laboratory</em>,
+    2004.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
+    Numerical Methods in Continuum Mechanics,
+    <em>Center for Industrial Research</em>,
+    1991.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
+    Diffpack: Software for Partial Differential Equations,
+    <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
+    edited by <b>A. Vermeulen</b>,
+    1994.</li>
 </ol>
 
 
@@ -21641,6 +23671,19 @@ in comparison with the other admons.
 </p></td></tr>
 </table>
 <p>
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+<p>
 
 <table width="95%" border="0">
 <tr>
@@ -21662,6 +23705,58 @@ Much testing in this document, otherwise stupid content.
 </p></td></tr>
 </table>
 <p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+<p>
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+<p>
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+<p>
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+<p>
+
 
 <table width="95%" border="0">
 <tr>
@@ -21697,7 +23792,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
@@ -21706,12 +23801,13 @@ scientific writing work -- and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-[<b>mp</b>: <em>Simply
-go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+how files, like <code>myfile.py</code>, perhaps containing much math, like
+\( \partial u/\partial t \), are easily communicated between machines.</em>]
 <!-- end inline comment -->
- It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 <p>
 When several people may edit files simultaneously, it can be difficult
@@ -21720,7 +23816,7 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>The following text aims at providing
+[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.</em>]
@@ -22016,7 +24112,7 @@ Python implementation:
 <p>
 
 
-<!-- code typeset with pygments style "emacs" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
 <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x, y, t):
@@ -22750,9 +24846,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-</p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 <p>
@@ -22761,9 +24855,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em></em>
-</p>
+<p><em></em></p>
 
 
 <p>
@@ -23019,6 +25111,22 @@ Multiple references are also possible, e.g., see
 <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
 
 <p>
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+<a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
+and
+<a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
+and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
+<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+
+<p>
+
 
 
 
@@ -23726,6 +25834,85 @@ Filename: <code>selc_composed.pdf</code>.
     The FEMDEQS Program System,
     <em>Department of Mathematics, University of Oslo</em>,
     1989.</li>
+ <li> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    <em>SIAM Journal on Scientific Computing</em>,
+    13,
+    pp. 1394-1417,
+    1992.</li>
+ <li> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    <em>Advances in Water Resources</em>,
+    34(9),
+    <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>,
+    2011.</li>
+ <li> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    <em>International Journal of Fluid Mechanics Research</em>,
+    33(1),
+    pp. 15-43,
+    2006.</li>
+ <li> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    <em>Physical Review B: Condensed Matter and Materials Physics</em>,
+    74,
+    2006.</li>
+<li> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
+    <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
+    2011.</li>
+<li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.</li>
+<li> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.</li>
+<li> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.</li>
+<li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.</li>
+<li> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+    Optimization With Diffpack: Practical Example From Welding,
+    <em>Simula Research Laboratory</em>,
+    2004.</li>
+<li> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+<li> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.</li>
+<li> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.</li>
+<li> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+<li> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
+    Numerical Methods in Continuum Mechanics,
+    <em>Center for Industrial Research</em>,
+    1991.</li>
+<li> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
+    Diffpack: Software for Partial Differential Equations,
+    <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
+    edited by <b>A. Vermeulen</b>,
+    1994.</li>
 </ol>
 
 
@@ -23810,6 +25997,19 @@ in comparison with the other admons.
 </p></td></tr>
 </table>
 <p>
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+<p>
 
 <table width="95%" border="0">
 <tr>
@@ -23831,6 +26031,58 @@ Much testing in this document, otherwise stupid content.
 </p></td></tr>
 </table>
 <p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+<p>
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+<p>
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+<p>
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+<p>
+
 
 <table width="95%" border="0">
 <tr>
@@ -23868,7 +26120,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 
-[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
 
  I strongly
 recommend you to use such sites for all serious programming and
@@ -23877,12 +26129,13 @@ scientific writing work -- and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 
-[<b>mp</b>: <em>Simply
-go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+how files, like <code>myfile.py</code>, perhaps containing much math, like
+$latex \partial u/\partial t$, are easily communicated between machines.</em>]
 
- It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 <p>
 When several people may edit files simultaneously, it can be difficult
@@ -23891,7 +26144,7 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 
-[<b>hpl</b>: <em>The following text aims at providing
+[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.</em>]
@@ -24269,7 +26522,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=fortran (from !bc fcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
       <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
       <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
@@ -24288,7 +26541,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 and then just the subroutine,
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=fortran (from !bc fcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
       <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
       <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
@@ -24302,7 +26555,7 @@ and then just the subroutine,
 and finally the complete file:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=fortran (from !bc fpro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">C</span>     <span style="color: #19177C">a</span> <span style="color: #19177C">comment</span>
 
       <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
@@ -24324,7 +26577,7 @@ and finally the complete file:
 Testing other code environments. First Python:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
 def f(x):
     return x+1
@@ -24336,7 +26589,7 @@ which gets rendered as
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
@@ -24353,7 +26606,7 @@ Now a complete program to be shown via Python Online Tutorial:
 Then Cython:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=cython (from !bc cycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">cpdef</span> <span style="color: #0000FF">f</span>(double x):
     <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
@@ -24363,7 +26616,7 @@ Then Cython:
 C++:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=c++ (from !bc cpppro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
 
 <span style="color: #B00040">int</span> main()
@@ -24379,7 +26632,7 @@ And a little bit of Fortran:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -24395,7 +26648,7 @@ which then is typeset as
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text (from !bc cod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
       real*8 a, b, x
       x = (a + b)/2
@@ -24410,7 +26663,7 @@ HTML:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=html (from !bc htmlcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
 <span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>Column 1<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>Column 2<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
 <span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>0.67526 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>0.92871 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
@@ -24422,7 +26675,7 @@ HTML:
 System call:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #008000">test</span>
 Terminal&gt; <span style="color: #008000">cd test</span>
 Terminal&gt; myprog -f
@@ -24473,9 +26726,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-</p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 <p>
@@ -24484,9 +26735,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em></em>
-</p>
+<p><em></em></p>
 
 
 <p>
@@ -24560,7 +26809,7 @@ Functions do not always need to be advanced, here is one
 involving \( \theta \):
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
     return theta**2
 </pre></div>
@@ -24658,7 +26907,7 @@ Let us take this table from the manual:
 The Doconce source code reads
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text (from !bc ccq) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -24734,6 +26983,22 @@ Multiple references are also possible, e.g., see
 <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
 
 <p>
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+<a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
+and
+<a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
+and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
+<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+
+<p>
+
 
 <!-- --- begin exercise --- -->
 
@@ -25067,7 +27332,7 @@ The formula can be used to generate <code>n</code> points on a circle:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
@@ -25183,7 +27448,7 @@ And with code returning \( x+1 \) in hint:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
     return x + 1  # with code in hint
 </pre></div>
@@ -25272,7 +27537,7 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
 <p>
@@ -25387,6 +27652,85 @@ Filename: <code>selc_composed.pdf</code>.
     The FEMDEQS Program System,
     <em>Department of Mathematics, University of Oslo</em>,
     1989.</li>
+ <li> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    <em>SIAM Journal on Scientific Computing</em>,
+    13,
+    pp. 1394-1417,
+    1992.</li>
+ <li> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    <em>Advances in Water Resources</em>,
+    34(9),
+    <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>,
+    2011.</li>
+ <li> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    <em>International Journal of Fluid Mechanics Research</em>,
+    33(1),
+    pp. 15-43,
+    2006.</li>
+ <li> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    <em>Physical Review B: Condensed Matter and Materials Physics</em>,
+    74,
+    2006.</li>
+<li> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
+    <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
+    2011.</li>
+<li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.</li>
+<li> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.</li>
+<li> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.</li>
+<li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.</li>
+<li> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+    Optimization With Diffpack: Practical Example From Welding,
+    <em>Simula Research Laboratory</em>,
+    2004.</li>
+<li> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+<li> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.</li>
+<li> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.</li>
+<li> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+<li> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
+    Numerical Methods in Continuum Mechanics,
+    <em>Center for Industrial Research</em>,
+    1991.</li>
+<li> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
+    Diffpack: Software for Partial Differential Equations,
+    <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
+    edited by <b>A. Vermeulen</b>,
+    1994.</li>
 </ol>
 
 
@@ -25471,6 +27815,19 @@ in comparison with the other admons.
 </p></td></tr>
 </table>
 <p>
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+<p>
 
 <table width="95%" border="0">
 <tr>
@@ -25492,6 +27849,58 @@ Much testing in this document, otherwise stupid content.
 </p></td></tr>
 </table>
 <p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+<p>
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+<p>
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+<p>
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+<p>
+
 
 <table width="95%" border="0">
 <tr>
@@ -25527,7 +27936,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
@@ -25536,12 +27945,13 @@ scientific writing work -- and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-[<b>mp</b>: <em>Simply
-go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+how files, like <code>myfile.py</code>, perhaps containing much math, like
+\( \partial u/\partial t \), are easily communicated between machines.</em>]
 <!-- end inline comment -->
- It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 <p>
 When several people may edit files simultaneously, it can be difficult
@@ -25550,7 +27960,7 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>The following text aims at providing
+[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.</em>]
@@ -25639,7 +28049,7 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -25773,7 +28183,11 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{A Document for Testing Doconce}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+A Document for Testing Doconce
+\end{spacing}
+}}}
 
 % #elif LATEX_HEADING == "Springer_collection"
 
@@ -25784,7 +28198,11 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-{\LARGE\bf A Document for Testing Doconce}
+{\LARGE\bf
+\begin{spacing}{1.25}
+A Document for Testing Doconce
+\end{spacing}
+}
 \end{center}
 
 % #endif
@@ -26462,6 +28880,21 @@ reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
 
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+\cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
+and
+\cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a,Langtangen:95}
+and all the work of
+\cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
+old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
+talk \cite{Langtangen_talk_2007a}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+More retro citations are
+the old ME-IN323 book \cite{Langtangen:91} and the
+\cite{Langtangen:94b} OONSKI '94 paper.
+
+
 
 
 % --- begin exercise ---
@@ -27006,17 +29439,20 @@ With label.
 Without label.
 
 
+
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{hintbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/hint.eps}
-\vskip-0.3in\centerline{{\large\sc Hint}}
+\ \ \ {\large\sc Hint}\\ [3mm]
 Here is a hint.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+
 
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 \setlength{\fboxrule}{2pt}
@@ -27024,7 +29460,7 @@ Here is a hint.
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\centerline{{\large\sc Warning}}
+\ \ \ {\large\sc Warning}\\ [3mm]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -27039,6 +29475,19 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent \href{{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
 \summarybox{
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
@@ -27050,13 +29499,62 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.}
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox} and \href{{http://drive.google.com}}{Google Drive}.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
+
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 Ah, we are close to the end.
 With math:
 \[ p=q\]
@@ -27064,38 +29562,42 @@ With math:
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
 
+
+
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{questionbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/question.eps}
-\vskip-0.3in\centerline{{\large\sc Question}}
+\ \ \ {\large\sc Question}\\ [3mm]
 So, how many admonition environments does Doconce support?
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \subsection{Appendix: Testing inline comments}
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. \shortinlinecomment{hpl}{not sure if in the cloud is understood by all.}{not sure if in the cloud is understood by all.} I strongly
+cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. \shortinlinecomment{mp}{Simply
-go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.}{Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video.} It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
+how files, like \code{myfile.py}, perhaps containing much math, like
+$\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} } It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  \longinlinecomment{hpl}{The following text aims at providing
+true version control systems.  \longinlinecomment{hpl 3}{ The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.}{The following text aims at providing you with the minimum}
+and in-depth explanations of the concepts and tools. }{ The following text aims }
 
 \subsection{Appendix: Testing headings ending with \protect\code{verbatim inline} }
 
@@ -27182,15 +29684,7 @@ end of tocinfo -->
 <!-- running text does need mako -->
 
 <p>
-% if FORMAT == "html":
 
-<p>
-<!-- This if test will never be treated by mako: for -->
-<!-- mako_test3b.html mako is not run because problems -->
-<!-- are detected, and for mako_test3.html we use the -->
-<!-- --no-mako command-line option -->
-
-<p>
 <!-- begin verbatim block -->
 <pre><code>/* Here is some SWIG code code */
 %module MyMod
@@ -27203,9 +29697,6 @@ import_array();
 %}
 </code></pre>
 <!-- end verbatim block -->
-
-<p>
-% endif
 
 <p>
 And more code:
@@ -27232,15 +29723,7 @@ end of tocinfo -->
 <!-- running text does need mako -->
 
 <p>
-% if FORMAT == "html":
 
-<p>
-<!-- This if test will never be treated by mako: for -->
-<!-- mako_test3b.html mako is not run because problems -->
-<!-- are detected, and for mako_test3.html we use the -->
-<!-- --no-mako command-line option -->
-
-<p>
 <!-- begin verbatim block -->
 <pre><code>/* Here is some SWIG code code */
 %module MyMod
@@ -27253,9 +29736,6 @@ import_array();
 %}
 </code></pre>
 <!-- end verbatim block -->
-
-<p>
-% endif
 
 <p>
 And more code:
@@ -27376,6 +29856,7 @@ print 'Fix double title in <title> tags in .html files:'
 os.chdir('_build/html')
 for filename in glob.glob('*.html'):
     system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename)
+    os.remove(filename + '.old~')
 print """
 google-chrome sphinx-rootdir/_build/html/index.html
 """
@@ -27416,6 +29897,8 @@ EOF
 publish import refs3.bib <<EOF
 1
 2
+y
+1
 EOF
 
 doconce format html testdoc --wordpress  --examples-as-exercises
@@ -27657,7 +30140,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp mako_test3.html mako_test3b.html
 
-doconce format html mako_test3 --no-mako --no-pygments-html # no problem message
+doconce format html mako_test3 --no-pygments-html # no problem message
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce format html mako_test4 --no-pygments-html  # works fine, lines start with %%
@@ -27680,7 +30163,10 @@ doconce replace '# Comment before math' '' tmp2.do.txt
 doconce format rst tmp2
 doconce replace '# Comment before list' '' tmp2.do.txt
 doconce format rst tmp2
-echo "Successful run of test/make.sh"
+doconce replace '`Google`' '`Google` site' tmp2.do.txt
+doconce format rst tmp2
+echo
+echo "Successful run of test/make.sh !"
 
 
 ************** File: math_test.do.txt *****************
@@ -28159,7 +30645,7 @@ latex code,
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
 !et
@@ -28177,7 +30663,7 @@ and as a three-line latex code:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{equation}
 u(t)=e^{-at} label{eq1b}
@@ -28206,7 +30692,7 @@ multiple, aligned equations. The code reads
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{align*}
 u(t)&amp;=e^{-at}\\ 
@@ -28234,7 +30720,7 @@ labels:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{align}
 u(t)&amp;=e^{-at}
@@ -28267,7 +30753,7 @@ try the old eqnarray environment.
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{eqnarray*}
 u(t)&amp;=&amp; e^{-at}\\ 
@@ -28295,7 +30781,7 @@ labels:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{eqnarray}
 u(t)&amp;=&amp; e^{-at}
@@ -29971,7 +32457,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=fortran (from !bc fcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
       <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
       <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
@@ -29990,7 +32476,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 and then just the subroutine,
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=fortran (from !bc fcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
       <span style="color: #B00040">integer </span><span style="color: #19177C">i</span>
       <span style="color: #B00040">real</span><span style="color: #666666">*8</span> <span style="color: #19177C">r</span>
@@ -30004,7 +32490,7 @@ and then just the subroutine,
 and finally the complete file:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=fortran (from !bc fpro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">C</span>     <span style="color: #19177C">a</span> <span style="color: #19177C">comment</span>
 
       <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
@@ -30026,7 +32512,7 @@ and finally the complete file:
 Testing other code environments. First Python:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
 def f(x):
     return x+1
@@ -30038,7 +32524,7 @@ which gets rendered as
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
@@ -30055,7 +32541,7 @@ Now a complete program to be shown via Python Online Tutorial:
 Then Cython:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=cython (from !bc cycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">cpdef</span> <span style="color: #0000FF">f</span>(double x):
     <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
@@ -30065,7 +32551,7 @@ Then Cython:
 C++:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=c++ (from !bc cpppro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
 
 <span style="color: #B00040">int</span> main()
@@ -30081,7 +32567,7 @@ And a little bit of Fortran:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -30097,7 +32583,7 @@ which then is typeset as
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text (from !bc cod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
       real*8 a, b, x
       x = (a + b)/2
@@ -30112,7 +32598,7 @@ HTML:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=html (from !bc htmlcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
 <span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>Column 1<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>Column 2<span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
 <span style="color: #008000; font-weight: bold">&lt;tr&gt;&lt;td&gt;</span>0.67526 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;td&gt;</span>0.92871 <span style="color: #008000; font-weight: bold">&lt;/td&gt;&lt;/tr&gt;</span>
@@ -30124,7 +32610,7 @@ HTML:
 System call:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=bash (from !bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #008000">test</span>
 Terminal&gt; <span style="color: #008000">cd test</span>
 Terminal&gt; myprog -f
@@ -30175,9 +32661,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-</p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 <p>
@@ -30186,9 +32670,7 @@ Test of movies.
 <p>
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em></em>
-</p>
+<p><em></em></p>
 
 
 <p>
@@ -30262,7 +32744,7 @@ Functions do not always need to be advanced, here is one
 involving \( \theta \):
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
     return theta**2
 </pre></div>
@@ -30360,7 +32842,7 @@ Let us take this table from the manual:
 The Doconce source code reads
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text (from !bc ccq) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -30436,6 +32918,22 @@ Multiple references are also possible, e.g., see
 <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
 
 <p>
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+<a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
+and
+<a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
+and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
+<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+
+<p>
+
 
 <!-- --- begin exercise --- -->
 
@@ -30702,7 +33200,7 @@ head, otherwise tail. Repeat this \( N \) number of times.
 Code:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
 N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
 heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
@@ -30787,7 +33285,7 @@ The formula can be used to generate <code>n</code> points on a circle:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=python (from !bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
@@ -30892,7 +33390,7 @@ $$ \hbox{math in solution: } a = b $$
 And code <code>a=b</code> in this solution:
 <p>
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">a = b  # code in solution
 </pre></div>
 <p>
@@ -30920,7 +33418,7 @@ And with code returning \( x+1 \) in hint:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
     return x + 1  # with code in hint
 </pre></div>
@@ -31014,7 +33512,7 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
 <p>
@@ -31129,6 +33627,85 @@ Filename: <code>selc_composed.pdf</code>.
     The FEMDEQS Program System,
     <em>Department of Mathematics, University of Oslo</em>,
     1989.</li>
+ <li> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    <em>SIAM Journal on Scientific Computing</em>,
+    13,
+    pp. 1394-1417,
+    1992.</li>
+ <li> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    <em>Advances in Water Resources</em>,
+    34(9),
+    <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>,
+    2011.</li>
+ <li> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+    Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    <em>International Journal of Fluid Mechanics Research</em>,
+    33(1),
+    pp. 15-43,
+    2006.</li>
+ <li> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    <em>Physical Review B: Condensed Matter and Materials Physics</em>,
+    74,
+    2006.</li>
+<li> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
+    <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
+    2011.</li>
+<li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
+    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    Springer,
+    2003.</li>
+<li> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
+    Python Scripting for Computational Science,
+    Springer,
+    2008.</li>
+<li> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995.</li>
+<li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
+    A Primer on Scientific Programming With Python,
+    Springer,
+    2012.</li>
+<li> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+    Optimization With Diffpack: Practical Example From Welding,
+    <em>Simula Research Laboratory</em>,
+    2004.</li>
+<li> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+<li> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+    2007.</li>
+<li> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985.</li>
+<li> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989.</li>
+<li> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
+    Numerical Methods in Continuum Mechanics,
+    <em>Center for Industrial Research</em>,
+    1991.</li>
+<li> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
+    Diffpack: Software for Partial Differential Equations,
+    <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
+    edited by <b>A. Vermeulen</b>,
+    1994.</li>
 </ol>
 
 
@@ -31191,6 +33768,19 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul></div><p>
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+<p>
 <div class="alert alert-block alert-summary">_Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -31201,6 +33791,58 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.</div><p>
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+<p>
+The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+<p>
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+<p>
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+<p>
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+<p>
+
 <div class="alert alert-block alert-notice">Ah, we are close to the end.
 With math:
 $$ p=q$$
@@ -31214,7 +33856,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>not sure if in the cloud is understood by all.</em>]
+[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
@@ -31223,12 +33865,13 @@ scientific writing work -- and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-[<b>mp</b>: <em>Simply
-go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video.</em>]
+[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+how files, like <code>myfile.py</code>, perhaps containing much math, like
+\( \partial u/\partial t \), are easily communicated between machines.</em>]
 <!-- end inline comment -->
- It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 <p>
 When several people may edit files simultaneously, it can be difficult
@@ -31237,7 +33880,7 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>The following text aims at providing
+[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.</em>]
@@ -31583,9 +34226,7 @@ Test of movies.
 .. raw:: html
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p>
-        <em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
-        </p>
+        <p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
 
 
 
@@ -31595,9 +34236,7 @@ Test of movies.
 .. raw:: html
         
         <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p>
-        <em></em>
-        </p>
+        <p><em></em></p>
 
 
 
@@ -31745,6 +34384,7 @@ Should look nice in most formats!
 
 
 *Theorem 5.* Let :math:`a=1` and :math:`b=2`. Then :math:`c=3`.
+
 .. end theorem
 
 
@@ -31857,16 +34497,31 @@ some text.
 Bibliography test
 -----------------
 
-Here is an example: [Ref1]_ discussed propagation of
-large destructive water waves, [Ref2]_ gave
+Here is an example: [Ref01]_ discussed propagation of
+large destructive water waves, [Ref02]_ gave
 an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in [Ref3]_.
-The book chapter [Ref4]_ contains information on
+random vibrations was investigated in [Ref03]_.
+The book chapter [Ref04]_ contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is [Ref5]_ about a big FORTRAN package.
+reference is [Ref05]_ about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-[Ref1]_ [Ref4]_.
+[Ref01]_ [Ref04]_.
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+[Ref06]_ [Ref03]_ [Ref07]_ [Ref01]_
+and
+[Ref02]_ [Ref08]_ [Ref09]_ [Ref10]_ [Ref11]_ [Ref12]_ [Ref13]_
+and all the work of
+[Ref14]_ [Ref04]_ [Ref15]_ as well as
+old work [Ref05]_ and [Ref16]_, and the
+talk [Ref17]_.
+Langtangen also had two thesis [Ref18]_ [Ref19]_.
+More retro citations are
+the old ME-IN323 book [Ref20]_ and the
+[Ref21]_ OONSKI '94 paper.
+
 
 
 
@@ -32095,10 +34750,12 @@ the beginning of a new exercise and cause trouble. Maybe a list
 1. Mark 1.
 
 2. Mark 2.
+
 .. --- begin hint in exercise ---
 
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+
 .. --- end hint in exercise ---
 
 
@@ -32107,6 +34764,7 @@ the beginning of a new exercise and cause trouble. Maybe a list
 
 *Hint 2.* Draw an integer among :math:`\{1,2\}` with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
+
 .. --- end hint in exercise ---
 
 
@@ -32115,6 +34773,7 @@ the beginning of a new exercise and cause trouble. Maybe a list
 
 *Answer.* If the ``random.random()`` function returns a number :math:`<1/2`, let it be
 head, otherwise tail. Repeat this :math:`N` number of times.
+
 .. --- end answer of exercise ---
 
 
@@ -32137,6 +34796,7 @@ head, otherwise tail. Repeat this :math:`N` number of times.
 .. --- end solution of exercise ---
 
 Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
+
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
@@ -32174,6 +34834,7 @@ drawing uniformly distributed random numbers from the interval :math:`[0,1)`?
 draw :math:`N` such random numbers using Python's standard ``random`` module,
 count how many of them, :math:`M`, that fall in the interval :math:`(0.5,0.6)`, and
 compute the probability as :math:`M/N`.
+
 .. --- end hint in exercise ---
 
 
@@ -32242,6 +34903,7 @@ above.
 
 *Hint.* Use the ``numpy.random`` module to draw the
 :math:`x_0`, :math:`y_0`, and :math:`R` quantities.
+
 .. --- end hint in exercise ---
 
 
@@ -32249,6 +34911,7 @@ above.
 .. --- begin answer of exercise ---
 
 *Answer.* Here goes the short answer to part a).
+
 .. --- end answer of exercise ---
 
 
@@ -32256,6 +34919,7 @@ above.
 .. --- begin solution of exercise ---
 
 *Solution.* Here goes a full solution to part a).
+
 .. --- end solution of exercise ---
 
 
@@ -32318,6 +34982,7 @@ And code ``a=b`` in this solution:
         a = b  # code in solution
 
 End of solution is here.
+
 .. --- end solution of exercise ---
 
 
@@ -32350,6 +35015,7 @@ And with code returning :math:`x+1` in hint:
 
 
 *Hint 2.* Second hint to subexercise a).
+
 .. --- end hint in exercise ---
 
 Filename: ``subexer_a.pdf``.
@@ -32359,6 +35025,7 @@ Filename: ``subexer_a.pdf``.
 
 *Answer.* Short answer to subexercise a).
 With math in answer: :math:`a=b`.
+
 .. --- end answer of exercise ---
 
 
@@ -32376,6 +35043,7 @@ Some math :math:`\cos^2 x + \sin^2 x = 1` written one a single line:
 
 
 *Hint.* A hint for this subexercise.
+
 .. --- end hint in exercise ---
 
 Filename: ``subexer_b.pdf``.
@@ -32384,6 +35052,7 @@ Filename: ``subexer_b.pdf``.
 .. --- begin solution of exercise ---
 
 *Solution.* Here goes the solution of this subexercise.
+
 .. --- end solution of exercise ---
 
 
@@ -32505,34 +35174,134 @@ References
 ==========
 
 
-.. [Ref1]
+.. [Ref01]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
    7(1),
    pp. 187-204,
    2002.
-.. [Ref2]
+
+.. [Ref02]
    **H. P. Langtangen, K.-A. Mardal and R. Winther**. Numerical Methods for Incompressible Viscous Flow,
    *Advances in Water Resources*,
    25,
    pp. 1125-1146,
    2002.
-.. [Ref3]
+
+.. [Ref03]
    **H. P. Langtangen**. Numerical Solution of First Passage Problems in Random Vibrations,
    *SIAM Journal of Scientific and Statistical Computing*,
    15,
    pp. 997-996,
    1994.
-.. [Ref4]
+
+.. [Ref04]
    **K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen**. Software Tools for Multigrid Methods,
    Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
    edited by **H. P. Langtangen and A. Tveito**,
    Springer,
    2003.
-.. [Ref5]
+
+.. [Ref05]
    **H. P. Langtangen**. The FEMDEQS Program System,
    *Department of Mathematics, University of Oslo*,
    1989.
+
+.. [Ref06]
+   **H. P. Langtangen**. Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+   *SIAM Journal on Scientific Computing*,
+   13,
+   pp. 1394-1417,
+   1992.
+
+.. [Ref07]
+   **M. Mortensen, H. P. Langtangen and G. N. Wells**. A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+   *Advances in Water Resources*,
+   34(9),
+   `doi: 10.1016/j.advwatres.2011.02.013 <http://dx.doi.org/10.1016/j.advwatres.2011.02.013>`_,
+   2011.
+
+.. [Ref08]
+   **S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt**. Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+   *International Journal of Fluid Mechanics Research*,
+   33(1),
+   pp. 15-43,
+   2006.
+
+.. [Ref09]
+   **S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen**. Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+   *Physical Review B: Condensed Matter and Materials Physics*,
+   74,
+   2006.
+
+.. [Ref10]
+   **J. B. Haga, H. Osnes and H. P. Langtangen**. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+   *International Journal of Analytical and Numerical Methods in Geomechanics*,
+   `doi: 10.1002/nag.1062 <http://dx.doi.org/10.1002/nag.1062>`_,
+   2011.
+
+.. [Ref11]
+   **H. P. Langtangen**. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+   Springer,
+   2003.
+
+.. [Ref12]
+   **H. P. Langtangen**. Python Scripting for Computational Science,
+   Springer,
+   2008.
+
+.. [Ref13]
+   **H. P. Langtangen and G. Pedersen**. Finite Elements for the Boussinesq Wave Equations,
+   Waves and Non-linear Processes in Hydrodynamics,
+   edited by **J. Grue, B. Gjevik and J. E. Weber**,
+   Kluwer Academic Publishers,
+   pp. pp. 117-126,
+   1995.
+
+.. [Ref14]
+   **H. P. Langtangen**. A Primer on Scientific Programming With Python,
+   Springer,
+   2012.
+
+.. [Ref15]
+   **P. V. Jeberg, H. P. Langtangen and C. B. Terp**. Optimization With Diffpack: Practical Example From Welding,
+   *Simula Research Laboratory*,
+   2004.
+
+.. [Ref16]
+   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
+   Ph.D. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1989.
+
+.. [Ref17]
+   [Ref17]. **H. P. Langtangen**,
+   Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+   Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
+   2007.
+
+.. [Ref18]
+   **H. P. Langtangen**. Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+   M.Sc. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1985.
+
+.. [Ref19]
+   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
+   Ph.D. Thesis,
+   Mechanics Division, Department of Mathematics, University of Oslo,
+   1989.
+
+.. [Ref20]
+   **H. P. Langtangen and A. Tveito**. Numerical Methods in Continuum Mechanics,
+   *Center for Industrial Research*,
+   1991.
+
+.. [Ref21]
+   **H. P. Langtangen**. Diffpack: Software for Partial Differential Equations,
+   Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA,
+   edited by **A. Vermeulen**,
+   1994.
 
 
 
@@ -32591,6 +35360,19 @@ Without label.
     
       * with items
 
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent `Script for Introduction to Version Control <http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/>`_ provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+
 .. important::
    **Bold remark:** Make some text with this summary.
    Much testing in this document, otherwise stupid content.
@@ -32602,6 +35384,54 @@ Without label.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work -- and all other important files.
+
+The simplest services for hosting project files are `Dropbox <http://dropbox.com>`_ and `Google Drive <http://drive.google.com>`_.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+
 
 .. note::
    Ah, we are close to the end.
@@ -32620,20 +35450,21 @@ Appendix: Testing inline comments
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. (**hpl**: not sure if in the cloud is understood by all.) I strongly
+cloud" and updated through communication with that site. (**hpl 1**: not sure if in the cloud is understood by all.) I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work -- and all other important files.
 
-The simplest services for hosting project files is Dropbox. (**mp**: Simply
-go to `<http://dropbox.com>`_ and watch the video.) It is very easy to get
-started with Dropbox, and it allows you to share files among
-laptops and mobile units.
+The simplest services for hosting project files is Dropbox. (**mp 2**: Simply go to `<http://dropbox.com>`_ and watch the video. It explains
+how files, like ``myfile.py``, perhaps containing much math, like
+:math:`\partial u/\partial t`, are easily communicated between machines.) It
+is very easy to get started with Dropbox, and it allows you to share
+files among laptops and mobile units.
 
 When several people may edit files simultaneously, it can be difficult
 detect who did what when, roll back to previous versions, and to
 manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
-true version control systems.  (**hpl**: The following text aims at providing
+true version control systems.  (**hpl 3**: The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools.)
@@ -32867,7 +35698,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Mar 2013 (01:59)</center>
+<center>Fri, 12 Apr 2013 (02:18)</center>
 
 
 
@@ -32998,7 +35829,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Mar 2013 (01:59)</center>
+<center>Fri, 12 Apr 2013 (02:18)</center>
 
 
 
@@ -34493,7 +37324,7 @@ where <code>name</code> is the name or ID of an author or reader making the comm
 and <code>running text</code> is the comment. Here goes an example.
 
 <!-- begin inline comment -->
-[<b>hpl</b>: <em>There must be a space after the colon,
+[<b>hpl 1</b>: <em>There must be a space after the colon,
 but the running text can occupy multiple lines.</em>]
 <!-- end inline comment -->
 
@@ -34965,7 +37796,7 @@ list of capabilities:
 <p>
 <!-- begin verbatim block  shpro-->
 <pre><code>Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -35075,7 +37906,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
@@ -35378,7 +38212,7 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
@@ -35476,7 +38310,11 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{Doconce Quick Reference}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Doconce Quick Reference
+\end{spacing}
+}}}
 
 % #elif LATEX_HEADING == "Springer_collection"
 
@@ -35487,7 +38325,11 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-{\LARGE\bf Doconce Quick Reference}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Doconce Quick Reference
+\end{spacing}
+}
 \end{center}
 
 % #endif
@@ -35851,8 +38693,8 @@ are enabled by the syntax
 \eccq
 where \code{name} is the name or ID of an author or reader making the comment,
 and \code{running text} is the comment. Here goes an example.
-\shortinlinecomment{hpl}{There must be a space after the colon,
-but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
+\shortinlinecomment{hpl 1}{ There must be a space after the colon,
+but the running text can occupy multiple lines. }{ There must be a }
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with {\LaTeX}
 output and the \code{-DTOTONOTES} option to \code{ptex2tex} or \code{doconce ptex2tex},
@@ -36018,13 +38860,14 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -36038,6 +38881,7 @@ PDF document.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
 \code{newcommands*.tex}. Such commands should only be used for mathematics
@@ -36244,7 +39088,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -36354,7 +39198,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
@@ -36874,7 +39721,7 @@ are enabled by the syntax::
 
 where ``name`` is the name or ID of an author or reader making the comment,
 and ``running text`` is the comment. Here goes an example.
-(**hpl**: There must be a space after the colon,
+(**hpl 1**: There must be a space after the colon,
 but the running text can occupy multiple lines.)
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -37281,7 +40128,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -37391,7 +40238,10 @@ list of capabilities::
         # translate a latex document to doconce (requires usually manual fixing)
         doconce latex2doconce latexfile
         
-        # typeset a doconce document with pygments
+        # check if there are problems with translating latex to doconce
+        doconce latex_dislikes latexfile
+        
+        # typeset a doconce document with pygments (for pretty print of doconce itself)
         doconce pygmentize myfile [pygments-style]
         
         # generate a make.sh script for translating a doconce file to various formats
@@ -37902,7 +40752,7 @@ are enabled by the syntax
 
 where ``name`` is the name or ID of an author or reader making the comment,
 and ``running text`` is the comment. Here goes an example.
-(**hpl**: There must be a space after the colon,
+(**hpl 1**: There must be a space after the colon,
 but the running text can occupy multiple lines.)
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -38353,7 +41203,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -38463,7 +41313,10 @@ list of capabilities:
         # translate a latex document to doconce (requires usually manual fixing)
         doconce latex2doconce latexfile
         
-        # typeset a doconce document with pygments
+        # check if there are problems with translating latex to doconce
+        doconce latex_dislikes latexfile
+        
+        # typeset a doconce document with pygments (for pretty print of doconce itself)
         doconce pygmentize myfile [pygments-style]
         
         # generate a make.sh script for translating a doconce file to various formats
@@ -38938,7 +41791,7 @@ are enabled by the syntax
 }}}
 where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -39296,7 +42149,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -39406,7 +42259,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
@@ -39862,7 +42718,7 @@ are enabled by the syntax
 </syntaxhighlight>
 where <code>name</code> is the name or ID of an author or reader making the comment,
 and <code>running text</code> is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -40244,7 +43100,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -40354,7 +43210,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
@@ -40808,7 +43667,7 @@ are enabled by the syntax
 }}}
 where {{{name}}} is the name or ID of an author or reader making the comment,
 and {{{running text}}} is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -41166,7 +44025,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -41276,7 +44135,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
@@ -41717,7 +44579,7 @@ are enabled by the syntax::
 
 where 'name' is the name or ID of an author or reader making the comment,
 and 'running text' is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -42096,7 +44958,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -42206,7 +45068,10 @@ list of capabilities::
         # translate a latex document to doconce (requires usually manual fixing)
         doconce latex2doconce latexfile
         
-        # typeset a doconce document with pygments
+        # check if there are problems with translating latex to doconce
+        doconce latex_dislikes latexfile
+        
+        # typeset a doconce document with pygments (for pretty print of doconce itself)
         doconce pygmentize myfile [pygments-style]
         
         # generate a make.sh script for translating a doconce file to various formats
@@ -42658,7 +45523,7 @@ are enabled by the syntax::
 
 where C{name} is the name or ID of an author or reader making the comment,
 and C{running text} is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -43051,7 +45916,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -43161,7 +46026,10 @@ list of capabilities::
         # translate a latex document to doconce (requires usually manual fixing)
         doconce latex2doconce latexfile
         
-        # typeset a doconce document with pygments
+        # check if there are problems with translating latex to doconce
+        doconce latex_dislikes latexfile
+        
+        # typeset a doconce document with pygments (for pretty print of doconce itself)
         doconce pygmentize myfile [pygments-style]
         
         # generate a make.sh script for translating a doconce file to various formats
@@ -43648,7 +46516,7 @@ are enabled by the syntax::
 
 where name is the name or ID of an author or reader making the comment,
 and running text is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -44044,7 +46912,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -44154,7 +47022,10 @@ list of capabilities::
         # translate a latex document to doconce (requires usually manual fixing)
         doconce latex2doconce latexfile
         
-        # typeset a doconce document with pygments
+        # check if there are problems with translating latex to doconce
+        doconce latex_dislikes latexfile
+        
+        # typeset a doconce document with pygments (for pretty print of doconce itself)
         doconce pygmentize myfile [pygments-style]
         
         # generate a make.sh script for translating a doconce file to various formats
@@ -44652,7 +47523,7 @@ are enabled by the syntax
 
 where `name` is the name or ID of an author or reader making the comment,
 and `running text` is the comment. Here goes an example.
-[hpl: There must be a space after the colon,
+[hpl 1: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -45067,7 +47938,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -45177,7 +48048,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
@@ -45404,7 +48278,7 @@ examine the Doconce source and the `doc/src/make.sh` script).
 Importing papers from BibTeX
 ----------------------------
 
-Found paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Found paper: (Langtangen_2003a) - Computational Partial Differential Equations - Numeric...
 Found paper: (Langtangen_2008a) - Python Scripting for Computational Science
 Found paper: (Langtangen_2012) - A Primer on Scientific Programming with Python
 Found paper: (Langtangen_1992c) - Stochastic breakthrough time analysis of an enhanced o...
@@ -45413,7 +48287,7 @@ Found paper: (Langtangen_1994a) - Numerical solution of first passage problems i
 Validating papers
 -----------------
 
-Validating paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Validating paper: (Langtangen_2003a) - Computational Partial Differential Equations - Numeric...
   Status is not defined, assuming status is "published".
 Validating paper: (Langtangen_2008a) - Python Scripting for Computational Science
   Status is not defined, assuming status is "published".
@@ -45480,7 +48354,7 @@ Validating papers
 
 Validating paper: (Langtangen_1992c) - Stochastic Breakthrough Time Analysis of an Enhanced O...
 Validating paper: (Langtangen_1994a) - Numerical Solution of First Passage Problems in Random...
-Validating paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Validating paper: (Langtangen_2003a) - Computational Partial Differential Equations - Numeric...
 Validating paper: (Langtangen_2008a) - {P}ython Scripting for Computational Science
 Validating paper: (Langtangen_2012) - A Primer on Scientific Programming With {P}ython
 
@@ -45571,7 +48445,7 @@ Validating papers
 Validating paper: (Langtangen_1992c) - Stochastic Breakthrough Time Analysis of an Enhanced O...
 Validating paper: (Langtangen_1994a) - Numerical Solution of First Passage Problems in Random...
 Validating paper: (Mortensen_et_al_2011) - A {FEniCS}-Based Programming Framework for Modelin...
-Validating paper: (Langtangen_2003a}) - Computational Partial Differential Equations - Numeri...
+Validating paper: (Langtangen_2003a) - Computational Partial Differential Equations - Numeric...
 Validating paper: (Langtangen_2008a) - {P}ython Scripting for Computational Science
 Validating paper: (Langtangen_2012) - A Primer on Scientific Programming With {P}ython
 Validating paper: (Mardal_et_al_2003a) - Software Tools for Multigrid Methods
@@ -45592,6 +48466,11 @@ Found paper: (Langtangen_et_al_2002) - Numerical Methods for Incompressible Visc
 Found paper: (Glimsdal_et_al_20006) - Propagation of the {Dec.~26}, 2004 {Indian Ocean T...
 Found paper: (Rahman_et_al_2006b) - Numerical Investigation of a Piezoelectric Surface A...
 Found paper: (Haga_et_al_2011a) - On the causes of pressure oscillations in low-permeabl...
+Found paper: (Langtangen:95) - Finite elements for the {Boussinesq} wave equations
+Found paper: (Langtangen:85) - Solution of the {Navier-Stokes} equations with the finite...
+Found paper: (Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...
+Found paper: (Langtangen:91) - Numerical Methods in Continuum Mechanics
+Found paper: (Langtangen:94b) - {Diffpack}: Software for partial differential equations
 
 Validating papers
 -----------------
@@ -45622,18 +48501,43 @@ Validating paper: (Haga_et_al_2011a) - On the causes of pressure oscillations in
   [2] Add journal.
   [3] Skip paper.
 Please enter 1, 2 or 3 (or press return to choose [1]): 
+Validating paper: (Langtangen:95) - Finite elements for the {Boussinesq} wave equations
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen:85) - Solution of the {Navier-Stokes} equations with the finite...
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...
+  Status is not defined, assuming status is "published".
+Validating paper: (Langtangen:91) - Numerical Methods in Continuum Mechanics
+  Status is not defined, assuming status is "published".
 
-Validated 5 paper(s) ok.
+  Unknown institution: "Center for Industrial Research"
+  Would you like to add institution "Center for Industrial Research"? (y/[n]): Validating paper: (Langtangen:94b) - {Diffpack}: Software for partial differential equations
+  Status is not defined, assuming status is "published".
+
+Validated 10 paper(s) ok.
 Found 0 invalid paper(s).
 
 
-Imported 5 paper(s) from "refs3.bib".
+Imported 10 paper(s) from "refs3.bib".
 
 Merging papers
 --------------
 
-Need to merge 11 + 5 = 16 papers.
+Need to merge 11 + 10 = 21 papers.
 
+Found close match between (Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi... and (Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv..., merging papers.
+  Langtangen_1989e: Computational Methods for Two-Phase Flow in Oil Reservoirs
+  Langtangen:89d: Computational Methods for Two-Phase Flow in Oil Reservoirs
+['category', 'status', 'school', 'author', 'title', 'thesistype', 'note', 'key', 'year', 'entrytype', 'category', 'status', 'school', 'title', 'author', 'thesistype', 'note', 'key', 'year', 'entrytype']
+  Attribute "author" differs, what should I do?
+  [1] Keep both papers (marking them as allowed duplicates).
+  [2] Ignore papers (marking them as invalid).
+  [3] Keep first paper ((Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...) and ignore second paper ((Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...)
+  [4] Keep second paper ((Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...) and ignore first paper ((Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...)
+  [5] Use attribute from first paper ("['H. P. Langtangen']")
+  [6] Use attribute from second paper ("('H. P. Langtangen',)")
+  [7] Print diff.
+Please enter 1, 2, 3, 4, 5, 6 or 7 (or press return to choose [1]): 
 
 Summary of papers
 -----------------
@@ -45641,25 +48545,25 @@ Summary of papers
 Articles in International Journals: 8
 Books:                              3
 Edited Books:                       0
-Chapters in Books:                  0
+Chapters in Books:                  1
 Refereed Proceedings:               0
-Conference Proceedings:             1
-Technical Reports:                  2
+Conference Proceedings:             2
+Technical Reports:                  3
 Manuals:                            0
-Theses:                             1
+Theses:                             3
 Courses:                            0
 Talks:                              0
 Posters:                            0
 Public Outreach:                    0
 Other Publications:                 1
-Total:                              16
+Total:                              21
 
 Saving backup copy of database to file "papers.pub.bak"
 Saving database to file "papers.pub"
 + doconce format html testdoc --wordpress --examples-as-exercises
-running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to html
 
 FIX: multi-line caption
 
@@ -45698,7 +48602,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -45714,10 +48618,10 @@ output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_wordpress.html
 + doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
-running preprocess -DFORMAT=html -DDEVICE=screen -DSOMEVAR testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=html -DDEVICE=screen -DSOMEVAR testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'html'}
-translating preprocessed doconce text in __tmp.do.txt to html
+translating doconce text in tmp_mako__testdoc.do.txt to html
 
 FIX: multi-line caption
 
@@ -45756,7 +48660,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -45779,24 +48683,24 @@ Summary of papers
 Articles in International Journals: 8
 Books:                              3
 Edited Books:                       0
-Chapters in Books:                  0
+Chapters in Books:                  1
 Refereed Proceedings:               0
-Conference Proceedings:             1
-Technical Reports:                  2
+Conference Proceedings:             2
+Technical Reports:                  3
 Manuals:                            0
-Theses:                             1
+Theses:                             3
 Courses:                            0
 Talks:                              0
 Posters:                            0
 Public Outreach:                    0
 Other Publications:                 1
-Total:                              16
+Total:                              21
 
-Exported 16 paper(s) to papers.bib.
-running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
+Exported 21 paper(s) to papers.bib.
+running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'latex'}
-translating preprocessed doconce text in __tmp.do.txt to latex
+translating doconce text in tmp_mako__testdoc.do.txt to latex
 
 FIX: multi-line caption
 
@@ -45835,7 +48739,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -45850,7 +48754,6 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
-Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + cp testdoc.p.tex testdoc_no_solutions.p.tex
@@ -45858,9 +48761,9 @@ output in testdoc.p.tex
 + doconce replace css/ style_vagrant/css/ style_vagrant/template_vagrant.html
 replacing css/ by style_vagrant/css/ in style_vagrant/template_vagrant.html
 + doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
-running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to html
 
 FIX: multi-line caption
 
@@ -45899,7 +48802,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -45923,9 +48826,9 @@ output in testdoc.html
 testdoc_vagrant.html now links to the generated files
 ._part0000_testdoc_vagrant.html, ._part0001_testdoc_vagrant.html, ._part0002_testdoc_vagrant.html
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
-running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to html
 
 FIX: multi-line caption
 
@@ -45964,7 +48867,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -45995,24 +48898,24 @@ Summary of papers
 Articles in International Journals: 8
 Books:                              3
 Edited Books:                       0
-Chapters in Books:                  0
+Chapters in Books:                  1
 Refereed Proceedings:               0
-Conference Proceedings:             1
-Technical Reports:                  2
+Conference Proceedings:             2
+Technical Reports:                  3
 Manuals:                            0
-Theses:                             1
+Theses:                             3
 Courses:                            0
 Talks:                              0
 Posters:                            0
 Public Outreach:                    0
 Other Publications:                 1
-Total:                              16
+Total:                              21
 
-Exported 16 paper(s) to papers.bib.
-running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR="True" testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
+Exported 21 paper(s) to papers.bib.
+running preprocess -DFORMAT=latex -DDEVICE=screen -DSOMEVAR="True" testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'latex'}
-translating preprocessed doconce text in __tmp.do.txt to latex
+translating doconce text in tmp_mako__testdoc.do.txt to latex
 
 FIX: multi-line caption
 
@@ -46051,7 +48954,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -46066,7 +48969,6 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
-Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
@@ -46077,23 +48979,23 @@ Summary of papers
 Articles in International Journals: 8
 Books:                              3
 Edited Books:                       0
-Chapters in Books:                  0
+Chapters in Books:                  1
 Refereed Proceedings:               0
-Conference Proceedings:             1
-Technical Reports:                  2
+Conference Proceedings:             2
+Technical Reports:                  3
 Manuals:                            0
-Theses:                             1
+Theses:                             3
 Courses:                            0
 Talks:                              0
 Posters:                            0
 Public Outreach:                    0
 Other Publications:                 1
-Total:                              16
+Total:                              21
 
-Exported 16 paper(s) to papers.bib.
-running preprocess -DFORMAT=pdflatex -DDEVICE=paper  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to pdflatex
+Exported 21 paper(s) to papers.bib.
+running preprocess -DFORMAT=pdflatex -DDEVICE=paper  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to pdflatex
 
 FIX: multi-line caption
 
@@ -46132,7 +49034,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -46149,7 +49051,6 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 exporting publish database papers.pub to papers.bib:
 *** warning: --latex-double-hyphen may lead to unwanted edits.
              search for all -- in the .p.tex file and check.
-Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce latex_exercise_toc testdoc
@@ -46210,6 +49111,7 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
 
 
 
@@ -46325,8 +49227,8 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 
 
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) 
-(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
 ioning.code.tex)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
@@ -46366,7 +49268,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-167.
+171.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -46457,36 +49359,120 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 721.
+t line 725.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 722.
+ine 726.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-25.
-
-
-LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 726.
-
-
-LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-28.
-
-
-LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 730.
+29.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
  730.
 
+
+LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
+32.
+
+
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 734.
+
+
+LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
+ 734.
+
+
+LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 7
+38.
+
+
+LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
+38.
+
+
+LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
+ne 738.
+
+
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 738.
+
+
+LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
+ine 740.
+
+
+LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
+ne 740.
+
+
+LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
+ 740.
+
+
+LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 7
+40.
+
+
+LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 7
+40.
+
+
+LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 7
+40.
+
+
+LaTeX Warning: Citation `Langtangen:95' on page 11 
+
+
+
+LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 74
+2.
+
+
+LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
+ 742.
+
+
+LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
+742.
+
+
+LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
+43.
+
+
+LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 7
+43.
+
+
+LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
+ine 744.
+
+
+LaTeX Warning: Citation `Langtangen:85' on page 11 
+
+
+
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 745
+.
+
+
+LaTeX Warning: Citation `Langtangen:91' on page 11 
+
+
+
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 748
+.
+
 [11]
 Overfull \hbox (5.05241pt too wide) 
-[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
-26+engineering/book/978-3-642-23098-1| 
+[][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
++%26+engineering/book/978-3-642-23098-1| 
 [12]
 
 LaTeX Warning: Reference `my:eq1' on page 13 
@@ -46506,8 +49492,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 85
-2.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 87
+1.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -46524,58 +49510,55 @@ LaTeX Warning: Reference `eq2a' on page 13
 
 LaTeX Warning: Reference `my:eq1' on page 13 
 
+[13]
 
-LaTeX Warning: Reference `demo:ex:1' on page 13 
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 13 
+LaTeX Warning: Reference `demo:ex:1' on page 14 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 
+LaTeX Warning: Reference `demo:ex:2' on page 14 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 14 
 
 
 
-LaTeX Warning: Reference `exer:you' on page 13 
+LaTeX Warning: Reference `exer:you' on page 14 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 878.
+LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
+ 897.
 
-[13] (./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15]
+(./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1239
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1258
 .
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 16 
+LaTeX Warning: Reference `demo:ex:1' on page 17 
 
-[16]
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1256.
+ 1275.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1257
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1276
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 17 
 
-(./testdoc.bbl) [17] <latex_figs/hint.pdf, id=318, 89.33376pt x 89.33376pt>
+(./testdoc.bbl [17]) [18]
+<latex_figs/hint.pdf, id=333, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=319, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
-
-Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1350.
-
-
+<latex_figs/warning.pdf, id=334, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf> <./latex_figs/warning.
+pdf>]
 Underfull \hbox (badness 1297) 
 \OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
 
@@ -46587,33 +49570,20 @@ Underfull \hbox (badness 1297)
 
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
-
-<latex_figs/notice.pdf, id=320, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=362, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-73.
-
-<latex_figs/question.pdf, id=321, 89.33376pt x 89.33376pt>
+Underfull \vbox (badness 10000) has occurred while \output is active [20]
+<latex_figs/question.pdf, id=370, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-76.
-
-[18 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/notice.pdf
-> <./latex_figs/question.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [19]
+(./testdoc.ind [21 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
 Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
 mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
-[20])
+[22])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -46639,6 +49609,7 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -46720,7 +49691,6 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
  pgfkeys.code.tex
   pgffor.code.tex
     tikz.code.tex
-setspace.sty    2011/12/19 v6.7a set line spacing
 todonotes.sty    2011/10/22
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
@@ -46768,72 +49738,30 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
-, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
-9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
-.pfb>
-Output written on testdoc.pdf (20 pages, ).
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (22 pages, ).
 Transcript written on testdoc.log.
 + [ 0 -ne 0 ]
 + pdflatex -shell-escape testdoc
@@ -46869,6 +49797,7 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
 
 
 
@@ -46984,8 +49913,8 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 
 
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) 
-(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
 ioning.code.tex)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
@@ -47077,23 +50006,18 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 [11]
 Overfull \hbox (5.05241pt too wide) 
-[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
-26+engineering/book/978-3-642-23098-1| 
+[][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
++%26+engineering/book/978-3-642-23098-1| 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
 [12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16]) <latex_figs/hint.pdf, id=469, 89.33376pt x 89.33376pt>
+[16] [17]) <latex_figs/hint.pdf, id=511, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=470, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
-
-Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1350.
-
-
+<latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
 Underfull \hbox (badness 1297) 
 \OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
 
@@ -47105,32 +50029,20 @@ Underfull \hbox (badness 1297)
 
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
-
-<latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
+[19 <./latex_figs/warning.pdf>]
+<latex_figs/notice.pdf, id=541, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-73.
-
-<latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=542, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-76.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [18 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>] [19]
+(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
 Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
 mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
-[20])
+[21])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -47156,6 +50068,7 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -47237,7 +50150,6 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
  pgfkeys.code.tex
   pgffor.code.tex
     tikz.code.tex
-setspace.sty    2011/12/19 v6.7a set line spacing
 todonotes.sty    2011/10/22
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
@@ -47279,72 +50191,30 @@ latex_figs/question.pdf
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
-, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
-9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
-.pfb>
-Output written on testdoc.pdf (20 pages, ).
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + makeindex testdoc
 This is makeindex, version 2.15 [TeX Live 2012] (kpathsea + Thai support).
@@ -47358,6 +50228,14 @@ This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 The top-level auxiliary file: testdoc.aux
 The style file: plain.bst
 Database file #1: papers.bib.bib
+Warning--entry type for "Langtangen:85" isn't style-file defined
+--line 158 of file papers.bib.bib
+Warning--entry type for "Langtangen_1989e" isn't style-file defined
+--line 167 of file papers.bib.bib
+Warning--entry type for "Langtangen:89d" isn't style-file defined
+--line 177 of file papers.bib.bib
+Warning--can't use both author and editor fields in Langtangen:95
+(There were 4 warnings)
 + pdflatex -shell-escape testdoc
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
@@ -47391,6 +50269,7 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
 
 
 
@@ -47506,8 +50385,8 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 
 
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) 
-(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
 ioning.code.tex)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
@@ -47599,23 +50478,18 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 [11]
 Overfull \hbox (5.05241pt too wide) 
-[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
-26+engineering/book/978-3-642-23098-1| 
+[][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
++%26+engineering/book/978-3-642-23098-1| 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
 [12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16]) <latex_figs/hint.pdf, id=469, 89.33376pt x 89.33376pt>
+[16] [17]) <latex_figs/hint.pdf, id=511, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=470, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
-
-Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1350.
-
-
+<latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
 Underfull \hbox (badness 1297) 
 \OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
 
@@ -47627,32 +50501,20 @@ Underfull \hbox (badness 1297)
 
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
-
-<latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
+[19 <./latex_figs/warning.pdf>]
+<latex_figs/notice.pdf, id=541, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-73.
-
-<latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=542, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-76.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [18 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>] [19]
+(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
 Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
 mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
-[20])
+[21])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -47678,6 +50540,7 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -47759,7 +50622,6 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
  pgfkeys.code.tex
   pgffor.code.tex
     tikz.code.tex
-setspace.sty    2011/12/19 v6.7a set line spacing
 todonotes.sty    2011/10/22
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
@@ -47798,72 +50660,30 @@ latex_figs/question.pdf
  ***********
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
-, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
-9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
-.pfb>
-Output written on testdoc.pdf (20 pages, ).
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + pdflatex -shell-escape testdoc
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -47898,6 +50718,7 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
 
 
 
@@ -48013,8 +50834,8 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 
 
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) 
-(/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
+
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
 ioning.code.tex)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshado
@@ -48106,23 +50927,18 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 [11]
 Overfull \hbox (5.05241pt too wide) 
-[][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science+%
-26+engineering/book/978-3-642-23098-1| 
+[][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
++%26+engineering/book/978-3-642-23098-1| 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
 [12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16]) <latex_figs/hint.pdf, id=469, 89.33376pt x 89.33376pt>
+[16] [17]) <latex_figs/hint.pdf, id=511, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=470, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [17 <./latex_figs/hint.pdf>]
-
-Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
-put line 1350.
-
-
+<latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
 Underfull \hbox (badness 1297) 
 \OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
 
@@ -48134,32 +50950,20 @@ Underfull \hbox (badness 1297)
 
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-61.
-
-<latex_figs/notice.pdf, id=481, 89.33376pt x 89.33376pt>
+[19 <./latex_figs/warning.pdf>]
+<latex_figs/notice.pdf, id=541, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-73.
-
-<latex_figs/question.pdf, id=482, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=542, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 13
-76.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [18 <./latex_figs/warning.pdf> <./latex_figs/notice.pdf> <./late
-x_figs/question.pdf>] [19]
+(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
 Overfull \hbox (10.92778pt too wide) 
 []\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
 mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
-[20]) (./testdoc.aux)
+[21]) (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -48179,6 +50983,7 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  amsmath.sty    2000/07/18 v2.13 AMS math features
@@ -48260,7 +51065,6 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
  pgfkeys.code.tex
   pgffor.code.tex
     tikz.code.tex
-setspace.sty    2011/12/19 v6.7a set line spacing
 todonotes.sty    2011/10/22
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
@@ -48299,72 +51103,30 @@ latex_figs/question.pdf
  ***********
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{Hfootnote.14} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
-, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
-9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
-.pfb>
-Output written on testdoc.pdf (20 pages, ).
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -48372,10 +51134,10 @@ Transcript written on testdoc.log.
 + [ 0 -ne 0 ]
 + cat testdoc.tex
 + doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
-running preprocess -DFORMAT=plain -DDEVICE=screen -DSOMEVAR=1 testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=plain -DDEVICE=screen -DSOMEVAR=1 testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': 1, 'FORMAT': 'plain'}
-translating preprocessed doconce text in __tmp.do.txt to plain
+translating doconce text in tmp_mako__testdoc.do.txt to plain
 
 FIX: multi-line caption
 
@@ -48414,7 +51176,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48427,9 +51189,9 @@ found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + [ 0 -ne 0 ]
 + doconce format st testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=st -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to st
+running preprocess -DFORMAT=st -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to st
 
 FIX: multi-line caption
 
@@ -48468,7 +51230,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48481,9 +51243,9 @@ found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + [ 0 -ne 0 ]
 + doconce format sphinx testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to sphinx
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to sphinx
 
 FIX: multi-line caption
 
@@ -48529,9 +51291,11 @@ Not recommended for sphinx output: math environment {eqnarray}
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
 *** warning: hyperlink to URL testdoc.do.txt is to a local file,
-  - should be _static/testdoc.do.txt for sphinx.
-Move files to _static and change URLs!
-copying from regex "subroutine" until ""
+  - recommended to be _static/testdoc.do.txt for sphinx
+*** move linked files to _static and change URLs
+    (unless you really know that the links will be correct
+    when the sphinx build directory is moved to its final destination)
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48563,9 +51327,9 @@ output in testdoc.rst
 + [ 0 -ne 0 ]
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format sphinx testdoc --examples-as-exercises
-running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to sphinx
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to sphinx
 
 FIX: multi-line caption
 
@@ -48611,9 +51375,11 @@ Not recommended for sphinx output: math environment {eqnarray}
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
 *** warning: hyperlink to URL testdoc.do.txt is to a local file,
-  - should be _static/testdoc.do.txt for sphinx.
-Move files to _static and change URLs!
-copying from regex "subroutine" until ""
+  - recommended to be _static/testdoc.do.txt for sphinx
+*** move linked files to _static and change URLs
+    (unless you really know that the links will be correct
+    when the sphinx build directory is moved to its final destination)
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48712,9 +51478,9 @@ or just run it by
 
 + [ 0 -ne 0 ]
 + doconce format rst testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=rst -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to rst
+running preprocess -DFORMAT=rst -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to rst
 
 FIX: multi-line caption
 
@@ -48753,7 +51519,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48768,9 +51534,9 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.rst
 + [ 0 -ne 0 ]
 + doconce format epytext testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=epytext -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to epytext
+running preprocess -DFORMAT=epytext -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to epytext
 
 FIX: multi-line caption
 
@@ -48809,7 +51575,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48822,9 +51588,9 @@ found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + [ 0 -ne 0 ]
 + doconce format pandoc testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to pandoc
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to pandoc
 
 FIX: multi-line caption
 
@@ -48863,7 +51629,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48886,9 +51652,9 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.md
 + [ 0 -ne 0 ]
 + doconce format mwiki testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=mwiki -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to mwiki
+running preprocess -DFORMAT=mwiki -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to mwiki
 
 FIX: multi-line caption
 
@@ -48927,7 +51693,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -48961,9 +51727,9 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.mwiki
 + [ 0 -ne 0 ]
 + doconce format cwiki testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=cwiki -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to cwiki
+running preprocess -DFORMAT=cwiki -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to cwiki
 
 FIX: multi-line caption
 
@@ -49002,7 +51768,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -49017,9 +51783,9 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.cwiki
 + [ 0 -ne 0 ]
 + doconce format ipynb testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=ipynb -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to ipynb
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to ipynb
 
 FIX: multi-line caption
 
@@ -49058,7 +51824,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -49073,10 +51839,10 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.ipynb
 + [ 0 -ne 0 ]
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --examples-as-exercises
-running preprocess -DFORMAT=gwiki -DDEVICE=screen -DMYVAR1="3" -DMYVAR2="a string" testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
+running preprocess -DFORMAT=gwiki -DDEVICE=screen -DMYVAR1="3" -DMYVAR2="a string" testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
-translating preprocessed doconce text in __tmp.do.txt to gwiki
+translating doconce text in tmp_mako__testdoc.do.txt to gwiki
 
 FIX: multi-line caption
 
@@ -49115,7 +51881,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -49161,23 +51927,23 @@ Summary of papers
 Articles in International Journals: 8
 Books:                              3
 Edited Books:                       0
-Chapters in Books:                  0
+Chapters in Books:                  1
 Refereed Proceedings:               0
-Conference Proceedings:             1
-Technical Reports:                  2
+Conference Proceedings:             2
+Technical Reports:                  3
 Manuals:                            0
-Theses:                             1
+Theses:                             3
 Courses:                            0
 Talks:                              0
 Posters:                            0
 Public Outreach:                    0
 Other Publications:                 1
-Total:                              16
+Total:                              21
 
-Exported 16 paper(s) to papers.bib.
-running preprocess -DFORMAT=latex -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to latex
+Exported 21 paper(s) to papers.bib.
+running preprocess -DFORMAT=latex -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to latex
 
 FIX: multi-line caption
 
@@ -49216,7 +51982,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -49231,7 +51997,6 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
-Warning: found "!bc htmlcod", but htmlcod is not a standard predefined ptex2tex environment
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
@@ -49254,9 +52019,9 @@ replacing \Verb! by \verb! in testdoc.tex
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -v
 + doconce format pandoc testdoc.do.txt --examples-as-exercises
-running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to pandoc
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to pandoc
 
 FIX: multi-line caption
 
@@ -49295,7 +52060,7 @@ FIX: !ehint not at the beginning of the line - 1 fixes
 *** The total of 6 fixes above should be incorporated in the file!
 
 
-copying from regex "subroutine" until ""
+copying from regex "subroutine" until end of file
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
@@ -49357,16 +52122,41 @@ translating doconce text in author1.do.txt to html
 output in author1.html
 + [ 0 -ne 0 ]
 + doconce format latex author1
+
+Summary of papers
+-----------------
+
+Articles in International Journals: 8
+Books:                              3
+Edited Books:                       0
+Chapters in Books:                  1
+Refereed Proceedings:               0
+Conference Proceedings:             2
+Technical Reports:                  3
+Manuals:                            0
+Theses:                             3
+Courses:                            0
+Talks:                              0
+Posters:                            0
+Public Outreach:                    0
+Other Publications:                 1
+Total:                              21
+
+Exported 21 paper(s) to papers.bib.
 translating doconce text in author1.do.txt to latex
+
+exporting publish database papers.pub to papers.bib:
 output in author1.p.tex
 + [ 0 -ne 0 ]
 + doconce format sphinx author1
 translating doconce text in author1.do.txt to sphinx
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
-  - should be _static/testdoc.html#___sec2 for sphinx.
+  - recommended to be _static/testdoc.html#___sec2 for sphinx
 *** warning: hyperlink to URL testdoc.html is to a local file,
-  - should be _static/testdoc.html for sphinx.
-Move files to _static and change URLs!
+  - recommended to be _static/testdoc.html for sphinx
+*** move linked files to _static and change URLs
+    (unless you really know that the links will be correct
+    when the sphinx build directory is moved to its final destination)
 output in author1.rst
 + [ 0 -ne 0 ]
 + doconce format plain author1
@@ -49375,16 +52165,16 @@ output in author1.txt
 + [ 0 -ne 0 ]
 + name=math_test
 + doconce format html math_test
-running preprocess -DFORMAT=html -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running preprocess -DFORMAT=html -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
+running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
+translating doconce text in tmp_mako__math_test.do.txt to html
 output in math_test.html
 + [ 0 -ne 0 ]
 + cp math_test.html math_test_html.html
 + doconce format sphinx math_test
-running preprocess -DFORMAT=sphinx -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to sphinx
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
+running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
+translating doconce text in tmp_mako__math_test.do.txt to sphinx
 
 *** warning:
 Not recommended for sphinx output: math environment {eqnarray}
@@ -49399,9 +52189,9 @@ label{eq3c}
 
 output in math_test.rst
 + doconce format pandoc math_test
-running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to pandoc
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
+running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
+translating doconce text in tmp_mako__math_test.do.txt to pandoc
 *** warning: latex envir \begin{eqnarray*} does not work well.
 
 *** warning: latex envir \begin{eqnarray} does not work well.
@@ -49412,9 +52202,9 @@ pandoc -f markdown -t html --mathjax -s -o math_test.html math_test.md
 output in math_test.html
 + cp math_test.html math_test_pandoc.html
 + doconce format pandoc math_test
-running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > __tmp.do.txt
-running mako on __tmp.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to pandoc
+running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
+running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
+translating doconce text in tmp_mako__math_test.do.txt to pandoc
 *** warning: latex envir \begin{eqnarray*} does not work well.
 
 *** warning: latex envir \begin{eqnarray} does not work well.
@@ -49423,7 +52213,7 @@ output in math_test.md
 + doconce md2latex math_test
 command md2latex not legal, must be among
 
-format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
+format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, latex_dislikes, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
 + doconce guess_encoding encoding1.do.txt
 + [ 0 -ne 0 ]
 + cp encoding1.do.txt tmp1.do.txt
@@ -49442,8 +52232,8 @@ format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, 
 + [ 0 -ne 0 ]
 + doconce guess_encoding tmp2.do.txt
 + doconce format html mako_test1 --no-pygments-html
-running mako on mako_test1.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running mako on mako_test1.do.txt to make tmp_mako__mako_test1.do.txt
+translating doconce text in tmp_mako__mako_test1.do.txt to html
 output in mako_test1.html
 + [ 0 -ne 0 ]
 + doconce format html mako_test2 --no-pygments-html
@@ -49451,61 +52241,19 @@ translating doconce text in mako_test2.do.txt to html
 output in mako_test2.html
 + [ 0 -ne 0 ]
 + doconce format html mako_test3 --no-pygments-html
-
-
-*** warning: the code block
----------------------------
-/* Here is some SWIG code code */
-%module MyMod
-%{
-...
-%}
-
-%init %{
-import_array();
-%}
-
----------------------------
-contains a single % on the beginning of a line: %m
-Such lines cause problems for the mako preprocessor
-since it thinks this is a mako statement.
-
-
-
-
-*** warning: the code block
----------------------------
-% Matlab comment only
-...
-
----------------------------
-contains a single % on the beginning of a line: % 
-Such lines cause problems for the mako preprocessor
-since it thinks this is a mako statement.
-
-
-Use %% in the code block(s) above to fix the
-problem with % at the beginning of lines,
-or put the code in a file that is included
-with @@@CODE filename, or drop mako instructions
-or variables and rely on preprocess only in the
-preprocessing step. In the latter case you
-need to include --no-mako on the command line.
-
-mako is not run because of the lines starting with %!!
-
-translating doconce text in mako_test3.do.txt to html
+running mako on mako_test3.do.txt to make tmp_mako__mako_test3.do.txt
+translating doconce text in tmp_mako__mako_test3.do.txt to html
 output in mako_test3.html
 + [ 0 -ne 0 ]
 + cp mako_test3.html mako_test3b.html
-+ doconce format html mako_test3 --no-mako --no-pygments-html
-*** warning: mako is not run because of the option --no-mako
-translating doconce text in mako_test3.do.txt to html
++ doconce format html mako_test3 --no-pygments-html
+running mako on mako_test3.do.txt to make tmp_mako__mako_test3.do.txt
+translating doconce text in tmp_mako__mako_test3.do.txt to html
 output in mako_test3.html
 + [ 0 -ne 0 ]
 + doconce format html mako_test4 --no-pygments-html
-running mako on mako_test4.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running mako on mako_test4.do.txt to make tmp_mako__mako_test4.do.txt
+translating doconce text in tmp_mako__mako_test4.do.txt to html
 output in mako_test4.html
 + [ 0 -ne 0 ]
 + doconce format plain failures
@@ -49634,21 +52382,31 @@ replacing # Comment before list by  in tmp2.do.txt
 translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
-output in tmp2.rst
-+ echo Successful run of test/make.sh
-Successful run of test/make.sh
+*** error: you have citations but no biblioraphy (BIBFILE: ...)
+Abort! (add --no-abort on the command line to avoid this abortion)
++ doconce replace `Google` `Google` site tmp2.do.txt
++ doconce format rst tmp2
+translating doconce text in tmp2.do.txt to rst
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format rst
+*** error: you have citations but no biblioraphy (BIBFILE: ...)
+Abort! (add --no-abort on the command line to avoid this abortion)
++ echo
+
++ echo Successful run of test/make.sh !
+Successful run of test/make.sh !
 
 + sh ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/quickref:
 + doconce
 + doconce format html quickref --no-pygments-html --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to html
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to html
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.html
 + doconce format latex quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to latex
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.p.tex
 + doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
@@ -49683,6 +52441,7 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
 
 
 
@@ -49771,7 +52530,7 @@ Underfull \hbox (badness 2564)
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 664
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 670
 .
 
 [9]
@@ -49817,6 +52576,7 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
@@ -49922,6 +52682,7 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
 
 
 
@@ -50045,6 +52806,7 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
@@ -50120,8 +52882,8 @@ Output written on quickref.dvi (17 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to sphinx
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to sphinx
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 + rm -rf sphinx-rootdir
@@ -50237,8 +52999,8 @@ google-chrome sphinx-rootdir/_build/html/index.html
 
 + cp quickref.rst quickref.sphinx.rst
 + doconce format rst quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to rst
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to rst
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 + rst2xml.py quickref.rst
@@ -50485,14 +53247,14 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [10]
-Overfull \hbox (2735.00006pt too wide) 
+Overfull \hbox (2825.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
 ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
 ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
 ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
-ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pyg
-mentize makefile diff gitdiff fix_bibtex4publish  
+ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce lat
+ex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish  
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -50596,6 +53358,14 @@ Overfull \hbox (137.00006pt too wide)
 []\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually manu
 al fixing)  
 
+Overfull \hbox (83.00006pt too wide) 
+[]\T1/pcr/m/n/10 # check if there are problems with translating latex to doconc
+e  
+
+Overfull \hbox (179.00006pt too wide) 
+[]\T1/pcr/m/n/10 # typeset a doconce document with pygments (for pretty print o
+f doconce itself)  
+
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 # generate a make.sh script for translating a doconce file to 
 various formats  
@@ -50638,11 +53408,11 @@ Overfull \hbox (113.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-
+[14]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-[14]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -50653,11 +53423,11 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-
+[15]
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
-[15]
+
 Overfull \hbox (28.47902pt too wide) 
 []\T1/ptm/m/n/10 specialy
 
@@ -50917,14 +53687,14 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [11]
-Overfull \hbox (2735.00006pt too wide) 
+Overfull \hbox (2825.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
 ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
 ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
 ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
-ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pyg
-mentize makefile diff gitdiff fix_bibtex4publish  
+ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce lat
+ex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish  
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -51028,6 +53798,14 @@ Overfull \hbox (137.00006pt too wide)
 []\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually manu
 al fixing)  
 
+Overfull \hbox (83.00006pt too wide) 
+[]\T1/pcr/m/n/10 # check if there are problems with translating latex to doconc
+e  
+
+Overfull \hbox (179.00006pt too wide) 
+[]\T1/pcr/m/n/10 # typeset a doconce document with pygments (for pretty print o
+f doconce itself)  
+
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 # generate a make.sh script for translating a doconce file to 
 various formats  
@@ -51070,11 +53848,11 @@ Overfull \hbox (113.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-
+[15]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-[15]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -51085,11 +53863,11 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-
+[16]
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
-[16]
+
 Overfull \hbox (28.47902pt too wide) 
 []\T1/ptm/m/n/10 specialy
 
@@ -51114,38 +53892,38 @@ Output written on quickref.rst.dvi (18 pages, ).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to plain
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.txt
 + doconce format gwiki quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to gwiki
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.gwiki
 + doconce format mwiki quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to mwiki
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.mwiki
 + doconce format cwiki quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to cwiki
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.cwiki
 + doconce format st quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to st
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.st
 + doconce format epytext quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to epytext
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
-running mako on quickref.do.txt to make __tmp.do.txt
-translating preprocessed doconce text in __tmp.do.txt to pandoc
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+translating doconce text in tmp_mako__quickref.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.md
 + rm -rf demo

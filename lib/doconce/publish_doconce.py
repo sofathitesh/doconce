@@ -1,6 +1,7 @@
 from publish import config
 _format_venue = config.formatting._format_venue
 from publish.common import short_author
+from publish.config.attributes import thesistype_strings
 
 #------------------------------------------------------------------------------
 # Doconce formatting
@@ -92,8 +93,8 @@ def doconce_format_proceedings(paper):
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
     values += [_doconce_format_booktitle(paper)]
-    values += [_doconce_format_editors(paper)]
-    values += [paper["publisher"]]
+    if "editor" in paper: values += [_doconce_format_editors(paper)]
+    if "publisher" in paper: values += [paper["publisher"]]
     values += [paper["year"]]
     return _doconce_join(values)
 
@@ -344,14 +345,14 @@ def rst_format_chapters(paper):
     return _rst_join(values)
 
 def rst_format_proceedings(paper):
-    "Return string for proceeding in reST format"
+    "Return string for proceedings in reST format"
     values = []
     values += [_rst_get_key_string(paper)]
     values += [_rst_get_authors_string(paper["author"])]
     values += [_rst_format_title(paper)]
     values += [paper["booktitle"]]
-    values += [_rst_format_editors(paper)]
-    values += [paper["publisher"]]
+    if "editor" in paper: values += [_rst_format_editors(paper)]
+    if "publisher" in paper: values += [paper["publisher"]]
     values += [paper["year"]]
     return _rst_join(values)
 

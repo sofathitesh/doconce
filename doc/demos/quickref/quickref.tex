@@ -16,7 +16,7 @@ final,                   % or draft (marks overfull hboxes)
 \listfiles               % print all files needed to compile this document
 
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{fancyvrb} % packages needed for verbatim environments
 
@@ -86,7 +86,11 @@ final,                   % or draft (marks overfull hboxes)
 % ----------------- title -------------------------
 
 \begin{center}
-{\LARGE\bf Doconce Quick Reference}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Doconce Quick Reference
+\end{spacing}
+}
 \end{center}
 
 
@@ -108,7 +112,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Mar 23, 2013
+Apr 12, 2013
 \end{center}
 
 \vspace{1cm}
@@ -409,8 +413,8 @@ are enabled by the syntax
 \end{Verbatim}
 where \Verb!name! is the name or ID of an author or reader making the comment,
 and \Verb!running text! is the comment. Here goes an example.
-\shortinlinecomment{hpl}{There must be a space after the colon,
-but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
+\shortinlinecomment{hpl 1}{ There must be a space after the colon,
+but the running text can occupy multiple lines. }{ There must be a }
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with {\LaTeX}
 output and the \Verb!-DTOTONOTES! option to \Verb!ptex2tex! or \Verb!doconce ptex2tex!,
@@ -576,13 +580,14 @@ is also important, one should follow these rules:
 labels in \Verb!align! environments work well.)
 
 
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \Verb!sphinx!, makes it necessary
@@ -596,6 +601,7 @@ PDF document.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \paragraph{LaTeX Newcommands.}
 The author can define \Verb!newcommand! statements in files with names
 \Verb!newcommands*.tex!. Such commands should only be used for mathematics
@@ -801,7 +807,7 @@ list of capabilities:
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -911,7 +917,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats

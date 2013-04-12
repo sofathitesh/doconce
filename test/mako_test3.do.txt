@@ -2,29 +2,23 @@
 # starting with a %, and here it is crucial since the
 # running text does need mako
 
-% if FORMAT == "html":
-
-# This if test will never be treated by mako: for
-# mako_test3b.html mako is not run because problems
-# are detected, and for mako_test3.html we use the
-# --no-mako command-line option
+% if FORMAT in ("html", "latex", "pdflatex", "sphinx", "pandoc"):
 
 !bc
 /* Here is some SWIG code code */
-%module MyMod
-%{
+%%module MyMod
+%%{
 ...
-%}
+%%}
 
-%init %{
+%%init %{
 import_array();
-%}
+%%}
 !ec
-
 % endif
 
 And more code:
 !bc
-% Matlab comment only
+%% Matlab comment only
 ...
 !ec

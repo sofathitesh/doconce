@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 23, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Apr 12, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -370,7 +370,7 @@ are enabled by the syntax</p>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is the name or ID of an author or reader making the comment,
 and <tt class="docutils literal"><span class="pre">running</span> <span class="pre">text</span></tt> is the comment. Here goes an example.
-(<strong>hpl</strong>: There must be a space after the colon,
+(<strong>hpl 1</strong>: There must be a space after the colon,
 but the running text can occupy multiple lines.)
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -709,7 +709,7 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 transforming a <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file to some format. Here is the
 list of capabilities:</p>
 <div class="highlight-bash"><div class="highlight"><pre>Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
-commands: format <span class="nb">help </span>sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format <span class="nb">help </span>sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 <span class="c"># transform doconce file to another format</span>
@@ -819,7 +819,10 @@ doconce list_labels myfile
 <span class="c"># translate a latex document to doconce (requires usually manual fixing)</span>
 doconce latex2doconce latexfile
 
-<span class="c"># typeset a doconce document with pygments</span>
+<span class="c"># check if there are problems with translating latex to doconce</span>
+doconce latex_dislikes latexfile
+
+<span class="c"># typeset a doconce document with pygments (for pretty print of doconce itself)</span>
 doconce pygmentize myfile <span class="o">[</span>pygments-style<span class="o">]</span>
 
 <span class="c"># generate a make.sh script for translating a doconce file to various formats</span>

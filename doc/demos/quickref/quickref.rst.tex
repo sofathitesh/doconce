@@ -75,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 23, 2013
+Apr 12, 2013
 
 \end{DUfieldlist}
 
@@ -638,7 +638,7 @@ are enabled by the syntax:
 
 where \texttt{name} is the name or ID of an author or reader making the comment,
 and \texttt{running text} is the comment. Here goes an example.
-(\textbf{hpl}: There must be a space after the colon,
+(\textbf{hpl 1}: There must be a space after the colon,
 but the running text can occupy multiple lines.)
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with LaTeX
@@ -1160,7 +1160,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~pygmentize~makefile~diff~gitdiff~fix\_bibtex4publish\\
+commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~latex\_dislikes~pygmentize~makefile~diff~gitdiff~fix\_bibtex4publish\\
 ~\\
 ~\\
 \#~transform~doconce~file~to~another~format\\
@@ -1270,7 +1270,10 @@ doconce~list\_labels~myfile\\
 \#~translate~a~latex~document~to~doconce~(requires~usually~manual~fixing)\\
 doconce~latex2doconce~latexfile\\
 ~\\
-\#~typeset~a~doconce~document~with~pygments\\
+\#~check~if~there~are~problems~with~translating~latex~to~doconce\\
+doconce~latex\_dislikes~latexfile\\
+~\\
+\#~typeset~a~doconce~document~with~pygments~(for~pretty~print~of~doconce~itself)\\
 doconce~pygmentize~myfile~{[}pygments-style{]}\\
 ~\\
 \#~generate~a~make.sh~script~for~translating~a~doconce~file~to~various~formats\\

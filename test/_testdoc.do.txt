@@ -418,11 +418,15 @@ We need to cite more than 10 papers to reproduce an old formatting
 problem with blanks in the keys in reST format:
 cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
 and
-cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a}
+cite{Langtangen_et_al_2002,Glimsdal_et_al_20006,Rahman_et_al_2006b,Haga_et_al_2011a,Langtangen_2003a,Langtangen_2008a,Langtangen:95}
 and all the work of
 cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
 old work cite{Langtangen_1988d} and cite{Langtangen_1989e}, and the
 talk cite{Langtangen_talk_2007a}.
+Langtangen also had two thesis cite{Langtangen:85,Langtangen:89d}.
+More retro citations are
+the old ME-IN323 book cite{Langtangen:91} and the
+cite{Langtangen:94b} OONSKI '94 paper.
 
 
 ===== Example: Examples can be typeset as exercises =====
