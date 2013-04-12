@@ -1,5 +1,5 @@
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -109,7 +109,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats

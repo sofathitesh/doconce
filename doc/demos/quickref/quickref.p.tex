@@ -62,7 +62,7 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
@@ -160,7 +160,11 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{Doconce Quick Reference}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Doconce Quick Reference
+\end{spacing}
+}}}
 
 % #elif LATEX_HEADING == "Springer_collection"
 
@@ -171,7 +175,11 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-{\LARGE\bf Doconce Quick Reference}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Doconce Quick Reference
+\end{spacing}
+}
 \end{center}
 
 % #endif
@@ -215,13 +223,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Mar 23, 2013}
+\date{Apr 12, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 23, 2013}}
+{\large\textsf{Apr 12, 2013}}
 
 \end{center}
 \vfill
@@ -230,7 +238,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Mar 23, 2013
+Apr 12, 2013
 \end{center}
 
 \vspace{1cm}
@@ -535,8 +543,8 @@ are enabled by the syntax
 \eccq
 where \code{name} is the name or ID of an author or reader making the comment,
 and \code{running text} is the comment. Here goes an example.
-\shortinlinecomment{hpl}{There must be a space after the colon,
-but the running text can occupy multiple lines.}{There must be a space after the colon, but the running text}
+\shortinlinecomment{hpl 1}{ There must be a space after the colon,
+but the running text can occupy multiple lines. }{ There must be a }
 The inline comments have simple typesetting in most formats, typically boldface
 name and everything surrounded by parenthesis, but with {\LaTeX}
 output and the \code{-DTOTONOTES} option to \code{ptex2tex} or \code{doconce ptex2tex},
@@ -702,13 +710,14 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
+
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{noticebackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\centerline{{\large\sc Notice}}
+\ \ \ {\large\sc Notice}\\ [3mm]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -722,6 +731,7 @@ PDF document.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
 \code{newcommands*.tex}. Such commands should only be used for mathematics
@@ -928,7 +938,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -1038,7 +1048,10 @@ doconce list_labels myfile
 # translate a latex document to doconce (requires usually manual fixing)
 doconce latex2doconce latexfile
 
-# typeset a doconce document with pygments
+# check if there are problems with translating latex to doconce
+doconce latex_dislikes latexfile
+
+# typeset a doconce document with pygments (for pretty print of doconce itself)
 doconce pygmentize myfile [pygments-style]
 
 # generate a make.sh script for translating a doconce file to various formats
