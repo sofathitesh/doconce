@@ -49,7 +49,7 @@ for opt in doconce.misc._legal_command_line_options:
         var = var[:-1]
         value = ''
     else:
-        value = 'True'
+        value = 'False'
     config_variables.append((var.replace('-', '_'), value))
 config = open(os.path.join('lib', 'doconce', 'doconce_config_default.py'), 'w')
 config.write('''\
