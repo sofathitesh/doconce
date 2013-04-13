@@ -40,6 +40,37 @@ if "install" in sys.argv:
     except IOError, msg:
         print "Unable to compress man page: %s" % msg
 
+# Make doconce_config_default.py file (based on newest set of options)
+import doconce.misc
+config_variables = []  # list of (var, value) pairs
+for opt in doconce.misc._legal_command_line_options:
+    var = opt[2:]
+    if var[-1] == '=':
+        var = var[:-1]
+        value = ''
+    else:
+        value = 'True'
+    config_variables.append((var.replace('-', '_'), value))
+config = open(os.path.join('lib', 'doconce', 'doconce_config_default.py'), 'w')
+config.write('''\
+"""
+Configuration of Doconce parameters that can also be set
+on the command line.
+For example, a line in this file:
+
+some_option = some_value
+
+corresponds to a command-line option --some_option=some_value
+"""
+
+''')
+for var, value in config_variables:
+    line = '%s = %s' % (var, value)
+    if value == '':
+        line = '#' + line
+    config.write(line + '\n')
+config.close()
+
 setup(
     version = str(doconce.version),
     author = "Hans Petter Langtangen",
@@ -50,17 +81,10 @@ setup(
     url = "http://doconce.googlecode.com",
     package_dir = {'': 'lib'},
     packages = ['doconce'],
-    # list individual modules since .p.py and _update.py etc. are not
-    # to be included in an official distribution (note: this does not work
+    # list individual modules if not all files are wanted as part
+    # of the package (note: this does not work
     # with package_data - must just specify the package name)
-    #py_modules = ['doconce.common', 'doconce.doconce', 'doconce.latex',
-    #              'doconce.rst', 'doconce.sphinx',
-    #              'doconce.st', 'doconce.plaintext',
-    #              'doconce.html', 'doconce.epytext',
-    #              'doconce.DocWriter', 'doconce.gwiki', 'doconce.mwiki',
-    #              #'doconce.pandoc', 'doconce.misc',
-    #             'doconce.expand_newcommands',
-    #             ],
+    #py_modules = ['doconce.common', 'doconce.doconce', ...]
     package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},
     scripts = [os.path.join('bin', f) for f in ['doconce']],
     data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],

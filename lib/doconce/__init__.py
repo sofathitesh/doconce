@@ -94,5 +94,5 @@ author = __author__
 
 __acknowledgments__ = ''
 
-from doconce import main
+
 
