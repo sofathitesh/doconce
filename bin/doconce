@@ -75,7 +75,7 @@ def format():
             print 'Could not import doconce from directory\n', os.getcwd()
             sys.exit(1)
 
-    doconce.main()
+    doconce.doconce.main()
 
 
 

@@ -78,6 +78,23 @@ def get_legal_command_line_options():
     """Return list of legal command-line options."""
     return _legal_command_line_options
 
+# Import options from config file instead of the command line
+try:
+    import doconce_config
+    # Above module must do from doconce.doconce_config_default import *
+except ImportError:
+    # No doconce_config module, rely on this package's default
+    import doconce_config_default as doconce_config
+
+# Challenge: want different doconce_config files: just
+# use different dirs and have one local in each
+# or have system wide directories that one adjusts in PYTHONPATH
+
+print [name for name in sys.modules.keys() if name.startswith('d')]
+print 'imported config', sys.modules['doconce.doconce_config_default']
+print dir(doconce_config)
+
+
 def option(name, default=None):
     """
     Return value of command-line option with the given name.
@@ -89,19 +106,30 @@ def option(name, default=None):
     # Note: Do not use fancy command-line parsers as much functionality
     # is dependent on command-line info (preprocessor options for instance)
     # that is not compatible with simple options( --name).
-    name = '--' + name
-    if not name in _legal_command_line_options:
-        print 'test for illegal option:', name
+
+    option_name = '--' + name
+    if not option_name in _legal_command_line_options:
+        print 'test for illegal option:', option_name
         print 'Abort!'
         sys.exit(1)
-    if name.endswith('='):
+
+    value = default
+
+    # Check first if name is in configuration file (doconce_config)
+    name_dash2underscore = name.replace('-', '_')
+    if hasattr(doconce_config, name_dash2underscore):
+        value = getattr(doconce_config, name_dash2underscore)
+
+    # Let the command line override
+    if option_name.endswith('='):
         for arg in sys.argv[1:]:
-            if arg.startswith(name):
+            if arg.startswith(option_name):
                 opt, value = arg.split('=')
-                return value
-        return default
-    else:
-        return (name in sys.argv)
+                break
+    elif option_name in sys.argv:
+        value = True
+
+    return value
 
 
 def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
@@ -5344,7 +5372,13 @@ def diff():
         diff_files(file1, file2, diffprog)
 
 def pydiff(files1, files2, n=3):
-    """Use Python's difflib to produce text and html diff."""
+    """
+    Use Python's difflib to compute the difference between
+    files1 and files2 (can be corresponding lists of files
+    or just two strings if only one set of files is to be
+    compared).
+    Produce text and html diff.
+    """
     import difflib, time, os
     if isinstance(files1, str):
         files1 = [files1]
@@ -5363,8 +5397,8 @@ def pydiff(files1, files2, n=3):
             fromlines, tolines, fromfile,tofile, context=True, numlines=n)
         diff_plain = difflib.unified_diff(
             fromlines, tolines, fromfile, tofile, fromdate, todate, n=n)
-        filename_plain = 'tmp_diff.txt'
-        filename_html  = 'tmp_diff.html'
+        filename_plain = 'tmp_diff_%s.txt' % tofile
+        filename_html  = 'tmp_diff_%s.html' % tofile
 
         if os.path.isfile(filename_plain):
             os.remove(filename_plain)
@@ -5379,7 +5413,7 @@ def pydiff(files1, files2, n=3):
         f.close()
         size = os.path.getsize(filename_plain)
         if size > 4:
-            print 'diff in tmp_diff.txt and tmp_diff.html'
+            print 'diff in', filename_plain, 'and', filename_html
 
 def check_diff(diff_file):
     size = os.path.getsize(diff_file)
@@ -5411,19 +5445,20 @@ def latexdiff(files1, files2):
             failure2 = os.system('doconce ptex2tex %s' % basename)
             tofile = basename + '.tex'
 
-        failure = os.system('latexdiff %s %s > tmp_diff.tex' % (fromfile, tofile))
-        failure = os.system('pdflatex tmp_diff.tex')
-        size = os.path.getsize('tmp_diff.tex')
+        diff_file = 'tmp_diff_%s.tex' % tofile
+        failure = os.system('latexdiff %s %s > %s' %
+                            (fromfile, tofile, diff_file))
+        failure = os.system('pdflatex %s' % diff_file)
+        size = os.path.getsize(diff_file)
         if size > 4:
-            print 'output in tmp_diff.pdf'
-        print 'diff in tmp_diff.pdf'
+            print 'output in', diff_file[:-3] + 'pdf'
 
 
 def diff_files(files1, files2, program='diff'):
     """
     Run some diff program:
 
-          diffprog file1 file2 > tmp_diff.txt/.pdf/.html
+          diffprog file1 file2 > tmp_diff_*.txt/.pdf/.html
 
     for file1, file2 in zip(files1, files2).
     """
@@ -5441,15 +5476,18 @@ def diff_files(files1, files2, program='diff'):
             else:
                 __missing_diff_program(program)
         elif program == 'diff':
-            system(cmd + ' > tmp_diff.txt', verbose=True)
-            check_diff('tmp_diff.txt')
+            diff_file = 'tmp_diff_%s.txt' % tofile
+            system(cmd + ' > ' + diff_file, verbose=True)
+            check_diff(diff_file)
         elif program == 'pdiff':
+            diff_file = 'tmp_diff_%s' % tofile
             if which('pdiff'):
-                system(cmd + ' -- -1 -o tmp_diff.ps')
-                system('ps2pdf -sPAPERSIZE=a4 tmp_diff.ps; rm -f tmp_diff.ps')
+                system(cmd + ' -- -1 -o %s.ps' % diff_file)
+                system('ps2pdf -sPAPERSIZE=a4 %s.ps; rm -f %s.ps' %
+                       (diff_file, diff_file))
             else:
                 __missing_diff_program(program)
-            print 'diff in tmp_diff.pdf'
+            print 'diff in %s.pdf' % diff_file
         else:
             print program, 'not supported'
             sys.exit(1)
