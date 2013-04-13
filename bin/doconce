@@ -61,14 +61,14 @@ def format():
     """
 
     try:
-        import doconce
+        import doconce.doconce
     except ImportError:
         # use local doconce module in the doconce package source:
         try:
             thisdir = os.path.dirname(sys.argv[0])
             doconce_lib = os.path.join(thisdir, os.pardir, 'lib', 'doconce')
             sys.path.insert(0, doconce_lib)
-            import doconce
+            import doconce.doconce
             print 'Successfull import of doconce locally'
         except ImportError, e:
             print e
@@ -897,10 +897,9 @@ def main():
 
     # Treat wrong command name
     found = False
-    for registered_command in commands:
-        if command == registered_command:
-            found = True
-            eval(command + '()')
+    if command in commands:
+        found = True
+        eval(command + '()')
     if not found:
         if command in ('html', 'latex', 'sphinx', 'rst', 'plain', 'gwiki', \
            'mwiki', 'epydoc', 'pandoc'):

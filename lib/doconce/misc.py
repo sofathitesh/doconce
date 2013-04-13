@@ -90,10 +90,6 @@ except ImportError:
 # use different dirs and have one local in each
 # or have system wide directories that one adjusts in PYTHONPATH
 
-print [name for name in sys.modules.keys() if name.startswith('d')]
-print 'imported config', sys.modules['doconce.doconce_config_default']
-print dir(doconce_config)
-
 
 def option(name, default=None):
     """
@@ -4002,6 +3998,9 @@ execfile is applied to .strip to execute the definition of the lists.
 
 
 def spellcheck():
+    if len(sys.argv) == 1:
+        _usage_spellcheck()
+        sys.exit(1)
     if sys.argv[1] == '-d':
         dictionary = [sys.argv[2]]
         del sys.argv[1:3]
@@ -5385,7 +5384,15 @@ def pydiff(files1, files2, n=3):
     if isinstance(files2, str):
         files2 = [files2]
 
+    sizes = []  # measure diffs in bytes
     for fromfile, tofile in zip(files1, files2):
+
+        if not os.path.isfile(fromfile):
+            print fromfile, 'does not exist'
+            sys.exit(1)
+        if not os.path.isfile(tofile):
+            print tofile, 'does not exist'
+            sys.exit(1)
 
         fromdate = time.ctime(os.stat(fromfile).st_mtime)
         todate = time.ctime(os.stat(tofile).st_mtime)
@@ -5413,12 +5420,20 @@ def pydiff(files1, files2, n=3):
         f.close()
         size = os.path.getsize(filename_plain)
         if size > 4:
-            print 'diff in', filename_plain, 'and', filename_html
+            sizes.append(size)
+        else:
+            os.remove(filename_plain)
+            os.remove(filename_html)
+    if sizes:
+        print 'detected differences, see tmp_diff_*.txt or tmp_diff_*.html'
+
 
 def check_diff(diff_file):
     size = os.path.getsize(diff_file)
     if size > 4:
         print 'diff in', diff_file
+    else:
+        os.remove(diff_file)
 
 
 def latexdiff(files1, files2):

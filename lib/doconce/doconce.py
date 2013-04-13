@@ -2478,12 +2478,12 @@ def main():
         print 'formats:', str(supported_format_names())[1:-1]
         print '\n-DFORMAT=format is always defined when running preprocess'
         print 'Other -Dvar preprocess options can be added'
-        _abort()
+        sys.exit(1)
 
     names = supported_format_names()
     if format not in names:
         print '%s is not among the supported formats:\n%s' % (format, names)
-        _abort()
+        sys.exit(1)
 
     encoding = option('encoding=', default='')
 
