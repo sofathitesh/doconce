@@ -1093,6 +1093,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 """
