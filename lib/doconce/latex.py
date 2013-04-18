@@ -622,6 +622,10 @@ def latex_ref_and_label(section_label2title, format, filestr):
                      fix_latex_command_regex(
                      r'\g<1>\textsc{pdf}{\LaTeX}\g<2>',
                      application='replacement'), filestr)
+    filestr = re.sub(r'''([^"'`*-])\bBibTeX\b([^"'`*-])''',
+                     fix_latex_command_regex(
+                     r'\g<1>\textsc{Bib}\negthinspace{\TeX}\g<2>',
+                     application='replacement'), filestr)
     # This one is not good enough for verbatim `LaTeX`:
     #filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
 
