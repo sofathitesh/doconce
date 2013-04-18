@@ -155,10 +155,10 @@ def sphinx_code(filestr, code_blocks, code_block_types,
         pyoptpro='python'
         )
 
-    # grab #sphinx code-blocks: cod=python cpp=c++ etc line
+    # grab line with: # Sphinx code-blocks: cod=python cpp=c++ etc
     # (do this before code is inserted in case verbatim blocks contain
     # such specifications for illustration)
-    m = re.search(r'#\s*[Ss]phinx\s+code-blocks?:(.+?)\n', filestr)
+    m = re.search(r'.. *[Ss]phinx +code-blocks?:(.+)', filestr)
     if m:
         defs_line = m.group(1)
         # turn specifications into a dictionary:

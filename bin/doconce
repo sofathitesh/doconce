@@ -184,7 +184,7 @@ def sphinx_dir():
         short_title = title
 
     if author is None:
-        import doconce
+        import doconce.doconce
         f = open(filename + '.do.txt', 'r'); fstr = f.read(); f.close()
         # The following can be misleading if there are examples on
         # various AUTHOR: in e.g. vertabim code in the .do.txt file

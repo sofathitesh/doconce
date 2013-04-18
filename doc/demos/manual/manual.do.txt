@@ -754,7 +754,7 @@ LaTeX is the output format).
 Doconce applies the software tool "Publish":
 "https://bitbucket.org/logg/publish" to handle the bibliography in a
 document. With Publish it is easy to import BibTeX data and maintain a
-database in a clean, self-explaining textual format. From the Publish
+database in a clean, self-explanatory textual format. From the Publish
 format it is easy to go BibTeX and reST or straightforward Doconce
 typesetting (and from there to HTML, plain text, wiki formats, and so
 on).
