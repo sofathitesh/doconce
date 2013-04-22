@@ -459,13 +459,11 @@ MathJax.Hub.Config({
 
     # Find all URLs to files (non http, ftp)
     import common
-    pattern = '<a href="' + common._linked_files
+    pattern = '<a href=' + common._linked_files
     files = re.findall(pattern, filestr)
-    for f in files:
-        add_to_file_collection(f)
-
-
-
+    for f, dummy in files:
+        if not (f.startswith('http') or f.startswith('ftp')):
+            add_to_file_collection(f)
 
 
     # Add info about the toc (for construction of navigation panels etc.).
@@ -558,8 +556,12 @@ MathJax.Hub.Config({
                 nspaces = 1
                 indent = '&nbsp; '*(nspaces*(level - level_min))
                 toc_html += '     <!-- vagrant nav toc: "%s" --> <li> %s <a href="#%s">%s</a>\n' % (title, indent, href, title)
+        try:
+            f = open(template, 'r'); template = f.read(); f.close()
+        except IOError:
+            print '*** error: could not find template "%s"' % template
+            sys.exit(1)
 
-        f = open(template, 'r'); template = f.read(); f.close()
         # template can only have slots for title, date, main
         template = latin2html(template) # code non-ascii chars
         # replate % by %% in template, except for %(title), %(date), %(main),
