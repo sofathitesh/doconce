@@ -63,6 +63,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
@@ -223,13 +224,13 @@ Doconce Quick Reference
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Apr 12, 2013}
+\date{Apr 22, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Apr 12, 2013}}
+{\large\textsf{Apr 22, 2013}}
 
 \end{center}
 \vfill
@@ -238,7 +239,7 @@ Doconce Quick Reference
 % #else
 
 \begin{center}
-Apr 12, 2013
+Apr 22, 2013
 \end{center}
 
 \vspace{1cm}
@@ -881,7 +882,7 @@ cite{name1,name2,name3}
 The bibliography is specified by a line \code{BIBFILE: papers.pub},
 where \code{papers.pub} is a publication database in the
 \href{{https://bitbucket.org/logg/publish}}{Publish} format.
-BibTeX \code{.bib} files can easily be combined to a Publish database
+\textsc{Bib}\negthinspace{\TeX} \code{.bib} files can easily be combined to a Publish database
 (which Doconce needs to create bibliographies in other formats
 than {\LaTeX}).
 

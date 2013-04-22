@@ -1052,6 +1052,18 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Avoid page references and footnotes.
 
 !split
+======= More writing tips =======
+
+ * `\bm{u}` gives nicer boldface typesetting of math symbols than
+   the alternatives `\boldsymbol{u}` and `\pmb{u}`.
+ * For HTML-based formats using MathJax, `\bm{u}` is not supported
+   and therefore automatically replaced by `\boldsymbol{u}` by Doconce.
+ * Use `\color{blue}{formula}` in math expressions to color a part.
+ * Not all LaTeX math is supported by MathJax. Some legal LaTeX math
+   might give MathJax problems - then one has to rewrite the expression
+   to find a syntax that works both with LaTeX and MathJax.
+
+!split
 ======= Writing tips for sphinx and other formats =======
 
 For output formats different from `latex`, `pdflatex`, and `html`, the

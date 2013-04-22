@@ -6,7 +6,7 @@ Hans Petter Langtangen [1, 2]
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
 
-Date: Apr 12, 2013
+Date: Apr 22, 2013
 
 Table of contents:
 

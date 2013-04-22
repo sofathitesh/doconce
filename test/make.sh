@@ -123,6 +123,7 @@ doconce format sphinx testdoc --examples-as-exercises
 doconce split_rst testdoc
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp automake_sphinx.py automake_sphinx_testdoc.py
 
 doconce format rst testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -211,12 +212,16 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test math
 name=math_test
+doconce format pdflatex $name
+doconce ptex2tex $name
+pdflatex $name
 doconce format html $name
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp $name.html ${name}_html.html
 doconce format sphinx $name
-#doconce sphinx_dir dirname=sphinx-rootdir-math $name
-#python automake_sphinx.py
+doconce sphinx_dir dirname=sphinx-rootdir-math $name
+cp automake_sphinx.py automake_sphinx_math_test.py
+python automake_sphinx.py
 doconce format pandoc $name
 # Do not use pandoc directly because it does not support MathJax enough
 doconce md2html $name.md

@@ -2164,6 +2164,15 @@ Causes:
     debugpr('%s\n**** The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
+    # Next step: change \bm{} to \boldsymbol{} for all MathJax-based formats
+    # (must be done after math blocks and newcommands files are inserted
+    if format in ("html", "sphinx", "pandoc", "ipynb"):
+        if r'\bm{' in filestr:
+            print r'*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)'
+            filestr = filestr.replace(r'\bm{', r'\boldsymbol{')
+            # See http://www.wikidot.com/doc:math
+
+
     # Next step: remove exercise solution/answers, notes, etc
     # (Note: must be done after code and tex blocks are inserted!
     # Otherwise there is a mismatch between all original blocks
