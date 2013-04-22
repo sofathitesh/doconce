@@ -1264,6 +1264,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -1446,6 +1456,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -1562,6 +1573,7 @@ final,                   % or draft (marks overfull hboxes)
 
 % #endif
 
+\input{newcommands_bfmath}
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
@@ -3063,6 +3075,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 \usepackage{movie15}
@@ -3148,6 +3161,7 @@ final,                   % or draft (marks overfull hboxes)
 \begin{document}
 
 
+\input{newcommands_bfmath}
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
@@ -4573,6 +4587,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{anslistings,minted,fancyvrb} % packages needed for verbatim environments
 
@@ -4646,6 +4661,7 @@ final,                   % or draft (marks overfull hboxes)
 \begin{document}
 
 
+\input{newcommands_bfmath}
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
@@ -7567,7 +7583,7 @@ And a little bit of Fortran:
 which then is typeset as
 
 
-.. code-block:: python
+.. code-block:: fortran
 
               subroutine midpt(x, length, a, b)
               real*8 a, b, x
@@ -20868,6 +20884,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -21068,6 +21094,7 @@ open=right               % start new chapters on odd-numbered pages
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
@@ -21125,6 +21152,7 @@ open=right               % start new chapters on odd-numbered pages
 
 % #endif
 
+\input{newcommands_bfmath}
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
@@ -21669,6 +21697,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -21976,6 +22014,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -22259,6 +22307,16 @@ MathJax.Hub.Config({
 </script>
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
 
 
 <!-- newcommands_replace.tex -->
@@ -26341,6 +26399,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -28050,6 +28118,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -28166,6 +28235,7 @@ final,                   % or draft (marks overfull hboxes)
 
 % #endif
 
+\input{newcommands_bfmath}
 \input{newcommands_replace}
 
 % ------------------- main content ----------------------
@@ -29789,7 +29859,7 @@ And more code:
 <!-- ------------------- end of main content --------------- -->
 
 
-************** File: automake_sphinx.py *****************
+************** File: automake_sphinx_testdoc.py *****************
 #!/usr/bin/env python
 # Autogenerated file (by doconce sphinx_dir)
 # Purpose: create HTML Sphinx version of testdoc
@@ -29859,6 +29929,91 @@ for filename in glob.glob('*.html'):
     os.remove(filename + '.old~')
 print """
 google-chrome sphinx-rootdir/_build/html/index.html
+"""
+
+************** File: automake_sphinx_math_test.py *****************
+#!/usr/bin/env python
+# Autogenerated file (by doconce sphinx_dir)
+# Purpose: create HTML Sphinx version of math_test
+
+# Command-line arguments are transferred to the doconce format sphinx file
+# compilation command
+
+import glob, sys, os, commands, shutil
+
+command_line_options = ' '.join(['"%s"' % arg for arg in sys.argv[1:]])
+
+sphinx_rootdir = 'sphinx-rootdir-math'
+
+def system(cmd, capture_output=False, echo=True):
+    if echo:
+        print 'running', cmd
+    if capture_output:
+        failure, outtext = commands.getstatusoutput(cmd) # Unix/Linux only
+    else:
+        failure = os.system(cmd)
+    if failure:
+        print 'Could not run', cmd
+        sys.exit(1)
+    if capture_output:
+        return outtext
+
+filename = 'math_test'
+if not os.path.isfile(filename + '.rst'):
+    # Filter doconce format to sphinx format and copy to sphinx directory
+    cmd = 'doconce format sphinx %s %s' % (filename, command_line_options)
+    print cmd
+    system(cmd)
+
+    # Fix: utf-8 encoding for non-English chars
+    cmd = 'doconce guess_encoding %s.rst' % filename
+    enc = system(cmd, capture_output=True)
+    if enc == "iso-8859-1":
+        # sphinx does not like non-English characters in iso-8859-1
+        system('doconce change_encoding iso-8859-1 utf-8 %s.rst' % filename)
+
+# Copy generated sphinx file to sphinx root directory
+shutil.copy('%s.rst' % filename, sphinx_rootdir)
+
+# Copy figures and movies directories
+figdirs = glob.glob('fig*') + glob.glob('mov*')
+for figdir in figdirs:
+    destdir = os.path.join(sphinx_rootdir, figdir)
+    if os.path.isdir(figdir) and not os.path.isdir(destdir):
+        print 'copying', figdir, 'to', sphinx_rootdir
+        shutil.copytree(figdir, destdir)
+
+# Copy needed media files in current dir (not in fig* and mov*)
+rst_text = ''
+for rstfile in glob.glob('*.rst'):
+    rstfile += open(rstfile, 'r').read()
+import re
+media_files = re.findall('.. figure:: (.+)', rstfile)
+media_files = [name for name in media_files
+               if not os.sep in name]
+for name in media_files:
+    print 'copying', name, 'to', sphinx_rootdir
+    shutil.copy(name, sphinx_rootdir)
+
+# Copy linked local files, placed in _static*, to sphinx-rootdir-math/_static
+staticdirs = glob.glob('_static*')
+for staticdir in staticdirs:
+    system('cp -r %s/* sphinx-rootdir-math/_static/' % staticdir)
+    # (Note: must do cp -r since shutil.copy/copytree cannot copy a la cp -r)
+
+# Compile web version of the sphinx document
+os.chdir(sphinx_rootdir)
+print os.getcwd()
+system('make clean')
+system('make html')
+
+print 'Fix double title in <title> tags in .html files:'
+os.chdir('_build/html')
+for filename in glob.glob('*.html'):
+    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename)
+    os.remove(filename + '.old~')
+print """
+google-chrome sphinx-rootdir-math/_build/html/index.html
 """
 
 ************** File: .testdoc_html_file_collection *****************
@@ -29999,6 +30154,7 @@ doconce format sphinx testdoc --examples-as-exercises
 doconce split_rst testdoc
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp automake_sphinx.py automake_sphinx_testdoc.py
 
 doconce format rst testdoc.do.txt --examples-as-exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -30087,12 +30243,16 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test math
 name=math_test
+doconce format pdflatex $name
+doconce ptex2tex $name
+pdflatex $name
 doconce format html $name
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp $name.html ${name}_html.html
 doconce format sphinx $name
-#doconce sphinx_dir dirname=sphinx-rootdir-math $name
-#python automake_sphinx.py
+doconce sphinx_dir dirname=sphinx-rootdir-math $name
+cp automake_sphinx.py automake_sphinx_math_test.py
+python automake_sphinx.py
 doconce format pandoc $name
 # Do not use pandoc directly because it does not support MathJax enough
 doconce md2html $name.md
@@ -30175,7 +30335,8 @@ AUTHOR: HPL
 DATE: today
 
 
-This document is translated to the format _${FORMAT}_.
+This document is translated to the format _${FORMAT}_. The purpose is to
+test math and doconce and various output formats.
 
 __Test 1: Inline math.__ Here is a sentence contains the equation $u(t)=e^{-at}$.
 
@@ -30225,7 +30386,7 @@ multiple, aligned equations. The code reads
 |bt
 \begin{align*}
 u(t)&=e^{-at}\\
-v(t) &= \frac{du}{dt}
+v(t) - 1 &= \frac{du}{dt}
 \end{align*}
 |et
 !ec
@@ -30234,7 +30395,7 @@ and results in
 !bt
 \begin{align*}
 u(t)&=e^{-at}\\
-v(t) &= \frac{du}{dt}
+v(t) - 1 &= \frac{du}{dt}
 \end{align*}
 !et
 
@@ -30246,7 +30407,7 @@ labels:
 \begin{align}
 u(t)&=e^{-at}
 label{eq2b}\\
-v(t) &= \frac{du}{dt}
+v(t) - 1 &= \frac{du}{dt}
 label{eq3b}
 \end{align}
 |et
@@ -30256,7 +30417,7 @@ and results in
 !bt
 \begin{align}
 u(t)&=e^{-at} label{eq2b}\\
-v(t) &= \frac{du}{dt} label{eq3b}
+v(t) - 1 &= \frac{du}{dt} label{eq3b}
 \end{align}
 !et
 We can refer to the last equations as the system (ref{eq2b})-(ref{eq3b}).
@@ -30279,7 +30440,7 @@ in the present case is
 .. math::
    :label: eq3b
 
-        v(t) = \frac{du}{dt}
+        v(t) - 1 = \frac{du}{dt}
 
 !ec
 # #endif
@@ -30304,7 +30465,7 @@ try the old eqnarray environment.
 |bt
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
 |et
 !ec
@@ -30313,11 +30474,11 @@ and results in
 !bt
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
 !et
 
-__Test 5: Multiple, eqnarrayed equations with label.__ We use eqnarray with
+__Test 7: Multiple, eqnarrayed equations with label.__ We use eqnarray with
 labels:
 
 !bc
@@ -30325,7 +30486,7 @@ labels:
 \begin{eqnarray}
 u(t)&=& e^{-at}
 label{eq2c}\\
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 label{eq3c}
 \end{eqnarray}
 |et
@@ -30335,12 +30496,12 @@ and results in
 !bt
 \begin{eqnarray}
 u(t)&=& e^{-at} label{eq2c}\\
-v(t) &=& \frac{du}{dt} label{eq3c}
+v(t) - 1 &=& \frac{du}{dt} label{eq3c}
 \end{eqnarray}
 !et
 Can we refer to the last equations as the system (ref{eq2c})-(ref{eq3c})?
-
 # #if FORMAT == "sphinx"
+No, unfortunately not.
 Note: Doconce takes the eqnarray with labels and replaces it automatically
 by the Sphinx code
 
@@ -30353,15 +30514,41 @@ by the Sphinx code
 That is why the equation numbers are gone and that eqnarray seemingly
 works. MathJax does not support eqnarray with labels so Sphinx would
 probably fail to show them (unless one tries PNG images or other
-math engines?).
+math engines?). The rule of thumb is to avoid equarray.
 # #endif
+
+__Test 8: newcommands and boldface bm vs pmb.__
+We have
+
+!bt
+\[ \color{blue}{\frac{\partial\u}{\partial t}} +
+\nabla\cdot\nabla\u = \nu\nabla^2\u -
+\frac{1}{\varrho}\nabla p,\]
+!et
+and $\nabla\u (\x)\cdot\normalvec$
+with plain old pmb. Here are the same formulas using `\bm`:
+
+!bt
+\[ \color{blue}{\frac{\partial\ubm}{\partial t}} +
+\nabla\cdot\nabla\ubm = \nu\nabla^2\ubm -
+\frac{1}{\varrho}\nabla p,\]
+!et
+and $\nabla\ubm (\xbm)\cdot\normalvecbm$.
+
+# #if FORMAT in ("html", "sphinx", "pandoc", "ipynb")
+Note: for the ${FORMAT} format, `\bm` was substituted by Doconce
+to `\boldsymbol`.
+# #endif
+
+
 
 ************** File: math_test.md *****************
 % How various formats can deal with LaTeX math
 % HPL
 % Jan 32, 2100
 
-This document is translated to the format _pandoc_.
+This document is translated to the format _pandoc_. The purpose is to
+test math and doconce and various output formats.
 
 *Test 1: Inline math.* Here is a sentence contains the equation $u(t)=e^{-at}$.
 
@@ -30416,7 +30603,7 @@ multiple, aligned equations. The code reads
 !bt
 \begin{align*}
 u(t)&=e^{-at}\\ 
-v(t) &= \frac{du}{dt}
+v(t) - 1 &= \frac{du}{dt}
 \end{align*}
 !et
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30431,7 +30618,7 @@ $$
 
 $$
   
-v(t) = \frac{du}{dt}
+v(t) - 1 = \frac{du}{dt}
 
 $$
 
@@ -30444,7 +30631,7 @@ labels:
 \begin{align}
 u(t)&=e^{-at}
 \label{eq2b}\\ 
-v(t) &= \frac{du}{dt}
+v(t) - 1 &= \frac{du}{dt}
 \label{eq3b}
 \end{align}
 !et
@@ -30460,7 +30647,7 @@ $$
 
 $$
 \begin{equation}  
-v(t) = \frac{du}{dt} \label{eq3b}
+v(t) - 1 = \frac{du}{dt} \label{eq3b}
 \end{equation}
 $$
 We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
@@ -30485,7 +30672,7 @@ try the old eqnarray environment.
 !bt
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\ 
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
 !et
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30495,11 +30682,11 @@ and results in
 $$
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\ 
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
 $$
 
-*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
+*Test 7: Multiple, eqnarrayed equations with label.* We use eqnarray with
 labels:
 
 
@@ -30508,7 +30695,7 @@ labels:
 \begin{eqnarray}
 u(t)&=& e^{-at}
 \label{eq2c}\\ 
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 \label{eq3c}
 \end{eqnarray}
 !et
@@ -30519,10 +30706,30 @@ and results in
 $$
 \begin{eqnarray}
 u(t)&=& e^{-at} \label{eq2c}\\ 
-v(t) &=& \frac{du}{dt} \label{eq3c}
+v(t) - 1 &=& \frac{du}{dt} \label{eq3c}
 \end{eqnarray}
 $$
 Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
+
+*Test 8: newcommands and boldface bm vs pmb.* We have
+
+$$
+ \color{blue}{\frac{\partial\u}{\partial t}} +
+\nabla\cdot\nabla\u = \nu\nabla^2\u -
+\frac{1}{\varrho}\nabla p,
+$$
+and $\nabla\u (\pmb{x})\cdot\pmb{n}$
+with plain old pmb. Here are the same formulas using `\bm`:
+
+$$
+ \color{blue}{\frac{\partial\ubm}{\partial t}} +
+\nabla\cdot\nabla\ubm = \nu\nabla^2\ubm -
+\frac{1}{\varrho}\nabla p,
+$$
+and $\nabla\ubm (\xbm)\cdot\normalvecbm$.
+
+Note: for the pandoc format, `\bm` was substituted by Doconce
+to `\boldsymbol`.
 
 
 ************** File: math_test_html.html *****************
@@ -30588,6 +30795,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -30623,7 +30840,8 @@ $$
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
 
-This document is translated to the format <b>html</b>.
+This document is translated to the format <b>html</b>. The purpose is to
+test math and doconce and various output formats.
 
 <p>
 <b>Test 1: Inline math.</b>
@@ -30696,7 +30914,7 @@ multiple, aligned equations. The code reads
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{align*}
 u(t)&amp;=e^{-at}\\ 
-v(t) &amp;= \frac{du}{dt}
+v(t) - 1 &amp;= \frac{du}{dt}
 \end{align*}
 !et
 </pre></div>
@@ -30707,7 +30925,7 @@ and results in
 $$
 \begin{align*}
 u(t)&=e^{-at}\\ 
-v(t) &= \frac{du}{dt}
+v(t) - 1 &= \frac{du}{dt}
 \end{align*}
 $$
 
@@ -30725,7 +30943,7 @@ labels:
 \begin{align}
 u(t)&amp;=e^{-at}
 label{eq2b}\\ 
-v(t) &amp;= \frac{du}{dt}
+v(t) - 1 &amp;= \frac{du}{dt}
 label{eq3b}
 \end{align}
 !et
@@ -30737,7 +30955,7 @@ and results in
 $$
 \begin{align}
 u(t)&=e^{-at} \label{eq2b}\\ 
-v(t) &= \frac{du}{dt} \label{eq3b}
+v(t) - 1 &= \frac{du}{dt} \label{eq3b}
 \end{align}
 $$
 
@@ -30757,7 +30975,7 @@ try the old eqnarray environment.
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{eqnarray*}
 u(t)&amp;=&amp; e^{-at}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
+v(t) - 1 &amp;=&amp; \frac{du}{dt}
 \end{eqnarray*}
 !et
 </pre></div>
@@ -30768,13 +30986,13 @@ and results in
 $$
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\ 
-v(t) &=& \frac{du}{dt}
+v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
 $$
 
 
 <p>
-<b>Test 5: Multiple, eqnarrayed equations with label.</b>
+<b>Test 7: Multiple, eqnarrayed equations with label.</b>
 We use eqnarray with
 labels:
 
@@ -30786,7 +31004,7 @@ labels:
 \begin{eqnarray}
 u(t)&amp;=&amp; e^{-at}
 label{eq2c}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
+v(t) - 1 &amp;=&amp; \frac{du}{dt}
 label{eq3c}
 \end{eqnarray}
 !et
@@ -30798,11 +31016,34 @@ and results in
 $$
 \begin{eqnarray}
 u(t)&=& e^{-at} \label{eq2c}\\ 
-v(t) &=& \frac{du}{dt} \label{eq3c}
+v(t) - 1 &=& \frac{du}{dt} \label{eq3c}
 \end{eqnarray}
 $$
 
 Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?
+
+<p>
+<b>Test 8: newcommands and boldface bm vs pmb.</b>
+We have
+
+<p>
+$$ \color{blue}{\frac{\partial\u}{\partial t}} +
+\nabla\cdot\nabla\u = \nu\nabla^2\u -
+\frac{1}{\varrho}\nabla p,$$
+
+and \( \nabla\u (\pmb{x})\cdot\pmb{n} \)
+with plain old pmb. Here are the same formulas using <code>\bm</code>:
+
+<p>
+$$ \color{blue}{\frac{\partial\ubm}{\partial t}} +
+\nabla\cdot\nabla\ubm = \nu\nabla^2\ubm -
+\frac{1}{\varrho}\nabla p,$$
+
+and \( \nabla\ubm (\xbm)\cdot\normalvecbm \).
+
+<p>
+Note: for the html format, <code>\bm</code> was substituted by Doconce
+to <code>\boldsymbol</code>.
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -30838,7 +31079,7 @@ MathJax.Hub.Config({
 <h2 class="author">HPL</h2>
 <h3 class="date">Jan 32, 2100</h3>
 </div>
-<p>This document is translated to the format <em>pandoc</em>.</p>
+<p>This document is translated to the format <em>pandoc</em>. The purpose is to test math and doconce and various output formats.</p>
 <p><em>Test 1: Inline math.</em> Here is a sentence contains the equation \(u(t)=e^{-at}\).</p>
 <p><em>Test 2: A single equation without label.</em> Here it is</p>
 <p>\[
@@ -30867,7 +31108,7 @@ u(t)=e^{-at} \label{eq1b}
 <pre><code>!bt
 \begin{align*}
 u(t)&amp;=e^{-at}\\ 
-v(t) &amp;= \frac{du}{dt}
+v(t) - 1 &amp;= \frac{du}{dt}
 \end{align*}
 !et</code></pre>
 <p>and results in</p>
@@ -30875,14 +31116,14 @@ v(t) &amp;= \frac{du}{dt}
 <p>u(t)=e^{-at}</p>
 <p>$$</p>
 <p>$$</p>
-<p>v(t) = </p>
+<p>v(t) - 1 = </p>
 <p>$$</p>
 <p><em>Test 5: Multiple, aligned equations with label.</em> We use align with labels:</p>
 <pre><code>!bt
 \begin{align}
 u(t)&amp;=e^{-at}
 \label{eq2b}\\ 
-v(t) &amp;= \frac{du}{dt}
+v(t) - 1 &amp;= \frac{du}{dt}
 \label{eq3b}
 \end{align}
 !et</code></pre>
@@ -30894,7 +31135,7 @@ u(t)=e^{-at} \label{eq2b}
 \]</p>
 <p>\[
 \begin{equation}  
-v(t) = \frac{du}{dt} \label{eq3b}
+v(t) - 1 = \frac{du}{dt} \label{eq3b}
 \end{equation}
 \] We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.</p>
 <p>Original Pandoc-extended Markdown transformed to HTML via Pandoc does not work with labels and multiple equations. <code>doconce md2html</code> fixes the trouble by adding full support for MathJax and avoiding that eqref references become empty.</p>
@@ -30903,22 +31144,22 @@ v(t) = \frac{du}{dt} \label{eq3b}
 <pre><code>!bt
 \begin{eqnarray*}
 u(t)&amp;=&amp; e^{-at}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
+v(t) - 1 &amp;=&amp; \frac{du}{dt}
 \end{eqnarray*}
 !et</code></pre>
 <p>and results in</p>
 <p>\[
 \begin{eqnarray*}
 u(t)&amp;=&amp; e^{-at}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
+v(t) - 1 &amp;=&amp; \frac{du}{dt}
 \end{eqnarray*}
 \]</p>
-<p><em>Test 5: Multiple, eqnarrayed equations with label.</em> We use eqnarray with labels:</p>
+<p><em>Test 7: Multiple, eqnarrayed equations with label.</em> We use eqnarray with labels:</p>
 <pre><code>!bt
 \begin{eqnarray}
 u(t)&amp;=&amp; e^{-at}
 \label{eq2c}\\ 
-v(t) &amp;=&amp; \frac{du}{dt}
+v(t) - 1 &amp;=&amp; \frac{du}{dt}
 \label{eq3c}
 \end{eqnarray}
 !et</code></pre>
@@ -30926,14 +31167,392 @@ v(t) &amp;=&amp; \frac{du}{dt}
 <p>\[
 \begin{eqnarray}
 u(t)&amp;=&amp; e^{-at} \label{eq2c}\\ 
-v(t) &amp;=&amp; \frac{du}{dt} \label{eq3c}
+v(t) - 1 &amp;=&amp; \frac{du}{dt} \label{eq3c}
 \end{eqnarray}
 \] Can we refer to the last equations as the system \eqref{eq2c}-\eqref{eq3c}?</p>
+<p><em>Test 8: newcommands and boldface bm vs pmb.</em> We have</p>
+<p>\[
+ \color{blue}{\frac{\partial\u}{\partial t}} +
+\nabla\cdot\nabla\u = \nu\nabla^2\u -
+\frac{1}{\varrho}\nabla p,
+\] and \(\nabla\u (\pmb{x})\cdot\pmb{n}\) with plain old pmb. Here are the same formulas using <code>\bm</code>:</p>
+<p>\[
+ \color{blue}{\frac{\partial\ubm}{\partial t}} +
+\nabla\cdot\nabla\ubm = \nu\nabla^2\ubm -
+\frac{1}{\varrho}\nabla p,
+\] and \(\nabla\ubm (\xbm)\cdot\normalvecbm\).</p>
+<p>Note: for the pandoc format, <code>\bm</code> was substituted by Doconce to <code>\boldsymbol</code>.</p>
 </body>
 </html>
 
-************** File: math_test.tex *****************
-NOT FOUND!
+************** File: math_test.p.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
+% #endif
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer_collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for mobile devices
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},           % inner margin (two sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
+\usepackage[latin1]{inputenc}
+\usepackage{ptex2tex}
+
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
+% #ifdef PALATINO
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% #endif
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+% #if LATEX_HEADING == "traditional"
+
+\title{How various formats can deal with {\LaTeX} math}
+
+% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+How various formats can deal with {\LaTeX} math
+\end{spacing}
+}}}
+
+% #elif LATEX_HEADING == "Springer_collection"
+
+\title*{How various formats can deal with {\LaTeX} math}
+% Short version of title:
+%\titlerunning{...}
+
+% #else
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+How various formats can deal with {\LaTeX} math
+\end{spacing}
+}
+\end{center}
+
+% #endif
+
+% ----------------- author(s) -------------------------
+% #if LATEX_HEADING == "traditional"
+\author{HPL}
+
+% #elif LATEX_HEADING == "titlepage"
+\vspace{1.3cm}
+
+    {\Large\textsf{HPL${}^{}$}}\\ [3mm]
+    
+\ \\ [2mm]
+
+% #elif LATEX_HEADING == "Springer_collection"
+
+\author{HPL}
+% Short version of authors:
+%\authorrunning{...}
+\institute{HPL}
+
+% #else
+
+\begin{center}
+{\bf HPL${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% #endif
+% ----------------- end author(s) -------------------------
+
+
+% ----------------- date -------------------------
+
+% #if LATEX_HEADING == "traditional"
+
+\date{Jan 32, 2100}
+\maketitle
+
+% #elif LATEX_HEADING == "titlepage"
+
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
+
+\end{center}
+\vfill
+\clearpage
+
+% #else
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+% #endif
+
+
+This document is translated to the format \textbf{pdflatex}. The purpose is to
+test math and doconce and various output formats.
+
+\paragraph{Test 1: Inline math.}
+Here is a sentence contains the equation $u(t)=e^{-at}$.
+
+\paragraph{Test 2: A single equation without label.}
+Here it is
+
+\[ u(t)=e^{-at} \]
+
+\paragraph{Test 3: A single equation with label.}
+Here it is as a one-line
+latex code,
+
+\bccq
+!bt
+\begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
+!et
+\eccq
+looking like
+
+\begin{equation} u(t)=e^{-at} \label{eq1}\end{equation}
+and as a three-line latex code:
+
+\bccq
+!bt
+\begin{equation}
+u(t)=e^{-at} label{eq1b}
+\end{equation}
+!et
+\eccq
+looking like
+
+\begin{equation}
+u(t)=e^{-at} \label{eq1b}
+\end{equation}
+This equation has label (\ref{eq1b}).
+
+
+\paragraph{Test 4: Multiple, aligned equations without label.}
+Only the align
+environment is supported by other formats than {\LaTeX} for typesetting
+multiple, aligned equations. The code reads
+
+\bccq
+!bt
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) - 1 &= \frac{du}{dt}
+\end{align*}
+!et
+\eccq
+and results in
+
+\begin{align*}
+u(t)&=e^{-at}\\ 
+v(t) - 1 &= \frac{du}{dt}
+\end{align*}
+
+\paragraph{Test 5: Multiple, aligned equations with label.}
+We use align with
+labels:
+
+\bccq
+!bt
+\begin{align}
+u(t)&=e^{-at}
+label{eq2b}\\ 
+v(t) - 1 &= \frac{du}{dt}
+label{eq3b}
+\end{align}
+!et
+\eccq
+and results in
+
+\begin{align}
+u(t)&=e^{-at} \label{eq2b}\\ 
+v(t) - 1 &= \frac{du}{dt} \label{eq3b}
+\end{align}
+We can refer to the last equations as the system (\ref{eq2b})-(\ref{eq3b}).
+
+
+
+
+\paragraph{Test 6: Multiple, aligned eqnarray equations without label.}
+Let us
+try the old eqnarray environment.
+
+\bccq
+!bt
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) - 1 &=& \frac{du}{dt}
+\end{eqnarray*}
+!et
+\eccq
+and results in
+
+\begin{eqnarray*}
+u(t)&=& e^{-at}\\ 
+v(t) - 1 &=& \frac{du}{dt}
+\end{eqnarray*}
+
+\paragraph{Test 7: Multiple, eqnarrayed equations with label.}
+We use eqnarray with
+labels:
+
+\bccq
+!bt
+\begin{eqnarray}
+u(t)&=& e^{-at}
+label{eq2c}\\ 
+v(t) - 1 &=& \frac{du}{dt}
+label{eq3c}
+\end{eqnarray}
+!et
+\eccq
+and results in
+
+\begin{eqnarray}
+u(t)&=& e^{-at} \label{eq2c}\\ 
+v(t) - 1 &=& \frac{du}{dt} \label{eq3c}
+\end{eqnarray}
+Can we refer to the last equations as the system (\ref{eq2c})-(\ref{eq3c})?
+
+\paragraph{Test 8: newcommands and boldface bm vs pmb.}
+We have
+
+\[ \color{blue}{\frac{\partial\u}{\partial t}} +
+\nabla\cdot\nabla\u = \nu\nabla^2\u -
+\frac{1}{\varrho}\nabla p,\]
+and $\nabla\u (\x)\cdot\normalvec$
+with plain old pmb. Here are the same formulas using \code{\bm}:
+
+\[ \color{blue}{\frac{\partial\ubm}{\partial t}} +
+\nabla\cdot\nabla\ubm = \nu\nabla^2\ubm -
+\frac{1}{\varrho}\nabla p,\]
+and $\nabla\ubm (\xbm)\cdot\normalvecbm$.
+
+
+% ------------------- end of main content ---------------
+
+
+% #ifdef PREAMBLE
+\printindex
+
+\end{document}
+% #endif
+
+
 ************** File: math_test.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -30944,7 +31563,8 @@ How various formats can deal with LaTeX math
 :Author: HPL
 :Date: Jan 32, 2100
 
-This document is translated to the format **sphinx**.
+This document is translated to the format **sphinx**. The purpose is to
+test math and doconce and various output formats.
 
 *Test 1: Inline math.* Here is a sentence contains the equation :math:`u(t)=e^{-at}`.
 
@@ -31008,7 +31628,7 @@ multiple, aligned equations. The code reads
         !bt
         \begin{align*}
         u(t)&=e^{-at}\\ 
-        v(t) &= \frac{du}{dt}
+        v(t) - 1 &= \frac{du}{dt}
         \end{align*}
         !et
 
@@ -31018,7 +31638,7 @@ and results in
 .. math::
         
         u(t)&=e^{-at}\\ 
-        v(t) &= \frac{du}{dt}
+        v(t) - 1 &= \frac{du}{dt}
         
 
 
@@ -31033,7 +31653,7 @@ labels:
         \begin{align}
         u(t)&=e^{-at}
         label{eq2b}\\ 
-        v(t) &= \frac{du}{dt}
+        v(t) - 1 &= \frac{du}{dt}
         label{eq3b}
         \end{align}
         !et
@@ -31052,7 +31672,7 @@ and results in
 .. math::
    :label: eq3b
           
-        v(t) = \frac{du}{dt} 
+        v(t) - 1 = \frac{du}{dt} 
         
 
 We can refer to the last equations as the system :eq:`eq2b`-:eq:`eq3b`.
@@ -31076,7 +31696,7 @@ in the present case is
         .. math::
            :label: eq3b
         
-                v(t) = \frac{du}{dt}
+                v(t) - 1 = \frac{du}{dt}
         
 
 
@@ -31092,7 +31712,7 @@ try the old eqnarray environment.
         !bt
         \begin{eqnarray*}
         u(t)&=& e^{-at}\\ 
-        v(t) &=& \frac{du}{dt}
+        v(t) - 1 &=& \frac{du}{dt}
         \end{eqnarray*}
         !et
 
@@ -31102,11 +31722,11 @@ and results in
 .. math::
         
         u(t) &=  e^{-at}\\ 
-        v(t)  &=  \frac{du}{dt}
+        v(t) - 1  &=  \frac{du}{dt}
         
 
 
-*Test 5: Multiple, eqnarrayed equations with label.* We use eqnarray with
+*Test 7: Multiple, eqnarrayed equations with label.* We use eqnarray with
 labels:
 
 
@@ -31117,7 +31737,7 @@ labels:
         \begin{eqnarray}
         u(t)&=& e^{-at}
         label{eq2c}\\ 
-        v(t) &=& \frac{du}{dt}
+        v(t) - 1 &=& \frac{du}{dt}
         label{eq3c}
         \end{eqnarray}
         !et
@@ -31128,11 +31748,11 @@ and results in
 .. math::
         
         u(t) &=  e^{-at} \\ 
-        v(t)  &=  \frac{du}{dt} 
+        v(t) - 1  &=  \frac{du}{dt} 
         
 
 Can we refer to the last equations as the system :eq:`eq2c`-:eq:`eq3c`?
-
+No, unfortunately not.
 Note: Doconce takes the eqnarray with labels and replaces it automatically
 by the Sphinx code
 
@@ -31147,7 +31767,29 @@ by the Sphinx code
 That is why the equation numbers are gone and that eqnarray seemingly
 works. MathJax does not support eqnarray with labels so Sphinx would
 probably fail to show them (unless one tries PNG images or other
-math engines?).
+math engines?). The rule of thumb is to avoid equarray.
+
+*Test 8: newcommands and boldface bm vs pmb.* We have
+
+
+.. math::
+         \color{blue}{\frac{\partial\pmb{u}}{\partial t}} +
+        \nabla\cdot\nabla\pmb{u} = \nu\nabla^2\pmb{u} -
+        \frac{1}{\varrho}\nabla p,
+
+and :math:`\nabla\pmb{u} (\pmb{x})\cdot\pmb{n}`
+with plain old pmb. Here are the same formulas using ``\bm``:
+
+
+.. math::
+         \color{blue}{\frac{\partial\boldsymbol{u}}{\partial t}} +
+        \nabla\cdot\nabla\boldsymbol{u} = \nu\nabla^2\boldsymbol{u} -
+        \frac{1}{\varrho}\nabla p,
+
+and :math:`\nabla\boldsymbol{u} (\boldsymbol{x})\cdot\boldsymbol{n}`.
+
+Note: for the sphinx format, ``\bm`` was substituted by Doconce
+to ``\boldsymbol``.
 
 ************** File: testdoc_vagrant.html *****************
 <html>
@@ -31365,6 +32007,16 @@ MathJax.Hub.Config({
 </script>
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
 
 
 <!-- newcommands_replace.tex -->
@@ -31729,6 +32381,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -32091,6 +32753,16 @@ MathJax.Hub.Config({
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -32424,6 +33096,16 @@ MathJax.Hub.Config({
 </script>
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
 
 
 <!-- newcommands_replace.tex -->
@@ -34145,7 +34827,7 @@ And a little bit of Fortran:
 which then is typeset as
 
 
-.. code-block:: python
+.. code-block:: fortran
 
               subroutine midpt(x, length, a, b)
               real*8 a, b, x
@@ -35698,7 +36380,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 12 Apr 2013 (02:18)</center>
+<center>Mon, 22 Apr 2013 (04:45)</center>
 
 
 
@@ -35829,7 +36511,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 12 Apr 2013 (02:18)</center>
+<center>Mon, 22 Apr 2013 (04:45)</center>
 
 
 
@@ -38213,6 +38895,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{bm,microtype}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
@@ -39031,7 +39714,7 @@ cite{name1,name2,name3}
 The bibliography is specified by a line \code{BIBFILE: papers.pub},
 where \code{papers.pub} is a publication database in the
 \href{{https://bitbucket.org/logg/publish}}{Publish} format.
-BibTeX \code{.bib} files can easily be combined to a Publish database
+\textsc{Bib}\negthinspace{\TeX} \code{.bib} files can easily be combined to a Publish database
 (which Doconce needs to create bibliographies in other formats
 than {\LaTeX}).
 
@@ -48672,6 +49355,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_no_solutions.html
@@ -48819,6 +49503,7 @@ figure file ../doc/manual/figs/streamtubes:
 *** warning: AUTHOR may look strange with a template -
              it is recommended to comment out all authors: #AUTHOR.
              Better to hardcode authors in a footer in the template.
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_vagrant.html
@@ -48879,6 +49564,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in testdoc.html
 + [ 0 -ne 0 ]
 + doconce remove_exercise_answers testdoc.html
@@ -49124,6 +49810,9 @@ For additional information on amsmath, use the `?' option.
 
 
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -49247,13 +49936,16 @@ No file testdoc.aux.
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
 
+
 ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./newcommands_replace.tex)
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
 
- [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}]
+
+
+ [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}]
 
 LaTeX Warning: Reference `demo:ex:1' on page 2 
 
@@ -49268,7 +49960,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-171.
+173.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -49295,9 +49987,9 @@ LaTeX Warning: Reference `fig:impact' on page 5
 Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
-Overfull \hbox (21.80258pt too wide) 
-[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
- com-pared with the full wavepacket.mpeg
+Overfull \hbox (13.9403pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
+frames com-pared with the full wavepacket.mpeg
 
 LaTeX Warning: Reference `myfig' on page 7 
 
@@ -49359,71 +50051,71 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 725.
+t line 727.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 726.
+ine 728.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-29.
+31.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 730.
+ 732.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-32.
+34.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 734.
+t line 736.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 734.
+ 736.
 
 
 LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 7
-38.
+40.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-38.
+40.
 
 
 LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 738.
-
-
-LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 738.
-
-
-LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 740.
-
-
-LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
 ne 740.
 
 
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 740.
+
+
+LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
+ine 742.
+
+
+LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
+ne 742.
+
+
 LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 740.
+ 742.
 
 
 LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 7
-40.
+42.
 
 
 LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 7
-40.
+42.
 
 
 LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 7
-40.
+42.
 
 
 LaTeX Warning: Citation `Langtangen:95' on page 11 
@@ -49431,34 +50123,34 @@ LaTeX Warning: Citation `Langtangen:95' on page 11
 
 
 LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 74
-2.
+4.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 742.
+ 744.
 
 
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-742.
+744.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-43.
+45.
 
 
 LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 7
-43.
+45.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 744.
+ine 746.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 745
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 747
 .
 
 
@@ -49466,7 +50158,7 @@ LaTeX Warning: Citation `Langtangen:91' on page 11
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 748
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 750
 .
 
 [11]
@@ -49493,7 +50185,7 @@ LaTeX Warning: Reference `eq2' on page 13
 
 
 LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 87
-1.
+3.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -49526,11 +50218,11 @@ LaTeX Warning: Reference `exer:you' on page 14
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 897.
+ 899.
 
 (./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1258
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1260
 .
 
 
@@ -49541,48 +50233,39 @@ LaTeX Warning: Reference `demo:ex:2' on page 17
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1275.
+ 1277.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 17 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1276
+LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1278
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 17 
 
 (./testdoc.bbl [17]) [18]
-<latex_figs/hint.pdf, id=333, 89.33376pt x 89.33376pt>
+<latex_figs/hint.pdf, id=335, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=334, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [19 <./latex_figs/hint.pdf> <./latex_figs/warning.
-pdf>]
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
+<latex_figs/warning.pdf, id=336, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-<latex_figs/notice.pdf, id=362, 89.33376pt x 89.33376pt>
+[19 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf>]
+<latex_figs/notice.pdf, id=363, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-Underfull \vbox (badness 10000) has occurred while \output is active [20]
-<latex_figs/question.pdf, id=370, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf>
+<latex_figs/question.pdf, id=364, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf> [20 <./latex_figs/notice.pdf> <./latex_figs/quest
+ion.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [21 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-Overfull \hbox (10.92778pt too wide) 
-[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+(./testdoc.ind [21]
+Overfull \hbox (9.21391pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
+rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
 [22])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -49618,6 +50301,9 @@ setspace.sty    2011/12/19 v6.7a set line spacing
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
@@ -49698,11 +50384,16 @@ supp-pdf.mkii
 epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
   grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
 epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
 newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
  testdoc.out.pyg
  testdoc.out.pyg
@@ -49809,6 +50500,9 @@ For additional information on amsmath, use the `?' option.
 
 
 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
@@ -49933,13 +50627,17 @@ Writing index file testdoc.idx
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
 
+
 ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
+(./testdoc.out) (./testdoc.out) (./newcommands_bfmath.tex)
+(./newcommands_replace.tex)
 
- [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
+
+
+ [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
@@ -49950,9 +50648,9 @@ nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
-Overfull \hbox (21.80258pt too wide) 
-[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
- com-pared with the full wavepacket.mpeg
+Overfull \hbox (13.9403pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
+frames com-pared with the full wavepacket.mpeg
 <../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 <downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
@@ -50018,15 +50716,6 @@ Package amsmath Warning: Foreign command \over;
 <use latex_figs/hint.pdf>
 <latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
 [19 <./latex_figs/warning.pdf>]
@@ -50039,9 +50728,9 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
 (./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-Overfull \hbox (10.92778pt too wide) 
-[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+Overfull \hbox (9.21391pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
+rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
 [21])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -50077,6 +50766,9 @@ setspace.sty    2011/12/19 v6.7a set line spacing
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
@@ -50157,13 +50849,18 @@ supp-pdf.mkii
 epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
   grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
 epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
  testdoc.out
  testdoc.out
+newcommands_bfmath.tex
 newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
  testdoc.out.pyg
  testdoc.out.pyg
@@ -50282,6 +50979,9 @@ For additional information on amsmath, use the `?' option.
 
 
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -50405,13 +51105,17 @@ Writing index file testdoc.idx
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
 
+
 ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
+(./testdoc.out) (./testdoc.out) (./newcommands_bfmath.tex)
+(./newcommands_replace.tex)
 
- [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
+
+
+ [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
@@ -50422,9 +51126,9 @@ nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
-Overfull \hbox (21.80258pt too wide) 
-[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
- com-pared with the full wavepacket.mpeg
+Overfull \hbox (13.9403pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
+frames com-pared with the full wavepacket.mpeg
 <../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 <downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
@@ -50490,15 +51194,6 @@ Package amsmath Warning: Foreign command \over;
 <use latex_figs/hint.pdf>
 <latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
 [19 <./latex_figs/warning.pdf>]
@@ -50511,9 +51206,9 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
 (./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-Overfull \hbox (10.92778pt too wide) 
-[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+Overfull \hbox (9.21391pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
+rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
 [21])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -50549,6 +51244,9 @@ setspace.sty    2011/12/19 v6.7a set line spacing
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
@@ -50629,13 +51327,18 @@ supp-pdf.mkii
 epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
   grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
 epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
  testdoc.out
  testdoc.out
+newcommands_bfmath.tex
 newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
  testdoc.out.pyg
  testdoc.out.pyg
@@ -50731,6 +51434,9 @@ For additional information on amsmath, use the `?' option.
 
 
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -50854,13 +51560,17 @@ Writing index file testdoc.idx
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
 
+
 ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./testdoc.out) (./testdoc.out) (./newcommands_replace.tex)
+(./testdoc.out) (./testdoc.out) (./newcommands_bfmath.tex)
+(./newcommands_replace.tex)
 
- [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
+
+
+ [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
@@ -50871,9 +51581,9 @@ nts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 Underfull \vbox (badness 4429) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
-Overfull \hbox (21.80258pt too wide) 
-[]\OT1/cmr/m/n/10 Movie based on col-lec-tion of frames (here just a few frames
- com-pared with the full wavepacket.mpeg
+Overfull \hbox (13.9403pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
+frames com-pared with the full wavepacket.mpeg
 <../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 <downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
@@ -50939,15 +51649,6 @@ Package amsmath Warning: Foreign command \over;
 <use latex_figs/hint.pdf>
 <latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
-Underfull \hbox (badness 1297) 
-\OT1/cmr/m/n/10 u-ment, oth-er-wise stupid con-tent.
-
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
 [19 <./latex_figs/warning.pdf>]
@@ -50960,9 +51661,9 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
 (./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-Overfull \hbox (10.92778pt too wide) 
-[]\OT1/cmr/m/n/10 test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (sep-a-rate) \OT1/c
-mtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 which
+Overfull \hbox (9.21391pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
+rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
 [21]) (./testdoc.aux)
 
  *File List*
@@ -50992,6 +51693,9 @@ setspace.sty    2011/12/19 v6.7a set line spacing
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
@@ -51072,13 +51776,18 @@ supp-pdf.mkii
 epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
   grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
 epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
  testdoc.out
  testdoc.out
+newcommands_bfmath.tex
 newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
  testdoc.out.pyg
  testdoc.out.pyg
@@ -51477,6 +52186,7 @@ or just run it by
   python automake_sphinx.py
 
 + [ 0 -ne 0 ]
++ cp automake_sphinx.py automake_sphinx_testdoc.py
 + doconce format rst testdoc.do.txt --examples-as-exercises
 running preprocess -DFORMAT=rst -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -52086,6 +52796,7 @@ output in testdoc.md
 + pandoc -v
 + doconce format html slides --pygments-html-style=emacs
 translating doconce text in slides.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides.html
 + [ 0 -ne 0 ]
 + doconce slides_html slides reveal --html-slide-type=beigesmall
@@ -52098,6 +52809,7 @@ slides written to slides.html
 + /bin/ls -R reveal.js
 + doconce format html slides --pygments-html-style=emacs
 translating doconce text in slides.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides.html
 + doconce slides_html slides all
 run
@@ -52119,6 +52831,7 @@ output in html_template.html
 + [ 0 -ne 0 ]
 + doconce format html author1
 translating doconce text in author1.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in author1.html
 + [ 0 -ne 0 ]
 + doconce format latex author1
@@ -52164,10 +52877,216 @@ translating doconce text in author1.do.txt to plain
 output in author1.txt
 + [ 0 -ne 0 ]
 + name=math_test
++ doconce format pdflatex math_test
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
+running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
+translating doconce text in tmp_mako__math_test.do.txt to pdflatex
+output in math_test.p.tex
++ doconce ptex2tex math_test
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in math_test.tex
++ pdflatex math_test
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
+entering extended mode
+(./math_test.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+Writing index file math_test.idx
+No file math_test.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+
+LaTeX Warning: Reference `eq1b' on page 1 
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `eq2b' on page 2 
+
+
+LaTeX Warning: Reference `eq3b' on page 2 
+
+[2]
+
+LaTeX Warning: Reference `eq2c' on page 3 
+
+
+LaTeX Warning: Reference `eq3c' on page 3 
+
+No file math_test.ind.
+[3] (./math_test.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+setspace.sty    2011/12/19 v6.7a set line spacing
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+fancyvrb.sty    2008/02/07
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+ ***********
+
+
+Package rerunfilecheck Warning: File `math_test.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmtt9.pfb>
+Output written on math_test.pdf (3 pages, ).
+Transcript written on math_test.log.
 + doconce format html math_test
 running preprocess -DFORMAT=html -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
 running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
 translating doconce text in tmp_mako__math_test.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in math_test.html
 + [ 0 -ne 0 ]
 + cp math_test.html math_test_html.html
@@ -52187,7 +53106,118 @@ and references to them will be empty):
 label{eq2c}
 label{eq3c}
 
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in math_test.rst
++ doconce sphinx_dir dirname=sphinx-rootdir-math math_test
+Making sphinx-rootdir-math
+Welcome to the Sphinx 1.2pre quickstart utility.
+
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
+
+Enter the root path for documentation.
+> Root path for the documentation [.]: 
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory "_build" within the root path, or you separate
+"source" and "build" directories within the root path.
+> Separate source and build directories (y/N) [n]: 
+Inside the root directory, two more directories will be created; "_templates"
+for custom HTML templates and "_static" for custom stylesheets and other static
+files. You can enter another prefix (such as ".") to replace the underscore.
+> Name prefix for templates and static dir [_]: 
+The project name will occur in several places in the built documentation.
+> Project name: > Author name(s): 
+Sphinx has the notion of a "version" and a "release" for the
+software. Each version can have multiple releases. For example, for
+Python the version is something like 2.5 or 3.0, while the release is
+something like 2.5.1 or 3.0a1.  If you don't need this dual structure,
+just set both to the same value.
+> Project version: > Project release [1.0]: 
+The file name suffix for source files. Commonly, this is either ".txt"
+or ".rst".  Only files with this suffix are considered documents.
+> Source file suffix [.rst]: * Please enter a file suffix, e.g. '.rst' or '.txt'.
+> Source file suffix [.rst]: 
+One document is special in that it is considered the top node of the
+"contents tree", that is, it is the root of the hierarchical structure
+of the documents. Normally, this is "index", but if your "index"
+document is a custom template, you can also set this to another filename.
+> Name of your master document (without suffix) [index]: 
+Sphinx can also add configuration for epub output:
+> Do you want to use the epub builder (y/N) [n]: 
+Please indicate if you want to use one of the following Sphinx extensions:
+> autodoc: automatically insert docstrings from modules (y/N) [n]: > doctest: automatically test code snippets in doctest blocks (y/N) [n]: > intersphinx: link between Sphinx documentation of different projects (y/N) [n]: > todo: write "todo" entries that can be shown or hidden on build (y/N) [n]: > coverage: checks for documentation coverage (y/N) [n]: > pngmath: include math, rendered as PNG images (y/N) [n]: > mathjax: include math, rendered in the browser by MathJax (y/N) [n]: > ifconfig: conditional inclusion of content based on config values (y/N) [n]: > viewcode: include links to the source code of documented Python objects (y/N) [n]: 
+A Makefile and a Windows command file can be generated for you so that you
+only have to run e.g. `make html' instead of invoking sphinx-build
+directly.
+> Create Makefile? (Y/n) [y]: > Create Windows command file? (Y/n) [y]: 
+Creating file sphinx-rootdir-math/conf.py.
+Creating file sphinx-rootdir-math/index.rst.
+Creating file sphinx-rootdir-math/Makefile.
+Creating file sphinx-rootdir-math/make.bat.
+
+Finished: An initial directory structure has been created.
+
+You should now populate your master file sphinx-rootdir-math/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+
+searching for TITLE in math_test.do.txt
+Using title "How various formats can deal with LaTeX math" from math_test
+Author: ['HPL']
+Using author(s) "HPL" from math_test
+title: How various formats can deal with LaTeX math
+author: HPL
+theme: default
+These Sphinx themes were found: ADCtheme, agni, agogo, basic, basicstrap, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scipy_lectures, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
+
+'automake_sphinx.py' contains the steps to (re)compile the sphinx
+version. You may want to edit this file, or run the steps manually,
+or just run it by
+
+  python automake_sphinx.py
+
++ cp automake_sphinx.py automake_sphinx_math_test.py
++ python automake_sphinx.py
+rm -rf _build/*
+sphinx-build -b html -d _build/doctrees   . _build/html
+Making output directory...
+Running Sphinx v1.2pre
+loading pickled environment... not yet created
+building [html]: targets for 2 source files that are out of date
+updating environment: 2 added, 0 changed, 0 removed
+reading sources... [ 50%] index
+reading sources... [100%] math_test
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 50%] index
+writing output... [100%] math_test
+
+writing additional files... (0 module code pages) genindex search
+copying static files... done
+dumping search index... done
+dumping object inventory... done
+build succeeded.
+
+Build finished. The HTML pages are in _build/html.
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in math_test.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in genindex.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in index.html
+/home/hpl/vc/doconce/test/sphinx-rootdir-math
+running make clean
+running make html
+Fix double title in <title> tags in .html files:
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" search.html
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" math_test.html
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" genindex.html
+running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" index.html
+
+google-chrome sphinx-rootdir-math/_build/html/index.html
+
 + doconce format pandoc math_test
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
 running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
@@ -52456,6 +53486,9 @@ For additional information on amsmath, use the `?' option.
 
 
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
@@ -52501,14 +53534,21 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 
 
 
+
+
+
 Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
- [1] [2]
+ [1]
+Overfull \hbox (119.75502pt too wide) 
+\OT1/phv/m/n/10 Edit-ing Mode" in Emacs. Store the file in the home di-rec-tory
+ and add []
+[2]
 Overfull \hbox (19.14615pt too wide) 
 \OT1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or [
 ]
 [3] [4]
-Overfull \hbox (29.35596pt too wide) 
+Overfull \hbox (29.09346pt too wide) 
 []\OT1/phv/m/n/10 Large por-tions of text can be left out us-ing Pre-pro-cess. 
 Just place []
 [5]
@@ -52516,25 +53556,25 @@ Overfull \hbox (4.40137pt too wide)
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []
 
-Overfull \hbox (27.8928pt too wide) 
+Overfull \hbox (25.94281pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [6] [7] <latex_figs/notice.eps>
-Underfull \hbox (badness 1924) 
+Underfull \hbox (badness 2158) 
 \OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
 
-Underfull \hbox (badness 1701) 
+Underfull \hbox (badness 1867) 
 \OT1/phv/m/n/10 for in-stance, more than one plot per fig-ure. How-ever,
 
 Underfull \hbox (badness 2564) 
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 670
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 671
 .
 
 [9]
-Overfull \hbox (60.6356pt too wide) 
+Overfull \hbox (59.2456pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
  on the form [],
 
@@ -52550,15 +53590,11 @@ Overfull \hbox (3.50804pt too wide)
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
 
-Overfull \hbox (2.40855pt too wide) 
+Overfull \hbox (0.45856pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-
-Overfull \hbox (0.18839pt too wide) 
-\OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
- doc-u-ment, "com-
 [15]
-Overfull \hbox (87.48466pt too wide) 
+Overfull \hbox (86.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
@@ -52586,6 +53622,9 @@ dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 fancyvrb.sty    2008/02/07
@@ -52635,8 +53674,12 @@ placeins.sty    2005/04/18  v 2.2
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
     umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
   omsphv.fd    
 latex_figs/notice.eps
  ***********
@@ -52697,6 +53740,9 @@ For additional information on amsmath, use the `?' option.
 
 
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
@@ -52738,12 +53784,19 @@ Writing index file quickref.idx
 (./quickref.out) (./quickref.out)
 
 
-[1]  [2] [3]
+
+
+
+[1] 
+Overfull \hbox (119.75502pt too wide) 
+\OT1/phv/m/n/10 Edit-ing Mode" in Emacs. Store the file in the home di-rec-tory
+ and add []
+[2] [3]
 Overfull \hbox (19.14615pt too wide) 
 \OT1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or [
 ]
 [4]
-Overfull \hbox (29.35596pt too wide) 
+Overfull \hbox (29.09346pt too wide) 
 []\OT1/phv/m/n/10 Large por-tions of text can be left out us-ing Pre-pro-cess. 
 Just place []
 [5] [6]
@@ -52751,20 +53804,20 @@ Overfull \hbox (4.40137pt too wide)
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []
 
-Overfull \hbox (27.8928pt too wide) 
+Overfull \hbox (25.94281pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [7] <latex_figs/notice.eps>
-Underfull \hbox (badness 1924) 
+Underfull \hbox (badness 2158) 
 \OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
 
-Underfull \hbox (badness 1701) 
+Underfull \hbox (badness 1867) 
 \OT1/phv/m/n/10 for in-stance, more than one plot per fig-ure. How-ever,
 
 Underfull \hbox (badness 2564) 
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
 [8] [9] [10]
-Overfull \hbox (60.6356pt too wide) 
+Overfull \hbox (59.2456pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
  on the form [],
 
@@ -52780,15 +53833,11 @@ Overfull \hbox (3.50804pt too wide)
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
 
-Overfull \hbox (2.40855pt too wide) 
+Overfull \hbox (0.45856pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-
-Overfull \hbox (0.18839pt too wide) 
-\OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
- doc-u-ment, "com-
 [16]
-Overfull \hbox (87.48466pt too wide) 
+Overfull \hbox (86.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
@@ -52816,6 +53865,9 @@ dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 fancyvrb.sty    2008/02/07
@@ -52867,8 +53919,12 @@ placeins.sty    2005/04/18  v 2.2
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
 quickref.out
 quickref.out
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
     umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
   omsphv.fd    
 latex_figs/notice.eps
  ***********
