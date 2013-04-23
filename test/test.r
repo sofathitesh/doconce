@@ -928,6 +928,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 ===== Appendix: Testing identical titles =====
 label{test:title:id1}
 
@@ -954,6 +955,10 @@ in comparison with the other admons.
   * and a list
   * with items
 !ewarning
+
+# #if FORMAT in ("latex", "pdflatex")
+\clearpage
+# #endif
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -1455,9 +1460,9 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
 \usepackage{movie15}
@@ -1469,6 +1474,17 @@ final,                   % or draft (marks overfull hboxes)
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -1478,6 +1494,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -1549,7 +1566,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % #ifdef TODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
 \todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
@@ -1561,6 +1578,44 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -2863,6 +2918,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
 
@@ -2914,6 +2970,8 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+\clearpage
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -3074,9 +3132,9 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[a4paper]{geometry}
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 \usepackage{movie15}
 
@@ -3084,6 +3142,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted}
 \usemintedstyle{default}
 
+\usepackage[latin1]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
@@ -3141,7 +3200,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{wrapfigure}}
 
 
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
 \todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
@@ -3149,6 +3208,29 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
 
 
 \usepackage{theorem}
@@ -4367,6 +4449,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
 
@@ -4418,6 +4501,8 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+\clearpage
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -4586,13 +4671,14 @@ final,                   % or draft (marks overfull hboxes)
 \listfiles               % print all files needed to compile this document
 
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{anslistings,minted,fancyvrb} % packages needed for verbatim environments
 
 
 
+\usepackage[latin1]{inputenc}
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
@@ -4649,6 +4735,16 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
 
 
 \usepackage{theorem}
@@ -5814,6 +5910,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
 
@@ -5865,6 +5962,8 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+\clearpage
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -7230,6 +7329,7 @@ Appendix: Testing identical titles  (1)
 ---------------------------------------
 
 Without label.
+
 
 .. _test:title:id1:
 
@@ -8765,6 +8865,7 @@ Appendix: Testing identical titles  (1)
 
 Without label.
 
+
 .. _test:title:id1:
 
 Appendix: Testing identical titles  (2)
@@ -9863,6 +9964,7 @@ This is more stuff for an appendix.
 ==== Appendix: Testing identical titles ====
 
 Without label.
+
 
 ==== Appendix: Testing identical titles ====
 
@@ -11029,6 +11131,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 ==== Appendix: Testing identical titles ====
 
 With label.
@@ -12076,6 +12179,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 == Appendix: Testing identical titles ==
 
 
@@ -13109,6 +13213,7 @@ This is more stuff for an appendix.
 Appendix: Testing identical titles
 
 Without label.
+
 
 Appendix: Testing identical titles
 
@@ -14172,6 +14277,7 @@ Appendix: Testing identical titles
 ----------------------------------
 
 Without label.
+
 
 Appendix: Testing identical titles
 ----------------------------------
@@ -15326,6 +15432,7 @@ Appendix: Testing identical titles
 ----------------------------------
 
 Without label.
+
 
 Appendix: Testing identical titles
 ----------------------------------
@@ -16609,6 +16716,7 @@ This is more stuff for an appendix.
 ### Appendix: Testing identical titles
 
 Without label.
+
 
 ### Appendix: Testing identical titles
 
@@ -18180,6 +18288,7 @@ case in LaTeX.
       "### Appendix: Testing identical titles\n",
       "\n",
       "Without label.\n",
+      "\n",
       "\n",
       "### Appendix: Testing identical titles\n",
       "\n",
@@ -21093,9 +21202,9 @@ open=right               % start new chapters on odd-numbered pages
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
@@ -21103,6 +21212,17 @@ open=right               % start new chapters on odd-numbered pages
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -21112,6 +21232,7 @@ open=right               % start new chapters on odd-numbered pages
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -21133,6 +21254,41 @@ open=right               % start new chapters on odd-numbered pages
 
 \setcounter{tocdepth}{2}  % number chapter, section, subsection
 
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 
 
@@ -23674,6 +23830,7 @@ Without label.
 
 <p>
 
+
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
@@ -23729,6 +23886,7 @@ in comparison with the other admons.
 </p></td></tr>
 </table>
 <p>
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -26002,6 +26160,7 @@ Without label.
 
 <p>
 
+
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
@@ -26055,6 +26214,7 @@ in comparison with the other admons.
 </p></td></tr>
 </table>
 <p>
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -27830,6 +27990,7 @@ Without label.
 
 <p>
 
+
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
@@ -27883,6 +28044,7 @@ in comparison with the other admons.
 </p></td></tr>
 </table>
 <p>
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -28117,9 +28279,9 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
 \usepackage{movie15}
@@ -28131,6 +28293,17 @@ final,                   % or draft (marks overfull hboxes)
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -28140,6 +28313,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -28211,7 +28385,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % #ifdef TODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
 \todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
@@ -28223,6 +28397,44 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -29494,6 +29706,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
 
@@ -29545,6 +29758,8 @@ in comparison with the other admons.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
+\clearpage
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -30019,11 +30234,12 @@ google-chrome sphinx-rootdir-math/_build/html/index.html
 ************** File: .testdoc_html_file_collection *****************
 testdoc.html
 ../doc/manual/figs/streamtubes.png
-../doc/manual/figs/streamtubes.png
 ../doc/manual/figs/wavepacket_0001.png
 ../doc/manual/figs/mjolnir.mpeg
 ../doc/manual/figs/wavepacket.mpeg
 ../doc/manual/figs/wavepacket_*.png
+wavepacket_0001.html
+testdoc.do.txt
 ._part0000_testdoc.html
 ._part0001_testdoc.html
 ._part0002_testdoc.html
@@ -30117,7 +30333,7 @@ doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works
@@ -31250,9 +31466,9 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
@@ -31260,6 +31476,17 @@ final,                   % or draft (marks overfull hboxes)
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -31269,6 +31496,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -31290,6 +31518,41 @@ final,                   % or draft (marks overfull hboxes)
 
 \setcounter{tocdepth}{2}  % number chapter, section, subsection
 
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -34419,6 +34682,7 @@ Without label.
 
 <p>
 
+
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
@@ -34450,6 +34714,7 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul></div><p>
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -36009,6 +36274,7 @@ Appendix: Testing identical titles  (1)
 
 Without label.
 
+
 .. _test:title:id1:
 
 Appendix: Testing identical titles  (2)
@@ -36380,7 +36646,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 22 Apr 2013 (04:45)</center>
+<center>Tue, 23 Apr 2013 (07:49)</center>
 
 
 
@@ -36511,7 +36777,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 22 Apr 2013 (04:45)</center>
+<center>Tue, 23 Apr 2013 (07:49)</center>
 
 
 
@@ -38894,9 +39160,9 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
@@ -38904,6 +39170,17 @@ final,                   % or draft (marks overfull hboxes)
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -38913,6 +39190,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -38953,7 +39231,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % #ifdef TODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
 \todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
@@ -38965,6 +39243,44 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -49759,9 +50075,9 @@ replacing % end theorem by \end{theorem} in testdoc.p.tex
 replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
 + doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
 replacing --examples-as--exercises by --examples-as-exercises in testdoc.p.tex
-+ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES testdoc
++ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 using local config file .ptex2tex.cfg
-running preprocessor on testdoc.p.tex...  defines: 'TODONOTES', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15'  done
+running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
 done testdoc.p.tex -> testdoc.tex
 + [ 0 -ne 0 ]
 + pdflatex -shell-escape testdoc
@@ -49800,8 +50116,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -49810,10 +50126,12 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
@@ -49825,8 +50143,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 
 (/home/hpl/texmf/tex/latex/misc/movie15.sty
 
@@ -49842,6 +50158,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
@@ -49925,6 +50243,8 @@ ws.code.tex
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
 gs.code.tex
 
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
@@ -49960,7 +50280,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-173.
+197.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -49981,10 +50301,10 @@ LaTeX Warning: Reference `subsubsec:ex' on page 3
 
 LaTeX Warning: Reference `fig:impact' on page 5 
 
-<../doc/manual/figs/streamtubes.png, id=61, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=59, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 4429) has occurred while \output is active [5]
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (13.9403pt too wide) 
@@ -49993,7 +50313,7 @@ frames com-pared with the full wavepacket.mpeg
 
 LaTeX Warning: Reference `myfig' on page 7 
 
-<../doc/manual/figs/wavepacket_0001.png, id=110, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=108, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
 LaTeX Warning: Reference `mymov' on page 7 
@@ -50051,106 +50371,106 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 727.
+t line 751.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 728.
+ine 752.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-31.
+55.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 732.
+ 756.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-34.
+58.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 736.
+t line 760.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 736.
+ 760.
 
 
 LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 7
-40.
+64.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-40.
+64.
 
 
 LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 740.
+ne 764.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 740.
+t line 764.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 742.
+ine 766.
 
 
 LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
-ne 742.
+ne 766.
 
 
 LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 742.
+ 766.
 
 
 LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 7
-42.
+66.
 
 
 LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 7
-42.
+66.
 
 
 LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 7
-42.
+66.
 
 
 LaTeX Warning: Citation `Langtangen:95' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 74
-4.
+LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 76
+8.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 744.
+ 768.
 
 
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-744.
+768.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-45.
+69.
 
 
 LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 7
-45.
+69.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 746.
+ine 770.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 747
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 771
 .
 
 
@@ -50158,22 +50478,22 @@ LaTeX Warning: Citation `Langtangen:91' on page 11
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 750
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 774
 .
 
 [11]
 Overfull \hbox (5.05241pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
-[12]
 
-LaTeX Warning: Reference `my:eq1' on page 13 
+LaTeX Warning: Reference `my:eq1' on page 12 
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
+[12]
 
 LaTeX Warning: Reference `my:eq1' on page 13 
 
@@ -50184,8 +50504,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 87
-3.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 89
+7.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -50202,71 +50522,69 @@ LaTeX Warning: Reference `eq2a' on page 13
 
 LaTeX Warning: Reference `my:eq1' on page 13 
 
-[13]
 
-LaTeX Warning: Reference `demo:ex:1' on page 14 
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 14 
+LaTeX Warning: Reference `demo:ex:1' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 14 
+LaTeX Warning: Reference `demo:ex:2' on page 13 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 13 
 
 
 
-LaTeX Warning: Reference `exer:you' on page 14 
+LaTeX Warning: Reference `exer:you' on page 13 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 899.
+LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
+ 923.
 
-(./testdoc.out.pyg) [14] (./testdoc.out.pyg) [15] [16]
+[13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1260
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1284
 .
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 17 
+LaTeX Warning: Reference `demo:ex:1' on page 16 
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 17 
+LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 17 undefined on input line
- 1277.
+LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
+ 1301.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 17 
+LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 17 undefined on input line 1278
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1302
 .
 
 
-LaTeX Warning: Reference `exer:you' on page 17 
+LaTeX Warning: Reference `exer:you' on page 16 
 
-(./testdoc.bbl [17]) [18]
-<latex_figs/hint.pdf, id=335, 89.33376pt x 89.33376pt>
+(./testdoc.bbl [16]) [17]
+<latex_figs/hint.pdf, id=293, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=336, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
+<latex_figs/warning.pdf, id=294, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
+pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-[19 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf>]
-<latex_figs/notice.pdf, id=363, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=364, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf> [20 <./latex_figs/notice.pdf> <./latex_figs/quest
-ion.pdf>]
+<latex_figs/notice.pdf, id=320, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf> [19]
+<latex_figs/question.pdf, id=329, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [21]
+(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
 Overfull \hbox (9.21391pt too wide) 
 []\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
 rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
-[22])
+[21])
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -50292,20 +50610,22 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
 fancyvrb.sty    2008/02/07
 moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
@@ -50316,8 +50636,6 @@ livier@maths.lth.se>
 listings.sty    2007/02/22 1.4 (Carsten Heinz)
  lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
 listings.cfg    2007/02/22 1.4 listings configuration
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
@@ -50332,6 +50650,8 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -50378,6 +50698,8 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
   pgffor.code.tex
     tikz.code.tex
 todonotes.sty    2011/10/22
+  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
 supp-pdf.mkii
@@ -50445,14 +50767,15 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
 nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (22 pages, ).
+nts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + [ 0 -ne 0 ]
 + pdflatex -shell-escape testdoc
@@ -50491,8 +50814,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -50501,10 +50824,12 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
@@ -50516,8 +50841,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 
 (/home/hpl/texmf/tex/latex/misc/movie15.sty
 
@@ -50533,6 +50856,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
@@ -50616,6 +50941,8 @@ ws.code.tex
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
 gs.code.tex
 
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
@@ -50642,18 +50969,18 @@ f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
 (./testdoc.out.pyg)
-<../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=212, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 4429) has occurred while \output is active [5]
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
-<../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=262, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
+<downloaded_figures/f_plot.png, id=264, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
 Overfull \vbox (97.7906pt too high) has occurred while \output is active
 [8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
@@ -50711,17 +51038,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16] [17]) <latex_figs/hint.pdf, id=511, 89.33376pt x 89.33376pt>
+[12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
+[16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
+<latex_figs/warning.pdf, id=475, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
+pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-[19 <./latex_figs/warning.pdf>]
-<latex_figs/notice.pdf, id=541, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=542, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=495, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf> [19]
+<latex_figs/question.pdf, id=504, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -50757,20 +51084,22 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
 fancyvrb.sty    2008/02/07
 moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
@@ -50781,8 +51110,6 @@ livier@maths.lth.se>
 listings.sty    2007/02/22 1.4 (Carsten Heinz)
  lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
 listings.cfg    2007/02/22 1.4 listings configuration
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
@@ -50797,6 +51124,8 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -50843,6 +51172,8 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
   pgffor.code.tex
     tikz.code.tex
 todonotes.sty    2011/10/22
+  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
 supp-pdf.mkii
@@ -50904,13 +51235,14 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
 nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+nts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + makeindex testdoc
@@ -50969,8 +51301,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -50979,10 +51311,12 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
@@ -50994,8 +51328,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 
 (/home/hpl/texmf/tex/latex/misc/movie15.sty
 
@@ -51011,6 +51343,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
@@ -51094,6 +51428,8 @@ ws.code.tex
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
 gs.code.tex
 
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
@@ -51120,18 +51456,18 @@ f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
 (./testdoc.out.pyg)
-<../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=212, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 4429) has occurred while \output is active [5]
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
-<../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=262, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
+<downloaded_figures/f_plot.png, id=264, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
 Overfull \vbox (97.7906pt too high) has occurred while \output is active
 [8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
@@ -51189,17 +51525,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16] [17]) <latex_figs/hint.pdf, id=511, 89.33376pt x 89.33376pt>
+[12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
+[16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
+<latex_figs/warning.pdf, id=475, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
+pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-[19 <./latex_figs/warning.pdf>]
-<latex_figs/notice.pdf, id=541, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=542, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=495, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf> [19]
+<latex_figs/question.pdf, id=504, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -51235,20 +51571,22 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
 fancyvrb.sty    2008/02/07
 moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
@@ -51259,8 +51597,6 @@ livier@maths.lth.se>
 listings.sty    2007/02/22 1.4 (Carsten Heinz)
  lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
 listings.cfg    2007/02/22 1.4 listings configuration
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
@@ -51275,6 +51611,8 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -51321,6 +51659,8 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
   pgffor.code.tex
     tikz.code.tex
 todonotes.sty    2011/10/22
+  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
 supp-pdf.mkii
@@ -51379,13 +51719,14 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
 nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+nts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + pdflatex -shell-escape testdoc
@@ -51424,8 +51765,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -51434,10 +51775,12 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
@@ -51449,8 +51792,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 
 (/home/hpl/texmf/tex/latex/misc/movie15.sty
 
@@ -51466,6 +51807,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
@@ -51549,6 +51892,8 @@ ws.code.tex
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadin
 gs.code.tex
 
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
@@ -51575,18 +51920,18 @@ f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg) [4]
 (./testdoc.out.pyg)
-<../doc/manual/figs/streamtubes.png, id=214, 583.17876pt x 437.635pt>
+<../doc/manual/figs/streamtubes.png, id=212, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
-Underfull \vbox (badness 4429) has occurred while \output is active [5]
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
-<../doc/manual/figs/wavepacket_0001.png, id=264, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=262, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=266, 578.16pt x 433.62pt>
+<downloaded_figures/f_plot.png, id=264, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
 Overfull \vbox (97.7906pt too high) has occurred while \output is active
 [8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
@@ -51644,17 +51989,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16] [17]) <latex_figs/hint.pdf, id=511, 89.33376pt x 89.33376pt>
+[12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
+[16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=512, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf>]
+<latex_figs/warning.pdf, id=475, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
+pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-[19 <./latex_figs/warning.pdf>]
-<latex_figs/notice.pdf, id=541, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=542, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=495, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf> [19]
+<latex_figs/question.pdf, id=504, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -51684,20 +52029,22 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
    color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
 ptex2tex.sty    
 fancyvrb.sty    2008/02/07
 moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
@@ -51708,8 +52055,6 @@ livier@maths.lth.se>
 listings.sty    2007/02/22 1.4 (Carsten Heinz)
  lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
 listings.cfg    2007/02/22 1.4 listings configuration
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
  movie15.sty    2009/07/07
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
  ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
@@ -51724,6 +52069,8 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -51770,6 +52117,8 @@ pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
   pgffor.code.tex
     tikz.code.tex
 todonotes.sty    2011/10/22
+  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
  theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
      thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
 supp-pdf.mkii
@@ -51828,13 +52177,14 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
 nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+nts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
@@ -52917,8 +53267,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -52927,14 +53277,17 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz))
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
@@ -52947,6 +53300,7 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
 
 Writing index file math_test.idx
 No file math_test.aux.
@@ -52997,21 +53351,25 @@ graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+fancyvrb.sty    2008/02/07
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
-fancyvrb.sty    2008/02/07
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -53042,6 +53400,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
      url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
 supp-pdf.mkii
 epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
   grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
@@ -53475,8 +53834,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -53486,10 +53845,12 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
@@ -53507,6 +53868,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 (./quickref.w18))/usr/local/bin/pygmentize
 ) (./quickref.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -53521,6 +53884,8 @@ Package hyperref Message: Driver (default): hdvips.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+
+
 
 
 Writing index file quickref.idx
@@ -53559,7 +53924,7 @@ sl/10 reg-u-lar ex-pres-sion []
 Overfull \hbox (25.94281pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
-[6] [7] <latex_figs/notice.eps>
+[6] <latex_figs/notice.eps>
 Underfull \hbox (badness 2158) 
 \OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
 
@@ -53568,9 +53933,9 @@ Underfull \hbox (badness 1867)
 
 Underfull \hbox (badness 2564) 
 []\OT1/phv/m/n/10 ) to in-clude spe-cial
-[8]
+[7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 671
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 682
 .
 
 [9]
@@ -53612,21 +53977,23 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
 fancyvrb.sty    2008/02/07
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
@@ -53642,6 +54009,8 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 quickref.w18
 quickref.pyg
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
   helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
@@ -53671,6 +54040,8 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
@@ -53729,8 +54100,8 @@ Examine \Huge starts \@setfontsize size may be \@xxvpt. )
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -53740,10 +54111,12 @@ For additional information on amsmath, use the `?' option.
 
 
 
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
@@ -53761,6 +54134,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 
 (./quickref.w18))/usr/local/bin/pygmentize
 ) (./quickref.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -53775,6 +54150,8 @@ Package hyperref Message: Driver (default): hdvips.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+
+
 
 
 Writing index file quickref.idx
@@ -53828,20 +54205,20 @@ Overfull \hbox (20.06894pt too wide)
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-[12] [13] [14] [15]
+[12] [13] [14]
 Overfull \hbox (3.50804pt too wide) 
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
-
+[15]
 Overfull \hbox (0.45856pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-[16]
+
 Overfull \hbox (86.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
-[17] (./quickref.aux)
+[16] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -53855,21 +54232,23 @@ graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
    dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
  makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-setspace.sty    2011/12/19 v6.7a set line spacing
-   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.sty    1999/02/16
    color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
 dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+setspace.sty    2011/12/19 v6.7a set line spacing
  amsmath.sty    2000/07/18 v2.13 AMS math features
  amstext.sty    2000/06/29 v2.01
   amsgen.sty    1999/11/30 v2.0
   amsbsy.sty    1999/11/29 v1.2d
   amsopn.sty    1999/12/14 v2.01 operator names
 amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
 fancyvrb.sty    2008/02/07
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
@@ -53885,6 +54264,8 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 quickref.w18
 quickref.pyg
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
   helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
@@ -53914,6 +54295,8 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
+  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
@@ -53934,7 +54317,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (17 pages, ).
+Output written on quickref.dvi (16 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess

@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Apr 22, 2013
+DATE: Apr 23, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and

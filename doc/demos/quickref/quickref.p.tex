@@ -62,9 +62,9 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
@@ -72,6 +72,17 @@ final,                   % or draft (marks overfull hboxes)
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -81,6 +92,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -121,7 +133,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % #ifdef TODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
 \todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
@@ -133,6 +145,44 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 
 % insert custom LaTeX commands...
@@ -224,13 +274,13 @@ Doconce Quick Reference
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Apr 22, 2013}
+\date{Apr 23, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Apr 22, 2013}}
+{\large\textsf{Apr 23, 2013}}
 
 \end{center}
 \vfill
@@ -239,7 +289,7 @@ Doconce Quick Reference
 % #else
 
 \begin{center}
-Apr 22, 2013
+Apr 23, 2013
 \end{center}
 
 \vspace{1cm}

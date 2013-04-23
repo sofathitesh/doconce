@@ -1097,6 +1097,7 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
 """
@@ -1215,7 +1216,7 @@ final,                   % or draft (marks overfull hboxes)
         INTRO['latex'] += r"""
 
 % #ifdef TODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}"""
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}"""
         if option('skip_inline_comments'):
             INTRO['latex'] += r"""
 \usepackage[shadow,disable]{todonotes}"""
@@ -1248,7 +1249,6 @@ final,                   % or draft (marks overfull hboxes)
     INTRO['latex'] += r"""
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
-\usepackage[table]{xcolor}
 \let\oldtabular\tabular
 \let\endoldtabular\endtabular
 % #if COLORED_TABLE_ROWS not in ("gray", "blue")
