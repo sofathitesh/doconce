@@ -1109,9 +1109,6 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 """
     INTRO['latex'] += r"""
-% http://www.ctex.org/documents/packages/layout/titlesec.pdf
-\usepackage[compact]{titlesec}  % narrower section headings
-
 % #ifdef XELATEX
 % xelatex settings
 \usepackage{fontspec}
@@ -1261,18 +1258,30 @@ final,                   % or draft (marks overfull hboxes)
 % #define COLORED_TABLE_ROWS no
 % #endif
 % #if COLORED_TABLE_ROWS == "gray"
-\definecolor{lightgray}{gray}{0.9}
-\renewenvironment{tabular}{\rowcolors{2}{white}{lightgray}%
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
 \oldtabular}{\endoldtabular}
 % #elif COLORED_TABLE_ROWS == "blue"
-\definecolor{lightblue}{rgb}{0.93,0.95,1.0}  % Apple blue
-\renewenvironment{tabular}{\rowcolors{2}{white}{lightblue}%
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
 \oldtabular}{\endoldtabular}
 % #endif
 
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
 
 % USER PREAMBLE
 % insert custom LaTeX commands...

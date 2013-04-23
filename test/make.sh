@@ -86,7 +86,7 @@ doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue testdoc
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works
