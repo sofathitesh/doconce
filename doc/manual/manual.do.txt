@@ -1953,6 +1953,39 @@ preprocessor option `-DMINTED` to turn on the minted package.
 When this package is included, `latex` or `pdflatex` runs the
 `pygmentize` program and the `shell-escape` option is required.
 
+=== Why are the LaTeX section headings smaller than normal? ===
+
+Doconce inserts a special command to make the headings
+more compact:
+
+!bc
+\usepackage[compact]{titlesec}
+!ec
+as explained in the "`titlesec`": "http://www.ctex.org/documents/packages/layout/titlesec.pdf" package documentation.
+To retrieve the standard LaTeX headings, comment out this line or remove it:
+
+!bc sys
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce subst '\\usepack.+\{titlesec\} '' mydoc.p.tex
+!ec
+
+You can easily make the headings even smaller than the normal font
+by replacing `[compact]` by `[compact,small]` as parameter specification
+for `titlesec`.
+
+=== Can I have LaTeX figures with shadows? ===
+
+This is easy by including the `fancybox` and `graphicx` packages
+and wrapping all `\includegraphics` in a shadow box:
+
+!bc sys
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce replace \
+          'microtype}', 'microtype,fancybox,graphicx}' mydoc.p.tex
+Terminal> doconce subst '(\\includegraphics\[.+\}\})' \
+          '\\shadowbox{\g<1>}' mydoc.p.tex
+!ec
+
 === How can I use my fancy LaTeX environments? ===
 
 Doconce supports only basic formatting elements (headings, paragraphs,

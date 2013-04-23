@@ -1096,9 +1096,8 @@ final,                   % or draft (marks overfull hboxes)
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 """
     m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr, flags=re.MULTILINE)
@@ -1110,6 +1109,20 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 """
     INTRO['latex'] += r"""
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -1119,6 +1132,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -1229,7 +1243,36 @@ final,                   % or draft (marks overfull hboxes)
         INTRO['latex'] += r"""
 % #endif
 """
+        if not option('skip_inline_comments'):
+            INTRO['latex'] += r"""
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+"""
     INTRO['latex'] += r"""
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\usepackage[table]{xcolor}
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{lightgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{lightgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{lightblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
 
 % USER PREAMBLE
 % insert custom LaTeX commands...
