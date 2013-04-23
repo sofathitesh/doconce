@@ -16,14 +16,15 @@ final,                   % or draft (marks overfull hboxes)
 \listfiles               % print all files needed to compile this document
 
 
-\usepackage{relsize,epsfig,makeidx,setspace,color,amsmath,amsfonts}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
 \usepackage{bm,microtype}
-\usepackage[latin1]{inputenc}
 \usepackage{fancyvrb} % packages needed for verbatim environments
 
 \usepackage{minted}
 \usemintedstyle{default}
 
+\usepackage[latin1]{inputenc}
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
@@ -68,6 +69,16 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}
 
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
 
 
 % insert custom LaTeX commands...
@@ -113,7 +124,7 @@ Doconce Quick Reference
 
 
 \begin{center}
-Apr 22, 2013
+Apr 23, 2013
 \end{center}
 
 \vspace{1cm}

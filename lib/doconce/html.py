@@ -47,6 +47,12 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
         _file_collection_filename = '.' + doconce_docname + \
                                     '_html_file_collection'
     try:
+        if mode == 'a':
+            f = open(_file_collection_filename, 'r')
+            files = [name.strip() for name in f.read().split()]
+            f.close()
+            if filename in files:  # already registered?
+                return
         f = open(_file_collection_filename, mode)
         f.write(filename + '\n')
         f.close()
@@ -462,7 +468,8 @@ MathJax.Hub.Config({
     pattern = '<a href=' + common._linked_files
     files = re.findall(pattern, filestr)
     for f, dummy in files:
-        if not (f.startswith('http') or f.startswith('ftp')):
+        if not (f.startswith('http') or f.startswith('ftp') or \
+           f.startswith('file:')):
             add_to_file_collection(f)
 
 

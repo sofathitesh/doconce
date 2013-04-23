@@ -196,18 +196,18 @@ relevant Debian package for installing all this is
 === LaTeX packages ===
 
 Many LaTeX packages are potentially needed (depending on various
-preprocessor variables given to `ptex2tex` or `doconce ptex2tex`.
-The standard packages always included are
-`relsize`, `epsfig`, `makeidx`, `setspace`, `color`, `amsmath`, `amsfonts`,
-`bm`, `microtype`, `titlesec`, and `hyperref`.
-The `ptex2tex` package (from "ptex2tex": "http://code.google.com/p/ptex2tex") is also included, but removed again if `doconce ptex2tex`
-is run instead of the `ptex2tex` program, meaning that if you do not
-use `ptex2tex`, you do not need `ptex2tex.sty`. Optional packages
-that might be included are `minted`, `fontspec`, `xunicode`, `inputenc`,
-`helvet`, `mathpazo`, `wrapfig`, `calc`,
-`xcolor`, `ifthen`, `xkeyval`, `tikz`, `graphicx`, `setspace`, `shadow`,
-`disable`, `todonotes`, `lineno`, `xr`, `movie15`, `a4paper`,
-and `a6paper`.
+preprocessor variables given to `ptex2tex` or `doconce ptex2tex`.  The
+standard packages always included are `relsize`, `epsfig`, `makeidx`,
+`setspace`, `color`, `amsmath`, `amsfonts`, `xcolor`, `bm`,
+`microtype`, `titlesec`, and `hyperref`.  The `ptex2tex` package (from
+"ptex2tex": "http://code.google.com/p/ptex2tex") is also included, but
+removed again if `doconce ptex2tex` is run instead of the `ptex2tex`
+program, meaning that if you do not use `ptex2tex`, you do not need
+`ptex2tex.sty`. Optional packages that might be included are `minted`,
+`fontspec`, `xunicode`, `inputenc`, `helvet`, `mathpazo`, `wrapfig`,
+`calc`, `ifthen`, `xkeyval`, `tikz`, `graphicx`, `setspace`, `shadow`,
+`disable`, `todonotes`, `lineno`, `xr`, `movie15`, `a4paper`, and
+`a6paper`.
 
 Relevant Debian packages that gives you all of these LaTeX packages are
 

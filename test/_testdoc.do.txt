@@ -912,6 +912,7 @@ This is more stuff for an appendix.
 
 Without label.
 
+
 ===== Appendix: Testing identical titles =====
 label{test:title:id1}
 
@@ -938,6 +939,10 @@ in comparison with the other admons.
   * and a list
   * with items
 !ewarning
+
+# #if FORMAT in ("latex", "pdflatex")
+\clearpage
+# #endif
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
