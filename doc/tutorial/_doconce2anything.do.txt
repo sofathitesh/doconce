@@ -318,6 +318,8 @@ Preprocessor variables to be defined or undefined are
    inline comments (looks much like track changes in MS Word). This
    macro has only effect if inline comments are used (name, colon, comment
    - inside brackets).
+ * `COLORED_TABLE_ROWS` for coloring every other table rows. Set this
+   variable to `gray` or `blue`.
 
 If you are not satisfied with the Doconce preamble, you can provide
 your own preamble by adding the command-line option `--latex-preamble=myfile`.

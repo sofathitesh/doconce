@@ -44,6 +44,8 @@ software. However, if you want other formats as output
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.
 
+# Make a debpkg_doconce.txt file with everything that is needed on Debian
+
 === Preprocessors ===
 
 If you make use of the "Preprocess": "http://code.google.com/p/preprocess"
@@ -191,7 +193,41 @@ or `doconce ptex2tex` command is run with `-DTODONOTES`.  The
 relevant Debian package for installing all this is
 `texlive-latex-extra`.
 
-# Say something about anslistings.sty
+=== LaTeX packages ===
+
+Many LaTeX packages are potentially needed (depending on various
+preprocessor variables given to `ptex2tex` or `doconce ptex2tex`.
+The standard packages always included are
+`relsize`, `epsfig`, `makeidx`, `setspace`, `color`, `amsmath`, `amsfonts`,
+`bm`, `microtype`, `titlesec`, and `hyperref`.
+The `ptex2tex` package (from "ptex2tex": "http://code.google.com/p/ptex2tex") is also included, but removed again if `doconce ptex2tex`
+is run instead of the `ptex2tex` program, meaning that if you do not
+use `ptex2tex`, you do not need `ptex2tex.sty`. Optional packages
+that might be included are `minted`, `fontspec`, `xunicode`, `inputenc`,
+`helvet`, `mathpazo`, `wrapfig`, `calc`,
+`xcolor`, `ifthen`, `xkeyval`, `tikz`, `graphicx`, `setspace`, `shadow`,
+`disable`, `todonotes`, `lineno`, `xr`, `movie15`, `a4paper`,
+and `a6paper`.
+
+Relevant Debian packages that gives you all of these LaTeX packages are
+
+!bc
+texlive-latex-base
+texlive-latex-recommended
+texlive-latex-extra
+texlive-math-extra
+texlive-bibtex-extra
+texlive-xetex
+texlive-humanities
+texlive-pictures
+!ec
+
+If you want to use the *anslistings* code environment with `ptex2tex`
+(`.ptex2tex.cfg` styles `Python_ANS`, `Python_ANSt`, `Cpp_ANS`, etc.) or
+`doconce ptex2tex` (`envir=ans` or `envir=ans:nt`), you need the
+`anslistings.sty` file. It can be obtained from
+the "ptex2tex source": "https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty".
+
 
 === reStructuredText (reST) Output ===
 
