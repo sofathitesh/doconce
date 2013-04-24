@@ -182,9 +182,11 @@ MathJax.Hub.Config({
 <p>
 
 <h2>Solve the world's simplest differential equation  <a name="___sec0"></a></h2>
+
 <p>
 
 <h3>Mathematical problem  <a name="___sec1"></a></h3>
+
 <p>
 This exercise addresses the differential equation problem
 
@@ -204,6 +206,7 @@ in time.
 <p>
 
 <h3>Numerical solution method  <a name="___sec2"></a></h3>
+
 <p>
 Derive the \( \theta \)-rule scheme for solving \eqref{ode} numerically
 with time step \( \Delta t \):
@@ -231,6 +234,7 @@ Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.
 <p>
 
 <h3>Implementation  <a name="___sec3"></a></h3>
+
 <p>
 The numerical method is implemented in a Python function
 <code>solver</code> (found in the <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a> module):
@@ -238,7 +242,7 @@ The numerical method is implemented in a Python function
 <p>
 
 
-<!-- code typeset with pygments style "default" -->
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">import</span> linspace, zeros
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(I, a, T, dt, theta):
@@ -258,6 +262,7 @@ The numerical method is implemented in a Python function
 
 
 <h3>Numerical experiments  <a name="___sec4"></a></h3>
+
 <p>
 Fix the values of where \( I \), \( a \), and \( T \).
 Then vary \( \Delta t \) for \( \theta=0,1/2,1 \).
@@ -268,6 +273,7 @@ Illustrate that if \( \Delta t \) is not sufficiently small,
 <p>
 Perform experiments and determine empirically the convergence
 rate for \( \theta=0,1/2,1 \).
+
 <!-- ------------------- end of main content --------------- -->
 
               <!--stopindex-->

@@ -249,7 +249,7 @@ The template shown above, stored in the file `template_minimal.html`
 is used as example. We run
 
 !bc sys
-doconce format html mydoc --html-template=template_minimal.html
+doconce format html mydoc --html_template=template_minimal.html
 !ec
 The result is a file "`mydoc.html`": "mydoc_github_pygmentized.html" where
 
@@ -309,7 +309,7 @@ The "resulting code": "uio/template_5620_pygmentized.hml" is ready
 as a template:
 
 !bc sys
-doconce format html mydoc --html-template=mynewcoursetemplate.html
+doconce format html mydoc --html_template=mynewcoursetemplate.html
 !ec
 Here is "the result": "mydoc_uio.html".
 
@@ -369,8 +369,8 @@ Translation of the original Doconce writings in `mydoc.do.txt` is
 done by
 
 !bc sys
-doconce format html mydoc.do.txt --html-style=vagrant \
-        --html-template=style_vagrant/template_vagrant.html
+doconce format html mydoc.do.txt --html_style=vagrant \
+        --html_template=style_vagrant/template_vagrant.html
 !ec
 The resulting "HTML file": "mydoc_vagrant_pygmentized.html" has
 a "nice look": "mydoc_vagrant.html":

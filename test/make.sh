@@ -185,7 +185,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # Test grab
 doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce grab --from 'Compute a Probability' --to_ 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
+doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
 doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt >> testdoc.tmp
 
 # Test html templates
