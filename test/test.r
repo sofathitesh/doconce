@@ -30432,7 +30432,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # Test grab
 doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce grab --from 'Compute a Probability' --to_ 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
+doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
 doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt >> testdoc.tmp
 
 # Test html templates
@@ -36646,7 +36646,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 24 Apr 2013 (00:31)</center>
+<center>Wed, 24 Apr 2013 (05:50)</center>
 
 
 
@@ -36777,7 +36777,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 24 Apr 2013 (00:31)</center>
+<center>Wed, 24 Apr 2013 (05:50)</center>
 
 
 
@@ -53167,7 +53167,7 @@ to generate the slides
 + [ 0 -ne 0 ]
 + doconce grab --from- ={5} Subsection 1 --to subroutine@ _testdoc.do.txt
 + [ 0 -ne 0 ]
-+ doconce grab --from Compute a Probability --to_ drawing uniformly _testdoc.do.txt
++ doconce grab --from Compute a Probability --to- drawing uniformly _testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally _testdoc.do.txt
 + doconce format html html_template --html_template=template1.html --no_pygments_html
 translating doconce text in html_template.do.txt to html
