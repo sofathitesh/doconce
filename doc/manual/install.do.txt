@@ -22,6 +22,7 @@ hg update
 sudo python setup.py install
 !ec
 
+# #ifdef OUTDATED
 Debian GNU/Linux users can also run
 !bc sys
 sudo apt-get install doconce
@@ -34,6 +35,7 @@ sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
 !ec
+# #endif
 
 ===== Dependencies =====
 
@@ -177,6 +179,12 @@ hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 !ec
+One can also do the simple
+
+!bc sys
+pip install sphinx
+!ec
+which also installs pygments.
 
 If you use the minted style together with `ptex2tex`, you have to
 enable it by the `-DMINTED` command-line argument to `ptex2tex`.
@@ -226,7 +234,8 @@ If you want to use the *anslistings* code environment with `ptex2tex`
 (`.ptex2tex.cfg` styles `Python_ANS`, `Python_ANSt`, `Cpp_ANS`, etc.) or
 `doconce ptex2tex` (`envir=ans` or `envir=ans:nt`), you need the
 `anslistings.sty` file. It can be obtained from
-the "ptex2tex source": "https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty".
+the "ptex2tex source": "https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty". It should get installed
+by the `cp2texmf.sh` script executed above.
 
 
 === reStructuredText (reST) Output ===
@@ -237,11 +246,19 @@ HTML, XML, OpenOffice, and so on, through the "docutils":
 most recent version can be done by
 
 !bc sys
-svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+svn checkout \
+  http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
 !ec
+The command
+
+!bc sys
+pip install sphinx
+!ec
+installs Docutils along with Sphinx and Pygments.
+
 To use the OpenOffice suite you will typically on Debian systems install
 !bc sys
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
@@ -265,12 +282,17 @@ cd sphinx
 sudo python setup.py install
 cd ..
 !ec
+An alternative is
+
+!bc sys
+pip install sphinx
+!ec
 
 Doconce comes with many Sphinx themes that are not part of the
 standard Sphinx source distribution. Some of these themes require
 additional Python/Sphinx modules to be installed:
 
- * could and redcloud: URL: "https://bitbucket.org/ecollins/cloud_sptheme"
+ * cloud and redcloud: URL: "https://bitbucket.org/ecollins/cloud_sptheme"
  * bootstrap: URL: "https://github.com/ryan-roemer/sphinx-bootstrap-theme"
  * solarized: URL: "https://bitbucket.org/miiton/sphinxjp.themes.solarized"
  * impressjs: URL: "https://github.com/shkumagai/sphinxjp.themes.impressjs"
@@ -330,6 +352,6 @@ appear in the table below.
 | `diffuse`    | "diffuse": "http://diffuse.sourceforge.net/" | `sudo apt-get install diffuse` |
 | `xxdiff`     | "xxdiff": "http://xxdiff.sourceforge.net/local/" | `sudo apt-get install xxdiff` |
 | `meld`       | "meld": "http://meldmerge.org/" | `sudo apt-get install meld` |
-| `tkdiff.tcl` | "tkdiff": "https://sourceforge.net/projects/tkdiff/" | `sudo apt-get install not in Debian` |
+| `tkdiff.tcl` | "tkdiff": "https://sourceforge.net/projects/tkdiff/" | not in Debian |
 |---------------------------------------------------------------------------|
 
