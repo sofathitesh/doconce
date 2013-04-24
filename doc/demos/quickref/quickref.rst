@@ -5,7 +5,7 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-:Date: Apr 23, 2013
+:Date: Apr 24, 2013
 
 .. contents:: Table of Contents
    :depth: 2
@@ -935,7 +935,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments ``--without-answers`` and ``--without-solutions``
+The command-line arguments ``--without_answers`` and ``--without_solutions``
 turn off output of answers and solutions, respectively, except for
 examples.
 

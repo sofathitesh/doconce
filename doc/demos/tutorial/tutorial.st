@@ -1,7 +1,7 @@
 
 TITLE: Doconce: Document Once, Include Anywhere
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 7, 2013
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
+DATE: Apr 24, 2013
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
@@ -22,9 +22,7 @@ DATE: Mar 7, 2013
 If any of these questions are of interest, you should keep on reading.
 
 
-
 What Does Doconce Look Like?
-
 
 Doconce text looks like ordinary text (much like Markdown), but there
 are some almost invisible text constructions that allow you to control
@@ -68,21 +66,22 @@ the formating. Here are some examples.
     embedded in the Doconce document and thereby parameterize the
     text (e.g., one text can describe programming in two languages).
 
-
 What Can Doconce Be Used For?
-
 
 LaTeX is ideal for articles, thesis, and books, but not so suited
 for web documents. Nice environments for web documents, such as
-Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+Sphinx, Markdown, or plain HTML, are not particularly well
+suited for thesis and books. IPython notebooks are ideal for
+documenting computational experiments, but do not (yet) meet the
+requirements of books and thesis.
+
 What about migrating a part of a book for blogging? What about
 making an MS Word version or an untagged text for inclusion in email?
+What about efficiently generating slides in modern HTML5/CSS3 style?
 Doconce enables all this with just *one source*. Doconce also has
 extra features for supporting documents with much code and mathematics.
 
-
-Basic Syntax Examples
-
+Basic Syntax
 
 Here is an example of some simple text written in the Doconce format::
 
@@ -132,9 +131,7 @@ Here is an example of some simple text written in the Doconce format::
 
 The Doconce text above results in the following little document:
 
-
 A Subsection with Sample Text
-
 
 Ordinary text looks like ordinary text, and the tags used for
 **boldface** words, *emphasized* words, and 'computer' words look
@@ -159,7 +156,7 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 the section "A Subsection with Sample Text".
 
-Doconce also allows inline comments such as [hpl: here I will make
+Doconce also allows inline comments such as [hpl 1: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see the section "From Doconce to Other Formats" for an example).
@@ -174,9 +171,7 @@ Tables are also supperted, e.g.,
          4.0        1.1E+1     14.717624  
 ============  ============  ============  
 
-
 Mathematics and Computer Code
-
 
 Inline mathematics, such as v = sin(x),
 allows the formula to be specified both as LaTeX and as plain text.
@@ -209,7 +204,7 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 
         !bt
         \begin{align}
-        {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+        {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
         {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
         \end{align}
         !et
@@ -217,7 +212,7 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 The result looks like this::
 
         \begin{align}
-        {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+        {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
         {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
         \end{align}
 
@@ -267,9 +262,7 @@ trailing '.txt' denotes a text document so that editors gives you
 plain text editing capabilities.
 
 
-
 Macros (Newcommands), Cross-References, Index, and Bibliography
-
 
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands are defined in files with names
@@ -278,7 +271,11 @@ for use inside math environments are supported.
 
 Labels, corss-references, citations, and support of an index and
 bibliography are much inspired by LaTeX syntax, but Doconce features
-no backslashes. Here is an example::
+no backslashes. Use labels for sections and equations only, and
+preceed the reference by "Section" or "Chapter", or in case of
+an equation, surround the reference by parenthesis.
+
+Here is an example::
 
 
         ===== My Section =====
@@ -286,7 +283,7 @@ no backslashes. Here is an example::
         
         idx{key equation} idx{$\u$ conservation}
         
-        We refer to ref{sec:yoursec} for background material on
+        We refer to Section ref{sec:yoursec} for background material on
         the *key equation*. Here we focus on the extension
         
         # \Ddt, \u and \mycommand are defined in newcommands_keep.tex
@@ -320,9 +317,7 @@ for various formats of this document).
 
 
 
-
 From Doconce to Other Formats
-
 
 Transformation of a Doconce document 'mydoc.do.txt' to various other
 formats applies the script 'doconce format':
@@ -335,9 +330,7 @@ or just::
         Terminal> doconce format format mydoc
 
 
-
 Generating a makefile
-
 
 Producing HTML, Sphinx, and in particular LaTeX documents from
 Doconce sources requires a few commands. Often you want to
@@ -361,9 +354,7 @@ inserts checks for successful runs of the 'doconce format' commands,
 and if something goes wrong, the 'make.sh' exits.
 
 
-
 Preprocessing
-
 
 The 'preprocess' and 'mako' programs are used to preprocess the
 file, and options to 'preprocess' and/or 'mako' can be added after the
@@ -379,11 +370,9 @@ defined as 'latex'. Inside the Doconce document one can then perform
 format specific actions through tests like '#if FORMAT == "latex"'
 (for 'preprocess') or '% if FORMAT == "latex":' (for 'mako').
 
-
 Removal of inline comments
 
-
-The command-line arguments '--no-preprocess' and '--no-mako' turn off
+The command-line arguments '--no_preprocess' and '--no_mako' turn off
 running 'preprocess' and 'mako', respectively.
 
 Inline comments in the text are removed from the output by::
@@ -400,9 +389,7 @@ file by running::
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
-
 Notes
-
 
 Doconce does not have a tag for longer notes, because implementation
 of a "notes feature" is so easy using the 'preprocess' or 'mako'
@@ -415,17 +402,13 @@ encapsulate unfinished material, extra material to be removed
 for readers but still nice to archive as part of the document for
 future revisions.
 
-
 Demo of different formats
-
 
 A simple scientific report is available in "http://hplgit.github.com/teamods/writing_reports/doconce_commands.html":a lot of different formats.
 How to create the different formats is explained in more depth
 in the coming sections.
 
-
 HTML
-
 
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
@@ -441,7 +424,7 @@ in an external CSS file; or in a template file.
 
 An external CSS file 'filename' used by setting the command-line
 argument '--css=filename'. There available built-in styles are
-specified as '--html-style=name', where 'name' can be
+specified as '--html_style=name', where 'name' can be
 
  - 'solarized': the famous "http://ethanschoonover.com/solarized":solarized
    style (yellowish),
@@ -462,34 +445,40 @@ HTML file can have any specified layout.
 
 If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument '--no-pygments-html'
+aid of this package. The command-line argument '--no_pygments_html'
 turns off the use of Pygments and makes code blocks appear with
-plain ('pre') HTML tags. The option '--pygments-html-linenos' turns
+plain ('pre') HTML tags. The option '--pygments_html_linenos' turns
 on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by '--pygments-html-style=style', where 'style'
+Pygments style is set by '--pygments_html_style=style', where 'style'
 can be 'default', 'emacs', 'perldoc', and other valid names for
 Pygments styles.
 
-The HTML file can be embedded in a template if the Doconce document
-does not have a title (because then there will be
-no header and footer in the HTML file). The template file must contain
+The HTML file can be embedded in a template with your own tailored
+design, see a "tutorial": " "https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html":https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html" on this topic. The template file must contain
 valid HTML code and can have three "slots": '%(title)s' for a title,
-'%(date)s' for a date, and '%(main)s' for the main body of text, i.e., the
+'%(date)s' for a date, and '%(main)s' for the main body of text. The
+latter is the
 Doconce document translated to HTML. The title becomes the first
-heading in the Doconce document, and the date is extracted from the
-'DATE:' line, if present. With the template feature one can easily embed
-the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert '%(title)s' and
-'%(date)s' at appropriate places and replace the main bod of text
-by '%(main)s'. Here is an example::
+heading in the Doconce document, or the title (but a title is not
+recommended when using templates). The date is extracted from the
+'DATE:' line. With the template feature one can easily embed
+the text in the look and feel of a website. Doconce comes with
+two templates in 'bundled/html_styles'. Just copy the directory
+containing the template and the CSS and JavaScript files to your
+document directory, edit the template as needed (also check that
+paths to the 'css' and 'js' subdirectories are correct - according
+to how you store the template files), and run::
 
 
-        Terminal> doconce format html mydoc --html-template=mytemplate.html
+        Terminal> doconce format html mydoc --html_template=mytemplate.html
 
+The template in 'style_vagrant' also needs an extra option
+'--html_style=vagrant'. With this style, one has nice navigation buttons
+that are used if the document contains '!split' commands for splitting
+it into many pages.
 
 
 Blogs
-
 
 Doconce can be used for writing blogs provided the blog site accepts
 raw HTML code. Google's Blogger service ('blogger.com' or
@@ -521,9 +510,11 @@ Look at a "http://doconce.wordpress.com":simple doconce example
 and a "http://doconcereportdemo.wordpress.com/":scientific report
 to see blogging with mathematics and code on WordPress.
 
+Speaking of WordPress, the related project "http://pressbooks.com":http://pressbooks.com can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.
 
 Pandoc and Markdown
-
 
 Output in Pandoc's extended Markdown format results from::
 
@@ -587,9 +578,7 @@ The '-s' option adds a proper header and footer to the 'mydoc.html' file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
-
 LaTeX
-
 
 Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 
@@ -605,7 +594,7 @@ can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option '--latex-printed' makes some adjustments for documents
+An option '--latex_printed' makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
@@ -638,8 +627,8 @@ A separate titlepage can be generate by
 
 Preprocessor variables to be defined or undefined are
 
- - 'BOOK' for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings with 9 '=')
+ - 'XETEX' for processing by 'xelatex'
+ - 'LATEX_HEADING' for the typesetting of the title, author, etc.
  - 'PALATINO' for the Palatino font
  - 'HELVETICA' for the Helvetica font
  - 'A4PAPER' for A4 paper size
@@ -652,9 +641,16 @@ Preprocessor variables to be defined or undefined are
  - 'MINTED' for inclusion of the minted package for typesetting of
    code with the Pygments tool (which requires 'latex'
    or 'pdflatex' to be run with the '-shell-escape' option)
+ - 'TODONOTES' for using the fancy 'todonotes' package for typesetting
+   inline comments (looks much like track changes in MS Word). This
+   macro has only effect if inline comments are used (name, colon,
+   and comment inside brackets).
+ - 'COLORED_TABLE_ROWS' for coloring every other table rows (set this
+   variable to 'gray' or 'blue')
+ - 'BLUE_SECTION_HEADINGS' for blue section and subsection headings
 
 If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option '--latex-preamble=myfile'.
+your own preamble by adding the command-line option '--latex_preamble=myfile'.
 In case 'myfile' contains a documentclass definition, Doconce assumes
 that the file contains the *complete* preamble you want (not that all
 the packages listed in the default preamble are required and must be
@@ -675,9 +671,9 @@ for processing the '.p.tex' file. The command allows specifications
 of code environments as well. Here is an example::
 
 
-        Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
-                  -DPALATINO -DA6PAPER \
-                  "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+        Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \ 
+                  -DPALATINO -DA6PAPER \ 
+                  "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \ 
                   fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 
 Note that '@' must be used to separate the begin and end LaTeX
@@ -708,7 +704,7 @@ title, say "Using", and insert a break after than word. With
 a group before "Using" and a group after::
 
 
-        Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+        Terminal> doconce subst 'title\{(.+)Using (.+)\}' \ 
                   'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 
 A lot of tailored fixes to the LaTeX document can be done by
@@ -755,9 +751,7 @@ specifications with 'doconce ptex2tex'), the minted package is automatically
 included so there is no need for the '-DMINTED' option.
 
 
-
 PDFLaTeX
-
 
 Running 'pdflatex' instead of 'latex' follows almost the same steps,
 but the start is::
@@ -774,9 +768,7 @@ Then 'ptex2tex' is run as explained above, and finally::
         Terminal> pdflatex -shell-escape mydoc
 
 
-
 Plain ASCII Text
-
 
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -786,9 +778,7 @@ computer source code::
         Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
-
 reStructuredText
-
 
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -835,16 +825,14 @@ Some links for going from LaTeX to Word are listed below.
  - "http://tug.org/utilities/texconv/textopc.html":http://tug.org/utilities/texconv/textopc.html
  - "http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html":http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html
 
-
 Sphinx
-
 
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the 'doconce sphinx_dir' command::
 
 
-        Terminal> doconce sphinx_dir author="authors' names" \
-                  title="some title" version=1.0 dirname=sphinxdir \
+        Terminal> doconce sphinx_dir author="authors' names" \ 
+                  title="some title" version=1.0 dirname=sphinxdir \ 
                   theme=mytheme file1 file2 file3 ...
 
 The keywords 'author', 'title', and 'version' are used in the headings
@@ -978,13 +966,11 @@ The final alternative is to save the edited 'conf.py' file somewhere
 and reuse it the next time 'doconce sphinx_dir' is run::
 
 
-        doconce sphinx_dir theme=scipy_lectures \
+        doconce sphinx_dir theme=scipy_lectures \ 
                            conf.py=../some/path/conf.py mydoc
 
 
-
 The manual Sphinx procedure
-
 
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
@@ -1081,9 +1067,7 @@ depending the argument that follows '!bc': 'cod' gives Python
 all such arguments can be customized both for Sphinx and LaTeX output.
 
 
-
 Wiki Formats
-
 
 There are many different wiki formats, but Doconce only supports three:
 "http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki,
@@ -1127,9 +1111,7 @@ the '.gwiki' file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
-
 Tweaking the Doconce Output
-
 
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
@@ -1144,9 +1126,7 @@ format(s). The 'make.sh' files in 'docs/manual' and 'docs/tutorial'
 constitute comprehensive examples on how such scripts can be made.
 
 
-
 Demos
-
 
 The current text is generated from a Doconce format stored in the file::
 
@@ -1166,13 +1146,9 @@ There is another demo in the 'docs/manual' directory which
 translates the more comprehensive documentation, 'manual.do.txt', to
 various formats. The 'make.sh' script runs a set of translations.
 
-
 Installation of Doconce and its Dependencies
 
-
-
 Doconce
-
 
 Doconce itself is pure Python code hosted at "http://code.google.com/p/doconce":http://code.google.com/p/doconce.  Its installation from the
 Mercurial ('hg') source follows the standard procedure::
@@ -1210,9 +1186,7 @@ On Ubuntu one needs to run::
         sudo apt-get install doconce
 
 
-
 Dependencies
-
 
 Producing HTML documents, plain text, pandoc-extended Markdown,
 and wikis can be done without installing any other
@@ -1223,7 +1197,6 @@ and so on, the software below must be installed.
 
 
 Preprocessors
-
 
 If you make use of the "http://code.google.com/p/preprocess":Preprocess
 preprocessor, this program must be installed::
@@ -1256,9 +1229,7 @@ Mako can also be installed directly from
 tarball, pack it out, go to the directory and run
 the usual 'sudo python setup.py install'.
 
-
 Image file handling
-
 
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for 'latex'
@@ -1280,9 +1251,7 @@ Debian package. The latter gets installed by::
         sudo apt-get install texlive-extra-utils
 
 
-
 Spellcheck
-
 
 The utility 'doconce spellcheck' applies the 'ispell' program for
 spellcheck. On Debian (including Ubuntu) it is installed by::
@@ -1292,16 +1261,14 @@ spellcheck. On Debian (including Ubuntu) it is installed by::
 
 
 
-
 Bibliography
-
 
 The Python package "https://bitbucket.org/logg/publish":Publish is needed if you use a bibliography
 in your document. On the website, click on *Clone*, copy the
 command and run it::
 
 
-        hg clone  ssh://hg@bitbucket.org/logg/publish
+        hg clone https://bitbucket.org/logg/publish
 
 Thereafter go to the 'publish' directory and run the 'setup.py' script
 for installing Publish::
@@ -1312,9 +1279,7 @@ for installing Publish::
 
 
 
-
 Ptex2tex for LaTeX Output
-
 
 To make LaTeX documents with very flexible choice of typesetting of
 verbatim code blocks you need "http://code.google.com/p/ptex2tex":ptex2tex,
@@ -1368,15 +1333,54 @@ If you use the minted style together with 'ptex2tex', you have to
 enable it by the '-DMINTED' command-line argument to 'ptex2tex'.
 This is not necessary if you run the alternative 'doconce ptex2tex' program.
 
-All
-use of the minted style requires the '-shell-escape' command-line
+All use of the minted style requires the '-shell-escape' command-line
 argument when running LaTeX, i.e., 'latex -shell-escape' or 'pdflatex
 -shell-escape'.
 
+Inline comments apply the 'todonotes' LaTeX package if the 'ptex2tex'
+or 'doconce ptex2tex' command is run with '-DTODONOTES'.  The
+'todonotes' package requires several other packages: 'xcolor',
+'ifthen', 'xkeyval', 'tikz', 'calc', 'graphicx', and 'setspace'. The
+relevant Debian package for installing all this is
+'texlive-latex-extra'.
+
+LaTeX packages
+
+Many LaTeX packages are potentially needed (depending on various
+preprocessor variables given to 'ptex2tex' or 'doconce ptex2tex'.  The
+standard packages always included are 'relsize', 'epsfig', 'makeidx',
+'setspace', 'color', 'amsmath', 'amsfonts', 'xcolor', 'bm',
+'microtype', 'titlesec', and 'hyperref'.  The 'ptex2tex' package (from
+"http://code.google.com/p/ptex2tex":ptex2tex) is also included, but
+removed again if 'doconce ptex2tex' is run instead of the 'ptex2tex'
+program, meaning that if you do not use 'ptex2tex', you do not need
+'ptex2tex.sty'. Optional packages that might be included are 'minted',
+'fontspec', 'xunicode', 'inputenc', 'helvet', 'mathpazo', 'wrapfig',
+'calc', 'ifthen', 'xkeyval', 'tikz', 'graphicx', 'setspace', 'shadow',
+'disable', 'todonotes', 'lineno', 'xr', 'movie15', 'a4paper', and
+'a6paper'.
+
+Relevant Debian packages that gives you all of these LaTeX packages are::
+
+
+        texlive-latex-base
+        texlive-latex-recommended
+        texlive-latex-extra
+        texlive-math-extra
+        texlive-bibtex-extra
+        texlive-xetex
+        texlive-humanities
+        texlive-pictures
+
+
+If you want to use the *anslistings* code environment with 'ptex2tex'
+('.ptex2tex.cfg' styles 'Python_ANS', 'Python_ANSt', 'Cpp_ANS', etc.) or
+'doconce ptex2tex' ('envir=ans' or 'envir=ans:nt'), you need the
+'anslistings.sty' file. It can be obtained from
+the "https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty":ptex2tex source.
 
 
 reStructuredText (reST) Output
-
 
 The 'rst' output from Doconce allows further transformation to LaTeX,
 HTML, XML, OpenOffice, and so on, through the "http://docutils.sourceforge.net":docutils package.  The installation of the
@@ -1400,6 +1404,7 @@ using ReportLab instead of LaTeX. The enabling software is
 or clone the svn repository, go to the 'rst2pdf' directory and
 run the usual 'sudo python setup.py install'.
 
+Sphinx Output
 
 Output to 'sphinx' requires of course the
 "http://sphinx.pocoo.org":Sphinx software,
@@ -1412,9 +1417,19 @@ installed by::
         cd ..
 
 
+Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:
+
+ - could and redcloud: "https://bitbucket.org/ecollins/cloud_sptheme":https://bitbucket.org/ecollins/cloud_sptheme
+ - bootstrap: "https://github.com/ryan-roemer/sphinx-bootstrap-theme":https://github.com/ryan-roemer/sphinx-bootstrap-theme
+ - solarized: "https://bitbucket.org/miiton/sphinxjp.themes.solarized":https://bitbucket.org/miiton/sphinxjp.themes.solarized
+ - impressjs: "https://github.com/shkumagai/sphinxjp.themes.impressjs":https://github.com/shkumagai/sphinxjp.themes.impressjs
+
+These must be downloaded or cloned, and 'setup.py' must be run as shown
+above.
 
 Markdown and Pandoc Output
-
 
 The Doconce format 'pandoc' outputs the document in the Pandoc
 extended Markdown format, which via the 'pandoc' program can be
@@ -1426,9 +1441,7 @@ easily done by::
 
 on Debian (Ubuntu) systems.
 
-
 Epydoc Output
-
 
 When the output format is 'epydoc' one needs that program too, installed
 by::
@@ -1448,3 +1461,26 @@ updates and bug fixes. For 'svn' directories, go to the directory,
 run 'svn update', and then 'sudo python setup.py install'. For
 Mercurial ('hg') directories, go to the directory, run
 'hg pull; hg update', and then 'sudo python setup.py install'.
+
+The 'doconce diff' command
+
+The 'doconce diff file1 file prog' command for illustrating differences between
+two files 'file1' and 'file2' using the program 'prog' requires 'prog'
+to be installed. By default, 'prog' is 'difflib' which comes with Python
+and is always present if you have Doconce installed. Another choice, 'diff',
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their 'sudo apt-get install' command on Debian (Ubuntu) systems
+appear in the table below.
+
+=========================================================================================  =========================================================================================  =========================================================================================  
+                                         Program                                                                                      URL                                                                               Debian/Ubuntu install                                    
+=========================================================================================  =========================================================================================  =========================================================================================  
+'pdiff'                                                                                    "http://www.gnu.org/software/a2ps/":a2ps "http://www.gnu.org/software/wdiff/":wdiff  'sudo apt-get install a2ps wdiff texlive-latex-extra texlive-latex-recommended'            
+'latexdiff'                                                                                "http://www.ctan.org/pkg/latexdiff":latexdiff                                           'sudo apt-get install latexdiff'                                                           
+'kdiff3'                                                                                   "http://kdiff3.sourceforge.net/":kdiff3                                                 'sudo apt-get install kdiff3'                                                              
+'diffuse'                                                                                  "http://diffuse.sourceforge.net/":diffuse                                               'sudo apt-get install diffuse'                                                             
+'xxdiff'                                                                                   "http://xxdiff.sourceforge.net/local/":xxdiff                                           'sudo apt-get install xxdiff'                                                              
+'meld'                                                                                     "http://meldmerge.org/":meld                                                            'sudo apt-get install meld'                                                                
+'tkdiff.tcl'                                                                               "https://sourceforge.net/projects/tkdiff/":tkdiff                                       'sudo apt-get install not in Debian'                                                       
+=========================================================================================  =========================================================================================  =========================================================================================  
+

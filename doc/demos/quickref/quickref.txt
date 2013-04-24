@@ -6,7 +6,7 @@ Hans Petter Langtangen [1, 2]
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
 
-Date: Apr 23, 2013
+Date: Apr 24, 2013
 
 Table of contents:
 
@@ -945,7 +945,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments --without-answers and --without-solutions
+The command-line arguments --without_answers and --without_solutions
 turn off output of answers and solutions, respectively, except for
 examples.
 

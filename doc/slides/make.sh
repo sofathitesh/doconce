@@ -1,21 +1,21 @@
 #!/bin/sh
 
-# ------------------- scientific_writing talk ---------------------
+# --_________________ scientific_writing talk --___________________
 name=scientific_writing
 
 # Note: since Doconce syntax is demonstrated inside !bc/!ec
 # blocks we need a few fixes
 
-doconce format html $name --pygments-html-style=perldoc --html-style=solarized
+doconce format html $name --pygments_html_style=perldoc --html_style=solarized
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 mv -f $name.html ${name}_solarized.html
-doconce format html $name --pygments-html-style=default
+doconce format html $name --pygments_html_style=default
 mv -f $name.html ${name}_plain.html
 
-doconce format html $name --pygments-html-style=perldoc
+doconce format html $name --pygments_html_style=perldoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp $name.html ${name}_deck.html
-doconce slides_html ${name}_deck deck --html-slide-theme=sandstone.default
+doconce slides_html ${name}_deck deck --html_slide_theme=sandstone.default
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # Fix selected backslashes inside verbatim envirs that doconce has added
 # (only a problem at the places where we want to show full doconce code with
@@ -24,8 +24,8 @@ doconce replace '\label{this:section}' 'label{this:section}' ${name}_deck.html
 doconce replace '\label{fig1}' 'label{fig1}' ${name}_deck.html
 doconce replace '\label{demo' 'label{demo' ${name}_deck.html
 
-doconce format html $name --pygments-html-style=native
-doconce slides_html $name reveal --html-slide-theme=darkgray
+doconce format html $name --pygments_html_style=native
+doconce slides_html $name reveal --html_slide_theme=darkgray
 # Fix selected backslashes inside verbatim envirs that doconce has added
 # (only a problem when we want to show full doconce code with
 # labels in !bc-!ec envirs).
@@ -34,7 +34,7 @@ doconce replace '\label{fig1}' 'label{fig1}' $name.html
 doconce replace '\label{demo' 'label{demo' $name.html
 
 
-doconce format pdflatex $name --minted-latex-style=trac
+doconce format pdflatex $name --minted_latex_style=trac
 doconce ptex2tex $name envir=minted -DBOOK
 pdflatex -shell-escape $name
 mv -f $name.pdf ${name}_minted.pdf
@@ -69,7 +69,7 @@ cp -r ${name}*.pdf *.md *.gwiki ${name}*.html deck.js reveal.js fig ../demos/sli
 doconce format html sw_index.do.txt
 cp sw_index.html ../demos/slides/index.html
 
-# ------------------- short demo talk ---------------------
+# --_________________ short demo talk --___________________
 
 doconce format html demo SLIDE_TYPE=dummy SLIDE_THEME=dummy # test
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -100,34 +100,34 @@ the original "default" theme)
 <ul>
 <p><li><a href="demo_reveal_beige.html">reveal, beige theme</a>
 <pre>
-doconce format html demo --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
-doconce slides_html demo reveal --html-slide-theme=beige
+doconce format html demo --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
+doconce slides_html demo reveal --html_slide_theme=beige
 </pre>
 (Note that <tt>SLIDE_TYPE</tt> and <tt>SLIDE_THEME</tt> are user-defined Mako variables used in the <tt>demo.do.txt</tt> file - they are very specific to these slides and other presentations will most likely not use such variables, but perhaps others.)
 <li><a href="demo_reveal_beigesmall.html">reveal, beigesmall theme</a>
 <pre>
-doconce format html demo --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
-doconce slides_html demo reveal --html-slide-theme=beigesmall
+doconce format html demo --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+doconce slides_html demo reveal --html_slide_theme=beigesmall
 </pre>
 <li><a href="demo_reveal_darkgray.html">reveal, darkgray theme</a>
 <pre>
-doconce format html demo --pygments-html-style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
-doconce slides_html demo reveal --html-slide-theme=darkgray
+doconce format html demo --pygments_html_style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
+doconce slides_html demo reveal --html_slide_theme=darkgray
 </pre>
 <li><a href="demo_reveal_serif.html">reveal, serif theme</a>
 <pre>
-doconce format html demo --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
-doconce slides_html demo reveal --html-slide-theme=serif
+doconce format html demo --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
+doconce slides_html demo reveal --html_slide_theme=serif
 </pre>
 <li><a href="demo_reveal_night.html">reveal, night theme</a>
 <pre>
-doconce format html demo --pygments-html-style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
-doconce slides_html demo reveal --html-slide-theme=night
+doconce format html demo --pygments_html_style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
+doconce slides_html demo reveal --html_slide_theme=night
 </pre>
 <li><a href="demo_reveal_simple.html">reveal, simple theme</a>
 <pre>
-doconce format html demo --pygments-html-style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
-doconce slides_html demo reveal --html-slide-theme=simple
+doconce format html demo --pygments_html_style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
+doconce slides_html demo reveal --html_slide_theme=simple
 </pre>
 <li><a href="demo_reveal_sky.html">reveal, sky theme</a>
 </ul>
@@ -136,71 +136,71 @@ smaller fonts for verbatim code)
 <ul>
 <p><li><a href="demo_deck_beamer.html">deck, beamer theme</a>
 <pre>
-doconce format html demo --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
-doconce slides_html demo deck --html-slide-theme=beamer
+doconce format html demo --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
+doconce slides_html demo deck --html_slide_theme=beamer
 </pre>
 <li><a href="demo_deck_mnml.html">deck, mnml theme</a>
 <pre>
-doconce format html demo --pygments-html-style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
-doconce slides_html demo deck --html-slide-theme=mnml
+doconce format html demo --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
+doconce slides_html demo deck --html_slide_theme=mnml
 </pre>
 <li><a href="demo_deck_neon.html">deck, neon theme</a>
 <pre>
-doconce format html demo --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
-doconce slides_html demo deck --html-slide-theme=neon
+doconce format html demo --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
+doconce slides_html demo deck --html_slide_theme=neon
 </pre>
 <li><a href="demo_deck_sandstone_aurora.html">deck, sandstone.aurora theme</a>
 <pre>
-doconce format html demo --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone-aurora
-doconce slides_html demo deck --html-slide-theme=sandstone.aurora
+doconce format html demo --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone-aurora
+doconce slides_html demo deck --html_slide_theme=sandstone.aurora
 </pre>
 <li><a href="demo_deck_sandstone_dark.html">deck, sandstone.dark theme</a>
 <pre>
-doconce format html demo --pygments-html-style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
-doconce slides_html demo deck --html-slide-theme=sandstone.dark
+doconce format html demo --pygments_html_style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
+doconce slides_html demo deck --html_slide_theme=sandstone.dark
 </pre>
 <li><a href="demo_deck_sandstone_default.html">deck, sandstone.default theme</a>
 <pre>
-doconce format html demo --pygments-html-style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
-doconce slides_html demo deck --html-slide-theme=sandstone.default
+doconce format html demo --pygments_html_style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
+doconce slides_html demo deck --html_slide_theme=sandstone.default
 </pre>
 <li><a href="demo_deck_sandstone_firefox.html">deck, sandstone.firefox theme</a>
 <pre>
-doconce format html demo --pygments-html-style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
-doconce slides_html demo deck --html-slide-theme=sandstone.firefox
+doconce format html demo --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
+doconce slides_html demo deck --html_slide_theme=sandstone.firefox
 </pre>
 <li><a href="demo_deck_sandstone_light.html">deck, sandstone.light theme</a>
 <li><a href="demo_deck_sandstone_mdn.html">deck, sandstone.mdn theme</a>
 <pre>
-doconce format html demo --pygments-html-style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
-doconce slides_html demo deck --html-slide-theme=sandstone.light
+doconce format html demo --pygments_html_style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
+doconce slides_html demo deck --html_slide_theme=sandstone.light
 </pre>
 <li><a href="demo_deck_sandstone_mightly.html">deck, sandstone.mightly theme</a>
 <pre>
-doconce format html demo --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
-doconce slides_html demo deck --html-slide-theme=sandstone.mightly
+doconce format html demo --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
+doconce slides_html demo deck --html_slide_theme=sandstone.mightly
 </pre>
 <li><a href="demo_deck_swiss.html">deck, swiss theme</a>
 <pre>
-doconce format html demo --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
-doconce slides_html demo deck --html-slide-theme=swiss
+doconce format html demo --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
+doconce slides_html demo deck --html_slide_theme=swiss
 </pre>
 <li><a href="demo_deck_web-2_0.html">deck, web-2_0 theme</a>
 <pre>
-doconce format html demo --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
-doconce slides_html demo deck --html-slide-theme=web-2.0
+doconce format html demo --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
+doconce slides_html demo deck --html_slide_theme=web-2.0
 </pre>
 </ul>
 <li><a href="demo_dzslides_dzslides_default.html">dzslides</a>
 <pre>
-doconce format html demo --pygments-html-style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
-doconce slides_html demo dzslides --html-slide-theme=dzslides_default
+doconce format html demo --pygments_html_style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
+doconce slides_html demo dzslides --html_slide_theme=dzslides_default
 </pre>
 <li><a href="demo_csss_csss_default.html">csss</a> (black background instead
 of the original rainbow background)
 <pre>
-doconce format html demo --pygments-html-style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
-doconce slides_html demo csss --html-slide-theme=csss_default
+doconce format html demo --pygments_html_style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
+doconce slides_html demo csss --html_slide_theme=csss_default
 </pre>
 <li><a href="demo.pdf">Handouts in PDF</a> (generated via LaTeX)
 <li><a href="demo_doconce.html">Doconce source code for the slides</a>

@@ -449,7 +449,7 @@ cite{Langtangen:94b} OONSKI '94 paper.
 label{Example}
 
 Examples can start with a subsection heading starting with `Example:`
-and then, with the command-line option `--examples-as-exercises` be
+and then, with the command-line option `--examples_as_exercises` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -868,7 +868,7 @@ lambda x: x+2
 
 ===== Example: Just an example =====
 
-# This example needs the --examples-as-exercises option, otherwise
+# This example needs the --examples_as_exercises option, otherwise
 # it is just typeset as it is written.
 
 !bsubex
@@ -990,7 +990,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are "Dropbox":
 "http://dropbox.com" and "Google Drive": "http://drive.google.com".
@@ -1053,7 +1053,7 @@ workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl:
 not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp:
 Simply go to URL:"http://dropbox.com" and watch the video. It explains
@@ -2366,7 +2366,7 @@ the old ME-IN323 book \cite{Langtangen:91} and the
 \label{Example}
 
 Examples can start with a subsection heading starting with \code{Example:}
-and then, with the command-line option \code{--examples-as-exercises} be
+and then, with the command-line option \code{--examples_as_exercises} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -2836,7 +2836,7 @@ lambda x: x+2
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --examples-as-exercises option, otherwise
+% This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
 
 
@@ -3000,7 +3000,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox} and \href{{http://drive.google.com}}{Google Drive}.
 It is very easy to get started with these systems, and they allow you
@@ -3079,7 +3079,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
 how files, like \code{myfile.py}, perhaps containing much math, like
@@ -3899,7 +3899,7 @@ the old ME-IN323 book \cite{Langtangen:91} and the
 \label{Example}
 
 Examples can start with a subsection heading starting with {\fontsize{10pt}{10pt}\Verb!Example:!}
-and then, with the command--line option {\fontsize{10pt}{10pt}\Verb!--examples-as-exercises!} be
+and then, with the command--line option {\fontsize{10pt}{10pt}\Verb!--examples_as_exercises!} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -4367,7 +4367,7 @@ lambda x: x+2
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --examples-as-exercises option, otherwise
+% This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
 
 
@@ -4531,7 +4531,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox}\footnote{\texttt{http://dropbox.com}} and \href{{http://drive.google.com}}{Google Drive}\footnote{\texttt{http://drive.google.com}}.
 It is very easy to get started with these systems, and they allow you
@@ -4610,7 +4610,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
 how files, like {\fontsize{10pt}{10pt}\Verb!myfile.py!}, perhaps containing much math, like
@@ -5368,7 +5368,7 @@ the old ME-IN323 book \cite{Langtangen:91} and the
 \label{Example}
 
 Examples can start with a subsection heading starting with \Verb!Example:!
-and then, with the command--line option \Verb!--examples-as-exercises! be
+and then, with the command--line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -5828,7 +5828,7 @@ lambda x: x+2
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --examples-as-exercises option, otherwise
+% This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
 
 
@@ -5992,7 +5992,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox}\footnote{\texttt{http://dropbox.com}} and \href{{http://drive.google.com}}{Google Drive}\footnote{\texttt{http://drive.google.com}}.
 It is very easy to get started with these systems, and they allow you
@@ -6071,7 +6071,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
 how files, like \Verb!myfile.py!, perhaps containing much math, like
@@ -6640,7 +6640,7 @@ Example 1: Examples can be typeset as exercises
 -----------------------------------------------
 
 Examples can start with a subsection heading starting with ``Example:``
-and then, with the command-line option ``--examples-as-exercises`` be
+and then, with the command-line option ``--examples_as_exercises`` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -7114,7 +7114,7 @@ And a test that the code ``lambda x: x+2`` is correctly placed here::
 Example 2: Just an example
 --------------------------
 
-.. This example needs the --examples-as-exercises option, otherwise
+.. This example needs the --examples_as_exercises option, otherwise
 
 .. it is just typeset as it is written.
 
@@ -7393,7 +7393,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are `Dropbox <http://dropbox.com>`_ and `Google Drive <http://drive.google.com>`_.
 It is very easy to get started with these systems, and they allow you
@@ -7455,7 +7455,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. (**hpl 1**: not sure if in the cloud is understood by all.) I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. (**mp 2**: Simply go to `<http://dropbox.com>`_ and watch the video. It explains
 how files, like ``myfile.py``, perhaps containing much math, like
@@ -8072,7 +8072,7 @@ Example 1: Examples can be typeset as exercises
 -----------------------------------------------
 
 Examples can start with a subsection heading starting with ``Example:``
-and then, with the command-line option ``--examples-as-exercises`` be
+and then, with the command-line option ``--examples_as_exercises`` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -8649,7 +8649,7 @@ And a test that the code ``lambda x: x+2`` is correctly placed here:
 Example 2: Just an example
 --------------------------
 
-.. This example needs the --examples-as-exercises option, otherwise
+.. This example needs the --examples_as_exercises option, otherwise
 
 .. it is just typeset as it is written.
 
@@ -8928,7 +8928,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are `Dropbox <http://dropbox.com>`_ and `Google Drive <http://drive.google.com>`_.
 It is very easy to get started with these systems, and they allow you
@@ -8991,7 +8991,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. (**hpl 1**: not sure if in the cloud is understood by all.) I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. (**mp 2**: Simply go to `<http://dropbox.com>`_ and watch the video. It explains
 how files, like ``myfile.py``, perhaps containing much math, like
@@ -9495,7 +9495,7 @@ the old ME-IN323 book [20] and the
 ==== Example 1: Examples can be typeset as exercises ====
 
 Examples can start with a subsection heading starting with `Example:`
-and then, with the command-line option `--examples-as-exercises` be
+and then, with the command-line option `--examples_as_exercises` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -9879,7 +9879,7 @@ lambda x: x+2
 
 ==== Example 2: Just an example ====
 
-<wiki:comment> This example needs the --examples-as-exercises option, otherwise </wiki:comment>
+<wiki:comment> This example needs the --examples_as_exercises option, otherwise </wiki:comment>
 <wiki:comment> it is just typeset as it is written. </wiki:comment>
 
 
@@ -10019,7 +10019,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are [http://dropbox.com Dropbox] and [http://drive.google.com Google Drive].
 It is very easy to get started with these systems, and they allow you
@@ -10081,7 +10081,7 @@ workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl:
 not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp:
 Simply go to http://dropbox.com and watch the video. It explains
@@ -10547,7 +10547,7 @@ the old ME-IN323 book [20] and the
 ==== Example 1: Examples can be typeset as exercises ====
 
 Examples can start with a subsection heading starting with <code>Example:</code>
-and then, with the command-line option <code>--examples-as-exercises</code> be
+and then, with the command-line option <code>--examples_as_exercises</code> be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -10955,7 +10955,7 @@ lambda x: x+2
 
 ==== Example 2: Just an example ====
 
-<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 
@@ -11187,7 +11187,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are [http://dropbox.com Dropbox] and [http://drive.google.com Google Drive].
 It is very easy to get started with these systems, and they allow you
@@ -11250,7 +11250,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp 2: Simply go to http://dropbox.com and watch the video. It explains
 how files, like <code>myfile.py</code>, perhaps containing much math, like
@@ -11703,7 +11703,7 @@ the old ME-IN323 book [20] and the
 
 
 Examples can start with a subsection heading starting with {{{Example:}}}
-and then, with the command-line option {{{--examples-as-exercises}}} be
+and then, with the command-line option {{{--examples_as_exercises}}} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -12091,7 +12091,7 @@ lambda x: x+2
 
 == Example 2: Just an example ==
 
-<wiki:comment> This example needs the --examples-as-exercises option, otherwise </wiki:comment>
+<wiki:comment> This example needs the --examples_as_exercises option, otherwise </wiki:comment>
 <wiki:comment> it is just typeset as it is written. </wiki:comment>
 
 
@@ -12235,7 +12235,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are [[http://dropbox.com|Dropbox]] and [[http://drive.google.com|Google Drive]].
 It is very easy to get started with these systems, and they allow you
@@ -12296,7 +12296,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp 2: Simply go to [[http://dropbox.com]] and watch the video. It explains
 how files, like {{{myfile.py}}}, perhaps containing much math, like
@@ -12725,7 +12725,7 @@ the old ME-IN323 book [20] and the
 Example 1: Examples can be typeset as exercises
 
 Examples can start with a subsection heading starting with 'Example:'
-and then, with the command-line option '--examples-as-exercises' be
+and then, with the command-line option '--examples_as_exercises' be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -13266,7 +13266,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are "http://dropbox.com":Dropbox and "http://drive.google.com":Google Drive.
 It is very easy to get started with these systems, and they allow you
@@ -13328,7 +13328,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp 2: Simply go to "http://dropbox.com":http://dropbox.com and watch the video. It explains
 how files, like 'myfile.py', perhaps containing much math, like
@@ -13766,7 +13766,7 @@ Example 1: Examples can be typeset as exercises
 -----------------------------------------------
 
 Examples can start with a subsection heading starting with C{Example:}
-and then, with the command-line option C{--examples-as-exercises} be
+and then, with the command-line option C{--examples_as_exercises} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -14334,7 +14334,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are U{Dropbox<http://dropbox.com>} and U{Google Drive<http://drive.google.com>}.
 It is very easy to get started with these systems, and they allow you
@@ -14397,7 +14397,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp 2: Simply go to U{http://dropbox.com<http://dropbox.com>} and watch the video. It explains
 how files, like C{myfile.py}, perhaps containing much math, like
@@ -14901,7 +14901,7 @@ Example 1: Examples can be typeset as exercises
 -----------------------------------------------
 
 Examples can start with a subsection heading starting with Example:
-and then, with the command-line option --examples-as-exercises be
+and then, with the command-line option --examples_as_exercises be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -15490,7 +15490,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are Dropbox (http://dropbox.com) and Google Drive (http://drive.google.com).
 It is very easy to get started with these systems, and they allow you
@@ -15552,7 +15552,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp 2: Simply go to http://dropbox.com and watch the video. It explains
 how files, like myfile.py, perhaps containing much math, like
@@ -16062,7 +16062,7 @@ the old ME-IN323 book @Langtangen:91 and the
 ### Example 1: Examples can be typeset as exercises
 
 Examples can start with a subsection heading starting with `Example:`
-and then, with the command-line option `--examples-as-exercises` be
+and then, with the command-line option `--examples_as_exercises` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -16526,7 +16526,7 @@ lambda x: x+2
 
 ### Example 2: Just an example
 
-<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 
@@ -16770,7 +16770,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are [Dropbox](http://dropbox.com) and [Google Drive](http://drive.google.com).
 It is very easy to get started with these systems, and they allow you
@@ -16833,7 +16833,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <http://dropbox.com> and watch the video. It explains
 how files, like `myfile.py`, perhaps containing much math, like
@@ -17546,7 +17546,7 @@ case in LaTeX.
       "### Example 1: Examples can be typeset as exercises\n",
       "\n",
       "Examples can start with a subsection heading starting with `Example:`\n",
-      "and then, with the command-line option `--examples-as-exercises` be\n",
+      "and then, with the command-line option `--examples_as_exercises` be\n",
       "typeset as exercises. This is useful if one has solution\n",
       "environments as part of the example.\n",
       "\n",
@@ -18098,7 +18098,7 @@ case in LaTeX.
       "\n",
       "### Example 2: Just an example\n",
       "\n",
-      "<!-- This example needs the --examples-as-exercises option, otherwise -->\n",
+      "<!-- This example needs the --examples_as_exercises option, otherwise -->\n",
       "<!-- it is just typeset as it is written. -->\n",
       "\n",
       "\n",
@@ -18343,7 +18343,7 @@ case in LaTeX.
       "workers are today most conveniently stored at some web site \"in the\n",
       "cloud\" and updated through communication with that site. I strongly\n",
       "recommend you to use such sites for all serious programming and\n",
-      "scientific writing work -- and all other important files.\n",
+      "scientific writing work - and all other important files.\n",
       "\n",
       "The simplest services for hosting project files are [Dropbox](http://dropbox.com) and [Google Drive](http://drive.google.com).\n",
       "It is very easy to get started with these systems, and they allow you\n",
@@ -18415,7 +18415,7 @@ case in LaTeX.
       "workers are today most conveniently stored at some web site \"in the\n",
       "cloud\" and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly\n",
       "recommend you to use such sites for all serious programming and\n",
-      "scientific writing work -- and all other important files.\n",
+      "scientific writing work - and all other important files.\n",
       "\n",
       "The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <http://dropbox.com> and watch the video. It explains\n",
       "how files, like `myfile.py`, perhaps containing much math, like\n",
@@ -18492,7 +18492,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': ['A hint can be given.', 'Maybe even another hint?'],
              'solution': 'The answer to this other subproblem goes here,\nmaybe over multiple doconce input lines.',
              'text': 'State some other problem.'}],
-  'text': 'Examples can start with a subsection heading starting with `Example:`\nand then, with the command-line option `--examples-as-exercises` be\ntypeset as exercises. This is useful if one has solution\nenvironments as part of the example.',
+  'text': 'Examples can start with a subsection heading starting with `Example:`\nand then, with the command-line option `--examples_as_exercises` be\ntypeset as exercises. This is useful if one has solution\nenvironments as part of the example.',
   'title': 'Examples can be typeset as exercises',
   'type': 'Example',
   'type_visible': True},
@@ -18611,7 +18611,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': [],
              'solution': '',
              'text': 'What is the capital of Norway?'}],
-  'text': '# This example needs the --examples-as-exercises option, otherwise\n# it is just typeset as it is written.',
+  'text': '# This example needs the --examples_as_exercises option, otherwise\n# it is just typeset as it is written.',
   'title': 'Just an example',
   'type': 'Example',
   'type_visible': True},
@@ -18984,7 +18984,7 @@ output2</code></pre>
 <p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:  and  and all the work of  as well as old work  and , and the talk . Langtangen also had two thesis . More retro citations are the old ME-IN323 book  and the  OONSKI ’94 paper.</p>
 <h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h2>
 <p>[Example]</p>
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
 <h4 id="a">a)</h4>
 <p>State some problem.</p>
 <h4 id="solution.">Solution.</h4>
@@ -19176,13 +19176,13 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
 <p>Without label.</p>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson’ excellent <a href="{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work – and all other important files.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files are <a href="{http://dropbox.com}">Dropbox</a> and <a href="{http://drive.google.com}">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
 <p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems. The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
 <p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files. Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the &quot;master version&quot; at the site where the project is hosted. If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
 <p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h2>
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work – and all other important files.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files is Dropbox. It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
 <p>When several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox: project hosting services with true version control systems.</p>
 <h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code></h2>
@@ -19653,7 +19653,7 @@ output2</code></pre>
 <!-- --- begin exercise --- -->
 
 <h3 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h3>
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples-as-exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
 <p><em>a)</em> State some problem.</p>
 <p><em>Solution.</em> The answer to this subproblem can be written here.</p>
 <p><em>b)</em> State some other problem.</p>
@@ -19896,7 +19896,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <!-- --- begin exercise --- -->
 
 <h3 id="example-2-just-an-example">Example 2: Just an example</h3>
-<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 
@@ -19969,7 +19969,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <li><p>with items</p></li>
 </ul>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems. <em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work -- and all other important files.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
 <p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems. The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
 <p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files. Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the &quot;master version&quot; at the site where the project is hosted. If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
@@ -19979,7 +19979,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 \]</p>
 <p><em>Question.</em> So, how many admonition environments does Doconce support?</p>
 <h3 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h3>
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly recommend you to use such sites for all serious programming and scientific writing work -- and all other important files.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <a href="http://dropbox.com"><code class="url">http://dropbox.com</code></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \(\partial u/\partial t\), are easily communicated between machines.] It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
 <p>When several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox: project hosting services with true version control systems. [hpl 3: The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.]</p>
 <h3 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code></h3>
@@ -23067,7 +23067,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
-and then, with the command-line option <code>--examples-as-exercises</code> be
+and then, with the command-line option <code>--examples_as_exercises</code> be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -23622,7 +23622,7 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <h3>Example 2: Just an example  <a name="___sec21"></a></h3>
 
 <p>
-<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 <p>
@@ -23925,7 +23925,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
@@ -24012,7 +24012,7 @@ cloud" and updated through communication with that site.
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files is Dropbox. 
@@ -24515,96 +24515,96 @@ zoom.js
 doconce format html slides SLIDE_TYPE=dummy SLIDE_THEME=dummy
 doconce slides_html slides doconce
 
-doconce format html slides --pygments-html-style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
-doconce slides_html slides csss --html-slide-theme=csss_default
+doconce format html slides --pygments_html_style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
+doconce slides_html slides csss --html_slide_theme=csss_default
 cp slides.html slides_csss_csss_default.html
 
-doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
-doconce slides_html slides reveal --html-slide-theme=beigesmall
+doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+doconce slides_html slides reveal --html_slide_theme=beigesmall
 cp slides.html slides_reveal_beigesmall.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
-doconce slides_html slides reveal --html-slide-theme=simple
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
+doconce slides_html slides reveal --html_slide_theme=simple
 cp slides.html slides_reveal_simple.html
 
-doconce format html slides --pygments-html-style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
-doconce slides_html slides reveal --html-slide-theme=darkgray
+doconce format html slides --pygments_html_style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
+doconce slides_html slides reveal --html_slide_theme=darkgray
 cp slides.html slides_reveal_darkgray.html
 
-doconce format html slides --pygments-html-style=default SLIDE_TYPE=reveal SLIDE_THEME=sky
-doconce slides_html slides reveal --html-slide-theme=sky
+doconce format html slides --pygments_html_style=default SLIDE_TYPE=reveal SLIDE_THEME=sky
+doconce slides_html slides reveal --html_slide_theme=sky
 cp slides.html slides_reveal_sky.html
 
-doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
-doconce slides_html slides reveal --html-slide-theme=serif
+doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
+doconce slides_html slides reveal --html_slide_theme=serif
 cp slides.html slides_reveal_serif.html
 
-doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
-doconce slides_html slides reveal --html-slide-theme=beige
+doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
+doconce slides_html slides reveal --html_slide_theme=beige
 cp slides.html slides_reveal_beige.html
 
-doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
-doconce slides_html slides reveal --html-slide-theme=night
+doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
+doconce slides_html slides reveal --html_slide_theme=night
 cp slides.html slides_reveal_night.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
-doconce slides_html slides dzslides --html-slide-theme=dzslides_default
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
+doconce slides_html slides dzslides --html_slide_theme=dzslides_default
 cp slides.html slides_dzslides_dzslides_default.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-io2011
-doconce slides_html slides html5slides --html-slide-theme=template-io2011
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-io2011
+doconce slides_html slides html5slides --html_slide_theme=template-io2011
 cp slides.html slides_html5slides_template-io2011.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-default
-doconce slides_html slides html5slides --html-slide-theme=template-default
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-default
+doconce slides_html slides html5slides --html_slide_theme=template-default
 cp slides.html slides_html5slides_template-default.html
 
-doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
-doconce slides_html slides deck --html-slide-theme=sandstone.mightly
+doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
+doconce slides_html slides deck --html_slide_theme=sandstone.mightly
 cp slides.html slides_deck_sandstone_mightly.html
 
-doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
-doconce slides_html slides deck --html-slide-theme=neon
+doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
+doconce slides_html slides deck --html_slide_theme=neon
 cp slides.html slides_deck_neon.html
 
-doconce format html slides --pygments-html-style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
-doconce slides_html slides deck --html-slide-theme=sandstone.default
+doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
+doconce slides_html slides deck --html_slide_theme=sandstone.default
 cp slides.html slides_deck_sandstone_default.html
 
-doconce format html slides --pygments-html-style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
-doconce slides_html slides deck --html-slide-theme=sandstone.dark
+doconce format html slides --pygments_html_style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
+doconce slides_html slides deck --html_slide_theme=sandstone.dark
 cp slides.html slides_deck_sandstone_dark.html
 
-doconce format html slides --pygments-html-style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
-doconce slides_html slides deck --html-slide-theme=sandstone.firefox
+doconce format html slides --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
+doconce slides_html slides deck --html_slide_theme=sandstone.firefox
 cp slides.html slides_deck_sandstone_firefox.html
 
-doconce format html slides --pygments-html-style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
-doconce slides_html slides deck --html-slide-theme=sandstone.light
+doconce format html slides --pygments_html_style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
+doconce slides_html slides deck --html_slide_theme=sandstone.light
 cp slides.html slides_deck_sandstone_light.html
 
-doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mdn
-doconce slides_html slides deck --html-slide-theme=sandstone.mdn
+doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mdn
+doconce slides_html slides deck --html_slide_theme=sandstone.mdn
 cp slides.html slides_deck_sandstone_mdn.html
 
-doconce format html slides --pygments-html-style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
-doconce slides_html slides deck --html-slide-theme=mnml
+doconce format html slides --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
+doconce slides_html slides deck --html_slide_theme=mnml
 cp slides.html slides_deck_mnml.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
-doconce slides_html slides deck --html-slide-theme=web-2.0
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
+doconce slides_html slides deck --html_slide_theme=web-2.0
 cp slides.html slides_deck_web-2_0.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
-doconce slides_html slides deck --html-slide-theme=swiss
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
+doconce slides_html slides deck --html_slide_theme=swiss
 cp slides.html slides_deck_swiss.html
 
-doconce format html slides --pygments-html-style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.aurora
-doconce slides_html slides deck --html-slide-theme=sandstone.aurora
+doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.aurora
+doconce slides_html slides deck --html_slide_theme=sandstone.aurora
 cp slides.html slides_deck_sandstone_aurora.html
 
-doconce format html slides --pygments-html-style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
-doconce slides_html slides deck --html-slide-theme=beamer
+doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
+doconce slides_html slides deck --html_slide_theme=beamer
 cp slides.html slides_deck_beamer.html
 
 echo "Here are the slide shows:"
@@ -25352,7 +25352,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
-and then, with the command-line option <code>--examples-as-exercises</code> be
+and then, with the command-line option <code>--examples_as_exercises</code> be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -26253,7 +26253,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
@@ -26342,7 +26342,7 @@ cloud" and updated through communication with that site.
 
  I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files is Dropbox. 
@@ -27236,7 +27236,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
-and then, with the command-line option <code>--examples-as-exercises</code> be
+and then, with the command-line option <code>--examples_as_exercises</code> be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -27481,12 +27481,12 @@ Draw an integer among \( \{1,2\} \) with
 <p>
 
 <!-- removed !bans ... !eans environment
- --><!-- (because of the command-line option --without-answers)
+ --><!-- (because of the command-line option --without_answers)
  -->
 <p>
 
 <!-- removed !bsol ... !esol environment
- --><!-- (because of the command-line option --without-solutions)
+ --><!-- (because of the command-line option --without_solutions)
  -->Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
@@ -27598,12 +27598,12 @@ Use the <code>numpy.random</code> module to draw the
 <p>
 
 <!-- removed !bans ... !eans environment
- --><!-- (because of the command-line option --without-answers)
+ --><!-- (because of the command-line option --without_answers)
  -->
 <p>
 
 <!-- removed !bsol ... !esol environment
- --><!-- (because of the command-line option --without-solutions)
+ --><!-- (because of the command-line option --without_solutions)
  -->
 <p>
 <b>b)</b>
@@ -27653,7 +27653,7 @@ closing remarks to have text after subexercises.
 <p>
 
 <!-- removed !bsol ... !esol environment
- --><!-- (because of the command-line option --without-solutions)
+ --><!-- (because of the command-line option --without_solutions)
  -->
 <p>
 
@@ -27695,7 +27695,7 @@ Filename: <code>subexer_a.pdf</code>.
 <p>
 
 <!-- removed !bans ... !eans environment
- --><!-- (because of the command-line option --without-answers)
+ --><!-- (because of the command-line option --without_answers)
  -->
 <p>
 <b>b)</b>
@@ -27721,7 +27721,7 @@ Filename: <code>subexer_b.pdf</code>.
 <p>
 
 <!-- removed !bsol ... !esol environment
- --><!-- (because of the command-line option --without-solutions)
+ --><!-- (because of the command-line option --without_solutions)
  -->
 <p>
 <!-- Closing remarks for this Exercise -->
@@ -27782,7 +27782,7 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <h3>Example 2: Just an example  <a name="___sec21"></a></h3>
 
 <p>
-<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 <p>
@@ -28083,7 +28083,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
@@ -28170,7 +28170,7 @@ cloud" and updated through communication with that site.
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files is Dropbox. 
@@ -29187,7 +29187,7 @@ the old ME-IN323 book \cite{Langtangen:91} and the
 \label{Example}
 
 Examples can start with a subsection heading starting with \code{Example:}
-and then, with the command-line option \code{--examples-as-exercises} be
+and then, with the command-line option \code{--examples_as_exercises} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -29384,11 +29384,11 @@ Draw an integer among $\{1,2\}$ with
 
 
 % removed !bans ... !eans environment
-% (because of the command-line option --without-answers)
+% (because of the command-line option --without_answers)
 
 
 % removed !bsol ... !esol environment
-% (because of the command-line option --without-solutions)
+% (because of the command-line option --without_solutions)
 Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
@@ -29481,11 +29481,11 @@ $x_0$, $y_0$, and $R$ quantities.
 
 
 % removed !bans ... !eans environment
-% (because of the command-line option --without-answers)
+% (because of the command-line option --without_answers)
 
 
 % removed !bsol ... !esol environment
-% (because of the command-line option --without-solutions)
+% (because of the command-line option --without_solutions)
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
@@ -29528,7 +29528,7 @@ closing remarks to have text after subexercises.
 
 
 % removed !bsol ... !esol environment
-% (because of the command-line option --without-solutions)
+% (because of the command-line option --without_solutions)
 
 
 \paragraph{a)}
@@ -29558,7 +29558,7 @@ Filename: \code{subexer_a.pdf}.
 
 
 % removed !bans ... !eans environment
-% (because of the command-line option --without-answers)
+% (because of the command-line option --without_answers)
 
 \paragraph{b)}
 Here goes the text for subexercise b).
@@ -29577,7 +29577,7 @@ Filename: \code{subexer_b.pdf}.
 
 
 % removed !bsol ... !esol environment
-% (because of the command-line option --without-solutions)
+% (because of the command-line option --without_solutions)
 
 % Closing remarks for this Exercise
 
@@ -29624,7 +29624,7 @@ lambda x: x+2
 
 \subsection{Example 2: Just an example}
 
-% This example needs the --examples-as-exercises option, otherwise
+% This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
 
 
@@ -29788,7 +29788,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are \href{{http://dropbox.com}}{Dropbox} and \href{{http://drive.google.com}}{Google Drive}.
 It is very easy to get started with these systems, and they allow you
@@ -29867,7 +29867,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{http://dropbox.com}}{\nolinkurl{http://dropbox.com}} and watch the video. It explains
 how files, like \code{myfile.py}, perhaps containing much math, like
@@ -30248,7 +30248,7 @@ testdoc.do.txt
 #!/bin/sh -x
 rm -rf html_images reveal.js downloaded_figures
 
-# Note:  --examples-as-exercises is required to avoid abortion
+# Note:  --examples_as_exercises is required to avoid abortion
 
 # Make publish database
 rm -rf papers.pub  venues.list # clean
@@ -30272,30 +30272,30 @@ y
 1
 EOF
 
-doconce format html testdoc --wordpress  --examples-as-exercises
+doconce format html testdoc --wordpress  --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_no_solutions.html
 
-doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
+doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp -r ../bundled/html_styles/style_vagrant .
 doconce replace 'css/' 'style_vagrant/css/' style_vagrant/template_vagrant.html
-doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
+doconce format html testdoc.do.txt --examples_as_exercises --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
+doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce remove_exercise_answers testdoc.html
@@ -30308,10 +30308,10 @@ doconce split_html testdoc.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 
-doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
+doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
+doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc
@@ -30329,7 +30329,7 @@ doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 # because of --latex-double-hyphen:
 doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
-doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
+doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
@@ -30355,47 +30355,47 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
+doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format st testdoc.do.txt --examples-as-exercises
+doconce format st testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format sphinx testdoc.do.txt --examples-as-exercises
+doconce format sphinx testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 mv -f testdoc.rst testdoc.sphinx.rst
 
-doconce format sphinx testdoc --examples-as-exercises
+doconce format sphinx testdoc --examples_as_exercises
 doconce split_rst testdoc
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp automake_sphinx.py automake_sphinx_testdoc.py
 
-doconce format rst testdoc.do.txt --examples-as-exercises
+doconce format rst testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format epytext testdoc.do.txt --examples-as-exercises
+doconce format epytext testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pandoc testdoc.do.txt --examples-as-exercises
+doconce format pandoc testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format mwiki testdoc.do.txt --examples-as-exercises
+doconce format mwiki testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format cwiki testdoc.do.txt --examples-as-exercises
+doconce format cwiki testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format ipynb testdoc.do.txt --examples-as-exercises
+doconce format ipynb testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples-as-exercises
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt --examples-as-exercises
+doconce format latex testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
@@ -30410,38 +30410,38 @@ pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
 
-doconce format pandoc testdoc.do.txt --examples-as-exercises
+doconce format pandoc testdoc.do.txt --examples_as_exercises
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
-doconce format html slides --pygments-html-style=emacs
+doconce format html slides --pygments_html_style=emacs
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce slides_html slides reveal --html-slide-type=beigesmall
+doconce slides_html slides reveal --html_slide_type=beigesmall
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 mv -f slides.html slides_reveal.html
 /bin/ls -R reveal.js >> slides_reveal.html
 
-doconce format html slides --pygments-html-style=emacs
+doconce format html slides --pygments_html_style=emacs
 doconce slides_html slides all
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test grab
 doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
+doconce grab --from 'Compute a Probability' --to_ 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
 doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt >> testdoc.tmp
 
 # Test html templates
-doconce format html html_template --html-template=template1.html --no-pygments-html
+doconce format html html_template --html_template=template1.html --no_pygments_html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp html_template.html html_template1.html
 
-doconce format html html_template --html-template=template_inf1100.html  --pygments-html-style=emacs
+doconce format html html_template --html_template=template_inf1100.html  --pygments_html_style=emacs
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test author special case and generalized references
@@ -30505,21 +30505,21 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
 
 # Test mako problems
-doconce format html mako_test1 --no-pygments-html  # mako variable only, no % lines
+doconce format html mako_test1 --no_pygments_html  # mako variable only, no % lines
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format html mako_test2 --no-pygments-html  # % lines inside code, but need for mako
+doconce format html mako_test2 --no_pygments_html  # % lines inside code, but need for mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format html mako_test3 --no-pygments-html  # % lines inside code
+doconce format html mako_test3 --no_pygments_html  # % lines inside code
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp mako_test3.html mako_test3b.html
 
-doconce format html mako_test3 --no-pygments-html # no problem message
+doconce format html mako_test3 --no_pygments_html # no problem message
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format html mako_test4 --no-pygments-html  # works fine, lines start with %%
+doconce format html mako_test4 --no_pygments_html  # works fine, lines start with %%
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test error detection
@@ -33888,7 +33888,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 
 <p>
 Examples can start with a subsection heading starting with <code>Example:</code>
-and then, with the command-line option <code>--examples-as-exercises</code> be
+and then, with the command-line option <code>--examples_as_exercises</code> be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -34474,7 +34474,7 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <h3>Example 2: Just an example  <a name="___sec21"></a></h3>
 
 <p>
-<!-- This example needs the --examples-as-exercises option, otherwise -->
+<!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 <p>
@@ -34742,7 +34742,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>.
@@ -34807,7 +34807,7 @@ cloud" and updated through communication with that site.
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 <p>
 The simplest services for hosting project files is Dropbox. 
@@ -35481,7 +35481,7 @@ Example 1: Examples can be typeset as exercises
 -----------------------------------------------
 
 Examples can start with a subsection heading starting with ``Example:``
-and then, with the command-line option ``--examples-as-exercises`` be
+and then, with the command-line option ``--examples_as_exercises`` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -36058,7 +36058,7 @@ And a test that the code ``lambda x: x+2`` is correctly placed here:
 Example 2: Just an example
 --------------------------
 
-.. This example needs the --examples-as-exercises option, otherwise
+.. This example needs the --examples_as_exercises option, otherwise
 
 .. it is just typeset as it is written.
 
@@ -36337,7 +36337,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are `Dropbox <http://dropbox.com>`_ and `Google Drive <http://drive.google.com>`_.
 It is very easy to get started with these systems, and they allow you
@@ -36400,7 +36400,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. (**hpl 1**: not sure if in the cloud is understood by all.) I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. (**mp 2**: Simply go to `<http://dropbox.com>`_ and watch the video. It explains
 how files, like ``myfile.py``, perhaps containing much math, like
@@ -36646,7 +36646,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 23 Apr 2013 (07:49)</center>
+<center>Wed, 24 Apr 2013 (00:31)</center>
 
 
 
@@ -36777,7 +36777,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 23 Apr 2013 (07:49)</center>
+<center>Wed, 24 Apr 2013 (00:31)</center>
 
 
 
@@ -36901,10 +36901,10 @@ sh ./clean.sh
 # Make latest bin/doconce doc
 doconce > doconce_program.sh
 
-doconce format html quickref --no-pygments-html --no-preprocess
+doconce format html quickref --no_pygments_html --no_preprocess
 
 # latex (shpro because of @@@CODE copy, need minted style)
-doconce format latex quickref --no-preprocess
+doconce format latex quickref --no_preprocess
 doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
 # cannot run ptex2tex since it always runs preprocess
 latex -shell-escape quickref.tex
@@ -36912,7 +36912,7 @@ latex -shell-escape quickref.tex
 dvipdf quickref.dvi
 
 # Sphinx
-doconce format sphinx quickref --no-preprocess
+doconce format sphinx quickref --no_preprocess
 rm -rf sphinx-rootdir
 doconce sphinx_dir author='HPL' version=0.7 quickref
 doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
@@ -36920,7 +36920,7 @@ python automake_sphinx.py
 cp quickref.rst quickref.sphinx.rst  # save
 
 # reStructuredText:
-doconce format rst quickref --no-preprocess
+doconce format rst quickref --no_preprocess
 rst2xml.py quickref.rst > quickref.xml
 rst2odt.py quickref.rst > quickref.odt
 rst2html.py quickref.rst > quickref.rst.html
@@ -36930,13 +36930,13 @@ latex quickref.rst.tex
 dvipdf quickref.rst.dvi
 
 # Other formats:
-doconce format plain quickref --no-preprocess
-doconce format gwiki quickref --no-preprocess
-doconce format mwiki quickref --no-preprocess
-doconce format cwiki quickref --no-preprocess
-doconce format st quickref --no-preprocess
-doconce format epytext quickref --no-preprocess
-doconce format pandoc quickref --no-preprocess
+doconce format plain quickref --no_preprocess
+doconce format gwiki quickref --no_preprocess
+doconce format mwiki quickref --no_preprocess
+doconce format cwiki quickref --no_preprocess
+doconce format st quickref --no_preprocess
+doconce format epytext quickref --no_preprocess
+doconce format pandoc quickref --no_preprocess
 
 rm -rf demo
 mkdir demo
@@ -37718,7 +37718,7 @@ Here goes a full solution of the whole exercise.
 
 !ec
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments `--without-answers` and `--without-solutions`
+The command-line arguments `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -38991,7 +38991,7 @@ Here goes a full solution of the whole exercise.
 </code></pre>
 <!-- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments <code>--without-answers</code> and <code>--without-solutions</code>
+The command-line arguments <code>--without_answers</code> and <code>--without_solutions</code>
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -40331,7 +40331,7 @@ Here goes a full solution of the whole exercise.
 
 \eccq
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments \code{--without-answers} and \code{--without-solutions}
+The command-line arguments \code{--without_answers} and \code{--without_solutions}
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -41370,7 +41370,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments ``--without-answers`` and ``--without-solutions``
+The command-line arguments ``--without_answers`` and ``--without_solutions``
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -42453,7 +42453,7 @@ setup-up:
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments ``--without-answers`` and ``--without-solutions``
+The command-line arguments ``--without_answers`` and ``--without_solutions``
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -43378,7 +43378,7 @@ Here goes a full solution of the whole exercise.
 
 }}}
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments `--without-answers` and `--without-solutions`
+The command-line arguments `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -44335,7 +44335,7 @@ Here goes a full solution of the whole exercise.
 
 </syntaxhighlight>
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments <code>--without-answers</code> and <code>--without-solutions</code>
+The command-line arguments <code>--without_answers</code> and <code>--without_solutions</code>
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -45254,7 +45254,7 @@ Here goes a full solution of the whole exercise.
 
 }}}
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments {{{--without-answers}}} and {{{--without-solutions}}}
+The command-line arguments {{{--without_answers}}} and {{{--without_solutions}}}
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -46191,7 +46191,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments '--without-answers' and '--without-solutions'
+The command-line arguments '--without_answers' and '--without_solutions'
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -47150,7 +47150,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments C{--without-answers} and C{--without-solutions}
+The command-line arguments C{--without_answers} and C{--without_solutions}
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -48154,7 +48154,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments --without-answers and --without-solutions
+The command-line arguments --without_answers and --without_solutions
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -49184,7 +49184,7 @@ Here goes a full solution of the whole exercise.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments `--without-answers` and `--without-solutions`
+The command-line arguments `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -49559,7 +49559,7 @@ Total:                              21
 
 Saving backup copy of database to file "papers.pub.bak"
 Saving database to file "papers.pub"
-+ doconce format html testdoc --wordpress --examples-as-exercises
++ doconce format html testdoc --wordpress --examples_as_exercises
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html
@@ -49616,7 +49616,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_wordpress.html
-+ doconce format html testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
++ doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
 running preprocess -DFORMAT=html -DDEVICE=screen -DSOMEVAR testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'html'}
@@ -49675,7 +49675,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_no_solutions.html
-+ doconce format latex testdoc --without-answers --without-solutions --examples-as-exercises -DSOMEVAR
++ doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
 
 Summary of papers
 -----------------
@@ -49760,7 +49760,7 @@ output in testdoc.p.tex
 + cp -r ../bundled/html_styles/style_vagrant .
 + doconce replace css/ style_vagrant/css/ style_vagrant/template_vagrant.html
 replacing css/ by style_vagrant/css/ in style_vagrant/template_vagrant.html
-+ doconce format html testdoc.do.txt --examples-as-exercises --html-style=vagrant --html-template=style_vagrant/template_vagrant.html
++ doconce format html testdoc.do.txt --examples_as_exercises --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html
@@ -49826,7 +49826,7 @@ output in testdoc.html
 + doconce split_html testdoc_vagrant.html
 testdoc_vagrant.html now links to the generated files
 ._part0000_testdoc_vagrant.html, ._part0001_testdoc_vagrant.html, ._part0002_testdoc_vagrant.html
-+ doconce format html testdoc.do.txt --pygments-html-linenos --html-style=solarized --pygments-html-style=emacs --examples-as-exercises
++ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html
@@ -49892,7 +49892,7 @@ no answers/solutions to exercises found in testdoc.html
 testdoc.html now links to the generated files
 ._part0000_testdoc.html, ._part0001_testdoc.html, ._part0002_testdoc.html
 + [ 0 -ne 0 ]
-+ doconce format latex testdoc.do.txt --examples-as-exercises SOMEVAR=True --skip_inline_comments
++ doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
 
 Summary of papers
 -----------------
@@ -49973,7 +49973,7 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
-+ doconce format pdflatex testdoc.do.txt --device=paper --examples-as-exercises --latex-double-hyphen
++ doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen
 
 Summary of papers
 -----------------
@@ -50051,7 +50051,7 @@ figure file ../doc/manual/figs/streamtubes:
 downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
-*** warning: --latex-double-hyphen may lead to unwanted edits.
+*** warning: --latex_double_hyphen may lead to unwanted edits.
              search for all -- in the .p.tex file and check.
 output in testdoc.p.tex
 + [ 0 -ne 0 ]
@@ -50073,8 +50073,7 @@ replacing % begin theorem by \begin{theorem} in testdoc.p.tex
 replacing % end theorem by \end{theorem} in testdoc.p.tex
 + doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
 replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
-+ doconce replace --examples-as--exercises --examples-as-exercises testdoc.p.tex
-replacing --examples-as--exercises by --examples-as-exercises in testdoc.p.tex
++ doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
 + ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 using local config file .ptex2tex.cfg
 running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
@@ -52192,7 +52191,7 @@ Transcript written on testdoc.log.
 + echo ----------- end of doconce ptex2tex output ----------------
 + [ 0 -ne 0 ]
 + cat testdoc.tex
-+ doconce format plain testdoc.do.txt --examples-as-exercises -DSOMEVAR=1
++ doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
 running preprocess -DFORMAT=plain -DDEVICE=screen -DSOMEVAR=1 testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': 1, 'FORMAT': 'plain'}
@@ -52247,7 +52246,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + [ 0 -ne 0 ]
-+ doconce format st testdoc.do.txt --examples-as-exercises
++ doconce format st testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=st -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to st
@@ -52301,7 +52300,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + [ 0 -ne 0 ]
-+ doconce format sphinx testdoc.do.txt --examples-as-exercises
++ doconce format sphinx testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to sphinx
@@ -52385,7 +52384,7 @@ label{eq2a}
 output in testdoc.rst
 + [ 0 -ne 0 ]
 + mv -f testdoc.rst testdoc.sphinx.rst
-+ doconce format sphinx testdoc --examples-as-exercises
++ doconce format sphinx testdoc --examples_as_exercises
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to sphinx
@@ -52537,7 +52536,7 @@ or just run it by
 
 + [ 0 -ne 0 ]
 + cp automake_sphinx.py automake_sphinx_testdoc.py
-+ doconce format rst testdoc.do.txt --examples-as-exercises
++ doconce format rst testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=rst -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to rst
@@ -52593,7 +52592,7 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
 + [ 0 -ne 0 ]
-+ doconce format epytext testdoc.do.txt --examples-as-exercises
++ doconce format epytext testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=epytext -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to epytext
@@ -52647,7 +52646,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + [ 0 -ne 0 ]
-+ doconce format pandoc testdoc.do.txt --examples-as-exercises
++ doconce format pandoc testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to pandoc
@@ -52711,7 +52710,7 @@ figure file ../doc/manual/figs/streamtubes:
 
 output in testdoc.md
 + [ 0 -ne 0 ]
-+ doconce format mwiki testdoc.do.txt --examples-as-exercises
++ doconce format mwiki testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=mwiki -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to mwiki
@@ -52786,7 +52785,7 @@ figure file ../doc/manual/figs/streamtubes:
 *** warning: reference to label "my:eq1" in an equation does not work in MediaWiki
 output in testdoc.mwiki
 + [ 0 -ne 0 ]
-+ doconce format cwiki testdoc.do.txt --examples-as-exercises
++ doconce format cwiki testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=cwiki -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to cwiki
@@ -52842,7 +52841,7 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
 + [ 0 -ne 0 ]
-+ doconce format ipynb testdoc.do.txt --examples-as-exercises
++ doconce format ipynb testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=ipynb -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to ipynb
@@ -52898,7 +52897,7 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format ipynb
 output in testdoc.ipynb
 + [ 0 -ne 0 ]
-+ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --examples-as-exercises
++ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --examples_as_exercises
 running preprocess -DFORMAT=gwiki -DDEVICE=screen -DMYVAR1="3" -DMYVAR2="a string" testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
@@ -52979,7 +52978,7 @@ NOTE: Place https://doconce.googlecode.com/hg/doc/blog/f_plot.png at some place 
 
 output in testdoc.gwiki
 + [ 0 -ne 0 ]
-+ doconce format latex testdoc.do.txt --examples-as-exercises
++ doconce format latex testdoc.do.txt --examples_as_exercises
 
 Summary of papers
 -----------------
@@ -53078,7 +53077,7 @@ replacing \Verb! by \verb! in testdoc.tex
 + pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -v
-+ doconce format pandoc testdoc.do.txt --examples-as-exercises
++ doconce format pandoc testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to pandoc
@@ -53144,12 +53143,12 @@ output in testdoc.md
 + [ 0 -ne 0 ]
 + pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 + pandoc -v
-+ doconce format html slides --pygments-html-style=emacs
++ doconce format html slides --pygments_html_style=emacs
 translating doconce text in slides.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides.html
 + [ 0 -ne 0 ]
-+ doconce slides_html slides reveal --html-slide-type=beigesmall
++ doconce slides_html slides reveal --html_slide_type=beigesmall
 made subdirectory reveal.js
 *** warning: pygments style "emacs" is not recommended for "beige"!
 recommended styles are "perldoc"
@@ -53157,7 +53156,7 @@ slides written to slides.html
 + [ 0 -ne 0 ]
 + mv -f slides.html slides_reveal.html
 + /bin/ls -R reveal.js
-+ doconce format html slides --pygments-html-style=emacs
++ doconce format html slides --pygments_html_style=emacs
 translating doconce text in slides.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides.html
@@ -53168,14 +53167,14 @@ to generate the slides
 + [ 0 -ne 0 ]
 + doconce grab --from- ={5} Subsection 1 --to subroutine@ _testdoc.do.txt
 + [ 0 -ne 0 ]
-+ doconce grab --from Compute a Probability --to- drawing uniformly _testdoc.do.txt
++ doconce grab --from Compute a Probability --to_ drawing uniformly _testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally _testdoc.do.txt
-+ doconce format html html_template --html-template=template1.html --no-pygments-html
++ doconce format html html_template --html_template=template1.html --no_pygments_html
 translating doconce text in html_template.do.txt to html
 output in html_template.html
 + [ 0 -ne 0 ]
 + cp html_template.html html_template1.html
-+ doconce format html html_template --html-template=template_inf1100.html --pygments-html-style=emacs
++ doconce format html html_template --html_template=template_inf1100.html --pygments_html_style=emacs
 translating doconce text in html_template.do.txt to html
 output in html_template.html
 + [ 0 -ne 0 ]
@@ -53620,27 +53619,27 @@ format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, 
 + doconce change_encoding utf-8 latin1 tmp2.do.txt
 + [ 0 -ne 0 ]
 + doconce guess_encoding tmp2.do.txt
-+ doconce format html mako_test1 --no-pygments-html
++ doconce format html mako_test1 --no_pygments_html
 running mako on mako_test1.do.txt to make tmp_mako__mako_test1.do.txt
 translating doconce text in tmp_mako__mako_test1.do.txt to html
 output in mako_test1.html
 + [ 0 -ne 0 ]
-+ doconce format html mako_test2 --no-pygments-html
++ doconce format html mako_test2 --no_pygments_html
 translating doconce text in mako_test2.do.txt to html
 output in mako_test2.html
 + [ 0 -ne 0 ]
-+ doconce format html mako_test3 --no-pygments-html
++ doconce format html mako_test3 --no_pygments_html
 running mako on mako_test3.do.txt to make tmp_mako__mako_test3.do.txt
 translating doconce text in tmp_mako__mako_test3.do.txt to html
 output in mako_test3.html
 + [ 0 -ne 0 ]
 + cp mako_test3.html mako_test3b.html
-+ doconce format html mako_test3 --no-pygments-html
++ doconce format html mako_test3 --no_pygments_html
 running mako on mako_test3.do.txt to make tmp_mako__mako_test3.do.txt
 translating doconce text in tmp_mako__mako_test3.do.txt to html
 output in mako_test3.html
 + [ 0 -ne 0 ]
-+ doconce format html mako_test4 --no-pygments-html
++ doconce format html mako_test4 --no_pygments_html
 running mako on mako_test4.do.txt to make tmp_mako__mako_test4.do.txt
 translating doconce text in tmp_mako__mako_test4.do.txt to html
 output in mako_test4.html
@@ -53659,7 +53658,7 @@ more verbatime stuff
 !ec
 
 Next we see if backslashes are detected: \\
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + cp failures.do.txt tmp2.do.txt
 + doconce subst failure\}\n\n!bc failure}\n\nHello\n!bc tmp2.do.txt
 failure\}\n\n!bc replaced by failure}\n\nHello\n!bc in tmp2.do.txt
@@ -53680,7 +53679,7 @@ More verbatim stuff.
 !ec
 
 Can we successfully say `__call__` and `__ad
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + doconce replace \label label tmp2.do.txt
 replacing \label by label in tmp2.do.txt
 + doconce replace \idx idx tmp2.do.txt
@@ -53704,7 +53703,7 @@ More verbatim stuff.
 !ec
 
 Can we successfully say `__call__` and `__ad
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + doconce subst -s __Paragraph before.+!bc !bc tmp2.do.txt
 __Paragraph before.+!bc replaced by !bc in tmp2.do.txt
 + doconce format rst tmp2
@@ -53724,7 +53723,7 @@ Normal text.
 
 
 
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + doconce replace streamtubes width streamtubes,  width tmp2.do.txt
 replacing streamtubes width by streamtubes,  width in tmp2.do.txt
 + doconce format rst tmp2
@@ -53744,7 +53743,7 @@ Normal text.
 
 
 
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + doconce replace # Comment before math  tmp2.do.txt
 replacing # Comment before math by  in tmp2.do.txt
 + doconce format rst tmp2
@@ -53764,7 +53763,7 @@ Normal text.
 
 
 
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + doconce replace # Comment before list  tmp2.do.txt
 replacing # Comment before list by  in tmp2.do.txt
 + doconce format rst tmp2
@@ -53772,14 +53771,14 @@ translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 *** error: you have citations but no biblioraphy (BIBFILE: ...)
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + doconce replace `Google` `Google` site tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 *** error: you have citations but no biblioraphy (BIBFILE: ...)
-Abort! (add --no-abort on the command line to avoid this abortion)
+Abort! (add --no_abort on the command line to avoid this abortion)
 + echo
 
 + echo Successful run of test/make.sh !
@@ -53788,12 +53787,12 @@ Successful run of test/make.sh !
 + sh ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/quickref:
 + doconce
-+ doconce format html quickref --no-pygments-html --no-preprocess
++ doconce format html quickref --no_pygments_html --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to html
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.html
-+ doconce format latex quickref --no-preprocess
++ doconce format latex quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
@@ -54320,7 +54319,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Output written on quickref.dvi (16 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
-+ doconce format sphinx quickref --no-preprocess
++ doconce format sphinx quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to sphinx
 copy complete file doconce_program.sh  (format: shpro)
@@ -54437,7 +54436,7 @@ running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" i
 google-chrome sphinx-rootdir/_build/html/index.html
 
 + cp quickref.rst quickref.sphinx.rst
-+ doconce format rst quickref --no-preprocess
++ doconce format rst quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to rst
 copy complete file doconce_program.sh  (format: shpro)
@@ -55330,37 +55329,37 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Output written on quickref.rst.dvi (18 pages, ).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
-+ doconce format plain quickref --no-preprocess
++ doconce format plain quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.txt
-+ doconce format gwiki quickref --no-preprocess
++ doconce format gwiki quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.gwiki
-+ doconce format mwiki quickref --no-preprocess
++ doconce format mwiki quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.mwiki
-+ doconce format cwiki quickref --no-preprocess
++ doconce format cwiki quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.cwiki
-+ doconce format st quickref --no-preprocess
++ doconce format st quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.st
-+ doconce format epytext quickref --no-preprocess
++ doconce format epytext quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.epytext
-+ doconce format pandoc quickref --no-preprocess
++ doconce format pandoc quickref --no_preprocess
 running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
 translating doconce text in tmp_mako__quickref.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)

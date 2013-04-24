@@ -920,16 +920,16 @@ Run in terminal window:
 doconce format html doconcefile
 
 # Solarized HTML style
-doconce format html doconcefile --html-solarized
+doconce format html doconcefile --html_solarized
 
 # Control pygments typesetting of code
-doconce format html doconcefile --pygments-html-style=native
+doconce format html doconcefile --pygments_html_style=native
 
 # Or use plain <pre> tag
-doconce format html doconcefile --no-pygments-html
+doconce format html doconcefile --no_pygments_html
 
 # Further making of slides
-doconce slides_html doconcefile reveal --html-slide-theme=darkgray
+doconce slides_html doconcefile reveal --html_slide_theme=darkgray
 !ec
 
 !split
@@ -967,7 +967,7 @@ bibtex doconcefile
 pdflatex doconcefile
 
 # More control of how code is typeset
-doconce format pdflatex doconcefile --minted-latex-style=trac
+doconce format pdflatex doconcefile --minted_latex_style=trac
 doconce ptex2tex doconcefile envir=minted
 
 doconce format pdflatex doconcefile

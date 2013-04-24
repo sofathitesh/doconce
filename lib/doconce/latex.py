@@ -19,8 +19,8 @@ def underscore_in_code(m):
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
 
-    if option('latex-double-hyphen'):
-        print '*** warning: --latex-double-hyphen may lead to unwanted edits.'
+    if option('latex_double_hyphen'):
+        print '*** warning: --latex_double_hyphen may lead to unwanted edits.'
         print '             search for all -- in the .p.tex file and check.'
         # Replace - by -- in some cases for nicer LaTeX look of hyphens:
         # Note: really dangerous for inline mathematics: $kx-wt$.
@@ -1009,7 +1009,7 @@ def define(FILENAME_EXTENSION,
 
     preamble = ''
     preamble_complete = False
-    filename = option('latex-preamble=', None)
+    filename = option('latex_preamble=', None)
     if filename is not None:
         f = open(filename, "r")
         preamble = f.read()
@@ -1311,7 +1311,7 @@ final,                   % or draft (marks overfull hboxes)
 
     # (We do replacement rather than parameter in the preamble since
     # that will imply double %% in a lot of places)
-    pygm_style = option('minted-latex-style=', default='default')
+    pygm_style = option('minted_latex_style=', default='default')
     if not pygm_style == 'default':
         INTRO['latex'] = INTRO['latex'].replace('usemintedstyle{default}',
                                        'usemintedstyle{%s}' % pygm_style)
