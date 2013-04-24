@@ -1,5 +1,10 @@
 ======= Installation of Doconce and its Dependencies =======
 
+Below, we explain the manual installation of all software that may be
+needed when working with Doconce documents.
+The impatient way to install what is needed is to run the
+"doconce_install_all.sh": "doconce_install_all.sh" script.
+
 ===== Doconce =====
 
 Doconce itself is pure Python code hosted at URL:
