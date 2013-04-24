@@ -5,7 +5,7 @@ _registered_command_line_options = [
      'Print all options to the doconce program.'),
     ('--debug',
      'Write a debugging file _doconce_debugging.log with lots if intermediate results'),
-    ('--no-abort',
+    ('--no_abort',
      'Do not abort the execution if syntax errors are found.'),
     ('--skip_inline_comments',
      'Remove all inline comments of the form [ID: comment].'),
@@ -13,58 +13,58 @@ _registered_command_line_options = [
      'Specify encoding (e.g., latin1 or utf-8).'),
     ('--oneline_paragraphs',
      'Combine paragraphs to one line (does not work well).'),
-    ('--no-mako',
+    ('--no_mako',
      'Do not run the Mako preprocessor program.'),
-    ('--no-preprocess',
+    ('--no_preprocess',
      'Do not run the Preprocess preprocessor program.'),
-    ('--mako-strict-undefined',
+    ('--mako_strict_undefined',
      'Make Mako report on undefined variables.'),
-    ('--no-header-footer',
+    ('--no_header_footer',
      'Do not include header and footer in (LaTeX and HTML) documents.'),
-    ('--no-pygments-html',
+    ('--no_pygments_html',
      """Do not use pygments to typeset computer code in HTML,
 use plain <pre> tags."""),
-    ('--minted-latex-style=',
+    ('--minted_latex_style=',
      'Specify the minted style to be used for typesetting code in LaTeX.'),
-    ('--pygments-html-style=',
+    ('--pygments_html_style=',
      'Specify the minted style to be used for typesetting code in HTML.'),
-    ('--pygments-html-linenos',
+    ('--pygments_html_linenos',
      """Turn on line numbers in pygmentized computer code in HTML.
 (In LaTeX line numbers can be added via doconce subst or replace
 such that the verbatim environments become like
 \begin{minted}[...,linenos=true,...].)"""),
-    ('--html-style=',
+    ('--html_style=',
      'Name of theme for HTML style (solarized, vagrant, bloodish, ...).'),
-    ('--html-template=',
+    ('--html_template=',
      """Specify an HTML template with header/footer in which the doconce
 document is embedded."""),
-    ('--html-body-font=',
+    ('--html_body_font=',
      """Specify HTML font for text body. =? lists available Google fonts."""),
-    ('--html-heading-font=',
+    ('--html_heading_font=',
      """Specify HTML font for headings. =? lists available Google fonts."""),
-    ('--html-slide-theme=',
+    ('--html_slide_theme=',
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
     ('--device=',
      """Set device to paper, screen, or other (paper impacts LaTeX output)."""),
-    ('--latex-double-hyphen',
-     'Replace - by -- in LaTeX output. Somewhat intelligent, but may give unwanted edits.'),
-    ('--latex-preamble=',
+    ('--latex_double_hyphen',
+     'Replace single dash - by double dash -- in LaTeX output. Somewhat intelligent, but may give unwanted edits.'),
+    ('--latex_preamble=',
      """User-provided LaTeX preamble file, either complete or additions."""),
-    ('--html-color-admon',
+    ('--html_color_admon',
      """True if color admon images are to be used in notice, warning, etc.
 environments, otherwise simpler (lyx_*.png) files are used."""),
     ('--css=',
-     """Specify a .css style file for HTML output. If the file does not exist, the default or specified style (--html-style=) is written to it."""),
+     """Specify a .css style file for HTML output. If the file does not exist, the default or specified style (--html_style=) is written to it."""),
     ('--verbose',
      'Write out all OS commands run by doconce.'),
-    ('--examples-as-exercises',
+    ('--examples_as_exercises',
      'Treat examples of the form "==== Example: ..." like exercise environments.'),
-    ('--without-solutions',
+    ('--without_solutions',
      'Leave out solution environments from exercises.'),
-    ('--without-answers',
+    ('--without_answers',
      'Leave out answer environments from exercises.'),
-    ('--without-hints',
+    ('--without_hints',
      'Leave out hints from exercises.'),
     ('--wordpress',
      'Make HTML output for wordpress.com pages.'),
@@ -191,7 +191,7 @@ def recommended_html_styles_and_pygments_styles():
         }
     return combinations
 
-# ------------- functions used by the doconce program -------------
+# -------------- functions used by the doconce program -------------
 
 def remove_inline_comments():
     try:
@@ -1116,7 +1116,7 @@ def grab():
     Grab a portion of text from a file, starting with from-text
     (included if specified as --from, not included if specified
     via --from-) up to the first occurence of to-text (--to implies
-    that the last line is included, --to- excludes the last line).
+    that the last line is included, --to_ excludes the last line).
     If --to[-] is not specified, all text up to the end of the file
     is returned.
 
@@ -1128,7 +1128,7 @@ def grab():
 
     filename = sys.argv[-1]
     if not sys.argv[1].startswith('--from'):
-        print 'missing --from fromtext or --from- fromtext option on the command line'
+        print 'missing --from fromtext or --from_ fromtext option on the command line'
         sys.exit(1)
     from_included = sys.argv[1] == '--from'
     from_text = sys.argv[2]
@@ -1209,7 +1209,7 @@ def remove():
     Remove a portion of text from a file, starting with from-text
     (included if specified as --from, not included if specified
     via --from-) up to the first occurence of to-text (--to implies
-    that the last line is included, --to- excludes the last line).
+    that the last line is included, --to_ excludes the last line).
     If --to[-] is not specified, all text up to the end of the file
     is returned.
 
@@ -1225,7 +1225,7 @@ def remove():
     f.close()
 
     if not sys.argv[1].startswith('--from'):
-        print 'missing --from fromtext or --from- fromtext option on the command line'
+        print 'missing --from fromtext or --from_ fromtext option on the command line'
         sys.exit(1)
     from_included = sys.argv[1] == '--from'
     from_text = sys.argv[2]
@@ -1589,7 +1589,7 @@ def split_html():
 
 
 def _usage_slides_html():
-    print 'Usage: doconce slides_html mydoc.html slide_type --html-slide-theme=themename [--reveal-doconce]'
+    print 'Usage: doconce slides_html mydoc.html slide_type --html_slide_theme=themename [--reveal-doconce]'
     print 'slide_types: reveal|reveal.js deck|deck.js csss dzslides'
     print '--reveal-doconce applies doconce versions of themes (left-adjusted)'
     print 'or:    doconce slides_html mydoc.html all  (generate a lot)'
@@ -1654,7 +1654,7 @@ def slides_html():
          for sl_tp in r:
              for style in r[sl_tp]:
                  pygm_style = r[sl_tp][style][0]
-                 f.write('doconce format html %s --pygments-html-style=%s SLIDE_TYPE=%s SLIDE_THEME=%s\ndoconce slides_html %s %s --html-slide-theme=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, sl_tp, style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
+                 f.write('doconce format html %s --pygments_html_style=%s SLIDE_TYPE=%s SLIDE_THEME=%s\ndoconce slides_html %s %s --html_slide_theme=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, sl_tp, style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
          f.write('echo "Here are the slide shows:"\n/bin/ls %s_*_*.html\n' % filestem)
          print 'run\n  sh tmp_slides_html_all.sh\nto generate the slides'
          #print 'names:', ' '.join(glob.glob('%s_*_*.html' % filestem))
@@ -2939,7 +2939,7 @@ git://github.com/barraq/deck.ext.js.git
             ),
         )
 
-    theme = option('html-slide-theme=', default='default')
+    theme = option('html_slide_theme=', default='default')
     # Check that the theme name is registered
     #from doconce.misc import recommended_html_styles_and_pygments_styles
     all_combinations = recommended_html_styles_and_pygments_styles()
@@ -3528,7 +3528,7 @@ def latex_footer():
     print OUTRO['latex']
 
 
-# ----------------------- functions for spell checking ---------------------
+# -------------------- functions for spell checking ---------------------
 
 _environments = [
     # Doconce
@@ -5214,11 +5214,11 @@ dvipdf $name
             f.write("""
 
 # --- html ---
-# options: --pygments-html-lineos --no-pygments-html
-#doconce format html $name $options --html-style=solarized --pygments-html-style=perldoc
+# options: --pygments_html_lineos --no-pygments-html
+#doconce format html $name $options --html_style=solarized --pygments_html_style=perldoc
 #if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
 #cp $name.html ${name}_solarized.html
-doconce format latex $name $options --html-style=blueish --pygments-html-style=default
+doconce format latex $name $options --html_style=blueish --pygments_html_style=default
 if [ $? -ne 0 ]; then echo "doconce error - abort"; exit; fi
 """)
         elif format == 'sphinx':
@@ -5326,7 +5326,7 @@ def fix_bibtex4publish():
         f.writelines(lines)
         f.close()
 
-# ---------- diff two files ----------------
+# ------------ diff two files ----------------
 _diff_programs = {
     'latexdiff': ('http://www.ctan.org/pkg/latexdiff', 'latexdiff'),
     'pdiff': ('http://www.gnu.org/software/a2ps/ http://www.gnu.org/software/wdiff/', 'a2ps wdiff texlive-latex-extra texlive-latex-recommended'),

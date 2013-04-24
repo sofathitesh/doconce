@@ -1030,7 +1030,7 @@ A recommended rule for using the different "exercise" types goes as follows:
   * Projects are larger problems that also make sense on their own.
   * Examples are exercises, problems, or projects with full solutions.
 
-The command line options `--without-answers` and `--without-solutions`
+The command line options `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
@@ -1078,11 +1078,11 @@ works well in all formats (i.e., no double "Problem Problem" appears).
 
 __Remark.__
 Examples are *not* typeset similarly to exercises unless one adds
-the command-line option `--examples-as-exercises`. That is, without
+the command-line option `--examples_as_exercises`. That is, without
 this option, any heading and starting with `Example:` makes Doconce
 treat the forthcoming text as ordinary text without any interpretation
 of exercise-style instructions.
-With the command-line option `--examples-as-exercises`,
+With the command-line option `--examples_as_exercises`,
 one can use the `!bsubex` and `!bsol`
 commands to indicate a subproblem and a solution. In this way, the
 typesetting of the example looks like an exercise equipped with a solution.
@@ -1684,7 +1684,7 @@ Doconce searches for typical syntax errors and usually aborts the
 execution if errors are found. However, it may happen,
 especially in verbatim blocks, that Doconce reports syntax errors
 that are not errors. To continue execution, simply add the
-`--no-abort` option on the command line. You may send an email
+`--no_abort` option on the command line. You may send an email
 to the Doconce author at `hpl@simula.no` and report the problem.
 
 === The Mako preprocessor is seemingly not run ===
@@ -1750,7 +1750,7 @@ see the directory "`examples`": "src/examples/index.html".
 !ec
 However, the following will not be typeset correctly:
 !bc
-see the "`examples` directory": "src/examples/index.html"
+see the "`examples`": "src/examples/index.html" directory.
 !ec
 The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
@@ -1803,7 +1803,7 @@ trigger the error message again...).
 If you see an Example section containing `!bsubex`, `!bsol`, or other
 begin and end tags for environments, it means that you have intended
 to typeset examples as exercises, but forgotten the command-line
-option `--examples-as-exercises`. The text in the example is typeset
+option `--examples_as_exercises`. The text in the example is typeset
 as is unless this option is included.
 
 === Emacs editing does not work properly because of "regexp overflow" ===
@@ -2181,13 +2181,13 @@ further.
 The standard of way of controlling the HTML format is to use an
 HTML template. The Doconce source is then the body of text (leave
 out `TITLE:` to get HTML without a header and footer). The
-`--html-template=filename` command-line option will then embed the
+`--html_template=filename` command-line option will then embed the
 Doconce text in the specified template file, where you can use style
 sheets and desired constructs in the header and footer.
 The template can have "slots" for a title (`%(title)s`),
 a date (`%(date)s`), and the main body of text (`%(main)s`).
 For typesetting code, `pygments` is used (if installed) and can be
-turned off by `--no-pygments-html` (leaving code in gray boxes).
+turned off by `--no_pygments_html` (leaving code in gray boxes).
 
 
 The easiest way is to get fancy layouts in HTML is to

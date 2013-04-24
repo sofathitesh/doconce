@@ -1,7 +1,7 @@
 
 TITLE: Doconce: Document Once, Include Anywhere
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)
-DATE: Mar 7, 2013
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
+DATE: Apr 24, 2013
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
@@ -72,14 +72,19 @@ What Can Doconce Be Used For?
 
 LaTeX is ideal for articles, thesis, and books, but not so suited
 for web documents. Nice environments for web documents, such as
-Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+Sphinx, Markdown, or plain HTML, are not particularly well
+suited for thesis and books. IPython notebooks are ideal for
+documenting computational experiments, but do not (yet) meet the
+requirements of books and thesis.
+
 What about migrating a part of a book for blogging? What about
 making an MS Word version or an untagged text for inclusion in email?
+What about efficiently generating slides in modern HTML5/CSS3 style?
 Doconce enables all this with just I{one source}. Doconce also has
 extra features for supporting documents with much code and mathematics.
 
-Basic Syntax Examples
----------------------
+Basic Syntax
+------------
 
 Here is an example of some simple text written in the Doconce format::
 
@@ -155,7 +160,7 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 the section "A Subsection with Sample Text".
 
-Doconce also allows inline comments such as [hpl: here I will make
+Doconce also allows inline comments such as [hpl 1: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see the section "From Doconce to Other Formats" for an example).
@@ -276,7 +281,11 @@ for use inside math environments are supported.
 
 Labels, corss-references, citations, and support of an index and
 bibliography are much inspired by LaTeX syntax, but Doconce features
-no backslashes. Here is an example::
+no backslashes. Use labels for sections and equations only, and
+preceed the reference by "Section" or "Chapter", or in case of
+an equation, surround the reference by parenthesis.
+
+Here is an example::
 
 
         ===== My Section =====
@@ -284,7 +293,7 @@ no backslashes. Here is an example::
         
         idx{key equation} idx{$\u$ conservation}
         
-        We refer to ref{sec:yoursec} for background material on
+        We refer to Section ref{sec:yoursec} for background material on
         the *key equation*. Here we focus on the extension
         
         # \Ddt, \u and \mycommand are defined in newcommands_keep.tex
@@ -378,7 +387,7 @@ format specific actions through tests like C{#if FORMAT == "latex"}
 Removal of inline comments
 --------------------------
 
-The command-line arguments C{--no-preprocess} and C{--no-mako} turn off
+The command-line arguments C{--no_preprocess} and C{--no_mako} turn off
 running C{preprocess} and C{mako}, respectively.
 
 Inline comments in the text are removed from the output by::
@@ -433,7 +442,7 @@ in an external CSS file; or in a template file.
 
 An external CSS file C{filename} used by setting the command-line
 argument C{--css=filename}. There available built-in styles are
-specified as C{--html-style=name}, where C{name} can be
+specified as C{--html_style=name}, where C{name} can be
 
  - C{solarized}: the famous U{solarized<http://ethanschoonover.com/solarized>}
    style (yellowish),
@@ -454,29 +463,37 @@ HTML file can have any specified layout.
 
 If the Pygments package (including the C{pygmentize} program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument C{--no-pygments-html}
+aid of this package. The command-line argument C{--no_pygments_html}
 turns off the use of Pygments and makes code blocks appear with
-plain (C{pre}) HTML tags. The option C{--pygments-html-linenos} turns
+plain (C{pre}) HTML tags. The option C{--pygments_html_linenos} turns
 on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by C{--pygments-html-style=style}, where C{style}
+Pygments style is set by C{--pygments_html_style=style}, where C{style}
 can be C{default}, C{emacs}, C{perldoc}, and other valid names for
 Pygments styles.
 
-The HTML file can be embedded in a template if the Doconce document
-does not have a title (because then there will be
-no header and footer in the HTML file). The template file must contain
+The HTML file can be embedded in a template with your own tailored
+design, see a "tutorial": " U{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html<https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html>}" on this topic. The template file must contain
 valid HTML code and can have three "slots": C{%(title)s} for a title,
-C{%(date)s} for a date, and C{%(main)s} for the main body of text, i.e., the
+C{%(date)s} for a date, and C{%(main)s} for the main body of text. The
+latter is the
 Doconce document translated to HTML. The title becomes the first
-heading in the Doconce document, and the date is extracted from the
-C{DATE:} line, if present. With the template feature one can easily embed
-the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert C{%(title)s} and
-C{%(date)s} at appropriate places and replace the main bod of text
-by C{%(main)s}. Here is an example::
+heading in the Doconce document, or the title (but a title is not
+recommended when using templates). The date is extracted from the
+C{DATE:} line. With the template feature one can easily embed
+the text in the look and feel of a website. Doconce comes with
+two templates in C{bundled/html_styles}. Just copy the directory
+containing the template and the CSS and JavaScript files to your
+document directory, edit the template as needed (also check that
+paths to the C{css} and C{js} subdirectories are correct - according
+to how you store the template files), and run::
 
 
-        Terminal> doconce format html mydoc --html-template=mytemplate.html
+        Terminal> doconce format html mydoc --html_template=mytemplate.html
+
+The template in C{style_vagrant} also needs an extra option
+C{--html_style=vagrant}. With this style, one has nice navigation buttons
+that are used if the document contains C{!split} commands for splitting
+it into many pages.
 
 
 Blogs
@@ -511,6 +528,10 @@ in a way that is acceptable to WordPress.
 Look at a U{simple doconce example<http://doconce.wordpress.com>}
 and a U{scientific report<http://doconcereportdemo.wordpress.com/>}
 to see blogging with mathematics and code on WordPress.
+
+Speaking of WordPress, the related project U{http://pressbooks.com<http://pressbooks.com>} can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.
 
 Pandoc and Markdown
 -------------------
@@ -594,7 +615,7 @@ C{newcommands_replace.tex} (see the section "Macros (Newcommands), Cross-Referen
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option C{--latex-printed} makes some adjustments for documents
+An option C{--latex_printed} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
@@ -627,8 +648,8 @@ C{-DLATEX_HEADING=titlepage}.
 
 Preprocessor variables to be defined or undefined are
 
- - C{BOOK} for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings with 9 C{=})
+ - C{XETEX} for processing by C{xelatex}
+ - C{LATEX_HEADING} for the typesetting of the title, author, etc.
  - C{PALATINO} for the Palatino font
  - C{HELVETICA} for the Helvetica font
  - C{A4PAPER} for A4 paper size
@@ -641,9 +662,16 @@ Preprocessor variables to be defined or undefined are
  - C{MINTED} for inclusion of the minted package for typesetting of
    code with the Pygments tool (which requires C{latex}
    or C{pdflatex} to be run with the C{-shell-escape} option)
+ - C{TODONOTES} for using the fancy C{todonotes} package for typesetting
+   inline comments (looks much like track changes in MS Word). This
+   macro has only effect if inline comments are used (name, colon,
+   and comment inside brackets).
+ - C{COLORED_TABLE_ROWS} for coloring every other table rows (set this
+   variable to C{gray} or C{blue})
+ - C{BLUE_SECTION_HEADINGS} for blue section and subsection headings
 
 If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option C{--latex-preamble=myfile}.
+your own preamble by adding the command-line option C{--latex_preamble=myfile}.
 In case C{myfile} contains a documentclass definition, Doconce assumes
 that the file contains the I{complete} preamble you want (not that all
 the packages listed in the default preamble are required and must be
@@ -664,9 +692,9 @@ for processing the C{.p.tex} file. The command allows specifications
 of code environments as well. Here is an example::
 
 
-        Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
-                  -DPALATINO -DA6PAPER \
-                  "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+        Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \ 
+                  -DPALATINO -DA6PAPER \ 
+                  "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \ 
                   fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 
 Note that C{@} must be used to separate the begin and end LaTeX
@@ -698,7 +726,7 @@ C{doconce subst} this is easy employing regular expressions with
 a group before "Using" and a group after::
 
 
-        Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+        Terminal> doconce subst 'title\{(.+)Using (.+)\}' \ 
                   'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 
 A lot of tailored fixes to the LaTeX document can be done by
@@ -830,8 +858,8 @@ Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the C{doconce sphinx_dir} command::
 
 
-        Terminal> doconce sphinx_dir author="authors' names" \
-                  title="some title" version=1.0 dirname=sphinxdir \
+        Terminal> doconce sphinx_dir author="authors' names" \ 
+                  title="some title" version=1.0 dirname=sphinxdir \ 
                   theme=mytheme file1 file2 file3 ...
 
 The keywords C{author}, C{title}, and C{version} are used in the headings
@@ -965,7 +993,7 @@ The final alternative is to save the edited C{conf.py} file somewhere
 and reuse it the next time C{doconce sphinx_dir} is run::
 
 
-        doconce sphinx_dir theme=scipy_lectures \
+        doconce sphinx_dir theme=scipy_lectures \ 
                            conf.py=../some/path/conf.py mydoc
 
 
@@ -1201,6 +1229,7 @@ software. However, if you want other formats as output
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.
 
+
 Preprocessors
 ~~~~~~~~~~~~~
 
@@ -1277,7 +1306,7 @@ in your document. On the website, click on I{Clone}, copy the
 command and run it::
 
 
-        hg clone  ssh://hg@bitbucket.org/logg/publish
+        hg clone https://bitbucket.org/logg/publish
 
 Thereafter go to the C{publish} directory and run the C{setup.py} script
 for installing Publish::
@@ -1343,10 +1372,52 @@ If you use the minted style together with C{ptex2tex}, you have to
 enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.
 This is not necessary if you run the alternative C{doconce ptex2tex} program.
 
-All
-use of the minted style requires the C{-shell-escape} command-line
+All use of the minted style requires the C{-shell-escape} command-line
 argument when running LaTeX, i.e., C{latex -shell-escape} or C{pdflatex
 -shell-escape}.
+
+Inline comments apply the C{todonotes} LaTeX package if the C{ptex2tex}
+or C{doconce ptex2tex} command is run with C{-DTODONOTES}.  The
+C{todonotes} package requires several other packages: C{xcolor},
+C{ifthen}, C{xkeyval}, C{tikz}, C{calc}, C{graphicx}, and C{setspace}. The
+relevant Debian package for installing all this is
+C{texlive-latex-extra}.
+
+LaTeX packages
+~~~~~~~~~~~~~~
+
+Many LaTeX packages are potentially needed (depending on various
+preprocessor variables given to C{ptex2tex} or C{doconce ptex2tex}.  The
+standard packages always included are C{relsize}, C{epsfig}, C{makeidx},
+C{setspace}, C{color}, C{amsmath}, C{amsfonts}, C{xcolor}, C{bm},
+C{microtype}, C{titlesec}, and C{hyperref}.  The C{ptex2tex} package (from
+U{ptex2tex<http://code.google.com/p/ptex2tex>}) is also included, but
+removed again if C{doconce ptex2tex} is run instead of the C{ptex2tex}
+program, meaning that if you do not use C{ptex2tex}, you do not need
+C{ptex2tex.sty}. Optional packages that might be included are C{minted},
+C{fontspec}, C{xunicode}, C{inputenc}, C{helvet}, C{mathpazo}, C{wrapfig},
+C{calc}, C{ifthen}, C{xkeyval}, C{tikz}, C{graphicx}, C{setspace}, C{shadow},
+C{disable}, C{todonotes}, C{lineno}, C{xr}, C{movie15}, C{a4paper}, and
+C{a6paper}.
+
+Relevant Debian packages that gives you all of these LaTeX packages are::
+
+
+        texlive-latex-base
+        texlive-latex-recommended
+        texlive-latex-extra
+        texlive-math-extra
+        texlive-bibtex-extra
+        texlive-xetex
+        texlive-humanities
+        texlive-pictures
+
+
+If you want to use the I{anslistings} code environment with C{ptex2tex}
+(C{.ptex2tex.cfg} styles C{Python_ANS}, C{Python_ANSt}, C{Cpp_ANS}, etc.) or
+C{doconce ptex2tex} (C{envir=ans} or C{envir=ans:nt}), you need the
+C{anslistings.sty} file. It can be obtained from
+the U{ptex2tex source<https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty>}.
 
 
 reStructuredText (reST) Output
@@ -1374,6 +1445,8 @@ U{rst2pdf<http://code.google.com/p/rst2pdf>}. Either download the tarball
 or clone the svn repository, go to the C{rst2pdf} directory and
 run the usual C{sudo python setup.py install}.
 
+Sphinx Output
+~~~~~~~~~~~~~
 
 Output to C{sphinx} requires of course the
 U{Sphinx software<http://sphinx.pocoo.org>},
@@ -1385,6 +1458,18 @@ installed by::
         sudo python setup.py install
         cd ..
 
+
+Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:
+
+ - could and redcloud: U{https://bitbucket.org/ecollins/cloud_sptheme<https://bitbucket.org/ecollins/cloud_sptheme>}
+ - bootstrap: U{https://github.com/ryan-roemer/sphinx-bootstrap-theme<https://github.com/ryan-roemer/sphinx-bootstrap-theme>}
+ - solarized: U{https://bitbucket.org/miiton/sphinxjp.themes.solarized<https://bitbucket.org/miiton/sphinxjp.themes.solarized>}
+ - impressjs: U{https://github.com/shkumagai/sphinxjp.themes.impressjs<https://github.com/shkumagai/sphinxjp.themes.impressjs>}
+
+These must be downloaded or cloned, and C{setup.py} must be run as shown
+above.
 
 Markdown and Pandoc Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1420,3 +1505,27 @@ updates and bug fixes. For C{svn} directories, go to the directory,
 run C{svn update}, and then C{sudo python setup.py install}. For
 Mercurial (C{hg}) directories, go to the directory, run
 C{hg pull; hg update}, and then C{sudo python setup.py install}.
+
+The C{doconce diff} command
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The C{doconce diff file1 file prog} command for illustrating differences between
+two files C{file1} and C{file2} using the program C{prog} requires C{prog}
+to be installed. By default, C{prog} is C{difflib} which comes with Python
+and is always present if you have Doconce installed. Another choice, C{diff},
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their C{sudo apt-get install} command on Debian (Ubuntu) systems
+appear in the table below.
+
+=========================================================================================  =========================================================================================  =========================================================================================  
+                                         Program                                                                                      URL                                                                               Debian/Ubuntu install                                    
+=========================================================================================  =========================================================================================  =========================================================================================  
+C{pdiff}                                                                                   U{a2ps<http://www.gnu.org/software/a2ps/>} U{wdiff<http://www.gnu.org/software/wdiff/>}  C{sudo apt-get install a2ps wdiff texlive-latex-extra texlive-latex-recommended}           
+C{latexdiff}                                                                               U{latexdiff<http://www.ctan.org/pkg/latexdiff>}                                           C{sudo apt-get install latexdiff}                                                          
+C{kdiff3}                                                                                  U{kdiff3<http://kdiff3.sourceforge.net/>}                                                 C{sudo apt-get install kdiff3}                                                             
+C{diffuse}                                                                                 U{diffuse<http://diffuse.sourceforge.net/>}                                               C{sudo apt-get install diffuse}                                                            
+C{xxdiff}                                                                                  U{xxdiff<http://xxdiff.sourceforge.net/local/>}                                           C{sudo apt-get install xxdiff}                                                             
+C{meld}                                                                                    U{meld<http://meldmerge.org/>}                                                            C{sudo apt-get install meld}                                                               
+C{tkdiff.tcl}                                                                              U{tkdiff<https://sourceforge.net/projects/tkdiff/>}                                       C{sudo apt-get install not in Debian}                                                      
+=========================================================================================  =========================================================================================  =========================================================================================  
+

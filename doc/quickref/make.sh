@@ -4,10 +4,10 @@ sh ./clean.sh
 # Make latest bin/doconce doc
 doconce > doconce_program.sh
 
-doconce format html quickref --no-pygments-html --no-preprocess
+doconce format html quickref --no_pygments_html --no_preprocess
 
 # latex (shpro because of @@@CODE copy, need minted style)
-doconce format latex quickref --no-preprocess
+doconce format latex quickref --no_preprocess
 doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
 # cannot run ptex2tex since it always runs preprocess
 latex -shell-escape quickref.tex
@@ -15,7 +15,7 @@ latex -shell-escape quickref.tex
 dvipdf quickref.dvi
 
 # Sphinx
-doconce format sphinx quickref --no-preprocess
+doconce format sphinx quickref --no_preprocess
 rm -rf sphinx-rootdir
 doconce sphinx_dir author='HPL' version=0.7 quickref
 doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
@@ -23,7 +23,7 @@ python automake_sphinx.py
 cp quickref.rst quickref.sphinx.rst  # save
 
 # reStructuredText:
-doconce format rst quickref --no-preprocess
+doconce format rst quickref --no_preprocess
 rst2xml.py quickref.rst > quickref.xml
 rst2odt.py quickref.rst > quickref.odt
 rst2html.py quickref.rst > quickref.rst.html
@@ -33,13 +33,13 @@ latex quickref.rst.tex
 dvipdf quickref.rst.dvi
 
 # Other formats:
-doconce format plain quickref --no-preprocess
-doconce format gwiki quickref --no-preprocess
-doconce format mwiki quickref --no-preprocess
-doconce format cwiki quickref --no-preprocess
-doconce format st quickref --no-preprocess
-doconce format epytext quickref --no-preprocess
-doconce format pandoc quickref --no-preprocess
+doconce format plain quickref --no_preprocess
+doconce format gwiki quickref --no_preprocess
+doconce format mwiki quickref --no_preprocess
+doconce format cwiki quickref --no_preprocess
+doconce format st quickref --no_preprocess
+doconce format epytext quickref --no_preprocess
+doconce format pandoc quickref --no_preprocess
 
 rm -rf demo
 mkdir demo

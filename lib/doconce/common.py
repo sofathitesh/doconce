@@ -435,7 +435,7 @@ def doconce_exercise_output(exer,
     if exer['answer']:
         s += '\n'
         # Leave out begin-end answer comments if example since we want to
-        # avoid marking such sections for deletion (--without-answers)
+        # avoid marking such sections for deletion (--without_answers)
         if exer['type'] != 'Example':
             s += '\n# ' + envir_delimiter_lines['ans'][0] + '\n'
         s += answer_header + '\n' + exer['answer'] + '\n'
@@ -446,7 +446,7 @@ def doconce_exercise_output(exer,
     if exer['solution']:
         s += '\n'
         # Leave out begin-end solution comments if example since we want to
-        # avoid marking such sections for deletion (--without-solutions)
+        # avoid marking such sections for deletion (--without_solutions)
         if exer['type'] != 'Example':
             s += '\n# ' + envir_delimiter_lines['sol'][0] + '\n'
         s += solution_header + '\n'

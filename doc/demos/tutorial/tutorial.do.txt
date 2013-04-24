@@ -1,7 +1,7 @@
 ## Missing: FIGURE, MOVIE, Exercise, environments
 
 TITLE: Doconce: Document Once, Include Anywhere
-AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
+AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
 DATE: today
 
 
@@ -91,13 +91,18 @@ the formating. Here are some examples.
 
 LaTeX is ideal for articles, thesis, and books, but not so suited
 for web documents. Nice environments for web documents, such as
-Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+Sphinx, Markdown, or plain HTML, are not particularly well
+suited for thesis and books. IPython notebooks are ideal for
+documenting computational experiments, but do not (yet) meet the
+requirements of books and thesis.
+
 What about migrating a part of a book for blogging? What about
 making an MS Word version or an untagged text for inclusion in email?
+What about efficiently generating slides in modern HTML5/CSS3 style?
 Doconce enables all this with just *one source*. Doconce also has
 extra features for supporting documents with much code and mathematics.
 
-===== Basic Syntax Examples =====
+===== Basic Syntax =====
 
 Here is an example of some simple text written in the Doconce format:
 !bc
@@ -292,7 +297,11 @@ for use inside math environments are supported.
 
 Labels, corss-references, citations, and support of an index and
 bibliography are much inspired by LaTeX syntax, but Doconce features
-no backslashes. Here is an example:
+no backslashes. Use labels for sections and equations only, and
+preceed the reference by "Section" or "Chapter", or in case of
+an equation, surround the reference by parenthesis.
+
+Here is an example:
 
 !bc
 ===== My Section =====
@@ -300,7 +309,7 @@ label{sec:mysec}
 
 idx{key equation} idx{$\u$ conservation}
 
-We refer to ref{sec:yoursec} for background material on
+We refer to Section ref{sec:yoursec} for background material on
 the *key equation*. Here we focus on the extension
 
 # \Ddt, \u and \mycommand are defined in newcommands_keep.tex

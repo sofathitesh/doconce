@@ -433,7 +433,7 @@ cite{Langtangen:94b} OONSKI '94 paper.
 label{Example}
 
 Examples can start with a subsection heading starting with `Example:`
-and then, with the command-line option `--examples-as-exercises` be
+and then, with the command-line option `--examples_as_exercises` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -852,7 +852,7 @@ lambda x: x+2
 
 ===== Example: Just an example =====
 
-# This example needs the --examples-as-exercises option, otherwise
+# This example needs the --examples_as_exercises option, otherwise
 # it is just typeset as it is written.
 
 !bsubex
@@ -974,7 +974,7 @@ Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files are "Dropbox":
 "http://dropbox.com" and "Google Drive": "http://drive.google.com".
@@ -1037,7 +1037,7 @@ workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. [hpl:
 not sure if in the cloud is understood by all.] I strongly
 recommend you to use such sites for all serious programming and
-scientific writing work -- and all other important files.
+scientific writing work - and all other important files.
 
 The simplest services for hosting project files is Dropbox. [mp:
 Simply go to URL:"http://dropbox.com" and watch the video. It explains

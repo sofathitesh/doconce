@@ -16,12 +16,13 @@
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
@@ -29,7 +30,7 @@
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -39,19 +40,11 @@
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
-10pt]{book}
-% #else
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -59,25 +52,37 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
-\usepackage[latin1]{inputenc}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
 \usepackage{ptex2tex}
 
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -87,6 +92,7 @@ final,                   % or draft (marks overfull hboxes)
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 % #endif
 
 % Hyperlinks in PDF:
@@ -123,16 +129,56 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 
-% #ifndef NOTODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+% #ifdef TODONOTES
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
-\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}
+% #endif
+
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
 
@@ -163,9 +209,13 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{Doconce: Document Once, Include Anywhere}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Doconce: Document Once, Include Anywhere
+\end{spacing}
+}}}
 
-% #elif LATEX_HEADING == "Springer-collection"
+% #elif LATEX_HEADING == "Springer_collection"
 
 \title*{Doconce: Document Once, Include Anywhere}
 % Short version of title:
@@ -174,14 +224,18 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-{\LARGE\bf Doconce: Document Once, Include \\ [1.5mm] Anywhere}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Doconce: Document Once, Include Anywhere
+\end{spacing}
+}
 \end{center}
 
 % #endif
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
-\author{Hans Petter Langtangen\footnote{Simula Research Laboratory and University of Oslo.}}
+\author{Hans Petter Langtangen\footnote{Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}}
 
 % #elif LATEX_HEADING == "titlepage"
 \vspace{1.3cm}
@@ -190,14 +244,14 @@ final,                   % or draft (marks overfull hboxes)
     
 \ \\ [2mm]
 
-{\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
-{\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
-% #elif LATEX_HEADING == "Springer-collection"
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen}
 % Short version of authors:
 %\authorrunning{...}
-\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
+\institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
 
 % #else
 
@@ -207,8 +261,8 @@ final,                   % or draft (marks overfull hboxes)
 
 \begin{center}
 % List of all institutions:
-\centerline{{\small ${}^1$Simula Research Laboratory}}
-\centerline{{\small ${}^2$University of Oslo}}
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
@@ -218,13 +272,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Mar 7, 2013}
+\date{Apr 24, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 7, 2013}}
+{\large\textsf{Apr 24, 2013}}
 
 \end{center}
 \vfill
@@ -233,7 +287,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Mar 7, 2013
+Apr 24, 2013
 \end{center}
 
 \vspace{1cm}
@@ -333,13 +387,18 @@ the formating. Here are some examples.
 
 {\LaTeX} is ideal for articles, thesis, and books, but not so suited
 for web documents. Nice environments for web documents, such as
-Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
+Sphinx, Markdown, or plain HTML, are not particularly well
+suited for thesis and books. IPython notebooks are ideal for
+documenting computational experiments, but do not (yet) meet the
+requirements of books and thesis.
+
 What about migrating a part of a book for blogging? What about
 making an MS Word version or an untagged text for inclusion in email?
+What about efficiently generating slides in modern HTML5/CSS3 style?
 Doconce enables all this with just \emph{one source}. Doconce also has
 extra features for supporting documents with much code and mathematics.
 
-\subsection{Basic Syntax Examples}
+\subsection{Basic Syntax}
 
 Here is an example of some simple text written in the Doconce format:
 \bccq
@@ -424,8 +483,8 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 Section~\ref{my:first:sec}.
 
-Doconce also allows inline comments such as \shortinlinecomment{hpl}{here I will make
-some remarks to the text}{here I will make some remarks to the text} for allowing authors to make notes. Inline
+Doconce also allows inline comments such as \shortinlinecomment{hpl 1}{ here I will make
+some remarks to the text }{ here I will make } for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see Section~\ref{doconce2formats} for an example).
 
@@ -476,7 +535,7 @@ Blocks of mathematics are typeset with raw {\LaTeX}, inside
 \bccq
 !bt
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 !et
@@ -487,7 +546,7 @@ Blocks of mathematics are typeset with raw {\LaTeX}, inside
 The result looks like this:
 
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\ 
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 Of course, such blocks only looks nice in formats with support
@@ -546,7 +605,11 @@ for use inside math environments are supported.
 
 Labels, corss-references, citations, and support of an index and
 bibliography are much inspired by {\LaTeX} syntax, but Doconce features
-no backslashes. Here is an example:
+no backslashes. Use labels for sections and equations only, and
+preceed the reference by "Section" or "Chapter", or in case of
+an equation, surround the reference by parenthesis.
+
+Here is an example:
 
 \bccq
 ===== My Section =====
@@ -554,7 +617,7 @@ label{sec:mysec}
 
 idx{key equation} idx{$\u$ conservation}
 
-We refer to ref{sec:yoursec} for background material on
+We refer to Section ref{sec:yoursec} for background material on
 the *key equation*. Here we focus on the extension
 
 # \Ddt, \u and \mycommand are defined in newcommands_keep.tex
@@ -642,7 +705,7 @@ format specific actions through tests like \code{#if FORMAT == "latex"}
 
 \subsection{Removal of inline comments}
 
-The command-line arguments \code{--no-preprocess} and \code{--no-mako} turn off
+The command-line arguments \code{--no_preprocess} and \code{--no_mako} turn off
 running \code{preprocess} and \code{mako}, respectively.
 
 Inline comments in the text are removed from the output by
@@ -691,7 +754,7 @@ in an external CSS file; or in a template file.
 
 An external CSS file \code{filename} used by setting the command-line
 argument \code{--css=filename}. There available built-in styles are
-specified as \code{--html-style=name}, where \code{name} can be
+specified as \code{--html_style=name}, where \code{name} can be
 
 \begin{itemize}
  \item \code{solarized}: the famous \href{{http://ethanschoonover.com/solarized}}{solarized}
@@ -718,29 +781,37 @@ HTML file can have any specified layout.
 
 If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument \code{--no-pygments-html}
+aid of this package. The command-line argument \code{--no_pygments_html}
 turns off the use of Pygments and makes code blocks appear with
-plain (\code{pre}) HTML tags. The option \code{--pygments-html-linenos} turns
+plain (\code{pre}) HTML tags. The option \code{--pygments_html_linenos} turns
 on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \code{--pygments-html-style=style}, where \code{style}
+Pygments style is set by \code{--pygments_html_style=style}, where \code{style}
 can be \code{default}, \code{emacs}, \code{perldoc}, and other valid names for
 Pygments styles.
 
-The HTML file can be embedded in a template if the Doconce document
-does not have a title (because then there will be
-no header and footer in the HTML file). The template file must contain
+The HTML file can be embedded in a template with your own tailored
+design, see a "tutorial": " \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{\nolinkurl{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}" on this topic. The template file must contain
 valid HTML code and can have three "slots": \code{%(title)s} for a title,
-\code{%(date)s} for a date, and \code{%(main)s} for the main body of text, i.e., the
+\code{%(date)s} for a date, and \code{%(main)s} for the main body of text. The
+latter is the
 Doconce document translated to HTML. The title becomes the first
-heading in the Doconce document, and the date is extracted from the
-\code{DATE:} line, if present. With the template feature one can easily embed
-the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert \code{%(title)s} and
-\code{%(date)s} at appropriate places and replace the main bod of text
-by \code{%(main)s}. Here is an example:
+heading in the Doconce document, or the title (but a title is not
+recommended when using templates). The date is extracted from the
+\code{DATE:} line. With the template feature one can easily embed
+the text in the look and feel of a website. Doconce comes with
+two templates in \code{bundled/html_styles}. Just copy the directory
+containing the template and the CSS and JavaScript files to your
+document directory, edit the template as needed (also check that
+paths to the \code{css} and \code{js} subdirectories are correct - according
+to how you store the template files), and run
 \bsys
-Terminal> doconce format html mydoc --html-template=mytemplate.html
+Terminal> doconce format html mydoc --html_template=mytemplate.html
 \esys
+The template in \code{style_vagrant} also needs an extra option
+\code{--html_style=vagrant}. With this style, one has nice navigation buttons
+that are used if the document contains \code{!split} commands for splitting
+it into many pages.
+
 
 \subsection{Blogs}
 
@@ -766,18 +837,20 @@ a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
 for demonstrations of blogs at \code{blogspot.no}.
 
 
+
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 \setlength{\fboxrule}{2pt}
 \begin{center}
 \fcolorbox{black}{warningbackground}{
 \begin{minipage}{0.8\textwidth}
 \includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
+\ \ \ {\large\sc Warning}\\ [3mm]
 In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} % Back to default
+
 WordPress (\code{wordpress.com}) allows raw HTML code in blogs,
 but has very limited
 {\LaTeX} support, basically only formulas. The \code{--wordpress} option to
@@ -786,6 +859,10 @@ in a way that is acceptable to WordPress.
 Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
 and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
 to see blogging with mathematics and code on WordPress.
+
+Speaking of WordPress, the related project \href{{http://pressbooks.com}}{\nolinkurl{http://pressbooks.com}} can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.
 
 \subsection{Pandoc and Markdown}
 
@@ -866,7 +943,7 @@ can be placed in files \code{newcommands.tex}, \code{newcommands_keep.tex}, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \code{--latex-printed} makes some adjustments for documents
+An option \code{--latex_printed} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
@@ -898,8 +975,9 @@ A separate titlepage can be generate by
 Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
- \item \code{BOOK} for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings with 9 \code{=})
+ \item \code{XETEX} for processing by \code{xelatex}
+
+ \item \code{LATEX_HEADING} for the typesetting of the title, author, etc.
 
  \item \code{PALATINO} for the Palatino font
 
@@ -919,11 +997,21 @@ Preprocessor variables to be defined or undefined are
  \item \code{MINTED} for inclusion of the minted package for typesetting of
    code with the Pygments tool (which requires \code{latex}
    or \code{pdflatex} to be run with the \code{-shell-escape} option)
+
+ \item \code{TODONOTES} for using the fancy \code{todonotes} package for typesetting
+   inline comments (looks much like track changes in MS Word). This
+   macro has only effect if inline comments are used (name, colon,
+   and comment inside brackets).
+
+ \item \code{COLORED_TABLE_ROWS} for coloring every other table rows (set this
+   variable to \code{gray} or \code{blue})
+
+ \item \code{BLUE_SECTION_HEADINGS} for blue section and subsection headings
 \end{itemize}
 
 \noindent
 If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option \code{--latex-preamble=myfile}.
+your own preamble by adding the command-line option \code{--latex_preamble=myfile}.
 In case \code{myfile} contains a documentclass definition, Doconce assumes
 that the file contains the \emph{complete} preamble you want (not that all
 the packages listed in the default preamble are required and must be
@@ -943,9 +1031,9 @@ Also the \code{doconce ptex2tex} command supports preprocessor directives
 for processing the \code{.p.tex} file. The command allows specifications
 of code environments as well. Here is an example:
 \bsys
-Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
-          -DPALATINO -DA6PAPER \
-          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \ 
+          -DPALATINO -DA6PAPER \ 
+          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \ 
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 \esys
 Note that \code{@} must be used to separate the begin and end {\LaTeX}
@@ -977,7 +1065,7 @@ title, say "Using", and insert a break after than word. With
 a group before "Using" and a group after:
 
 \bsys
-Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+Terminal> doconce subst 'title\{(.+)Using (.+)\}' \ 
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
 \esys
 A lot of tailored fixes to the {\LaTeX} document can be done by
@@ -1101,8 +1189,8 @@ Some links for going from {\LaTeX} to Word are listed below.
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the \code{doconce sphinx_dir} command:
 \bsys
-Terminal> doconce sphinx_dir author="authors' names" \
-          title="some title" version=1.0 dirname=sphinxdir \
+Terminal> doconce sphinx_dir author="authors' names" \ 
+          title="some title" version=1.0 dirname=sphinxdir \ 
           theme=mytheme file1 file2 file3 ...
 \esys
 The keywords \code{author}, \code{title}, and \code{version} are used in the headings
@@ -1237,12 +1325,11 @@ The final alternative is to save the edited \code{conf.py} file somewhere
 and reuse it the next time \code{doconce sphinx_dir} is run
 
 \bsys
-doconce sphinx_dir theme=scipy_lectures \
+doconce sphinx_dir theme=scipy_lectures \ 
                    conf.py=../some/path/conf.py mydoc
 \esys
 
 \paragraph{The manual Sphinx procedure.}
-
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file \code{mydoc.do.txt}.
@@ -1460,8 +1547,9 @@ software. However, if you want other formats as output
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.
 
-\paragraph{Preprocessors.}
+% Make a debpkg_doconce.txt file with everything that is needed on Debian
 
+\paragraph{Preprocessors.}
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
 
@@ -1494,7 +1582,6 @@ tarball, pack it out, go to the directory and run
 the usual \code{sudo python setup.py install}.
 
 \paragraph{Image file handling.}
-
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for \code{latex}
 output, while HTML needs JPEG, GIF, or PNG formats.
@@ -1516,7 +1603,6 @@ sudo apt-get install texlive-extra-utils
 \esys
 
 \paragraph{Spellcheck.}
-
 The utility \code{doconce spellcheck} applies the \code{ispell} program for
 spellcheck. On Debian (including Ubuntu) it is installed by
 
@@ -1526,13 +1612,12 @@ sudo apt-get install ispell
 
 
 \paragraph{Bibliography.}
-
 The Python package \href{{https://bitbucket.org/logg/publish}}{Publish} is needed if you use a bibliography
 in your document. On the website, click on \emph{Clone}, copy the
 command and run it:
 
 \bsys
-hg clone  ssh://hg@bitbucket.org/logg/publish
+hg clone https://bitbucket.org/logg/publish
 \esys
 Thereafter go to the \code{publish} directory and run the \code{setup.py} script
 for installing Publish:
@@ -1544,7 +1629,6 @@ sudo python setup.py
 
 
 \paragraph{Ptex2tex for {\LaTeX} Output.}
-
 To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
 which is installed by
@@ -1595,15 +1679,53 @@ If you use the minted style together with \code{ptex2tex}, you have to
 enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.
 This is not necessary if you run the alternative \code{doconce ptex2tex} program.
 
-All
-use of the minted style requires the \code{-shell-escape} command-line
+All use of the minted style requires the \code{-shell-escape} command-line
 argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflatex
 -shell-escape}.
 
-% Say something about anslistings.sty
+Inline comments apply the \code{todonotes} {\LaTeX} package if the \code{ptex2tex}
+or \code{doconce ptex2tex} command is run with \code{-DTODONOTES}.  The
+\code{todonotes} package requires several other packages: \code{xcolor},
+\code{ifthen}, \code{xkeyval}, \code{tikz}, \code{calc}, \code{graphicx}, and \code{setspace}. The
+relevant Debian package for installing all this is
+\code{texlive-latex-extra}.
+
+\paragraph{{\LaTeX} packages.}
+Many {\LaTeX} packages are potentially needed (depending on various
+preprocessor variables given to \code{ptex2tex} or \code{doconce ptex2tex}.  The
+standard packages always included are \code{relsize}, \code{epsfig}, \code{makeidx},
+\code{setspace}, \code{color}, \code{amsmath}, \code{amsfonts}, \code{xcolor}, \code{bm},
+\code{microtype}, \code{titlesec}, and \code{hyperref}.  The \code{ptex2tex} package (from
+\href{{http://code.google.com/p/ptex2tex}}{ptex2tex}) is also included, but
+removed again if \code{doconce ptex2tex} is run instead of the \code{ptex2tex}
+program, meaning that if you do not use \code{ptex2tex}, you do not need
+\code{ptex2tex.sty}. Optional packages that might be included are \code{minted},
+\code{fontspec}, \code{xunicode}, \code{inputenc}, \code{helvet}, \code{mathpazo}, \code{wrapfig},
+\code{calc}, \code{ifthen}, \code{xkeyval}, \code{tikz}, \code{graphicx}, \code{setspace}, \code{shadow},
+\code{disable}, \code{todonotes}, \code{lineno}, \code{xr}, \code{movie15}, \code{a4paper}, and
+\code{a6paper}.
+
+Relevant Debian packages that gives you all of these {\LaTeX} packages are
+
+\bccq
+texlive-latex-base
+texlive-latex-recommended
+texlive-latex-extra
+texlive-math-extra
+texlive-bibtex-extra
+texlive-xetex
+texlive-humanities
+texlive-pictures
+\eccq
+
+If you want to use the \emph{anslistings} code environment with \code{ptex2tex}
+(\code{.ptex2tex.cfg} styles \code{Python_ANS}, \code{Python_ANSt}, \code{Cpp_ANS}, etc.) or
+\code{doconce ptex2tex} (\code{envir=ans} or \code{envir=ans:nt}), you need the
+\code{anslistings.sty} file. It can be obtained from
+the \href{{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}}{ptex2tex source}.
+
 
 \paragraph{reStructuredText (reST) Output.}
-
 The \code{rst} output from Doconce allows further transformation to {\LaTeX},
 HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
 most recent version can be done by
@@ -1625,7 +1747,7 @@ using ReportLab instead of {\LaTeX}. The enabling software is
 or clone the svn repository, go to the \code{rst2pdf} directory and
 run the usual \code{sudo python setup.py install}.
 
-
+\paragraph{Sphinx Output.}
 Output to \code{sphinx} requires of course the
 \href{{http://sphinx.pocoo.org}}{Sphinx software},
 installed by
@@ -1637,8 +1759,25 @@ sudo python setup.py install
 cd ..
 \esys
 
-\paragraph{Markdown and Pandoc Output.}
+Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:
 
+\begin{itemize}
+ \item could and redcloud: \href{{https://bitbucket.org/ecollins/cloud_sptheme}}{\nolinkurl{https://bitbucket.org/ecollins/cloud_sptheme}}
+
+ \item bootstrap: \href{{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}{\nolinkurl{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}
+
+ \item solarized: \href{{https://bitbucket.org/miiton/sphinxjp.themes.solarized}}{\nolinkurl{https://bitbucket.org/miiton/sphinxjp.themes.solarized}}
+
+ \item impressjs: \href{{https://github.com/shkumagai/sphinxjp.themes.impressjs}}{\nolinkurl{https://github.com/shkumagai/sphinxjp.themes.impressjs}}
+\end{itemize}
+
+\noindent
+These must be downloaded or cloned, and \code{setup.py} must be run as shown
+above.
+
+\paragraph{Markdown and Pandoc Output.}
 The Doconce format \code{pandoc} outputs the document in the Pandoc
 extended Markdown format, which via the \code{pandoc} program can be
 translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
@@ -1650,7 +1789,6 @@ sudo apt-get install pandoc
 on Debian (Ubuntu) systems.
 
 \paragraph{Epydoc Output.}
-
 When the output format is \code{epydoc} one needs that program too, installed
 by
 \bsys
@@ -1670,6 +1808,31 @@ run \code{svn update}, and then \code{sudo python setup.py install}. For
 Mercurial (\code{hg}) directories, go to the directory, run
 \code{hg pull; hg update}, and then \code{sudo python setup.py install}.
 
+\paragraph{The \protect\code{doconce diff} command.}
+The \code{doconce diff file1 file prog} command for illustrating differences between
+two files \code{file1} and \code{file2} using the program \code{prog} requires \code{prog}
+to be installed. By default, \code{prog} is \code{difflib} which comes with Python
+and is always present if you have Doconce installed. Another choice, \code{diff},
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their \code{sudo apt-get install} command on Debian (Ubuntu) systems
+appear in the table below.
+
+
+\begin{quote}\begin{tabular}{lll}
+\hline
+\multicolumn{1}{c}{ Program } & \multicolumn{1}{c}{ URL } & \multicolumn{1}{c}{ Debian/Ubuntu install } \\
+\hline
+\code{pdiff}                                                                              & \href{{http://www.gnu.org/software/a2ps/}}{a2ps} \href{{http://www.gnu.org/software/wdiff/}}{wdiff} & \code{sudo apt-get install a2ps wdiff texlive-latex-extra texlive-latex-recommended}      \\
+\code{latexdiff}                                                                          & \href{{http://www.ctan.org/pkg/latexdiff}}{latexdiff}                                          & \code{sudo apt-get install latexdiff}                                                     \\
+\code{kdiff3}                                                                             & \href{{http://kdiff3.sourceforge.net/}}{kdiff3}                                                & \code{sudo apt-get install kdiff3}                                                        \\
+\code{diffuse}                                                                            & \href{{http://diffuse.sourceforge.net/}}{diffuse}                                              & \code{sudo apt-get install diffuse}                                                       \\
+\code{xxdiff}                                                                             & \href{{http://xxdiff.sourceforge.net/local/}}{xxdiff}                                          & \code{sudo apt-get install xxdiff}                                                        \\
+\code{meld}                                                                               & \href{{http://meldmerge.org/}}{meld}                                                           & \code{sudo apt-get install meld}                                                          \\
+\code{tkdiff.tcl}                                                                         & \href{{https://sourceforge.net/projects/tkdiff/}}{tkdiff}                                      & \code{sudo apt-get install not in Debian}                                                 \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
 
 % ------------------- end of main content ---------------
 

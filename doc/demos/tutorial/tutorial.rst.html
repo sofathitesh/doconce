@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 7, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Apr 24, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -403,14 +403,18 @@ text (e.g., one text can describe programming in two languages).</li>
 <h2>What Can Doconce Be Used For?</h2>
 <p>LaTeX is ideal for articles, thesis, and books, but not so suited
 for web documents. Nice environments for web documents, such as
-Sphinx, Markdown, or plain HTML, are not so suited for thesis and books.
-What about migrating a part of a book for blogging? What about
+Sphinx, Markdown, or plain HTML, are not particularly well
+suited for thesis and books. IPython notebooks are ideal for
+documenting computational experiments, but do not (yet) meet the
+requirements of books and thesis.</p>
+<p>What about migrating a part of a book for blogging? What about
 making an MS Word version or an untagged text for inclusion in email?
+What about efficiently generating slides in modern HTML5/CSS3 style?
 Doconce enables all this with just <em>one source</em>. Doconce also has
 extra features for supporting documents with much code and mathematics.</p>
 </div>
-<div class="section" id="basic-syntax-examples">
-<h2>Basic Syntax Examples</h2>
+<div class="section" id="basic-syntax">
+<h2>Basic Syntax</h2>
 <p>Here is an example of some simple text written in the Doconce format:</p>
 <pre class="literal-block">
 ===== A Subsection with Sample Text =====
@@ -485,7 +489,7 @@ as in <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>.<
 <p>References to sections may use logical names as labels (e.g., a
 &quot;label&quot; command right after the section title), as in the reference to
 the section <a class="reference internal" href="#a-subsection-with-sample-text">A Subsection with Sample Text</a>.</p>
-<p>Doconce also allows inline comments such as (<strong>hpl</strong>: here I will make
+<p>Doconce also allows inline comments such as (<strong>hpl 1</strong>: here I will make
 some remarks to the text) for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example).</p>
@@ -609,14 +613,17 @@ construction.  The newcommands are defined in files with names
 for use inside math environments are supported.</p>
 <p>Labels, corss-references, citations, and support of an index and
 bibliography are much inspired by LaTeX syntax, but Doconce features
-no backslashes. Here is an example:</p>
+no backslashes. Use labels for sections and equations only, and
+preceed the reference by &quot;Section&quot; or &quot;Chapter&quot;, or in case of
+an equation, surround the reference by parenthesis.</p>
+<p>Here is an example:</p>
 <pre class="literal-block">
 ===== My Section =====
 label{sec:mysec}
 
 idx{key equation} idx{$\u$ conservation}
 
-We refer to ref{sec:yoursec} for background material on
+We refer to Section ref{sec:yoursec} for background material on
 the *key equation*. Here we focus on the extension
 
 # \Ddt, \u and \mycommand are defined in newcommands_keep.tex
@@ -696,7 +703,7 @@ format specific actions through tests like <tt class="docutils literal">#if FORM
 </div>
 <div class="section" id="removal-of-inline-comments">
 <h2>Removal of inline comments</h2>
-<p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
+<p>The command-line arguments <tt class="docutils literal"><span class="pre">--no_preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no_mako</span></tt> turn off
 running <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
@@ -742,7 +749,7 @@ using a named built-in style;
 in an external CSS file; or in a template file.</p>
 <p>An external CSS file <tt class="docutils literal">filename</tt> used by setting the command-line
 argument <tt class="docutils literal"><span class="pre">--css=filename</span></tt>. There available built-in styles are
-specified as <tt class="docutils literal"><span class="pre">--html-style=name</span></tt>, where <tt class="docutils literal">name</tt> can be</p>
+specified as <tt class="docutils literal"><span class="pre">--html_style=name</span></tt>, where <tt class="docutils literal">name</tt> can be</p>
 <blockquote>
 <ul class="simple">
 <li><tt class="docutils literal">solarized</tt>: the famous <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
@@ -763,28 +770,35 @@ described in a <a class="reference external" href="https://doconce.googlecode.co
 HTML file can have any specified layout.</p>
 <p>If the Pygments package (including the <tt class="docutils literal">pygmentize</tt> program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
+aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt>
 turns off the use of Pygments and makes code blocks appear with
-plain (<tt class="docutils literal">pre</tt>) HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
+plain (<tt class="docutils literal">pre</tt>) HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments_html_linenos</span></tt> turns
 on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by <tt class="docutils literal"><span class="pre">--pygments-html-style=style</span></tt>, where <tt class="docutils literal">style</tt>
+Pygments style is set by <tt class="docutils literal"><span class="pre">--pygments_html_style=style</span></tt>, where <tt class="docutils literal">style</tt>
 can be <tt class="docutils literal">default</tt>, <tt class="docutils literal">emacs</tt>, <tt class="docutils literal">perldoc</tt>, and other valid names for
 Pygments styles.</p>
-<p>The HTML file can be embedded in a template if the Doconce document
-does not have a title (because then there will be
-no header and footer in the HTML file). The template file must contain
+<p>The HTML file can be embedded in a template with your own tailored
+design, see a &quot;tutorial&quot;: &quot; <a class="reference external" href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html">https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html</a>&quot; on this topic. The template file must contain
 valid HTML code and can have three &quot;slots&quot;: <tt class="docutils literal">%(title)s</tt> for a title,
-<tt class="docutils literal">%(date)s</tt> for a date, and <tt class="docutils literal">%(main)s</tt> for the main body of text, i.e., the
+<tt class="docutils literal">%(date)s</tt> for a date, and <tt class="docutils literal">%(main)s</tt> for the main body of text. The
+latter is the
 Doconce document translated to HTML. The title becomes the first
-heading in the Doconce document, and the date is extracted from the
-<tt class="docutils literal">DATE:</tt> line, if present. With the template feature one can easily embed
-the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert <tt class="docutils literal">%(title)s</tt> and
-<tt class="docutils literal">%(date)s</tt> at appropriate places and replace the main bod of text
-by <tt class="docutils literal">%(main)s</tt>. Here is an example:</p>
+heading in the Doconce document, or the title (but a title is not
+recommended when using templates). The date is extracted from the
+<tt class="docutils literal">DATE:</tt> line. With the template feature one can easily embed
+the text in the look and feel of a website. Doconce comes with
+two templates in <tt class="docutils literal">bundled/html_styles</tt>. Just copy the directory
+containing the template and the CSS and JavaScript files to your
+document directory, edit the template as needed (also check that
+paths to the <tt class="docutils literal">css</tt> and <tt class="docutils literal">js</tt> subdirectories are correct - according
+to how you store the template files), and run:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
+Terminal&gt; doconce format html mydoc --html_template=mytemplate.html
 </pre>
+<p>The template in <tt class="docutils literal">style_vagrant</tt> also needs an extra option
+<tt class="docutils literal"><span class="pre">--html_style=vagrant</span></tt>. With this style, one has nice navigation buttons
+that are used if the document contains <tt class="docutils literal">!split</tt> commands for splitting
+it into many pages.</p>
 </div>
 <div class="section" id="blogs">
 <h2>Blogs</h2>
@@ -809,7 +823,7 @@ for demonstrations of blogs at <tt class="docutils literal">blogspot.no</tt>.</p
 scripts so there is no support for mathematics in the comments.</p>
 </div>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 358); <em><a href="#id2">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 367); <em><a href="#id2">backlink</a></em></p>
 Duplicate explicit target name: &quot;scientific report&quot;.</div>
 <p>WordPress (<tt class="docutils literal">wordpress.com</tt>) allows raw HTML code in blogs,
 but has very limited
@@ -819,6 +833,9 @@ in a way that is acceptable to WordPress.
 Look at a <a class="reference external" href="http://doconce.wordpress.com">simple doconce example</a>
 and a <a class="reference external" href="http://doconcereportdemo.wordpress.com/">scientific report</a>
 to see blogging with mathematics and code on WordPress.</p>
+<p>Speaking of WordPress, the related project <a class="reference external" href="http://pressbooks.com">http://pressbooks.com</a> can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.</p>
 </div>
 <div class="section" id="pandoc-and-markdown">
 <h2>Pandoc and Markdown</h2>
@@ -877,8 +894,8 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
 </div>
 <div class="section" id="id3">
 <h2>LaTeX</h2>
-<p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:
-.. Note: putting code blocks inside a list is not successful in many</p>
+<p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:</p>
+<!-- Note: putting code blocks inside a list is not successful in many -->
 <!-- formats - the text may be messed up. A better choice is a paragraph -->
 <!-- environment, as used here. -->
 <p><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for
@@ -891,7 +908,7 @@ can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt cl
 <tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands-cross-references-index-and-bibliography">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
-<p>An option <tt class="docutils literal"><span class="pre">--latex-printed</span></tt> makes some adjustments for documents
+<p>An option <tt class="docutils literal"><span class="pre">--latex_printed</span></tt> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
@@ -919,8 +936,8 @@ A separate titlepage can be generate by
 <p>Preprocessor variables to be defined or undefined are</p>
 <blockquote>
 <ul class="simple">
-<li><tt class="docutils literal">BOOK</tt> for the &quot;book&quot; documentclass rather than the standard
-&quot;article&quot; class (necessary if you apply chapter headings with 9 <tt class="docutils literal">=</tt>)</li>
+<li><tt class="docutils literal">XETEX</tt> for processing by <tt class="docutils literal">xelatex</tt></li>
+<li><tt class="docutils literal">LATEX_HEADING</tt> for the typesetting of the title, author, etc.</li>
 <li><tt class="docutils literal">PALATINO</tt> for the Palatino font</li>
 <li><tt class="docutils literal">HELVETICA</tt> for the Helvetica font</li>
 <li><tt class="docutils literal">A4PAPER</tt> for A4 paper size</li>
@@ -933,10 +950,17 @@ if the document has a title, author, and date)</li>
 <li><tt class="docutils literal">MINTED</tt> for inclusion of the minted package for typesetting of
 code with the Pygments tool (which requires <tt class="docutils literal">latex</tt>
 or <tt class="docutils literal">pdflatex</tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option)</li>
+<li><tt class="docutils literal">TODONOTES</tt> for using the fancy <tt class="docutils literal">todonotes</tt> package for typesetting
+inline comments (looks much like track changes in MS Word). This
+macro has only effect if inline comments are used (name, colon,
+and comment inside brackets).</li>
+<li><tt class="docutils literal">COLORED_TABLE_ROWS</tt> for coloring every other table rows (set this
+variable to <tt class="docutils literal">gray</tt> or <tt class="docutils literal">blue</tt>)</li>
+<li><tt class="docutils literal">BLUE_SECTION_HEADINGS</tt> for blue section and subsection headings</li>
 </ul>
 </blockquote>
 <p>If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option <tt class="docutils literal"><span class="pre">--latex-preamble=myfile</span></tt>.
+your own preamble by adding the command-line option <tt class="docutils literal"><span class="pre">--latex_preamble=myfile</span></tt>.
 In case <tt class="docutils literal">myfile</tt> contains a documentclass definition, Doconce assumes
 that the file contains the <em>complete</em> preamble you want (not that all
 the packages listed in the default preamble are required and must be
@@ -1419,6 +1443,7 @@ software. However, if you want other formats as output
 (LaTeX, Sphinx, reStructuredText) and assisting utilities such
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.</p>
+<!-- Make a debpkg_doconce.txt file with everything that is needed on Debian -->
 <div class="section" id="preprocessors">
 <h3>Preprocessors</h3>
 <p>If you make use of the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a>
@@ -1480,7 +1505,7 @@ sudo apt-get install ispell
 in your document. On the website, click on <em>Clone</em>, copy the
 command and run it:</p>
 <pre class="literal-block">
-hg clone  ssh://hg&#64;bitbucket.org/logg/publish
+hg clone https://bitbucket.org/logg/publish
 </pre>
 <p>Thereafter go to the <tt class="docutils literal">publish</tt> directory and run the <tt class="docutils literal">setup.py</tt> script
 for installing Publish:</p>
@@ -1534,11 +1559,47 @@ sudo python setup.py install
 <p>If you use the minted style together with <tt class="docutils literal">ptex2tex</tt>, you have to
 enable it by the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> command-line argument to <tt class="docutils literal">ptex2tex</tt>.
 This is not necessary if you run the alternative <tt class="docutils literal">doconce ptex2tex</tt> program.</p>
-<p>All
-use of the minted style requires the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> command-line
+<p>All use of the minted style requires the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> command-line
 argument when running LaTeX, i.e., <tt class="docutils literal">latex <span class="pre">-shell-escape</span></tt> or <tt class="docutils literal">pdflatex
 <span class="pre">-shell-escape</span></tt>.</p>
-<!-- Say something about anslistings.sty -->
+<p>Inline comments apply the <tt class="docutils literal">todonotes</tt> LaTeX package if the <tt class="docutils literal">ptex2tex</tt>
+or <tt class="docutils literal">doconce ptex2tex</tt> command is run with <tt class="docutils literal"><span class="pre">-DTODONOTES</span></tt>.  The
+<tt class="docutils literal">todonotes</tt> package requires several other packages: <tt class="docutils literal">xcolor</tt>,
+<tt class="docutils literal">ifthen</tt>, <tt class="docutils literal">xkeyval</tt>, <tt class="docutils literal">tikz</tt>, <tt class="docutils literal">calc</tt>, <tt class="docutils literal">graphicx</tt>, and <tt class="docutils literal">setspace</tt>. The
+relevant Debian package for installing all this is
+<tt class="docutils literal"><span class="pre">texlive-latex-extra</span></tt>.</p>
+</div>
+<div class="section" id="latex-packages">
+<h3>LaTeX packages</h3>
+<p>Many LaTeX packages are potentially needed (depending on various
+preprocessor variables given to <tt class="docutils literal">ptex2tex</tt> or <tt class="docutils literal">doconce ptex2tex</tt>.  The
+standard packages always included are <tt class="docutils literal">relsize</tt>, <tt class="docutils literal">epsfig</tt>, <tt class="docutils literal">makeidx</tt>,
+<tt class="docutils literal">setspace</tt>, <tt class="docutils literal">color</tt>, <tt class="docutils literal">amsmath</tt>, <tt class="docutils literal">amsfonts</tt>, <tt class="docutils literal">xcolor</tt>, <tt class="docutils literal">bm</tt>,
+<tt class="docutils literal">microtype</tt>, <tt class="docutils literal">titlesec</tt>, and <tt class="docutils literal">hyperref</tt>.  The <tt class="docutils literal">ptex2tex</tt> package (from
+<a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a>) is also included, but
+removed again if <tt class="docutils literal">doconce ptex2tex</tt> is run instead of the <tt class="docutils literal">ptex2tex</tt>
+program, meaning that if you do not use <tt class="docutils literal">ptex2tex</tt>, you do not need
+<tt class="docutils literal">ptex2tex.sty</tt>. Optional packages that might be included are <tt class="docutils literal">minted</tt>,
+<tt class="docutils literal">fontspec</tt>, <tt class="docutils literal">xunicode</tt>, <tt class="docutils literal">inputenc</tt>, <tt class="docutils literal">helvet</tt>, <tt class="docutils literal">mathpazo</tt>, <tt class="docutils literal">wrapfig</tt>,
+<tt class="docutils literal">calc</tt>, <tt class="docutils literal">ifthen</tt>, <tt class="docutils literal">xkeyval</tt>, <tt class="docutils literal">tikz</tt>, <tt class="docutils literal">graphicx</tt>, <tt class="docutils literal">setspace</tt>, <tt class="docutils literal">shadow</tt>,
+<tt class="docutils literal">disable</tt>, <tt class="docutils literal">todonotes</tt>, <tt class="docutils literal">lineno</tt>, <tt class="docutils literal">xr</tt>, <tt class="docutils literal">movie15</tt>, <tt class="docutils literal">a4paper</tt>, and
+<tt class="docutils literal">a6paper</tt>.</p>
+<p>Relevant Debian packages that gives you all of these LaTeX packages are:</p>
+<pre class="literal-block">
+texlive-latex-base
+texlive-latex-recommended
+texlive-latex-extra
+texlive-math-extra
+texlive-bibtex-extra
+texlive-xetex
+texlive-humanities
+texlive-pictures
+</pre>
+<p>If you want to use the <em>anslistings</em> code environment with <tt class="docutils literal">ptex2tex</tt>
+(<tt class="docutils literal">.ptex2tex.cfg</tt> styles <tt class="docutils literal">Python_ANS</tt>, <tt class="docutils literal">Python_ANSt</tt>, <tt class="docutils literal">Cpp_ANS</tt>, etc.) or
+<tt class="docutils literal">doconce ptex2tex</tt> (<tt class="docutils literal">envir=ans</tt> or <tt class="docutils literal">envir=ans:nt</tt>), you need the
+<tt class="docutils literal">anslistings.sty</tt> file. It can be obtained from
+the <a class="reference external" href="https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty">ptex2tex source</a>.</p>
 </div>
 <div class="section" id="restructuredtext-rest-output">
 <h3>reStructuredText (reST) Output</h3>
@@ -1560,6 +1621,9 @@ using ReportLab instead of LaTeX. The enabling software is
 <a class="reference external" href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
 or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
 run the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
+</div>
+<div class="section" id="sphinx-output">
+<h3>Sphinx Output</h3>
 <p>Output to <tt class="docutils literal">sphinx</tt> requires of course the
 <a class="reference external" href="http://sphinx.pocoo.org">Sphinx software</a>,
 installed by:</p>
@@ -1569,6 +1633,19 @@ cd sphinx
 sudo python setup.py install
 cd ..
 </pre>
+<p>Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:</p>
+<blockquote>
+<ul class="simple">
+<li>could and redcloud: <a class="reference external" href="https://bitbucket.org/ecollins/cloud_sptheme">https://bitbucket.org/ecollins/cloud_sptheme</a></li>
+<li>bootstrap: <a class="reference external" href="https://github.com/ryan-roemer/sphinx-bootstrap-theme">https://github.com/ryan-roemer/sphinx-bootstrap-theme</a></li>
+<li>solarized: <a class="reference external" href="https://bitbucket.org/miiton/sphinxjp.themes.solarized">https://bitbucket.org/miiton/sphinxjp.themes.solarized</a></li>
+<li>impressjs: <a class="reference external" href="https://github.com/shkumagai/sphinxjp.themes.impressjs">https://github.com/shkumagai/sphinxjp.themes.impressjs</a></li>
+</ul>
+</blockquote>
+<p>These must be downloaded or cloned, and <tt class="docutils literal">setup.py</tt> must be run as shown
+above.</p>
 </div>
 <div class="section" id="markdown-and-pandoc-output">
 <h3>Markdown and Pandoc Output</h3>
@@ -1599,6 +1676,59 @@ updates and bug fixes. For <tt class="docutils literal">svn</tt> directories, go
 run <tt class="docutils literal">svn update</tt>, and then <tt class="docutils literal">sudo python setup.py install</tt>. For
 Mercurial (<tt class="docutils literal">hg</tt>) directories, go to the directory, run
 <tt class="docutils literal">hg pull; hg update</tt>, and then <tt class="docutils literal">sudo python setup.py install</tt>.</p>
+</div>
+<div class="section" id="the-doconce-diff-command">
+<h3>The <tt class="docutils literal">doconce diff</tt> command</h3>
+<p>The <tt class="docutils literal">doconce diff file1 file prog</tt> command for illustrating differences between
+two files <tt class="docutils literal">file1</tt> and <tt class="docutils literal">file2</tt> using the program <tt class="docutils literal">prog</tt> requires <tt class="docutils literal">prog</tt>
+to be installed. By default, <tt class="docutils literal">prog</tt> is <tt class="docutils literal">difflib</tt> which comes with Python
+and is always present if you have Doconce installed. Another choice, <tt class="docutils literal">diff</tt>,
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their <tt class="docutils literal">sudo <span class="pre">apt-get</span> install</tt> command on Debian (Ubuntu) systems
+appear in the table below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Program</th>
+<th class="head">URL</th>
+<th class="head">Debian/Ubuntu install</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">pdiff</tt></td>
+<td><a class="reference external" href="http://www.gnu.org/software/a2ps/">a2ps</a> <a class="reference external" href="http://www.gnu.org/software/wdiff/">wdiff</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install a2ps wdiff <span class="pre">texlive-latex-extra</span> <span class="pre">texlive-latex-recommended</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">latexdiff</tt></td>
+<td><a class="reference external" href="http://www.ctan.org/pkg/latexdiff">latexdiff</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install latexdiff</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">kdiff3</tt></td>
+<td><a class="reference external" href="http://kdiff3.sourceforge.net/">kdiff3</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install kdiff3</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">diffuse</tt></td>
+<td><a class="reference external" href="http://diffuse.sourceforge.net/">diffuse</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install diffuse</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">xxdiff</tt></td>
+<td><a class="reference external" href="http://xxdiff.sourceforge.net/local/">xxdiff</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install xxdiff</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">meld</tt></td>
+<td><a class="reference external" href="http://meldmerge.org/">meld</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install meld</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">tkdiff.tcl</tt></td>
+<td><a class="reference external" href="https://sourceforge.net/projects/tkdiff/">tkdiff</a></td>
+<td><tt class="docutils literal">sudo <span class="pre">apt-get</span> install not in Debian</tt></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

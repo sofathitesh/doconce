@@ -8,8 +8,8 @@ except ImportError:
     OrderedDict = dict
 
 def _abort():
-    if not option('no-abort'):
-        print 'Abort! (add --no-abort on the command line to avoid this abortion)'
+    if not option('no_abort'):
+        print 'Abort! (add --no_abort on the command line to avoid this abortion)'
         sys.exit(1)
     else:
         print 'avoided abortion because of --no-abort'
@@ -122,6 +122,7 @@ def syntax_check(filestr, format):
                 print '   ', '"%s": "%s"' % (link, url1)
                 print '    use either link as verbatim code only, %s,' % '"`%s`"' % link.replace('`', '')
                 print '    or no verbatim: "%s"' % link.replace('`', '')
+                print '    or use only the verbatim part as link'
                 _abort()
 
     pattern = re.compile(r'[^\n:.?!,]^(!b[ct]|@@@CODE)', re.MULTILINE)
@@ -699,7 +700,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
     exer_end = False
     exer_counter = dict(Exercise=0, Problem=0, Project=0, Example=0)
 
-    if option('examples-as-exercises'):
+    if option('examples_as_exercises'):
         exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project|Example)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
     else:
         exer_heading_pattern = re.compile(r'^\s*(=====)\s*\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?)\s*=====')
@@ -842,7 +843,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             # (E|Explanation):(.+?)($|False|True)
             # HTML can generate JavaScript a la INF1100 quiz (put all
             # js in the html file), latex can use fancy constructions,
-            # others can use a plain list. --with-sol determines if
+            # others can use a plain list. --with_sol determines if
             # the solution is published (as for the answer/solution).
             if inside_subex and not instruction_line:
                 if inside_answer:
@@ -2128,8 +2129,8 @@ def doconce2format(filestr, format):
         delimiter = '------------------- end of main content ---------------'
         delimiter = comment_pattern % delimiter + '\n'  # wrap as comment
         filestr = filestr + '\n' + delimiter
-    if has_title and not option('no-header-footer') and \
-           option('html-template=', default='') == '':
+    if has_title and not option('no_header_footer') and \
+           option('html_template=', default='') == '':
         if format in INTRO:
             filestr = INTRO[format] + filestr
         if format in OUTRO:
@@ -2146,7 +2147,7 @@ def doconce2format(filestr, format):
             print """
 Causes:
  * %s inside code block (replace ! by |)'
- * forgotten --examples-as-exercises (if the environment is inside an example)
+ * forgotten --examples_as_exercises (if the environment is inside an example)
  * wrong match of %s and the corresponding begin/end clause
 """ % (m.group(1), m.group(1))
             print 'Here is the context:\n----------------------------------'
@@ -2181,7 +2182,7 @@ Causes:
     # Recall that the comment syntax is now dependent on the format
     comment_pattern = INLINE_TAGS_SUBST[format].get('comment', '# %s')
     for envir in 'sol', 'ans', 'hint':
-        option_name = 'without-' + envir2option[envir]
+        option_name = 'without_' + envir2option[envir]
         if option(option_name):
             pattern = comment_pattern % envir_delimiter_lines[envir][0] + \
                       '\n.+?' + comment_pattern % \
@@ -2308,8 +2309,8 @@ preprocess package (sudo apt-get install preprocess).
 """ % filename
             _abort()
 
-        if option('no-preprocess'):
-            print 'Found preprocess-like statements, but --no-preprocess prevents running preprocess'
+        if option('no_preprocess'):
+            print 'Found preprocess-like statements, but --no_preprocess prevents running preprocess'
             shutil.copy(filename, resultfile)  # just copy
         else:
             cmd = 'preprocess -DFORMAT=%s -DDEVICE=%s %s %s > %s' % \
@@ -2344,11 +2345,11 @@ preprocess package (sudo apt-get install preprocess).
             match_mako_variable = True
             break
 
-    if (match_percentage or match_mako_variable) and option('no-mako'):
-        # Found mako-like statements, but --no-mako is forced, give a message
+    if (match_percentage or match_mako_variable) and option('no_mako'):
+        # Found mako-like statements, but --no_mako is forced, give a message
         print '*** warning: mako is not run because of the option --no-mako'
 
-    if (not option('no-mako')) and (match_percentage or match_mako_variable):
+    if (not option('no_mako')) and (match_percentage or match_mako_variable):
         # Found use of mako
 
         # Check if there is SWIG or Matlab code that can fool mako with a %
@@ -2373,7 +2374,7 @@ or put the code in a file that is included
 with @@@CODE filename, or drop mako instructions
 or variables and rely on preprocess only in the
 preprocessing step. In the latter case you
-need to include --no-mako on the command line.
+need to include --no_mako on the command line.
 '''
             print 'mako is not run because of lines starting with %,'
             print 'fix the lines as described or remove all mako statements.'
@@ -2409,7 +2410,7 @@ python-mako package (sudo apt-get install python-mako).
         f.write(filestr)
         f.close()
 
-        strict_undefined = True if option('mako-strict-undefined') else False
+        strict_undefined = True if option('mako_strict_undefined') else False
         from mako.template import Template
         from mako.lookup import TemplateLookup
         lookup = TemplateLookup(directories=[os.curdir])
@@ -2438,7 +2439,7 @@ python-mako package (sudo apt-get install python-mako).
             if "Undefined" in str(e):
                 print '*** mako error: NameError Undefined variable,'
                 print '                one or more ${var} variables are undefined.\n'
-                print '                Rerun with --mako-strict-undefined to see where the problem is.'
+                print '                Rerun with --mako_strict_undefined to see where the problem is.'
                 _abort()
             elif "is not defined" in str(e):
                 print '*** mako error: NameError', e

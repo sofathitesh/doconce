@@ -236,10 +236,10 @@ def html_code(filestr, code_blocks, code_block_types,
     except ImportError:
         pygm = None
     # Can turn off pygments on the cmd line
-    if option('no-pygments-html'):
+    if option('no_pygments_html'):
         pygm = None
     if pygm is not None:
-        pygm_style = option('pygments-html-style=', default='default')
+        pygm_style = option('pygments_html_style=', default='default')
         legal_styles = list(get_all_styles())
         legal_styles += ['no', 'none']
         if pygm_style not in legal_styles:
@@ -250,7 +250,7 @@ def html_code(filestr, code_blocks, code_block_types,
         if pygm_style in ['no', 'none']:
             pygm = None
 
-        linenos = option('pygments-html-linenos')
+        linenos = option('pygments_html_linenos')
 
     PythoOnlineTutor = False  # True if one occurence
     for i in range(len(code_blocks)):
@@ -490,22 +490,22 @@ MathJax.Hub.Config({
             filestr = toc + filestr
 
     # Add header from external template
-    template = option('html-template=', default='')
-    if option('html-style=') == 'vagrant':
+    template = option('html_template=', default='')
+    if option('html_style=') == 'vagrant':
         # Set template_vagrant.html as template
         if not template:
             print """
-*** error: --html-style=vagrant requires
+*** error: --html_style=vagrant requires
     cp -r path/to/doconce-source-root/bundled/html_styles/style_vagrant/* .
     # edit template_vargrant.html to template_mystyle.html
-    --html-template=template_mystyle.html
+    --html_template=template_mystyle.html
 """
             sys.exit(1)
     if 'template_vagrant.html' in template \
-       and not option('html-style=') == 'vagrant':
+       and not option('html_style=') == 'vagrant':
         print """
-*** error: --html-template= with a template based on
-    template_vagrant.html requires --html-style=vagrant
+*** error: --html_template= with a template based on
+    template_vagrant.html requires --html_style=vagrant
 """
         sys.exit(1)
 
@@ -556,7 +556,7 @@ MathJax.Hub.Config({
 
         # Make toc for navigation
         toc_html = ''
-        if option('html-style=') == 'vagrant':
+        if option('html_style=') == 'vagrant':
             level_min = tocinfo['highest level']
             toc_html = ''
             for title, level, label, href in tocinfo['sections']:
@@ -967,9 +967,9 @@ def html_%s(block, format):
 """ %% block
     janko = '<div class="%s">%%s</div>' %% block
     vagrant = '<div class="alert alert-block alert-%s">%%s</div>' %% block
-    if option('html-color-admon'):
+    if option('html_color_admon'):
         return janko
-    elif option('html-style=') == 'vagrant':
+    elif option('html_style=') == 'vagrant':
         return vagrant
     else:
         return lyx
@@ -1078,20 +1078,20 @@ def define(FILENAME_EXTENSION,
     TOC['html'] = html_toc
 
     # Embedded style sheets
-    if option('html-style=') == 'solarized':
+    if option('html_style=') == 'solarized':
         css = css_solarized
-    elif option('html-style=') == 'blueish':
+    elif option('html_style=') == 'blueish':
         css = css_blueish
-    elif option('html-style=') == 'blueish2':
+    elif option('html_style=') == 'blueish2':
         css = css_blueish2
-    elif option('html-style=') == 'bloodish':
+    elif option('html_style=') == 'bloodish':
         css = css_bloodish
     else:
         css = css_blueish # default
 
     # Fonts
-    body_font_family = option('html-body-font=', None)
-    heading_font_family = option('html-heading-font=', None)
+    body_font_family = option('html_body_font=', None)
+    heading_font_family = option('html_heading_font=', None)
     google_fonts = ('Patrick+Hand+SC', 'Molle:400italic', 'Happy+Monkey',
                     'Roboto+Condensed', 'Fenix', 'Yesteryear',
                     'Clicker+Script', 'Stalemate',

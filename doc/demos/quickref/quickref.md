@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% Apr 23, 2013
+% Apr 24, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -939,7 +939,7 @@ Here goes a full solution of the whole exercise.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments `--without-answers` and `--without-solutions`
+The command-line arguments `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 

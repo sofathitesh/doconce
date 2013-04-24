@@ -29,11 +29,11 @@ EOF
 
 d2f="doconce format"
 # doconce html format:
-$d2f html manual.do.txt --no-mako --no-pygments-html
+$d2f html manual.do.txt --no_mako --no_pygments_html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Sphinx
-$d2f sphinx manual.do.txt --no-mako
+$d2f sphinx manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 rm -rf sphinx-rootdir
@@ -50,7 +50,7 @@ make html
 cd ..
 
 # rst:
-$d2f rst manual.do.txt --no-mako
+$d2f rst manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 rst2html.py manual.rst > manual.rst.html
@@ -67,20 +67,20 @@ latex manual.rst.tex
 dvipdf manual.rst.dvi
 
 # plain text:
-$d2f plain manual.do.txt --skip_inline_comments --no-mako
+$d2f plain manual.do.txt --skip_inline_comments --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-$d2f epytext manual.do.txt --no-mako
+$d2f epytext manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-$d2f st manual.do.txt --no-mako
+$d2f st manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-$d2f pandoc manual.do.txt --no-mako
+$d2f pandoc manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # doconce pdflatex:
-$d2f pdflatex manual.do.txt --no-mako
+$d2f pdflatex manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
@@ -92,7 +92,7 @@ pdflatex -shell-escape manual
 cp manual.pdf manual_pdflatex.pdf
 
 # doconce latex:
-$d2f latex manual.do.txt --no-mako   # produces ptex2tex: manual.p.tex
+$d2f latex manual.do.txt --no_mako   # produces ptex2tex: manual.p.tex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 latex -shell-escape manual
@@ -104,16 +104,16 @@ latex -shell-escape manual
 dvipdf manual.dvi
 
 # Google Code wiki:
-$d2f gwiki manual.do.txt --no-mako
+$d2f gwiki manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
 doconce subst "\(the URL of the image file figs/streamtubes.png must be inserted here\)" "https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png" manual.gwiki
 
-$d2f cwiki manual.do.txt --no-mako
+$d2f cwiki manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-$d2f mwiki manual.do.txt --no-mako
+$d2f mwiki manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 rm -f *.ps

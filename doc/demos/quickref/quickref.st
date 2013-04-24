@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Apr 23, 2013
+DATE: Apr 24, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -856,7 +856,7 @@ setup-up::
         
 
 By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments '--without-answers' and '--without-solutions'
+The command-line arguments '--without_answers' and '--without_solutions'
 turn off output of answers and solutions, respectively, except for
 examples.
 
