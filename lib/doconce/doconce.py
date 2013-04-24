@@ -2473,6 +2473,11 @@ def main():
 
     global _log, encoding, filename
 
+    if '--options' in sys.argv:
+        from misc import help_format
+        help_format()
+        sys.exit(1)
+
     try:
         format = sys.argv[1]
         filename = sys.argv[2]
@@ -2482,11 +2487,12 @@ def main():
         options = ' '.join(get_legal_command_line_options())
         print 'Usage: %s format filename [preprocessor options] [%s]\n' \
               % (sys.argv[0], options)
+        print 'Run "doconce format --options" to see explanation of all options'
         if len(sys.argv) == 1:
             print 'Missing format specification!'
-        print 'formats:', str(supported_format_names())[1:-1]
+        print 'formats:', ', '.join(supported_format_names())
         print '\n-DFORMAT=format is always defined when running preprocess'
-        print 'Other -Dvar preprocess options can be added'
+        print 'Other -Dvar or -Dvar=value options can be added'
         sys.exit(1)
 
     names = supported_format_names()

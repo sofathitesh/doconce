@@ -34,7 +34,7 @@ use plain <pre> tags."""),
 such that the verbatim environments become like
 \begin{minted}[...,linenos=true,...].)"""),
     ('--html-style=',
-     'Name of theme for HTML style (solarized, vagrant, ...).'),
+     'Name of theme for HTML style (solarized, vagrant, bloodish, ...).'),
     ('--html-template=',
      """Specify an HTML template with header/footer in which the doconce
 document is embedded."""),
@@ -46,7 +46,7 @@ document is embedded."""),
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
     ('--device=',
-     """Set device to paper, screen, or other (paper impacts LaTeX output."""),
+     """Set device to paper, screen, or other (paper impacts LaTeX output)."""),
     ('--latex-double-hyphen',
      'Replace - by -- in LaTeX output. Somewhat intelligent, but may give unwanted edits.'),
     ('--latex-preamble=',
@@ -55,8 +55,7 @@ document is embedded."""),
      """True if color admon images are to be used in notice, warning, etc.
 environments, otherwise simpler (lyx_*.png) files are used."""),
     ('--css=',
-     """Specify a .css style file for HTML output.
-(If the file does not exist, a default style is written to it."""),
+     """Specify a .css style file for HTML output. If the file does not exist, the default or specified style (--html-style=) is written to it."""),
     ('--verbose',
      'Write out all OS commands run by doconce.'),
     ('--examples-as-exercises',
@@ -68,7 +67,7 @@ environments, otherwise simpler (lyx_*.png) files are used."""),
     ('--without-hints',
      'Leave out hints from exercises.'),
     ('--wordpress',
-     'Make HTML output for wordpress pages.'),
+     'Make HTML output for wordpress.com pages.'),
     ]
 
 _legal_command_line_options = \
@@ -77,6 +76,12 @@ _legal_command_line_options = \
 def get_legal_command_line_options():
     """Return list of legal command-line options."""
     return _legal_command_line_options
+
+def help_format():
+    for opt, help in _registered_command_line_options:
+        if opt.endswith('='):
+            opt += '...'
+        print '%s\n    %s\n' % (opt, help)
 
 # Import options from config file instead of the command line
 try:
