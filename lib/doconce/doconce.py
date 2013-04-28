@@ -733,8 +733,8 @@ def exercises(filestr, format, code_blocks, tex_blocks):
 
     for line_no in range(len(lines)):
         line = lines[line_no].lstrip()
-        #print 'LINE %d:' % i, line #[[[
-        #import pprint; pprint.pprint(exer) #[[[
+        #print 'LINE %d:' % i, line
+        #import pprint; pprint.pprint(exer)
 
         m_heading = exer_heading_pattern.search(line)
         if m_heading:
@@ -1149,8 +1149,12 @@ def typeset_envirs(filestr, format):
                     elif title[-1] not in ('.', ':', '!', '?'):
                         # Make sure the title ends with puncuation
                         title += '.'
-                    return '\n\n__%s__\n%s\n\n' % \
-                           (title, m.group(2))
+                    # Recall that this formatting is called very late
+                    # so native format must be used
+                    title = INLINE_TAGS_SUBST[format]['paragraph'].replace(
+                        r'\g<subst>', '%s') % title + '\n'
+                    return title + m.group(2) + '\n\n'
+
             # else: other envirs for slides are treated later with
             # the begin and end directives set in comments, see doconce2format
 
@@ -2230,7 +2234,7 @@ Causes:
     # by ! (for illustration of doconce syntax inside !bc/!ec directives).
     # Enough to consider |bc, |ec, |bt, and |et since all other environments
     # are processed when code and tex blocks are removed from the document.
-    for envir in ['c', 't']:
+    for envir in doconce_envirs():
         filestr = filestr.replace('|b' + envir, '!b' + envir)
         filestr = filestr.replace('|e' + envir, '!e' + envir)
 

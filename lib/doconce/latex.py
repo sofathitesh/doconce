@@ -775,7 +775,8 @@ def _get_admon_figs(filename):
         os.chdir(os.pardir)
 
 
-def _latex_admonition(admon, admon_name, figname, rgb):
+def _latex_admonition_old_does_not_work_with_verbatim(
+    admon, admon_name, figname, rgb):
     if isinstance(rgb[0], (float,int)):
         rgb = [str(v) for v in rgb]
     text = '''
@@ -800,8 +801,6 @@ def latex_%s(block, format, title='%s'):
 ''' % (admon, admon_name, admon, admon, ', '.join(rgb), admon, latexfigdir, figname)
     return text
 
-#\\vskip-0.3in\hskip1.9in{\large\sc %s} \\\\[0.4cm]
-
 _light_blue = (0.87843, 0.95686, 1.0)
 _light_yellow = (0.988235, 0.964706, 0.862745)
 _pink = (1.0, 0.8235294, 0.8235294)
@@ -812,13 +811,34 @@ _admon2rgb = dict(warning=_pink,
                   summary=_light_yellow,
                   hint=_light_blue,
                   )
-for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
-    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
-                           _admon, _admon2rgb[_admon]))
+# Dropped this since it cannot work with verbatim computer code
+#for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
+#    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
+#                           _admon, _admon2rgb[_admon]))
 
-# Redefine summary (no admon, \summarybox instead)
+for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
+    text = r"""
+def latex_%s(block, format, title='%s'):
+    text = r'''
+\begin{%sadmon}
+\ \ \ {\large\sc %%s}\\ \par
+\nobreak\noindent\ignorespaces
+%%s
+\end{%sadmon}
+''' %% (title, block)
+    return text
+    """ % (_admon, _admon[0].upper() + _admon[1:], _admon, _admon)
+    exec(text)
+
+
+# Redefine summary (no admon, \summarybox instead, which gives
+# a gray box with horizontal rules and that can be small and surrounded
+# by text for a4 format)
 def latex_summary(block, format, title='Summary'):
-    # title is not used
+    if title != 'Summary':
+        if title[-1] not in ('.', '!', '?', ';', ':'):
+            title += ':'
+        block = r'\textbf{%s} ' % title + block
     return '\\summarybox{\n' + block + '}\n'
 
 def latex_inline_comment(m):
@@ -1252,6 +1272,33 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
 """
+    admons = ['warning', 'question', 'hint', 'notice', 'summary']
+    if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
+        INTRO['latex'] += r"""
+\usepackage{framed}"""
+        for admon in admons:
+            Admon = admon.upper()[0] + admon[1:]
+            figname = admon + '.eps'  # must be changed to .pdf in pdflatex.py
+            _get_admon_figs(figname)
+            color = str(_admon2rgb[admon])[1:-1]
+            INTRO['latex'] += r"""
+%% Admonition environment for "%s"
+\definecolor{%sbackground}{rgb}{%s}
+%% \fboxsep sets the space between the text and the box
+\newenvironment{%sshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{%sbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{%sadmon}{
+\begin{%sshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/%s}
+}
+{
+\end{%sshaded}
+}
+""" % (admon, admon, color, admon, admon, admon, admon, figname, admon)
+
     INTRO['latex'] += r"""
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows

@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% Apr 24, 2013
+% Apr 28, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -456,9 +456,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to `sphinx` and other formats such that
 labels in `align` environments work well.)
 
-
-
-*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+*Notice.* 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as `sphinx`, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -962,8 +961,8 @@ the environments:
 
  * `quote`: indented text
 
- * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
-    specialy typesetting (or symbols)
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
+    special icon and (frequently) background color
 
  * `pop`: text to gradually pop up in slide presentations
 

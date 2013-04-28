@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Apr 24, 2013
+DATE: Apr 28, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -407,9 +407,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to 'sphinx' and other formats such that
 labels in 'align' environments work well.)
 
-
-
-*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+*Notice.* 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as 'sphinx', makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -873,8 +872,8 @@ the environments:
  - 'ans': short answer to exercise or sub-exercise
  - 'sol': full solution to exercise or sub-exercise
  - 'quote': indented text
- - 'notice', 'summary', 'warning', 'question', 'hint': boxes with
-    specialy typesetting (or symbols)
+ - 'notice', 'summary', 'warning', 'question', 'hint': admonition boxes with
+    special icon and (frequently) background color
  - 'pop': text to gradually pop up in slide presentations
  - 'slidecell': indication of cells in a grid layout for elements on a
    slide

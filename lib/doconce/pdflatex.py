@@ -50,7 +50,7 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['pdflatex'] = INDEX_BIB['latex']
     TABLE['pdflatex'] = TABLE['latex']
     EXERCISE['pdflatex'] = EXERCISE['latex']
-    INTRO['pdflatex'] = INTRO['latex']
+    INTRO['pdflatex'] = INTRO['latex'].replace('.eps', '.pdf')
     OUTRO['pdflatex'] = OUTRO['latex']
     ARGLIST['pdflatex'] = ARGLIST['latex']
     TOC['pdflatex'] = TOC['latex']

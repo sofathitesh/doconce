@@ -241,8 +241,10 @@ especially for scientific writing.
  * Made for science books *and* smaller teaching modules
  * Targets traditional books, electronic PDF, PDF for phones,
    web pages, Google and Wordpress blogs (with math and code)
- * Support for code snippets from files, embedded movies, warnings/hint/info,
-   generalized links
+ * Support for code snippets from files, embedded movies,
+   generalized links, and
+   boxes (admonitions) for warnings, question, summary, hint,
+   and notice
  * Support for HTML5 slides - short way from prose to slides
  * Integrates with preprocessors: preprocess and mako
  * Handles multiple formats for figures

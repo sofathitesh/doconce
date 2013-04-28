@@ -982,44 +982,44 @@ file=earth2moon.pdf
 
 Here goes main body of text describing the exercise...
 
-!bsubex
+|bsubex
 Subexercises are numbered a), b), etc.
 
-!bans
+|bans
 Short answer to subexercise a).
-!eans
+|eans
 
-!bhint
+|bhint
 First hint to subexercise a).
-!ehint
+|ehint
 
-!bhint
+|bhint
 Second hint to subexercise a).
-!ehint
-!esubex
+|ehint
+|esubex
 
-!bsubex
+|bsubex
 Here goes the text for subexercise b).
 
-!bhint
+|bhint
 A hint for this subexercise.
-!ehint
+|ehint
 
-!bsol
+|bsol
 Here goes the solution of this subexercise.
-!esol
-!esubex
+|esol
+|esubex
 
-!bremarks
+|bremarks
 At the very end of the exercise it may be appropriate to summarize
-and give some perspectives. The text inside the !bremarks-!eremarks
+and give some perspectives. The text inside the |bremarks-|eremarks
 directives is always typeset at the end of the exercise.
-!eremarks
+|eremarks
 
-!bsol
+|bsol
 Here goes a full solution of the whole exercise.
-!esol
-!ec
+|esol
+|ec
 
 A recommended rule for using the different "exercise" types goes as follows:
 
@@ -1433,6 +1433,80 @@ will then be rendered to
 \eeqa
 !et
 in the current format.
+
+===== Admonitions =====
+
+Doconce offers strong support for admonition environments, such
+as warning boxes, notification boxes, hint boxes, question boxes,
+and summary boxes. The boxes normally have an icon, a heading,
+and may also have a background color.
+
+The following admonition environments are available:
+`warning`, `notice`, `hint`, `question`, and `summary`.
+The box is defined by begin and end tags such as `!bhint` and `!ehint`.
+(The hint box is typeset differently inside exercises compared to outside
+exericises: inside a plain paragraph heading *Hint* (with number)
+appears, while outside exercises the `hint` environment gives a
+box with some admonition icon, text and/or colored background.)
+The title of the box is fully customizable.
+
+Here are a few examples:
+
+!bc
+|bwarning
+Here is a warning!
+|ewarning
+
+|bhint
+This is a hint.
+|ehint
+
+|bnotice Gooing deeper
+This is text meant to provide more details. The box has the
+layout of the notice box, but a custom title, here "Going deeper".
+|enotice
+
+Finally some summary:
+
+|bsummary
+The main message is to utilize the admonition styles for
+marking different parts of the text
+|esummary
+!ec
+The above Doconce code is rendered as
+
+!bwarning
+Here is a warning!
+!ewarning
+
+!bhint
+This is a hint.
+!ehint
+
+!bnotice Gooing deeper
+This is text meant to provide more details. The box has the
+layout of the notice box, but a custom title, here "Going deeper".
+!enotice
+
+Finally some summary:
+
+!bsummary
+The main message is to utilize the admonition styles for
+marking different parts of the text
+!esummary
+
+The layout of admonitions depend on the format. In `latex` and
+`pdflatex`, the admonition have a symbol and colored background,
+in `rst` and `sphinx` one applies the native admonitions, but
+in `sphinx` the `automake_sphinx.py` script manipulates the HTML
+file to set a gray background for all admonitions.
+In `html` one has a command-line argument `--html_admon` that
+can be set to different styles: `--html_admon=white` for
+white background and small icons, `--html_admon=gray` for
+larger icons with gray background and small font, `--html_admon=apricot`
+works as the `gray` style, but the color is apricot, and
+`--html_admon=colors` implies the same icons as for `gray` and
+`apricot`, but different background colors for the different admonitions.
 
 ===== Preprocessing Steps =====
 
