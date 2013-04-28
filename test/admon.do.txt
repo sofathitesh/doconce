@@ -42,6 +42,15 @@ It is smart to read on and remember to
 
  o stay cool
  o read hints carefully
+
+Also, remember
+
+!bc pycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+!ec
 !ehint
 
 A bit of text before the summary, which we now call "Concluding remarks,
