@@ -37,7 +37,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -48,23 +48,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -145,7 +144,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
-<center><h4>Apr 24, 2013</h4></center> <!-- date -->
+<center><h4>Apr 28, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -682,7 +681,7 @@ labels in <code>align</code> environments work well.)
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice</b></th>
+<th align="left" valign="middle"><b>Notice.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 LaTeX supports lots of fancy formatting, for example, multiple
@@ -1215,8 +1214,8 @@ the environments:
  <li> <code>ans</code>: short answer to exercise or sub-exercise</li>
  <li> <code>sol</code>: full solution to exercise or sub-exercise</li>
  <li> <code>quote</code>: indented text</li>
- <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
-    specialy typesetting (or symbols)</li>
+ <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
+    special icon and (frequently) background color</li>
  <li> <code>pop</code>: text to gradually pop up in slide presentations</li>
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide</li>

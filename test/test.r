@@ -947,14 +947,6 @@ Without label.
 Here is a hint.
 !ehint
 
-!bwarning
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-  * and a list
-  * with items
-!ewarning
 
 # #if FORMAT in ("latex", "pdflatex")
 \clearpage
@@ -1033,18 +1025,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-!bnotice
-Ah, we are close to the end.
-With math:
-!bt
-\[ p=q\]
-!et
-!enotice
-
-!bquestion
-So, how many admonition environments does Doconce support?
-!equestion
 
 ===== Appendix: Testing inline comments =====
 
@@ -1137,7 +1117,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -1148,23 +1128,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -1580,6 +1559,87 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+
+\usepackage{framed}
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint.eps}
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary.eps}
+}
+{
+\end{summaryshaded}
+}
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -2934,43 +2994,11 @@ With label.
 Without label.
 
 
-
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{hintbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
-\ \ \ {\large\sc Hint}\\ [3mm]
+\begin{hintadmon}
+\ \ \ {\large\sc Hint}\\ \par
+\nobreak\noindent\ignorespaces
 Here is a hint.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-\ \ \ {\large\sc Warning}\\ [3mm]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
+\end{hintadmon}
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -3042,36 +3070,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
-\ \ \ {\large\sc Notice}\\ [3mm]
-Ah, we are close to the end.
-With math:
-\[ p=q\]
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{questionbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/question.eps}
-\ \ \ {\large\sc Question}\\ [3mm]
-So, how many admonition environments does Doconce support?
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Appendix: Testing inline comments}
 
@@ -3210,6 +3208,87 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+
+\usepackage{framed}
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.pdf}
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint.pdf}
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice.pdf}
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary.pdf}
+}
+{
+\end{summaryshaded}
+}
 
 % color every two table rows
 \let\oldtabular\tabular
@@ -4465,43 +4544,11 @@ With label.
 Without label.
 
 
-
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{hintbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\ \ \ {\large\sc Hint}\\ [3mm]
+\begin{hintadmon}
+\ \ \ {\large\sc Hint}\\ \par
+\nobreak\noindent\ignorespaces
 Here is a hint.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\ \ \ {\large\sc Warning}\\ [3mm]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
+\end{hintadmon}
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -4573,36 +4620,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\ \ \ {\large\sc Notice}\\ [3mm]
-Ah, we are close to the end.
-With math:
-\[ p=q\]
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{questionbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
-\ \ \ {\large\sc Question}\\ [3mm]
-So, how many admonition environments does Doconce support?
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Appendix: Testing inline comments}
 
@@ -4737,6 +4754,87 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+
+\usepackage{framed}
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.pdf}
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint.pdf}
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice.pdf}
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary.pdf}
+}
+{
+\end{summaryshaded}
+}
 
 
 % prevent orhpans and widows
@@ -5926,43 +6024,11 @@ With label.
 Without label.
 
 
-
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{hintbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/hint.pdf}
-\ \ \ {\large\sc Hint}\\ [3mm]
+\begin{hintadmon}
+\ \ \ {\large\sc Hint}\\ \par
+\nobreak\noindent\ignorespaces
 Here is a hint.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
-\ \ \ {\large\sc Warning}\\ [3mm]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
+\end{hintadmon}
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -6034,36 +6100,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.pdf}
-\ \ \ {\large\sc Notice}\\ [3mm]
-Ah, we are close to the end.
-With math:
-\[ p=q\]
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{questionbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
-\ \ \ {\large\sc Question}\\ [3mm]
-So, how many admonition environments does Doconce support?
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Appendix: Testing inline comments}
 
@@ -7355,15 +7391,6 @@ Without label.
    Here is a hint.
 
 
-.. warning::
-    And here is a warning about something to pay attention to. We
-    test how the heading behave and add quite some extra texts
-    in comparison with the other admons.
-    
-      * and a list
-    
-      * with items
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -7377,7 +7404,8 @@ Greg Wilson' excellent `Script for Introduction to Version Control <http://softw
 from using version control systems.
 
 
-.. important::
+.. admonition:: Summary
+
    **Bold remark:** Make some text with this summary.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
@@ -7388,6 +7416,7 @@ from using version control systems.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
+
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -7435,18 +7464,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-.. note::
-   Ah, we are close to the end.
-   With math::
-
-        \[ p=q\]
-
-
-
-.. attention::
-   So, how many admonition environments does Doconce support?
 
 Appendix: Testing inline comments
 ---------------------------------
@@ -8890,15 +8907,6 @@ Without label.
    Here is a hint.
 
 
-.. warning::
-    And here is a warning about something to pay attention to. We
-    test how the heading behave and add quite some extra texts
-    in comparison with the other admons.
-    
-      * and a list
-    
-      * with items
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -8912,7 +8920,8 @@ Greg Wilson' excellent `Script for Introduction to Version Control <http://softw
 from using version control systems.
 
 
-.. important::
+.. admonition:: Summary
+
    **Bold remark:** Make some text with this summary.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
@@ -8923,6 +8932,7 @@ from using version control systems.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
+
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -8970,19 +8980,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-.. note::
-   Ah, we are close to the end.
-   With math:
-
-.. math::
-         p=q
-
-
-
-.. attention::
-   So, how many admonition environments does Doconce support?
 
 Appendix: Testing inline comments
 ---------------------------------
@@ -9065,8 +9062,7 @@ Here is a nested list:
 
 
 
-    Here are two lines that make up
-    a block quote.
+
 
 <wiki:comment> !split and check if these extra words are included properly in the comment </wiki:comment>
 
@@ -9978,19 +9974,8 @@ With label.
 
 Without label.
 
-
-
-*Hint.* Here is a hint.
-
-
-
-*Warning.* And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-
-  * and a list
-  * with items
+*Hint.* 
+Here is a hint.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -10004,7 +9989,8 @@ have the latest updates of the files.
 Greg Wilson' excellent [http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/ Script for Introduction to Version Control] provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-*Summary.* _Bold remark:_ Make some text with this summary.
+*Summary.* 
+*Bold remark:* Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -10061,18 +10047,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-*Notice.* Ah, we are close to the end.
-With math:
-{{{
-\[ p=q\]
-}}}
-
-
-
-*Question.* So, how many admonition environments does Doconce support?
 
 ==== Appendix: Testing inline comments ====
 
@@ -10157,8 +10131,7 @@ Here is a nested list:
 
 </ul>
 
-    Here are two lines that make up
-    a block quote.
+
 
 <!-- !split and check if these extra words are included properly in the comment -->
 
@@ -11144,21 +11117,8 @@ With label.
 
 Without label.
 
-
-
-''Hint.''
+''Hint.''\n
 Here is a hint.
-
-
-{{warning|And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-
-<ul>
-  <li> and a list
-  <li> with items
-</ul>}}
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -11172,7 +11132,8 @@ have the latest updates of the files.
 Greg Wilson' excellent [http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/ Script for Introduction to Version Control] provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-''Summary.'' '''Bold remark:''' Make some text with this summary.
+''Summary.''\n
+'''Bold remark:''' Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -11229,20 +11190,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-''Notice.''
-Ah, we are close to the end.
-With math:
-:<math>
- p=q
-</math>
-
-
-
-''Question.''
-So, how many admonition environments does Doconce support?
 
 ==== Appendix: Testing inline comments ====
 
@@ -11324,8 +11271,7 @@ Here is a nested list:
 
 
 
-    Here are two lines that make up
-    a block quote.
+
 
 <wiki:comment> !split and check if these extra words are included properly in the comment </wiki:comment>
 
@@ -12194,19 +12140,8 @@ With label.
 
 Without label.
 
-
-
-//Hint.// Here is a hint.
-
-
-
-//Warning.// And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-
-  * and a list
-  * with items
+//Hint.// 
+Here is a hint.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -12220,7 +12155,8 @@ have the latest updates of the files.
 Greg Wilson' excellent [[http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/|Script for Introduction to Version Control]] provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-//Summary.// **Bold remark:** Make some text with this summary.
+//Summary.// 
+**Bold remark:** Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -12277,18 +12213,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-//Notice.// Ah, we are close to the end.
-With math:
-{{{
-\[ p=q\]
-}}}
-
-
-
-//Question.// So, how many admonition environments does Doconce support?
 
 == Appendix: Testing inline comments ==
 
@@ -12358,8 +12282,7 @@ Here is a nested list:
       continuing on a new line
 
 
-    Here are two lines that make up
-    a block quote.
+
 
 # !split and check if these extra words are included properly in the comment
 
@@ -13227,18 +13150,8 @@ Appendix: Testing identical titles
 
 Without label.
 
-
-
-*Hint.* Here is a hint.
-
-
-
-*Warning.* And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-  - and a list
-  - with items
+*Hint.* 
+Here is a hint.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -13251,7 +13164,9 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent "http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/":Script for Introduction to Version Control provides a more detailed motivation why you will benefit greatly
 from using version control systems.
-*Summary.* **Bold remark:** Make some text with this summary.
+
+*Summary.* 
+**Bold remark:** Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -13307,19 +13222,6 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
-
-
-
-
-*Notice.* Ah, we are close to the end.
-With math::
-
-        \[ p=q\]
-
-
-
-
-*Question.* So, how many admonition environments does Doconce support?
 
 
 Appendix: Testing inline comments
@@ -13391,8 +13293,7 @@ Here is a nested list:
       continuing on a new line
 
 
-    Here are two lines that make up
-    a block quote.
+
 
 # !split and check if these extra words are included properly in the comment
 
@@ -14294,18 +14195,8 @@ Appendix: Testing identical titles
 
 Without label.
 
-
-
-I{Hint.} Here is a hint.
-
-
-
-I{Warning.} And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-  - and a list
-  - with items
+I{Hint.} 
+Here is a hint.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -14319,7 +14210,8 @@ have the latest updates of the files.
 Greg Wilson' excellent U{Script for Introduction to Version Control<http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/>} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-I{Summary.} B{Bold remark:} Make some text with this summary.
+I{Summary.} 
+B{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -14375,19 +14267,6 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
-
-
-
-
-I{Notice.} Ah, we are close to the end.
-With math::
-
-        \[ p=q\]
-
-
-
-
-I{Question.} So, how many admonition environments does Doconce support?
 
 
 Appendix: Testing inline comments
@@ -14526,8 +14405,7 @@ Here is a nested list:
       continuing on a new line
 
 
-    Here are two lines that make up
-    a block quote.
+
 
 # !split and check if these extra words are included properly in the comment
 
@@ -15449,19 +15327,8 @@ Appendix: Testing identical titles
 
 Without label.
 
-
-
-*Hint.* Here is a hint.
-
-
-
-*Warning.* And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-  * and a list
-
-  * with items
+*Hint.* 
+Here is a hint.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -15475,7 +15342,8 @@ have the latest updates of the files.
 Greg Wilson' excellent Script for Introduction to Version Control (http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/) provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-*Summary.* _Bold remark:_ Make some text with this summary.
+*Summary.* 
+_Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -15532,18 +15400,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-*Notice.* Ah, we are close to the end.
-With math::
-
-        \[ p=q\]
-
-
-
-
-*Question.* So, how many admonition environments does Doconce support?
 
 Appendix: Testing inline comments
 ---------------------------------
@@ -16730,19 +16586,8 @@ With label.
 
 Without label.
 
-
-
-*Hint.* Here is a hint.
-
-
-
-*Warning.* And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-  * and a list
-
-  * with items
+*Hint.* 
+Here is a hint.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -16755,7 +16600,9 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent [Script for Introduction to Version Control](http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/) provides a more detailed motivation why you will benefit greatly
 from using version control systems.
-*Summary.* _Bold remark:_ Make some text with this summary.
+
+*Summary.* 
+_Bold remark:_ Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -16811,20 +16658,6 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
-
-
-
-
-*Notice.* Ah, we are close to the end.
-With math:
-$$
- p=q
-$$
-
-
-
-*Question.* So, how many admonition environments does Doconce support?
-
 
 
 ### Appendix: Testing inline comments
@@ -16918,8 +16751,10 @@ case in LaTeX.
       "      continuing on a new line\n",
       "\n",
       "\n",
-      "> Here are two lines that make up\n",
-      "> a block quote.\n",
+      "!bquote\n",
+      "Here are two lines that make up\n",
+      "a block quote.\n",
+      "!equote\n",
       "\n",
       "<!-- !split and check if these extra words are included properly in the comment -->\n",
       "\n",
@@ -18302,19 +18137,11 @@ case in LaTeX.
       "\n",
       "Without label.\n",
       "\n",
+      "!bhint\n",
+      "Here is a hint.\n",
+      "!ehint\n",
       "\n",
       "\n",
-      "*Hint.* Here is a hint.\n",
-      "\n",
-      "\n",
-      "\n",
-      "*Warning.* And here is a warning about something to pay attention to. We\n",
-      "test how the heading behave and add quite some extra texts\n",
-      "in comparison with the other admons.\n",
-      "\n",
-      "  * and a list\n",
-      "\n",
-      "  * with items\n",
       "\n",
       "Need a lot of text to surround the summary box.\n",
       "Version control systems allow you to record the history of files\n",
@@ -18328,7 +18155,8 @@ case in LaTeX.
       "Greg Wilson' excellent [Script for Introduction to Version Control](http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/) provides a more detailed motivation why you will benefit greatly\n",
       "from using version control systems.\n",
       "\n",
-      "*Summary.* _Bold remark:_ Make some text with this summary.\n",
+      "!bsummary\n",
+      "_Bold remark:_ Make some text with this summary.\n",
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
@@ -18338,6 +18166,7 @@ case in LaTeX.
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
       "Much testing in this document, otherwise stupid content.\n",
+      "!esummary\n",
       "\n",
       "Projects that you want to share among several computers or project\n",
       "workers are today most conveniently stored at some web site \"in the\n",
@@ -18384,29 +18213,6 @@ case in LaTeX.
       "detailed information and constitute of course very valuable readings\n",
       "when you use version control systems every day. The point now is\n",
       "to get started.\n",
-      "\n",
-      "\n",
-      "\n",
-      "\n",
-      "*Notice.* Ah, we are close to the end.\n",
-      "With math:"
-     ]
-    },
-    {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
-      "$$\n",
-      "p=q\n",
-      "$$"
-     ]
-    },
-    {
-     "cell_type": "markdown",
-     "metadata": {},
-     "source": [
-      "*Question.* So, how many admonition environments does Doconce support?\n",
-      "\n",
       "\n",
       "\n",
       "### Appendix: Testing inline comments\n",
@@ -19175,6 +18981,7 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>With label.</p>
 <h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
 <p>Without label.</p>
+<p>   Hint<br /> Here is a hint.</p>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson’ excellent <a href="{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files are <a href="{http://dropbox.com}">Dropbox</a> and <a href="{http://drive.google.com}">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
@@ -19963,21 +19770,13 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <h3 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h3>
 <p>Without label.</p>
 <p><em>Hint.</em> Here is a hint.</p>
-<p><em>Warning.</em> And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
-<ul>
-<li><p>and a list</p></li>
-<li><p>with items</p></li>
-</ul>
-<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems. <em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
+<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p><em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files are <a href="http://dropbox.com">Dropbox</a> and <a href="http://drive.google.com">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
 <p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems. The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
 <p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files. Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the &quot;master version&quot; at the site where the project is hosted. If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
 <p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
-<p><em>Notice.</em> Ah, we are close to the end. With math: \[
- p=q
-\]</p>
-<p><em>Question.</em> So, how many admonition environments does Doconce support?</p>
 <h3 id="appendix-testing-inline-comments">Appendix: Testing inline comments</h3>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. [hpl 1: not sure if in the cloud is understood by all.] I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files is Dropbox. [mp 2: Simply go to <a href="http://dropbox.com"><code class="url">http://dropbox.com</code></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \(\partial u/\partial t\), are easily communicated between machines.] It is very easy to get started with Dropbox, and it allows you to share files among laptops and mobile units.</p>
@@ -21721,7 +21520,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -21732,23 +21531,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -22038,7 +21836,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -22049,23 +21847,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -22333,7 +22130,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -22344,23 +22141,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -23856,33 +23652,10 @@ Without label.
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint</b></th>
+<th align="left" valign="middle"><b>Hint.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 Here is a hint.
-</p></td></tr>
-</table>
-<p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
-<th align="left" valign="middle"><b>Warning</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-<p>
-
-<table border="0">
-
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> and a list</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> with items</li>
-</td></tr></table>
-
 </p></td></tr>
 </table>
 <p>
@@ -23905,7 +23678,7 @@ from using version control systems.
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Summary</b></th>
+<th align="left" valign="middle"><b>Summary.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 <b>Bold remark:</b> Make some text with this summary.
@@ -23973,33 +23746,6 @@ to get started.
 
 <p>
 
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-Ah, we are close to the end.
-With math:
-$$ p=q$$
-
-</p></td></tr>
-</table>
-<p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
-<th align="left" valign="middle"><b>Question</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-So, how many admonition environments does Doconce support?
-</p></td></tr>
-</table>
-<p>
 
 <h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
 
@@ -24651,7 +24397,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -24662,23 +24408,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -26186,31 +25931,10 @@ Without label.
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint</b></th>
+<th align="left" valign="middle"><b>Hint.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 Here is a hint.
-</p></td></tr>
-</table>
-<p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
-<th align="left" valign="middle"><b>Warning</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-<p>
-
-<ul>
-  <li> and a list</li>
-  <li> with items</li>
-</ul>
 </p></td></tr>
 </table>
 <p>
@@ -26233,7 +25957,7 @@ from using version control systems.
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Summary</b></th>
+<th align="left" valign="middle"><b>Summary.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 <b>Bold remark:</b> Make some text with this summary.
@@ -26301,35 +26025,6 @@ to get started.
 
 <p>
 
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-Ah, we are close to the end.
-With math:
-
-$latex  p=q $
-
-
-</p></td></tr>
-</table>
-<p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
-<th align="left" valign="middle"><b>Question</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-So, how many admonition environments does Doconce support?
-</p></td></tr>
-</table>
-<p>
 
 <h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
 
@@ -26427,7 +26122,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -26438,23 +26133,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -28016,31 +27710,10 @@ Without label.
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint</b></th>
+<th align="left" valign="middle"><b>Hint.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 Here is a hint.
-</p></td></tr>
-</table>
-<p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
-<th align="left" valign="middle"><b>Warning</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-<p>
-
-<ul>
-  <li> and a list</li>
-  <li> with items</li>
-</ul>
 </p></td></tr>
 </table>
 <p>
@@ -28063,7 +27736,7 @@ from using version control systems.
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Summary</b></th>
+<th align="left" valign="middle"><b>Summary.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 <b>Bold remark:</b> Make some text with this summary.
@@ -28131,33 +27804,6 @@ to get started.
 
 <p>
 
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-Ah, we are close to the end.
-With math:
-$$ p=q$$
-
-</p></td></tr>
-</table>
-<p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
-<th align="left" valign="middle"><b>Question</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-So, how many admonition environments does Doconce support?
-</p></td></tr>
-</table>
-<p>
 
 <h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
 
@@ -28399,6 +28045,87 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+
+\usepackage{framed}
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint.eps}
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary.eps}
+}
+{
+\end{summaryshaded}
+}
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -29722,43 +29449,11 @@ With label.
 Without label.
 
 
-
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{hintbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
-\ \ \ {\large\sc Hint}\\ [3mm]
+\begin{hintadmon}
+\ \ \ {\large\sc Hint}\\ \par
+\nobreak\noindent\ignorespaces
 Here is a hint.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-\ \ \ {\large\sc Warning}\\ [3mm]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
+\end{hintadmon}
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -29830,36 +29525,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-
-
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
-\ \ \ {\large\sc Notice}\\ [3mm]
-Ah, we are close to the end.
-With math:
-\[ p=q\]
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
-
-
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{questionbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/question.eps}
-\ \ \ {\large\sc Question}\\ [3mm]
-So, how many admonition environments does Doconce support?
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Appendix: Testing inline comments}
 
@@ -30137,10 +29802,21 @@ print os.getcwd()
 system('make clean')
 system('make html')
 
-print 'Fix double title in <title> tags in .html files:'
+print 'Fix generated files:'
 os.chdir('_build/html')
 for filename in glob.glob('*.html'):
-    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename)
+    # Fix double title in <title> tags
+    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename, echo=False)
+    # Fix admonition style
+    system("""doconce replace "</head>" "
+   <style type="text/css">
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+" %s""" % filename, echo=False)
     os.remove(filename + '.old~')
 print """
 google-chrome sphinx-rootdir/_build/html/index.html
@@ -30222,10 +29898,21 @@ print os.getcwd()
 system('make clean')
 system('make html')
 
-print 'Fix double title in <title> tags in .html files:'
+print 'Fix generated files:'
 os.chdir('_build/html')
 for filename in glob.glob('*.html'):
-    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename)
+    # Fix double title in <title> tags
+    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %s' % filename, echo=False)
+    # Fix admonition style
+    system("""doconce replace "</head>" "
+   <style type="text/css">
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+" %s""" % filename, echo=False)
     os.remove(filename + '.old~')
 print """
 google-chrome sphinx-rootdir-math/_build/html/index.html
@@ -30475,6 +30162,37 @@ doconce md2html $name.md
 cp $name.html ${name}_pandoc.html
 doconce format pandoc $name
 doconce md2latex $name
+
+# Test admonitions
+doconce format html admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_white.html
+
+doconce format html admon --html_admon=colors
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_colors.html
+
+doconce format html admon --html_admon=gray
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_gray.html
+
+doconce format html admon --html_admon=apricot
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_apricot.html
+
+doconce sphinx_dir dirname=tmp_admon admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+python automake_sphinx.py
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp tmp_admon/_build/html/admon.html admon_sphinx.html
+
+#google-chrome admon_*.html
+
+doconce format pdflatex admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex admon
+pdflatex admon
+
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
@@ -34703,17 +34421,10 @@ With label.
 Without label.
 
 <p>
-<div class="alert alert-block alert-hint">Here is a hint.</div><p>
-<div class="alert alert-block alert-warning">And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
+<div class="alert alert-block alert-hint"><b>Hint.</b>
+Here is a hint.
+</div>
 <p>
-
-<ul>
-  <li> and a list</li>
-  <li> with items</li>
-</ul></div><p>
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -34728,7 +34439,8 @@ Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for
 from using version control systems.
 
 <p>
-<div class="alert alert-block alert-summary">_Bold remark:_ Make some text with this summary.
+<div class="alert alert-block alert-summary"><b>Summary.</b>
+<b>Bold remark:</b> Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -34737,7 +34449,9 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.</div><p>
+Much testing in this document, otherwise stupid content.
+</div>
+<p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -34790,11 +34504,6 @@ to get started.
 
 <p>
 
-<div class="alert alert-block alert-notice">Ah, we are close to the end.
-With math:
-$$ p=q$$
-
-<div class="alert alert-block alert-question">So, how many admonition environments does Doconce support?</div><p>
 
 <h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
 
@@ -36299,15 +36008,6 @@ Without label.
    Here is a hint.
 
 
-.. warning::
-    And here is a warning about something to pay attention to. We
-    test how the heading behave and add quite some extra texts
-    in comparison with the other admons.
-    
-      * and a list
-    
-      * with items
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -36321,7 +36021,8 @@ Greg Wilson' excellent `Script for Introduction to Version Control <http://softw
 from using version control systems.
 
 
-.. important::
+.. admonition:: Summary
+
    **Bold remark:** Make some text with this summary.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
@@ -36332,6 +36033,7 @@ from using version control systems.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
    Much testing in this document, otherwise stupid content.
+
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -36380,19 +36082,6 @@ when you use version control systems every day. The point now is
 to get started.
 
 
-
-.. note::
-   Ah, we are close to the end.
-   With math:
-
-.. math::
-         p=q
-
-
-
-.. attention::
-   So, how many admonition environments does Doconce support?
-
 Appendix: Testing inline comments
 ---------------------------------
 
@@ -36423,6 +36112,2181 @@ Appendix: Testing headings ending with ``verbatim inline``
 The point here is to test 1) ``verbatim`` code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in LaTeX.
+
+************** File: admon_colors.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Testing admons">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+    .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
+    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Testing admons</title>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<p>
+
+<div class="warning"><b>Warning.</b>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+</div>
+<p>
+Here goes some more text before a "notice" admonition where we control
+the title.
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+<div class="notice"><b>Note, eventually!</b>
+Ah, we are close to the end.
+With math:
+$$ p=q$$
+</div>
+<p>
+<div class="question"><b>Question.</b>
+So, how many admonition environments does Doconce support?
+</div>
+<p>
+<div class="hint"><b>Hint.</b>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</div>
+<p>
+More notice envir.
+
+<p>
+<div class="notice"><b>Going deeper.</b>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
+    mycos <span style="color: #666666">=</span> Central4(sin)
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
+    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
+
+    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
+    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
+    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
+
+<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
+    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+    _test()
+</pre></div>
+<p>
+</div>
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+because we can.
+
+<p>
+<div class="summary"><b>Concluding remarks, for the novice.</b>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: admon.p.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
+% #endif
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer_collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for mobile devices
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},           % inner margin (two sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{ptex2tex}
+
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
+% #ifdef PALATINO
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
+% #endif
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
+
+\usepackage{framed}
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.pdf}
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint.pdf}
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice.pdf}
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary.pdf}
+}
+{
+\end{summaryshaded}
+}
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% #endif
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+% #if LATEX_HEADING == "traditional"
+
+\title{Testing admons}
+
+% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}}}
+
+% #elif LATEX_HEADING == "Springer_collection"
+
+\title*{Testing admons}
+% Short version of title:
+%\titlerunning{...}
+
+% #else
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% #endif
+
+% ----------------- author(s) -------------------------
+% #if LATEX_HEADING == "traditional"
+\author{hpl}
+
+% #elif LATEX_HEADING == "titlepage"
+\vspace{1.3cm}
+
+    {\Large\textsf{hpl${}^{}$}}\\ [3mm]
+    
+\ \\ [2mm]
+
+% #elif LATEX_HEADING == "Springer_collection"
+
+\author{hpl}
+% Short version of authors:
+%\authorrunning{...}
+\institute{hpl}
+
+% #else
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% #endif
+% ----------------- end author(s) -------------------------
+
+
+% ----------------- date -------------------------
+
+% #if LATEX_HEADING == "traditional"
+
+\date{Jan 32, 2100}
+\maketitle
+
+% #elif LATEX_HEADING == "titlepage"
+
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
+
+\end{center}
+\vfill
+\clearpage
+
+% #else
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+% #endif
+
+
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+
+\begin{warningadmon}
+\ \ \ {\large\sc Warning}\\ \par
+\nobreak\noindent\ignorespaces
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+\end{warningadmon}
+Here goes some more text before a "notice" admonition where we control
+the title.
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{noticeadmon}
+\ \ \ {\large\sc Note, eventually!}\\ \par
+\nobreak\noindent\ignorespaces
+Ah, we are close to the end.
+With math:
+\[ p=q\]
+\end{noticeadmon}
+
+\begin{questionadmon}
+\ \ \ {\large\sc Question}\\ \par
+\nobreak\noindent\ignorespaces
+So, how many admonition environments does Doconce support?
+\end{questionadmon}
+\begin{hintadmon}
+\ \ \ {\large\sc Hint}\\ \par
+\nobreak\noindent\ignorespaces
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{hintadmon}
+More notice envir.
+
+
+\begin{noticeadmon}
+\ \ \ {\large\sc Going deeper.}\\ \par
+\nobreak\noindent\ignorespaces
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+
+def _test():
+    mycos = Central4(sin)
+    print dir(mycos)
+    print mycos.__dict__
+    print mycos.__class__.__bases__[0].__dict__
+    # Compute sin'(pi)
+    print "g'(%g)=%g (exact value is %g)" % (pi, mycos(pi), cos(pi))
+    mysin = Central4(Central4(sin))
+    # Compute sin''(pi)
+    print "g''(%g)=%g (exact value is %g)" % (pi, mysin(pi), -sin(pi))
+
+    df = Central2(lambda x: exp(x), h=1.0E-9)
+    bigx = 20
+    print exp(bigx), exp(bigx) - df(bigx)
+
+if __name__ == '__main__':
+    from math import *
+    _test()
+\epycod
+\end{noticeadmon}
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+because we can.
+
+\summarybox{
+\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.}
+% ------------------- end of main content ---------------
+
+
+% #ifdef PREAMBLE
+\printindex
+
+\end{document}
+% #endif
+
+
+************** File: admon_gray.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Testing admons">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+    .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
+    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Testing admons</title>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<p>
+
+<div class="alert alert-block alert-warning"><b>Warning.</b>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+</div>
+<p>
+Here goes some more text before a "notice" admonition where we control
+the title.
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Note, eventually!</b>
+Ah, we are close to the end.
+With math:
+$$ p=q$$
+</div>
+<p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+So, how many admonition environments does Doconce support?
+</div>
+<p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</div>
+<p>
+More notice envir.
+
+<p>
+<div class="alert alert-block alert-notice"><b>Going deeper.</b>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
+    mycos <span style="color: #666666">=</span> Central4(sin)
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
+    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
+
+    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
+    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
+    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
+
+<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
+    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+    _test()
+</pre></div>
+<p>
+</div>
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+because we can.
+
+<p>
+<div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: admon_apricot.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Testing admons">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+    .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #fbeed5;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: #fcf8e3;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
+    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Testing admons</title>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<p>
+
+<div class="alert alert-block alert-warning"><b>Warning.</b>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+</div>
+<p>
+Here goes some more text before a "notice" admonition where we control
+the title.
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Note, eventually!</b>
+Ah, we are close to the end.
+With math:
+$$ p=q$$
+</div>
+<p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+So, how many admonition environments does Doconce support?
+</div>
+<p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</div>
+<p>
+More notice envir.
+
+<p>
+<div class="alert alert-block alert-notice"><b>Going deeper.</b>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
+    mycos <span style="color: #666666">=</span> Central4(sin)
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
+    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
+
+    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
+    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
+    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
+
+<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
+    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+    _test()
+</pre></div>
+<p>
+</div>
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+because we can.
+
+<p>
+<div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: admon_sphinx.html *****************
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Testing admons</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Testing admons" href="index.html" />
+    <link rel="prev" title="Testing admons" href="index.html" /> 
+  
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Testing admons"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Testing admons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="testing-admons">
+<h1>Testing admons<a class="headerlink" href="#testing-admons" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">hpl</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 32, 2100</td>
+</tr>
+</tbody>
+</table>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.</p>
+<p>Note that <tt class="docutils literal"><span class="pre">automake_sphinx.py</span></tt> fixes the HTML file generated by Sphinx
+so that all styles for admonitions have a colored background.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>and a list</li>
+<li>with items</li>
+</ul>
+</div></blockquote>
+</div>
+<p>Here goes some more text before a &#8220;notice&#8221; admonition where we control
+the title.</p>
+<div class="admonition-note-eventually admonition">
+<p class="first admonition-title">Note, eventually</p>
+<p>Ah, we are close to the end.
+With math:</p>
+<div class="last math">
+\[p=q\]</div>
+</div>
+<div class="admonition-question admonition">
+<p class="first admonition-title">Question</p>
+<p class="last">So, how many admonition environments does Doconce support?</p>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>It is smart to read on and remember to</p>
+<ol class="arabic simple">
+<li>stay cool</li>
+<li>read hints carefully</li>
+</ol>
+<p>Also, remember</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="k">def</span> <span class="nf">grab</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>More notice envir.</p>
+<div class="admonition-going-deeper admonition">
+<p class="first admonition-title">Going deeper.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.</p>
+<p>Let us start with some equations:</p>
+<div class="math">
+\[\begin{split}\frac{Du}{dt} &amp;= 0
+\\
+\frac{1}{2} &amp;= {1/2}\\
+\frac{1}{2}\pmb{x} &amp;= \pmb{n}\end{split}\]</div>
+<p>The implementation of such complicated equations in computer
+code is task that this &#8220;Going deeper&#8221; environment targets.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">Dudt</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">u</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="n">half</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span>
+</pre></div>
+</div>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Diff</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Forward1</span><span class="p">(</span><span class="n">Diff</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">h</span>
+
+<span class="k">class</span> <span class="nc">Backward1</span><span class="p">(</span><span class="n">Diff</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="n">h</span>
+
+<span class="k">class</span> <span class="nc">Central2</span><span class="p">(</span><span class="n">Diff</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Central4</span><span class="p">(</span><span class="n">Diff</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mf">4.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span>   <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span>  <span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> \
+               <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Central6</span><span class="p">(</span><span class="n">Diff</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mf">3.</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span>   <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span>  <span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> \
+               <span class="p">(</span><span class="mf">3.</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">+</span> \
+               <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Forward3</span><span class="p">(</span><span class="n">Diff</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+        <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> \
+                <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">_test</span><span class="p">():</span>
+    <span class="n">mycos</span> <span class="o">=</span> <span class="n">Central4</span><span class="p">(</span><span class="n">sin</span><span class="p">)</span>
+    <span class="k">print</span> <span class="nb">dir</span><span class="p">(</span><span class="n">mycos</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">mycos</span><span class="o">.</span><span class="n">__dict__</span>
+    <span class="k">print</span> <span class="n">mycos</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__dict__</span>
+    <span class="c"># Compute sin&#39;(pi)</span>
+    <span class="k">print</span> <span class="s">&quot;g&#39;(</span><span class="si">%g</span><span class="s">)=</span><span class="si">%g</span><span class="s"> (exact value is </span><span class="si">%g</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">mycos</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+    <span class="n">mysin</span> <span class="o">=</span> <span class="n">Central4</span><span class="p">(</span><span class="n">Central4</span><span class="p">(</span><span class="n">sin</span><span class="p">))</span>
+    <span class="c"># Compute sin&#39;&#39;(pi)</span>
+    <span class="k">print</span> <span class="s">&quot;g&#39;&#39;(</span><span class="si">%g</span><span class="s">)=</span><span class="si">%g</span><span class="s"> (exact value is </span><span class="si">%g</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">mysin</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">Central2</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.0E-9</span><span class="p">)</span>
+    <span class="n">bigx</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="k">print</span> <span class="n">exp</span><span class="p">(</span><span class="n">bigx</span><span class="p">),</span> <span class="n">exp</span><span class="p">(</span><span class="n">bigx</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">(</span><span class="n">bigx</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+    <span class="n">_test</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>A bit of text before the summary, which we now call &#8220;Concluding remarks,
+for the novice&#8221;,
+because we can.</p>
+<div class="admonition-concluding-remarks-for-the-novice admonition">
+<p class="first admonition-title">Concluding remarks, for the novice</p>
+<p class="last">We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Testing admons</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/admon.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Testing admons"
+             >previous</a> |</li>
+        <li><a href="index.html">Testing admons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, hpl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
+    </div>
+  </body>
+</html>
+************** File: admon_white.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Testing admons">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+    .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
+    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Testing admons</title>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<p>
+
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
+<th align="left" valign="middle"><b>Warning.</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+</p></td></tr>
+</table>
+<p>
+Here goes some more text before a "notice" admonition where we control
+the title.
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Note, eventually!</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+Ah, we are close to the end.
+With math:
+$$ p=q$$
+</p></td></tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
+<th align="left" valign="middle"><b>Question.</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+So, how many admonition environments does Doconce support?
+</p></td></tr>
+</table>
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
+<th align="left" valign="middle"><b>Hint.</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</p></td></tr>
+</table>
+<p>
+More notice envir.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Going deeper.</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
+    mycos <span style="color: #666666">=</span> Central4(sin)
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
+    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
+    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
+    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
+
+    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
+    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
+    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
+
+<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
+    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+    _test()
+</pre></div>
+<p>
+</p></td></tr>
+</table>
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+because we can.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
+<th align="left" valign="middle"><b>Concluding remarks, for the novice.</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p></td></tr>
+</table>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
 
 ************** File: tmp_Doconce.do.txt *****************
 
@@ -36646,7 +38510,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 24 Apr 2013 (05:50)</center>
+<center>Sun, 28 Apr 2013 (14:26)</center>
 
 
 
@@ -36777,7 +38641,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 24 Apr 2013 (05:50)</center>
+<center>Sun, 28 Apr 2013 (14:26)</center>
 
 
 
@@ -37647,14 +39511,14 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-!bhint
+|bhint
 Wikipedia has the formula for the curve.
-!ehint
+|ehint
 
-!bhint
+|bhint
 "Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
-!ehint
+|ehint
 !ec
 If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
@@ -37674,47 +39538,47 @@ label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
 
-!bsubex
+|bsubex
 Subexercises are numbered a), b), etc.
 
 file=subexer_a.pdf
 
-!bans
+|bans
 Short answer to subexercise a).
-!eans
+|eans
 
-!bhint
+|bhint
 First hint to subexercise a).
-!ehint
+|ehint
 
-!bhint
+|bhint
 Second hint to subexercise a).
-!ehint
-!esubex
+|ehint
+|esubex
 
-!bsubex
+|bsubex
 Here goes the text for subexercise b).
 
 file=subexer_b.pdf
 
-!bhint
+|bhint
 A hint for this subexercise.
-!ehint
+|ehint
 
-!bsol
+|bsol
 Here goes the solution of this subexercise.
-!esol
-!esubex
+|esol
+|esubex
 
-!bremarks
+|bremarks
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives. The text inside the !bremarks-!eremarks
 directives is always typeset at the end of the exercise.
-!eremarks
+|eremarks
 
-!bsol
+|bsol
 Here goes a full solution of the whole exercise.
-!esol
+|esol
 
 !ec
 By default, answers, solutions, and hints are typeset as paragraphs.
@@ -37735,8 +39599,8 @@ the environments:
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
- * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
-    specialy typesetting (or symbols)
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
+    special icon and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide
@@ -37836,7 +39700,7 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -37847,23 +39711,22 @@ Automatically generated HTML file from Doconce source
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -38481,7 +40344,7 @@ labels in <code>align</code> environments work well.)
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice</b></th>
+<th align="left" valign="middle"><b>Notice.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 LaTeX supports lots of fancy formatting, for example, multiple
@@ -39014,8 +40877,8 @@ the environments:
  <li> <code>ans</code>: short answer to exercise or sub-exercise</li>
  <li> <code>sol</code>: full solution to exercise or sub-exercise</li>
  <li> <code>quote</code>: indented text</li>
- <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
-    specialy typesetting (or symbols)</li>
+ <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
+    special icon and (frequently) background color</li>
  <li> <code>pop</code>: text to gradually pop up in slide presentations</li>
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide</li>
@@ -39245,6 +41108,87 @@ final,                   % or draft (marks overfull hboxes)
 
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+
+\usepackage{framed}
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint.eps}
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary.eps}
+}
+{
+\end{summaryshaded}
+}
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -39859,14 +41803,9 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
-
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
-\ \ \ {\large\sc Notice}\\ [3mm]
+\begin{noticeadmon}
+\ \ \ {\large\sc Notice}\\ \par
+\nobreak\noindent\ignorespaces
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -39877,10 +41816,7 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
-
+\end{noticeadmon}
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
 \code{newcommands*.tex}. Such commands should only be used for mathematics
@@ -40355,8 +42291,8 @@ the environments:
 
  \item \code{quote}: indented text
 
- \item \code{notice}, \code{summary}, \code{warning}, \code{question}, \code{hint}: boxes with
-    specialy typesetting (or symbols)
+ \item \code{notice}, \code{summary}, \code{warning}, \code{question}, \code{hint}: admonition boxes with
+    special icon and (frequently) background color
 
  \item \code{pop}: text to gradually pop up in slide presentations
 
@@ -40905,6 +42841,7 @@ labels in ``align`` environments work well.)
    also allow advanced LaTeX features and fine tuning of resulting
    PDF document.
 
+
 *LaTeX Newcommands.* The author can define ``newcommand`` statements in files with names
 ``newcommands*.tex``. Such commands should only be used for mathematics
 (other LaTeX constructions are only understood by LaTeX itself).
@@ -41394,8 +43331,8 @@ the environments:
 
  * ``quote``: indented text
 
- * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: boxes with
-    specialy typesetting (or symbols)
+ * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: admonition boxes with
+    special icon and (frequently) background color
 
  * ``pop``: text to gradually pop up in slide presentations
 
@@ -41958,6 +43895,7 @@ labels in ``align`` environments work well.)
    also allow advanced LaTeX features and fine tuning of resulting
    PDF document.
 
+
 *LaTeX Newcommands.* The author can define ``newcommand`` statements in files with names
 ``newcommands*.tex``. Such commands should only be used for mathematics
 (other LaTeX constructions are only understood by LaTeX itself).
@@ -42477,8 +44415,8 @@ the environments:
 
  * ``quote``: indented text
 
- * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: boxes with
-    specialy typesetting (or symbols)
+ * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: admonition boxes with
+    special icon and (frequently) background color
 
  * ``pop``: text to gradually pop up in slide presentations
 
@@ -42949,9 +44887,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to `sphinx` and other formats such that
 labels in `align` environments work well.)
 
-
-
-*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+*Notice.* 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as `sphinx`, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -43396,7 +45333,7 @@ the environments:
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
- * `notice`, `summary`, `warning`, `question`, `hint`: boxes with    specialy typesetting (or symbols)
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with    special icon and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a   slide
 
@@ -43885,9 +45822,7 @@ is also important, one should follow these rules:
 (Doconce performs extensions to <code>sphinx</code> and other formats such that
 labels in <code>align</code> environments work well.)
 
-
-
-''Notice.''
+''Notice.''\n
 LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <code>sphinx</code>, makes it necessary
@@ -44354,8 +46289,8 @@ the environments:
  <li> <code>ans</code>: short answer to exercise or sub-exercise
  <li> <code>sol</code>: full solution to exercise or sub-exercise
  <li> <code>quote</code>: indented text
- <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
-    specialy typesetting (or symbols)
+ <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
+    special icon and (frequently) background color
  <li> <code>pop</code>: text to gradually pop up in slide presentations
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide
@@ -44825,9 +46760,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to {{{sphinx}}} and other formats such that
 labels in {{{align}}} environments work well.)
 
-
-
-//Notice.// LaTeX supports lots of fancy formatting, for example, multiple
+//Notice.// 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as {{{sphinx}}}, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -45272,7 +47206,7 @@ the environments:
  * {{{ans}}}: short answer to exercise or sub-exercise
  * {{{sol}}}: full solution to exercise or sub-exercise
  * {{{quote}}}: indented text
- * {{{notice}}}, {{{summary}}}, {{{warning}}}, {{{question}}}, {{{hint}}}: boxes with    specialy typesetting (or symbols)
+ * {{{notice}}}, {{{summary}}}, {{{warning}}}, {{{question}}}, {{{hint}}}: admonition boxes with    special icon and (frequently) background color
  * {{{pop}}}: text to gradually pop up in slide presentations
  * {{{slidecell}}}: indication of cells in a grid layout for elements on a   slide
 
@@ -45742,9 +47676,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to 'sphinx' and other formats such that
 labels in 'align' environments work well.)
 
-
-
-*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+*Notice.* 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as 'sphinx', makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -46208,8 +48141,8 @@ the environments:
  - 'ans': short answer to exercise or sub-exercise
  - 'sol': full solution to exercise or sub-exercise
  - 'quote': indented text
- - 'notice', 'summary', 'warning', 'question', 'hint': boxes with
-    specialy typesetting (or symbols)
+ - 'notice', 'summary', 'warning', 'question', 'hint': admonition boxes with
+    special icon and (frequently) background color
  - 'pop': text to gradually pop up in slide presentations
  - 'slidecell': indication of cells in a grid layout for elements on a
    slide
@@ -46693,9 +48626,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to C{sphinx} and other formats such that
 labels in C{align} environments work well.)
 
-
-
-I{Notice.} LaTeX supports lots of fancy formatting, for example, multiple
+I{Notice.} 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as C{sphinx}, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -47168,8 +49100,8 @@ the environments:
  - C{ans}: short answer to exercise or sub-exercise
  - C{sol}: full solution to exercise or sub-exercise
  - C{quote}: indented text
- - C{notice}, C{summary}, C{warning}, C{question}, C{hint}: boxes with
-    specialy typesetting (or symbols)
+ - C{notice}, C{summary}, C{warning}, C{question}, C{hint}: admonition boxes with
+    special icon and (frequently) background color
  - C{pop}: text to gradually pop up in slide presentations
  - C{slidecell}: indication of cells in a grid layout for elements on a
    slide
@@ -47683,9 +49615,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to sphinx and other formats such that
 labels in align environments work well.)
 
-
-
-*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+*Notice.* 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as sphinx, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -48178,8 +50109,8 @@ the environments:
 
  * quote: indented text
 
- * notice, summary, warning, question, hint: boxes with
-    specialy typesetting (or symbols)
+ * notice, summary, warning, question, hint: admonition boxes with
+    special icon and (frequently) background color
 
  * pop: text to gradually pop up in slide presentations
 
@@ -48701,9 +50632,8 @@ is also important, one should follow these rules:
 (Doconce performs extensions to `sphinx` and other formats such that
 labels in `align` environments work well.)
 
-
-
-*Notice.* LaTeX supports lots of fancy formatting, for example, multiple
+*Notice.* 
+LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as `sphinx`, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -49207,8 +51137,8 @@ the environments:
 
  * `quote`: indented text
 
- * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
-    specialy typesetting (or symbols)
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
+    special icon and (frequently) background color
 
  * `pop`: text to gradually pop up in slide presentations
 
@@ -50279,7 +52209,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-197.
+278.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -50370,106 +52300,106 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 751.
+t line 832.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 752.
+ine 833.
 
 
-LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-55.
+LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
+36.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 756.
+ 837.
 
 
-LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-58.
+LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
+39.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 760.
+t line 841.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 760.
+ 841.
 
 
-LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 7
-64.
+LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 8
+45.
 
 
-LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-64.
+LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
+45.
 
 
 LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 764.
+ne 845.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 764.
+t line 845.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 766.
+ine 847.
 
 
 LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
-ne 766.
+ne 847.
 
 
 LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 766.
+ 847.
 
 
-LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 7
-66.
+LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 8
+47.
 
 
-LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 7
-66.
+LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 8
+47.
 
 
-LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 7
-66.
+LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 8
+47.
 
 
 LaTeX Warning: Citation `Langtangen:95' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 76
-8.
+LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 84
+9.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 768.
+ 849.
 
 
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-768.
+849.
 
 
-LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-69.
+LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
+50.
 
 
-LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 7
-69.
+LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 8
+50.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 770.
+ine 851.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 771
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 852
 .
 
 
@@ -50477,7 +52407,7 @@ LaTeX Warning: Citation `Langtangen:91' on page 11
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 774
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 855
 .
 
 [11]
@@ -50503,8 +52433,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 89
-7.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 97
+8.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -50528,19 +52458,19 @@ LaTeX Warning: Reference `demo:ex:1' on page 13
 LaTeX Warning: Reference `demo:ex:2' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 
-
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1003
+.
 
 
 LaTeX Warning: Reference `exer:you' on page 13 
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 923.
+ 1004.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1284
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1365
 .
 
 
@@ -50551,13 +52481,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1301.
+ 1382.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1302
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1383
 .
 
 
@@ -50566,20 +52496,17 @@ LaTeX Warning: Reference `exer:you' on page 16
 (./testdoc.bbl [16]) [17]
 <latex_figs/hint.pdf, id=293, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=294, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
-pdf>]
+Underfull \hbox (badness 10000) 
+
+[18 <./latex_figs/hint.pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-<latex_figs/notice.pdf, id=320, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf> [19]
-<latex_figs/question.pdf, id=329, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf>
+[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
+(./testdoc.ind [20]
 Overfull \hbox (9.21391pt too wide) 
 []\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
 rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
@@ -50732,9 +52659,6 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
-latex_figs/warning.pdf
-latex_figs/notice.pdf
-latex_figs/question.pdf
  testdoc.ind
  ***********
 
@@ -51040,20 +52964,17 @@ Package amsmath Warning: Foreign command \over;
 [12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
 [16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=475, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
-pdf>]
+Underfull \hbox (badness 10000) 
+
+[18 <./latex_figs/hint.pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-<latex_figs/notice.pdf, id=495, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf> [19]
-<latex_figs/question.pdf, id=504, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf>
+[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
+(./testdoc.ind [20]
 Overfull \hbox (9.21391pt too wide) 
 []\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
 rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
@@ -51208,9 +53129,6 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
-latex_figs/warning.pdf
-latex_figs/notice.pdf
-latex_figs/question.pdf
  testdoc.ind
  ***********
 
@@ -51527,20 +53445,17 @@ Package amsmath Warning: Foreign command \over;
 [12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
 [16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=475, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
-pdf>]
+Underfull \hbox (badness 10000) 
+
+[18 <./latex_figs/hint.pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-<latex_figs/notice.pdf, id=495, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf> [19]
-<latex_figs/question.pdf, id=504, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf>
+[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
+(./testdoc.ind [20]
 Overfull \hbox (9.21391pt too wide) 
 []\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
 rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
@@ -51695,9 +53610,6 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
-latex_figs/warning.pdf
-latex_figs/notice.pdf
-latex_figs/question.pdf
  testdoc.ind
  ***********
 
@@ -51991,20 +53903,17 @@ Package amsmath Warning: Foreign command \over;
 [12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
 [16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=475, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf> [18 <./latex_figs/hint.pdf> <./latex_figs/warning.
-pdf>]
+Underfull \hbox (badness 10000) 
+
+[18 <./latex_figs/hint.pdf>]
 Overfull \hbox (11.33333pt too wide) 
 [][][][][][][] 
-<latex_figs/notice.pdf, id=495, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf> [19]
-<latex_figs/question.pdf, id=504, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf>
+[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-(./testdoc.ind [20 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
+(./testdoc.ind [20]
 Overfull \hbox (9.21391pt too wide) 
 []\OT1/cmr/m/n/10 (-20) test \OT1/cmtt/m/n/10 two \OT1/cmr/m/n/10 (-20) (sep-a-
 rate) \OT1/cmtt/m/n/10 verbatim expressions \OT1/cmr/m/n/10 (-20) which
@@ -52153,9 +54062,6 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
-latex_figs/warning.pdf
-latex_figs/notice.pdf
-latex_figs/question.pdf
  testdoc.ind
  ***********
 
@@ -53562,17 +55468,49 @@ build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in search.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in math_test.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in math_test.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in genindex.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in genindex.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in index.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in index.html
 /home/hpl/vc/doconce/test/sphinx-rootdir-math
 running make clean
 running make html
-Fix double title in <title> tags in .html files:
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" search.html
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" math_test.html
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" genindex.html
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" index.html
+Fix generated files:
 
 google-chrome sphinx-rootdir-math/_build/html/index.html
 
@@ -53602,6 +55540,405 @@ output in math_test.md
 command md2latex not legal, must be among
 
 format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, latex_dislikes, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
++ doconce format html admon
+running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in admon.html
++ [ 0 -ne 0 ]
++ cp admon.html admon_white.html
++ doconce format html admon --html_admon=colors
+running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in admon.html
++ [ 0 -ne 0 ]
++ cp admon.html admon_colors.html
++ doconce format html admon --html_admon=gray
+running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in admon.html
++ [ 0 -ne 0 ]
++ cp admon.html admon_gray.html
++ doconce format html admon --html_admon=apricot
+running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in admon.html
++ [ 0 -ne 0 ]
++ cp admon.html admon_apricot.html
++ doconce sphinx_dir dirname=tmp_admon admon
+Making tmp_admon
+Welcome to the Sphinx 1.2pre quickstart utility.
+
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
+
+Enter the root path for documentation.
+> Root path for the documentation [.]: 
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory "_build" within the root path, or you separate
+"source" and "build" directories within the root path.
+> Separate source and build directories (y/N) [n]: 
+Inside the root directory, two more directories will be created; "_templates"
+for custom HTML templates and "_static" for custom stylesheets and other static
+files. You can enter another prefix (such as ".") to replace the underscore.
+> Name prefix for templates and static dir [_]: 
+The project name will occur in several places in the built documentation.
+> Project name: > Author name(s): 
+Sphinx has the notion of a "version" and a "release" for the
+software. Each version can have multiple releases. For example, for
+Python the version is something like 2.5 or 3.0, while the release is
+something like 2.5.1 or 3.0a1.  If you don't need this dual structure,
+just set both to the same value.
+> Project version: > Project release [1.0]: 
+The file name suffix for source files. Commonly, this is either ".txt"
+or ".rst".  Only files with this suffix are considered documents.
+> Source file suffix [.rst]: * Please enter a file suffix, e.g. '.rst' or '.txt'.
+> Source file suffix [.rst]: 
+One document is special in that it is considered the top node of the
+"contents tree", that is, it is the root of the hierarchical structure
+of the documents. Normally, this is "index", but if your "index"
+document is a custom template, you can also set this to another filename.
+> Name of your master document (without suffix) [index]: 
+Sphinx can also add configuration for epub output:
+> Do you want to use the epub builder (y/N) [n]: 
+Please indicate if you want to use one of the following Sphinx extensions:
+> autodoc: automatically insert docstrings from modules (y/N) [n]: > doctest: automatically test code snippets in doctest blocks (y/N) [n]: > intersphinx: link between Sphinx documentation of different projects (y/N) [n]: > todo: write "todo" entries that can be shown or hidden on build (y/N) [n]: > coverage: checks for documentation coverage (y/N) [n]: > pngmath: include math, rendered as PNG images (y/N) [n]: > mathjax: include math, rendered in the browser by MathJax (y/N) [n]: > ifconfig: conditional inclusion of content based on config values (y/N) [n]: > viewcode: include links to the source code of documented Python objects (y/N) [n]: 
+A Makefile and a Windows command file can be generated for you so that you
+only have to run e.g. `make html' instead of invoking sphinx-build
+directly.
+> Create Makefile? (Y/n) [y]: > Create Windows command file? (Y/n) [y]: 
+Creating file tmp_admon/conf.py.
+Creating file tmp_admon/index.rst.
+Creating file tmp_admon/Makefile.
+Creating file tmp_admon/make.bat.
+
+Finished: An initial directory structure has been created.
+
+You should now populate your master file tmp_admon/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+
+searching for TITLE in admon.do.txt
+Using title "Testing admons" from admon
+Author: ['hpl']
+Using author(s) "hpl" from admon
+title: Testing admons
+author: hpl
+theme: default
+These Sphinx themes were found: ADCtheme, agni, agogo, basic, basicstrap, bootstrap, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, impressjs, jal, nature, pylons, pyramid, redcloud, scipy_lectures, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme, default
+
+'automake_sphinx.py' contains the steps to (re)compile the sphinx
+version. You may want to edit this file, or run the steps manually,
+or just run it by
+
+  python automake_sphinx.py
+
++ [ 0 -ne 0 ]
++ python automake_sphinx.py
+running preprocess -DFORMAT=sphinx -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to sphinx
+output in admon.rst
+rm -rf _build/*
+sphinx-build -b html -d _build/doctrees   . _build/html
+Making output directory...
+Running Sphinx v1.2pre
+loading pickled environment... not yet created
+building [html]: targets for 2 source files that are out of date
+updating environment: 2 added, 0 changed, 0 removed
+reading sources... [ 50%] admon
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 50%] admon
+writing output... [100%] index
+
+writing additional files... (0 module code pages) genindex search
+copying static files... done
+dumping search index... done
+dumping object inventory... done
+build succeeded.
+
+Build finished. The HTML pages are in _build/html.
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in search.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in admon.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in admon.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in genindex.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in genindex.html
+<title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in index.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in index.html
+doconce format sphinx admon 
+running doconce format sphinx admon 
+running doconce guess_encoding admon.rst
+/home/hpl/vc/doconce/test/tmp_admon
+running make clean
+running make html
+Fix generated files:
+
+google-chrome tmp_admon/_build/html/index.html
+
++ [ 0 -ne 0 ]
++ cp tmp_admon/_build/html/admon.html admon_sphinx.html
++ doconce format pdflatex admon
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
+output in admon.p.tex
++ [ 0 -ne 0 ]
++ doconce ptex2tex admon
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ pdflatex admon
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
+entering extended mode
+(./admon.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+Writing index file admon.idx
+No file admon.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+<latex_figs/warning.pdf, id=4, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
+Underfull \hbox (badness 10000) 
+
+
+<latex_figs/notice.pdf, id=5, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+Underfull \hbox (badness 10000) 
+
+<latex_figs/question.pdf, id=6, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
+Underfull \hbox (badness 10000) 
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf
+> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
+<latex_figs/hint.pdf, id=31, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf>
+Underfull \hbox (badness 10000) 
+
+<use latex_figs/notice.pdf>
+Underfull \hbox (badness 10000) 
+
+[2 <./latex_figs/hint.pdf>] [3]
+No file admon.ind.
+[4] (./admon.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+fancyvrb.sty    2008/02/07
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+latex_figs/warning.pdf
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+latex_figs/notice.pdf
+latex_figs/question.pdf
+latex_figs/hint.pdf
+latex_figs/notice.pdf
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb
+>
+Output written on admon.pdf (4 pages, ).
+Transcript written on admon.log.
 + doconce guess_encoding encoding1.do.txt
 + [ 0 -ne 0 ]
 + cp encoding1.do.txt tmp1.do.txt
@@ -53887,6 +56224,7 @@ Package hyperref Message: Driver (default): hdvips.
 
 
 
+
 Writing index file quickref.idx
 No file quickref.aux.
 
@@ -53924,17 +56262,15 @@ Overfull \hbox (25.94281pt too wide)
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [6] <latex_figs/notice.eps>
-Underfull \hbox (badness 2158) 
-\OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
+Underfull \hbox (badness 10000) 
 
-Underfull \hbox (badness 1867) 
-\OT1/phv/m/n/10 for in-stance, more than one plot per fig-ure. How-ever,
 
-Underfull \hbox (badness 2564) 
-[]\OT1/phv/m/n/10 ) to in-clude spe-cial
+Underfull \hbox (badness 1112) 
+\OT1/phv/m/n/10 the same fig-ure, foot-notes, mar-gin notes, etc. Al-low-ing ot
+her out-
 [7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 682
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 755
 .
 
 [9]
@@ -54040,6 +56376,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
   lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
 titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
@@ -54153,6 +56490,7 @@ Package hyperref Message: Driver (default): hdvips.
 
 
 
+
 Writing index file quickref.idx
 (./quickref.aux) 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -54184,14 +56522,12 @@ Overfull \hbox (25.94281pt too wide)
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [7] <latex_figs/notice.eps>
-Underfull \hbox (badness 2158) 
-\OT1/phv/m/n/10 nec-es-sary to only utilze very stan-dard L[]T[]X and avoid,
+Underfull \hbox (badness 10000) 
 
-Underfull \hbox (badness 1867) 
-\OT1/phv/m/n/10 for in-stance, more than one plot per fig-ure. How-ever,
 
-Underfull \hbox (badness 2564) 
-[]\OT1/phv/m/n/10 ) to in-clude spe-cial
+Underfull \hbox (badness 1112) 
+\OT1/phv/m/n/10 the same fig-ure, foot-notes, mar-gin notes, etc. Al-low-ing ot
+her out-
 [8] [9] [10]
 Overfull \hbox (59.2456pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
@@ -54295,6 +56631,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
   lineno.sty    2005/11/02 line numbers on paragraphs v4.41
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
 titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
@@ -54421,17 +56758,49 @@ build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in search.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in quickref.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in quickref.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in genindex.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in genindex.html
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in index.html
+replacing </head> by 
+   <style type=text/css>
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+ in index.html
 /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir
 running make clean
 running make html
-Fix double title in <title> tags in .html files:
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" search.html
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" quickref.html
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" genindex.html
-running doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" index.html
+Fix generated files:
 
 google-chrome sphinx-rootdir/_build/html/index.html
 
@@ -54866,8 +57235,8 @@ Overfull \hbox (2.38828pt too wide)
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
 
-Overfull \hbox (28.47902pt too wide) 
-[]\T1/ptm/m/n/10 specialy
+Overfull \hbox (47.10902pt too wide) 
+[]
 
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
@@ -55306,8 +57675,8 @@ Overfull \hbox (2.38828pt too wide)
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
 
-Overfull \hbox (28.47902pt too wide) 
-[]\T1/ptm/m/n/10 specialy
+Overfull \hbox (47.10902pt too wide) 
+[]
 
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul

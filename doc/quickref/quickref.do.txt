@@ -642,14 +642,14 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-!bhint
+|bhint
 Wikipedia has the formula for the curve.
-!ehint
+|ehint
 
-!bhint
+|bhint
 "Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
-!ehint
+|ehint
 !ec
 If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
@@ -669,47 +669,47 @@ label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
 
-!bsubex
+|bsubex
 Subexercises are numbered a), b), etc.
 
 file=subexer_a.pdf
 
-!bans
+|bans
 Short answer to subexercise a).
-!eans
+|eans
 
-!bhint
+|bhint
 First hint to subexercise a).
-!ehint
+|ehint
 
-!bhint
+|bhint
 Second hint to subexercise a).
-!ehint
-!esubex
+|ehint
+|esubex
 
-!bsubex
+|bsubex
 Here goes the text for subexercise b).
 
 file=subexer_b.pdf
 
-!bhint
+|bhint
 A hint for this subexercise.
-!ehint
+|ehint
 
-!bsol
+|bsol
 Here goes the solution of this subexercise.
-!esol
-!esubex
+|esol
+|esubex
 
-!bremarks
+|bremarks
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives. The text inside the !bremarks-!eremarks
 directives is always typeset at the end of the exercise.
-!eremarks
+|eremarks
 
-!bsol
+|bsol
 Here goes a full solution of the whole exercise.
-!esol
+|esol
 
 !ec
 By default, answers, solutions, and hints are typeset as paragraphs.
@@ -730,8 +730,8 @@ the environments:
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
- * `notice`, `summary`, `warning`, `question`, `hint`: boxes with
-    specialy typesetting (or symbols)
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
+    custom title, special icon, and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide

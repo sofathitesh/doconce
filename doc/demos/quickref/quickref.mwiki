@@ -1,7 +1,7 @@
 #TITLE (actually governed by the filename): Doconce Quick Reference
 
 By '''Hans Petter Langtangen'''
-==== Apr 24, 2013 ====
+==== Apr 28, 2013 ====
 
 __TOC__
 
@@ -427,9 +427,7 @@ is also important, one should follow these rules:
 (Doconce performs extensions to <code>sphinx</code> and other formats such that
 labels in <code>align</code> environments work well.)
 
-
-
-''Notice.''
+''Notice.''\n
 LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <code>sphinx</code>, makes it necessary
@@ -896,8 +894,8 @@ the environments:
  <li> <code>ans</code>: short answer to exercise or sub-exercise
  <li> <code>sol</code>: full solution to exercise or sub-exercise
  <li> <code>quote</code>: indented text
- <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with
-    specialy typesetting (or symbols)
+ <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
+    special icon and (frequently) background color
  <li> <code>pop</code>: text to gradually pop up in slide presentations
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide

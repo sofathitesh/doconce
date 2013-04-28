@@ -219,7 +219,7 @@ program, meaning that if you do not use `ptex2tex`, you do not need
 `ptex2tex.sty`. Optional packages that might be included are `minted`,
 `fontspec`, `xunicode`, `inputenc`, `helvet`, `mathpazo`, `wrapfig`,
 `calc`, `ifthen`, `xkeyval`, `tikz`, `graphicx`, `setspace`, `shadow`,
-`disable`, `todonotes`, `lineno`, `xr`, `movie15`, `a4paper`, and
+`disable`, `todonotes`, `lineno`, `xr`, `framed`, `movie15`, `a4paper`, and
 `a6paper`.
 
 Relevant Debian packages that gives you all of these LaTeX packages are

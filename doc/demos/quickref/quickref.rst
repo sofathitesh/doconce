@@ -5,7 +5,7 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-:Date: Apr 24, 2013
+:Date: Apr 28, 2013
 
 .. contents:: Table of Contents
    :depth: 2
@@ -469,6 +469,7 @@ labels in ``align`` environments work well.)
    straightforward typesetting for other formats. In this way, one can
    also allow advanced LaTeX features and fine tuning of resulting
    PDF document.
+
 
 *LaTeX Newcommands.* The author can define ``newcommand`` statements in files with names
 ``newcommands*.tex``. Such commands should only be used for mathematics
@@ -959,8 +960,8 @@ the environments:
 
  * ``quote``: indented text
 
- * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: boxes with
-    specialy typesetting (or symbols)
+ * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: admonition boxes with
+    special icon and (frequently) background color
 
  * ``pop``: text to gradually pop up in slide presentations
 
