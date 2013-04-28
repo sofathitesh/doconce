@@ -421,10 +421,21 @@ print os.getcwd()
 system('make clean')
 system('make html')
 
-print 'Fix double title in <title> tags in .html files:'
+print 'Fix generated files:'
 os.chdir('_build/html')
 for filename in glob.glob('*.html'):
-    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %%s' %% filename)
+    # Fix double title in <title> tags
+    system('doconce subst "<title>(.+?) &mdash;.+?</title>" "<title>\g<1></title>" %%s' %% filename, echo=False)
+    # Fix admonition style
+    system("""doconce replace "</head>" "
+   <style type="text/css">
+     div.admonition {
+       background-color: whiteSmoke;
+       border: 1px solid #bababa;
+     }
+   </style>
+  </head>
+" %%s""" %% filename, echo=False)
     os.remove(filename + '.old~')
 print """
 google-chrome %(sphinx_rootdir)s/_build/html/index.html

@@ -67,7 +67,7 @@ admon_styles = """\
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
@@ -78,23 +78,22 @@ admon_styles = """\
                 background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid %s;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: %s;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             padding-left: 52px;
+             font-size: 0.8em;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
@@ -952,28 +951,37 @@ for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
     _text = '''
-def html_%s(block, format):
+def html_%s(block, format, title='%s'):
+    if title[-1] not in ('.', ':', '!', '?'):
+        # Make sure the title ends with puncuation
+        title += '.'
     lyx = """
 <table width="95%%%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
-<th align="left" valign="middle"><b>%s</b></th>
+<th align="left" valign="middle"><b>%%s</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 %%s
 </p></td></tr>
 </table>
-""" %% block
-    janko = '<div class="%s">%%s</div>' %% block
-    vagrant = '<div class="alert alert-block alert-%s">%%s</div>' %% block
-    if option('html_color_admon'):
+""" %% (title, block)
+    janko = """<div class="%s"><b>%%s</b>
+%%s
+</div>
+""" %% (title, block)
+    vagrant = """<div class="alert alert-block alert-%s"><b>%%s</b>
+%%s
+</div>
+""" %% (title, block)
+    if option('html_admon=', 'small') == 'colors':
         return janko
-    elif option('html_style=') == 'vagrant':
+    elif option('html_admon=', 'small') in ('gray', 'apricot') or option('html_style=') == 'vagrant':
         return vagrant
     else:
         return lyx
-''' % (_admon, _admon, _Admon, _Admon, _admon, _admon)
+''' % (_admon, _Admon + '.', _admon, _Admon, _admon, _admon)
     exec(_text)
 
 def define(FILENAME_EXTENSION,
@@ -1124,7 +1132,14 @@ def define(FILENAME_EXTENSION,
     admons = 'hint', 'notice', 'summary', 'warning', 'question'
     for admon in admons:
         if '!b'+admon in filestr and '!e'+admon in filestr:
-            css += admon_styles
+            if option('html_admon=', 'gray') == 'apricot':
+                boundary = '#fbeed5'
+                background = '#fcf8e3'
+            else:
+                # gray
+                boundary = '#bababa'
+                background = 'whiteSmoke'
+            css += admon_styles % (boundary, background)
             break
 
     style = """
