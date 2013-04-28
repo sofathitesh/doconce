@@ -350,36 +350,53 @@ def rst_quote(block, format):
 %s
 """ % (indent_lines(block, format, ' '*4))
 
+# Admon:
+# reST has native admons, but only the warning applies color.
 
-def rst_warning(block, format):
+def rst_admon(block, format, title='Admonition'):
+    if title[-1] in ('!', ':', '?', ';'):
+        # : is always added to the title - remove other punctuation
+        title = title[:-1]
     return """
+.. admonition:: %s
+
+%s
+
+""" % (title, indent_lines(block, format, ' '*3))
+
+def rst_summary(block, format, title='Summary'):
+    return rst_admon(block, format, title)
+
+def rst_warning(block, format, title='Warning'):
+    if title.startswith('Warning'):
+        # Use pre-defined admonition that coincides with our needs
+        return """
 .. warning::
 %s
-""" % (indent_lines(block, format, ' '*4))
 
-def rst_question(block, format):
-    return """
-.. attention::
-%s
-""" % (indent_lines(block, format, ' '*3))
+""" % (indent_lines(block, format, ' '*4))
+    else:
+        return rst_admon(block, format, title)
+
+def rst_question(block, format, title='Question'):
+    return rst_admon(block, format, title)
 
 def rst_hint(block, format):
     return """
 .. hint::
 %s
+
 """ % (indent_lines(block, format, ' '*3))
 
-def rst_notice(block, format):
-    return """
+def rst_notice(block, format, title='Notice'):
+    if title.startswith('Notice'):
+        return """
 .. note::
 %s
-""" % (indent_lines(block, format, ' '*3))
 
-def rst_summary(block, format):
-    return """
-.. important::
-%s
 """ % (indent_lines(block, format, ' '*3))
+    else:
+        return rst_admon(block, format, title)
 
 
 def define(FILENAME_EXTENSION,

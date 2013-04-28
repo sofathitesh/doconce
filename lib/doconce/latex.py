@@ -779,7 +779,7 @@ def _latex_admonition(admon, admon_name, figname, rgb):
     if isinstance(rgb[0], (float,int)):
         rgb = [str(v) for v in rgb]
     text = '''
-def latex_%s(block, format):
+def latex_%s(block, format, title='%s'):
     ext = '.eps' if format == 'latex' else '.pdf'
     _get_admon_figs('%s' + ext)
     return r"""
@@ -790,29 +790,35 @@ def latex_%s(block, format):
 \\fcolorbox{black}{%sbackground}{
 \\begin{minipage}{0.8\\textwidth}
 \includegraphics[height=0.3in]{%s/%s%%s}
-\ \ \ {\large\sc %s}\\\\ [3mm]
+\ \ \ {\large\sc %%s}\\\\ [3mm]
 %%s
 \end{minipage}}
 \end{center}
 \setlength{\\fboxrule}{0.4pt} %%%% Back to default
 
-""" %% (ext, block)
-''' % (admon, admon, admon, ', '.join(rgb), admon, latexfigdir, figname, admon_name)
+""" %% (ext, title, block)
+''' % (admon, admon_name, admon, admon, ', '.join(rgb), admon, latexfigdir, figname)
     return text
 
 #\\vskip-0.3in\hskip1.9in{\large\sc %s} \\\\[0.4cm]
 
-_admon2rgb = dict(warning=(1.0, 0.8235294, 0.8235294),   # pink
-                  question=(0.87843, 0.95686, 1.0),      # light blue
-                  notice=(0.988235, 0.964706, 0.862745), # light yellow
-                  summary=(0.988235, 0.964706, 0.862745), # light yellow
-                  hint=(0.87843, 0.95686, 1.0),          # light blue
+_light_blue = (0.87843, 0.95686, 1.0)
+_light_yellow = (0.988235, 0.964706, 0.862745)
+_pink = (1.0, 0.8235294, 0.8235294)
+
+_admon2rgb = dict(warning=_pink,
+                  question=_light_blue,
+                  notice=_light_yellow,
+                  summary=_light_yellow,
+                  hint=_light_blue,
                   )
 for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
                            _admon, _admon2rgb[_admon]))
 
-def latex_summary(block, format):
+# Redefine summary (no admon, \summarybox instead)
+def latex_summary(block, format, title='Summary'):
+    # title is not used
     return '\\summarybox{\n' + block + '}\n'
 
 def latex_inline_comment(m):

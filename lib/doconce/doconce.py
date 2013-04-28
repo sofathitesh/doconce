@@ -39,6 +39,10 @@ def doconce_envirs():                     # begin-end environments
             'quote',
             'notice', 'summary', 'warning', 'question',]  # admon
 
+# Customizable admons: !bwarning some title, !bnotice some title
+# warning and notice should have a title
+# (warning -> important, notice -> detour, fun fact, going deeper)
+
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
 # include "common.py"
@@ -1124,7 +1128,12 @@ def typeset_envirs(filestr, format):
     for envir in envirs:
         if format in ENVIRS and envir in ENVIRS[format]:
             def subst(m):  # m: match object from re.sub, group(1) is the text
-                return ENVIRS[format][envir](m.group(1), format)
+                title = m.group(1).strip()
+                if title == '':
+                    # Rely on the format's default title
+                    return ENVIRS[format][envir](m.group(2), format)
+                else:
+                    return ENVIRS[format][envir](m.group(2), format, title)
         else:
             # subst functions for default handling
             if envir == 'quote':
@@ -1134,12 +1143,18 @@ def typeset_envirs(filestr, format):
                            'remarks']:
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
-                    return '\n\n__%s.__\n%s\n\n' % \
-                           (envir[0].upper() + envir[1:], m.group(1))
+                    title = m.group(1).strip()
+                    if title == '':
+                        title = envir[0].upper() + envir[1:] + '.'
+                    elif title[-1] not in ('.', ':', '!', '?'):
+                        # Make sure the title ends with puncuation
+                        title += '.'
+                    return '\n\n__%s__\n%s\n\n' % \
+                           (title, m.group(2))
             # else: other envirs for slides are treated later with
             # the begin and end directives set in comments, see doconce2format
 
-        pattern = r'^!b%s\s*(.+?)\s*^!e%s\s*' % (envir, envir)
+        pattern = r'^!b%s([A-Za-z,.!:? ]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
         filestr = re.sub(pattern, subst, filestr,
                          flags=re.DOTALL | re.MULTILINE)
     return filestr
@@ -2073,9 +2088,6 @@ def doconce2format(filestr, format):
     debugpr('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # Next step: deal with !b... !e... environments
-    filestr = typeset_envirs(filestr, format)
-
     # Next step: extract all URLs for checking
     check_URLs(filestr, format)
 
@@ -2136,6 +2148,8 @@ def doconce2format(filestr, format):
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
 
+    '''
+    Cannot test this since envirs are now processed after code and tex.
     # Next step: check if there are unprocessed environments and give
     # warning (must be checked before next step since !bwarning etc
     # may appear inside code blocks)
@@ -2154,6 +2168,7 @@ Causes:
             print filestr[m.start()-50:m.end()+50]
             print '----------------------------------'
             _abort()
+    '''
 
     # Next step: insert verbatim and math code blocks again and
     # substitute code and tex environments:
@@ -2173,6 +2188,10 @@ Causes:
             filestr = filestr.replace(r'\bm{', r'\boldsymbol{')
             # See http://www.wikidot.com/doc:math
 
+    # Next step: deal with !b... !e... environments
+    # (done after code and text to ensure correct indentation
+    # in the formats that applies indentation)
+    filestr = typeset_envirs(filestr, format)
 
     # Next step: remove exercise solution/answers, notes, etc
     # (Note: must be done after code and tex blocks are inserted!

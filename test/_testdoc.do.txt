@@ -931,14 +931,6 @@ Without label.
 Here is a hint.
 !ehint
 
-!bwarning
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-  * and a list
-  * with items
-!ewarning
 
 # #if FORMAT in ("latex", "pdflatex")
 \clearpage
@@ -1017,18 +1009,6 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-
-!bnotice
-Ah, we are close to the end.
-With math:
-!bt
-\[ p=q\]
-!et
-!enotice
-
-!bquestion
-So, how many admonition environments does Doconce support?
-!equestion
 
 ===== Appendix: Testing inline comments =====
 

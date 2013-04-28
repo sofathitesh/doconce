@@ -229,6 +229,37 @@ cp $name.html ${name}_pandoc.html
 doconce format pandoc $name
 doconce md2latex $name
 
+# Test admonitions
+doconce format html admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_white.html
+
+doconce format html admon --html_admon=colors
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_colors.html
+
+doconce format html admon --html_admon=gray
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_gray.html
+
+doconce format html admon --html_admon=apricot
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_apricot.html
+
+doconce sphinx_dir dirname=tmp_admon admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+python automake_sphinx.py
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp tmp_admon/_build/html/admon.html admon_sphinx.html
+
+#google-chrome admon_*.html
+
+doconce format pdflatex admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex admon
+pdflatex admon
+
+
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
