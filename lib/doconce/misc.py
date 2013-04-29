@@ -45,6 +45,9 @@ document is embedded."""),
     ('--html_slide_theme=',
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
+    ('--html_exercise_icon=',
+     """Specify a question icon in bundled/html_images for being
+inserted to the right in exercises - "default" is allowed."""),
     ('--device=',
      """Set device to paper, screen, or other (paper impacts LaTeX output)."""),
     ('--latex_double_hyphen',

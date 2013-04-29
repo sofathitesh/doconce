@@ -601,6 +601,26 @@ MathJax.Hub.Config({
         # Remove all comments for wordpress.com html
         pattern = re.compile('<!-- .+? -->', re.DOTALL)
         filestr = re.sub(pattern, '', filestr)
+
+    # Add exercise logo
+    html_style = option('html_style=', 'blueish')
+    icon = option('html_exercise_icon=', 'None')
+    icon_width = option('html_exercise_icon_width=', '100')
+    if icon.lower() != 'none':
+        if icon == default:
+            if html_style == 'solarized' or html_style == 'bloodish':
+                icon = 'question_black_on_gray.png'
+                #icon = 'question_white_on_black.png'
+            elif html_style.startswith('blue'):
+                #icon = 'question_blue_on_white1.png'
+                #icon = 'question_white_on_blue_tiny.png'
+                icon = 'question_blue_on_white2.png'
+            else:
+                icon = 'exercise1.svg'
+        icon_path = 'https://doconce.googlecode.com/hg/bundled/html_images/' + icon
+        pattern = r'(<h3>(Exercise|Project|Problem) \d+:.+</h3>)'
+        filestr = re.sub(pattern, '\g<1>\n\n<img src="%s" width=%s align="right">\n' % (icon_path, icon_width), filestr)
+
     return filestr
 
 def html_figure(m):
