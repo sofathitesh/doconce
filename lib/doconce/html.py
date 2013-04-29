@@ -67,37 +67,37 @@ admon_styles = """\
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png); }
 
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:1px solid %s;
+             border:1px solid %(boundary)s;
                -webkit-border-radius:4px; -moz-border-radius:4px;
              border-radius:4px
              color: #555;
-             background-color: %s;
+             background-color: %(background)s;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             padding-left: 80px; /*52px;*/
+             font-size: 50%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_notice)s); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_warning)s); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_hint)s); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_question)s); }
 """
 # alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
 
@@ -977,7 +977,7 @@ def html_%s(block, format, title='%s'):
 """ %% (title, block)
     if option('html_admon=', 'small') == 'colors':
         return janko
-    elif option('html_admon=', 'small') in ('gray', 'apricot') or option('html_style=') == 'vagrant':
+    elif option('html_admon=', 'small') in ('gray', 'yellow') or option('html_style=') == 'vagrant':
         return vagrant
     else:
         return lyx
@@ -1086,16 +1086,21 @@ def define(FILENAME_EXTENSION,
     TOC['html'] = html_toc
 
     # Embedded style sheets
-    if option('html_style=') == 'solarized':
+    style = option('html_style=')
+    if  style == 'solarized':
         css = css_solarized
-    elif option('html_style=') == 'blueish':
+    elif style == 'blueish':
         css = css_blueish
-    elif option('html_style=') == 'blueish2':
+    elif style == 'blueish2':
         css = css_blueish2
-    elif option('html_style=') == 'bloodish':
+    elif style == 'bloodish':
         css = css_bloodish
     else:
         css = css_blueish # default
+
+    if not option('no_pygments_html'):
+        # Remove pre style as it destroys the background for pygments
+        css = re.sub(r'pre .+\{.+?\}', '', css, flags=re.DOTALL)
 
     # Fonts
     body_font_family = option('html_body_font=', None)
@@ -1132,14 +1137,22 @@ def define(FILENAME_EXTENSION,
     admons = 'hint', 'notice', 'summary', 'warning', 'question'
     for admon in admons:
         if '!b'+admon in filestr and '!e'+admon in filestr:
-            if option('html_admon=', 'gray') == 'apricot':
-                boundary = '#fbeed5'
-                background = '#fcf8e3'
+            admon_vars = {}
+            if option('html_admon=', 'gray') == 'yellow':
+                admon_vars['boundary'] = '#fbeed5'
+                admon_vars['background'] = '#fcf8e3'
+                for a in admons:
+                    admon_vars['icon_' + a] = 'small_yellow_%s.png' % a
+                if option('pygments_html_style=', 'default') != 'perldoc':
+                    print '*** the perdoc pygments style is recommended:'
+                    print '    --pygments_html_style=perldoc'
             else:
                 # gray
-                boundary = '#bababa'
-                background = 'whiteSmoke'
-            css += admon_styles % (boundary, background)
+                admon_vars['boundary'] = '#bababa'
+                admon_vars['background'] = 'whiteSmoke'
+                for a in admons:
+                    admon_vars['icon_' + a] = 'small_gray_%s.png' % a
+            css += admon_styles % admon_vars
             break
 
     style = """

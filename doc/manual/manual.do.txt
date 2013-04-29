@@ -1503,10 +1503,10 @@ file to set a gray background for all admonitions.
 In `html` one has a command-line argument `--html_admon` that
 can be set to different styles: `--html_admon=white` for
 white background and small icons, `--html_admon=gray` for
-larger icons with gray background and small font, `--html_admon=apricot`
-works as the `gray` style, but the color is apricot, and
-`--html_admon=colors` implies the same icons as for `gray` and
-`apricot`, but different background colors for the different admonitions.
+larger icons with gray background and small font, `--html_admon=yellow`
+works as the `gray` style, but the color is yellow, and
+`--html_admon=colors` have
+different background colors for the different admonitions.
 
 ===== Preprocessing Steps =====
 

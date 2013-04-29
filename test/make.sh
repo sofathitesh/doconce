@@ -242,9 +242,9 @@ doconce format html admon --html_admon=gray
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_gray.html
 
-doconce format html admon --html_admon=apricot
+doconce format html admon --html_admon=yellow
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp admon.html admon_apricot.html
+cp admon.html admon_yellow.html
 
 doconce sphinx_dir dirname=tmp_admon admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
