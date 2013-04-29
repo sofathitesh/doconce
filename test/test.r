@@ -792,7 +792,7 @@ With math $a=b$ in hint:
 !bt
 \[ a=b. \]
 !et
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 !bc
 def func(x):
@@ -2794,7 +2794,7 @@ First hint to subexercise a).
 With math $a=b$ in hint:
 
 \[ a=b. \]
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 \bccq
 def func(x):
@@ -4340,7 +4340,7 @@ First hint to subexercise a).
 With math $a=b$ in hint:
 
 \[ a=b. \]
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
@@ -5824,7 +5824,7 @@ First hint to subexercise a).
 With math $a=b$ in hint:
 
 \[ a=b. \]
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 def func(x):
@@ -7034,7 +7034,7 @@ With math a=b in hint::
 
         \[ a=b. \]
 
-And with code returning x+1 in hint::
+And with code (in plain verbatim) returning x+1 in hint::
 
 
         def func(x):
@@ -8540,7 +8540,7 @@ With math :math:`a=b` in hint:
 .. math::
          a=b. 
 
-And with code returning :math:`x+1` in hint:
+And with code (in plain verbatim) returning :math:`x+1` in hint:
 
 
 .. code-block:: text
@@ -9779,7 +9779,7 @@ With math `a=b` in hint:
 {{{
 \[ a=b. \]
 }}}
-And with code returning `x+1` in hint:
+And with code (in plain verbatim) returning `x+1` in hint:
 
 {{{
 def func(x):
@@ -10827,7 +10827,7 @@ With math <math>a=b</math> in hint:
 :<math>
  a=b. 
 </math>
-And with code returning <math>x+1</math> in hint:
+And with code (in plain verbatim) returning <math>x+1</math> in hint:
 
 <syntaxhighlight lang="text">
 def func(x):
@@ -11941,7 +11941,7 @@ With math {{{a=b}}} in hint:
 {{{
 \[ a=b. \]
 }}}
-And with code returning {{{x+1}}} in hint:
+And with code (in plain verbatim) returning {{{x+1}}} in hint:
 
 {{{
 def func(x):
@@ -12894,7 +12894,7 @@ With math a=b in hint::
 
         \[ a=b. \]
 
-And with code returning x+1 in hint::
+And with code (in plain verbatim) returning x+1 in hint::
 
 
         def func(x):
@@ -13924,7 +13924,7 @@ With math M{a=b} in hint::
 
         \[ a=b. \]
 
-And with code returning M{x+1} in hint::
+And with code (in plain verbatim) returning M{x+1} in hint::
 
 
         def func(x):
@@ -15036,7 +15036,7 @@ With math a=b in hint::
 
         \[ a=b. \]
 
-And with code returning x+1 in hint::
+And with code (in plain verbatim) returning x+1 in hint::
 
 
         def func(x):
@@ -16283,7 +16283,7 @@ With math $a=b$ in hint:
 $$
  a=b. 
 $$
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17792,7 +17792,7 @@ case in LaTeX.
      "cell_type": "markdown",
      "metadata": {},
      "source": [
-      "And with code returning $x+1$ in hint:"
+      "And with code (in plain verbatim) returning $x+1$ in hint:"
      ]
     },
     {
@@ -18360,7 +18360,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'solution_file': None,
   'subex': [{'answer': 'Short answer to subexercise a).\nWith math in answer: $a=b$.',
              'file': ['subexer_a.pdf'],
-             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n19 <<<!!MATH_BLOCK\nAnd with code returning $x+1$ in hint:\n\n16 <<<!!CODE_BLOCK',
+             'hints': ['First hint to subexercise a).\nWith math $a=b$ in hint:\n\n19 <<<!!MATH_BLOCK\nAnd with code (in plain verbatim) returning $x+1$ in hint:\n\n16 <<<!!CODE_BLOCK',
                        'Second hint to subexercise a).'],
              'solution': '',
              'text': 'Subexercises are numbered a), b), etc.'},
@@ -18915,7 +18915,7 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>Subexercises are numbered a), b), etc.</p>
 <h4 id="hint-1.-2">Hint 1.</h4>
 <p>First hint to subexercise a). With math \(a=b\) in hint:</p>
-<p>\[a=b.\] And with code returning \(x+1\) in hint:</p>
+<p>\[a=b.\] And with code (in plain verbatim) returning \(x+1\) in hint:</p>
 <pre><code>def func(x):
     return x + 1  # with code in hint</code></pre>
 <h4 id="hint-2.-2">Hint 2.</h4>
@@ -19643,7 +19643,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><em>Hint 1.</em> First hint to subexercise a). With math \(a=b\) in hint:</p>
 <p>\[
  a=b. 
-\] And with code returning \(x+1\) in hint:</p>
+\] And with code (in plain verbatim) returning \(x+1\) in hint:</p>
 <pre><code>def func(x):
     return x + 1  # with code in hint</code></pre>
 <!-- --- end hint in exercise --- -->
@@ -21989,24 +21989,24 @@ Here is a nested list:
 
 <table border="0">
 
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> item1</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> item2</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> item3 which continues
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> item1</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> item2</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> item3 which continues
     on the next line to test that feature</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> and a sublist</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> and a sublist</li>
 
 <table border="0">
 
-    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_green2"></td><td> with indented subitem1</li>
-    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_green2"></td><td> and a subitem2</li>
+    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_green2.png"></td><td> with indented subitem1</li>
+    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_green2.png"></td><td> and a subitem2</li>
 </td></tr></table>
 
 
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> and perhaps an ordered sublist</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> and perhaps an ordered sublist</li>
 
 <ol>
-   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> first item</li>
-   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> second item,
+   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> first item</li>
+   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> second item,
       continuing on a new line</li>
 </ol>
 
@@ -23031,8 +23031,8 @@ the beginning of a new exercise and cause trouble. Maybe a list
 <p>
 
 <ol>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> Mark 1.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> Mark 2.
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> Mark 1.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> Mark 2.
 <!-- --- begin hint in exercise --- --></li>
 </ol>
 
@@ -23249,7 +23249,7 @@ With math \( a=b \) in hint:
 <p>
 $$ a=b. $$
 
-And with code returning \( x+1 \) in hint:
+And with code (in plain verbatim) returning \( x+1 \) in hint:
 
 <p>
 
@@ -23432,109 +23432,109 @@ Filename: <code>selc_composed.pdf</code>.
 
 
 <ol>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
     Propagation of Large Destructive Waves,
     <em>International Journal of Applied Mechanics and Engineering</em>,
     7(1),
     pp. 187-204,
     2002.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
     Numerical Methods for Incompressible Viscous Flow,
     <em>Advances in Water Resources</em>,
     25,
     pp. 1125-1146,
     2002.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
     Numerical Solution of First Passage Problems in Random Vibrations,
     <em>SIAM Journal of Scientific and Statistical Computing</em>,
     15,
     pp. 997-996,
     1994.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
     Software Tools for Multigrid Methods,
     <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
     edited by <b>H. P. Langtangen and A. Tveito</b>,
     Springer,
     2003.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
     The FEMDEQS Program System,
     <em>Department of Mathematics, University of Oslo</em>,
     1989.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
     Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
     <em>SIAM Journal on Scientific Computing</em>,
     13,
     pp. 1394-1417,
     1992.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
     <em>Advances in Water Resources</em>,
     34(9),
     <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>,
     2011.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
     <em>International Journal of Fluid Mechanics Research</em>,
     33(1),
     pp. 15-43,
     2006.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
     <em>Physical Review B: Condensed Matter and Materials Physics</em>,
     74,
     2006.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
     2011.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
     Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
     Springer,
     2003.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
     Python Scripting for Computational Science,
     Springer,
     2008.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
     Finite Elements for the Boussinesq Wave Equations,
     Waves and Non-linear Processes in Hydrodynamics,
     edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
     1995.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
     A Primer on Scientific Programming With Python,
     Springer,
     2012.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
     Optimization With Diffpack: Practical Example From Welding,
     <em>Simula Research Laboratory</em>,
     2004.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
     Computational Methods for Two-Phase Flow in Oil Reservoirs,
     Ph.D. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1989.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
     Computational Modeling of Huge Tsunamis From Asteroid Impacts,
     Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
     2007.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
     Computational Methods for Two-Phase Flow in Oil Reservoirs,
     Ph.D. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1989.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
     Numerical Methods in Continuum Mechanics,
     <em>Center for Industrial Research</em>,
     1991.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
     Diffpack: Software for Partial Differential Equations,
     <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
     edited by <b>A. Vermeulen</b>,
@@ -25491,7 +25491,7 @@ With math $latex a=b$ in hint:
 $latex  a=b.  $
 
 
-And with code returning $latex x+1$ in hint:
+And with code (in plain verbatim) returning $latex x+1$ in hint:
 
 <p>
 
@@ -27249,7 +27249,7 @@ With math \( a=b \) in hint:
 <p>
 $$ a=b. $$
 
-And with code returning \( x+1 \) in hint:
+And with code (in plain verbatim) returning \( x+1 \) in hint:
 
 <p>
 
@@ -29136,7 +29136,7 @@ First hint to subexercise a).
 With math $a=b$ in hint:
 
 \[ a=b. \]
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 \bccq
 def func(x):
@@ -29827,12 +29827,12 @@ y
 1
 EOF
 
-doconce format html testdoc --wordpress  --examples_as_exercises
+doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
+doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_no_solutions.html
@@ -29850,7 +29850,7 @@ cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises
+doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce remove_exercise_answers testdoc.html
@@ -33952,7 +33952,7 @@ With math \( a=b \) in hint:
 <p>
 $$ a=b. $$
 
-And with code returning \( x+1 \) in hint:
+And with code (in plain verbatim) returning \( x+1 \) in hint:
 
 <p>
 
@@ -35531,7 +35531,7 @@ With math :math:`a=b` in hint:
 .. math::
          a=b. 
 
-And with code returning :math:`x+1` in hint:
+And with code (in plain verbatim) returning :math:`x+1` in hint:
 
 
 .. code-block:: text
@@ -39301,7 +39301,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 29 Apr 2013 (05:40)</center>
+<center>Mon, 29 Apr 2013 (06:54)</center>
 
 
 
@@ -39432,7 +39432,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 29 Apr 2013 (05:40)</center>
+<center>Mon, 29 Apr 2013 (06:54)</center>
 
 
 
@@ -52258,7 +52258,7 @@ Total:                              21
 
 Saving backup copy of database to file "papers.pub.bak"
 Saving database to file "papers.pub"
-+ doconce format html testdoc --wordpress --examples_as_exercises
++ doconce format html testdoc --wordpress --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html
@@ -52315,7 +52315,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + [ 0 -ne 0 ]
 + cp testdoc.html testdoc_wordpress.html
-+ doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
++ doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default
 running preprocess -DFORMAT=html -DDEVICE=screen -DSOMEVAR testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': True, 'FORMAT': 'html'}
@@ -52525,7 +52525,7 @@ output in testdoc.html
 + doconce split_html testdoc_vagrant.html
 testdoc_vagrant.html now links to the generated files
 ._part0000_testdoc_vagrant.html, ._part0001_testdoc_vagrant.html, ._part0002_testdoc_vagrant.html
-+ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises
++ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html

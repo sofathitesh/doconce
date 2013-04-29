@@ -776,7 +776,7 @@ With math $a=b$ in hint:
 !bt
 \[ a=b. \]
 !et
-And with code returning $x+1$ in hint:
+And with code (in plain verbatim) returning $x+1$ in hint:
 
 !bc
 def func(x):
