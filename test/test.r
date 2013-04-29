@@ -30040,7 +30040,7 @@ doconce format html admon --html_admon=colors
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_colors.html
 
-doconce format html admon --html_admon=gray
+doconce format html admon --html_admon=gray --html_style=blueish2
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_gray.html
 
@@ -30048,9 +30048,13 @@ doconce format html admon --html_admon=yellow
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_yellow.html
 
-doconce format html admon --html_admon=apricot
+doconce format html admon --html_admon=apricot --html_style=solarized
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_apricot.html
+
+doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_vagrant.html
 
 doconce sphinx_dir dirname=tmp_admon admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -36040,7 +36044,12 @@ Automatically generated HTML file from Doconce source
 </head>
 
 <!-- tocinfo
-{'highest level': 4, 'sections': []}
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
 end of tocinfo -->
 
 <body>
@@ -36106,11 +36115,18 @@ $$
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
+
+
+<h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
 <p>
 
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
 Need some code outside admons for color and font comparisons:
 
 <p>
@@ -36133,6 +36149,13 @@ x=1.1 y=0.3 z=0.1
 </pre></div>
 <p>
 
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
 <div class="Warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -36146,8 +36169,7 @@ in comparison with the other admons.
 </ul>
 </div>
 <p>
-Here goes some more text before a "notice" admonition where we control
-the title.
+The next admonition features a title "Note, eventually!".
 
 <p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
@@ -36155,8 +36177,8 @@ the title.
 
 <p>
 <div class="Notice"><b>Note, eventually!</b>
-Ah, we are close to the end.
-With math:
+Ah, we are soon close to the end.
+But first a bit of math:
 $$ p=q$$
 </div>
 <p>
@@ -36167,7 +36189,7 @@ So, how many admonition environments does Doconce support?
 <div class="Question"><b>Question.</b>
 
 <ol>
- <li> So, how many admonition environments does Doconce support?</li>
+ <li> Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
 <p>
@@ -36195,7 +36217,12 @@ Also, remember
 <p>
 </div>
 <p>
-More notice envir.
+
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
 
 <p>
 <div class="Notice"><b>Going deeper.</b>
@@ -36288,9 +36315,13 @@ And then we add a figure too.
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
+
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
-because we can.
+just because we can.
 
 <p>
 <div class="Summary"><b>Concluding remarks, for the novice.</b>
@@ -36696,9 +36727,12 @@ Jan 32, 2100
 % #endif
 
 
+\section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
+
+\subsection{Code}
 
 Need some code outside admons for color and font comparisons:
 
@@ -36713,6 +36747,10 @@ And some plain text verbatim:
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \eccq
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
 
 
 \begin{warningadmon}
@@ -36730,8 +36768,7 @@ in comparison with the other admons.
 
 \noindent
 \end{warningadmon}
-Here goes some more text before a "notice" admonition where we control
-the title.
+The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
@@ -36740,8 +36777,8 @@ the title.
 \begin{noticeadmon}
 \ \ \ {\large\sc Note, eventually!}\\ \par
 \nobreak\noindent\ignorespaces
-Ah, we are close to the end.
-With math:
+Ah, we are soon close to the end.
+But first a bit of math:
 \[ p=q\]
 \end{noticeadmon}
 
@@ -36755,7 +36792,7 @@ So, how many admonition environments does Doconce support?
 \ \ \ {\large\sc Question}\\ \par
 \nobreak\noindent\ignorespaces
 \begin{enumerate}
- \item So, how many admonition environments does Doconce support?
+ \item Once more, how many admonition environments does Doconce support?
 \end{enumerate}
 
 \noindent
@@ -36781,7 +36818,10 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
 \end{hintadmon}
-More notice envir.
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
 
 
 \begin{noticeadmon}
@@ -36863,9 +36903,11 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{noticeadmon}
+\subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
-because we can.
+just because we can.
 
 \summarybox{
 \textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
@@ -36912,6 +36954,8 @@ Automatically generated HTML file from Doconce source
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
     
+    pre, code { font-size: 90%; line-height: 1.6em; }
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
@@ -36944,7 +36988,12 @@ Automatically generated HTML file from Doconce source
 </head>
 
 <!-- tocinfo
-{'highest level': 4, 'sections': []}
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
 end of tocinfo -->
 
 <body>
@@ -37010,11 +37059,18 @@ $$
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
+
+
+<h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
 <p>
 
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
 Need some code outside admons for color and font comparisons:
 
 <p>
@@ -37037,6 +37093,13 @@ x=1.1 y=0.3 z=0.1
 </pre></div>
 <p>
 
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
 <div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -37050,8 +37113,7 @@ in comparison with the other admons.
 </ul>
 </div>
 <p>
-Here goes some more text before a "notice" admonition where we control
-the title.
+The next admonition features a title "Note, eventually!".
 
 <p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
@@ -37059,8 +37121,8 @@ the title.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Note, eventually!</b>
-Ah, we are close to the end.
-With math:
+Ah, we are soon close to the end.
+But first a bit of math:
 $$ p=q$$
 </div>
 <p>
@@ -37071,7 +37133,7 @@ So, how many admonition environments does Doconce support?
 <div class="alert alert-block alert-question"><b>Question.</b>
 
 <ol>
- <li> So, how many admonition environments does Doconce support?</li>
+ <li> Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
 <p>
@@ -37099,7 +37161,12 @@ Also, remember
 <p>
 </div>
 <p>
-More notice envir.
+
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Going deeper.</b>
@@ -37192,9 +37259,13 @@ And then we add a figure too.
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
+
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
-because we can.
+just because we can.
 
 <p>
 <div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
@@ -37273,7 +37344,12 @@ Automatically generated HTML file from Doconce source
 </head>
 
 <!-- tocinfo
-{'highest level': 4, 'sections': []}
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
 end of tocinfo -->
 
 <body>
@@ -37339,11 +37415,18 @@ $$
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
+
+
+<h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
 <p>
 
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
 Need some code outside admons for color and font comparisons:
 
 <p>
@@ -37366,6 +37449,13 @@ x=1.1 y=0.3 z=0.1
 </pre></div>
 <p>
 
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
 <div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -37379,8 +37469,7 @@ in comparison with the other admons.
 </ul>
 </div>
 <p>
-Here goes some more text before a "notice" admonition where we control
-the title.
+The next admonition features a title "Note, eventually!".
 
 <p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
@@ -37388,8 +37477,8 @@ the title.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Note, eventually!</b>
-Ah, we are close to the end.
-With math:
+Ah, we are soon close to the end.
+But first a bit of math:
 $$ p=q$$
 </div>
 <p>
@@ -37400,7 +37489,7 @@ So, how many admonition environments does Doconce support?
 <div class="alert alert-block alert-question"><b>Question.</b>
 
 <ol>
- <li> So, how many admonition environments does Doconce support?</li>
+ <li> Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
 <p>
@@ -37428,7 +37517,12 @@ Also, remember
 <p>
 </div>
 <p>
-More notice envir.
+
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Going deeper.</b>
@@ -37521,9 +37615,13 @@ And then we add a figure too.
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
+
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
-because we can.
+just because we can.
 
 <p>
 <div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
@@ -37610,10 +37708,15 @@ Titles should be optional.
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>First some ordinary text to compare font sizes in admonitions
 and the surrounding text.</p>
 <p>Note that <tt class="docutils literal"><span class="pre">automake_sphinx.py</span></tt> fixes the HTML file generated by Sphinx
 so that all styles for admonitions have a colored background.</p>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <p>Need some code outside admons for color and font comparisons:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">some_code</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
@@ -37624,6 +37727,10 @@ so that all styles for admonitions have a colored background.</p>
 x=1.1 y=0.3 z=0.1
 </pre></div>
 </div>
+</div>
+<div class="section" id="admonitions">
+<h2>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this headline">¶</a></h2>
+<p>Let us start with a plain warning environment.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>And here is a warning about something to pay attention to. We
@@ -37636,12 +37743,11 @@ in comparison with the other admons.</p>
 </ul>
 </div></blockquote>
 </div>
-<p>Here goes some more text before a &#8220;notice&#8221; admonition where we control
-the title.</p>
+<p>The next admonition features a title &#8220;Note, eventually!&#8221;.</p>
 <div class="admonition-note-eventually admonition">
 <p class="first admonition-title">Note, eventually</p>
-<p>Ah, we are close to the end.
-With math:</p>
+<p>Ah, we are soon close to the end.
+But first a bit of math:</p>
 <div class="last math">
 \[p=q\]</div>
 </div>
@@ -37652,7 +37758,7 @@ With math:</p>
 <div class="admonition-question admonition">
 <p class="first admonition-title">Question</p>
 <ol class="last arabic simple">
-<li>So, how many admonition environments does Doconce support?</li>
+<li>Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
 <div class="admonition hint">
@@ -37670,7 +37776,11 @@ With math:</p>
 </pre></div>
 </div>
 </div>
-<p>More notice envir.</p>
+</div>
+<div class="section" id="going-deeper-environments">
+<h2>Going deeper environments<a class="headerlink" href="#going-deeper-environments" title="Permalink to this headline">¶</a></h2>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.</p>
 <div class="admonition-going-deeper admonition">
 <p class="first admonition-title">Going deeper.</p>
 <p>We have some equations that should be preceded by much text, so the
@@ -37741,14 +37851,18 @@ Longer computer code requires vertical space:</p>
 <img alt="../doc/manual/figs/wavepacket_0001.png" src="../doc/manual/figs/wavepacket_0001.png" />
 </div>
 </div>
+</div>
+<div class="section" id="the-end">
+<h2>The end<a class="headerlink" href="#the-end" title="Permalink to this headline">¶</a></h2>
 <p>A bit of text before the summary, which we now call &#8220;Concluding remarks,
 for the novice&#8221;,
-because we can.</p>
+just because we can.</p>
 <div class="admonition-concluding-remarks-for-the-novice admonition">
 <p class="first admonition-title">Concluding remarks, for the novice</p>
 <p class="last">We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.</p>
+</div>
 </div>
 </div>
 
@@ -37758,6 +37872,18 @@ Titles should be optional.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Testing admons</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#code">Code</a></li>
+<li><a class="reference internal" href="#admonitions">Admonitions</a></li>
+<li><a class="reference internal" href="#going-deeper-environments">Going deeper environments</a></li>
+<li><a class="reference internal" href="#the-end">The end</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Testing admons</a></p>
@@ -37864,7 +37990,12 @@ Automatically generated HTML file from Doconce source
 </head>
 
 <!-- tocinfo
-{'highest level': 4, 'sections': []}
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
 end of tocinfo -->
 
 <body>
@@ -37930,11 +38061,18 @@ $$
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
+
+
+<h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
 <p>
 
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
 Need some code outside admons for color and font comparisons:
 
 <p>
@@ -37957,6 +38095,13 @@ x=1.1 y=0.3 z=0.1
 </pre></div>
 <p>
 
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
 <div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -37970,8 +38115,7 @@ in comparison with the other admons.
 </ul>
 </div>
 <p>
-Here goes some more text before a "notice" admonition where we control
-the title.
+The next admonition features a title "Note, eventually!".
 
 <p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
@@ -37979,8 +38123,8 @@ the title.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Note, eventually!</b>
-Ah, we are close to the end.
-With math:
+Ah, we are soon close to the end.
+But first a bit of math:
 $$ p=q$$
 </div>
 <p>
@@ -37991,7 +38135,7 @@ So, how many admonition environments does Doconce support?
 <div class="alert alert-block alert-question"><b>Question.</b>
 
 <ol>
- <li> So, how many admonition environments does Doconce support?</li>
+ <li> Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
 <p>
@@ -38019,7 +38163,12 @@ Also, remember
 <p>
 </div>
 <p>
-More notice envir.
+
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Going deeper.</b>
@@ -38112,9 +38261,13 @@ And then we add a figure too.
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
+
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
-because we can.
+just because we can.
 
 <p>
 <div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
@@ -38146,23 +38299,41 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
-    /* Color definitions:  http://www.december.com/html/spec/color0.html
-       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
-
     body {
-      margin-top: 1.0em;
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
+      margin:5;
+      padding:0;
+      border:0;	/* Remove the border around the viewport in old versions of IE */
+      width:100%;
+      background: #fdf6e3;
+      min-width:600px;	/* Minimum width of layout - remove if not required */
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 1.0em;
+      line-height: 1.3em;
+      color: #657b83;
     }
-    h1 { font-size: 1.8em; color: #1e36ce; }
-    h2 { font-size: 1.5em; color: #1e36ce; }
-    h3 { color: #1e36ce; }
-    a { color: #1e36ce; text-decoration:none; }
+    a { color: #657b83; text-decoration:none; }
+    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
+    h2 { font-variant: small-caps; }
+    pre {
+      background: #fdf6e3;
+      -webkit-box-shadow: inset 0 0 2px #000000;
+      -moz-box-shadow: inset 0 0 2px #000000;
+      box-shadow: inset 0 0 2px #000000;
+      color: #586e75;
+      margin-left: 0px;
+      font-family: 'Droid Sans Mono', monospace;
+      padding: 2px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
     tt { font-family: "Courier New", Courier; }
-    
-    p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .alert {
@@ -38193,7 +38364,12 @@ Automatically generated HTML file from Doconce source
 </head>
 
 <!-- tocinfo
-{'highest level': 4, 'sections': []}
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
 end of tocinfo -->
 
 <body>
@@ -38259,11 +38435,18 @@ $$
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
+
+
+<h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
 <p>
 
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
 Need some code outside admons for color and font comparisons:
 
 <p>
@@ -38286,6 +38469,13 @@ x=1.1 y=0.3 z=0.1
 </pre></div>
 <p>
 
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
 <div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -38299,8 +38489,7 @@ in comparison with the other admons.
 </ul>
 </div>
 <p>
-Here goes some more text before a "notice" admonition where we control
-the title.
+The next admonition features a title "Note, eventually!".
 
 <p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
@@ -38308,8 +38497,8 @@ the title.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Note, eventually!</b>
-Ah, we are close to the end.
-With math:
+Ah, we are soon close to the end.
+But first a bit of math:
 $$ p=q$$
 </div>
 <p>
@@ -38320,7 +38509,7 @@ So, how many admonition environments does Doconce support?
 <div class="alert alert-block alert-question"><b>Question.</b>
 
 <ol>
- <li> So, how many admonition environments does Doconce support?</li>
+ <li> Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
 <p>
@@ -38348,7 +38537,12 @@ Also, remember
 <p>
 </div>
 <p>
-More notice envir.
+
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
 
 <p>
 <div class="alert alert-block alert-notice"><b>Going deeper.</b>
@@ -38441,9 +38635,13 @@ And then we add a figure too.
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
+
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
-because we can.
+just because we can.
 
 <p>
 <div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
@@ -38457,6 +38655,428 @@ Titles should be optional.
 </body>
 </html>
     
+
+
+************** File: admon_vagrant.html *****************
+<html>
+<head>
+<!--
+This style is adopted from the (now old) vagrant 1.0 web
+pages. The style builds on the Twitter Bootstrap style.
+Modifications by Hans Petter Langtangen, hpl@simula.no.
+
+This style file should be copied and the following
+elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end:
+
+ Here goes a footer, if desired, maybe with a Copyright &copy;
+
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<link rel="stylesheet" href="style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="style_vagrant/css/vagrant.css">
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+</head>
+<body>
+
+<title> The end </title>
+
+<!-- ------------------- main content ------------------------>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- Syntax:
+     <li> <a href="...">Section 1</a></li>
+     <li class="active"> <a href="...">Section 2</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2a</a></li>
+     <li> &nbsp;&nbsp;&nbsp; <a href="...">Section 2b</a></li>
+     -->
+     <!-- Doconce automatically fills in the table of contents -->
+          <!-- vagrant nav toc: " Introduction " --> <li>  <a href="#___sec0"> Introduction </a>
+     <!-- vagrant nav toc: " Code " --> <li> &nbsp;  <a href="#___sec1"> Code </a>
+     <!-- vagrant nav toc: " Admonitions " --> <li> &nbsp;  <a href="#___sec2"> Admonitions </a>
+     <!-- vagrant nav toc: " Going deeper environments " --> <li> &nbsp;  <a href="#___sec3"> Going deeper environments </a>
+     <!-- vagrant nav toc: " The end " --> <li> &nbsp;  <a href="#___sec4"> The end </a>
+
+    </ul>
+   </div>
+  </div>
+
+  <div class="span9">
+
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+<!-- ------------------- main content ---------------------- -->
+
+
+<h1>Testing admons</h1>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+
+<p>
+
+
+<h2>Introduction  <a name="___sec0"></a></h2>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<p>
+
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
+Need some code outside admons for color and font comparisons:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+
+And some plain text verbatim:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+<p>
+
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
+<div class="alert alert-block alert-warning"><b>Warning.</b>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+</div>
+<p>
+The next admonition features a title "Note, eventually!".
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Note, eventually!</b>
+Ah, we are soon close to the end.
+But first a bit of math:
+$$ p=q$$
+</div>
+<p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+So, how many admonition environments does Doconce support?
+</div>
+<p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+
+<ol>
+ <li> Once more, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</div>
+<p>
+
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+<p>
+<div class="alert alert-block alert-notice"><b>Going deeper.</b>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+</pre></div>
+<p>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+</div>
+<p>
+
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+<p>
+<div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+<!--
+Preliminary examples/discussion on vagrant style syntax
+
+<div class='alert alert-block alert-notice'>
+  <h3>What about PHP? Python? Java?</h3>
+<p>
+bla-bla.
+</div>
+
+<p>
+While the <div class="deep-blue">rest of the</div> getting started
+-->
+
+<!-- Navigation buttons at the bottom:
+     Doconce will automatically fill in the right URL in these
+     buttons when doconce html_split is run. Otherwise they are empty.
+<ul class="pager">
+  <li class="previous">
+    <a href="">&larr; </a>
+  </li>
+  <li class="next">
+    <a href=""> &rarr;</a>
+ </li>
+</ul>
+-->
+
+ </div>
+
+<!-- ------------------- end of main content --------------- -->
+
+ <div class="row Footer">
+  <div class="span12">
+  Here goes a footer, if desired, maybe with a Copyright &copy;
+  </div>
+ </div>
+</div>
+</body>
+</html>
+
+
 
 
 ************** File: tmp_Doconce.do.txt *****************
@@ -38681,7 +39301,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 29 Apr 2013 (04:33)</center>
+<center>Mon, 29 Apr 2013 (05:40)</center>
 
 
 
@@ -38812,7 +39432,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 29 Apr 2013 (04:33)</center>
+<center>Mon, 29 Apr 2013 (05:40)</center>
 
 
 
@@ -55707,7 +56327,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 output in admon.html
 + [ 0 -ne 0 ]
 + cp admon.html admon_colors.html
-+ doconce format html admon --html_admon=gray
++ doconce format html admon --html_admon=gray --html_style=blueish2
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
 figure file ../doc/manual/figs/wavepacket_0001:
@@ -55725,7 +56345,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 output in admon.html
 + [ 0 -ne 0 ]
 + cp admon.html admon_yellow.html
-+ doconce format html admon --html_admon=apricot
++ doconce format html admon --html_admon=apricot --html_style=solarized
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
 figure file ../doc/manual/figs/wavepacket_0001:
@@ -55734,6 +56354,20 @@ figure file ../doc/manual/figs/wavepacket_0001:
 output in admon.html
 + [ 0 -ne 0 ]
 + cp admon.html admon_apricot.html
++ doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
+running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to html
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format html
+*** warning: TITLE may look strange with a template -
+             it is recommended to comment out the title: #TITLE:
+*** warning: AUTHOR may look strange with a template -
+             it is recommended to comment out all authors: #AUTHOR.
+             Better to hardcode authors in a footer in the template.
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in admon.html
++ [ 0 -ne 0 ]
++ cp admon.html admon_vagrant.html
 + doconce sphinx_dir dirname=tmp_admon admon
 Making tmp_admon
 Welcome to the Sphinx 1.2pre quickstart utility.
@@ -55820,7 +56454,7 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] admon
 reading sources... [100%] index
 
-/home/hpl/vc/doconce/test/tmp_admon/admon.rst:5: WARNING: image file not readable: ../doc/manual/figs/wavepacket_0001.png
+/home/hpl/vc/doconce/test/tmp_admon/admon.rst:104: WARNING: image file not readable: ../doc/manual/figs/wavepacket_0001.png
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -55992,25 +56626,23 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf
-> <./latex_figs/notice.pdf>]
-<latex_figs/question.pdf, id=26, 89.33376pt x 89.33376pt>
+>] <latex_figs/question.pdf, id=24, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 Underfull \hbox (badness 10000) 
 
 <use latex_figs/question.pdf>
 Underfull \hbox (badness 10000) 
 
-<latex_figs/hint.pdf, id=27, 89.33376pt x 89.33376pt>
+<latex_figs/hint.pdf, id=25, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
-<use latex_figs/notice.pdf>
+[2 <./latex_figs/notice.pdf> <./latex_figs/question.pdf> <./latex_figs/hint.pdf
+>] <use latex_figs/notice.pdf>
 Underfull \hbox (badness 10000) 
 
-<../doc/manual/figs/wavepacket_0001.png, id=28, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png>
-Underfull \vbox (badness 1259) detected at line 378
-[2 <./latex_figs/question.pdf> <./latex_figs/hint.pdf>] [3]
+<../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
 No file admon.ind.
 [4 <../doc/manual/figs/wavepacket_0001.png>] (./admon.aux)
 

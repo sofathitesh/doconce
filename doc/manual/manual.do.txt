@@ -1509,6 +1509,21 @@ works as the `gray` style, but the color is different.
 With `--html_admon=colors` one gets quite bright colors
 as backgrounds for the different admonitions.
 
+Some recommended combinations for admonitions in HTML are
+
+ * `--html_admon=apricot', `--html_style=solarized`
+ * `--html_admon=yellow`, `--html_style=bluish2`, `--no_pygments_html`
+ * `--html_admon=yellow`, `--html_style=blueish2`, `--pygments_html_style=default`
+ * `--html_admon=gray`, `--html_style=bloodish`, `--no_pygments_html`
+ * `--html_admon=gray`, `--html_style=bloodish`, `--pygments_html_style=default`
+ * `--html_style=vagrant`, `--pygments_html_style=default`, `--html_template=...`
+
+The `vagrant` HTML style has CSS files that override the definition
+how the admons are typset. The `notice` environment is gray with an
+icon (defined in `vagrant.css`), while the others are yellow (defined
+in `twitter_bootstrap.css`). The `--html_admon` color has no effect
+for the `vagrant` style.
+
 ===== Preprocessing Steps =====
 
 Doconce allows preprocessor commands for, e.g., including files,
