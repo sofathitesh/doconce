@@ -11,3 +11,7 @@ Posted by iTweek: http://itweek.deviantart.com/
 
 The lyx_*.png figures are taken from
 http://www.karakas-online.de/mySGML/lyx-admonitions.html
+
+The note_*, question_* tip_*, summary_*, warning_* figures are taken from
+http://www.iconfinder.com (licence free images).
+
