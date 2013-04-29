@@ -607,7 +607,7 @@ MathJax.Hub.Config({
     icon = option('html_exercise_icon=', 'None')
     icon_width = option('html_exercise_icon_width=', '100')
     if icon.lower() != 'none':
-        if icon == default:
+        if icon == 'default':
             if html_style == 'solarized' or html_style == 'bloodish':
                 icon = 'question_black_on_gray.png'
                 #icon = 'question_white_on_black.png'

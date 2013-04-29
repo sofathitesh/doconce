@@ -47,7 +47,10 @@ document is embedded."""),
 (See the HTML header for a list of theme files and their names."""),
     ('--html_exercise_icon=',
      """Specify a question icon in bundled/html_images for being
-inserted to the right in exercises - "default" is allowed."""),
+inserted to the right in exercises - "default" and "none" are allowed
+("none" if no option)."""),
+    ('--html_exercise_icon_width=',
+     """Width of the icon image specified as --html_exercise_icon."""),
     ('--device=',
      """Set device to paper, screen, or other (paper impacts LaTeX output)."""),
     ('--latex_double_hyphen',
