@@ -238,7 +238,7 @@ doconce format html admon --html_admon=colors
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_colors.html
 
-doconce format html admon --html_admon=gray
+doconce format html admon --html_admon=gray --html_style=blueish2
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_gray.html
 
@@ -246,9 +246,13 @@ doconce format html admon --html_admon=yellow
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_yellow.html
 
-doconce format html admon --html_admon=apricot
+doconce format html admon --html_admon=apricot --html_style=solarized
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_apricot.html
+
+doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_vagrant.html
 
 doconce sphinx_dir dirname=tmp_admon admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
