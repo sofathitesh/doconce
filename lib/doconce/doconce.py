@@ -39,9 +39,7 @@ def doconce_envirs():                     # begin-end environments
             'quote',
             'notice', 'summary', 'warning', 'question',]  # admon
 
-# Customizable admons: !bwarning some title, !bnotice some title
-# warning and notice should have a title
-# (warning -> important, notice -> detour, fun fact, going deeper)
+admons = 'hint', 'notice', 'summary', 'warning', 'question'
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)

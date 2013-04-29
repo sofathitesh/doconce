@@ -5,7 +5,7 @@ Doconce Quick Reference
 -----------------------
 
 :Author: Hans Petter Langtangen
-:Date: Apr 28, 2013
+:Date: Apr 29, 2013
 
 .. contents:: Table of Contents
    :depth: 2
@@ -961,7 +961,7 @@ the environments:
  * ``quote``: indented text
 
  * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * ``pop``: text to gradually pop up in slide presentations
 

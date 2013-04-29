@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Apr 28, 2013
+DATE: Apr 29, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -873,7 +873,7 @@ the environments:
  - 'sol': full solution to exercise or sub-exercise
  - 'quote': indented text
  - 'notice', 'summary', 'warning', 'question', 'hint': admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  - 'pop': text to gradually pop up in slide presentations
  - 'slidecell': indication of cells in a grid layout for elements on a
    slide

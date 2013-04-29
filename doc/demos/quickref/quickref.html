@@ -32,21 +32,6 @@ Automatically generated HTML file from Doconce source
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -57,17 +42,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -144,7 +130,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
-<center><h4>Apr 28, 2013</h4></center> <!-- date -->
+<center><h4>Apr 29, 2013</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -676,14 +662,7 @@ is also important, one should follow these rules:
 labels in <code>align</code> environments work well.)
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-notice"><b>Notice.</b>
 LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <code>sphinx</code>, makes it necessary
@@ -694,8 +673,7 @@ include special code for <code>latex</code> and <code>pdflatex</code> output and
 straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
-</p></td></tr>
-</table>
+</div>
 <p>
 <b>LaTeX Newcommands.</b>
 The author can define <code>newcommand</code> statements in files with names
@@ -1215,7 +1193,7 @@ the environments:
  <li> <code>sol</code>: full solution to exercise or sub-exercise</li>
  <li> <code>quote</code>: indented text</li>
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
-    special icon and (frequently) background color</li>
+    custom title, special icon, and (frequently) background color</li>
  <li> <code>pop</code>: text to gradually pop up in slide presentations</li>
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide</li>

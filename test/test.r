@@ -1112,21 +1112,6 @@ Automatically generated HTML file from Doconce source
     p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -1137,17 +1122,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -1561,38 +1547,6 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -1639,6 +1593,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
 }
 
 % #ifdef COLORED_TABLE_ROWS
@@ -3210,38 +3196,6 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -3288,6 +3242,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.pdf}
+}
+{
+\end{questionshaded}
 }
 
 % color every two table rows
@@ -4756,38 +4742,6 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -4834,6 +4788,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.pdf}
+}
+{
+\end{questionshaded}
 }
 
 
@@ -20757,7 +20743,7 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
@@ -21515,21 +21501,6 @@ Automatically generated HTML file from Doconce source
     p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -21540,17 +21511,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -21831,21 +21803,6 @@ Automatically generated HTML file from Doconce source
     p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -21856,17 +21813,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -22031,24 +21989,24 @@ Here is a nested list:
 
 <table border="0">
 
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> item1</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> item2</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> item3 which continues
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> item1</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> item2</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> item3 which continues
     on the next line to test that feature</li>
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> and a sublist</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> and a sublist</li>
 
 <table border="0">
 
-    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/green_bullet2"></td><td> with indented subitem1</li>
-    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/green_bullet2"></td><td> and a subitem2</li>
+    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_green2"></td><td> with indented subitem1</li>
+    </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_green2"></td><td> and a subitem2</li>
 </td></tr></table>
 
 
-  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> and perhaps an ordered sublist</li>
+  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> and perhaps an ordered sublist</li>
 
 <ol>
-   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> first item</li>
-   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> second item,
+   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> first item</li>
+   </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> second item,
       continuing on a new line</li>
 </ol>
 
@@ -22125,21 +22083,6 @@ Automatically generated HTML file from Doconce source
     p { text-indent: 0px; }
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -22150,17 +22093,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -23087,8 +23031,8 @@ the beginning of a new exercise and cause trouble. Maybe a list
 <p>
 
 <ol>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> Mark 1.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> Mark 2.
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> Mark 1.</li>
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> Mark 2.
 <!-- --- begin hint in exercise --- --></li>
 </ol>
 
@@ -23488,109 +23432,109 @@ Filename: <code>selc_composed.pdf</code>.
 
 
 <ol>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
     Propagation of Large Destructive Waves,
     <em>International Journal of Applied Mechanics and Engineering</em>,
     7(1),
     pp. 187-204,
     2002.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_et_al_2002"></a> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
     Numerical Methods for Incompressible Viscous Flow,
     <em>Advances in Water Resources</em>,
     25,
     pp. 1125-1146,
     2002.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1994a"></a> <b>H. P. Langtangen</b>. 
     Numerical Solution of First Passage Problems in Random Vibrations,
     <em>SIAM Journal of Scientific and Statistical Computing</em>,
     15,
     pp. 997-996,
     1994.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Mardal_et_al_2003a"></a> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
     Software Tools for Multigrid Methods,
     <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
     edited by <b>H. P. Langtangen and A. Tveito</b>,
     Springer,
     2003.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1988d"></a> <b>H. P. Langtangen</b>. 
     The FEMDEQS Program System,
     <em>Department of Mathematics, University of Oslo</em>,
     1989.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1992c"></a> <b>H. P. Langtangen</b>. 
     Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
     <em>SIAM Journal on Scientific Computing</em>,
     13,
     pp. 1394-1417,
     1992.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Mortensen_et_al_2011"></a> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
     <em>Advances in Water Resources</em>,
     34(9),
     <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>,
     2011.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Glimsdal_et_al_20006"></a> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
     <em>International Journal of Fluid Mechanics Research</em>,
     33(1),
     pp. 15-43,
     2006.</li>
- </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+ </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Rahman_et_al_2006b"></a> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
     <em>Physical Review B: Condensed Matter and Materials Physics</em>,
     74,
     2006.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Haga_et_al_2011a"></a> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
     2011.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
     Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
     Springer,
     2003.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
     Python Scripting for Computational Science,
     Springer,
     2008.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
     Finite Elements for the Boussinesq Wave Equations,
     Waves and Non-linear Processes in Hydrodynamics,
     edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
     1995.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
     A Primer on Scientific Programming With Python,
     Springer,
     2012.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
     Optimization With Diffpack: Practical Example From Welding,
     <em>Simula Research Laboratory</em>,
     2004.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_1989e"></a> <b>H. P. Langtangen</b>. 
     Computational Methods for Two-Phase Flow in Oil Reservoirs,
     Ph.D. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1989.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen_talk_2007a"></a> <b>H. P. Langtangen</b>. 
     Computational Modeling of Huge Tsunamis From Asteroid Impacts,
     Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,
     2007.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:85"></a> <b>H. P. Langtangen</b>. 
     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
     Computational Methods for Two-Phase Flow in Oil Reservoirs,
     Ph.D. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1989.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
     Numerical Methods in Continuum Mechanics,
     <em>Center for Industrial Research</em>,
     1991.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/red_bullet2"></td><td> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
+</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2"></td><td> <a name="Langtangen:94b"></a> <b>H. P. Langtangen</b>. 
     Diffpack: Software for Partial Differential Equations,
     <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
     edited by <b>A. Vermeulen</b>,
@@ -23647,17 +23591,9 @@ With label.
 Without label.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
 Here is a hint.
-</p></td></tr>
-</table>
+</div>
 <p>
 
 Need a lot of text to surround the summary box.
@@ -23673,14 +23609,7 @@ Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for
 from using version control systems.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Summary.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-summary"><b>Summary.</b>
 <b>Bold remark:</b> Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -23691,8 +23620,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-</p></td></tr>
-</table>
+</div>
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -24387,26 +24315,11 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -24417,17 +24330,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -25926,17 +25840,9 @@ With label.
 Without label.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
 Here is a hint.
-</p></td></tr>
-</table>
+</div>
 <p>
 
 Need a lot of text to surround the summary box.
@@ -25952,14 +25858,7 @@ Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for
 from using version control systems.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Summary.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-summary"><b>Summary.</b>
 <b>Bold remark:</b> Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -25970,8 +25869,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-</p></td></tr>
-</table>
+</div>
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -26112,26 +26010,11 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -26142,17 +26025,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -27705,17 +27589,9 @@ With label.
 Without label.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
 Here is a hint.
-</p></td></tr>
-</table>
+</div>
 <p>
 
 Need a lot of text to surround the summary box.
@@ -27731,14 +27607,7 @@ Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for
 from using version control systems.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Summary.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-summary"><b>Summary.</b>
 <b>Bold remark:</b> Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -27749,8 +27618,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-</p></td></tr>
-</table>
+</div>
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -28047,38 +27915,6 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -28125,6 +27961,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
 }
 
 % #ifdef COLORED_TABLE_ROWS
@@ -30176,6 +30044,10 @@ doconce format html admon --html_admon=gray
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_gray.html
 
+doconce format html admon --html_admon=yellow
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_yellow.html
+
 doconce format html admon --html_admon=apricot
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp admon.html admon_apricot.html
@@ -30696,7 +30568,7 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
@@ -36143,7 +36015,7 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
@@ -36153,37 +36025,15 @@ Automatically generated HTML file from Doconce source
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
-    .alert {
-             padding:8px 35px 8px 14px; margin-bottom:18px;
-             text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
-             color: #555;
-             background-color: whiteSmoke;
-             background-position: 10px 10px;
-             background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
-     }
-     .alert-block {padding-top:14px; padding-bottom:14px}
-     .alert-block > p, .alert-block > ul {margin-bottom:0}
-     .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png); }
 
 </style>
 
@@ -36261,7 +36111,29 @@ and the surrounding text.
 
 <p>
 
-<div class="warning"><b>Warning.</b>
+Need some code outside admons for color and font comparisons:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+
+And some plain text verbatim:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+<p>
+
+<div class="Warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -36282,17 +36154,24 @@ the title.
 <!-- those formats automatically add : to the admonition title. -->
 
 <p>
-<div class="notice"><b>Note, eventually!</b>
+<div class="Notice"><b>Note, eventually!</b>
 Ah, we are close to the end.
 With math:
 $$ p=q$$
 </div>
 <p>
-<div class="question"><b>Question.</b>
+<div class="Question"><b>Question.</b>
 So, how many admonition environments does Doconce support?
 </div>
 <p>
-<div class="hint"><b>Hint.</b>
+<div class="Question"><b>Question.</b>
+
+<ol>
+ <li> So, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
+<div class="Hint"><b>Hint.</b>
 It is smart to read on and remember to
 
 <p>
@@ -36308,7 +36187,7 @@ Also, remember
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
@@ -36319,7 +36198,7 @@ Also, remember
 More notice envir.
 
 <p>
-<div class="notice"><b>Going deeper.</b>
+<div class="Notice"><b>Going deeper.</b>
 We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -36348,7 +36227,7 @@ code is task that this "Going deeper" environment targets.
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
@@ -36363,7 +36242,7 @@ Longer computer code requires vertical space:
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -36401,27 +36280,12 @@ Longer computer code requires vertical space:
         f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
         <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
                 (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
-    mycos <span style="color: #666666">=</span> Central4(sin)
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
-    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
-
-    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
-    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
-    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
-
-<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
-    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
-    _test()
 </pre></div>
 <p>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -36429,7 +36293,7 @@ for the novice",
 because we can.
 
 <p>
-<div class="summary"><b>Concluding remarks, for the novice.</b>
+<div class="Summary"><b>Concluding remarks, for the novice.</b>
 We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
@@ -36559,6 +36423,20 @@ final,                   % or draft (marks overfull hboxes)
 
 \setcounter{tocdepth}{2}  % number chapter, section, subsection
 
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
@@ -36591,38 +36469,6 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -36669,6 +36515,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.pdf}
+}
+{
+\end{questionshaded}
 }
 
 % #ifdef COLORED_TABLE_ROWS
@@ -36822,6 +36700,20 @@ First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
 
+Need some code outside admons for color and font comparisons:
+
+\bpycod
+def some_code(x):
+    return sin(x)*exp(1-x)
+\epycod
+
+And some plain text verbatim:
+
+\bccq
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\eccq
+
 
 \begin{warningadmon}
 \ \ \ {\large\sc Warning}\\ \par
@@ -36857,6 +36749,16 @@ With math:
 \ \ \ {\large\sc Question}\\ \par
 \nobreak\noindent\ignorespaces
 So, how many admonition environments does Doconce support?
+\end{questionadmon}
+
+\begin{questionadmon}
+\ \ \ {\large\sc Question}\\ \par
+\nobreak\noindent\ignorespaces
+\begin{enumerate}
+ \item So, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
 \end{questionadmon}
 \begin{hintadmon}
 \ \ \ {\large\sc Hint}\\ \par
@@ -36953,26 +36855,13 @@ class Forward3(Diff):
         f, h = self.f, self.h
         return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
                 (1./3)*f(x-h))/h
-
-def _test():
-    mycos = Central4(sin)
-    print dir(mycos)
-    print mycos.__dict__
-    print mycos.__class__.__bases__[0].__dict__
-    # Compute sin'(pi)
-    print "g'(%g)=%g (exact value is %g)" % (pi, mycos(pi), cos(pi))
-    mysin = Central4(Central4(sin))
-    # Compute sin''(pi)
-    print "g''(%g)=%g (exact value is %g)" % (pi, mysin(pi), -sin(pi))
-
-    df = Central2(lambda x: exp(x), h=1.0E-9)
-    bigx = 20
-    print exp(bigx), exp(bigx) - df(bigx)
-
-if __name__ == '__main__':
-    from math import *
-    _test()
 \epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
 \end{noticeadmon}
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
@@ -37022,26 +36911,11 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -37052,17 +36926,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -37140,6 +37015,28 @@ and the surrounding text.
 
 <p>
 
+Need some code outside admons for color and font comparisons:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+
+And some plain text verbatim:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+<p>
+
 <div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -37171,6 +37068,13 @@ $$ p=q$$
 So, how many admonition environments does Doconce support?
 </div>
 <p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+
+<ol>
+ <li> So, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
 <div class="alert alert-block alert-hint"><b>Hint.</b>
 It is smart to read on and remember to
 
@@ -37187,7 +37091,7 @@ Also, remember
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
@@ -37227,7 +37131,7 @@ code is task that this "Going deeper" environment targets.
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
@@ -37242,7 +37146,7 @@ Longer computer code requires vertical space:
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -37280,27 +37184,12 @@ Longer computer code requires vertical space:
         f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
         <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
                 (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
-    mycos <span style="color: #666666">=</span> Central4(sin)
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
-    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
-
-    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
-    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
-    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
-
-<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
-    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
-    _test()
 </pre></div>
 <p>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -37321,7 +37210,7 @@ Titles should be optional.
     
 
 
-************** File: admon_apricot.html *****************
+************** File: admon_yellow.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
 Automatically generated HTML file from Doconce source
@@ -37351,26 +37240,11 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -37381,17 +37255,18 @@ Automatically generated HTML file from Doconce source
              background-color: #fcf8e3;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
 
@@ -37469,6 +37344,28 @@ and the surrounding text.
 
 <p>
 
+Need some code outside admons for color and font comparisons:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+
+And some plain text verbatim:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+<p>
+
 <div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
@@ -37500,6 +37397,13 @@ $$ p=q$$
 So, how many admonition environments does Doconce support?
 </div>
 <p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+
+<ol>
+ <li> So, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
 <div class="alert alert-block alert-hint"><b>Hint.</b>
 It is smart to read on and remember to
 
@@ -37516,7 +37420,7 @@ Also, remember
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
@@ -37556,7 +37460,7 @@ code is task that this "Going deeper" environment targets.
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
@@ -37571,7 +37475,7 @@ Longer computer code requires vertical space:
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -37609,27 +37513,12 @@ Longer computer code requires vertical space:
         f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
         <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
                 (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
-    mycos <span style="color: #666666">=</span> Central4(sin)
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
-    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
-
-    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
-    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
-    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
-
-<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
-    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
-    _test()
 </pre></div>
 <p>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
 <p>
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -37725,6 +37614,16 @@ Titles should be optional.
 and the surrounding text.</p>
 <p>Note that <tt class="docutils literal"><span class="pre">automake_sphinx.py</span></tt> fixes the HTML file generated by Sphinx
 so that all styles for admonitions have a colored background.</p>
+<p>Need some code outside admons for color and font comparisons:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">some_code</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And some plain text verbatim:</p>
+<div class="highlight-text"><div class="highlight"><pre>x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>And here is a warning about something to pay attention to. We
@@ -37749,6 +37648,12 @@ With math:</p>
 <div class="admonition-question admonition">
 <p class="first admonition-title">Question</p>
 <p class="last">So, how many admonition environments does Doconce support?</p>
+</div>
+<div class="admonition-question admonition">
+<p class="first admonition-title">Question</p>
+<ol class="last arabic simple">
+<li>So, how many admonition environments does Doconce support?</li>
+</ol>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
@@ -37791,7 +37696,7 @@ code is task that this &#8220;Going deeper&#8221; environment targets.</p>
 </div>
 <p>And some more text that can help going into the next page.
 Longer computer code requires vertical space:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Diff</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Diff</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
@@ -37829,26 +37734,11 @@ Longer computer code requires vertical space:</p>
         <span class="n">f</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span>
         <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> \
                 <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="n">h</span>
-
-<span class="k">def</span> <span class="nf">_test</span><span class="p">():</span>
-    <span class="n">mycos</span> <span class="o">=</span> <span class="n">Central4</span><span class="p">(</span><span class="n">sin</span><span class="p">)</span>
-    <span class="k">print</span> <span class="nb">dir</span><span class="p">(</span><span class="n">mycos</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">mycos</span><span class="o">.</span><span class="n">__dict__</span>
-    <span class="k">print</span> <span class="n">mycos</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__dict__</span>
-    <span class="c"># Compute sin&#39;(pi)</span>
-    <span class="k">print</span> <span class="s">&quot;g&#39;(</span><span class="si">%g</span><span class="s">)=</span><span class="si">%g</span><span class="s"> (exact value is </span><span class="si">%g</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">mycos</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
-    <span class="n">mysin</span> <span class="o">=</span> <span class="n">Central4</span><span class="p">(</span><span class="n">Central4</span><span class="p">(</span><span class="n">sin</span><span class="p">))</span>
-    <span class="c"># Compute sin&#39;&#39;(pi)</span>
-    <span class="k">print</span> <span class="s">&quot;g&#39;&#39;(</span><span class="si">%g</span><span class="s">)=</span><span class="si">%g</span><span class="s"> (exact value is </span><span class="si">%g</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">mysin</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
-
-    <span class="n">df</span> <span class="o">=</span> <span class="n">Central2</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.0E-9</span><span class="p">)</span>
-    <span class="n">bigx</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="k">print</span> <span class="n">exp</span><span class="p">(</span><span class="n">bigx</span><span class="p">),</span> <span class="n">exp</span><span class="p">(</span><span class="n">bigx</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">(</span><span class="n">bigx</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
-    <span class="n">_test</span><span class="p">()</span>
 </pre></div>
+</div>
+<p>And then we add a figure too.</p>
+<div class="last figure">
+<img alt="../doc/manual/figs/wavepacket_0001.png" src="../doc/manual/figs/wavepacket_0001.png" />
 </div>
 </div>
 <p>A bit of text before the summary, which we now call &#8220;Concluding remarks,
@@ -37941,26 +37831,11 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -37971,17 +37846,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -38059,14 +37935,29 @@ and the surrounding text.
 
 <p>
 
+Need some code outside admons for color and font comparisons:
 
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
-<th align="left" valign="middle"><b>Warning.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+
+And some plain text verbatim:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+<p>
+
+<div class="alert alert-block alert-warning"><b>Warning.</b>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -38077,8 +37968,7 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
-</p></td></tr>
-</table>
+</div>
 <p>
 Here goes some more text before a "notice" admonition where we control
 the title.
@@ -38088,40 +37978,24 @@ the title.
 <!-- those formats automatically add : to the admonition title. -->
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Note, eventually!</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-notice"><b>Note, eventually!</b>
 Ah, we are close to the end.
 With math:
 $$ p=q$$
-</p></td></tr>
-</table>
+</div>
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
-<th align="left" valign="middle"><b>Question.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-question"><b>Question.</b>
 So, how many admonition environments does Doconce support?
-</p></td></tr>
-</table>
+</div>
 <p>
+<div class="alert alert-block alert-question"><b>Question.</b>
 
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
-<th align="left" valign="middle"><b>Hint.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<ol>
+ <li> So, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
 It is smart to read on and remember to
 
 <p>
@@ -38137,26 +38011,18 @@ Also, remember
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
 </pre></div>
 <p>
-</p></td></tr>
-</table>
+</div>
 <p>
 More notice envir.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Going deeper.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-notice"><b>Going deeper.</b>
 We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -38185,7 +38051,7 @@ code is task that this "Going deeper" environment targets.
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
@@ -38200,7 +38066,7 @@ Longer computer code requires vertical space:
 
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -38238,48 +38104,353 @@ Longer computer code requires vertical space:
         f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
         <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
                 (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">_test</span>():
-    mycos <span style="color: #666666">=</span> Central4(sin)
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #008000">dir</span>(mycos)
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__dict__
-    <span style="color: #008000; font-weight: bold">print</span> mycos<span style="color: #666666">.</span>__class__<span style="color: #666666">.</span>__bases__[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>__dict__
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mycos(pi), cos(pi))
-    mysin <span style="color: #666666">=</span> Central4(Central4(sin))
-    <span style="color: #408080; font-style: italic"># Compute sin&#39;&#39;(pi)</span>
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;g&#39;&#39;(</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> (exact value is </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">)&quot;</span> <span style="color: #666666">%</span> (pi, mysin(pi), <span style="color: #666666">-</span>sin(pi))
-
-    df <span style="color: #666666">=</span> Central2(<span style="color: #008000; font-weight: bold">lambda</span> x: exp(x), h<span style="color: #666666">=1.0E-9</span>)
-    bigx <span style="color: #666666">=</span> <span style="color: #666666">20</span>
-    <span style="color: #008000; font-weight: bold">print</span> exp(bigx), exp(bigx) <span style="color: #666666">-</span> df(bigx)
-
-<span style="color: #008000; font-weight: bold">if</span> __name__ <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;__main__&#39;</span>:
-    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
-    _test()
 </pre></div>
 <p>
-</p></td></tr>
-</table>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+</div>
 <p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 because we can.
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
-<th align="left" valign="middle"><b>Concluding remarks, for the novice.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
 We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
-</p></td></tr>
-</table>
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: admon_apricot.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Testing admons">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #FFBF00;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: #fbeed5;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
+     }
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Testing admons</title>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<p>
+
+Need some code outside admons for color and font comparisons:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+
+And some plain text verbatim:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+<p>
+
+<div class="alert alert-block alert-warning"><b>Warning.</b>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+</div>
+<p>
+Here goes some more text before a "notice" admonition where we control
+the title.
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Note, eventually!</b>
+Ah, we are close to the end.
+With math:
+$$ p=q$$
+</div>
+<p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+So, how many admonition environments does Doconce support?
+</div>
+<p>
+<div class="alert alert-block alert-question"><b>Question.</b>
+
+<ol>
+ <li> So, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
+<div class="alert alert-block alert-hint"><b>Hint.</b>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</div>
+<p>
+More notice envir.
+
+<p>
+<div class="alert alert-block alert-notice"><b>Going deeper.</b>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+</pre></div>
+<p>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+</div>
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+because we can.
+
+<p>
+<div class="alert alert-block alert-summary"><b>Concluding remarks, for the novice.</b>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</div>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -38510,7 +38681,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 28 Apr 2013 (14:26)</center>
+<center>Mon, 29 Apr 2013 (04:33)</center>
 
 
 
@@ -38641,7 +38812,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 28 Apr 2013 (14:26)</center>
+<center>Mon, 29 Apr 2013 (04:33)</center>
 
 
 
@@ -39600,7 +39771,7 @@ the environments:
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
  * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide
@@ -39695,21 +39866,6 @@ Automatically generated HTML file from Doconce source
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -39720,17 +39876,18 @@ Automatically generated HTML file from Doconce source
              background-color: whiteSmoke;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 52px;
-             font-size: 0.8em;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -40339,14 +40496,7 @@ is also important, one should follow these rules:
 labels in <code>align</code> environments work well.)
 
 <p>
-
-<table width="95%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
-<th align="left" valign="middle"><b>Notice.</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert alert-block alert-notice"><b>Notice.</b>
 LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <code>sphinx</code>, makes it necessary
@@ -40357,8 +40507,7 @@ include special code for <code>latex</code> and <code>pdflatex</code> output and
 straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
-</p></td></tr>
-</table>
+</div>
 <p>
 <b>LaTeX Newcommands.</b>
 The author can define <code>newcommand</code> statements in files with names
@@ -40878,7 +41027,7 @@ the environments:
  <li> <code>sol</code>: full solution to exercise or sub-exercise</li>
  <li> <code>quote</code>: indented text</li>
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
-    special icon and (frequently) background color</li>
+    custom title, special icon, and (frequently) background color</li>
  <li> <code>pop</code>: text to gradually pop up in slide presentations</li>
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide</li>
@@ -41110,38 +41259,6 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -41188,6 +41305,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
 }
 
 % #ifdef COLORED_TABLE_ROWS
@@ -42292,7 +42441,7 @@ the environments:
  \item \code{quote}: indented text
 
  \item \code{notice}, \code{summary}, \code{warning}, \code{question}, \code{hint}: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  \item \code{pop}: text to gradually pop up in slide presentations
 
@@ -43332,7 +43481,7 @@ the environments:
  * ``quote``: indented text
 
  * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * ``pop``: text to gradually pop up in slide presentations
 
@@ -44416,7 +44565,7 @@ the environments:
  * ``quote``: indented text
 
  * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * ``pop``: text to gradually pop up in slide presentations
 
@@ -45333,7 +45482,7 @@ the environments:
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
- * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with    special icon and (frequently) background color
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with    custom title, special icon, and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a   slide
 
@@ -46290,7 +46439,7 @@ the environments:
  <li> <code>sol</code>: full solution to exercise or sub-exercise
  <li> <code>quote</code>: indented text
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  <li> <code>pop</code>: text to gradually pop up in slide presentations
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide
@@ -47206,7 +47355,7 @@ the environments:
  * {{{ans}}}: short answer to exercise or sub-exercise
  * {{{sol}}}: full solution to exercise or sub-exercise
  * {{{quote}}}: indented text
- * {{{notice}}}, {{{summary}}}, {{{warning}}}, {{{question}}}, {{{hint}}}: admonition boxes with    special icon and (frequently) background color
+ * {{{notice}}}, {{{summary}}}, {{{warning}}}, {{{question}}}, {{{hint}}}: admonition boxes with    custom title, special icon, and (frequently) background color
  * {{{pop}}}: text to gradually pop up in slide presentations
  * {{{slidecell}}}: indication of cells in a grid layout for elements on a   slide
 
@@ -48142,7 +48291,7 @@ the environments:
  - 'sol': full solution to exercise or sub-exercise
  - 'quote': indented text
  - 'notice', 'summary', 'warning', 'question', 'hint': admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  - 'pop': text to gradually pop up in slide presentations
  - 'slidecell': indication of cells in a grid layout for elements on a
    slide
@@ -49101,7 +49250,7 @@ the environments:
  - C{sol}: full solution to exercise or sub-exercise
  - C{quote}: indented text
  - C{notice}, C{summary}, C{warning}, C{question}, C{hint}: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  - C{pop}: text to gradually pop up in slide presentations
  - C{slidecell}: indication of cells in a grid layout for elements on a
    slide
@@ -50110,7 +50259,7 @@ the environments:
  * quote: indented text
 
  * notice, summary, warning, question, hint: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * pop: text to gradually pop up in slide presentations
 
@@ -51138,7 +51287,7 @@ the environments:
  * `quote`: indented text
 
  * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * `pop`: text to gradually pop up in slide presentations
 
@@ -55543,6 +55692,8 @@ format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, 
 + doconce format html admon
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in admon.html
 + [ 0 -ne 0 ]
@@ -55550,6 +55701,8 @@ output in admon.html
 + doconce format html admon --html_admon=colors
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in admon.html
 + [ 0 -ne 0 ]
@@ -55557,13 +55710,26 @@ output in admon.html
 + doconce format html admon --html_admon=gray
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in admon.html
 + [ 0 -ne 0 ]
 + cp admon.html admon_gray.html
++ doconce format html admon --html_admon=yellow
+running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to html
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in admon.html
++ [ 0 -ne 0 ]
++ cp admon.html admon_yellow.html
 + doconce format html admon --html_admon=apricot
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in admon.html
 + [ 0 -ne 0 ]
@@ -55641,6 +55807,8 @@ or just run it by
 + python automake_sphinx.py
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to sphinx
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format sphinx
 output in admon.rst
 rm -rf _build/*
 sphinx-build -b html -d _build/doctrees   . _build/html
@@ -55652,6 +55820,7 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] admon
 reading sources... [100%] index
 
+/home/hpl/vc/doconce/test/tmp_admon/admon.rst:5: WARNING: image file not readable: ../doc/manual/figs/wavepacket_0001.png
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -55663,7 +55832,7 @@ writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded.
+build succeeded, 1 warning.
 
 Build finished. The HTML pages are in _build/html.
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
@@ -55721,10 +55890,13 @@ google-chrome tmp_admon/_build/html/index.html
 + doconce format pdflatex admon
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format pdflatex
 output in admon.p.tex
 + [ 0 -ne 0 ]
 + doconce ptex2tex admon
 \bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 output in admon.tex
 + pdflatex admon
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -55794,6 +55966,7 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 
 
 
+
 Writing index file admon.idx
 No file admon.aux.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -55818,22 +55991,28 @@ Underfull \hbox (badness 10000)
 <use latex_figs/notice.pdf>
 Underfull \hbox (badness 10000) 
 
-<latex_figs/question.pdf, id=6, 89.33376pt x 89.33376pt>
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf
+> <./latex_figs/notice.pdf>]
+<latex_figs/question.pdf, id=26, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 Underfull \hbox (badness 10000) 
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf
-> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-<latex_figs/hint.pdf, id=31, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
+Underfull \hbox (badness 10000) 
+
+<latex_figs/hint.pdf, id=27, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
 <use latex_figs/notice.pdf>
 Underfull \hbox (badness 10000) 
 
-[2 <./latex_figs/hint.pdf>] [3]
+<../doc/manual/figs/wavepacket_0001.png, id=28, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png>
+Underfull \vbox (badness 1259) detected at line 378
+[2 <./latex_figs/question.pdf> <./latex_figs/hint.pdf>] [3]
 No file admon.ind.
-[4] (./admon.aux)
+[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -55898,6 +56077,7 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
      url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
   framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
 titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
 supp-pdf.mkii
@@ -55918,8 +56098,10 @@ latex_figs/warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
 latex_figs/notice.pdf
 latex_figs/question.pdf
+latex_figs/question.pdf
 latex_figs/hint.pdf
 latex_figs/notice.pdf
+../doc/manual/figs/wavepacket_0001.png
  ***********
 
 

@@ -73,38 +73,6 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 
 \usepackage{framed}
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
-}
-{
-\end{questionshaded}
-}
-
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -151,6 +119,38 @@ final,                   % or draft (marks overfull hboxes)
 }
 {
 \end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question.eps}
+}
+{
+\end{questionshaded}
 }
 
 
@@ -205,7 +205,7 @@ Doconce Quick Reference
 
 
 \begin{center}
-Apr 28, 2013
+Apr 29, 2013
 \end{center}
 
 \vspace{1cm}
@@ -1161,7 +1161,7 @@ the environments:
  \item \Verb!quote!: indented text
 
  \item \Verb!notice!, \Verb!summary!, \Verb!warning!, \Verb!question!, \Verb!hint!: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  \item \Verb!pop!: text to gradually pop up in slide presentations
 

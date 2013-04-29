@@ -6,7 +6,7 @@ Hans Petter Langtangen [1, 2]
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
 
-Date: Apr 28, 2013
+Date: Apr 29, 2013
 
 Table of contents:
 
@@ -969,7 +969,7 @@ the environments:
  * quote: indented text
 
  * notice, summary, warning, question, hint: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * pop: text to gradually pop up in slide presentations
 

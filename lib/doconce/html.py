@@ -61,22 +61,24 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
 
 # Style sheets
 
-admon_styles = """\
+admon_styles1 = """\
     .notice, .summary, .warning, .hint, .question {
     border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
     background-repeat: no-repeat; background-position: 10px center;
     }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png); }
+    .notice   { color: #00529B; background-color: %(background_notice)s;
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_notice)s); }
+    .summary  { color: #4F8A10; background-color: %(background_summary)s;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }
+    .warning  { color: #9F6000; background-color: %(background_warning)s;
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_warning)s); }
+    .hint     { color: #00529B; background-color: %(background_hint)s;
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_hint)s); }
+    .question { color: #4F8A10; background-color: %(background_question)s;
+                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_question)s); }
+"""
 
+admon_styles2 = """\
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -87,8 +89,9 @@ admon_styles = """\
              background-color: %(background)s;
              background-position: 10px 10px;
              background-repeat: no-repeat;
-             padding-left: 80px; /*52px;*/
-             font-size: 50%; /*0.8em;*/
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%%; /*0.8em;*/
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -945,8 +948,10 @@ def html_quote(block, format):
 </blockquote>
 """ % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
+admons = 'hint', 'notice', 'summary', 'warning', 'question'
+global admon_css_vars        # set in define
 
-for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
+for _admon in admons:
     _Admon = _admon[0].upper() + _admon[1:]  # upper first char
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
@@ -955,7 +960,27 @@ def html_%s(block, format, title='%s'):
     if title[-1] not in ('.', ':', '!', '?'):
         # Make sure the title ends with puncuation
         title += '.'
-    lyx = """
+    # Make pygments background equal to admon background for colored admons.
+    pygments_pattern = r'"background: .+?">'
+    html_admon = option('html_admon=', 'gray')
+    if html_admon == 'colors':
+        block = re.sub(pygments_pattern, r'"background: %%s">' %%
+                       admon_css_vars['colors']['background_%s'], block)
+        janko = """<div class="%s"><b>%%s</b>
+%%s
+</div>
+""" %% (title, block)
+        return janko
+    elif html_admon in admon_css_vars or option('html_style=') == 'vagrant':
+        block = re.sub(pygments_pattern, r'"background: %%s">' %%
+                       admon_css_vars[html_admon]['background'], block)
+        vagrant = """<div class="alert alert-block alert-%s"><b>%%s</b>
+%%s
+</div>
+""" %% (title, block)
+        return vagrant
+    else:
+        lyx = """
 <table width="95%%%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
@@ -967,21 +992,8 @@ def html_%s(block, format, title='%s'):
 </p></td></tr>
 </table>
 """ %% (title, block)
-    janko = """<div class="%s"><b>%%s</b>
-%%s
-</div>
-""" %% (title, block)
-    vagrant = """<div class="alert alert-block alert-%s"><b>%%s</b>
-%%s
-</div>
-""" %% (title, block)
-    if option('html_admon=', 'small') == 'colors':
-        return janko
-    elif option('html_admon=', 'small') in ('gray', 'yellow') or option('html_style=') == 'vagrant':
-        return vagrant
-    else:
         return lyx
-''' % (_admon, _Admon + '.', _admon, _Admon, _admon, _admon)
+''' % (_admon, _Admon + '.', _admon, _Admon, _admon, _admon, _admon)
     exec(_text)
 
 def define(FILENAME_EXTENSION,
@@ -1098,9 +1110,10 @@ def define(FILENAME_EXTENSION,
     else:
         css = css_blueish # default
 
-    if not option('no_pygments_html'):
+    if not option('no_pygments_html') and \
+           option('html_style=', 'blueish') != 'solarized':
         # Remove pre style as it destroys the background for pygments
-        css = re.sub(r'pre .+\{.+?\}', '', css, flags=re.DOTALL)
+        css = re.sub(r'pre .*?\{.+?\}', '', css, flags=re.DOTALL)
 
     # Fonts
     body_font_family = option('html_body_font=', None)
@@ -1133,26 +1146,36 @@ def define(FILENAME_EXTENSION,
     if heading_font_family is not None:
         css += "\n    h1, h2, h3 { font-family: '%s'; }\n" % heading_font_family.replace('+', ' ')
 
+    global admon_css_vars
+    admon_styles = 'gray', 'yellow', 'apricot', 'colors'
+    admon_css_vars = {style: {} for style in admon_styles}
+    admon_css_vars['yellow']  = dict(boundary='#fbeed5', background='#fcf8e3')
+    admon_css_vars['apricot'] = dict(boundary='#FFBF00', background='#fbeed5')
+    admon_css_vars['gray']    = dict(boundary='#bababa', background='whiteSmoke')
+    for a in admons:
+        admon_css_vars['yellow']['icon_' + a]  = 'small_yellow_%s.png' % a
+        admon_css_vars['apricot']['icon_' + a] = 'small_yellow_%s.png' % a
+        admon_css_vars['gray']['icon_' + a]    = 'small_gray_%s.png' % a
+    admon_css_vars['colors'] = dict(
+        background_notice='#BDE5F8',
+        background_summary='#DFF2BF',
+        background_warning='#FEEFB3',
+        background_hint='#BDE5F8',
+        background_question='#DFF2BF',
+        icon_notice='Knob_Info.png',
+        icon_summary='Knob_Valid_Green.png',
+        icon_warning='Knob_Attention.png',
+        icon_hint='Knob_Info.png',
+        icon_question='Knob_Forward.png',
+        )
+    html_admon = option('html_admon=', 'gray')
     # Need to add admon_styles?
-    admons = 'hint', 'notice', 'summary', 'warning', 'question'
     for admon in admons:
         if '!b'+admon in filestr and '!e'+admon in filestr:
-            admon_vars = {}
-            if option('html_admon=', 'gray') == 'yellow':
-                admon_vars['boundary'] = '#fbeed5'
-                admon_vars['background'] = '#fcf8e3'
-                for a in admons:
-                    admon_vars['icon_' + a] = 'small_yellow_%s.png' % a
-                if option('pygments_html_style=', 'default') != 'perldoc':
-                    print '*** the perdoc pygments style is recommended:'
-                    print '    --pygments_html_style=perldoc'
+            if html_admon == 'colors':
+                css += (admon_styles1 % admon_css_vars[html_admon])
             else:
-                # gray
-                admon_vars['boundary'] = '#bababa'
-                admon_vars['background'] = 'whiteSmoke'
-                for a in admons:
-                    admon_vars['icon_' + a] = 'small_gray_%s.png' % a
-            css += admon_styles % admon_vars
+                css += (admon_styles2 % admon_css_vars[html_admon])
             break
 
     style = """

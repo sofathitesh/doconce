@@ -731,7 +731,7 @@ the environments:
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
  * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a
    slide

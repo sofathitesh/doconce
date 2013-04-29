@@ -1,7 +1,7 @@
 #summary Doconce Quick Reference
 
 By *Hans Petter Langtangen*
-==== Apr 28, 2013 ====
+==== Apr 29, 2013 ====
 
 <wiki: toc max_depth="2" />
 
@@ -848,7 +848,7 @@ the environments:
  * `ans`: short answer to exercise or sub-exercise
  * `sol`: full solution to exercise or sub-exercise
  * `quote`: indented text
- * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with    special icon and (frequently) background color
+ * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with    custom title, special icon, and (frequently) background color
  * `pop`: text to gradually pop up in slide presentations
  * `slidecell`: indication of cells in a grid layout for elements on a   slide
 

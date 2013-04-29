@@ -801,6 +801,8 @@ def latex_%s(block, format, title='%s'):
 ''' % (admon, admon_name, admon, admon, ', '.join(rgb), admon, latexfigdir, figname)
     return text
 
+
+admons = 'hint', 'notice', 'summary', 'warning', 'question'
 _light_blue = (0.87843, 0.95686, 1.0)
 _light_yellow = (0.988235, 0.964706, 0.862745)
 _pink = (1.0, 0.8235294, 0.8235294)
@@ -816,7 +818,7 @@ _admon2rgb = dict(warning=_pink,
 #    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
 #                           _admon, _admon2rgb[_admon]))
 
-for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
+for _admon in admons:
     text = r"""
 def latex_%s(block, format, title='%s'):
     text = r'''
@@ -1272,7 +1274,6 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
 """
-    admons = ['warning', 'question', 'hint', 'notice', 'summary']
     if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
         INTRO['latex'] += r"""
 \usepackage{framed}"""

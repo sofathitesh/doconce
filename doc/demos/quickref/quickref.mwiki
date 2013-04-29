@@ -1,7 +1,7 @@
 #TITLE (actually governed by the filename): Doconce Quick Reference
 
 By '''Hans Petter Langtangen'''
-==== Apr 28, 2013 ====
+==== Apr 29, 2013 ====
 
 __TOC__
 
@@ -895,7 +895,7 @@ the environments:
  <li> <code>sol</code>: full solution to exercise or sub-exercise
  <li> <code>quote</code>: indented text
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
  <li> <code>pop</code>: text to gradually pop up in slide presentations
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide

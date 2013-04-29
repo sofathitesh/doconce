@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% Apr 28, 2013
+% Apr 29, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -962,7 +962,7 @@ the environments:
  * `quote`: indented text
 
  * `notice`, `summary`, `warning`, `question`, `hint`: admonition boxes with
-    special icon and (frequently) background color
+    custom title, special icon, and (frequently) background color
 
  * `pop`: text to gradually pop up in slide presentations
 
