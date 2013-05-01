@@ -1533,10 +1533,10 @@ def html_colorbullets():
         _usage_html_collorbullets()
         sys.exit(1)
 
-    red_bullet = 'bullet_red2'
-    green_bullet = 'bullet_green2'
-    #red_bullet = 'bullet_red1'
-    #green_bullet = 'bullet_green1'
+    red_bullet = 'bullet_red2.png'
+    green_bullet = 'bullet_green2.png'
+    #red_bullet = 'bullet_red1.png'
+    #green_bullet = 'bullet_green1.png'
 
     filenames = sys.argv[1:]
     for filename in filenames:
