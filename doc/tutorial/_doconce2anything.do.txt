@@ -301,7 +301,7 @@ A separate titlepage can be generate by
 
 Preprocessor variables to be defined or undefined are
 
- * `XETEX` for processing by `xelatex`
+ * `XELATEX` for processing by `xelatex`
  * `LATEX_HEADING` for the typesetting of the title, author, etc.
  * `PALATINO` for the Palatino font
  * `HELVETICA` for the Helvetica font
@@ -435,6 +435,19 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 !ec
+
+===== XeLaTeX =====
+
+XeLaTeX is an alternative to pdfLaTeX and is run in almost the
+same way, except for the `-DXELATEX` flag to ptex2tex:
+
+!bc
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce ptex2tex mydoc -DXELATEX
+Terminal> ptex2tex -DXELATEX mydoc  # alternative
+Terminal> xelatex mydoc
+!ec
+
 
 ===== Plain ASCII Text =====
 

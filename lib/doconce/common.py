@@ -560,7 +560,7 @@ def bibliography(pubdata, citations, format='doconce'):
             if pub['key'] == key:
                 pubs.append(pub)
                 break
-    text = '\n'
+    text = '\n======= Bibliography =======\n\n'
     for pub in pubs:
         text += formatter[pub['category']](pub)
     text += '\n\n'

@@ -656,10 +656,10 @@ def latex_ref_and_label(section_label2title, format, filestr):
              r'assoc\.', r'Assoc.', r'Assist.', r'Mr\.', r'Ms\.', 'Mss\.', \
              r'Fig\.', r'Tab\.', r'Univ\.', r'Dept\.', r'abbr\.', r'cf\.', \
              r'e\.g\.', r'E\.g\.', r'i\.e\.', r'Approx\.', r'approx\.', \
-             r'Exer\.', r'et al\.'
+             r'Exer\.', r'Sec\.', r'Ch\.', r'App\.', r'et al\.', 'no\.'
     # avoid r'assist\.' - matches too much
     for p in prefix:
-        filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>',
+        filestr = re.sub(r'(%s) +([\\A-Za-z0-9$])' % p, r'\g<1>~\g<2>',
                          filestr)
     # Allow C# and F# languages
     # (filestr is here without code so side effects for

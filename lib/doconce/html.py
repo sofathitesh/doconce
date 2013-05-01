@@ -95,6 +95,7 @@ admon_styles2 = """\
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_notice)s); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }

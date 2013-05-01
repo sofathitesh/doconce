@@ -56,7 +56,7 @@ def doconce_format_books(paper):
     values = []
     values += [_doconce_get_key_string(paper)]
     values += [_doconce_get_authors_string(paper["author"])]
-    values += [_doconce_format_title(paper)]
+    values += ['*%s*' % _doconce_format_title(paper)]
     values += [paper["publisher"]]
     values += [paper["year"]]
     if "doi" in paper: values.append(_doconce_format_doi(paper["doi"]))
@@ -314,7 +314,7 @@ def rst_format_books(paper):
     values = []
     values += [_rst_get_key_string(paper)]
     values += [_rst_get_authors_string(paper["author"])]
-    values += [_rst_format_title(paper)]
+    values += ['*%s*' % _rst_format_title(paper)]
     values += [paper["publisher"]]
     values += [paper["year"]]
     if "doi" in paper: values.append(_rst_format_doi(paper["doi"]))
