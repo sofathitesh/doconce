@@ -161,7 +161,7 @@ that `ptex2tex` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 !bc sys
-sudo apt-get install texlive-latex-recommended texlive-latex-extra
+sudo apt-get install texlive
 !ec
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -203,8 +203,7 @@ Inline comments apply the `todonotes` LaTeX package if the `ptex2tex`
 or `doconce ptex2tex` command is run with `-DTODONOTES`.  The
 `todonotes` package requires several other packages: `xcolor`,
 `ifthen`, `xkeyval`, `tikz`, `calc`, `graphicx`, and `setspace`. The
-relevant Debian package for installing all this is
-`texlive-latex-extra`.
+relevant Debian packages for installing all this are listed below.
 
 === LaTeX packages ===
 
@@ -219,14 +218,13 @@ program, meaning that if you do not use `ptex2tex`, you do not need
 `ptex2tex.sty`. Optional packages that might be included are `minted`,
 `fontspec`, `xunicode`, `inputenc`, `helvet`, `mathpazo`, `wrapfig`,
 `calc`, `ifthen`, `xkeyval`, `tikz`, `graphicx`, `setspace`, `shadow`,
-`disable`, `todonotes`, `lineno`, `xr`, `framed`, `movie15`, `a4paper`, and
-`a6paper`.
+`disable`, `todonotes`, `lineno`, `xr`, `framed`, `mdframe`,
+`movie15`, `a4paper`, and `a6paper`.
 
 Relevant Debian packages that gives you all of these LaTeX packages are
 
 !bc
-texlive-latex-base
-texlive-latex-recommended
+texlive
 texlive-latex-extra
 texlive-math-extra
 texlive-bibtex-extra
@@ -234,6 +232,7 @@ texlive-xetex
 texlive-humanities
 texlive-pictures
 !ec
+(On old Ubuntu 12.04 one has to do `sudo add-apt-repository ppa:texlive-backports/ppa` and `sudo apt-get update` first).
 
 If you want to use the *anslistings* code environment with `ptex2tex`
 (`.ptex2tex.cfg` styles `Python_ANS`, `Python_ANSt`, `Cpp_ANS`, etc.) or

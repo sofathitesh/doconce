@@ -264,8 +264,12 @@ cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 doconce format pdflatex admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce ptex2tex admon
-pdflatex admon
+admon_tps="colors box paragraph"
+for admon_tp in admon_tps; do
+doconce ptex2tex admon envir=minted -DADMON=$admon_tp
+cp admon.tex admon_${admon_tp}.tex
+pdflatex -shell-escape admon_${admon_tp}
+done
 
 
 # Test encoding
