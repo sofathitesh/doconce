@@ -30,21 +30,32 @@ $ sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 $ cd ../../..
 
 # LaTeX
-latex-beamer
-latex-xcolor
 texinfo
+# These lines are only necessary for Ubuntu 12.04 to install texlive 2012
+$ ubuntu_version=`lsb_release -r | awl '{print $2}'`
+$ if [ $ubuntu_version = "12.04" ]; then
+$   sudo add-apt-repository ppa:texlive-backports/ppa
+$   sudo apt-get update
+$ fi
+texlive
 texlive-extra-utils
-texlive-latex-base
-texlive-latex-recommended
 texlive-latex-extra
-texlive-math-extra
-texlive-bibtex-extra
-texlive-xetex
-texlive-humanities
-texlive-pictures
 latexdiff
 auctex
-biblatex
+
+
+# mdframed.sty must be installed manually
+#$ curl -O http://ctan.uib.no/macros/latex/contrib/mdframed/mdframed.dtx
+# alternative: git clone https://github.com/marcodaniel/mdframed
+#$ texdir=~/texmf/tex/latex/misc
+#$ if [ ! -d $texdir ]; then mkdir -p $texdir; fi
+#$ cp mdframed.sty $texdir/
+#$ cd $texdir/../../..
+#$ mktexlsr .
+#$ cd -
+#$ rm -f md-frame-* mdframed.*
+
+
 
 # Image manipulation
 imagemagick

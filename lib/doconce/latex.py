@@ -818,19 +818,33 @@ _admon2rgb = dict(warning=_pink,
 #    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
 #                           _admon, _admon2rgb[_admon]))
 
-[[[ need to take parameters in environment
 for _admon in admons:
+    _Admon = _admon[0].upper() + _admon[1:]
     text = r"""
-def latex_%s(block, format, title='%s'):
+def latex_%(_admon)s(block, format, title='%(_Admon)s'):
+    title2 = title.replace(',', '')  # box title cannot handle ,
+    title3 = title
+    if title2[-1] not in ('.', ':', '!', '?'):
+        title2 += '.'
+    if title3[-1] not in ('.', ':', '!', '?'):
+        title3 += '.'
     text = r'''
-\begin{%sadmon}
-\ \ \ {\large\sc %%s}\\ \par
-\nobreak\noindent\ignorespaces
+%%%% #if ADMON == "colors"
+\begin{%(_admon)sadmon}[%%s]
 %%s
-\end{%sadmon}
-''' %% (title, block)
+\end{%(_admon)sadmon}
+%%%% #elif ADMON == "paragraph"
+\begin{%(_admon)sadmon}[%%s]
+%%s
+\end{%(_admon)sadmon}
+%%%% #else
+\begin{%(_admon)sadmon}[%%s]
+%%s
+\end{%(_admon)sadmon}
+%%%% #endif
+''' %% (title, block, title3, block, title2, block)
     return text
-    """ % (_admon, _admon[0].upper() + _admon[1:], _admon, _admon)
+    """ % vars()
     exec(text)
 
 
@@ -1279,14 +1293,15 @@ final,                   % or draft (marks overfull hboxes)
     if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
         INTRO['latex'] += r"""
 % #ifndef ADMON
-% #define ADMON "color"
-% Default is "color", i.e., framed box with color
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
 % #else
-% #if ADMON == "color"
+% #if ADMON == "colors"
 \usepackage{framed}
-% #elif ADMON == "box"
-\usepackage{mdframed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
 % #endif
 % #endif
 """
@@ -1296,27 +1311,46 @@ final,                   % or draft (marks overfull hboxes)
             _get_admon_figs(figname)
             color = str(_admon2rgb[admon])[1:-1]
             INTRO['latex'] += r"""
-% #if ADMON == "color"
-%% Admonition environment for "%s"
-\definecolor{%sbackground}{rgb}{%s}
+%% Admonition environment for "%(admon)s"
+%% #if ADMON == "colors"
+\definecolor{%(admon)sbackground}{rgb}{%(color)s}
 %% \fboxsep sets the space between the text and the box
-\newenvironment{%sshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{%sbackground}}
+\newenvironment{%(admon)sshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{%(admon)sbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{%sadmon}{
-\begin{%sshaded}
+\newenvironment{%(admon)sadmon}[1][%(Admon)s]{
+\begin{%(admon)sshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/%s}
+\includegraphics[height=0.3in]{latex_figs/%(admon)s}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{%sshaded}
+\end{%(admon)sshaded}
 }
-% #elif ADMON == "box"
-% #else
-% Admonition is just a paragraph
-# #endif
-""" % (admon, admon, color, admon, admon, admon, admon, figname, admon)
+%% #elif ADMON == "paragraph"
+%% Admonition is just a paragraph
+\newenvironment{%(admon)sadmon}[1][%(Admon)s]{\paragraph{#1}}{}
+%% #else
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{%(admon)smdframed}
+
+\newenvironment{%(admon)sadmon}[1][%(Admon)s]{
+\begin{%(admon)smdframed}[frametitle=#1]
+}
+{
+\end{%(admon)smdframed}
+}
+%% #endif
+""" % vars()
 
     INTRO['latex'] += r"""
 % #ifdef COLORED_TABLE_ROWS
