@@ -25,30 +25,33 @@ y
 1
 EOF
 
-doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
+ex="--examples_as_exercises"
+#ex=
+
+doconce format html testdoc --wordpress  $ex --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default
+doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_no_solutions.html
 
-doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
+doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp -r ../bundled/html_styles/style_vagrant .
 doconce replace 'css/' 'style_vagrant/css/' style_vagrant/template_vagrant.html
-doconce format html testdoc.do.txt --examples_as_exercises --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
+doconce format html testdoc.do.txt $ex --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
+doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce remove_exercise_answers testdoc.html
@@ -61,10 +64,10 @@ doconce split_html testdoc.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 
-doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
+doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen
+doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc
@@ -82,7 +85,7 @@ doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 # because of --latex-double-hyphen:
 doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
-doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
+doconce replace --examples_as__exercises $ex testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
@@ -99,6 +102,7 @@ pdflatex -shell-escape testdoc
 pdflatex -shell-escape testdoc
 
 cp testdoc.tex testdoc.tex_ptex2tex
+# testdoc.tex_ptex2tex corresponds to testdoc.pdf
 
 # -DBOOK will not work for latex/pdflatex since we have an abstract,
 # but here we just use the translated text for testing, not latex compiling
@@ -108,47 +112,47 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
+doconce format plain testdoc.do.txt $ex -DSOMEVAR=1
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format st testdoc.do.txt --examples_as_exercises
+doconce format st testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format sphinx testdoc.do.txt --examples_as_exercises
+doconce format sphinx testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 mv -f testdoc.rst testdoc.sphinx.rst
 
-doconce format sphinx testdoc --examples_as_exercises
+doconce format sphinx testdoc $ex
 doconce split_rst testdoc
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp automake_sphinx.py automake_sphinx_testdoc.py
 
-doconce format rst testdoc.do.txt --examples_as_exercises
+doconce format rst testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format epytext testdoc.do.txt --examples_as_exercises
+doconce format epytext testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pandoc testdoc.do.txt --examples_as_exercises
+doconce format pandoc testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format mwiki testdoc.do.txt --examples_as_exercises
+doconce format mwiki testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format cwiki testdoc.do.txt --examples_as_exercises
+doconce format cwiki testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format ipynb testdoc.do.txt --examples_as_exercises
+doconce format ipynb testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples_as_exercises
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt --examples_as_exercises
+doconce format latex testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
@@ -163,7 +167,7 @@ pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
 
-doconce format pandoc testdoc.do.txt --examples_as_exercises
+doconce format pandoc testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
@@ -265,7 +269,7 @@ cp tmp_admon/_build/html/admon.html admon_sphinx.html
 doconce format pdflatex admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 admon_tps="colors box paragraph"
-for admon_tp in admon_tps; do
+for admon_tp in $admon_tps; do
 doconce ptex2tex admon envir=minted -DADMON=$admon_tp
 cp admon.tex admon_${admon_tp}.tex
 pdflatex -shell-escape admon_${admon_tp}

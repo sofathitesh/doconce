@@ -26,7 +26,7 @@
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -145,89 +145,223 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+% #ifdef LINENUMBERS
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+% #endif
 
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
 % Admonition environment for "hint"
+% #if ADMON == "colors"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
 
 % Admonition environment for "notice"
+% #if ADMON == "colors"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
 
 % Admonition environment for "summary"
+% #if ADMON == "colors"
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
 
 % Admonition environment for "warning"
+% #if ADMON == "colors"
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
 
 % Admonition environment for "question"
+% #if ADMON == "colors"
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -355,13 +489,13 @@ Doconce Quick Reference
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Apr 29, 2013}
+\date{May 3, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Apr 29, 2013}}
+{\large\textsf{May 3, 2013}}
 
 \end{center}
 \vfill
@@ -370,7 +504,7 @@ Doconce Quick Reference
 % #else
 
 \begin{center}
-Apr 29, 2013
+May 3, 2013
 \end{center}
 
 \vspace{1cm}
@@ -842,9 +976,8 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
-\begin{noticeadmon}
-\ \ \ {\large\sc Notice}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{noticeadmon}[Notice]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -856,6 +989,33 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
 \end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Notice.]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Notice.]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{noticeadmon}
+% #endif
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
 \code{newcommands*.tex}. Such commands should only be used for mathematics
