@@ -818,6 +818,7 @@ _admon2rgb = dict(warning=_pink,
 #    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
 #                           _admon, _admon2rgb[_admon]))
 
+[[[ need to take parameters in environment
 for _admon in admons:
     text = r"""
 def latex_%s(block, format, title='%s'):
@@ -1073,7 +1074,7 @@ def define(FILENAME_EXTENSION,
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -1269,20 +1270,33 @@ final,                   % or draft (marks overfull hboxes)
         INTRO['latex'] += r"""
 % #endif
 """
-        if not option('skip_inline_comments'):
-            INTRO['latex'] += r"""
+        INTRO['latex'] += r"""
+% #ifdef LINENUMBERS
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+% #endif
 """
     if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
         INTRO['latex'] += r"""
-\usepackage{framed}"""
+% #ifndef ADMON
+% #define ADMON "color"
+% Default is "color", i.e., framed box with color
+\usepackage{framed}
+% #else
+% #if ADMON == "color"
+\usepackage{framed}
+% #elif ADMON == "box"
+\usepackage{mdframed}
+% #endif
+% #endif
+"""
         for admon in admons:
             Admon = admon.upper()[0] + admon[1:]
             figname = admon + '.eps'  # must be changed to .pdf in pdflatex.py
             _get_admon_figs(figname)
             color = str(_admon2rgb[admon])[1:-1]
             INTRO['latex'] += r"""
+% #if ADMON == "color"
 %% Admonition environment for "%s"
 \definecolor{%sbackground}{rgb}{%s}
 %% \fboxsep sets the space between the text and the box
@@ -1298,6 +1312,10 @@ final,                   % or draft (marks overfull hboxes)
 {
 \end{%sshaded}
 }
+% #elif ADMON == "box"
+% #else
+% Admonition is just a paragraph
+# #endif
 """ % (admon, admon, color, admon, admon, admon, admon, figname, admon)
 
     INTRO['latex'] += r"""
