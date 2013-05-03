@@ -532,7 +532,10 @@ Let's check abbr. of some common kind, e.g. the well-known i.e.
 expression as an example. Moreover, Dr. Tang and Prof. Monsen,
 or maybe also prof. Ting,
 will go to the Dept. of Science to test how Mr. Hansen is doing together
-with Ms. Larsen. A sentence containing "refines lines" could easily
+with Ms. Larsen. A reference like Sec. ref{subsubsec:ex} or
+Ch. ref{subsubsec:ex}, or even App. ref{subsubsec:ex}, must also be
+handled. Likewise, this is test no. $i$ of Doconce features.
+A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e. since the dot matches anything.
 Also, look at Fig. 4 to see how the data compares with Tab. ref{mytab}.
 % endif
@@ -1128,6 +1131,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -1389,7 +1393,7 @@ $$
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -1543,89 +1547,223 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+% #ifdef LINENUMBERS
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+% #endif
 
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
 % Admonition environment for "hint"
+% #if ADMON == "colors"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
 
 % Admonition environment for "notice"
+% #if ADMON == "colors"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
 
 % Admonition environment for "summary"
+% #if ADMON == "colors"
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
 
 % Admonition environment for "warning"
+% #if ADMON == "colors"
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
 
 % Admonition environment for "question"
+% #if ADMON == "colors"
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -2487,7 +2625,10 @@ Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example. Moreover, Dr.~Tang and Prof.~Monsen,
 or maybe also prof.~Ting,
 will go to the Dept.~of Science to test how Mr.~Hansen is doing together
-with Ms.~Larsen. A sentence containing "refines lines" could easily
+with Ms.~Larsen. A reference like Sec.~\ref{subsubsec:ex} or
+Ch.~\ref{subsubsec:ex}, or even App.~\ref{subsubsec:ex}, must also be
+handled. Likewise, this is test no.~$i$ of Doconce features.
+A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e.~since the dot matches anything.
 Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
@@ -2980,11 +3121,19 @@ With label.
 Without label.
 
 
-\begin{hintadmon}
-\ \ \ {\large\sc Hint}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{hintadmon}[Hint]
 Here is a hint.
 \end{hintadmon}
+% #elif ADMON == "paragraph"
+\begin{hintadmon}[Hint.]
+Here is a hint.
+\end{hintadmon}
+% #else
+\begin{hintadmon}[Hint.]
+Here is a hint.
+\end{hintadmon}
+% #endif
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -3195,7 +3344,9 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
 
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -3203,10 +3354,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.pdf}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
@@ -3219,10 +3372,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.pdf}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
@@ -3235,10 +3390,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.pdf}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
@@ -3251,10 +3408,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
@@ -3267,10 +3426,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
@@ -4530,9 +4691,7 @@ With label.
 Without label.
 
 
-\begin{hintadmon}
-\ \ \ {\large\sc Hint}\\ \par
-\nobreak\noindent\ignorespaces
+\begin{hintadmon}[Hint]
 Here is a hint.
 \end{hintadmon}
 \clearpage
@@ -4738,10 +4897,10 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}
 
-\usepackage[mathlines]{lineno}  % show line numbers
-\linenumbers
 
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -4749,10 +4908,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.pdf}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
@@ -4765,10 +4926,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.pdf}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
@@ -4781,10 +4944,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.pdf}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
@@ -4797,10 +4962,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
@@ -4813,10 +4980,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
@@ -6010,9 +6179,7 @@ With label.
 Without label.
 
 
-\begin{hintadmon}
-\ \ \ {\large\sc Hint}\\ \par
-\nobreak\noindent\ignorespaces
+\begin{hintadmon}[Hint]
 Here is a hint.
 \end{hintadmon}
 \clearpage
@@ -7199,6 +7366,9 @@ References
 ==========
 
 
+Bibliography
+============
+
 .. [Ref01]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
@@ -7266,12 +7436,12 @@ References
    2011.
 
 .. [Ref11]
-   **H. P. Langtangen**. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+   **H. P. Langtangen**. *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
    Springer,
    2003.
 
 .. [Ref12]
-   **H. P. Langtangen**. Python Scripting for Computational Science,
+   **H. P. Langtangen**. *Python Scripting for Computational Science*,
    Springer,
    2008.
 
@@ -7284,7 +7454,7 @@ References
    1995.
 
 .. [Ref14]
-   **H. P. Langtangen**. A Primer on Scientific Programming With Python,
+   **H. P. Langtangen**. *A Primer on Scientific Programming With Python*,
    Springer,
    2012.
 
@@ -8715,6 +8885,9 @@ References
 ==========
 
 
+Bibliography
+============
+
 .. [Ref01]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
@@ -8782,12 +8955,12 @@ References
    2011.
 
 .. [Ref11]
-   **H. P. Langtangen**. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+   **H. P. Langtangen**. *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
    Springer,
    2003.
 
 .. [Ref12]
-   **H. P. Langtangen**. Python Scripting for Computational Science,
+   **H. P. Langtangen**. *Python Scripting for Computational Science*,
    Springer,
    2008.
 
@@ -8800,7 +8973,7 @@ References
    1995.
 
 .. [Ref14]
-   **H. P. Langtangen**. A Primer on Scientific Programming With Python,
+   **H. P. Langtangen**. *A Primer on Scientific Programming With Python*,
    Springer,
    2012.
 
@@ -9908,6 +10081,8 @@ Filename: `selc_composed.pdf`.
 == References ==
 
 
+== Bibliography ==
+
 
  # H. P. Langtangen and G. Pedersen.     Propagation of Large Destructive Waves,    *International Journal of Applied Mechanics and Engineering*,    7(1),    pp. 187-204,    2002.
  # H. P. Langtangen, K.-A. Mardal and R. Winther.     Numerical Methods for Incompressible Viscous Flow,    *Advances in Water Resources*,    25,    pp. 1125-1146,    2002.
@@ -9919,10 +10094,10 @@ Filename: `selc_composed.pdf`.
  # S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt.     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,    *International Journal of Fluid Mechanics Research*,    33(1),    pp. 15-43,    2006.
  # S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen.     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,    *Physical Review B: Condensed Matter and Materials Physics*,    74,    2006.
 # J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    *International Journal of Analytical and Numerical Methods in Geomechanics*,    [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],    2011.
-# H. P. Langtangen.     Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,    Springer,    2003.
-# H. P. Langtangen.     Python Scripting for Computational Science,    Springer,    2008.
+# H. P. Langtangen.     *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,    Springer,    2003.
+# H. P. Langtangen.     *Python Scripting for Computational Science*,    Springer,    2008.
 # H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995.
-# H. P. Langtangen.     A Primer on Scientific Programming With Python,    Springer,    2012.
+# H. P. Langtangen.     *A Primer on Scientific Programming With Python*,    Springer,    2012.
 # P. V. Jeberg, H. P. Langtangen and C. B. Terp.     Optimization With Diffpack: Practical Example From Welding,    *Simula Research Laboratory*,    2004.
 # H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
 # H. P. Langtangen.     Computational Modeling of Huge Tsunamis From Asteroid Impacts,    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,    2007.
@@ -10963,6 +11138,8 @@ Filename: <code>selc_composed.pdf</code>.
 == References ==
 
 
+== Bibliography ==
+
 
 <ol>
  <li> H. P. Langtangen and G. Pedersen. 
@@ -11022,11 +11199,11 @@ Filename: <code>selc_composed.pdf</code>.
     [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],
     2011.
 <li> H. P. Langtangen. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    ''Computational Partial Differential Equations - Numerical Methods and Diffpack Programming'',
     Springer,
     2003.
 <li> H. P. Langtangen. 
-    Python Scripting for Computational Science,
+    ''Python Scripting for Computational Science'',
     Springer,
     2008.
 <li> H. P. Langtangen and G. Pedersen. 
@@ -11037,7 +11214,7 @@ Filename: <code>selc_composed.pdf</code>.
     pp. pp. 117-126,
     1995.
 <li> H. P. Langtangen. 
-    A Primer on Scientific Programming With Python,
+    ''A Primer on Scientific Programming With Python'',
     Springer,
     2012.
 <li> P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
@@ -12072,6 +12249,8 @@ Filename: {{{selc_composed.pdf}}}.
 = References =
 
 
+= Bibliography =
+
 
  # H. P. Langtangen and G. Pedersen.     Propagation of Large Destructive Waves,    //International Journal of Applied Mechanics and Engineering//,    7(1),    pp. 187-204,    2002.
  # H. P. Langtangen, K.-A. Mardal and R. Winther.     Numerical Methods for Incompressible Viscous Flow,    //Advances in Water Resources//,    25,    pp. 1125-1146,    2002.
@@ -12083,10 +12262,10 @@ Filename: {{{selc_composed.pdf}}}.
  # S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt.     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,    //International Journal of Fluid Mechanics Research//,    33(1),    pp. 15-43,    2006.
  # S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen.     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,    //Physical Review B: Condensed Matter and Materials Physics//,    74,    2006.
 # J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    //International Journal of Analytical and Numerical Methods in Geomechanics//,    [[http://dx.doi.org/10.1002/nag.1062|doi: 10.1002/nag.1062]],    2011.
-# H. P. Langtangen.     Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,    Springer,    2003.
-# H. P. Langtangen.     Python Scripting for Computational Science,    Springer,    2008.
+# H. P. Langtangen.     //Computational Partial Differential Equations - Numerical Methods and Diffpack Programming//,    Springer,    2003.
+# H. P. Langtangen.     //Python Scripting for Computational Science//,    Springer,    2008.
 # H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995.
-# H. P. Langtangen.     A Primer on Scientific Programming With Python,    Springer,    2012.
+# H. P. Langtangen.     //A Primer on Scientific Programming With Python//,    Springer,    2012.
 # P. V. Jeberg, H. P. Langtangen and C. B. Terp.     Optimization With Diffpack: Practical Example From Welding,    //Simula Research Laboratory//,    2004.
 # H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
 # H. P. Langtangen.     Computational Modeling of Huge Tsunamis From Asteroid Impacts,    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,    2007.
@@ -12999,6 +13178,8 @@ Filename: 'selc_composed.pdf'.
 References
 
 
+Bibliography
+
  1. H. P. Langtangen and G. Pedersen. 
     Propagation of Large Destructive Waves,
     *International Journal of Applied Mechanics and Engineering*,
@@ -13056,11 +13237,11 @@ References
     "http://dx.doi.org/10.1002/nag.1062":doi: 10.1002/nag.1062,
     2011.
 11. H. P. Langtangen. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
     Springer,
     2003.
 12. H. P. Langtangen. 
-    Python Scripting for Computational Science,
+    *Python Scripting for Computational Science*,
     Springer,
     2008.
 13. H. P. Langtangen and G. Pedersen. 
@@ -13071,7 +13252,7 @@ References
     pp. pp. 117-126,
     1995.
 14. H. P. Langtangen. 
-    A Primer on Scientific Programming With Python,
+    *A Primer on Scientific Programming With Python*,
     Springer,
     2012.
 15. P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
@@ -14037,6 +14218,9 @@ References
 ==========
 
 
+Bibliography
+============
+
  1. H. P. Langtangen and G. Pedersen. 
     Propagation of Large Destructive Waves,
     I{International Journal of Applied Mechanics and Engineering},
@@ -14094,11 +14278,11 @@ References
     U{doi: 10.1002/nag.1062<http://dx.doi.org/10.1002/nag.1062>},
     2011.
 11. H. P. Langtangen. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    I{Computational Partial Differential Equations - Numerical Methods and Diffpack Programming},
     Springer,
     2003.
 12. H. P. Langtangen. 
-    Python Scripting for Computational Science,
+    I{Python Scripting for Computational Science},
     Springer,
     2008.
 13. H. P. Langtangen and G. Pedersen. 
@@ -14109,7 +14293,7 @@ References
     pp. pp. 117-126,
     1995.
 14. H. P. Langtangen. 
-    A Primer on Scientific Programming With Python,
+    I{A Primer on Scientific Programming With Python},
     Springer,
     2012.
 15. P. V. Jeberg, H. P. Langtangen and C. B. Terp. 
@@ -15149,6 +15333,9 @@ References
 ==========
 
 
+Bibliography
+============
+
  1. H. P. Langtangen and G. Pedersen. 
     Propagation of Large Destructive Waves,
     *International Journal of Applied Mechanics and Engineering*,
@@ -15216,12 +15403,12 @@ References
     2011.
 
 11. H. P. Langtangen. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
     Springer,
     2003.
 
 12. H. P. Langtangen. 
-    Python Scripting for Computational Science,
+    *Python Scripting for Computational Science*,
     Springer,
     2008.
 
@@ -15234,7 +15421,7 @@ References
     1995.
 
 14. H. P. Langtangen. 
-    A Primer on Scientific Programming With Python,
+    *A Primer on Scientific Programming With Python*,
     Springer,
     2012.
 
@@ -16415,6 +16602,8 @@ Filename: `selc_composed.pdf`.
 ## References
 
 
+## Bibliography
+
  1. \label{Langtangen_Pedersen_2002} _H. P. Langtangen and G. Pedersen_. 
     Propagation of Large Destructive Waves,
     *International Journal of Applied Mechanics and Engineering*,
@@ -16482,12 +16671,12 @@ Filename: `selc_composed.pdf`.
     2011.
 
 11. \label{Langtangen_2003a} _H. P. Langtangen_. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
     Springer,
     2003.
 
 12. \label{Langtangen_2008a} _H. P. Langtangen_. 
-    Python Scripting for Computational Science,
+    *Python Scripting for Computational Science*,
     Springer,
     2008.
 
@@ -16500,7 +16689,7 @@ Filename: `selc_composed.pdf`.
     1995.
 
 14. \label{Langtangen_2012} _H. P. Langtangen_. 
-    A Primer on Scientific Programming With Python,
+    *A Primer on Scientific Programming With Python*,
     Springer,
     2012.
 
@@ -17966,6 +18155,8 @@ case in LaTeX.
       "## References\n",
       "\n",
       "\n",
+      "## Bibliography\n",
+      "\n",
       " 1. \\label{Langtangen_Pedersen_2002} _H. P. Langtangen and G. Pedersen_. \n",
       "    Propagation of Large Destructive Waves,\n",
       "    *International Journal of Applied Mechanics and Engineering*,\n",
@@ -18033,12 +18224,12 @@ case in LaTeX.
       "    2011.\n",
       "\n",
       "11. \\label{Langtangen_2003a} _H. P. Langtangen_. \n",
-      "    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,\n",
+      "    *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,\n",
       "    Springer,\n",
       "    2003.\n",
       "\n",
       "12. \\label{Langtangen_2008a} _H. P. Langtangen_. \n",
-      "    Python Scripting for Computational Science,\n",
+      "    *Python Scripting for Computational Science*,\n",
       "    Springer,\n",
       "    2008.\n",
       "\n",
@@ -18051,7 +18242,7 @@ case in LaTeX.
       "    1995.\n",
       "\n",
       "14. \\label{Langtangen_2012} _H. P. Langtangen_. \n",
-      "    A Primer on Scientific Programming With Python,\n",
+      "    *A Primer on Scientific Programming With Python*,\n",
       "    Springer,\n",
       "    2012.\n",
       "\n",
@@ -18796,7 +18987,7 @@ output2</code></pre>
 <p>For the <code>--device=paper</code> option it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}"></a>.</p>
 <p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
-<p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
+<p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A reference like Sec. [subsubsec:ex] or Ch. [subsubsec:ex], or even App. [subsubsec:ex], must also be handled. Likewise, this is test no. \(i\) of Doconce features. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
 <p>Here is an equation without label using backslash-bracket environment: \[a = b + c\] or with number and label, as in ([my:eq1]), using the equation environment:</p>
 <p>\[{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}\]</p>
@@ -18967,7 +19158,7 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>With label.</p>
 <h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
 <p>Without label.</p>
-<p>   Hint<br /> Here is a hint.</p>
+<p>[Hint] Here is a hint.</p>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson’ excellent <a href="{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files are <a href="{http://dropbox.com}">Dropbox</a> and <a href="{http://drive.google.com}">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
@@ -19718,6 +19909,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 
 <h2 id="references">References</h2>
+<h2 id="bibliography">Bibliography</h2>
 <ol style="list-style-type: decimal">
 <li><p> <em>H. P. Langtangen and G. Pedersen</em>. Propagation of Large Destructive Waves, <em>International Journal of Applied Mechanics and Engineering</em>, 7(1), pp. 187-204, 2002.</p></li>
 <li><p> <em>H. P. Langtangen, K.-A. Mardal and R. Winther</em>. Numerical Methods for Incompressible Viscous Flow, <em>Advances in Water Resources</em>, 25, pp. 1125-1146, 2002.</p></li>
@@ -19729,10 +19921,10 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <li><p> <em>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L</em>. Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics, <em>International Journal of Fluid Mechanics Research</em>, 33(1), pp. 15-43, 2006.</p></li>
 <li><p> <em>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</em>. Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel, <em>Physical Review B: Condensed Matter and Materials Physics</em>, 74, 2006.</p></li>
 <li><p> <em>J. B. Haga, H. Osnes and H. P. Langtangen</em>. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media, <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>, <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>, 2011.</p></li>
-<li><p> <em>H. P. Langtangen</em>. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming, Springer, 2003.</p></li>
-<li><p> <em>H. P. Langtangen</em>. Python Scripting for Computational Science, Springer, 2008.</p></li>
+<li><p> <em>H. P. Langtangen</em>. <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>, Springer, 2003.</p></li>
+<li><p> <em>H. P. Langtangen</em>. <em>Python Scripting for Computational Science</em>, Springer, 2008.</p></li>
 <li><p> <em>H. P. Langtangen and G. Pedersen</em>. Finite Elements for the Boussinesq Wave Equations, Waves and Non-linear Processes in Hydrodynamics, edited by <em>J. Grue, B. Gjevik and J. E. Weber</em>, Kluwer Academic Publishers, pp. pp. 117-126, 1995.</p></li>
-<li><p> <em>H. P. Langtangen</em>. A Primer on Scientific Programming With Python, Springer, 2012.</p></li>
+<li><p> <em>H. P. Langtangen</em>. <em>A Primer on Scientific Programming With Python</em>, Springer, 2012.</p></li>
 <li><p> <em>P. V. Jeberg, H. P. Langtangen and C. B. Terp</em>. Optimization With Diffpack: Practical Example From Welding, <em>Simula Research Laboratory</em>, 2004.</p></li>
 <li><p> <em>H. P. Langtangen</em>. Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989.</p></li>
 <li><p> <em>H. P. Langtangen</em>. Computational Modeling of Huge Tsunamis From Asteroid Impacts, Invited keynote lecture at the conference on Computational Science 2007 (ICCS'07), Beijing, China, 2007.</p></li>
@@ -20911,6 +21103,10 @@ Inline math, \( a=b \), is the only math in this document.
 
 <p>
 
+<h2>Bibliography</h2>
+
+<p>
+
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -20949,7 +21145,7 @@ Inline math, \( a=b \), is the only math in this document.
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -21366,6 +21562,9 @@ Inline math, :math:`a=b`, is the only math in this document.
 .. Need BIBFILE because of cite{} examples
 
 
+Bibliography
+============
+
 
 
 
@@ -21444,6 +21643,9 @@ Test of math
 Inline math, a=b, is the only math in this document.
 
 
+Bibliography
+============
+
 
 
 
@@ -21517,6 +21719,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -21819,6 +22022,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -22099,6 +22303,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -23004,6 +23209,9 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 <p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/exercise1.svg" width=100 align="right">
+
 <!-- keywords = random numbers; Monte Carlo simulation -->
 
 <p>
@@ -23082,6 +23290,9 @@ exercises.
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/exercise1.svg" width=100 align="right">
+
+
 <p>
 <!-- Minimalistic exercise -->
 
@@ -23112,6 +23323,9 @@ compute the probability as \( M/N \).
 <p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/exercise1.svg" width=100 align="right">
+
 
 <p>
 The formula for a circle is given by
@@ -23220,6 +23434,9 @@ and give some perspectives.
 <p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/exercise1.svg" width=100 align="right">
+
 
 <p>
 Intro to this exercise. Questions are in subexercises below.
@@ -23397,6 +23614,9 @@ With some text, before we continue with exercises.
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/exercise1.svg" width=100 align="right">
+
+
 <p>
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -23414,6 +23634,9 @@ Filename: <code>verify_formula.py</code>.
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/exercise1.svg" width=100 align="right">
+
+
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
@@ -23430,6 +23653,10 @@ Filename: <code>selc_composed.pdf</code>.
 
 <p>
 
+
+<h2>Bibliography</h2>
+
+<p>
 
 <ol>
  </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -23489,11 +23716,11 @@ Filename: <code>selc_composed.pdf</code>.
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
     2011.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
     2003.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
-    Python Scripting for Computational Science,
+    <em>Python Scripting for Computational Science</em>,
     Springer,
     2008.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -23504,7 +23731,7 @@ Filename: <code>selc_composed.pdf</code>.
     pp. pp. 117-126,
     1995.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
-    A Primer on Scientific Programming With Python,
+    <em>A Primer on Scientific Programming With Python</em>,
     Springer,
     2012.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
@@ -24336,6 +24563,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -25213,6 +25441,9 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white1.png" width=80 align="right">
+
+
 
 <p>
 
@@ -25307,6 +25538,9 @@ exercises.
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white1.png" width=80 align="right">
+
+
 <p>
 
 
@@ -25337,6 +25571,9 @@ compute the probability as $latex M/N$.
 <p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white1.png" width=80 align="right">
+
 
 <p>
 The formula for a circle is given by
@@ -25443,6 +25680,9 @@ and give some perspectives.
 <p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white1.png" width=80 align="right">
+
 
 <p>
 Intro to this exercise. Questions are in subexercises below.
@@ -25646,6 +25886,9 @@ With some text, before we continue with exercises.
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white1.png" width=80 align="right">
+
+
 <p>
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -25663,6 +25906,9 @@ Filename: <code>verify_formula.py</code>.
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white1.png" width=80 align="right">
+
+
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
@@ -25679,6 +25925,10 @@ Filename: <code>selc_composed.pdf</code>.
 
 <p>
 
+
+<h2>Bibliography</h2>
+
+<p>
 
 <ol>
  <li> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -25738,11 +25988,11 @@ Filename: <code>selc_composed.pdf</code>.
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
     2011.</li>
 <li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
     2003.</li>
 <li> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
-    Python Scripting for Computational Science,
+    <em>Python Scripting for Computational Science</em>,
     Springer,
     2008.</li>
 <li> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -25753,7 +26003,7 @@ Filename: <code>selc_composed.pdf</code>.
     pp. pp. 117-126,
     1995.</li>
 <li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
-    A Primer on Scientific Programming With Python,
+    <em>A Primer on Scientific Programming With Python</em>,
     Springer,
     2012.</li>
 <li> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
@@ -26031,6 +26281,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -27011,6 +27262,9 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 <p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white2.png" width=100 align="right">
+
 <!-- keywords = random numbers; Monte Carlo simulation -->
 
 <p>
@@ -27088,6 +27342,9 @@ exercises.
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white2.png" width=100 align="right">
+
+
 <p>
 <!-- Minimalistic exercise -->
 
@@ -27118,6 +27375,9 @@ compute the probability as \( M/N \).
 <p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white2.png" width=100 align="right">
+
 
 <p>
 The formula for a circle is given by
@@ -27218,6 +27478,9 @@ and give some perspectives.
 <p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
+
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white2.png" width=100 align="right">
+
 
 <p>
 Intro to this exercise. Questions are in subexercises below.
@@ -27395,6 +27658,9 @@ With some text, before we continue with exercises.
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white2.png" width=100 align="right">
+
+
 <p>
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -27412,6 +27678,9 @@ Filename: <code>verify_formula.py</code>.
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/question_blue_on_white2.png" width=100 align="right">
+
+
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a> and <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a>,
@@ -27428,6 +27697,10 @@ Filename: <code>selc_composed.pdf</code>.
 
 <p>
 
+
+<h2>Bibliography</h2>
+
+<p>
 
 <ol>
  <li> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -27487,11 +27760,11 @@ Filename: <code>selc_composed.pdf</code>.
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
     2011.</li>
 <li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
     2003.</li>
 <li> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
-    Python Scripting for Computational Science,
+    <em>Python Scripting for Computational Science</em>,
     Springer,
     2008.</li>
 <li> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -27502,7 +27775,7 @@ Filename: <code>selc_composed.pdf</code>.
     pp. pp. 117-126,
     1995.</li>
 <li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
-    A Primer on Scientific Programming With Python,
+    <em>A Primer on Scientific Programming With Python</em>,
     Springer,
     2012.</li>
 <li> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
@@ -27757,7 +28030,7 @@ case in LaTeX.
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -27911,89 +28184,223 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+% #ifdef LINENUMBERS
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+% #endif
 
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
 % Admonition environment for "hint"
+% #if ADMON == "colors"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
 
 % Admonition environment for "notice"
+% #if ADMON == "colors"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
 
 % Admonition environment for "summary"
+% #if ADMON == "colors"
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
 
 % Admonition environment for "warning"
+% #if ADMON == "colors"
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
 
 % Admonition environment for "question"
+% #if ADMON == "colors"
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -28857,7 +29264,10 @@ Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example. Moreover, Dr.~Tang and Prof.~Monsen,
 or maybe also prof.~Ting,
 will go to the Dept.~of Science to test how Mr.~Hansen is doing together
-with Ms.~Larsen. A sentence containing "refines lines" could easily
+with Ms.~Larsen. A reference like Sec.~\ref{subsubsec:ex} or
+Ch.~\ref{subsubsec:ex}, or even App.~\ref{subsubsec:ex}, must also be
+handled. Likewise, this is test no.~$i$ of Doconce features.
+A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e.~since the dot matches anything.
 Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
@@ -29317,11 +29727,19 @@ With label.
 Without label.
 
 
-\begin{hintadmon}
-\ \ \ {\large\sc Hint}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{hintadmon}[Hint]
 Here is a hint.
 \end{hintadmon}
+% #elif ADMON == "paragraph"
+\begin{hintadmon}[Hint.]
+Here is a hint.
+\end{hintadmon}
+% #else
+\begin{hintadmon}[Hint.]
+Here is a hint.
+\end{hintadmon}
+% #endif
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -29827,30 +30245,33 @@ y
 1
 EOF
 
-doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
+ex="--examples_as_exercises"
+#ex=
+
+doconce format html testdoc --wordpress  $ex --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default
+doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.html testdoc_no_solutions.html
 
-doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
+doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp -r ../bundled/html_styles/style_vagrant .
 doconce replace 'css/' 'style_vagrant/css/' style_vagrant/template_vagrant.html
-doconce format html testdoc.do.txt --examples_as_exercises --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
+doconce format html testdoc.do.txt $ex --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
+doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce remove_exercise_answers testdoc.html
@@ -29863,10 +30284,10 @@ doconce split_html testdoc.html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 
-doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
+doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen
+doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce latex_exercise_toc testdoc
@@ -29884,11 +30305,11 @@ doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 # because of --latex-double-hyphen:
 doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
-doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
+doconce replace --examples_as__exercises $ex testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works
@@ -29901,6 +30322,7 @@ pdflatex -shell-escape testdoc
 pdflatex -shell-escape testdoc
 
 cp testdoc.tex testdoc.tex_ptex2tex
+# testdoc.tex_ptex2tex corresponds to testdoc.pdf
 
 # -DBOOK will not work for latex/pdflatex since we have an abstract,
 # but here we just use the translated text for testing, not latex compiling
@@ -29910,47 +30332,47 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
+doconce format plain testdoc.do.txt $ex -DSOMEVAR=1
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format st testdoc.do.txt --examples_as_exercises
+doconce format st testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format sphinx testdoc.do.txt --examples_as_exercises
+doconce format sphinx testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 mv -f testdoc.rst testdoc.sphinx.rst
 
-doconce format sphinx testdoc --examples_as_exercises
+doconce format sphinx testdoc $ex
 doconce split_rst testdoc
 doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp automake_sphinx.py automake_sphinx_testdoc.py
 
-doconce format rst testdoc.do.txt --examples_as_exercises
+doconce format rst testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format epytext testdoc.do.txt --examples_as_exercises
+doconce format epytext testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format pandoc testdoc.do.txt --examples_as_exercises
+doconce format pandoc testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format mwiki testdoc.do.txt --examples_as_exercises
+doconce format mwiki testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format cwiki testdoc.do.txt --examples_as_exercises
+doconce format cwiki testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce format ipynb testdoc.do.txt --examples_as_exercises
+doconce format ipynb testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples_as_exercises
+doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt --examples_as_exercises
+doconce format latex testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
@@ -29965,7 +30387,7 @@ pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
 
-doconce format pandoc testdoc.do.txt --examples_as_exercises
+doconce format pandoc testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
@@ -30066,8 +30488,12 @@ cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 doconce format pdflatex admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce ptex2tex admon
-pdflatex admon
+admon_tps="colors box paragraph"
+for admon_tp in $admon_tps; do
+doconce ptex2tex admon envir=minted -DADMON=$admon_tp
+cp admon.tex admon_${admon_tp}.tex
+pdflatex -shell-escape admon_${admon_tp}
+done
 
 
 # Test encoding
@@ -31024,7 +31450,7 @@ v(t) - 1 &amp;=&amp; \frac{du}{dt} \label{eq3c}
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -34137,6 +34563,10 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 
 
+<h2>Bibliography</h2>
+
+<p>
+
 <ol>
  <li> <a name="Langtangen_Pedersen_2002"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
     Propagation of Large Destructive Waves,
@@ -34195,11 +34625,11 @@ Filename: <code>selc_composed.pdf</code>.
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
     2011.</li>
 <li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
-    Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+    <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
     2003.</li>
 <li> <a name="Langtangen_2008a"></a> <b>H. P. Langtangen</b>. 
-    Python Scripting for Computational Science,
+    <em>Python Scripting for Computational Science</em>,
     Springer,
     2008.</li>
 <li> <a name="Langtangen:95"></a> <b>H. P. Langtangen and G. Pedersen</b>. 
@@ -34210,7 +34640,7 @@ Filename: <code>selc_composed.pdf</code>.
     pp. pp. 117-126,
     1995.</li>
 <li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
-    A Primer on Scientific Programming With Python,
+    <em>A Primer on Scientific Programming With Python</em>,
     Springer,
     2012.</li>
 <li> <a name="Jeberg_et_al_2004"></a> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
@@ -35706,6 +36136,9 @@ References
 ==========
 
 
+Bibliography
+============
+
 .. [Ref01]
    **H. P. Langtangen and G. Pedersen**. Propagation of Large Destructive Waves,
    *International Journal of Applied Mechanics and Engineering*,
@@ -35773,12 +36206,12 @@ References
    2011.
 
 .. [Ref11]
-   **H. P. Langtangen**. Computational Partial Differential Equations - Numerical Methods and Diffpack Programming,
+   **H. P. Langtangen**. *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
    Springer,
    2003.
 
 .. [Ref12]
-   **H. P. Langtangen**. Python Scripting for Computational Science,
+   **H. P. Langtangen**. *Python Scripting for Computational Science*,
    Springer,
    2008.
 
@@ -35791,7 +36224,7 @@ References
    1995.
 
 .. [Ref14]
-   **H. P. Langtangen**. A Primer on Scientific Programming With Python,
+   **H. P. Langtangen**. *A Primer on Scientific Programming With Python*,
    Springer,
    2012.
 
@@ -36366,7 +36799,7 @@ Titles should be optional.
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -36499,86 +36932,218 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
 % Admonition environment for "hint"
+% #if ADMON == "colors"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.pdf}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
 
 % Admonition environment for "notice"
+% #if ADMON == "colors"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.pdf}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
 
 % Admonition environment for "summary"
+% #if ADMON == "colors"
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.pdf}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
 
 % Admonition environment for "warning"
+% #if ADMON == "colors"
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.pdf}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
 
 % Admonition environment for "question"
+% #if ADMON == "colors"
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.pdf}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -36753,9 +37318,8 @@ x=1.1 y=0.3 z=0.1
 Let us start with a plain warning environment.
 
 
-\begin{warningadmon}
-\ \ \ {\large\sc Warning}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{warningadmon}[Warning]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -36768,38 +37332,102 @@ in comparison with the other admons.
 
 \noindent
 \end{warningadmon}
+% #elif ADMON == "paragraph"
+\begin{warningadmon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+\end{warningadmon}
+% #else
+\begin{warningadmon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+\end{warningadmon}
+% #endif
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
 
 
-\begin{noticeadmon}
-\ \ \ {\large\sc Note, eventually!}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{noticeadmon}[Note, eventually!]
 Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
 \end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Note eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{noticeadmon}
+% #endif
 
-\begin{questionadmon}
-\ \ \ {\large\sc Question}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{questionadmon}[Question]
 So, how many admonition environments does Doconce support?
 \end{questionadmon}
+% #elif ADMON == "paragraph"
+\begin{questionadmon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{questionadmon}
+% #else
+\begin{questionadmon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{questionadmon}
+% #endif
 
-\begin{questionadmon}
-\ \ \ {\large\sc Question}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{questionadmon}[Question]
 \begin{enumerate}
  \item Once more, how many admonition environments does Doconce support?
 \end{enumerate}
 
 \noindent
 \end{questionadmon}
-\begin{hintadmon}
-\ \ \ {\large\sc Hint}\\ \par
-\nobreak\noindent\ignorespaces
+% #elif ADMON == "paragraph"
+\begin{questionadmon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{questionadmon}
+% #else
+\begin{questionadmon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{questionadmon}
+% #endif
+% #if ADMON == "colors"
+\begin{hintadmon}[Hint]
 It is smart to read on and remember to
 
 \begin{enumerate}
@@ -36818,15 +37446,55 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
 \end{hintadmon}
+% #elif ADMON == "paragraph"
+\begin{hintadmon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{hintadmon}
+% #else
+\begin{hintadmon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{hintadmon}
+% #endif
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
 text, math and code.
 
 
-\begin{noticeadmon}
-\ \ \ {\large\sc Going deeper.}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{noticeadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -36903,6 +37571,163 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{noticeadmon}
+% #endif
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -36976,6 +37801,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -37332,6 +38158,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
@@ -37978,6 +38805,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -38352,6 +39180,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
@@ -39079,6 +39908,1150 @@ While the <div class="deep-blue">rest of the</div> getting started
 
 
 
+************** File: admon_colors.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% gray box of 80% width
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+
+\usepackage{framed}
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+% ----------------- date -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warningadmon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+\end{warningadmon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{noticeadmon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{noticeadmon}
+
+\begin{questionadmon}[Question]
+So, how many admonition environments does Doconce support?
+\end{questionadmon}
+
+\begin{questionadmon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{questionadmon}
+\begin{hintadmon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hintadmon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{noticeadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{noticeadmon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+\summarybox{
+\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_box.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% gray box of 80% width
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% Admonition environment for "hint"
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+
+% Admonition environment for "notice"
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+
+% Admonition environment for "summary"
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+
+% Admonition environment for "warning"
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+
+% Admonition environment for "question"
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+% ----------------- date -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warningadmon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+\end{warningadmon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{noticeadmon}[Note eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{noticeadmon}
+
+\begin{questionadmon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{questionadmon}
+
+\begin{questionadmon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{questionadmon}
+\begin{hintadmon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hintadmon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{noticeadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{noticeadmon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+\summarybox{
+\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_paragraph.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% gray box of 80% width
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+
+
+% Admonition environment for "hint"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+
+% Admonition environment for "notice"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+
+% Admonition environment for "summary"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+
+% Admonition environment for "warning"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+
+% Admonition environment for "question"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+% ----------------- date -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warningadmon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+\end{warningadmon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{noticeadmon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{noticeadmon}
+
+\begin{questionadmon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{questionadmon}
+
+\begin{questionadmon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{questionadmon}
+\begin{hintadmon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hintadmon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{noticeadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{noticeadmon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+\summarybox{
+\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
 ************** File: tmp_Doconce.do.txt *****************
 
 TITLE: My Test of Class Doconce
@@ -39301,7 +41274,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 29 Apr 2013 (06:54)</center>
+<center>Fri, 03 May 2013 (12:56)</center>
 
 
 
@@ -39432,7 +41405,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 29 Apr 2013 (06:54)</center>
+<center>Fri, 03 May 2013 (12:56)</center>
 
 
 
@@ -40502,6 +42475,7 @@ Automatically generated HTML file from Doconce source
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
@@ -41756,7 +43730,7 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
@@ -41875,89 +43849,223 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{}
 % #endif
 
+% #ifdef LINENUMBERS
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
+% #endif
 
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
 % Admonition environment for "hint"
+% #if ADMON == "colors"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
 
 % Admonition environment for "notice"
+% #if ADMON == "colors"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
 
 % Admonition environment for "summary"
+% #if ADMON == "colors"
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
 
 % Admonition environment for "warning"
+% #if ADMON == "colors"
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
 
 % Admonition environment for "question"
+% #if ADMON == "colors"
 \definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
 
 % #ifdef COLORED_TABLE_ROWS
 % color every two table rows
@@ -42572,9 +44680,8 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
-\begin{noticeadmon}
-\ \ \ {\large\sc Notice}\\ \par
-\nobreak\noindent\ignorespaces
+% #if ADMON == "colors"
+\begin{noticeadmon}[Notice]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -42586,6 +44693,33 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
 \end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Notice.]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Notice.]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{noticeadmon}
+% #endif
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
 \code{newcommands*.tex}. Such commands should only be used for mathematics
@@ -52258,6 +54392,7 @@ Total:                              21
 
 Saving backup copy of database to file "papers.pub.bak"
 Saving database to file "papers.pub"
++ ex=--examples_as_exercises
 + doconce format html testdoc --wordpress --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -52773,9 +54908,9 @@ replacing % end theorem by \end{theorem} in testdoc.p.tex
 + doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
 replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
 + doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
-+ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
++ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 using local config file .ptex2tex.cfg
-running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
+running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15', 'LINENUMBERS', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
 done testdoc.p.tex -> testdoc.tex
 + [ 0 -ne 0 ]
 + pdflatex -shell-escape testdoc
@@ -52978,7 +55113,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-278.
+290.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -53069,106 +55204,106 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 832.
+t line 844.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 833.
+ine 845.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
-36.
-
-
-LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 837.
-
-
-LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
-39.
-
-
-LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 841.
-
-
-LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 841.
-
-
-LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 8
-45.
-
-
-LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
-45.
-
-
-LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 845.
-
-
-LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 845.
-
-
-LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 847.
-
-
-LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
-ne 847.
-
-
-LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 847.
-
-
-LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 8
-47.
-
-
-LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 8
-47.
-
-
-LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 8
-47.
-
-
-LaTeX Warning: Citation `Langtangen:95' on page 11 
-
-
-
-LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 84
-9.
+48.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
  849.
 
 
+LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
+51.
+
+
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 853.
+
+
+LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
+ 853.
+
+
+LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 8
+57.
+
+
+LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
+57.
+
+
+LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
+ne 857.
+
+
+LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
+t line 857.
+
+
+LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
+ine 859.
+
+
+LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
+ne 859.
+
+
+LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
+ 859.
+
+
+LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 8
+59.
+
+
+LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 8
+59.
+
+
+LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 8
+59.
+
+
+LaTeX Warning: Citation `Langtangen:95' on page 11 
+
+
+
+LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 86
+1.
+
+
+LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
+ 861.
+
+
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-849.
+861.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
-50.
+62.
 
 
 LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 8
-50.
+62.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 851.
+ine 863.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 852
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 864
 .
 
 
@@ -53176,7 +55311,7 @@ LaTeX Warning: Citation `Langtangen:91' on page 11
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 855
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 867
 .
 
 [11]
@@ -53202,8 +55337,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 97
-8.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 99
+0.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -53227,7 +55362,7 @@ LaTeX Warning: Reference `demo:ex:1' on page 13
 LaTeX Warning: Reference `demo:ex:2' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1003
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1015
 .
 
 
@@ -53235,11 +55370,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 1004.
+ 1016.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1365
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1377
 .
 
 
@@ -53250,13 +55385,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1382.
+ 1394.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1383
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1395
 .
 
 
@@ -56528,15 +58663,17 @@ figure file ../doc/manual/figs/wavepacket_0001:
     can use ../doc/manual/figs/wavepacket_0001.png for format pdflatex
 output in admon.p.tex
 + [ 0 -ne 0 ]
-+ doconce ptex2tex admon
-\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
++ admon_tps=colors box paragraph
++ doconce ptex2tex admon envir=minted -DADMON=colors
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 output in admon.tex
-+ pdflatex admon
++ cp admon.tex admon_colors.tex
++ pdflatex -shell-escape admon_colors
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
- restricted \write18 enabled.
+ \write18 enabled.
 entering extended mode
-(./admon.tex
+(./admon_colors.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
 aded.
@@ -56581,9 +58718,21 @@ For additional information on amsmath, use the `?' option.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 
+(/home/hpl/texmf/tex/latex/misc/minted.sty
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_colors.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -56601,14 +58750,15 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 
 
 
-Writing index file admon.idx
-No file admon.aux.
+Writing index file admon_colors.idx
+No file admon_colors.aux.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
 
 
+(./admon_colors.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./newcommands_bfmath.tex) (./newcommands_replace.tex)
@@ -56616,6 +58766,7 @@ No file admon.aux.
 
 
 
+(./admon_colors.out.pyg)
 <latex_figs/warning.pdf, id=4, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
 Underfull \hbox (badness 10000) 
@@ -56637,14 +58788,16 @@ Underfull \hbox (badness 10000)
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
-[2 <./latex_figs/notice.pdf> <./latex_figs/question.pdf> <./latex_figs/hint.pdf
->] <use latex_figs/notice.pdf>
+(./admon_colors.out.pyg) [2 <./latex_figs/notice.pdf> <./latex_figs/question.pd
+f> <./latex_figs/hint.pdf>] <use latex_figs/notice.pdf>
 Underfull \hbox (badness 10000) 
 
+(./admon_colors.out.pyg) (./admon_colors.out.pyg)
 <../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3]
-No file admon.ind.
-[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon.aux)
+<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
+ket_0001.png>]
+No file admon_colors.ind.
+[5] (./admon_colors.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -56676,21 +58829,28 @@ colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
       bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
 fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_colors.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
   latin1.def    2008/03/30 v1.1d Input encoding file
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
   hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
   ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
  intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
-etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
 kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
-pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
 pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
 bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
   bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
@@ -56718,6 +58878,7 @@ epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
 epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
   mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
 RS)
+admon_colors.pyg
  nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
 gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
 newcommands_bfmath.tex
@@ -56726,18 +58887,22 @@ newcommands_replace.tex
   mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_colors.out.pyg
 latex_figs/warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
 latex_figs/notice.pdf
 latex_figs/question.pdf
 latex_figs/question.pdf
 latex_figs/hint.pdf
+admon_colors.out.pyg
 latex_figs/notice.pdf
+admon_colors.out.pyg
+admon_colors.out.pyg
 ../doc/manual/figs/wavepacket_0001.png
  ***********
 
 
-Package rerunfilecheck Warning: File `admon.out' has changed.
+Package rerunfilecheck Warning: File `admon_colors.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
@@ -56751,8 +58916,581 @@ amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb
 >
-Output written on admon.pdf (4 pages, ).
-Transcript written on admon.log.
+Output written on admon_colors.pdf (5 pages, ).
+Transcript written on admon_colors.log.
++ doconce ptex2tex admon envir=minted -DADMON=box
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_box.tex
++ pdflatex -shell-escape admon_box
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_box.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_box.w18))/usr/local/bin/pygmentize
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-base.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
+)) 
+Writing index file admon_box.idx
+No file admon_box.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+ (./admon_box.pyg
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
+(./newcommands_replace.tex)
+
+
+
+
+(./admon_box.out.pyg) 
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./admon_box.out.pyg)
+(./admon_box.out.pyg) (./admon_box.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=21, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [2] [3]
+No file admon_box.ind.
+[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_box.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_box.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+mdframed.sty    2012/04/08 v1.5: mdframed
+  xparse.sty    2012/04/23 v3570 L3 Experimental document command parser
+   expl3.sty    2012/04/23 v3570 L3 Experimental code bundle wrapper
+ l3names.sty    2012/03/04 v3494 L3 Experimental namespace for primitives
+l3bootstrap.sty    2011/12/29 v3110 L3 Experimental bootstrap code
+    etex.sty    1998/03/26 v2.0 eTeX basic definition package (PEB)
+l3basics.sty    2012/03/04 v3491 L3 Experimental basic definitions
+ l3expan.sty    2012/02/26 v3460 L3 Experimental argument expansion
+    l3tl.sty    2012/03/04 v3490 L3 Experimental token lists
+   l3seq.sty    2012/03/04 v3490 L3 Experimental sequences and stacks
+   l3int.sty    2012/03/04 v3490 L3 Experimental integers
+ l3quark.sty    2012/02/12 v3384 L3 Experimental quarks
+   l3prg.sty    2012/03/04 v3490 L3 Experimental control structures
+ l3clist.sty    2012/03/04 v3490 L3 Experimental comma separated lists
+ l3token.sty    2012/03/04 v3491 L3 Experimental token manipulation
+  l3prop.sty    2012/03/04 v3490 L3 Experimental property lists
+   l3msg.sty    2012/04/23 v3568 L3 Experimental messages
+  l3file.sty    2012/03/09 v3520 L3 Experimental file and I/O operations
+  l3skip.sty    2012/03/05 v3499 L3 Experimental dimensions and skips
+  l3keys.sty    2012/03/03 v3487 L3 Experimental key-value interfaces
+    l3fp.sty    2012/03/04 v3490 L3 Experimental floating-point operations
+   l3box.sty    2012/03/04 v3490 L3 Experimental boxes
+l3coffins.sty    2012/03/03 v3482 L3 Experimental coffin code layer
+ l3color.sty    2011/09/07 v2776 L3 Experimental colour support
+l3luatex.sty    2012/02/09 v3355 L3 Experimental LuaTeX-specific functions
+etoolbox.sty    2011/01/03 v2.1 e-TeX tools for LaTeX
+zref-abspage.sty    2012/04/04 v2.24 Module abspage for zref (HO)
+zref-base.sty    2012/04/04 v2.24 Module base for zref (HO)
+ auxhook.sty    2011/03/04 v1.3 Hooks for auxiliary files (HO)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+md-frame-1.mdf    2012/04/08  v1.5: md-frame-1
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_box.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_box.out.pyg
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+admon_box.out.pyg
+admon_box.out.pyg
+admon_box.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_box.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_box.pdf (4 pages, ).
+Transcript written on admon_box.log.
++ doconce ptex2tex admon envir=minted -DADMON=paragraph
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_paragraph.tex
++ pdflatex -shell-escape admon_paragraph
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_paragraph.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_paragraph.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+Writing index file admon_paragraph.idx
+No file admon_paragraph.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_paragraph.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+(./admon_paragraph.out.pyg)
+ [1{/var/lib/texmf/font
+s/map/pdftex/updmap/pdftex.map}] (./admon_paragraph.out.pyg)
+(./admon_paragraph.out.pyg) (./admon_paragraph.out.pyg [2])
+<../doc/manual/figs/wavepacket_0001.png, id=27, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
+No file admon_paragraph.ind.
+[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_paragraph.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_paragraph.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_paragraph.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_paragraph.out.pyg
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+admon_paragraph.out.pyg
+admon_paragraph.out.pyg
+admon_paragraph.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_paragraph.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_paragraph.pdf (4 pages, ).
+Transcript written on admon_paragraph.log.
 + doconce guess_encoding encoding1.do.txt
 + [ 0 -ne 0 ]
 + cp encoding1.do.txt tmp1.do.txt
@@ -57038,7 +59776,6 @@ Package hyperref Message: Driver (default): hdvips.
 
 
 
-
 Writing index file quickref.idx
 No file quickref.aux.
 
@@ -57084,7 +59821,7 @@ Underfull \hbox (badness 1112)
 her out-
 [7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 755
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 763
 .
 
 [9]
@@ -57189,7 +59926,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
-  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
   framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
 titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
@@ -57300,7 +60036,6 @@ Package hyperref Message: Driver (default): hdvips.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
-
 
 
 
@@ -57444,7 +60179,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
-  lineno.sty    2005/11/02 line numbers on paragraphs v4.41
   framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
 titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
   ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.

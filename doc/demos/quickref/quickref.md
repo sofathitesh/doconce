@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% Apr 29, 2013
+% May 3, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 

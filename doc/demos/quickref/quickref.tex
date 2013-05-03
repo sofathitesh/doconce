@@ -69,10 +69,10 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}
 
-\usepackage[mathlines]{lineno}  % show line numbers
-\linenumbers
 
+% Default is "colors", i.e., framed box with color
 \usepackage{framed}
+
 % Admonition environment for "hint"
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
@@ -80,10 +80,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}{
+\newenvironment{hintadmon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint.eps}
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
@@ -96,10 +98,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}{
+\newenvironment{noticeadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
@@ -112,10 +116,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}{
+\newenvironment{summaryadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary.eps}
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
@@ -128,10 +134,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}{
+\newenvironment{warningadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
@@ -144,10 +152,12 @@ final,                   % or draft (marks overfull hboxes)
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}{
+\newenvironment{questionadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question.eps}
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
@@ -205,7 +215,7 @@ Doconce Quick Reference
 
 
 \begin{center}
-Apr 29, 2013
+May 3, 2013
 \end{center}
 
 \vspace{1cm}
@@ -673,9 +683,7 @@ is also important, one should follow these rules:
 labels in \Verb!align! environments work well.)
 
 
-\begin{noticeadmon}
-\ \ \ {\large\sc Notice}\\ \par
-\nobreak\noindent\ignorespaces
+\begin{noticeadmon}[Notice]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \Verb!sphinx!, makes it necessary
