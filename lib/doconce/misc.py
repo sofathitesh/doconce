@@ -4317,7 +4317,7 @@ def _latex2doconce(filestr):
     """Run latex to doconce transformations on filestr."""
     user_subst = []
     user_replace = []
-    fixfile = 'doconce2latex_fix.py'
+    fixfile = 'latex2doconce_fix.py'
     if os.path.isfile(fixfile):
         # fixfile must contain subst and replace, to be
         # applied _after_ the general subst and replace below
@@ -4369,10 +4369,15 @@ def _latex2doconce(filestr):
                     # general latex constructions
     (r'\\author\{(?P<subst>.+)\}', subst_author_latex2doconce),
     (r'\\title\{(?P<subst>.+)\}', r'TITLE: \g<subst>'),
+    (r'\\chapter\*?\{(?P<subst>.+)\}', r'========= \g<subst> ========='),
     (r'\\section\*?\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
     (r'\\subsection\*?\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
     (r'\\subsubsection\*?\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
     (r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+    (r'\\chapter\*?\[.+\]\{(?P<subst>.+)\}', r'========= \g<subst> ========='),
+    (r'\\section\*?\[.+\]\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
+    (r'\\subsection\*?\[.+\]\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
+    (r'\\subsubsection\*?\[.+\]\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
     (r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
     (r'\\texttt\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
     (r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
@@ -4472,6 +4477,10 @@ def _latex2doconce(filestr):
     for e in math_enders:
         filestr = filestr.replace(e, e + '\n!et')
 
+    # Make sure there is a ling after heading (and label)
+    filestr = re.sub(r'(===[A-Za-z0-9 ]+?==={3,9})\s+(\\label\{.+?\})\s+([A-Za-z ])', r'\g<1>\n\g<2>\n\n\g<3>', filestr)
+    filestr = re.sub('(===[A-Za-z0-9 ]+?==={3,9})\s+([A-Za-z ])', r'\g<1>\n\n\g<2>', filestr)
+
     # minted
     pattern = r'\\begin\{minted}\[?.*\]?{(.+?)\}'
     minted2bc = dict(python='py', cython='cy', fortran='f',
@@ -4488,13 +4497,15 @@ def _latex2doconce(filestr):
     filestr = filestr.replace('\\begin{verbatim}', '!bc')
     filestr = filestr.replace('\\end{verbatim}', '!ec')
     for lang in minted2bc:
-        begin_pattern = r'\\begin\{%s\}' % lang
-        end_pattern = r'\\end\{%s\}' % lang
-        filestr = re.sub(begin_pattern, '!bc ' + minted2bc[lang], filestr)
-        filestr = re.sub(end_pattern, '!ec', filestr)
+        begin_pattern = r'\begin{%s}' % lang
+        end_pattern = r'\end{%s}' % lang
+        filestr = filestr.replace(begin_pattern, '!bc ' + minted2bc[lang])
+        filestr = filestr.replace(end_pattern, '!ec')
 
     # ptex2tex code environments:
-    code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'rpy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
+    code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys',
+                   'dsni', 'sni', 'slin', 'ipy', 'rpy',
+                   'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
     for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
         for tp in 'cod', 'pro':
             code_envirs.append(language + tp)
@@ -4515,7 +4526,7 @@ def _latex2doconce(filestr):
     # \item alone on line: join with next line (indentation is fixed later)
     filestr = re.sub(r'\\item\s+(\w)', r'\item \g<1>', filestr)
 
-    # Process lists and comment lines
+    # Process lists, comment lines, @@@CODE lines
     inside_enumerate = False
     inside_itemize = False
     inside_code = False
@@ -4530,6 +4541,16 @@ def _latex2doconce(filestr):
         if not inside_code and '%' in lines[i]:
             w = lines[i].split('%')
             lines[i] = w[0] + '\n#' + ''.join(w[1:])
+        if lines[i].startswith('@@@CODE'):
+            # Translate ptex2tex CODE envir to doconce w/regex
+            words = lines[i].split()
+            new_line = ' '.join(words[:2])  # command filename
+            new_line += ' fromto: '
+            from_, to_ = ' '.join(words[2:]).split('@')[:2]
+            new_line += re.escape(from_)  # regex in doconce
+            new_line += '@' + re.escape(to_)
+            new_line = new_line.replace(r'\ ', ' ').replace(r'\,', ',').replace(r'\:', ':')
+            lines[i] = new_line
 
         # two types of lists (but not nested lists):
         if r'\begin{enumerate}' in lines[i] or r'\ben' in lines[i]:
@@ -4768,6 +4789,11 @@ def _latex2doconce(filestr):
             command = tag + envir
             pattern = r'^ +' + command
             filestr = re.sub(pattern, command, filestr, flags=re.MULTILINE)
+    # Ensure a blank line before !bt and !bc for nicer layout
+    filestr = re.sub(r'([A-Za-z0-9,:?!; ])\n^!bt', r'\g<1>\n\n!bt',
+                     filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'([A-Za-z0-9,:?!; ])\n^!bc', r'\g<1>\n\n!bc',
+                     filestr, flags=re.MULTILINE)
 
     return filestr
 
