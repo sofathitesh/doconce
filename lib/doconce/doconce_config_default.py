@@ -27,6 +27,7 @@ pygments_html_linenos = False
 #html_body_font = 
 #html_heading_font = 
 #html_slide_theme = 
+#beamer_slide_theme = 
 #html_exercise_icon = 
 #html_exercise_icon_width = 
 #device = 

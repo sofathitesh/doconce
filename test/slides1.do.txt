@@ -1,12 +1,12 @@
 TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
-AUTHOR: Hans Petter Langtangen
+AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 DATE: Today
 
 !split
 
 ===== Figure and bullet list =====
 
-!bslidecell 00
+!bslidecell 00  0.35
 !bpop
 
   * Here is a *wave packet*
@@ -15,6 +15,8 @@ DATE: Today
 
 !epop
 !eslidecell
+
+# Test that it is okay to leave out width if there are only two columns
 
 !bslidecell 01
 FIGURE: [../doc/manual/figs/wavepacket_0001.png]
@@ -25,8 +27,15 @@ Here we have a paragraph to pop up in red.
 And a line more
 !epop
 
-!split
+[hpl: Here are some notes that can go to notes typesetting
+in the slide environment.]
 
+!bnotes
+One can also have ordinary notes.
+Over multiple lines.
+!enotes
+
+!split
 ===== Scientific writing needs to address many new media =====
 
 !bpop
@@ -43,7 +52,6 @@ And a line more
 !epop
 
 !split
-
 ===== Some math and computer code =====
 
 !bt
@@ -66,5 +74,19 @@ class Fancy:
 
 f2 = Fancy()
 !ec
+
+!split
+===== Admon blocks =====
+
+# Can use admons to simulate blocks
+
+!bnotice Key PDE:
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+!enotice
+
+!bnotice None
+Just some block with text and a conclusion that something is important.
+!enotice
+
 
 

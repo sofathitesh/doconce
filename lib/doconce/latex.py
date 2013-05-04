@@ -435,6 +435,10 @@ def latex_title(m):
 %% Short version of title:
 %%\titlerunning{...}
 
+%% #elif LATEX_HEADING == "beamer"
+
+\title{%s}
+
 %% #else
 
 \begin{center}
@@ -446,7 +450,7 @@ def latex_title(m):
 \end{center}
 
 %% #endif
-""" % (title, title, title, title)
+""" % (title, title, title, title, title)
     return text
 
 def latex_author(authors_and_institutions, auth2index,
@@ -554,6 +558,22 @@ def latex_author(authors_and_institutions, auth2index,
             s += r'\email{%s}' % e
         a_list.append(s)
     text += r' \and '.join(a_list) + '}\n'
+
+    text += r"""
+% #elif LATEX_HEADING == "beamer"
+\author{"""
+    author_command = []
+    for a, i, e in authors_and_institutions:
+        a_text = a
+        inst = r'\inst{' + ','.join([str(i) for i in auth2index[a]]) + '}'
+        a_text += inst
+        author_command.append(a_text)
+    text += '\n\\and\n'.join(author_command) + '}\n'
+    inst_command = []
+    institutions = [index2inst[i] for i in index2inst]
+    text += r'\institute{' + '\n\\and\n'.join(
+        [inst + r'\inst{%d}' % (i+1)
+         for i, inst in enumerate(institutions)]) + '}\n'
 
     text += r"""
 % #else
@@ -822,11 +842,13 @@ for _admon in admons:
     _Admon = _admon[0].upper() + _admon[1:]
     text = r"""
 def latex_%(_admon)s(block, format, title='%(_Admon)s'):
+    if title.lower().strip() == 'none':
+        title = ''
     title2 = title.replace(',', '')  # box title cannot handle ,
     title3 = title
-    if title2[-1] not in ('.', ':', '!', '?'):
+    if title2 and title2[-1] not in ('.', ':', '!', '?'):
         title2 += '.'
-    if title3[-1] not in ('.', ':', '!', '?'):
+    if title3 and title3[-1] not in ('.', ':', '!', '?'):
         title3 += '.'
     text = r'''
 %%%% #if ADMON == "colors"
@@ -962,6 +984,9 @@ def define(FILENAME_EXTENSION,
 
 \date{\g<subst>}
 \maketitle
+
+% #elif LATEX_HEADING == "beamer"
+\date{\g<subst>}
 
 % #elif LATEX_HEADING == "titlepage"
 

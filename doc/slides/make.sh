@@ -10,19 +10,20 @@ doconce format html $name --pygments_html_style=native
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce slides_html $name reveal --html_slide_theme=darkgray
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp $name.html $name_reveal.html
 # Fix selected backslashes inside verbatim envirs that doconce has added
 # (only a problem when we want to show full doconce code with
 # labels in !bc-!ec envirs).
-doconce replace '\label{this:section}' 'label{this:section}' $name.html
-doconce replace '\label{fig1}' 'label{fig1}' $name.html
-doconce replace '\label{demo' 'label{demo' $name.html
+doconce replace '\label{this:section}' 'label{this:section}' $name_reveal.html
+doconce replace '\label{fig1}' 'label{fig1}' $name_reveal.html
+doconce replace '\label{demo' 'label{demo' $name_reveal.html
 
 
 doconce format html $name --pygments_html_style=perldoc --html_style=solarized
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-mv -f $name.html ${name}_solarized.html
+cp $name.html ${name}_solarized.html
 doconce format html $name --pygments_html_style=default
-mv -f $name.html ${name}_plain.html
+cp $name.html ${name}_plain.html
 
 doconce format html $name --pygments_html_style=perldoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -35,7 +36,6 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce replace '\label{this:section}' 'label{this:section}' ${name}_deck.html
 doconce replace '\label{fig1}' 'label{fig1}' ${name}_deck.html
 doconce replace '\label{demo' 'label{demo' ${name}_deck.html
-exit 0
 
 doconce format pdflatex $name --minted_latex_style=trac
 doconce ptex2tex $name envir=minted -DBOOK

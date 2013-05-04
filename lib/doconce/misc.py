@@ -45,6 +45,8 @@ document is embedded."""),
     ('--html_slide_theme=',
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
+    ('--beamer_slide_theme=',
+     """Specify a theme for beamer slides."""),
     ('--html_exercise_icon=',
      """Specify a question icon in bundled/html_images for being
 inserted to the right in exercises - "default" and "none" are allowed
@@ -1594,9 +1596,9 @@ def split_html():
 
 
 def _usage_slides_html():
-    print 'Usage: doconce slides_html mydoc.html slide_type --html_slide_theme=themename [--reveal-doconce]'
+    print 'Usage: doconce slides_html mydoc.html slide_type --html_slide_theme=themename'
     print 'slide_types: reveal|reveal.js deck|deck.js csss dzslides'
-    print '--reveal-doconce applies doconce versions of themes (left-adjusted)'
+    print 'note: reveal and deck slide styles are edited in doconce'
     print 'or:    doconce slides_html mydoc.html all  (generate a lot)'
 
 def slides_html():
@@ -1626,11 +1628,6 @@ def slides_html():
 
     # pandoc can make dzslides and embeds all javascript (no other files needed)
     # pandoc -s -S -i -t dzslides --mathjax my.md -o my.html
-
-    # Could introduce !btabXY to define elements in a slide that will
-    # appear in position XY in a table! Works after split_html on a
-    # page by page basis (split is more general and should be factored out).
-    # Figures without caption must not have number (think that is in place).
 
     if len(sys.argv) <= 2:
         _usage_slides_html()
@@ -1696,51 +1693,114 @@ def tablify(parts, format="html"):
     for i in range(len(parts)):
         part = ''.join(parts[i])
         if '%s !bslidecell' % begin_comment in part:
-            pattern = r'%s !bslidecell +(\d\d) *%s(.+?)%s !eslidecell *%s' % \
-                      (begin_comment, end_comment, begin_comment, end_comment)
+            pattern = r'%s !bslidecell +(\d\d) *([.0-9]*?)%s\s+(.+?)%s !eslidecell *%s' % (begin_comment, end_comment, begin_comment, end_comment)
+            pattern00 = r'%s !bslidecell +00 *[.0-9]*?%s\s+(.+?)%s !eslidecell *%s' % (begin_comment, end_comment, begin_comment, end_comment)
             cpattern = re.compile(pattern, re.DOTALL)
             cells = cpattern.findall(part)
             #print 'CELLS:'; import pprint; pprint.pprint(cells)
             data = []
             row_max = 0
             col_max = 0
-            for pos, entry in cells:
+            for pos, width, entry in cells:
+                try:
+                    width = float(width)
+                except:
+                    width = None
+
                 ypos = int(pos[0])
                 xpos = int(pos[1])
                 if ypos > row_max:
                     row_max += 1
                 if xpos > col_max:
                     col_max += 1
-                data.append(((ypos, xpos), entry))
+                data.append([(ypos, xpos), entry, width])
             table = [['']*(col_max+1) for j in range(row_max+1)]
-            for pos, body in data:
-                table[pos[0]][pos[1]] = body
-            #print 'table:'; pprint.pprint(table)
+            for pos, body, width in data:
+                table[pos[0]][pos[1]] = [body, width]
+            # Check consistency of widths
+            for r, row in enumerate(table):
+                widths = []
+                has_width = False
+                for column, width in row:
+                    if width is not None:
+                        has_width = True
+                        widths.append(width)
+                if has_width:
+                    if len(row) != len(widths):
+                        # Can accept if only two columns
+                        if len(row) == 2 and len(widths) == 1:
+                            # Find the missing one
+                            if table[r][0][1] is None:
+                                table[r][0][1] = 1 - widths[0]
+                            elif table[r][1][1] is None:
+                                table[r][1][1] = 1 - widths[0]
+                        else:
+                            print '*** error: must specify width of all columns in slidecell table!'
+                            print '   ',
+                            for s, c in enumerate(row):
+                                column, width = c
+                                print ' %d%d: ' (r, s),
+                                if width is not None:
+                                    print 'no width',
+                                else:
+                                    print '%g' % width,
+                            print '\nAbort!'
+                            sys.exit(1)
+                else:
+                    width = 1./len(row)
+                    for s, c in enumerate(row):
+                        table[r][s][1] = width
 
-            # typeset table in html
-            tbl = '\n<table border="0">\n'
-            for row in table:
-                tbl += '<tr>\n'
-                for column in row:
-                    tbl += '<td class="padding"> %s </td>\n' % (column)
-                    # This is an attempt to control the width of columns,
-                    # but it does not work well.
-                    #tbl += '<td class="padding"><div style="width: %d%%"> %s </div></td>\n' % (100./len(row), column)
-                tbl += '</tr>\n'
-            tbl += '</table>\n'
+            #print 'table:'; import pprint; pprint.pprint(table)
 
-            # Put the whole table where cell 00 was defined
-            pattern00 = r'%s !bslidecell +00 *%s(.+?)%s !eslidecell *%s' % \
-                      (begin_comment, end_comment, begin_comment, end_comment)
-            cpattern00 = re.compile(pattern00, re.DOTALL)
-            #part = cpattern00.sub(tbl, part)  # does not preserve math \
-            part = cpattern00.sub('XXXYYY@#$', part)  # some ID and then replace
-            part = part.replace('XXXYYY@#$', tbl) # since replace handles \
-            # Let the other cells be empty
-            part = cpattern.sub('', part)
-            #print 'part:'; pprint.pprint(part)
-            part = [line + '\n' for line in part.splitlines()]
-            parts[i] = part
+            if format == 'html':
+                # typeset table in html
+                tbl = '\n<table border="0">\n'
+                for row in table:
+                    tbl += '<tr>\n'
+                    for column, width in row:
+                        tbl += '<td class="padding">\n%s</td>\n' % (column)
+                        # This is an attempt to control the width of columns,
+                        # but it does not work well.
+                        #tbl += '<td class="padding"><div style="width: %d%%"> %s </div></td>\n' % (int(100*width), column)
+
+                    tbl += '</tr>\n'
+                tbl += '</table>\n'
+
+                # Put the whole table where cell 00 was defined
+                cpattern00 = re.compile(pattern00, re.DOTALL)
+                #part = cpattern00.sub(tbl, part)  # does not preserve math \
+                part = cpattern00.sub('XXXYYY@#$', part)  # some ID and then replace
+                part = part.replace('XXXYYY@#$', tbl) # since replace handles \
+                # Let the other cells be empty
+                part = cpattern.sub('', part)
+                #print 'part:'; pprint.pprint(part)
+                part = [line + '\n' for line in part.splitlines()]
+                parts[i] = part
+            elif format.endswith('latex'):
+                # typeset table in beamer latex
+                tbl = ''
+                for row in table:
+                    tbl += r'\begin{columns}' + '\n'
+                    for column, width in row:
+                        if width is None:
+                            raise ValueError('Bug: width is None')
+                        tbl += r'\column{%g\textwidth}' % width + \
+                               '\n%s\n' % column
+
+                    tbl += r'\end{columns}' + '\n'
+                tbl += '\n'
+
+                # Put the whole table where cell 00 was defined
+                cpattern00 = re.compile(pattern00, re.DOTALL)
+                #part = cpattern00.sub(tbl, part)  # does not preserve math \
+                part = cpattern00.sub('XXXYYY@#$', part)  # some ID and then replace
+                part = part.replace('XXXYYY@#$', tbl) # since replace handles \
+                # Let the other cells be empty
+                part = cpattern.sub('', part)
+                #print 'part:'; pprint.pprint(part)
+                part = [line + '\n' for line in part.splitlines()]
+                parts[i] = part
     return parts
 
 def _format_comments(format='html'):
@@ -1765,12 +1825,12 @@ def get_header_parts_footer(filename, format='html'):
     begin_comment, end_comment = _format_comments(format)
     f = open(filename, 'r')
     for line in f:
-        if re.search(r'^%s -+ main content -+ %s' %
+        if re.search(r'^%s -+ main content -+ ?%s' %
                      (begin_comment, end_comment), line):
             loc = 'body'
         if re.search(r'^%s !split.*?%s' % (begin_comment, end_comment), line):
             parts.append([])
-        if re.search(r'^%s -+ end of main content -+ %s' %
+        if re.search(r'^%s -+ end of main content -+ ?%s' %
                      (begin_comment, end_comment), line):
             loc = 'footer'
         if loc == 'header':
@@ -3127,6 +3187,189 @@ MathJax.Hub.Config({
 </html>
 """ % (slide_syntax[slide_tp]['footer'])
     slides = re.sub(r'<!-- !split .*-->\n', '', slides)
+    return slides
+
+
+def _usage_slides_beamer():
+    print 'Usage: doconce slides_beamer mydoc.html --beamer_slide_theme=themename'
+
+def slides_beamer():
+    """
+    Split latex file into slides and typeset slides using
+    various tools. Use !split command as slide separator.
+    """
+
+    if len(sys.argv) <= 1:
+        _usage_slides_beamer()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.tex'):
+        filename += '.tex'
+    if not os.path.isfile(filename):
+        print 'doconce file in latex format, %s, does not exist - abort' % filename
+        sys.exit(1)
+    basename = os.path.basename(filename)
+    filestem = os.path.splitext(basename)[0]
+
+    header, parts, footer = get_header_parts_footer(filename, "latex")
+    parts = tablify(parts, "latex")
+
+    filestr = generate_beamer_slides(header, parts, footer,
+                                     basename, filename)
+
+    if filestr is not None:
+        f = open(filename, 'w')
+        f.write(filestr)
+        f.close()
+        print 'slides written to', filename
+
+
+def generate_beamer_slides(header, parts, footer, basename, filename):
+    theme = option('beamer_slide_theme=', default='default')
+
+    slides = r"""
+%% LaTeX Beamer file automatically generated from Doconce
+%% http://code.google.com/p/doconce
+
+%%-------------------- begin preamble ----------------------
+
+\documentclass{beamer}
+
+\usetheme{%(theme)s}
+\usecolortheme{default}
+
+%% turn off the almost invisible, yet disturbing, navigation symbols:
+\setbeamertemplate{navigation symbols}{}
+
+%% Examples on customization:
+%%\usecolortheme[named=RawSienna]{structure}
+%%\usetheme[height=7mm]{Rochester}
+%%\setbeamerfont{frametitle}{family=\rmfamily,shape=\itshape}
+%%\setbeamertemplate{items}[ball]
+%%\setbeamertemplate{blocks}[rounded][shadow=true]
+%%\useoutertheme{infolines}
+%%
+%%\usefonttheme{}
+%%\useinntertheme{}
+%%
+%%\setbeameroption{show notes}
+%%\setbeameroption{show notes on second screen=right}
+
+%% fine for B/W printing:
+%%\usecolortheme{seahorse}
+
+\usepackage{minted}  %% requires pygments and latex -shell-escape filename
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{fancyvrb,relsize}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{colortbl}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usepackage{framed,anslistings}
+%% Use some nice templates
+\beamertemplatetransparentcovereddynamic
+
+%% Delete this, if you do not want the table of contents to pop up at
+%% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+%% Delete this, if you do not want the table of contents to pop up at
+%% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+%% If you wish to uncover everything in a step-wise fashion, uncomment
+%% the following command:
+
+%%\beamerdefaultoverlayspecification{<+->}
+
+\newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
+\newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
+
+""" % vars()
+
+    admons = 'hint', 'notice', 'summary', 'warning', 'question'
+    for admon in admons:
+        Admon = admon[0].upper() + admon[1:]
+        slides += r"""\newenvironment{%(admon)sadmon}[1][%(Admon)s]{\begin{block}{#1}}{\end{block}}
+""" % vars()
+    # Add possible user customization from the original latex file,
+    # plus the newcommands and \begin{document}
+    slides += ''.join(header).split('% insert custom LaTeX commands...')[1]
+
+    for part in parts:
+        part = ''.join(part)
+
+        if 'inlinecomment{' in part:
+            # Inline comments are typeset as notes in this beamer preamble
+            pass
+        if '% !bnotes' in part:
+            pattern = r'% !bnotes(.+?)% !enotes\s'
+            part = re.sub(pattern,
+                          r'\\note{\g<1>}', part,
+                          flags=re.DOTALL)
+
+        # Pieces to pop up item by item as the user is clicking
+        if '% !bpop' in part:
+            pattern = r'% !bpop *(.*?)\s+(.+?)\s+% !epop'
+            cpattern = re.compile(pattern, re.DOTALL)
+            #import pprint;pprint.pprint(cpattern.findall(part))
+            def subst(m):  # m is match object
+                arg = m.group(1).strip()
+                body = m.group(2)
+
+                if r'\item' in body:
+                    marker = '[[[[['
+                    body = body.replace('\item ', r'\item%s ' % marker)
+                    n = body.count('item%s' % marker)
+                    for i in range(n):
+                        body = body.replace('item%s' % marker,
+                                            'item<%d->' % (i+1), 1)
+                else:
+                    # treat whole block as paragraph
+                    pass
+                return body
+
+            part = cpattern.sub(subst, part)
+
+        # Add text for this slide
+        pattern = r'section\{(.+?)\}'
+        m = re.search(pattern, part)   # first section is the title
+        if m:
+            title = m.group(1).strip()
+            title = r'\frametitle{%s}' % title + '\n'
+            part = re.sub('\\\\.*' + pattern, '', part, count=1)
+        elif r'\title{' in part:
+            title = ''
+        else:
+            title = '% No title on this slide\n'
+
+        part = part.rstrip()
+        slides += r"""
+\begin{frame}[plain,fragile]
+%(title)s
+%(part)s
+\end{frame}
+""" % vars()
+    slides += """
+\end{document}
+"""
+    slides = re.sub(r'% !split\s+', '', slides)
     return slides
 
 def _usage_split_rst0():

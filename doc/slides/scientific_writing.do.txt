@@ -114,8 +114,8 @@ When I write some scientific material,
 and later want to collect the pieces into a larger document, maybe
 some book, or one big web document, is that at all feasible?
 
-!bpop
-color{red}{Probably not, but I have a solution :-)}
+!bpop highlight-red
+Probably not, but I have a solution :-)
 !epop
 
 !split
@@ -165,8 +165,7 @@ color{red}{Probably not, but I have a solution :-)}
  * Movies: LaTeX (can run separately), just raw embedded HTML in others
  * Floating computer code: LaTeX
  * Fixed computer code: all
- * Floating tables: LaTeX
- * Fixed tables: all
+ * Floating tables: LaTeX; inline tables: all
  * Algorithms: LaTeX
  * Margin notes: LaTeX
  * Page references: LaTeX
@@ -790,10 +789,11 @@ Very effective way to generate slides from running text:
 
  * Key point 1
  * Key point 2
- * Key point 3 takes very much more text to explain because
-   this point is really comprehensive, and although long
+ * Key point 3: Although long
    bullet points are not recommended in general, we need
-   it here for demonstration purposes
+   it here for demonstration purposes to investigate
+   what happens with the slide layout where there is
+   so much text under one point
 
 FIGURE: [fig/teacher1, width=100]
 
@@ -846,10 +846,7 @@ a figure to the right (two cells, numbered 00 and 01).
 !bpop
  * Key point 1
  * Key point 2
- * Key point 3 takes very much more text to explain because
-   this point is really comprehensive, and although long
-   bullet points are not recommended in general, we need
-   it here for demonstration purposes
+ * Key point 3
 !epop
 
 !bpop
@@ -873,16 +870,23 @@ FIGURE: [fig/broken_pen_and_paper, width=400, frac=0.8]
 
 Last page gets rendered to
 
+## If we make Key point 3 larger, say
+
+## Key point 3: Although long
+## bullet points are not recommended in general, we need
+## it here for demonstration purposes to investigate
+## what happens with the slide layout where there is
+## so much text under one point
+
+## we force (in some formats?) the picture to be very small...
+
 ======= Headline =======
 
 !bslidecell 00
 !bpop
  * Key point 1
  * Key point 2
- * Key point 3 takes very much more text to explain because
-   this point is really comprehensive, and although long
-   bullet points are not recommended in general, we need
-   it here for demonstration purposes
+ * Key point 3
 !epop
 
 !bpop

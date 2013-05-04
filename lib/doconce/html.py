@@ -92,6 +92,7 @@ admon_styles2 = """\
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%%; /*0.8em;*/
+             width: 75%%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}

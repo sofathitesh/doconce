@@ -22,6 +22,7 @@ from doconce.misc import (
     split_rst,
     slides_html,
     split_html,
+    slides_beamer,
     html_colorbullets,
     md2html,
     md2latex,
@@ -730,6 +731,7 @@ remove_exercise_answers
 split_rst
 split_html
 slides_html
+slides_beamer
 latin2html
 latex_header
 latex_footer
@@ -822,8 +824,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -917,7 +922,7 @@ def main():
             print 'command', command, 'is not a legal command for doconce, did you mean'
             print 'doconce format %s %s?' % (command, ' '.join(sys.argv[1:]))
         else:
-            print 'command', command, 'not legal, must be among\n'
+            print 'command "%s" is not legal, must be among\n' % command
             print ', '.join(commands)
 
 main()

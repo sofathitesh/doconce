@@ -173,14 +173,14 @@ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
-doconce format html slides --pygments_html_style=emacs
+doconce format html slides1 --pygments_html_style=emacs
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce slides_html slides reveal --html_slide_type=beigesmall
+doconce slides_html slides1 reveal --html_slide_type=beigesmall
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-mv -f slides.html slides_reveal.html
-/bin/ls -R reveal.js >> slides_reveal.html
+cp slides1.html slides1_reveal.html
+/bin/ls -R reveal.js >> slides1_reveal.html
 
 doconce format html slides --pygments_html_style=emacs
 doconce slides_html slides all
