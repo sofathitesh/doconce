@@ -41,6 +41,12 @@ in comparison with the other admons.
   * with items
 !ewarning
 
+Test warning with title:
+
+!bwarning Watch Out
+And here comes some text with bad news.
+!ewarning
+
 The next admonition features a title "Note, eventually!".
 
 # Note that the final ! does not appear in Sphinx and reST since

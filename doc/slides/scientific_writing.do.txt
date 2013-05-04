@@ -3,35 +3,50 @@ TITLE: Scientific Writing Anno 2013: The Doconce Way
 AUTHOR: Hans Petter Langtangen
 DATE: Today
 
-# #if format in ("html", "sphinx")
-
-<object width="800" height="796" type="application/x-shockwave-flash" data="http://cdn.tagul.com/cloud.swf">
-   <param name="movie" value="http://cdn.tagul.com/cloud.swf"/>
-   <param name="flashvars" value="id=http://cdn.tagul.com/clouds/143809@2"/>
-   <param name="allowscriptaccess" value="always"/>
-   <param name="swfversion" value="10"/>
-   <param name="expressinstall" value="http://cdn.tagul.com/expressInstall.swf"/>
-   <param name="wmode" value="transparent"/>
-   <!--Embed svg if no flash installed-->
-   <object data="http://cdn.tagul.com/clouds/143809@2" type="image/svg+xml" width="800" height="796">
-       <p><a href="http://www.adobe.com/go/getflashplayer">
-          <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-       </a></p>
-   </object>
-</object>
-
-# #endif
+FIGURE: [fig/doconce1b, width=400]
 
 # Abstract:
 
 !split
+======= Scientific writing for the future needs to address many new media =======
+
+!bslidecell 00
+FIGURE: [fig/ipad, width=400]
+
+FIGURE: [fig/iphones, width=100]
+
+#FIGURE: [fig/mbair, width=400]
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [fig/imac, width=350]
+!eslidecell
+
+!split
+======= The book will probably survive =======
+
+FIGURE: [fig/oldbooks, width=800]
+
+!split
+======= The classical report will survive =======
+
+!bslidecell 00
+FIGURE: [fig/latex_thesis, width=400]
+!eslidecell
+
+!bslidecell 01
+FIGURE: [fig/latex_paper1, width=400]
+!eslidecell
+
+!split
 ======= Scope =======
 
-#  * *Scientific writing* = lecture notes, slides, reports, thesis, books,  ...
+#  * Scientific writing = lecture notes, slides, reports, thesis, books,  ...
 #  * (Journal papers typeset by journals are out of scope)
 
 !bpop
-  * Scope: documents with much *math* and *computer code*
+  * Scope: documents with color{red}{much} *math* and *computer code*
   * Key question: What tools should I use for writing?
   * Default answer: LaTeX
   * Alternative: MS Word w/math
@@ -63,21 +78,21 @@ FIGURE: [fig/MediaWiki_logo.jpg, width=80]
 FIGURE: [fig/IPython_logo.png, width=300]
 !eslidecell
 
+
 !split
 ======= Scientific writing for the future needs to address many new media =======
 
+# Insert links here to reports
+
 !bslidecell 00
- * Old days (1985-2005): LaTeX for BW paper output
- * Now:
+Old days (1985-2005): LaTeX for BW paper output, but now
+
    o BW books
-   o Colorful PDF books
-   o Colorful online PDFs with hyperlinks
+   o Colorful PDF books (printed and screen)
    o Designed web pages
    o Wikis
    o Bloggs
-   o Next new fancy format (after Sphinx, Markdown, epub, Apple iBook, ...)
- * Devices: paper, PC, iPad, phone, Kindle, ...
- * LaTeX PDF output is suboptimal for all this so wWe need to write for multiple formats!
+   o Next new fancy format (iBook w/LaTeX?)
 !eslidecell
 
 !bslidecell 01
@@ -100,7 +115,7 @@ and later want to collect the pieces into a larger document, maybe
 some book, or one big web document, is that at all feasible?
 
 !bpop
-colortext{red}{Probably not, but I have a solution :-)}
+color{red}{Probably not, but I have a solution :-)}
 !epop
 
 !split
@@ -108,7 +123,7 @@ colortext{red}{Probably not, but I have a solution :-)}
 
 !bpop
  * _LaTeX_: de facto standard for math-instensive documents
- * _pdfLaTeX_: takes over (figures in png, pdf)
+ * _pdfLaTeX_, _XeLaTeX_, _LuaLaTeX_: takes over (figures in png, pdf)
  * _MS Word_: too clicky math support and ugly fonts, but much used
  * _HTML with MathJax_: "full" LaTeX *math*, but too much tagging
  * _Sphinx_:
@@ -139,7 +154,7 @@ colortext{red}{Probably not, but I have a solution :-)}
     * _MathJax_: `equation*`, `equation`, `align*`, `align`
     * _MediaWiki_: `equation*`, `equation`, `align*`, `align`
     * _Sphinx_: `equation*`, `equation`, `align*`
-    * _Markdown_: `equation*`, `equation`, `align*` (but no labels)
+    * _Markdown_: `equation*`, `equation`, `eqnarray*`, `align*` (but no labels)
 
 !split
 ======= LaTeX is very rich; other tools support only some elements =======
@@ -232,38 +247,30 @@ based on HTML and vice versa.
 ======= Solution II: Use Doconce =======
 
 Doconce offers minimalistic typing, great flexibility wrt format,
-especially for scientific writing.
+especially for scientific writing with much math and code.
 
  * Can generate LaTeX, HTML, Sphinx, Markdown, MediaWiki, Google wiki,
    Creole wiki, reST, plain text
- * Particularly good support for math and code
- * Great flexibility for typesetting code
- * Made for science books *and* smaller teaching modules
- * Targets traditional books, electronic PDF, PDF for phones,
-   web pages, Google and Wordpress blogs (with math and code)
- * Support for code snippets from files, embedded movies,
-   generalized links, and
-   boxes (admonitions) for warnings, question, summary, hint,
-   and notice
- * Support for HTML5 slides - short way from prose to slides
- * Integrates with preprocessors: preprocess and mako
- * Handles multiple formats for figures
- * Between Mardown and Sphinx wrt tagging (and richness)
+ * Made for large science books *and* small teaching modules
+ * Targets books, electronic PDF, PDF for phones,
+   designed web pages, blogs
+ * Many special features (code snippets from files, embedded movies,
+   admonitions, ...)
+ * Very effective for generating slides from ordinary text
+ * Applies Mako: Doconce text is a program
+ * Less tagged than LaTeX, HTML, Sphinx
 
 !split
 ======= Doconce demo =======
 
 URL: "http://hplgit.github.com/teamods/writing_reports/"
 
- * "HTML with MathJax": "http://hplgit.github.com/teamods/writing_reports/report_do.html"
- * "PDF from LaTeX": "http://hplgit.github.com/teamods/writing_reports/report.pdf"
- * "Sphinx (agni theme)": "http://hplgit.github.com/teamods/writing_reports/sphinx-agni/index.html"
- * "Sphinx (pyramid theme)": "http://hplgit.github.com/teamods/writing_reports/sphinx-pyramid/index.html"
- * "Sphinx (classy theme)": "http://hplgit.github.com/teamods/writing_reports/sphinx-classy/index.html"
- * "Sphinx (fenics theme)": "http://hplgit.github.com/teamods/writing_reports/sphinx-fenics_minimal/index.html"
- * "Sphinx (redcloud theme)": "http://hplgit.github.com/teamods/writing_reports/sphinx-fenics_minimal/index.html"
- * "Doconce source": "http://hplgit.github.com/teamods/writing_reports/report.do.txt.html"
- * "Doconce tutorial": "http://code.google.com/p/doconce/wiki/Tutorial"
+ * LaTeX-based PDF "for screen": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+ * "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_do.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
+ * Sphinx: "agni": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html"
+ * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blogs
+ * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page" (Wikipedia, Wikibooks, etc)
+ * Doconce "source code": "http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and "tutorial": "http://code.google.com/p/doconce/wiki/Tutorial"
 
 
 !split

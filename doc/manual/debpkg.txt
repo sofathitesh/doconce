@@ -40,22 +40,9 @@ $ fi
 texlive
 texlive-extra-utils
 texlive-latex-extra
+texlive-font-utils
 latexdiff
 auctex
-
-
-# mdframed.sty must be installed manually
-#$ curl -O http://ctan.uib.no/macros/latex/contrib/mdframed/mdframed.dtx
-# alternative: git clone https://github.com/marcodaniel/mdframed
-#$ texdir=~/texmf/tex/latex/misc
-#$ if [ ! -d $texdir ]; then mkdir -p $texdir; fi
-#$ cp mdframed.sty $texdir/
-#$ cd $texdir/../../..
-#$ mktexlsr .
-#$ cd -
-#$ rm -f md-frame-* mdframed.*
-
-
 
 # Image manipulation
 imagemagick
@@ -76,3 +63,14 @@ meld xxdiff diffpdf kdiff3 diffuse
 # tkdiff.tcl:
 #tcl8.5-dev tk8.5-dev blt-dev
 #https://sourceforge.net/projects/tkdiff/
+
+# example on installing mdframed.sty (in texlive) manually
+# curl -O http://ctan.uib.no/macros/latex/contrib/mdframed/mdframed.dtx
+# alternative: git clone https://github.com/marcodaniel/mdframed
+# texdir=~/texmf/tex/latex/misc
+# if [ ! -d $texdir ]; then mkdir -p $texdir; fi
+# cp mdframed.sty $texdir/
+# cd $texdir/../../..
+# mktexlsr .
+# cd -
+# rm -f md-frame-* mdframed.*

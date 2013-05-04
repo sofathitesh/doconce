@@ -27,6 +27,45 @@ DATE: today
 If any of these questions are of interest, you should keep on reading.
 
 
+======= Some Doconce Features =======
+
+ * Strong support for texts with much math and code.
+
+ * Same source can produce a variety of output formats.
+   The following support LaTeX math and (pygmentized) code:
+
+   o "traditional LaTeX B/W documents for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf"
+   o "color LaTeX PDF documents": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf"
+   o "color LaTeX PDF documents for viewing on small phones": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+   o "Sphinx HTML documents with 20+ different designs": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html"
+   o "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
+   o HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blogs
+   o "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page" (Wikipedia, Wikibooks, etc)
+   o Markdown
+   o IPython notebook
+
+   Other formats include plain untagged text (for email),
+   Creole wiki (for Bitbucket wikis), Google wiki (for Googlecode),
+   reStructuredText, and Epytext.
+
+ * Integration with Mako enables use of variables, functions, if-tests,
+   and loops to parameterize the text and generate various versions of
+   the text for different purposes.
+
+ * Computer code can be copied directly from parts of source code files.
+
+ * Running text can quickly be edited to slide formats (reveal.js and deck.js,
+   based on HTML5+CSS3).
+
+ * Special exercise environments with support for hints, answers,
+   subexercises, etc.
+
+ * Automatic inline embedding of YouTube and Vimeo movies.
+
+ * Good support for admonitions in various LaTeX and HTML styles
+   for warnings, questions, hints, remarks, summaries, etc.
+
+
 ======= What Does Doconce Look Like? =======
 
 Doconce text looks like ordinary text (much like Markdown), but there
@@ -73,12 +112,11 @@ the formating. Here are some examples.
 
   * There is an exercise environment with many advanced features.
 
-  * With a preprocessor, Preprocess or Mako, one can include
-    other documents (files), large portions of text can be defined
-    in or out of the text, and tailored format-specific constructs can easily
-    be included. With Mako one can define functions and variables
-    for generating text within the document. For example, a single
-    text can output its program examples in two or more languages.
+  * With a preprocessor, Preprocess or Mako, one can include other
+    documents (files), large portions of text can be defined in or out
+    of the text, and tailored format-specific constructs can easily be
+    included. With Mako a single text can output its program examples
+    in two or more languages.
 
 ===== What Can Doconce Be Used For? =====
 
@@ -89,12 +127,14 @@ suited for thesis and books. IPython notebooks are ideal for
 documenting computational experiments, but do not (yet) meet the
 requirements of books and thesis.
 
-What about migrating a part of a book for blogging? What about
-making an MS Word version of parts or an untagged text for inclusion in email?
-What about efficiently generating slides in modern HTML5/CSS3 style?
-Doconce enables all this with just *one source*. Doconce also has many
-extra features for supporting documents with much code and mathematics,
-not found in any of the mentioned formats.
+What about migrating a part of a book for blogging? What about making
+an MS Word version of parts or an untagged text for inclusion in
+email?  What about efficiently generating slides in modern HTML5
+style?  Doconce enables all this with just *one source* (the slogan is
+*document once - include anywhere*).
+Doconce also
+has many extra features for supporting documents with much code and
+mathematics, not found in any of the mentioned formats.
 
 ===== Basic Syntax =====
 
@@ -372,7 +412,7 @@ for various formats of this document).
 
 The current text is generated from a Doconce format stored in the file
 !bc
-docs/tutorial/tutorial.do.txt
+doc/tutorial/tutorial.do.txt
 !ec
 The file `make.sh` in the `tutorial` directory of the
 Doconce source code contains a demo of how to produce a variety of

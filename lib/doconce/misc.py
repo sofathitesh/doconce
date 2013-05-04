@@ -3036,9 +3036,12 @@ MathJax.Hub.Config({
                           slide_syntax[slide_tp]['notes'], part,
                           flags=re.DOTALL)
 
-        if '!bpop' not in part:
-            part = part.replace('<li>', '<p><li>')  # more space between bullets
+        #if '!bpop' not in part:
+        #if slide_tp in ['reveal']:
+        part = part.replace('<li>', '<p><li>')  # more space between bullets
         # else: the <p> destroys proper handling of incremental pop up
+        # Try this for all and see if any problem appears
+        part = part.replace('<li ', '<p><li ')  # more space between bullets
 
         # Find pygments style
         m = re.search(r'typeset with pygments style "(.+?)"', part)
