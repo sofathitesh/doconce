@@ -40,6 +40,7 @@ $ fi
 texlive
 texlive-extra-utils
 texlive-latex-extra
+texlive-math-extra
 texlive-font-utils
 latexdiff
 auctex

@@ -1,7 +1,9 @@
 TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
 # index.html file for looking at the various versions of scientific_writing
 
- * "Slides": "scientific_writing_reveal.html" (using "reveal.js": "http://lab.hakim.se/reveal-js/")
+ * "HTML5 Slides": "scientific_writing_reveal.html" (using "reveal.js": "http://lab.hakim.se/reveal-js/")
+ * "HTML5 Slides": "scientific_writing_deck.html" (using "deck.js": "https://github.com/imakewebthings/deck.js/")
+ * "LaTeX Beamer": "scientific_writing_red2.pdf"
 
 Here are some other document versions of the slides:
 
