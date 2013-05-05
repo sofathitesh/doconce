@@ -4606,9 +4606,9 @@ def which(program):
 def subst_author_latex2doconce(m):
     author_str = m.group('subst')
     authors = author_str.split(r'\and')
+    institutions = ['']*len(authors)
     # footnotes with institutions?
     if r'\footnote{' in author_str:
-        institutions = ['']*len(authors)
         for i, author in enumerate(authors):
             if r'\footnote{' in author:
                 pattern = r'\footnote\{(.+?\}'
@@ -4725,6 +4725,9 @@ def _latex2doconce(filestr):
 
     replace = [
         # make sure \beqan comes before \beqa and \beq in replacements...
+        (r'\begin{document}', ''),
+        (r'\end{document}', ''),
+        (r'\maketitle', ''),
         (r'\[', r'\begin{equation*}'),
         (r'\]', r'\end{equation*}'),
         (r'\beqan', r'\begin{eqnarray*}'),
@@ -4793,9 +4796,9 @@ def _latex2doconce(filestr):
     for e in math_enders:
         filestr = filestr.replace(e, e + '\n!et')
 
-    # Make sure there is a ling after heading (and label)
-    filestr = re.sub(r'(===[A-Za-z0-9 ]+?==={3,9})\s+(\\label\{.+?\})\s+([A-Za-z ])', r'\g<1>\n\g<2>\n\n\g<3>', filestr)
-    filestr = re.sub('(===[A-Za-z0-9 ]+?==={3,9})\s+([A-Za-z ])', r'\g<1>\n\n\g<2>', filestr)
+    # Make sure there is a line after heading (and label)
+    filestr = re.sub(r'(===[A-Za-z0-9 ]+?={3,9})\s+(\\label\{.+?\})\s+([A-Za-z ])', r'\g<1>\n\g<2>\n\n\g<3>', filestr)
+    filestr = re.sub('(===[A-Za-z0-9 ]+?={3,9})\s+([A-Za-z ])', r'\g<1>\n\n\g<2>', filestr)
 
     # minted
     pattern = r'\\begin\{minted}\[?.*\]?{(.+?)\}'
@@ -4842,10 +4845,18 @@ def _latex2doconce(filestr):
     # \item alone on line: join with next line (indentation is fixed later)
     filestr = re.sub(r'\\item\s+(\w)', r'\item \g<1>', filestr)
 
-    # Process lists, comment lines, @@@CODE lines
+    # Make sure all items in lists are on one line so we do not run
+    # into indentation problems (lookahead pattern makes this easy)
+    pattern = r'(\\item\s+.+?)(?=\\item|\\end\{)'
+    list_items = re.findall(pattern, filestr, flags=re.DOTALL)
+    for item in list_items:
+        filestr = filestr.replace(item, ' '.join(item.splitlines()) + '\n\n')
+
+    # Process lists, comment lines, @@@CODE lines, and other stuff
     inside_enumerate = False
     inside_itemize = False
     inside_code = False
+    appendix = False
     lines = filestr.splitlines()
     for i in range(len(lines)):
         if lines[i].startswith('!bc'):
@@ -4885,6 +4896,16 @@ def _latex2doconce(filestr):
         if r'\end{itemize}' in lines[i] or r'\eit' in lines[i]:
             inside_itemize = False
             lines[i] = ''
+        if re.search(r'^\s*\appendix', lines[i]):
+            appendix = True
+        if appendix and 'section{' in lines[i] or 'section*{' in lines[i]:
+            lines[i] = re.sub(r'section\*?\{(.+?)\}',
+                              'section{Appendix: \g<1>}', lines[i])
+        if r'\bibliography' in lines[i]:
+            lines[i] = re.sub(r'\\bibliography\{(.+?)\}',
+                              r'\n_Must run publish import on BibTeX file \g<1>!_\nBIBFILE: papers.pub\n',
+                              lines[i])
+            lines[i] = re.sub(r'\\bibliographystyle\{.+?\}', '', lines[i])
 
 
     # put all newcommands in a file (note: newcommands must occupy only one line!)
@@ -4925,8 +4946,12 @@ def _latex2doconce(filestr):
 
     # Find subfigures (problems)
     if filestr.count('\\subfigure{') > 0:
-        print 'found \\subfigure{...} - should be changed (combine individual'
-        print '      figure files into a single file; now subfigures are just removed)'
+        print '\nfound \\subfigure{...} - should be changed (combine individual'
+        print '      figure files into a single file; now subfigures are just ignored!)\n'
+
+    # Figures: assumptions are that subfigure is not used and that the label
+    # sits inside the caption. Also, width should be a fraction of
+    # \linewidth.
 
     # figures: psfig, group1: filename, group2: caption
     pattern = re.compile(r'\\begin{figure}.*?\psfig\{.*?=([^,]+).*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
@@ -4934,6 +4959,14 @@ def _latex2doconce(filestr):
     # figures: includegraphics, group1: width, group2: filename, group3: caption
     pattern = re.compile(r'\\begin{figure}.*?\includegraphics\[width=(.+?)\\linewidth\]\{(.+?)\}.*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
     filestr = pattern.sub(r'FIGURE: [\g<2>, width=400 frac=\g<1>] {{{{\g<3>}}}}', filestr)
+    # includegraphics with other measures of width and caption after fig
+    pattern = re.compile(r'\\begin{figure}.*?\includegraphics\[(.+?)]\{(.+?)\}.*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
+    filestr = pattern.sub(r'# original latex figure with \g<1>\n\nFIGURE: [\g<2>, width=400 frac=1.0] {{{{\g<3>}}}}', filestr)
+    # includegraphics with other measures of width and caption before fig
+    pattern = re.compile(r'\\begin{figure}.*?\caption\{(.*?)\}\includegraphics\[(.+?)]\{(.+?)\}.*?\s*\\end{figure}', re.DOTALL)
+    filestr = pattern.sub(r'# original latex figure with \g<2>\n\nFIGURE: [\g<3>, width=400 frac=1.0] {{{{\g<1>}}}}', filestr)
+
+    # Better method: grab all begin and end figures and analyze each fig
 
     captions = re.findall(r'\{\{\{\{(.*?)\}\}\}\}', filestr, flags=re.DOTALL)
     for caption in captions:
@@ -5106,10 +5139,12 @@ def _latex2doconce(filestr):
             pattern = r'^ +' + command
             filestr = re.sub(pattern, command, filestr, flags=re.MULTILINE)
     # Ensure a blank line before !bt and !bc for nicer layout
-    filestr = re.sub(r'([A-Za-z0-9,:?!; ])\n^!bt', r'\g<1>\n\n!bt',
-                     filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'([A-Za-z0-9,:?!; ])\n^!bc', r'\g<1>\n\n!bc',
-                     filestr, flags=re.MULTILINE)
+    # (easier with lookahead! - se below)
+    #filestr = re.sub(r'([A-Za-z0-9,:?!; ])\n^!bt', r'\g<1>\n\n!bt',
+    #                 filestr, flags=re.MULTILINE)
+    #filestr = re.sub(r'([A-Za-z0-9,:?!; ])\n^!bc', r'\g<1>\n\n!bc',
+    #                 filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'\s+(?=^!bt|^!bc)', '\n\n', filestr, flags=re.MULTILINE)
 
     return filestr
 

@@ -684,6 +684,10 @@ def latex_ref_and_label(section_label2title, format, filestr):
     return filestr
 
 def latex_index_bib(filestr, index, citations, pubfile, pubdata):
+    # About latex technologies for bib:
+    # http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
+    # May consider moving to biblatex if it is compatible enough.
+
     #print 'index:', index
     #print 'citations:', citations
     filestr = filestr.replace('cite{', r'\cite{')
