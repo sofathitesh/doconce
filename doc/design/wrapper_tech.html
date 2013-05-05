@@ -27,48 +27,35 @@ Automatically generated HTML file from Doconce source
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
     tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
+    
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
-
     .alert {
-      padding:8px 35px 8px 14px; margin-bottom:18px;
-      color:#c09853; text-shadow:0 1px 0 rgba(255,255,255,0.5);
-      background-color:#fcf8e3; border:1px solid #fbeed5;
-      -webkit-border-radius:4px; -moz-border-radius:4px;
-       border-radius:4px}
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
+             width: 75%;
+     }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
-     .alert-notice, .alert-warning, .alert-question, .alert-hint, alert-summary {
-       color: #555;
-       background-color: whiteSmoke;
-       background-position: 10px 10px;
-       background-repeat: no-repeat;
-       padding-left: 52px;
-       font-size: 0.8em;
-      }
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png); }
-    .alert-summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
-    .alert-warning { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
-    .alert-hint { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
-    .alert-question {background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
 
@@ -121,7 +108,7 @@ end of tocinfo -->
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
-<center><h4>Apr 24, 2013</h4></center> <!-- date -->
+<center><h4>May 5, 2013</h4></center> <!-- date -->
 <p>
 <!-- URL to this page: -->
 <!-- <a href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html"><tt>https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html</tt></a> -->
@@ -223,11 +210,10 @@ u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
 !et
 Here, $n=0,1,\ldots,N-1$.
 
-!bhint
+<div class="alert alert-block alert-hint"><b>Hint.</b>
 Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
 Midpoint) schemes first. Then generalize to the $\theta$-rule above.
-!ehint
-
+</div>
 ===== Implementation =====
 
 The numerical method is implemented in a Python function

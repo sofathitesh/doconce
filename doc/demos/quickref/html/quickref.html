@@ -64,7 +64,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 3, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 5, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -717,7 +717,7 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 transforming a <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file to some format. Here is the
 list of capabilities:</p>
 <div class="highlight-bash"><div class="highlight"><pre>Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
-commands: format <span class="nb">help </span>sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format <span class="nb">help </span>sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 <span class="c"># transform doconce file to another format</span>
@@ -786,8 +786,11 @@ doconce sphinxfix_local_URLs file.rst
 <span class="c"># split an html file into parts according to !split commands</span>
 doconce split_html complete_file.html
 
-<span class="c"># create slides from a (doconce) html file</span>
+<span class="c"># create HTML slides from a (doconce) html file</span>
 doconce slides_html slide_type complete_file.html
+
+<span class="c"># create LaTeX Beamer slides from a (doconce) latex/pdflatex file</span>
+doconce slides_beamer complete_file.tex
 
 <span class="c"># replace bullets in lists by colored bullets</span>
 doconce html_colorbullets file1.html file2.html ...

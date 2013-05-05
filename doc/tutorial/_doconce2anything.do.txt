@@ -302,7 +302,6 @@ A separate titlepage can be generate by
 Preprocessor variables to be defined or undefined are
 
  * `XELATEX` for processing by `xelatex`
- * `LATEX_HEADING` for the typesetting of the title, author, etc.
  * `PALATINO` for the Palatino font
  * `HELVETICA` for the Helvetica font
  * `A4PAPER` for A4 paper size
@@ -326,6 +325,12 @@ Preprocessor variables to be defined or undefined are
  * `COLORED_TABLE_ROWS` for coloring every other table rows (set this
    variable to `gray` or `blue`)
  * `BLUE_SECTION_HEADINGS` for blue section and subsection headings
+ * `LATEX_HEADING` for the typesetting of the title, author, parts of
+   preamble (values: `traditional` for traditional LaTeX heading,
+   `titlepage` for a separate titlepage, `Springer_collection` for
+   edited volumes on Springer, `beamer` for Beamer slides, `doconce_heading`
+   (default) for listing institutions after names)
+
 
 If you are not satisfied with the Doconce preamble, you can provide
 your own preamble by adding the command-line option `--latex_preamble=myfile`.
