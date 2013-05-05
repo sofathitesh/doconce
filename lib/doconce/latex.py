@@ -414,7 +414,6 @@ def latex_title(m):
 
 %% ----------------- title -------------------------
 %% #if LATEX_HEADING == "traditional"
-
 \title{%s}
 
 %% #elif LATEX_HEADING == "titlepage"
@@ -430,17 +429,13 @@ def latex_title(m):
 }}}
 
 %% #elif LATEX_HEADING == "Springer_collection"
-
 \title*{%s}
 %% Short version of title:
 %%\titlerunning{...}
 
 %% #elif LATEX_HEADING == "beamer"
-
 \title{%s}
-
 %% #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -448,7 +443,6 @@ def latex_title(m):
 \end{spacing}
 }
 \end{center}
-
 %% #endif
 """ % (title, title, title, title, title)
     return text
@@ -573,7 +567,7 @@ def latex_author(authors_and_institutions, auth2index,
     institutions = [index2inst[i] for i in index2inst]
     text += r'\institute{' + '\n\\and\n'.join(
         [inst + r'\inst{%d}' % (i+1)
-         for i, inst in enumerate(institutions)]) + '}\n'
+         for i, inst in enumerate(institutions)]) + '}'
 
     text += r"""
 % #else
@@ -978,16 +972,13 @@ def define(FILENAME_EXTENSION,
         #'date':          r'\\date{\g<subst>}' ' \n\\maketitle\n\n',
         'date':          fix_latex_command_regex(pattern=r"""
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{\g<subst>}
 \maketitle
-
 % #elif LATEX_HEADING == "beamer"
-\date{\g<subst>}
-
+\date{\g<subst>
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\\\ [10mm]
@@ -998,7 +989,6 @@ def define(FILENAME_EXTENSION,
 \clearpage
 
 % #else
-
 \begin{center}
 \g<subst>
 \end{center}
@@ -1236,17 +1226,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 """
-
-    exer_envirs = ['Exercise', 'Problem', 'Project']
-    exer_envirs = exer_envirs + ['{%s}' % e for e in exer_envirs]
-    for exer_envir in exer_envirs:
-        if exer_envir + ':' in filestr:
-            INTRO['latex'] += r"""
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-"""
-            break
-
     if '!bsummary' in filestr and '!esummary' in filestr:
         INTRO['latex'] += r"""
 % gray summary box
@@ -1414,6 +1393,22 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+"""
+    # Note: the line above is key for extracting the correct part
+    # of the preamble for beamer slides in misc.slides_beamer
+
+    exer_envirs = ['Exercise', 'Problem', 'Project']
+    exer_envirs = exer_envirs + ['{%s}' % e for e in exer_envirs]
+    for exer_envir in exer_envirs:
+        if exer_envir + ':' in filestr:
+            INTRO['latex'] += r"""
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+"""
+            break
+
+    INTRO['latex'] += r"""
 % USER PREAMBLE
 % insert custom LaTeX commands...
 

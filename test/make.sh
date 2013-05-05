@@ -173,8 +173,12 @@ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
+# slides1: rough small test
+# slides2: much of scientific_writing.do.txt
+# slides3: equal to slides/demo.do.txt
 doconce format html slides1 --pygments_html_style=emacs
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp slides1.html slides1_1st.html  # before running slides_html
 
 doconce slides_html slides1 reveal --html_slide_type=beigesmall
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -182,8 +186,54 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp slides1.html slides1_reveal.html
 /bin/ls -R reveal.js >> slides1_reveal.html
 
-doconce format html slides --pygments_html_style=emacs
-doconce slides_html slides all
+doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp slides1.html slides1_deck.html
+/bin/ls -R dek.js >> slides1_deck.html
+
+doconce format pdflatex slides1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex slides1 -DLATEX_HEADING=beamer
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce slides_beamer slides1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html slides2 --pygments_html_style=emacs
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce slides_html slides2 reveal --html_slide_type=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp slides2.html slides2_reveal.html
+
+doconce format pdflatex slides2
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce slides_beamer slides2
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce slides_html slides3 reveal --html_slide_type=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp slides3.html slides3_reveal.html
+
+theme=red3
+doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=$theme
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce slides_beamer slides3 --beamer_slide_theme=$theme
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+# Add slides1_1st.html, slides1_deck.html, slides1.p.tex, slides1.tex, slides2.do.txt, slides2_reveal.html, slides2.p.tex, slides2.tex, slides3.do.txt, slides3_reveal.html, slides3.p.tex, slides3.tex
+
+doconce format html slides1 --pygments_html_style=emacs
+doconce slides_html slides1 all
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test grab

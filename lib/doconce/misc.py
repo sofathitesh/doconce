@@ -1692,9 +1692,10 @@ def tablify(parts, format="html"):
     begin_comment, end_comment = _format_comments(format)
     for i in range(len(parts)):
         part = ''.join(parts[i])
+
         if '%s !bslidecell' % begin_comment in part:
-            pattern = r'%s !bslidecell +(\d\d) *([.0-9]*?)%s\s+(.+?)%s !eslidecell *%s' % (begin_comment, end_comment, begin_comment, end_comment)
-            pattern00 = r'%s !bslidecell +00 *[.0-9]*?%s\s+(.+?)%s !eslidecell *%s' % (begin_comment, end_comment, begin_comment, end_comment)
+            pattern = r'%s !bslidecell +(\d\d) *([.0-9 ]*?)%s\s+(.+?)%s !eslidecell *%s' % (begin_comment, end_comment, begin_comment, end_comment)
+            pattern00 = r'%s !bslidecell +00 *[.0-9 ]*?%s\s+(.+?)%s !eslidecell *%s' % (begin_comment, end_comment, begin_comment, end_comment)
             cpattern = re.compile(pattern, re.DOTALL)
             cells = cpattern.findall(part)
             #print 'CELLS:'; import pprint; pprint.pprint(cells)
@@ -1714,9 +1715,14 @@ def tablify(parts, format="html"):
                 if xpos > col_max:
                     col_max += 1
                 data.append([(ypos, xpos), entry, width])
-            table = [['']*(col_max+1) for j in range(row_max+1)]
+            table = [[None]*(col_max+1) for j in range(row_max+1)]
+            for r in range(len(table)):
+                for s in range(len(table[r])):
+                    table[r][s] = ['', None]
+            #print 'data:', data
             for pos, body, width in data:
                 table[pos[0]][pos[1]] = [body, width]
+            #print 'table 1:'; import pprint; pprint.pprint(table)
             # Check consistency of widths
             for r, row in enumerate(table):
                 widths = []
@@ -1751,7 +1757,7 @@ def tablify(parts, format="html"):
                     for s, c in enumerate(row):
                         table[r][s][1] = width
 
-            #print 'table:'; import pprint; pprint.pprint(table)
+            #print 'table 2:'; import pprint; pprint.pprint(table)
 
             if format == 'html':
                 # typeset table in html
@@ -3227,6 +3233,7 @@ def slides_beamer():
 
 def generate_beamer_slides(header, parts, footer, basename, filename):
     theme = option('beamer_slide_theme=', default='default')
+    header = ''.join(header)
 
     slides = r"""
 %% LaTeX Beamer file automatically generated from Doconce
@@ -3259,7 +3266,6 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
 %% fine for B/W printing:
 %%\usecolortheme{seahorse}
 
-\usepackage{minted}  %% requires pygments and latex -shell-escape filename
 \usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
 \usepackage{graphicx}
 \usepackage{epsfig}
@@ -3303,14 +3309,24 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
 
 """ % vars()
 
+    # Check if we need minted:
+    pattern = '\\usepackage.+minted'
+    m = re.search(pattern, header)
+    if m:
+        slides = slides.replace('{epsfig}', r'{epsfig}' + '\n' + r'\usepackage{minted} % requires pygments and latex -shell-escape filename')
+
     admons = 'hint', 'notice', 'summary', 'warning', 'question'
     for admon in admons:
         Admon = admon[0].upper() + admon[1:]
         slides += r"""\newenvironment{%(admon)sadmon}[1][%(Admon)s]{\begin{block}{#1}}{\end{block}}
 """ % vars()
+    slides += r"""\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+"""
+
     # Add possible user customization from the original latex file,
     # plus the newcommands and \begin{document}
-    slides += ''.join(header).split('% insert custom LaTeX commands...')[1]
+    preamble_divider_line = '% --- end of standard preamble for documents ---'
+    slides += header.split(preamble_divider_line)[1]
 
     for part in parts:
         part = ''.join(part)
@@ -3326,6 +3342,7 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
 
         # Pieces to pop up item by item as the user is clicking
         if '% !bpop' in part:
+            num_pops = part.count('% !bpop')
             pattern = r'% !bpop *(.*?)\s+(.+?)\s+% !epop'
             cpattern = re.compile(pattern, re.DOTALL)
             #import pprint;pprint.pprint(cpattern.findall(part))
@@ -3333,7 +3350,10 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
                 arg = m.group(1).strip()
                 body = m.group(2)
 
-                if r'\item' in body:
+                # Individual pop up of list items if there is only
+                # one pop block on this slide, otherwise pause the
+                # whole list (in else branch)
+                if r'\item' in body and num_pops == 1:
                     marker = '[[[[['
                     body = body.replace('\item ', r'\item%s ' % marker)
                     n = body.count('item%s' % marker)
@@ -3341,15 +3361,31 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
                         body = body.replace('item%s' % marker,
                                             'item<%d->' % (i+1), 1)
                 else:
-                    # treat whole block as paragraph
-                    pass
+                    # treat whole part as a block
+                    pattern = r'\\(begin\{block|summarybox\{|[a-z]+admon\{)'
+                    m = re.match(pattern, body.lstrip())
+                    if m:
+                        # body has a construction that is already a block
+                        body = r"""
+\pause
+%s
+""" % body
+                    else:
+                        body = r"""
+\pause
+\begin{block}{}
+%s
+\end{block}
+""" % body
                 return body
 
             part = cpattern.sub(subst, part)
 
         # Add text for this slide
+
+        # Grab title as first section/subsection
         pattern = r'section\{(.+?)\}'
-        m = re.search(pattern, part)   # first section is the title
+        m = re.search(pattern, part)
         if m:
             title = m.group(1).strip()
             title = r'\frametitle{%s}' % title + '\n'
@@ -3359,8 +3395,33 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
         else:
             title = '% No title on this slide\n'
 
+        # Beamer does not support chapter, section, subsection, paragraph
+        part = part.replace(r'\chapter{', r'\noindent\textbf{\huge ')
+        part = part.replace(r'\section{', r'\noindent\textbf{\Large ')
+        part = part.replace(r'\subsection{', r'\noindent\textbf{\large ')
+        part = part.replace(r'\paragraph{', r'\noindent\textbf{')
+
         part = part.rstrip()
-        slides += r"""
+
+        if r'\title{' in part:
+            # Titlepage needs special treatment
+            m = re.search(r'(\\centerline\{\\includegraphics.+\}\})', part)
+            if m:
+                titlepage_figure = m.group(1)
+                # Move titlepage figure to \date{}
+                part = part.replace('% <titlepage figure>', r'\\ \ \\ ' + '\n' + titlepage_figure)
+                # Remove original titlepage figure
+                part = re.sub(r'\\begin\{center\} +% inline figure.+?\\end\{center\}', '', part, flags=re.DOTALL)
+            slides += r"""
+%(part)s
+
+\begin{frame}[plain,fragile]
+\titlepage
+\end{frame}
+""" % vars()
+        else:
+            # Ordinary slide
+            slides += r"""
 \begin{frame}[plain,fragile]
 %(title)s
 %(part)s
