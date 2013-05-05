@@ -461,12 +461,6 @@ MathJax.Hub.Config({
     filestr = cpattern.sub('<li>\g<1></li>\g<2>\g<3>', filestr)
     filestr = filestr.replace('<li><li>', '<li>')  # fix
 
-    # Strip multiple <p> tags in sequence down to one (must be repeated)
-    pattern = r'(<p>\s+<p>)+'
-    filestr = re.sub(pattern, '<p>\n', filestr)
-    filestr = re.sub(pattern, '<p>\n', filestr)
-    filestr = re.sub(pattern, '<p>\n', filestr)
-
     # Find all URLs to files (non http, ftp)
     import common
     pattern = '<a href=' + common._linked_files
@@ -642,6 +636,15 @@ MathJax.Hub.Config({
         icon_path = 'https://doconce.googlecode.com/hg/bundled/html_images/' + icon
         pattern = r'(<h3>(Exercise|Project|Problem) \d+:.+</h3>)'
         filestr = re.sub(pattern, '\g<1>\n\n<img src="%s" width=%s align="right">\n' % (icon_path, icon_width), filestr)
+
+    # Reduce redunant newlines and <p> (easy with lookahead pattern)
+    # Eliminate any <p> that goes with blanks up to <p> or a section
+    # heading
+    pattern = r'<p>\s+(?=<p>|<[hH]\d>)'
+    filestr = re.sub(pattern, '', filestr)
+    # Extra blank before section heading
+    pattern = r'\s+(?=^<[hH]\d>)'
+    filestr = re.sub(pattern, '\n\n', filestr, flags=re.MULTILINE)
 
     return filestr
 
