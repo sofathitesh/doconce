@@ -567,11 +567,31 @@ MathJax.Hub.Config({
                 nspaces = 1
                 indent = '&nbsp; '*(nspaces*(level - level_min))
                 toc_html += '     <!-- vagrant nav toc: "%s" --> <li> %s <a href="#%s">%s</a>\n' % (title, indent, href, title)
+        # toc_html lacks formatting, run some basic formatting here
+        tags = 'emphasize', 'bold', 'math', 'verbatim', 'colortext'
+        # drop URLs in headings?
+        import common
+        for tag in tags:
+            toc_html = re.sub(common.INLINE_TAGS[tag],
+                              common.INLINE_TAGS_SUBST[format][tag],
+                              toc_html)
+        # Load template file
         try:
             f = open(template, 'r'); template = f.read(); f.close()
         except IOError:
             print '*** error: could not find template "%s"' % template
-            sys.exit(1)
+            print 'Abort!'; sys.exit(1)
+
+        # Check that template does not have "main content" begin and
+        # end lines that may interfere with the automatically generated
+        # ones in Doconce (may destroy the split_html command)
+        m = re.findall(r'(<!-- -+ .*main content -+)', template)
+        if m:
+            print '*** error: template contains lines that may interfere'
+            print '    with markers that doconce inserts - remove these'
+            for line in m:
+                print line
+            print 'Abort!'; sys.exit(1)
 
         # template can only have slots for title, date, main
         template = latin2html(template) # code non-ascii chars

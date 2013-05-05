@@ -190,7 +190,7 @@ doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 cp slides1.html slides1_deck.html
-/bin/ls -R dek.js >> slides1_deck.html
+/bin/ls -R deck.js >> slides1_deck.html
 
 doconce format pdflatex slides1
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -229,8 +229,6 @@ doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce slides_beamer slides3 --beamer_slide_theme=$theme
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-# Add slides1_1st.html, slides1_deck.html, slides1.p.tex, slides1.tex, slides2.do.txt, slides2_reveal.html, slides2.p.tex, slides2.tex, slides3.do.txt, slides3_reveal.html, slides3.p.tex, slides3.tex
 
 doconce format html slides1 --pygments_html_style=emacs
 doconce slides_html slides1 all

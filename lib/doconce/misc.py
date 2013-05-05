@@ -1831,6 +1831,8 @@ def get_header_parts_footer(filename, format='html'):
     begin_comment, end_comment = _format_comments(format)
     f = open(filename, 'r')
     for line in f:
+        #if re.search(r'^%s -+ main content -+ ?%s' %
+        #             (begin_comment, end_comment), line):
         if re.search(r'^%s -+ main content -+ ?%s' %
                      (begin_comment, end_comment), line):
             loc = 'body'
@@ -1852,6 +1854,8 @@ def get_header_parts_footer(filename, format='html'):
 def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
     import html
+    # Check if we use a vagrant template, because that leads to
+    # different navigation etc.
     vagrant = 'builds on the Twitter Bootstrap style' in '\n'.join(header)
 
     if vagrant:
@@ -1889,12 +1893,17 @@ def doconce_html_split(header, parts, footer, basename, filename):
     else:
         local_navigation_pics = False    # avoid copying images to subdir...
 
-    if local_navigation_pics:
-        copy_datafiles(html_images)  # copy html_images subdir if needed
-
     prev_part = 'prev1'  # "Knob_Left"
     next_part = 'next1'  # "Knob_Forward"
     header_part_line = ''  # 'colorline'
+    if local_navigation_pics:
+        copy_datafiles(html_images)  # copy html_images subdir if needed
+        button_prev_filename = html_imagefile(prev_part)
+        button_next_filename = html_imagefile(next_part)
+    else:
+        button_prev_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % prev_part
+        button_next_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % next_part
+
 
     # Fix internal links to point to the right splitted file
     name_pattern = r'<a name="(.+?)">'
@@ -1934,13 +1943,6 @@ def doconce_html_split(header, parts, footer, basename, filename):
                     header = text.splitlines(True)
                 elif i == len(parts)+1:
                     footer = text.splitlines(True)
-
-    if local_navigation_pics:
-        button_prev_filename = html_imagefile(prev_part)
-        button_next_filename = html_imagefile(next_part)
-    else:
-        button_prev_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % prev_part
-        button_next_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % next_part
 
     generated_files = []
     for pn, part in enumerate(parts):
@@ -3513,6 +3515,13 @@ def split_rst0():
 
 def _usage_split_rst():
     print 'Usage: doconce split_rst mydoc'
+    print """Example:
+doconce sphinx_dir author="Kaare Dump" title="Short title" dirname=mydir mydoc
+doconce format sphinx mydoc
+doconce split_rst mydoc
+python automake_sphinx.py
+"""
+
 
 def split_rst():
     """
@@ -3520,7 +3529,7 @@ def split_rst():
     parts.
     """
     if len(sys.argv) <= 1:
-        _usage_split_html()
+        _usage_split_rst()
         sys.exit(1)
 
     filename = sys.argv[1]

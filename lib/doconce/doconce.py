@@ -1756,15 +1756,15 @@ def inline_tag_subst(filestr, format):
         'movie',
         #'figure',  # done separately
         'abstract',  # must become before sections since it tests on ===
-        # important to do section, subsection, etc. BEFORE paragraph and bold:
-        'emphasize', 'math2', 'math',  # must come after sections
+        'emphasize', 'math2', 'math',
+        # important to do section, subsection, etc. before paragraph and bold:
         'chapter', 'section', 'subsection', 'subsubsection',
         'bold',
         'inlinecomment',
         'colortext',
         'verbatim',
         'paragraph',  # after bold and emphasize
-        'plainURL',   # before linkURL2 to avoid "URL" as link name
+        'plainURL',   # must come before linkURL2 to avoid "URL" as link name
         'linkURL2v',
         'linkURL3v',
         'linkURL2',

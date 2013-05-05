@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% May 3, 2013
+% May 5, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -691,7 +691,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -760,8 +760,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...

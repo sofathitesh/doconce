@@ -1575,6 +1575,7 @@ preprocessor include statements of the form `#include "file.do.txt"`.
 The preprocessor will put together all the pieces so that Doconce
 sees a long file with the complete text.
 
+# #ifdef DEPRECATED
 For reST and Sphinx documents it is a point to have
 separate `.rst` files and an index file listing the various `.rst`
 that build up the document. To generate the various `.rst` files one
@@ -1617,6 +1618,81 @@ is compatible with a master `.rst` file split into pieces as long as
 the complete set of pieces in correct order is given to `doconce sphinx_dir`.
 This set is the output of `doconce split_rst`, which we catch in a
 variable `files` above.
+# #endif
+
+For web documents it is often desired to split long pages into shorter
+ones. This is done by the Doconce command `!split` placed at the
+beginning of a line. The `!split` commands works with output in
+`html`, `rst`, `sphinx`, `latex`, and `pdflatex`. The `!split` command
+are normally placed before section headings. It is very actively used
+when writing slides with Doconce. The `doconce format` command does not
+recognize `!split` instructions: one needs to run `doconce split_*`
+as a postprocess, where the `*` means `html`, `rst`, or `beamer`.
+
+__HTML.__
+Splitting an HTML document is done by
+
+!bc sys
+Terminal> doconce format html mydoc
+Terminal> doconce split_html mydoc
+!ec
+The `mydoc.html` document created by the first command is replaced
+by a new HTML file, representing the first part of the document,
+after the second command. The various files that constitute the
+parts of the document are listed after the `split_html` command.
+The files have names `mydoc.html`, `._part0000_mydoc.html` (equal to
+`mydoc.html`), `._part0001_mydoc.html`, `._part0002_mydoc.html`, and so
+on. Recall that all the parts are needed if the HTML document is to be moved
+to another location (you can always check `.mydoc_html_file_collection`
+for a list of all the files that are needed to display this HTML
+document).
+
+The HTML documents have very simple navigation buttons for the previous
+and next document. These are not customizable directly, but one can easily
+look up the HTML code and use `doconce replace` to edit the links to
+the images used for navigation. Some more colorful images arise from
+
+!bc sys
+Terminal> doconce replace 'prev1.png' 'Knob_Left.png' \
+          mydoc.html ._part*_mydoc.html
+Terminal> doconce replace 'next1.png' 'Knob_Forward.png' \
+          mydoc.html ._part*_mydoc.html
+!ec
+This works because the `Knob*.png` images live in the same place in the
+Doconce repository as `prev1.png` and `next1.png`. Other images can be
+used by replacing the whole URL.
+
+With an HTML template one can have much more sophisticated navigation
+between parts. One example is the template
+in `bundled/html_styles/style_vagrant/template_vagrant.html` in the Doconce
+source.
+
+__reStructuredText and Sphinx.__
+Here is a typical split of a large Sphinx document `mydoc.rst`
+into smaller pieces:
+
+!bc sys
+Terminal> doconce sphinx_dir author="Some Author" \
+          title="Short title" theme=fenics dirname=mydir mydoc
+Terminal> doconce format sphinx mydoc
+Terminal> doconce split_rst mydoc
+Terminal> python automake_sphinx.py
+!ec
+The `doconce format sphinx mydoc` command is needed to produce `mydoc.rst`,
+which is the starting point for the `doconce split_rst` command.
+The various files that constitute the complete Sphinx document are
+`mydoc.rst`, `._part0000_mydoc.rst`, `._part0001_mydoc.rst`m `._part0002_mydoc.rst`,
+and so on. The `automake_sphinx.py` script ensures that the Sphinx document
+is compiled correctly. If all links to local files are in a `_static`
+directory, the whole Sphinx document exists in a complete version
+in the compiled directory (usually `sphinx-rootdir/_build/html`) and
+can easily be moved around.
+
+
+LaTeX Beamer slides generated from Doconce source also apply `!split` to
+indicate the start of individual slides. However, the split is
+performed by the `doconce slides_beamer` command and does not result
+in individual files like `split_rst` and `split_html` do.
 
 
 ===== Missing Features =====
@@ -1695,6 +1771,47 @@ Typing `Ctrl+c help` prints the above table in Emacs. Try out
 the different shortcuts and see how handy they are in learning
 Doconce and saving much typing!
 
+
+======= Writing Slides =======
+
+It is a fast procedure to make slides from large amounts of Doconce
+text, in particular for condensing running material for teaching or
+just providing the slide set as an overview or study guide.
+The slides can either be ordinary, separate slides - or just
+a document with much briefer text and emphasis on bullet lists,
+figures, mathematical formulas, admonitions, and little text.
+
+===== Overview =====
+
+Basically, Doconce slides are ordinary Doconce text with `!split`
+inserted before each slide. Nevertheless, contents of slide differ
+considerably from ordinary running text. Some guidelines on
+the elements within each slide are necessary to produce effective
+slide sets:
+
+ * Use a subsection heading as slide heading (5 `=`).
+ * Limit the amount of running text (as always).
+ * Limit the amount of material so it fits within a slide
+   (inspect slides visually to move or delete content - just
+   an extra `!split` and a new heading is enough to make a new
+   slide).
+ * Use the `slidecell` environment (see below) to create
+   a grid of slide cells (makes it easy to move figures and
+   bullet lists or text around).
+ * Adjust the size of figures (`width` parameter for HTML,
+   `frac` parameter for LaTeX Beamer) so they become effective
+   on the slide.
+
+Doconce can generate two types of slides: HTML5+CSS3 type of
+slides to be presented through a web browser, and classical
+LaTeX Beamer slides.
+
+===== HTML5 Slides =====
+
+# doconce-adjusted styles: easy to switch between styles since
+# font sizes are compatible
+
+===== LaTeX Beamer Slides =====
 
 ======= Mako Programming =======
 

@@ -93,7 +93,8 @@ is done by an automatically generated script:
 
   python automake_sphinx.py [doconce options]
 
-The master file can be split into parts. Here is the typical code:
+The master file can be split into parts. Here is the typical code
+after running doconce sphinx_dir:
 
   doconce format sphinx master
   doconce split_rst master

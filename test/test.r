@@ -1128,6 +1128,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -1499,9 +1500,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
@@ -1801,6 +1799,11 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 % insert custom LaTeX commands...
 
@@ -1821,7 +1824,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{A Document for Testing Doconce}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -1837,13 +1839,13 @@ A Document for Testing Doconce
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{A Document for Testing Doconce}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{A Document for Testing Doconce}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -1851,7 +1853,6 @@ A Document for Testing Doconce
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -1891,6 +1892,29 @@ A Document for Testing Doconce
 %\authorrunning{...}
 \institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo\email{hpl@simula.no} \and Kaare Dump\at Segfault Inc, Cyberspace \and A. Dummy Author \and I. S. Overworked\at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and and Fourth Inst \and J. Doe\email{j_doe@cyberspace.com}}
 
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}
+\and
+Kaare Dump\inst{3}
+\and
+A. Dummy Author\inst{}
+\and
+I. S. Overworked\inst{4,5,6,7}
+\and
+J. Doe\inst{}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}
+\and
+Segfault Inc, Cyberspace\inst{3}
+\and
+Inst1\inst{4}
+\and
+Inst2, Somewhere\inst{5}
+\and
+Third Inst, Elsewhere\inst{6}
+\and
+Fourth Inst\inst{7}}
 % #else
 
 \begin{center}
@@ -1931,13 +1955,13 @@ A Document for Testing Doconce
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{Jan 32, 2100}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
@@ -1948,7 +1972,6 @@ A Document for Testing Doconce
 \clearpage
 
 % #else
-
 \begin{center}
 Jan 32, 2100
 \end{center}
@@ -3310,9 +3333,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 \usepackage{wrapfig,calc}
@@ -3458,6 +3478,11 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\normalfont\large\bfseries}
 {\color{seccolor}\thesubsection}{1em}{}
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 \usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
@@ -3513,8 +3538,6 @@ A Document for Testing Doconce
 {\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
 % ----------------- end author(s) -------------------------
 
-
-% ----------------- date -------------------------
 
 
 \ \\ [10mm]
@@ -4878,9 +4901,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % gray box of 80% width
@@ -4999,6 +5019,11 @@ final,                   % or draft (marks overfull hboxes)
 % http://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage[compact]{titlesec}  % narrower section headings
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 \usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
@@ -5018,7 +5043,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -5026,7 +5050,6 @@ A Document for Testing Doconce
 \end{spacing}
 }
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -5065,9 +5088,6 @@ A Document for Testing Doconce
 \centerline{{\small ${}^7$Fourth Inst}}
 \end{center}
 % ----------------- end author(s) -------------------------
-
-
-% ----------------- date -------------------------
 
 
 \begin{center}
@@ -21271,6 +21291,8 @@ open=right               % start new chapters on odd-numbered pages
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
 
 
 
@@ -21298,7 +21320,6 @@ open=right               % start new chapters on odd-numbered pages
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{Test of one author at one institution}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -21314,13 +21335,13 @@ Test of one author at one institution
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{Test of one author at one institution}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{Test of one author at one institution}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -21328,7 +21349,6 @@ Test of one author at one institution
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -21350,6 +21370,9 @@ Test of one author at one institution
 %\authorrunning{...}
 \institute{John Doe\at Cyberspace Inc.\email{doe@cyberspace.net}}
 
+% #elif LATEX_HEADING == "beamer"
+\author{John Doe\inst{1}}
+\institute{Cyberspace Inc.\inst{1}}
 % #else
 
 \begin{center}
@@ -21364,13 +21387,13 @@ Test of one author at one institution
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{Jan 32, 2100}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
@@ -21381,7 +21404,6 @@ Test of one author at one institution
 \clearpage
 
 % #else
-
 \begin{center}
 Jan 32, 2100
 \end{center}
@@ -21716,6 +21738,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -22019,6 +22042,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -22300,6 +22324,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -23958,559 +23983,6 @@ case in LaTeX.
 </body>
 </html>
 
-************** File: slides.do.txt *****************
-TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
-AUTHOR: Hans Petter Langtangen
-DATE: Today
-
-!split
-
-===== Figure and bullet list =====
-
-!bslidecell 00
-!bpop
-
-  * Here is a *wave packet*
-  * It can move
-  * But here it is just a figure
-
-!epop
-!eslidecell
-
-!bslidecell 01
-FIGURE: [../doc/manual/figs/wavepacket_0001.png]
-!eslidecell
-
-!bpop highlight-red
-Here we have a paragraph to pop up in red.
-And a line more
-!epop
-
-!split
-
-===== Scientific writing needs to address many new media =====
-
-!bpop
-
- * Old days (1985-2005): mostly black-and-white documents aimed at printing
- * Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
- * LaTeX writing may be very different from writing in other formats
- * Main problem:
-    * LaTeX provide all sorts of fancy packages, but
-    * PDF in browsers has limited capabilities (design, navigation)
-      compared to native HTML formats
- * Conclusion: We need more than LaTeX
-
-!epop
-
-!split
-
-===== Some math and computer code =====
-
-!bt
-\[ f(x,y,t) = e^{-xt}\sin\pi y \]
-!et
-Python implementation:
-
-!bc pycod
-import numpy as np
-
-def f(x, y, t):
-    return np.exp(-x*t)*np.sin(np.pi*y)
-
-class Fancy:
-    def __init__(self):
-        pass
-
-    def __call__(self, x, y, t):
-        return f(x, y, t)
-
-f2 = Fancy()
-!ec
-
-
-
-************** File: slides_reveal.html *****************
-<!DOCTYPE html>
-<html lang="en">
-
-<!--
-    Automatically translated from Doconce source.
-    http://code.google.com/p/doconce
--->
-
-<head>
-<meta charset="utf-8">
-
-<title></title>
-
-<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<link rel="stylesheet" href="reveal.js/css/reveal.css">
-<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
-<!--
-<link rel="stylesheet" href="reveal.js/css/reveal.css">
-<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
-<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
-<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
--->
-
-<script>
-document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-</script>
-
-
-<!-- Styles for table layout of slides -->
-<style type="text/css">
-td.padding {
-  padding-top:20px;
-  padding-bottom:20px;
-  padding-right:50px;
-  padding-left:50px;
-}
-</style>
-
-<!-- Use MathJax to render mathematics -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
-</head>
-
-<body>
-<div class="reveal">
-
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
-
-<div class="slides">
-
-
-<section>
-<!-- ------------------- main content ---------------------- -->
-
-
-<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
-
-<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <!-- document title -->
-
-<p>
-<!-- author(s): Hans Petter Langtangen -->
-
-<center>
-<b>Hans Petter Langtangen</b> 
-</center>
-
-
-<p>
-<!-- institution(s) -->
-<p>
-<center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
-</section>
-
-
-<section>
-
-<p>
-
-<h3>Figure and bullet list  <a name="___sec0"></a></h3>
-
-<p>
-
-<table border="0">
-<tr>
-<td class="padding"> 
-
-
-<p>
-
-<ul>
-  <li class="fragment"> Here is a <em>wave packet</em></li>
-  <li class="fragment"> It can move</li>
-  <li class="fragment"> But here it is just a figure</li>
-</ul>
-<p>
-
-
- </td>
-<td class="padding"> 
-<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
- </td>
-</tr>
-</table>
-
-
-<p>
-
-
-<p>
-
-<p class="fragment">
-
-<span class="fragment highlight-red">
-
-Here we have a paragraph to pop up in red.
-And a line more
-
-</span>
-
-</p>
-
-
-<p>
-
-</section>
-
-
-<section>
-
-<p>
-
-<h3>Scientific writing needs to address many new media  <a name="___sec1"></a></h3>
-
-<p>
-
-
-<p>
-
-<ul>
- <li class="fragment"> Old days (1985-2005): mostly black-and-white documents aimed at printing</li>
- <li class="fragment"> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...</li>
- <li class="fragment"> LaTeX writing may be very different from writing in other formats</li>
- <li class="fragment"> Main problem:</li>
-
-<ul>
-    <li class="fragment"> LaTeX provide all sorts of fancy packages, but</li>
-    <li class="fragment"> PDF in browsers has limited capabilities (design, navigation)
-      compared to native HTML formats</li>
-</ul>
-<p>
-
- <li class="fragment"> Conclusion: We need more than LaTeX</li>
-</ul>
-<p>
-
-
-
-<p>
-
-</section>
-
-
-<section>
-
-<p>
-
-<h3>Some math and computer code  <a name="___sec2"></a></h3>
-
-<p>
-$$ f(x,y,t) = e^{-xt}\sin\pi y $$
-
-Python implementation:
-
-<p>
-
-
-<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
-
-<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x, y, t):
-    <span style="color: #AA22FF; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>y)
-
-<span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Fancy</span>:
-    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__init__</span>(<span style="color: #AA22FF">self</span>):
-        <span style="color: #AA22FF; font-weight: bold">pass</span>
-
-    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__call__</span>(<span style="color: #AA22FF">self</span>, x, y, t):
-        <span style="color: #AA22FF; font-weight: bold">return</span> f(x, y, t)
-
-f2 <span style="color: #666666">=</span> Fancy()
-</pre></div>
-<p>
-
-
-</section>
-
-
-
-</div> <!-- class="slides" -->
-</div> <!-- class="reveal" -->
-
-<script src="reveal.js/lib/js/head.min.js"></script>
-<script src="reveal.js/js/reveal.min.js"></script>
-
-<script>
-
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-controls: true,
-progress: true,
-history: true,
-center: true,
-heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
-
-// Optional libraries used to extend on reveal.js
-dependencies: [
-{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-]
-});
-</script>
-
-
-</body>
-</html>
-reveal.js:
-css
-Gruntfile.js
-index.html
-js
-lib
-LICENSE
-package.json
-plugin
-README.md
-
-reveal.js/css:
-print
-reveal.css
-reveal.min.css
-theme
-
-reveal.js/css/print:
-paper.css
-pdf.css
-
-reveal.js/css/theme:
-beige.css
-beigesmall.css
-darkgray.css
-default.css
-moon.css
-night.css
-serif.css
-simple.css
-sky.css
-solarized.css
-source
-template
-
-reveal.js/css/theme/source:
-beige.scss
-default.scss
-moon.scss
-night.scss
-serif.scss
-simple.scss
-sky.scss
-solarized.scss
-
-reveal.js/css/theme/template:
-mixins.scss
-settings.scss
-theme.scss
-
-reveal.js/js:
-reveal.js
-reveal.min.js
-
-reveal.js/lib:
-css
-font
-js
-
-reveal.js/lib/css:
-zenburn.css
-
-reveal.js/lib/font:
-league_gothic_license
-league_gothic-webfont.eot
-league_gothic-webfont.svg
-league_gothic-webfont.ttf
-league_gothic-webfont.woff
-
-reveal.js/lib/js:
-classList.js
-head.min.js
-html5shiv.js
-
-reveal.js/plugin:
-highlight
-markdown
-multiplex
-notes
-notes-server
-postmessage
-print-pdf
-remotes
-search
-zoom-js
-
-reveal.js/plugin/highlight:
-highlight.js
-
-reveal.js/plugin/markdown:
-example.html
-example.md
-markdown.js
-showdown.js
-
-reveal.js/plugin/multiplex:
-client.js
-index.js
-master.js
-
-reveal.js/plugin/notes:
-notes.html
-notes.js
-
-reveal.js/plugin/notes-server:
-client.js
-index.js
-notes.html
-
-reveal.js/plugin/postmessage:
-example.html
-postmessage.js
-
-reveal.js/plugin/print-pdf:
-print-pdf.js
-
-reveal.js/plugin/remotes:
-remotes.js
-
-reveal.js/plugin/search:
-search.js
-
-reveal.js/plugin/zoom-js:
-zoom.js
-
-************** File: tmp_slides_html_all.sh *****************
-#!/bin/sh
-
-doconce format html slides SLIDE_TYPE=dummy SLIDE_THEME=dummy
-doconce slides_html slides doconce
-
-doconce format html slides --pygments_html_style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
-doconce slides_html slides csss --html_slide_theme=csss_default
-cp slides.html slides_csss_csss_default.html
-
-doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
-doconce slides_html slides reveal --html_slide_theme=beigesmall
-cp slides.html slides_reveal_beigesmall.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
-doconce slides_html slides reveal --html_slide_theme=simple
-cp slides.html slides_reveal_simple.html
-
-doconce format html slides --pygments_html_style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
-doconce slides_html slides reveal --html_slide_theme=darkgray
-cp slides.html slides_reveal_darkgray.html
-
-doconce format html slides --pygments_html_style=default SLIDE_TYPE=reveal SLIDE_THEME=sky
-doconce slides_html slides reveal --html_slide_theme=sky
-cp slides.html slides_reveal_sky.html
-
-doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
-doconce slides_html slides reveal --html_slide_theme=serif
-cp slides.html slides_reveal_serif.html
-
-doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
-doconce slides_html slides reveal --html_slide_theme=beige
-cp slides.html slides_reveal_beige.html
-
-doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
-doconce slides_html slides reveal --html_slide_theme=night
-cp slides.html slides_reveal_night.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
-doconce slides_html slides dzslides --html_slide_theme=dzslides_default
-cp slides.html slides_dzslides_dzslides_default.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-io2011
-doconce slides_html slides html5slides --html_slide_theme=template-io2011
-cp slides.html slides_html5slides_template-io2011.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-default
-doconce slides_html slides html5slides --html_slide_theme=template-default
-cp slides.html slides_html5slides_template-default.html
-
-doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
-doconce slides_html slides deck --html_slide_theme=sandstone.mightly
-cp slides.html slides_deck_sandstone_mightly.html
-
-doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
-doconce slides_html slides deck --html_slide_theme=neon
-cp slides.html slides_deck_neon.html
-
-doconce format html slides --pygments_html_style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
-doconce slides_html slides deck --html_slide_theme=sandstone.default
-cp slides.html slides_deck_sandstone_default.html
-
-doconce format html slides --pygments_html_style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
-doconce slides_html slides deck --html_slide_theme=sandstone.dark
-cp slides.html slides_deck_sandstone_dark.html
-
-doconce format html slides --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
-doconce slides_html slides deck --html_slide_theme=sandstone.firefox
-cp slides.html slides_deck_sandstone_firefox.html
-
-doconce format html slides --pygments_html_style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
-doconce slides_html slides deck --html_slide_theme=sandstone.light
-cp slides.html slides_deck_sandstone_light.html
-
-doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mdn
-doconce slides_html slides deck --html_slide_theme=sandstone.mdn
-cp slides.html slides_deck_sandstone_mdn.html
-
-doconce format html slides --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
-doconce slides_html slides deck --html_slide_theme=mnml
-cp slides.html slides_deck_mnml.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
-doconce slides_html slides deck --html_slide_theme=web-2.0
-cp slides.html slides_deck_web-2_0.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
-doconce slides_html slides deck --html_slide_theme=swiss
-cp slides.html slides_deck_swiss.html
-
-doconce format html slides --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.aurora
-doconce slides_html slides deck --html_slide_theme=sandstone.aurora
-cp slides.html slides_deck_sandstone_aurora.html
-
-doconce format html slides --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
-doconce slides_html slides deck --html_slide_theme=beamer
-cp slides.html slides_deck_beamer.html
-
-echo "Here are the slide shows:"
-/bin/ls slides_*_*.html
-
 ************** File: testdoc_wordpress.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
@@ -24560,6 +24032,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -26278,6 +25751,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -28136,9 +27610,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 % gray summary box
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
@@ -28438,6 +27909,11 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 % insert custom LaTeX commands...
 
@@ -28458,7 +27934,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{A Document for Testing Doconce}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -28474,13 +27949,13 @@ A Document for Testing Doconce
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{A Document for Testing Doconce}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{A Document for Testing Doconce}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -28488,7 +27963,6 @@ A Document for Testing Doconce
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -28528,6 +28002,29 @@ A Document for Testing Doconce
 %\authorrunning{...}
 \institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo\email{hpl@simula.no} \and Kaare Dump\at Segfault Inc, Cyberspace \and A. Dummy Author \and I. S. Overworked\at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and and Fourth Inst \and J. Doe\email{j_doe@cyberspace.com}}
 
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}
+\and
+Kaare Dump\inst{3}
+\and
+A. Dummy Author\inst{}
+\and
+I. S. Overworked\inst{4,5,6,7}
+\and
+J. Doe\inst{}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}
+\and
+Segfault Inc, Cyberspace\inst{3}
+\and
+Inst1\inst{4}
+\and
+Inst2, Somewhere\inst{5}
+\and
+Third Inst, Elsewhere\inst{6}
+\and
+Fourth Inst\inst{7}}
 % #else
 
 \begin{center}
@@ -28568,13 +28065,13 @@ A Document for Testing Doconce
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{Jan 32, 2100}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
@@ -28585,7 +28082,6 @@ A Document for Testing Doconce
 \clearpage
 
 % #else
-
 \begin{center}
 Jan 32, 2100
 \end{center}
@@ -30393,17 +29889,65 @@ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
-doconce format html slides --pygments_html_style=emacs
+# slides1: rough small test
+# slides2: much of scientific_writing.do.txt
+# slides3: equal to slides/demo.do.txt
+doconce format html slides1 --pygments_html_style=emacs
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp slides1.html slides1_1st.html  # before running slides_html
+
+doconce slides_html slides1 reveal --html_slide_type=beigesmall
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce slides_html slides reveal --html_slide_type=beigesmall
+cp slides1.html slides1_reveal.html
+/bin/ls -R reveal.js >> slides1_reveal.html
+
+doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-mv -f slides.html slides_reveal.html
-/bin/ls -R reveal.js >> slides_reveal.html
+cp slides1.html slides1_deck.html
+/bin/ls -R deck.js >> slides1_deck.html
 
-doconce format html slides --pygments_html_style=emacs
-doconce slides_html slides all
+doconce format pdflatex slides1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex slides1 -DLATEX_HEADING=beamer
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce slides_beamer slides1
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html slides2 --pygments_html_style=emacs
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce slides_html slides2 reveal --html_slide_type=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp slides2.html slides2_reveal.html
+
+doconce format pdflatex slides2
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce slides_beamer slides2
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce slides_html slides3 reveal --html_slide_type=beigesmall
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+cp slides3.html slides3_reveal.html
+
+theme=red3
+doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=$theme
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce slides_beamer slides3 --beamer_slide_theme=$theme
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
+doconce format html slides1 --pygments_html_style=emacs
+doconce slides_html slides1 all
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # Test grab
@@ -31574,6 +31118,8 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
 
 % insert custom LaTeX commands...
 
@@ -31594,7 +31140,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{How various formats can deal with {\LaTeX} math}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -31610,13 +31155,13 @@ How various formats can deal with {\LaTeX} math
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{How various formats can deal with {\LaTeX} math}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{How various formats can deal with {\LaTeX} math}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -31624,7 +31169,6 @@ How various formats can deal with {\LaTeX} math
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -31645,6 +31189,9 @@ How various formats can deal with {\LaTeX} math
 %\authorrunning{...}
 \institute{HPL}
 
+% #elif LATEX_HEADING == "beamer"
+\author{HPL\inst{}}
+\institute{}
 % #else
 
 \begin{center}
@@ -31658,13 +31205,13 @@ How various formats can deal with {\LaTeX} math
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{Jan 32, 2100}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
@@ -31675,7 +31222,6 @@ How various formats can deal with {\LaTeX} math
 \clearpage
 
 % #else
-
 \begin{center}
 Jan 32, 2100
 \end{center}
@@ -32119,8 +31665,6 @@ h1, h2, h3, h4, h5, h6 {
 
 <title> Appendix: Testing headings ending with `verbatim inline` </title>
 
-<!-- ------------------- main content ------------------------>
-
 <div class="container">
  <div class="row Header with-border">
   <div class="span3 Module logo">
@@ -32156,10 +31700,10 @@ h1, h2, h3, h4, h5, h6 {
           <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
      <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
-     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
      <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
      <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
@@ -32188,7 +31732,7 @@ h1, h2, h3, h4, h5, h6 {
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -32431,8 +31975,6 @@ While the <div class="deep-blue">rest of the</div> getting started
 </ul>
 
  </div>
-
-<!-- ------------------- end of main content --------------- -->
 
  <div class="row Footer">
   <div class="span12">
@@ -32491,8 +32033,6 @@ h1, h2, h3, h4, h5, h6 {
 
 <title> Appendix: Testing headings ending with `verbatim inline` </title>
 
-<!-- ------------------- main content ------------------------>
-
 <div class="container">
  <div class="row Header with-border">
   <div class="span3 Module logo">
@@ -32528,10 +32068,10 @@ h1, h2, h3, h4, h5, h6 {
           <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
      <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
-     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
      <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
      <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
@@ -32560,7 +32100,7 @@ h1, h2, h3, h4, h5, h6 {
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -32804,8 +32344,6 @@ While the <div class="deep-blue">rest of the</div> getting started
 
  </div>
 
-<!-- ------------------- end of main content --------------- -->
-
  <div class="row Footer">
   <div class="span12">
   Here goes a footer, if desired, maybe with a Copyright &copy;
@@ -32863,8 +32401,6 @@ h1, h2, h3, h4, h5, h6 {
 
 <title> Appendix: Testing headings ending with `verbatim inline` </title>
 
-<!-- ------------------- main content ------------------------>
-
 <div class="container">
  <div class="row Header with-border">
   <div class="span3 Module logo">
@@ -32900,10 +32436,10 @@ h1, h2, h3, h4, h5, h6 {
           <!-- vagrant nav toc: " Section 1 " --> <li class="active">  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
      <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
-     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
      <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
      <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
@@ -32932,7 +32468,7 @@ h1, h2, h3, h4, h5, h6 {
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -33149,8 +32685,6 @@ While the <div class="deep-blue">rest of the</div> getting started
 
  </div>
 
-<!-- ------------------- end of main content --------------- -->
-
  <div class="row Footer">
   <div class="span12">
   Here goes a footer, if desired, maybe with a Copyright &copy;
@@ -33208,8 +32742,6 @@ h1, h2, h3, h4, h5, h6 {
 
 <title> Appendix: Testing headings ending with `verbatim inline` </title>
 
-<!-- ------------------- main content ------------------------>
-
 <div class="container">
  <div class="row Header with-border">
   <div class="span3 Module logo">
@@ -33245,10 +32777,10 @@ h1, h2, h3, h4, h5, h6 {
           <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li class="active"> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
      <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
-     <!-- vagrant nav toc: " The $\theta$ parameter (not $\nabla$?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The $\theta$ parameter (not $\nabla$?) </a>
+     <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
      <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
      <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
@@ -33277,7 +32809,7 @@ h1, h2, h3, h4, h5, h6 {
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with `verbatim inline` " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with `verbatim inline` </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -34884,8 +34416,6 @@ While the <div class="deep-blue">rest of the</div> getting started
 </ul>
 
  </div>
-
-<!-- ------------------- end of main content --------------- -->
 
  <div class="row Footer">
   <div class="span12">
@@ -36602,6 +36132,13 @@ in comparison with the other admons.
 </ul>
 </div>
 <p>
+Test warning with title:
+
+<p>
+<div class="Warning"><b>Watch Out.</b>
+And here comes some text with bad news.
+</div>
+<p>
 The next admonition features a title "Note, eventually!".
 
 <p>
@@ -37181,6 +36718,8 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
 
 % insert custom LaTeX commands...
 
@@ -37201,7 +36740,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{Testing admons}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -37217,13 +36755,13 @@ Testing admons
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{Testing admons}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{Testing admons}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -37231,7 +36769,6 @@ Testing admons
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -37252,6 +36789,9 @@ Testing admons
 %\authorrunning{...}
 \institute{hpl}
 
+% #elif LATEX_HEADING == "beamer"
+\author{hpl\inst{}}
+\institute{}
 % #else
 
 \begin{center}
@@ -37265,13 +36805,13 @@ Testing admons
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{Jan 32, 2100}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
@@ -37282,7 +36822,6 @@ Testing admons
 \clearpage
 
 % #else
-
 \begin{center}
 Jan 32, 2100
 \end{center}
@@ -37359,6 +36898,22 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
+\end{warningadmon}
+% #endif
+Test warning with title:
+
+
+% #if ADMON == "colors"
+\begin{warningadmon}[Watch Out]
+And here comes some text with bad news.
+\end{warningadmon}
+% #elif ADMON == "paragraph"
+\begin{warningadmon}[Watch Out.]
+And here comes some text with bad news.
+\end{warningadmon}
+% #else
+\begin{warningadmon}[Watch Out.]
+And here comes some text with bad news.
 \end{warningadmon}
 % #endif
 The next admonition features a title "Note, eventually!".
@@ -37798,6 +37353,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -37937,6 +37493,13 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+</div>
+<p>
+Test warning with title:
+
+<p>
+<div class="alert alert-block alert-warning"><b>Watch Out.</b>
+And here comes some text with bad news.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -38155,6 +37718,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -38294,6 +37858,13 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+</div>
+<p>
+Test warning with title:
+
+<p>
+<div class="alert alert-block alert-warning"><b>Watch Out.</b>
+And here comes some text with bad news.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -38570,6 +38141,11 @@ in comparison with the other admons.</p>
 </ul>
 </div></blockquote>
 </div>
+<p>Test warning with title:</p>
+<div class="admonition-watch-out admonition">
+<p class="first admonition-title">Watch Out</p>
+<p class="last">And here comes some text with bad news.</p>
+</div>
 <p>The next admonition features a title &#8220;Note, eventually!&#8221;.</p>
 <div class="admonition-note-eventually admonition">
 <p class="first admonition-title">Note, eventually</p>
@@ -38802,6 +38378,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -38941,6 +38518,13 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+</div>
+<p>
+Test warning with title:
+
+<p>
+<div class="alert alert-block alert-warning"><b>Watch Out.</b>
+And here comes some text with bad news.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -39177,6 +38761,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -39316,6 +38901,13 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+</div>
+<p>
+Test warning with title:
+
+<p>
+<div class="alert alert-block alert-warning"><b>Watch Out.</b>
+And here comes some text with bad news.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -39531,8 +39123,6 @@ h1, h2, h3, h4, h5, h6 {
 
 <title> The end </title>
 
-<!-- ------------------- main content ------------------------>
-
 <div class="container">
  <div class="row Header with-border">
   <div class="span3 Module logo">
@@ -39701,6 +39291,13 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+</div>
+<p>
+Test warning with title:
+
+<p>
+<div class="alert alert-block alert-warning"><b>Watch Out.</b>
+And here comes some text with bad news.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -39894,8 +39491,6 @@ While the <div class="deep-blue">rest of the</div> getting started
 
  </div>
 
-<!-- ------------------- end of main content --------------- -->
-
  <div class="row Footer">
   <div class="span12">
   Here goes a footer, if desired, maybe with a Copyright &copy;
@@ -40080,6 +39675,8 @@ final,                   % or draft (marks overfull hboxes)
 % http://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage[compact]{titlesec}  % narrower section headings
 
+% --- end of standard preamble for documents ---
+
 
 % insert custom LaTeX commands...
 
@@ -40098,7 +39695,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -40106,7 +39702,6 @@ Testing admons
 \end{spacing}
 }
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -40118,9 +39713,6 @@ Testing admons
 % List of all institutions:
 \end{center}
 % ----------------- end author(s) -------------------------
-
-
-% ----------------- date -------------------------
 
 
 \begin{center}
@@ -40169,6 +39761,12 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
+\end{warningadmon}
+Test warning with title:
+
+
+\begin{warningadmon}[Watch Out]
+And here comes some text with bad news.
 \end{warningadmon}
 The next admonition features a title "Note, eventually!".
 
@@ -40485,6 +40083,8 @@ final,                   % or draft (marks overfull hboxes)
 % http://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage[compact]{titlesec}  % narrower section headings
 
+% --- end of standard preamble for documents ---
+
 
 % insert custom LaTeX commands...
 
@@ -40503,7 +40103,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -40511,7 +40110,6 @@ Testing admons
 \end{spacing}
 }
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -40523,9 +40121,6 @@ Testing admons
 % List of all institutions:
 \end{center}
 % ----------------- end author(s) -------------------------
-
-
-% ----------------- date -------------------------
 
 
 \begin{center}
@@ -40574,6 +40169,12 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
+\end{warningadmon}
+Test warning with title:
+
+
+\begin{warningadmon}[Watch Out.]
+And here comes some text with bad news.
 \end{warningadmon}
 The next admonition features a title "Note, eventually!".
 
@@ -40819,6 +40420,8 @@ final,                   % or draft (marks overfull hboxes)
 % http://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage[compact]{titlesec}  % narrower section headings
 
+% --- end of standard preamble for documents ---
+
 
 % insert custom LaTeX commands...
 
@@ -40837,7 +40440,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -40845,7 +40447,6 @@ Testing admons
 \end{spacing}
 }
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -40857,9 +40458,6 @@ Testing admons
 % List of all institutions:
 \end{center}
 % ----------------- end author(s) -------------------------
-
-
-% ----------------- date -------------------------
 
 
 \begin{center}
@@ -40908,6 +40506,12 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
+\end{warningadmon}
+Test warning with title:
+
+
+\begin{warningadmon}[Watch Out.]
+And here comes some text with bad news.
 \end{warningadmon}
 The next admonition features a title "Note, eventually!".
 
@@ -41051,6 +40655,7955 @@ Titles should be optional.}
 
 \end{document}
 
+
+************** File: slides1.do.txt *****************
+TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
+DATE: Today
+
+!split
+
+===== Figure and bullet list =====
+
+!bslidecell 00  0.35
+!bpop
+
+  * Here is a *wave packet*
+  * It can move
+  * But here it is just a figure
+
+!epop
+!eslidecell
+
+# Test that it is okay to leave out width if there are only two columns
+
+!bslidecell 01
+FIGURE: [../doc/manual/figs/wavepacket_0001.png]
+!eslidecell
+
+!bpop highlight-red
+Here we have a paragraph to pop up in red.
+And a line more
+!epop
+
+[hpl: Here are some notes that can go to notes typesetting
+in the slide environment.]
+
+!bnotes
+One can also have ordinary notes.
+Over multiple lines.
+!enotes
+
+!split
+===== Scientific writing needs to address many new media =====
+
+!bpop
+
+ * Old days (1985-2005): mostly black-and-white documents aimed at printing
+ * Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
+ * LaTeX writing may be very different from writing in other formats
+ * Main problem:
+    * LaTeX provide all sorts of fancy packages, but
+    * PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats
+ * Conclusion: We need more than LaTeX
+
+!epop
+
+!split
+===== Some math and computer code =====
+
+!bt
+\[ f(x,y,t) = e^{-xt}\sin\pi y \]
+!et
+Python implementation:
+
+!bc pycod
+import numpy as np
+
+def f(x, y, t):
+    return np.exp(-x*t)*np.sin(np.pi*y)
+
+class Fancy:
+    def __init__(self):
+        pass
+
+    def __call__(self, x, y, t):
+        return f(x, y, t)
+
+f2 = Fancy()
+!ec
+
+!split
+===== Admon blocks =====
+
+# Can use admons to simulate blocks
+
+!bnotice Key PDE:
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+!enotice
+
+!bnotice None
+Just some block with text and a conclusion that something is important.
+!enotice
+
+
+
+
+************** File: slides1_reveal.html *****************
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Automatically translated from Doconce source.
+    http://code.google.com/p/doconce
+-->
+
+<head>
+<meta charset="utf-8">
+
+<title></title>
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+-->
+
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+
+<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Hans Petter Langtangen -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Simula Research Laboratory</b></center>
+<center>[2] <b>University of Oslo</b></center>
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h3>Figure and bullet list  <a name="___sec0"></a></h3>
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+
+
+<p>
+
+<ul>
+  <p><li class="fragment"> Here is a <em>wave packet</em></li>
+  <p><li class="fragment"> It can move</li>
+  <p><li class="fragment"> But here it is just a figure</li>
+</ul>
+<p>
+
+
+</td>
+<td class="padding">
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+<!-- Test that it is okay to leave out width if there are only two columns -->
+
+<p>
+
+
+<p>
+
+<p class="fragment">
+
+<span class="fragment highlight-red">
+
+Here we have a paragraph to pop up in red.
+And a line more
+
+</span>
+
+</p>
+
+
+<p>
+
+<aside class="notes">
+<!-- click "s" to activate -->
+Here are some notes that can go to notes typesetting
+in the slide environment.
+</aside>
+
+
+
+<p>
+<aside class="notes">
+<!-- click "s" to activate -->
+
+One can also have ordinary notes.
+Over multiple lines.
+
+</aside>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h3>Scientific writing needs to address many new media  <a name="___sec1"></a></h3>
+
+<p>
+
+
+<p>
+
+<ul>
+ <p><li class="fragment"> Old days (1985-2005): mostly black-and-white documents aimed at printing</li>
+ <p><li class="fragment"> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...</li>
+ <p><li class="fragment"> LaTeX writing may be very different from writing in other formats</li>
+ <p><li class="fragment"> Main problem:</li>
+
+<ul>
+    <p><li class="fragment"> LaTeX provide all sorts of fancy packages, but</li>
+    <p><li class="fragment"> PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats</li>
+</ul>
+<p>
+
+ <p><li class="fragment"> Conclusion: We need more than LaTeX</li>
+</ul>
+<p>
+
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h3>Some math and computer code  <a name="___sec2"></a></h3>
+
+<p>
+$$ f(x,y,t) = e^{-xt}\sin\pi y $$
+
+Python implementation:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x, y, t):
+    <span style="color: #AA22FF; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>y)
+
+<span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Fancy</span>:
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__init__</span>(<span style="color: #AA22FF">self</span>):
+        <span style="color: #AA22FF; font-weight: bold">pass</span>
+
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__call__</span>(<span style="color: #AA22FF">self</span>, x, y, t):
+        <span style="color: #AA22FF; font-weight: bold">return</span> f(x, y, t)
+
+f2 <span style="color: #666666">=</span> Fancy()
+</pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h3>Admon blocks  <a name="___sec3"></a></h3>
+
+<p>
+<!-- Can use admons to simulate blocks -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Key PDE:</b>
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+</div>
+<p>
+<div class="alert alert-block alert-notice"><b>None.</b>
+Just some block with text and a conclusion that something is important.
+</div>
+
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+
+
+</body>
+</html>
+reveal.js:
+css
+Gruntfile.js
+index.html
+js
+lib
+LICENSE
+package.json
+plugin
+README.md
+
+reveal.js/css:
+print
+reveal.css
+reveal.min.css
+theme
+
+reveal.js/css/print:
+paper.css
+pdf.css
+
+reveal.js/css/theme:
+beige.css
+beigesmall.css
+darkgray.css
+default.css
+moon.css
+night.css
+serif.css
+simple.css
+sky.css
+solarized.css
+source
+template
+
+reveal.js/css/theme/source:
+beige.scss
+default.scss
+moon.scss
+night.scss
+serif.scss
+simple.scss
+sky.scss
+solarized.scss
+
+reveal.js/css/theme/template:
+mixins.scss
+settings.scss
+theme.scss
+
+reveal.js/js:
+reveal.js
+reveal.min.js
+
+reveal.js/lib:
+css
+font
+js
+
+reveal.js/lib/css:
+zenburn.css
+
+reveal.js/lib/font:
+league_gothic_license
+league_gothic-webfont.eot
+league_gothic-webfont.svg
+league_gothic-webfont.ttf
+league_gothic-webfont.woff
+
+reveal.js/lib/js:
+classList.js
+head.min.js
+html5shiv.js
+
+reveal.js/plugin:
+highlight
+markdown
+multiplex
+notes
+notes-server
+postmessage
+print-pdf
+remotes
+search
+zoom-js
+
+reveal.js/plugin/highlight:
+highlight.js
+
+reveal.js/plugin/markdown:
+example.html
+example.md
+markdown.js
+showdown.js
+
+reveal.js/plugin/multiplex:
+client.js
+index.js
+master.js
+
+reveal.js/plugin/notes:
+notes.html
+notes.js
+
+reveal.js/plugin/notes-server:
+client.js
+index.js
+notes.html
+
+reveal.js/plugin/postmessage:
+example.html
+postmessage.js
+
+reveal.js/plugin/print-pdf:
+print-pdf.js
+
+reveal.js/plugin/remotes:
+remotes.js
+
+reveal.js/plugin/search:
+search.js
+
+reveal.js/plugin/zoom-js:
+zoom.js
+
+************** File: tmp_slides_html_all.sh *****************
+#!/bin/sh
+
+doconce format html slides1 SLIDE_TYPE=dummy SLIDE_THEME=dummy
+doconce slides_html slides1 doconce
+
+doconce format html slides1 --pygments_html_style=monokai SLIDE_TYPE=csss SLIDE_THEME=csss_default
+doconce slides_html slides1 csss --html_slide_theme=csss_default
+cp slides1.html slides1_csss_csss_default.html
+
+doconce format html slides1 --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+doconce slides_html slides1 reveal --html_slide_theme=beigesmall
+cp slides1.html slides1_reveal_beigesmall.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=reveal SLIDE_THEME=simple
+doconce slides_html slides1 reveal --html_slide_theme=simple
+cp slides1.html slides1_reveal_simple.html
+
+doconce format html slides1 --pygments_html_style=native SLIDE_TYPE=reveal SLIDE_THEME=darkgray
+doconce slides_html slides1 reveal --html_slide_theme=darkgray
+cp slides1.html slides1_reveal_darkgray.html
+
+doconce format html slides1 --pygments_html_style=default SLIDE_TYPE=reveal SLIDE_THEME=sky
+doconce slides_html slides1 reveal --html_slide_theme=sky
+cp slides1.html slides1_reveal_sky.html
+
+doconce format html slides1 --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=serif
+doconce slides_html slides1 reveal --html_slide_theme=serif
+cp slides1.html slides1_reveal_serif.html
+
+doconce format html slides1 --pygments_html_style=perldoc SLIDE_TYPE=reveal SLIDE_THEME=beige
+doconce slides_html slides1 reveal --html_slide_theme=beige
+cp slides1.html slides1_reveal_beige.html
+
+doconce format html slides1 --pygments_html_style=fruity SLIDE_TYPE=reveal SLIDE_THEME=night
+doconce slides_html slides1 reveal --html_slide_theme=night
+cp slides1.html slides1_reveal_night.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=dzslides SLIDE_THEME=dzslides_default
+doconce slides_html slides1 dzslides --html_slide_theme=dzslides_default
+cp slides1.html slides1_dzslides_dzslides_default.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-io2011
+doconce slides_html slides1 html5slides --html_slide_theme=template-io2011
+cp slides1.html slides1_html5slides_template-io2011.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=html5slides SLIDE_THEME=template-default
+doconce slides_html slides1 html5slides --html_slide_theme=template-default
+cp slides1.html slides1_html5slides_template-default.html
+
+doconce format html slides1 --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mightly
+doconce slides_html slides1 deck --html_slide_theme=sandstone.mightly
+cp slides1.html slides1_deck_sandstone_mightly.html
+
+doconce format html slides1 --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=neon
+doconce slides_html slides1 deck --html_slide_theme=neon
+cp slides1.html slides1_deck_neon.html
+
+doconce format html slides1 --pygments_html_style=perldoc SLIDE_TYPE=deck SLIDE_THEME=sandstone.default
+doconce slides_html slides1 deck --html_slide_theme=sandstone.default
+cp slides1.html slides1_deck_sandstone_default.html
+
+doconce format html slides1 --pygments_html_style=native SLIDE_TYPE=deck SLIDE_THEME=sandstone.dark
+doconce slides_html slides1 deck --html_slide_theme=sandstone.dark
+cp slides1.html slides1_deck_sandstone_dark.html
+
+doconce format html slides1 --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=sandstone.firefox
+doconce slides_html slides1 deck --html_slide_theme=sandstone.firefox
+cp slides1.html slides1_deck_sandstone_firefox.html
+
+doconce format html slides1 --pygments_html_style=emacs SLIDE_TYPE=deck SLIDE_THEME=sandstone.light
+doconce slides_html slides1 deck --html_slide_theme=sandstone.light
+cp slides1.html slides1_deck_sandstone_light.html
+
+doconce format html slides1 --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.mdn
+doconce slides_html slides1 deck --html_slide_theme=sandstone.mdn
+cp slides1.html slides1_deck_sandstone_mdn.html
+
+doconce format html slides1 --pygments_html_style=default SLIDE_TYPE=deck SLIDE_THEME=mnml
+doconce slides_html slides1 deck --html_slide_theme=mnml
+cp slides1.html slides1_deck_mnml.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=web-2.0
+doconce slides_html slides1 deck --html_slide_theme=web-2.0
+cp slides1.html slides1_deck_web-2_0.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=swiss
+doconce slides_html slides1 deck --html_slide_theme=swiss
+cp slides1.html slides1_deck_swiss.html
+
+doconce format html slides1 --pygments_html_style=fruity SLIDE_TYPE=deck SLIDE_THEME=sandstone.aurora
+doconce slides_html slides1 deck --html_slide_theme=sandstone.aurora
+cp slides1.html slides1_deck_sandstone_aurora.html
+
+doconce format html slides1 --pygments_html_style=autumn SLIDE_TYPE=deck SLIDE_THEME=beamer
+doconce slides_html slides1 deck --html_slide_theme=beamer
+cp slides1.html slides1_deck_beamer.html
+
+echo "Here are the slide shows:"
+/bin/ls slides1_*_*.html
+
+************** File: slides1_1st.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="On the Technicalities of Scientific Writing Anno 2012: The Doconce Way">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:1px solid #bababa;
+               -webkit-border-radius:4px; -moz-border-radius:4px;
+             border-radius:4px
+             color: #555;
+             background-color: whiteSmoke;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 55px;
+             font-size: 90%; /*0.8em;*/
+             width: 75%;
+     }
+     .alert-block {padding-top:14px; padding-bottom:14px}
+     .alert-block > p, .alert-block > ul {margin-bottom:0}
+     .alert li {margin-top: 1em}
+     .alert-block p+p {margin-top:5px}
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [(' Figure and bullet list ', 2, None, '___sec0'),
+              (' Scientific writing needs to address many new media ',
+               2,
+               None,
+               '___sec1'),
+              (' Some math and computer code ', 2, None, '___sec2'),
+              (' Admon blocks ', 2, None, '___sec3')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+
+<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Hans Petter Langtangen -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Simula Research Laboratory</b></center>
+<center>[2] <b>University of Oslo</b></center>
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+<!-- !split -->
+
+<p>
+
+<h3>Figure and bullet list  <a name="___sec0"></a></h3>
+
+<p>
+<!-- !bslidecell 00  0.35 -->
+<!-- !bpop -->
+
+<p>
+
+<ul>
+  <li> Here is a <em>wave packet</em></li>
+  <li> It can move</li>
+  <li> But here it is just a figure</li>
+</ul>
+
+<!-- !epop -->
+<!-- !eslidecell -->
+
+<p>
+<!-- Test that it is okay to leave out width if there are only two columns -->
+
+<p>
+<!-- !bslidecell 01 -->
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+<!-- !eslidecell -->
+
+<p>
+<!-- !bpop highlight-red -->
+Here we have a paragraph to pop up in red.
+And a line more
+<!-- !epop -->
+
+<p>
+
+<!-- begin inline comment -->
+[<b>hpl 1</b>: <em>Here are some notes that can go to notes typesetting
+in the slide environment.</em>]
+<!-- end inline comment -->
+
+
+<p>
+<!-- !bnotes -->
+One can also have ordinary notes.
+Over multiple lines.
+<!-- !enotes -->
+
+<p>
+<!-- !split -->
+
+<h3>Scientific writing needs to address many new media  <a name="___sec1"></a></h3>
+
+<p>
+<!-- !bpop -->
+
+<p>
+
+<ul>
+ <li> Old days (1985-2005): mostly black-and-white documents aimed at printing</li>
+ <li> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...</li>
+ <li> LaTeX writing may be very different from writing in other formats</li>
+ <li> Main problem:</li>
+
+<ul>
+    <li> LaTeX provide all sorts of fancy packages, but</li>
+    <li> PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats</li>
+</ul>
+
+ <li> Conclusion: We need more than LaTeX</li>
+</ul>
+
+<!-- !epop -->
+
+<p>
+<!-- !split -->
+
+<h3>Some math and computer code  <a name="___sec2"></a></h3>
+
+<p>
+$$ f(x,y,t) = e^{-xt}\sin\pi y $$
+
+Python implementation:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x, y, t):
+    <span style="color: #AA22FF; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>y)
+
+<span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Fancy</span>:
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__init__</span>(<span style="color: #AA22FF">self</span>):
+        <span style="color: #AA22FF; font-weight: bold">pass</span>
+
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__call__</span>(<span style="color: #AA22FF">self</span>, x, y, t):
+        <span style="color: #AA22FF; font-weight: bold">return</span> f(x, y, t)
+
+f2 <span style="color: #666666">=</span> Fancy()
+</pre></div>
+<p>
+
+<!-- !split -->
+
+<h3>Admon blocks  <a name="___sec3"></a></h3>
+
+<p>
+<!-- Can use admons to simulate blocks -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Key PDE:</b>
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+</div>
+<p>
+<div class="alert alert-block alert-notice"><b>None.</b>
+Just some block with text and a conclusion that something is important.
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
+
+************** File: slides1_deck.html *****************
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Automatically translated from Doconce source.
+    http://code.google.com/p/doconce
+-->
+
+<head>
+<meta charset="utf-8">
+
+<title></title>
+
+<!-- deck.js: https://github.com/imakewebthings/deck.js -->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=1024, user-scalable=no">
+
+<title></title>
+
+<!-- Required stylesheet -->
+<link rel="stylesheet" href="deck.js/core/deck.core.css">
+
+<!-- Extension CSS files go here. Remove or add as needed.
+deck.goto: Adds a shortcut key to jump to any slide number.
+Hit g, type in the slide number, and hit enter.
+
+deck.hash: Enables internal linking within slides, deep
+linking to individual slides, and updates the address bar and
+a permalink anchor with each slide change.
+
+deck.menu: Adds a menu view, letting you see all slides in a grid.
+Hit m to toggle to menu view, continue navigating your deck,
+and hit m to return to normal view. Touch devices can double-tap
+the deck to switch between views.
+
+deck.navigation: Adds clickable left and right buttons for the
+less keyboard inclined.
+
+deck.status: Adds a page number indicator. (current/total).
+
+deck.scale: Scales each slide to fit within the deck container
+using CSS Transforms for those browsers that support them.
+
+deck.pointer: Turn mouse into laser pointer (toggle with p).
+(Requires https://github.com/mikeharris100/deck.pointer.js)
+-->
+
+<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
+<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
+<link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">
+<link rel="stylesheet" href="deck.js/extensions/pointer/deck.pointer.css">
+<link rel="stylesheet" href="deck.js/extensions/notes/deck.notes.css">
+<!--
+<link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
+<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
+<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
+-->
+
+<!-- Style theme. More available in themes/style/ or create your own. -->
+<link rel="stylesheet" href="deck.js/themes/style/web-2.0.css">
+
+<!--
+<link rel="stylesheet" href="deck.js/themes/style/neon.css">
+<link rel="stylesheet" href="deck.js/themes/style/swiss.css">
+<link rel="stylesheet" href="deck.js/themes/style/web-2.0.css">
+
+git clone git://github.com/duijf/mnml.git
+<link rel="stylesheet" href="deck.js/themes/style/mnml.css">
+
+git://github.com/groovecoder/deckjs-theme-mozilla.git
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.aurora.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.dark.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.default.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.firefox.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.light.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.mdn.css">
+<link rel="stylesheet" href="deck.js/themes/style/sandstone.nightly.css">
+
+git://github.com/barraq/deck.ext.js.git
+<link rel="stylesheet" href="deck.js/themes/style/beamer.css">
+-->
+
+<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
+<!--
+<link rel="stylesheet" href="deck.js/themes/transition/fade.css">
+<link rel="stylesheet" href="deck.js/themes/transition/vertical-slide.css">
+<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
+-->
+
+<!-- Required Modernizr file -->
+<script src="deck.js/modernizr.custom.js"></script>
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body class="deck-container">
+
+
+<section class="slide">
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+
+<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Hans Petter Langtangen -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Simula Research Laboratory</b></center>
+<center>[2] <b>University of Oslo</b></center>
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h3>Figure and bullet list  <a name="___sec0"></a></h3>
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+
+
+<p>
+
+<ul>
+  <p><p><li class="fragment"> Here is a <em>wave packet</em></li>
+  <p><p><li class="fragment"> It can move</li>
+  <p><p><li class="fragment"> But here it is just a figure</li>
+</ul>
+<p>
+<p>
+
+
+</td>
+<td class="padding">
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+<!-- Test that it is okay to leave out width if there are only two columns -->
+
+<p>
+
+
+<p>
+
+<p class="fragment">
+
+<span class="fragment highlight-red">
+
+Here we have a paragraph to pop up in red.
+And a line more
+
+</span>
+
+</p>
+
+
+<p>
+
+<aside class="notes">
+<!-- click "s" to activate -->
+Here are some notes that can go to notes typesetting
+in the slide environment.
+</aside>
+
+
+
+<p>
+<aside class="notes">
+<!-- click "s" to activate -->
+
+One can also have ordinary notes.
+Over multiple lines.
+
+</aside>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h3>Scientific writing needs to address many new media  <a name="___sec1"></a></h3>
+
+<p>
+
+
+<p>
+
+<ul>
+ <p><p><li class="fragment"> Old days (1985-2005): mostly black-and-white documents aimed at printing</li>
+ <p><p><li class="fragment"> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...</li>
+ <p><p><li class="fragment"> LaTeX writing may be very different from writing in other formats</li>
+ <p><p><li class="fragment"> Main problem:</li>
+
+<ul>
+    <p><p><li class="fragment"> LaTeX provide all sorts of fancy packages, but</li>
+    <p><p><li class="fragment"> PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats</li>
+</ul>
+<p>
+<p>
+
+ <p><p><li class="fragment"> Conclusion: We need more than LaTeX</li>
+</ul>
+<p>
+<p>
+
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h3>Some math and computer code  <a name="___sec2"></a></h3>
+
+<p>
+$$ f(x,y,t) = e^{-xt}\sin\pi y $$
+
+Python implementation:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x, y, t):
+    <span style="color: #AA22FF; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>y)
+
+<span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Fancy</span>:
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__init__</span>(<span style="color: #AA22FF">self</span>):
+        <span style="color: #AA22FF; font-weight: bold">pass</span>
+
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__call__</span>(<span style="color: #AA22FF">self</span>, x, y, t):
+        <span style="color: #AA22FF; font-weight: bold">return</span> f(x, y, t)
+
+f2 <span style="color: #666666">=</span> Fancy()
+</code></pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h3>Admon blocks  <a name="___sec3"></a></h3>
+
+<p>
+<!-- Can use admons to simulate blocks -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Key PDE:</b>
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+</div>
+<p>
+<div class="alert alert-block alert-notice"><b>None.</b>
+Just some block with text and a conclusion that something is important.
+</div>
+
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+
+
+</body>
+</html>
+
+</section>
+
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+-->
+
+<!-- deck.goto snippet
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+-->
+
+<!-- deck.hash snippet
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+-->
+
+<!-- End extension snippets. -->
+
+
+<!-- Required JS files. -->
+<script src="deck.js/jquery-1.7.2.min.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/hash/deck.hash.js"></script>
+<script src="deck.js/extensions/menu/deck.menu.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js/extensions/scale/deck.scale.js"></script>
+<script src="deck.js/extensions/notes/deck.notes.js"></script>
+
+<!-- From https://github.com/mikeharris100/deck.pointer.js -->
+<script src="deck.js/extensions/pointer/deck.pointer.js"></script>
+
+<!-- From https://github.com/stvnwrgs/presenterview -->
+<script type="text/javascript" src="deck.js/extensions/presenterview/deck.presenterview.js"></script>
+
+<!-- From https://github.com/nemec/deck.annotate.js
+<script type="text/javascript" src="deck.js/extensions/deck.annotate.js/deck.annotate.js"></script>
+-->
+
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+
+
+</body>
+</html>
+deck.js:
+boilerplate.html
+core
+extensions
+GPL-license.txt
+introduction
+jquery-1.7.2.min.js
+MIT-license.txt
+modernizr.custom.js
+README.md
+test
+themes
+
+deck.js/core:
+deck.core.css
+deck.core.js
+deck.core.scss
+
+deck.js/extensions:
+codemirror
+deck.annotate.js
+goto
+hash
+menu
+navigation
+notes
+pointer
+presenterview
+scale
+status
+
+deck.js/extensions/codemirror:
+codemirror.js
+CONTRIBUTORS.txt
+deck.codemirror.css
+deck.codemirror.js
+deck.codemirror.scss
+introduction
+MIT-LICENSE.txt
+mode
+README.md
+themes
+VERSION.txt
+
+deck.js/extensions/codemirror/introduction:
+index.html
+introduction.css
+introduction.js
+introduction.scss
+modernizr.custom.js
+
+deck.js/extensions/codemirror/mode:
+clike
+clojure
+coffeescript
+css
+diff
+haskell
+htmlmixed
+javascript
+lua
+php
+plsql
+python
+r
+rst
+ruby
+scheme
+smalltalk
+sparql
+stex
+velocity
+xml
+xmlpure
+yaml
+
+deck.js/extensions/codemirror/mode/clike:
+clike.js
+index.html
+
+deck.js/extensions/codemirror/mode/clojure:
+clojure.js
+index.html
+
+deck.js/extensions/codemirror/mode/coffeescript:
+coffeescript.js
+index.html
+LICENSE
+
+deck.js/extensions/codemirror/mode/css:
+css.js
+index.html
+
+deck.js/extensions/codemirror/mode/diff:
+diff.css
+diff.js
+index.html
+
+deck.js/extensions/codemirror/mode/haskell:
+haskell.js
+index.html
+
+deck.js/extensions/codemirror/mode/htmlmixed:
+htmlmixed.js
+index.html
+
+deck.js/extensions/codemirror/mode/javascript:
+index.html
+javascript.js
+
+deck.js/extensions/codemirror/mode/lua:
+index.html
+lua.js
+
+deck.js/extensions/codemirror/mode/php:
+index.html
+php.js
+
+deck.js/extensions/codemirror/mode/plsql:
+index.html
+plsql.js
+
+deck.js/extensions/codemirror/mode/python:
+index.html
+LICENSE.txt
+python.js
+
+deck.js/extensions/codemirror/mode/r:
+index.html
+LICENSE
+r.js
+
+deck.js/extensions/codemirror/mode/rst:
+index.html
+rst.css
+rst.js
+
+deck.js/extensions/codemirror/mode/ruby:
+index.html
+LICENSE
+ruby.js
+
+deck.js/extensions/codemirror/mode/scheme:
+index.html
+scheme.js
+
+deck.js/extensions/codemirror/mode/smalltalk:
+index.html
+smalltalk.js
+
+deck.js/extensions/codemirror/mode/sparql:
+index.html
+sparql.js
+
+deck.js/extensions/codemirror/mode/stex:
+index.html
+stex.js
+
+deck.js/extensions/codemirror/mode/velocity:
+index.html
+velocity.js
+
+deck.js/extensions/codemirror/mode/xml:
+index.html
+xml.js
+
+deck.js/extensions/codemirror/mode/xmlpure:
+index.html
+xmlpure.js
+
+deck.js/extensions/codemirror/mode/yaml:
+index.html
+yaml.js
+
+deck.js/extensions/codemirror/themes:
+cobalt.css
+default.css
+elegant.css
+lesser-dark.css
+neat.css
+night.css
+
+deck.js/extensions/deck.annotate.js:
+deck.annotate.css
+deck.annotate.js
+example.png
+README.md
+
+deck.js/extensions/goto:
+deck.goto.css
+deck.goto.html
+deck.goto.js
+deck.goto.scss
+
+deck.js/extensions/hash:
+deck.hash.css
+deck.hash.html
+deck.hash.js
+deck.hash.scss
+
+deck.js/extensions/menu:
+deck.menu.css
+deck.menu.js
+deck.menu.scss
+
+deck.js/extensions/navigation:
+deck.navigation.css
+deck.navigation.html
+deck.navigation.js
+deck.navigation.scss
+
+deck.js/extensions/notes:
+deck.notes.css
+deck.notes.js
+README.md
+
+deck.js/extensions/pointer:
+deck.pointer.css
+deck.pointer.js
+
+deck.js/extensions/presenterview:
+deck.presenterview.css
+deck.presenterview.html
+deck.presenterview.js
+iframe.html
+presenterwindow.js
+README.md
+TODO
+
+deck.js/extensions/scale:
+deck.scale.css
+deck.scale.js
+deck.scale.scss
+
+deck.js/extensions/status:
+deck.status.css
+deck.status.html
+deck.status.js
+deck.status.scss
+
+deck.js/introduction:
+index.html
+
+deck.js/test:
+fixtures
+index.html
+lib
+settings.js
+spec.core.js
+spec.goto.js
+spec.hash.js
+spec.menu.js
+spec.navigation.js
+spec.scale.js
+spec.status.js
+
+deck.js/test/fixtures:
+complex.html
+empty.html
+iframes.html
+iframe_simple.html
+nesteds.html
+standard.html
+
+deck.js/test/lib:
+jasmine.css
+jasmine-html.js
+jasmine-jquery.js
+jasmine.js
+
+deck.js/themes:
+style
+transition
+
+deck.js/themes/style:
+beamer.css
+beamer.scss
+mnml.css
+neon.css
+neon.scss
+sandstone.aurora.css
+sandstone.css
+sandstone.dark.css
+sandstone.default.css
+sandstone.firefox.css
+sandstone.light.css
+sandstone.mdn.css
+sandstone.nightly.css
+sandstone.scss
+swiss.css
+swiss.scss
+web-2.0.css
+web-2.0.scss
+
+deck.js/themes/transition:
+fade.css
+fade.scss
+horizontal-slide.css
+horizontal-slide.scss
+vertical-slide.css
+vertical-slide.scss
+
+************** File: slides1.p.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
+% #endif
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer_collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for mobile devices
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},           % inner margin (two sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{ptex2tex}
+
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
+% #ifdef PALATINO
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
+% #endif
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+% #ifdef TODONOTES
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+% #else
+\newcommand{\shortinlinecomment}[3]{}
+\newcommand{\longinlinecomment}[3]{}
+% #endif
+
+% #ifdef LINENUMBERS
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+% #endif
+
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
+\usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
+% Admonition environment for "hint"
+% #if ADMON == "colors"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
+
+% Admonition environment for "notice"
+% #if ADMON == "colors"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
+
+% Admonition environment for "summary"
+% #if ADMON == "colors"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
+
+% Admonition environment for "warning"
+% #if ADMON == "colors"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
+
+% Admonition environment for "question"
+% #if ADMON == "colors"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% #endif
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+% #if LATEX_HEADING == "traditional"
+\title{On the Technicalities of Scientific Writing Anno 2012: The Doconce Way}
+
+% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+\end{spacing}
+}}}
+
+% #elif LATEX_HEADING == "Springer_collection"
+\title*{On the Technicalities of Scientific Writing Anno 2012: The Doconce Way}
+% Short version of title:
+%\titlerunning{...}
+
+% #elif LATEX_HEADING == "beamer"
+\title{On the Technicalities of Scientific Writing Anno 2012: The Doconce Way}
+% #else
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+\end{spacing}
+}
+\end{center}
+% #endif
+
+% ----------------- author(s) -------------------------
+% #if LATEX_HEADING == "traditional"
+\author{Hans Petter Langtangen\footnote{Simula Research Laboratory and University of Oslo.}}
+
+% #elif LATEX_HEADING == "titlepage"
+\vspace{1.3cm}
+
+    {\Large\textsf{Hans Petter Langtangen${}^{1, 2}$}}\\ [3mm]
+    
+\ \\ [2mm]
+
+{\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer_collection"
+
+\author{Hans Petter Langtangen}
+% Short version of authors:
+%\authorrunning{...}
+\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
+
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Simula Research Laboratory\inst{1}
+\and
+University of Oslo\inst{2}}
+% #else
+
+\begin{center}
+{\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Simula Research Laboratory}}
+\centerline{{\small ${}^2$University of Oslo}}
+\end{center}
+% #endif
+% ----------------- end author(s) -------------------------
+
+
+% #if LATEX_HEADING == "traditional"
+\date{Jan 32, 2100}
+\maketitle
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
+% #elif LATEX_HEADING == "titlepage"
+
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
+
+\end{center}
+\vfill
+\clearpage
+
+% #else
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+% #endif
+
+
+% !split
+
+\subsection{Figure and bullet list}
+
+% !bslidecell 00  0.35
+% !bpop
+
+\begin{itemize}
+  \item Here is a \emph{wave packet}
+
+  \item It can move
+
+  \item But here it is just a figure
+\end{itemize}
+
+\noindent
+% !epop
+% !eslidecell
+
+% Test that it is okay to leave out width if there are only two columns
+
+% !bslidecell 01
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+
+% !eslidecell
+
+% !bpop highlight-red
+Here we have a paragraph to pop up in red.
+And a line more
+% !epop
+
+\shortinlinecomment{hpl 1}{ Here are some notes that can go to notes typesetting
+in the slide environment. }{ Here are some notes }
+
+% !bnotes
+One can also have ordinary notes.
+Over multiple lines.
+% !enotes
+
+% !split
+\subsection{Scientific writing needs to address many new media}
+
+% !bpop
+
+\begin{itemize}
+ \item Old days (1985-2005): mostly black-and-white documents aimed at printing
+
+ \item Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
+
+ \item {\LaTeX} writing may be very different from writing in other formats
+
+ \item Main problem:
+\begin{itemize}
+
+    \item {\LaTeX} provide all sorts of fancy packages, but
+
+    \item PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats
+
+\end{itemize}
+
+\noindent
+ \item Conclusion: We need more than {\LaTeX}
+\end{itemize}
+
+\noindent
+% !epop
+
+% !split
+\subsection{Some math and computer code}
+
+\[ f(x,y,t) = e^{-xt}\sin\pi y \]
+Python implementation:
+
+\bpycod
+import numpy as np
+
+def f(x, y, t):
+    return np.exp(-x*t)*np.sin(np.pi*y)
+
+class Fancy:
+    def __init__(self):
+        pass
+
+    def __call__(self, x, y, t):
+        return f(x, y, t)
+
+f2 = Fancy()
+\epycod
+
+% !split
+\subsection{Admon blocks}
+
+% Can use admons to simulate blocks
+
+
+% #if ADMON == "colors"
+\begin{noticeadmon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{noticeadmon}
+% #endif
+
+% #if ADMON == "colors"
+\begin{noticeadmon}[]
+Just some block with text and a conclusion that something is important.
+\end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[]
+Just some block with text and a conclusion that something is important.
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[]
+Just some block with text and a conclusion that something is important.
+\end{noticeadmon}
+% #endif
+% ------------------- end of main content ---------------
+
+
+% #ifdef PREAMBLE
+\printindex
+
+\end{document}
+% #endif
+
+
+************** File: slides1.tex *****************
+
+% LaTeX Beamer file automatically generated from Doconce
+% http://code.google.com/p/doconce
+
+%-------------------- begin preamble ----------------------
+
+\documentclass{beamer}
+
+\usetheme{default}
+\usecolortheme{default}
+
+% turn off the almost invisible, yet disturbing, navigation symbols:
+\setbeamertemplate{navigation symbols}{}
+
+% Examples on customization:
+%\usecolortheme[named=RawSienna]{structure}
+%\usetheme[height=7mm]{Rochester}
+%\setbeamerfont{frametitle}{family=\rmfamily,shape=\itshape}
+%\setbeamertemplate{items}[ball]
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+%\useoutertheme{infolines}
+%
+%\usefonttheme{}
+%\useinntertheme{}
+%
+%\setbeameroption{show notes}
+%\setbeameroption{show notes on second screen=right}
+
+% fine for B/W printing:
+%\usecolortheme{seahorse}
+
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{fancyvrb,relsize}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{colortbl}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usepackage{framed,anslistings}
+% Use some nice templates
+\beamertemplatetransparentcovereddynamic
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
+\newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
+
+\newenvironment{hintadmon}[1][Hint]{\begin{block}{#1}}{\end{block}}
+\newenvironment{noticeadmon}[1][Notice]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summaryadmon}[1][Summary]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warningadmon}[1][Warning]{\begin{block}{#1}}{\end{block}}
+\newenvironment{questionadmon}[1][Question]{\begin{block}{#1}}{\end{block}}
+\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\title{On the Technicalities of Scientific Writing Anno 2012: The Doconce Way}
+
+% ----------------- author(s) -------------------------
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Simula Research Laboratory\inst{1}
+\and
+University of Oslo\inst{2}}
+% ----------------- end author(s) -------------------------
+
+
+\date{Jan 32, 2100
+% <titlepage figure>
+}
+
+\begin{frame}[plain,fragile]
+\titlepage
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Figure and bullet list}
+
+\begin{columns}
+\column{0.35\textwidth}
+
+\pause
+\begin{block}{}
+\begin{itemize}
+  \item Here is a \emph{wave packet}
+
+  \item It can move
+
+  \item But here it is just a figure
+\end{itemize}
+
+\noindent
+\end{block}
+
+
+\column{0.65\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+
+
+\end{columns}
+
+
+
+% Test that it is okay to leave out width if there are only two columns
+
+
+
+
+\pause
+\begin{block}{}
+Here we have a paragraph to pop up in red.
+And a line more
+\end{block}
+
+
+\shortinlinecomment{hpl 1}{ Here are some notes that can go to notes typesetting
+in the slide environment. }{ Here are some notes }
+
+\note{
+One can also have ordinary notes.
+Over multiple lines.
+}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Scientific writing needs to address many new media}
+
+\begin{itemize}
+ \item<1-> Old days (1985-2005): mostly black-and-white documents aimed at printing
+
+ \item<2-> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
+
+ \item<3-> {\LaTeX} writing may be very different from writing in other formats
+
+ \item<4-> Main problem:
+\begin{itemize}
+
+    \item<5-> {\LaTeX} provide all sorts of fancy packages, but
+
+    \item<6-> PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats
+
+\end{itemize}
+
+\noindent
+ \item<7-> Conclusion: We need more than {\LaTeX}
+\end{itemize}
+
+\noindent
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Some math and computer code}
+
+\[ f(x,y,t) = e^{-xt}\sin\pi y \]
+Python implementation:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+import numpy as np
+
+def f(x, y, t):
+    return np.exp(-x*t)*np.sin(np.pi*y)
+
+class Fancy:
+    def __init__(self):
+        pass
+
+    def __call__(self, x, y, t):
+        return f(x, y, t)
+
+f2 = Fancy()
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Admon blocks}
+
+% Can use admons to simulate blocks
+
+
+\begin{noticeadmon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{noticeadmon}
+
+\begin{noticeadmon}[]
+Just some block with text and a conclusion that something is important.
+\end{noticeadmon}
+\end{frame}
+
+\end{document}
+
+************** File: slides2.do.txt *****************
+TITLE: Test slide features
+AUTHOR: Core Dump at Cyber Space Ltd
+DATE: Today
+
+FIGURE: [../doc/slides/fig/doconce1b, width=400 frac=0.5]
+
+!split
+======= Scientific writing for the future needs to address many new media =======
+
+!bslidecell 00 0.4
+FIGURE: [../doc/slides/fig/ipad, width=400 frac=0.8]
+
+FIGURE: [../doc/slides/fig/iphones, width=100 frac=0.3]
+
+#FIGURE: [../doc/slides/fig/mbair, width=400]
+
+!eslidecell
+
+!bslidecell 01 0.6
+FIGURE: [../doc/slides/fig/imac, width=350 frac=0.7]
+!eslidecell
+
+!split
+======= The book will probably survive =======
+
+FIGURE: [../doc/slides/fig/oldbooks, width=800]
+
+!split
+======= The classical report will survive =======
+
+!bslidecell 00
+FIGURE: [../doc/slides/fig/latex_thesis, width=400 frac=1.2]
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/latex_paper1, width=400 frac=1.2]
+!eslidecell
+
+!split
+======= Scope =======
+
+#  * Scientific writing = lecture notes, slides, reports, thesis, books,  ...
+#  * (Journal papers typeset by journals are out of scope)
+
+!bpop
+  * Scope: documents with color{red}{much} *math* and *computer code*
+  * Key question: What tools should I use for writing?
+  * Default answer: LaTeX
+  * Alternative: MS Word w/math
+  * Recent popular alternative tools: HTML w/MathJax,
+    Sphinx, Markdown, MediaWiki, IPython notebook
+!epop
+
+!bslidecell 00 0.25
+FIGURE: [../doc/slides/fig/LaTeX_logo.jpg, width=120 frac=0.3]
+!eslidecell
+
+!bslidecell 01 0.25
+FIGURE: [../doc/slides/fig/MS_Word_logo.jpg, width=80 frac=0.2]
+!eslidecell
+
+!bslidecell 02 0.5
+FIGURE: [../doc/slides/fig/sphinx_logo.png, width=200 frac=0.4]
+!eslidecell
+
+!bslidecell 10 0.25
+FIGURE: [../doc/slides/fig/markdown_logo.jpg, width=80 frac=0.2]
+!eslidecell
+
+!bslidecell 11 0.25
+FIGURE: [../doc/slides/fig/MediaWiki_logo.jpg, width=80 frac=0.2]
+!eslidecell
+
+!bslidecell 12 0.5
+FIGURE: [../doc/slides/fig/IPython_logo.png, width=300 frac=0.6]
+!eslidecell
+
+
+!split
+======= Scientific writing for the future needs to address many new media =======
+
+# Insert links here to reports
+
+!bslidecell 00
+Old days (1985-2005): LaTeX for BW paper output, but now
+
+   o BW books
+   o Colorful PDF books (printed and screen)
+   o Designed web pages
+   o Wikis
+   o Bloggs
+   o Next new fancy format (iBook w/LaTeX?)
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/jungle_with_mess.jpg, width=500]
+!eslidecell
+
+!split
+
+======= Fundamental question =======
+
+When I write some scientific material,
+
+ * a LaTeX document,
+ * a blogg (HTML),
+ * some web pages (HTML),
+ * a Sphinx document,
+ * some Markdown files,
+
+and later want to collect the pieces into a larger document, maybe
+some book, or one big web document, is that at all feasible?
+
+!bpop highlight-red
+Probably not, but I have a solution :-)
+!epop
+
+!split
+
+======= LaTeX is very rich; other tools support only some elements =======
+
+ * LaTeX inline math: works with all (LaTeX, MathJax, Sphinx, Markdown, MediaWiki)
+ * LaTeX equation math:
+    * _LaTeX_: `equation*`, `equation`, `align*`, `align` +
+      `eqnarray`, `split`, `alignat`, ... (numerous!)
+    * _MathJax_: `equation*`, `equation`, `align*`, `align`
+    * _MediaWiki_: `equation*`, `equation`, `align*`, `align`
+    * _Sphinx_: `equation*`, `equation`, `align*`
+    * _Markdown_: `equation*`, `equation`, `eqnarray*`, `align*` (but no labels)
+
+!split
+======= LaTeX is very rich; other tools support only some elements =======
+
+!bpop
+ * Figures: all
+ * Subfigures: LaTeX (`subfigure`)
+ * Movies: LaTeX (can run separately), just raw embedded HTML in others
+ * Floating computer code: LaTeX
+ * Fixed computer code: all
+ * Floating tables: LaTeX; inline tables: all
+ * Algorithms: LaTeX
+ * Margin notes: LaTeX
+ * Page references: LaTeX
+ * Footnotes: LaTeX, Sphinx, reStructuredText, MediaWiki
+ * Bibliography: LaTeX, Sphinx, reStructuredText, MediaWiki
+ * Hyperlinks: all (but not on paper!)
+!epop
+
+!bpop
+Conclusion: Highly non-trivial to translate a LaTeX document into something
+based on HTML and vice versa.
+!epop
+
+
+!split
+======= Doconce demo =======
+
+URL: "http://hplgit.github.com/teamods/writing_reports/"
+
+ * LaTeX-based PDF "for screen": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+ * "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_do.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
+ * Sphinx: "agni": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html"
+ * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blogs
+ * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page" (Wikipedia, Wikibooks, etc)
+ * Doconce "source code": "http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and "tutorial": "http://code.google.com/p/doconce/wiki/Tutorial"
+
+
+!split
+
+# #if FORMAT in ("latex", "pdflatex")
+# latex interprets 9 = as chapter and then needs book style...
+======= A tour of Doconce =======
+# #else
+========= A tour of Doconce =========
+# #endif
+
+!split
+======= Doconce: title, authors, date, toc =======
+
+!bc
+TITLE: Some Title
+AUTHOR: name1 at institution1, with more info, and institution2
+AUTHOR: name2 email:name2@web.com at institution
+DATE: today
+
+# A table of contents is optional:
+TOC: on
+!ec
+
+!bnotice
+Title and authors must have all information *on a single line*!
+!enotice
+
+!split
+======= Doconce: abstract =======
+
+!bc
+__Abstract.__
+Here goes the abstract...
+!ec
+
+Or:
+!bc
+__Summary.__
+Here goes the summary...
+!ec
+
+
+!split
+======= Doconce: section headings =======
+
+Headings are surrounded by `=` signs:
+!bc
+========= This is an H1/chapter heading =========
+
+======= This is an H2/section heading =======
+
+===== This is an H3/subsection heading =====
+
+=== This is an H4/paragraph heading ===
+
+__This is a paragraph heading.__
+!ec
+
+Result:
+
+========= This is an H1/chapter heading =========
+
+======= This is an H2/section heading =======
+
+===== This is an H3/subsection heading =====
+
+=== This is an H4/paragraph heading ===
+
+__This is a paragraph heading.__
+
+
+!split
+======= Doconce: markup and lists =======
+
+!bc
+ * Bullet list items start with `*`
+   and may span several lines
+ * *Emphasized words* are possible
+ * _Boldface words_ are also possible
+ * color{red}{colored words} too
+ * `inline verbatim code` is featured
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
+!ec
+
+This gets rendered as
+
+ * Bullet lists start with `*`
+   and may span several lines
+ * *Emphasized words* are possible
+ * _Boldface words_ are also possible
+ * color{red}{colored words} too
+ * `inline verbatim code` is featured
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
+
+!split
+======= Doconce: labels, references, index items =======
+
+!bc
+# Insert index items in the source
+idx{key word1} idx{key word2}
+
+# Label
+===== Some section =====
+label{this:section}
+
+# Make reference
+As we saw in Section ref{this:section}, references, index
+items and labels follow a syntax similar to LaTeX
+but without backslashes.
+
+# Make reference to equations
+See (ref{eq1})-(ref{myeq}).
+
+# Make hyperlink
+"some link text": "http://code.google.com/p/doconce/"
+
+# Hyperlink with complete URL as link text
+URL: "http://code.google.com/p/doconce/"
+!ec
+
+!split
+======= Doconce: figures and movies =======
+
+!bnotice
+Figure with HTML and LaTeX info, and caption, *all on one line*:
+!enotice
+
+!bc
+FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
+
+# This figure will be 300 pixels wide in HTML and span 1.2 times
+# the linewidth in LaTeX.
+!ec
+
+Movies are also supported:
+
+!bc
+MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+!ec
+and rendered as
+
+MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+
+!split
+======= Doconce: math =======
+
+Inline math as in LaTeX:
+
+!bc
+...where $a=\int_{\Omega}fdx$ is an integral.
+!ec
+gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
+
+
+An equation environment is surrounded by `!bt` and `!et` tags,
+the rest is plain LaTeX:
+
+!bc
+|bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+label{b:eq}
+\end{align}
+|et
+!ec
+which is rendered as
+
+!bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+label{b:eq}
+\end{align}
+!et
+
+
+!split
+======= Doconce: displaying code =======
+
+Code is enclosed in `!bc` and `!ec` tags:
+
+!bc
+|bc pycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+|ec
+!ec
+This gets rendered as
+
+!bc pycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+!ec
+
+!bnotice Language-dependent typesetting of code:
+The `!bc` command can be followed by a specification of the computer
+language: `pycod` for Python code snippet, `pypro` for complete Python
+program, `fcod` for Fortran snippet, `fpro` for Fortran program, and so
+forth (`c` for C, `cpp` for C++, `sh` for Unix shells, `m` for Matlab).
+!enotice
+
+
+!split
+======= Doconce: displaying interactive demo code =======
+label{slide:pot}
+
+With `!bc pyoptpro` or a file `*.pyopt`, the code applies the
+"Online Python Tutor": "http://pythontutor.com" for displaying
+program flow and state of variables:
+
+@@@CODE ../doc/slides/src/dc_mod.pyopt
+
+
+
+
+!split
+======= Doconce: exercises =======
+
+Doconce offers a special format for *exercises*, *problems*, *projects*,
+and *examples*:
+
+!bc
+===== Problem: Flip a Coin =====
+label{demo:ex:1}
+
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$ times.
+
+!bhint
+Use `r = random.random()` and define head as `r <= 0.5`.
+!ehint
+!esubex
+
+!bsubex
+Compute the probability of getting heads.
+
+!bans
+A short answer: 0.5.
+!eans
+
+!bsol
+A full solution to this subexercise can go here.
+!esol
+!esubex
+
+!bsubex
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+!esubex
+!ec
+
+Solutions/answers can easily be left out of the document.
+
+!split
+======= Doconce: exercises =======
+
+Last page gets rendered as follows:
+
+===== Problem: Flip a Coin =====
+label{demo:ex:1}
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$ times.
+
+!bhint
+Use `r = random.random()` and define head as `r <= 0.5`.
+!ehint
+!esubex
+
+!bsubex
+Compute the probability of getting heads.
+
+!bans
+A short answer: 0.5.
+!eans
+
+!bsol
+A full solution to this subexercise can go here.
+!esol
+!esubex
+
+!bsubex
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+!esubex
+
+
+!split
+======= Doconce: example on slide code =======
+
+!bc
+!split
+======= Headline =======
+
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+
+FIGURE: [../doc/slides/fig/teacher1, width=100]
+
+Key equation:
+
+|bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+|et
+
+And maybe a final comment?
+
+!split
+======= Next slide... =======
+!ec
+
+!split
+======= Doconce: example on slide code =======
+
+Last page gets rendered to
+
+======= Headline =======
+
+ * Key point 1
+ * Key point 2
+
+FIGURE: [../doc/slides/fig/teacher1, width=100 frac=0.4]
+
+Key equation:
+
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+
+And maybe a final comment?
+
+!split
+======= Doconce: example on slide code with cells =======
+
+One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by `!bslidecell MN` and `!eslidecell`
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+
+!bc
+!split
+======= Headline =======
+
+!bslidecell 00
+!bpop
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+!epop
+
+!bpop
+|bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+|et
+!epop
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
+!eslidecell
+
+!split
+======= Next slide... =======
+!ec
+
+!split
+======= Doconce: example on slide code =======
+
+Last page gets rendered to
+
+======= Headline =======
+
+!bslidecell 00
+!bpop
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+!epop
+
+!bpop
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+!epop
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400]
+!eslidecell
+
+
+************** File: slides2_reveal.html *****************
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Automatically translated from Doconce source.
+    http://code.google.com/p/doconce
+-->
+
+<head>
+<meta charset="utf-8">
+
+<title></title>
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+-->
+
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Test slide features</title>
+
+<center><h1>Test slide features</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Core Dump -->
+
+<center>
+<b>Core Dump</b> 
+</center>
+
+
+<p>
+<!-- institution -->
+
+<center><b>Cyber Space Ltd</b></center>
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+<center><p><img src="../doc/slides/fig/doconce1b.png" align="bottom" width=400></p></center>
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Scientific writing for the future needs to address many new media  <a name="___sec0"></a></h2>
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/ipad.png" align="bottom" width=400></p></center>
+
+<p>
+<center><p><img src="../doc/slides/fig/iphones.jpg" align="bottom" width=100></p></center>
+
+<p>
+<!-- FIGURE: [../doc/slides/fig/mbair, width=400] -->
+
+<p>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/imac.png" align="bottom" width=350></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>The book will probably survive  <a name="___sec1"></a></h2>
+
+<p>
+<center><p><img src="../doc/slides/fig/oldbooks.jpg" align="bottom" width=800></p></center>
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>The classical report will survive  <a name="___sec2"></a></h2>
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/latex_thesis.jpg" align="bottom" width=400></p></center>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/latex_paper1.png" align="bottom" width=400></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Scope  <a name="___sec3"></a></h2>
+
+<p>
+<!-- * Scientific writing = lecture notes, slides, reports, thesis, books,  ... -->
+<!-- * (Journal papers typeset by journals are out of scope) -->
+
+<p>
+
+
+<ul>
+  <p><li class="fragment"> Scope: documents with <font color="red">much</font> <em>math</em> and <em>computer code</em></li>
+  <p><li class="fragment"> Key question: What tools should I use for writing?</li>
+  <p><li class="fragment"> Default answer: LaTeX</li>
+  <p><li class="fragment"> Alternative: MS Word w/math</li>
+  <p><li class="fragment"> Recent popular alternative tools: HTML w/MathJax,
+    Sphinx, Markdown, MediaWiki, IPython notebook</li>
+</ul>
+<p>
+
+
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/LaTeX_logo.jpg" align="bottom" width=120></p></center>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/MS_Word_logo.jpg" align="bottom" width=80></p></center>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/sphinx_logo.png" align="bottom" width=200></p></center>
+</td>
+</tr>
+<tr>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/markdown_logo.jpg" align="bottom" width=80></p></center>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/MediaWiki_logo.jpg" align="bottom" width=80></p></center>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/IPython_logo.png" align="bottom" width=300></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+
+
+<p>
+
+
+<p>
+
+
+<p>
+
+
+<p>
+
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Scientific writing for the future needs to address many new media  <a name="___sec4"></a></h2>
+
+<p>
+<!-- Insert links here to reports -->
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+Old days (1985-2005): LaTeX for BW paper output, but now
+
+<p>
+
+<ol>
+  <p><li> BW books</li>
+  <p><li> Colorful PDF books (printed and screen)</li>
+  <p><li> Designed web pages</li>
+  <p><li> Wikis</li>
+  <p><li> Bloggs</li>
+  <p><li> Next new fancy format (iBook w/LaTeX?)</li>
+</ol>
+<p>
+
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/jungle_with_mess.jpg" align="bottom" width=500></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h2>Fundamental question  <a name="___sec5"></a></h2>
+
+<p>
+When I write some scientific material,
+
+<p>
+
+<ul>
+ <p><li> a LaTeX document,</li>
+ <p><li> a blogg (HTML),</li>
+ <p><li> some web pages (HTML),</li>
+ <p><li> a Sphinx document,</li>
+ <p><li> some Markdown files,</li>
+</ul>
+<p>
+
+and later want to collect the pieces into a larger document, maybe
+some book, or one big web document, is that at all feasible?
+
+<p>
+
+<p class="fragment">
+
+<span class="fragment highlight-red">
+
+Probably not, but I have a solution :-)
+
+</span>
+
+</p>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h2>LaTeX is very rich; other tools support only some elements  <a name="___sec6"></a></h2>
+
+<p>
+
+<ul>
+ <p><li> LaTeX inline math: works with all (LaTeX, MathJax, Sphinx, Markdown, MediaWiki)</li>
+ <p><li> LaTeX equation math:</li>
+
+<ul>
+    <p><li> <b>LaTeX</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code> +
+      <code>eqnarray</code>, <code>split</code>, <code>alignat</code>, ... (numerous!)</li>
+    <p><li> <b>MathJax</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code></li>
+    <p><li> <b>MediaWiki</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code></li>
+    <p><li> <b>Sphinx</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code></li>
+    <p><li> <b>Markdown</b>: <code>equation*</code>, <code>equation</code>, <code>eqnarray*</code>, <code>align*</code> (but no labels)</li>
+</ul>
+<p>
+
+</ul>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>LaTeX is very rich; other tools support only some elements  <a name="___sec7"></a></h2>
+
+<p>
+
+
+<ul>
+ <p><li class="fragment"> Figures: all</li>
+ <p><li class="fragment"> Subfigures: LaTeX (<code>subfigure</code>)</li>
+ <p><li class="fragment"> Movies: LaTeX (can run separately), just raw embedded HTML in others</li>
+ <p><li class="fragment"> Floating computer code: LaTeX</li>
+ <p><li class="fragment"> Fixed computer code: all</li>
+ <p><li class="fragment"> Floating tables: LaTeX; inline tables: all</li>
+ <p><li class="fragment"> Algorithms: LaTeX</li>
+ <p><li class="fragment"> Margin notes: LaTeX</li>
+ <p><li class="fragment"> Page references: LaTeX</li>
+ <p><li class="fragment"> Footnotes: LaTeX, Sphinx, reStructuredText, MediaWiki</li>
+ <p><li class="fragment"> Bibliography: LaTeX, Sphinx, reStructuredText, MediaWiki</li>
+ <p><li class="fragment"> Hyperlinks: all (but not on paper!)</li>
+</ul>
+<p>
+
+
+
+<p>
+
+<p class="fragment">
+
+Conclusion: Highly non-trivial to translate a LaTeX document into something
+based on HTML and vice versa.
+
+</p>
+
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce demo  <a name="___sec8"></a></h2>
+
+<p>
+<a href="http://hplgit.github.com/teamods/writing_reports/"><tt>http://hplgit.github.com/teamods/writing_reports/</tt></a>
+
+<p>
+
+<ul>
+ <p><li> LaTeX-based PDF <a href="http://hplgit.github.com/teamods/writing_reports/_static/report.pdf">for screen</a>, <a href="http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf">for printing</a>, <a href="http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf">for phone</a></li>
+ <p><li> <a href="http://hplgit.github.com/teamods/writing_reports/_static/report_do.html">Plain HTML</a> or with a <a href="http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html">template</a> or <a href="http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html">another template</a> or <a href="http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html">solarized</a></li>
+ <p><li> Sphinx: <a href="http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html">agni</a>, <a href="http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html">pyramid</a>, <a href="http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html">classy</a>, <a href="http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html">fenics</a>, <a href="http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html">redcloud</a></li>
+ <p><li> HTML for <a href="http://doconce-report-demo.blogspot.no/">Google</a> or <a href="http://doconcereportdemo.wordpress.com/">Wordpress</a> blogs</li>
+ <p><li> <a href="http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page">MediaWiki</a> (Wikipedia, Wikibooks, etc)</li>
+ <p><li> Doconce <a href="http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html">source code</a> and <a href="http://code.google.com/p/doconce/wiki/Tutorial">tutorial</a></li>
+</ul>
+<p>
+
+
+</section>
+
+
+<section>
+
+<p>
+
+<h1>A tour of Doconce  <a name="___sec9"></a></h1>
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Doconce: title, authors, date, toc  <a name="___sec10"></a></h2>
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">TITLE: Some Title
+AUTHOR: name1 at institution1, with more info, and institution2
+AUTHOR: name2 email:name2@web.com at institution
+DATE: today
+
+# A table of contents is optional:
+TOC: on
+</pre></div>
+<p>
+
+<div class="alert alert-block alert-notice"><b>Notice.</b>
+Title and authors must have all information <em>on a single line</em>!
+</div>
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Doconce: abstract  <a name="___sec11"></a></h2>
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">__Abstract.__
+Here goes the abstract...
+</pre></div>
+<p>
+
+Or:
+<p>
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">__Summary.__
+Here goes the summary...
+</pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: section headings  <a name="___sec12"></a></h2>
+
+<p>
+Headings are surrounded by <code>=</code> signs:
+<p>
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">========= This is an H1/chapter heading =========
+
+======= This is an H2/section heading =======
+
+===== This is an H3/subsection heading =====
+
+=== This is an H4/paragraph heading ===
+
+__This is a paragraph heading.__
+</pre></div>
+<p>
+
+Result:
+
+<p>
+
+<h1>This is an H1/chapter heading  <a name="___sec13"></a></h1>
+
+<p>
+
+<h2>This is an H2/section heading  <a name="___sec14"></a></h2>
+
+<p>
+
+<h3>This is an H3/subsection heading  <a name="___sec15"></a></h3>
+
+<p>
+
+<h4>This is an H4/paragraph heading  <a name="___sec16"></a></h4>
+
+<p>
+<b>This is a paragraph heading.</b>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: markup and lists  <a name="___sec17"></a></h2>
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> * Bullet list items start with `*`
+   and may span several lines
+ * *Emphasized words* are possible
+ * _Boldface words_ are also possible
+ * color{red}{colored words} too
+ * `inline verbatim code` is featured
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
+</pre></div>
+<p>
+
+This gets rendered as
+
+<p>
+
+<ul>
+ <p><li> Bullet lists start with <code>*</code>
+   and may span several lines</li>
+ <p><li> <em>Emphasized words</em> are possible</li>
+ <p><li> <b>Boldface words</b> are also possible</li>
+ <p><li> <font color="red">colored words</font> too</li>
+ <p><li> <code>inline verbatim code</code> is featured</li>
+
+<ol>
+  <p><li> and sublists with enumerated items starting with <code>o</code></li>
+  <p><li> items are just indented as you would do in email</li>
+</ol>
+<p>
+
+</ul>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: labels, references, index items  <a name="___sec18"></a></h2>
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"># Insert index items in the source
+idx{key word1} idx{key word2}
+
+# Label
+===== Some section =====
+label{this:section}
+
+# Make reference
+As we saw in Section ref{this:section}, references, index
+items and labels follow a syntax similar to LaTeX
+but without backslashes.
+
+# Make reference to equations
+See \eqref{eq1}-\eqref{myeq}.
+
+# Make hyperlink
+&quot;some link text&quot;: &quot;http://code.google.com/p/doconce/&quot;
+
+# Hyperlink with complete URL as link text
+URL: &quot;http://code.google.com/p/doconce/&quot;
+</pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: figures and movies  <a name="___sec19"></a></h2>
+
+<p>
+<div class="alert alert-block alert-notice"><b>Notice.</b>
+Figure with HTML and LaTeX info, and caption, <em>all on one line</em>:
+</div>
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
+
+# This figure will be 300 pixels wide in HTML and span 1.2 times
+# the linewidth in LaTeX.
+</pre></div>
+<p>
+
+Movies are also supported:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+</pre></div>
+<p>
+and rendered as
+
+<p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/P8VcZzgdfSc" frameborder="0" allowfullscreen></iframe>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Doconce: math  <a name="___sec20"></a></h2>
+
+<p>
+Inline math as in LaTeX:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">...where $a=\int_{\Omega}fdx$ is an integral.
+</pre></div>
+<p>
+gets rendered as ...where \( a=\int_{\Omega}fdx \) is an integral.
+
+<p>
+
+An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags,
+the rest is plain LaTeX:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
+\begin{align}
+\frac{\partial u}{\partial t} &amp;= \nabla^2 u,
+label{a:eq}\\
+\nabla\cdot\pmb{v} &amp; = 0
+label{b:eq}
+\end{align}
+!et
+</pre></div>
+<p>
+which is rendered as
+
+<p>
+$$
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+\label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+\label{b:eq}
+\end{align}
+$$
+
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: displaying code  <a name="___sec21"></a></h2>
+
+<p>
+Code is enclosed in <code>!bc</code> and <code>!ec</code> tags:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
+def solver(I, a, T, dt, theta):
+    &quot;&quot;&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T] with steps of dt.&quot;&quot;&quot;
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+!ec
+</pre></div>
+<p>
+This gets rendered as
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">solver</span>(I, a, T, dt, theta):
+    <span style="color: #BB4444; font-style: italic">&quot;&quot;&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T] with steps of dt.&quot;&quot;&quot;</span>
+    dt <span style="color: #666666">=</span> <span style="color: #AA22FF">float</span>(dt)           <span style="color: #008800; font-style: italic"># avoid integer division</span>
+    N <span style="color: #666666">=</span> <span style="color: #AA22FF">int</span>(<span style="color: #AA22FF">round</span>(T<span style="color: #666666">/</span>dt))     <span style="color: #008800; font-style: italic"># no of time intervals</span>
+    T <span style="color: #666666">=</span> N<span style="color: #666666">*</span>dt                 <span style="color: #008800; font-style: italic"># adjust T to fit time step dt</span>
+    u <span style="color: #666666">=</span> zeros(N<span style="color: #666666">+1</span>)           <span style="color: #008800; font-style: italic"># array of u[n] values</span>
+    t <span style="color: #666666">=</span> linspace(<span style="color: #666666">0</span>, T, N<span style="color: #666666">+1</span>)  <span style="color: #008800; font-style: italic"># time mesh</span>
+
+    u[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> I                 <span style="color: #008800; font-style: italic"># assign initial condition</span>
+    <span style="color: #AA22FF; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #AA22FF">range</span>(<span style="color: #666666">0</span>, N):    <span style="color: #008800; font-style: italic"># n=0,1,...,N-1</span>
+        u[n<span style="color: #666666">+1</span>] <span style="color: #666666">=</span> (<span style="color: #666666">1</span> <span style="color: #666666">-</span> (<span style="color: #666666">1-</span>theta)<span style="color: #666666">*</span>a<span style="color: #666666">*</span>dt)<span style="color: #666666">/</span>(<span style="color: #666666">1</span> <span style="color: #666666">+</span> theta<span style="color: #666666">*</span>dt<span style="color: #666666">*</span>a)<span style="color: #666666">*</span>u[n]
+    <span style="color: #AA22FF; font-weight: bold">return</span> u, t
+</pre></div>
+<p>
+
+!bnotice Language-dependent typesetting of code:
+The <code>!bc</code> command can be followed by a specification of the computer
+language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python
+program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so
+forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).
+!enotice
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: displaying interactive demo code <a name="slide:pot"></a></h2>
+
+<p>
+With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the
+<a href="http://pythontutor.com">Online Python Tutor</a> for displaying
+program flow and state of variables:
+
+<p>
+
+
+<iframe width="950" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=def+solver%28I%2C+a%2C+T%2C+dt%2C+theta%29%3A%0A++++dt+%3D+float%28dt%29%0A++++N+%3D+int%28round%28T%2Fdt%29%29%0A++++T+%3D+N%2Adt%0A++++u+%3D+%5B0.0%5D%2A%28N%2B1%29%0A++++t+%3D+%5Bi%2Adt+for+i+in+range%28N%2B1%29%5D%0A%0A++++u%5B0%5D+%3D+I%0A++++for+n+in+range%280%2C+N%29%3A%0A++++++++u%5Bn%2B1%5D+%3D+%281+-+%281-theta%29%2Aa%2Adt%29%2F%281+%2B+theta%2Adt%2Aa%29%2Au%5Bn%5D%0A++++return+u%2C+t%0A%0Au%2C+t+%3D+solver%28I%3D1%2C+a%3D1%2C+T%3D3%2C+dt%3D1.%2C+theta%3D0.5%29%0Aprint+u&curInstr=0&py=2&cumulative=false">
+</iframe>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: exercises  <a name="___sec23"></a></h2>
+
+<p>
+Doconce offers a special format for <em>exercises</em>, <em>problems</em>, <em>projects</em>,
+and <em>examples</em>:
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">===== Problem: Flip a Coin =====
+label{demo:ex:1}
+
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$ times.
+
+<div class="alert alert-block alert-hint"><b>Hint.</b>
+Use `r = random.random()` and define head as `r &lt;= 0.5`.
+</div>
+!esubex
+
+!bsubex
+Compute the probability of getting heads.
+
+!bans
+A short answer: 0.5.
+!eans
+
+!bsol
+A full solution to this subexercise can go here.
+!esol
+!esubex
+
+!bsubex
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+!esubex
+</pre></div>
+<p>
+
+Solutions/answers can easily be left out of the document.
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Doconce: exercises  <a name="___sec24"></a></h2>
+
+<p>
+Last page gets rendered as follows:
+
+<p>
+
+<!-- --- begin exercise --- -->
+
+<p>
+
+<h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
+<!-- keywords = random numbers; Monte Carlo simulation -->
+
+<p>
+
+<b>a)</b>
+Make a program that simulates flipping a coin \( N \) times.
+
+<p>
+<!-- --- begin hint in exercise --- -->
+
+<p>
+<b>Hint.</b>
+Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
+<!-- --- end hint in exercise --- -->
+
+<p>
+<b>b)</b>
+Compute the probability of getting heads.
+
+<p>
+
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+A short answer: 0.5.
+<!-- --- end answer of exercise --- -->
+
+<p>
+
+<!-- --- begin solution of exercise --- -->
+<b>Solution.</b>
+A full solution to this subexercise can go here.
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>c)</b>
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+
+<p>
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
+<!-- solution files: mysol.txt, mysol_flip_coin.py -->
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: example on slide code  <a name="___sec26"></a></h2>
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!split
+======= Headline =======
+
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+
+FIGURE: [../doc/slides/fig/teacher1, width=100]
+
+Key equation:
+
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+
+And maybe a final comment?
+
+!split
+======= Next slide... =======
+</pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: example on slide code  <a name="___sec27"></a></h2>
+
+<p>
+Last page gets rendered to
+
+<p>
+
+<h2>Headline  <a name="___sec28"></a></h2>
+
+<p>
+
+<ul>
+ <p><li> Key point 1</li>
+ <p><li> Key point 2</li>
+</ul>
+<p>
+
+<center><p><img src="../doc/slides/fig/teacher1.gif" align="bottom" width=100></p></center>
+
+<p>
+Key equation:
+
+<p>
+$$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
+
+
+<p>
+And maybe a final comment?
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Doconce: example on slide code with cells  <a name="___sec29"></a></h2>
+
+<p>
+One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code>
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+
+<p>
+
+
+<!-- code=text typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!split
+======= Headline =======
+
+!bslidecell 00
+!bpop
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+!epop
+
+!bpop
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+!epop
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
+!eslidecell
+
+!split
+======= Next slide... =======
+</pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Doconce: example on slide code  <a name="___sec30"></a></h2>
+
+<p>
+Last page gets rendered to
+
+<p>
+
+<h2>Headline  <a name="___sec31"></a></h2>
+
+<p>
+
+<table border="0">
+<tr>
+<td class="padding">
+
+
+<ul>
+ <p><li class="fragment"> Key point 1</li>
+ <p><li class="fragment"> Key point 2</li>
+ <p><li class="fragment"> Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes</li>
+</ul>
+<p>
+
+
+
+<p>
+
+<p class="fragment">
+
+$$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
+
+
+</p>
+
+
+<p>
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/broken_pen_and_paper.jpg" align="bottom" width=400></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+
+
+
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+
+
+</body>
+</html>
+
+************** File: slides2.p.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
+% #endif
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer_collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
+
+\listfiles               % print all files needed to compile this document
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for mobile devices
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},           % inner margin (two sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{ptex2tex}
+
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
+% #ifdef PALATINO
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
+% #endif
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
+\usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
+% Admonition environment for "hint"
+% #if ADMON == "colors"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
+
+% Admonition environment for "notice"
+% #if ADMON == "colors"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
+
+% Admonition environment for "summary"
+% #if ADMON == "colors"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
+
+% Admonition environment for "warning"
+% #if ADMON == "colors"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
+
+% Admonition environment for "question"
+% #if ADMON == "colors"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
+
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% #endif
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+% #if LATEX_HEADING == "traditional"
+\title{Test slide features}
+
+% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Test slide features
+\end{spacing}
+}}}
+
+% #elif LATEX_HEADING == "Springer_collection"
+\title*{Test slide features}
+% Short version of title:
+%\titlerunning{...}
+
+% #elif LATEX_HEADING == "beamer"
+\title{Test slide features}
+% #else
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Test slide features
+\end{spacing}
+}
+\end{center}
+% #endif
+
+% ----------------- author(s) -------------------------
+% #if LATEX_HEADING == "traditional"
+\author{Core Dump\footnote{Cyber Space Ltd.}}
+
+% #elif LATEX_HEADING == "titlepage"
+\vspace{1.3cm}
+
+{\Large\textsf{Core Dump}}\\ [3mm]
+
+\ \\ [2mm]
+
+{\large\textsf{Cyber Space Ltd} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer_collection"
+
+\author{Core Dump}
+% Short version of authors:
+%\authorrunning{...}
+\institute{Core Dump\at Cyber Space Ltd}
+
+% #elif LATEX_HEADING == "beamer"
+\author{Core Dump\inst{1}}
+\institute{Cyber Space Ltd\inst{1}}
+% #else
+
+\begin{center}
+{\bf Core Dump}
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small Cyber Space Ltd}}
+\end{center}
+% #endif
+% ----------------- end author(s) -------------------------
+
+
+% #if LATEX_HEADING == "traditional"
+\date{Jan 32, 2100}
+\maketitle
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
+% #elif LATEX_HEADING == "titlepage"
+
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
+
+\end{center}
+\vfill
+\clearpage
+
+% #else
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+% #endif
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.5\linewidth]{../doc/slides/fig/doconce1b.png}}
+\end{center}
+
+
+% !split
+\section{Scientific writing for the future needs to address many new media}
+
+% !bslidecell 00 0.4
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.8\linewidth]{../doc/slides/fig/ipad.png}}
+\end{center}
+
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.3\linewidth]{../doc/slides/fig/iphones.jpg}}
+\end{center}
+
+
+% FIGURE: [../doc/slides/fig/mbair, width=400]
+
+% !eslidecell
+
+% !bslidecell 01 0.6
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.7\linewidth]{../doc/slides/fig/imac.png}}
+\end{center}
+
+% !eslidecell
+
+% !split
+\section{The book will probably survive}
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/oldbooks.jpg}}
+\end{center}
+
+
+% !split
+\section{The classical report will survive}
+
+% !bslidecell 00
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=1.2\linewidth]{../doc/slides/fig/latex_thesis.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !bslidecell 01
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=1.2\linewidth]{../doc/slides/fig/latex_paper1.png}}
+\end{center}
+
+% !eslidecell
+
+% !split
+\section{Scope}
+
+% * Scientific writing = lecture notes, slides, reports, thesis, books,  ...
+% * (Journal papers typeset by journals are out of scope)
+
+% !bpop
+\begin{itemize}
+  \item Scope: documents with \textcolor{red}{much} \emph{math} and \emph{computer code}
+
+  \item Key question: What tools should I use for writing?
+
+  \item Default answer: {\LaTeX}
+
+  \item Alternative: MS Word w/math
+
+  \item Recent popular alternative tools: HTML w/MathJax,
+    Sphinx, Markdown, MediaWiki, IPython notebook
+\end{itemize}
+
+\noindent
+% !epop
+
+% !bslidecell 00 0.25
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.3\linewidth]{../doc/slides/fig/LaTeX_logo.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !bslidecell 01 0.25
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.2\linewidth]{../doc/slides/fig/MS_Word_logo.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !bslidecell 02 0.5
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.4\linewidth]{../doc/slides/fig/sphinx_logo.png}}
+\end{center}
+
+% !eslidecell
+
+% !bslidecell 10 0.25
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.2\linewidth]{../doc/slides/fig/markdown_logo.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !bslidecell 11 0.25
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.2\linewidth]{../doc/slides/fig/MediaWiki_logo.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !bslidecell 12 0.5
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.6\linewidth]{../doc/slides/fig/IPython_logo.png}}
+\end{center}
+
+% !eslidecell
+
+
+% !split
+\section{Scientific writing for the future needs to address many new media}
+
+% Insert links here to reports
+
+% !bslidecell 00
+Old days (1985-2005): {\LaTeX} for BW paper output, but now
+
+\begin{enumerate}
+  \item BW books
+
+  \item Colorful PDF books (printed and screen)
+
+  \item Designed web pages
+
+  \item Wikis
+
+  \item Bloggs
+
+  \item Next new fancy format (iBook w/{\LaTeX}?)
+\end{enumerate}
+
+\noindent
+% !eslidecell
+
+% !bslidecell 01
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/jungle_with_mess.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !split
+
+\section{Fundamental question}
+
+When I write some scientific material,
+
+\begin{itemize}
+ \item a {\LaTeX} document,
+
+ \item a blogg (HTML),
+
+ \item some web pages (HTML),
+
+ \item a Sphinx document,
+
+ \item some Markdown files,
+\end{itemize}
+
+\noindent
+and later want to collect the pieces into a larger document, maybe
+some book, or one big web document, is that at all feasible?
+
+% !bpop highlight-red
+Probably not, but I have a solution :-)
+% !epop
+
+% !split
+
+\section{{\LaTeX} is very rich; other tools support only some elements}
+
+\begin{itemize}
+ \item {\LaTeX} inline math: works with all ({\LaTeX}, MathJax, Sphinx, Markdown, MediaWiki)
+
+ \item {\LaTeX} equation math:
+\begin{itemize}
+
+    \item \textbf{LaTeX}: \code{equation*}, \code{equation}, \code{align*}, \code{align} +
+      \code{eqnarray}, \code{split}, \code{alignat}, ... (numerous!)
+
+    \item \textbf{MathJax}: \code{equation*}, \code{equation}, \code{align*}, \code{align}
+
+    \item \textbf{MediaWiki}: \code{equation*}, \code{equation}, \code{align*}, \code{align}
+
+    \item \textbf{Sphinx}: \code{equation*}, \code{equation}, \code{align*}
+
+    \item \textbf{Markdown}: \code{equation*}, \code{equation}, \code{eqnarray*}, \code{align*} (but no labels)
+\end{itemize}
+
+\noindent
+\end{itemize}
+
+\noindent
+% !split
+\section{{\LaTeX} is very rich; other tools support only some elements}
+
+% !bpop
+\begin{itemize}
+ \item Figures: all
+
+ \item Subfigures: {\LaTeX} (\code{subfigure})
+
+ \item Movies: {\LaTeX} (can run separately), just raw embedded HTML in others
+
+ \item Floating computer code: {\LaTeX}
+
+ \item Fixed computer code: all
+
+ \item Floating tables: {\LaTeX}; inline tables: all
+
+ \item Algorithms: {\LaTeX}
+
+ \item Margin notes: {\LaTeX}
+
+ \item Page references: {\LaTeX}
+
+ \item Footnotes: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
+ \item Bibliography: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
+ \item Hyperlinks: all (but not on paper!)
+\end{itemize}
+
+\noindent
+% !epop
+
+% !bpop
+Conclusion: Highly non-trivial to translate a {\LaTeX} document into something
+based on HTML and vice versa.
+% !epop
+
+
+% !split
+\section{Doconce demo}
+
+\href{{http://hplgit.github.com/teamods/writing_reports/}}{\nolinkurl{http://hplgit.github.com/teamods/writing_reports/}}
+
+\begin{itemize}
+ \item LaTeX-based PDF \href{{http://hplgit.github.com/teamods/writing_reports/_static/report.pdf}}{for screen}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf}}{for printing}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf}}{for phone}
+
+ \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_do.html}}{Plain HTML} or with a \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html}}{template} or \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html}}{another template} or \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html}}{solarized}
+
+ \item Sphinx: \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html}}{agni}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html}}{pyramid}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html}}{classy}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{fenics}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{redcloud}
+
+ \item HTML for \href{{http://doconce-report-demo.blogspot.no/}}{Google} or \href{{http://doconcereportdemo.wordpress.com/}}{Wordpress} blogs
+
+ \item \href{{http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page}}{MediaWiki} (Wikipedia, Wikibooks, etc)
+
+ \item Doconce \href{{http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html}}{source code} and \href{{http://code.google.com/p/doconce/wiki/Tutorial}}{tutorial}
+\end{itemize}
+
+\noindent
+% !split
+
+% latex interprets 9 = as chapter and then needs book style...
+\section{A tour of Doconce}
+
+% !split
+\section{Doconce: title, authors, date, toc}
+
+\bccq
+TITLE: Some Title
+AUTHOR: name1 at institution1, with more info, and institution2
+AUTHOR: name2 email:name2@web.com at institution
+DATE: today
+
+# A table of contents is optional:
+TOC: on
+\eccq
+
+
+% #if ADMON == "colors"
+\begin{noticeadmon}[Notice]
+Title and authors must have all information \emph{on a single line}!
+\end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Notice.]
+Title and authors must have all information \emph{on a single line}!
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Notice.]
+Title and authors must have all information \emph{on a single line}!
+\end{noticeadmon}
+% #endif
+% !split
+\section{Doconce: abstract}
+
+\bccq
+__Abstract.__
+Here goes the abstract...
+\eccq
+
+Or:
+\bccq
+__Summary.__
+Here goes the summary...
+\eccq
+
+
+% !split
+\section{Doconce: section headings}
+
+Headings are surrounded by \code{=} signs:
+\bccq
+========= This is an H1/chapter heading =========
+
+======= This is an H2/section heading =======
+
+===== This is an H3/subsection heading =====
+
+=== This is an H4/paragraph heading ===
+
+__This is a paragraph heading.__
+\eccq
+
+Result:
+
+\chapter{This is an H1/chapter heading}
+
+\section{This is an H2/section heading}
+
+\subsection{This is an H3/subsection heading}
+
+\paragraph{This is an H4/paragraph heading.}
+\paragraph{This is a paragraph heading.}
+% !split
+\section{Doconce: markup and lists}
+
+\bccq
+ * Bullet list items start with `*`
+   and may span several lines
+ * *Emphasized words* are possible
+ * _Boldface words_ are also possible
+ * color{red}{colored words} too
+ * `inline verbatim code` is featured
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
+\eccq
+
+This gets rendered as
+
+\begin{itemize}
+ \item Bullet lists start with \code{*}
+   and may span several lines
+
+ \item \emph{Emphasized words} are possible
+
+ \item \textbf{Boldface words} are also possible
+
+ \item \textcolor{red}{colored words} too
+
+ \item \code{inline verbatim code} is featured
+\begin{enumerate}
+
+  \item and sublists with enumerated items starting with \code{o}
+
+  \item items are just indented as you would do in email
+\end{enumerate}
+
+\noindent
+\end{itemize}
+
+\noindent
+% !split
+\section{Doconce: labels, references, index items}
+
+\bccq
+# Insert index items in the source
+idx{key word1} idx{key word2}
+
+# Label
+===== Some section =====
+label{this:section}
+
+# Make reference
+As we saw in Section ref{this:section}, references, index
+items and labels follow a syntax similar to LaTeX
+but without backslashes.
+
+# Make reference to equations
+See (ref{eq1})-(ref{myeq}).
+
+# Make hyperlink
+"some link text": "http://code.google.com/p/doconce/"
+
+# Hyperlink with complete URL as link text
+URL: "http://code.google.com/p/doconce/"
+\eccq
+
+% !split
+\section{Doconce: figures and movies}
+
+
+% #if ADMON == "colors"
+\begin{noticeadmon}[Notice]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Notice.]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Notice.]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{noticeadmon}
+% #endif
+\bccq
+FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
+
+# This figure will be 300 pixels wide in HTML and span 1.2 times
+# the linewidth in LaTeX.
+\eccq
+
+Movies are also supported:
+
+\bccq
+MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+\eccq
+and rendered as
+
+ \href{{http://www.youtube.com/watch?v=P8VcZzgdfSc}}{\nolinkurl{http://www.youtube.com/watch?v=P8VcZzgdfSc}}
+
+% !split
+\section{Doconce: math}
+
+Inline math as in {\LaTeX}:
+
+\bccq
+...where $a=\int_{\Omega}fdx$ is an integral.
+\eccq
+gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
+
+
+An equation environment is surrounded by \code{!bt} and \code{!et} tags,
+the rest is plain {\LaTeX}:
+
+\bccq
+!bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+label{b:eq}
+\end{align}
+!et
+\eccq
+which is rendered as
+
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+\label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+\label{b:eq}
+\end{align}
+
+
+% !split
+\section{Doconce: displaying code}
+
+Code is enclosed in \code{!bc} and \code{!ec} tags:
+
+\bccq
+!bc pycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+!ec
+\eccq
+This gets rendered as
+
+\bpycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+\epycod
+
+!bnotice Language-dependent typesetting of code:
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+!enotice
+
+
+% !split
+\section{Doconce: displaying interactive demo code}
+\label{slide:pot}
+
+With \code{!bc pyoptpro} or a file \code{*.pyopt}, the code applies the
+\href{{http://pythontutor.com}}{Online Python Tutor} for displaying
+program flow and state of variables:
+
+\bpypro
+def solver(I, a, T, dt, theta):
+    dt = float(dt)
+    N = int(round(T/dt))
+    T = N*dt
+    u = [0.0]*(N+1)
+    t = [i*dt for i in range(N+1)]
+
+    u[0] = I
+    for n in range(0, N):
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+
+u, t = solver(I=1, a=1, T=3, dt=1., theta=0.5)
+print u
+\epypro
+\noindent
+(\href{{http://pythontutor.com/visualize.html\#code=def+solver\%28I\%2C+a\%2C+T\%2C+dt\%2C+theta\%29\%3A\%0A++++dt+\%3D+float\%28dt\%29\%0A++++N+\%3D+int\%28round\%28T\%2Fdt\%29\%29\%0A++++T+\%3D+N\%2Adt\%0A++++u+\%3D+\%5B0.0\%5D\%2A\%28N\%2B1\%29\%0A++++t+\%3D+\%5Bi\%2Adt+for+i+in+range\%28N\%2B1\%29\%5D\%0A\%0A++++u\%5B0\%5D+\%3D+I\%0A++++for+n+in+range\%280\%2C+N\%29\%3A\%0A++++++++u\%5Bn\%2B1\%5D+\%3D+\%281+-+\%281-theta\%29\%2Aa\%2Adt\%29\%2F\%281+\%2B+theta\%2Adt\%2Aa\%29\%2Au\%5Bn\%5D\%0A++++return+u\%2C+t\%0A\%0Au\%2C+t+\%3D+solver\%28I\%3D1\%2C+a\%3D1\%2C+T\%3D3\%2C+dt\%3D1.\%2C+theta\%3D0.5\%29\%0Aprint+u&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
+
+
+
+% !split
+\section{Doconce: exercises}
+
+Doconce offers a special format for \emph{exercises}, \emph{problems}, \emph{projects},
+and \emph{examples}:
+
+\bccq
+===== Problem: Flip a Coin =====
+label{demo:ex:1}
+
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$ times.
+
+
+% #if ADMON == "colors"
+\begin{hintadmon}[Hint]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hintadmon}
+% #elif ADMON == "paragraph"
+\begin{hintadmon}[Hint.]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hintadmon}
+% #else
+\begin{hintadmon}[Hint.]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hintadmon}
+% #endif
+!esubex
+
+!bsubex
+Compute the probability of getting heads.
+
+!bans
+A short answer: 0.5.
+!eans
+
+!bsol
+A full solution to this subexercise can go here.
+!esol
+!esubex
+
+!bsubex
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+!esubex
+\eccq
+
+Solutions/answers can easily be left out of the document.
+
+% !split
+\section{Doconce: exercises}
+
+Last page gets rendered as follows:
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Problem 1: Flip a Coin}
+\label{demo:ex:1}
+% keywords = random numbers; Monte Carlo simulation
+
+
+\paragraph{a)}
+Make a program that simulates flipping a coin $N$ times.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+Use \code{r = random.random()} and define head as \code{r <= 0.5}.
+% --- end hint in exercise ---
+
+\paragraph{b)}
+Compute the probability of getting heads.
+
+
+% --- begin answer of exercise ---
+\paragraph{Answer.}
+A short answer: 0.5.
+% --- end answer of exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+A full solution to this subexercise can go here.
+% --- end solution of exercise ---
+
+\paragraph{c)}
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+
+Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
+% solution files: mysol.txt, mysol_flip_coin.py
+
+\end{exercise}
+% --- end exercise ---
+
+
+% !split
+\section{Doconce: example on slide code}
+
+\bccq
+!split
+======= Headline =======
+
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+
+FIGURE: [../doc/slides/fig/teacher1, width=100]
+
+Key equation:
+
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+
+And maybe a final comment?
+
+!split
+======= Next slide... =======
+\eccq
+
+% !split
+\section{Doconce: example on slide code}
+
+Last page gets rendered to
+
+\section{Headline}
+
+\begin{itemize}
+ \item Key point 1
+
+ \item Key point 2
+\end{itemize}
+
+\noindent
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.4\linewidth]{../doc/slides/fig/teacher1.pdf}}
+\end{center}
+
+
+Key equation:
+
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+
+And maybe a final comment?
+
+% !split
+\section{Doconce: example on slide code with cells}
+
+One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by \code{!bslidecell MN} and \code{!eslidecell}
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+
+\bccq
+!split
+======= Headline =======
+
+!bslidecell 00
+!bpop
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+!epop
+
+!bpop
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+!epop
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
+!eslidecell
+
+!split
+======= Next slide... =======
+\eccq
+
+% !split
+\section{Doconce: example on slide code}
+
+Last page gets rendered to
+
+\section{Headline}
+
+% !bslidecell 00
+% !bpop
+\begin{itemize}
+ \item Key point 1
+
+ \item Key point 2
+
+ \item Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+\end{itemize}
+
+\noindent
+% !epop
+
+% !bpop
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+% !epop
+
+% !eslidecell
+
+% !bslidecell 01
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/broken_pen_and_paper.jpg}}
+\end{center}
+
+% !eslidecell
+
+% ------------------- end of main content ---------------
+
+
+% #ifdef PREAMBLE
+\printindex
+
+\end{document}
+% #endif
+
+
+************** File: slides2.tex *****************
+
+% LaTeX Beamer file automatically generated from Doconce
+% http://code.google.com/p/doconce
+
+%-------------------- begin preamble ----------------------
+
+\documentclass{beamer}
+
+\usetheme{default}
+\usecolortheme{default}
+
+% turn off the almost invisible, yet disturbing, navigation symbols:
+\setbeamertemplate{navigation symbols}{}
+
+% Examples on customization:
+%\usecolortheme[named=RawSienna]{structure}
+%\usetheme[height=7mm]{Rochester}
+%\setbeamerfont{frametitle}{family=\rmfamily,shape=\itshape}
+%\setbeamertemplate{items}[ball]
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+%\useoutertheme{infolines}
+%
+%\usefonttheme{}
+%\useinntertheme{}
+%
+%\setbeameroption{show notes}
+%\setbeameroption{show notes on second screen=right}
+
+% fine for B/W printing:
+%\usecolortheme{seahorse}
+
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{minted} % requires pygments and latex -shell-escape filename
+\usepackage{fancyvrb,relsize}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{colortbl}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usepackage{framed,anslistings}
+% Use some nice templates
+\beamertemplatetransparentcovereddynamic
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
+\newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
+
+\newenvironment{hintadmon}[1][Hint]{\begin{block}{#1}}{\end{block}}
+\newenvironment{noticeadmon}[1][Notice]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summaryadmon}[1][Summary]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warningadmon}[1][Warning]{\begin{block}{#1}}{\end{block}}
+\newenvironment{questionadmon}[1][Question]{\begin{block}{#1}}{\end{block}}
+\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\title{Test slide features}
+
+% ----------------- author(s) -------------------------
+\author{Core Dump\inst{1}}
+\institute{Cyber Space Ltd\inst{1}}
+% ----------------- end author(s) -------------------------
+
+
+\date{Jan 32, 2100
+\\ \ \\ 
+\centerline{\includegraphics[width=0.5\linewidth]{../doc/slides/fig/doconce1b.png}}
+}
+
+
+
+
+\begin{frame}[plain,fragile]
+\titlepage
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Scientific writing for the future needs to address many new media}
+
+\begin{columns}
+\column{0.4\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.8\linewidth]{../doc/slides/fig/ipad.png}}
+\end{center}
+
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.3\linewidth]{../doc/slides/fig/iphones.jpg}}
+\end{center}
+
+
+% FIGURE: [../doc/slides/fig/mbair, width=400]
+
+
+\column{0.6\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.7\linewidth]{../doc/slides/fig/imac.png}}
+\end{center}
+
+
+\end{columns}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{The book will probably survive}
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/oldbooks.jpg}}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{The classical report will survive}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=1.2\linewidth]{../doc/slides/fig/latex_thesis.jpg}}
+\end{center}
+
+
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=1.2\linewidth]{../doc/slides/fig/latex_paper1.png}}
+\end{center}
+
+
+\end{columns}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Scope}
+
+% * Scientific writing = lecture notes, slides, reports, thesis, books,  ...
+% * (Journal papers typeset by journals are out of scope)
+
+\begin{itemize}
+  \item<1-> Scope: documents with \textcolor{red}{much} \emph{math} and \emph{computer code}
+
+  \item<2-> Key question: What tools should I use for writing?
+
+  \item<3-> Default answer: {\LaTeX}
+
+  \item<4-> Alternative: MS Word w/math
+
+  \item<5-> Recent popular alternative tools: HTML w/MathJax,
+    Sphinx, Markdown, MediaWiki, IPython notebook
+\end{itemize}
+
+\noindent
+
+\begin{columns}
+\column{0.25\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.3\linewidth]{../doc/slides/fig/LaTeX_logo.jpg}}
+\end{center}
+
+
+\column{0.25\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.2\linewidth]{../doc/slides/fig/MS_Word_logo.jpg}}
+\end{center}
+
+
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.4\linewidth]{../doc/slides/fig/sphinx_logo.png}}
+\end{center}
+
+
+\end{columns}
+\begin{columns}
+\column{0.25\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.2\linewidth]{../doc/slides/fig/markdown_logo.jpg}}
+\end{center}
+
+
+\column{0.25\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.2\linewidth]{../doc/slides/fig/MediaWiki_logo.jpg}}
+\end{center}
+
+
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.6\linewidth]{../doc/slides/fig/IPython_logo.png}}
+\end{center}
+
+
+\end{columns}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Scientific writing for the future needs to address many new media}
+
+% Insert links here to reports
+
+\begin{columns}
+\column{0.5\textwidth}
+Old days (1985-2005): {\LaTeX} for BW paper output, but now
+
+\begin{enumerate}
+  \item BW books
+
+  \item Colorful PDF books (printed and screen)
+
+  \item Designed web pages
+
+  \item Wikis
+
+  \item Bloggs
+
+  \item Next new fancy format (iBook w/{\LaTeX}?)
+\end{enumerate}
+
+\noindent
+
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/jungle_with_mess.jpg}}
+\end{center}
+
+
+\end{columns}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Fundamental question}
+
+When I write some scientific material,
+
+\begin{itemize}
+ \item a {\LaTeX} document,
+
+ \item a blogg (HTML),
+
+ \item some web pages (HTML),
+
+ \item a Sphinx document,
+
+ \item some Markdown files,
+\end{itemize}
+
+\noindent
+and later want to collect the pieces into a larger document, maybe
+some book, or one big web document, is that at all feasible?
+
+
+\pause
+\begin{block}{}
+Probably not, but I have a solution :-)
+\end{block}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{{\LaTeX}
+
+is very rich; other tools support only some elements}
+
+\begin{itemize}
+ \item {\LaTeX} inline math: works with all ({\LaTeX}, MathJax, Sphinx, Markdown, MediaWiki)
+
+ \item {\LaTeX} equation math:
+\begin{itemize}
+
+    \item \textbf{LaTeX}: \Verb!equation*!, \Verb!equation!, \Verb!align*!, \Verb!align! +
+      \Verb!eqnarray!, \Verb!split!, \Verb!alignat!, ... (numerous!)
+
+    \item \textbf{MathJax}: \Verb!equation*!, \Verb!equation!, \Verb!align*!, \Verb!align!
+
+    \item \textbf{MediaWiki}: \Verb!equation*!, \Verb!equation!, \Verb!align*!, \Verb!align!
+
+    \item \textbf{Sphinx}: \Verb!equation*!, \Verb!equation!, \Verb!align*!
+
+    \item \textbf{Markdown}: \Verb!equation*!, \Verb!equation!, \Verb!eqnarray*!, \Verb!align*! (but no labels)
+\end{itemize}
+
+\noindent
+\end{itemize}
+
+\noindent
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{{\LaTeX}
+
+is very rich; other tools support only some elements}
+
+
+\pause
+\begin{block}{}
+\begin{itemize}
+ \item Figures: all
+
+ \item Subfigures: {\LaTeX} (\Verb!subfigure!)
+
+ \item Movies: {\LaTeX} (can run separately), just raw embedded HTML in others
+
+ \item Floating computer code: {\LaTeX}
+
+ \item Fixed computer code: all
+
+ \item Floating tables: {\LaTeX}; inline tables: all
+
+ \item Algorithms: {\LaTeX}
+
+ \item Margin notes: {\LaTeX}
+
+ \item Page references: {\LaTeX}
+
+ \item Footnotes: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
+ \item Bibliography: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
+ \item Hyperlinks: all (but not on paper!)
+\end{itemize}
+
+\noindent
+\end{block}
+
+
+
+\pause
+\begin{block}{}
+Conclusion: Highly non-trivial to translate a {\LaTeX} document into something
+based on HTML and vice versa.
+\end{block}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce demo}
+
+\href{{http://hplgit.github.com/teamods/writing_reports/}}{\nolinkurl{http://hplgit.github.com/teamods/writing_reports/}}
+
+\begin{itemize}
+ \item LaTeX-based PDF \href{{http://hplgit.github.com/teamods/writing_reports/_static/report.pdf}}{for screen}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf}}{for printing}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf}}{for phone}
+
+ \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_do.html}}{Plain HTML} or with a \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html}}{template} or \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html}}{another template} or \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html}}{solarized}
+
+ \item Sphinx: \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html}}{agni}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html}}{pyramid}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html}}{classy}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{fenics}, \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{redcloud}
+
+ \item HTML for \href{{http://doconce-report-demo.blogspot.no/}}{Google} or \href{{http://doconcereportdemo.wordpress.com/}}{Wordpress} blogs
+
+ \item \href{{http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page}}{MediaWiki} (Wikipedia, Wikibooks, etc)
+
+ \item Doconce \href{{http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html}}{source code} and \href{{http://code.google.com/p/doconce/wiki/Tutorial}}{tutorial}
+\end{itemize}
+
+\noindent
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{A tour of Doconce}
+
+% latex interprets 9 = as chapter and then needs book style...
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: title, authors, date, toc}
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+TITLE: Some Title
+AUTHOR: name1 at institution1, with more info, and institution2
+AUTHOR: name2 email:name2@web.com at institution
+DATE: today
+
+# A table of contents is optional:
+TOC: on
+\end{Verbatim}
+
+
+\begin{noticeadmon}[Notice]
+Title and authors must have all information \emph{on a single line}!
+\end{noticeadmon}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: abstract}
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+__Abstract.__
+Here goes the abstract...
+\end{Verbatim}
+
+Or:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+__Summary.__
+Here goes the summary...
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: section headings}
+
+Headings are surrounded by \Verb!=! signs:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+========= This is an H1/chapter heading =========
+
+======= This is an H2/section heading =======
+
+===== This is an H3/subsection heading =====
+
+=== This is an H4/paragraph heading ===
+
+__This is a paragraph heading.__
+\end{Verbatim}
+
+Result:
+
+\noindent\textbf{\huge This is an H1/chapter heading}
+
+\noindent\textbf{\Large This is an H2/section heading}
+
+\noindent\textbf{\large This is an H3/subsection heading}
+
+\noindent\textbf{This is an H4/paragraph heading.}
+\noindent\textbf{This is a paragraph heading.}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: markup and lists}
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+ * Bullet list items start with `*`
+   and may span several lines
+ * *Emphasized words* are possible
+ * _Boldface words_ are also possible
+ * color{red}{colored words} too
+ * `inline verbatim code` is featured
+   o and sublists with enumerated items starting with `o`
+   o items are just indented as you would do in email
+\end{Verbatim}
+
+This gets rendered as
+
+\begin{itemize}
+ \item Bullet lists start with \Verb!*!
+   and may span several lines
+
+ \item \emph{Emphasized words} are possible
+
+ \item \textbf{Boldface words} are also possible
+
+ \item \textcolor{red}{colored words} too
+
+ \item \Verb!inline verbatim code! is featured
+\begin{enumerate}
+
+  \item and sublists with enumerated items starting with \Verb!o!
+
+  \item items are just indented as you would do in email
+\end{enumerate}
+
+\noindent
+\end{itemize}
+
+\noindent
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: labels, references, index items}
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+# Insert index items in the source
+idx{key word1} idx{key word2}
+
+# Label
+===== Some section =====
+label{this:section}
+
+# Make reference
+As we saw in Section ref{this:section}, references, index
+items and labels follow a syntax similar to LaTeX
+but without backslashes.
+
+# Make reference to equations
+See (ref{eq1})-(ref{myeq}).
+
+# Make hyperlink
+"some link text": "http://code.google.com/p/doconce/"
+
+# Hyperlink with complete URL as link text
+URL: "http://code.google.com/p/doconce/"
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: figures and movies}
+
+\begin{noticeadmon}[Notice]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{noticeadmon}
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
+
+# This figure will be 300 pixels wide in HTML and span 1.2 times
+# the linewidth in LaTeX.
+\end{Verbatim}
+
+Movies are also supported:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+\end{Verbatim}
+and rendered as
+
+ \href{{http://www.youtube.com/watch?v=P8VcZzgdfSc}}{\nolinkurl{http://www.youtube.com/watch?v=P8VcZzgdfSc}}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: math}
+
+Inline math as in {\LaTeX}:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+...where $a=\int_{\Omega}fdx$ is an integral.
+\end{Verbatim}
+gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
+
+
+An equation environment is surrounded by \Verb!!bt! and \Verb!!et! tags,
+the rest is plain {\LaTeX}:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+!bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+label{b:eq}
+\end{align}
+!et
+\end{Verbatim}
+which is rendered as
+
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+\label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+\label{b:eq}
+\end{align}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: displaying code}
+
+Code is enclosed in \Verb!!bc! and \Verb!!ec! tags:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+!bc pycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+!ec
+\end{Verbatim}
+This gets rendered as
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+\end{minted}
+
+!bnotice Language-dependent typesetting of code:
+The \Verb!!bc! command can be followed by a specification of the computer
+language: \Verb!pycod! for Python code snippet, \Verb!pypro! for complete Python
+program, \Verb!fcod! for Fortran snippet, \Verb!fpro! for Fortran program, and so
+forth (\Verb!c! for C, \Verb!cpp! for C++, \Verb!sh! for Unix shells, \Verb!m! for Matlab).
+!enotice
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: displaying interactive demo code}
+
+\label{slide:pot}
+
+With \Verb!!bc pyoptpro! or a file \Verb!*.pyopt!, the code applies the
+\href{{http://pythontutor.com}}{Online Python Tutor} for displaying
+program flow and state of variables:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def solver(I, a, T, dt, theta):
+    dt = float(dt)
+    N = int(round(T/dt))
+    T = N*dt
+    u = [0.0]*(N+1)
+    t = [i*dt for i in range(N+1)]
+
+    u[0] = I
+    for n in range(0, N):
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+
+u, t = solver(I=1, a=1, T=3, dt=1., theta=0.5)
+print u
+\end{minted}
+\noindent
+(\href{{http://pythontutor.com/visualize.html\#code=def+solver\%28I\%2C+a\%2C+T\%2C+dt\%2C+theta\%29\%3A\%0A++++dt+\%3D+float\%28dt\%29\%0A++++N+\%3D+int\%28round\%28T\%2Fdt\%29\%29\%0A++++T+\%3D+N\%2Adt\%0A++++u+\%3D+\%5B0.0\%5D\%2A\%28N\%2B1\%29\%0A++++t+\%3D+\%5Bi\%2Adt+for+i+in+range\%28N\%2B1\%29\%5D\%0A\%0A++++u\%5B0\%5D+\%3D+I\%0A++++for+n+in+range\%280\%2C+N\%29\%3A\%0A++++++++u\%5Bn\%2B1\%5D+\%3D+\%281+-+\%281-theta\%29\%2Aa\%2Adt\%29\%2F\%281+\%2B+theta\%2Adt\%2Aa\%29\%2Au\%5Bn\%5D\%0A++++return+u\%2C+t\%0A\%0Au\%2C+t+\%3D+solver\%28I\%3D1\%2C+a\%3D1\%2C+T\%3D3\%2C+dt\%3D1.\%2C+theta\%3D0.5\%29\%0Aprint+u&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution})
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: exercises}
+
+Doconce offers a special format for \emph{exercises}, \emph{problems}, \emph{projects},
+and \emph{examples}:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+===== Problem: Flip a Coin =====
+label{demo:ex:1}
+
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$ times.
+
+
+\begin{hintadmon}[Hint]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hintadmon}
+!esubex
+
+!bsubex
+Compute the probability of getting heads.
+
+!bans
+A short answer: 0.5.
+!eans
+
+!bsol
+A full solution to this subexercise can go here.
+!esol
+!esubex
+
+!bsubex
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+!esubex
+\end{Verbatim}
+
+Solutions/answers can easily be left out of the document.
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: exercises}
+
+Last page gets rendered as follows:
+
+
+
+% --- begin exercise ---
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Problem 1: Flip a Coin}
+\label{demo:ex:1}
+% keywords = random numbers; Monte Carlo simulation
+
+
+\noindent\textbf{a)}
+Make a program that simulates flipping a coin $N$ times.
+
+% --- begin hint in exercise ---
+
+\noindent\textbf{Hint.}
+Use \Verb!r = random.random()! and define head as \Verb!r <= 0.5!.
+% --- end hint in exercise ---
+
+\noindent\textbf{b)}
+Compute the probability of getting heads.
+
+
+% --- begin answer of exercise ---
+\noindent\textbf{Answer.}
+A short answer: 0.5.
+% --- end answer of exercise ---
+
+
+% --- begin solution of exercise ---
+\noindent\textbf{Solution.}
+A full solution to this subexercise can go here.
+% --- end solution of exercise ---
+
+\noindent\textbf{c)}
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+
+Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
+% solution files: mysol.txt, mysol_flip_coin.py
+
+\end{exercise}
+% --- end exercise ---
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: example on slide code}
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+!split
+======= Headline =======
+
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+
+FIGURE: [../doc/slides/fig/teacher1, width=100]
+
+Key equation:
+
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+
+And maybe a final comment?
+
+!split
+======= Next slide... =======
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: example on slide code}
+
+Last page gets rendered to
+
+\noindent\textbf{\Large Headline}
+
+\begin{itemize}
+ \item Key point 1
+
+ \item Key point 2
+\end{itemize}
+
+\noindent
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.4\linewidth]{../doc/slides/fig/teacher1.pdf}}
+\end{center}
+
+
+Key equation:
+
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+
+And maybe a final comment?
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: example on slide code with cells}
+
+One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by \Verb!!bslidecell MN! and \Verb!!eslidecell!
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+!split
+======= Headline =======
+
+!bslidecell 00
+!bpop
+ * Key point 1
+ * Key point 2
+ * Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+!epop
+
+!bpop
+!bt
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+!et
+!epop
+
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
+!eslidecell
+
+!split
+======= Next slide... =======
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Doconce: example on slide code}
+
+Last page gets rendered to
+
+\noindent\textbf{\Large Headline}
+
+\begin{columns}
+\column{0.5\textwidth}
+
+\pause
+\begin{block}{}
+\begin{itemize}
+ \item Key point 1
+
+ \item Key point 2
+
+ \item Key point 3 takes very much more text to explain because
+   this point is really comprehensive, and although long
+   bullet points are not recommended in general, we need
+   it here for demonstration purposes
+\end{itemize}
+
+\noindent
+\end{block}
+
+
+
+\pause
+\begin{block}{}
+\[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
+\end{block}
+
+
+
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/broken_pen_and_paper.jpg}}
+\end{center}
+
+
+\end{columns}
+\end{frame}
+
+\end{document}
+
+************** File: slides3.do.txt *****************
+TITLE: On Schemes for Exponential Decay
+AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
+DATE: today
+
+FIGURE: [../doc/slides/fig/CN_logo, width=300 frac=0.4]
+
+## Comments start with a # and are visible as comments in the
+## output. Lines starting with ## are also comments, but not visible
+## in the output.
+
+!split
+
+## Headings have 5 = for h3/subsection and 7 = for h1/section
+======= Goal =======
+
+The primary goal of this demo talk is to demonstrate how to write
+talks with "doconce": "http://code.google.com/p/doconce"
+and get them rendered in numerous HTML formats.
+# #if FORMAT in ("html", "pdflatex", "latex")
+!bnotice Layout
+This version
+utilizes ${SLIDE_TYPE} slides with the theme ${SLIDE_THEME}.
+!enotice
+# #endif
+
+## Demonstrate use of Mako variables set on the command line
+## (see last sentence too). We use Preprocess (run before Mako)
+## to leave out the Mako test on SLIDE_THEME and SLIDE_TYPE.
+## In that way, we do not need to specify these variables on
+## the command line when compiling for LaTeX or other formats
+## (e.g. for handouts).
+
+# #if FORMAT == "html"
+!bnotice
+Speaker notes show up by
+% if SLIDE_TYPE == 'reveal':
+pressing "s".
+% elif SLIDE_TYPE == 'deck':
+pressing "n".
+% elif SLIDE_TYPE == 'csss':
+pressing "Ctrl-P".
+% elif SLIDE_TYPE == 'html5slides':
+pressing "p".
+% elif SLIDE_TYPE == 'csss':
+using the "onstage.html": "https://doconce.googlecode.com/hg/bundled/dzslides/shells/onstage.html" embedding page.
+% endif
+!enotice
+# #endif
+
+## Add speaker notes (can also use preprocess or mako for this)
+
+!bnotes
+The talk investigates the accuracy of three finite difference
+schemes for the ordinary differential equation $u'=-au$ with the
+aid of numerical experiments. Numerical artifacts are in particular
+demonstrated.
+!enotes
+
+## New slide is indicated by !split at the beginning of a line:
+
+!split
+======= Mathematical problem =======
+
+## Use !bslidecell XY and !eslidecell as begin and end for
+## defining a cell XY in a table layout of the slide.
+## X=0,1,..., Y=0,1,... XY=00 is the upper left cell.
+## Here we define cell 00 and 01 (bullet list to the left
+## and figure to the right).
+
+!bslidecell 00
+
+## latex blocks are surrounded by !bt and !et
+
+!bt
+\begin{align}
+u'(t) &= -au(t),
+label{ode}\\
+u(0)  &= I,
+label{initial:value}
+\end{align}
+!et
+
+ * $t\in (0,T]$
+ * $a$, $I$, and $T$ are prescribed parameters
+ * $u(t)$ is the unknown function
+
+!eslidecell
+
+## Figures can have a width parameter specifying the pixel
+## width in HTML. A caption can be added (after [...]).
+
+!bslidecell 01
+FIGURE: [../doc/slides/fig/teacher2, width=250 frac=0.5]
+!eslidecell
+
+!split
+======= Numerical solution method =======
+
+## !bpop and !epop surround elements that are to pop up
+## as we progress in the slide show.
+## They will often not work if there is code inside.
+
+!bpop
+ * Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
+ * Assume constant $\Delta t = t_{n}-t_{n-1}$
+ * $u^n$: numerical approx to the exact solution at $t_n$
+!epop
+
+!bpop
+Numerical scheme:
+!bt
+   \[
+   u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
+   \quad n=0,1,\ldots,N-1
+   \]
+!et
+!epop
+
+# #if FORMAT == "html"
+
+!split
+## Next: embed YouTube video
+
+===== Forward Euler explained =====
+
+MOVIE: [http://youtu.be/PtJrPEIHNJw, width=640 height=480]
+
+# #endif
+
+!split
+## Next: exemplify copying code directly from file (start
+## with the line matching "def solver" and ending with
+## "def verify_three", but not including this last line).
+
+======= Implementation =======
+
+The numerical method is implemented in a Python function:
+
+@@@CODE ../doc/slides/src/dc_mod.py  fromto: def solver@def verify_three
+
+!split
+===== The Crank-Nicolson method =====
+
+## Figure filenames do not need extension - the right version is picked
+
+FIGURE: [../doc/slides/fig/CN, width=600]
+
+!split
+===== The artifacts can be explained by some theory =====
+
+!bpop
+Exact solution of the scheme:
+
+!bt
+\[ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .\]
+!et
+!epop
+
+!bpop
+ * Stability: $|A| < 1$
+ * No oscillations: $A>0$
+ * Always for Backward Euler ($\theta=1$)
+ * $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
+ * $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
+!epop
+
+## The summary environment appears in a box in most formats
+## (warning, notice, hint, question are other environments)
+!bpop
+!bsummary Concluding remarks:
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+!esummary
+!epop
+
+
+************** File: slides3_reveal.html *****************
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Automatically translated from Doconce source.
+    http://code.google.com/p/doconce
+-->
+
+<head>
+<meta charset="utf-8">
+
+<title></title>
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+-->
+
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>On Schemes for Exponential Decay</title>
+
+<center><h1>On Schemes for Exponential Decay</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Hans Petter Langtangen -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+<center><p><img src="../doc/slides/fig/CN_logo.png" align="bottom" width=300></p></center>
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<p>
+
+<h2>Goal  <a name="___sec0"></a></h2>
+
+<p>
+The primary goal of this demo talk is to demonstrate how to write
+talks with <a href="http://code.google.com/p/doconce">doconce</a>
+and get them rendered in numerous HTML formats.
+<div class="alert alert-block alert-notice"><b>Layout.</b>
+This version
+utilizes reveal slides with the theme beigesmall.
+</div>
+<p>
+
+<div class="alert alert-block alert-notice"><b>Notice.</b>
+Speaker notes show up by
+pressing "s".
+</div>
+<p>
+
+<aside class="notes">
+<!-- click "s" to activate -->
+
+The talk investigates the accuracy of three finite difference
+schemes for the ordinary differential equation \( u'=-au \) with the
+aid of numerical experiments. Numerical artifacts are in particular
+demonstrated.
+
+</aside>
+
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<h2>Mathematical problem  <a name="___sec1"></a></h2>
+
+<p>
+
+
+<table border="0">
+<tr>
+<td class="padding">
+<p>
+
+$$
+\begin{align}
+u'(t) &= -au(t),
+\label{ode}\\ 
+u(0)  &= I,
+\label{initial:value}
+\end{align}
+$$
+
+
+<p>
+
+<ul>
+ <p><li> \( t\in (0,T] \)</li>
+ <p><li> \( a \), \( I \), and \( T \) are prescribed parameters</li>
+ <p><li> \( u(t) \) is the unknown function</li>
+</ul>
+<p>
+
+</td>
+<td class="padding">
+<center><p><img src="../doc/slides/fig/teacher2.jpg" align="bottom" width=250></p></center>
+</td>
+</tr>
+</table>
+
+
+<p>
+
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<h2>Numerical solution method  <a name="___sec2"></a></h2>
+
+<p>
+
+
+
+<ul>
+ <p><li class="fragment"> Mesh in time: \( 0= t_0< t_1 \cdots < t_N=T \)</li>
+ <p><li class="fragment"> Assume constant \( \Delta t = t_{n}-t_{n-1} \)</li>
+ <p><li class="fragment"> \( u^n \): numerical approx to the exact solution at \( t_n \)</li>
+</ul>
+<p>
+
+
+
+<p>
+
+<p class="fragment">
+
+Numerical scheme:
+$$
+   u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
+   \quad n=0,1,\ldots,N-1
+   $$
+
+
+</p>
+
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<p>
+
+<h3>Forward Euler explained  <a name="___sec3"></a></h3>
+
+<p>
+
+<iframe width="640" height="480" src="http://www.youtube.com/embed/PtJrPEIHNJw" frameborder="0" allowfullscreen></iframe>
+
+
+<p>
+
+
+</section>
+
+
+<section>
+
+<p>
+
+<h2>Implementation  <a name="___sec4"></a></h2>
+
+<p>
+The numerical method is implemented in a Python function:
+
+<p>
+
+
+<!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">solver</span>(I, a, T, dt, theta):
+    <span style="color: #BB4444; font-style: italic">&quot;&quot;&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T] with steps of dt.&quot;&quot;&quot;</span>
+    dt <span style="color: #666666">=</span> <span style="color: #AA22FF">float</span>(dt)           <span style="color: #008800; font-style: italic"># avoid integer division</span>
+    N <span style="color: #666666">=</span> <span style="color: #AA22FF">int</span>(<span style="color: #AA22FF">round</span>(T<span style="color: #666666">/</span>dt))     <span style="color: #008800; font-style: italic"># no of time intervals</span>
+    T <span style="color: #666666">=</span> N<span style="color: #666666">*</span>dt                 <span style="color: #008800; font-style: italic"># adjust T to fit time step dt</span>
+    u <span style="color: #666666">=</span> zeros(N<span style="color: #666666">+1</span>)           <span style="color: #008800; font-style: italic"># array of u[n] values</span>
+    t <span style="color: #666666">=</span> linspace(<span style="color: #666666">0</span>, T, N<span style="color: #666666">+1</span>)  <span style="color: #008800; font-style: italic"># time mesh</span>
+
+    u[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> I                 <span style="color: #008800; font-style: italic"># assign initial condition</span>
+    <span style="color: #AA22FF; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #AA22FF">range</span>(<span style="color: #666666">0</span>, N):    <span style="color: #008800; font-style: italic"># n=0,1,...,N-1</span>
+        u[n<span style="color: #666666">+1</span>] <span style="color: #666666">=</span> (<span style="color: #666666">1</span> <span style="color: #666666">-</span> (<span style="color: #666666">1-</span>theta)<span style="color: #666666">*</span>a<span style="color: #666666">*</span>dt)<span style="color: #666666">/</span>(<span style="color: #666666">1</span> <span style="color: #666666">+</span> theta<span style="color: #666666">*</span>dt<span style="color: #666666">*</span>a)<span style="color: #666666">*</span>u[n]
+    <span style="color: #AA22FF; font-weight: bold">return</span> u, t
+</pre></div>
+<p>
+
+
+</section>
+
+
+<section>
+
+<h3>The Crank-Nicolson method  <a name="___sec5"></a></h3>
+
+<p>
+
+<center><p><img src="../doc/slides/fig/CN.png" align="bottom" width=600></p></center>
+
+<p>
+
+</section>
+
+
+<section>
+
+<h3>The artifacts can be explained by some theory  <a name="___sec6"></a></h3>
+
+<p>
+
+<p class="fragment">
+
+Exact solution of the scheme:
+
+
+$$ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .$$
+
+
+</p>
+
+
+<p>
+
+
+<ul>
+ <p><li class="fragment"> Stability: \( |A| < 1 \)</li>
+ <p><li class="fragment"> No oscillations: \( A>0 \)</li>
+ <p><li class="fragment"> Always for Backward Euler (\( \theta=1 \))</li>
+ <p><li class="fragment"> \( \Delta t < 1/a \) for Forward Euler (\( \theta=0 \))</li>
+ <p><li class="fragment"> \( \Delta t < 2/a \) for Crank-Nicolson (\( \theta=1/2 \))</li>
+</ul>
+<p>
+
+
+
+<p>
+
+<p class="fragment">
+
+<div class="alert alert-block alert-summary"><b>Concluding remarks:</b>
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+</div>
+
+</p>
+
+
+
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+
+
+</body>
+</html>
+
+************** File: slides3.p.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
+% #endif
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer_collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for mobile devices
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},           % inner margin (two sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{ptex2tex}
+
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+\usepackage[latin1]{inputenc}
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
+% #ifdef PALATINO
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
+% #endif
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+% gray summary box
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\usepackage{wrapfig,calc}
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right
+\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\summarybox}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
+
+% #ifndef ADMON
+% #define ADMON "colors"
+% Default is "colors", i.e., framed box with color
+\usepackage{framed}
+% #else
+% #if ADMON == "colors"
+\usepackage{framed}
+% #elif ADMON == "paragraph"
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+% #endif
+
+% Admonition environment for "hint"
+% #if ADMON == "colors"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{hintmdframed}
+
+\newenvironment{hintadmon}[1][Hint]{
+\begin{hintmdframed}[frametitle=#1]
+}
+{
+\end{hintmdframed}
+}
+% #endif
+
+% Admonition environment for "notice"
+% #if ADMON == "colors"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{noticemdframed}
+
+\newenvironment{noticeadmon}[1][Notice]{
+\begin{noticemdframed}[frametitle=#1]
+}
+{
+\end{noticemdframed}
+}
+% #endif
+
+% Admonition environment for "summary"
+% #if ADMON == "colors"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{summarymdframed}
+
+\newenvironment{summaryadmon}[1][Summary]{
+\begin{summarymdframed}[frametitle=#1]
+}
+{
+\end{summarymdframed}
+}
+% #endif
+
+% Admonition environment for "warning"
+% #if ADMON == "colors"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{warningmdframed}
+
+\newenvironment{warningadmon}[1][Warning]{
+\begin{warningmdframed}[frametitle=#1]
+}
+{
+\end{warningmdframed}
+}
+% #endif
+
+% Admonition environment for "question"
+% #if ADMON == "colors"
+\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question}
+\ \ \ {\large\sc #1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
+% #else
+\newmdenv[
+  backgroundcolor=gray!10,  % white with 10% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{questionmdframed}
+
+\newenvironment{questionadmon}[1][Question]{
+\begin{questionmdframed}[frametitle=#1]
+}
+{
+\end{questionmdframed}
+}
+% #endif
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% #endif
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+% #if LATEX_HEADING == "traditional"
+\title{On Schemes for Exponential Decay}
+
+% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+On Schemes for Exponential Decay
+\end{spacing}
+}}}
+
+% #elif LATEX_HEADING == "Springer_collection"
+\title*{On Schemes for Exponential Decay}
+% Short version of title:
+%\titlerunning{...}
+
+% #elif LATEX_HEADING == "beamer"
+\title{On Schemes for Exponential Decay}
+% #else
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+On Schemes for Exponential Decay
+\end{spacing}
+}
+\end{center}
+% #endif
+
+% ----------------- author(s) -------------------------
+% #if LATEX_HEADING == "traditional"
+\author{Hans Petter Langtangen\footnote{Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}}
+
+% #elif LATEX_HEADING == "titlepage"
+\vspace{1.3cm}
+
+    {\Large\textsf{Hans Petter Langtangen${}^{1, 2}$}}\\ [3mm]
+    
+\ \\ [2mm]
+
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer_collection"
+
+\author{Hans Petter Langtangen}
+% Short version of authors:
+%\authorrunning{...}
+\institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
+
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}}
+% #else
+
+\begin{center}
+{\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
+\end{center}
+% #endif
+% ----------------- end author(s) -------------------------
+
+
+% #if LATEX_HEADING == "traditional"
+\date{Jan 32, 2100}
+\maketitle
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
+% #elif LATEX_HEADING == "titlepage"
+
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
+
+\end{center}
+\vfill
+\clearpage
+
+% #else
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+% #endif
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.4\linewidth]{../doc/slides/fig/CN_logo.pdf}}
+\end{center}
+
+
+
+% !split
+
+\section{Goal}
+
+The primary goal of this demo talk is to demonstrate how to write
+talks with \href{{http://code.google.com/p/doconce}}{doconce}
+and get them rendered in numerous HTML formats.
+
+% #if ADMON == "colors"
+\begin{noticeadmon}[Layout]
+This version
+utilizes beamer slides with the theme red3.
+\end{noticeadmon}
+% #elif ADMON == "paragraph"
+\begin{noticeadmon}[Layout.]
+This version
+utilizes beamer slides with the theme red3.
+\end{noticeadmon}
+% #else
+\begin{noticeadmon}[Layout.]
+This version
+utilizes beamer slides with the theme red3.
+\end{noticeadmon}
+% #endif
+% !bnotes
+The talk investigates the accuracy of three finite difference
+schemes for the ordinary differential equation $u'=-au$ with the
+aid of numerical experiments. Numerical artifacts are in particular
+demonstrated.
+% !enotes
+
+
+% !split
+\section{Mathematical problem}
+
+
+% !bslidecell 00
+
+
+\begin{align}
+u'(t) &= -au(t),
+\label{ode}\\ 
+u(0)  &= I,
+\label{initial:value}
+\end{align}
+
+\begin{itemize}
+ \item $t\in (0,T]$
+
+ \item $a$, $I$, and $T$ are prescribed parameters
+
+ \item $u(t)$ is the unknown function
+\end{itemize}
+
+\noindent
+% !eslidecell
+
+
+% !bslidecell 01
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.5\linewidth]{../doc/slides/fig/teacher2.jpg}}
+\end{center}
+
+% !eslidecell
+
+% !split
+\section{Numerical solution method}
+
+
+% !bpop
+\begin{itemize}
+ \item Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
+
+ \item Assume constant $\Delta t = t_{n}-t_{n-1}$
+
+ \item $u^n$: numerical approx to the exact solution at $t_n$
+\end{itemize}
+
+\noindent
+% !epop
+
+% !bpop
+Numerical scheme:
+   \[
+   u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
+   \quad n=0,1,\ldots,N-1
+   \]
+% !epop
+
+
+% !split
+
+\section{Implementation}
+
+The numerical method is implemented in a Python function:
+
+\bpycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+\epycod
+
+% !split
+\subsection{The Crank-Nicolson method}
+
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/CN.pdf}}
+\end{center}
+
+
+% !split
+\subsection{The artifacts can be explained by some theory}
+
+% !bpop
+Exact solution of the scheme:
+
+\[ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .\]
+% !epop
+
+% !bpop
+\begin{itemize}
+ \item Stability: $|A| < 1$
+
+ \item No oscillations: $A>0$
+
+ \item Always for Backward Euler ($\theta=1$)
+
+ \item $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
+
+ \item $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
+\end{itemize}
+
+\noindent
+% !epop
+
+% !bpop
+\summarybox{
+\textbf{Concluding remarks:} Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.}
+% !epop
+
+% ------------------- end of main content ---------------
+
+
+% #ifdef PREAMBLE
+\printindex
+
+\end{document}
+% #endif
+
+
+************** File: slides3.tex *****************
+
+% LaTeX Beamer file automatically generated from Doconce
+% http://code.google.com/p/doconce
+
+%-------------------- begin preamble ----------------------
+
+\documentclass{beamer}
+
+\usetheme{red3}
+\usecolortheme{default}
+
+% turn off the almost invisible, yet disturbing, navigation symbols:
+\setbeamertemplate{navigation symbols}{}
+
+% Examples on customization:
+%\usecolortheme[named=RawSienna]{structure}
+%\usetheme[height=7mm]{Rochester}
+%\setbeamerfont{frametitle}{family=\rmfamily,shape=\itshape}
+%\setbeamertemplate{items}[ball]
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+%\useoutertheme{infolines}
+%
+%\usefonttheme{}
+%\useinntertheme{}
+%
+%\setbeameroption{show notes}
+%\setbeameroption{show notes on second screen=right}
+
+% fine for B/W printing:
+%\usecolortheme{seahorse}
+
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{minted} % requires pygments and latex -shell-escape filename
+\usepackage{fancyvrb,relsize}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{colortbl}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usepackage{framed,anslistings}
+% Use some nice templates
+\beamertemplatetransparentcovereddynamic
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each section:
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>[plain]
+    \frametitle{}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
+\newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
+
+\newenvironment{hintadmon}[1][Hint]{\begin{block}{#1}}{\end{block}}
+\newenvironment{noticeadmon}[1][Notice]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summaryadmon}[1][Summary]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warningadmon}[1][Warning]{\begin{block}{#1}}{\end{block}}
+\newenvironment{questionadmon}[1][Question]{\begin{block}{#1}}{\end{block}}
+\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\title{On Schemes for Exponential Decay}
+
+% ----------------- author(s) -------------------------
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}}
+% ----------------- end author(s) -------------------------
+
+
+\date{Jan 32, 2100
+\\ \ \\ 
+\centerline{\includegraphics[width=0.4\linewidth]{../doc/slides/fig/CN_logo.pdf}}
+}
+
+
+
+
+\begin{frame}[plain,fragile]
+\titlepage
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Goal}
+
+The primary goal of this demo talk is to demonstrate how to write
+talks with \href{{http://code.google.com/p/doconce}}{doconce}
+and get them rendered in numerous HTML formats.
+
+\begin{noticeadmon}[Layout]
+This version
+utilizes beamer slides with the theme red3.
+\end{noticeadmon}
+\note{
+The talk investigates the accuracy of three finite difference
+schemes for the ordinary differential equation $u'=-au$ with the
+aid of numerical experiments. Numerical artifacts are in particular
+demonstrated.
+}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Mathematical problem}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{align}
+u'(t) &= -au(t),
+\label{ode}\\ 
+u(0)  &= I,
+\label{initial:value}
+\end{align}
+
+\begin{itemize}
+ \item $t\in (0,T]$
+
+ \item $a$, $I$, and $T$ are prescribed parameters
+
+ \item $u(t)$ is the unknown function
+\end{itemize}
+
+\noindent
+
+\column{0.5\textwidth}
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.5\linewidth]{../doc/slides/fig/teacher2.jpg}}
+\end{center}
+
+
+\end{columns}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Numerical solution method}
+
+\pause
+\begin{block}{}
+\begin{itemize}
+ \item Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
+
+ \item Assume constant $\Delta t = t_{n}-t_{n-1}$
+
+ \item $u^n$: numerical approx to the exact solution at $t_n$
+\end{itemize}
+
+\noindent
+\end{block}
+
+
+
+\pause
+\begin{block}{}
+Numerical scheme:
+   \[
+   u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
+   \quad n=0,1,\ldots,N-1
+   \]
+\end{block}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{Implementation}
+
+The numerical method is implemented in a Python function:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+\end{minted}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{The Crank-Nicolson method}
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/slides/fig/CN.pdf}}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+\frametitle{The artifacts can be explained by some theory}
+
+\pause
+\begin{block}{}
+Exact solution of the scheme:
+
+\[ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .\]
+\end{block}
+
+
+
+\pause
+\begin{block}{}
+\begin{itemize}
+ \item Stability: $|A| < 1$
+
+ \item No oscillations: $A>0$
+
+ \item Always for Backward Euler ($\theta=1$)
+
+ \item $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
+
+ \item $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
+\end{itemize}
+
+\noindent
+\end{block}
+
+
+
+\pause
+\summarybox{
+\textbf{Concluding remarks:} Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.}
+\end{frame}
+
+\end{document}
 
 ************** File: tmp_Doconce.do.txt *****************
 
@@ -41274,7 +48827,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 03 May 2013 (12:56)</center>
+<center>Sun, 05 May 2013 (02:19)</center>
 
 
 
@@ -41405,7 +48958,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 03 May 2013 (12:56)</center>
+<center>Sun, 05 May 2013 (02:19)</center>
 
 
 
@@ -42472,6 +50025,7 @@ Automatically generated HTML file from Doconce source
              background-size: 38px;
              padding-left: 55px;
              font-size: 90%; /*0.8em;*/
+             width: 75%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
      .alert-block > p, .alert-block > ul {margin-bottom:0}
@@ -43350,7 +50904,7 @@ list of capabilities:
 <p>
 <!-- begin verbatim block  shpro-->
 <pre><code>Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -43419,8 +50973,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -43832,9 +51389,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 
 % #ifdef TODONOTES
 \usepackage{ifthen,xkeyval,tikz,calc,graphicx}
@@ -44103,6 +51657,11 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 % insert custom LaTeX commands...
 
@@ -44121,7 +51680,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{Doconce Quick Reference}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -44137,13 +51695,13 @@ Doconce Quick Reference
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{Doconce Quick Reference}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{Doconce Quick Reference}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -44151,7 +51709,6 @@ Doconce Quick Reference
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -44174,6 +51731,11 @@ Doconce Quick Reference
 %\authorrunning{...}
 \institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
 
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}}
 % #else
 
 \begin{center}
@@ -44189,13 +51751,13 @@ Doconce Quick Reference
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \date{Jan 32, 2100}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{Jan 32, 2100
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
@@ -44206,7 +51768,6 @@ Doconce Quick Reference
 \clearpage
 
 % #else
-
 \begin{center}
 Jan 32, 2100
 \end{center}
@@ -44926,7 +52487,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -44995,8 +52556,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -45967,7 +53531,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -46036,8 +53600,11 @@ list of capabilities::
         # split an html file into parts according to !split commands
         doconce split_html complete_file.html
         
-        # create slides from a (doconce) html file
+        # create HTML slides from a (doconce) html file
         doconce slides_html slide_type complete_file.html
+        
+        # create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+        doconce slides_beamer complete_file.tex
         
         # replace bullets in lists by colored bullets
         doconce html_colorbullets file1.html file2.html ...
@@ -47043,7 +54610,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -47112,8 +54679,11 @@ list of capabilities:
         # split an html file into parts according to !split commands
         doconce split_html complete_file.html
         
-        # create slides from a (doconce) html file
+        # create HTML slides from a (doconce) html file
         doconce slides_html slide_type complete_file.html
+        
+        # create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+        doconce slides_beamer complete_file.tex
         
         # replace bullets in lists by colored bullets
         doconce html_colorbullets file1.html file2.html ...
@@ -47988,7 +55558,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -48057,8 +55627,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -48937,7 +56510,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -49006,8 +56579,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -49861,7 +57437,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -49930,8 +57506,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -50793,7 +58372,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -50862,8 +58441,11 @@ list of capabilities::
         # split an html file into parts according to !split commands
         doconce split_html complete_file.html
         
-        # create slides from a (doconce) html file
+        # create HTML slides from a (doconce) html file
         doconce slides_html slide_type complete_file.html
+        
+        # create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+        doconce slides_beamer complete_file.tex
         
         # replace bullets in lists by colored bullets
         doconce html_colorbullets file1.html file2.html ...
@@ -51750,7 +59332,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -51819,8 +59401,11 @@ list of capabilities::
         # split an html file into parts according to !split commands
         doconce split_html complete_file.html
         
-        # create slides from a (doconce) html file
+        # create HTML slides from a (doconce) html file
         doconce slides_html slide_type complete_file.html
+        
+        # create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+        doconce slides_beamer complete_file.tex
         
         # replace bullets in lists by colored bullets
         doconce html_colorbullets file1.html file2.html ...
@@ -52745,7 +60330,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
         
         
         # transform doconce file to another format
@@ -52814,8 +60399,11 @@ list of capabilities::
         # split an html file into parts according to !split commands
         doconce split_html complete_file.html
         
-        # create slides from a (doconce) html file
+        # create HTML slides from a (doconce) html file
         doconce slides_html slide_type complete_file.html
+        
+        # create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+        doconce slides_beamer complete_file.tex
         
         # replace bullets in lists by colored bullets
         doconce html_colorbullets file1.html file2.html ...
@@ -53770,7 +61358,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -53839,8 +61427,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
@@ -57953,24 +65544,172 @@ output in testdoc.md
 + [ 0 -ne 0 ]
 + pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 + pandoc -v
-+ doconce format html slides --pygments_html_style=emacs
-translating doconce text in slides.do.txt to html
++ doconce format html slides1 --pygments_html_style=emacs
+translating doconce text in slides1.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
-output in slides.html
+output in slides1.html
 + [ 0 -ne 0 ]
-+ doconce slides_html slides reveal --html_slide_type=beigesmall
++ cp slides1.html slides1_1st.html
++ doconce slides_html slides1 reveal --html_slide_type=beigesmall
 made subdirectory reveal.js
 *** warning: pygments style "emacs" is not recommended for "beige"!
 recommended styles are "perldoc"
-slides written to slides.html
+slides written to slides1.html
 + [ 0 -ne 0 ]
-+ mv -f slides.html slides_reveal.html
++ cp slides1.html slides1_reveal.html
 + /bin/ls -R reveal.js
-+ doconce format html slides --pygments_html_style=emacs
-translating doconce text in slides.do.txt to html
++ doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
+slides written to slides1.html
++ [ 0 -ne 0 ]
++ cp slides1.html slides1_deck.html
++ /bin/ls -R deck.js
++ doconce format pdflatex slides1
+translating doconce text in slides1.do.txt to pdflatex
+output in slides1.p.tex
++ [ 0 -ne 0 ]
++ doconce ptex2tex slides1 -DLATEX_HEADING=beamer
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in slides1.tex
++ [ 0 -ne 0 ]
++ doconce slides_beamer slides1
+slides written to slides1.tex
++ [ 0 -ne 0 ]
++ doconce format html slides2 --pygments_html_style=emacs
+running preprocess -DFORMAT=html -DDEVICE=screen  slides2.do.txt > tmp_preprocess__slides2.do.txt
+translating doconce text in tmp_preprocess__slides2.do.txt to html
+copy complete file ../doc/slides/src/dc_mod.pyopt  (format: pyoptpro)
+found info about 1 exercises, written to .slides2.exerinfo
+figure file ../doc/slides/fig/latex_thesis:
+    can use ../doc/slides/fig/latex_thesis.jpg for format html
+figure file ../doc/slides/fig/imac:
+    can use ../doc/slides/fig/imac.png for format html
+figure file ../doc/slides/fig/latex_paper1:
+    can use ../doc/slides/fig/latex_paper1.png for format html
+figure file ../doc/slides/fig/iphones:
+    can use ../doc/slides/fig/iphones.jpg for format html
+figure file ../doc/slides/fig/oldbooks:
+    can use ../doc/slides/fig/oldbooks.jpg for format html
+figure file ../doc/slides/fig/ipad:
+    can use ../doc/slides/fig/ipad.png for format html
+figure file ../doc/slides/fig/doconce1b:
+    can use ../doc/slides/fig/doconce1b.png for format html
+figure file ../doc/slides/fig/teacher1:
+    can use ../doc/slides/fig/teacher1.gif for format html
+figure file ../doc/slides/fig/broken_pen_and_paper:
+    can use ../doc/slides/fig/broken_pen_and_paper.jpg for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
-output in slides.html
-+ doconce slides_html slides all
+output in slides2.html
++ [ 0 -ne 0 ]
++ doconce slides_html slides2 reveal --html_slide_type=beigesmall
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+slides written to slides2.html
++ [ 0 -ne 0 ]
++ cp slides2.html slides2_reveal.html
++ doconce format pdflatex slides2
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  slides2.do.txt > tmp_preprocess__slides2.do.txt
+translating doconce text in tmp_preprocess__slides2.do.txt to pdflatex
+copy complete file ../doc/slides/src/dc_mod.pyopt  (format: pyoptpro)
+found info about 1 exercises, written to .slides2.exerinfo
+figure file ../doc/slides/fig/latex_thesis:
+    can use ../doc/slides/fig/latex_thesis.jpg for format pdflatex
+figure file ../doc/slides/fig/imac:
+    can use ../doc/slides/fig/imac.png for format pdflatex
+figure file ../doc/slides/fig/latex_paper1:
+    can use ../doc/slides/fig/latex_paper1.png for format pdflatex
+figure file ../doc/slides/fig/iphones:
+    can use ../doc/slides/fig/iphones.jpg for format pdflatex
+figure file ../doc/slides/fig/oldbooks:
+    can use ../doc/slides/fig/oldbooks.jpg for format pdflatex
+figure file ../doc/slides/fig/ipad:
+    can use ../doc/slides/fig/ipad.png for format pdflatex
+figure file ../doc/slides/fig/doconce1b:
+    can use ../doc/slides/fig/doconce1b.png for format pdflatex
+figure file ../doc/slides/fig/teacher1:
+    can use ../doc/slides/fig/teacher1.pdf for format pdflatex
+figure file ../doc/slides/fig/broken_pen_and_paper:
+    can use ../doc/slides/fig/broken_pen_and_paper.jpg for format pdflatex
+output in slides2.p.tex
++ [ 0 -ne 0 ]
++ doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bpypro (!bc pypro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in slides2.tex
++ [ 0 -ne 0 ]
++ doconce slides_beamer slides2
+slides written to slides2.tex
++ [ 0 -ne 0 ]
++ doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+running preprocess -DFORMAT=html -DDEVICE=screen -DSLIDE_TYPE="reveal" -DSLIDE_THEME="beigesmall" slides3.do.txt > tmp_preprocess__slides3.do.txt
+running mako on tmp_preprocess__slides3.do.txt to make tmp_mako__slides3.do.txt
+mako variables: {'DEVICE': 'screen', 'SLIDE_TYPE': 'reveal', 'SLIDE_THEME': 'beigesmall', 'FORMAT': 'html'}
+translating doconce text in tmp_mako__slides3.do.txt to html
+copying from regex "def solver" until "def verify_three"
+     file: ../doc/slides/src/dc_mod.py,  lines 5-18  (format: pycod)
+figure file ../doc/slides/fig/teacher2:
+    can use ../doc/slides/fig/teacher2.jpg for format html
+figure file ../doc/slides/fig/CN_logo:
+    can use ../doc/slides/fig/CN_logo.png for format html
+figure file ../doc/slides/fig/CN:
+    can use ../doc/slides/fig/CN.png for format html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in slides3.html
++ [ 0 -ne 0 ]
++ doconce slides_html slides3 reveal --html_slide_type=beigesmall
+*** warning: pygments style "emacs" is not recommended for "beige"!
+recommended styles are "perldoc"
+slides written to slides3.html
++ [ 0 -ne 0 ]
++ cp slides3.html slides3_reveal.html
++ theme=red3
++ doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=red3
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DSLIDE_TYPE="beamer" -DSLIDE_THEME="red3" slides3.do.txt > tmp_preprocess__slides3.do.txt
+running mako on tmp_preprocess__slides3.do.txt to make tmp_mako__slides3.do.txt
+mako variables: {'DEVICE': 'screen', 'SLIDE_TYPE': 'beamer', 'SLIDE_THEME': 'red3', 'FORMAT': 'pdflatex'}
+translating doconce text in tmp_mako__slides3.do.txt to pdflatex
+copying from regex "def solver" until "def verify_three"
+     file: ../doc/slides/src/dc_mod.py,  lines 5-18  (format: pycod)
+figure file ../doc/slides/fig/teacher2:
+    can use ../doc/slides/fig/teacher2.jpg for format pdflatex
+figure file ../doc/slides/fig/CN_logo:
+    can use ../doc/slides/fig/CN_logo.pdf for format pdflatex
+figure file ../doc/slides/fig/CN:
+    can use ../doc/slides/fig/CN.pdf for format pdflatex
+output in slides3.p.tex
++ [ 0 -ne 0 ]
++ doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+output in slides3.tex
++ [ 0 -ne 0 ]
++ doconce slides_beamer slides3 --beamer_slide_theme=red3
+slides written to slides3.tex
++ [ 0 -ne 0 ]
++ doconce format html slides1 --pygments_html_style=emacs
+translating doconce text in slides1.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in slides1.html
++ doconce slides_html slides1 all
 run
   sh tmp_slides_html_all.sh
 to generate the slides
@@ -58441,9 +66180,9 @@ translating doconce text in tmp_mako__math_test.do.txt to pandoc
 
 output in math_test.md
 + doconce md2latex math_test
-command md2latex not legal, must be among
+command "md2latex" is not legal, must be among
 
-format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, latex_dislikes, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
+format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, slides_beamer, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, latex_dislikes, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
 + doconce format html admon
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -58589,7 +66328,7 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] admon
 reading sources... [100%] index
 
-/home/hpl/vc/doconce/test/tmp_admon/admon.rst:104: WARNING: image file not readable: ../doc/manual/figs/wavepacket_0001.png
+/home/hpl/vc/doconce/test/tmp_admon/admon.rst:112: WARNING: image file not readable: ../doc/manual/figs/wavepacket_0001.png
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -58772,12 +66511,15 @@ No file admon_colors.aux.
 Underfull \hbox (badness 10000) 
 
 
-<latex_figs/notice.pdf, id=5, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
+<use latex_figs/warning.pdf>
 Underfull \hbox (badness 10000) 
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf
->] <latex_figs/question.pdf, id=24, 89.33376pt x 89.33376pt>
+>] <latex_figs/notice.pdf, id=23, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+Underfull \hbox (badness 10000) 
+
+<latex_figs/question.pdf, id=24, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 Underfull \hbox (badness 10000) 
 
@@ -58890,6 +66632,7 @@ newcommands_replace.tex
 admon_colors.out.pyg
 latex_figs/warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+latex_figs/warning.pdf
 latex_figs/notice.pdf
 latex_figs/question.pdf
 latex_figs/question.pdf
@@ -59110,7 +66853,7 @@ ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
 (./admon_box.out.pyg) 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./admon_box.out.pyg)
 (./admon_box.out.pyg) (./admon_box.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=21, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=20, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [2] [3]
 No file admon_box.ind.
 [4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_box.aux)
@@ -59821,7 +67564,7 @@ Underfull \hbox (badness 1112)
 her out-
 [7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 763
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 760
 .
 
 [9]
@@ -60602,14 +68345,15 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [10]
-Overfull \hbox (2825.00006pt too wide) 
+Overfull \hbox (2909.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
 ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
-ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
-ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
-ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce lat
-ex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish  
+ercise_answers split_rst split_html slides_html slides_beamer latin2html latex_
+header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_loca
+lURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format lat
+ex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish  
+
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -60672,17 +68416,21 @@ Overfull \hbox (65.00006pt too wide)
 []\T1/pcr/m/n/10 # split an html file into parts according to !split commands  
 
 
+Overfull \hbox (95.00006pt too wide) 
+[]\T1/pcr/m/n/10 # create LaTeX Beamer slides from a (doconce) latex/pdflatex f
+ile  
+
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
 
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
-
+[12]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
-[12]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
 
@@ -61042,14 +68790,15 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [11]
-Overfull \hbox (2825.00006pt too wide) 
+Overfull \hbox (2909.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
 ge_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_ex
-ercise_answers split_rst split_html slides_html latin2html latex_header latex_f
-ooter bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
-ure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce lat
-ex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish  
+ercise_answers split_rst split_html slides_html slides_beamer latin2html latex_
+header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_loca
+lURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format lat
+ex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish  
+
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -61112,17 +68861,21 @@ Overfull \hbox (65.00006pt too wide)
 []\T1/pcr/m/n/10 # split an html file into parts according to !split commands  
 
 
+Overfull \hbox (95.00006pt too wide) 
+[]\T1/pcr/m/n/10 # create LaTeX Beamer slides from a (doconce) latex/pdflatex f
+ile  
+
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
 
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
-
+[13]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
-[13]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file  
 

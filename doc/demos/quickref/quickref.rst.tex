@@ -75,7 +75,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-May 3, 2013
+May 5, 2013
 
 \end{DUfieldlist}
 
@@ -1160,7 +1160,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~latex\_dislikes~pygmentize~makefile~diff~gitdiff~fix\_bibtex4publish\\
+commands:~format~help~sphinx\_dir~subst~replace~replace\_from\_file~clean~spellcheck~ptex2tex~expand\_commands~combine\_images~guess\_encoding~change\_encoding~gwiki\_figsubst~md2html~remove\_inline\_comments~grab~remove~remove\_exercise\_answers~split\_rst~split\_html~slides\_html~slides\_beamer~latin2html~latex\_header~latex\_footer~bbl2rst~html\_colorbullets~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~latex\_exercise\_toc~insertdocstr~old2new\_format~latex2doconce~latex\_dislikes~pygmentize~makefile~diff~gitdiff~fix\_bibtex4publish\\
 ~\\
 ~\\
 \#~transform~doconce~file~to~another~format\\
@@ -1229,8 +1229,11 @@ doconce~sphinxfix\_local\_URLs~file.rst\\
 \#~split~an~html~file~into~parts~according~to~!split~commands\\
 doconce~split\_html~complete\_file.html\\
 ~\\
-\#~create~slides~from~a~(doconce)~html~file\\
+\#~create~HTML~slides~from~a~(doconce)~html~file\\
 doconce~slides\_html~slide\_type~complete\_file.html\\
+~\\
+\#~create~LaTeX~Beamer~slides~from~a~(doconce)~latex/pdflatex~file\\
+doconce~slides\_beamer~complete\_file.tex\\
 ~\\
 \#~replace~bullets~in~lists~by~colored~bullets\\
 doconce~html\_colorbullets~file1.html~file2.html~...\\

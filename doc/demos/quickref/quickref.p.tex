@@ -128,9 +128,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 
 % #ifdef TODONOTES
 \usepackage{ifthen,xkeyval,tikz,calc,graphicx}
@@ -399,6 +396,11 @@ final,                   % or draft (marks overfull hboxes)
 {\color{seccolor}\thesubsection}{1em}{}
 % #endif
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 % insert custom LaTeX commands...
 
@@ -417,7 +419,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{Doconce Quick Reference}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -433,13 +434,13 @@ Doconce Quick Reference
 }}}
 
 % #elif LATEX_HEADING == "Springer_collection"
-
 \title*{Doconce Quick Reference}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{Doconce Quick Reference}
 % #else
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -447,7 +448,6 @@ Doconce Quick Reference
 \end{spacing}
 }
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
@@ -470,6 +470,11 @@ Doconce Quick Reference
 %\authorrunning{...}
 \institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
 
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}}
 % #else
 
 \begin{center}
@@ -485,26 +490,25 @@ Doconce Quick Reference
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
-\date{May 3, 2013}
+\date{May 5, 2013}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{May 5, 2013
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{May 3, 2013}}
+{\large\textsf{May 5, 2013}}
 
 \end{center}
 \vfill
 \clearpage
 
 % #else
-
 \begin{center}
-May 3, 2013
+May 5, 2013
 \end{center}
 
 \vspace{1cm}
@@ -1222,7 +1226,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -1291,8 +1295,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...

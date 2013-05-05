@@ -62,9 +62,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
-
 
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}
@@ -171,6 +168,11 @@ final,                   % or draft (marks overfull hboxes)
 % http://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage[compact]{titlesec}  % narrower section headings
 
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 
 % insert custom LaTeX commands...
 
@@ -187,7 +189,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -195,7 +196,6 @@ Doconce Quick Reference
 \end{spacing}
 }
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -211,11 +211,8 @@ Doconce Quick Reference
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
-
 \begin{center}
-May 3, 2013
+May 5, 2013
 \end{center}
 
 \vspace{1cm}
@@ -900,7 +897,7 @@ list of capabilities:
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
 
 
 # transform doconce file to another format
@@ -969,8 +966,11 @@ doconce sphinxfix_local_URLs file.rst
 # split an html file into parts according to !split commands
 doconce split_html complete_file.html
 
-# create slides from a (doconce) html file
+# create HTML slides from a (doconce) html file
 doconce slides_html slide_type complete_file.html
+
+# create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+doconce slides_beamer complete_file.tex
 
 # replace bullets in lists by colored bullets
 doconce html_colorbullets file1.html file2.html ...
