@@ -1973,18 +1973,21 @@ Make sure there is whitespace surrounding the text in back-ticks.
 
 === Strange non-English characters ===
 
+The reason for this problem is that Doconce can only work with latin1
+(ISO-8859) encoding and not UTF-8.
+
 Check the encoding of the `.do.txt` file with the Unix `file` command
 or with
 !bc
 Terminal> doconce guess_encoding myfile.do.txt
 !ec
-If the encoding is utf-8, convert to latin-1 using either of
+If the encoding is UTF-8, convert to latin1 using either of
 the Unix commands
 !bc
-Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
-
-Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> doconce change_encoding utf-8 latin1 myfile.do.txt
+Terminal> iconv -f utf-8 -t latin1 myfile.do.txt --output newfile
 !ec
+
 
 === Wrong Norwegian charcters ===
 

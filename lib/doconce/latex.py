@@ -657,7 +657,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #    print '%d subst of %s' % (n, c)
     #    #filestr = filestr.replace(c, chars[c])
 
-    # Handle 50% and similar (with initial space, does not work
+    # Handle "50%" and similar (with initial space, does not work
     # for 50% as first word on a line, so we add a fix for that
     filestr = re.sub(r'( [0-9]{1,3})%', r'\g<1>\%', filestr)
     filestr = re.sub(r'(^[0-9]{1,3})%', r'\g<1>\%', filestr, flags=re.MULTILINE)

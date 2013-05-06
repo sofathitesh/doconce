@@ -1016,6 +1016,11 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Use `pdflatex` or `xetex`
  * Use BibTeX (can easily be converted to "publish": "https://bitbucket.org/logg/publish" used by Doconce)
  * Use `\href` for links (and insert links frequently)
+ * Use the `bm` package and `\bm{u}` for boldface $\bm{u}$
+ * Place all newcommands in a separate file, with one definition per line
+   (multiline definitions goes to a separate LaTeX preamble file in Doconce)
+ * Avoid all fancy LaTeX constructs - more backslashes than needed in math
+   and sections is a bad thing...
 
 !split
 ======= Doconce writing tips =======

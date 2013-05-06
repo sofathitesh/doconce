@@ -945,8 +945,16 @@ def html_index_bib(filestr, index, citations, pubfile, pubdata):
     if pubfile is not None:
         bibtext = bibliography(pubdata, citations, format='doconce')
         for label in citations:
-            bibtext = bibtext.replace('label{%s}' % label,
-                                      '<a name="%s"></a>' % label)
+            try:
+                bibtext = bibtext.replace('label{%s}' % label,
+                                          '<a name="%s"></a>' % label)
+            except UnicodeDecodeError, e:
+                print e
+                print '*** error: problems in %s' % pubfile
+                print '    with key', label
+                print 'Abort!'
+                sys.exit(1)
+
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
     # could use anchors for idx{...}, but multiple entries of an index
