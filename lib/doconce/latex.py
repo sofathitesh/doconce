@@ -1315,6 +1315,7 @@ final,                   % or draft (marks overfull hboxes)
 """
         for admon in admons:
             Admon = admon.upper()[0] + admon[1:]
+            #figname = 'lyx_' + admon + '.eps'  # must be changed to .pdf in pdflatex.py
             figname = admon + '.eps'  # must be changed to .pdf in pdflatex.py
             _get_admon_figs(figname)
             color = str(_admon2rgb[admon])[1:-1]
