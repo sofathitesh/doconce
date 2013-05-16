@@ -205,13 +205,15 @@ based on HTML and vice versa.
  * Multiple plots in the same figure: mount the plots to one image
    file and include this (`montage` for png, gif, jpeg; `pdftk`, `pdfnup`,
    and `pdfcrop` for PDF).
- * Keys for items in the bibliography are made visible by Sphinx so
-   "bibitems" a la BibTeX must look sensible and consistent.
  * If you need several equations *numbered* in an `align` environment,
    recall that Sphinx, Markdown, and MediaWiki cannot handle this,
    although they have LaTeX math support.
  * Markdown tolerates labels in equations but cannot refer to them.
 !epop
+
+# Not valid anymore:
+# Keys for items in the bibliography are made visible by Sphinx so
+#   "bibitems" a la BibTeX must look sensible and consistent.
 
 !split
 ======= Concerns III =======
@@ -1000,11 +1002,33 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Easy for slides: only `preprocess` is needed :-)
 
 !split
-======= Writing tips =======
+======= Writing tips for LaTeX writers who wants to convert to Doconce  =======
 
- * See the previous *Concerns I, II and III* slides for issues when writing
-   for multiple formats. However: Doconce makes a fix so that Sphinx and
-   other formats works with labels in align environments :-)
+ * `doconce latex2doconce` helps the translation
+ * Use `\[ \]`, `equation`, `equation*`, `align`, `align*` and nothing more for
+   equations
+ * Figures: avoid subfigures (combine image files instead), use `\includegraphics`, have captions after graphics, use short figure captions, position exactly where needed
+ * Tables: have them inline (not floating), with no caption
+ * Computer codes: have them inline (not floating)
+ * Avoid footnotes, `pageref`
+ * Do not use *algorithm* environments, use simple list formatting instead
+ * Avoid math in section headings
+ * Use `pdflatex` or `xetex`
+ * Use BibTeX (can easily be converted to "publish": "https://bitbucket.org/logg/publish" used by Doconce)
+ * Use `\href` for links (and insert links frequently)
+ * Use the `bm` package and `\bm{u}` for boldface $\bm{u}$
+ * Place all newcommands in a separate file, with one definition per line
+   (multiline definitions goes to a separate LaTeX preamble file in Doconce)
+ * Avoid all fancy LaTeX constructs - more backslashes than needed in math
+   and sections is a bad thing...
+
+!split
+======= Doconce writing tips =======
+
+# * See the previous *Concerns I, II and III* slides for issues when writing
+#   for multiple formats. However: Doconce makes a fix so that Sphinx and
+#   other formats works with labels in align environments :-)
+
  * Prepare figures in the right format: EPS for `latex`, PDF for `pdflatex`,
    PNG, GIF or JPEG for HTML formats (`html`, and HTML output from
    `sphinx`, `rst`, `pandoc`). One can omit the figure file extension and
@@ -1017,7 +1041,7 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Avoid page references and footnotes.
 
 !split
-======= More writing tips =======
+======= Doconce writing tips =======
 
  * `\bm{u}` gives nicer boldface typesetting of math symbols than
    the alternatives `\boldsymbol{u}` and `\pmb{u}`.
