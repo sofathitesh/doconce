@@ -39,6 +39,14 @@ in comparison with the other admons.
 
   * and a list
   * with items
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
 !ewarning
 
 Test warning with title:
@@ -46,6 +54,18 @@ Test warning with title:
 !bwarning Watch Out
 And here comes some text with bad news.
 !ewarning
+
+Then we test a block, which is guaranteed to never have any admon icon.
+
+!bblock Block with title
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+!eblock
+
+!bblock
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+!eblock
 
 The next admonition features a title "Note, eventually!".
 
@@ -83,6 +103,12 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 !ec
 !ehint
+
+Next is a warning without a title ("none" implies no title).
+
+!bwarning none
+And here comes some text with bad news.
+!ewarning
 
 ===== Going deeper environments =====
 

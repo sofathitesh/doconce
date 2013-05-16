@@ -169,7 +169,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-===== Subsection 2 =====
+===== Subsection 2: Testing figures and movies =====
 label{subsec:ex}
 idx{figures}
 
@@ -178,16 +178,19 @@ there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200]
 
 idx{movies}
-Test of movies.
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+=== Test of movies ===
 
-# Test empty caption:
+Movie ref{mov:tsunami} shows a tsunami.
+
+MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal) label{mov:tsunami}.
+
+Test empty caption (for inline movie):
 
 MOVIE: [../doc/manual/figs/wavepacket.mpeg, width=700 height=400]
 
@@ -215,8 +218,6 @@ and an extra space before the FIGURE keyword.
 caption spanning
 several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
 as well as math with subscript as in $t_{i+1}$. label{myfig}
-
-Movie ref{mymov} has a similar problem.
 
 # Must be a blank line after MOVIE or FIGURE to detect this problem
 

@@ -1473,7 +1473,7 @@ The main message is to utilize the admonition styles for
 marking different parts of the text
 |esummary
 !ec
-The above Doconce code is rendered as
+The above Doconce code is in the present format rendered as
 
 !bwarning
 Here is a warning!
@@ -1495,9 +1495,8 @@ The main message is to utilize the admonition styles for
 marking different parts of the text
 !esummary
 
-The layout of admonitions depend on the format. In `latex` and
-`pdflatex`, the admonition have a symbol and colored background,
-in `rst` and `sphinx` one applies the native admonitions, but
+The layout of admonitions depend on the format.
+In `rst` and `sphinx` one applies the native admonitions, but
 in `sphinx` the `automake_sphinx.py` script manipulates the HTML
 file to set a gray background for all admonitions.
 In `html` one has a command-line argument `--html_admon` that
@@ -1523,6 +1522,23 @@ how the admons are typset. The `notice` environment is gray with an
 icon (defined in `vagrant.css`), while the others are yellow (defined
 in `twitter_bootstrap.css`). The `--html_admon` color has no effect
 for the `vagrant` style.
+
+In `latex` and `pdflatex`, the type of admonition is configured in the
+`.p.tex` file through the `ADMON` preprocessor variable.
+Several values are available:
+
+ * `paragraph` is the simplest and typeset
+   as plain paragraphs with an optional heading.
+ * `colors` (taken from the NumPy User Guide) applies different colors for
+   the different admons with an embedded icon.
+ * `graybox1` is the default and gives rounded gray boxes with a potential
+   title.
+ * `graybox2` has square corners, gray background, and is narrower
+   than `graybox1`. One special feature if `graybox2` is the summary
+   admon, which has a different look with horizontal rules only,
+   and for A4 format, the summary box is half of the text width and
+   wrapped with text around (if it does not contain verbatim text,
+   in that case the standard `graybox2` style is used).
 
 ===== Preprocessing Steps =====
 

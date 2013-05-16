@@ -62,20 +62,21 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
 # Style sheets
 
 admon_styles1 = """\
-    .notice, .summary, .warning, .hint, .question {
+    .notice, .summary, .warning, .hint, .question, .block {
     border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: %(background_notice)s;
                 background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_notice)s); }
     .summary  { color: #4F8A10; background-color: %(background_summary)s;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }
+                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }
     .warning  { color: #9F6000; background-color: %(background_warning)s;
                 background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_warning)s); }
     .hint     { color: #00529B; background-color: %(background_hint)s;
                 background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_hint)s); }
     .question { color: #4F8A10; background-color: %(background_question)s;
                 background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_question)s); }
+    .block    { color: #00529B; background-color: %(background_notice)s; }
 """
 
 admon_styles2 = """\
@@ -990,7 +991,7 @@ def html_quote(block, format):
 </blockquote>
 """ % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
-admons = 'hint', 'notice', 'summary', 'warning', 'question'
+admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
 global admon_css_vars        # set in define
 
 for _admon in admons:
@@ -998,8 +999,13 @@ for _admon in admons:
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
     _text = '''
-def html_%s(block, format, title='%s'):
-    if title[-1] not in ('.', ':', '!', '?'):
+def html_%(_admon)s(block, format, title='%(_Admon)s'):
+    if title.lower().strip() == 'none':
+        title = ''
+    if title == 'Block':  # block admon has no default title
+        title = ''
+
+    if title and title[-1] not in ('.', ':', '!', '?'):
         # Make sure the title ends with puncuation
         title += '.'
     # Make pygments background equal to admon background for colored admons.
@@ -1007,8 +1013,8 @@ def html_%s(block, format, title='%s'):
     html_admon = option('html_admon=', 'gray')
     if html_admon == 'colors':
         block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                       admon_css_vars['colors']['background_%s'], block)
-        janko = """<div class="%s"><b>%%s</b>
+                       admon_css_vars['colors']['background_%(_admon)s'], block)
+        janko = """<div class="%(_admon)s"><b>%%s</b>
 %%s
 </div>
 """ %% (title, block)
@@ -1016,17 +1022,18 @@ def html_%s(block, format, title='%s'):
     elif html_admon in admon_css_vars or option('html_style=') == 'vagrant':
         block = re.sub(pygments_pattern, r'"background: %%s">' %%
                        admon_css_vars[html_admon]['background'], block)
-        vagrant = """<div class="alert alert-block alert-%s"><b>%%s</b>
+        vagrant = """<div class="alert alert-block alert-%(_admon)s"><b>%%s</b>
 %%s
 </div>
 """ %% (title, block)
         return vagrant
     else:
-        lyx = """
+        if '%(_admon)s' != 'block':
+            lyx = """
 <table width="95%%%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_%(_admon)s.png" hspace="5" alt="%(_admon)s"></td>
 <th align="left" valign="middle"><b>%%s</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
@@ -1034,8 +1041,18 @@ def html_%s(block, format, title='%s'):
 </p></td></tr>
 </table>
 """ %% (title, block)
+        else:
+            lyx = """
+<table width="95%%%%" border="0">
+<tr><th align="left" valign="middle"><b>%%s</b></th>
+</tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td align="left" valign="top"><p>
+%%s
+</p></td></tr>
+</table>
+""" %% (title, block)
         return lyx
-''' % (_admon, _Admon + '.', _admon, _Admon, _admon, _admon, _admon)
+''' % vars()
     exec(_text)
 
 def define(FILENAME_EXTENSION,
@@ -1075,7 +1092,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2v':     r'<a href="\g<url>"><tt>\g<link></tt></a>',
         'linkURL3v':     r'<a href="\g<url>"><tt>\g<link></tt></a>',
         'plainURL':      r'<a href="\g<url>"><tt>\g<url></tt></a>',
-        'inlinecomment': r'\n<!-- begin inline comment -->\n[<b>\g<name></b>: <em>\g<comment></em>]\n<!-- end inline comment -->\n',
+        'inlinecomment': r'\n<!-- begin inline comment -->\n<font color="red">[<b>\g<name></b>: <em>\g<comment></em>]</font>\n<!-- end inline comment -->\n',
         'chapter':       r'\n<h1>\g<subst></h1>',
         'section':       r'\n<h2>\g<subst></h2>',
         'subsection':    r'\n<h3>\g<subst></h3>',
@@ -1103,6 +1120,7 @@ def define(FILENAME_EXTENSION,
         'notice':        html_notice,
         'hint':          html_hint,
         'summary':       html_summary,
+        'block':         html_block,
     }
 
     CODE['html'] = html_code
@@ -1195,11 +1213,17 @@ def define(FILENAME_EXTENSION,
     admon_css_vars['apricot'] = dict(boundary='#FFBF00', background='#fbeed5')
     admon_css_vars['gray']    = dict(boundary='#bababa', background='whiteSmoke')
     for a in admons:
-        admon_css_vars['yellow']['icon_' + a]  = 'small_yellow_%s.png' % a
-        admon_css_vars['apricot']['icon_' + a] = 'small_yellow_%s.png' % a
-        admon_css_vars['gray']['icon_' + a]    = 'small_gray_%s.png' % a
+        if a != 'block':
+            admon_css_vars['yellow']['icon_' + a]  = 'small_yellow_%s.png' % a
+            admon_css_vars['apricot']['icon_' + a] = 'small_yellow_%s.png' % a
+            admon_css_vars['gray']['icon_' + a]    = 'small_gray_%s.png' % a
+        else:
+            admon_css_vars['yellow']['icon_' + a]  = ''
+            admon_css_vars['apricot']['icon_' + a] = ''
+            admon_css_vars['gray']['icon_' + a]    = ''
     admon_css_vars['colors'] = dict(
         background_notice='#BDE5F8',
+        background_block='#BDE5F8',
         background_summary='#DFF2BF',
         background_warning='#FEEFB3',
         background_hint='#BDE5F8',
@@ -1209,6 +1233,7 @@ def define(FILENAME_EXTENSION,
         icon_warning='Knob_Attention.png',
         icon_hint='Knob_Info.png',
         icon_question='Knob_Forward.png',
+        icon_block='',
         )
     html_admon = option('html_admon=', 'gray')
     # Need to add admon_styles?

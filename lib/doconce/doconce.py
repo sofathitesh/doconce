@@ -37,9 +37,9 @@ def doconce_envirs():                     # begin-end environments
             'pop', 'slidecell', 'notes',  # slides
             'hint', 'remarks',            # exercises and general
             'quote',
-            'notice', 'summary', 'warning', 'question',]  # admon
+            'notice', 'summary', 'warning', 'question', 'block']  # admon
 
-admons = 'hint', 'notice', 'summary', 'warning', 'question'
+admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
@@ -1133,24 +1133,28 @@ def typeset_envirs(filestr, format):
                 else:
                     return ENVIRS[format][envir](m.group(2), format, title)
         else:
-            # subst functions for default handling
+            # subst functions for default handling in primitive formats
             if envir == 'quote':
                 def subst(m):
                     return indent_lines(m.group(1), format, ' '*4) + '\n'
             elif envir in ['warning', 'question', 'hint', 'notice', 'summary',
-                           'remarks']:
+                           'remarks', 'block']:
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
                     title = m.group(1).strip()
-                    if title == '':
+                    if title == '' and envir != 'block':
                         title = envir[0].upper() + envir[1:] + '.'
-                    elif title[-1] not in ('.', ':', '!', '?'):
+                    elif title.lower() == 'none':
+                        title == ''
+                    elif title and title[-1] not in ('.', ':', '!', '?'):
                         # Make sure the title ends with puncuation
                         title += '.'
                     # Recall that this formatting is called very late
                     # so native format must be used
-                    title = INLINE_TAGS_SUBST[format]['paragraph'].replace(
-                        r'\g<subst>', '%s') % title + '\n'
+                    if title:
+                        title = INLINE_TAGS_SUBST[format]['paragraph'].replace(
+                            r'\g<subst>', '%s') % title + '\n'
+                        # Could also consider subsubsection formatting
                     return title + m.group(2) + '\n\n'
 
             # else: other envirs for slides are treated later with

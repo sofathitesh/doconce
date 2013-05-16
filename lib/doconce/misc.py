@@ -3317,12 +3317,17 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
     if m:
         slides = slides.replace('{epsfig}', r'{epsfig}' + '\n' + r'\usepackage{minted} % requires pygments and latex -shell-escape filename')
 
-    admons = 'hint', 'notice', 'summary', 'warning', 'question'
+    # Override all admon environments from latex.py by Beamer block envirs
+    admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
     for admon in admons:
         Admon = admon[0].upper() + admon[1:]
-        slides += r"""\newenvironment{%(admon)sadmon}[1][%(Admon)s]{\begin{block}{#1}}{\end{block}}
+        for envir in 'colors1', 'colors2', 'graybox3', 'yellowbox':
+            slides += r"""\newenvironment{%(admon)s_%(envir)sadmon}[1][]{\begin{block}{#1}}{\end{block}}
 """ % vars()
-    slides += r"""\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+    for envir in 'paragraph', 'graybox1', 'graybox2':
+        slides += r"""\newenvironment{%(envir)sadmon}[1][]{\begin{block}{#1}}{\end{block}}
+""" % vars()
+    slides += r"""\newcommand{\grayboxhrules}[1]{\begin{block}{}#1\end{block}}
 """
 
     # Add possible user customization from the original latex file,

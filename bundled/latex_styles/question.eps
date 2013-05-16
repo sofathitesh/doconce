@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: tip.fig
+%%Title: note.fig
 %%Creator: fig2dev Version 3.2 Patchlevel 4
-%%CreationDate: Tue Aug 23 23:51:46 2005
+%%CreationDate: Wed Aug 24 03:03:42 2005
 %%For: oliphant@den.local.net (Travis Oliphant)
 %%BoundingBox: 0 0 88 88
 %%Magnification: 1.0000
@@ -43,16 +43,17 @@ $F2psDict /mtrx matrix put
 /col30 {1.000 0.880 0.880 srgb} bind def
 /col31 {1.000 0.840 0.000 srgb} bind def
 /col32 {0.875 0.953 0.996 srgb} bind def
-/col33 {0.000 0.000 0.000 srgb} bind def
+/col33 {0.996 0.820 0.820 srgb} bind def
+/col34 {0.984 0.961 0.859 srgb} bind def
 
 end
 save
 newpath 0 88 moveto 0 0 lineto 88 0 lineto 88 88 lineto closepath clip newpath
 % Fill background color
 0 0 moveto 88 0 lineto 88 88 lineto 0 88 lineto
-closepath 0.88 0.95 1.00 setrgbcolor fill
+closepath 0.98 0.96 0.86 setrgbcolor fill
 
--172.3 187.6 translate
+-172.1 187.9 translate
 1 -1 scale
 
 /cp {closepath} bind def
@@ -86,19 +87,6 @@ closepath 0.88 0.95 1.00 setrgbcolor fill
   bind def
 /shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
   4 -2 roll mul srgb} bind def
- /DrawEllipse {
-	/endangle exch def
-	/startangle exch def
-	/yrad exch def
-	/xrad exch def
-	/y exch def
-	/x exch def
-	/savematrix mtrx currentmatrix def
-	x y tr xrad yrad sc 0 0 1 startangle endangle arc
-	closepath
-	savematrix setmatrix
-	} def
-
 /$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
 /$F2psEnd {$F2psEnteredState restore end} def
 
@@ -110,17 +98,18 @@ $F2psBegin
 % Fig objects follow
 %
 % 
-% here starts figure with depth 51
-% Ellipse
+% here starts figure with depth 52
+% Polyline
 7.500 slw
-n 3600 2400 720 720 0 360 DrawEllipse gs col7 1.00 shd ef gr gs col7 s gr
-
-% Ellipse
-n 3600 2400 660 660 0 360 DrawEllipse gs col1 1.00 shd ef gr gs col1 s gr
-
-/Times-Bold ff 1650.00 scf sf
-3384 2940 m
-gs 1 -1 sc (i) col7 sh gr
+n 3600 1680 m 2880 2400 l 3600 3120 l 4320 2400 l
+ cp gs col31 1.00 shd ef gr gs col31 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 50
+% Polyline
+60.000 slw
+n 3600 1860 m 3060 2400 l 3600 2940 l 4140 2400 l
+ cp gs col0 s gr 
 % here ends figure;
 $F2psEnd
 rs

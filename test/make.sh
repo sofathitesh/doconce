@@ -89,7 +89,7 @@ doconce replace --examples_as__exercises $ex testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
+ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works
@@ -282,9 +282,18 @@ doconce format pandoc $name
 doconce md2latex $name
 
 # Test admonitions
+doconce format pdflatex admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+admon_tps="colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2"
+for admon_tp in $admon_tps; do
+doconce ptex2tex admon envir=minted -DADMON=$admon_tp
+cp admon.tex admon_${admon_tp}.tex
+pdflatex -shell-escape admon_${admon_tp}
+done
+
 doconce format html admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp admon.html admon_white.html
+cp admon.html admon_default.html
 
 doconce format html admon --html_admon=colors
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -313,16 +322,6 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 #google-chrome admon_*.html
-
-doconce format pdflatex admon
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-admon_tps="colors box paragraph"
-for admon_tp in $admon_tps; do
-doconce ptex2tex admon envir=minted -DADMON=$admon_tp
-cp admon.tex admon_${admon_tp}.tex
-pdflatex -shell-escape admon_${admon_tp}
-done
-
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt

@@ -788,6 +788,90 @@ def _get_admon_figs(filename):
         os.remove(datafile)
         os.chdir(os.pardir)
 
+admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
+for _admon in admons:
+    _Admon = _admon[0].upper() + _admon[1:]
+    text = r"""
+def latex_%(_admon)s(block, format, title='%(_Admon)s'):
+    if title.lower().strip() == 'none':
+        title = ''
+    if title == 'Block':  # block admon has no default title
+        title = ''
+
+    title_graybox1 = title.replace(',', '')  # title in graybox1 cannot handle ,
+    if title_graybox1 and title_graybox1[-1] not in ('.', ':', '!', '?'):
+        title_graybox1 += '.'
+
+    title_para = title
+    if title_para and title_para[-1] not in ('.', ':', '!', '?'):
+        title_para += '.'
+
+    # For graybox2 we use graybox2admon except for summary without verbatim code,
+    # then \grayboxhrules is used (which can be wrapped in a small box of 50 percent
+    # with in the text for A4 format)
+    grayboxhrules = False
+    block_graybox2 = block
+    title_graybox2 = title
+    if '%(_admon)s' == 'summary':
+        if title != 'Summary':
+            if title_graybox2 and title_graybox2[-1] not in ('.', '!', '?', ';', ':'):
+                title_graybox2 += ':'
+            block_graybox2 = r'\textbf{%%s} ' %% title_graybox2 + block_graybox2
+        # else: no title if title == 'Summary' for graybox2
+        # Any code in block_graybox2?
+        m1 = re.search(r'^\\(b|e).*(cod|pro)', block_graybox2, flags=re.MULTILINE)
+        m2 = '\\code{' in block_graybox2
+        if m1 or m2:
+            grayboxhrules = False
+        else:
+            grayboxhrules = True
+
+    if grayboxhrules:
+        envir_graybox2 = r'''\grayboxhrules{
+%%s
+}''' %% block_graybox2
+    else:
+        # same mdframed package as for graybox1 admon, use title_graybox1
+        envir_graybox2 = r'''
+\begin{graybox2admon}[%%s]
+%%s
+\end{graybox2admon}
+''' %% (title_graybox1, block_graybox2)
+
+    text = r'''
+%%%% #if ADMON == "colors1"
+\begin{%(_admon)s_colors1admon}[%%(title)s]
+%%(block)s
+\end{%(_admon)s_colors1admon}
+%%%% #elif ADMON == "colors2"
+\begin{%(_admon)s_colors2admon}[%%(title)s]
+%%(block)s
+\end{%(_admon)s_colors2admon}
+%%%% #elif ADMON == "graybox3"
+\begin{%(_admon)s_graybox3admon}[%%(title)s]
+%%(block)s
+\end{%(_admon)s_graybox3admon}
+%%%% #elif ADMON == "yellowbox"
+\begin{%(_admon)s_yellowboxadmon}[%%(title)s]
+%%(block)s
+\end{%(_admon)s_yellowboxadmon}
+%%%% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[%%(title_para)s]
+%%(block)s
+\end{paragraphadmon}
+%%%% #elif ADMON == "graybox2"
+%%(envir_graybox2)s
+%%%% #else
+\begin{graybox1admon}[%%(title_graybox1)s]
+%%(block)s
+\end{graybox1admon}
+%%%% #endif
+''' %% vars()
+    return text
+    """ % vars()
+    exec(text)
+
+
 
 def _latex_admonition_old_does_not_work_with_verbatim(
     admon, admon_name, figname, rgb):
@@ -815,64 +899,11 @@ def latex_%s(block, format, title='%s'):
 ''' % (admon, admon_name, admon, admon, ', '.join(rgb), admon, latexfigdir, figname)
     return text
 
-
-admons = 'hint', 'notice', 'summary', 'warning', 'question'
-_light_blue = (0.87843, 0.95686, 1.0)
-_light_yellow = (0.988235, 0.964706, 0.862745)
-_pink = (1.0, 0.8235294, 0.8235294)
-
-_admon2rgb = dict(warning=_pink,
-                  question=_light_blue,
-                  notice=_light_yellow,
-                  summary=_light_yellow,
-                  hint=_light_blue,
-                  )
 # Dropped this since it cannot work with verbatim computer code
 #for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
 #    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
 #                           _admon, _admon2rgb[_admon]))
 
-for _admon in admons:
-    _Admon = _admon[0].upper() + _admon[1:]
-    text = r"""
-def latex_%(_admon)s(block, format, title='%(_Admon)s'):
-    if title.lower().strip() == 'none':
-        title = ''
-    title2 = title.replace(',', '')  # box title cannot handle ,
-    title3 = title
-    if title2 and title2[-1] not in ('.', ':', '!', '?'):
-        title2 += '.'
-    if title3 and title3[-1] not in ('.', ':', '!', '?'):
-        title3 += '.'
-    text = r'''
-%%%% #if ADMON == "colors"
-\begin{%(_admon)sadmon}[%%s]
-%%s
-\end{%(_admon)sadmon}
-%%%% #elif ADMON == "paragraph"
-\begin{%(_admon)sadmon}[%%s]
-%%s
-\end{%(_admon)sadmon}
-%%%% #else
-\begin{%(_admon)sadmon}[%%s]
-%%s
-\end{%(_admon)sadmon}
-%%%% #endif
-''' %% (title, block, title3, block, title2, block)
-    return text
-    """ % vars()
-    exec(text)
-
-
-# Redefine summary (no admon, \summarybox instead, which gives
-# a gray box with horizontal rules and that can be small and surrounded
-# by text for a4 format)
-def latex_summary(block, format, title='Summary'):
-    if title != 'Summary':
-        if title[-1] not in ('.', '!', '?', ';', ':'):
-            title += ':'
-        block = r'\textbf{%s} ' % title + block
-    return '\\summarybox{\n' + block + '}\n'
 
 def latex_inline_comment(m):
     name = m.group('name')
@@ -880,14 +911,15 @@ def latex_inline_comment(m):
     #import textwrap
     #caption_comment = textwrap.wrap(comment, width=60,
     #                                break_long_words=False)[0]
-    caption_comment = ' '.join(comment.split()[:4])
+    caption_comment = ' '.join(comment.split()[:4])  # for toc for todonotes
 
     if '_' in comment:
         # todonotes are bad at handling verbatim code with comments...
         comment = comment.replace('_', '\\_')
 
     if len(comment) <= 100:
-        # Have some extra space for \code{} commands inside the comment,
+        # Have some extra space inside the braces in the arguments to ensure
+        # correct handling of \code{} commands
         return r'\shortinlinecomment{%s}{ %s }{ %s }' % \
                (name, comment, caption_comment)
     else:
@@ -1010,6 +1042,7 @@ def define(FILENAME_EXTENSION,
         'notice':        latex_notice,
         'hint':          latex_hint,
         'summary':       latex_summary,
+        'block':         latex_block,
        }
 
     ending = '\n'
@@ -1226,39 +1259,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 """
-    if '!bsummary' in filestr and '!esummary' in filestr:
-        INTRO['latex'] += r"""
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% #ifdef A4PAPER
-\usepackage{wrapfig,calc}
-\newdimen\barheight
-\def\barthickness{0.5pt}
-
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
-\begin{minipage}{0.5\textwidth-6pt-\columnsep}
-\hspace*{3mm}
-\setbox2=\hbox{\parbox[t]{55mm}{
-#1 \rule[-8pt]{0pt}{10pt}}}%
-\barheight=\ht2 \advance\barheight by \dp2
-\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
-\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
-}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
-\end{wrapfigure}}
-% #else
-% gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
-% #endif
-"""
     if has_inline_comments:
         INTRO['latex'] += r"""
 
@@ -1279,12 +1279,12 @@ final,                   % or draft (marks overfull hboxes)
 % #else"""
         if option('skip_inline_comments'):
             INTRO['latex'] += r"""
-\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
-\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}"""
-        else:
-            INTRO['latex'] += r"""
 \newcommand{\shortinlinecomment}[3]{}
 \newcommand{\longinlinecomment}[3]{}"""
+        else:
+            INTRO['latex'] += r"""
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}"""
         INTRO['latex'] += r"""
 % #endif
 """
@@ -1294,49 +1294,87 @@ final,                   % or draft (marks overfull hboxes)
 \linenumbers
 % #endif
 """
+    # Admonitions
     if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
         INTRO['latex'] += r"""
 % #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
 \usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
 % #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
 % #else
 \usepackage[framemethod=TikZ]{mdframed}
 % #endif
-% #endif
 """
-        for admon in admons:
-            Admon = admon.upper()[0] + admon[1:]
-            figname = admon + '.eps'  # must be changed to .pdf in pdflatex.py
-            _get_admon_figs(figname)
-            color = str(_admon2rgb[admon])[1:-1]
-            INTRO['latex'] += r"""
-%% Admonition environment for "%(admon)s"
-%% #if ADMON == "colors"
-\definecolor{%(admon)sbackground}{rgb}{%(color)s}
-%% \fboxsep sets the space between the text and the box
-\newenvironment{%(admon)sshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{%(admon)sbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+        INTRO['latex'] += r"""
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\newdimen\barheight
+\def\barthickness{0.5pt}
 
-\newenvironment{%(admon)sadmon}[1][%(Admon)s]{
-\begin{%(admon)sshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/%(admon)s}
-\ \ \ {\large\sc #1}\\ \par
-\nobreak\noindent\ignorespaces
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\grayboxhrules}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+% #endif
+
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
 }
 {
-\end{%(admon)sshaded}
+\end{graybox2mdframed}
 }
-%% #elif ADMON == "paragraph"
-%% Admonition is just a paragraph
-\newenvironment{%(admon)sadmon}[1][%(Admon)s]{\paragraph{#1}}{}
-%% #else
+
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
+% #else
+% Admonition is an oval gray box
 \newmdenv[
   backgroundcolor=gray!10,  %% white with 10%% gray
   skipabove=\topsep,
@@ -1345,13 +1383,156 @@ final,                   % or draft (marks overfull hboxes)
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
-]{%(admon)smdframed}
+]{graybox1mdframed}
 
-\newenvironment{%(admon)sadmon}[1][%(Admon)s]{
-\begin{%(admon)smdframed}[frametitle=#1]
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
 }
 {
-\end{%(admon)smdframed}
+\end{graybox1mdframed}
+}
+% #endif
+"""
+        _light_blue = (0.87843, 0.95686, 1.0)
+        _light_yellow1 = (0.988235, 0.964706, 0.862745)
+        _pink = (1.0, 0.8235294, 0.8235294)
+        _gray1 = (0.86, 0.86, 0.86)
+        _gray2 = (0.91, 0.91, 0.91)  # lighter gray
+        _gray3 = (0.97, 0.97, 0.97)  # even lighter gray
+        _light_yellow2 = (0.97, 0.88, 0.62)
+
+        _admon2colors = dict(
+            warning=_pink,
+            question=_light_yellow1,
+            notice=_light_yellow1,
+            summary=_light_yellow1,
+            hint=_light_blue,
+            #block=_gray2,
+            block=_light_yellow1,
+            )
+        graybox3_figs = dict(
+            warning='small_gray_warning',
+            question='small_gray_question2',  # 'small_gray_question3'
+            notice='small_gray_notice',
+            hint='small_gray_hint',
+            summary='small_gray_summary',
+            )
+        yellowbox_figs = dict(
+            warning='small_yellow_warning',
+            question='small_yellow_question',
+            notice='small_yellow_notice',
+            hint='small_yellow_hint',
+            summary='small_yellow_summary',
+            )
+
+        for admon in admons:
+            Admon = admon.upper()[0] + admon[1:]
+
+            if admon != 'block':
+                # Copy figure file if necessary
+                # Note: .eps changed to .pdf in pdflatex.py
+                figname_colors = admon + '.eps'
+                _get_admon_figs(figname_colors)
+                figname_graybox3 = graybox3_figs[admon] + '.eps'
+                _get_admon_figs(figname_graybox3)
+                figname_yellowbox = yellowbox_figs[admon] + '.eps'
+                _get_admon_figs(figname_yellowbox)
+
+            color_colors = str(_admon2colors[admon])[1:-1]
+            graphics_colors1 = r'\includegraphics[height=0.3in]{latex_figs/%s}\ \ \ ' % admon
+            graphics_colors2 = r"""\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/%s}
+\end{wrapfigure}""" % admon
+            # Old typesetting of title (for ADMON=colors): {\large\sc #1}
+
+            #color_graybox3 = str(_gray3)[1:-1]
+            color_graybox3 = str(_gray2)[1:-1]
+            graphics_graybox3 = r"""\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/%s}
+\end{wrapfigure}"""% figname_graybox3
+
+            #color_yellowbox = str(_light_yellow2)[1:-1]
+            color_yellowbox = str(_light_yellow1)[1:-1]
+            graphics_yellowbox = r"""\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/%s}
+\end{wrapfigure}""" % figname_yellowbox
+
+            if admon == 'block':
+                # No figures for block admon
+                graphics_colors1 = ''
+                graphics_colors2 = ''
+                graphics_graybox3 = ''
+                graphics_yellowbox = ''
+
+            INTRO['latex'] += r"""
+%% Admonition environment for "%(admon)s"
+%% #if ADMON == "colors1"
+%% Style from NumPy User Guide
+\definecolor{%(admon)sbackground}{rgb}{%(color_colors)s}
+%% \fboxsep sets the space between the text and the box
+\newenvironment{%(admon)sshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{%(admon)sbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{%(admon)s_colors1admon}[1][%(Admon)s]{
+\begin{%(admon)sshaded}
+\noindent
+%(graphics_colors1)s  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{%(admon)sshaded}
+}
+%% #elif ADMON == "colors2"
+\definecolor{%(admon)sbackground}{rgb}{%(color_colors)s}
+%% \fboxsep sets the space between the text and the box
+\newenvironment{%(admon)sshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{%(admon)sbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{%(admon)s_colors2admon}[1][%(Admon)s]{
+\begin{%(admon)sshaded}
+\noindent
+%(graphics_colors2)s \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{%(admon)sshaded}
+}
+%% #elif ADMON == "graybox3"
+\definecolor{%(admon)sbackground}{rgb}{%(color_graybox3)s}
+%% \fboxsep sets the space between the text and the box
+\newenvironment{%(admon)sshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{%(admon)sbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{%(admon)s_graybox3admon}[1][%(Admon)s]{
+\begin{%(admon)sshaded}
+\noindent
+%(graphics_graybox3)s \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{%(admon)sshaded}
+}
+%% #elif ADMON == "yellowbox"
+\definecolor{%(admon)sbackground}{rgb}{%(color_yellowbox)s}
+%% \fboxsep sets the space between the text and the box
+\newenvironment{%(admon)sshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{%(admon)sbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{%(admon)s_yellowboxadmon}[1][%(Admon)s]{
+\begin{%(admon)sshaded}
+\noindent
+%(graphics_yellowbox)s \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{%(admon)sshaded}
 }
 %% #endif
 """ % vars()

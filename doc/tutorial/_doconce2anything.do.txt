@@ -156,9 +156,9 @@ that are used if the document contains `!split` commands for splitting
 it into many pages.
 
 
-===== Blogs =====
+===== Blog Posts =====
 
-Doconce can be used for writing blogs provided the blog site accepts
+Doconce can be used for writing blog posts provided the blog site accepts
 raw HTML code. Google's Blogger service (`blogger.com` or
 `blogname.blogspot.com`) is particularly well suited since it also
 allows extensive LaTeX mathematics via MathJax.
@@ -175,9 +175,31 @@ a "scientific report": "http://doconce-report-demo.blogspot.no/"
 for demonstrations of blogs at `blogspot.no`.
 
 !bwarning
-In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.
+In the readers' comments after the blog one cannot paste raw HTML
+code with MathJax
+scripts so there is no support for mathematics in the discussion forum.
 !ewarning
+
+!bnotice
+Figure files must be uploaded to some web site and the filenames name must
+be replaced by the relevant URL. This can be automatically edited:
+
+!bc shcod
+cp mydoc.do.txt mydoc2.do.txt
+url="https//raw.github.com/someuser/someuser.github.com"
+dir="master/project/dir1/dir2"
+for figname in fig1 fig2 fig3; do
+  doconce replace "[$figname," "[$site/$dir/$figname.png," \
+          mydoc2.do.txt
+done
+doconce format html mydoc2
+# Paste mydoc2.html into a new blog page
+!enotice
+
+Blog posts at Google can also be published "automatically through email":
+"http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452".
+A Python program can send the contents of the HTML file
+to the blog's email address using the packages  `smtplib` and `email`.
 
 WordPress (`wordpress.com`) allows raw HTML code in blogs,
 but has very limited
@@ -306,7 +328,11 @@ Preprocessor variables to be defined or undefined are
  * `HELVETICA` for the Helvetica font
  * `A4PAPER` for A4 paper size
  * `A6PAPER` for A6 paper size (suitable for reading PDFs on phones)
- * `MOVIE15` for using the movie15 LaTeX package to display movies
+ * `MOVIE` for specifying how movies are handled: the value `media9`
+   implies the `media9` package and the `\includemedia` command (default),
+   while other values are `movie15` (`\includemovie` command),
+   `multimedia` (for Beamer-style `\movie` command),
+   or `href-run` (for the plain `\href{run:file}` command)
  * `PREAMBLE` to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -319,9 +345,12 @@ Preprocessor variables to be defined or undefined are
    macro has only effect if inline comments are used (name, colon,
    and comment inside brackets).
  * `LINENUMBERS` for inclusion of line numbers in the text.
- * `AMONS` for setting the type of admonitions: `"colors"` for colored
-   boxes with icons, `"box"` for gray frame boxes (default),
-   or `"paragraph"` for simple, plain paragraph headings and ordinary text.
+ * `AMON` for setting the type of admonitions: `"colors"` for colored
+   boxes with icons, `"graybox1"` for gray frame boxes with rounded
+   corners (default), `"graybox2"` for narrower square gray frame boxes
+   (except for summary, which for A4 format is small and with wrapped
+   text around if it does not contain verbatim code),
+   or `"paragraph"` for simple, plain paragraph headings and ordinary text
  * `COLORED_TABLE_ROWS` for coloring every other table rows (set this
    variable to `gray` or `blue`)
  * `BLUE_SECTION_HEADINGS` for blue section and subsection headings
