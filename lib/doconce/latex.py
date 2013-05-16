@@ -163,14 +163,6 @@ def latex_code(filestr, code_blocks, code_block_types,
                 return '\\href{{%s}}{%s}' % (url, text)
         filestr = re.sub(pattern, subst, filestr)
 
-    # Add movie15 package if the file has a movie
-    if r'\includemovie[' in filestr:
-        filestr = filestr.replace('usepackage{ptex2tex}', """\
-usepackage{ptex2tex}
-% #ifdef MOVIE15
-\usepackage{movie15}
-% #endif
-""")
     # \code{} in section headings and paragraph needs a \protect
     cpattern = re.compile(r'^\s*(\\.*section\*?|\\paragraph)\{(.*)\}\s*$',
                          re.MULTILINE)
@@ -292,7 +284,7 @@ def latex_movie(m):
     from common import default_movie
     text = default_movie(m)
     filename = m.group('filename')
-    caption = m.group('caption')
+    caption = m.group('caption').strip()
 
     # URL to HTML viewer file must have absolute path in \href
     html_viewer_file_pattern = r'Movie of files `.+` in URL:"(.+)"'
@@ -305,13 +297,25 @@ def latex_movie(m):
                                 'URL:"file://%s"' % html_viewer_file_abs)
 
 
-    if ': play URL:' in text:
-        # Drop default_movie, embed in PDF instead using the movie15 package
-        text = r"""
+    if ': play URL:' in text:[[[
+        # Drop default_movie, embed in PDF instead using various techniques
+        if caption:
+            text = r"""
 \begin{figure}[ht]
 \begin{center}
+"""
+        text += r"""
+%% #if MOVIE == "media9"
+\includemedia[
+label=%(filename)s,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=%(filename)s,
+flashvars={
+source=%(filename)s,
+&autoPlay=true}]{VPlayer.swf}
 
-%% #ifdef MOVIE15
+%% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=%(filename)s,
 autoplay,
@@ -322,7 +326,7 @@ externalviewer,
 %% #endif
 text={\small (Loading %(filename)s)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{%(filename)s}    %% requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{%(filename)s}
 %% #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{%(filename)s}{Slower}
 \movieref[rate=2]{%(filename)s}{Faster}
@@ -333,16 +337,24 @@ repeat,
 \href{run:%(filename)s}{%(filename)s}
 %% #endif
 
+%% #elif MOVIE == "multimedia"
+%% Beamer-style \movie command
+\movie[
+label=%(filename)s,
+width=0.9\linewidth,
+autostart]{%(filename)s}{%(filename)s}
 %% #else
 \href{run:%(filename)s}{%(filename)s}
 
-%% alternative: \movie command that comes with beamer
-%% \movie[options]{%(filename)s}{%(filename)s}
 %% #endif
+""" % {'filename': filename}
+        if caption:
+            # Note: caption may contain a label
+            text = r"""
 \end{center}
-\caption{%(caption)s}
+\caption{%s}
 \end{figure}
-""" % {'filename': filename, 'caption': caption}
+""" % caption
     return text
 
 def latex_table(table):
@@ -1163,6 +1175,24 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
 """
+    # Add packages for movies
+    m = re.search(r'^MOVIE:\s*\[', filestr, flags=re.MULTILINE)
+    if m:
+        INTRO['latex'] += r"""
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+""")
+
     m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr, flags=re.MULTILINE)
     if m:
         INTRO['latex'] += r"""
