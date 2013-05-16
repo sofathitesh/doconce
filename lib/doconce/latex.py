@@ -292,7 +292,7 @@ def latex_movie(m):
     from common import default_movie
     text = default_movie(m)
     filename = m.group('filename')
-    caption = m.group('caption')
+    caption = m.group('caption').strip()
 
     # URL to HTML viewer file must have absolute path in \href
     html_viewer_file_pattern = r'Movie of files `.+` in URL:"(.+)"'
@@ -305,13 +305,25 @@ def latex_movie(m):
                                 'URL:"file://%s"' % html_viewer_file_abs)
 
 
-    if ': play URL:' in text:
-        # Drop default_movie, embed in PDF instead using the movie15 package
-        text = r"""
+    if ': play URL:' in text:[[[
+        # Drop default_movie, embed in PDF instead using various techniques
+        if caption:
+            text = r"""
 \begin{figure}[ht]
 \begin{center}
+"""
+        text += r"""
+%% #if MOVIE == "media9"
+\includemedia[
+label=%(filename)s,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=%(filename)s,
+flashvars={
+source=%(filename)s,
+&autoPlay=true}]{VPlayer.swf}
 
-%% #ifdef MOVIE15
+%% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=%(filename)s,
 autoplay,
@@ -322,7 +334,7 @@ externalviewer,
 %% #endif
 text={\small (Loading %(filename)s)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{%(filename)s}    %% requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{%(filename)s}
 %% #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{%(filename)s}{Slower}
 \movieref[rate=2]{%(filename)s}{Faster}
@@ -333,16 +345,26 @@ repeat,
 \href{run:%(filename)s}{%(filename)s}
 %% #endif
 
+%% #elif MOVIE == "multimedia"
+%% Beamer-style \movie command
+\movie[
+label=%(filename)s,
+width=0.9\linewidth,
+autostart]{%(filename)s}{%(filename)s}
 %% #else
 \href{run:%(filename)s}{%(filename)s}
 
 %% alternative: \movie command that comes with beamer
 %% \movie[options]{%(filename)s}{%(filename)s}
 %% #endif
+""" % {'filename': filename}
+        if caption:
+            # Note: caption may contain a label
+            text = r"""
 \end{center}
-\caption{%(caption)s}
+\caption{%s}
 \end{figure}
-""" % {'filename': filename, 'caption': caption}
+""" % caption
     return text
 
 def latex_table(table):
@@ -657,7 +679,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #    print '%d subst of %s' % (n, c)
     #    #filestr = filestr.replace(c, chars[c])
 
-    # Handle 50% and similar (with initial space, does not work
+    # Handle "50%" and similar (with initial space, does not work
     # for 50% as first word on a line, so we add a fix for that
     filestr = re.sub(r'( [0-9]{1,3})%', r'\g<1>\%', filestr)
     filestr = re.sub(r'(^[0-9]{1,3})%', r'\g<1>\%', filestr, flags=re.MULTILINE)
@@ -684,6 +706,10 @@ def latex_ref_and_label(section_label2title, format, filestr):
     return filestr
 
 def latex_index_bib(filestr, index, citations, pubfile, pubdata):
+    # About latex technologies for bib:
+    # http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
+    # May consider moving to biblatex if it is compatible enough.
+
     #print 'index:', index
     #print 'citations:', citations
     filestr = filestr.replace('cite{', r'\cite{')
@@ -1192,6 +1218,24 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
 """
+    # Add packages for movies
+    m = re.search(r'^MOVIE:\s*\[', filestr, flags=re.MULTILINE)
+    if m:
+        INTRO['latex'] += r"""
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+""")
+
     m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr, flags=re.MULTILINE)
     if m:
         INTRO['latex'] += r"""
