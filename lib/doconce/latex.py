@@ -305,7 +305,7 @@ def latex_movie(m):
                                 'URL:"file://%s"' % html_viewer_file_abs)
 
 
-    if ': play URL:' in text:[[[
+    if ': play URL:' in text:
         # Drop default_movie, embed in PDF instead using various techniques
         if caption:
             text = r"""
@@ -1234,7 +1234,7 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{multimedia}
 % #elif MOVIE == "href-run"
 % #endif
-""")
+"""
 
     m = re.search('^(!bc|@@@CODE|@@@CMD)', filestr, flags=re.MULTILINE)
     if m:
