@@ -185,7 +185,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-===== Subsection 2 =====
+===== Subsection 2: Testing figures and movies =====
 label{subsec:ex}
 idx{figures}
 
@@ -194,16 +194,19 @@ there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200]
 
 idx{movies}
-Test of movies.
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+=== Test of movies ===
 
-# Test empty caption:
+Movie ref{mov:tsunami} shows a tsunami.
+
+MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal) label{mov:tsunami}.
+
+Test empty caption (for inline movie):
 
 MOVIE: [../doc/manual/figs/wavepacket.mpeg, width=700 height=400]
 
@@ -231,8 +234,6 @@ and an extra space before the FIGURE keyword.
 caption spanning
 several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
 as well as math with subscript as in $t_{i+1}$. label{myfig}
-
-Movie ref{mymov} has a similar problem.
 
 # Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -1148,28 +1149,32 @@ Automatically generated HTML file from Doconce source
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -1178,19 +1183,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -1199,11 +1204,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -1212,12 +1217,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 <body>
@@ -1310,52 +1315,49 @@ $$
 <center>[7] <b>Fourth Inst</b></center>
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
 
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="._part0001_testdoc.html#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2: Testing figures and movies </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec3"> Test of movies </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec5"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec8"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec10"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec11"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec12"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec18"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> Example 2: Just an example </a><br>
-<a href="._part0002_testdoc.html#___sec22"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc.html#___sec23"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec24"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec26"> References </a><br>
-<a href="._part0002_testdoc.html#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec28"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec30"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc.html#___sec27"> References </a><br>
+<a href="._part0002_testdoc.html#___sec28"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec29"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec30"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec31"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec34"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec35"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
-
-
 <p>
 
                 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
@@ -1439,6 +1441,19 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
@@ -1500,15 +1515,55 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% gray summary box
+
+% #ifdef TODONOTES
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+% #else
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
+% #endif
+
+% #ifdef LINENUMBERS
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+% #endif
+
+% #ifndef ADMON
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
+\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
-\usepackage{wrapfig,calc}
 \newdimen\barheight
 \def\barthickness{0.5pt}
 
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
 \vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
 \begin{minipage}{0.5\textwidth-6pt-\columnsep}
 \hspace*{3mm}
@@ -1521,7 +1576,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{wrapfigure}}
 % #else
 % gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
+\newcommand{\grayboxhrules}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
 \parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
@@ -1531,235 +1586,517 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
 
-% #ifdef TODONOTES
-\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
-\usepackage[shadow]{todonotes}
-\newcommand{\shortinlinecomment}[3]{%
-\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
- \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
-\newcommand{\longinlinecomment}[3]{%
-\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
-% #else
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
-% #endif
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
 
-% #ifdef LINENUMBERS
-\usepackage[mathlines]{lineno}  % show line numbers
-\linenumbers
-% #endif
-
-% #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
-\usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
 % #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
 % #else
-\usepackage[framemethod=TikZ]{mdframed}
-% #endif
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -2222,7 +2559,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-\subsection{Subsection 2}
+\subsection{Subsection 2: Testing figures and movies}
 \label{subsec:ex}
 \index{figures}
 
@@ -2239,7 +2576,7 @@ there is a flow.
 %\clearpage % flush figures fig:impact
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 \begin{center}  % inline figure
@@ -2248,13 +2585,25 @@ Figures without captions are allowed.
 
 
 \index{movies}
-Test of movies.
+
+\paragraph{Test of movies.}
+Movie~\ref{mov:tsunami} shows a tsunami.
 
 
 \begin{figure}[ht]
 \begin{center}
 
-% #ifdef MOVIE15
+% #if MOVIE == "media9"
+\includemedia[
+label=../doc/manual/figs/mjolnir.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=../doc/manual/figs/mjolnir.mpeg,
+flashvars={
+source=../doc/manual/figs/mjolnir.mpeg,
+&autoPlay=true}]{VPlayer.swf}
+
+% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=../doc/manual/figs/mjolnir.mpeg,
 autoplay,
@@ -2265,7 +2614,7 @@ externalviewer,
 % #endif
 text={\small (Loading ../doc/manual/figs/mjolnir.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}
 % #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{../doc/manual/figs/mjolnir.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/mjolnir.mpeg}{Faster}
@@ -2276,24 +2625,35 @@ repeat,
 \href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #endif
 
+% #elif MOVIE == "multimedia"
+% Beamer-style \movie command
+\movie[
+label=../doc/manual/figs/mjolnir.mpeg,
+width=0.9\linewidth,
+autostart]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #else
 \href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #endif
+
 \end{center}
-\caption{ Mjolnir tsunami (by Sylfest Glimsdal).}
+\caption{Mjolnir tsunami (by Sylfest Glimsdal) \label{mov:tsunami}.}
 \end{figure}
 
 
-% Test empty caption:
+Test empty caption (for inline movie):
 
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}})
+% #if MOVIE == "media9"
+\includemedia[
+label=../doc/manual/figs/wavepacket.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=../doc/manual/figs/wavepacket.mpeg,
+flashvars={
+source=../doc/manual/figs/wavepacket.mpeg,
+&autoPlay=true}]{VPlayer.swf}
 
-\begin{figure}[ht]
-\begin{center}
-
-% #ifdef MOVIE15
+% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=../doc/manual/figs/wavepacket.mpeg,
 autoplay,
@@ -2304,7 +2664,7 @@ externalviewer,
 % #endif
 text={\small (Loading ../doc/manual/figs/wavepacket.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}
 % #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{../doc/manual/figs/wavepacket.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/wavepacket.mpeg}{Faster}
@@ -2315,15 +2675,15 @@ repeat,
 \href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
 % #endif
 
+% #elif MOVIE == "multimedia"
+% Beamer-style \movie command
+\movie[
+label=../doc/manual/figs/wavepacket.mpeg,
+width=0.9\linewidth,
+autostart]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
 % #else
 \href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
 % #endif
-\end{center}
-\caption{}
-\end{figure}
 
 
 % Test wrong syntax and multi-line caption
@@ -2354,8 +2714,6 @@ and an extra space before the FIGURE keyword.
 \end{figure}
 %\clearpage % flush figures myfig
 
-
-Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -3144,18 +3502,36 @@ With label.
 Without label.
 
 
-% #if ADMON == "colors"
-\begin{hintadmon}[Hint]
+% #if ADMON == "colors1"
+\begin{hint_colors1admon}[Hint]
 Here is a hint.
-\end{hintadmon}
+\end{hint_colors1admon}
+% #elif ADMON == "colors2"
+\begin{hint_colors2admon}[Hint]
+Here is a hint.
+\end{hint_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{hint_graybox3admon}[Hint]
+Here is a hint.
+\end{hint_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{hint_yellowboxadmon}[Hint]
+Here is a hint.
+\end{hint_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{hintadmon}[Hint.]
+\begin{paragraphadmon}[Hint.]
 Here is a hint.
-\end{hintadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Hint.]
+Here is a hint.
+\end{graybox2admon}
+
 % #else
-\begin{hintadmon}[Hint.]
+\begin{graybox1admon}[Hint.]
 Here is a hint.
-\end{hintadmon}
+\end{graybox1admon}
 % #endif
 \clearpage
 
@@ -3171,7 +3547,9 @@ have the latest updates of the files.
 Greg Wilson' excellent \href{{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-\summarybox{
+
+% #if ADMON == "colors1"
+\begin{summary_colors1admon}[Summary]
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -3181,7 +3559,87 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.}
+Much testing in this document, otherwise stupid content.
+\end{summary_colors1admon}
+% #elif ADMON == "colors2"
+\begin{summary_colors2admon}[Summary]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{summary_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{summary_graybox3admon}[Summary]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{summary_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{summary_yellowboxadmon}[Summary]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{summary_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Summary.]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+\grayboxhrules{
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+}
+% #else
+\begin{graybox1admon}[Summary.]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{graybox1admon}
+% #endif
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -3292,8 +3750,10 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[table]{xcolor}
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
-\usepackage{movie15}
 
+
+
+\usepackage{movie15}
 
 \usepackage{minted}
 \usemintedstyle{default}
@@ -3333,25 +3793,6 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-\usepackage{wrapfig,calc}
-\newdimen\barheight
-\def\barthickness{0.5pt}
-
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
-\begin{minipage}{0.5\textwidth--6pt-\columnsep}
-\hspace*{3mm}
-\setbox2=\hbox{\parbox[t]{55mm}{
-#1 \rule[-8pt]{0pt}{10pt}}}%
-\barheight=\ht2 \advance\barheight by \dp2
-\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
-\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
-}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
-\end{wrapfigure}}
-
 
 \usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
@@ -3364,21 +3805,23 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[mathlines]{lineno}  % show line numbers
 \linenumbers
 
-% Default is "colors", i.e., framed box with color
+% Default is "colors2", i.e., box with color and text wrapped around icon
+
 \usepackage{framed}
 
+
 % Admonition environment for "hint"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -3386,17 +3829,17 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "notice"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -3404,17 +3847,17 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "summary"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -3422,17 +3865,17 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "warning"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -3440,21 +3883,39 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
+}
+
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 
 % color every two table rows
@@ -3821,7 +4282,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-\subsection{Subsection 2}
+\subsection{Subsection 2: Testing figures and movies}
 \label{subsec:ex}
 \index{figures}
 
@@ -3838,7 +4299,7 @@ there is a flow.
 %\clearpage % flush figures fig:impact
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 \begin{center}  % inline figure
@@ -3847,7 +4308,9 @@ Figures without captions are allowed.
 
 
 \index{movies}
-Test of movies.
+
+\paragraph{Test of movies.}
+Movie~\ref{mov:tsunami} shows a tsunami.
 
 
 \begin{figure}[ht]
@@ -3860,24 +4323,22 @@ autoplay,
 %toolbar,
 text={\small (Loading ../doc/manual/figs/mjolnir.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}
 \movieref[rate=0.5]{../doc/manual/figs/mjolnir.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/mjolnir.mpeg}{Faster}
 \movieref[default]{../doc/manual/figs/mjolnir.mpeg}{Normal}
 \movieref[pause]{../doc/manual/figs/mjolnir.mpeg}{Play/Pause}
 \movieref[stop]{../doc/manual/figs/mjolnir.mpeg}{Stop}
 
+
 \end{center}
-\caption{ Mjolnir tsunami (by Sylfest Glimsdal).}
+\caption{Mjolnir tsunami (by Sylfest Glimsdal) \label{mov:tsunami}.}
 \end{figure}
 
 
-% Test empty caption:
+Test empty caption (for inline movie):
 
-
-\begin{figure}[ht]
-\begin{center}
-
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}\footnote{\texttt{wavepacket.html}}})
 \includemovie[poster,
 label=../doc/manual/figs/wavepacket.mpeg,
 autoplay,
@@ -3885,16 +4346,13 @@ autoplay,
 %toolbar,
 text={\small (Loading ../doc/manual/figs/wavepacket.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}
 \movieref[rate=0.5]{../doc/manual/figs/wavepacket.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/wavepacket.mpeg}{Faster}
 \movieref[default]{../doc/manual/figs/wavepacket.mpeg}{Normal}
 \movieref[pause]{../doc/manual/figs/wavepacket.mpeg}{Play/Pause}
 \movieref[stop]{../doc/manual/figs/wavepacket.mpeg}{Stop}
 
-\end{center}
-\caption{}
-\end{figure}
 
 
 % Test wrong syntax and multi--line caption
@@ -3925,8 +4383,6 @@ and an extra space before the FIGURE keyword.
 \end{figure}
 %\clearpage % flush figures myfig
 
-
-Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -4714,9 +5170,9 @@ With label.
 Without label.
 
 
-\begin{hintadmon}[Hint]
+\begin{hint_colors1admon}[Hint]
 Here is a hint.
-\end{hintadmon}
+\end{hint_colors1admon}
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -4731,7 +5187,8 @@ have the latest updates of the files.
 Greg Wilson' excellent \href{{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}}{Script for Introduction to Version Control}\footnote{\texttt{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-\summarybox{
+
+\begin{summary_colors1admon}[Summary]
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -4741,7 +5198,8 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.}
+Much testing in this document, otherwise stupid content.
+\end{summary_colors1admon}
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -4863,6 +5321,9 @@ final,                   % or draft (marks overfull hboxes)
 
 
 
+\usepackage{media9}
+
+
 \usepackage[latin1]{inputenc}
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
@@ -4901,38 +5362,28 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
+
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 
 
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
+% Default is "colors2", i.e., box with color and text wrapped around icon
 
-
-% Default is "colors", i.e., framed box with color
 \usepackage{framed}
 
+
 % Admonition environment for "hint"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -4940,17 +5391,17 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "notice"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -4958,17 +5409,17 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "summary"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -4976,17 +5427,17 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "warning"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
@@ -4994,21 +5445,39 @@ final,                   % or draft (marks overfull hboxes)
 }
 
 % Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
+}
+
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 
 
@@ -5338,7 +5807,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-\subsection{Subsection 2}
+\subsection{Subsection 2: Testing figures and movies}
 \label{subsec:ex}
 \index{figures}
 
@@ -5355,7 +5824,7 @@ there is a flow.
 %\clearpage % flush figures fig:impact
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 \begin{center}  % inline figure
@@ -5364,34 +5833,41 @@ Figures without captions are allowed.
 
 
 \index{movies}
-Test of movies.
+
+\paragraph{Test of movies.}
+Movie~\ref{mov:tsunami} shows a tsunami.
 
 
 \begin{figure}[ht]
 \begin{center}
 
-\href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+\includemedia[
+label=../doc/manual/figs/mjolnir.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=../doc/manual/figs/mjolnir.mpeg,
+flashvars={
+source=../doc/manual/figs/mjolnir.mpeg,
+&autoPlay=true}]{VPlayer.swf}
 
-% alternative: \movie command that comes with beamer
-% \movie[options]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+
 \end{center}
-\caption{ Mjolnir tsunami (by Sylfest Glimsdal).}
+\caption{Mjolnir tsunami (by Sylfest Glimsdal) \label{mov:tsunami}.}
 \end{figure}
 
 
-% Test empty caption:
+Test empty caption (for inline movie):
 
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}\footnote{\texttt{wavepacket.html}}})
+\includemedia[
+label=../doc/manual/figs/wavepacket.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=../doc/manual/figs/wavepacket.mpeg,
+flashvars={
+source=../doc/manual/figs/wavepacket.mpeg,
+&autoPlay=true}]{VPlayer.swf}
 
-\begin{figure}[ht]
-\begin{center}
-
-\href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
-\end{center}
-\caption{}
-\end{figure}
 
 
 % Test wrong syntax and multi--line caption
@@ -5422,8 +5898,6 @@ and an extra space before the FIGURE keyword.
 \end{figure}
 %\clearpage % flush figures myfig
 
-
-Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -6199,9 +6673,9 @@ With label.
 Without label.
 
 
-\begin{hintadmon}[Hint]
+\begin{hint_colors1admon}[Hint]
 Here is a hint.
-\end{hintadmon}
+\end{hint_colors1admon}
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -6216,7 +6690,8 @@ have the latest updates of the files.
 Greg Wilson' excellent \href{{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}}{Script for Introduction to Version Control}\footnote{\texttt{http://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-\summarybox{
+
+\begin{summary_colors1admon}[Summary]
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -6226,7 +6701,8 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.}
+Much testing in this document, otherwise stupid content.
+\end{summary_colors1admon}
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -6551,8 +7027,8 @@ HTML is the output format.
 
 .. _subsec:ex:
 
-Subsection 2
-------------
+Subsection 2: Testing figures and movies
+----------------------------------------
 
 Test of figures. In particular we refer to Figure `fig:impact`_ in which
 there is a flow.
@@ -6566,7 +7042,7 @@ there is a flow.
    *Visualization of flow by streamtubes*  (fig:impact)
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 .. figure:: ../doc/manual/figs/streamtubes.png
@@ -6574,17 +7050,20 @@ Figures without captions are allowed.
 
 
 
-Test of movies.
+
+Test of movies
+~~~~~~~~~~~~~~
+
+Movie `mov:tsunami`_ shows a tsunami.
 
 .. raw:: html
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+        <p><em>Mjolnir tsunami (by Sylfest Glimsdal) .</em></p>
 
 
 
-.. Test empty caption:
-
+Test empty caption (for inline movie):
 
 .. raw:: html
         
@@ -6641,8 +7120,6 @@ and an extra space before the FIGURE keyword.
 
    *A long caption spanning several lines and containing verbatim words like ``my_file_v1`` and ``my_file_v2`` as well as math with subscript as in $t_{i+1}$*  (myfig)
 
-
-Movie `mymov`_ has a similar problem.
 
 .. Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -7923,8 +8400,8 @@ HTML is the output format.
 
 .. _subsec:ex:
 
-Subsection 2
-------------
+Subsection 2: Testing figures and movies
+----------------------------------------
 
 .. index:: figures
 
@@ -7941,7 +8418,7 @@ there is a flow.
    *Visualization of flow by streamtubes*
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 .. figure:: ../doc/manual/figs/streamtubes.png
@@ -7952,17 +8429,20 @@ Figures without captions are allowed.
 
 .. index:: movies
 
-Test of movies.
+
+Test of movies
+~~~~~~~~~~~~~~
+
+Movie :ref:`mov:tsunami` shows a tsunami.
 
 .. raw:: html
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+        <p><em>Mjolnir tsunami (by Sylfest Glimsdal) .</em></p>
 
 
 
-.. Test empty caption:
-
+Test empty caption (for inline movie):
 
 .. raw:: html
         
@@ -8019,8 +8499,6 @@ and an extra space before the FIGURE keyword.
 
    A long caption spanning several lines and containing verbatim words like ``my_file_v1`` and ``my_file_v2`` as well as math with subscript as in :math:`t_{i+1}`
 
-
-Movie :ref:`mymov` has a similar problem.
 
 .. Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -9397,7 +9875,7 @@ And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
 
-==== Subsection 2 ====
+==== Subsection 2: Testing figures and movies ====
 
 Test of figures. In particular we refer to Figure fig:impact in which
 there is a flow.
@@ -9418,7 +9896,7 @@ googlecode repository) and substitute the line above with the URL.
 
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 
@@ -9436,11 +9914,14 @@ googlecode repository) and substitute the line above with the URL.
 
 
 
-Test of movies.
 
- Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+==== Test of movies ====
 
-<wiki:comment> Test empty caption: </wiki:comment>
+Movie mov:tsunami shows a tsunami.
+
+ Mjolnir tsunami (by Sylfest Glimsdal) . (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+
+Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play wavepacket.html)
 
@@ -9478,8 +9959,6 @@ googlecode repository) and substitute the line above with the URL.
 ---------------------------------------------------------------
 
 
-
-Movie mymov has a similar problem.
 
 <wiki:comment> Must be a blank line after MOVIE or FIGURE to detect this problem </wiki:comment>
 
@@ -10467,7 +10946,7 @@ And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
 
-==== Subsection 2 ====
+==== Subsection 2: Testing figures and movies ====
 
 Test of figures. In particular we refer to Figure fig:impact in which
 there is a flow.
@@ -10476,17 +10955,20 @@ there is a flow.
 [[File:Streamtubes.png|frame|200px|alt=Streamtubes.png|Visualization of flow by streamtubes. (fig:impact)]] <!-- not yet uploaded to common.wikimedia.org -->
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 [[File:Streamtubes.png|frame|200px|alt=Streamtubes.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
 
 
-Test of movies.
 
- Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+==== Test of movies ====
 
-<!-- Test empty caption: -->
+Movie mov:tsunami shows a tsunami.
+
+ Mjolnir tsunami (by Sylfest Glimsdal) . (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+
+Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play wavepacket.html)
 
@@ -10512,8 +10994,6 @@ and an extra space before the FIGURE keyword.
 
 [[File:Wavepacket 0001.png|frame|500px|alt=Wavepacket 0001.png|A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in <math>t_{i+1}</math>. (myfig)]] <!-- not yet uploaded to common.wikimedia.org -->
 
-
-Movie mymov has a similar problem.
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -11610,7 +12090,7 @@ And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
 
-== Subsection 2 ==
+== Subsection 2: Testing figures and movies ==
 
 
 Test of figures. In particular we refer to Figure fig:impact in which
@@ -11618,15 +12098,18 @@ there is a flow.
 
 {{../doc/manual/figs/streamtubes.png| Visualization of flow by streamtubes. (fig:impact)}}
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 {{../doc/manual/figs/streamtubes.png|}}
 
-Test of movies.
 
- Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play [[mjolnir.html]])
+=== Test of movies ===
 
-<wiki:comment> Test empty caption: </wiki:comment>
+Movie mov:tsunami shows a tsunami.
+
+ Mjolnir tsunami (by Sylfest Glimsdal) . (Movie ../doc/manual/figs/mjolnir.mpeg: play [[mjolnir.html]])
+
+Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play [[wavepacket.html]])
 
@@ -11650,8 +12133,6 @@ Here is figure myfig with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 {{../doc/manual/figs/wavepacket_0001.png| A long caption spanning several lines and containing verbatim words like {{{my_file_v1}}} and {{{my_file_v2}}} as well as math with subscript as in {{{t_{i+1}}}}. (myfig) }}
-
-Movie mymov has a similar problem.
 
 <wiki:comment> Must be a blank line after MOVIE or FIGURE to detect this problem </wiki:comment>
 
@@ -12627,7 +13108,7 @@ And one more. Some formats will only display this correctly when
 HTML is the output format.
 
 
-Subsection 2
+Subsection 2: Testing figures and movies
 
 
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
@@ -12635,14 +13116,18 @@ there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200]
 
-Test of movies.
 
- Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play "mjolnir.html":mjolnir.html)
+Test of movies
 
+Movie ref{mov:tsunami} shows a tsunami.
+
+ Mjolnir tsunami (by Sylfest Glimsdal) . (Movie ../doc/manual/figs/mjolnir.mpeg: play "mjolnir.html":mjolnir.html)
+
+Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play "wavepacket.html":wavepacket.html)
 
@@ -12662,8 +13147,6 @@ Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like 'my_file_v1' and 'my_file_v2' as well as math with subscript as in t_{i+1}. {myfig} 
-
-Movie ref{mymov} has a similar problem.
 
 
 
@@ -13641,8 +14124,8 @@ And one more. Some formats will only display this correctly when
 HTML is the output format.
 
 
-Subsection 2
-------------
+Subsection 2: Testing figures and movies
+----------------------------------------
 
 
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
@@ -13650,14 +14133,19 @@ there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200]
 
-Test of movies.
 
- Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play U{mjolnir.html<mjolnir.html>})
+Test of movies
+~~~~~~~~~~~~~~
 
+Movie ref{mov:tsunami} shows a tsunami.
+
+ Mjolnir tsunami (by Sylfest Glimsdal) . (Movie ../doc/manual/figs/mjolnir.mpeg: play U{mjolnir.html<mjolnir.html>})
+
+Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play U{wavepacket.html<wavepacket.html>})
 
@@ -13677,8 +14165,6 @@ Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like C{my_file_v1} and C{my_file_v2} as well as math with subscript as in M{t_{i+1}}. {myfig} 
-
-Movie ref{mymov} has a similar problem.
 
 
 
@@ -14514,7 +15000,8 @@ Table of contents:
 
  Section 1 
    Subsection 1 
-   Subsection 2 
+   Subsection 2: Testing figures and movies 
+     Test of movies 
    The \theta parameter (not \nabla?) 
    Custom Environments 
    Tables 
@@ -14756,8 +15243,8 @@ And one more. Some formats will only display this correctly when
 HTML is the output format.
 
 
-Subsection 2
-------------
+Subsection 2: Testing figures and movies
+----------------------------------------
 
 
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
@@ -14765,14 +15252,19 @@ there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200]
 
-Test of movies.
 
- Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+Test of movies
+~~~~~~~~~~~~~~
 
+Movie ref{mov:tsunami} shows a tsunami.
+
+ Mjolnir tsunami (by Sylfest Glimsdal) . (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+
+Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play wavepacket.html)
 
@@ -14792,8 +15284,6 @@ Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like my_file_v1 and my_file_v2 as well as math with subscript as in t_{i+1}. {myfig} 
-
-Movie ref{mymov} has a similar problem.
 
 
 
@@ -15852,7 +16342,7 @@ And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
 
-### Subsection 2
+### Subsection 2: Testing figures and movies
 
 
 Test of figures. In particular we refer to Figure ref{fig:impact} in which
@@ -15860,18 +16350,21 @@ there is a flow.
 
 ![Visualization of flow by streamtubes. ](../doc/manual/figs/streamtubes.png)
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 ![](../doc/manual/figs/streamtubes.png)
 
-Test of movies.
+
+#### Test of movies
+
+Movie ref{mov:tsunami} shows a tsunami.
 
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal) .</em></p>
 
 
-<!-- Test empty caption: -->
+Test empty caption (for inline movie):
 
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
@@ -15908,8 +16401,6 @@ Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 ![A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. ](../doc/manual/figs/wavepacket_0001.png)
-
-Movie ref{mymov} has a similar problem.
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -17261,7 +17752,7 @@ case in LaTeX.
       "HTML is the output format.\n",
       "\n",
       "\n",
-      "### Subsection 2\n",
+      "### Subsection 2: Testing figures and movies\n",
       "\n",
       "\n",
       "Test of figures. In particular we refer to Figure ref{fig:impact} in which\n",
@@ -17269,18 +17760,21 @@ case in LaTeX.
       "\n",
       "![Visualization of flow by streamtubes. ](files/../doc/manual/figs/streamtubes.png)\n",
       "\n",
-      "Figures without captions are allowed.\n",
+      "Figures without captions are allowed and will be inlined.\n",
       "\n",
       "![](files/../doc/manual/figs/streamtubes.png)\n",
       "\n",
-      "Test of movies.\n",
+      "\n",
+      "#### Test of movies\n",
+      "\n",
+      "Movie ref{mov:tsunami} shows a tsunami.\n",
       "\n",
       "\n",
       "<embed src=\"../doc/manual/figs/mjolnir.mpeg\" width=700 height=400 autoplay=\"false\" loop=\"true\"></embed>\n",
-      "<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>\n",
+      "<p><em>Mjolnir tsunami (by Sylfest Glimsdal) .</em></p>\n",
       "\n",
       "\n",
-      "<!-- Test empty caption: -->\n",
+      "Test empty caption (for inline movie):\n",
       "\n",
       "\n",
       "<embed src=\"../doc/manual/figs/wavepacket.mpeg\" width=700 height=400 autoplay=\"false\" loop=\"true\"></embed>\n",
@@ -17317,8 +17811,6 @@ case in LaTeX.
       "and an extra space before the FIGURE keyword.\n",
       "\n",
       "![A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. ](files/../doc/manual/figs/wavepacket_0001.png)\n",
-      "\n",
-      "Movie ref{mymov} has a similar problem.\n",
       "\n",
       "<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->\n",
       "\n",
@@ -18790,22 +19282,22 @@ output1
 output2</code></pre>
 <p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
 <p>Here is some color and an attempt to write Some formats will only display this correctly when HTML is the output format.</p>
-<h2 id="subsection-2">Subsection 2</h2>
+<h2 id="subsection-2-testing-figures-and-movies">Subsection 2: Testing figures and movies</h2>
 <p>[subsec:ex]</p>
 <p>Test of figures. In particular we refer to Figure [fig:impact] in which there is a flow.</p>
 <p>[ht]</p>
 <div class="figure">
 <embed src="../doc/manual/figs/streamtubes.eps"><p class="caption">image</p>
 </div>
-<p>Figures without captions are allowed.</p>
+<p>Figures without captions are allowed and will be inlined.</p>
 <div class="figure">
 <embed src="../doc/manual/figs/streamtubes.eps"><p class="caption">image</p>
 </div>
-<p>Test of movies.</p>
+<h4 id="test-of-movies.">Test of movies.</h4>
+<p>Movie [mov:tsunami] shows a tsunami.</p>
 <p>[ht]</p>
-<p><a href="run:../doc/manual/figs/mjolnir.mpeg">../doc/manual/figs/mjolnir.mpeg</a></p>
-<p>[ht]</p>
-<p><a href="run:../doc/manual/figs/wavepacket.mpeg">../doc/manual/figs/wavepacket.mpeg</a></p>
+<p>Test empty caption (for inline movie):</p>
+<p>(Movie ../doc/manual/figs/wavepacket.mpeg: play <a href="{wavepacket.html}"></a>)</p>
 <p>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). [mymov] (Movie of files <code>../doc/manual/figs/wavepacket_*.png</code> in <a href="{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}"></a>)</p>
 <p>Movies can be uploaded to YouTube and embedded as HTML or as a link. <a href="{http://www.youtube.com/watch?v=_O7iUiftbKU}"></a></p>
 <p>Computational fluid dynamics movie. <a href="{http://vimeo.com/55562330}"></a></p>
@@ -18814,7 +19306,6 @@ output2</code></pre>
 <div class="figure">
 <embed src="../doc/manual/figs/wavepacket_0001.eps"><p class="caption">image</p>
 </div>
-<p>Movie [mymov] has a similar problem.</p>
 <div class="figure">
 <img src="downloaded_figures/f_plot.png" alt="image" /><p class="caption">image</p>
 </div>
@@ -19180,6 +19671,7 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>Without label.</p>
 <p>[Hint] Here is a hint.</p>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson’ excellent <a href="{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p>[Summary] <strong>Bold remark:</strong> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
 <p>The simplest services for hosting project files are <a href="{http://dropbox.com}">Dropbox</a> and <a href="{http://drive.google.com}">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging to find the right version from the past when there are so many of them.</p>
 <p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems. The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
@@ -19223,6 +19715,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
   <meta name="author" content="A. Dummy Author" />
   <meta name="author" content="I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst" />
   <meta name="author" content="J. Doe" />
+  <meta name="date" content="2013-05-16" />
   <title>A Document for Testing Doconce</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -19392,25 +19885,24 @@ output1
 output2</code></pre>
 <p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the <code>verb</code> typesetting... Also test backslashes like <code>\begin</code> and <code>\end</code> in inline verbatim text.</p>
 <p>Here is some <font color="red">red</font> color and an attempt to write <font color="green">with green color containing a linebreak. And one more.</font> Some formats will only display this correctly when HTML is the output format.</p>
-<h3 id="subsection-2">Subsection 2</h3>
+<h3 id="subsection-2-testing-figures-and-movies">Subsection 2: Testing figures and movies</h3>
 <p>Test of figures. In particular we refer to Figure ref{fig:impact} in which there is a flow.</p>
 <div class="figure">
 <img src="../doc/manual/figs/streamtubes.png" alt="Visualization of flow by streamtubes." /><p class="caption">Visualization of flow by streamtubes.</p>
 </div>
-<p>Figures without captions are allowed.</p>
+<p>Figures without captions are allowed and will be inlined.</p>
 <div class="figure">
 <img src="../doc/manual/figs/streamtubes.png" /><p class="caption"></p>
 </div>
-<p>Test of movies.</p>
+<h4 id="test-of-movies">Test of movies</h4>
+<p>Movie ref{mov:tsunami} shows a tsunami.</p>
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p>
-<em>Mjolnir tsunami (by Sylfest Glimsdal).</em>
+<em>Mjolnir tsunami (by Sylfest Glimsdal) .</em>
 </p>
 
 
-<!-- Test empty caption: -->
-
-
+<p>Test empty caption (for inline movie):</p>
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p>
 <em></em>
@@ -19440,7 +19932,6 @@ output2</code></pre>
 <div class="figure">
 <img src="../doc/manual/figs/wavepacket_0001.png" alt="A long caption spanning several lines and containing verbatim words like my_file_v1 and my_file_v2 as well as math with subscript as in t_{i+1}." /><p class="caption">A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \(t_{i+1}\).</p>
 </div>
-<p>Movie ref{mymov} has a similar problem.</p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
 <!-- Test URL as figure name -->
@@ -20089,7 +20580,6 @@ MathJax.Hub.Config({
 
 <title>This is a test of HTML templates</title>
 
-
 <h1>Date: Jan 32, 2100</h1>
 
 <!-- main body -->
@@ -20105,17 +20595,11 @@ end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
 
-<p>
-
-<p>
-
 <h3>This is a test of HTML templates  <a name="___sec0"></a></h3>
 
 <p>
 Note: When using HTML templates, the Doconce file cannot have a title
 (to avoid generating a header). It should neither have an author.
-
-<p>
 
 <h2>This is a 7 heading  <a name="___sec1"></a></h2>
 
@@ -20133,8 +20617,6 @@ class Forward1(Diff):
         return (f(x+h) - f(x))/h
 </code></pre>
 <!-- end verbatim block -->
-
-<p>
 
 <h3>This is a 5 heading  <a name="___sec2"></a></h3>
 
@@ -20356,17 +20838,11 @@ end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
 
-<p>
-
-<p>
-
 <h3>This is a test of HTML templates  <a name="___sec0"></a></h3>
 
 <p>
 Note: When using HTML templates, the Doconce file cannot have a title
 (to avoid generating a header). It should neither have an author.
-
-<p>
 
 <h2>This is a 7 heading  <a name="___sec1"></a></h2>
 
@@ -20385,8 +20861,6 @@ Here is some code:
         f, h <span style="color: #666666">=</span> <span style="color: #AA22FF">self</span><span style="color: #666666">.</span>f, <span style="color: #AA22FF">self</span><span style="color: #666666">.</span>h
         <span style="color: #AA22FF; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
 </pre></div>
-<p>
-
 
 <h3>This is a 5 heading  <a name="___sec2"></a></h3>
 
@@ -21038,8 +21512,6 @@ $$
 <p>
 <!-- Externaldocument: testdoc -->
 
-<p>
-
 <h1>Generalized References <a name="genrefs"></a></h1>
 
 <p>
@@ -21111,8 +21583,6 @@ the section <a href="#genrefs">Generalized References</a>."
 <!-- We are testing chapter too to see if latex output then has -->
 <!-- book style rather than article style. -->
 
-<p>
-
 <h1>Test of math  <a name="___sec1"></a></h1>
 
 <p>
@@ -21121,12 +21591,9 @@ Inline math, \( a=b \), is the only math in this document.
 <p>
 <!-- Need BIBFILE because of cite{} examples -->
 
-<p>
-
 <h2>Bibliography</h2>
 
 <p>
-
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -21758,28 +22225,32 @@ Automatically generated HTML file from Doconce source
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -21788,19 +22259,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -21809,11 +22280,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -21822,12 +22293,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 <body>
@@ -21920,52 +22391,49 @@ $$
 <center>[7] <b>Fourth Inst</b></center>
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
 
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="._part0001_testdoc.html#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2: Testing figures and movies </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec3"> Test of movies </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec5"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec8"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec10"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec11"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec12"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec18"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> Example 2: Just an example </a><br>
-<a href="._part0002_testdoc.html#___sec22"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc.html#___sec23"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec24"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec26"> References </a><br>
-<a href="._part0002_testdoc.html#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec28"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec30"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc.html#___sec27"> References </a><br>
+<a href="._part0002_testdoc.html#___sec28"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec29"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec30"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec31"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec34"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec35"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
-
-
 <p>
 
                 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
@@ -22062,28 +22530,32 @@ Automatically generated HTML file from Doconce source
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -22092,19 +22564,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -22113,11 +22585,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -22126,12 +22598,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 <body>
@@ -22186,13 +22658,10 @@ $$
 <!-- !split -->
 
 <p>
-
-
 The format of this document is
 plain, homemade HTML (from Doconce).
 
 <p>
-
 <b>Abstract.</b> This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -22204,9 +22673,6 @@ is part of the abstract.
 <p>
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- is mutually exclusive in LaTeX -->
-
-<p>
-
 
 <h2>Section 1 <a name="sec1"></a></h2>
 
@@ -22344,28 +22810,32 @@ Automatically generated HTML file from Doconce source
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -22374,19 +22844,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -22395,11 +22865,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -22408,12 +22878,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 <body>
@@ -22465,8 +22935,6 @@ $$
     <p>
 <!-- !split and check if these extra words are included properly in the comment -->
 
-<p>
-
 <h3>Subsection 1  <a name="___sec1"></a></h3>
 
 <p>
@@ -22478,7 +22946,6 @@ to the section <a href="#subsubsec:ex">URLs</a>.
 Let's do some copying from files too. First from subroutine up to the very end,
 
 <p>
-
 
 <!-- code=fortran (from !bc fcod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
@@ -22564,7 +23031,6 @@ and finally the complete file:
       <span style="color: #AA22FF; font-weight: bold">return</span>
 </pre></div>
 </td></tr></table><p>
-
 Testing other code environments. First Python:
 <p>
 
@@ -22582,14 +23048,12 @@ which gets rendered as
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x):
     <span style="color: #AA22FF; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 </td></tr></table><p>
-
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
@@ -22597,7 +23061,6 @@ Now a complete program to be shown via Python Online Tutorial:
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
-
 Then Cython:
 <p>
 
@@ -22607,7 +23070,6 @@ Then Cython:
     <span style="color: #AA22FF; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
 </td></tr></table><p>
-
 <!-- This one tests a + sign before a code environment -->
 C++:
 <p>
@@ -22633,7 +23095,6 @@ And a little bit of Fortran:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
@@ -22656,7 +23117,6 @@ which then is typeset as
 
 <p>
 
-
 <!-- code=text (from !bc cod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
@@ -22671,11 +23131,9 @@ which then is typeset as
       end
 </pre></div>
 </td></tr></table><p>
-
 HTML:
 
 <p>
-
 
 <!-- code=html (from !bc htmlcod) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
@@ -22689,7 +23147,6 @@ HTML:
 <span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 </td></tr></table><p>
-
 System call:
 <p>
 
@@ -22705,7 +23162,6 @@ output1
 output2
 </pre></div>
 </td></tr></table><p>
-
 It is time to test <code>verbatim inline font</code> especially with <code>a newline
 inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The
 exclamation mark inside the verbatim text is not smart for latex as
@@ -22718,17 +23174,13 @@ green color containing a linebreak.
 And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
-<p>
-
-
-<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+<h3>Subsection 2: Testing figures and movies <a name="subsec:ex"></a></h3>
 
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
 
 <p>
-
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
@@ -22736,23 +23188,24 @@ there is a flow.
 </center>
 
 <p>
-
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 <p>
 <center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
 
+<h4>Test of movies  <a name="___sec3"></a></h4>
+
 <p>
-Test of movies.
+Movie <a href="#mov:tsunami">mov:tsunami</a> shows a tsunami.
 
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal) <a name="mov:tsunami"></a>.</em></p>
 
 
 <p>
-<!-- Test empty caption: -->
+Test empty caption (for inline movie):
 
 <p>
 
@@ -22763,8 +23216,7 @@ Test of movies.
 <p>
 <!-- Test wrong syntax and multi-line caption -->
 
-<p>
-<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
 
 <p>
@@ -22788,7 +23240,6 @@ Test of movies.
 
 
 <p>
-
 <!-- Test multi-line caption in figure -->
 
 <p>
@@ -22796,16 +23247,11 @@ Here is figure <a href="#myfig">2</a> with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 <p>
-
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
 </center>
-
-<p>
-
-Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
@@ -22822,8 +23268,6 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <p>
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
-<p>
-
 <h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
 
 <p>
@@ -22837,7 +23281,6 @@ involving \( \theta \):
     return theta**2
 </pre></div>
 </td></tr></table><p>
-
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.
 
@@ -22871,11 +23314,7 @@ $$
 \end{align}
 $$
 
-
-<p>
-
-
-<h3>Custom Environments  <a name="___sec4"></a></h3>
+<h3>Custom Environments  <a name="___sec5"></a></h3>
 
 <p>
 Here is an attempt to create a theorem environment via Mako
@@ -22884,12 +23323,10 @@ the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
 Should look nice in most formats!
 
 <p>
-
 <!-- begin theorem -->
 <a name="theorem:fundamental1"></a>
 
 <p>
-
 <b>Theorem 5.</b>
 Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
 <!-- end theorem -->
@@ -22905,20 +23342,15 @@ Since \( c=a+b \), the result follows from straightforward addition.
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-<p>
-
-
 <h3>Tables <a name="subsec:table"></a></h3>
 
 <p>
-
 <!-- index with comma could fool sphinx -->
 
 <p>
 Let us take this table from the manual:
 
 <p>
-
 <table border="1">
 <tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
@@ -22926,7 +23358,6 @@ Let us take this table from the manual:
 <tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
 </table>
 <p>
-
 The Doconce source code reads
 <p>
 
@@ -22946,7 +23377,6 @@ The Doconce source code reads
   |--------------------------------|
 </pre></div>
 </td></tr></table><p>
-
 Here is yet another table to test that we can handle more than
 one table:
 
@@ -22985,19 +23415,15 @@ and <code>|</code> right after verbatim word (with no space):
 <tr><td align="right">   10                              </td> <td align="right">   17.74                           </td> <td align="right">   -4.50                           </td> <td align="right">   9.96                            </td> </tr>
 <tr><td align="right">   0                               </td> <td align="right">   -9.19                           </td> <td align="right">   4.13                            </td> <td align="right">   -0.26                           </td> </tr>
 </table>
-<p>
 
-
-<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec7"></a></h3>
 
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
 Here is
 some text.
 
-<p>
-
-<h3>Bibliography test  <a name="___sec7"></a></h3>
+<h3>Bibliography test  <a name="___sec8"></a></h3>
 
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
@@ -23027,11 +23453,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 <a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
 
@@ -23042,7 +23464,6 @@ typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
 <p>
-
 <b>a)</b>
 State some problem.
 
@@ -23069,9 +23490,6 @@ maybe over multiple doconce input lines.
 
 <p>
 <!-- --- end exercise --- -->
-
-<p>
-
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 
@@ -23117,10 +23535,7 @@ More tough tests: repeated URLs whose footnotes when using the
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
 
-<p>
-
-
-<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
 
 <p>
 Here is an equation without label using backslash-bracket environment:
@@ -23146,7 +23561,6 @@ $$
 
 
 <p>
-
 And here is a system of equations with labels in an align environment:
 $$
 \begin{align}
@@ -23223,15 +23637,10 @@ Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#dem
 as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
 between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
-<p>
-
-<h2>Exercises  <a name="___sec11"></a></h2>
+<h2>Exercises  <a name="___sec12"></a></h2>
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 
@@ -23248,14 +23657,9 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 <p>
-
 <!-- Test syntax error -->
 
-<p>
-
-
-
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 
 <p>
 Remarks with such a subsubsection heading would previously mark
@@ -23283,7 +23687,6 @@ Draw an integer among \( \{1,2\} \) with
 <!-- --- end hint in exercise --- -->
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 If the <code>random.random()</code> function returns a number \( <1/2 \), let it be
@@ -23291,27 +23694,20 @@ head, otherwise tail. Repeat this \( N \) number of times.
 <!-- --- end answer of exercise --- -->
 
 <p>
-
 Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h3>Not an exercise  <a name="___sec14"></a></h3>
+<h3>Not an exercise  <a name="___sec15"></a></h3>
 
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
@@ -23322,7 +23718,6 @@ exercises.
 <!-- Minimalistic exercise -->
 
 <p>
-
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 
@@ -23341,11 +23736,7 @@ compute the probability as \( M/N \).
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 
@@ -23370,7 +23761,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 
 <p>
 
-
 <!-- code=python (from !bc pypro) typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
@@ -23391,7 +23781,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
 </pre></div>
 </td></tr></table><p>
-
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
@@ -23401,7 +23790,6 @@ center and radius. Plot each circle using the <code>circle</code> function
 above.
 
 <p>
-
 <b>a)</b>
 Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
@@ -23415,14 +23803,12 @@ Use the <code>numpy.random</code> module to draw the
 <!-- --- end hint in exercise --- -->
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 Here goes the short answer to part a).
 <!-- --- end answer of exercise --- -->
 
 <p>
-
 
 <p>
 <b>b)</b>
@@ -23439,24 +23825,17 @@ Filename: <code>circles.pdf</code>.
 <p>
 <!-- Closing remarks for this Project -->
 
-<p>
-
-<h4>Remarks  <a name="___sec17"></a></h4>
+<h4>Remarks  <a name="___sec18"></a></h4>
 
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 
@@ -23467,16 +23846,13 @@ and give some perspectives.
 Intro to this exercise. Questions are in subexercises below.
 
 <p>
-
 <!-- No meaning in this weired test example: -->
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
 
 <p>
 
-
 <p>
-
 <b>a)</b>
 Subexercises are numbered a), b), etc.
 
@@ -23494,7 +23870,6 @@ $$ a=b. $$
 And with code (in plain verbatim) returning \( x+1 \) in hint:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
@@ -23514,7 +23889,6 @@ Second hint to subexercise a).
 Filename: <code>subexer_a.pdf</code>.
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 Short answer to subexercise a).
@@ -23526,7 +23900,6 @@ With math in answer: \( a=b \).
 Here goes the text for subexercise b).
 
 <p>
-
 Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
 
 <p>
@@ -23544,13 +23917,10 @@ Filename: <code>subexer_b.pdf</code>.
 
 <p>
 
-
 <p>
 <!-- Closing remarks for this Exercise -->
 
-<p>
-
-<h4>Remarks  <a name="___sec19"></a></h4>
+<h4>Remarks  <a name="___sec20"></a></h4>
 
 <p>
 Some final closing remarks, e.g., summarizing the main findings
@@ -23558,17 +23928,12 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
 
-<p>
-
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec21"></a></h3>
 
 <p>
 <!-- Another minimalistic exercise -->
@@ -23586,29 +23951,22 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
 </td></tr></table><p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
 
-<p>
-
-<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+<h3>Example 2: Just an example  <a name="___sec22"></a></h3>
 
 <p>
 <!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 <p>
-
 <b>a)</b>
 What is the capital of Norway?
 
@@ -23619,23 +23977,15 @@ Oslo.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h2>Here goes another section  <a name="___sec22"></a></h2>
+<h2>Here goes another section  <a name="___sec23"></a></h2>
 
 <p>
 With some text, before we continue with exercises.
 
-<p>
-
-<h2>More Exercises  <a name="___sec23"></a></h2>
+<h2>More Exercises  <a name="___sec24"></a></h2>
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
@@ -23651,11 +24001,7 @@ Filename: <code>verify_formula.py</code>.
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
@@ -23671,13 +24017,7 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h2>References  <a name="___sec26"></a></h2>
-
-<p>
-
+<h2>References  <a name="___sec27"></a></h2>
 
 <h2>Bibliography</h2>
 
@@ -23793,51 +24133,37 @@ Filename: <code>selc_composed.pdf</code>.
     1994.</li>
 </ol>
 
-
-<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec28"></a></h2>
 
 <p>
 This is the first appendix.
 
-<p>
-
-<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec29"></a></h3>
 
 <p>
 Some text.
 
-<p>
-
-<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec30"></a></h2>
 
 <p>
 This is more stuff for an appendix.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
 
 <p>
 Without label.
-
-<p>
-
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
 With label.
 
-<p>
-
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
 
 <p>
 With label.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec34"></a></h3>
 
 <p>
 Without label.
@@ -23847,7 +24173,6 @@ Without label.
 Here is a hint.
 </div>
 <p>
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -23924,17 +24249,14 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-<p>
-
-
-<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+<h3>Appendix: Testing inline comments  <a name="___sec35"></a></h3>
 
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
-[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
+<font color="red">[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]</font>
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
@@ -23943,9 +24265,9 @@ scientific writing work - and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+<font color="red">[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
 how files, like <code>myfile.py</code>, perhaps containing much math, like
-\( \partial u/\partial t \), are easily communicated between machines.</em>]
+\( \partial u/\partial t \), are easily communicated between machines.</em>]</font>
 <!-- end inline comment -->
  It
 is very easy to get started with Dropbox, and it allows you to share
@@ -23958,16 +24280,13 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 <!-- begin inline comment -->
-[<b>hpl 3</b>: <em>The following text aims at providing
+<font color="red">[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.</em>]
+and in-depth explanations of the concepts and tools.</em>]</font>
 <!-- end inline comment -->
 
-
-<p>
-
-<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec36"></a></h3>
 
 <p>
 The point here is to test 1) <code>verbatim</code> code in headings, and 2)
@@ -24095,63 +24414,54 @@ Automatically generated HTML file from Doconce source
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
 <p>
-<center><h4>Jan 32, 2100</h4></center> 
-<p>
+<center><h4>Jan 32, 2100</h4></center>
 
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2: Testing figures and movies </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec3"> Test of movies </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The $latex \theta$ parameter (not $latex \nabla$?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec5"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec7"> A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec8"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec10"> LaTeX Mathematics </a><br>
-<a href="#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec11"> LaTeX Mathematics </a><br>
+<a href="#___sec12"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec15"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec18"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Example 2: Just an example </a><br>
-<a href="#___sec22"> Here goes another section </a><br>
-<a href="#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec20"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec22"> Example 2: Just an example </a><br>
+<a href="#___sec23"> Here goes another section </a><br>
+<a href="#___sec24"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="#___sec26"> References </a><br>
-<a href="#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec28"> A subsection within an appendix </a><br>
-<a href="#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec30"> Appendix: Testing identical titles </a><br>
+<a href="#___sec27"> References </a><br>
+<a href="#___sec28"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec29"> A subsection within an appendix </a><br>
+<a href="#___sec30"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec31"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
-
-
-
-
-<p>
-
-
 The format of this document is
 plain, homemade HTML (from Doconce).
 
 <p>
-
 <b>Abstract.</b> This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -24159,13 +24469,6 @@ numerous constructions, also special and less common cases.
 <p>
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
-
-<p>
-
-
-
-<p>
-
 
 <h2>Section 1 <a name="sec1"></a></h2>
 
@@ -24200,11 +24503,6 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 </blockquote>
-<p>
-
-
-<p>
-
 <h3>Subsection 1  <a name="___sec1"></a></h3>
 
 <p>
@@ -24216,7 +24514,6 @@ to the section <a href="#subsubsec:ex">URLs</a>.
 Let's do some copying from files too. First from subroutine up to the very end,
 
 <p>
-
 
 
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
@@ -24269,7 +24566,6 @@ and finally the complete file:
       <span style="color: #008000; font-weight: bold">return</span>
 </pre></div>
 <p>
-
 Testing other code environments. First Python:
 <p>
 
@@ -24285,12 +24581,10 @@ which gets rendered as
 <p>
 
 
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 <p>
-
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
@@ -24298,7 +24592,6 @@ Now a complete program to be shown via Python Online Tutorial:
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
-
 Then Cython:
 <p>
 
@@ -24307,7 +24600,6 @@ Then Cython:
     <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
 <p>
-
 
 C++:
 <p>
@@ -24328,7 +24620,6 @@ And a little bit of Fortran:
 <p>
 
 
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -24344,7 +24635,6 @@ which then is typeset as
 <p>
 
 
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
       real*8 a, b, x
       x = (a + b)/2
@@ -24353,11 +24643,9 @@ which then is typeset as
       end
 </pre></div>
 <p>
-
 HTML:
 
 <p>
-
 
 
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
@@ -24367,7 +24655,6 @@ HTML:
 <span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 <p>
-
 System call:
 <p>
 
@@ -24379,7 +24666,6 @@ output1
 output2
 </pre></div>
 <p>
-
 It is time to test <code>verbatim inline font</code> especially with <code>a newline
 inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The
 exclamation mark inside the verbatim text is not smart for latex as
@@ -24392,17 +24678,13 @@ green color containing a linebreak.
 And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
-<p>
-
-
-<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+<h3>Subsection 2: Testing figures and movies <a name="subsec:ex"></a></h3>
 
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
 
 <p>
-
 <center> 
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
@@ -24410,23 +24692,24 @@ there is a flow.
 </center>
 
 <p>
-
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 <p>
 <center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
 
+<h4>Test of movies  <a name="___sec3"></a></h4>
+
 <p>
-Test of movies.
+Movie <a href="#mov:tsunami">mov:tsunami</a> shows a tsunami.
 
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal) <a name="mov:tsunami"></a>.</em></p>
 
 
 <p>
-
+Test empty caption (for inline movie):
 
 <p>
 
@@ -24434,16 +24717,8 @@ Test of movies.
 <p><em></em></p>
 
 
-<p>
-
-
-<p>
-<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
-
-<p>
-
-
 
 <p>
 
@@ -24462,15 +24737,10 @@ Test of movies.
 
 
 <p>
-
-
-
-<p>
 Here is figure <a href="#myfig">2</a> with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 <p>
-
 <center> 
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in $latex t_{i+1}$. <a name="myfig"></a> </p></center>
@@ -24478,25 +24748,7 @@ and an extra space before the FIGURE keyword.
 </center>
 
 <p>
-
-Movie <a href="#mymov">mymov</a> has a similar problem.
-
-<p>
-
-
-<p>
-
-
-<p>
 <center><p><img src="https://doconce.googlecode.com/hg/doc/blog/f_plot.png" align="bottom" width=500,></p></center>
-
-<p>
-
-
-<p>
-
-
-<p>
 
 <h3>The $latex \theta$ parameter (not $latex \nabla$?) <a name="decay:sec:theta"></a></h3>
 
@@ -24510,7 +24762,6 @@ involving $latex \theta$:
     return theta**2
 </pre></div>
 <p>
-
 <b>More on $latex \theta$.</b>
 Here is more text following headline with math.
 
@@ -24551,12 +24802,7 @@ $latex
 
  $
 
-
-
-<p>
-
-
-<h3>Custom Environments  <a name="___sec4"></a></h3>
+<h3>Custom Environments  <a name="___sec5"></a></h3>
 
 <p>
 Here is an attempt to create a theorem environment via Mako
@@ -24566,11 +24812,9 @@ Should look nice in most formats!
 
 <p>
 
-
 <a name="theorem:fundamental1"></a>
 
 <p>
-
 <b>Theorem 5.</b>
 Let $latex a=1$ and $latex b=2$. Then $latex c=3$.
 
@@ -24586,20 +24830,12 @@ $latex latex \Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-<p>
-
-
 <h3>Tables <a name="subsec:table"></a></h3>
-
-<p>
-
-
 
 <p>
 Let us take this table from the manual:
 
 <p>
-
 <table border="1">
 <tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
@@ -24607,7 +24843,6 @@ Let us take this table from the manual:
 <tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
 </table>
 <p>
-
 The Doconce source code reads
 <p>
 
@@ -24621,7 +24856,6 @@ The Doconce source code reads
   |--------------------------------|
 </pre></div>
 <p>
-
 Here is yet another table to test that we can handle more than
 one table:
 
@@ -24660,19 +24894,15 @@ and <code>|</code> right after verbatim word (with no space):
 <tr><td align="right">   10                                </td> <td align="right">   17.74                             </td> <td align="right">   -4.50                             </td> <td align="right">   9.96                              </td> </tr>
 <tr><td align="right">   0                                 </td> <td align="right">   -9.19                             </td> <td align="right">   4.13                              </td> <td align="right">   -0.26                             </td> </tr>
 </table>
-<p>
 
-
-<h3>A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+<h3>A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec7"></a></h3>
 
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math $latex a_{i-1}$.</b>
 Here is
 some text.
 
-<p>
-
-<h3>Bibliography test  <a name="___sec7"></a></h3>
+<h3>Bibliography test  <a name="___sec8"></a></h3>
 
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
@@ -24701,13 +24931,6 @@ More retro citations are
 the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 <a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
 
-<p>
-
-
-
-
-<p>
-
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
 
 <p>
@@ -24717,7 +24940,6 @@ typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
 <p>
-
 <b>a)</b>
 State some problem.
 
@@ -24741,12 +24963,6 @@ Maybe even another hint?
 <b>Solution.</b>
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
-
-<p>
-
-
-<p>
-
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 
@@ -24777,25 +24993,13 @@ monofont link text get a footnote, as in this reference to
 <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><tt>decay_mod</tt></a>.
 
 <p>
-
-
-
-<p>
-
-
-
-
-<p>
 More tough tests: repeated URLs whose footnotes when using the
 <code>--device=paper</code> option must be correct. We have
 <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
 
-<p>
-
-
-<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
 
 <p>
 Here is an equation without label using backslash-bracket environment:
@@ -24825,7 +25029,6 @@ b = \nabla^2 u + \nabla^4 v
 
 
 <p>
-
 And here is a system of equations with labels in an align environment:
 
 $latex 
@@ -24902,15 +25105,7 @@ Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#dem
 as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
 between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
-<p>
-
-<h2>Exercises  <a name="___sec11"></a></h2>
-
-<p>
-
-
-
-<p>
+<h2>Exercises  <a name="___sec12"></a></h2>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 
@@ -24919,22 +25114,11 @@ between there we have <a href="#exer:some:formula">Exercise 3: Make references t
 
 
 <p>
-
-
-<p>
 Make a program that simulates flipping a coin $latex N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
-<p>
-
-
-
-<p>
-
-
-
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 
 <p>
 Remarks with such a subsubsection heading would previously mark
@@ -24953,9 +25137,6 @@ Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 
 
 <p>
-
-
-<p>
 <b>Hint 2.</b>
 Draw an integer among $latex \{1,2\}$ with
 <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
@@ -24963,14 +25144,12 @@ Draw an integer among $latex \{1,2\}$ with
 
 <p>
 
-
 <b>Answer.</b>
 If the <code>random.random()</code> function returns a number $latex <1/2$, let it be
 head, otherwise tail. Repeat this $latex N$ number of times.
 
 
 <p>
-
 
 <b>Solution.</b>
 Code:
@@ -24990,24 +25169,11 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 
-
-<p>
-
-
-<p>
-
-
-<h3>Not an exercise  <a name="___sec14"></a></h3>
+<h3>Not an exercise  <a name="___sec15"></a></h3>
 
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
-
-<p>
-
-
-
-<p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
@@ -25015,15 +25181,8 @@ exercises.
 
 
 <p>
-
-
-<p>
-
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $latex [0,1)$?
-
-<p>
-
 
 <p>
 <b>Hint.</b>
@@ -25031,17 +25190,6 @@ To answer this question empirically, let a program
 draw $latex N$ such random numbers using Python's standard <code>random</code> module,
 count how many of them, $latex M$, that fall in the interval $latex (0.5,0.6)$, and
 compute the probability as $latex M/N$.
-
-
-<p>
-
-
-<p>
-
-
-
-
-<p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 
@@ -25069,7 +25217,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 <p>
 
 
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
@@ -25081,22 +25228,13 @@ The formula can be used to generate <code>n</code> points on a circle:
 x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
 </pre></div>
 <p>
-
-
-
-
-<p>
 The goal of this project is to draw $latex N$ circles with random
 center and radius. Plot each circle using the <code>circle</code> function
 above.
 
 <p>
-
 <b>a)</b>
 Let $latex R$ be normally distributed and $latex (x_0,y_0)$ uniformly distributed.
-
-<p>
-
 
 <p>
 <b>Hint.</b>
@@ -25106,13 +25244,11 @@ $latex x_0$, $latex y_0$, and $latex R$ quantities.
 
 <p>
 
-
 <b>Answer.</b>
 Here goes the short answer to part a).
 
 
 <p>
-
 
 <b>Solution.</b>
 Here goes a full solution to part a).
@@ -25130,27 +25266,11 @@ Let $latex R$ and $latex (x_0,y_0)$ be normally distributed.
 <p>
 Filename: <code>circles.pdf</code>.
 
-<p>
-
-
-<p>
-
-<h4>Remarks  <a name="___sec17"></a></h4>
+<h4>Remarks  <a name="___sec18"></a></h4>
 
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
-
-<p>
-
-
-
-<p>
-
-
-
-
-<p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 
@@ -25162,12 +25282,10 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 
-
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
 
 <p>
-
 
 <b>Solution.</b>
 Here goes a full solution of the whole exercise.
@@ -25187,12 +25305,8 @@ End of solution is here.
 
 
 <p>
-
 <b>a)</b>
 Subexercises are numbered a), b), etc.
-
-<p>
-
 
 <p>
 <b>Hint 1.</b>
@@ -25209,16 +25323,9 @@ And with code (in plain verbatim) returning $latex x+1$ in hint:
 <p>
 
 
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
     return x + 1  # with code in hint
 </pre></div>
-<p>
-
-
-<p>
-
-
 <p>
 <b>Hint 2.</b>
 Second hint to subexercise a).
@@ -25226,7 +25333,6 @@ Second hint to subexercise a).
 Filename: <code>subexer_a.pdf</code>.
 
 <p>
-
 
 <b>Answer.</b>
 Short answer to subexercise a).
@@ -25238,16 +25344,12 @@ With math in answer: $latex a=b$.
 Here goes the text for subexercise b).
 
 <p>
-
 Some math $latex \cos^2 x + \sin^2 x = 1$ written one a single line:
 
 <p>
 
 $latex  \cos^2 x + \sin^2 x = 1 \thinspace . $
 
-
-
-<p>
 
 
 <p>
@@ -25258,38 +25360,17 @@ Filename: <code>subexer_b.pdf</code>.
 
 <p>
 
-
 <b>Solution.</b>
 Here goes the solution of this subexercise.
 
-
-<p>
-
-
-<p>
-
-<h4>Remarks  <a name="___sec19"></a></h4>
+<h4>Remarks  <a name="___sec20"></a></h4>
 
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
-<p>
-
-
-
-<p>
-
-
-
-
-<p>
-
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
-
-<p>
-
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec21"></a></h3>
 
 <p>
 Just some text. And some math saying that $latex e^0=1$ on a single line,
@@ -25307,28 +25388,12 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <p>
 
 
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
-<p>
 
-
-
-<p>
-
-
-
+<h3>Example 2: Just an example  <a name="___sec22"></a></h3>
 
 <p>
-
-<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
-
-<p>
-
-
-
-<p>
-
 <b>a)</b>
 What is the capital of Norway?
 
@@ -25336,26 +25401,12 @@ What is the capital of Norway?
 <b>Answer.</b>
 Oslo.
 
-<p>
-
-
-<p>
-
-
-<h2>Here goes another section  <a name="___sec22"></a></h2>
+<h2>Here goes another section  <a name="___sec23"></a></h2>
 
 <p>
 With some text, before we continue with exercises.
 
-<p>
-
-<h2>More Exercises  <a name="___sec23"></a></h2>
-
-<p>
-
-
-
-<p>
+<h2>More Exercises  <a name="___sec24"></a></h2>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
@@ -25366,16 +25417,6 @@ With some text, before we continue with exercises.
 Pick a statement from <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
 Filename: <code>verify_formula.py</code>.
-
-<p>
-
-
-<p>
-
-
-
-
-<p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
@@ -25388,16 +25429,7 @@ the two before that as <a href="#demo:ex:2">Project 1: Compute a Probability</a>
 and this one as <a href="#exer:you">Project 3: References in a headings do not work well in html</a>.
 Filename: <code>selc_composed.pdf</code>.
 
-<p>
-
-
-<p>
-
-
-<h2>References  <a name="___sec26"></a></h2>
-
-<p>
-
+<h2>References  <a name="___sec27"></a></h2>
 
 <h2>Bibliography</h2>
 
@@ -25513,51 +25545,37 @@ Filename: <code>selc_composed.pdf</code>.
     1994.</li>
 </ol>
 
-
-<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec28"></a></h2>
 
 <p>
 This is the first appendix.
 
-<p>
-
-<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec29"></a></h3>
 
 <p>
 Some text.
 
-<p>
-
-<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec30"></a></h2>
 
 <p>
 This is more stuff for an appendix.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
 
 <p>
 Without label.
-
-<p>
-
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
 With label.
 
-<p>
-
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
 
 <p>
 With label.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec34"></a></h3>
 
 <p>
 Without label.
@@ -25567,7 +25585,6 @@ Without label.
 Here is a hint.
 </div>
 <p>
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -25644,17 +25661,14 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-<p>
-
-
-<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+<h3>Appendix: Testing inline comments  <a name="___sec35"></a></h3>
 
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 
-[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
+<font color="red">[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]</font>
 
  I strongly
 recommend you to use such sites for all serious programming and
@@ -25663,9 +25677,9 @@ scientific writing work - and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 
-[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+<font color="red">[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
 how files, like <code>myfile.py</code>, perhaps containing much math, like
-$latex \partial u/\partial t$, are easily communicated between machines.</em>]
+$latex \partial u/\partial t$, are easily communicated between machines.</em>]</font>
 
  It
 is very easy to get started with Dropbox, and it allows you to share
@@ -25678,16 +25692,12 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 
-[<b>hpl 3</b>: <em>The following text aims at providing
+<font color="red">[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.</em>]
+and in-depth explanations of the concepts and tools.</em>]</font>
 
-
-
-<p>
-
-<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec36"></a></h3>
 
 <p>
 The point here is to test 1) <code>verbatim</code> code in headings, and 2)
@@ -25771,28 +25781,32 @@ Automatically generated HTML file from Doconce source
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -25801,19 +25815,19 @@ Automatically generated HTML file from Doconce source
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -25822,11 +25836,11 @@ Automatically generated HTML file from Doconce source
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -25835,12 +25849,12 @@ Automatically generated HTML file from Doconce source
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 <body>
@@ -25929,57 +25943,52 @@ $$
 <center>[7] <b>Fourth Inst</b></center>
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
 
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2: Testing figures and movies </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec3"> Test of movies </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec5"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec8"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec10"> LaTeX Mathematics </a><br>
-<a href="#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec11"> LaTeX Mathematics </a><br>
+<a href="#___sec12"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec15"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec18"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Example 2: Just an example </a><br>
-<a href="#___sec22"> Here goes another section </a><br>
-<a href="#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec20"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec22"> Example 2: Just an example </a><br>
+<a href="#___sec23"> Here goes another section </a><br>
+<a href="#___sec24"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="#___sec26"> References </a><br>
-<a href="#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec28"> A subsection within an appendix </a><br>
-<a href="#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec30"> Appendix: Testing identical titles </a><br>
+<a href="#___sec27"> References </a><br>
+<a href="#___sec28"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec29"> A subsection within an appendix </a><br>
+<a href="#___sec30"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec31"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec34"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec35"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
-
-
 <!-- !split -->
 
 <p>
-
-
 The format of this document is
 plain, homemade HTML (from Doconce).
 
@@ -25998,9 +26007,6 @@ is part of the abstract.
 <p>
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- is mutually exclusive in LaTeX -->
-
-<p>
-
 
 <h2>Section 1 <a name="sec1"></a></h2>
 
@@ -26038,8 +26044,6 @@ Here is a nested list:
 <p>
 <!-- !split and check if these extra words are included properly in the comment -->
 
-<p>
-
 <h3>Subsection 1  <a name="___sec1"></a></h3>
 
 <p>
@@ -26051,7 +26055,6 @@ to the section <a href="#subsubsec:ex">URLs</a>.
 Let's do some copying from files too. First from subroutine up to the very end,
 
 <p>
-
 
 <!-- code=fortran (from !bc fcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
@@ -26104,7 +26107,6 @@ and finally the complete file:
       <span style="color: #008000; font-weight: bold">return</span>
 </pre></div>
 <p>
-
 Testing other code environments. First Python:
 <p>
 
@@ -26119,13 +26121,11 @@ which gets rendered as
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 <p>
-
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
@@ -26133,7 +26133,6 @@ Now a complete program to be shown via Python Online Tutorial:
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
-
 Then Cython:
 <p>
 
@@ -26142,7 +26141,6 @@ Then Cython:
     <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
 <p>
-
 <!-- This one tests a + sign before a code environment -->
 C++:
 <p>
@@ -26162,7 +26160,6 @@ And a little bit of Fortran:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
       subroutine midpt(x, length, a, b)
@@ -26178,7 +26175,6 @@ which then is typeset as
 
 <p>
 
-
 <!-- code=text (from !bc cod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -26188,11 +26184,9 @@ which then is typeset as
       end
 </pre></div>
 <p>
-
 HTML:
 
 <p>
-
 
 <!-- code=html (from !bc htmlcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
@@ -26202,7 +26196,6 @@ HTML:
 <span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 <p>
-
 System call:
 <p>
 
@@ -26214,7 +26207,6 @@ output1
 output2
 </pre></div>
 <p>
-
 It is time to test <code>verbatim inline font</code> especially with <code>a newline
 inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The
 exclamation mark inside the verbatim text is not smart for latex as
@@ -26227,17 +26219,13 @@ green color containing a linebreak.
 And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
-<p>
-
-
-<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+<h3>Subsection 2: Testing figures and movies <a name="subsec:ex"></a></h3>
 
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
 
 <p>
-
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
@@ -26245,23 +26233,24 @@ there is a flow.
 </center>
 
 <p>
-
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 <p>
 <center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
 
+<h4>Test of movies  <a name="___sec3"></a></h4>
+
 <p>
-Test of movies.
+Movie <a href="#mov:tsunami">mov:tsunami</a> shows a tsunami.
 
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal) <a name="mov:tsunami"></a>.</em></p>
 
 
 <p>
-<!-- Test empty caption: -->
+Test empty caption (for inline movie):
 
 <p>
 
@@ -26272,8 +26261,7 @@ Test of movies.
 <p>
 <!-- Test wrong syntax and multi-line caption -->
 
-<p>
-<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
 
 <p>
@@ -26297,7 +26285,6 @@ Test of movies.
 
 
 <p>
-
 <!-- Test multi-line caption in figure -->
 
 <p>
@@ -26305,16 +26292,11 @@ Here is figure <a href="#myfig">2</a> with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 <p>
-
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
 </center>
-
-<p>
-
-Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
@@ -26331,8 +26313,6 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <p>
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
-<p>
-
 <h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
 
 <p>
@@ -26345,7 +26325,6 @@ involving \( \theta \):
     return theta**2
 </pre></div>
 <p>
-
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.
 
@@ -26379,11 +26358,7 @@ $$
 \end{align}
 $$
 
-
-<p>
-
-
-<h3>Custom Environments  <a name="___sec4"></a></h3>
+<h3>Custom Environments  <a name="___sec5"></a></h3>
 
 <p>
 Here is an attempt to create a theorem environment via Mako
@@ -26392,12 +26367,10 @@ the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
 Should look nice in most formats!
 
 <p>
-
 <!-- begin theorem -->
 <a name="theorem:fundamental1"></a>
 
 <p>
-
 <b>Theorem 5.</b>
 Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
 <!-- end theorem -->
@@ -26413,20 +26386,15 @@ Since \( c=a+b \), the result follows from straightforward addition.
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-<p>
-
-
 <h3>Tables <a name="subsec:table"></a></h3>
 
 <p>
-
 <!-- index with comma could fool sphinx -->
 
 <p>
 Let us take this table from the manual:
 
 <p>
-
 <table border="1">
 <tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
@@ -26434,7 +26402,6 @@ Let us take this table from the manual:
 <tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
 </table>
 <p>
-
 The Doconce source code reads
 <p>
 
@@ -26448,7 +26415,6 @@ The Doconce source code reads
   |--------------------------------|
 </pre></div>
 <p>
-
 Here is yet another table to test that we can handle more than
 one table:
 
@@ -26487,19 +26453,15 @@ and <code>|</code> right after verbatim word (with no space):
 <tr><td align="right">   10                              </td> <td align="right">   17.74                           </td> <td align="right">   -4.50                           </td> <td align="right">   9.96                            </td> </tr>
 <tr><td align="right">   0                               </td> <td align="right">   -9.19                           </td> <td align="right">   4.13                            </td> <td align="right">   -0.26                           </td> </tr>
 </table>
-<p>
 
-
-<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec7"></a></h3>
 
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
 Here is
 some text.
 
-<p>
-
-<h3>Bibliography test  <a name="___sec7"></a></h3>
+<h3>Bibliography test  <a name="___sec8"></a></h3>
 
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
@@ -26529,11 +26491,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 <a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
 
@@ -26544,7 +26502,6 @@ typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
 <p>
-
 <b>a)</b>
 State some problem.
 
@@ -26571,9 +26528,6 @@ maybe over multiple doconce input lines.
 
 <p>
 <!-- --- end exercise --- -->
-
-<p>
-
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 
@@ -26619,10 +26573,7 @@ More tough tests: repeated URLs whose footnotes when using the
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
 
-<p>
-
-
-<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
 
 <p>
 Here is an equation without label using backslash-bracket environment:
@@ -26648,7 +26599,6 @@ $$
 
 
 <p>
-
 And here is a system of equations with labels in an align environment:
 $$
 \begin{align}
@@ -26725,15 +26675,10 @@ Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#dem
 as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
 between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
-<p>
-
-<h2>Exercises  <a name="___sec11"></a></h2>
+<h2>Exercises  <a name="___sec12"></a></h2>
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 
@@ -26750,14 +26695,9 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 <p>
-
 <!-- Test syntax error -->
 
-<p>
-
-
-
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 
 <p>
 Remarks with such a subsubsection heading would previously mark
@@ -26785,12 +26725,10 @@ Draw an integer among \( \{1,2\} \) with
 <!-- --- end hint in exercise --- -->
 
 <p>
-
 <!-- removed !bans ... !eans environment
  --><!-- (because of the command-line option --without_answers)
  -->
 <p>
-
 <!-- removed !bsol ... !esol environment
  --><!-- (because of the command-line option --without_solutions)
  -->Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
@@ -26799,20 +26737,14 @@ Draw an integer among \( \{1,2\} \) with
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h3>Not an exercise  <a name="___sec14"></a></h3>
+<h3>Not an exercise  <a name="___sec15"></a></h3>
 
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
@@ -26823,7 +26755,6 @@ exercises.
 <!-- Minimalistic exercise -->
 
 <p>
-
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 
@@ -26842,11 +26773,7 @@ compute the probability as \( M/N \).
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 
@@ -26871,7 +26798,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 
 <p>
 
-
 <!-- code=python (from !bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
@@ -26884,7 +26810,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
 </pre></div>
 <p>
-
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
@@ -26894,7 +26819,6 @@ center and radius. Plot each circle using the <code>circle</code> function
 above.
 
 <p>
-
 <b>a)</b>
 Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
@@ -26908,12 +26832,10 @@ Use the <code>numpy.random</code> module to draw the
 <!-- --- end hint in exercise --- -->
 
 <p>
-
 <!-- removed !bans ... !eans environment
  --><!-- (because of the command-line option --without_answers)
  -->
 <p>
-
 <!-- removed !bsol ... !esol environment
  --><!-- (because of the command-line option --without_solutions)
  -->
@@ -26932,24 +26854,17 @@ Filename: <code>circles.pdf</code>.
 <p>
 <!-- Closing remarks for this Project -->
 
-<p>
-
-<h4>Remarks  <a name="___sec17"></a></h4>
+<h4>Remarks  <a name="___sec18"></a></h4>
 
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 
@@ -26960,18 +26875,15 @@ and give some perspectives.
 Intro to this exercise. Questions are in subexercises below.
 
 <p>
-
 <!-- No meaning in this weired test example: -->
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
 
 <p>
-
 <!-- removed !bsol ... !esol environment
  --><!-- (because of the command-line option --without_solutions)
  -->
 <p>
-
 <b>a)</b>
 Subexercises are numbered a), b), etc.
 
@@ -26990,7 +26902,6 @@ And with code (in plain verbatim) returning \( x+1 \) in hint:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
     return x + 1  # with code in hint
@@ -27008,7 +26919,6 @@ Second hint to subexercise a).
 Filename: <code>subexer_a.pdf</code>.
 
 <p>
-
 <!-- removed !bans ... !eans environment
  --><!-- (because of the command-line option --without_answers)
  -->
@@ -27017,7 +26927,6 @@ Filename: <code>subexer_a.pdf</code>.
 Here goes the text for subexercise b).
 
 <p>
-
 Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
 
 <p>
@@ -27034,16 +26943,13 @@ A hint for this subexercise.
 Filename: <code>subexer_b.pdf</code>.
 
 <p>
-
 <!-- removed !bsol ... !esol environment
  --><!-- (because of the command-line option --without_solutions)
  -->
 <p>
 <!-- Closing remarks for this Exercise -->
 
-<p>
-
-<h4>Remarks  <a name="___sec19"></a></h4>
+<h4>Remarks  <a name="___sec20"></a></h4>
 
 <p>
 Some final closing remarks, e.g., summarizing the main findings
@@ -27051,17 +26957,12 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
 
-<p>
-
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec21"></a></h3>
 
 <p>
 <!-- Another minimalistic exercise -->
@@ -27079,29 +26980,22 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
 
-<p>
-
-<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+<h3>Example 2: Just an example  <a name="___sec22"></a></h3>
 
 <p>
 <!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 <p>
-
 <b>a)</b>
 What is the capital of Norway?
 
@@ -27112,23 +27006,15 @@ Oslo.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h2>Here goes another section  <a name="___sec22"></a></h2>
+<h2>Here goes another section  <a name="___sec23"></a></h2>
 
 <p>
 With some text, before we continue with exercises.
 
-<p>
-
-<h2>More Exercises  <a name="___sec23"></a></h2>
+<h2>More Exercises  <a name="___sec24"></a></h2>
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
@@ -27144,11 +27030,7 @@ Filename: <code>verify_formula.py</code>.
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
@@ -27164,13 +27046,7 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h2>References  <a name="___sec26"></a></h2>
-
-<p>
-
+<h2>References  <a name="___sec27"></a></h2>
 
 <h2>Bibliography</h2>
 
@@ -27286,51 +27162,37 @@ Filename: <code>selc_composed.pdf</code>.
     1994.</li>
 </ol>
 
-
-<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec28"></a></h2>
 
 <p>
 This is the first appendix.
 
-<p>
-
-<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec29"></a></h3>
 
 <p>
 Some text.
 
-<p>
-
-<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec30"></a></h2>
 
 <p>
 This is more stuff for an appendix.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
 
 <p>
 Without label.
-
-<p>
-
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
 With label.
 
-<p>
-
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
 
 <p>
 With label.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec34"></a></h3>
 
 <p>
 Without label.
@@ -27340,7 +27202,6 @@ Without label.
 Here is a hint.
 </div>
 <p>
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -27417,17 +27278,14 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-<p>
-
-
-<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+<h3>Appendix: Testing inline comments  <a name="___sec35"></a></h3>
 
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
-[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
+<font color="red">[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]</font>
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
@@ -27436,9 +27294,9 @@ scientific writing work - and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+<font color="red">[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
 how files, like <code>myfile.py</code>, perhaps containing much math, like
-\( \partial u/\partial t \), are easily communicated between machines.</em>]
+\( \partial u/\partial t \), are easily communicated between machines.</em>]</font>
 <!-- end inline comment -->
  It
 is very easy to get started with Dropbox, and it allows you to share
@@ -27451,16 +27309,13 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 <!-- begin inline comment -->
-[<b>hpl 3</b>: <em>The following text aims at providing
+<font color="red">[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.</em>]
+and in-depth explanations of the concepts and tools.</em>]</font>
 <!-- end inline comment -->
 
-
-<p>
-
-<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec36"></a></h3>
 
 <p>
 The point here is to test 1) <code>verbatim</code> code in headings, and 2)
@@ -27549,6 +27404,19 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
@@ -27610,15 +27478,55 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% gray summary box
+
+% #ifdef TODONOTES
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+% #else
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
+% #endif
+
+% #ifdef LINENUMBERS
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+% #endif
+
+% #ifndef ADMON
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
+\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
-\usepackage{wrapfig,calc}
 \newdimen\barheight
 \def\barthickness{0.5pt}
 
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
 \vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
 \begin{minipage}{0.5\textwidth-6pt-\columnsep}
 \hspace*{3mm}
@@ -27631,7 +27539,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{wrapfigure}}
 % #else
 % gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
+\newcommand{\grayboxhrules}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
 \parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
@@ -27641,235 +27549,517 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
 
-% #ifdef TODONOTES
-\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
-\usepackage[shadow]{todonotes}
-\newcommand{\shortinlinecomment}[3]{%
-\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
- \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
-\newcommand{\longinlinecomment}[3]{%
-\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
-% #else
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
-% #endif
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
 
-% #ifdef LINENUMBERS
-\usepackage[mathlines]{lineno}  % show line numbers
-\linenumbers
-% #endif
-
-% #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
-\usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
 % #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
 % #else
-\usepackage[framemethod=TikZ]{mdframed}
-% #endif
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -28334,7 +28524,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-\subsection{Subsection 2}
+\subsection{Subsection 2: Testing figures and movies}
 \label{subsec:ex}
 \index{figures}
 
@@ -28351,7 +28541,7 @@ there is a flow.
 %\clearpage % flush figures fig:impact
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 \begin{center}  % inline figure
@@ -28360,13 +28550,25 @@ Figures without captions are allowed.
 
 
 \index{movies}
-Test of movies.
+
+\paragraph{Test of movies.}
+Movie~\ref{mov:tsunami} shows a tsunami.
 
 
 \begin{figure}[ht]
 \begin{center}
 
-% #ifdef MOVIE15
+% #if MOVIE == "media9"
+\includemedia[
+label=../doc/manual/figs/mjolnir.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=../doc/manual/figs/mjolnir.mpeg,
+flashvars={
+source=../doc/manual/figs/mjolnir.mpeg,
+&autoPlay=true}]{VPlayer.swf}
+
+% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=../doc/manual/figs/mjolnir.mpeg,
 autoplay,
@@ -28377,7 +28579,7 @@ externalviewer,
 % #endif
 text={\small (Loading ../doc/manual/figs/mjolnir.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}
 % #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{../doc/manual/figs/mjolnir.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/mjolnir.mpeg}{Faster}
@@ -28388,24 +28590,35 @@ repeat,
 \href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #endif
 
+% #elif MOVIE == "multimedia"
+% Beamer-style \movie command
+\movie[
+label=../doc/manual/figs/mjolnir.mpeg,
+width=0.9\linewidth,
+autostart]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #else
 \href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #endif
+
 \end{center}
-\caption{ Mjolnir tsunami (by Sylfest Glimsdal).}
+\caption{Mjolnir tsunami (by Sylfest Glimsdal) \label{mov:tsunami}.}
 \end{figure}
 
 
-% Test empty caption:
+Test empty caption (for inline movie):
 
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}})
+% #if MOVIE == "media9"
+\includemedia[
+label=../doc/manual/figs/wavepacket.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=../doc/manual/figs/wavepacket.mpeg,
+flashvars={
+source=../doc/manual/figs/wavepacket.mpeg,
+&autoPlay=true}]{VPlayer.swf}
 
-\begin{figure}[ht]
-\begin{center}
-
-% #ifdef MOVIE15
+% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=../doc/manual/figs/wavepacket.mpeg,
 autoplay,
@@ -28416,7 +28629,7 @@ externalviewer,
 % #endif
 text={\small (Loading ../doc/manual/figs/wavepacket.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}
 % #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{../doc/manual/figs/wavepacket.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/wavepacket.mpeg}{Faster}
@@ -28427,15 +28640,15 @@ repeat,
 \href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
 % #endif
 
+% #elif MOVIE == "multimedia"
+% Beamer-style \movie command
+\movie[
+label=../doc/manual/figs/wavepacket.mpeg,
+width=0.9\linewidth,
+autostart]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
 % #else
 \href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
 % #endif
-\end{center}
-\caption{}
-\end{figure}
 
 
 % Test wrong syntax and multi-line caption
@@ -28466,8 +28679,6 @@ and an extra space before the FIGURE keyword.
 \end{figure}
 %\clearpage % flush figures myfig
 
-
-Movie~\ref{mymov} has a similar problem.
 
 % Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -29223,18 +29434,36 @@ With label.
 Without label.
 
 
-% #if ADMON == "colors"
-\begin{hintadmon}[Hint]
+% #if ADMON == "colors1"
+\begin{hint_colors1admon}[Hint]
 Here is a hint.
-\end{hintadmon}
+\end{hint_colors1admon}
+% #elif ADMON == "colors2"
+\begin{hint_colors2admon}[Hint]
+Here is a hint.
+\end{hint_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{hint_graybox3admon}[Hint]
+Here is a hint.
+\end{hint_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{hint_yellowboxadmon}[Hint]
+Here is a hint.
+\end{hint_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{hintadmon}[Hint.]
+\begin{paragraphadmon}[Hint.]
 Here is a hint.
-\end{hintadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Hint.]
+Here is a hint.
+\end{graybox2admon}
+
 % #else
-\begin{hintadmon}[Hint.]
+\begin{graybox1admon}[Hint.]
 Here is a hint.
-\end{hintadmon}
+\end{graybox1admon}
 % #endif
 \clearpage
 
@@ -29250,7 +29479,9 @@ have the latest updates of the files.
 Greg Wilson' excellent \href{{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-\summarybox{
+
+% #if ADMON == "colors1"
+\begin{summary_colors1admon}[Summary]
 \textbf{Bold remark:} Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -29260,7 +29491,87 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.}
+Much testing in this document, otherwise stupid content.
+\end{summary_colors1admon}
+% #elif ADMON == "colors2"
+\begin{summary_colors2admon}[Summary]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{summary_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{summary_graybox3admon}[Summary]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{summary_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{summary_yellowboxadmon}[Summary]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{summary_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Summary.]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+\grayboxhrules{
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+}
+% #else
+\begin{graybox1admon}[Summary.]
+\textbf{Bold remark:} Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+\end{graybox1admon}
+% #endif
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -29416,7 +29727,6 @@ end of tocinfo -->
 <!-- running text does need mako -->
 
 <p>
-
 <!-- begin verbatim block -->
 <pre><code>/* Here is some SWIG code code */
 %module MyMod
@@ -29455,7 +29765,6 @@ end of tocinfo -->
 <!-- running text does need mako -->
 
 <p>
-
 <!-- begin verbatim block -->
 <pre><code>/* Here is some SWIG code code */
 %module MyMod
@@ -29495,7 +29804,6 @@ end of tocinfo -->
 <!-- start with %%) -->
 
 <p>
-
 <!-- begin verbatim block -->
 <pre><code>/* Here is some SWIG code code */
 %module MyMod
@@ -29510,7 +29818,6 @@ import_array();
 <!-- end verbatim block -->
 
 <p>
-
 And more code:
 <!-- begin verbatim block -->
 <pre><code>% Matlab comment only
@@ -29561,16 +29868,32 @@ for figdir in figdirs:
         shutil.copytree(figdir, destdir)
 
 # Copy needed media files in current dir (not in fig* and mov*)
-rst_text = ''
-for rstfile in glob.glob('*.rst'):
-    rstfile += open(rstfile, 'r').read()
-import re
-media_files = re.findall('.. figure:: (.+)', rstfile)
-media_files = [name for name in media_files
-               if not os.sep in name]
-for name in media_files:
-    print 'copying', name, 'to', sphinx_rootdir
-    shutil.copy(name, sphinx_rootdir)
+for rstfile in [os.path.join(sphinx_rootdir, filename + '.rst')]:
+    f = open(rstfile, 'r')
+    text = text_orig = f.read()
+    f.close()
+    import re
+    media_files = [name.strip() for name in
+                   re.findall('.. figure:: (.+)', text)]
+    local_media_files = [name for name in media_files if not os.sep in name]
+
+    for name in media_files:
+        basename = os.path.basename(name)
+        if name.startswith('http') or name.startswith('ftp'):
+            pass
+        else:
+            if not os.path.isfile(os.path.join(sphinx_rootdir, basename)):
+                print 'copying', name, 'to', sphinx_rootdir
+                shutil.copy(name, sphinx_rootdir)
+            if name not in local_media_files:
+                # name lies in another directory, make local reference to it
+                # since it is copied to sphinx_rootdir
+                text = text.replace('.. figure:: %s' % name,
+                                    '.. figure:: %s' % basename)
+    if text != text_orig:
+        f = open(rstfile, 'w')
+        f.write(text)
+        f.close()
 
 # Copy linked local files, placed in _static*, to sphinx-rootdir/_static
 staticdirs = glob.glob('_static*')
@@ -29657,16 +29980,32 @@ for figdir in figdirs:
         shutil.copytree(figdir, destdir)
 
 # Copy needed media files in current dir (not in fig* and mov*)
-rst_text = ''
-for rstfile in glob.glob('*.rst'):
-    rstfile += open(rstfile, 'r').read()
-import re
-media_files = re.findall('.. figure:: (.+)', rstfile)
-media_files = [name for name in media_files
-               if not os.sep in name]
-for name in media_files:
-    print 'copying', name, 'to', sphinx_rootdir
-    shutil.copy(name, sphinx_rootdir)
+for rstfile in [os.path.join(sphinx_rootdir, filename + '.rst')]:
+    f = open(rstfile, 'r')
+    text = text_orig = f.read()
+    f.close()
+    import re
+    media_files = [name.strip() for name in
+                   re.findall('.. figure:: (.+)', text)]
+    local_media_files = [name for name in media_files if not os.sep in name]
+
+    for name in media_files:
+        basename = os.path.basename(name)
+        if name.startswith('http') or name.startswith('ftp'):
+            pass
+        else:
+            if not os.path.isfile(os.path.join(sphinx_rootdir, basename)):
+                print 'copying', name, 'to', sphinx_rootdir
+                shutil.copy(name, sphinx_rootdir)
+            if name not in local_media_files:
+                # name lies in another directory, make local reference to it
+                # since it is copied to sphinx_rootdir
+                text = text.replace('.. figure:: %s' % name,
+                                    '.. figure:: %s' % basename)
+    if text != text_orig:
+        f = open(rstfile, 'w')
+        f.write(text)
+        f.close()
 
 # Copy linked local files, placed in _static*, to sphinx-rootdir-math/_static
 staticdirs = glob.glob('_static*')
@@ -29805,7 +30144,7 @@ doconce replace --examples_as__exercises $ex testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
+ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 # test that pdflatex works
@@ -29998,9 +30337,18 @@ doconce format pandoc $name
 doconce md2latex $name
 
 # Test admonitions
+doconce format pdflatex admon
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+admon_tps="colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2"
+for admon_tp in $admon_tps; do
+doconce ptex2tex admon envir=minted -DADMON=$admon_tp
+cp admon.tex admon_${admon_tp}.tex
+pdflatex -shell-escape admon_${admon_tp}
+done
+
 doconce format html admon
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp admon.html admon_white.html
+cp admon.html admon_default.html
 
 doconce format html admon --html_admon=colors
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -30029,16 +30377,6 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 #google-chrome admon_*.html
-
-doconce format pdflatex admon
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-admon_tps="colors box paragraph"
-for admon_tp in $admon_tps; do
-doconce ptex2tex admon envir=minted -DADMON=$admon_tp
-cp admon.tex admon_${admon_tp}.tex
-pdflatex -shell-escape admon_${admon_tp}
-done
-
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
@@ -30106,7 +30444,8 @@ doconce format rst tmp2
 doconce replace '`Google`' '`Google` site' tmp2.do.txt
 doconce format rst tmp2
 echo
-echo "Successful run of test/make.sh !"
+echo "When we reach this point in the script,"
+echo "it is clearly a successful run of all tests!"
 
 
 ************** File: math_test.do.txt *****************
@@ -30619,7 +30958,6 @@ $$
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
-
 This document is translated to the format <b>html</b>. The purpose is to
 test math and doconce and various output formats.
 
@@ -30642,7 +30980,6 @@ latex code,
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{equation} u(t)=e^{-at} label{eq1}\end{equation}
@@ -30659,7 +30996,6 @@ $$
 and as a three-line latex code:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
@@ -30681,14 +31017,12 @@ $$
 This equation has label \eqref{eq1b}.
 
 <p>
-
 <b>Test 4: Multiple, aligned equations without label.</b>
 Only the align
 environment is supported by other formats than LaTeX for typesetting
 multiple, aligned equations. The code reads
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
@@ -30717,7 +31051,6 @@ labels:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
 \begin{align}
@@ -30742,14 +31075,11 @@ $$
 We can refer to the last equations as the system \eqref{eq2b}-\eqref{eq3b}.
 
 <p>
-
-
 <b>Test 6: Multiple, aligned eqnarray equations without label.</b>
 Let us
 try the old eqnarray environment.
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
@@ -30777,7 +31107,6 @@ We use eqnarray with
 labels:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
@@ -30841,6 +31170,7 @@ to <code>\boldsymbol</code>.
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="HPL" />
+  <meta name="date" content="2013-05-16" />
   <title>How various formats can deal with LaTeX math</title>
   
 <script type="text/x-mathjax-config">
@@ -31699,40 +32029,41 @@ h1, h2, h3, h4, h5, h6 {
      <!-- Doconce automatically fills in the table of contents -->
           <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
-     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " Subsection 2: Testing figures and movies " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2: Testing figures and movies </a>
+     <!-- vagrant nav toc: " Test of movies " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec3"> Test of movies </a>
      <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
-     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec5"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
-     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec8"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
-     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
-     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec11"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec12"> Exercises </a>
      <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
-     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec15"> Not an exercise </a>
      <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
      <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec18"> Remarks </a>
      <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
-     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
-     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
-     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
-     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec22"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec24"> More Exercises </a>
      <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
      <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
-     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
-     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec28"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec29"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec31"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -31745,28 +32076,32 @@ h1, h2, h3, h4, h5, h6 {
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -31775,19 +32110,19 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -31796,11 +32131,11 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -31809,12 +32144,12 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 
@@ -31862,7 +32197,6 @@ $$
 <a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 
-
 <h1>A Document for Testing Doconce</h1>
 
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
@@ -31901,54 +32235,49 @@ $$
 <center>[5] <b>Inst2, Somewhere</b></center>
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
-<p>
-
-<p>
 
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2: Testing figures and movies </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec3"> Test of movies </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec5"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec8"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec11"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec12"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec15"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec18"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec20"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec21"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec22"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec23"> Here goes another section </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec24"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec26"> References </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec27"> References </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec28"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec29"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec31"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
-
-
 <p>
 <!-- ------------------- end of main content --------------- -->
 
@@ -32067,40 +32396,41 @@ h1, h2, h3, h4, h5, h6 {
      <!-- Doconce automatically fills in the table of contents -->
           <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
-     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " Subsection 2: Testing figures and movies " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2: Testing figures and movies </a>
+     <!-- vagrant nav toc: " Test of movies " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec3"> Test of movies </a>
      <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
-     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec5"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
-     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec8"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
-     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
-     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec11"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec12"> Exercises </a>
      <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
-     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec15"> Not an exercise </a>
      <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
      <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec18"> Remarks </a>
      <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
-     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
-     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
-     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
-     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec22"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec24"> More Exercises </a>
      <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
      <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
-     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
-     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec28"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec29"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec31"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -32113,28 +32443,32 @@ h1, h2, h3, h4, h5, h6 {
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -32143,19 +32477,19 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -32164,11 +32498,11 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -32177,12 +32511,12 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 
@@ -32230,7 +32564,6 @@ $$
 <a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 
-
 <h1>A Document for Testing Doconce</h1>
 
 <center><h1>A Document for Testing Doconce</h1></center>  <!-- document title -->
@@ -32269,54 +32602,49 @@ $$
 <center>[5] <b>Inst2, Somewhere</b></center>
 <center>[6] <b>Third Inst, Elsewhere</b></center>
 <center>[7] <b>Fourth Inst</b></center>
-<p>
-
-<p>
 
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2: Testing figures and movies </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec3"> Test of movies </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec5"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec8"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec11"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec12"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec14"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec15"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec18"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec20"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec21"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec22"> Example 2: Just an example </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec23"> Here goes another section </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec24"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec26"> References </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec27"> References </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec28"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec29"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec31"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc_vagrant.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 
 <p>
-
-
 <p>
 <!-- ------------------- end of main content --------------- -->
 
@@ -32435,40 +32763,41 @@ h1, h2, h3, h4, h5, h6 {
      <!-- Doconce automatically fills in the table of contents -->
           <!-- vagrant nav toc: " Section 1 " --> <li class="active">  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
-     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " Subsection 2: Testing figures and movies " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2: Testing figures and movies </a>
+     <!-- vagrant nav toc: " Test of movies " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec3"> Test of movies </a>
      <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
-     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec5"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
-     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec8"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
-     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
-     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec11"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec12"> Exercises </a>
      <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
-     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec15"> Not an exercise </a>
      <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
      <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec18"> Remarks </a>
      <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
-     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
-     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
-     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
-     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec22"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec24"> More Exercises </a>
      <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
      <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
-     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
-     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec28"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec29"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec31"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -32481,28 +32810,32 @@ h1, h2, h3, h4, h5, h6 {
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -32511,19 +32844,19 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -32532,11 +32865,11 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -32545,12 +32878,12 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 
@@ -32599,13 +32932,10 @@ $$
 <!-- !split -->
 
 <p>
-
-
 The format of this document is
 plain, homemade HTML (from Doconce).
 
 <p>
-
 <b>Abstract.</b> This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -32617,9 +32947,6 @@ is part of the abstract.
 <p>
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- is mutually exclusive in LaTeX -->
-
-<p>
-
 
 <h2>Section 1 <a name="sec1"></a></h2>
 
@@ -32776,40 +33103,41 @@ h1, h2, h3, h4, h5, h6 {
      <!-- Doconce automatically fills in the table of contents -->
           <!-- vagrant nav toc: " Section 1 " --> <li>  <a href="._part0001_testdoc_vagrant.html#sec1"> Section 1 </a>
      <!-- vagrant nav toc: " Subsection 1 " --> <li class="active"> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec1"> Subsection 1 </a>
-     <!-- vagrant nav toc: " Subsection 2 " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2 </a>
+     <!-- vagrant nav toc: " Subsection 2: Testing figures and movies " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:ex"> Subsection 2: Testing figures and movies </a>
+     <!-- vagrant nav toc: " Test of movies " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec3"> Test of movies </a>
      <!-- vagrant nav toc: " The \( \theta \) parameter (not \( \nabla \)?) " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
-     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec4"> Custom Environments </a>
+     <!-- vagrant nav toc: " Custom Environments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec5"> Custom Environments </a>
      <!-- vagrant nav toc: " Tables " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsec:table"> Tables </a>
-     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
-     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> Bibliography test </a>
+     <!-- vagrant nav toc: " A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec7"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
+     <!-- vagrant nav toc: " Bibliography test " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec8"> Bibliography test </a>
      <!-- vagrant nav toc: " Example 1: Examples can be typeset as exercises " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#Example"> Example 1: Examples can be typeset as exercises </a>
      <!-- vagrant nav toc: " URLs " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#subsubsec:ex"> URLs </a>
-     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec10"> LaTeX Mathematics </a>
-     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec11"> Exercises </a>
+     <!-- vagrant nav toc: " LaTeX Mathematics " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec11"> LaTeX Mathematics </a>
+     <!-- vagrant nav toc: " Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec12"> Exercises </a>
      <!-- vagrant nav toc: " Problem 1: Flip a Coin " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:1"> Problem 1: Flip a Coin </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec13"> Remarks </a>
-     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Not an exercise </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec14"> Remarks </a>
+     <!-- vagrant nav toc: " Not an exercise " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec15"> Not an exercise </a>
      <!-- vagrant nav toc: " Project 1: Compute a Probability " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#demo:ex:2"> Project 1: Compute a Probability </a>
      <!-- vagrant nav toc: " Project 2: Explore Distributions of Random Circles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#proj:circle1"> Project 2: Explore Distributions of Random Circles </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec17"> Remarks </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec18"> Remarks </a>
      <!-- vagrant nav toc: " Exercise 1: Determine some Distance " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:dist"> Exercise 1: Determine some Distance </a>
-     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec19"> Remarks </a>
-     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Some exercise without the "Exercise:" prefix </a>
-     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Example 2: Just an example </a>
-     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec22"> Here goes another section </a>
-     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> More Exercises </a>
+     <!-- vagrant nav toc: " Remarks " --> <li> &nbsp; &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec20"> Remarks </a>
+     <!-- vagrant nav toc: " Some exercise without the "Exercise:" prefix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec21"> Some exercise without the "Exercise:" prefix </a>
+     <!-- vagrant nav toc: " Example 2: Just an example " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec22"> Example 2: Just an example </a>
+     <!-- vagrant nav toc: " Here goes another section " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec23"> Here goes another section </a>
+     <!-- vagrant nav toc: " More Exercises " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec24"> More Exercises </a>
      <!-- vagrant nav toc: " Exercise 3: Make references to projects and problems " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:some:formula"> Exercise 3: Make references to projects and problems </a>
      <!-- vagrant nav toc: " Project 3: References in a headings do not work well in html " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#exer:you"> Project 3: References in a headings do not work well in html </a>
-     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec26"> References </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> Appendix: Just for testing; part I </a>
-     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec28"> A subsection within an appendix </a>
-     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec29"> Appendix: Just for testing; part II </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " References " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec27"> References </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part I " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec28"> Appendix: Just for testing; part I </a>
+     <!-- vagrant nav toc: " A subsection within an appendix " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec29"> A subsection within an appendix </a>
+     <!-- vagrant nav toc: " Appendix: Just for testing; part II " --> <li>  <a href="._part0002_testdoc_vagrant.html#___sec30"> Appendix: Just for testing; part II </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec31"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id1"> Appendix: Testing identical titles </a>
      <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#test:title:id2"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec33"> Appendix: Testing identical titles </a>
-     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing inline comments </a>
-     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
+     <!-- vagrant nav toc: " Appendix: Testing identical titles " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec34"> Appendix: Testing identical titles </a>
+     <!-- vagrant nav toc: " Appendix: Testing inline comments " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec35"> Appendix: Testing inline comments </a>
+     <!-- vagrant nav toc: " Appendix: Testing headings ending with <code>verbatim inline</code> " --> <li> &nbsp;  <a href="._part0002_testdoc_vagrant.html#___sec36"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
 
     </ul>
    </div>
@@ -32822,28 +33150,32 @@ h1, h2, h3, h4, h5, h6 {
 {'highest level': 1,
  'sections': [(' Section 1 ', 1, 'sec1', 'sec1'),
               (' Subsection 1 ', 2, None, '___sec1'),
-              (' Subsection 2 ', 2, 'subsec:ex', 'subsec:ex'),
+              (' Subsection 2: Testing figures and movies ',
+               2,
+               'subsec:ex',
+               'subsec:ex'),
+              (' Test of movies ', 3, None, '___sec3'),
               (' The $\\theta$ parameter (not $\\nabla$?) ',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              (' Custom Environments ', 2, None, '___sec4'),
+              (' Custom Environments ', 2, None, '___sec5'),
               (' Tables ', 2, 'subsec:table', 'subsec:table'),
               (' A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` ',
                2,
                None,
-               '___sec6'),
-              (' Bibliography test ', 2, None, '___sec7'),
+               '___sec7'),
+              (' Bibliography test ', 2, None, '___sec8'),
               (' Example 1: Examples can be typeset as exercises ',
                2,
                'Example',
                'Example'),
               (' URLs ', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              (' LaTeX Mathematics ', 2, None, '___sec10'),
-              (' Exercises ', 1, None, '___sec11'),
+              (' LaTeX Mathematics ', 2, None, '___sec11'),
+              (' Exercises ', 1, None, '___sec12'),
               (' Problem 1: Flip a Coin ', 2, 'demo:ex:1', 'demo:ex:1'),
-              (' Remarks ', 3, None, '___sec13'),
-              (' Not an exercise ', 2, None, '___sec14'),
+              (' Remarks ', 3, None, '___sec14'),
+              (' Not an exercise ', 2, None, '___sec15'),
               (' Project 1: Compute a Probability ',
                2,
                'demo:ex:2',
@@ -32852,19 +33184,19 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'proj:circle1',
                'proj:circle1'),
-              (' Remarks ', 3, None, '___sec17'),
+              (' Remarks ', 3, None, '___sec18'),
               (' Exercise 1: Determine some Distance ',
                2,
                'exer:dist',
                'exer:dist'),
-              (' Remarks ', 3, None, '___sec19'),
+              (' Remarks ', 3, None, '___sec20'),
               (' Some exercise without the "Exercise:" prefix ',
                2,
                None,
-               '___sec20'),
-              (' Example 2: Just an example ', 2, None, '___sec21'),
-              (' Here goes another section ', 1, None, '___sec22'),
-              (' More Exercises ', 1, None, '___sec23'),
+               '___sec21'),
+              (' Example 2: Just an example ', 2, None, '___sec22'),
+              (' Here goes another section ', 1, None, '___sec23'),
+              (' More Exercises ', 1, None, '___sec24'),
               (' Exercise 3: Make references to projects and problems ',
                2,
                'exer:some:formula',
@@ -32873,11 +33205,11 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'exer:you',
                'exer:you'),
-              (' References ', 1, None, '___sec26'),
-              (' Appendix: Just for testing; part I ', 1, None, '___sec27'),
-              (' A subsection within an appendix ', 2, None, '___sec28'),
-              (' Appendix: Just for testing; part II ', 1, None, '___sec29'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec30'),
+              (' References ', 1, None, '___sec27'),
+              (' Appendix: Just for testing; part I ', 1, None, '___sec28'),
+              (' A subsection within an appendix ', 2, None, '___sec29'),
+              (' Appendix: Just for testing; part II ', 1, None, '___sec30'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec31'),
               (' Appendix: Testing identical titles ',
                2,
                'test:title:id1',
@@ -32886,12 +33218,12 @@ h1, h2, h3, h4, h5, h6 {
                2,
                'test:title:id2',
                'test:title:id2'),
-              (' Appendix: Testing identical titles ', 2, None, '___sec33'),
-              (' Appendix: Testing inline comments ', 2, None, '___sec34'),
+              (' Appendix: Testing identical titles ', 2, None, '___sec34'),
+              (' Appendix: Testing inline comments ', 2, None, '___sec35'),
               (' Appendix: Testing headings ending with `verbatim inline` ',
                2,
                None,
-               '___sec35')]}
+               '___sec36')]}
 end of tocinfo -->
 
 
@@ -32939,8 +33271,6 @@ $$
 <a name="part0002"></a>
 <!-- !split and check if these extra words are included properly in the comment -->
 
-<p>
-
 <h3>Subsection 1  <a name="___sec1"></a></h3>
 
 <p>
@@ -32952,7 +33282,6 @@ to the section <a href="#subsubsec:ex">URLs</a>.
 Let's do some copying from files too. First from subroutine up to the very end,
 
 <p>
-
 
 <!-- code=fortran (from !bc fcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #008000; font-weight: bold">subroutine </span><span style="color: #19177C">test</span>()
@@ -33005,7 +33334,6 @@ and finally the complete file:
       <span style="color: #008000; font-weight: bold">return</span>
 </pre></div>
 <p>
-
 Testing other code environments. First Python:
 <p>
 
@@ -33020,13 +33348,11 @@ which gets rendered as
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
 </pre></div>
 <p>
-
 Now a complete program to be shown via Python Online Tutorial:
 <p>
 
@@ -33034,7 +33360,6 @@ Now a complete program to be shown via Python Online Tutorial:
         src="http://pythontutor.com/iframe-embed.html#code=def+f%28x%29%3A%0A++++return+x+%2B+1%0A%0Aa+%3D+2%0Ax+%3D+a%0Aa+%3D+1%0Av+%3D+f%28x%29%0Aprint+v&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
-
 Then Cython:
 <p>
 
@@ -33043,7 +33368,6 @@ Then Cython:
     <span style="color: #008000; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
 </pre></div>
 <p>
-
 <!-- This one tests a + sign before a code environment -->
 C++:
 <p>
@@ -33063,7 +33387,6 @@ And a little bit of Fortran:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc cod
       subroutine midpt(x, length, a, b)
@@ -33079,7 +33402,6 @@ which then is typeset as
 
 <p>
 
-
 <!-- code=text (from !bc cod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -33089,11 +33411,9 @@ which then is typeset as
       end
 </pre></div>
 <p>
-
 HTML:
 
 <p>
-
 
 <!-- code=html (from !bc htmlcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;table&gt;</span>
@@ -33103,7 +33423,6 @@ HTML:
 <span style="color: #008000; font-weight: bold">&lt;/table&gt;</span>
 </pre></div>
 <p>
-
 System call:
 <p>
 
@@ -33115,7 +33434,6 @@ output1
 output2
 </pre></div>
 <p>
-
 It is time to test <code>verbatim inline font</code> especially with <code>a newline
 inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! The
 exclamation mark inside the verbatim text is not smart for latex as
@@ -33128,17 +33446,13 @@ green color containing a linebreak.
 And one more.</font> Some formats will only display this correctly when
 HTML is the output format.
 
-<p>
-
-
-<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+<h3>Subsection 2: Testing figures and movies <a name="subsec:ex"></a></h3>
 
 <p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
 
 <p>
-
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
@@ -33146,23 +33460,24 @@ there is a flow.
 </center>
 
 <p>
-
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 <p>
 <center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
 
+<h4>Test of movies  <a name="___sec3"></a></h4>
+
 <p>
-Test of movies.
+Movie <a href="#mov:tsunami">mov:tsunami</a> shows a tsunami.
 
 <p>
 
 <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+<p><em>Mjolnir tsunami (by Sylfest Glimsdal) <a name="mov:tsunami"></a>.</em></p>
 
 
 <p>
-<!-- Test empty caption: -->
+Test empty caption (for inline movie):
 
 <p>
 
@@ -33173,8 +33488,7 @@ Test of movies.
 <p>
 <!-- Test wrong syntax and multi-line caption -->
 
-<p>
-<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a></em></p>
 
 <p>
@@ -33198,7 +33512,6 @@ Test of movies.
 
 
 <p>
-
 <!-- Test multi-line caption in figure -->
 
 <p>
@@ -33206,16 +33519,11 @@ Here is figure <a href="#myfig">2</a> with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 <p>
-
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
 </center>
-
-<p>
-
-Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
@@ -33232,8 +33540,6 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 <p>
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
-<p>
-
 <h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
 
 <p>
@@ -33246,7 +33552,6 @@ involving \( \theta \):
     return theta**2
 </pre></div>
 <p>
-
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.
 
@@ -33280,11 +33585,7 @@ $$
 \end{align}
 $$
 
-
-<p>
-
-
-<h3>Custom Environments  <a name="___sec4"></a></h3>
+<h3>Custom Environments  <a name="___sec5"></a></h3>
 
 <p>
 Here is an attempt to create a theorem environment via Mako
@@ -33293,12 +33594,10 @@ the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
 Should look nice in most formats!
 
 <p>
-
 <!-- begin theorem -->
 <a name="theorem:fundamental1"></a>
 
 <p>
-
 <b>Theorem 5.</b>
 Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
 <!-- end theorem -->
@@ -33314,20 +33613,15 @@ Since \( c=a+b \), the result follows from straightforward addition.
 As we see, the proof of Theorem 5 is a modest
 achievement.
 
-<p>
-
-
 <h3>Tables <a name="subsec:table"></a></h3>
 
 <p>
-
 <!-- index with comma could fool sphinx -->
 
 <p>
 Let us take this table from the manual:
 
 <p>
-
 <table border="1">
 <tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
@@ -33335,7 +33629,6 @@ Let us take this table from the manual:
 <tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
 </table>
 <p>
-
 The Doconce source code reads
 <p>
 
@@ -33349,7 +33642,6 @@ The Doconce source code reads
   |--------------------------------|
 </pre></div>
 <p>
-
 Here is yet another table to test that we can handle more than
 one table:
 
@@ -33388,19 +33680,15 @@ and <code>|</code> right after verbatim word (with no space):
 <tr><td align="right">   10                              </td> <td align="right">   17.74                           </td> <td align="right">   -4.50                           </td> <td align="right">   9.96                            </td> </tr>
 <tr><td align="right">   0                               </td> <td align="right">   -9.19                           </td> <td align="right">   4.13                            </td> <td align="right">   -0.26                           </td> </tr>
 </table>
-<p>
 
-
-<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec6"></a></h3>
+<h3>A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code>  <a name="___sec7"></a></h3>
 
 <p>
 <b>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
 Here is
 some text.
 
-<p>
-
-<h3>Bibliography test  <a name="___sec7"></a></h3>
+<h3>Bibliography test  <a name="___sec8"></a></h3>
 
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
@@ -33430,11 +33718,7 @@ the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
 <a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
 
@@ -33445,7 +33729,6 @@ typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
 <p>
-
 <b>a)</b>
 State some problem.
 
@@ -33472,9 +33755,6 @@ maybe over multiple doconce input lines.
 
 <p>
 <!-- --- end exercise --- -->
-
-<p>
-
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 
@@ -33520,10 +33800,7 @@ More tough tests: repeated URLs whose footnotes when using the
 <a href="http://google.com">google</a>, which should result in exactly three
 footnotes.
 
-<p>
-
-
-<h3>LaTeX Mathematics  <a name="___sec10"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
 
 <p>
 Here is an equation without label using backslash-bracket environment:
@@ -33549,7 +33826,6 @@ $$
 
 
 <p>
-
 And here is a system of equations with labels in an align environment:
 $$
 \begin{align}
@@ -33626,15 +33902,10 @@ Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#dem
 as well as <a href="#proj:circle1">Project 2: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 3: References in a headings do not work well in html</a>, and in
 between there we have <a href="#exer:some:formula">Exercise 3: Make references to projects and problems</a>.
 
-<p>
-
-<h2>Exercises  <a name="___sec11"></a></h2>
+<h2>Exercises  <a name="___sec12"></a></h2>
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 <!-- keywords = random numbers; Monte Carlo simulation -->
@@ -33648,14 +33919,9 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 <p>
-
 <!-- Test syntax error -->
 
-<p>
-
-
-
-<h4>Remarks  <a name="___sec13"></a></h4>
+<h4>Remarks  <a name="___sec14"></a></h4>
 
 <p>
 Remarks with such a subsubsection heading would previously mark
@@ -33683,7 +33949,6 @@ Draw an integer among \( \{1,2\} \) with
 <!-- --- end hint in exercise --- -->
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 If the <code>random.random()</code> function returns a number \( <1/2 \), let it be
@@ -33691,7 +33956,6 @@ head, otherwise tail. Repeat this \( N \) number of times.
 <!-- --- end answer of exercise --- -->
 
 <p>
-
 <!-- --- begin solution of exercise --- -->
 <b>Solution.</b>
 Code:
@@ -33715,20 +33979,14 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h3>Not an exercise  <a name="___sec14"></a></h3>
+<h3>Not an exercise  <a name="___sec15"></a></h3>
 
 <p>
 Should be possible to stick a normal section in the middle of many
 exercises.
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 1: Compute a Probability <a name="demo:ex:2"></a></h3>
 
@@ -33736,7 +33994,6 @@ exercises.
 <!-- Minimalistic exercise -->
 
 <p>
-
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 
@@ -33755,11 +34012,7 @@ compute the probability as \( M/N \).
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 2: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 
@@ -33781,7 +34034,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 
 <p>
 
-
 <!-- code=python (from !bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
@@ -33794,7 +34046,6 @@ The formula can be used to generate <code>n</code> points on a circle:
 x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
 </pre></div>
 <p>
-
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
@@ -33804,7 +34055,6 @@ center and radius. Plot each circle using the <code>circle</code> function
 above.
 
 <p>
-
 <b>a)</b>
 Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
@@ -33818,14 +34068,12 @@ Use the <code>numpy.random</code> module to draw the
 <!-- --- end hint in exercise --- -->
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 Here goes the short answer to part a).
 <!-- --- end answer of exercise --- -->
 
 <p>
-
 <!-- --- begin solution of exercise --- -->
 <b>Solution.</b>
 Here goes a full solution to part a).
@@ -33846,24 +34094,17 @@ Filename: <code>circles.pdf</code>.
 <p>
 <!-- Closing remarks for this Project -->
 
-<p>
-
-<h4>Remarks  <a name="___sec17"></a></h4>
+<h4>Remarks  <a name="___sec18"></a></h4>
 
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
 
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Exercise 1: Determine some Distance <a name="exer:dist"></a></h3>
 
@@ -33871,13 +34112,11 @@ and give some perspectives.
 Intro to this exercise. Questions are in subexercises below.
 
 <p>
-
 <!-- No meaning in this weired test example: -->
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
 
 <p>
-
 <!-- --- begin solution of exercise --- -->
 <b>Solution.</b>
 Here goes a full solution of the whole exercise.
@@ -33895,7 +34134,6 @@ End of solution is here.
 <!-- --- end solution of exercise --- -->
 
 <p>
-
 <b>a)</b>
 Subexercises are numbered a), b), etc.
 
@@ -33914,7 +34152,6 @@ And with code (in plain verbatim) returning \( x+1 \) in hint:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def func(x):
     return x + 1  # with code in hint
@@ -33932,7 +34169,6 @@ Second hint to subexercise a).
 Filename: <code>subexer_a.pdf</code>.
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 Short answer to subexercise a).
@@ -33944,7 +34180,6 @@ With math in answer: \( a=b \).
 Here goes the text for subexercise b).
 
 <p>
-
 Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
 
 <p>
@@ -33961,7 +34196,6 @@ A hint for this subexercise.
 Filename: <code>subexer_b.pdf</code>.
 
 <p>
-
 <!-- --- begin solution of exercise --- -->
 <b>Solution.</b>
 Here goes the solution of this subexercise.
@@ -33970,9 +34204,7 @@ Here goes the solution of this subexercise.
 <p>
 <!-- Closing remarks for this Exercise -->
 
-<p>
-
-<h4>Remarks  <a name="___sec19"></a></h4>
+<h4>Remarks  <a name="___sec20"></a></h4>
 
 <p>
 Some final closing remarks, e.g., summarizing the main findings
@@ -33980,17 +34212,12 @@ and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
 
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
 
-<p>
-
-<h3>Some exercise without the "Exercise:" prefix  <a name="___sec20"></a></h3>
+<h3>Some exercise without the "Exercise:" prefix  <a name="___sec21"></a></h3>
 
 <p>
 <!-- Another minimalistic exercise -->
@@ -34008,29 +34235,22 @@ And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">lambda x: x+2
 </pre></div>
 <p>
-
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
 
-<p>
-
-<h3>Example 2: Just an example  <a name="___sec21"></a></h3>
+<h3>Example 2: Just an example  <a name="___sec22"></a></h3>
 
 <p>
 <!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
 <p>
-
 <b>a)</b>
 What is the capital of Norway?
 
@@ -34041,23 +34261,15 @@ Oslo.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h2>Here goes another section  <a name="___sec22"></a></h2>
+<h2>Here goes another section  <a name="___sec23"></a></h2>
 
 <p>
 With some text, before we continue with exercises.
 
-<p>
-
-<h2>More Exercises  <a name="___sec23"></a></h2>
+<h2>More Exercises  <a name="___sec24"></a></h2>
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Exercise 3: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 
@@ -34070,11 +34282,7 @@ Filename: <code>verify_formula.py</code>.
 <!-- --- end exercise --- -->
 
 <p>
-
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Project 3: References in a headings do not work well in html <a name="exer:you"></a></h3>
 
@@ -34087,13 +34295,7 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 <!-- --- end exercise --- -->
 
-<p>
-
-
-<h2>References  <a name="___sec26"></a></h2>
-
-<p>
-
+<h2>References  <a name="___sec27"></a></h2>
 
 <h2>Bibliography</h2>
 
@@ -34209,51 +34411,37 @@ Filename: <code>selc_composed.pdf</code>.
     1994.</li>
 </ol>
 
-
-<h2>Appendix: Just for testing; part I  <a name="___sec27"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec28"></a></h2>
 
 <p>
 This is the first appendix.
 
-<p>
-
-<h3>A subsection within an appendix  <a name="___sec28"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec29"></a></h3>
 
 <p>
 Some text.
 
-<p>
-
-<h2>Appendix: Just for testing; part II  <a name="___sec29"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec30"></a></h2>
 
 <p>
 This is more stuff for an appendix.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec30"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec31"></a></h3>
 
 <p>
 Without label.
-
-<p>
-
 
 <h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
 
 <p>
 With label.
 
-<p>
-
 <h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
 
 <p>
 With label.
 
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec33"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec34"></a></h3>
 
 <p>
 Without label.
@@ -34263,7 +34451,6 @@ Without label.
 Here is a hint.
 </div>
 <p>
-
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -34340,17 +34527,14 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-<p>
-
-
-<h3>Appendix: Testing inline comments  <a name="___sec34"></a></h3>
+<h3>Appendix: Testing inline comments  <a name="___sec35"></a></h3>
 
 <p>
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
-[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]
+<font color="red">[<b>hpl 1</b>: <em>not sure if in the cloud is understood by all.</em>]</font>
 <!-- end inline comment -->
  I strongly
 recommend you to use such sites for all serious programming and
@@ -34359,9 +34543,9 @@ scientific writing work - and all other important files.
 <p>
 The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
+<font color="red">[<b>mp 2</b>: <em>Simply go to <a href="http://dropbox.com"><tt>http://dropbox.com</tt></a> and watch the video. It explains
 how files, like <code>myfile.py</code>, perhaps containing much math, like
-\( \partial u/\partial t \), are easily communicated between machines.</em>]
+\( \partial u/\partial t \), are easily communicated between machines.</em>]</font>
 <!-- end inline comment -->
  It
 is very easy to get started with Dropbox, and it allows you to share
@@ -34374,16 +34558,13 @@ manually merge the edits when these are incompatible. Then one needs
 more sophisticated tools than Dropbox: project hosting services with
 true version control systems.  
 <!-- begin inline comment -->
-[<b>hpl 3</b>: <em>The following text aims at providing
+<font color="red">[<b>hpl 3</b>: <em>The following text aims at providing
 you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
-and in-depth explanations of the concepts and tools.</em>]
+and in-depth explanations of the concepts and tools.</em>]</font>
 <!-- end inline comment -->
 
-
-<p>
-
-<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec35"></a></h3>
+<h3>Appendix: Testing headings ending with <code>verbatim inline</code>  <a name="___sec36"></a></h3>
 
 <p>
 The point here is to test 1) <code>verbatim</code> code in headings, and 2)
@@ -34684,8 +34865,8 @@ HTML is the output format.
 
 .. _subsec:ex:
 
-Subsection 2
-------------
+Subsection 2: Testing figures and movies
+----------------------------------------
 
 .. index:: figures
 
@@ -34702,7 +34883,7 @@ there is a flow.
    *Visualization of flow by streamtubes*
 
 
-Figures without captions are allowed.
+Figures without captions are allowed and will be inlined.
 
 
 .. figure:: ../doc/manual/figs/streamtubes.png
@@ -34713,17 +34894,20 @@ Figures without captions are allowed.
 
 .. index:: movies
 
-Test of movies.
+
+Test of movies
+~~~~~~~~~~~~~~
+
+Movie :ref:`mov:tsunami` shows a tsunami.
 
 .. raw:: html
         
         <embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-        <p><em>Mjolnir tsunami (by Sylfest Glimsdal).</em></p>
+        <p><em>Mjolnir tsunami (by Sylfest Glimsdal) .</em></p>
 
 
 
-.. Test empty caption:
-
+Test empty caption (for inline movie):
 
 .. raw:: html
         
@@ -34780,8 +34964,6 @@ and an extra space before the FIGURE keyword.
 
    A long caption spanning several lines and containing verbatim words like ``my_file_v1`` and ``my_file_v2`` as well as math with subscript as in :math:`t_{i+1}`
 
-
-Movie :ref:`mymov` has a similar problem.
 
 .. Must be a blank line after MOVIE or FIGURE to detect this problem
 
@@ -35952,361 +36134,6 @@ The point here is to test 1) ``verbatim`` code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in LaTeX.
 
-************** File: admon_colors.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
-Automatically generated HTML file from Doconce source
-(http://code.google.com/p/doconce/)
--->
-
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
-<meta name="description" content="Testing admons">
-
-
-
-<style type="text/css">
-    /* Color definitions:  http://www.december.com/html/spec/color0.html
-       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
-
-    body {
-      margin-top: 1.0em;
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    h1 { font-size: 1.8em; color: #1e36ce; }
-    h2 { font-size: 1.5em; color: #1e36ce; }
-    h3 { color: #1e36ce; }
-    a { color: #1e36ce; text-decoration:none; }
-    tt { font-family: "Courier New", Courier; }
-    
-    p { text-indent: 0px; }
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-style: normal; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png); }
-
-</style>
-
-</head>
-
-<!-- tocinfo
-{'highest level': 1,
- 'sections': [(' Introduction ', 1, None, '___sec0'),
-              (' Code ', 2, None, '___sec1'),
-              (' Admonitions ', 2, None, '___sec2'),
-              (' Going deeper environments ', 2, None, '___sec3'),
-              (' The end ', 2, None, '___sec4')]}
-end of tocinfo -->
-
-<body>
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
-
-<!-- newcommands_bfmath.tex -->
-$$
-\renewcommand{\u}{\pmb{u}}
-
-\newcommand{\xbm}{\boldsymbol{x}}
-\newcommand{\normalvecbm}{\boldsymbol{n}}
-\newcommand{\ubm}{\boldsymbol{u}}
-$$
-
-
-<!-- newcommands_replace.tex -->
-$$
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\halfi}{1/2}
-\newcommand{\half}{\frac{1}{2}}
-\newcommand{\report}{test report}
-$$
-
-
-
-
-    
-<!-- ------------------- main content ---------------------- -->
-
-
-<title>Testing admons</title>
-
-<center><h1>Testing admons</h1></center>  <!-- document title -->
-
-<p>
-<!-- author(s): hpl -->
-
-<center>
-<b>hpl</b> 
-</center>
-
-
-<p>
-<!-- institution(s) -->
-<p>
-<center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
-
-<h2>Introduction  <a name="___sec0"></a></h2>
-First some ordinary text to compare font sizes in admonitions
-and the surrounding text.
-
-<p>
-
-
-<h3>Code  <a name="___sec1"></a></h3>
-
-<p>
-Need some code outside admons for color and font comparisons:
-
-<p>
-
-
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
-    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
-</pre></div>
-<p>
-
-And some plain text verbatim:
-
-<p>
-
-
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
-x=1.1 y=0.3 z=0.1
-</pre></div>
-<p>
-
-
-<h3>Admonitions  <a name="___sec2"></a></h3>
-
-<p>
-Let us start with a plain warning environment.
-
-<p>
-<div class="Warning"><b>Warning.</b>
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-<p>
-
-<ul>
-  <li> and a list</li>
-  <li> with items</li>
-</ul>
-</div>
-<p>
-Test warning with title:
-
-<p>
-<div class="Warning"><b>Watch Out.</b>
-And here comes some text with bad news.
-</div>
-<p>
-The next admonition features a title "Note, eventually!".
-
-<p>
-<!-- Note that the final ! does not appear in Sphinx and reST since -->
-<!-- those formats automatically add : to the admonition title. -->
-
-<p>
-<div class="Notice"><b>Note, eventually!</b>
-Ah, we are soon close to the end.
-But first a bit of math:
-$$ p=q$$
-</div>
-<p>
-<div class="Question"><b>Question.</b>
-So, how many admonition environments does Doconce support?
-</div>
-<p>
-<div class="Question"><b>Question.</b>
-
-<ol>
- <li> Once more, how many admonition environments does Doconce support?</li>
-</ol>
-</div>
-<p>
-<div class="Hint"><b>Hint.</b>
-It is smart to read on and remember to
-
-<p>
-
-<ol>
-<li> stay cool</li>
-<li> read hints carefully</li>
-</ol>
-
-Also, remember
-
-<p>
-
-
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
-    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
-</pre></div>
-<p>
-</div>
-<p>
-
-<h3>Going deeper environments  <a name="___sec3"></a></h3>
-
-<p>
-Here is a long notice environment with a custom title and much
-text, math and code.
-
-<p>
-<div class="Notice"><b>Going deeper.</b>
-We have some equations that should be preceded by much text, so the
-task is to write and write. The number of words, and not the
-meaning, is what counts here. We need desperately to fill up the
-page in the hope that some admonitions will experience a page break,
-which the LaTeX environment should handle with ease.
-
-<p>
-Let us start with some equations:
-
-<p>
-$$
-\begin{align*}
-\frac{Du}{dt} &= 0
-\\
-\frac{1}{2} &= {1/2}\\
-\frac{1}{2}\pmb{x} &= \pmb{n}
-\end{align*}
-$$
-
-
-<p>
-The implementation of such complicated equations in computer
-code is task that this "Going deeper" environment targets.
-
-<p>
-
-
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
-    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
-    <span style="color: #008000; font-weight: bold">return</span> r
-
-half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
-x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
-</pre></div>
-<p>
-And some more text that can help going into the next page.
-Longer computer code requires vertical space:
-
-<p>
-
-
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
-        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
-        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
-
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
-
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
-
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
-               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
-
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
-               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
-               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
-
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
-                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-</pre></div>
-<p>
-And then we add a figure too.
-
-<p>
-<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
-</div>
-<p>
-
-<h3>The end  <a name="___sec4"></a></h3>
-
-<p>
-A bit of text before the summary, which we now call "Concluding remarks,
-for the novice",
-just because we can.
-
-<p>
-<div class="Summary"><b>Concluding remarks, for the novice.</b>
-We can summarize the most important things with admons: they have
-a different typesetting, and they may have a symbol.
-Titles should be optional.
-</div>
-<!-- ------------------- end of main content --------------- -->
-
-
-</body>
-</html>
-    
-
-
 ************** File: admon.p.tex *****************
 %%
 %% Automatically generated file from Doconce source
@@ -36438,15 +36265,36 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% gray summary box
+% #ifndef ADMON
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
+\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
-\usepackage{wrapfig,calc}
 \newdimen\barheight
 \def\barthickness{0.5pt}
 
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
 \vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
 \begin{minipage}{0.5\textwidth-6pt-\columnsep}
 \hspace*{3mm}
@@ -36459,7 +36307,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{wrapfigure}}
 % #else
 % gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
+\newcommand{\grayboxhrules}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
 \parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
@@ -36469,216 +36317,517 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 
-% #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
-\usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
 % #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
 % #else
-\usepackage[framemethod=TikZ]{mdframed}
-% #endif
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -36857,8 +37006,8 @@ x=1.1 y=0.3 z=0.1
 Let us start with a plain warning environment.
 
 
-% #if ADMON == "colors"
-\begin{warningadmon}[Warning]
+% #if ADMON == "colors1"
+\begin{warning_colors1admon}[Warning]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -36870,9 +37019,79 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
-\end{warningadmon}
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_colors1admon}
+% #elif ADMON == "colors2"
+\begin{warning_colors2admon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{warning_graybox3admon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{warning_yellowboxadmon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{warningadmon}[Warning.]
+\begin{paragraphadmon}[Warning.]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -36884,9 +37103,39 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
-\end{warningadmon}
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{graybox2admon}
+
 % #else
-\begin{warningadmon}[Warning.]
+\begin{graybox1admon}[Warning.]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
@@ -36898,23 +37147,128 @@ in comparison with the other admons.
 \end{itemize}
 
 \noindent
-\end{warningadmon}
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{graybox1admon}
 % #endif
 Test warning with title:
 
 
-% #if ADMON == "colors"
-\begin{warningadmon}[Watch Out]
+% #if ADMON == "colors1"
+\begin{warning_colors1admon}[Watch Out]
 And here comes some text with bad news.
-\end{warningadmon}
+\end{warning_colors1admon}
+% #elif ADMON == "colors2"
+\begin{warning_colors2admon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{warning_graybox3admon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{warning_yellowboxadmon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{warningadmon}[Watch Out.]
+\begin{paragraphadmon}[Watch Out.]
 And here comes some text with bad news.
-\end{warningadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Watch Out.]
+And here comes some text with bad news.
+\end{graybox2admon}
+
 % #else
-\begin{warningadmon}[Watch Out.]
+\begin{graybox1admon}[Watch Out.]
 And here comes some text with bad news.
-\end{warningadmon}
+\end{graybox1admon}
+% #endif
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+% #if ADMON == "colors1"
+\begin{block_colors1admon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors1admon}
+% #elif ADMON == "colors2"
+\begin{block_colors2admon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{block_graybox3admon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{block_yellowboxadmon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Block with title.]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Block with title.]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox2admon}
+
+% #else
+\begin{graybox1admon}[Block with title.]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox1admon}
+% #endif
+
+% #if ADMON == "colors1"
+\begin{block_colors1admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors1admon}
+% #elif ADMON == "colors2"
+\begin{block_colors2admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{block_graybox3admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{block_yellowboxadmon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox2admon}
+
+% #else
+\begin{graybox1admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox1admon}
 % #endif
 The next admonition features a title "Note, eventually!".
 
@@ -36922,67 +37276,145 @@ The next admonition features a title "Note, eventually!".
 % those formats automatically add : to the admonition title.
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Note, eventually!]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Note, eventually!]
 Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Note, eventually!]
+\begin{paragraphadmon}[Note, eventually!]
 Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Note eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Note eventually!]
+\begin{graybox1admon}[Note eventually!]
 Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 
-% #if ADMON == "colors"
-\begin{questionadmon}[Question]
+% #if ADMON == "colors1"
+\begin{question_colors1admon}[Question]
 So, how many admonition environments does Doconce support?
-\end{questionadmon}
+\end{question_colors1admon}
+% #elif ADMON == "colors2"
+\begin{question_colors2admon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{question_graybox3admon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{question_yellowboxadmon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{questionadmon}[Question.]
+\begin{paragraphadmon}[Question.]
 So, how many admonition environments does Doconce support?
-\end{questionadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{graybox2admon}
+
 % #else
-\begin{questionadmon}[Question.]
+\begin{graybox1admon}[Question.]
 So, how many admonition environments does Doconce support?
-\end{questionadmon}
+\end{graybox1admon}
 % #endif
 
-% #if ADMON == "colors"
-\begin{questionadmon}[Question]
+% #if ADMON == "colors1"
+\begin{question_colors1admon}[Question]
 \begin{enumerate}
  \item Once more, how many admonition environments does Doconce support?
 \end{enumerate}
 
 \noindent
-\end{questionadmon}
+\end{question_colors1admon}
+% #elif ADMON == "colors2"
+\begin{question_colors2admon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{question_graybox3admon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{question_yellowboxadmon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{questionadmon}[Question.]
+\begin{paragraphadmon}[Question.]
 \begin{enumerate}
  \item Once more, how many admonition environments does Doconce support?
 \end{enumerate}
 
 \noindent
-\end{questionadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{graybox2admon}
+
 % #else
-\begin{questionadmon}[Question.]
+\begin{graybox1admon}[Question.]
 \begin{enumerate}
  \item Once more, how many admonition environments does Doconce support?
 \end{enumerate}
 
 \noindent
-\end{questionadmon}
+\end{graybox1admon}
 % #endif
-% #if ADMON == "colors"
-\begin{hintadmon}[Hint]
+% #if ADMON == "colors1"
+\begin{hint_colors1admon}[Hint]
 It is smart to read on and remember to
 
 \begin{enumerate}
@@ -37000,9 +37432,69 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
-\end{hintadmon}
+\end{hint_colors1admon}
+% #elif ADMON == "colors2"
+\begin{hint_colors2admon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{hint_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{hint_graybox3admon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{hint_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{hint_yellowboxadmon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{hint_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{hintadmon}[Hint.]
+\begin{paragraphadmon}[Hint.]
 It is smart to read on and remember to
 
 \begin{enumerate}
@@ -37020,9 +37512,31 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
-\end{hintadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\bpycod
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\epycod
+\end{graybox2admon}
+
 % #else
-\begin{hintadmon}[Hint.]
+\begin{graybox1admon}[Hint.]
 It is smart to read on and remember to
 
 \begin{enumerate}
@@ -37040,7 +37554,41 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
-\end{hintadmon}
+\end{graybox1admon}
+% #endif
+Next is a warning without a title ("none" implies no title).
+
+
+% #if ADMON == "colors1"
+\begin{warning_colors1admon}[]
+And here comes some text with bad news.
+\end{warning_colors1admon}
+% #elif ADMON == "colors2"
+\begin{warning_colors2admon}[]
+And here comes some text with bad news.
+\end{warning_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{warning_graybox3admon}[]
+And here comes some text with bad news.
+\end{warning_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{warning_yellowboxadmon}[]
+And here comes some text with bad news.
+\end{warning_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[]
+And here comes some text with bad news.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[]
+And here comes some text with bad news.
+\end{graybox2admon}
+
+% #else
+\begin{graybox1admon}[]
+And here comes some text with bad news.
+\end{graybox1admon}
 % #endif
 \subsection{Going deeper environments}
 
@@ -37048,8 +37596,8 @@ Here is a long notice environment with a custom title and much
 text, math and code.
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Going deeper.]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -37125,9 +37673,243 @@ And then we add a figure too.
 \begin{center}  % inline figure
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Going deeper.]
+\begin{paragraphadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -37203,9 +37985,89 @@ And then we add a figure too.
 \begin{center}  % inline figure
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\bpycod
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\epycod
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\bpycod
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\epycod
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Going deeper.]
+\begin{graybox1admon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -37281,7 +38143,7 @@ And then we add a figure too.
 \begin{center}  % inline figure
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 \subsection{The end}
 
@@ -37289,10 +38151,50 @@ A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
 
-\summarybox{
+
+% #if ADMON == "colors1"
+\begin{summary_colors1admon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_colors1admon}
+% #elif ADMON == "colors2"
+\begin{summary_colors2admon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{summary_graybox3admon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{summary_yellowboxadmon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Concluding remarks, for the novice.]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+\grayboxhrules{
 \textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
-Titles should be optional.}
+Titles should be optional.
+}
+% #else
+\begin{graybox1admon}[Concluding remarks for the novice.]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{graybox1admon}
+% #endif
 % ------------------- end of main content ---------------
 
 
@@ -37301,6 +38203,3262 @@ Titles should be optional.}
 
 \end{document}
 % #endif
+
+
+************** File: admon_colors1.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+\usepackage{framed}
+
+
+% Admonition environment for "hint"
+% Style from NumPy User Guide
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_colors1admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+% Style from NumPy User Guide
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_colors1admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+% Style from NumPy User Guide
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_colors1admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+% Style from NumPy User Guide
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_colors1admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_colors1admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warning_colors1admon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_colors1admon}
+Test warning with title:
+
+
+\begin{warning_colors1admon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_colors1admon}
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+\begin{block_colors1admon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors1admon}
+
+\begin{block_colors1admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors1admon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{notice_colors1admon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_colors1admon}
+
+\begin{question_colors1admon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_colors1admon}
+
+\begin{question_colors1admon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_colors1admon}
+\begin{hint_colors1admon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hint_colors1admon}
+Next is a warning without a title ("none" implies no title).
+
+
+\begin{warning_colors1admon}[]
+And here comes some text with bad news.
+\end{warning_colors1admon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{notice_colors1admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_colors1admon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\begin{summary_colors1admon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_colors1admon}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_colors2.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+\usepackage{framed,wrapfig}
+
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warning_colors2admon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_colors2admon}
+Test warning with title:
+
+
+\begin{warning_colors2admon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_colors2admon}
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+\begin{block_colors2admon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors2admon}
+
+\begin{block_colors2admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_colors2admon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{notice_colors2admon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_colors2admon}
+
+\begin{question_colors2admon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_colors2admon}
+
+\begin{question_colors2admon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_colors2admon}
+\begin{hint_colors2admon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hint_colors2admon}
+Next is a warning without a title ("none" implies no title).
+
+
+\begin{warning_colors2admon}[]
+And here comes some text with bad news.
+\end{warning_colors2admon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{notice_colors2admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_colors2admon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\begin{summary_colors2admon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_colors2admon}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_graybox1.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+
+
+
+
+
+
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{graybox1admon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{graybox1admon}
+Test warning with title:
+
+
+\begin{graybox1admon}[Watch Out.]
+And here comes some text with bad news.
+\end{graybox1admon}
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+\begin{graybox1admon}[Block with title.]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox1admon}
+
+\begin{graybox1admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox1admon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{graybox1admon}[Note eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{graybox1admon}
+
+\begin{graybox1admon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{graybox1admon}
+
+\begin{graybox1admon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{graybox1admon}
+\begin{graybox1admon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{graybox1admon}
+Next is a warning without a title ("none" implies no title).
+
+
+\begin{graybox1admon}[]
+And here comes some text with bad news.
+\end{graybox1admon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{graybox1admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{graybox1admon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\begin{graybox1admon}[Concluding remarks for the novice.]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{graybox1admon}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_graybox2.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
+
+% gray box with horizontal rules (cannot handle verbatim text)
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% gray box of 80% width
+\newcommand{\grayboxhrules}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
+
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
+
+
+
+
+
+
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+
+\begin{graybox2admon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{graybox2admon}
+
+Test warning with title:
+
+
+
+\begin{graybox2admon}[Watch Out.]
+And here comes some text with bad news.
+\end{graybox2admon}
+
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+
+\begin{graybox2admon}[Block with title.]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox2admon}
+
+
+
+\begin{graybox2admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{graybox2admon}
+
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+
+\begin{graybox2admon}[Note eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{graybox2admon}
+
+
+
+\begin{graybox2admon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{graybox2admon}
+
+
+
+\begin{graybox2admon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{graybox2admon}
+
+
+\begin{graybox2admon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{graybox2admon}
+
+Next is a warning without a title ("none" implies no title).
+
+
+
+\begin{graybox2admon}[]
+And here comes some text with bad news.
+\end{graybox2admon}
+
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+
+\begin{graybox2admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{graybox2admon}
+
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\grayboxhrules{
+\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_graybox3.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+\usepackage{framed,wrapfig}
+
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warning_graybox3admon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_graybox3admon}
+Test warning with title:
+
+
+\begin{warning_graybox3admon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_graybox3admon}
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+\begin{block_graybox3admon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_graybox3admon}
+
+\begin{block_graybox3admon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_graybox3admon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{notice_graybox3admon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_graybox3admon}
+
+\begin{question_graybox3admon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_graybox3admon}
+
+\begin{question_graybox3admon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_graybox3admon}
+\begin{hint_graybox3admon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hint_graybox3admon}
+Next is a warning without a title ("none" implies no title).
+
+
+\begin{warning_graybox3admon}[]
+And here comes some text with bad news.
+\end{warning_graybox3admon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{notice_graybox3admon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_graybox3admon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\begin{summary_graybox3admon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_graybox3admon}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_paragraph.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+
+
+
+
+
+
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{paragraphadmon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{paragraphadmon}
+Test warning with title:
+
+
+\begin{paragraphadmon}[Watch Out.]
+And here comes some text with bad news.
+\end{paragraphadmon}
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+\begin{paragraphadmon}[Block with title.]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{paragraphadmon}
+
+\begin{paragraphadmon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{paragraphadmon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{paragraphadmon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{paragraphadmon}
+
+\begin{paragraphadmon}[Question.]
+So, how many admonition environments does Doconce support?
+\end{paragraphadmon}
+
+\begin{paragraphadmon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{paragraphadmon}
+\begin{paragraphadmon}[Hint.]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{paragraphadmon}
+Next is a warning without a title ("none" implies no title).
+
+
+\begin{paragraphadmon}[]
+And here comes some text with bad news.
+\end{paragraphadmon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{paragraphadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{paragraphadmon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\begin{paragraphadmon}[Concluding remarks, for the novice.]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{paragraphadmon}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_yellowbox.tex *****************
+%%
+%% Automatically generated file from Doconce source
+%% (http://code.google.com/p/doconce/)
+%%
+
+
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
+
+
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
+\usepackage{minted,fancyvrb} % packages needed for verbatim environments
+
+
+\usepackage[latin1]{inputenc}
+
+% Hyperlinks in PDF:
+\usepackage[%
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % number chapter, section, subsection
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
+
+\usepackage{framed,wrapfig}
+
+
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\makeindex
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf hpl${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+% ----------------- end author(s) -------------------------
+
+
+\begin{center}
+Jan 32, 2100
+\end{center}
+
+\vspace{1cm}
+
+
+
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+\subsection{Code}
+
+Need some code outside admons for color and font comparisons:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def some_code(x):
+    return sin(x)*exp(1-x)
+\end{minted}
+
+And some plain text verbatim:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+\end{Verbatim}
+
+\subsection{Admonitions}
+
+Let us start with a plain warning environment.
+
+
+\begin{warning_yellowboxadmon}[Warning]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+\begin{itemize}
+  \item and a list
+
+  \item with items
+\end{itemize}
+
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_yellowboxadmon}
+Test warning with title:
+
+
+\begin{warning_yellowboxadmon}[Watch Out]
+And here comes some text with bad news.
+\end{warning_yellowboxadmon}
+Then we test a block, which is guaranteed to never have any admon icon.
+
+
+\begin{block_yellowboxadmon}[Block with title]
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_yellowboxadmon}
+
+\begin{block_yellowboxadmon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_yellowboxadmon}
+The next admonition features a title "Note, eventually!".
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+
+\begin{notice_yellowboxadmon}[Note, eventually!]
+Ah, we are soon close to the end.
+But first a bit of math:
+\[ p=q\]
+\end{notice_yellowboxadmon}
+
+\begin{question_yellowboxadmon}[Question]
+So, how many admonition environments does Doconce support?
+\end{question_yellowboxadmon}
+
+\begin{question_yellowboxadmon}[Question]
+\begin{enumerate}
+ \item Once more, how many admonition environments does Doconce support?
+\end{enumerate}
+
+\noindent
+\end{question_yellowboxadmon}
+\begin{hint_yellowboxadmon}[Hint]
+It is smart to read on and remember to
+
+\begin{enumerate}
+\item stay cool
+
+\item read hints carefully
+\end{enumerate}
+
+\noindent
+Also, remember
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+\end{minted}
+\end{hint_yellowboxadmon}
+Next is a warning without a title ("none" implies no title).
+
+
+\begin{warning_yellowboxadmon}[]
+And here comes some text with bad news.
+\end{warning_yellowboxadmon}
+\subsection{Going deeper environments}
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+\begin{notice_yellowboxadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+
+Let us start with some equations:
+
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+\end{minted}
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+\end{minted}
+And then we add a figure too.
+
+
+\begin{center}  % inline figure
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
+\end{center}
+\end{notice_yellowboxadmon}
+\subsection{The end}
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+\begin{summary_yellowboxadmon}[Concluding remarks, for the novice]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_yellowboxadmon}
+% ------------------- end of main content ---------------
+
+
+\printindex
+
+\end{document}
+
+
+************** File: admon_colors.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Testing admons">
+
+
+
+<style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .notice, .summary, .warning, .hint, .question, .block {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png); }
+    .block    { color: #00529B; background-color: #BDE5F8; }
+
+</style>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [(' Introduction ', 1, None, '___sec0'),
+              (' Code ', 2, None, '___sec1'),
+              (' Admonitions ', 2, None, '___sec2'),
+              (' Going deeper environments ', 2, None, '___sec3'),
+              (' The end ', 2, None, '___sec4')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+<title>Testing admons</title>
+
+<center><h1>Testing admons</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): hpl -->
+
+<center>
+<b>hpl</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+<p>
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+
+<h2>Introduction  <a name="___sec0"></a></h2>
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+<h3>Code  <a name="___sec1"></a></h3>
+
+<p>
+Need some code outside admons for color and font comparisons:
+
+<p>
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+</pre></div>
+<p>
+And some plain text verbatim:
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</pre></div>
+
+<h3>Admonitions  <a name="___sec2"></a></h3>
+
+<p>
+Let us start with a plain warning environment.
+
+<p>
+<div class="warning"><b>Warning.</b>
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+<p>
+
+<ul>
+  <li> and a list</li>
+  <li> with items</li>
+</ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</div>
+<p>
+Test warning with title:
+
+<p>
+<div class="warning"><b>Watch Out.</b>
+And here comes some text with bad news.
+</div>
+<p>
+Then we test a block, which is guaranteed to never have any admon icon.
+
+<p>
+<div class="block"><b>Block with title.</b>
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+<div class="block"><b></b>
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+The next admonition features a title "Note, eventually!".
+
+<p>
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+<p>
+<div class="notice"><b>Note, eventually!</b>
+Ah, we are soon close to the end.
+But first a bit of math:
+$$ p=q$$
+</div>
+<p>
+<div class="question"><b>Question.</b>
+So, how many admonition environments does Doconce support?
+</div>
+<p>
+<div class="question"><b>Question.</b>
+
+<ol>
+ <li> Once more, how many admonition environments does Doconce support?</li>
+</ol>
+</div>
+<p>
+<div class="hint"><b>Hint.</b>
+It is smart to read on and remember to
+
+<p>
+
+<ol>
+<li> stay cool</li>
+<li> read hints carefully</li>
+</ol>
+
+Also, remember
+
+<p>
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
+    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+</pre></div>
+<p>
+</div>
+<p>
+Next is a warning without a title ("none" implies no title).
+
+<p>
+<div class="warning"><b></b>
+And here comes some text with bad news.
+</div>
+<h3>Going deeper environments  <a name="___sec3"></a></h3>
+
+<p>
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+<p>
+<div class="notice"><b>Going deeper.</b>
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+<p>
+Let us start with some equations:
+
+<p>
+$$
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+$$
+
+
+<p>
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<p>
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
+    <span style="color: #008000; font-weight: bold">return</span> r
+
+half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+</pre></div>
+<p>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<p>
+
+<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
+        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
+               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
+               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
+        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
+        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
+                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+</pre></div>
+<p>
+And then we add a figure too.
+
+<p>
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+</div>
+<h3>The end  <a name="___sec4"></a></h3>
+
+<p>
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+<p>
+<div class="summary"><b>Concluding remarks, for the novice.</b>
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</div>
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
 
 
 ************** File: admon_gray.html *****************
@@ -37440,15 +41598,10 @@ $$
 <!-- institution(s) -->
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
 
 <h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
-<p>
-
 
 <h3>Code  <a name="___sec1"></a></h3>
 
@@ -37457,24 +41610,19 @@ Need some code outside admons for color and font comparisons:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
 <p>
-
 And some plain text verbatim:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
-<p>
-
 
 <h3>Admonitions  <a name="___sec2"></a></h3>
 
@@ -37493,6 +41641,14 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
 </div>
 <p>
 Test warning with title:
@@ -37500,6 +41656,19 @@ Test warning with title:
 <p>
 <div class="alert alert-block alert-warning"><b>Watch Out.</b>
 And here comes some text with bad news.
+</div>
+<p>
+Then we test a block, which is guaranteed to never have any admon icon.
+
+<p>
+<div class="alert alert-block alert-block"><b>Block with title.</b>
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+<div class="alert alert-block alert-block"><b></b>
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -37540,7 +41709,6 @@ Also, remember
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
@@ -37550,7 +41718,12 @@ Also, remember
 <p>
 </div>
 <p>
+Next is a warning without a title ("none" implies no title).
 
+<p>
+<div class="alert alert-block alert-warning"><b></b>
+And here comes some text with bad news.
+</div>
 <h3>Going deeper environments  <a name="___sec3"></a></h3>
 
 <p>
@@ -37585,7 +41758,6 @@ code is task that this "Going deeper" environment targets.
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
@@ -37599,7 +41771,6 @@ And some more text that can help going into the next page.
 Longer computer code requires vertical space:
 
 <p>
-
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
@@ -37647,8 +41818,6 @@ And then we add a figure too.
 <p>
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
-<p>
-
 <h3>The end  <a name="___sec4"></a></h3>
 
 <p>
@@ -37805,15 +41974,10 @@ $$
 <!-- institution(s) -->
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
 
 <h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
-<p>
-
 
 <h3>Code  <a name="___sec1"></a></h3>
 
@@ -37822,24 +41986,19 @@ Need some code outside admons for color and font comparisons:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
 <p>
-
 And some plain text verbatim:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
-<p>
-
 
 <h3>Admonitions  <a name="___sec2"></a></h3>
 
@@ -37858,6 +42017,14 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
 </div>
 <p>
 Test warning with title:
@@ -37865,6 +42032,19 @@ Test warning with title:
 <p>
 <div class="alert alert-block alert-warning"><b>Watch Out.</b>
 And here comes some text with bad news.
+</div>
+<p>
+Then we test a block, which is guaranteed to never have any admon icon.
+
+<p>
+<div class="alert alert-block alert-block"><b>Block with title.</b>
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+<div class="alert alert-block alert-block"><b></b>
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -37905,7 +42085,6 @@ Also, remember
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
@@ -37915,7 +42094,12 @@ Also, remember
 <p>
 </div>
 <p>
+Next is a warning without a title ("none" implies no title).
 
+<p>
+<div class="alert alert-block alert-warning"><b></b>
+And here comes some text with bad news.
+</div>
 <h3>Going deeper environments  <a name="___sec3"></a></h3>
 
 <p>
@@ -37950,7 +42134,6 @@ code is task that this "Going deeper" environment targets.
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
@@ -37964,7 +42147,6 @@ And some more text that can help going into the next page.
 Longer computer code requires vertical space:
 
 <p>
-
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
@@ -38012,8 +42194,6 @@ And then we add a figure too.
 <p>
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
-<p>
-
 <h3>The end  <a name="___sec4"></a></h3>
 
 <p>
@@ -38134,17 +42314,38 @@ x=1.1 y=0.3 z=0.1
 <p>And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
 <li>and a list</li>
 <li>with items</li>
 </ul>
 </div></blockquote>
+<p class="last">We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.</p>
 </div>
 <p>Test warning with title:</p>
 <div class="admonition-watch-out admonition">
 <p class="first admonition-title">Watch Out</p>
 <p class="last">And here comes some text with bad news.</p>
+</div>
+<p>Then we test a block, which is guaranteed to never have any admon icon.</p>
+<div class="admonition-block-with-title admonition">
+<p class="first admonition-title">Block with title</p>
+<p class="last">Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.</p>
+</div>
+<p>Admonitions must have a title in Sphinx, otherwise they are not
+shown. Here, we have not specified any title, and Doconce then
+applies the generic title &#8220;Notice:&#8221;</p>
+<div class="admonition-notice admonition">
+<p class="first admonition-title">Notice</p>
+<p class="last">Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.</p>
 </div>
 <p>The next admonition features a title &#8220;Note, eventually!&#8221;.</p>
 <div class="admonition-note-eventually admonition">
@@ -38179,13 +42380,21 @@ But first a bit of math:</p>
 </pre></div>
 </div>
 </div>
+<p>Next is a warning without a title (&#8220;none&#8221; implies no title).
+Admonitions must have a title in Sphinx, otherwise they are not
+shown. Here, we have not specified any title, and Doconce then
+applies the generic title &#8220;Notice:&#8221;</p>
+<div class="admonition-notice admonition">
+<p class="first admonition-title">Notice</p>
+<p class="last">And here comes some text with bad news.</p>
+</div>
 </div>
 <div class="section" id="going-deeper-environments">
 <h2>Going deeper environments<a class="headerlink" href="#going-deeper-environments" title="Permalink to this headline">¶</a></h2>
 <p>Here is a long notice environment with a custom title and much
 text, math and code.</p>
 <div class="admonition-going-deeper admonition">
-<p class="first admonition-title">Going deeper.</p>
+<p class="first admonition-title">Going deeper</p>
 <p>We have some equations that should be preceded by much text, so the
 task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
@@ -38251,7 +42460,7 @@ Longer computer code requires vertical space:</p>
 </div>
 <p>And then we add a figure too.</p>
 <div class="last figure">
-<img alt="../doc/manual/figs/wavepacket_0001.png" src="../doc/manual/figs/wavepacket_0001.png" />
+<img alt="_images/wavepacket_0001.png" src="_images/wavepacket_0001.png" />
 </div>
 </div>
 </div>
@@ -38330,7 +42539,7 @@ Titles should be optional.</p>
     </div>
   </body>
 </html>
-************** File: admon_white.html *****************
+************** File: admon_default.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
 Automatically generated HTML file from Doconce source
@@ -38465,15 +42674,10 @@ $$
 <!-- institution(s) -->
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
 
 <h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
-<p>
-
 
 <h3>Code  <a name="___sec1"></a></h3>
 
@@ -38482,24 +42686,19 @@ Need some code outside admons for color and font comparisons:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
 <p>
-
 And some plain text verbatim:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
-<p>
-
 
 <h3>Admonitions  <a name="___sec2"></a></h3>
 
@@ -38518,6 +42717,14 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
 </div>
 <p>
 Test warning with title:
@@ -38525,6 +42732,19 @@ Test warning with title:
 <p>
 <div class="alert alert-block alert-warning"><b>Watch Out.</b>
 And here comes some text with bad news.
+</div>
+<p>
+Then we test a block, which is guaranteed to never have any admon icon.
+
+<p>
+<div class="alert alert-block alert-block"><b>Block with title.</b>
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+<div class="alert alert-block alert-block"><b></b>
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -38565,7 +42785,6 @@ Also, remember
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
@@ -38575,7 +42794,12 @@ Also, remember
 <p>
 </div>
 <p>
+Next is a warning without a title ("none" implies no title).
 
+<p>
+<div class="alert alert-block alert-warning"><b></b>
+And here comes some text with bad news.
+</div>
 <h3>Going deeper environments  <a name="___sec3"></a></h3>
 
 <p>
@@ -38610,7 +42834,6 @@ code is task that this "Going deeper" environment targets.
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
@@ -38624,7 +42847,6 @@ And some more text that can help going into the next page.
 Longer computer code requires vertical space:
 
 <p>
-
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
@@ -38672,8 +42894,6 @@ And then we add a figure too.
 <p>
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
-<p>
-
 <h3>The end  <a name="___sec4"></a></h3>
 
 <p>
@@ -38848,15 +43068,10 @@ $$
 <!-- institution(s) -->
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
-
 
 <h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
-<p>
-
 
 <h3>Code  <a name="___sec1"></a></h3>
 
@@ -38865,24 +43080,19 @@ Need some code outside admons for color and font comparisons:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
 <p>
-
 And some plain text verbatim:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
-<p>
-
 
 <h3>Admonitions  <a name="___sec2"></a></h3>
 
@@ -38901,6 +43111,14 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
 </div>
 <p>
 Test warning with title:
@@ -38908,6 +43126,19 @@ Test warning with title:
 <p>
 <div class="alert alert-block alert-warning"><b>Watch Out.</b>
 And here comes some text with bad news.
+</div>
+<p>
+Then we test a block, which is guaranteed to never have any admon icon.
+
+<p>
+<div class="alert alert-block alert-block"><b>Block with title.</b>
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+<div class="alert alert-block alert-block"><b></b>
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -38948,7 +43179,6 @@ Also, remember
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
@@ -38958,7 +43188,12 @@ Also, remember
 <p>
 </div>
 <p>
+Next is a warning without a title ("none" implies no title).
 
+<p>
+<div class="alert alert-block alert-warning"><b></b>
+And here comes some text with bad news.
+</div>
 <h3>Going deeper environments  <a name="___sec3"></a></h3>
 
 <p>
@@ -38993,7 +43228,6 @@ code is task that this "Going deeper" environment targets.
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
@@ -39007,7 +43241,6 @@ And some more text that can help going into the next page.
 Longer computer code requires vertical space:
 
 <p>
-
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
@@ -39055,8 +43288,6 @@ And then we add a figure too.
 <p>
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
-<p>
-
 <h3>The end  <a name="___sec4"></a></h3>
 
 <p>
@@ -39221,7 +43452,6 @@ $$
 
 <!-- ------------------- main content ---------------------- -->
 
-
 <h1>Testing admons</h1>
 
 <center><h1>Testing admons</h1></center>  <!-- document title -->
@@ -39236,17 +43466,10 @@ $$
 
 <p>
 <!-- institution(s) -->
-<p>
-
-<p>
-
 
 <h2>Introduction  <a name="___sec0"></a></h2>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
-<p>
-
 
 <h3>Code  <a name="___sec1"></a></h3>
 
@@ -39255,24 +43478,19 @@ Need some code outside admons for color and font comparisons:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
 <p>
-
 And some plain text verbatim:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
-<p>
-
 
 <h3>Admonitions  <a name="___sec2"></a></h3>
 
@@ -39291,6 +43509,14 @@ in comparison with the other admons.
   <li> and a list</li>
   <li> with items</li>
 </ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
 </div>
 <p>
 Test warning with title:
@@ -39298,6 +43524,19 @@ Test warning with title:
 <p>
 <div class="alert alert-block alert-warning"><b>Watch Out.</b>
 And here comes some text with bad news.
+</div>
+<p>
+Then we test a block, which is guaranteed to never have any admon icon.
+
+<p>
+<div class="alert alert-block alert-block"><b>Block with title.</b>
+Here is a block of text with title. It is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</div>
+<p>
+<div class="alert alert-block alert-block"><b></b>
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
 </div>
 <p>
 The next admonition features a title "Note, eventually!".
@@ -39338,7 +43577,6 @@ Also, remember
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
@@ -39348,7 +43586,12 @@ Also, remember
 <p>
 </div>
 <p>
+Next is a warning without a title ("none" implies no title).
 
+<p>
+<div class="alert alert-block alert-warning"><b></b>
+And here comes some text with bad news.
+</div>
 <h3>Going deeper environments  <a name="___sec3"></a></h3>
 
 <p>
@@ -39383,7 +43626,6 @@ code is task that this "Going deeper" environment targets.
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
@@ -39397,7 +43639,6 @@ And some more text that can help going into the next page.
 Longer computer code requires vertical space:
 
 <p>
-
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
@@ -39445,8 +43686,6 @@ And then we add a figure too.
 <p>
 <center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
 </div>
-<p>
-
 <h3>The end  <a name="___sec4"></a></h3>
 
 <p>
@@ -39501,1159 +43740,6 @@ While the <div class="deep-blue">rest of the</div> getting started
 </html>
 
 
-
-
-************** File: admon_colors.tex *****************
-%%
-%% Automatically generated file from Doconce source
-%% (http://code.google.com/p/doconce/)
-%%
-
-
-
-
-%-------------------- begin preamble ----------------------
-
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-10pt]{article}
-
-\listfiles               % print all files needed to compile this document
-
-
-\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
-\usepackage[table]{xcolor}
-\usepackage{bm,microtype}
-\usepackage{minted,fancyvrb} % packages needed for verbatim environments
-
-
-\usepackage[latin1]{inputenc}
-
-% Hyperlinks in PDF:
-\usepackage[%
-    colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
-    citecolor=black,
-    filecolor=black,
-    %filecolor=blue,
-    urlcolor=black,
-    pdfmenubar=true,
-    pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
-    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
-            ]{hyperref}
-%\hyperbaseurl{}   % hyperlinks are relative to this root
-
-\setcounter{tocdepth}{2}  % number chapter, section, subsection
-
-% Tricks for having figures close to where they are defined:
-% 1. define less restrictive rules for where to put figures
-\setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
-\setcounter{totalnumber}{4}
-\renewcommand{\topfraction}{0.85}
-\renewcommand{\bottomfraction}{0.85}
-\renewcommand{\textfraction}{0.15}
-\renewcommand{\floatpagefraction}{0.7}
-% 2. ensure all figures are flushed before next section
-\usepackage[section]{placeins}
-% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
-%\usepackage{float}\restylefloat{figure}
-
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
-
-\usepackage{framed}
-
-% Admonition environment for "hint"
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{hintshaded}
-}
-
-% Admonition environment for "notice"
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{noticeshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticeshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{noticeshaded}
-}
-
-% Admonition environment for "summary"
-\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{summaryshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summaryshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{summaryshaded}
-}
-
-% Admonition environment for "warning"
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{questionshaded}
-}
-
-
-% prevent orhpans and widows
-\clubpenalty = 10000
-\widowpenalty = 10000
-
-% http://www.ctex.org/documents/packages/layout/titlesec.pdf
-\usepackage[compact]{titlesec}  % narrower section headings
-
-% --- end of standard preamble for documents ---
-
-
-% insert custom LaTeX commands...
-
-\makeindex
-
-%-------------------- end preamble ----------------------
-
-\begin{document}
-
-
-\input{newcommands_bfmath}
-\input{newcommands_replace}
-
-% ------------------- main content ----------------------
-
-
-
-% ----------------- title -------------------------
-\begin{center}
-{\LARGE\bf
-\begin{spacing}{1.25}
-Testing admons
-\end{spacing}
-}
-\end{center}
-
-% ----------------- author(s) -------------------------
-
-\begin{center}
-{\bf hpl${}^{}$} \\ [0mm]
-\end{center}
-
-\begin{center}
-% List of all institutions:
-\end{center}
-% ----------------- end author(s) -------------------------
-
-
-\begin{center}
-Jan 32, 2100
-\end{center}
-
-\vspace{1cm}
-
-
-
-\section{Introduction}
-First some ordinary text to compare font sizes in admonitions
-and the surrounding text.
-
-
-\subsection{Code}
-
-Need some code outside admons for color and font comparisons:
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-def some_code(x):
-    return sin(x)*exp(1-x)
-\end{minted}
-
-And some plain text verbatim:
-
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-x=1.0 y=0.9 z=0.4
-x=1.1 y=0.3 z=0.1
-\end{Verbatim}
-
-\subsection{Admonitions}
-
-Let us start with a plain warning environment.
-
-
-\begin{warningadmon}[Warning]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{warningadmon}
-Test warning with title:
-
-
-\begin{warningadmon}[Watch Out]
-And here comes some text with bad news.
-\end{warningadmon}
-The next admonition features a title "Note, eventually!".
-
-% Note that the final ! does not appear in Sphinx and reST since
-% those formats automatically add : to the admonition title.
-
-
-\begin{noticeadmon}[Note, eventually!]
-Ah, we are soon close to the end.
-But first a bit of math:
-\[ p=q\]
-\end{noticeadmon}
-
-\begin{questionadmon}[Question]
-So, how many admonition environments does Doconce support?
-\end{questionadmon}
-
-\begin{questionadmon}[Question]
-\begin{enumerate}
- \item Once more, how many admonition environments does Doconce support?
-\end{enumerate}
-
-\noindent
-\end{questionadmon}
-\begin{hintadmon}[Hint]
-It is smart to read on and remember to
-
-\begin{enumerate}
-\item stay cool
-
-\item read hints carefully
-\end{enumerate}
-
-\noindent
-Also, remember
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-import urllib
-
-def grab(url, filename):
-    urllib.urlretrieve(url, filename=filename)
-\end{minted}
-\end{hintadmon}
-\subsection{Going deeper environments}
-
-Here is a long notice environment with a custom title and much
-text, math and code.
-
-
-\begin{noticeadmon}[Going deeper.]
-We have some equations that should be preceded by much text, so the
-task is to write and write. The number of words, and not the
-meaning, is what counts here. We need desperately to fill up the
-page in the hope that some admonitions will experience a page break,
-which the {\LaTeX} environment should handle with ease.
-
-Let us start with some equations:
-
-\begin{align*}
-\Ddt{u} &= 0
-\\
-\half &= \halfi\\
-\half\x &= \normalvec
-\end{align*}
-
-The implementation of such complicated equations in computer
-code is task that this "Going deeper" environment targets.
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-def Dudt(u):
-    r = diff(u, t) + u*grad(u)
-    return r
-
-half = 0.5
-x = 2*n
-\end{minted}
-And some more text that can help going into the next page.
-Longer computer code requires vertical space:
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-class Diff:
-    def __init__(self, f, h=1E-5):
-        self.f = f
-        self.h = float(h)
-
-class Forward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x))/h
-
-class Backward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x) - f(x-h))/h
-
-class Central2(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x-h))/(2*h)
-
-class Central4(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
-               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
-
-class Central6(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
-               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
-               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
-
-class Forward3(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
-                (1./3)*f(x-h))/h
-\end{minted}
-And then we add a figure too.
-
-
-\begin{center}  % inline figure
-  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
-\end{center}
-\end{noticeadmon}
-\subsection{The end}
-
-A bit of text before the summary, which we now call "Concluding remarks,
-for the novice",
-just because we can.
-
-\summarybox{
-\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
-a different typesetting, and they may have a symbol.
-Titles should be optional.}
-% ------------------- end of main content ---------------
-
-
-\printindex
-
-\end{document}
-
-
-************** File: admon_box.tex *****************
-%%
-%% Automatically generated file from Doconce source
-%% (http://code.google.com/p/doconce/)
-%%
-
-
-
-
-%-------------------- begin preamble ----------------------
-
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-10pt]{article}
-
-\listfiles               % print all files needed to compile this document
-
-
-\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
-\usepackage[table]{xcolor}
-\usepackage{bm,microtype}
-\usepackage{minted,fancyvrb} % packages needed for verbatim environments
-
-
-\usepackage[latin1]{inputenc}
-
-% Hyperlinks in PDF:
-\usepackage[%
-    colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
-    citecolor=black,
-    filecolor=black,
-    %filecolor=blue,
-    urlcolor=black,
-    pdfmenubar=true,
-    pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
-    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
-            ]{hyperref}
-%\hyperbaseurl{}   % hyperlinks are relative to this root
-
-\setcounter{tocdepth}{2}  % number chapter, section, subsection
-
-% Tricks for having figures close to where they are defined:
-% 1. define less restrictive rules for where to put figures
-\setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
-\setcounter{totalnumber}{4}
-\renewcommand{\topfraction}{0.85}
-\renewcommand{\bottomfraction}{0.85}
-\renewcommand{\textfraction}{0.15}
-\renewcommand{\floatpagefraction}{0.7}
-% 2. ensure all figures are flushed before next section
-\usepackage[section]{placeins}
-% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
-%\usepackage{float}\restylefloat{figure}
-
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
-
-\usepackage[framemethod=TikZ]{mdframed}
-
-% Admonition environment for "hint"
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
-
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
-}
-{
-\end{hintmdframed}
-}
-
-% Admonition environment for "notice"
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
-
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
-}
-{
-\end{noticemdframed}
-}
-
-% Admonition environment for "summary"
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
-
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
-}
-{
-\end{summarymdframed}
-}
-
-% Admonition environment for "warning"
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
-
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
-}
-{
-\end{warningmdframed}
-}
-
-% Admonition environment for "question"
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
-
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
-}
-{
-\end{questionmdframed}
-}
-
-
-% prevent orhpans and widows
-\clubpenalty = 10000
-\widowpenalty = 10000
-
-% http://www.ctex.org/documents/packages/layout/titlesec.pdf
-\usepackage[compact]{titlesec}  % narrower section headings
-
-% --- end of standard preamble for documents ---
-
-
-% insert custom LaTeX commands...
-
-\makeindex
-
-%-------------------- end preamble ----------------------
-
-\begin{document}
-
-
-\input{newcommands_bfmath}
-\input{newcommands_replace}
-
-% ------------------- main content ----------------------
-
-
-
-% ----------------- title -------------------------
-\begin{center}
-{\LARGE\bf
-\begin{spacing}{1.25}
-Testing admons
-\end{spacing}
-}
-\end{center}
-
-% ----------------- author(s) -------------------------
-
-\begin{center}
-{\bf hpl${}^{}$} \\ [0mm]
-\end{center}
-
-\begin{center}
-% List of all institutions:
-\end{center}
-% ----------------- end author(s) -------------------------
-
-
-\begin{center}
-Jan 32, 2100
-\end{center}
-
-\vspace{1cm}
-
-
-
-\section{Introduction}
-First some ordinary text to compare font sizes in admonitions
-and the surrounding text.
-
-
-\subsection{Code}
-
-Need some code outside admons for color and font comparisons:
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-def some_code(x):
-    return sin(x)*exp(1-x)
-\end{minted}
-
-And some plain text verbatim:
-
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-x=1.0 y=0.9 z=0.4
-x=1.1 y=0.3 z=0.1
-\end{Verbatim}
-
-\subsection{Admonitions}
-
-Let us start with a plain warning environment.
-
-
-\begin{warningadmon}[Warning.]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{warningadmon}
-Test warning with title:
-
-
-\begin{warningadmon}[Watch Out.]
-And here comes some text with bad news.
-\end{warningadmon}
-The next admonition features a title "Note, eventually!".
-
-% Note that the final ! does not appear in Sphinx and reST since
-% those formats automatically add : to the admonition title.
-
-
-\begin{noticeadmon}[Note eventually!]
-Ah, we are soon close to the end.
-But first a bit of math:
-\[ p=q\]
-\end{noticeadmon}
-
-\begin{questionadmon}[Question.]
-So, how many admonition environments does Doconce support?
-\end{questionadmon}
-
-\begin{questionadmon}[Question.]
-\begin{enumerate}
- \item Once more, how many admonition environments does Doconce support?
-\end{enumerate}
-
-\noindent
-\end{questionadmon}
-\begin{hintadmon}[Hint.]
-It is smart to read on and remember to
-
-\begin{enumerate}
-\item stay cool
-
-\item read hints carefully
-\end{enumerate}
-
-\noindent
-Also, remember
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-import urllib
-
-def grab(url, filename):
-    urllib.urlretrieve(url, filename=filename)
-\end{minted}
-\end{hintadmon}
-\subsection{Going deeper environments}
-
-Here is a long notice environment with a custom title and much
-text, math and code.
-
-
-\begin{noticeadmon}[Going deeper.]
-We have some equations that should be preceded by much text, so the
-task is to write and write. The number of words, and not the
-meaning, is what counts here. We need desperately to fill up the
-page in the hope that some admonitions will experience a page break,
-which the {\LaTeX} environment should handle with ease.
-
-Let us start with some equations:
-
-\begin{align*}
-\Ddt{u} &= 0
-\\
-\half &= \halfi\\
-\half\x &= \normalvec
-\end{align*}
-
-The implementation of such complicated equations in computer
-code is task that this "Going deeper" environment targets.
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-def Dudt(u):
-    r = diff(u, t) + u*grad(u)
-    return r
-
-half = 0.5
-x = 2*n
-\end{minted}
-And some more text that can help going into the next page.
-Longer computer code requires vertical space:
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-class Diff:
-    def __init__(self, f, h=1E-5):
-        self.f = f
-        self.h = float(h)
-
-class Forward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x))/h
-
-class Backward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x) - f(x-h))/h
-
-class Central2(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x-h))/(2*h)
-
-class Central4(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
-               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
-
-class Central6(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
-               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
-               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
-
-class Forward3(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
-                (1./3)*f(x-h))/h
-\end{minted}
-And then we add a figure too.
-
-
-\begin{center}  % inline figure
-  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
-\end{center}
-\end{noticeadmon}
-\subsection{The end}
-
-A bit of text before the summary, which we now call "Concluding remarks,
-for the novice",
-just because we can.
-
-\summarybox{
-\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
-a different typesetting, and they may have a symbol.
-Titles should be optional.}
-% ------------------- end of main content ---------------
-
-
-\printindex
-
-\end{document}
-
-
-************** File: admon_paragraph.tex *****************
-%%
-%% Automatically generated file from Doconce source
-%% (http://code.google.com/p/doconce/)
-%%
-
-
-
-
-%-------------------- begin preamble ----------------------
-
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-10pt]{article}
-
-\listfiles               % print all files needed to compile this document
-
-
-\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
-\usepackage[table]{xcolor}
-\usepackage{bm,microtype}
-\usepackage{minted,fancyvrb} % packages needed for verbatim environments
-
-
-\usepackage[latin1]{inputenc}
-
-% Hyperlinks in PDF:
-\usepackage[%
-    colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
-    citecolor=black,
-    filecolor=black,
-    %filecolor=blue,
-    urlcolor=black,
-    pdfmenubar=true,
-    pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
-    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
-            ]{hyperref}
-%\hyperbaseurl{}   % hyperlinks are relative to this root
-
-\setcounter{tocdepth}{2}  % number chapter, section, subsection
-
-% Tricks for having figures close to where they are defined:
-% 1. define less restrictive rules for where to put figures
-\setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
-\setcounter{totalnumber}{4}
-\renewcommand{\topfraction}{0.85}
-\renewcommand{\bottomfraction}{0.85}
-\renewcommand{\textfraction}{0.15}
-\renewcommand{\floatpagefraction}{0.7}
-% 2. ensure all figures are flushed before next section
-\usepackage[section]{placeins}
-% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
-%\usepackage{float}\restylefloat{figure}
-
-% gray summary box
-\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
-% gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
-\colorbox{lightgray}{\rule{6pt}{0pt}
-\begin{minipage}{0.8\linewidth}
-\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
-\vspace*{0.5\baselineskip}\noindent #1
-\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
-{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
-\rule{6pt}{0pt}}\end{center}}
-
-
-% Admonition environment for "hint"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-
-% Admonition environment for "notice"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-
-% Admonition environment for "summary"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-
-% Admonition environment for "warning"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-
-% Admonition environment for "question"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-
-
-% prevent orhpans and widows
-\clubpenalty = 10000
-\widowpenalty = 10000
-
-% http://www.ctex.org/documents/packages/layout/titlesec.pdf
-\usepackage[compact]{titlesec}  % narrower section headings
-
-% --- end of standard preamble for documents ---
-
-
-% insert custom LaTeX commands...
-
-\makeindex
-
-%-------------------- end preamble ----------------------
-
-\begin{document}
-
-
-\input{newcommands_bfmath}
-\input{newcommands_replace}
-
-% ------------------- main content ----------------------
-
-
-
-% ----------------- title -------------------------
-\begin{center}
-{\LARGE\bf
-\begin{spacing}{1.25}
-Testing admons
-\end{spacing}
-}
-\end{center}
-
-% ----------------- author(s) -------------------------
-
-\begin{center}
-{\bf hpl${}^{}$} \\ [0mm]
-\end{center}
-
-\begin{center}
-% List of all institutions:
-\end{center}
-% ----------------- end author(s) -------------------------
-
-
-\begin{center}
-Jan 32, 2100
-\end{center}
-
-\vspace{1cm}
-
-
-
-\section{Introduction}
-First some ordinary text to compare font sizes in admonitions
-and the surrounding text.
-
-
-\subsection{Code}
-
-Need some code outside admons for color and font comparisons:
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-def some_code(x):
-    return sin(x)*exp(1-x)
-\end{minted}
-
-And some plain text verbatim:
-
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-x=1.0 y=0.9 z=0.4
-x=1.1 y=0.3 z=0.1
-\end{Verbatim}
-
-\subsection{Admonitions}
-
-Let us start with a plain warning environment.
-
-
-\begin{warningadmon}[Warning.]
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-
-\begin{itemize}
-  \item and a list
-
-  \item with items
-\end{itemize}
-
-\noindent
-\end{warningadmon}
-Test warning with title:
-
-
-\begin{warningadmon}[Watch Out.]
-And here comes some text with bad news.
-\end{warningadmon}
-The next admonition features a title "Note, eventually!".
-
-% Note that the final ! does not appear in Sphinx and reST since
-% those formats automatically add : to the admonition title.
-
-
-\begin{noticeadmon}[Note, eventually!]
-Ah, we are soon close to the end.
-But first a bit of math:
-\[ p=q\]
-\end{noticeadmon}
-
-\begin{questionadmon}[Question.]
-So, how many admonition environments does Doconce support?
-\end{questionadmon}
-
-\begin{questionadmon}[Question.]
-\begin{enumerate}
- \item Once more, how many admonition environments does Doconce support?
-\end{enumerate}
-
-\noindent
-\end{questionadmon}
-\begin{hintadmon}[Hint.]
-It is smart to read on and remember to
-
-\begin{enumerate}
-\item stay cool
-
-\item read hints carefully
-\end{enumerate}
-
-\noindent
-Also, remember
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-import urllib
-
-def grab(url, filename):
-    urllib.urlretrieve(url, filename=filename)
-\end{minted}
-\end{hintadmon}
-\subsection{Going deeper environments}
-
-Here is a long notice environment with a custom title and much
-text, math and code.
-
-
-\begin{noticeadmon}[Going deeper.]
-We have some equations that should be preceded by much text, so the
-task is to write and write. The number of words, and not the
-meaning, is what counts here. We need desperately to fill up the
-page in the hope that some admonitions will experience a page break,
-which the {\LaTeX} environment should handle with ease.
-
-Let us start with some equations:
-
-\begin{align*}
-\Ddt{u} &= 0
-\\
-\half &= \halfi\\
-\half\x &= \normalvec
-\end{align*}
-
-The implementation of such complicated equations in computer
-code is task that this "Going deeper" environment targets.
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-def Dudt(u):
-    r = diff(u, t) + u*grad(u)
-    return r
-
-half = 0.5
-x = 2*n
-\end{minted}
-And some more text that can help going into the next page.
-Longer computer code requires vertical space:
-
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-class Diff:
-    def __init__(self, f, h=1E-5):
-        self.f = f
-        self.h = float(h)
-
-class Forward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x))/h
-
-class Backward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x) - f(x-h))/h
-
-class Central2(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x-h))/(2*h)
-
-class Central4(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
-               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
-
-class Central6(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
-               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
-               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
-
-class Forward3(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
-                (1./3)*f(x-h))/h
-\end{minted}
-And then we add a figure too.
-
-
-\begin{center}  % inline figure
-  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
-\end{center}
-\end{noticeadmon}
-\subsection{The end}
-
-A bit of text before the summary, which we now call "Concluding remarks,
-for the novice",
-just because we can.
-
-\summarybox{
-\textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
-a different typesetting, and they may have a symbol.
-Titles should be optional.}
-% ------------------- end of main content ---------------
-
-
-\printindex
-
-\end{document}
 
 
 ************** File: slides1.do.txt *****************
@@ -40852,8 +43938,6 @@ MathJax.Hub.Config({
 
 <section>
 
-<p>
-
 <h3>Figure and bullet list  <a name="___sec0"></a></h3>
 
 <p>
@@ -40903,12 +43987,10 @@ And a line more
 
 <p>
 
-<aside class="notes">
-<!-- click "s" to activate -->
-Here are some notes that can go to notes typesetting
-in the slide environment.
-</aside>
-
+<!-- begin inline comment -->
+<font color="red">[<b>hpl 1</b>: <em>Here are some notes that can go to notes typesetting
+in the slide environment.</em>]</font>
+<!-- end inline comment -->
 
 
 <p>
@@ -40970,7 +44052,6 @@ Python implementation:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
@@ -40988,7 +44069,6 @@ f2 <span style="color: #666666">=</span> Fancy()
 </pre></div>
 <p>
 
-
 </section>
 
 
@@ -41004,7 +44084,7 @@ f2 <span style="color: #666666">=</span> Fancy()
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 </div>
 <p>
-<div class="alert alert-block alert-notice"><b>None.</b>
+<div class="alert alert-block alert-notice"><b></b>
 Just some block with text and a conclusion that something is important.
 </div>
 
@@ -41415,8 +44495,6 @@ $$
 <p>
 <!-- !split -->
 
-<p>
-
 <h3>Figure and bullet list  <a name="___sec0"></a></h3>
 
 <p>
@@ -41451,8 +44529,8 @@ And a line more
 <p>
 
 <!-- begin inline comment -->
-[<b>hpl 1</b>: <em>Here are some notes that can go to notes typesetting
-in the slide environment.</em>]
+<font color="red">[<b>hpl 1</b>: <em>Here are some notes that can go to notes typesetting
+in the slide environment.</em>]</font>
 <!-- end inline comment -->
 
 
@@ -41501,7 +44579,6 @@ Python implementation:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
@@ -41518,7 +44595,6 @@ Python implementation:
 f2 <span style="color: #666666">=</span> Fancy()
 </pre></div>
 <p>
-
 <!-- !split -->
 
 <h3>Admon blocks  <a name="___sec3"></a></h3>
@@ -41531,7 +44607,7 @@ f2 <span style="color: #666666">=</span> Fancy()
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 </div>
 <p>
-<div class="alert alert-block alert-notice"><b>None.</b>
+<div class="alert alert-block alert-notice"><b></b>
 Just some block with text and a conclusion that something is important.
 </div>
 <!-- ------------------- end of main content --------------- -->
@@ -41701,8 +44777,6 @@ MathJax.Hub.Config({
 
 <section>
 
-<p>
-
 <h3>Figure and bullet list  <a name="___sec0"></a></h3>
 
 <p>
@@ -41753,12 +44827,10 @@ And a line more
 
 <p>
 
-<aside class="notes">
-<!-- click "s" to activate -->
-Here are some notes that can go to notes typesetting
-in the slide environment.
-</aside>
-
+<!-- begin inline comment -->
+<font color="red">[<b>hpl 1</b>: <em>Here are some notes that can go to notes typesetting
+in the slide environment.</em>]</font>
+<!-- end inline comment -->
 
 
 <p>
@@ -41822,7 +44894,6 @@ Python implementation:
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
@@ -41840,7 +44911,6 @@ f2 <span style="color: #666666">=</span> Fancy()
 </code></pre></div>
 <p>
 
-
 </section>
 
 
@@ -41856,7 +44926,7 @@ f2 <span style="color: #666666">=</span> Fancy()
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 </div>
 <p>
-<div class="alert alert-block alert-notice"><b>None.</b>
+<div class="alert alert-block alert-notice"><b></b>
 Just some block with text and a conclusion that something is important.
 </div>
 
@@ -42411,8 +45481,8 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 % #endif
 
 % #ifdef LINENUMBERS
@@ -42421,215 +45491,568 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
 \usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
 % #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
 % #else
 \usepackage[framemethod=TikZ]{mdframed}
 % #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\grayboxhrules}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
+% #else
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+% #endif
+
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -42887,32 +46310,68 @@ f2 = Fancy()
 % Can use admons to simulate blocks
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Key PDE:]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Key PDE:]
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Key PDE:]
+\begin{paragraphadmon}[Key PDE:]
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Key PDE:]
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Key PDE:]
+\begin{graybox1admon}[Key PDE:]
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[]
 Just some block with text and a conclusion that something is important.
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[]
+Just some block with text and a conclusion that something is important.
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[]
+Just some block with text and a conclusion that something is important.
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[]
+Just some block with text and a conclusion that something is important.
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[]
+\begin{paragraphadmon}[]
 Just some block with text and a conclusion that something is important.
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[]
+Just some block with text and a conclusion that something is important.
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[]
+\begin{graybox1admon}[]
 Just some block with text and a conclusion that something is important.
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 % ------------------- end of main content ---------------
 
@@ -42997,12 +46456,34 @@ Just some block with text and a conclusion that something is important.
 \newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
 \newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
 
-\newenvironment{hintadmon}[1][Hint]{\begin{block}{#1}}{\end{block}}
-\newenvironment{noticeadmon}[1][Notice]{\begin{block}{#1}}{\end{block}}
-\newenvironment{summaryadmon}[1][Summary]{\begin{block}{#1}}{\end{block}}
-\newenvironment{warningadmon}[1][Warning]{\begin{block}{#1}}{\end{block}}
-\newenvironment{questionadmon}[1][Question]{\begin{block}{#1}}{\end{block}}
-\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+\newenvironment{hint_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{paragraphadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{graybox1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{graybox2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newcommand{\grayboxhrules}[1]{\begin{block}{}#1\end{block}}
 
 
 
@@ -43149,13 +46630,13 @@ f2 = Fancy()
 % Can use admons to simulate blocks
 
 
-\begin{noticeadmon}[Key PDE:]
+\begin{notice_colors1admon}[Key PDE:]
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
-\end{noticeadmon}
+\end{notice_colors1admon}
 
-\begin{noticeadmon}[]
+\begin{notice_colors1admon}[]
 Just some block with text and a conclusion that something is important.
-\end{noticeadmon}
+\end{notice_colors1admon}
 \end{frame}
 
 \end{document}
@@ -44005,7 +47486,6 @@ MathJax.Hub.Config({
 
 <p>
 
-
 </section>
 
 
@@ -44053,8 +47533,6 @@ Old days (1985-2005): LaTeX for BW paper output, but now
 
 <section>
 
-<p>
-
 <h2>Fundamental question  <a name="___sec5"></a></h2>
 
 <p>
@@ -44093,8 +47571,6 @@ Probably not, but I have a solution :-)
 
 
 <section>
-
-<p>
 
 <h2>LaTeX is very rich; other tools support only some elements  <a name="___sec6"></a></h2>
 
@@ -44158,7 +47634,6 @@ based on HTML and vice versa.
 
 <p>
 
-
 </section>
 
 
@@ -44187,8 +47662,6 @@ based on HTML and vice versa.
 
 <section>
 
-<p>
-
 <h1>A tour of Doconce  <a name="___sec9"></a></h1>
 
 <p>
@@ -44202,7 +47675,6 @@ based on HTML and vice versa.
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">TITLE: Some Title
 AUTHOR: name1 at institution1, with more info, and institution2
@@ -44213,7 +47685,6 @@ DATE: today
 TOC: on
 </pre></div>
 <p>
-
 <div class="alert alert-block alert-notice"><b>Notice.</b>
 Title and authors must have all information <em>on a single line</em>!
 </div>
@@ -44228,13 +47699,11 @@ Title and authors must have all information <em>on a single line</em>!
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">__Abstract.__
 Here goes the abstract...
 </pre></div>
 <p>
-
 Or:
 <p>
 
@@ -44243,7 +47712,6 @@ Or:
 Here goes the summary...
 </pre></div>
 <p>
-
 
 </section>
 
@@ -44268,29 +47736,19 @@ Headings are surrounded by <code>=</code> signs:
 __This is a paragraph heading.__
 </pre></div>
 <p>
-
 Result:
-
-<p>
 
 <h1>This is an H1/chapter heading  <a name="___sec13"></a></h1>
 
-<p>
-
 <h2>This is an H2/section heading  <a name="___sec14"></a></h2>
 
-<p>
-
 <h3>This is an H3/subsection heading  <a name="___sec15"></a></h3>
-
-<p>
 
 <h4>This is an H4/paragraph heading  <a name="___sec16"></a></h4>
 
 <p>
 <b>This is a paragraph heading.</b>
 <p>
-
 
 </section>
 
@@ -44300,7 +47758,6 @@ Result:
 <h2>Doconce: markup and lists  <a name="___sec17"></a></h2>
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> * Bullet list items start with `*`
@@ -44313,7 +47770,6 @@ Result:
    o items are just indented as you would do in email
 </pre></div>
 <p>
-
 This gets rendered as
 
 <p>
@@ -44345,7 +47801,6 @@ This gets rendered as
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"># Insert index items in the source
 idx{key word1} idx{key word2}
@@ -44370,7 +47825,6 @@ URL: &quot;http://code.google.com/p/doconce/&quot;
 </pre></div>
 <p>
 
-
 </section>
 
 
@@ -44384,7 +47838,6 @@ Figure with HTML and LaTeX info, and caption, <em>all on one line</em>:
 </div>
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
@@ -44392,11 +47845,9 @@ Figure with HTML and LaTeX info, and caption, <em>all on one line</em>:
 # the linewidth in LaTeX.
 </pre></div>
 <p>
-
 Movies are also supported:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
@@ -44423,7 +47874,6 @@ Inline math as in LaTeX:
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">...where $a=\int_{\Omega}fdx$ is an integral.
 </pre></div>
@@ -44431,12 +47881,10 @@ Inline math as in LaTeX:
 gets rendered as ...where \( a=\int_{\Omega}fdx \) is an integral.
 
 <p>
-
 An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags,
 the rest is plain LaTeX:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bt
@@ -44464,7 +47912,6 @@ $$
 
 <p>
 
-
 </section>
 
 
@@ -44476,7 +47923,6 @@ $$
 Code is enclosed in <code>!bc</code> and <code>!ec</code> tags:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bc pycod
@@ -44499,7 +47945,6 @@ This gets rendered as
 
 <p>
 
-
 <!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">solver</span>(I, a, T, dt, theta):
     <span style="color: #BB4444; font-style: italic">&quot;&quot;&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T] with steps of dt.&quot;&quot;&quot;</span>
@@ -44515,7 +47960,6 @@ This gets rendered as
     <span style="color: #AA22FF; font-weight: bold">return</span> u, t
 </pre></div>
 <p>
-
 !bnotice Language-dependent typesetting of code:
 The <code>!bc</code> command can be followed by a specification of the computer
 language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python
@@ -44524,7 +47968,6 @@ forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix 
 !enotice
 
 <p>
-
 
 </section>
 
@@ -44540,12 +47983,10 @@ program flow and state of variables:
 
 <p>
 
-
 <iframe width="950" height="500" frameborder="0"
         src="http://pythontutor.com/iframe-embed.html#code=def+solver%28I%2C+a%2C+T%2C+dt%2C+theta%29%3A%0A++++dt+%3D+float%28dt%29%0A++++N+%3D+int%28round%28T%2Fdt%29%29%0A++++T+%3D+N%2Adt%0A++++u+%3D+%5B0.0%5D%2A%28N%2B1%29%0A++++t+%3D+%5Bi%2Adt+for+i+in+range%28N%2B1%29%5D%0A%0A++++u%5B0%5D+%3D+I%0A++++for+n+in+range%280%2C+N%29%3A%0A++++++++u%5Bn%2B1%5D+%3D+%281+-+%281-theta%29%2Aa%2Adt%29%2F%281+%2B+theta%2Adt%2Aa%29%2Au%5Bn%5D%0A++++return+u%2C+t%0A%0Au%2C+t+%3D+solver%28I%3D1%2C+a%3D1%2C+T%3D3%2C+dt%3D1.%2C+theta%3D0.5%29%0Aprint+u&curInstr=0&py=2&cumulative=false">
 </iframe>
 <p>
-
 
 </section>
 
@@ -44559,7 +48000,6 @@ Doconce offers a special format for <em>exercises</em>, <em>problems</em>, <em>p
 and <em>examples</em>:
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">===== Problem: Flip a Coin =====
@@ -44595,7 +48035,6 @@ of getting at least three heads out of 5 throws.
 !esubex
 </pre></div>
 <p>
-
 Solutions/answers can easily be left out of the document.
 
 <p>
@@ -44611,16 +48050,12 @@ Solutions/answers can easily be left out of the document.
 Last page gets rendered as follows:
 
 <p>
-
 <!-- --- begin exercise --- -->
-
-<p>
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 <!-- keywords = random numbers; Monte Carlo simulation -->
 
 <p>
-
 <b>a)</b>
 Make a program that simulates flipping a coin \( N \) times.
 
@@ -44637,14 +48072,12 @@ Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 Compute the probability of getting heads.
 
 <p>
-
 <!-- --- begin answer of exercise --- -->
 <b>Answer.</b>
 A short answer: 0.5.
 <!-- --- end answer of exercise --- -->
 
 <p>
-
 <!-- --- begin solution of exercise --- -->
 <b>Solution.</b>
 A full solution to this subexercise can go here.
@@ -44664,7 +48097,6 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 
 <p>
 
-
 </section>
 
 
@@ -44673,7 +48105,6 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <h2>Doconce: example on slide code  <a name="___sec26"></a></h2>
 
 <p>
-
 
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!split
@@ -44701,7 +48132,6 @@ And maybe a final comment?
 </pre></div>
 <p>
 
-
 </section>
 
 
@@ -44711,8 +48141,6 @@ And maybe a final comment?
 
 <p>
 Last page gets rendered to
-
-<p>
 
 <h2>Headline  <a name="___sec28"></a></h2>
 
@@ -44754,7 +48182,6 @@ a figure to the right (two cells, numbered 00 and 01).
 
 <p>
 
-
 <!-- code=text typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!split
 ======= Headline =======
@@ -44786,7 +48213,6 @@ FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
 </pre></div>
 <p>
 
-
 </section>
 
 
@@ -44796,8 +48222,6 @@ FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
 
 <p>
 Last page gets rendered to
-
-<p>
 
 <h2>Headline  <a name="___sec31"></a></h2>
 
@@ -44954,6 +48378,19 @@ open=right               % start new chapters on odd-numbered pages
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
 
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
@@ -45016,215 +48453,568 @@ open=right               % start new chapters on odd-numbered pages
 %\usepackage{float}\restylefloat{figure}
 
 % #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
 \usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
 % #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
 % #else
 \usepackage[framemethod=TikZ]{mdframed}
 % #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\grayboxhrules}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
+% #else
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+% #endif
+
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -45678,18 +49468,36 @@ TOC: on
 \eccq
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Notice]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Notice]
 Title and authors must have all information \emph{on a single line}!
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Notice]
+Title and authors must have all information \emph{on a single line}!
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Notice]
+Title and authors must have all information \emph{on a single line}!
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Notice]
+Title and authors must have all information \emph{on a single line}!
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Notice.]
+\begin{paragraphadmon}[Notice.]
 Title and authors must have all information \emph{on a single line}!
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Notice.]
+Title and authors must have all information \emph{on a single line}!
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Notice.]
+\begin{graybox1admon}[Notice.]
 Title and authors must have all information \emph{on a single line}!
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 % !split
 \section{Doconce: abstract}
@@ -45800,18 +49608,36 @@ URL: "http://code.google.com/p/doconce/"
 \section{Doconce: figures and movies}
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Notice]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Notice]
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Notice]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Notice]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Notice]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Notice.]
+\begin{paragraphadmon}[Notice.]
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Notice.]
+Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Notice.]
+\begin{graybox1admon}[Notice.]
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 \bccq
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
@@ -45958,18 +49784,36 @@ keywords = random numbers; Monte Carlo simulation
 Make a program that simulates flipping a coin $N$ times.
 
 
-% #if ADMON == "colors"
-\begin{hintadmon}[Hint]
+% #if ADMON == "colors1"
+\begin{hint_colors1admon}[Hint]
 Use `r = random.random()` and define head as `r <= 0.5`.
-\end{hintadmon}
+\end{hint_colors1admon}
+% #elif ADMON == "colors2"
+\begin{hint_colors2admon}[Hint]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hint_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{hint_graybox3admon}[Hint]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hint_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{hint_yellowboxadmon}[Hint]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{hint_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{hintadmon}[Hint.]
+\begin{paragraphadmon}[Hint.]
 Use `r = random.random()` and define head as `r <= 0.5`.
-\end{hintadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Hint.]
+Use `r = random.random()` and define head as `r <= 0.5`.
+\end{graybox2admon}
+
 % #else
-\begin{hintadmon}[Hint.]
+\begin{graybox1admon}[Hint.]
 Use `r = random.random()` and define head as `r <= 0.5`.
-\end{hintadmon}
+\end{graybox1admon}
 % #endif
 !esubex
 
@@ -46257,12 +50101,34 @@ Last page gets rendered to
 \newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
 \newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
 
-\newenvironment{hintadmon}[1][Hint]{\begin{block}{#1}}{\end{block}}
-\newenvironment{noticeadmon}[1][Notice]{\begin{block}{#1}}{\end{block}}
-\newenvironment{summaryadmon}[1][Summary]{\begin{block}{#1}}{\end{block}}
-\newenvironment{warningadmon}[1][Warning]{\begin{block}{#1}}{\end{block}}
-\newenvironment{questionadmon}[1][Question]{\begin{block}{#1}}{\end{block}}
-\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+\newenvironment{hint_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{paragraphadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{graybox1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{graybox2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newcommand{\grayboxhrules}[1]{\begin{block}{}#1\end{block}}
 
 
 \newenvironment{exercise}{}{}
@@ -46604,9 +50470,9 @@ TOC: on
 \end{Verbatim}
 
 
-\begin{noticeadmon}[Notice]
+\begin{notice_colors1admon}[Notice]
 Title and authors must have all information \emph{on a single line}!
-\end{noticeadmon}
+\end{notice_colors1admon}
 \end{frame}
 
 \begin{frame}[plain,fragile]
@@ -46722,9 +50588,9 @@ URL: "http://code.google.com/p/doconce/"
 \begin{frame}[plain,fragile]
 \frametitle{Doconce: figures and movies}
 
-\begin{noticeadmon}[Notice]
+\begin{notice_colors1admon}[Notice]
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
-\end{noticeadmon}
+\end{notice_colors1admon}
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
@@ -46869,9 +50735,9 @@ keywords = random numbers; Monte Carlo simulation
 Make a program that simulates flipping a coin $N$ times.
 
 
-\begin{hintadmon}[Hint]
+\begin{hint_colors1admon}[Hint]
 Use `r = random.random()` and define head as `r <= 0.5`.
-\end{hintadmon}
+\end{hint_colors1admon}
 !esubex
 
 !bsubex
@@ -47364,13 +51230,10 @@ MathJax.Hub.Config({
 
 <p>
 
-
 </section>
 
 
 <section>
-
-<p>
 
 <h2>Goal  <a name="___sec0"></a></h2>
 
@@ -47383,13 +51246,11 @@ This version
 utilizes reveal slides with the theme beigesmall.
 </div>
 <p>
-
 <div class="alert alert-block alert-notice"><b>Notice.</b>
 Speaker notes show up by
 pressing "s".
 </div>
 <p>
-
 <aside class="notes">
 <!-- click "s" to activate -->
 
@@ -47403,7 +51264,6 @@ demonstrated.
 
 <p>
 
-
 </section>
 
 
@@ -47413,12 +51273,10 @@ demonstrated.
 
 <p>
 
-
 <table border="0">
 <tr>
 <td class="padding">
 <p>
-
 $$
 \begin{align}
 u'(t) &= -au(t),
@@ -47449,7 +51307,6 @@ $$
 <p>
 
 
-
 <p>
 
 </section>
@@ -47460,7 +51317,6 @@ $$
 <h2>Numerical solution method  <a name="___sec2"></a></h2>
 
 <p>
-
 
 
 <ul>
@@ -47488,13 +51344,10 @@ $$
 
 <p>
 
-
 </section>
 
 
 <section>
-
-<p>
 
 <h3>Forward Euler explained  <a name="___sec3"></a></h3>
 
@@ -47505,13 +51358,10 @@ $$
 
 <p>
 
-
 </section>
 
 
 <section>
-
-<p>
 
 <h2>Implementation  <a name="___sec4"></a></h2>
 
@@ -47519,7 +51369,6 @@ $$
 The numerical method is implemented in a Python function:
 
 <p>
-
 
 <!-- code=python (from !bc pycod) typeset with pygments style "emacs" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">solver</span>(I, a, T, dt, theta):
@@ -47537,7 +51386,6 @@ The numerical method is implemented in a Python function:
 </pre></div>
 <p>
 
-
 </section>
 
 
@@ -47546,7 +51394,6 @@ The numerical method is implemented in a Python function:
 <h3>The Crank-Nicolson method  <a name="___sec5"></a></h3>
 
 <p>
-
 <center><p><img src="../doc/slides/fig/CN.png" align="bottom" width=600></p></center>
 
 <p>
@@ -47768,15 +51615,36 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% gray summary box
+% #ifndef ADMON
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
+\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
+% #else
+\usepackage[framemethod=TikZ]{mdframed}
+% #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
-\usepackage{wrapfig,calc}
 \newdimen\barheight
 \def\barthickness{0.5pt}
 
-% small box to the right
-\newcommand{\summarybox}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
 \vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
 \begin{minipage}{0.5\textwidth-6pt-\columnsep}
 \hspace*{3mm}
@@ -47789,7 +51657,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{wrapfigure}}
 % #else
 % gray box of 80% width
-\newcommand{\summarybox}[1]{\begin{center}
+\newcommand{\grayboxhrules}[1]{\begin{center}
 \colorbox{lightgray}{\rule{6pt}{0pt}
 \begin{minipage}{0.8\linewidth}
 \parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
@@ -47799,216 +51667,517 @@ final,                   % or draft (marks overfull hboxes)
 \rule{6pt}{0pt}}\end{center}}
 % #endif
 
-% #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
-\usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
 % #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
 % #else
-\usepackage[framemethod=TikZ]{mdframed}
-% #endif
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.pdf}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -48181,21 +52350,43 @@ The primary goal of this demo talk is to demonstrate how to write
 talks with \href{{http://code.google.com/p/doconce}}{doconce}
 and get them rendered in numerous HTML formats.
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Layout]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Layout]
 This version
 utilizes beamer slides with the theme red3.
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Layout]
+This version
+utilizes beamer slides with the theme red3.
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Layout]
+This version
+utilizes beamer slides with the theme red3.
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Layout]
+This version
+utilizes beamer slides with the theme red3.
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Layout.]
+\begin{paragraphadmon}[Layout.]
 This version
 utilizes beamer slides with the theme red3.
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Layout.]
+This version
+utilizes beamer slides with the theme red3.
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Layout.]
+\begin{graybox1admon}[Layout.]
 This version
 utilizes beamer slides with the theme red3.
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 % !bnotes
 The talk investigates the accuracy of three finite difference
@@ -48321,9 +52512,43 @@ Exact solution of the scheme:
 % !epop
 
 % !bpop
-\summarybox{
+
+% #if ADMON == "colors1"
+\begin{summary_colors1admon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{summary_colors1admon}
+% #elif ADMON == "colors2"
+\begin{summary_colors2admon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{summary_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{summary_graybox3admon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{summary_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{summary_yellowboxadmon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{summary_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+\grayboxhrules{
 \textbf{Concluding remarks:} Only the Backward Euler scheme is guaranteed to always give
-qualitatively correct results.}
+qualitatively correct results.
+}
+% #else
+\begin{graybox1admon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{graybox1admon}
+% #endif
 % !epop
 
 % ------------------- end of main content ---------------
@@ -48410,12 +52635,34 @@ qualitatively correct results.}
 \newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
 \newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
 
-\newenvironment{hintadmon}[1][Hint]{\begin{block}{#1}}{\end{block}}
-\newenvironment{noticeadmon}[1][Notice]{\begin{block}{#1}}{\end{block}}
-\newenvironment{summaryadmon}[1][Summary]{\begin{block}{#1}}{\end{block}}
-\newenvironment{warningadmon}[1][Warning]{\begin{block}{#1}}{\end{block}}
-\newenvironment{questionadmon}[1][Question]{\begin{block}{#1}}{\end{block}}
-\newcommand{\summarybox}[1]{\begin{block}{}#1\end{block}}
+\newenvironment{hint_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{hint_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{notice_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{summary_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{warning_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{question_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{block_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{paragraphadmon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{graybox1admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newenvironment{graybox2admon}[1][]{\begin{block}{#1}}{\end{block}}
+\newcommand{\grayboxhrules}[1]{\begin{block}{}#1\end{block}}
 
 
 
@@ -48466,10 +52713,10 @@ The primary goal of this demo talk is to demonstrate how to write
 talks with \href{{http://code.google.com/p/doconce}}{doconce}
 and get them rendered in numerous HTML formats.
 
-\begin{noticeadmon}[Layout]
+\begin{notice_colors1admon}[Layout]
 This version
 utilizes beamer slides with the theme red3.
-\end{noticeadmon}
+\end{notice_colors1admon}
 \note{
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
@@ -48598,9 +52845,12 @@ Exact solution of the scheme:
 
 
 \pause
-\summarybox{
-\textbf{Concluding remarks:} Only the Backward Euler scheme is guaranteed to always give
-qualitatively correct results.}
+\begin{block}{}
+\begin{summary_colors1admon}[Concluding remarks:]
+Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+\end{summary_colors1admon}
+\end{block}
 \end{frame}
 
 \end{document}
@@ -48827,7 +53077,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 05 May 2013 (02:19)</center>
+<center>Thu, 16 May 2013 (15:12)</center>
 
 
 
@@ -48958,7 +53208,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 05 May 2013 (02:19)</center>
+<center>Thu, 16 May 2013 (15:12)</center>
 
 
 
@@ -50113,11 +54363,10 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
-<p>
+
 <h2>Table of contents</h2>
 
 <p>
-
 <a href="#___sec0"> Supported Formats </a><br>
 <a href="#___sec1"> Emacs syntax support </a><br>
 <a href="#___sec2"> Title, Authors, and Date </a><br>
@@ -50141,8 +54390,6 @@ MathJax.Hub.Config({
 <a href="#___sec20"> Resources </a><br>
 
 <p>
-
-
 <b>WARNING: This quick reference is very incomplete!</b>
 
 <p>
@@ -50154,8 +54401,6 @@ professionally looking web versions with Sphinx or HTML. Other outlets
 include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython
 notebooks, plus a wide variety of formats for documents without
 mathematics and code.
-
-<p>
 
 <h3>Supported Formats  <a name="___sec0"></a></h3>
 
@@ -50183,9 +54428,6 @@ For documents with much code and mathematics, the best (and most supported)
 formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code>; and to a slightly
 less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blogging on
 Google and Wordpress.
-
-<p>
-
 
 <h3>Emacs syntax support  <a name="___sec1"></a></h3>
 
@@ -50219,7 +54461,6 @@ provides a lot of shortcuts for setting up many elements in a document:
 <tr><td align="left">   Ctrl+c slide                          </td> <td align="left">   slide outline                         </td> </tr>
 <tr><td align="left">   Ctrl+c help                           </td> <td align="left">   print this table                      </td> </tr>
 </table>
-<p>
 
 <h3>Title, Authors, and Date  <a name="___sec2"></a></h3>
 
@@ -50258,9 +54499,6 @@ current date is wanted, e.g., <code>Feb 22, 2016</code>.
 <p>
 The table of contents is removed by writing <code>TOC: off</code>.
 
-<p>
-
-
 <h3>Section Types <a name="quick:sections"></a></h3>
 
 <p>
@@ -50288,8 +54526,6 @@ A recommended convention is that an exercise is tied to the text,
 a problem can stand on its own, and a project is a comprehensive
 problem.
 
-<p>
-
 <h3>Inline Formatting  <a name="___sec4"></a></h3>
 
 <p>
@@ -50302,8 +54538,6 @@ are also possible: the text
 </code></pre>
 <!-- end verbatim block -->
 becomes <font color="red">two red words</font>.
-
-<p>
 
 <h3>Lists  <a name="___sec5"></a></h3>
 
@@ -50398,7 +54632,6 @@ And finally a description list:
    and its description may fit on one line
 </dl>
 
-
 <h3>Comment lines  <a name="___sec6"></a></h3>
 
 <p>
@@ -50423,9 +54656,6 @@ When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
 Doconce starts processing the file.
 
-<p>
-
-
 <h3>Inline comments  <a name="___sec7"></a></h3>
 
 <p>
@@ -50440,8 +54670,8 @@ where <code>name</code> is the name or ID of an author or reader making the comm
 and <code>running text</code> is the comment. Here goes an example.
 
 <!-- begin inline comment -->
-[<b>hpl 1</b>: <em>There must be a space after the colon,
-but the running text can occupy multiple lines.</em>]
+<font color="red">[<b>hpl 1</b>: <em>There must be a space after the colon,
+but the running text can occupy multiple lines.</em>]</font>
 <!-- end inline comment -->
 
 The inline comments have simple typesetting in most formats, typically boldface
@@ -50466,8 +54696,6 @@ removed from the Doconce source by
 <pre><code>doconce remove_inline_comments mydoc.do.txt
 </code></pre>
 <!-- end verbatim block -->
-
-<p>
 
 <h3>Verbatim/Computer Code  <a name="___sec8"></a></h3>
 
@@ -50560,7 +54788,6 @@ Important warnings:
    output formats. A more robust approach is to replace the list by
    paragraphs with headings.</li>
 </ul>
-
 
 <h3>LaTeX Mathematics  <a name="___sec9"></a></h3>
 
@@ -50669,9 +54896,6 @@ without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</
 <code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
 rendered nicely anyway.
 
-<p>
-
-
 <h3>Figures and Movies  <a name="___sec10"></a></h3>
 
 <p>
@@ -50732,11 +54956,6 @@ The latter results in
 
 <em>Vimeo movie.</em>
 
-
-
-<p>
-
-
 <h3>Tables  <a name="___sec11"></a></h3>
 
 <p>
@@ -50777,7 +54996,6 @@ Note that
    have no effect.</li>
 </ul>
 
-
 <h3>Labels and References  <a name="___sec12"></a></h3>
 
 <p>
@@ -50808,9 +55026,6 @@ Use labels for sections and equations only, and preceed the reference
 by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
-<p>
-
-
 <h3>Citations and Bibliography  <a name="___sec13"></a></h3>
 
 <p>
@@ -50838,8 +55053,6 @@ where <code>papers.pub</code> is a publication database in the
 BibTeX <code>.bib</code> files can easily be combined to a Publish database
 (which Doconce needs to create bibliographies in other formats
 than LaTeX).
-
-<p>
 
 <h3>Generalized Citations  <a name="___sec14"></a></h3>
 
@@ -50873,8 +55086,6 @@ LaTeX package <code>xr</code> is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
-<p>
-
 <h3>Index of Keywords  <a name="___sec15"></a></h3>
 
 <p>
@@ -50891,8 +55102,6 @@ paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the <code>latex</code>,
 <code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
-
-<p>
 
 <h3>Capabilities of The Program <code>doconce</code>  <a name="___sec16"></a></h3>
 
@@ -51038,8 +55247,6 @@ doconce gitdiff file1 file2 file3 ...
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
-
 <h3>Exercises  <a name="___sec17"></a></h3>
 
 <p>
@@ -51158,9 +55365,6 @@ The command-line arguments <code>--without_answers</code> and <code>--without_so
 turn off output of answers and solutions, respectively, except for
 examples.
 
-<p>
-
-
 <h3>Environments  <a name="___sec18"></a></h3>
 
 <p>
@@ -51183,7 +55387,6 @@ the environments:
  <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
    slide</li>
 </ul>
-
 
 <h3>Preprocessing  <a name="___sec19"></a></h3>
 
@@ -51238,8 +55441,6 @@ With the <code>mako</code> preprocessor the if-else tests have slightly differen
 An <a href="http://hplgit.github.com/bioinf-py/">example document</a> contains
 some illustrations on how to utilize <code>mako</code> (clone the GitHub project and
 examine the Doconce source and the <code>doc/src/make.sh</code> script).
-
-<p>
 
 <h3>Resources  <a name="___sec20"></a></h3>
 
@@ -51328,6 +55529,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
 
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
@@ -51399,8 +55613,8 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 % #endif
 
 % #ifdef LINENUMBERS
@@ -51409,215 +55623,568 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
 \usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
 % #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
 % #else
 \usepackage[framemethod=TikZ]{mdframed}
 % #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\grayboxhrules}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
+% #else
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+% #endif
+
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -52241,8 +56808,8 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Notice]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Notice]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -52253,9 +56820,48 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Notice]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Notice]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Notice]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Notice.]
+\begin{paragraphadmon}[Notice.]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -52266,9 +56872,24 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Notice.]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Notice.]
+\begin{graybox1admon}[Notice.]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -52279,7 +56900,7 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
@@ -62499,9 +67120,9 @@ replacing % end theorem by \end{theorem} in testdoc.p.tex
 + doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
 replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
 + doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
-+ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
++ ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 using local config file .ptex2tex.cfg
-running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE15', 'LINENUMBERS', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
+running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE', 'LINENUMBERS', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
 done testdoc.p.tex -> testdoc.tex
 + [ 0 -ne 0 ]
 + pdflatex -shell-escape testdoc
@@ -62595,7 +67216,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -62704,7 +67324,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-290.
+293.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -62731,19 +67351,26 @@ LaTeX Warning: Reference `fig:impact' on page 5
 Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
+
+LaTeX Warning: Reference `mov:tsunami' on page 7 
+
+
+Overfull \hbox (280.67903pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) (Movie ../doc/-man-u-al/-figs/wavepacket.mpeg: play [][
+]$\OT1/cmtt/m/n/10 wavepacket . html$[][][][][][][]\OT1/cmr/m/n/10 (-20) ) [][]
+[][][][][][][][][][][][][][][][][][][][]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
+/manual/figs/mjolnir.mpeg>>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
 
-LaTeX Warning: Reference `myfig' on page 7 
+LaTeX Warning: Reference `myfig' on page 8 
 
-<../doc/manual/figs/wavepacket_0001.png, id=108, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=117, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-
-LaTeX Warning: Reference `mymov' on page 7 
-
-[7<<../doc/manual/figs/mjolnir.mpeg>>]
-<downloaded_figures/f_plot.png, id=122, 578.16pt x 433.62pt>
+<downloaded_figures/f_plot.png, id=118, 578.16pt x 433.62pt>
 <use downloaded_figures/f_plot.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
 /manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png> <./
@@ -62795,106 +67422,106 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 844.
+t line 842.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 845.
+ine 843.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
-48.
+46.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 849.
+ 847.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
-51.
+49.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 853.
+t line 851.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 853.
+ 851.
 
 
 LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 8
-57.
+55.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
-57.
+55.
 
 
 LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 857.
+ne 855.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 857.
+t line 855.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 859.
+ine 857.
 
 
 LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
-ne 859.
+ne 857.
 
 
 LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 859.
+ 857.
 
 
 LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 8
-59.
+57.
 
 
 LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 8
-59.
+57.
 
 
 LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 8
-59.
+57.
 
 
 LaTeX Warning: Citation `Langtangen:95' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 86
-1.
+LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 85
+9.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 861.
+ 859.
 
 
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-861.
+859.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
-62.
+60.
 
 
 LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 8
-62.
+60.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 863.
+ine 861.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 864
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 862
 .
 
 
@@ -62902,7 +67529,7 @@ LaTeX Warning: Citation `Langtangen:91' on page 11
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 867
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 865
 .
 
 [11]
@@ -62928,8 +67555,8 @@ LaTeX Warning: Reference `eq1' on page 13
 LaTeX Warning: Reference `eq2' on page 13 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 99
-0.
+LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 98
+8.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -62953,7 +67580,7 @@ LaTeX Warning: Reference `demo:ex:1' on page 13
 LaTeX Warning: Reference `demo:ex:2' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1015
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1013
 .
 
 
@@ -62961,11 +67588,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 1016.
+ 1014.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1377
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1375
 .
 
 
@@ -62976,27 +67603,29 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1394.
+ 1392.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1395
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1393
 .
 
 
 LaTeX Warning: Reference `exer:you' on page 16 
 
 (./testdoc.bbl [16]) [17]
-<latex_figs/hint.pdf, id=293, 89.33376pt x 89.33376pt>
+<latex_figs/hint.pdf, id=295, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
 [18 <./latex_figs/hint.pdf>]
-Overfull \hbox (11.33333pt too wide) 
-[][][][][][][] 
-[19]
+<latex_figs/summary.pdf, id=313, 89.33376pt x 89.33376pt>
+<use latex_figs/summary.pdf>
+Underfull \hbox (badness 10000) 
+
+[19 <./latex_figs/summary.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -63098,7 +67727,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
- wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -63154,6 +67782,7 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
+latex_figs/summary.pdf
  testdoc.ind
  ***********
 
@@ -63289,7 +67918,6 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 
 (/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
@@ -63393,15 +68021,23 @@ f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (280.67903pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) (Movie ../doc/-man-u-al/-figs/wavepacket.mpeg: play [][
+]$\OT1/cmtt/m/n/10 wavepacket . html$[][][][][][][]\OT1/cmr/m/n/10 (-20) ) [][]
+[][][][][][][][][][][][][][][][][][][][]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
+/manual/figs/mjolnir.mpeg>>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
-<../doc/manual/figs/wavepacket_0001.png, id=262, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=271, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=264, 578.16pt x 433.62pt>
-<use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (97.7906pt too high) has occurred while \output is active
-[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png> <./
+downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -63426,7 +68062,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -63456,15 +68092,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
+[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl
+[16]) [17] <latex_figs/hint.pdf, id=476, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
 [18 <./latex_figs/hint.pdf>]
-Overfull \hbox (11.33333pt too wide) 
-[][][][][][][] 
-[19]
+<latex_figs/summary.pdf, id=488, 89.33376pt x 89.33376pt>
+<use latex_figs/summary.pdf>
+Underfull \hbox (badness 10000) 
+
+[19 <./latex_figs/summary.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -63566,7 +68204,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
- wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -63624,11 +68261,9 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
+latex_figs/summary.pdf
  testdoc.ind
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
@@ -63770,7 +68405,6 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 
 (/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
@@ -63874,15 +68508,23 @@ f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (280.67903pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) (Movie ../doc/-man-u-al/-figs/wavepacket.mpeg: play [][
+]$\OT1/cmtt/m/n/10 wavepacket . html$[][][][][][][]\OT1/cmr/m/n/10 (-20) ) [][]
+[][][][][][][][][][][][][][][][][][][][]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
+/manual/figs/mjolnir.mpeg>>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
-<../doc/manual/figs/wavepacket_0001.png, id=262, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=271, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=264, 578.16pt x 433.62pt>
-<use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (97.7906pt too high) has occurred while \output is active
-[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png> <./
+downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -63907,7 +68549,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -63937,15 +68579,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
+[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl
+[16]) [17] <latex_figs/hint.pdf, id=476, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
 [18 <./latex_figs/hint.pdf>]
-Overfull \hbox (11.33333pt too wide) 
-[][][][][][][] 
-[19]
+<latex_figs/summary.pdf, id=488, 89.33376pt x 89.33376pt>
+<use latex_figs/summary.pdf>
+Underfull \hbox (badness 10000) 
+
+[19 <./latex_figs/summary.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -64047,7 +68691,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
- wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -64105,6 +68748,7 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
+latex_figs/summary.pdf
  testdoc.ind
  ***********
 
@@ -64228,7 +68872,6 @@ Package hyperref Message: Driver (autodetected): hpdftex.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 
 (/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
@@ -64332,15 +68975,23 @@ f/fonts/map/pdftex/updmap/pdftex.map}] (./testdoc.toc) (./testdoc.tdo) [2]
 Underfull \vbox (badness 10000) has occurred while \output is active [5]
 Overfull \vbox (13.3931pt too high) has occurred while \output is active
 [6 <../doc/manual/figs/streamtubes.png>]
+Overfull \hbox (280.67903pt too wide) 
+[]\OT1/cmr/m/n/10 (-20) (Movie ../doc/-man-u-al/-figs/wavepacket.mpeg: play [][
+]$\OT1/cmtt/m/n/10 wavepacket . html$[][][][][][][]\OT1/cmr/m/n/10 (-20) ) [][]
+[][][][][][][][][][][][][][][][][][][][]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [7<<../doc
+/manual/figs/mjolnir.mpeg>>]
 Overfull \hbox (13.9403pt too wide) 
 []\OT1/cmr/m/n/10 (-20) Movie based on col-lec-tion of frames (here just a few 
 frames com-pared with the full wavepacket.mpeg
-<../doc/manual/figs/wavepacket_0001.png, id=262, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=271, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
-<downloaded_figures/f_plot.png, id=264, 578.16pt x 433.62pt>
-<use downloaded_figures/f_plot.png> [7<<../doc/manual/figs/mjolnir.mpeg>>]
-Overfull \vbox (97.7906pt too high) has occurred while \output is active
-[8<<../doc/manual/figs/wavepacket.mpeg>> <./downloaded_figures/f_plot.png>]
+<downloaded_figures/f_plot.png, id=272, 578.16pt x 433.62pt>
+<use downloaded_figures/f_plot.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png> <./
+downloaded_figures/f_plot.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -64365,7 +69016,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
 
-[9 <../doc/manual/figs/wavepacket_0001.png>] [10]
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on 
@@ -64395,15 +69046,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] (./testdoc.out.pyg [13]) (./testdoc.out.pyg) [14] [15] (./testdoc.bbl
-[16]) [17] <latex_figs/hint.pdf, id=474, 89.33376pt x 89.33376pt>
+[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl
+[16]) [17] <latex_figs/hint.pdf, id=476, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
 [18 <./latex_figs/hint.pdf>]
-Overfull \hbox (11.33333pt too wide) 
-[][][][][][][] 
-[19]
+<latex_figs/summary.pdf, id=488, 89.33376pt x 89.33376pt>
+<use latex_figs/summary.pdf>
+Underfull \hbox (badness 10000) 
+
+[19 <./latex_figs/summary.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -64499,7 +69152,6 @@ hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
 rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 placeins.sty    2005/04/18  v 2.2
- wrapfig.sty    2003/01/31  v 3.6
  xkeyval.sty    2008/08/13 v2.6a package option processing (HA)
  xkeyval.tex    2008/08/13 v2.6a key=value parser (HA)
     tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
@@ -64557,6 +69209,7 @@ downloaded_figures/f_plot.png
  testdoc.out.pyg
  testdoc.bbl
 latex_figs/hint.pdf
+latex_figs/summary.pdf
  testdoc.ind
  ***********
 
@@ -66183,6 +70836,1964 @@ output in math_test.md
 command "md2latex" is not legal, must be among
 
 format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, slides_beamer, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, latex_dislikes, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
++ doconce format pdflatex admon
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format pdflatex
+output in admon.p.tex
++ [ 0 -ne 0 ]
++ admon_tps=colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2
++ doconce ptex2tex admon envir=minted -DADMON=colors1
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_colors1.tex
++ pdflatex -shell-escape admon_colors1
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_colors1.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_colors1.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+
+Writing index file admon_colors1.idx
+No file admon_colors1.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_colors1.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+(./admon_colors1.out.pyg)
+<latex_figs/warning.pdf, id=4, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
+Underfull \hbox (badness 10000) 
+
+ [1{/var/lib/texmf/font
+s/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf>]
+<use latex_figs/warning.pdf>
+Underfull \hbox (badness 10000) 
+
+
+Underfull \hbox (badness 10000) 
+
+
+Underfull \hbox (badness 10000) 
+
+<latex_figs/notice.pdf, id=22, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+Underfull \hbox (badness 10000) 
+
+<latex_figs/question.pdf, id=23, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf>
+Underfull \hbox (badness 10000) 
+
+<use latex_figs/question.pdf>
+Underfull \hbox (badness 10000) 
+
+[2 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
+<latex_figs/hint.pdf, id=38, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf>
+Underfull \hbox (badness 10000) 
+
+(./admon_colors1.out.pyg) <use latex_figs/warning.pdf>
+Underfull \hbox (badness 10000) 
+
+<use latex_figs/notice.pdf>
+Underfull \hbox (badness 10000) 
+
+(./admon_colors1.out.pyg) (./admon_colors1.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=39, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3 <./latex_figs/hint.pdf>]
+Underfull \vbox (badness 1337) detected at line 422
+
+Underfull \vbox (badness 1137) detected at line 422
+[4] <latex_figs/summary.pdf, id=57, 89.33376pt x 89.33376pt>
+<use latex_figs/summary.pdf>
+Underfull \hbox (badness 10000) 
+
+No file admon_colors1.ind.
+[5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/summary.pdf>]
+(./admon_colors1.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_colors1.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_colors1.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_colors1.out.pyg
+latex_figs/warning.pdf
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+latex_figs/question.pdf
+latex_figs/question.pdf
+latex_figs/hint.pdf
+admon_colors1.out.pyg
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+admon_colors1.out.pyg
+admon_colors1.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+latex_figs/summary.pdf
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_colors1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb>
+Output written on admon_colors1.pdf (5 pages, ).
+Transcript written on admon_colors1.log.
++ doconce ptex2tex admon envir=minted -DADMON=graybox1
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_graybox1.tex
++ pdflatex -shell-escape admon_graybox1
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_graybox1.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_graybox1.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-base.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
+)) 
+Writing index file admon_graybox1.idx
+No file admon_graybox1.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_graybox1.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
+(./newcommands_replace.tex)
+
+
+
+
+(./admon_graybox1.out.pyg)
+ [1{/var/lib/texmf/font
+s/map/pdftex/updmap/pdftex.map}] (./admon_graybox1.out.pyg)
+(./admon_graybox1.out.pyg) (./admon_graybox1.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=20, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [2] [3]
+No file admon_graybox1.ind.
+[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_graybox1.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_graybox1.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+mdframed.sty    2012/04/08 v1.5: mdframed
+  xparse.sty    2012/04/23 v3570 L3 Experimental document command parser
+   expl3.sty    2012/04/23 v3570 L3 Experimental code bundle wrapper
+ l3names.sty    2012/03/04 v3494 L3 Experimental namespace for primitives
+l3bootstrap.sty    2011/12/29 v3110 L3 Experimental bootstrap code
+    etex.sty    1998/03/26 v2.0 eTeX basic definition package (PEB)
+l3basics.sty    2012/03/04 v3491 L3 Experimental basic definitions
+ l3expan.sty    2012/02/26 v3460 L3 Experimental argument expansion
+    l3tl.sty    2012/03/04 v3490 L3 Experimental token lists
+   l3seq.sty    2012/03/04 v3490 L3 Experimental sequences and stacks
+   l3int.sty    2012/03/04 v3490 L3 Experimental integers
+ l3quark.sty    2012/02/12 v3384 L3 Experimental quarks
+   l3prg.sty    2012/03/04 v3490 L3 Experimental control structures
+ l3clist.sty    2012/03/04 v3490 L3 Experimental comma separated lists
+ l3token.sty    2012/03/04 v3491 L3 Experimental token manipulation
+  l3prop.sty    2012/03/04 v3490 L3 Experimental property lists
+   l3msg.sty    2012/04/23 v3568 L3 Experimental messages
+  l3file.sty    2012/03/09 v3520 L3 Experimental file and I/O operations
+  l3skip.sty    2012/03/05 v3499 L3 Experimental dimensions and skips
+  l3keys.sty    2012/03/03 v3487 L3 Experimental key-value interfaces
+    l3fp.sty    2012/03/04 v3490 L3 Experimental floating-point operations
+   l3box.sty    2012/03/04 v3490 L3 Experimental boxes
+l3coffins.sty    2012/03/03 v3482 L3 Experimental coffin code layer
+ l3color.sty    2011/09/07 v2776 L3 Experimental colour support
+l3luatex.sty    2012/02/09 v3355 L3 Experimental LuaTeX-specific functions
+etoolbox.sty    2011/01/03 v2.1 e-TeX tools for LaTeX
+zref-abspage.sty    2012/04/04 v2.24 Module abspage for zref (HO)
+zref-base.sty    2012/04/04 v2.24 Module base for zref (HO)
+ auxhook.sty    2011/03/04 v1.3 Hooks for auxiliary files (HO)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+md-frame-1.mdf    2012/04/08  v1.5: md-frame-1
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_graybox1.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_graybox1.out.pyg
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+admon_graybox1.out.pyg
+admon_graybox1.out.pyg
+admon_graybox1.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_graybox1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_graybox1.pdf (4 pages, ).
+Transcript written on admon_graybox1.log.
++ doconce ptex2tex admon envir=minted -DADMON=paragraph
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_paragraph.tex
++ pdflatex -shell-escape admon_paragraph
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_paragraph.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_paragraph.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+Writing index file admon_paragraph.idx
+No file admon_paragraph.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_paragraph.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+(./admon_paragraph.out.pyg)
+ [1{/var/lib/texmf/font
+s/map/pdftex/updmap/pdftex.map}] (./admon_paragraph.out.pyg)
+(./admon_paragraph.out.pyg [2]) (./admon_paragraph.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=27, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
+No file admon_paragraph.ind.
+[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_paragraph.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_paragraph.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_paragraph.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_paragraph.out.pyg
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+admon_paragraph.out.pyg
+admon_paragraph.out.pyg
+admon_paragraph.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_paragraph.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_paragraph.pdf (4 pages, ).
+Transcript written on admon_paragraph.log.
++ doconce ptex2tex admon envir=minted -DADMON=graybox2
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_graybox2.tex
++ pdflatex -shell-escape admon_graybox2
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_graybox2.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_graybox2.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-base.sty
+
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+
+
+
+
+
+
+
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
+)) 
+Writing index file admon_graybox2.idx
+No file admon_graybox2.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_graybox2.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
+(./newcommands_replace.tex)
+
+
+
+
+(./admon_graybox2.out.pyg)
+ [1{/var/lib/texmf/font
+s/map/pdftex/updmap/pdftex.map}] (./admon_graybox2.out.pyg) [2]
+(./admon_graybox2.out.pyg) (./admon_graybox2.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=28, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
+ket_0001.png>]
+No file admon_graybox2.ind.
+[5] (./admon_graybox2.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_graybox2.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+ wrapfig.sty    2003/01/31  v 3.6
+mdframed.sty    2012/04/08 v1.5: mdframed
+  xparse.sty    2012/04/23 v3570 L3 Experimental document command parser
+   expl3.sty    2012/04/23 v3570 L3 Experimental code bundle wrapper
+ l3names.sty    2012/03/04 v3494 L3 Experimental namespace for primitives
+l3bootstrap.sty    2011/12/29 v3110 L3 Experimental bootstrap code
+    etex.sty    1998/03/26 v2.0 eTeX basic definition package (PEB)
+l3basics.sty    2012/03/04 v3491 L3 Experimental basic definitions
+ l3expan.sty    2012/02/26 v3460 L3 Experimental argument expansion
+    l3tl.sty    2012/03/04 v3490 L3 Experimental token lists
+   l3seq.sty    2012/03/04 v3490 L3 Experimental sequences and stacks
+   l3int.sty    2012/03/04 v3490 L3 Experimental integers
+ l3quark.sty    2012/02/12 v3384 L3 Experimental quarks
+   l3prg.sty    2012/03/04 v3490 L3 Experimental control structures
+ l3clist.sty    2012/03/04 v3490 L3 Experimental comma separated lists
+ l3token.sty    2012/03/04 v3491 L3 Experimental token manipulation
+  l3prop.sty    2012/03/04 v3490 L3 Experimental property lists
+   l3msg.sty    2012/04/23 v3568 L3 Experimental messages
+  l3file.sty    2012/03/09 v3520 L3 Experimental file and I/O operations
+  l3skip.sty    2012/03/05 v3499 L3 Experimental dimensions and skips
+  l3keys.sty    2012/03/03 v3487 L3 Experimental key-value interfaces
+    l3fp.sty    2012/03/04 v3490 L3 Experimental floating-point operations
+   l3box.sty    2012/03/04 v3490 L3 Experimental boxes
+l3coffins.sty    2012/03/03 v3482 L3 Experimental coffin code layer
+ l3color.sty    2011/09/07 v2776 L3 Experimental colour support
+l3luatex.sty    2012/02/09 v3355 L3 Experimental LuaTeX-specific functions
+etoolbox.sty    2011/01/03 v2.1 e-TeX tools for LaTeX
+zref-abspage.sty    2012/04/04 v2.24 Module abspage for zref (HO)
+zref-base.sty    2012/04/04 v2.24 Module base for zref (HO)
+ auxhook.sty    2011/03/04 v1.3 Hooks for auxiliary files (HO)
+    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
+     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
+  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
+  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
+  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+md-frame-1.mdf    2012/04/08  v1.5: md-frame-1
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_graybox2.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_graybox2.out.pyg
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+admon_graybox2.out.pyg
+admon_graybox2.out.pyg
+admon_graybox2.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_graybox2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_graybox2.pdf (5 pages, ).
+Transcript written on admon_graybox2.log.
++ doconce ptex2tex admon envir=minted -DADMON=yellowbox
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_yellowbox.tex
++ pdflatex -shell-escape admon_yellowbox
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_yellowbox.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_yellowbox.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+
+
+Writing index file admon_yellowbox.idx
+No file admon_yellowbox.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_yellowbox.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+(./admon_yellowbox.out.pyg)
+<latex_figs/small_yellow_warning.pdf, id=4, 32.12pt x 32.12pt>
+<use latex_figs/small_yellow_warning.pdf>
+
+<use latex_figs/small_yellow_warning.pdf> [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map} <./latex_figs/small_yellow_warning.pdf>]
+<latex_figs/small_yellow_notice.pdf, id=24, 32.12pt x 32.12pt>
+<use latex_figs/small_yellow_notice.pdf>
+<latex_figs/small_yellow_question.pdf, id=25, 32.12pt x 32.12pt>
+<use latex_figs/small_yellow_question.pdf>
+<use latex_figs/small_yellow_question.pdf>
+<latex_figs/small_yellow_hint.pdf, id=26, 32.12pt x 32.12pt>
+<use latex_figs/small_yellow_hint.pdf> (./admon_yellowbox.out.pyg) [2 <./latex_
+figs/small_yellow_notice.pdf> <./latex_figs/small_yellow_question.pdf> <./latex
+_figs/small_yellow_hint.pdf>] <use latex_figs/small_yellow_warning.pdf>
+<use latex_figs/small_yellow_notice.pdf> (./admon_yellowbox.out.pyg)
+(./admon_yellowbox.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=53, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
+ket_0001.png>] <latex_figs/small_yellow_summary.pdf, id=66, 32.12pt x 32.12pt>
+<use latex_figs/small_yellow_summary.pdf>
+No file admon_yellowbox.ind.
+[5 <./latex_figs/small_yellow_summary.pdf>] (./admon_yellowbox.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_yellowbox.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+ wrapfig.sty    2003/01/31  v 3.6
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_yellowbox.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_yellowbox.out.pyg
+latex_figs/small_yellow_warning.pdf
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+latex_figs/small_yellow_warning.pdf
+latex_figs/small_yellow_notice.pdf
+latex_figs/small_yellow_question.pdf
+latex_figs/small_yellow_question.pdf
+latex_figs/small_yellow_hint.pdf
+admon_yellowbox.out.pyg
+latex_figs/small_yellow_warning.pdf
+latex_figs/small_yellow_notice.pdf
+admon_yellowbox.out.pyg
+admon_yellowbox.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+latex_figs/small_yellow_summary.pdf
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_yellowbox.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_yellowbox.pdf (5 pages, ).
+Transcript written on admon_yellowbox.log.
++ doconce ptex2tex admon envir=minted -DADMON=graybox3
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_graybox3.tex
++ pdflatex -shell-escape admon_graybox3
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_graybox3.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_graybox3.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+
+
+Writing index file admon_graybox3.idx
+No file admon_graybox3.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_graybox3.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+(./admon_graybox3.out.pyg)
+<latex_figs/small_gray_warning.pdf, id=4, 48.18pt x 48.18pt>
+<use latex_figs/small_gray_warning.pdf>
+
+<use latex_figs/small_gray_warning.pdf> [1{/var/lib/texmf/fonts/map/pdftex/updm
+ap/pdftex.map} <./latex_figs/small_gray_warning.pdf>]
+<latex_figs/small_gray_notice.pdf, id=24, 64.24pt x 64.24pt>
+<use latex_figs/small_gray_notice.pdf>
+<latex_figs/small_gray_question2.pdf, id=25, 64.24pt x 64.24pt>
+<use latex_figs/small_gray_question2.pdf>
+<use latex_figs/small_gray_question2.pdf>
+<latex_figs/small_gray_hint.pdf, id=26, 40.15pt x 40.15pt>
+<use latex_figs/small_gray_hint.pdf> (./admon_graybox3.out.pyg) [2 <./latex_fig
+s/small_gray_notice.pdf> <./latex_figs/small_gray_question2.pdf> <./latex_figs/
+small_gray_hint.pdf>] <use latex_figs/small_gray_warning.pdf>
+<use latex_figs/small_gray_notice.pdf> (./admon_graybox3.out.pyg)
+(./admon_graybox3.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=53, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
+ket_0001.png>] <latex_figs/small_gray_summary.pdf, id=66, 48.18pt x 48.18pt>
+<use latex_figs/small_gray_summary.pdf>
+No file admon_graybox3.ind.
+[5 <./latex_figs/small_gray_summary.pdf>] (./admon_graybox3.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_graybox3.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+ wrapfig.sty    2003/01/31  v 3.6
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_graybox3.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_graybox3.out.pyg
+latex_figs/small_gray_warning.pdf
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+latex_figs/small_gray_warning.pdf
+latex_figs/small_gray_notice.pdf
+latex_figs/small_gray_question2.pdf
+latex_figs/small_gray_question2.pdf
+latex_figs/small_gray_hint.pdf
+admon_graybox3.out.pyg
+latex_figs/small_gray_warning.pdf
+latex_figs/small_gray_notice.pdf
+admon_graybox3.out.pyg
+admon_graybox3.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+latex_figs/small_gray_summary.pdf
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_graybox3.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_graybox3.pdf (5 pages, ).
+Transcript written on admon_graybox3.log.
++ doconce ptex2tex admon envir=minted -DADMON=colors2
+\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+output in admon.tex
++ cp admon.tex admon_colors2.tex
++ pdflatex -shell-escape admon_colors2
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ \write18 enabled.
+entering extended mode
+(./admon_colors2.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./admon_colors2.w18))/usr/local/bin/pygmentize
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+
+
+
+Writing index file admon_colors2.idx
+No file admon_colors2.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(./admon_colors2.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./newcommands_bfmath.tex) (./newcommands_replace.tex)
+
+
+
+
+(./admon_colors2.out.pyg)
+<latex_figs/warning.pdf, id=4, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
+
+<use latex_figs/warning.pdf> [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.m
+ap} <./latex_figs/warning.pdf>]
+<latex_figs/notice.pdf, id=22, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+<latex_figs/question.pdf, id=23, 89.33376pt x 89.33376pt>
+<use latex_figs/question.pdf> <use latex_figs/question.pdf>
+<latex_figs/hint.pdf, id=24, 89.33376pt x 89.33376pt>
+<use latex_figs/hint.pdf> (./admon_colors2.out.pyg) [2 <./latex_figs/notice.pdf
+> <./latex_figs/question.pdf> <./latex_figs/hint.pdf>]
+<use latex_figs/warning.pdf> <use latex_figs/notice.pdf>
+(./admon_colors2.out.pyg) (./admon_colors2.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=46, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
+ket_0001.png>] <latex_figs/summary.pdf, id=59, 89.33376pt x 89.33376pt>
+<use latex_figs/summary.pdf>
+No file admon_colors2.ind.
+[5 <./latex_figs/summary.pdf>] (./admon_colors2.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
+      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
+microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+admon_colors2.w18
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+ wrapfig.sty    2003/01/31  v 3.6
+titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
+RS)
+admon_colors2.pyg
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_bfmath.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+admon_colors2.out.pyg
+latex_figs/warning.pdf
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+latex_figs/question.pdf
+latex_figs/question.pdf
+latex_figs/hint.pdf
+admon_colors2.out.pyg
+latex_figs/warning.pdf
+latex_figs/notice.pdf
+admon_colors2.out.pyg
+admon_colors2.out.pyg
+../doc/manual/figs/wavepacket_0001.png
+latex_figs/summary.pdf
+ ***********
+
+
+Package rerunfilecheck Warning: File `admon_colors2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on admon_colors2.pdf (5 pages, ).
+Transcript written on admon_colors2.log.
 + doconce format html admon
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -66191,7 +72802,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in admon.html
 + [ 0 -ne 0 ]
-+ cp admon.html admon_white.html
++ cp admon.html admon_default.html
 + doconce format html admon --html_admon=colors
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -66328,7 +72939,6 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] admon
 reading sources... [100%] index
 
-/home/hpl/vc/doconce/test/tmp_admon/admon.rst:112: WARNING: image file not readable: ../doc/manual/figs/wavepacket_0001.png
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -66337,10 +72947,12 @@ writing output... [ 50%] admon
 writing output... [100%] index
 
 writing additional files... (0 module code pages) genindex search
+copying images... [100%] wavepacket_0001.png
+
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 1 warning.
+build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 <title>(.+?) &mdash;.+?</title> replaced by <title>\g<1></title> in search.html
@@ -66386,6 +72998,7 @@ replacing </head> by
 doconce format sphinx admon 
 running doconce format sphinx admon 
 running doconce guess_encoding admon.rst
+copying ../doc/manual/figs/wavepacket_0001.png to tmp_admon
 /home/hpl/vc/doconce/test/tmp_admon
 running make clean
 running make html
@@ -66395,845 +73008,6 @@ google-chrome tmp_admon/_build/html/index.html
 
 + [ 0 -ne 0 ]
 + cp tmp_admon/_build/html/admon.html admon_sphinx.html
-+ doconce format pdflatex admon
-running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
-translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
-figure file ../doc/manual/figs/wavepacket_0001:
-    can use ../doc/manual/figs/wavepacket_0001.png for format pdflatex
-output in admon.p.tex
-+ [ 0 -ne 0 ]
-+ admon_tps=colors box paragraph
-+ doconce ptex2tex admon envir=minted -DADMON=colors
-\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-output in admon.tex
-+ cp admon.tex admon_colors.tex
-+ pdflatex -shell-escape admon_colors
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
- \write18 enabled.
-entering extended mode
-(./admon_colors.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-
-(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
-Examine \normalsize starts \@setfontsize size may be \@xpt. 
-Examine \small starts \@setfontsize size may be \@ixpt. 
-Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
-Examine \large starts \@setfontsize size may be \@xiipt. 
-Examine \Large starts \@setfontsize size may be \@xivpt. 
-Examine \LARGE starts \@setfontsize size may be \@xviipt. 
-Examine \scriptsize starts \@setfontsize size may be \@viipt. 
-Examine \tiny starts \@setfontsize size may be \@vpt. 
-Examine \huge starts \@setfontsize size may be \@xxpt. 
-Examine \Huge starts \@setfontsize size may be \@xxvpt. )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-
-
-
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) 
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
-
-(./admon_colors.w18))/usr/local/bin/pygmentize
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-
-
-
-
-
-
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-
-
-
-
-Writing index file admon_colors.idx
-No file admon_colors.aux.
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-
-
-
-(./admon_colors.pyg)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-
-(./newcommands_bfmath.tex) (./newcommands_replace.tex)
-
-
-
-
-(./admon_colors.out.pyg)
-<latex_figs/warning.pdf, id=4, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
-Underfull \hbox (badness 10000) 
-
-
-<use latex_figs/warning.pdf>
-Underfull \hbox (badness 10000) 
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./latex_figs/warning.pdf
->] <latex_figs/notice.pdf, id=23, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
-Underfull \hbox (badness 10000) 
-
-<latex_figs/question.pdf, id=24, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf>
-Underfull \hbox (badness 10000) 
-
-<use latex_figs/question.pdf>
-Underfull \hbox (badness 10000) 
-
-<latex_figs/hint.pdf, id=25, 89.33376pt x 89.33376pt>
-<use latex_figs/hint.pdf>
-Underfull \hbox (badness 10000) 
-
-(./admon_colors.out.pyg) [2 <./latex_figs/notice.pdf> <./latex_figs/question.pd
-f> <./latex_figs/hint.pdf>] <use latex_figs/notice.pdf>
-Underfull \hbox (badness 10000) 
-
-(./admon_colors.out.pyg) (./admon_colors.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
-ket_0001.png>]
-No file admon_colors.ind.
-[5] (./admon_colors.aux)
-
- *File List*
- article.cls    2007/10/19 v1.4h Standard LaTeX document class
-  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
- relsize.sty    2011/09/21 ver 4.0
-  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
-graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
-graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
-    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
-graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
-  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
-infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
- ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
- makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    1999/02/16
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-setspace.sty    2011/12/19 v6.7a set line spacing
- amsmath.sty    2000/07/18 v2.13 AMS math features
- amstext.sty    2000/06/29 v2.01
-  amsgen.sty    1999/11/30 v2.0
-  amsbsy.sty    1999/11/29 v1.2d
-  amsopn.sty    1999/12/14 v2.01 operator names
-amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
-   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
-      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
-microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
-microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
-fancyvrb.sty    2008/02/07
-   float.sty    2001/11/08 v1.3d Float enhancements (AL)
-  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
-pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
-ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
-catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
-etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-admon_colors.w18
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
-hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
-hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
-hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
- intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
-kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
-kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
-pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
-  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
-uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
-letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
- hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
-xcolor-patch.sty    2011/01/30 xcolor patch
-atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
-atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
-refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
- hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
-kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
-  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
-hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
-     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
- hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
-rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-placeins.sty    2005/04/18  v 2.2
-  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
-titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
-supp-pdf.mkii
-epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
-  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
-epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
-RS)
-admon_colors.pyg
- nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
-gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
-newcommands_bfmath.tex
-newcommands_replace.tex
-    umsa.fd    2009/06/22 v3.00 AMS symbols A
-  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-    umsb.fd    2009/06/22 v3.00 AMS symbols B
-  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-admon_colors.out.pyg
-latex_figs/warning.pdf
-  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
-latex_figs/warning.pdf
-latex_figs/notice.pdf
-latex_figs/question.pdf
-latex_figs/question.pdf
-latex_figs/hint.pdf
-admon_colors.out.pyg
-latex_figs/notice.pdf
-admon_colors.out.pyg
-admon_colors.out.pyg
-../doc/manual/figs/wavepacket_0001.png
- ***********
-
-
-Package rerunfilecheck Warning: File `admon_colors.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
- )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb
->
-Output written on admon_colors.pdf (5 pages, ).
-Transcript written on admon_colors.log.
-+ doconce ptex2tex admon envir=minted -DADMON=box
-\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-output in admon.tex
-+ cp admon.tex admon_box.tex
-+ pdflatex -shell-escape admon_box
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
- \write18 enabled.
-entering extended mode
-(./admon_box.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-
-(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
-Examine \normalsize starts \@setfontsize size may be \@xpt. 
-Examine \small starts \@setfontsize size may be \@ixpt. 
-Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
-Examine \large starts \@setfontsize size may be \@xiipt. 
-Examine \Large starts \@setfontsize size may be \@xivpt. 
-Examine \LARGE starts \@setfontsize size may be \@xviipt. 
-Examine \scriptsize starts \@setfontsize size may be \@viipt. 
-Examine \tiny starts \@setfontsize size may be \@vpt. 
-Examine \huge starts \@setfontsize size may be \@xxpt. 
-Examine \Huge starts \@setfontsize size may be \@xxvpt. )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-
-
-
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) 
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
-
-(./admon_box.w18))/usr/local/bin/pygmentize
-) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-
-
-
-
-
-
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-base.sty
-
-(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
-
-(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
-
-
-(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-
-
-
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-
-
-
-
-
-
-
-(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
-
-
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
-hs.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-1.mdf
-)) 
-Writing index file admon_box.idx
-No file admon_box.aux.
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-
-
- (./admon_box.pyg
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-
-ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
-(./newcommands_replace.tex)
-
-
-
-
-(./admon_box.out.pyg) 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./admon_box.out.pyg)
-(./admon_box.out.pyg) (./admon_box.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=20, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [2] [3]
-No file admon_box.ind.
-[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_box.aux)
-
- *File List*
- article.cls    2007/10/19 v1.4h Standard LaTeX document class
-  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
- relsize.sty    2011/09/21 ver 4.0
-  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
-graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
-graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
-    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
-graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
-  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
-infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
- ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
- makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    1999/02/16
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-setspace.sty    2011/12/19 v6.7a set line spacing
- amsmath.sty    2000/07/18 v2.13 AMS math features
- amstext.sty    2000/06/29 v2.01
-  amsgen.sty    1999/11/30 v2.0
-  amsbsy.sty    1999/11/29 v1.2d
-  amsopn.sty    1999/12/14 v2.01 operator names
-amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
-   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
-      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
-microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
-microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
-fancyvrb.sty    2008/02/07
-   float.sty    2001/11/08 v1.3d Float enhancements (AL)
-  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
-pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
-ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
-catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
-etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-admon_box.w18
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
-hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
-hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
-hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
- intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
-kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
-kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
-pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
-  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
-uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
-letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
- hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
-xcolor-patch.sty    2011/01/30 xcolor patch
-atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
-atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
-refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
- hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
-kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
-  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
-hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
-     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
- hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
-rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-placeins.sty    2005/04/18  v 2.2
-mdframed.sty    2012/04/08 v1.5: mdframed
-  xparse.sty    2012/04/23 v3570 L3 Experimental document command parser
-   expl3.sty    2012/04/23 v3570 L3 Experimental code bundle wrapper
- l3names.sty    2012/03/04 v3494 L3 Experimental namespace for primitives
-l3bootstrap.sty    2011/12/29 v3110 L3 Experimental bootstrap code
-    etex.sty    1998/03/26 v2.0 eTeX basic definition package (PEB)
-l3basics.sty    2012/03/04 v3491 L3 Experimental basic definitions
- l3expan.sty    2012/02/26 v3460 L3 Experimental argument expansion
-    l3tl.sty    2012/03/04 v3490 L3 Experimental token lists
-   l3seq.sty    2012/03/04 v3490 L3 Experimental sequences and stacks
-   l3int.sty    2012/03/04 v3490 L3 Experimental integers
- l3quark.sty    2012/02/12 v3384 L3 Experimental quarks
-   l3prg.sty    2012/03/04 v3490 L3 Experimental control structures
- l3clist.sty    2012/03/04 v3490 L3 Experimental comma separated lists
- l3token.sty    2012/03/04 v3491 L3 Experimental token manipulation
-  l3prop.sty    2012/03/04 v3490 L3 Experimental property lists
-   l3msg.sty    2012/04/23 v3568 L3 Experimental messages
-  l3file.sty    2012/03/09 v3520 L3 Experimental file and I/O operations
-  l3skip.sty    2012/03/05 v3499 L3 Experimental dimensions and skips
-  l3keys.sty    2012/03/03 v3487 L3 Experimental key-value interfaces
-    l3fp.sty    2012/03/04 v3490 L3 Experimental floating-point operations
-   l3box.sty    2012/03/04 v3490 L3 Experimental boxes
-l3coffins.sty    2012/03/03 v3482 L3 Experimental coffin code layer
- l3color.sty    2011/09/07 v2776 L3 Experimental colour support
-l3luatex.sty    2012/02/09 v3355 L3 Experimental LuaTeX-specific functions
-etoolbox.sty    2011/01/03 v2.1 e-TeX tools for LaTeX
-zref-abspage.sty    2012/04/04 v2.24 Module abspage for zref (HO)
-zref-base.sty    2012/04/04 v2.24 Module base for zref (HO)
- auxhook.sty    2011/03/04 v1.3 Hooks for auxiliary files (HO)
-    tikz.sty    2010/10/13 v2.10 (rcs-revision 1.76)
-     pgf.sty    2008/01/15 v2.10 (rcs-revision 1.12)
-  pgfrcs.sty    2010/10/25 v2.10 (rcs-revision 1.24)
-everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
-  pgfrcs.code.tex
- pgfcore.sty    2010/04/11 v2.10 (rcs-revision 1.7)
-  pgfsys.sty    2010/06/30 v2.10 (rcs-revision 1.37)
-  pgfsys.code.tex
-pgfsyssoftpath.code.tex    2008/07/18  (rcs-revision 1.7)
-pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
- pgfcore.code.tex
-pgfcomp-version-0-65.sty    2007/07/03 v2.10 (rcs-revision 1.7)
-pgfcomp-version-1-18.sty    2007/07/23 v2.10 (rcs-revision 1.1)
-  pgffor.sty    2010/03/23 v2.10 (rcs-revision 1.18)
- pgfkeys.sty    
- pgfkeys.code.tex
-  pgffor.code.tex
-    tikz.code.tex
-md-frame-1.mdf    2012/04/08  v1.5: md-frame-1
-titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
-supp-pdf.mkii
-epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
-  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
-epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
-RS)
-admon_box.pyg
- nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
-gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
-newcommands_bfmath.tex
-newcommands_replace.tex
-    umsa.fd    2009/06/22 v3.00 AMS symbols A
-  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-    umsb.fd    2009/06/22 v3.00 AMS symbols B
-  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-admon_box.out.pyg
-  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
-admon_box.out.pyg
-admon_box.out.pyg
-admon_box.out.pyg
-../doc/manual/figs/wavepacket_0001.png
- ***********
-
-
-Package rerunfilecheck Warning: File `admon_box.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
- )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on admon_box.pdf (4 pages, ).
-Transcript written on admon_box.log.
-+ doconce ptex2tex admon envir=minted -DADMON=paragraph
-\bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-output in admon.tex
-+ cp admon.tex admon_paragraph.tex
-+ pdflatex -shell-escape admon_paragraph
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
- \write18 enabled.
-entering extended mode
-(./admon_paragraph.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-
-(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
-Examine \normalsize starts \@setfontsize size may be \@xpt. 
-Examine \small starts \@setfontsize size may be \@ixpt. 
-Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
-Examine \large starts \@setfontsize size may be \@xiipt. 
-Examine \Large starts \@setfontsize size may be \@xivpt. 
-Examine \LARGE starts \@setfontsize size may be \@xviipt. 
-Examine \scriptsize starts \@setfontsize size may be \@viipt. 
-Examine \tiny starts \@setfontsize size may be \@vpt. 
-Examine \huge starts \@setfontsize size may be \@xxpt. 
-Examine \Huge starts \@setfontsize size may be \@xxvpt. )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-
-
-
-
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-
-(/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) 
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
-
-(./admon_paragraph.w18))/usr/local/bin/pygmentize
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-
-
-
-
-
-
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-
-
-
-Writing index file admon_paragraph.idx
-No file admon_paragraph.aux.
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-
-
-
-(./admon_paragraph.pyg)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-
-(./newcommands_bfmath.tex) (./newcommands_replace.tex)
-
-
-
-
-(./admon_paragraph.out.pyg)
- [1{/var/lib/texmf/font
-s/map/pdftex/updmap/pdftex.map}] (./admon_paragraph.out.pyg)
-(./admon_paragraph.out.pyg) (./admon_paragraph.out.pyg [2])
-<../doc/manual/figs/wavepacket_0001.png, id=27, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3]
-No file admon_paragraph.ind.
-[4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_paragraph.aux)
-
- *File List*
- article.cls    2007/10/19 v1.4h Standard LaTeX document class
-  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
- relsize.sty    2011/09/21 ver 4.0
-  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
-graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
-graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
-    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
-graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
-  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
-infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
- ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
- makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
-   color.sty    1999/02/16
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-setspace.sty    2011/12/19 v6.7a set line spacing
- amsmath.sty    2000/07/18 v2.13 AMS math features
- amstext.sty    2000/06/29 v2.01
-  amsgen.sty    1999/11/30 v2.0
-  amsbsy.sty    1999/11/29 v1.2d
-  amsopn.sty    1999/12/14 v2.01 operator names
-amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
-  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
-   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
-colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
-   array.sty    2008/09/09 v2.4c Tabular extension package (FMi)
-      bm.sty    2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
-microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
-microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
-  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
-fancyvrb.sty    2008/02/07
-   float.sty    2001/11/08 v1.3d Float enhancements (AL)
-  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
-pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
-ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
-catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
-etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-admon_paragraph.w18
-inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
-hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
-hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
-hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
- intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
-kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
-kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
-pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
-  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
-uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
-letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
- hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
-xcolor-patch.sty    2011/01/30 xcolor patch
-atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
-atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
-refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
- hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
-kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
-  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
-hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
-     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
- hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
-rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-placeins.sty    2005/04/18  v 2.2
-titlesec.sty    2011/12/15 v2.10.0 Sectioning titles
-supp-pdf.mkii
-epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
-  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
-epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-  mt-cmr.cfg    2009/11/09 v2.0 microtype config. file: Computer Modern Roman (
-RS)
-admon_paragraph.pyg
- nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
-gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
-newcommands_bfmath.tex
-newcommands_replace.tex
-    umsa.fd    2009/06/22 v3.00 AMS symbols A
-  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-    umsb.fd    2009/06/22 v3.00 AMS symbols B
-  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-admon_paragraph.out.pyg
-  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
-admon_paragraph.out.pyg
-admon_paragraph.out.pyg
-admon_paragraph.out.pyg
-../doc/manual/figs/wavepacket_0001.png
- ***********
-
-
-Package rerunfilecheck Warning: File `admon_paragraph.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
- )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on admon_paragraph.pdf (4 pages, ).
-Transcript written on admon_paragraph.log.
 + doconce guess_encoding encoding1.do.txt
 + [ 0 -ne 0 ]
 + cp encoding1.do.txt tmp1.do.txt
@@ -67413,8 +73187,10 @@ figure file ../doc/manual/figs/streamtubes:
 Abort! (add --no_abort on the command line to avoid this abortion)
 + echo
 
-+ echo Successful run of test/make.sh !
-Successful run of test/make.sh !
++ echo When we reach this point in the script,
+When we reach this point in the script,
++ echo it is clearly a successful run of all tests!
+it is clearly a successful run of all tests!
 
 + sh ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/quickref:
@@ -67485,13 +73261,39 @@ For additional information on amsmath, use the `?' option.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/home/hpl/texmf/tex/latex/misc/minted.sty
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/media9/media9.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-
 
 
 
@@ -67564,7 +73366,7 @@ Underfull \hbox (badness 1112)
 her out-
 [7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 760
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 783
 .
 
 [9]
@@ -67624,6 +73426,33 @@ colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 fancyvrb.sty    2008/02/07
+  media9.sty    2012/05/02 v0.7 acrobat-9 compatible media
+   expl3.sty    2012/04/23 v3570 L3 Experimental code bundle wrapper
+ l3names.sty    2012/03/04 v3494 L3 Experimental namespace for primitives
+l3bootstrap.sty    2011/12/29 v3110 L3 Experimental bootstrap code
+    etex.sty    1998/03/26 v2.0 eTeX basic definition package (PEB)
+l3basics.sty    2012/03/04 v3491 L3 Experimental basic definitions
+ l3expan.sty    2012/02/26 v3460 L3 Experimental argument expansion
+    l3tl.sty    2012/03/04 v3490 L3 Experimental token lists
+   l3seq.sty    2012/03/04 v3490 L3 Experimental sequences and stacks
+   l3int.sty    2012/03/04 v3490 L3 Experimental integers
+ l3quark.sty    2012/02/12 v3384 L3 Experimental quarks
+   l3prg.sty    2012/03/04 v3490 L3 Experimental control structures
+ l3clist.sty    2012/03/04 v3490 L3 Experimental comma separated lists
+ l3token.sty    2012/03/04 v3491 L3 Experimental token manipulation
+  l3prop.sty    2012/03/04 v3490 L3 Experimental property lists
+   l3msg.sty    2012/04/23 v3568 L3 Experimental messages
+  l3file.sty    2012/03/09 v3520 L3 Experimental file and I/O operations
+  l3skip.sty    2012/03/05 v3499 L3 Experimental dimensions and skips
+  l3keys.sty    2012/03/03 v3487 L3 Experimental key-value interfaces
+    l3fp.sty    2012/03/04 v3490 L3 Experimental floating-point operations
+   l3box.sty    2012/03/04 v3490 L3 Experimental boxes
+l3coffins.sty    2012/03/03 v3482 L3 Experimental coffin code layer
+ l3color.sty    2011/09/07 v2776 L3 Experimental colour support
+l3luatex.sty    2012/02/09 v3355 L3 Experimental LuaTeX-specific functions
+  xparse.sty    2012/04/23 v3570 L3 Experimental document command parser
+l3keys2e.sty    2012/04/23 v3570 LaTeX2e option processing using LaTeX3 keys
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
@@ -67633,7 +73462,6 @@ pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
 ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
 catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 quickref.w18
@@ -67749,13 +73577,39 @@ For additional information on amsmath, use the `?' option.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/home/hpl/texmf/tex/latex/misc/minted.sty
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/media9/media9.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-
 
 
 
@@ -67877,6 +73731,33 @@ colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
 microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 fancyvrb.sty    2008/02/07
+  media9.sty    2012/05/02 v0.7 acrobat-9 compatible media
+   expl3.sty    2012/04/23 v3570 L3 Experimental code bundle wrapper
+ l3names.sty    2012/03/04 v3494 L3 Experimental namespace for primitives
+l3bootstrap.sty    2011/12/29 v3110 L3 Experimental bootstrap code
+    etex.sty    1998/03/26 v2.0 eTeX basic definition package (PEB)
+l3basics.sty    2012/03/04 v3491 L3 Experimental basic definitions
+ l3expan.sty    2012/02/26 v3460 L3 Experimental argument expansion
+    l3tl.sty    2012/03/04 v3490 L3 Experimental token lists
+   l3seq.sty    2012/03/04 v3490 L3 Experimental sequences and stacks
+   l3int.sty    2012/03/04 v3490 L3 Experimental integers
+ l3quark.sty    2012/02/12 v3384 L3 Experimental quarks
+   l3prg.sty    2012/03/04 v3490 L3 Experimental control structures
+ l3clist.sty    2012/03/04 v3490 L3 Experimental comma separated lists
+ l3token.sty    2012/03/04 v3491 L3 Experimental token manipulation
+  l3prop.sty    2012/03/04 v3490 L3 Experimental property lists
+   l3msg.sty    2012/04/23 v3568 L3 Experimental messages
+  l3file.sty    2012/03/09 v3520 L3 Experimental file and I/O operations
+  l3skip.sty    2012/03/05 v3499 L3 Experimental dimensions and skips
+  l3keys.sty    2012/03/03 v3487 L3 Experimental key-value interfaces
+    l3fp.sty    2012/03/04 v3490 L3 Experimental floating-point operations
+   l3box.sty    2012/03/04 v3490 L3 Experimental boxes
+l3coffins.sty    2012/03/03 v3482 L3 Experimental coffin code layer
+ l3color.sty    2011/09/07 v2776 L3 Experimental colour support
+l3luatex.sty    2012/02/09 v3355 L3 Experimental LuaTeX-specific functions
+  xparse.sty    2012/04/23 v3570 L3 Experimental document command parser
+l3keys2e.sty    2012/04/23 v3570 LaTeX2e option processing using LaTeX3 keys
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
   minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
   ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
@@ -67886,7 +73767,6 @@ pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
 infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
 ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
  ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
 catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 quickref.w18

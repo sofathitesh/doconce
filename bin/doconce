@@ -400,16 +400,32 @@ for figdir in figdirs:
         shutil.copytree(figdir, destdir)
 
 # Copy needed media files in current dir (not in fig* and mov*)
-rst_text = ''
-for rstfile in glob.glob('*.rst'):
-    rstfile += open(rstfile, 'r').read()
-import re
-media_files = re.findall('.. figure:: (.+)', rstfile)
-media_files = [name for name in media_files
-               if not os.sep in name]
-for name in media_files:
-    print 'copying', name, 'to', sphinx_rootdir
-    shutil.copy(name, sphinx_rootdir)
+for rstfile in [os.path.join(sphinx_rootdir, filename + '.rst')]:
+    f = open(rstfile, 'r')
+    text = text_orig = f.read()
+    f.close()
+    import re
+    media_files = [name.strip() for name in
+                   re.findall('.. figure:: (.+)', text)]
+    local_media_files = [name for name in media_files if not os.sep in name]
+
+    for name in media_files:
+        basename = os.path.basename(name)
+        if name.startswith('http') or name.startswith('ftp'):
+            pass
+        else:
+            if not os.path.isfile(os.path.join(sphinx_rootdir, basename)):
+                print 'copying', name, 'to', sphinx_rootdir
+                shutil.copy(name, sphinx_rootdir)
+            if name not in local_media_files:
+                # name lies in another directory, make local reference to it
+                # since it is copied to sphinx_rootdir
+                text = text.replace('.. figure:: %%s' %% name,
+                                    '.. figure:: %%s' %% basename)
+    if text != text_orig:
+        f = open(rstfile, 'w')
+        f.write(text)
+        f.close()
 
 # Copy linked local files, placed in _static*, to %(sphinx_rootdir)s/_static
 staticdirs = glob.glob('_static*')

@@ -62,6 +62,12 @@ Here is a block of text with title. It is typeset without any icon
 and is useful when you want some admons with icon and some without.
 !eblock
 
+# #if FORMAT == "sphinx"
+Admonitions must have a title in Sphinx, otherwise they are not
+shown. Here, we have not specified any title, and Doconce then
+applies the generic title "Notice:"
+# #endif
+
 !bblock
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
@@ -105,6 +111,11 @@ def grab(url, filename):
 !ehint
 
 Next is a warning without a title ("none" implies no title).
+# #if FORMAT == "sphinx"
+Admonitions must have a title in Sphinx, otherwise they are not
+shown. Here, we have not specified any title, and Doconce then
+applies the generic title "Notice:"
+# #endif
 
 !bwarning none
 And here comes some text with bad news.
