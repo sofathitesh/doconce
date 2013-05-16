@@ -354,7 +354,9 @@ def rst_quote(block, format):
 # reST has native admons, but only the warning applies color.
 
 def rst_admon(block, format, title='Admonition'):
-    if title[-1] in ('!', ':', '?', ';'):
+    if title == '' or title.lower() == 'none':
+        title = 'Notice'  # dummy title: with title as '', nothing comes out
+    if title[-1] in ('!', ':', '?', ';', '.'):
         # : is always added to the title - remove other punctuation
         title = title[:-1]
     return """

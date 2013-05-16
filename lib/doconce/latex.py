@@ -353,14 +353,11 @@ width=0.9\linewidth,
 autostart]{%(filename)s}{%(filename)s}
 %% #else
 \href{run:%(filename)s}{%(filename)s}
-
-%% alternative: \movie command that comes with beamer
-%% \movie[options]{%(filename)s}{%(filename)s}
 %% #endif
 """ % {'filename': filename}
         if caption:
             # Note: caption may contain a label
-            text = r"""
+            text += r"""
 \end{center}
 \caption{%s}
 \end{figure}
@@ -1512,8 +1509,8 @@ final,                   % or draft (marks overfull hboxes)
                 graphics_yellowbox = ''
 
             INTRO['latex'] += r"""
-%% Admonition environment for "%(admon)s"
 %% #if ADMON == "colors1"
+%% Admonition environment for "%(admon)s"
 %% Style from NumPy User Guide
 \definecolor{%(admon)sbackground}{rgb}{%(color_colors)s}
 %% \fboxsep sets the space between the text and the box
@@ -1531,6 +1528,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{%(admon)sshaded}
 }
 %% #elif ADMON == "colors2"
+%% Admonition environment for "%(admon)s"
 \definecolor{%(admon)sbackground}{rgb}{%(color_colors)s}
 %% \fboxsep sets the space between the text and the box
 \newenvironment{%(admon)sshaded}
@@ -1547,6 +1545,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{%(admon)sshaded}
 }
 %% #elif ADMON == "graybox3"
+%% Admonition environment for "%(admon)s"
 \definecolor{%(admon)sbackground}{rgb}{%(color_graybox3)s}
 %% \fboxsep sets the space between the text and the box
 \newenvironment{%(admon)sshaded}
@@ -1563,6 +1562,7 @@ final,                   % or draft (marks overfull hboxes)
 \end{%(admon)sshaded}
 }
 %% #elif ADMON == "yellowbox"
+%% Admonition environment for "%(admon)s"
 \definecolor{%(admon)sbackground}{rgb}{%(color_yellowbox)s}
 %% \fboxsep sets the space between the text and the box
 \newenvironment{%(admon)sshaded}

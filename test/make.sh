@@ -389,5 +389,6 @@ doconce format rst tmp2
 doconce replace '`Google`' '`Google` site' tmp2.do.txt
 doconce format rst tmp2
 echo
-echo "Successful run of test/make.sh !"
+echo "When we reach this point in the script,"
+echo "it is clearly a successful run of all tests!"
 

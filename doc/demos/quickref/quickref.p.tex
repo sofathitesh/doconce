@@ -67,6 +67,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{bm,microtype}
 \usepackage{ptex2tex}
 
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
@@ -138,8 +151,8 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 % #endif
 
 % #ifdef LINENUMBERS
@@ -148,215 +161,568 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % #ifndef ADMON
-% #define ADMON "colors"
-% Default is "colors", i.e., framed box with color
+% #define ADMON "colors1"
+% Default is "colors2", i.e., box with color and text wrapped around icon
+% #endif
+
+% #if ADMON == "colors1"
 \usepackage{framed}
-% #else
-% #if ADMON == "colors"
-\usepackage{framed}
+% #elif ADMON == "colors2"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "graybox3"
+\usepackage{framed,wrapfig}
+% #elif ADMON == "yellowbox"
+\usepackage{framed,wrapfig}
 % #elif ADMON == "paragraph"
+% #elif ADMON == "graybox2"
+\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}
 % #else
 \usepackage[framemethod=TikZ]{mdframed}
 % #endif
+
+% #if ADMON == "graybox2"
+% gray box with horizontal rules (cannot handle verbatim text)
+\definecolor{lightgray}{rgb}{0.94,0.94,0.94}
+% #ifdef A4PAPER
+\newdimen\barheight
+\def\barthickness{0.5pt}
+
+% small box to the right for A4 paper
+\newcommand{\grayboxhrules}[1]{\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-\baselineskip}\colorbox{lightgray}{\rule{3pt}{0pt}
+\begin{minipage}{0.5\textwidth-6pt-\columnsep}
+\hspace*{3mm}
+\setbox2=\hbox{\parbox[t]{55mm}{
+#1 \rule[-8pt]{0pt}{10pt}}}%
+\barheight=\ht2 \advance\barheight by \dp2
+\parbox[t]{3mm}{\rule[0pt]{0mm}{22pt}%\hspace*{-2pt}%
+\hspace*{-1mm}\rule[-\barheight+16pt]{\barthickness}{\barheight-8pt}%}
+}\box2\end{minipage}\rule{3pt}{0pt}}\vspace*{-\baselineskip}
+\end{wrapfigure}}
+% #else
+% gray box of 80% width
+\newcommand{\grayboxhrules}[1]{\begin{center}
+\colorbox{lightgray}{\rule{6pt}{0pt}
+\begin{minipage}{0.8\linewidth}
+\parbox[t]{0mm}{\rule[0pt]{0mm}{0.5\baselineskip}}\hrule
+\vspace*{0.5\baselineskip}\noindent #1
+\parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
+{\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
+\rule{6pt}{0pt}}\end{center}}
 % #endif
 
+% Fallback for verbatim content in \grayboxhrules
+\newmdenv[
+  backgroundcolor=lightgray,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  leftmargin=23,
+  rightmargin=23,
+]{graybox2mdframed}
+
+\newenvironment{graybox2admon}[1][]{
+\begin{graybox2mdframed}[frametitle=#1]
+}
+{
+\end{graybox2mdframed}
+}
+
+% #elif ADMON == "paragraph"
+% Admonition is just a paragraph
+\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+% #elif ADMON == "colors1"
+% #elif ADMON == "colors2"
+% #elif ADMON == "graybox3"
+% #elif ADMON == "yellowbox"
+% #else
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+% #endif
+
+% #if ADMON == "colors1"
 % Admonition environment for "hint"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
 % \fboxsep sets the space between the text and the box
 \newenvironment{hintshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
+\newenvironment{hint_colors1admon}[1][Hint]{
 \begin{hintshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/hint}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{hintshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{hintadmon}[1][Hint]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{hintmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{hintadmon}[1][Hint]{
-\begin{hintmdframed}[frametitle=#1]
+\newenvironment{hint_colors2admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/hint}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{hintmdframed}
+\end{hintshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_graybox3admon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "hint"
+\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{hintshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{hint_yellowboxadmon}[1][Hint]{
+\begin{hintshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{hintshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "notice"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
+\newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/notice}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{noticeshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{noticeadmon}[1][Notice]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{noticemdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{noticeadmon}[1][Notice]{
-\begin{noticemdframed}[frametitle=#1]
+\newenvironment{notice_colors2admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/notice}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{noticemdframed}
+\end{noticeshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_graybox3admon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "notice"
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{noticeshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{notice_yellowboxadmon}[1][Notice]{
+\begin{noticeshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_notice.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{noticeshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "summary"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
+\newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/summary}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{summaryshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{summaryadmon}[1][Summary]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{summarymdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{summaryadmon}[1][Summary]{
-\begin{summarymdframed}[frametitle=#1]
+\newenvironment{summary_colors2admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/summary}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{summarymdframed}
+\end{summaryshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_graybox3admon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "summary"
+\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{summaryshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{summary_yellowboxadmon}[1][Summary]{
+\begin{summaryshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_summary.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{summaryshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "warning"
-% #if ADMON == "colors"
+% Style from NumPy User Guide
 \definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
+\newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/warning}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{warningshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{warningadmon}[1][Warning]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{warningmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{warningadmon}[1][Warning]{
-\begin{warningmdframed}[frametitle=#1]
+\newenvironment{warning_colors2admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/warning}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{warningmdframed}
+\end{warningshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_graybox3admon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "warning"
+\definecolor{warningbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{warningshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{warning_yellowboxadmon}[1][Warning]{
+\begin{warningshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_warning.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{warningshaded}
 }
 % #endif
 
+% #if ADMON == "colors1"
 % Admonition environment for "question"
-% #if ADMON == "colors"
-\definecolor{questionbackground}{rgb}{0.87843, 0.95686, 1.0}
+% Style from NumPy User Guide
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
+\newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
-\includegraphics[height=0.3in]{latex_figs/question}
-\ \ \ {\large\sc #1}\\ \par
+\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
 \nobreak\noindent\ignorespaces
 }
 {
 \end{questionshaded}
 }
-% #elif ADMON == "paragraph"
-% Admonition is just a paragraph
-\newenvironment{questionadmon}[1][Question]{\paragraph{#1}}{}
-% #else
-\newmdenv[
-  backgroundcolor=gray!10,  % white with 10% gray
-  skipabove=\topsep,
-  skipbelow=\topsep,
-  outerlinewidth=0.5,
-  leftmargin=0,
-  rightmargin=0,
-  roundcorner=5,
-]{questionmdframed}
+% #elif ADMON == "colors2"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
 
-\newenvironment{questionadmon}[1][Question]{
-\begin{questionmdframed}[frametitle=#1]
+\newenvironment{question_colors2admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/question}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
 }
 {
-\end{questionmdframed}
+\end{questionshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_graybox3admon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_question2.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "question"
+\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{questionshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{question_yellowboxadmon}[1][Question]{
+\begin{questionshaded}
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+\vspace{-13pt}
+\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_question.eps}
+\end{wrapfigure} \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{questionshaded}
+}
+% #endif
+
+% #if ADMON == "colors1"
+% Admonition environment for "block"
+% Style from NumPy User Guide
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors1admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+  \textbf{#1}\\ \par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "colors2"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_colors2admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "graybox3"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.91, 0.91, 0.91}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_graybox3admon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
+}
+% #elif ADMON == "yellowbox"
+% Admonition environment for "block"
+\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
+% \fboxsep sets the space between the text and the box
+\newenvironment{blockshaded}
+{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
+ \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+\newenvironment{block_yellowboxadmon}[1][Block]{
+\begin{blockshaded}
+\noindent
+ \textbf{#1}\par
+\nobreak\noindent\ignorespaces
+}
+{
+\end{blockshaded}
 }
 % #endif
 
@@ -491,16 +857,16 @@ Department of Informatics, University of Oslo\inst{2}}
 
 
 % #if LATEX_HEADING == "traditional"
-\date{May 5, 2013}
+\date{May 16, 2013}
 \maketitle
 % #elif LATEX_HEADING == "beamer"
-\date{May 5, 2013
+\date{May 16, 2013
 % <titlepage figure>
 }
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{May 5, 2013}}
+{\large\textsf{May 16, 2013}}
 
 \end{center}
 \vfill
@@ -508,7 +874,7 @@ Department of Informatics, University of Oslo\inst{2}}
 
 % #else
 \begin{center}
-May 5, 2013
+May 16, 2013
 \end{center}
 
 \vspace{1cm}
@@ -980,8 +1346,8 @@ is also important, one should follow these rules:
 labels in \code{align} environments work well.)
 
 
-% #if ADMON == "colors"
-\begin{noticeadmon}[Notice]
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Notice]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -992,9 +1358,48 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{noticeadmon}
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Notice]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Notice]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Notice]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{notice_yellowboxadmon}
 % #elif ADMON == "paragraph"
-\begin{noticeadmon}[Notice.]
+\begin{paragraphadmon}[Notice.]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -1005,9 +1410,24 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{noticeadmon}
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Notice.]
+{\LaTeX} supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as \code{sphinx}, makes it necessary
+to only utilze very standard {\LaTeX} and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically \code{if FORMAT in ("latex", "pdflatex")}) to
+include special code for \code{latex} and \code{pdflatex} output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced {\LaTeX} features and fine tuning of resulting
+PDF document.
+\end{graybox2admon}
+
 % #else
-\begin{noticeadmon}[Notice.]
+\begin{graybox1admon}[Notice.]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \code{sphinx}, makes it necessary
@@ -1018,7 +1438,7 @@ include special code for \code{latex} and \code{pdflatex} output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{noticeadmon}
+\end{graybox1admon}
 % #endif
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
