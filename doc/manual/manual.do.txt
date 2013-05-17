@@ -1439,10 +1439,12 @@ in the current format.
 Doconce offers strong support for admonition environments, such
 as warning boxes, notification boxes, hint boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
-and may also have a background color.
+and may also have a background color. A special box, the block,
+has never any icon and can be used when an icon would be disturbing
+or misleading.
 
 The following admonition environments are available:
-`warning`, `notice`, `hint`, `question`, and `summary`.
+`block`, `warning`, `notice`, `hint`, `question`, and `summary`.
 The box is defined by begin and end tags such as `!bhint` and `!ehint`.
 (The hint box is typeset differently inside exercises compared to outside
 exericises: inside a plain paragraph heading *Hint* (with number)
@@ -1461,7 +1463,11 @@ Here is a warning!
 This is a hint.
 |ehint
 
-|bnotice Gooing deeper
+|bblock This is a block.
+A block has never any icon.
+|eblock
+
+|bnotice Going deeper
 This is text meant to provide more details. The box has the
 layout of the notice box, but a custom title, here "Going deeper".
 |enotice
@@ -1483,7 +1489,11 @@ Here is a warning!
 This is a hint.
 !ehint
 
-!bnotice Gooing deeper
+!bblock This is a block.
+A block has never any icon.
+!eblock
+
+!bnotice Going deeper
 This is text meant to provide more details. The box has the
 layout of the notice box, but a custom title, here "Going deeper".
 !enotice
@@ -1527,18 +1537,23 @@ In `latex` and `pdflatex`, the type of admonition is configured in the
 `.p.tex` file through the `ADMON` preprocessor variable.
 Several values are available:
 
- * `paragraph` is the simplest and typeset
-   as plain paragraphs with an optional heading.
- * `colors` (taken from the NumPy User Guide) applies different colors for
+ * `paragraph` is the simplest type of admonition and typeset
+   as plain text with an optional paragraph heading.
+ * `colors1` (inspired by the NumPy User Guide) applies different colors for
    the different admons with an embedded icon.
+ * `colors2` is like `colors1` but the text is wrapped around the icon.
  * `graybox1` is the default and gives rounded gray boxes with a potential
-   title.
+   title and no icon.
  * `graybox2` has square corners, gray background, and is narrower
-   than `graybox1`. One special feature if `graybox2` is the summary
+   than `graybox1`. One special feature of `graybox2` is the summary
    admon, which has a different look with horizontal rules only,
    and for A4 format, the summary box is half of the text width and
-   wrapped with text around (if it does not contain verbatim text,
-   in that case the standard `graybox2` style is used).
+   wrapped with running text around (if it does not contain verbatim text,
+   in that case the standard `graybox2` style is used). This small
+   summary box is effective in proposals to disperse small paragraphs
+   of key points around.
+ * `graybox3` has icons and a light gray background.
+ * `yellowbox` has icons and a light yellow background.
 
 ===== Preprocessing Steps =====
 
