@@ -42,6 +42,8 @@ document is embedded."""),
      """Specify HTML font for text body. =? lists available Google fonts."""),
     ('--html_heading_font=',
      """Specify HTML font for headings. =? lists available Google fonts."""),
+    ('--html_video_autoplay=',
+     """True for autoplay when HTML is loaded, otherwise False (default)."""),
     ('--html_slide_theme=',
      """Specify a theme for the present slide type.
 (See the HTML header for a list of theme files and their names."""),
@@ -688,8 +690,6 @@ def combine_images():
     if len(sys.argv) < 3:
         _usage_combine_images()
         sys.exit(1)
-
-    remove_options_from_command_line()
 
     imagefiles = sys.argv[1:-1]
     output_file = sys.argv[-1]

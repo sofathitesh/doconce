@@ -726,6 +726,11 @@ def html_movie(m):
             kwargs['width'] = int(opt.split('=')[1])
         if opt.startswith('height') or opt.startswith('HEIGHT'):
             kwargs['height'] = int(opt.split('=')[1])
+    autoplay = option('html_video_autoplay=', 'False')
+    if autoplay in ('on', 'off', 'True', 'true'):
+        autoplay = True
+    else:
+        autoplay = False
 
     if 'youtu.be' in filename:
         filename = filename.replace('youtu.be', 'youtube.com')
@@ -780,16 +785,50 @@ def html_movie(m):
     else:
         width = kwargs.get('width', 640)
         height = kwargs.get('height', 365)
-        if filename.endswith('.mp4'):
-            text= """
-<video width='%s' height='%s' preload='none' controls ><source src='%s' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
-<p><em>%s</em></p>
-""" % (width, height, filename, caption)
-        else:
+        #basename = os.path.basename(filename)
+        stem, ext = os.path.splitext(filename)
+        #<source src='%(stem)s.mp4'  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>  # here we have /> at the end
+
+        # ffmpeg -qscale 5 -r 20 -b 9600 -i img%04d.png movie.mp4
+        # http://www.miscdebris.net/blog/2008/04/28/create-a-movie-file-from-single-image-files-png-jpegs/
+
+        # ffmpeg -i video.avi -vcodec libx264 -x264opts keyint=30 -r 30 video.mp4
+        # ffmpeg -i frame-%d.png -vcodec libx264 -x264opts keyint=30 -r 30 video.mp4
+        # sudo apt-get install libx264-dev x264 libavcodec-extra-53
+        # git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg
+
+
+        # Specify mp4 as first video because on iOS only the first specified
+        # video is loaded, and mp4 can play on iOS.
+        if ext == '':
+            print 'Do not specify movie file without extension'
+        if ext in ('.mp4', '.ogg', '.webm'):
+            # Use HTML video tag
+            autoplay = 'autoplay' if autoplay else ''
             text = """
-<embed src="%s" %s autoplay="false" loop="true"></embed>
+<div>
+<video %(autoplay)s loop controls width='%(width)s' height='%(height)s' preload='none'>""" % vars()
+            if os.path.isfile(stem + '.mp4'):
+                text += """
+<source src='%(stem)s.mp4'  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>""" % vars()
+            if os.path.isfile(stem + '.webm'):
+                text += """
+<source src='%(stem)s.webm' type='video/webm; codecs="vp8, vorbis"'>""" % vars()
+            if os.path.isfile(stem + '.ogg'):
+                text += """
+<source src='%(stem)s.ogg'  type='video/ogg; codecs="theora, vorbis"'>""" % vars()
+            text += """
+</video>
+</div>
+<p><em>%(caption)s</em></p>
+""" % vars()
+        else:
+            # Old HTML embed tag
+            autoplay = 'true' if autoplay else 'false'
+            text = """
+<embed src="%s" %s autoplay="%s" loop="true"></embed>
 <p><em>%s</em></p>
-""" % (filename, ' '.join(options), caption)
+""" % (filename, ' '.join(options), autoplay, caption)
     return text
 
 def html_author(authors_and_institutions, auth2index,

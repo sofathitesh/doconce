@@ -803,8 +803,8 @@ def _get_admon_figs(filename):
         import doconce, shutil
         doconce_dir = os.path.dirname(doconce.__file__)
         doconce_datafile = os.path.join(doconce_dir, datafile)
-        print 'copying admon figures from %s to subdirectory %s' % \
-              (doconce_datafile, latexfigdir)
+        #print 'copying admon figures from %s to subdirectory %s' % \
+        #      (doconce_datafile, latexfigdir)
         shutil.copy(doconce_datafile, os.curdir)
         import zipfile
         zipfile.ZipFile(datafile).extractall()
