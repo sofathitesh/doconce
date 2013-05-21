@@ -1848,7 +1848,12 @@ LaTeX Beamer slides.
 
 The "Mako": "http://docs.makotemplates.org/" templating engine is used
 as preprocessor for Doconce documents, but the "Preprocess": "http://code.google.com/p/preprocess" is run prior to Mako and is recommended for
-including other files via `# #include "filename"`.
+including other files via `# #include "filename"`. Preprocess is also
+sufficient for if-else tests to steer which parts of the text that
+are to be compiled. For more demanding tasks, use Mako, which resembles
+a real programming language.
+
+===== The Basics of Mako =====
 
 !bc
 # Define variables
@@ -1898,6 +1903,111 @@ block
 comment in Mako.
 <%doc/>
 !ec
+
+===== Example: Defining a Theorem Environment =====
+label{manual:theorem:envir}
+
+Doconce supports only basic formatting elements (headings, paragraphs,
+lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
+theorems. A flexible strategy is to typeset theorems
+using paragraph headings, which will look satisfactorily in all
+formats, but add comment lines that can be replaced by LaTeX environments
+via `doconce replace`. Theorems can be numbered using a variable in Mako.
+Here is an example on raw Doconce code:
+
+!bc
+<%
+theorem_counter = 4
+%>
+
+# begin theorem
+label{theorem:fundamental1}
+<%
+theorem_counter += 1
+theorem_fundamental1 = theorem_counter
+%>
+
+__Theorem ${theorem_counter}.__
+Let $a=1$ and $b=2$. Then $c=3$.
+# end theorem
+
+# begin proof
+__Proof.__
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$|$END$
+# end proof
+
+As we see, the proof of Theorem ${theorem_counter} is a modest
+achievement.
+!ec
+The `.p.tex` output file now reads
+!bc
+% begin theorem
+label{theorem:fundamental1}
+
+
+\paragraph{Theorem 5.}
+Let $a=1$ and $b=2$. Then $c=3$.
+% end theorem
+
+% begin proof
+\paragraph{Proof.}
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$
+% end proof
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+!ec
+Note that with Mako variables we can easily create our own counters,
+and this works in any format. In LaTeX we can use both the generated
+numbers from Mako variables or we can use the labels.
+
+The next step is to replace the `% begin ...` and `% end ...` lines with
+the proper LaTeX expressions in the `.p.tex` file. Moreover, we
+need to remove the paragraphs with *Theorem*.
+The following Bash script does the job:
+!bc shpro
+file=mydoc.p.tex
+thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
+doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $file
+doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file
+doconce replace '% begin theorem' '\begin{theorem}' $file
+doconce replace '% end theorem' '\end{theorem}' $file
+!ec
+More heavy editing is better done in a Python script that reads the
+`mydoc.p.tex` file and performs string substitutions and regex
+substitutions as needed.
+
+The resulting `mydoc.tex` file now becomes
+!bc
+\usepackage{theorem}
+\newtheorem{theorem}{Theorem}[section]
+
+...
+
+\begin{theorem}
+\label{theorem:fundamental1}
+
+
+
+Let $a=1$ and $b=2$. Then $c=3$.
+\end{theorem}
+
+% begin proof
+\paragraph{Proof.}
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$
+% end proof
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+!ec
+Even better, HTML output looks nice as well.
+
+Note that Doconce supports fancy environments for verbatim code via
+the `ptex2tex` program with all its flexibility for choosing environments.
+Also `doconce ptex2tex` has some flexibility for typesetting computer code.
 
 
 
@@ -2229,107 +2339,9 @@ Terminal> doconce subst '(\\includegraphics\[.+\}\})' \
 
 === How can I use my fancy LaTeX environments? ===
 
-Doconce supports only basic formatting elements (headings, paragraphs,
-lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
-theorems. A flexible strategy is to typeset theorems
-using paragraph headings, which will look satisfactorily in all
-formats, but add comment lines that can be replaced by LaTeX environments
-via `doconce replace`. Theorems can be numbered using a variable in Mako.
-Here is an example on raw Doconce code:
-
-!bc
-<%
-theorem_counter = 4
-%>
-
-# begin theorem
-label{theorem:fundamental1}
-<%
-theorem_counter += 1
-theorem_fundamental1 = theorem_counter
-%>
-
-__Theorem ${theorem_counter}.__
-Let $a=1$ and $b=2$. Then $c=3$.
-# end theorem
-
-# begin proof
-__Proof.__
-Since $c=a+b$, the result follows from straightforward addition.
-$\Diamond$|$END$
-# end proof
-
-As we see, the proof of Theorem ${theorem_counter} is a modest
-achievement.
-!ec
-The `.p.tex` output file now reads
-!bc
-% begin theorem
-label{theorem:fundamental1}
-
-
-\paragraph{Theorem 5.}
-Let $a=1$ and $b=2$. Then $c=3$.
-% end theorem
-
-% begin proof
-\paragraph{Proof.}
-Since $c=a+b$, the result follows from straightforward addition.
-$\Diamond$
-% end proof
-
-As we see, the proof of Theorem 5 is a modest
-achievement.
-!ec
-Note that with Mako variables we can easily create our own counters,
-and this works in any format. In LaTeX we can use both the generated
-numbers from Mako variables or we can use the labels.
-
-The next step is to replace the `% begin ...` and `% end ...` lines with
-the proper LaTeX expressions in the `.p.tex` file. Moreover, we
-need to remove the paragraphs with *Theorem*.
-The following Bash script does the job:
-!bc shpro
-file=mydoc.p.tex
-thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
-doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $file
-doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file
-doconce replace '% begin theorem' '\begin{theorem}' $file
-doconce replace '% end theorem' '\end{theorem}' $file
-!ec
-More heavy editing is better done in a Python script that reads the
-`mydoc.p.tex` file and performs string substitutions and regex
-substitutions as needed.
-
-The resulting `mydoc.tex` file now becomes
-!bc
-\usepackage{theorem}
-\newtheorem{theorem}{Theorem}[section]
-
-...
-
-\begin{theorem}
-\label{theorem:fundamental1}
-
-
-
-Let $a=1$ and $b=2$. Then $c=3$.
-\end{theorem}
-
-% begin proof
-\paragraph{Proof.}
-Since $c=a+b$, the result follows from straightforward addition.
-$\Diamond$
-% end proof
-
-As we see, the proof of Theorem 5 is a modest
-achievement.
-!ec
-Even better, HTML output looks nice as well.
-
-Note that Doconce supports fancy environments for verbatim code via
-the `ptex2tex` program with all its flexibility for choosing environments.
-Also `doconce ptex2tex` has some flexibility for typesetting computer code.
+See Section ref{manual:theorem:envir} for how to make a custom
+theorem environment also in Doconce, without using implementations
+restricted to LaTeX.
 
 
 === The LaTeX file does not compile ===

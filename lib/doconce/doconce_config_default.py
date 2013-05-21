@@ -26,6 +26,7 @@ pygments_html_linenos = False
 #html_template = 
 #html_body_font = 
 #html_heading_font = 
+#html_video_autoplay = 
 #html_slide_theme = 
 #beamer_slide_theme = 
 #html_exercise_icon = 
