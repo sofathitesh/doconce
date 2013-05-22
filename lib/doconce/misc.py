@@ -1597,7 +1597,7 @@ def split_html():
 
 def _usage_slides_html():
     print 'Usage: doconce slides_html mydoc.html slide_type --html_slide_theme=themename'
-    print 'slide_types: reveal|reveal.js deck|deck.js csss dzslides'
+    print 'slide_types: reveal deck csss dzslides'
     print 'note: reveal and deck slide styles are edited in doconce'
     print 'or:    doconce slides_html mydoc.html all  (generate a lot)'
 

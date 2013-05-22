@@ -1527,6 +1527,10 @@ def handle_cross_referencing(filestr, format):
     sections = []
     heading2section_type = {9: 0, 7: 1, 5: 2, 3: 3}
     for heading, title, dummy2, dummy3, label in m:
+        if len(heading) % 2 == 0:
+            print '*** error: headings must have 3, 5, 7, or 9 = signs,'
+            print '    not %d as in %s %s' % (len(heading), heading, title)
+            _abort()
         if label == '':
             label = None
         sections.append((title, heading2section_type[len(heading)], label))

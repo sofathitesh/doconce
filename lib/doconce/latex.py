@@ -1268,16 +1268,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
