@@ -1058,20 +1058,23 @@ def html_%(_admon)s(block, format, title='%(_Admon)s'):
     if title and title[-1] not in ('.', ':', '!', '?'):
         # Make sure the title ends with puncuation
         title += '.'
-    # Make pygments background equal to admon background for colored admons.
+    # Make pygments background equal to admon background for colored admons?
+    keep_pygm_bg = option('keep_pygments_html_bg')
     pygments_pattern = r'"background: .+?">'
     html_admon = option('html_admon=', 'gray')
     if html_admon == 'colors':
-        block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                       admon_css_vars['colors']['background_%(_admon)s'], block)
+        if not keep_pygm_bg:
+            block = re.sub(pygments_pattern, r'"background: %%s">' %%
+                           admon_css_vars['colors']['background_%(_admon)s'], block)
         janko = """<div class="%(_admon)s"><b>%%s</b>
 %%s
 </div>
 """ %% (title, block)
         return janko
     elif html_admon in admon_css_vars or option('html_style=') == 'vagrant':
-        block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                       admon_css_vars[html_admon]['background'], block)
+        if not keep_pygm_bg:
+            block = re.sub(pygments_pattern, r'"background: %%s">' %%
+                           admon_css_vars[html_admon]['background'], block)
         vagrant = """<div class="alert alert-block alert-%(_admon)s"><b>%%s</b>
 %%s
 </div>
