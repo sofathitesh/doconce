@@ -2158,27 +2158,6 @@ def doconce2format(filestr, format):
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
 
-    '''
-    Cannot test this since envirs are now processed after code and tex.
-    # Next step: check if there are unprocessed environments and give
-    # warning (must be checked before next step since !bwarning etc
-    # may appear inside code blocks)
-    for envir in doconce_envirs():
-        pattern = r'^(![be]%s)\s' % envir
-        m = re.search(pattern, filestr, flags=re.MULTILINE)
-        if m:
-            print '*** error: found environment\n%s' % m.group(1)
-            print """
-Causes:
- * %s inside code block (replace ! by |)'
- * forgotten --examples_as_exercises (if the environment is inside an example)
- * wrong match of %s and the corresponding begin/end clause
-""" % (m.group(1), m.group(1))
-            print 'Here is the context:\n----------------------------------'
-            print filestr[m.start()-50:m.end()+50]
-            print '----------------------------------'
-            _abort()
-    '''
 
     # Next step: insert verbatim and math code blocks again and
     # substitute code and tex environments:
@@ -2226,18 +2205,15 @@ Causes:
     debugpr('%s\n**** The file after removal of solutions, answers, notes, hints, etc.:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    """
-    # Not necessary after blocks have numbers
-    from common import _CODE_BLOCK, _MATH_BLOCK
-    remaining_code = filestr.count(_CODE_BLOCK)
-    remaining_math = filestr.count(_MATH_BLOCK)
-    if remaining_code > 0:
-        print '*** BUG: %d remaining uninserted code blocks!' % remaining_code
-        _abort()
-    if remaining_math > 0:
-        print '*** BUG: %d remaining uninserted tex blocks!' % remaining_math
-        _abort()
-    """
+    # Check if we have wrong-spelled environments
+    pattern = r'^(![be].+)'
+    m = re.search(pattern, filestr, flags=re.MULTILINE)
+    if m:
+        # Found, but can be inside code block (should have |[be].+ then)
+        # and hence not necessarily an error
+        print '*** warning: found environment begin/end %s' % m.group(1)
+        print '    context:\n----------------------------------'
+            print filestr[m.start()-50:m.end()+50]
 
     # Final step: replace environments starting with | (instead of !)
     # by ! (for illustration of doconce syntax inside !bc/!ec directives).
