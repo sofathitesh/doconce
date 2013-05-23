@@ -19,6 +19,7 @@ no_preprocess = False
 mako_strict_undefined = False
 no_header_footer = False
 no_pygments_html = False
+keep_pygments_html_bg = False
 #minted_latex_style = 
 #pygments_html_style = 
 pygments_html_linenos = False

@@ -24,6 +24,8 @@ _registered_command_line_options = [
     ('--no_pygments_html',
      """Do not use pygments to typeset computer code in HTML,
 use plain <pre> tags."""),
+    ('--keep_pygments_html_bg',
+     """Do not allow change of background in code blocks in HTML."""),
     ('--minted_latex_style=',
      'Specify the minted style to be used for typesetting code in LaTeX.'),
     ('--pygments_html_style=',
