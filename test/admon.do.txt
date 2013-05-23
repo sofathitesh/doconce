@@ -86,6 +86,12 @@ But first a bit of math:
 !et
 !enotice
 
+# Test one word with a number
+
+!bnotice Point1
+Ah, we are soon close to the end.
+!enotice
+
 !bquestion
 So, how many admonition environments does Doconce support?
 !equestion

@@ -3272,7 +3272,7 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
 \usepackage{graphicx}
 \usepackage{epsfig}
 \usepackage{fancyvrb,relsize}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,bm}
 \usepackage[latin1]{inputenc}
 \usepackage{colortbl}
 \usepackage[english]{babel}

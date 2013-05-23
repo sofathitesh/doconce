@@ -352,7 +352,7 @@ def html_code(filestr, code_blocks, code_block_types,
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         filestr = c.sub(r'<p>\n\n', filestr)
         filestr = re.sub(r'!ec\n', r'<p>\n', filestr)
-        debugpr('\n\nAfter replacement of !bc and !ec (pygmntized code)\n%s' % filestr)
+        debugpr('\n\nAfter replacement of !bc and !ec (pygmentized code)\n%s' % filestr)
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         # <code> gives an extra line at the top unless the code starts
