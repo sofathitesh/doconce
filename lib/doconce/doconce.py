@@ -1160,7 +1160,7 @@ def typeset_envirs(filestr, format):
             # else: other envirs for slides are treated later with
             # the begin and end directives set in comments, see doconce2format
 
-        pattern = r'^!b%s([A-Za-z,.!:? ]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
+        pattern = r'^!b%s([A-Za-z0-9,.!:? \-]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
         filestr = re.sub(pattern, subst, filestr,
                          flags=re.DOTALL | re.MULTILINE)
     return filestr
@@ -2202,6 +2202,9 @@ Causes:
     # (done after code and text to ensure correct indentation
     # in the formats that applies indentation)
     filestr = typeset_envirs(filestr, format)
+
+    debugpr('%s\n**** The file after typesetting of admons and the rest of the !b/!e environments:\n\n%s\n\n' % \
+          ('*'*80, filestr))
 
     # Next step: remove exercise solution/answers, notes, etc
     # (Note: must be done after code and tex blocks are inserted!
