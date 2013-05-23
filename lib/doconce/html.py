@@ -1315,6 +1315,7 @@ def define(FILENAME_EXTENSION,
                     f.write(css)
                     f.close()
                 style += '<link rel="stylesheet" href="%s">\n' % css_filename
+                add_to_file_collection(filename)
 
     meta_tags = """\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

@@ -716,6 +716,30 @@ processing (e.g., making a book of problems).
 
 
 !split
+======= Doconce admonitions =======
+
+There is support for environments like warning, notice, question, hint,
+etc., possibly with an icon and heading.
+
+!bwarning Use with caution!
+Such environments may light up the document, but can be disturbing too.
+!ewarning
+
+!bnotice Going deeper.
+More details can be separated from the rest.
+!enotice
+
+!bquestion Time for review!
+  * Maybe ask a question?
+  * Or two?
+!equestion
+
+!bblock Conclusions
+  * A special "block" admonition has less pronounced typesetting and
+    can be used when no special icon is desired. Good for slides.
+!eblock
+
+!split
 ======= Doconce: slides =======
 
 Very effective way to generate slides from running text:
@@ -796,24 +820,24 @@ a figure to the right (two cells, numbered 00 and 01).
 !split
 ======= Headline =======
 
-!bslidecell 00
-!bpop
+|bslidecell 00
+|bpop
  * Key point 1
  * Key point 2
  * Key point 3
-!epop
+|epop
 
-!bpop
+|bpop
 |bt
 \[ -\nabla^2 u = f \quad\hbox{in }\Omega \]
 |et
-!epop
+|epop
 
-!eslidecell
+|eslidecell
 
-!bslidecell 01
+|bslidecell 01
 FIGURE: [fig/broken_pen_and_paper, width=400, frac=0.8]
-!eslidecell
+|eslidecell
 
 !split
 ======= Next slide... =======

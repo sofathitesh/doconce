@@ -1900,6 +1900,8 @@ def doconce_html_split(header, parts, footer, basename, filename):
         copy_datafiles(html_images)  # copy html_images subdir if needed
         button_prev_filename = html_imagefile(prev_part)
         button_next_filename = html_imagefile(next_part)
+        html.add_to_file_collection(button_prev_filename, filename, 'a')
+        html.add_to_file_collection(button_next_filename, filename, 'a')
     else:
         button_prev_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % prev_part
         button_next_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % next_part
@@ -2033,6 +2035,7 @@ def generate_html5_slides(header, parts, footer, basename, filename,
 
     slide_syntax = dict(
         reveal=dict(
+            subdir='reveal.js',
             default_theme='beige',
             #main_style='reveal.min',
             main_style='reveal',
@@ -2107,6 +2110,7 @@ dependencies: [
             title=None,
             ),
         csss=dict(
+            subdir='csss',
             default_theme='csss_default',
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
@@ -2148,6 +2152,7 @@ for(var i=0; i<cssControls.length; i++) {
             title=None,
             ),
         dzslides=dict(
+            subdir=None,
             default_theme='dzslides_default',  # just one theme in dzslides
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
@@ -2810,6 +2815,7 @@ basically smaller fonts and left-adjusted titles.
             title=None,
             ),
         deck=dict(
+            subdir='deck.js',
             default_theme='web-2.0',
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
@@ -2970,6 +2976,7 @@ git://github.com/barraq/deck.ext.js.git
             title=None,
             ),
         html5slides=dict(
+            subdir=None,
             default_theme='template-default',  # template-io2011, should use template-io2012: https://code.google.com/p/io-2012-slides/
             slide_envir_begin='<article>',
             slide_envir_end='</article>',
@@ -3022,6 +3029,14 @@ git://github.com/barraq/deck.ext.js.git
         print '*** error: slide type "%s" is not known - abort' % slide_tp
         print 'known slide types:', ', '.join(list(all_combinations.keys()))
         sys.exit(1)
+
+    # We need the subdir with reveal.js, deck.js, or similar to show
+    # the HTML slides so add the subdir to the registered file collection
+    if slide_syntax[slide_tp]['subdir'] is not None:
+        import html
+        html.add_to_file_collection(
+            slide_syntax[slide_tp]['subdir'], filename, 'a')
+
     if theme != 'default':
         if not theme in all_combinations[slide_tp]:
             print '*** error: %s theme "%s" is not known - abort' % \

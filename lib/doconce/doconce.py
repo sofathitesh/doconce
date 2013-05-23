@@ -2206,13 +2206,14 @@ def doconce2format(filestr, format):
           ('*'*80, filestr))
 
     # Check if we have wrong-spelled environments
-    pattern = r'^(![be].+)'
-    m = re.search(pattern, filestr, flags=re.MULTILINE)
-    if m:
-        # Found, but can be inside code block (should have |[be].+ then)
-        # and hence not necessarily an error
-        print '*** warning: found environment begin/end %s' % m.group(1)
-        print '    context:\n----------------------------------'
+    if not option('examples_as_exercises'):
+        pattern = r'^(![be].+)'
+        m = re.search(pattern, filestr, flags=re.MULTILINE)
+        if m:
+            # Found, but can be inside code block (should have |[be].+ then)
+            # and hence not necessarily an error
+            print '*** warning: found environment begin/end %s' % m.group(1)
+            print '    context:\n----------------------------------'
             print filestr[m.start()-50:m.end()+50]
 
     # Final step: replace environments starting with | (instead of !)
@@ -2368,7 +2369,7 @@ preprocess package (sudo apt-get install preprocess).
                 print '\n\n*** warning: the code block\n---------------------------'
                 print code_block
                 print '''---------------------------
-contains a single %% on the beginning of a line: (%s)
+The above code block contains %s on the beginning of a line.
 Such lines cause problems for the mako preprocessor
 since it thinks this is a mako statement.
 ''' % (m.group(0))
