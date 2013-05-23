@@ -194,6 +194,7 @@ for figname in fig1 fig2 fig3; do
 done
 doconce format html mydoc2
 # Paste mydoc2.html into a new blog page
+!ec
 !enotice
 
 Blog posts at Google can also be published "automatically through email":
