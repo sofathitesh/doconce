@@ -88,7 +88,7 @@ admon_styles2 = """\
              border-radius:4px
              color: #555;
              background-color: %(background)s;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -1340,12 +1340,11 @@ def define(FILENAME_EXTENSION,
 
 
     INTRO['html'] = """\
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 %s

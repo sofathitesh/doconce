@@ -3290,7 +3290,8 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
 \usepackage{epsfig}
 \usepackage{fancyvrb,relsize}
 \usepackage{amsmath,amssymb,bm}
-\usepackage[latin1]{inputenc}
+%%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{colortbl}
 \usepackage[english]{babel}
 \usepackage{tikz}
@@ -3386,7 +3387,7 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
                                             'item<%d->' % (i+1), 1)
                 else:
                     # treat whole part as a block
-                    pattern = r'\\(begin\{block|summarybox\{|[a-z]+admon\{)'
+                    pattern = r'(\\begin\{block|\\summarybox\{|\\begin\{[A-Za-z0-9_]+admon\})'
                     m = re.match(pattern, body.lstrip())
                     if m:
                         # body has a construction that is already a block
