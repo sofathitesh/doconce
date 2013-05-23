@@ -1812,6 +1812,15 @@ The slides can either be ordinary, separate slides - or just
 a document with much briefer text and emphasis on bullet lists,
 figures, mathematical formulas, admonitions, and little text.
 
+Points:
+
+ * Only some pygments style are suited for a particular reveal.js/deck.js
+   theme
+ * Only some admon styles are appropriate
+ * Admon styles are erased in reveal
+ * Use `--keep_pygments_html_bg` to avoid big changes in background
+   color for code
+
 ===== Overview =====
 
 Basically, Doconce slides are ordinary Doconce text with `!split`

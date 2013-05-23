@@ -1160,7 +1160,7 @@ def typeset_envirs(filestr, format):
             # else: other envirs for slides are treated later with
             # the begin and end directives set in comments, see doconce2format
 
-        pattern = r'^!b%s([A-Za-z0-9,.!:? \-]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
+        pattern = r'^!b%s([A-Za-z0-9,.!:? /\-]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
         filestr = re.sub(pattern, subst, filestr,
                          flags=re.DOTALL | re.MULTILINE)
     return filestr
