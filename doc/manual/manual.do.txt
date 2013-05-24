@@ -2097,6 +2097,11 @@ do not work well. You need to link to a specific HTML file:
 !bc
 see the "examples directory": "src/examples/index.html"
 !ec
+We recommend to put all files you link to in a `_static` directory
+if you intend to use the `sphinx` output. This guarantees that all
+your files are collected in the Sphinx directory tree bundle.
+With plain `html` output only, you can link to whatever, but remember
+to move all files you link to if you move the primary `.html` file.
 
 === Links are not typeset correctly ===
 
@@ -2440,24 +2445,41 @@ further.
 
 === How can I change the layout of the HTML page? ===
 
-The standard of way of controlling the HTML format is to use an
-HTML template. The Doconce source is then the body of text (leave
-out `TITLE:` to get HTML without a header and footer). The
+The easiest way is to edit the HTML style or the HTML code directly.
+However, those edits are overwritten the next time you compile the
+Doconce document to HTML. The edits should therefore be automated
+using `doconce subst` (for regular expression editing) or `doconce replace`
+(for plain text substitution editing) commands in the file where
+you run `doconce format html mydoc`. For example, say you want narrower
+gray admonition boxes with a much thicker boundary. The `.alert`
+style must then be changed, more precisely the `border` and the `width`
+specification:
+
+!bc shcod
+doconce replace 'border:1px' 'border:11px' mydoc.html
+doconce replace 'width: 75%;' 'width: 35%' mydoc.html
+!ec
+
+Another way to control the layout is to copy the style in the HTML
+file into a `.css` file, edit that file as you like, and provide the
+file as part of the compilation using the `--css=mystyle.css`
+flag.
+
+The standard of way of completely controlling the HTML format is to
+use an HTML template. The Doconce source is then the body of text
+(leave out `TITLE:` to get HTML without a header and footer). The
 `--html_template=filename` command-line option will then embed the
 Doconce text in the specified template file, where you can use style
-sheets and desired constructs in the header and footer.
-The template can have "slots" for a title (`%(title)s`),
-a date (`%(date)s`), and the main body of text (`%(main)s`).
-For typesetting code, `pygments` is used (if installed) and can be
-turned off by `--no_pygments_html` (leaving code in gray boxes).
+sheets and desired constructs in the header and footer.  The template
+can have "slots" for a title (`%(title)s`), a date (`%(date)s`), and
+the main body of text (`%(main)s`).  For typesetting code, `pygments`
+is used (if installed) and can be turned off by `--no_pygments_html`
+(leaving code in gray boxes).
 
 
 The easiest way is to get fancy layouts in HTML is to
 use the `sphinx` format and one its many themes.
 
-A third, more primitive alternative is to edit the style in the top of
-the HTML file (preferably done automatically via `doconce replace` and
-`doconce subst` in the script that generates the final documents).
 
 === Why do figures look ugly when using HTML templates? ===
 
