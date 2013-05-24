@@ -94,5 +94,3 @@ author = __author__
 
 __acknowledgments__ = ''
 
-
-
