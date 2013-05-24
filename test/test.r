@@ -1063,12 +1063,11 @@ case in LaTeX.
 
 
 ************** File: testdoc.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -1124,7 +1123,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -1469,7 +1468,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -1485,16 +1485,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -3758,21 +3755,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted}
 \usemintedstyle{default}
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -5324,7 +5319,8 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{media9}
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
@@ -5332,16 +5328,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -19715,7 +19708,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
   <meta name="author" content="A. Dummy Author" />
   <meta name="author" content="I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst" />
   <meta name="author" content="J. Doe" />
-  <meta name="date" content="2013-05-16" />
+  <meta name="date" content="2013-05-24" />
   <title>A Document for Testing Doconce</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -21400,12 +21393,11 @@ MathJax.Hub.Config({
 
 
 ************** File: author1.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21690,7 +21682,8 @@ open=right               % start new chapters on odd-numbered pages
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -21706,16 +21699,13 @@ open=right               % start new chapters on odd-numbered pages
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -22139,12 +22129,11 @@ Bibliography
 
 
 ************** File: ._part0000_testdoc.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22200,7 +22189,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -22444,12 +22433,11 @@ $$
 </html>
 
 ************** File: ._part0001_testdoc.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22505,7 +22493,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -22724,12 +22712,11 @@ Here is a nested list:
 </html>
 
 ************** File: ._part0002_testdoc.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22785,7 +22772,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -24303,12 +24290,11 @@ case in LaTeX.
 </html>
 
 ************** File: testdoc_wordpress.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24346,7 +24332,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -25713,12 +25699,11 @@ case in LaTeX.
 
 
 ************** File: testdoc_no_solutions.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25756,7 +25741,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -27432,7 +27417,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -27448,16 +27434,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -29856,6 +29839,8 @@ def system(cmd, capture_output=False, echo=True):
         return outtext
 
 # Copy generated sphinx files to sphinx root directory
+filename = 'testdoc'
+shutil.copy('%s.rst' % filename, sphinx_rootdir)
 for part in ['._part0000_testdoc', '._part0001_testdoc', '._part0002_testdoc']:
     shutil.copy('%s.rst' % part, sphinx_rootdir)
 
@@ -30852,12 +30837,11 @@ to `\boldsymbol`.
 
 
 ************** File: math_test_html.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31170,7 +31154,7 @@ to <code>\boldsymbol</code>.
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="HPL" />
-  <meta name="date" content="2013-05-16" />
+  <meta name="date" content="2013-05-24" />
   <title>How various formats can deal with LaTeX math</title>
   
 <script type="text/x-mathjax-config">
@@ -31380,7 +31364,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -31396,16 +31381,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -36219,7 +36201,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -36235,16 +36218,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -37321,6 +37301,40 @@ But first a bit of math:
 \[ p=q\]
 \end{graybox1admon}
 % #endif
+% Test one word with a number
+
+
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Point1.]
+Ah, we are soon close to the end.
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
+
+\begin{graybox2admon}[Point1.]
+Ah, we are soon close to the end.
+\end{graybox2admon}
+
+% #else
+\begin{graybox1admon}[Point1.]
+Ah, we are soon close to the end.
+\end{graybox1admon}
+% #endif
 
 % #if ADMON == "colors1"
 \begin{question_colors1admon}[Question]
@@ -38230,21 +38244,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -38508,6 +38520,12 @@ Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
 \end{notice_colors1admon}
+% Test one word with a number
+
+
+\begin{notice_colors1admon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_colors1admon}
 
 \begin{question_colors1admon}[Question]
 So, how many admonition environments does Doconce support?
@@ -38673,21 +38691,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -38960,6 +38976,12 @@ Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
 \end{notice_colors2admon}
+% Test one word with a number
+
+
+\begin{notice_colors2admon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_colors2admon}
 
 \begin{question_colors2admon}[Question]
 So, how many admonition environments does Doconce support?
@@ -39125,21 +39147,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -39318,6 +39338,12 @@ Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
 \end{graybox1admon}
+% Test one word with a number
+
+
+\begin{graybox1admon}[Point1.]
+Ah, we are soon close to the end.
+\end{graybox1admon}
 
 \begin{graybox1admon}[Question.]
 So, how many admonition environments does Doconce support?
@@ -39483,21 +39509,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -39698,6 +39722,14 @@ But first a bit of math:
 \[ p=q\]
 \end{graybox2admon}
 
+% Test one word with a number
+
+
+
+\begin{graybox2admon}[Point1.]
+Ah, we are soon close to the end.
+\end{graybox2admon}
+
 
 
 \begin{graybox2admon}[Question.]
@@ -39873,21 +39905,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -40160,6 +40190,12 @@ Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
 \end{notice_graybox3admon}
+% Test one word with a number
+
+
+\begin{notice_graybox3admon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_graybox3admon}
 
 \begin{question_graybox3admon}[Question]
 So, how many admonition environments does Doconce support?
@@ -40325,21 +40361,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -40501,6 +40535,12 @@ The next admonition features a title "Note, eventually!".
 Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
+\end{paragraphadmon}
+% Test one word with a number
+
+
+\begin{paragraphadmon}[Point1.]
+Ah, we are soon close to the end.
 \end{paragraphadmon}
 
 \begin{paragraphadmon}[Question.]
@@ -40667,21 +40707,19 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted,fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -40954,6 +40992,12 @@ Ah, we are soon close to the end.
 But first a bit of math:
 \[ p=q\]
 \end{notice_yellowboxadmon}
+% Test one word with a number
+
+
+\begin{notice_yellowboxadmon}[Point1]
+Ah, we are soon close to the end.
+\end{notice_yellowboxadmon}
 
 \begin{question_yellowboxadmon}[Question]
 So, how many admonition environments does Doconce support?
@@ -41095,12 +41139,11 @@ Titles should be optional.
 
 
 ************** File: admon_colors.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -41306,6 +41349,13 @@ But first a bit of math:
 $$ p=q$$
 </div>
 <p>
+<!-- Test one word with a number -->
+
+<p>
+<div class="notice"><b>Point1.</b>
+Ah, we are soon close to the end.
+</div>
+<p>
 <div class="question"><b>Question.</b>
 So, how many admonition environments does Doconce support?
 </div>
@@ -41462,12 +41512,11 @@ Titles should be optional.
 
 
 ************** File: admon_gray.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -41506,7 +41555,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -41684,6 +41733,13 @@ But first a bit of math:
 $$ p=q$$
 </div>
 <p>
+<!-- Test one word with a number -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Point1.</b>
+Ah, we are soon close to the end.
+</div>
+<p>
 <div class="alert alert-block alert-question"><b>Question.</b>
 So, how many admonition environments does Doconce support?
 </div>
@@ -41840,12 +41896,11 @@ Titles should be optional.
 
 
 ************** File: admon_yellow.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -41882,7 +41937,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: #fcf8e3;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -42058,6 +42113,13 @@ The next admonition features a title "Note, eventually!".
 Ah, we are soon close to the end.
 But first a bit of math:
 $$ p=q$$
+</div>
+<p>
+<!-- Test one word with a number -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Point1.</b>
+Ah, we are soon close to the end.
 </div>
 <p>
 <div class="alert alert-block alert-question"><b>Question.</b>
@@ -42355,6 +42417,10 @@ But first a bit of math:</p>
 <div class="last math">
 \[p=q\]</div>
 </div>
+<div class="admonition-point1 admonition">
+<p class="first admonition-title">Point1</p>
+<p class="last">Ah, we are soon close to the end.</p>
+</div>
 <div class="admonition-question admonition">
 <p class="first admonition-title">Question</p>
 <p class="last">So, how many admonition environments does Doconce support?</p>
@@ -42540,12 +42606,11 @@ Titles should be optional.</p>
   </body>
 </html>
 ************** File: admon_default.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -42582,7 +42647,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -42760,6 +42825,13 @@ But first a bit of math:
 $$ p=q$$
 </div>
 <p>
+<!-- Test one word with a number -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Point1.</b>
+Ah, we are soon close to the end.
+</div>
+<p>
 <div class="alert alert-block alert-question"><b>Question.</b>
 So, how many admonition environments does Doconce support?
 </div>
@@ -42916,12 +42988,11 @@ Titles should be optional.
 
 
 ************** File: admon_apricot.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -42976,7 +43047,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: #fbeed5;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -43152,6 +43223,13 @@ The next admonition features a title "Note, eventually!".
 Ah, we are soon close to the end.
 But first a bit of math:
 $$ p=q$$
+</div>
+<p>
+<!-- Test one word with a number -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Point1.</b>
+Ah, we are soon close to the end.
 </div>
 <p>
 <div class="alert alert-block alert-question"><b>Question.</b>
@@ -43550,6 +43628,13 @@ The next admonition features a title "Note, eventually!".
 Ah, we are soon close to the end.
 But first a bit of math:
 $$ p=q$$
+</div>
+<p>
+<!-- Test one word with a number -->
+
+<p>
+<div class="alert alert-block alert-notice"><b>Point1.</b>
+Ah, we are soon close to the end.
 </div>
 <p>
 <div class="alert alert-block alert-question"><b>Question.</b>
@@ -44154,6 +44239,7 @@ darkgray.css
 default.css
 moon.css
 night.css
+README.md
 serif.css
 simple.css
 sky.css
@@ -44219,7 +44305,7 @@ reveal.js/plugin/markdown:
 example.html
 example.md
 markdown.js
-showdown.js
+marked.js
 
 reveal.js/plugin/multiplex:
 client.js
@@ -44353,12 +44439,11 @@ echo "Here are the slide shows:"
 /bin/ls slides1_*_*.html
 
 ************** File: slides1_1st.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44395,7 +44480,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -45425,7 +45510,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -45441,16 +45527,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -46419,8 +46502,9 @@ Just some block with text and a conclusion that something is important.
 \usepackage{graphicx}
 \usepackage{epsfig}
 \usepackage{fancyvrb,relsize}
-\usepackage{amsmath,amssymb}
-\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb,bm}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{colortbl}
 \usepackage[english]{babel}
 \usepackage{tikz}
@@ -47960,13 +48044,12 @@ This gets rendered as
     <span style="color: #AA22FF; font-weight: bold">return</span> u, t
 </pre></div>
 <p>
-!bnotice Language-dependent typesetting of code:
+<div class="alert alert-block alert-notice"><b>Language-dependent typesetting of code:</b>
 The <code>!bc</code> command can be followed by a specification of the computer
 language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python
 program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so
 forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).
-!enotice
-
+</div>
 <p>
 
 </section>
@@ -48406,7 +48489,8 @@ open=right               % start new chapters on odd-numbered pages
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -48422,16 +48506,13 @@ open=right               % start new chapters on odd-numbered pages
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -49727,14 +49808,59 @@ def solver(I, a, T, dt, theta):
     return u, t
 \epycod
 
-!bnotice Language-dependent typesetting of code:
+
+% #if ADMON == "colors1"
+\begin{notice_colors1admon}[Language-dependent typesetting of code:]
 The \code{!bc} command can be followed by a specification of the computer
 language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
 program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
 forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
-!enotice
+\end{notice_colors1admon}
+% #elif ADMON == "colors2"
+\begin{notice_colors2admon}[Language-dependent typesetting of code:]
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+\end{notice_colors2admon}
+% #elif ADMON == "graybox3"
+\begin{notice_graybox3admon}[Language-dependent typesetting of code:]
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+\end{notice_graybox3admon}
+% #elif ADMON == "yellowbox"
+\begin{notice_yellowboxadmon}[Language-dependent typesetting of code:]
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+\end{notice_yellowboxadmon}
+% #elif ADMON == "paragraph"
+\begin{paragraphadmon}[Language-dependent typesetting of code:]
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+\end{paragraphadmon}
+% #elif ADMON == "graybox2"
 
+\begin{graybox2admon}[Language-dependent typesetting of code:]
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+\end{graybox2admon}
 
+% #else
+\begin{graybox1admon}[Language-dependent typesetting of code:]
+The \code{!bc} command can be followed by a specification of the computer
+language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
+program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
+forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
+\end{graybox1admon}
+% #endif
 % !split
 \section{Doconce: displaying interactive demo code}
 \label{slide:pot}
@@ -50064,8 +50190,9 @@ Last page gets rendered to
 \usepackage{epsfig}
 \usepackage{minted} % requires pygments and latex -shell-escape filename
 \usepackage{fancyvrb,relsize}
-\usepackage{amsmath,amssymb}
-\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb,bm}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{colortbl}
 \usepackage[english]{babel}
 \usepackage{tikz}
@@ -50680,12 +50807,13 @@ def solver(I, a, T, dt, theta):
     return u, t
 \end{minted}
 
-!bnotice Language-dependent typesetting of code:
+
+\begin{notice_colors1admon}[Language-dependent typesetting of code:]
 The \Verb!!bc! command can be followed by a specification of the computer
 language: \Verb!pycod! for Python code snippet, \Verb!pypro! for complete Python
 program, \Verb!fcod! for Fortran snippet, \Verb!fpro! for Fortran program, and so
 forth (\Verb!c! for C, \Verb!cpp! for C++, \Verb!sh! for Unix shells, \Verb!m! for Matlab).
-!enotice
+\end{notice_colors1admon}
 \end{frame}
 
 \begin{frame}[plain,fragile]
@@ -51569,7 +51697,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -51585,16 +51714,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -52598,8 +52724,9 @@ qualitatively correct results.
 \usepackage{epsfig}
 \usepackage{minted} % requires pygments and latex -shell-escape filename
 \usepackage{fancyvrb,relsize}
-\usepackage{amsmath,amssymb}
-\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb,bm}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{colortbl}
 \usepackage[english]{babel}
 \usepackage{tikz}
@@ -52845,12 +52972,10 @@ Exact solution of the scheme:
 
 
 \pause
-\begin{block}{}
 \begin{summary_colors1admon}[Concluding remarks:]
 Only the Backward Euler scheme is guaranteed to always give
 qualitatively correct results.
 \end{summary_colors1admon}
-\end{block}
 \end{frame}
 
 \end{document}
@@ -53077,7 +53202,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 16 May 2013 (15:12)</center>
+<center>Fri, 24 May 2013 (09:42)</center>
 
 
 
@@ -53208,7 +53333,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 16 May 2013 (15:12)</center>
+<center>Fri, 24 May 2013 (09:42)</center>
 
 
 
@@ -54228,12 +54353,11 @@ examine the Doconce source and the `doc/src/make.sh` script).
 
 
 ************** File: quickref.html *****************
-<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
 <!--
 Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -54270,7 +54394,7 @@ Automatically generated HTML file from Doconce source
              border-radius:4px
              color: #555;
              background-color: whiteSmoke;
-             background-position: 10px 10px;
+             background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
@@ -55557,7 +55681,8 @@ final,                   % or draft (marks overfull hboxes)
 % Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
 % Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
 % #else
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -55573,16 +55698,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -67204,6 +67326,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -67324,7 +67449,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-293.
+291.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -67422,71 +67547,71 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 842.
+t line 840.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 843.
+ine 841.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
-46.
+44.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 847.
+ 845.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
-49.
+47.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 851.
+t line 849.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 851.
+ 849.
 
 
 LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 8
-55.
+53.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 8
-55.
+53.
 
 
 LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 855.
+ne 853.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 855.
+t line 853.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 857.
+ine 855.
 
 
 LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
-ne 857.
+ne 855.
 
 
 LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 857.
+ 855.
 
 
 LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 8
-57.
+55.
 
 
 LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 8
-57.
+55.
 
 
 LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 8
-57.
+55.
 
 
 LaTeX Warning: Citation `Langtangen:95' on page 11 
@@ -67494,34 +67619,34 @@ LaTeX Warning: Citation `Langtangen:95' on page 11
 
 
 LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 85
-9.
+7.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 859.
+ 857.
 
 
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-859.
+857.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 8
-60.
+58.
 
 
 LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 8
-60.
+58.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 861.
+ine 859.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 862
+LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 860
 .
 
 
@@ -67529,7 +67654,7 @@ LaTeX Warning: Citation `Langtangen:91' on page 11
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 865
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 863
 .
 
 [11]
@@ -67556,7 +67681,7 @@ LaTeX Warning: Reference `eq2' on page 13
 
 
 LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 98
-8.
+6.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -67580,7 +67705,7 @@ LaTeX Warning: Reference `demo:ex:1' on page 13
 LaTeX Warning: Reference `demo:ex:2' on page 13 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1013
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 1011
 .
 
 
@@ -67588,11 +67713,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 1014.
+ 1012.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1375
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1373
 .
 
 
@@ -67603,13 +67728,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1392.
+ 1390.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1393
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1391
 .
 
 
@@ -67701,7 +67826,10 @@ etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -67904,6 +68032,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -68178,7 +68309,10 @@ etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -68391,6 +68525,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -68665,7 +68802,10 @@ etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -68858,6 +68998,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./testdoc.w18))/usr/local/bin/pygmentize
 ) (./testdoc.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -69126,7 +69269,10 @@ etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
  testdoc.w18
  testdoc.pyg
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -70251,6 +70397,13 @@ figure file ../doc/slides/fig/teacher1:
 figure file ../doc/slides/fig/broken_pen_and_paper:
     can use ../doc/slides/fig/broken_pen_and_paper.jpg for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: found environment begin/end !bsubex
+    context:
+----------------------------------
+eywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$
 output in slides2.html
 + [ 0 -ne 0 ]
 + doconce slides_html slides2 reveal --html_slide_type=beigesmall
@@ -70302,6 +70455,13 @@ figure file ../doc/slides/fig/teacher1:
     can use ../doc/slides/fig/teacher1.pdf for format pdflatex
 figure file ../doc/slides/fig/broken_pen_and_paper:
     can use ../doc/slides/fig/broken_pen_and_paper.jpg for format pdflatex
+*** warning: found environment begin/end !bsubex
+    context:
+----------------------------------
+eywords = random numbers; Monte Carlo simulation
+
+!bsubex
+Make a program that simulates flipping a coin $N$
 output in slides2.p.tex
 + [ 0 -ne 0 ]
 + doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
@@ -70488,6 +70648,9 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -70570,7 +70733,10 @@ microtype.sty    2010/01/10 v2.4 Micro-typography with pdfTeX (RS)
 microtype.cfg    2010/01/10 v2.4 microtype main configuration file (RS)
 fancyvrb.sty    2008/02/07
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -70913,6 +71079,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_colors1.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -70966,6 +71135,9 @@ Underfull \hbox (badness 10000)
 <use latex_figs/notice.pdf>
 Underfull \hbox (badness 10000) 
 
+<use latex_figs/notice.pdf>
+Underfull \hbox (badness 10000) 
+
 <latex_figs/question.pdf, id=23, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 Underfull \hbox (badness 10000) 
@@ -70974,7 +71146,7 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 
 [2 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-<latex_figs/hint.pdf, id=38, 89.33376pt x 89.33376pt>
+<latex_figs/hint.pdf, id=37, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
 Underfull \hbox (badness 10000) 
 
@@ -70985,11 +71157,8 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 
 (./admon_colors1.out.pyg) (./admon_colors1.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=39, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=38, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3 <./latex_figs/hint.pdf>]
-Underfull \vbox (badness 1337) detected at line 422
-
-Underfull \vbox (badness 1137) detected at line 422
 [4] <latex_figs/summary.pdf, id=57, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 Underfull \hbox (badness 10000) 
@@ -71041,7 +71210,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_colors1.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -71090,6 +71262,7 @@ admon_colors1.out.pyg
 latex_figs/warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
 latex_figs/warning.pdf
+latex_figs/notice.pdf
 latex_figs/notice.pdf
 latex_figs/question.pdf
 latex_figs/question.pdf
@@ -71188,6 +71361,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_graybox1.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -71362,7 +71538,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_graybox1.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -71545,6 +71724,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_paragraph.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -71629,7 +71811,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_paragraph.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -71764,6 +71949,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_graybox2.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -71889,7 +72077,19 @@ ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
 
 (./admon_graybox2.out.pyg)
  [1{/var/lib/texmf/font
-s/map/pdftex/updmap/pdftex.map}] (./admon_graybox2.out.pyg) [2]
+s/map/pdftex/updmap/pdftex.map}] (./admon_graybox2.out.pyg)
+
+Package mdframed Warning: You got a bad break
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on 
+
+[2]
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last split box is empty
+(mdframed)                You have to change the settings on 
+
 (./admon_graybox2.out.pyg) (./admon_graybox2.out.pyg)
 <../doc/manual/figs/wavepacket_0001.png, id=28, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
@@ -71940,7 +72140,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_graybox2.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -72124,6 +72327,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_yellowbox.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -72166,6 +72372,7 @@ No file admon_yellowbox.aux.
 dmap/pdftex.map} <./latex_figs/small_yellow_warning.pdf>]
 <latex_figs/small_yellow_notice.pdf, id=24, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_notice.pdf>
+<use latex_figs/small_yellow_notice.pdf>
 <latex_figs/small_yellow_question.pdf, id=25, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_question.pdf>
 <use latex_figs/small_yellow_question.pdf>
@@ -72175,12 +72382,16 @@ figs/small_yellow_notice.pdf> <./latex_figs/small_yellow_question.pdf> <./latex
 _figs/small_yellow_hint.pdf>] <use latex_figs/small_yellow_warning.pdf>
 <use latex_figs/small_yellow_notice.pdf> (./admon_yellowbox.out.pyg)
 (./admon_yellowbox.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=53, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
-ket_0001.png>] <latex_figs/small_yellow_summary.pdf, id=66, 32.12pt x 32.12pt>
+<../doc/manual/figs/wavepacket_0001.png, id=52, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
+Underfull \vbox (badness 10000) detected at line 435
+
+Underfull \vbox (badness 10000) detected at line 435
+[4] <latex_figs/small_yellow_summary.pdf, id=64, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_summary.pdf>
 No file admon_yellowbox.ind.
-[5 <./latex_figs/small_yellow_summary.pdf>] (./admon_yellowbox.aux)
+[5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/small_yellow_summary.
+pdf>] (./admon_yellowbox.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -72225,7 +72436,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_yellowbox.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -72276,6 +72490,7 @@ latex_figs/small_yellow_warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
 latex_figs/small_yellow_warning.pdf
 latex_figs/small_yellow_notice.pdf
+latex_figs/small_yellow_notice.pdf
 latex_figs/small_yellow_question.pdf
 latex_figs/small_yellow_question.pdf
 latex_figs/small_yellow_hint.pdf
@@ -72293,13 +72508,15 @@ Package rerunfilecheck Warning: File `admon_yellowbox.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
- )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt9.pfb>
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb>
 Output written on admon_yellowbox.pdf (5 pages, ).
 Transcript written on admon_yellowbox.log.
 + doconce ptex2tex admon envir=minted -DADMON=graybox3
@@ -72371,6 +72588,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_graybox3.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -72412,7 +72632,7 @@ No file admon_graybox3.aux.
 <use latex_figs/small_gray_warning.pdf> [1{/var/lib/texmf/fonts/map/pdftex/updm
 ap/pdftex.map} <./latex_figs/small_gray_warning.pdf>]
 <latex_figs/small_gray_notice.pdf, id=24, 64.24pt x 64.24pt>
-<use latex_figs/small_gray_notice.pdf>
+<use latex_figs/small_gray_notice.pdf> <use latex_figs/small_gray_notice.pdf>
 <latex_figs/small_gray_question2.pdf, id=25, 64.24pt x 64.24pt>
 <use latex_figs/small_gray_question2.pdf>
 <use latex_figs/small_gray_question2.pdf>
@@ -72422,12 +72642,16 @@ s/small_gray_notice.pdf> <./latex_figs/small_gray_question2.pdf> <./latex_figs/
 small_gray_hint.pdf>] <use latex_figs/small_gray_warning.pdf>
 <use latex_figs/small_gray_notice.pdf> (./admon_graybox3.out.pyg)
 (./admon_graybox3.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=53, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
-ket_0001.png>] <latex_figs/small_gray_summary.pdf, id=66, 48.18pt x 48.18pt>
+<../doc/manual/figs/wavepacket_0001.png, id=52, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
+Underfull \vbox (badness 10000) detected at line 435
+
+Underfull \vbox (badness 10000) detected at line 435
+[4] <latex_figs/small_gray_summary.pdf, id=64, 48.18pt x 48.18pt>
 <use latex_figs/small_gray_summary.pdf>
 No file admon_graybox3.ind.
-[5 <./latex_figs/small_gray_summary.pdf>] (./admon_graybox3.aux)
+[5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/small_gray_summary.pd
+f>] (./admon_graybox3.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -72472,7 +72696,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_graybox3.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -72523,6 +72750,7 @@ latex_figs/small_gray_warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
 latex_figs/small_gray_warning.pdf
 latex_figs/small_gray_notice.pdf
+latex_figs/small_gray_notice.pdf
 latex_figs/small_gray_question2.pdf
 latex_figs/small_gray_question2.pdf
 latex_figs/small_gray_hint.pdf
@@ -72540,13 +72768,15 @@ Package rerunfilecheck Warning: File `admon_graybox3.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
- )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt9.pfb>
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb>
 Output written on admon_graybox3.pdf (5 pages, ).
 Transcript written on admon_graybox3.log.
 + doconce ptex2tex admon envir=minted -DADMON=colors2
@@ -72618,6 +72848,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./admon_colors2.w18))/usr/local/bin/pygmentize
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -72659,7 +72892,7 @@ No file admon_colors2.aux.
 <use latex_figs/warning.pdf> [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.m
 ap} <./latex_figs/warning.pdf>]
 <latex_figs/notice.pdf, id=22, 89.33376pt x 89.33376pt>
-<use latex_figs/notice.pdf>
+<use latex_figs/notice.pdf> <use latex_figs/notice.pdf>
 <latex_figs/question.pdf, id=23, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf> <use latex_figs/question.pdf>
 <latex_figs/hint.pdf, id=24, 89.33376pt x 89.33376pt>
@@ -72667,12 +72900,16 @@ ap} <./latex_figs/warning.pdf>]
 > <./latex_figs/question.pdf> <./latex_figs/hint.pdf>]
 <use latex_figs/warning.pdf> <use latex_figs/notice.pdf>
 (./admon_colors2.out.pyg) (./admon_colors2.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=46, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
-ket_0001.png>] <latex_figs/summary.pdf, id=59, 89.33376pt x 89.33376pt>
+<../doc/manual/figs/wavepacket_0001.png, id=45, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
+Underfull \vbox (badness 10000) detected at line 435
+
+Underfull \vbox (badness 10000) detected at line 435
+[4] <latex_figs/summary.pdf, id=57, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 No file admon_colors2.ind.
-[5 <./latex_figs/summary.pdf>] (./admon_colors2.aux)
+[5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/summary.pdf>]
+(./admon_colors2.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -72717,7 +72954,10 @@ catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
 etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 admon_colors2.w18
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
@@ -72768,6 +73008,7 @@ latex_figs/warning.pdf
   omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
 latex_figs/warning.pdf
 latex_figs/notice.pdf
+latex_figs/notice.pdf
 latex_figs/question.pdf
 latex_figs/question.pdf
 latex_figs/hint.pdf
@@ -72785,13 +73026,15 @@ Package rerunfilecheck Warning: File `admon_colors2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
- )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt9.pfb>
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+9.pfb>
 Output written on admon_colors2.pdf (5 pages, ).
 Transcript written on admon_colors2.log.
 + doconce format html admon
@@ -73302,6 +73545,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./quickref.w18))/usr/local/bin/pygmentize
 ) (./quickref.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -73366,7 +73612,7 @@ Underfull \hbox (badness 1112)
 her out-
 [7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 783
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 781
 .
 
 [9]
@@ -73467,7 +73713,10 @@ etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 quickref.w18
 quickref.pyg
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
   helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
@@ -73618,6 +73867,9 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (./quickref.w18))/usr/local/bin/pygmentize
 ) (./quickref.pyg)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -73772,7 +74024,10 @@ etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 quickref.w18
 quickref.pyg
 inputenc.sty    2008/03/30 v1.1d Input encoding file
-  latin1.def    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
   helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
 hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
 hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
