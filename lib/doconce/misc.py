@@ -3179,6 +3179,10 @@ MathJax.Hub.Config({
         if slide_tp == 'deck':
             # <b> does not work, so we must turn on bold manually
             part = part.replace('<b>', '<b style="font-weight: bold">')
+            # Add more space around equations
+            part = re.sub(r'$$([^$]+)$$',
+                          r'&nbsp;<br>&nbsp;<br>\n$$\g<1>$$\n&nbsp;<br>',
+                          part)
 
         if slide_tp == 'reveal' and part_no == 0:
             # Add space after names and after institutions
