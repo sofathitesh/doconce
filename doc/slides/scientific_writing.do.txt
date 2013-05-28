@@ -1053,6 +1053,8 @@ doconce format plain  doconcefile  # plain, untagged text for email
 #   for multiple formats. However: Doconce makes a fix so that Sphinx and
 #   other formats works with labels in align environments :-)
 
+Figures:
+
  * Prepare figures in the right format: EPS for `latex`, PDF for `pdflatex`,
    PNG, GIF or JPEG for HTML formats (`html`, and HTML output from
    `sphinx`, `rst`, `pandoc`). One can omit the figure file extension and
@@ -1061,8 +1063,6 @@ doconce format plain  doconcefile  # plain, untagged text for email
    (Recall that PDF and EPS are vector graphics formats that can scale to
    any size with much higher quality than PNG or other bitmap formats.)
  * Use `doconce combine_images` to combine several images into one.
- * Use `doconce spellcheck *.do.txt` to automatically spellcheck files.
- * Avoid page references and footnotes.
 
 !split
 ======= Doconce writing tips =======
@@ -1075,6 +1075,8 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Not all LaTeX math is supported by MathJax. Some legal LaTeX math
    might give MathJax problems - then one has to rewrite the expression
    to find a syntax that works both with LaTeX and MathJax.
+ * Use `doconce spellcheck *.do.txt` to automatically spellcheck files.
+ * Avoid page references and footnotes.
 
 !split
 ======= Writing tips for sphinx and other formats =======

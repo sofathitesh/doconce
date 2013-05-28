@@ -1851,6 +1851,13 @@ LaTeX Beamer slides.
 # doconce-adjusted styles: easy to switch between styles since
 # font sizes are compatible
 
+!bc sys
+Terminal> doconce format html myslides \
+          --pygments_html_style=native --keep_pygments_html_bg
+Terminal> doconce slides_html myslides reveal \
+          --html_slide_theme=darkgray
+!ec
+
 ===== LaTeX Beamer Slides =====
 
 ======= Mako Programming =======
@@ -2128,8 +2135,9 @@ Make sure there is whitespace surrounding the text in back-ticks.
 
 === Strange non-English characters ===
 
-The reason for this problem is that Doconce can only work with latin1
-(ISO-8859) encoding and not UTF-8.
+The former reason for this problem is that Doconce could only work with latin1
+(ISO-8859) encoding and not UTF-8. After May 2013, Doconce applies
+UTF-8 both for HTML and LaTeX.
 
 Check the encoding of the `.do.txt` file with the Unix `file` command
 or with
