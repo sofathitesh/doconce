@@ -3176,6 +3176,10 @@ MathJax.Hub.Config({
                           slide_syntax[slide_tp]['notes'], part,
                           flags=re.DOTALL)
 
+        if slide_tp == 'deck':
+            # <b> does not work, so we must turn on bold manually
+            part = part.replace('<b>', '<b style="font-weight: bold">')
+
         #if '!bpop' not in part:
         #if slide_tp in ['reveal']:
         part = part.replace('<li>', '<p><li>')  # more space between bullets
