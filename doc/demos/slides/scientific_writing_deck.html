@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 
-<title></title>
+<title>Scientific Writing Anno 2013: The Doconce Way</title>
 
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
@@ -17,7 +17,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=1024, user-scalable=no">
 
-<title></title>
+<title>Scientific Writing Anno 2013: The Doconce Way</title>
 
 <!-- Required stylesheet -->
 <link rel="stylesheet" href="deck.js/core/deck.core.css">
@@ -94,6 +94,33 @@ git://github.com/barraq/deck.ext.js.git
 <!-- Required Modernizr file -->
 <script src="deck.js/modernizr.custom.js"></script>
 
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .slide .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+               -webkit-border-radius:14px; -moz-border-radius:14px;
+             border-radius:14px
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .slide .alert-block {padding-top:14px; padding-bottom:14px}
+     .slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+     /*.slide .alert li {margin-top: 1em}*/
+     .deck .alert-block p+p {margin-top:5px}
+     /*.slide .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .slide .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .slide .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .slide .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .slide .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
 
 
 <!-- Styles for table layout of slides -->
@@ -139,7 +166,7 @@ MathJax.Hub.Config({
 <!-- author(s): Hans Petter Langtangen -->
 
 <center>
-<b>Hans Petter Langtangen</b> 
+<b style="font-weight: bold">Hans Petter Langtangen</b> 
 </center>
 
 
@@ -382,25 +409,25 @@ Probably not, but I have a solution :-)
 
 
 <ul>
- <p><li class="slide"> <b>LaTeX</b>: de facto standard for math-instensive documents</li>
- <p><li class="slide"> <b>pdfLaTeX</b>, <b>XeLaTeX</b>, <b>LuaLaTeX</b>: takes over (figures in png, pdf)</li>
- <p><li class="slide"> <b>MS Word</b>: too clicky math support and ugly fonts, but much used</li>
- <p><li class="slide"> <b>HTML with MathJax</b>: "full" LaTeX <em>math</em>, but too much tagging</li>
- <p><li class="slide"> <b>Sphinx</b>:
+ <p><li class="slide"> <b style="font-weight: bold">LaTeX</b>: de facto standard for math-instensive documents</li>
+ <p><li class="slide"> <b style="font-weight: bold">pdfLaTeX</b>, <b style="font-weight: bold">XeLaTeX</b>, <b style="font-weight: bold">LuaLaTeX</b>: takes over (figures in png, pdf)</li>
+ <p><li class="slide"> <b style="font-weight: bold">MS Word</b>: too clicky math support and ugly fonts, but much used</li>
+ <p><li class="slide"> <b style="font-weight: bold">HTML with MathJax</b>: "full" LaTeX <em>math</em>, but too much tagging</li>
+ <p><li class="slide"> <b style="font-weight: bold">Sphinx</b>:
    somewhat limited LaTeX math support, but great support for web design</li>
- <p><li class="slide"> <b>reStructuredText</b>: no math support, but transforms to
+ <p><li class="slide"> <b style="font-weight: bold">reStructuredText</b>: no math support, but transforms to
    lots of formats (LaTeX, HTML, XML, Word, OpenOffice, ...)</li>
- <p><li class="slide"> <b>Markdown</b>: somewhat limited LaTeX math support, but minor tagging,
+ <p><li class="slide"> <b style="font-weight: bold">Markdown</b>: somewhat limited LaTeX math support, but minor tagging,
    transforms to lots of formats (LaTeX, HTML, XML, Word, OpenOffice, ...)</li>
- <p><li class="slide"> <b>IPython notebooks</b>: Markdown code/math,
+ <p><li class="slide"> <b style="font-weight: bold">IPython notebooks</b>: Markdown code/math,
    combines Python code, interactivity, and
    visualization</li>
- <p><li class="slide"> <b>MediaWiki</b>: quite good LaTeX math support (cf. Wikipedia)</li>
- <p><li class="slide"> Other <b>wiki</b> formats: no math support, great for collaborative editing</li>
- <p><li class="slide"> <b>Wordpress</b>: supports LaTeX <em>formulas</em> only, but good blogging support</li>
- <p><li class="slide"> <b>Google blogger</b>: supports full HTML with MathJax</li>
- <p><li class="slide"> <b>Epydoc</b>: old tool for Python code documentation</li>
- <p><li class="slide"> <b>Plain text for email</b>: no math, just raw LaTeX, and no tagging</li>
+ <p><li class="slide"> <b style="font-weight: bold">MediaWiki</b>: quite good LaTeX math support (cf. Wikipedia)</li>
+ <p><li class="slide"> Other <b style="font-weight: bold">wiki</b> formats: no math support, great for collaborative editing</li>
+ <p><li class="slide"> <b style="font-weight: bold">Wordpress</b>: supports LaTeX <em>formulas</em> only, but good blogging support</li>
+ <p><li class="slide"> <b style="font-weight: bold">Google blogger</b>: supports full HTML with MathJax</li>
+ <p><li class="slide"> <b style="font-weight: bold">Epydoc</b>: old tool for Python code documentation</li>
+ <p><li class="slide"> <b style="font-weight: bold">Plain text for email</b>: no math, just raw LaTeX, and no tagging</li>
 </ul>
 <p>
 
@@ -422,12 +449,12 @@ Probably not, but I have a solution :-)
  <p><li> LaTeX equation math:</li>
 
 <ul>
-    <p><li> <b>LaTeX</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code> +
+    <p><li> <b style="font-weight: bold">LaTeX</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code> +
       <code>eqnarray</code>, <code>split</code>, <code>alignat</code>, ... (numerous!)</li>
-    <p><li> <b>MathJax</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code></li>
-    <p><li> <b>MediaWiki</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code></li>
-    <p><li> <b>Sphinx</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code></li>
-    <p><li> <b>Markdown</b>: <code>equation*</code>, <code>equation</code>, <code>eqnarray*</code>, <code>align*</code> (but no labels)</li>
+    <p><li> <b style="font-weight: bold">MathJax</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code></li>
+    <p><li> <b style="font-weight: bold">MediaWiki</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code></li>
+    <p><li> <b style="font-weight: bold">Sphinx</b>: <code>equation*</code>, <code>equation</code>, <code>align*</code></li>
+    <p><li> <b style="font-weight: bold">Markdown</b>: <code>equation*</code>, <code>equation</code>, <code>eqnarray*</code>, <code>align*</code> (but no labels)</li>
 </ul>
 <p>
 
@@ -666,7 +693,7 @@ DATE: today
 TOC: on
 </code></pre></div>
 <p>
-<div class="alert alert-block alert-notice"><b>Notice.</b>
+<div class="alert alert-block alert-notice"><b style="font-weight: bold">Notice.</b>
 Title and authors must have all information <em>on a single line</em>!
 </div>
 <p>
@@ -728,7 +755,7 @@ Result:
 <h4>This is an H4/paragraph heading  <a name="___sec22"></a></h4>
 
 <p>
-<b>This is a paragraph heading.</b>
+<b style="font-weight: bold">This is a paragraph heading.</b>
 <p>
 
 </section>
@@ -759,7 +786,7 @@ This gets rendered as
  <p><li> Bullet lists start with <code>*</code>
    and may span several lines</li>
  <p><li> <em>Emphasized words</em> are possible</li>
- <p><li> <b>Boldface words</b> are also possible</li>
+ <p><li> <b style="font-weight: bold">Boldface words</b> are also possible</li>
  <p><li> <font color="red">colored words</font> too</li>
  <p><li> <code>inline verbatim code</code> is featured</li>
 
@@ -814,7 +841,7 @@ URL: &quot;http://code.google.com/p/doconce/&quot;
 <h2>Doconce: figures and movies  <a name="___sec25"></a></h2>
 
 <p>
-<div class="alert alert-block alert-notice"><b>Important:</b>
+<div class="alert alert-block alert-notice"><b style="font-weight: bold">Important:</b>
 Figure with HTML and LaTeX info, and caption, <em>all on one line</em>:
 </div>
 <p>
@@ -881,6 +908,7 @@ label{b:eq}
 which is rendered as
 
 <p>
+<p>&nbsp;<br>
 $$
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
@@ -889,6 +917,7 @@ $$
 \label{b:eq}
 \end{align}
 $$
+<p>&nbsp;<br>
 
 
 <p>
@@ -1063,7 +1092,7 @@ Gets rendered as
 
 <p>
 <table border="1">
-<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="center"><b style="font-weight: bold">     time     </b></td> <td align="center"><b style="font-weight: bold">   velocity   </b></td> <td align="center"><b style="font-weight: bold"> acceleration </b></td> </tr>
 <tr><td align="right">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="right">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="right">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -1187,24 +1216,24 @@ Compute the probability of getting heads.
 <!-- keywords = random numbers; Monte Carlo simulation -->
 
 <p>
-<b>a)</b>
+<b style="font-weight: bold">a)</b>
 Make a program that simulates flipping a coin \( N \) times.
 
 <p>
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<b>Hint.</b>
+<b style="font-weight: bold">Hint.</b>
 Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 <!-- --- end hint in exercise --- -->
 
 <p>
-<b>b)</b>
+<b style="font-weight: bold">b)</b>
 Compute the probability of getting heads.
 
 <p>
 <!-- --- begin answer of exercise --- -->
-<b>Answer.</b>
+<b style="font-weight: bold">Answer.</b>
 0.5.
 <!-- --- end answer of exercise --- -->
 
@@ -1288,15 +1317,15 @@ There is support for environments like warning, notice, question, hint,
 etc., possibly with an icon and heading.
 
 <p>
-<div class="alert alert-block alert-warning"><b>Use with caution!</b>
+<div class="alert alert-block alert-warning"><b style="font-weight: bold">Use with caution!</b>
 Such environments may light up the document, but can be disturbing too.
 </div>
 <p>
-<div class="alert alert-block alert-notice"><b>Going deeper.</b>
+<div class="alert alert-block alert-notice"><b style="font-weight: bold">Going deeper.</b>
 More details can be separated from the rest.
 </div>
 <p>
-<div class="alert alert-block alert-question"><b>Time for review!</b>
+<div class="alert alert-block alert-question"><b style="font-weight: bold">Time for review!</b>
 
 <ul>
   <p><li> Maybe ask a question?</li>
@@ -1305,7 +1334,7 @@ More details can be separated from the rest.
 <p>
 </div>
 <p>
-<div class="alert alert-block alert-block"><b>Conclusions.</b>
+<div class="alert alert-block alert-block"><b style="font-weight: bold">Conclusions.</b>
 
 <ul>
   <p><li> A special "block" admonition has less pronounced typesetting and
@@ -1407,7 +1436,9 @@ Last page gets rendered to
 Key equation:
 
 <p>
+<p>&nbsp;<br>
 $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
+<p>&nbsp;<br>
 
 
 <p>
@@ -1491,7 +1522,9 @@ Last page gets rendered to
 
 <p class="slide">
 
+&nbsp;<br>
 $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
+&nbsp;<br>
 
 
 </p>
@@ -1533,33 +1566,33 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 </ul>
 <p>
 
- <p><li class="slide"> <b>Problem</b>: each package has its own syntax (though similar)</li>
+ <p><li class="slide"> <b style="font-weight: bold">Problem</b>: each package has its own syntax (though similar)</li>
 
 <ul>
-   <p><li class="slide"> <b>Solution</b>: slide code is autogenerated from compact Doconce syntax</li>
+   <p><li class="slide"> <b style="font-weight: bold">Solution</b>: slide code is autogenerated from compact Doconce syntax</li>
 </ul>
 <p>
 
- <p><li class="slide"> <b>Problem</b>: reveal and deck have numerous styles</li>
+ <p><li class="slide"> <b style="font-weight: bold">Problem</b>: reveal and deck have numerous styles</li>
 
 <ul>
-   <p><li class="slide"> <b>Solution</b>: easy <a href="demo/index.html">to autogenerate all styles</a> for a talk</li>
+   <p><li class="slide"> <b style="font-weight: bold">Solution</b>: easy <a href="demo/index.html">to autogenerate all styles</a> for a talk</li>
 </ul>
 <p>
 
- <p><li class="slide"> <b>Problem</b>: HTML5 slides need many style files</li>
+ <p><li class="slide"> <b style="font-weight: bold">Problem</b>: HTML5 slides need many style files</li>
 
 <ul>
-   <p><li class="slide"> <b>Solution</b>: autocopy all files to talk directory</li>
+   <p><li class="slide"> <b style="font-weight: bold">Solution</b>: autocopy all files to talk directory</li>
 </ul>
 <p>
 
- <p><li class="slide"> <b>Problem</b>: original versions of the styles have too large fonts,
+ <p><li class="slide"> <b style="font-weight: bold">Problem</b>: original versions of the styles have too large fonts,
    centering, and other features not so suitable for lectures
    with much math and code</li>
 
 <ul>
-   <p><li class="slide"> <b>Solution</b>: Doconce contains adjusted css files</li>
+   <p><li class="slide"> <b style="font-weight: bold">Solution</b>: Doconce contains adjusted css files</li>
 </ul>
 <p>
 

@@ -3182,8 +3182,8 @@ MathJax.Hub.Config({
         if slide_tp in ('deck', 'reveal'):
             # Add more space around equations
             part = re.sub(r'\$\$([^$]+)\$\$',
-                          #r'&nbsp;<br>&nbsp;<br>\n$$\g<1>$$\n&nbsp;<br>',
-                          r'&nbsp;<br>\n$$\g<1>$$\n&nbsp;<br>',
+                          #r'<p>&nbsp;<br>&nbsp;<br>\n$$\g<1>$$\n&nbsp;<br>',
+                          r'<p>&nbsp;<br>\n$$\g<1>$$\n<p>&nbsp;<br>',
                           part)
 
         if slide_tp == 'reveal' and part_no == 0:
@@ -3243,6 +3243,7 @@ MathJax.Hub.Config({
                             body = body.replace(tag, '%s class="%s%s">' % (tag[:-1], class_tp, arg))
                 else:
                     # treat whole block as paragraph
+                    body = body.replace('<p>&nbsp;<br>', '&nbsp;<br>&nbsp;<br>')  # hack to preserve spacings before equation (see above), when <p> below is removed
                     body = body.replace('<p>', '')  # can make strange behavior
                     body2 = '\n<p class="%s">\n' % class_tp
                     if slide_tp == 'reveal' and arg:  # reveal specific
