@@ -1011,6 +1011,9 @@ def ptex2tex():
         #preprocess_options += ['-DLATEX_HEADING=traditional']
         if 'minted' in packages:
             preprocess_options += ['-DMINTED']
+    if '-DMINTED' in preprocess_options and 'minted' in packages:
+        packages.remove('minted')  # nicer with just one \usepackage{minted}
+
 
     if not os.path.isfile(filename + '.p.tex'):
         print 'No file %s' % (filename + '.p.tex')
@@ -2063,6 +2066,7 @@ def generate_html5_slides(header, parts, footer, basename, filename,
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
 -->
 
 <script>
@@ -2073,13 +2077,14 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
     hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }
     hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
-    .text-small  { font-size: 60%%;  }
-    .text-large  { font-size: 130%%; }
+    .reveal .alert-text-small   { font-size: 80%%;  }
+    .reveal .alert-text-large   { font-size: 130%%; }
+    .reveal .alert-text-normal  { font-size: 90%%;  }
     .reveal .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:5px solid #bababa;
-               -webkit-border-radius:14px; -moz-border-radius:14px;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
              border-radius:14px
              background-position: 10px 10px;
              background-repeat: no-repeat;
@@ -2943,8 +2948,9 @@ git://github.com/barraq/deck.ext.js.git
     hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }
     hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
-    .text-small  { font-size: 60%%;  }
-    .text-large  { font-size: 130%%; }
+    .slide .alert-text-small   { font-size: 80%%;  }
+    .slide .alert-text-large   { font-size: 130%%; }
+    .slide .alert-text-normal  { font-size: 90%%;  }
     .slide .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);

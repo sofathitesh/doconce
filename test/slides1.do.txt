@@ -19,7 +19,7 @@ DATE: Today
 # Test that it is okay to leave out width if there are only two columns
 
 !bslidecell 01
-FIGURE: [../doc/manual/figs/wavepacket_0001.png]
+FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=300]
 !eslidecell
 
 !bpop highlight-red
@@ -78,15 +78,25 @@ f2 = Fancy()
 !split
 ===== Admon blocks =====
 
-# Can use admons to simulate blocks
+Can use admons to simulate blocks:
 
 !bnotice Key PDE:
+This box has title and math in normal 90 percent font:
+!bt
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+!et
 !enotice
 
 !bnotice None
 Just some block with text and a conclusion that something is important.
 !enotice
+
+!bwarning (small)
+Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+!ewarning
 
 
 

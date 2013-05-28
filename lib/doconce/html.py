@@ -61,10 +61,13 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
 
 # Style sheets
 
-admon_styles1 = """\
-    .alert-text-small  { font-size: 80%%;  }
-    .alert-text-large  { font-size: 130%%; }
-    .alert-text-normal  { font-size: 90%%; }
+admon_styles_text = """\
+    .alert-text-small   { font-size: 80%%;  }
+    .alert-text-large   { font-size: 130%%; }
+    .alert-text-normal  { font-size: 90%%;  }
+"""
+
+admon_styles1 = admon_styles_text + """\
     .notice, .summary, .warning, .hint, .question, .block {
        border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
        background-repeat: no-repeat; background-position: 10px center;
@@ -82,10 +85,7 @@ admon_styles1 = """\
     .block    { color: #00529B; background-color: %(background_notice)s; }
 """
 
-admon_styles2 = """\
-    .alert-text-small  { font-size: 80%%;  }
-    .alert-text-large  { font-size: 130%%; }
-    .alert-text-normal  { font-size: 90%%; }
+admon_styles2 = admon_styles_text + """\
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -1042,7 +1042,7 @@ def html_toc(sections):
 
     return s
 
-def html_quote(block, format):
+def html_quote(block, format, text_size='normal'):
     return """\
 <blockquote>
 %s
@@ -1068,9 +1068,11 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
     if title and title[-1] not in ('.', ':', '!', '?'):
         # Make sure the title ends with puncuation
         title += '.'
+
     # Make pygments background equal to admon background for colored admons?
     keep_pygm_bg = option('keep_pygments_html_bg')
     pygments_pattern = r'"background: .+?">'
+
     html_admon = option('html_admon=', 'gray')
     if html_admon == 'colors':
         if not keep_pygm_bg:
@@ -1081,7 +1083,8 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 </div>
 """ %% (text_size, title, block)
         return janko
-    elif html_admon in admon_css_vars or option('html_style=') == 'vagrant':
+
+    elif html_admon in ('gray', 'yellow', 'apricot') or option('html_style=') == 'vagrant':
         if not keep_pygm_bg:
             block = re.sub(pygments_pattern, r'"background: %%s">' %%
                            admon_css_vars[html_admon]['background'], block)
@@ -1090,8 +1093,9 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 </div>
 """ %% (text_size, title, block)
         return vagrant
-    else:
-        block = '<div class="alert-text-%%s">%%s<div>' %% (text_size, block)
+
+    elif html_admon == 'lyx':
+        block = '<div class="alert-text-%%s">%%s</div>' %% (text_size, block)
         if '%(_admon)s' != 'block':
             lyx = """
 <table width="95%%%%" border="0">
@@ -1116,6 +1120,17 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 </table>
 """ %% (title, block)
         return lyx
+
+    else:
+        # Plain paragraph
+        paragraph = """
+
+<!-- admonition: %(_admon)s, typeset as paragraph -->
+<div class="alert-text-%%s"><b>%%s</b>
+%%s
+</div>
+""" %% (text_size, title, block)
+        return paragraph
 ''' % vars()
     exec(_text)
 
@@ -1271,7 +1286,7 @@ def define(FILENAME_EXTENSION,
         css += "\n    h1, h2, h3 { font-family: '%s'; }\n" % heading_font_family.replace('+', ' ')
 
     global admon_css_vars
-    admon_styles = 'gray', 'yellow', 'apricot', 'colors'
+    admon_styles = 'gray', 'yellow', 'apricot', 'colors', 'lyx', 'paragraph'
     admon_css_vars = {style: {} for style in admon_styles}
     admon_css_vars['yellow']  = dict(boundary='#fbeed5', background='#fcf8e3')
     admon_css_vars['apricot'] = dict(boundary='#FFBF00', background='#fbeed5')
@@ -1305,8 +1320,10 @@ def define(FILENAME_EXTENSION,
         if '!b'+admon in filestr and '!e'+admon in filestr:
             if html_admon == 'colors':
                 css += (admon_styles1 % admon_css_vars[html_admon])
-            else:
+            elif html_admon in ('gray', 'yellow', 'apricot'):
                 css += (admon_styles2 % admon_css_vars[html_admon])
+            elif html_admon in ('lyx', 'paragraph'):
+                css += admon_styles_text
             break
 
     style = """

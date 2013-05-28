@@ -341,7 +341,7 @@ def rst_index_bib(filestr, index, citations, pubfile, pubdata):
 
     return filestr
 
-def rst_quote(block, format):
+def rst_quote(block, format, text_size='normal'):
     # Insert empty comment to distinguish from possibly
     # previous list, code, etc.
     return """

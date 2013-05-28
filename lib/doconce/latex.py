@@ -784,7 +784,7 @@ def latex_exercise_old(exer):
         pass
     return s
 
-def latex_quote(block, format):
+def latex_quote(block, format, text_size='normal'):
     return r"""
 \begin{quote}
 %s

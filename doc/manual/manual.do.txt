@@ -1858,6 +1858,13 @@ Terminal> doconce slides_html myslides reveal \
           --html_slide_theme=darkgray
 !ec
 
+=== Potential Problems ===
+
+ * Some newer Firefox does not show rounded corners of the
+   admonition boxes, e.g., notice and warning (tested on Ubuntu)
+ * Doconce performs some adjustments of the spacing around
+   equations. More edits (automate with `doconce subst`) might be needed.
+
 ===== LaTeX Beamer Slides =====
 
 ======= Mako Programming =======

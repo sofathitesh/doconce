@@ -162,21 +162,27 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 # pandoc cannot work well with \Verb, needs \verb
 doconce replace '\Verb!' '\verb!' testdoc.tex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+# pandoc v 10 does not handle a couple of URLs
+doconce replace '%E2%80%93' '' testdoc.tex
+doconce replace '+%26+' '' testdoc.tex
 
 pandoc -f latex -t markdown -o testdoc.md testdoc.tex
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -v >> testdoc_pnd_l2h.html
 
 doconce format pandoc testdoc.do.txt $ex
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
 # slides1: rough small test
 # slides2: much of scientific_writing.do.txt
 # slides3: equal to slides/demo.do.txt
-doconce format html slides1 --pygments_html_style=emacs
+doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp slides1.html slides1_1st.html  # before running slides_html
 
@@ -186,6 +192,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp slides1.html slides1_reveal.html
 /bin/ls -R reveal.js >> slides1_reveal.html
 
+doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
@@ -291,9 +298,13 @@ cp admon.tex admon_${admon_tp}.tex
 pdflatex -shell-escape admon_${admon_tp}
 done
 
-doconce format html admon
+doconce format html admon --html_admon=lyx --html_style=blueish2
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp admon.html admon_default.html
+cp admon.html admon_lyx.html
+
+doconce format html admon --html_admon=paragraph --html_style=blueish2
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp admon.html admon_paragraph.html
 
 doconce format html admon --html_admon=colors
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
