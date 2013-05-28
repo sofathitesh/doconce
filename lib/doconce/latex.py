@@ -938,7 +938,12 @@ def latex_inline_comment(m):
 
     if '_' in comment:
         # todonotes are bad at handling verbatim code with comments...
-        comment = comment.replace('_', '\\_')
+        # inlinecomment is treated before verbatim
+        verbatims = re.findall(r'`.+?`', comment)
+        for verbatim in verbatims:
+            if '_' in verbatim:
+                verbatim_fixed = verbatim.replace('_', '\\_')
+                comment = comment.replace(verbatim, verbatim_fixed)
 
     if len(comment) <= 100:
         # Have some extra space inside the braces in the arguments to ensure
