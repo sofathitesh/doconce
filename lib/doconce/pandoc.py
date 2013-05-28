@@ -216,7 +216,7 @@ def pandoc_index_bib(filestr, index, citations, pubfile, pubdata):
     filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
     return filestr
 
-def pandoc_quote(block, format):
+def pandoc_quote(block, format, text_size='normal'):
     # block quotes in pandoc start with "> "
     lines = []
     for line in block.splitlines():

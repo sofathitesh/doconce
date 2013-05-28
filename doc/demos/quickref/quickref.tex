@@ -68,117 +68,24 @@ final,                   % or draft (marks overfull hboxes)
 \newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 
 
-% Default is "colors2", i.e., box with color and text wrapped around icon
+\usepackage[framemethod=TikZ]{mdframed}
 
-\usepackage{framed}
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
 
-
-% Admonition environment for "hint"
-% Style from NumPy User Guide
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hint_colors1admon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
 }
 {
-\end{hintshaded}
-}
-
-% Admonition environment for "notice"
-% Style from NumPy User Guide
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{noticeshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{noticebackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{notice_colors1admon}[1][Notice]{
-\begin{noticeshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/notice}\ \ \   \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{noticeshaded}
-}
-
-% Admonition environment for "summary"
-% Style from NumPy User Guide
-\definecolor{summarybackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{summaryshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{summarybackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{summary_colors1admon}[1][Summary]{
-\begin{summaryshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/summary}\ \ \   \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{summaryshaded}
-}
-
-% Admonition environment for "warning"
-% Style from NumPy User Guide
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-% \fboxsep sets the space between the text and the box
-\newenvironment{warningshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{warningbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{warning_colors1admon}[1][Warning]{
-\begin{warningshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/warning}\ \ \   \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{warningshaded}
-}
-
-% Admonition environment for "question"
-% Style from NumPy User Guide
-\definecolor{questionbackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{questionshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{questionbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{question_colors1admon}[1][Question]{
-\begin{questionshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/question}\ \ \   \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{questionshaded}
-}
-
-% Admonition environment for "block"
-% Style from NumPy User Guide
-\definecolor{blockbackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{blockshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{blockbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{block_colors1admon}[1][Block]{
-\begin{blockshaded}
-\noindent
-  \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{blockshaded}
+\end{graybox1mdframed}
 }
 
 
@@ -233,7 +140,7 @@ Doconce Quick Reference
 
 
 \begin{center}
-May 24, 2013
+May 28, 2013
 \end{center}
 
 \vspace{1cm}
@@ -701,7 +608,7 @@ is also important, one should follow these rules:
 labels in \Verb!align! environments work well.)
 
 
-\begin{notice_colors1admon}[Notice]
+\begin{graybox1admon}[Notice.]
 {\LaTeX} supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as \Verb!sphinx!, makes it necessary
@@ -712,7 +619,7 @@ include special code for \Verb!latex! and \Verb!pdflatex! output and more
 straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
-\end{notice_colors1admon}
+\end{graybox1admon}
 \paragraph{LaTeX Newcommands.}
 The author can define \Verb!newcommand! statements in files with names
 \Verb!newcommands*.tex!. Such commands should only be used for mathematics
