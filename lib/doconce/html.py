@@ -377,10 +377,13 @@ def html_code(filestr, code_blocks, code_block_types,
 
     if MATH_TYPESETTING == 'MathJax':
         # LaTeX blocks are surrounded by $$
-        filestr = re.sub(r'!bt *\n', '$$\n', filestr)
+        #filestr = re.sub(r'!bt *\n', '$$\n', filestr)
+        # Add more space before and after equations
+        filestr = re.sub(r'!bt *\n', '&nbsp;<br>&nbsp;<br>\n$$\n', filestr)
         # (add extra newline after $$ since Google's blogspot HTML
         # needs that line to show the math right - otherwise it does not matter)
-        filestr = re.sub(r'!et *\n', '$$\n\n', filestr)
+        #filestr = re.sub(r'!et *\n', '$$\n\n', filestr)
+        filestr = re.sub(r'!et *\n', '$$\n&nbsp;<br>\n\n', filestr)
 
         # Remove inner \[..\] from equations $$ \[ ... \] $$
         filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)

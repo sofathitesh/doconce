@@ -2066,6 +2066,34 @@ def generate_html5_slides(header, parts, footer, basename, filename,
 <script>
 document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 </script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+               -webkit-border-radius:14px; -moz-border-radius:14px;
+             border-radius:14px
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:0}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .reveal .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
 """,
             body_header="""\
 <body>
@@ -2907,6 +2935,33 @@ git://github.com/barraq/deck.ext.js.git
 <!-- Required Modernizr file -->
 <script src="deck.js/modernizr.custom.js"></script>
 
+<style type="text/css">
+    hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
+    .slide .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+               -webkit-border-radius:14px; -moz-border-radius:14px;
+             border-radius:14px
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .slide .alert-block {padding-top:14px; padding-bottom:14px}
+     .slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+     /*.slide .alert li {margin-top: 1em}*/
+     .deck .alert-block p+p {margin-top:5px}
+     /*.slide .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
+     .slide .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
+     .slide .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
+     .slide .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
+     .slide .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
 """,
             body_header="""\
 <body class="deck-container">
@@ -3046,7 +3101,7 @@ git://github.com/barraq/deck.ext.js.git
             print 'known themes:', ', '.join(list(all_combinations[slide_tp].keys()))
             sys.exit(1)
 
-    m = re.search(r'<title>(.*?)</title>', ''.join(header))
+    m = re.search(r'<title>(.*?)</title>', ''.join(parts[0]))
     if m:
         title = m.group(1).strip()
     else:
