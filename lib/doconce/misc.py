@@ -3161,7 +3161,7 @@ MathJax.Hub.Config({
 %(body_header)s
 """ % slide_syntax[slide_tp]
 
-    for part in parts:
+    for part_no, part in enumerate(parts):
         part = ''.join(part)
 
         if '<!-- begin inline comment' in part:
@@ -3179,6 +3179,14 @@ MathJax.Hub.Config({
         if slide_tp == 'deck':
             # <b> does not work, so we must turn on bold manually
             part = part.replace('<b>', '<b style="font-weight: bold">')
+
+        if slide_tp == 'reveal' and part_no == 0:
+            # Add space after names and after institutions
+            part = re.sub(r'<p>\s+<!-- institution\(s\)',
+                          r'<p>&nbsp;<br>\n<!-- institution(s)', part)
+            part = re.sub(r'<p>\s+<center><h4>(.+?)</h4></center>\s+<!-- date -->',
+                          r'<p>&nbsp;<br>\n<center><h4>\g<1></h4></center> <!-- date -->',
+                          part)
 
         #if '!bpop' not in part:
         #if slide_tp in ['reveal']:
