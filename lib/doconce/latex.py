@@ -131,8 +131,8 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     if include_numbering_of_exercises:
         # Remove section numbers of exercise sections
-        filestr = re.sub(r'section\{(Exercise|Problem|Project):( +[^}])',
-                         r'section*{\g<1>:\g<2>', filestr)
+        filestr = re.sub(r'section\{(Exercise|Problem|Project)(\s+\d+):( +[^}])',
+                         r'section*{\g<1>\g<2>:\g<3>', filestr)
 
     # Fix % and # in link texts (-> \%, \# - % is otherwise a comment...)
     pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'

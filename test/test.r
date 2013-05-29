@@ -1122,8 +1122,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -10935,8 +10935,12 @@ With label.
 
 Without label.
 
-''Hint.''\n
-Here is a hint.
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Hint.''' Here is a hint.
+}}
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -10950,8 +10954,11 @@ have the latest updates of the files.
 Greg Wilson' excellent [http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/ Script for Introduction to Version Control] provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
-''Summary.''\n
-'''Bold remark:''' Make some text with this summary.
+
+{{mbox
+| type = Summary.
+| textstyle = font-size: 90%;
+| text = '''Summary.''' '''Bold remark:''' Make some text with this summary.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
@@ -10961,6 +10968,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
+}}
 
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
@@ -21366,8 +21374,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -21672,8 +21680,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -21953,8 +21961,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -23515,8 +23523,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -24926,8 +24934,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -28572,8 +28580,18 @@ testdoc.do.txt
 ._part0002_testdoc.html
 
 ************** File: make.sh *****************
-#!/bin/sh -x
-rm -rf html_images reveal.js downloaded_figures
+#!/bin/bash -x
+
+function system {
+  "$@"
+  if [ $? -ne 0 ]; then
+    echo "make.sh: unsuccessful command $@"
+    echo "abort!"
+    exit 1
+  fi
+}
+
+rm -rf html_images reveal.js downloaded_figures latex_styles
 
 # Note:  --examples_as_exercises is required to avoid abortion
 
@@ -28602,57 +28620,36 @@ EOF
 ex="--examples_as_exercises"
 #ex=
 
-doconce format html testdoc --wordpress  $ex --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format html testdoc --wordpress  $ex --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 cp testdoc.html testdoc_wordpress.html
 
-doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default
 cp testdoc.html testdoc_no_solutions.html
 
-doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp -r ../bundled/html_styles/style_vagrant .
 doconce replace 'css/' 'style_vagrant/css/' style_vagrant/template_vagrant.html
-doconce format html testdoc.do.txt $ex --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html testdoc.do.txt $ex --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg --tables2csv
 
-doconce remove_exercise_answers testdoc.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce remove_exercise_answers testdoc.html
+system doconce html_colorbullets testdoc.html
+system doconce split_html testdoc.html
 
-doconce html_colorbullets testdoc.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments
+system doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen
+system doconce latex_exercise_toc testdoc
 
-doconce split_html testdoc.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-
-doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce latex_exercise_toc testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+# doconce replace does not work well with system without quotes
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
 doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
@@ -28663,12 +28660,10 @@ doconce replace --examples_as__exercises $ex testdoc.p.tex
 
 # A4PAPER trigger summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 
 # test that pdflatex works
-pdflatex -shell-escape testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system pdflatex -shell-escape testdoc
 pdflatex -shell-escape testdoc
 makeindex testdoc
 bibtex testdoc
@@ -28680,176 +28675,115 @@ cp testdoc.tex testdoc.tex_ptex2tex
 
 # -DBOOK will not work for latex/pdflatex since we have an abstract,
 # but here we just use the translated text for testing, not latex compiling
-doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted > testdoc.tex_doconce_ptex2tex
+system doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted > testdoc.tex_doconce_ptex2tex
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-doconce format plain testdoc.do.txt $ex -DSOMEVAR=1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format st testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format sphinx testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format plain testdoc.do.txt $ex -DSOMEVAR=1
+system doconce format st testdoc.do.txt $ex
+system doconce format sphinx testdoc.do.txt $ex
 mv -f testdoc.rst testdoc.sphinx.rst
 
 doconce format sphinx testdoc $ex
 doconce split_rst testdoc
-doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce sphinx_dir author=HPL title='Just a test' version=0.1 theme=agni testdoc
 cp automake_sphinx.py automake_sphinx_testdoc.py
 
-doconce format rst testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format rst testdoc.do.txt $ex
 
-doconce format epytext testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format pandoc testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format mwiki testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format cwiki testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format ipynb testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format epytext testdoc.do.txt $ex
+system doconce format pandoc testdoc.do.txt $ex
+system doconce format mwiki testdoc.do.txt $ex
+system doconce format cwiki testdoc.do.txt $ex
+system doconce format ipynb testdoc.do.txt $ex
 
 # Test mako variables too
-doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' $ex
 
 # Test pandoc: from latex to markdown, from markdown to html
-doconce format latex testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format latex testdoc.do.txt $ex
+system doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
 # pandoc cannot work well with \Verb, needs \verb
-doconce replace '\Verb!' '\verb!' testdoc.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-# pandoc v 10 does not handle a couple of URLs
+system doconce replace '\Verb!' '\verb!' testdoc.tex
+# pandoc v 10 does not handle a couple of the URLs
 doconce replace '%E2%80%93' '' testdoc.tex
 doconce replace '+%26+' '' testdoc.tex
 
-pandoc -f latex -t markdown -o testdoc.md testdoc.tex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system pandoc -f latex -t markdown -o testdoc.md testdoc.tex
+system pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_l2h.html
 
-doconce format pandoc testdoc.do.txt $ex
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format pandoc testdoc.do.txt $ex
+system pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
 # slides1: rough small test
 # slides2: much of scientific_writing.do.txt
 # slides3: equal to slides/demo.do.txt
-doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 cp slides1.html slides1_1st.html  # before running slides_html
 
-doconce slides_html slides1 reveal --html_slide_type=beigesmall
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce slides_html slides1 reveal --html_slide_type=beigesmall
 
 cp slides1.html slides1_reveal.html
 /bin/ls -R reveal.js >> slides1_reveal.html
 
-doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
-doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
+system doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
 
 cp slides1.html slides1_deck.html
 /bin/ls -R deck.js >> slides1_deck.html
 
-doconce format pdflatex slides1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce ptex2tex slides1 -DLATEX_HEADING=beamer
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce slides_beamer slides1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format pdflatex slides1
+system doconce ptex2tex slides1 -DLATEX_HEADING=beamer
+system doconce slides_beamer slides1
 
-doconce format html slides2 --pygments_html_style=emacs
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce slides_html slides2 reveal --html_slide_type=beigesmall
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format html slides2 --pygments_html_style=emacs
+system doconce slides_html slides2 reveal --html_slide_type=beigesmall
 cp slides2.html slides2_reveal.html
 
-doconce format pdflatex slides2
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce slides_beamer slides2
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format pdflatex slides2
+system doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
+system doconce slides_beamer slides2
 
-doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce slides_html slides3 reveal --html_slide_type=beigesmall
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
+system doconce slides_html slides3 reveal --html_slide_type=beigesmall
 cp slides3.html slides3_reveal.html
 
 theme=red3
-doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=$theme
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce slides_beamer slides3 --beamer_slide_theme=$theme
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=$theme
+system doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
+system doconce slides_beamer slides3 --beamer_slide_theme=$theme
 
-doconce format html slides1 --pygments_html_style=emacs
-doconce slides_html slides1 all
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html slides1 --pygments_html_style=emacs
+system doconce slides_html slides1 all
 
 # Test grab
-doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce grab --from- '={5} Subsection 1' --to 'subroutine@' _testdoc.do.txt > testdoc.tmp
 doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt >> testdoc.tmp
 doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt >> testdoc.tmp
 
 # Test html templates
-doconce format html html_template --html_template=template1.html --no_pygments_html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format html html_template --html_template=template1.html --no_pygments_html
 cp html_template.html html_template1.html
 
-doconce format html html_template --html_template=template_inf1100.html  --pygments_html_style=emacs
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html html_template --html_template=template_inf1100.html  --pygments_html_style=emacs
 
 # Test author special case and generalized references
-doconce format html author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format latex author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format sphinx author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format plain author1
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html author1
+system doconce format latex author1
+system doconce format sphinx author1
+system doconce format plain author1
 
 # Test math
 name=math_test
 doconce format pdflatex $name
 doconce ptex2tex $name
 pdflatex $name
-doconce format html $name
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html $name
 cp $name.html ${name}_html.html
 doconce format sphinx $name
 doconce sphinx_dir dirname=sphinx-rootdir-math $name
@@ -28865,95 +28799,61 @@ doconce md2latex $name
 # Test admonitions
 admon_tps="colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2"
 for admon_tp in $admon_tps; do
-doconce format pdflatex admon --latex_admon=$admon_tp
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format pdflatex admon --latex_admon=$admon_tp
 doconce ptex2tex admon envir=minted
 cp admon.tex admon_${admon_tp}.tex
 pdflatex -shell-escape admon_${admon_tp}
 done
 
-doconce format html admon --html_admon=lyx --html_style=blueish2
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_admon=lyx --html_style=blueish2
 cp admon.html admon_lyx.html
 
-doconce format html admon --html_admon=paragraph --html_style=blueish2
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_admon=paragraph --html_style=blueish2
 cp admon.html admon_paragraph.html
 
-doconce format html admon --html_admon=colors
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_admon=colors
 cp admon.html admon_colors.html
 
-doconce format html admon --html_admon=gray --html_style=blueish2
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_admon=gray --html_style=blueish2
 cp admon.html admon_gray.html
 
-doconce format html admon --html_admon=yellow
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_admon=yellow
 cp admon.html admon_yellow.html
 
-doconce format html admon --html_admon=apricot --html_style=solarized
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_admon=apricot --html_style=solarized
 cp admon.html admon_apricot.html
 
-doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
 cp admon.html admon_vagrant.html
 
-doconce sphinx_dir dirname=tmp_admon admon
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-python automake_sphinx.py
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce sphinx_dir dirname=tmp_admon admon
+system python automake_sphinx.py
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
+
+system doconce format mwiki admon
 
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done
 
 # Test encoding
-doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 cp encoding1.do.txt tmp1.do.txt
-
-doconce change_encoding utf-8 latin1 tmp1.do.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce change_encoding latin1 utf-8 tmp1.do.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce change_encoding utf-8 latin1 tmp1.do.txt
+system doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
+system doconce change_encoding latin1 utf-8 tmp1.do.txt
+system doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
+system doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
 cp encoding1.do.txt tmp2.do.txt
-
-doconce change_encoding utf-8 latin1 tmp2.do.txt
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce change_encoding utf-8 latin1 tmp2.do.txt
 doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
 
 # Test mako problems
-doconce format html mako_test1 --no_pygments_html  # mako variable only, no % lines
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format html mako_test2 --no_pygments_html  # % lines inside code, but need for mako
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format html mako_test3 --no_pygments_html  # % lines inside code
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
+system doconce format html mako_test1 --no_pygments_html  # mako variable only, no % lines
+system doconce format html mako_test2 --no_pygments_html  # % lines inside code, but need for mako
+system doconce format html mako_test3 --no_pygments_html  # % lines inside code
 cp mako_test3.html mako_test3b.html
-
-doconce format html mako_test3 --no_pygments_html # no problem message
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-
-doconce format html mako_test4 --no_pygments_html  # works fine, lines start with %%
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+system doconce format html mako_test3 --no_pygments_html # no problem message
+system doconce format html mako_test4 --no_pygments_html  # works fine, lines start with %%
 
 # Test error detection
 doconce format plain failures
@@ -38648,8 +38548,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -39036,8 +38936,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #fbeed5;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: #fcf8e3;
              background-position: 10px 5px;
@@ -40634,8 +40534,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #FFBF00;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: #fbeed5;
              background-position: 10px 5px;
@@ -42131,8 +42031,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -43727,24 +43627,24 @@ Over multiple lines.
 \frametitle{Scientific writing needs to address many new media}
 
 \begin{itemize}
- \item<1-> Old days (1985-2005): mostly black-and-white documents aimed at printing
+ \item<2-> Old days (1985-2005): mostly black-and-white documents aimed at printing
 
- \item<2-> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
+ \item<3-> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
 
- \item<3-> {\LaTeX} writing may be very different from writing in other formats
+ \item<4-> {\LaTeX} writing may be very different from writing in other formats
 
- \item<4-> Main problem:
+ \item<5-> Main problem:
 \begin{itemize}
 
-    \item<5-> {\LaTeX} provide all sorts of fancy packages, but
+    \item<6-> {\LaTeX} provide all sorts of fancy packages, but
 
-    \item<6-> PDF in browsers has limited capabilities (design, navigation)
+    \item<7-> PDF in browsers has limited capabilities (design, navigation)
       compared to native HTML formats
 
 \end{itemize}
 
 \noindent
- \item<7-> Conclusion: We need more than {\LaTeX}
+ \item<8-> Conclusion: We need more than {\LaTeX}
 \end{itemize}
 
 \noindent
@@ -46798,15 +46698,15 @@ Last page gets rendered to
 % * (Journal papers typeset by journals are out of scope)
 
 \begin{itemize}
-  \item<1-> Scope: documents with \textcolor{red}{much} \emph{math} and \emph{computer code}
+  \item<2-> Scope: documents with \textcolor{red}{much} \emph{math} and \emph{computer code}
 
-  \item<2-> Key question: What tools should I use for writing?
+  \item<3-> Key question: What tools should I use for writing?
 
-  \item<3-> Default answer: {\LaTeX}
+  \item<4-> Default answer: {\LaTeX}
 
-  \item<4-> Alternative: MS Word w/math
+  \item<5-> Alternative: MS Word w/math
 
-  \item<5-> Recent popular alternative tools: HTML w/MathJax,
+  \item<6-> Recent popular alternative tools: HTML w/MathJax,
     Sphinx, Markdown, MediaWiki, IPython notebook
 \end{itemize}
 
@@ -48842,6 +48742,35 @@ qualitatively correct results.
 
 \end{document}
 
+************** File: table_1.csv *****************
+time,velocity,acceleration
+0.0,1.4186,-5.01
+2.0,1.376512,11.919
+4.0,1.1E+1,14.717624
+
+************** File: table_2.csv *****************
+time,velocity,acceleration
+0.0,1.4186,-5.01
+1.0,1.376512,11.919
+3.0,1.1E+1,14.717624
+
+************** File: table_3.csv *****************
+\( i \),\( h_i \),\( \bar T_i \),<code>L_i</code>
+0,0,288,-0.0065
+1,"11,000",216,0.0
+2,"20,000",216,0.001
+3,"32,000",228,0.0028
+4,"47,000",270,0.0
+5,"51,000",270,-0.0028
+6,"71,000",214,<code>NaN</code>
+
+************** File: table_4.csv *****************
+exact,<code>v_1</code>,\( a_i \) + <code>v_2</code>,<code>verb_3_</code>
+9,9.62,5.57,8.98
+-20,-23.39,-7.65,-19.93
+10,17.74,-4.50,9.96
+0,-9.19,4.13,-0.26
+
 ************** File: tmp_Doconce.do.txt *****************
 
 TITLE: My Test of Class Doconce
@@ -49064,7 +48993,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 28 May 2013 (14:29)</center>
+<center>Tue, 28 May 2013 (23:34)</center>
 
 
 
@@ -49195,7 +49124,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 28 May 2013 (14:29)</center>
+<center>Tue, 28 May 2013 (23:34)</center>
 
 
 
@@ -49930,6 +49859,11 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
+The command-line option `--tables2csv` (to `doconce format`)
+makes Doconce dump each table to CSV format in a file `table_X.csv`,
+where `X` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
+
 ===== Labels and References =====
 
 The notion of labels and references (as well as bibliography and index)
@@ -50255,8 +50189,8 @@ Automatically generated HTML file from Doconce source
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid #bababa;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: whiteSmoke;
              background-position: 10px 5px;
@@ -50983,6 +50917,11 @@ Note that
  <li> Many output formats are so primitive that heading and column alignment
    have no effect.</li>
 </ul>
+
+The command-line option <code>--tables2csv</code> (to <code>doconce format</code>)
+makes Doconce dump each table to CSV format in a file <code>table_X.csv</code>,
+where <code>X</code> is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 <h3>Labels and References  <a name="___sec12"></a></h3>
 
@@ -52363,6 +52302,11 @@ Note that
 \end{itemize}
 
 \noindent
+The command-line option \code{--tables2csv} (to \code{doconce format})
+makes Doconce dump each table to CSV format in a file \code{table_X.csv},
+where \code{X} is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
+
 \subsection{Labels and References}
 
 The notion of labels and references (as well as bibliography and index)
@@ -53395,6 +53339,11 @@ Note that
 
  * Many output formats are so primitive that heading and column alignment
    have no effect.
+
+The command-line option ``--tables2csv`` (to ``doconce format``)
+makes Doconce dump each table to CSV format in a file ``table_X.csv``,
+where ``X`` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 Labels and References
 ---------------------
@@ -54461,6 +54410,11 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
+The command-line option ``--tables2csv`` (to ``doconce format``)
+makes Doconce dump each table to CSV format in a file ``table_X.csv``,
+where ``X`` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
+
 Labels and References
 ---------------------
 
@@ -55434,6 +55388,11 @@ Note that
  * If the horizontal rules are without alignment information there should   be no vertical bar (pipe symbol) between the columns. Otherwise, such   a bar indicates a vertical bar between columns in LaTeX.
  * Many output formats are so primitive that heading and column alignment   have no effect.
 
+The command-line option `--tables2csv` (to `doconce format`)
+makes Doconce dump each table to CSV format in a file `table_X.csv`,
+where `X` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
+
 ==== Labels and References ====
 
 The notion of labels and references (as well as bibliography and index)
@@ -56277,8 +56236,11 @@ is also important, one should follow these rules:
 (Doconce performs extensions to <code>sphinx</code> and other formats such that
 labels in <code>align</code> environments work well.)
 
-''Notice.''\n
-LaTeX supports lots of fancy formatting, for example, multiple
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Notice.''' LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <code>sphinx</code>, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -56288,6 +56250,7 @@ include special code for <code>latex</code> and <code>pdflatex</code> output and
 straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
+}}
 
 ''LaTeX Newcommands.''
 The author can define <code>newcommand</code> statements in files with names
@@ -56385,6 +56348,11 @@ Note that
  <li> Many output formats are so primitive that heading and column alignment
    have no effect.
 </ul>
+
+The command-line option <code>--tables2csv</code> (to <code>doconce format</code>)
+makes Doconce dump each table to CSV format in a file <code>table_X.csv</code>,
+where <code>X</code> is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 ==== Labels and References ====
 
@@ -57312,6 +57280,11 @@ Note that
  * There may be horizontal rules, i.e., lines with dashes for   indicating the heading and the end of the table, and these may   contain characters 'c', 'l', or 'r' for how to align headings or   columns. The first horizontal rule may indicate how to align   headings (center, left, right), and the horizontal rule after the   heading line may indicate how to align the data in the columns   (center, left, right).
  * If the horizontal rules are without alignment information there should   be no vertical bar (pipe symbol) between the columns. Otherwise, such   a bar indicates a vertical bar between columns in LaTeX.
  * Many output formats are so primitive that heading and column alignment   have no effect.
+
+The command-line option {{{--tables2csv}}} (to {{{doconce format}}})
+makes Doconce dump each table to CSV format in a file {{{table_X.csv}}},
+where {{{X}}} is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 == Labels and References ==
 
@@ -58241,6 +58214,11 @@ Note that
    a bar indicates a vertical bar between columns in LaTeX.
  - Many output formats are so primitive that heading and column alignment
    have no effect.
+
+The command-line option '--tables2csv' (to 'doconce format')
+makes Doconce dump each table to CSV format in a file 'table_X.csv',
+where 'X' is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 Labels and References
 
@@ -59196,6 +59174,11 @@ Note that
    a bar indicates a vertical bar between columns in LaTeX.
  - Many output formats are so primitive that heading and column alignment
    have no effect.
+
+The command-line option C{--tables2csv} (to C{doconce format})
+makes Doconce dump each table to CSV format in a file C{table_X.csv},
+where C{X} is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 Labels and References
 ---------------------
@@ -60194,6 +60177,11 @@ Note that
 
  * Many output formats are so primitive that heading and column alignment
    have no effect.
+
+The command-line option --tables2csv (to doconce format)
+makes Doconce dump each table to CSV format in a file table_X.csv,
+where X is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 Labels and References
 ---------------------
@@ -61222,6 +61210,11 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
+The command-line option `--tables2csv` (to `doconce format`)
+makes Doconce dump each table to CSV format in a file `table_X.csv`,
+where `X` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
+
 ### Labels and References
 
 The notion of labels and references (as well as bibliography and index)
@@ -61673,7 +61666,7 @@ examine the Doconce source and the `doc/src/make.sh` script).
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
 
-+ rm -rf html_images reveal.js downloaded_figures
++ rm -rf html_images reveal.js downloaded_figures latex_styles
 + rm -rf papers.pub venues.list
 + publish import refs1.bib
 
@@ -61748,7 +61741,7 @@ Other Publications:                 0
 Total:                              5
 
 Saving database to file "papers.pub"
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + publish import refs2.bib
 
 Validating papers
@@ -61963,6 +61956,7 @@ Total:                              21
 Saving backup copy of database to file "papers.pub.bak"
 Saving database to file "papers.pub"
 + ex=--examples_as_exercises
++ system doconce format html testdoc --wordpress --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 + doconce format html testdoc --wordpress --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -62018,8 +62012,9 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp testdoc.html testdoc_wordpress.html
++ system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default
 + doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default
 running preprocess -DFORMAT=html -DDEVICE=screen -DSOMEVAR testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -62077,8 +62072,9 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp testdoc.html testdoc_no_solutions.html
++ system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
 + doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
 
 Summary of papers
@@ -62159,11 +62155,12 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp testdoc.p.tex testdoc_no_solutions.p.tex
 + cp -r ../bundled/html_styles/style_vagrant .
 + doconce replace css/ style_vagrant/css/ style_vagrant/template_vagrant.html
 replacing css/ by style_vagrant/css/ in style_vagrant/template_vagrant.html
++ system doconce format html testdoc.do.txt --examples_as_exercises --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 + doconce format html testdoc.do.txt --examples_as_exercises --html_style=vagrant --html_template=style_vagrant/template_vagrant.html
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -62225,12 +62222,13 @@ figure file ../doc/manual/figs/streamtubes:
              Better to hardcode authors in a footer in the template.
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp testdoc.html testdoc_vagrant.html
 + doconce split_html testdoc_vagrant.html
 testdoc_vagrant.html now links to the generated files
 ._part0000_testdoc_vagrant.html, ._part0001_testdoc_vagrant.html, ._part0002_testdoc_vagrant.html
-+ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
++ system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --tables2csv
++ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --tables2csv
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html
@@ -62286,16 +62284,20 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce remove_exercise_answers testdoc.html
 + doconce remove_exercise_answers testdoc.html
 no answers/solutions to exercises found in testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce html_colorbullets testdoc.html
 + doconce html_colorbullets testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce split_html testdoc.html
 + doconce split_html testdoc.html
 testdoc.html now links to the generated files
 ._part0000_testdoc.html, ._part0001_testdoc.html, ._part0002_testdoc.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
 + doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
 
 Summary of papers
@@ -62376,7 +62378,8 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen
 + doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen
 
 Summary of papers
@@ -62458,31 +62461,32 @@ exporting publish database papers.pub to papers.bib:
 *** warning: --latex_double_hyphen may lead to unwanted edits.
              search for all -- in the .p.tex file and check.
 output in testdoc.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce latex_exercise_toc testdoc
 + doconce latex_exercise_toc testdoc
 table of exercises inserted in testdoc.p.tex
-+ [ 0 -ne 0 ]
-+ doconce replace vspace{1cm} % after toc clearpage % after toc testdoc.p.tex
++ '[' 0 -ne 0 ']'
++ doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
 replacing vspace{1cm} % after toc by clearpage % after toc in testdoc.p.tex
-+ [ 0 -ne 0 ]
-+ thpack=\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]
-+ doconce subst % insert custom LaTeX commands\.\.\. \\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section] testdoc.p.tex
++ thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
++ doconce subst '% insert custom LaTeX commands\.\.\.' '\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]' testdoc.p.tex
 % insert custom LaTeX commands\.\.\. replaced by \\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section] in testdoc.p.tex
-+ [ 0 -ne 0 ]
-+ doconce subst \\paragraph\{Theorem \d+\.\}  testdoc.p.tex
++ doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
 \\paragraph\{Theorem \d+\.\} replaced by  in testdoc.p.tex
-+ doconce replace % begin theorem \begin{theorem} testdoc.p.tex
++ doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 replacing % begin theorem by \begin{theorem} in testdoc.p.tex
-+ doconce replace % end theorem \end{theorem} testdoc.p.tex
++ doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 replacing % end theorem by \end{theorem} in testdoc.p.tex
 + doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
 replacing Newton--Cotes by Newton-Cotes in testdoc.p.tex
 + doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
++ system ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 + ptex2tex -DMINTED -DMOVIE=movie15 -DLATEX_HEADING=titlepage -DA4PAPER -DTODONOTES -DLINENUMBERS -DCOLORED_TABLE_ROWS=blue -DBLUE_SECTION_HEADINGS testdoc
 using local config file .ptex2tex.cfg
 running preprocessor on testdoc.p.tex...  defines: 'BLUE_SECTION_HEADINGS', 'A4PAPER', 'MINTED', 'LATEX_HEADING', 'MOVIE', 'LINENUMBERS', 'COLORED_TABLE_ROWS', 'TODONOTES'  done
 done testdoc.p.tex -> testdoc.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system pdflatex -shell-escape testdoc
 + pdflatex -shell-escape testdoc
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
@@ -63246,7 +63250,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + pdflatex -shell-escape testdoc
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
@@ -64828,10 +64832,12 @@ st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on testdoc.pdf (21 pages, ).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
-+ doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
-+ echo ----------- end of doconce ptex2tex output ----------------
-+ [ 0 -ne 0 ]
++ system doconce ptex2tex testdoc -DBOOK -DPALATINO 'sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote}' pypro=ans:nt envir=minted
++ doconce ptex2tex testdoc -DBOOK -DPALATINO 'sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote}' pypro=ans:nt envir=minted
++ '[' 0 -ne 0 ']'
++ echo '----------- end of doconce ptex2tex output ----------------'
 + cat testdoc.tex
++ system doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
 + doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
 running preprocess -DFORMAT=plain -DDEVICE=screen -DSOMEVAR=1 testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -64886,7 +64892,8 @@ text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format st testdoc.do.txt --examples_as_exercises
 + doconce format st testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=st -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -64940,7 +64947,8 @@ text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.st
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format sphinx testdoc.do.txt --examples_as_exercises
 + doconce format sphinx testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65023,7 +65031,7 @@ label{eq1a}
 label{eq2a}
 
 output in testdoc.rst
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format sphinx testdoc --examples_as_exercises
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
@@ -65110,7 +65118,8 @@ output in testdoc.rst
 + doconce split_rst testdoc
 testdoc split into
 ._part0000_testdoc.rst ._part0001_testdoc.rst ._part0002_testdoc.rst
-+ doconce sphinx_dir author=HPL title=Just a test version=0.1 theme=agni testdoc
++ system doconce sphinx_dir author=HPL 'title=Just a test' version=0.1 theme=agni testdoc
++ doconce sphinx_dir author=HPL 'title=Just a test' version=0.1 theme=agni testdoc
 Making sphinx-rootdir
 Welcome to the Sphinx 1.2pre quickstart utility.
 
@@ -65175,8 +65184,9 @@ or just run it by
 
   python automake_sphinx.py
 
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp automake_sphinx.py automake_sphinx_testdoc.py
++ system doconce format rst testdoc.do.txt --examples_as_exercises
 + doconce format rst testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=rst -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65232,7 +65242,8 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format epytext testdoc.do.txt --examples_as_exercises
 + doconce format epytext testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=epytext -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65286,7 +65297,8 @@ text before the code! (Now "Code:" is inserted)
 
 found info about 9 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format pandoc testdoc.do.txt --examples_as_exercises
 + doconce format pandoc testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65350,7 +65362,8 @@ figure file ../doc/manual/figs/streamtubes:
 *** warning: latex envir \begin{eqnarray} does not work well.
 
 output in testdoc.md
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format mwiki testdoc.do.txt --examples_as_exercises
 + doconce format mwiki testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=mwiki -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65425,7 +65438,8 @@ figure file ../doc/manual/figs/streamtubes:
  ...for now we use local file Df2s8765s plot.png
 *** warning: reference to label "my:eq1" in an equation does not work in MediaWiki
 output in testdoc.mwiki
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format cwiki testdoc.do.txt --examples_as_exercises
 + doconce format cwiki testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=cwiki -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65481,7 +65495,8 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format ipynb testdoc.do.txt --examples_as_exercises
 + doconce format ipynb testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=ipynb -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65537,8 +65552,9 @@ found info about 9 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format ipynb
 output in testdoc.ipynb
-+ [ 0 -ne 0 ]
-+ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string --examples_as_exercises
++ '[' 0 -ne 0 ']'
++ system doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 'MYVAR2=a string' --examples_as_exercises
++ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 'MYVAR2=a string' --examples_as_exercises
 running preprocess -DFORMAT=gwiki -DDEVICE=screen -DMYVAR1="3" -DMYVAR2="a string" testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
@@ -65618,7 +65634,8 @@ NOTE: Place https://doconce.googlecode.com/hg/doc/blog/f_plot.png at some place 
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
 output in testdoc.gwiki
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format latex testdoc.do.txt --examples_as_exercises
 + doconce format latex testdoc.do.txt --examples_as_exercises
 
 Summary of papers
@@ -65698,7 +65715,8 @@ downloading https://doconce.googlecode.com/hg/doc/blog/f_plot.png .......
 
 exporting publish database papers.pub to papers.bib:
 output in testdoc.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 \bpypro (!bc pypro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bcpppro (!bc cpppro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -65711,19 +65729,23 @@ output in testdoc.p.tex
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 \bhtmlcod (!bc htmlcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 output in testdoc.tex
-+ [ 0 -ne 0 ]
-+ doconce replace \Verb! \verb! testdoc.tex
++ '[' 0 -ne 0 ']'
++ system doconce replace '\Verb!' '\verb!' testdoc.tex
++ doconce replace '\Verb!' '\verb!' testdoc.tex
 replacing \Verb! by \verb! in testdoc.tex
-+ [ 0 -ne 0 ]
-+ doconce replace %E2%80%93  testdoc.tex
++ '[' 0 -ne 0 ']'
++ doconce replace %E2%80%93 '' testdoc.tex
 replacing %E2%80%93 by  in testdoc.tex
-+ doconce replace +%26+  testdoc.tex
++ doconce replace +%26+ '' testdoc.tex
 replacing +%26+ by  in testdoc.tex
++ system pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 + pandoc -f latex -t markdown -o testdoc.md testdoc.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + pandoc -v
++ system doconce format pandoc testdoc.do.txt --examples_as_exercises
 + doconce format pandoc testdoc.do.txt --examples_as_exercises
 running preprocess -DFORMAT=pandoc -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
@@ -65787,44 +65809,54 @@ figure file ../doc/manual/figs/streamtubes:
 *** warning: latex envir \begin{eqnarray} does not work well.
 
 output in testdoc.md
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 + pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + pandoc -v
++ system doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 + doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 translating doconce text in slides1.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides1.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp slides1.html slides1_1st.html
++ system doconce slides_html slides1 reveal --html_slide_type=beigesmall
 + doconce slides_html slides1 reveal --html_slide_type=beigesmall
 made subdirectory reveal.js
 *** warning: pygments style "emacs" is not recommended for "beige"!
 recommended styles are "perldoc"
 slides written to slides1.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp slides1.html slides1_reveal.html
 + /bin/ls -R reveal.js
++ system doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 + doconce format html slides1 --pygments_html_style=emacs --keep_pygments_html_bg
 translating doconce text in slides1.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides1.html
++ '[' 0 -ne 0 ']'
++ system doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
 + doconce slides_html slides1 deck --html_slide_type=sandstone.firefox
 slides written to slides1.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp slides1.html slides1_deck.html
 + /bin/ls -R deck.js
++ system doconce format pdflatex slides1
 + doconce format pdflatex slides1
 translating doconce text in slides1.do.txt to pdflatex
 output in slides1.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce ptex2tex slides1 -DLATEX_HEADING=beamer
 + doconce ptex2tex slides1 -DLATEX_HEADING=beamer
 \bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 output in slides1.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce slides_beamer slides1
 + doconce slides_beamer slides1
 slides written to slides1.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html slides2 --pygments_html_style=emacs
 + doconce format html slides2 --pygments_html_style=emacs
 running preprocess -DFORMAT=html -DDEVICE=screen  slides2.do.txt > tmp_preprocess__slides2.do.txt
 translating doconce text in tmp_preprocess__slides2.do.txt to html
@@ -65857,7 +65889,8 @@ eywords = random numbers; Monte Carlo simulation
 !bsubex
 Make a program that simulates flipping a coin $N$
 output in slides2.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce slides_html slides2 reveal --html_slide_type=beigesmall
 + doconce slides_html slides2 reveal --html_slide_type=beigesmall
 *** warning: pygments style "emacs" is not recommended for "beige"!
 recommended styles are "perldoc"
@@ -65882,8 +65915,9 @@ recommended styles are "perldoc"
 *** warning: pygments style "emacs" is not recommended for "beige"!
 recommended styles are "perldoc"
 slides written to slides2.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp slides2.html slides2_reveal.html
++ system doconce format pdflatex slides2
 + doconce format pdflatex slides2
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  slides2.do.txt > tmp_preprocess__slides2.do.txt
 translating doconce text in tmp_preprocess__slides2.do.txt to pdflatex
@@ -65915,16 +65949,19 @@ eywords = random numbers; Monte Carlo simulation
 !bsubex
 Make a program that simulates flipping a coin $N$
 output in slides2.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
 + doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bpypro (!bc pypro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 output in slides2.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce slides_beamer slides2
 + doconce slides_beamer slides2
 slides written to slides2.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
 + doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall
 running preprocess -DFORMAT=html -DDEVICE=screen -DSLIDE_TYPE="reveal" -DSLIDE_THEME="beigesmall" slides3.do.txt > tmp_preprocess__slides3.do.txt
 running mako on tmp_preprocess__slides3.do.txt to make tmp_mako__slides3.do.txt
@@ -65940,14 +65977,16 @@ figure file ../doc/slides/fig/CN:
     can use ../doc/slides/fig/CN.png for format html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides3.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce slides_html slides3 reveal --html_slide_type=beigesmall
 + doconce slides_html slides3 reveal --html_slide_type=beigesmall
 *** warning: pygments style "emacs" is not recommended for "beige"!
 recommended styles are "perldoc"
 slides written to slides3.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp slides3.html slides3_reveal.html
 + theme=red3
++ system doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=red3
 + doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=red3
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DSLIDE_TYPE="beamer" -DSLIDE_THEME="red3" slides3.do.txt > tmp_preprocess__slides3.do.txt
 running mako on tmp_preprocess__slides3.do.txt to make tmp_mako__slides3.do.txt
@@ -65962,41 +66001,52 @@ figure file ../doc/slides/fig/CN_logo:
 figure file ../doc/slides/fig/CN:
     can use ../doc/slides/fig/CN.pdf for format pdflatex
 output in slides3.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
 + doconce ptex2tex slides3 -DLATEX_HEADING=beamer envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 output in slides3.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce slides_beamer slides3 --beamer_slide_theme=red3
 + doconce slides_beamer slides3 --beamer_slide_theme=red3
+could not extract beamerthemered3.sty.sty (from latex_styles.zip in the doconce installation)
 slides written to slides3.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html slides1 --pygments_html_style=emacs
 + doconce format html slides1 --pygments_html_style=emacs
 translating doconce text in slides1.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in slides1.html
++ '[' 0 -ne 0 ']'
++ system doconce slides_html slides1 all
 + doconce slides_html slides1 all
 run
   sh tmp_slides_html_all.sh
 to generate the slides
-+ [ 0 -ne 0 ]
-+ doconce grab --from- ={5} Subsection 1 --to subroutine@ _testdoc.do.txt
-+ [ 0 -ne 0 ]
-+ doconce grab --from Compute a Probability --to- drawing uniformly _testdoc.do.txt
-+ doconce grab --from- \*\s+\$.+normally _testdoc.do.txt
++ '[' 0 -ne 0 ']'
++ system doconce grab --from- '={5} Subsection 1' --to subroutine@ _testdoc.do.txt
++ doconce grab --from- '={5} Subsection 1' --to subroutine@ _testdoc.do.txt
++ '[' 0 -ne 0 ']'
++ doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' _testdoc.do.txt
++ doconce grab --from- '\*\s+\$.+normally' _testdoc.do.txt
++ system doconce format html html_template --html_template=template1.html --no_pygments_html
 + doconce format html html_template --html_template=template1.html --no_pygments_html
 translating doconce text in html_template.do.txt to html
 output in html_template.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp html_template.html html_template1.html
++ system doconce format html html_template --html_template=template_inf1100.html --pygments_html_style=emacs
 + doconce format html html_template --html_template=template_inf1100.html --pygments_html_style=emacs
 translating doconce text in html_template.do.txt to html
 output in html_template.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html author1
 + doconce format html author1
 translating doconce text in author1.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in author1.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format latex author1
 + doconce format latex author1
 
 Summary of papers
@@ -66023,7 +66073,8 @@ translating doconce text in author1.do.txt to latex
 
 exporting publish database papers.pub to papers.bib:
 output in author1.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format sphinx author1
 + doconce format sphinx author1
 translating doconce text in author1.do.txt to sphinx
 *** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
@@ -66034,11 +66085,12 @@ translating doconce text in author1.do.txt to sphinx
     (unless you really know that the links will be correct
     when the sphinx build directory is moved to its final destination)
 output in author1.rst
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format plain author1
 + doconce format plain author1
 translating doconce text in author1.do.txt to plain
 output in author1.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + name=math_test
 + doconce format pdflatex math_test
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
@@ -66260,13 +66312,14 @@ ts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmtt9.pfb>
 Output written on math_test.pdf (3 pages, ).
 Transcript written on math_test.log.
++ system doconce format html math_test
 + doconce format html math_test
 running preprocess -DFORMAT=html -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
 running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.txt
 translating doconce text in tmp_mako__math_test.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in math_test.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp math_test.html math_test_html.html
 + doconce format sphinx math_test
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  math_test.do.txt > tmp_preprocess__math_test.do.txt
@@ -66454,7 +66507,9 @@ output in math_test.md
 command "md2latex" is not legal, must be among
 
 format, help, sphinx_dir, subst, replace, replace_from_file, clean, spellcheck, ptex2tex, expand_commands, combine_images, guess_encoding, change_encoding, gwiki_figsubst, md2html, remove_inline_comments, grab, remove, remove_exercise_answers, split_rst, split_html, slides_html, slides_beamer, latin2html, latex_header, latex_footer, bbl2rst, html_colorbullets, list_labels, teamod, sphinxfix_localURLs, make_figure_code_links, latex_exercise_toc, insertdocstr, old2new_format, latex2doconce, latex_dislikes, pygmentize, makefile, diff, gitdiff, fix_bibtex4publish
-+ admon_tps=colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2
++ admon_tps='colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2'
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=colors1
 + doconce format pdflatex admon --latex_admon=colors1
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -66463,7 +66518,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -66750,6 +66805,8 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_colors1.pdf (5 pages, ).
 Transcript written on admon_colors1.log.
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=graybox1
 + doconce format pdflatex admon --latex_admon=graybox1
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -66758,7 +66815,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -67124,6 +67181,8 @@ sfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb>
 Output written on admon_graybox1.pdf (4 pages, ).
 Transcript written on admon_graybox1.log.
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=paragraph
 + doconce format pdflatex admon --latex_admon=paragraph
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -67132,7 +67191,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -67498,6 +67557,8 @@ sfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb>
 Output written on admon_paragraph.pdf (4 pages, ).
 Transcript written on admon_paragraph.log.
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=graybox2
 + doconce format pdflatex admon --latex_admon=graybox2
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -67506,7 +67567,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -67881,6 +67942,8 @@ sfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb>
 Output written on admon_graybox2.pdf (5 pages, ).
 Transcript written on admon_graybox2.log.
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=yellowbox
 + doconce format pdflatex admon --latex_admon=yellowbox
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -67889,7 +67952,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -68152,6 +68215,8 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_yellowbox.pdf (5 pages, ).
 Transcript written on admon_yellowbox.log.
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=graybox3
 + doconce format pdflatex admon --latex_admon=graybox3
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -68160,7 +68225,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -68422,6 +68487,8 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_graybox3.pdf (5 pages, ).
 Transcript written on admon_graybox3.log.
++ for admon_tp in '$admon_tps'
++ system doconce format pdflatex admon --latex_admon=colors2
 + doconce format pdflatex admon --latex_admon=colors2
 running preprocess -DFORMAT=pdflatex -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to pdflatex
@@ -68430,7 +68497,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.p.tex
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
@@ -68690,6 +68757,7 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_colors2.pdf (5 pages, ).
 Transcript written on admon_colors2.log.
++ system doconce format html admon --html_admon=lyx --html_style=blueish2
 + doconce format html admon --html_admon=lyx --html_style=blueish2
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68699,8 +68767,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_lyx.html
++ system doconce format html admon --html_admon=paragraph --html_style=blueish2
 + doconce format html admon --html_admon=paragraph --html_style=blueish2
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68710,8 +68779,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_paragraph.html
++ system doconce format html admon --html_admon=colors
 + doconce format html admon --html_admon=colors
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68721,8 +68791,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_colors.html
++ system doconce format html admon --html_admon=gray --html_style=blueish2
 + doconce format html admon --html_admon=gray --html_style=blueish2
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68732,8 +68803,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_gray.html
++ system doconce format html admon --html_admon=yellow
 + doconce format html admon --html_admon=yellow
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68743,8 +68815,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_yellow.html
++ system doconce format html admon --html_admon=apricot --html_style=solarized
 + doconce format html admon --html_admon=apricot --html_style=solarized
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68754,8 +68827,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_apricot.html
++ system doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
 + doconce format html admon --html_style=vagrant --pygments_html_style=default --html_template=style_vagrant/template_vagrant.html
 running preprocess -DFORMAT=html -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to html
@@ -68770,8 +68844,9 @@ figure file ../doc/manual/figs/wavepacket_0001:
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp admon.html admon_vagrant.html
++ system doconce sphinx_dir dirname=tmp_admon admon
 + doconce sphinx_dir dirname=tmp_admon admon
 Making tmp_admon
 Welcome to the Sphinx 1.2pre quickstart utility.
@@ -68841,7 +68916,8 @@ or just run it by
 
   python automake_sphinx.py
 
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system python automake_sphinx.py
 + python automake_sphinx.py
 running preprocess -DFORMAT=sphinx -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
 translating doconce text in tmp_preprocess__admon.do.txt to sphinx
@@ -68927,50 +69003,76 @@ Fix generated files:
 
 google-chrome tmp_admon/_build/html/index.html
 
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp tmp_admon/_build/html/admon.html admon_sphinx.html
++ system doconce format mwiki admon
++ doconce format mwiki admon
+running preprocess -DFORMAT=mwiki -DDEVICE=screen  admon.do.txt > tmp_preprocess__admon.do.txt
+translating doconce text in tmp_preprocess__admon.do.txt to mwiki
+figure file ../doc/manual/figs/wavepacket_0001:
+    can use ../doc/manual/figs/wavepacket_0001.png for format mwiki
+ ...checking if wavepacket_0001.png is stored at en.wikipedia.org/w/api.php...
+ ...for wikipedia/wikibooks you must upload image file wavepacket_0001.png to
+    common.wikimedia.org
+ ...for now we use local file Wavepacket 0001.png
+*** error: wrong text size "illegal-size" specified in notice environment!
+    must be large or small - will be set to normal
+output in admon.mwiki
++ '[' 0 -ne 0 ']'
++ system doconce guess_encoding encoding1.do.txt
 + doconce guess_encoding encoding1.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp encoding1.do.txt tmp1.do.txt
++ system doconce change_encoding utf-8 latin1 tmp1.do.txt
 + doconce change_encoding utf-8 latin1 tmp1.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce guess_encoding tmp1.do.txt
 + doconce guess_encoding tmp1.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce change_encoding latin1 utf-8 tmp1.do.txt
 + doconce change_encoding latin1 utf-8 tmp1.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce guess_encoding tmp1.do.txt
 + doconce guess_encoding tmp1.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce guess_encoding encoding2.do.txt
 + doconce guess_encoding encoding2.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp encoding1.do.txt tmp2.do.txt
++ system doconce change_encoding utf-8 latin1 tmp2.do.txt
 + doconce change_encoding utf-8 latin1 tmp2.do.txt
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce guess_encoding tmp2.do.txt
++ system doconce format html mako_test1 --no_pygments_html
 + doconce format html mako_test1 --no_pygments_html
 running mako on mako_test1.do.txt to make tmp_mako__mako_test1.do.txt
 translating doconce text in tmp_mako__mako_test1.do.txt to html
 output in mako_test1.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html mako_test2 --no_pygments_html
 + doconce format html mako_test2 --no_pygments_html
 translating doconce text in mako_test2.do.txt to html
 output in mako_test2.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html mako_test3 --no_pygments_html
 + doconce format html mako_test3 --no_pygments_html
 running mako on mako_test3.do.txt to make tmp_mako__mako_test3.do.txt
 translating doconce text in tmp_mako__mako_test3.do.txt to html
 output in mako_test3.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + cp mako_test3.html mako_test3b.html
++ system doconce format html mako_test3 --no_pygments_html
 + doconce format html mako_test3 --no_pygments_html
 running mako on mako_test3.do.txt to make tmp_mako__mako_test3.do.txt
 translating doconce text in tmp_mako__mako_test3.do.txt to html
 output in mako_test3.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
++ system doconce format html mako_test4 --no_pygments_html
 + doconce format html mako_test4 --no_pygments_html
 running mako on mako_test4.do.txt to make tmp_mako__mako_test4.do.txt
 translating doconce text in tmp_mako__mako_test4.do.txt to html
 output in mako_test4.html
-+ [ 0 -ne 0 ]
++ '[' 0 -ne 0 ']'
 + doconce format plain failures
 translating doconce text in failures.do.txt to plain
 
@@ -68987,7 +69089,7 @@ more verbatime stuff
 Next we see if backslashes are detected: \\
 Abort! (add --no_abort on the command line to avoid this abortion)
 + cp failures.do.txt tmp2.do.txt
-+ doconce subst failure\}\n\n!bc failure}\n\nHello\n!bc tmp2.do.txt
++ doconce subst 'failure\}\n\n!bc' 'failure}\n\nHello\n!bc' tmp2.do.txt
 failure\}\n\n!bc replaced by failure}\n\nHello\n!bc in tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
@@ -69007,11 +69109,11 @@ More verbatim stuff.
 
 Can we successfully say `__call__` and `__ad
 Abort! (add --no_abort on the command line to avoid this abortion)
-+ doconce replace \label label tmp2.do.txt
++ doconce replace '\label' label tmp2.do.txt
 replacing \label by label in tmp2.do.txt
-+ doconce replace \idx idx tmp2.do.txt
++ doconce replace '\idx' idx tmp2.do.txt
 replacing \idx by idx in tmp2.do.txt
-+ doconce replace \cite cite tmp2.do.txt
++ doconce replace '\cite' cite tmp2.do.txt
 replacing \cite by cite in tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
@@ -69031,7 +69133,7 @@ More verbatim stuff.
 
 Can we successfully say `__call__` and `__ad
 Abort! (add --no_abort on the command line to avoid this abortion)
-+ doconce subst -s __Paragraph before.+!bc !bc tmp2.do.txt
++ doconce subst -s '__Paragraph before.+!bc' '!bc' tmp2.do.txt
 __Paragraph before.+!bc replaced by !bc in tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
@@ -69051,7 +69153,7 @@ Normal text.
 
 
 Abort! (add --no_abort on the command line to avoid this abortion)
-+ doconce replace streamtubes width streamtubes,  width tmp2.do.txt
++ doconce replace 'streamtubes width' 'streamtubes,  width' tmp2.do.txt
 replacing streamtubes width by streamtubes,  width in tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
@@ -69071,7 +69173,7 @@ Normal text.
 
 
 Abort! (add --no_abort on the command line to avoid this abortion)
-+ doconce replace # Comment before math  tmp2.do.txt
++ doconce replace '# Comment before math' '' tmp2.do.txt
 replacing # Comment before math by  in tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
@@ -69091,7 +69193,7 @@ Normal text.
 
 
 Abort! (add --no_abort on the command line to avoid this abortion)
-+ doconce replace # Comment before list  tmp2.do.txt
++ doconce replace '# Comment before list' '' tmp2.do.txt
 replacing # Comment before list by  in tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
@@ -69099,7 +69201,7 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 *** error: you have citations but no biblioraphy (BIBFILE: ...)
 Abort! (add --no_abort on the command line to avoid this abortion)
-+ doconce replace `Google` `Google` site tmp2.do.txt
++ doconce replace '`Google`' '`Google` site' tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
@@ -69108,9 +69210,9 @@ figure file ../doc/manual/figs/streamtubes:
 Abort! (add --no_abort on the command line to avoid this abortion)
 + echo
 
-+ echo When we reach this point in the script,
++ echo 'When we reach this point in the script,'
 When we reach this point in the script,
-+ echo it is clearly a successful run of all tests!
++ echo 'it is clearly a successful run of all tests!'
 it is clearly a successful run of all tests!
 
 + sh ./clean.sh
@@ -69765,8 +69867,9 @@ and/or [].
 Overfull \hbox (86.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
+[16]
 No file quickref.ind.
-[16] (./quickref.aux)
+[17] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -69916,7 +70019,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (16 pages, ).
+Output written on quickref.dvi (17 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no_preprocess
@@ -69993,7 +70096,7 @@ or just run it by
 
   python automake_sphinx.py
 
-+ doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake_sphinx.py
++ doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
 replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake_sphinx.py
 + python automake_sphinx.py
 rm -rf _build/*
@@ -70361,13 +70464,13 @@ RLs
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
-
+[11]
 Overfull \hbox (53.00006pt too wide) 
 []    \T1/pcr/m/n/10 dirname=sphinx-rootdir theme=default logo=mylogo.png \  
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes  
-[11]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as  
 
@@ -70394,11 +70497,11 @@ ile
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
-
+[12]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
-[12]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
@@ -70454,7 +70557,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce fix_bibtex4publish file1.bib file2.bib ...  
-
+[13]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diff
 use, ...)  
@@ -70462,7 +70565,7 @@ use, ...)
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # find differences between the last two Git versions of severa
 l files  
-[13]
+
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
@@ -70480,10 +70583,10 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
  ===== 
-
+[14]
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[14]
+
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
@@ -70806,13 +70909,13 @@ RLs
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
-
+[12]
 Overfull \hbox (53.00006pt too wide) 
 []    \T1/pcr/m/n/10 dirname=sphinx-rootdir theme=default logo=mylogo.png \  
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes  
-[12]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as  
 
@@ -70839,11 +70942,11 @@ ile
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
-
+[13]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
-[13]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
@@ -70899,7 +71002,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce fix_bibtex4publish file1.bib file2.bib ...  
-
+[14]
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diff
 use, ...)  
@@ -70907,7 +71010,7 @@ use, ...)
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # find differences between the last two Git versions of severa
 l files  
-[14]
+
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
@@ -70925,10 +71028,10 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
  ===== 
-
+[15]
 Overfull \hbox (41.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[15]
+
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
@@ -71013,7 +71116,7 @@ output in quickref.md
 + cat
 + echo
 
-+ echo Go to the demo directory and load index.html into a web browser.
++ echo 'Go to the demo directory and load index.html into a web browser.'
 Go to the demo directory and load index.html into a web browser.
 + cd ..
 + rm -rf ../demos/quickref

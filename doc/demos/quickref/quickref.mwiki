@@ -1,7 +1,7 @@
 #TITLE (actually governed by the filename): Doconce Quick Reference
 
 By '''Hans Petter Langtangen'''
-==== May 28, 2013 ====
+==== May 29, 2013 ====
 
 __TOC__
 
@@ -427,8 +427,11 @@ is also important, one should follow these rules:
 (Doconce performs extensions to <code>sphinx</code> and other formats such that
 labels in <code>align</code> environments work well.)
 
-''Notice.''\n
-LaTeX supports lots of fancy formatting, for example, multiple
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Notice.''' LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <code>sphinx</code>, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
@@ -438,6 +441,7 @@ include special code for <code>latex</code> and <code>pdflatex</code> output and
 straightforward typesetting for other formats. In this way, one can
 also allow advanced LaTeX features and fine tuning of resulting
 PDF document.
+}}
 
 ''LaTeX Newcommands.''
 The author can define <code>newcommand</code> statements in files with names
@@ -535,6 +539,11 @@ Note that
  <li> Many output formats are so primitive that heading and column alignment
    have no effect.
 </ul>
+
+The command-line option <code>--tables2csv</code> (to <code>doconce format</code>)
+makes Doconce dump each table to CSV format in a file <code>table_X.csv</code>,
+where <code>X</code> is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 ==== Labels and References ====
 
