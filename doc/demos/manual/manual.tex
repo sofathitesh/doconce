@@ -7,22 +7,31 @@
 
 
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
-10pt]{article}
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
 
 \listfiles               % print all files needed to compile this document
 
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
-\usepackage[latin1]{inputenc}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
 \usepackage{fancyvrb} % packages needed for verbatim environments
 
 
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+
+\usepackage{media9}
+
+\usepackage{minted}
 \usemintedstyle{default}
 
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
@@ -30,16 +39,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -60,16 +66,43 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
+
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
+
 \newenvironment{exercise}{}{}
 \newcounter{exerno}
-
-
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
-\usepackage[shadow]{todonotes}
-\newcommand{\shortinlinecomment}[3]{%
-\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
-\newcommand{\longinlinecomment}[3]{%
-\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 
 
 % insert custom LaTeX commands...
@@ -89,11 +122,13 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
-{\LARGE\bf Doconce Description}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Doconce Description
+\end{spacing}
+}
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -103,17 +138,14 @@ final,                   % or draft (marks overfull hboxes)
 
 \begin{center}
 % List of all institutions:
-\centerline{{\small ${}^1$Simula Research Laboratory}}
-\centerline{{\small ${}^2$University of Oslo}}
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
 \end{center}
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
-
 \begin{center}
-Mar 7, 2013
+May 29, 2013
 \end{center}
 
 \vspace{1cm}
@@ -209,7 +241,14 @@ formats.
 
 
 
+
+
 \section{Installation of Doconce and its Dependencies}
+
+Below, we explain the manual installation of all software that may be
+needed when working with Doconce documents.
+The impatient way to install what is needed is to run the
+\href{{doconce_install_all.sh}}{\nolinkurl{doconce_install_all.sh}} script.
 
 \subsection{Doconce}
 
@@ -232,18 +271,6 @@ hg update
 sudo python setup.py install
 \end{Verbatim}
 
-Debian GNU/Linux users can also run
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-sudo apt-get install doconce
-\end{Verbatim}
-This installs the latest release and not the most updated and bugfixed
-version.
-On Ubuntu one needs to run
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-sudo add-apt-repository ppa:scitools/ppa
-sudo apt-get update
-sudo apt-get install doconce
-\end{Verbatim}
 
 \subsection{Dependencies}
 
@@ -254,8 +281,9 @@ software. However, if you want other formats as output
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.
 
-\paragraph{Preprocessors.}
+% Make a debpkg_doconce.txt file with everything that is needed on Debian
 
+\paragraph{Preprocessors.}
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
 
@@ -288,7 +316,6 @@ tarball, pack it out, go to the directory and run
 the usual \Verb!sudo python setup.py install!.
 
 \paragraph{Image file handling.}
-
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for \Verb!latex!
 output, while HTML needs JPEG, GIF, or PNG formats.
@@ -309,8 +336,14 @@ Debian package. The latter gets installed by
 sudo apt-get install texlive-extra-utils
 \end{Verbatim}
 
-\paragraph{Spellcheck.}
+Automatic image conversion from EPS to PDF calls up \Verb!epstopdf!, which
+can be installed by
 
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+sudo apt-get install texlive-font-utils
+\end{Verbatim}
+
+\paragraph{Spellcheck.}
 The utility \Verb!doconce spellcheck! applies the \Verb!ispell! program for
 spellcheck. On Debian (including Ubuntu) it is installed by
 
@@ -320,13 +353,12 @@ sudo apt-get install ispell
 
 
 \paragraph{Bibliography.}
-
 The Python package \href{{https://bitbucket.org/logg/publish}}{Publish} is needed if you use a bibliography
 in your document. On the website, click on \emph{Clone}, copy the
 command and run it:
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-hg clone  ssh://hg@bitbucket.org/logg/publish
+hg clone https://bitbucket.org/logg/publish
 \end{Verbatim}
 Thereafter go to the \Verb!publish! directory and run the \Verb!setup.py! script
 for installing Publish:
@@ -338,7 +370,6 @@ sudo python setup.py
 
 
 \paragraph{Ptex2tex for {\LaTeX} Output.}
-
 To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
 which is installed by
@@ -361,7 +392,7 @@ that \Verb!ptex2tex! potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-sudo apt-get install texlive-latex-recommended texlive-latex-extra
+sudo apt-get install texlive
 \end{Verbatim}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -384,29 +415,88 @@ hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 \end{Verbatim}
+One can also do the simple
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+pip install sphinx
+\end{Verbatim}
+which also installs pygments.
 
 If you use the minted style together with \Verb!ptex2tex!, you have to
 enable it by the \Verb!-DMINTED! command-line argument to \Verb!ptex2tex!.
 This is not necessary if you run the alternative \Verb!doconce ptex2tex! program.
 
-All
-use of the minted style requires the \Verb!-shell-escape! command-line
+All use of the minted style requires the \Verb!-shell-escape! command-line
 argument when running {\LaTeX}, i.e., \Verb!latex -shell-escape! or \Verb!pdflatex -shell-escape!.
 
-% Say something about anslistings.sty
+Inline comments apply the \Verb!todonotes! {\LaTeX} package if the \Verb!ptex2tex!
+or \Verb!doconce ptex2tex! command is run with \Verb!-DTODONOTES!.  The
+\Verb!todonotes! package requires several other packages: \Verb!xcolor!,
+\Verb!ifthen!, \Verb!xkeyval!, \Verb!tikz!, \Verb!calc!, \Verb!graphicx!, and \Verb!setspace!. The
+relevant Debian packages for installing all this are listed below.
+
+\paragraph{{\LaTeX} packages.}
+Many {\LaTeX} packages are potentially needed (depending on various
+preprocessor variables given to \Verb!ptex2tex! or \Verb!doconce ptex2tex!.  The
+standard packages always included are \Verb!relsize!, \Verb!epsfig!, \Verb!makeidx!,
+\Verb!setspace!, \Verb!color!, \Verb!amsmath!, \Verb!amsfonts!, \Verb!xcolor!, \Verb!bm!,
+\Verb!microtype!, \Verb!titlesec!, and \Verb!hyperref!.  The \Verb!ptex2tex! package (from
+\href{{http://code.google.com/p/ptex2tex}}{ptex2tex}) is also included, but
+removed again if \Verb!doconce ptex2tex! is run instead of the \Verb!ptex2tex!
+program, meaning that if you do not use \Verb!ptex2tex!, you do not need
+\Verb!ptex2tex.sty!. Optional packages that might be included are \Verb!minted!,
+\Verb!fontspec!, \Verb!xunicode!, \Verb!inputenc!, \Verb!helvet!, \Verb!mathpazo!, \Verb!wrapfig!,
+\Verb!calc!, \Verb!ifthen!, \Verb!xkeyval!, \Verb!tikz!, \Verb!graphicx!, \Verb!setspace!, \Verb!shadow!,
+\Verb!disable!, \Verb!todonotes!, \Verb!lineno!, \Verb!xr!, \Verb!framed!, \Verb!mdframe!,
+\Verb!movie15!, \Verb!a4paper!, and \Verb!a6paper!.
+
+Relevant Debian packages that gives you all of these {\LaTeX} packages are
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+texlive
+texlive-extra-utils
+texlive-latex-extra
+texlive-font-utils
+\end{Verbatim}
+On old Ubuntu 12.04 one has to do \Verb!sudo add-apt-repository ppa:texlive-backports/ppa! and \Verb!sudo apt-get update! first, or alternatively install these as well:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+texlive-math-extra
+texlive-bibtex-extra
+texlive-xetex
+texlive-humanities
+texlive-pictures
+\end{Verbatim}
+Alternatively, one may pull in \Verb!texlive-full! to get all available
+style files.
+
+If you want to use the \emph{anslistings} code environment with \Verb!ptex2tex!
+(\Verb!.ptex2tex.cfg! styles \Verb!Python_ANS!, \Verb!Python_ANSt!, \Verb!Cpp_ANS!, etc.) or
+\Verb!doconce ptex2tex! (\Verb!envir=ans! or \Verb!envir=ans:nt!), you need the
+\Verb!anslistings.sty! file. It can be obtained from
+the \href{{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}}{ptex2tex source}. It should get installed
+by the \Verb!cp2texmf.sh! script executed above.
+
 
 \paragraph{reStructuredText (reST) Output.}
-
 The \Verb!rst! output from Doconce allows further transformation to {\LaTeX},
 HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
 most recent version can be done by
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+svn checkout \
+  http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
 \end{Verbatim}
+The command
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+pip install sphinx
+\end{Verbatim}
+installs Docutils along with Sphinx and Pygments.
+
 To use the OpenOffice suite you will typically on Debian systems install
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
@@ -418,7 +508,7 @@ using ReportLab instead of {\LaTeX}. The enabling software is
 or clone the svn repository, go to the \Verb!rst2pdf! directory and
 run the usual \Verb!sudo python setup.py install!.
 
-
+\paragraph{Sphinx Output.}
 Output to \Verb!sphinx! requires of course the
 \href{{http://sphinx.pocoo.org}}{Sphinx software},
 installed by
@@ -429,9 +519,31 @@ cd sphinx
 sudo python setup.py install
 cd ..
 \end{Verbatim}
+An alternative is
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+pip install sphinx
+\end{Verbatim}
+
+Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:
+
+\begin{itemize}
+ \item cloud and redcloud: \href{{https://bitbucket.org/ecollins/cloud_sptheme}}{\nolinkurl{https://bitbucket.org/ecollins/cloud_sptheme}}
+
+ \item bootstrap: \href{{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}{\nolinkurl{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}
+
+ \item solarized: \href{{https://bitbucket.org/miiton/sphinxjp.themes.solarized}}{\nolinkurl{https://bitbucket.org/miiton/sphinxjp.themes.solarized}}
+
+ \item impressjs: \href{{https://github.com/shkumagai/sphinxjp.themes.impressjs}}{\nolinkurl{https://github.com/shkumagai/sphinxjp.themes.impressjs}}
+\end{itemize}
+
+\noindent
+These must be downloaded or cloned, and \Verb!setup.py! must be run as shown
+above.
 
 \paragraph{Markdown and Pandoc Output.}
-
 The Doconce format \Verb!pandoc! outputs the document in the Pandoc
 extended Markdown format, which via the \Verb!pandoc! program can be
 translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
@@ -443,7 +555,6 @@ sudo apt-get install pandoc
 on Debian (Ubuntu) systems.
 
 \paragraph{Epydoc Output.}
-
 When the output format is \Verb!epydoc! one needs that program too, installed
 by
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -463,7 +574,90 @@ run \Verb!svn update!, and then \Verb!sudo python setup.py install!. For
 Mercurial (\Verb!hg!) directories, go to the directory, run
 \Verb!hg pull; hg update!, and then \Verb!sudo python setup.py install!.
 
+\paragraph{The \protect\Verb!doconce diff! command.}
+The \Verb!doconce diff file1 file prog! command for illustrating differences between
+two files \Verb!file1! and \Verb!file2! using the program \Verb!prog! requires \Verb!prog!
+to be installed. By default, \Verb!prog! is \Verb!difflib! which comes with Python
+and is always present if you have Doconce installed. Another choice, \Verb!diff!,
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their \Verb!sudo apt-get install! command on Debian (Ubuntu) systems
+appear in the table below.
 
+
+\begin{quote}\begin{tabular}{lll}
+\hline
+\multicolumn{1}{c}{ Program } & \multicolumn{1}{c}{ URL } & \multicolumn{1}{c}{ Debian/Ubuntu install } \\
+\hline
+\Verb!pdiff!                                                                              & \href{{http://www.gnu.org/software/a2ps/}}{a2ps} \href{{http://www.gnu.org/software/wdiff/}}{wdiff} & \Verb!sudo apt-get install a2ps wdiff texlive-latex-extra texlive-latex-recommended!      \\
+\Verb!latexdiff!                                                                          & \href{{http://www.ctan.org/pkg/latexdiff}}{latexdiff}                                          & \Verb!sudo apt-get install latexdiff!                                                     \\
+\Verb!kdiff3!                                                                             & \href{{http://kdiff3.sourceforge.net/}}{kdiff3}                                                & \Verb!sudo apt-get install kdiff3!                                                        \\
+\Verb!diffuse!                                                                            & \href{{http://diffuse.sourceforge.net/}}{diffuse}                                              & \Verb!sudo apt-get install diffuse!                                                       \\
+\Verb!xxdiff!                                                                             & \href{{http://xxdiff.sourceforge.net/local/}}{xxdiff}                                          & \Verb!sudo apt-get install xxdiff!                                                        \\
+\Verb!meld!                                                                               & \href{{http://meldmerge.org/}}{meld}                                                           & \Verb!sudo apt-get install meld!                                                          \\
+\Verb!tkdiff.tcl!                                                                         & \href{{https://sourceforge.net/projects/tkdiff/}}{tkdiff}                                      & not in Debian                                                                             \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+\subsection{Quick Debian/Ubuntu Install}
+
+On Debian (including Ubuntu) systems, it is straightforward to install the
+long series of Doconce dependencies:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+# Version control systems
+sudo apt-get install -y mercurial git subversion
+
+# Python
+sudo apt-get install -y idle ipython python-pip python-pdftools texinfo
+
+# These lines are only necessary for Ubuntu 12.04 to install texlive 2012
+ubuntu_version=`lsb_release -r | awl '{print $2}'`
+if [ $ubuntu_version = "12.04" ]; then
+  sudo add-apt-repository ppa:texlive-backports/ppa
+  sudo apt-get update
+fi
+# LaTeX
+sudo apt-get install -y texlive texlive-extra-utils texlive-latex-extra texlive-math-extra texlive-font-utils
+# or sudo apt-get install -y texlive-full  # get everything
+sudo apt-get install -y latexdiff auctex
+
+# Image and movie tools
+sudo apt-get install -y imagemagick netpbm mjpegtools pdftk giftrans gv evince smpeg-plaympeg mplayer totem ffmpeg libav-tools
+
+# Misc
+sudo apt-get install -y ispell pandoc libreoffice unoconv libreoffice-dmaths curl a2ps wdiff meld xxdiff diffpdf kdiff3 diffuse
+
+# More Python software
+pip install sphinx  # install pygments and docutils too
+pip install mako
+pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+pip install -e hg+https://bitbucket.org/logg/publish#egg=publish
+
+pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
+pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
+pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
+pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
+pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
+
+# Doconce itself
+rm -rf srclib   # put downloaded software in srclib
+mkdir srclib
+cd srclib
+hg clone https://code.google.com/p/doconce/
+cd doconce
+sudo python setup.py install -y
+cd ../..
+
+# Ptex2tex
+cd srclib
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install -y
+cd latex
+sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+cd ../../..
+\end{Verbatim}
 % 
 % Here are some comment lines that do not affect any formatting
 % these lines are converted to comments in the output format.
@@ -561,7 +755,7 @@ format specific actions through tests like \Verb!#if FORMAT == "latex"!
 
 \subsection{Removal of inline comments}
 
-The command-line arguments \Verb!--no-preprocess! and \Verb!--no-mako! turn off
+The command-line arguments \Verb!--no_preprocess! and \Verb!--no_mako! turn off
 running \Verb!preprocess! and \Verb!mako!, respectively.
 
 Inline comments in the text are removed from the output by
@@ -610,7 +804,7 @@ in an external CSS file; or in a template file.
 
 An external CSS file \Verb!filename! used by setting the command-line
 argument \Verb!--css=filename!. There available built-in styles are
-specified as \Verb!--html-style=name!, where \Verb!name! can be
+specified as \Verb!--html_style=name!, where \Verb!name! can be
 
 \begin{itemize}
  \item \Verb!solarized!: the famous \href{{http://ethanschoonover.com/solarized}}{solarized}
@@ -637,33 +831,41 @@ HTML file can have any specified layout.
 
 If the Pygments package (including the \Verb!pygmentize! program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument \Verb!--no-pygments-html!
+aid of this package. The command-line argument \Verb!--no_pygments_html!
 turns off the use of Pygments and makes code blocks appear with
-plain (\Verb!pre!) HTML tags. The option \Verb!--pygments-html-linenos! turns
+plain (\Verb!pre!) HTML tags. The option \Verb!--pygments_html_linenos! turns
 on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \Verb!--pygments-html-style=style!, where \Verb!style!
+Pygments style is set by \Verb!--pygments_html_style=style!, where \Verb!style!
 can be \Verb!default!, \Verb!emacs!, \Verb!perldoc!, and other valid names for
 Pygments styles.
 
-The HTML file can be embedded in a template if the Doconce document
-does not have a title (because then there will be
-no header and footer in the HTML file). The template file must contain
+The HTML file can be embedded in a template with your own tailored
+design, see a "tutorial": " \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{\nolinkurl{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}" on this topic. The template file must contain
 valid HTML code and can have three "slots": \Verb!%(title)s! for a title,
-\Verb!%(date)s! for a date, and \Verb!%(main)s! for the main body of text, i.e., the
+\Verb!%(date)s! for a date, and \Verb!%(main)s! for the main body of text. The
+latter is the
 Doconce document translated to HTML. The title becomes the first
-heading in the Doconce document, and the date is extracted from the
-\Verb!DATE:! line, if present. With the template feature one can easily embed
-the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert \Verb!%(title)s! and
-\Verb!%(date)s! at appropriate places and replace the main bod of text
-by \Verb!%(main)s!. Here is an example:
+heading in the Doconce document, or the title (but a title is not
+recommended when using templates). The date is extracted from the
+\Verb!DATE:! line. With the template feature one can easily embed
+the text in the look and feel of a website. Doconce comes with
+two templates in \Verb!bundled/html_styles!. Just copy the directory
+containing the template and the CSS and JavaScript files to your
+document directory, edit the template as needed (also check that
+paths to the \Verb!css! and \Verb!js! subdirectories are correct - according
+to how you store the template files), and run
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-Terminal> doconce format html mydoc --html-template=mytemplate.html
+Terminal> doconce format html mydoc --html_template=mytemplate.html
 \end{Verbatim}
+The template in \Verb!style_vagrant! also needs an extra option
+\Verb!--html_style=vagrant!. With this style, one has nice navigation buttons
+that are used if the document contains \Verb!!split! commands for splitting
+it into many pages.
 
-\subsection{Blogs}
 
-Doconce can be used for writing blogs provided the blog site accepts
+\subsection{Blog Posts}
+
+Doconce can be used for writing blog posts provided the blog site accepts
 raw HTML code. Google's Blogger service (\Verb!blogger.com! or
 \Verb!blogname.blogspot.com!) is particularly well suited since it also
 allows extensive {\LaTeX} mathematics via MathJax.
@@ -685,18 +887,31 @@ a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
 for demonstrations of blogs at \Verb!blogspot.no!.
 
 
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
-In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\begin{graybox1admon}[Warning.]
+In the readers' comments after the blog one cannot paste raw HTML
+code with MathJax
+scripts so there is no support for mathematics in the discussion forum.
+\end{graybox1admon}
+\begin{graybox1admon}[Notice.]
+Figure files must be uploaded to some web site and the filenames name must
+be replaced by the relevant URL. This can be automatically edited:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+cp mydoc.do.txt mydoc2.do.txt
+url="https//raw.github.com/someuser/someuser.github.com"
+dir="master/project/dir1/dir2"
+for figname in fig1 fig2 fig3; do
+  doconce replace "[$figname," "[$site/$dir/$figname.png," \
+          mydoc2.do.txt
+done
+doconce format html mydoc2
+# Paste mydoc2.html into a new blog page
+\end{Verbatim}
+\end{graybox1admon}
+Blog posts at Google can also be published \href{{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}}{automatically through email}.
+A Python program can send the contents of the HTML file
+to the blog's email address using the packages  \Verb!smtplib! and \Verb!email!.
+
 WordPress (\Verb!wordpress.com!) allows raw HTML code in blogs,
 but has very limited
 {\LaTeX} support, basically only formulas. The \Verb!--wordpress! option to
@@ -705,6 +920,10 @@ in a way that is acceptable to WordPress.
 Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
 and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
 to see blogging with mathematics and code on WordPress.
+
+Speaking of WordPress, the related project \href{{http://pressbooks.com}}{\nolinkurl{http://pressbooks.com}} can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.
 
 \subsection{Pandoc and Markdown}
 
@@ -783,7 +1002,7 @@ can be placed in files \Verb!newcommands.tex!, \Verb!newcommands_keep.tex!, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \Verb!--latex-printed! makes some adjustments for documents
+An option \Verb!--latex_printed! makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
@@ -815,8 +1034,7 @@ A separate titlepage can be generate by
 Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
- \item \Verb!BOOK! for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings with 9 \Verb!=!)
+ \item \Verb!XELATEX! for processing by \Verb!xelatex!
 
  \item \Verb!PALATINO! for the Palatino font
 
@@ -826,7 +1044,11 @@ Preprocessor variables to be defined or undefined are
 
  \item \Verb!A6PAPER! for A6 paper size (suitable for reading PDFs on phones)
 
- \item \Verb!MOVIE15! for using the movie15 {\LaTeX} package to display movies
+ \item \Verb!MOVIE! for specifying how movies are handled: the value \Verb!media9!
+   implies the \Verb!media9! package and the \Verb!\includemedia! command (default),
+   while other values are \Verb!movie15! (\Verb!\includemovie! command),
+   \Verb!multimedia! (for Beamer-style \Verb!\movie! command),
+   or \Verb!href-run! (for the plain \Verb!\href{run:file}! command)
 
  \item \Verb!PREAMBLE! to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
@@ -836,11 +1058,36 @@ Preprocessor variables to be defined or undefined are
  \item \Verb!MINTED! for inclusion of the minted package for typesetting of
    code with the Pygments tool (which requires \Verb!latex!
    or \Verb!pdflatex! to be run with the \Verb!-shell-escape! option)
+
+ \item \Verb!TODONOTES! for using the fancy \Verb!todonotes! package for typesetting
+   inline comments (looks much like track changes in MS Word). This
+   macro has only effect if inline comments are used (name, colon,
+   and comment inside brackets).
+
+ \item \Verb!LINENUMBERS! for inclusion of line numbers in the text.
+
+ \item \Verb!AMON! for setting the type of admonitions: \Verb!"colors"! for colored
+   boxes with icons, \Verb!"graybox1"! for gray frame boxes with rounded
+   corners (default), \Verb!"graybox2"! for narrower square gray frame boxes
+   (except for summary, which for A4 format is small and with wrapped
+   text around if it does not contain verbatim code),
+   or \Verb!"paragraph"! for simple, plain paragraph headings and ordinary text
+
+ \item \Verb!COLORED_TABLE_ROWS! for coloring every other table rows (set this
+   variable to \Verb!gray! or \Verb!blue!)
+
+ \item \Verb!BLUE_SECTION_HEADINGS! for blue section and subsection headings
+
+ \item \Verb!LATEX_HEADING! for the typesetting of the title, author, parts of
+   preamble (values: \Verb!traditional! for traditional {\LaTeX} heading,
+   \Verb!titlepage! for a separate titlepage, \Verb!Springer_collection! for
+   edited volumes on Springer, \Verb!beamer! for Beamer slides, \Verb!doconce_heading!
+   (default) for listing institutions after names)
 \end{itemize}
 
 \noindent
 If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option \Verb!--latex-preamble=myfile!.
+your own preamble by adding the command-line option \Verb!--latex_preamble=myfile!.
 In case \Verb!myfile! contains a documentclass definition, Doconce assumes
 that the file contains the \emph{complete} preamble you want (not that all
 the packages listed in the default preamble are required and must be
@@ -953,6 +1200,19 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 \end{Verbatim}
+
+\subsection{XeLaTeX}
+
+XeLaTeX is an alternative to \textsc{pdf}{\LaTeX} and is run in almost the
+same way, except for the \Verb!-DXELATEX! flag to ptex2tex:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce ptex2tex mydoc -DXELATEX
+Terminal> ptex2tex -DXELATEX mydoc  # alternative
+Terminal> xelatex mydoc
+\end{Verbatim}
+
 
 \subsection{Plain ASCII Text}
 
@@ -1159,7 +1419,6 @@ doconce sphinx_dir theme=scipy_lectures \
 \end{Verbatim}
 
 \paragraph{The manual Sphinx procedure.}
-
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file \Verb!mydoc.do.txt!.
@@ -1451,12 +1710,13 @@ associated with \Verb!TITLE:! and \Verb!AUTHOR:! keywords must appear on a singl
 line.  Here is an example:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 \end{Verbatim}
-Note how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions
+(with \Verb!&! as separator between institutions),
 and no institution. In some formats (including \Verb!rst! and \Verb!sphinx!)
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
@@ -1607,17 +1867,16 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 % latex/PDF format can make use of the movie15 package for displaying movies,
 % or just plain \href{run: ...}{...}
 
+ (Movie figs/mjolnir.mpeg: play \href{{mjolnir.html}}{\nolinkurl{mjolnir.html}})
+\includemedia[
+label=figs/mjolnir.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=figs/mjolnir.mpeg,
+flashvars={
+source=figs/mjolnir.mpeg,
+&autoPlay=true}]{VPlayer.swf}
 
-\begin{figure}[ht]
-\begin{center}
-
-\href{run:figs/mjolnir.mpeg}{figs/mjolnir.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{figs/mjolnir.mpeg}{figs/mjolnir.mpeg}
-\end{center}
-\caption{}
-\end{figure}
 
 
 % MOVIE: [figs/wavepacket.gif, width=600 height=470]
@@ -1685,11 +1944,11 @@ Section~\ref{sec:verbatim:blocks} below.
 \index{inline comments}
 
 Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
-and \Verb!verbatim text! (also called type writer text, for inline code)
+and \Verb!verbatim text! (also called type writer text, for inline code),
+\textcolor{blue}{colored words},
 plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
 
 \paragraph{Emphasized Words.}
-
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -1704,7 +1963,6 @@ The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
 \paragraph{Inline Verbatim Text.}
-
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -1720,24 +1978,15 @@ the Doconce file, because some formats ({\LaTeX} and \Verb!ptex2tex!) will have
 problems with inline verbatim text that is split over two lines.
 
 
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\begin{graybox1admon}[Notice.]
 Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\end{graybox1admon}
 \paragraph{Links to Web Addresses.}
-
 Web addresses with links are typeset as
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 some URL like "Search Google": "http://google.com".
@@ -1759,7 +2008,6 @@ with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
 
 \paragraph{Links to Local Files.}
-
 Links to files ending in \Verb!.txt!, \Verb!.html!, \Verb!.pdf!, \Verb!.py!, \Verb!.f!,
 \Verb!.f77!, \Verb!.f90!, \Verb!.f95!, \Verb!.sh!, \Verb!.csh!, \Verb!.ksh!, \Verb!.zsh!,
 \Verb!.c!, \Verb!.cpp!, \Verb!.cxx!, \Verb!.pl!, and \Verb!.java! follows the same
@@ -1830,17 +2078,17 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % adjusted.)
 
 \paragraph{Inline Comments.}
-
 Doconce also supports inline comments in the text:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 [name: comment]
 \end{Verbatim}
 where \Verb!name! is the name of the author of the command, and \Verb!comment! is a
 plain text text. Note that there must be a space after the colon,
-otherwise the comment is not recognized. Inline comments
+otherwise the comment is not recognized. \shortinlinecomment{hpl 1}{ Inline comments
 can span
 several lines,
-if desired.
+if desired. }{ Inline comments can span }
+
 The name and comment are visible in the output unless \Verb!doconce format!
 is run with a command-line argument \Verb!--skip_inline_comments!
 (see Section~\ref{doconce2formats} for an example). Inline comments
@@ -1849,8 +2097,12 @@ and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the \Verb!.do.txt! file
 (see Section~\ref{doconce2formats}).
 
-\paragraph{Inline Mathematics.}
+Inline comments are typeset in a simple way (boldface name and the
+comment in parenthesis), but in {\LaTeX} very visible color boxes
+are used (via the \Verb!todonotes! package).
 
+
+\paragraph{Inline Mathematics.}
 Inline mathematics is written as in {\LaTeX}, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in {\LaTeX}, HTML, MediaWiki,
@@ -2057,9 +2309,9 @@ the paragraph heading and the text body, although this works fine if
 \subsection{Bibliography}
 
 Doconce applies the software tool \href{{https://bitbucket.org/logg/publish}}{Publish} to handle the bibliography in a
-document. With Publish it is easy to import BibTeX data and maintain a
-database in a clean, self-explaining textual format. From the Publish
-format it is easy to go BibTeX and reST or straightforward Doconce
+document. With Publish it is easy to import \textsc{Bib}\negthinspace{\TeX} data and maintain a
+database in a clean, self-explanatory textual format. From the Publish
+format it is easy to go \textsc{Bib}\negthinspace{\TeX} and reST or straightforward Doconce
 typesetting (and from there to HTML, plain text, wiki formats, and so
 on).
 
@@ -2068,7 +2320,6 @@ Installing Publish is straightforward: just checkout the code on
 \Verb!publish! directory and run \Verb!sudo python setup.py install!.
 
 \paragraph{Importing your data to the Publish database.}
-
 Many scientists have their bibliographic data in the BibTex format. Here we
 assume that you have two files, \Verb!refs1.bib! and \Verb!refs2.bib!. These can
 be imported to a Publish database, residing in the file \Verb!papers.pub!,
@@ -2088,10 +2339,19 @@ your version control system).
 
 \paragraph{Requirements to input data.}
 
-Note that Publish only accepts BibTeX files where the keys (author,
+\begin{graybox1admon}[Notice.]
+Note that Publish only accepts \textsc{Bib}\negthinspace{\TeX} files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
-curly braces. You may need to edit your BibTeX files to meet this
-demand. Although references are visible as numbers only in the
+curly braces. You may need to edit your \textsc{Bib}\negthinspace{\TeX} files to meet this
+demand.
+\end{graybox1admon}
+The utility \Verb!doconce fix_bibtex4publish file.bib! fixes several known
+issues with \textsc{Bib}\negthinspace{\TeX} files such that Publish has a better chance of
+accepting the entries. Run this utility first, then run Publish,
+respond to any requirements that Publish spits out, remove \Verb!papers.pub!
+if it exists, and run the import statements again.
+
+Although references are visible as numbers only in the
 output, it is recommended to have apply a nice, consistent
 typesetting of your keys. It is suggested to use the following scheme:
 
@@ -2104,27 +2364,24 @@ One can add a, b, c, and so forth if several keys feature the same
 authors and year.
 
 \paragraph{Adding new references to the database.}
-
-When you get some new BibTeX references you simply put them in
+When you get some new \textsc{Bib}\negthinspace{\TeX} references you simply put them in
 a file, say \Verb!refs3.pub! and run the \Verb!publish import refs3.pub! command
 to update the database. You may also consider editing the \Verb!papers.pub!
 file directly when adding new references.
 
 \paragraph{Exporting the database.}
-
 Export of everything in the database to
-BibTeX is done by
+\textsc{Bib}\negthinspace{\TeX} is done by
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 publish export mybibtexfile.bib
 \end{Verbatim}
 You can easily export subsets of the database, e.g., only papers associated
 with a particular author (the Publish manual has details on how this is
-done). Doconce will automatically export the database to BibTeX if
+done). Doconce will automatically export the database to \textsc{Bib}\negthinspace{\TeX} if
 the output format is \Verb!latex! or \Verb!pdflatex!.
 
 \paragraph{Referring to publications.}
-
 We use the command
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -2152,7 +2409,6 @@ brackets and the corresponding references are listed in the order they
 are cited.
 
 \paragraph{Specifying the Publish database.}
-
 The specification of the Publish database file in the Doconce document
 is done one a line containing \Verb!BIBFILE: papers.pub! (you may give
 the database file another name and store it in another directory).
@@ -2167,12 +2423,11 @@ Here is an example:
 
 BIBFILE: papers.pub
 \end{Verbatim}
-In {\LaTeX} and \textsc{pdf}{\LaTeX} the \Verb!papers.pub! file is exported to BibTeX format
+In {\LaTeX} and \textsc{pdf}{\LaTeX} the \Verb!papers.pub! file is exported to \textsc{Bib}\negthinspace{\TeX} format
 and included in the document, while in all other formats, suitable
 text is produced from the database.
 
 \paragraph{{\LaTeX} bibliography style.}
-
 The bibliography style is "plain" in {\LaTeX} output. To change this, just
 edit the \Verb!.p.tex! file. For example,
 
@@ -2221,7 +2476,10 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-
+The command-line option \Verb!--tables2csv! (to \Verb!doconce format!)
+makes Doconce dump each table to CSV format in a file \Verb!table_X.csv!,
+where \Verb!X! is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 \subsection{Exercises, Problems, Projects, and Examples}
 
@@ -2309,30 +2567,24 @@ directives is always typeset at the end of the exercise.
 !bsol
 Here goes a full solution of the whole exercise.
 !esol
-\end{Verbatim}
+!ec
 
 A recommended rule for using the different "exercise" types goes as follows:
 
-\begin{itemize}
-  \item Exercises are smaller problems directly related to the present chapter
+  * Exercises are smaller problems directly related to the present chapter
     (e.g., with references to the text).
-
-  \item Problems are sufficiently independent of the chapter's text
+  * Problems are sufficiently independent of the chapter's text
     that they make sense on their own, separated from the rest of the docoment.
+  * Projects are larger problems that also make sense on their own.
+  * Examples are exercises, problems, or projects with full solutions.
 
-  \item Projects are larger problems that also make sense on their own.
-
-  \item Examples are exercises, problems, or projects with full solutions.
-\end{itemize}
-
-\noindent
-The command line options \Verb!--without-answers! and \Verb!--without-solutions!
+The command line options `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
 Sometimes one does not want the heading of an exercise, problem, project,
-or example to contain the keyword \Verb!Exercise:!, \Verb!Problem:!, \Verb!Project:!,
-or \Verb!Example:!. By enclosing the keyword in braces, as in
+or example to contain the keyword `Exercise:`, `Problem:`, `Project:`,
+or `Example:`. By enclosing the keyword in braces, as in
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 ===== {Problem}: Find a solution to a problem =====
@@ -2374,11 +2626,11 @@ works well in all formats (i.e., no double "Problem Problem" appears).
 
 \paragraph{Remark.}
 Examples are \emph{not} typeset similarly to exercises unless one adds
-the command-line option \Verb!--examples-as-exercises!. That is, without
+the command-line option \Verb!--examples_as_exercises!. That is, without
 this option, any heading and starting with \Verb!Example:! makes Doconce
 treat the forthcoming text as ordinary text without any interpretation
 of exercise-style instructions.
-With the command-line option \Verb!--examples-as-exercises!,
+With the command-line option \Verb!--examples_as_exercises!,
 one can use the \Verb!!bsubex! and \Verb!!bsol!
 commands to indicate a subproblem and a solution. In this way, the
 typesetting of the example looks like an exercise equipped with a solution.
@@ -2685,7 +2937,6 @@ alternatively:
 
 
 \paragraph{Mathematics for PowerPoint/OpenOffice.}
-
 If you have {\LaTeX} mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
 use with PowerPoint or OpenOffice presentations.
@@ -2775,6 +3026,142 @@ will then be rendered to
 \eeqa
 in the current format.
 
+\subsection{Admonitions}
+
+Doconce offers strong support for admonition environments, such
+as warning boxes, notification boxes, hint boxes, question boxes,
+and summary boxes. The boxes normally have an icon, a heading,
+and may also have a background color. A special box, the block,
+has never any icon and can be used when an icon would be disturbing
+or misleading.
+
+The following admonition environments are available:
+\Verb!block!, \Verb!warning!, \Verb!notice!, \Verb!hint!, \Verb!question!, and \Verb!summary!.
+The box is defined by begin and end tags such as \Verb!!bhint! and \Verb!!ehint!.
+(The hint box is typeset differently inside exercises compared to outside
+exericises: inside a plain paragraph heading \emph{Hint} (with number)
+appears, while outside exercises the \Verb!hint! environment gives a
+box with some admonition icon, text and/or colored background.)
+The title of the box is fully customizable.
+
+Here are a few examples:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+!bwarning
+Here is a warning!
+!ewarning
+
+!bhint
+This is a hint.
+!ehint
+
+!bblock This is a block.
+A block has never any icon.
+!eblock
+
+!bnotice Going deeper
+This is text meant to provide more details. The box has the
+layout of the notice box, but a custom title, here "Going deeper".
+!enotice
+
+Finally some summary:
+
+!bsummary
+The main message is to utilize the admonition styles for
+marking different parts of the text
+!esummary
+\end{Verbatim}
+The above Doconce code is in the present format rendered as
+
+
+\begin{graybox1admon}[Warning.]
+Here is a warning!
+\end{graybox1admon}
+\begin{graybox1admon}[Hint.]
+This is a hint.
+\end{graybox1admon}
+
+\begin{graybox1admon}[This is a block.]
+A block has never any icon.
+\end{graybox1admon}
+\begin{graybox1admon}[Going deeper.]
+This is text meant to provide more details. The box has the
+layout of the notice box, but a custom title, here "Going deeper".
+\end{graybox1admon}
+Finally some summary:
+
+
+\begin{graybox1admon}[Summary.]
+The main message is to utilize the admonition styles for
+marking different parts of the text
+\end{graybox1admon}
+The layout of admonitions depend on the format.
+In \Verb!rst! and \Verb!sphinx! one applies the native admonitions, but
+in \Verb!sphinx! the \Verb!automake_sphinx.py! script manipulates the HTML
+file to set a gray background for all admonitions.
+In \Verb!html! one has a command-line argument \Verb!--html_admon! that
+can be set to different styles: \Verb!--html_admon=white! for
+white background and small icons, \Verb!--html_admon=gray! for
+larger icons with gray background and small font, \Verb!--html_admon=yellow!
+and \Verb!--html_admon=apricot!
+works as the \Verb!gray! style, but the color is different.
+With \Verb!--html_admon=colors! one gets quite bright colors
+as backgrounds for the different admonitions.
+
+Some recommended combinations for admonitions in HTML are
+
+\begin{itemize}
+ \item \Verb!--html_admon=apricot!, \Verb!--html_style=solarized!
+
+ \item \Verb!--html_admon=yellow!, \Verb!--html_style=bluish2!, \Verb!--no_pygments_html!
+
+ \item \Verb!--html_admon=yellow!, \Verb!--html_style=blueish2!, \Verb!--pygments_html_style=default!
+
+ \item \Verb!--html_admon=gray!, \Verb!--html_style=bloodish!, \Verb!--no_pygments_html!
+
+ \item \Verb!--html_admon=gray!, \Verb!--html_style=bloodish!, \Verb!--pygments_html_style=default!
+
+ \item \Verb!--html_style=vagrant!, \Verb!--pygments_html_style=default!, \Verb!--html_template=...!
+\end{itemize}
+
+\noindent
+The \Verb!vagrant! HTML style has CSS files that override the definition
+how the admons are typset. The \Verb!notice! environment is gray with an
+icon (defined in \Verb!vagrant.css!), while the others are yellow (defined
+in \Verb!twitter_bootstrap.css!). The \Verb!--html_admon! color has no effect
+for the \Verb!vagrant! style.
+
+In \Verb!latex! and \Verb!pdflatex!, the type of admonition is configured in the
+\Verb!.p.tex! file through the \Verb!ADMON! preprocessor variable.
+Several values are available:
+
+\begin{itemize}
+ \item \Verb!paragraph! is the simplest type of admonition and typeset
+   as plain text with an optional paragraph heading.
+
+ \item \Verb!colors1! (inspired by the NumPy User Guide) applies different colors for
+   the different admons with an embedded icon.
+
+ \item \Verb!colors2! is like \Verb!colors1! but the text is wrapped around the icon.
+
+ \item \Verb!graybox1! is the default and gives rounded gray boxes with a potential
+   title and no icon.
+
+ \item \Verb!graybox2! has square corners, gray background, and is narrower
+   than \Verb!graybox1!. One special feature of \Verb!graybox2! is the summary
+   admon, which has a different look with horizontal rules only,
+   and for A4 format, the summary box is half of the text width and
+   wrapped with running text around (if it does not contain verbatim text,
+   in that case the standard \Verb!graybox2! style is used). This small
+   summary box is effective in proposals to disperse small paragraphs
+   of key points around.
+
+ \item \Verb!graybox3! has icons and a light gray background.
+
+ \item \Verb!yellowbox! has icons and a light yellow background.
+\end{itemize}
+
+\noindent
 \subsection{Preprocessing Steps}
 
 Doconce allows preprocessor commands for, e.g., including files,
@@ -2801,6 +3188,7 @@ the value of \Verb!FORMAT! and take different actions for different
 formats. Below is an example:
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+
 First some math:
 
 !bt
@@ -2857,48 +3245,80 @@ preprocessor include statements of the form \Verb!#include "file.do.txt"!.
 The preprocessor will put together all the pieces so that Doconce
 sees a long file with the complete text.
 
-For reST and Sphinx documents it is a point to have
-separate \Verb!.rst! files and an index file listing the various \Verb!.rst!
-that build up the document. To generate the various \Verb!.rst! files one
-should not run Doconce on the individual \Verb!.do.txt! files, because then
-references and index entries are not treated correctly. Instead,
-run Doconce on the master file and invoke the script \Verb!doconce split_rst!
-to split the long, complete \Verb!.rst! into pieces. This process requires
-that each \Verb!#include "file.do.txt! line in the master file is preceded by a
-"marker line" having the syntax \Verb!#>>>>>> part: file >>>>>>!, where
-\Verb!file! is the filename without extension. The number of greater than
-signs is not important, but it has to be a comment line and it has
-to contain the keyword \Verb!part:!.
 
-Here is an example. Say the name of the master file is \Verb!master.do.txt!.
-The following Bash script does the job:
-We run
+For web documents it is often desired to split long pages into shorter
+ones. This is done by the Doconce command \Verb!!split! placed at the
+beginning of a line. The \Verb!!split! commands works with output in
+\Verb!html!, \Verb!rst!, \Verb!sphinx!, \Verb!latex!, and \Verb!pdflatex!. The \Verb!!split! command
+are normally placed before section headings. It is very actively used
+when writing slides with Doconce. The \Verb!doconce format! command does not
+recognize \Verb!!split! instructions: one needs to run \Verb!doconce split_*!
+as a postprocess, where the \Verb!*! means \Verb!html!, \Verb!rst!, or \Verb!beamer!.
+
+\paragraph{HTML.}
+Splitting an HTML document is done by
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-doconce format sphinx master
-# Split master.rst into parts
-# as defined by #>>>>> part: name >>>>> lines
-files=`doconce split_rst master.rst`
-
-dir=sphinxm-rootdir
-
-if [ ! -d $dir ]; then
-  doconce sphinx_dir dirname=$dir author='me and you' \
-          version=1.0 theme=default $files
-  sh automake_sphinx.sh
-else
-  for file in $files; do
-    cp $file.rst $dir
-  done
-  cd $dir
-  make html
-  cd ..
-fi
+Terminal> doconce format html mydoc
+Terminal> doconce split_html mydoc
 \end{Verbatim}
-The autogenerated \Verb!automake_sphinx.sh! file (by \Verb!doconce sphinx_dir!)
-is compatible with a master \Verb!.rst! file split into pieces as long as
-the complete set of pieces in correct order is given to \Verb!doconce sphinx_dir!.
-This set is the output of \Verb!doconce split_rst!, which we catch in a
-variable \Verb!files! above.
+The \Verb!mydoc.html! document created by the first command is replaced
+by a new HTML file, representing the first part of the document,
+after the second command. The various files that constitute the
+parts of the document are listed after the \Verb!split_html! command.
+The files have names \Verb!mydoc.html!, \Verb!._part0000_mydoc.html! (equal to
+\Verb!mydoc.html!), \Verb!._part0001_mydoc.html!, \Verb!._part0002_mydoc.html!, and so
+on. Recall that all the parts are needed if the HTML document is to be moved
+to another location (you can always check \Verb!.mydoc_html_file_collection!
+for a list of all the files that are needed to display this HTML
+document).
+
+The HTML documents have very simple navigation buttons for the previous
+and next document. These are not customizable directly, but one can easily
+look up the HTML code and use \Verb!doconce replace! to edit the links to
+the images used for navigation. Some more colorful images arise from
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce replace 'prev1.png' 'Knob_Left.png' \
+          mydoc.html ._part*_mydoc.html
+Terminal> doconce replace 'next1.png' 'Knob_Forward.png' \
+          mydoc.html ._part*_mydoc.html
+\end{Verbatim}
+This works because the \Verb!Knob*.png! images live in the same place in the
+Doconce repository as \Verb!prev1.png! and \Verb!next1.png!. Other images can be
+used by replacing the whole URL.
+
+With an HTML template one can have much more sophisticated navigation
+between parts. One example is the template
+in \Verb!bundled/html_styles/style_vagrant/template_vagrant.html! in the Doconce
+source.
+
+\paragraph{reStructuredText and Sphinx.}
+Here is a typical split of a large Sphinx document \Verb!mydoc.rst!
+into smaller pieces:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce sphinx_dir author="Some Author" \
+          title="Short title" theme=fenics dirname=mydir mydoc
+Terminal> doconce format sphinx mydoc
+Terminal> doconce split_rst mydoc
+Terminal> python automake_sphinx.py
+\end{Verbatim}
+The \Verb!doconce format sphinx mydoc! command is needed to produce \Verb!mydoc.rst!,
+which is the starting point for the \Verb!doconce split_rst! command.
+The various files that constitute the complete Sphinx document are
+\Verb!mydoc.rst!, \Verb!._part0000_mydoc.rst!, \Verb!._part0001_mydoc.rst!, \Verb!._part0002_mydoc.rst!,
+and so on. The \Verb!automake_sphinx.py! script ensures that the Sphinx document
+is compiled correctly. If all links to local files are in a \Verb!_static!
+directory, the whole Sphinx document exists in a complete version
+in the compiled directory (usually \Verb!sphinx-rootdir/_build/html!) and
+can easily be moved around.
+
+
+{\LaTeX} Beamer slides generated from Doconce source also apply \Verb!!split! to
+indicate the start of individual slides. However, the split is
+performed by the \Verb!doconce slides_beamer! command and does not result
+in individual files like \Verb!split_rst! and \Verb!split_html! do.
 
 
 \subsection{Missing Features}
@@ -2911,6 +3331,7 @@ format and use the if-else construction of the preprocessor. For example,
 if a sophisticated table is desired in {\LaTeX} output, do something like
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+
 # #if FORMAT in ("latex", "pdflatex")
 # insert native LaTeX code for fancy table
 # #else
@@ -2988,289 +3409,151 @@ the different shortcuts and see how handy they are in learning
 Doconce and saving much typing!
 
 
-\section{Troubleshooting}
+\section{Writing Slides}
 
-\subsection{Disclaimer}
+It is a fast procedure to make slides from large amounts of Doconce
+text, in particular for condensing running material for teaching or
+just providing the slide set as an overview or study guide.
+The slides can either be ordinary, separate slides - or just
+a document with much briefer text and emphasis on bullet lists,
+figures, mathematical formulas, admonitions, and little text.
 
-Doconce has some support for syntax checking.  If you encounter Python
-errors while running \Verb!doconce format!, the reason for the error is
-most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself. However, Doconce applies
-regular expressions to a large extent for transforming text, and
-regular expressions may sometimes fail. Therefore, there is a chance that legal
-Doconce syntax is not treated properly.
+Points:
 
+\begin{itemize}
+ \item Only some pygments style are suited for a particular reveal.js/deck.js
+   theme
 
-\subsection{General Problems}
+ \item Only some admon styles are appropriate
 
-\paragraph{Doconce aborts because of a syntax error that is not an error.}
+ \item Admon styles are erased in reveal
 
-Doconce searches for typical syntax errors and usually aborts the
-execution if errors are found. However, it may happen,
-especially in verbatim blocks, that Doconce reports syntax errors
-that are not errors. To continue execution, simply add the
-\Verb!--no-abort! option on the command line. You may send an email
-to the Doconce author at \Verb!hpl@simula.no! and report the problem.
+ \item Use \Verb!--keep_pygments_html_bg! to avoid big changes in background
+   color for code
+\end{itemize}
 
-\paragraph{The Mako preprocessor is seemingly not run.}
+\noindent
+\subsection{Overview}
 
-If you have lines starting with \Verb!%! inside code segments (for example,
-SWIG code or Matlab comment lines), the Mako preprocessor will crash
-because it thinks these lines are Mako statements. Doconce detects
-this problem and avoids running Mako.  Examine the output from
-Doconce: warnings are issued if Mako is not run.
+Basically, Doconce slides are ordinary Doconce text with \Verb!!split!
+inserted before each slide. Nevertheless, contents of slide differ
+considerably from ordinary running text. Some guidelines on
+the elements within each slide are necessary to produce effective
+slide sets:
 
-\paragraph{Something goes wrong in the preprocessing step.}
+\begin{itemize}
+ \item Use a subsection heading as slide heading (5 \Verb!=!).
 
-Doconce automatically removes the file \Verb!__tmp.do.txt!, which is the
-resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when \Verb!mako! and
-\Verb!preprocess! is run). Add the \Verb!--debug! flag at the end of the
-\Verb!doconce! command to (both make a debug file and) avoid that
-\Verb!__tmp.do.txt! is deleted.
+ \item Limit the amount of running text (as always).
 
-\paragraph{Figure captions are incomplete.}
+ \item Limit the amount of material so it fits within a slide
+   (inspect slides visually to move or delete content - just
+   an extra \Verb!!split! and a new heading is enough to make a new
+   slide).
 
-If only the first part of a figure caption in the Doconce file is seen
-in the target output format, the reason is usually that the caption
-occupies multiple lines in the Doconce file. The figure caption must
-be written as \emph{one line}, at the same line as the FIGURE keyword.
+ \item Use the \Verb!slidecell! environment (see below) to create
+   a grid of slide cells (makes it easy to move figures and
+   bullet lists or text around).
 
-\paragraph{Preprocessor directives do not work.}
+ \item Adjust the size of figures (\Verb!width! parameter for HTML,
+   \Verb!frac! parameter for {\LaTeX} Beamer) so they become effective
+   on the slide.
+\end{itemize}
 
-Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
+\noindent
+Doconce can generate two types of slides: HTML5+CSS3 type of
+slides to be presented through a web browser, and classical
+{\LaTeX} Beamer slides.
 
-\paragraph{Problems with boldface and emphasize.}
+\subsection{HTML5 Slides}
 
-Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
+% doconce-adjusted styles: easy to switch between styles since
+% font sizes are compatible
 
-\paragraph{Links to local directories do not work.}
-
-Links of the type
+Text is missing... Just a very preliminary sketch of commands:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-see the "examples directory": "src/examples"
-\end{Verbatim}
-do not work well. You need to link to a specific HTML file:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-see the "examples directory": "src/examples/index.html"
-\end{Verbatim}
-
-\paragraph{Links are not typeset correctly.}
-
-Not all formats will allow formatting of the links. Verbatim words
-in links are allowed if the whole link is typeset in verbatim:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-see the directory "`examples`": "src/examples/index.html".
-\end{Verbatim}
-However, the following will not be typeset correctly:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-see the "`examples` directory": "src/examples/index.html"
-\end{Verbatim}
-The back-ticks must be removed, or the text can be reformulated as
-in the line above it.
-
-
-\paragraph{Inline verbatim code is not detected.}
-
-Make sure there is a space before the first back-tick.
-
-\paragraph{Inline verbatim text is not formatted correctly.}
-
-Make sure there is whitespace surrounding the text in back-ticks.
-
-\paragraph{Strange non-English characters.}
-
-Check the encoding of the \Verb!.do.txt! file with the Unix \Verb!file! command
-or with
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-Terminal> doconce guess_encoding myfile.do.txt
-\end{Verbatim}
-If the encoding is utf-8, convert to latin-1 using either of
-the Unix commands
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
-
-Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> doconce format html myslides \
+          --pygments_html_style=native --keep_pygments_html_bg
+Terminal> doconce slides_html myslides reveal \
+          --html_slide_theme=darkgray
 \end{Verbatim}
 
-\paragraph{Wrong Norwegian charcters.}
+\paragraph{Potential Problems.}
+\begin{itemize}
+ \item Some newer Firefox does not show rounded corners of the
+   admonition boxes, e.g., notice and warning (tested on Ubuntu)
 
-When Doconce documents have characters not in the standard ASCII set,
-the format of the file must be LATIN1 and not UTF-8. See
-the section "Strange non-English characters" above for how to
-run \Verb!doconce change_encoding! to change the encoding of the Doconce file.
+ \item Doconce performs some adjustments of the spacing around
+   equations. More edits (automate with \Verb!doconce subst!) might be needed.
+\end{itemize}
 
-\paragraph{Too short underlining of reST headlines.}
+\noindent
+\subsection{{\LaTeX} Beamer Slides}
 
-This may happen if there is a paragraph heading without
-proceeding text before some section heading.
+\section{Mako Programming}
 
+The \href{{http://docs.makotemplates.org/}}{Mako} templating engine is used
+as preprocessor for Doconce documents, but the \href{{http://code.google.com/p/preprocess}}{Preprocess} is run prior to Mako and is recommended for
+including other files via \Verb!# #include "filename"!. Preprocess is also
+sufficient for if-else tests to steer which parts of the text that
+are to be compiled. For more demanding tasks, use Mako, which resembles
+a real programming language.
 
-\paragraph{Found !bt but no tex blocks extracted (BUG).}
+\subsection{The Basics of Mako}
 
-This message points to a bug, but has been resolved by removing blank lines
-between the text and the first \Verb!!bt! (inserting the blanks again did not
-trigger the error message again...).
-
-\paragraph{Examples are typset with environment delimiters visible.}
-
-If you see an Example section containing \Verb!!bsubex!, \Verb!!bsol!, or other
-begin and end tags for environments, it means that you have intended
-to typeset examples as exercises, but forgotten the command-line
-option \Verb!--examples-as-exercises!. The text in the example is typeset
-as is unless this option is included.
-
-\paragraph{Emacs editing does not work properly because of "regexp overflow".}
-
-Sometimes the Doonce editing mode (see Section~\ref{emacs:doconce}) in Emacs
-leads to an error message ending with "overflow in regexp matcher".
-This error is due to some regular expression used in the Doconce editing
-mode. The remedy is to split the file into smaller pieces and include
-the pieces using the \Verb!preprocess! directive \Verb!#include "piece.do.txt"!.
-The error message comes with the Doconce file contains too much text
-for Emacs to handle.
-
-\subsection{Problems with code or Tex Blocks}
-
-\paragraph{Code or math block errors in reST.}
-
-First note that a code or math block must come after some plain
-sentence (at least for successful output in reST), not directly
-after a section/paragraph heading, table, comment, figure, or
-movie, because the code or math block is indented and then become
-parts of such constructions. Either the block becomes invisible or
-error messages are issued.
-
-Sometimes reST reports an "Unexpected indentation" at the beginning of
-a code block. If you see a \Verb!!bc!, which should have been removed when
-running \Verb!doconce format sphinx!, it is usually an error in the Doconce
-source, or a problem with the rst/sphinx translator.  Check if the
-line before the code block ends in one colon (not two!), a question
-mark, an exclamation mark, a comma, a period, or just a newline/space
-after text. If not, make sure that the ending is among the
-mentioned. Then \Verb!!bc! will most likely be replaced and a double colon
-at the preceding line will appear (which is the right way in reST to
-indicate a verbatim block of text).
-
-\paragraph{Strange errors around code or TeX blocks in reST.}
-
-If \Verb!idx! commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-\paragraph{Something is wrong with a verbatim code block.}
-
-Check first that there is a "normal" sentence right before
-the block (this is important for reST and similar
-"ASCII-close" formats).
-
-\paragraph{Code/TeX block is not shown in reST format.}
-
-A comment right before a code or tex block will treat the whole
-block also as a comment. It is important that there is normal
-running text right before \Verb!!bt! and \Verb!!bc! environments.
-
-\paragraph{Verbatim code blocks inside lists look ugly.}
-
-Read the Section~\ref{sec:verbatim:blocks} above.  Start the
-\Verb!!bc! and \Verb!!ec! tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-\paragraph{{\LaTeX} code blocks inside lists look ugly.}
-
-Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the \Verb!!bt! and \Verb!!et! tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-
-\subsection{Problems with reST/Sphinx Output}
-
-\paragraph{Title level inconsistent.}
-
-reST does not like jumps in the levels of headings. For example, you cannot
-have a \Verb!===! (paragraph) heading after a \Verb!=======! (section) heading without
-a \Verb!=====! (subsection) heading in between.
-
-\paragraph{Lists do not appear in .rst files.}
-
-Check if you have a comment right above the list. That comment
-will include the list if the list is indentend. Remove the comment.
-
-\paragraph{Error message "Undefined substitution..." from reST.}
-
-This may happen if there is much inline math in the text. reST cannot
-understand inline {\LaTeX} commands and interprets them as illegal code.
-Just ignore these error messages.
-
-\paragraph{Warning about duplicate link names.}
-
-Link names should be unique, but if (e.g.) "file" is used as link text
-several places in a reST file, the links still work. The warning can
-therefore be ignorned.
-
-\paragraph{Inconsistent headings in reST.}
-
-The \Verb!rst2*.py! and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for \Verb!===!,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-\paragraph{No code environment appears before "bc ipy" blocks.}
-
-The \Verb!!bc ipy! directive behaves this way for \Verb!sphinx! output because
-interactive sessions are automatically handled. If this is not
-appropriate, shift to \Verb!!bc cod! or another specification of the
-verbatim environment.
-
-\subsection{Problems with {\LaTeX} Output}
-
-\paragraph{{\LaTeX} does not like underscores in URLs.}
-
-Suppose you have a URL reference like
+Just a preliminary sketch of some Mako code (next example is better!):
 
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-..which can be found in the file "my_file.txt":
-"http://some.where.net/web/dir/my_file.txt".
-\end{Verbatim}
-{\LaTeX} will stop with a message about a missing dollar sign. The reason
-is that underscores in link texts need to be preceded by a backslash.
-However, this is incovenient to do in the Doconce source since the
-underscore is misleading in other formats.
-The remedy is to format the link text with inline verbatim tags (backticks):
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-..which can be found in the file "`my_file.txt`":
-"http://some.where.net/web/dir/my_file.txt".
-\end{Verbatim}
-Verbatim text in links works fine with underscores.
+# Define variables
+<%
+mycounter = 1
+mydict = {}
+%>
 
-\paragraph{Error when running latex: You must have 'pygmentize' installed.}
+# Assume MYVAR is given on the command line as MYVAR=mytext (e.g.)
+% if MYVAR is not UNDEFINED:
+The value of MYVAR is ${MYVAR}.
+% endif
 
-This message points to the use of the minted style for typesetting verbatim
-code. You need to include the \Verb!-shell-escape! command-line argument when
-running \Verb!latex! or \Verb!pdflatex!:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-Terminal> latex -shell-escape file mydoc.tex
-Terminal> pdflatex -shell-escape file mydoc.tex
+<%
+## Manipulation of variables
+mycounter += 1
+%>
+
+% if MYVAR in (2,4,6):
+MYVAR is even integer in [2,6].
+% elif MYVAR > 1000000:
+MYVAR is big.
+% else:
+MYVAR=${MYVAR}, mycounter=${mycounter}.
+% endif
+
+# Function
+<%
+# Define Python function: FORMAT and DEVICE
+# are always defined
+
+def link(filename):
+    url = "https://github.com/some/path/to/' + filename + '"'
+    if DEVICE == 'screen':
+        # make link to url
+        return '"filename":' + url
+    elif DEVICE == 'paper':
+        # write URL explicit on paper
+        return 'URL:' + url
+%>
+
+<%doc>
+This
+is
+a
+block
+comment in Mako.
+<%doc/>
 \end{Verbatim}
-Using \Verb!doconce ptex2tex! will turn on the minted style if specified as
-environment on the command line, while using \Verb!ptex2tex! requires the
-preprocessor option \Verb!-DMINTED! to turn on the minted package.
-When this package is included, \Verb!latex! or \Verb!pdflatex! runs the
-\Verb!pygmentize! program and the \Verb!shell-escape! option is required.
 
-\paragraph{How can I use my fancy {\LaTeX} environments?.}
+\subsection{Example: Defining a Theorem Environment}
+\label{manual:theorem:envir}
 
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while {\LaTeX} users are used to fancy environments for, e.g.,
@@ -3375,8 +3658,316 @@ the \Verb!ptex2tex! program with all its flexibility for choosing environments.
 Also \Verb!doconce ptex2tex! has some flexibility for typesetting computer code.
 
 
-\paragraph{The {\LaTeX} file does not compile.}
 
+\section{Troubleshooting}
+
+\subsection{Disclaimer}
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running \Verb!doconce format!, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
+
+
+\subsection{General Problems}
+
+\paragraph{Doconce aborts because of a syntax error that is not an error.}
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+\Verb!--no_abort! option on the command line. You may send an email
+to the Doconce author at \Verb!hpl@simula.no! and report the problem.
+
+\paragraph{The Mako preprocessor is seemingly not run.}
+If you have lines starting with \Verb!%! inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.
+
+\paragraph{The Mako preprocessor is fooled by Doconce text.}
+Here are possible problems for Mako:
+
+\begin{itemize}
+ \item Strings with \Verb!'T<%.1f'! look as openings of Mako blocks (\Verb!<%!); change
+   to \Verb!'T < %.1f'! to avoid this confusion.
+\end{itemize}
+
+\noindent
+\paragraph{Something goes wrong in the preprocessing step.}
+You can examine \Verb!tmp_preprocess__filename! and \Verb!tmp_mako__filename!,
+where \Verb!filename! is the complete name of the Doconce file, to see
+what the preprocessors actually to and if something is wrong in these
+files before Doconce starts translating the text.
+One or both of those files may be missing, but examine the beginning
+of the output from Doconce to see exactly which preprocessors are run
+and on which files.
+
+\paragraph{Figure captions are incomplete.}
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as \emph{one line}, at the same line as the FIGURE keyword.
+
+\paragraph{Preprocessor directives do not work.}
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+\paragraph{Problems with boldface and emphasize.}
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+\paragraph{Links to local directories do not work.}
+Links of the type
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+see the "examples directory": "src/examples"
+\end{Verbatim}
+do not work well. You need to link to a specific HTML file:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+see the "examples directory": "src/examples/index.html"
+\end{Verbatim}
+We recommend to put all files you link to in a \Verb!_static! directory
+if you intend to use the \Verb!sphinx! output. This guarantees that all
+your files are collected in the Sphinx directory tree bundle.
+With plain \Verb!html! output only, you can link to whatever, but remember
+to move all files you link to if you move the primary \Verb!.html! file.
+
+\paragraph{Links are not typeset correctly.}
+Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+see the directory "`examples`": "src/examples/index.html".
+\end{Verbatim}
+However, the following will not be typeset correctly:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+see the "`examples`": "src/examples/index.html" directory.
+\end{Verbatim}
+The back-ticks must be removed, or the text can be reformulated as
+in the line above it.
+
+
+\paragraph{Inline verbatim code is not detected.}
+Make sure there is a space before the first back-tick.
+
+\paragraph{Inline verbatim text is not formatted correctly.}
+Make sure there is whitespace surrounding the text in back-ticks.
+
+\paragraph{Strange non-English characters.}
+The former reason for this problem is that Doconce could only work with latin1
+(ISO-8859) encoding and not UTF-8. After May 2013, Doconce applies
+UTF-8 both for HTML and {\LaTeX}.
+
+Check the encoding of the \Verb!.do.txt! file with the Unix \Verb!file! command
+or with
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce guess_encoding myfile.do.txt
+\end{Verbatim}
+If the encoding is UTF-8, convert to latin1 using either of
+the Unix commands
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce change_encoding utf-8 latin1 myfile.do.txt
+Terminal> iconv -f utf-8 -t latin1 myfile.do.txt --output newfile
+\end{Verbatim}
+
+
+\paragraph{Wrong Norwegian charcters.}
+When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section "Strange non-English characters" above for how to
+run \Verb!doconce change_encoding! to change the encoding of the Doconce file.
+
+\paragraph{Too short underlining of reST headlines.}
+This may happen if there is a paragraph heading without
+proceeding text before some section heading.
+
+
+\paragraph{Found !bt but no tex blocks extracted (BUG).}
+This message points to a bug, but has been resolved by removing blank lines
+between the text and the first \Verb!!bt! (inserting the blanks again did not
+trigger the error message again...).
+
+\paragraph{Examples are typset with environment delimiters visible.}
+If you see an Example section containing \Verb!!bsubex!, \Verb!!bsol!, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option \Verb!--examples_as_exercises!. The text in the example is typeset
+as is unless this option is included.
+
+\paragraph{Emacs editing does not work properly because of "regexp overflow".}
+Sometimes the Doonce editing mode (see Section~\ref{emacs:doconce}) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the \Verb!preprocess! directive \Verb!#include "piece.do.txt"!.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
+
+\subsection{Problems with code or Tex Blocks}
+
+\paragraph{Code or math block errors in reST.}
+First note that a code or math block must come after some plain
+sentence (at least for successful output in reST), not directly
+after a section/paragraph heading, table, comment, figure, or
+movie, because the code or math block is indented and then become
+parts of such constructions. Either the block becomes invisible or
+error messages are issued.
+
+Sometimes reST reports an "Unexpected indentation" at the beginning of
+a code block. If you see a \Verb!!bc!, which should have been removed when
+running \Verb!doconce format sphinx!, it is usually an error in the Doconce
+source, or a problem with the rst/sphinx translator.  Check if the
+line before the code block ends in one colon (not two!), a question
+mark, an exclamation mark, a comma, a period, or just a newline/space
+after text. If not, make sure that the ending is among the
+mentioned. Then \Verb!!bc! will most likely be replaced and a double colon
+at the preceding line will appear (which is the right way in reST to
+indicate a verbatim block of text).
+
+\paragraph{Strange errors around code or TeX blocks in reST.}
+If \Verb!idx! commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+\paragraph{Something is wrong with a verbatim code block.}
+Check first that there is a "normal" sentence right before
+the block (this is important for reST and similar
+"ASCII-close" formats).
+
+\paragraph{Code/TeX block is not shown in reST format.}
+A comment right before a code or tex block will treat the whole
+block also as a comment. It is important that there is normal
+running text right before \Verb!!bt! and \Verb!!bc! environments.
+
+\paragraph{Verbatim code blocks inside lists look ugly.}
+Read the Section~\ref{sec:verbatim:blocks} above.  Start the
+\Verb!!bc! and \Verb!!ec! tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+\paragraph{{\LaTeX} code blocks inside lists look ugly.}
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the \Verb!!bt! and \Verb!!et! tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+\subsection{Problems with reST/Sphinx Output}
+
+\paragraph{Title level inconsistent.}
+reST does not like jumps in the levels of headings. For example, you cannot
+have a \Verb!===! (paragraph) heading after a \Verb!=======! (section) heading without
+a \Verb!=====! (subsection) heading in between.
+
+\paragraph{Lists do not appear in .rst files.}
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+\paragraph{Error message "Undefined substitution..." from reST.}
+This may happen if there is much inline math in the text. reST cannot
+understand inline {\LaTeX} commands and interprets them as illegal code.
+Just ignore these error messages.
+
+\paragraph{Warning about duplicate link names.}
+Link names should be unique, but if (e.g.) "file" is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.
+
+\paragraph{Inconsistent headings in reST.}
+The \Verb!rst2*.py! and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for \Verb!===!,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+\paragraph{No code environment appears before "bc ipy" blocks.}
+The \Verb!!bc ipy! directive behaves this way for \Verb!sphinx! output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to \Verb!!bc cod! or another specification of the
+verbatim environment.
+
+\subsection{Problems with {\LaTeX} Output}
+
+\paragraph{{\LaTeX} does not like underscores in URLs.}
+Suppose you have a URL reference like
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+..which can be found in the file "my_file.txt":
+"http://some.where.net/web/dir/my_file.txt".
+\end{Verbatim}
+{\LaTeX} will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+..which can be found in the file "`my_file.txt`":
+"http://some.where.net/web/dir/my_file.txt".
+\end{Verbatim}
+Verbatim text in links works fine with underscores.
+
+\paragraph{Error when running latex: You must have 'pygmentize' installed.}
+This message points to the use of the minted style for typesetting verbatim
+code. You need to include the \Verb!-shell-escape! command-line argument when
+running \Verb!latex! or \Verb!pdflatex!:
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> latex -shell-escape file mydoc.tex
+Terminal> pdflatex -shell-escape file mydoc.tex
+\end{Verbatim}
+Using \Verb!doconce ptex2tex! will turn on the minted style if specified as
+environment on the command line, while using \Verb!ptex2tex! requires the
+preprocessor option \Verb!-DMINTED! to turn on the minted package.
+When this package is included, \Verb!latex! or \Verb!pdflatex! runs the
+\Verb!pygmentize! program and the \Verb!shell-escape! option is required.
+
+\paragraph{Why are the {\LaTeX} section headings smaller than normal?.}
+Doconce inserts a special command to make the headings
+more compact:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\usepackage[compact]{titlesec}
+\end{Verbatim}
+as explained in the \href{{http://www.ctex.org/documents/packages/layout/titlesec.pdf}}{\nolinkurl{titlesec}} package documentation.
+To retrieve the standard {\LaTeX} headings, comment out this line or remove it:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce subst '\\usepack.+\{titlesec\} '' mydoc.p.tex
+\end{Verbatim}
+
+You can easily make the headings even smaller than the normal font
+by replacing \Verb![compact]! by \Verb![compact,small]! as parameter specification
+for \Verb!titlesec!.
+
+\paragraph{Can I have {\LaTeX} figures with shadows?.}
+This is easy by including the \Verb!fancybox! and \Verb!graphicx! packages
+and wrapping all \Verb!\includegraphics! in a shadow box:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce replace \
+          'microtype}', 'microtype,fancybox,graphicx}' mydoc.p.tex
+Terminal> doconce subst '(\\includegraphics\[.+\}\})' \
+          '\\shadowbox{\g<1>}' mydoc.p.tex
+\end{Verbatim}
+
+\paragraph{How can I use my fancy {\LaTeX} environments?.}
+See Section~\ref{manual:theorem:envir} for how to make a custom
+theorem environment also in Doconce, without using implementations
+restricted to {\LaTeX}.
+
+
+\paragraph{The {\LaTeX} file does not compile.}
 If the problem is undefined control sequence involving
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 \Verb!...!
@@ -3386,7 +3977,6 @@ Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
 \paragraph{Inline verbatim gives error.}
-
 Check if the inline verbatim contains typical {\LaTeX} commands, e.g.,
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 some text with `\usepackage{mypack}` is difficult because
@@ -3404,7 +3994,6 @@ blocks - that is safe.
 
 
 \paragraph{Errors in figure captions.}
-
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar {\LaTeX} syntax errors.
 
@@ -3414,13 +4003,11 @@ a proper \Verb!texttt! command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
 \paragraph{Chapters are ignored.}
-
 The default {\LaTeX} style is "article". If you chapters in the Doconce file,
 you need to run \Verb!ptex2tex! with the option \Verb!-DBOOK! to set the {\LaTeX}
 documentstyle to "book".
 
 \paragraph{I want to tune the top of the {\LaTeX} file.}
-
 The top of the {\LaTeX} file, as generated by Doconce, is very simple.
 If this {\LaTeX} code is not sufficient for your needs, there are
 two ways out of it:
@@ -3449,12 +4036,10 @@ two ways out of it:
 \subsection{Problems with gwiki Output}
 
 \paragraph{Strange nested lists in gwiki.}
-
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the \Verb!.gwiki! file directly.
 
 \paragraph{Lists in gwiki look ugly in the gwiki source.}
-
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
 and because of the indentation in the original Doconce text, the gwiki
@@ -3465,28 +4050,43 @@ further.
 \subsection{Problems with HTML Output}
 
 \paragraph{How can I change the layout of the HTML page?.}
+The easiest way is to edit the HTML style or the HTML code directly.
+However, those edits are overwritten the next time you compile the
+Doconce document to HTML. The edits should therefore be automated
+using \Verb!doconce subst! (for regular expression editing) or \Verb!doconce replace!
+(for plain text substitution editing) commands in the file where
+you run \Verb!doconce format html mydoc!. For example, say you want narrower
+gray admonition boxes with a much thicker boundary. The \Verb!.alert!
+style must then be changed, more precisely the \Verb!border! and the \Verb!width!
+specification:
 
-The standard of way of controlling the HTML format is to use an
-HTML template. The Doconce source is then the body of text (leave
-out \Verb!TITLE:! to get HTML without a header and footer). The
-\Verb!--html-template=filename! command-line option will then embed the
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+doconce replace 'border:1px' 'border:11px' mydoc.html
+doconce replace 'width: 75%;' 'width: 35%' mydoc.html
+\end{Verbatim}
+
+Another way to control the layout is to copy the style in the HTML
+file into a \Verb!.css! file, edit that file as you like, and provide the
+file as part of the compilation using the \Verb!--css=mystyle.css!
+flag.
+
+The standard of way of completely controlling the HTML format is to
+use an HTML template. The Doconce source is then the body of text
+(leave out \Verb!TITLE:! to get HTML without a header and footer). The
+\Verb!--html_template=filename! command-line option will then embed the
 Doconce text in the specified template file, where you can use style
-sheets and desired constructs in the header and footer.
-The template can have "slots" for a title (\Verb!%(title)s!),
-a date (\Verb!%(date)s!), and the main body of text (\Verb!%(main)s!).
-For typesetting code, \Verb!pygments! is used (if installed) and can be
-turned off by \Verb!--no-pygments-html! (leaving code in gray boxes).
+sheets and desired constructs in the header and footer.  The template
+can have "slots" for a title (\Verb!%(title)s!), a date (\Verb!%(date)s!), and
+the main body of text (\Verb!%(main)s!).  For typesetting code, \Verb!pygments!
+is used (if installed) and can be turned off by \Verb!--no_pygments_html!
+(leaving code in gray boxes).
 
 
 The easiest way is to get fancy layouts in HTML is to
 use the \Verb!sphinx! format and one its many themes.
 
-A third, more primitive alternative is to edit the style in the top of
-the HTML file (preferably done automatically via \Verb!doconce replace! and
-\Verb!doconce subst! in the script that generates the final documents).
 
 \paragraph{Why do figures look ugly when using HTML templates?.}
-
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
 templates these styles are not defined, resulting in a rule that

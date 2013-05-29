@@ -16,20 +16,21 @@
 %% (The ptex2tex program: http://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
-%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
-%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+%%      ptex2tex -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=titlepage
 %%
 %% ptex2tex will typeset code environments according to a global or local
 %% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to command-line arguments (type doconce ptex2tex to see examples).
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples).
 % #endif
 
 % #ifndef LATEX_HEADING
-% #define LATEX_HEADING
+% #define LATEX_HEADING "doconce_heading"
 % #endif
 
 % #ifndef PREAMBLE
-% #if LATEX_HEADING == "Springer-collection"
+% #if LATEX_HEADING == "Springer_collection"
 % #undef PREAMBLE
 % #else
 % #define PREAMBLE
@@ -39,19 +40,13 @@
 
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
-% #ifdef BOOK
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
 chapterprefix=true,      % "Chapter" word at beginning of each chapter
 open=right               % start new chapters on odd-numbered pages
 10pt]{book}
-% #else
-\documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % or draft (marks overfull hboxes)
-10pt]{article}
-% #endif
 
 \listfiles               % print all files needed to compile this document
 
@@ -59,29 +54,55 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[a4paper]{geometry}
 % #endif
 % #ifdef A6PAPER
-% a6paper is suitable for epub-style formats
+% a6paper is suitable for mobile devices
 \usepackage[%
   a6paper,
   text={90mm,130mm},
-  inner={5mm},              % inner margin (two-sided documents)
+  inner={5mm},           % inner margin (two sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
 % #endif
 
-\usepackage{relsize,epsfig,makeidx,color,amsmath,amsfonts}
-\usepackage[latin1]{inputenc}
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts}
+\usepackage[table]{xcolor}
+\usepackage{bm,microtype}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
 \usepackage{movie15}
 % #endif
 
 
+% #ifndef MOVIE
+% #define MOVIE "media9"
+% #endif
+
+% #if MOVIE == "media9"
+\usepackage{media9}
+% #elif MOVIE == "movie15"
+\usepackage{movie15}
+% #elif MOVIE == "multimedia"
+\usepackage{multimedia}
+% #elif MOVIE == "href-run"
+% #endif
+
 % #ifdef MINTED
-\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usepackage{minted}
 \usemintedstyle{default}
 % #endif
 
+% #ifdef XELATEX
+% xelatex settings
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+\defaultfontfeatures{Ligatures=TeX}
+\setromanfont{Kinnari}
+% Examples of font types (Ubuntu): Gentium Book Basic (Palatino-like),
+% Liberation Sans (Helvetica-like), Norasi, Purisa (handwriting), UnDoum
+% #else
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
@@ -92,20 +113,18 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
 % #endif
+% #endif
 
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -126,21 +145,85 @@ final,                   % or draft (marks overfull hboxes)
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-\newenvironment{exercise}{}{}
-\newcounter{exerno}
 
-
-% #ifndef NOTODONOTES
-\usepackage{xcolor,ifthen,xkeyval,tikz,calc,graphicx,setspace}
+% #ifdef TODONOTES
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
 \newcommand{\shortinlinecomment}[3]{%
-\todo[size=\tiny,color=orange!40,caption={#3}]{\begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
 % #else
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 % #endif
+
+% #ifdef LINENUMBERS
+\usepackage[mathlines]{lineno}  % show line numbers
+\linenumbers
+% #endif
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
+
+% #ifdef COLORED_TABLE_ROWS
+% color every two table rows
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+% #if COLORED_TABLE_ROWS not in ("gray", "blue")
+% #define COLORED_TABLE_ROWS gray
+% #endif
+% #else
+% #define COLORED_TABLE_ROWS no
+% #endif
+% #if COLORED_TABLE_ROWS == "gray"
+\definecolor{rowgray}{gray}{0.9}
+\renewenvironment{tabular}{\rowcolors{2}{white}{rowgray}%
+\oldtabular}{\endoldtabular}
+% #elif COLORED_TABLE_ROWS == "blue"
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+% #endif
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage[compact]{titlesec}  % narrower section headings
+% #ifdef BLUE_SECTION_HEADINGS
+\definecolor{seccolor}{rgb}{0.2,0.2,0.8}
+\titleformat{\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+% #endif
+
+% --- end of standard preamble for documents ---
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
 
 
 % insert custom LaTeX commands...
@@ -162,7 +245,6 @@ final,                   % or draft (marks overfull hboxes)
 
 % ----------------- title -------------------------
 % #if LATEX_HEADING == "traditional"
-
 \title{Doconce Description}
 
 % #elif LATEX_HEADING == "titlepage"
@@ -171,25 +253,32 @@ final,                   % or draft (marks overfull hboxes)
 \hbox{\ \ }
 \vfill
 \begin{center}
-{\huge{\bfseries{Doconce Description}}}
+{\huge{\bfseries{
+\begin{spacing}{1.25}
+Doconce Description
+\end{spacing}
+}}}
 
-% #elif LATEX_HEADING == "Springer-collection"
-
+% #elif LATEX_HEADING == "Springer_collection"
 \title*{Doconce Description}
 % Short version of title:
 %\titlerunning{...}
 
+% #elif LATEX_HEADING == "beamer"
+\title{Doconce Description}
 % #else
-
 \begin{center}
-{\LARGE\bf Doconce Description}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Doconce Description
+\end{spacing}
+}
 \end{center}
-
 % #endif
 
 % ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
-\author{Hans Petter Langtangen\footnote{Simula Research Laboratory and University of Oslo.}}
+\author{Hans Petter Langtangen\footnote{Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}}
 
 % #elif LATEX_HEADING == "titlepage"
 \vspace{1.3cm}
@@ -198,15 +287,20 @@ final,                   % or draft (marks overfull hboxes)
     
 \ \\ [2mm]
 
-{\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
-{\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
-% #elif LATEX_HEADING == "Springer-collection"
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer_collection"
 
 \author{Hans Petter Langtangen}
 % Short version of authors:
 %\authorrunning{...}
-\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
+\institute{Hans Petter Langtangen\at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
 
+% #elif LATEX_HEADING == "beamer"
+\author{Hans Petter Langtangen\inst{1,2}}
+\institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
+\and
+Department of Informatics, University of Oslo\inst{2}}
 % #else
 
 \begin{center}
@@ -215,33 +309,32 @@ final,                   % or draft (marks overfull hboxes)
 
 \begin{center}
 % List of all institutions:
-\centerline{{\small ${}^1$Simula Research Laboratory}}
-\centerline{{\small ${}^2$University of Oslo}}
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
 \end{center}
 % #endif
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
-\date{Mar 7, 2013}
+\date{May 29, 2013}
 \maketitle
-
+% #elif LATEX_HEADING == "beamer"
+\date{May 29, 2013
+% <titlepage figure>
+}
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Mar 7, 2013}}
+{\large\textsf{May 29, 2013}}
 
 \end{center}
 \vfill
 \clearpage
 
 % #else
-
 \begin{center}
-Mar 7, 2013
+May 29, 2013
 \end{center}
 
 \vspace{1cm}
@@ -338,7 +431,14 @@ formats.
 
 
 
+
+
 \section{Installation of Doconce and its Dependencies}
+
+Below, we explain the manual installation of all software that may be
+needed when working with Doconce documents.
+The impatient way to install what is needed is to run the
+\href{{doconce_install_all.sh}}{\nolinkurl{doconce_install_all.sh}} script.
 
 \subsection{Doconce}
 
@@ -361,18 +461,6 @@ hg update
 sudo python setup.py install
 \esys
 
-Debian GNU/Linux users can also run
-\bsys
-sudo apt-get install doconce
-\esys
-This installs the latest release and not the most updated and bugfixed
-version.
-On Ubuntu one needs to run
-\bsys
-sudo add-apt-repository ppa:scitools/ppa
-sudo apt-get update
-sudo apt-get install doconce
-\esys
 
 \subsection{Dependencies}
 
@@ -383,8 +471,9 @@ software. However, if you want other formats as output
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, the software below must be installed.
 
-\paragraph{Preprocessors.}
+% Make a debpkg_doconce.txt file with everything that is needed on Debian
 
+\paragraph{Preprocessors.}
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
 
@@ -417,7 +506,6 @@ tarball, pack it out, go to the directory and run
 the usual \code{sudo python setup.py install}.
 
 \paragraph{Image file handling.}
-
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for \code{latex}
 output, while HTML needs JPEG, GIF, or PNG formats.
@@ -438,8 +526,14 @@ Debian package. The latter gets installed by
 sudo apt-get install texlive-extra-utils
 \esys
 
-\paragraph{Spellcheck.}
+Automatic image conversion from EPS to PDF calls up \code{epstopdf}, which
+can be installed by
 
+\bsys
+sudo apt-get install texlive-font-utils
+\esys
+
+\paragraph{Spellcheck.}
 The utility \code{doconce spellcheck} applies the \code{ispell} program for
 spellcheck. On Debian (including Ubuntu) it is installed by
 
@@ -449,13 +543,12 @@ sudo apt-get install ispell
 
 
 \paragraph{Bibliography.}
-
 The Python package \href{{https://bitbucket.org/logg/publish}}{Publish} is needed if you use a bibliography
 in your document. On the website, click on \emph{Clone}, copy the
 command and run it:
 
 \bsys
-hg clone  ssh://hg@bitbucket.org/logg/publish
+hg clone https://bitbucket.org/logg/publish
 \esys
 Thereafter go to the \code{publish} directory and run the \code{setup.py} script
 for installing Publish:
@@ -467,7 +560,6 @@ sudo python setup.py
 
 
 \paragraph{Ptex2tex for {\LaTeX} Output.}
-
 To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
 which is installed by
@@ -490,7 +582,7 @@ that \code{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 \bsys
-sudo apt-get install texlive-latex-recommended texlive-latex-extra
+sudo apt-get install texlive
 \esys
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -513,30 +605,89 @@ hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 \esys
+One can also do the simple
+
+\bsys
+pip install sphinx
+\esys
+which also installs pygments.
 
 If you use the minted style together with \code{ptex2tex}, you have to
 enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.
 This is not necessary if you run the alternative \code{doconce ptex2tex} program.
 
-All
-use of the minted style requires the \code{-shell-escape} command-line
+All use of the minted style requires the \code{-shell-escape} command-line
 argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflatex
 -shell-escape}.
 
-% Say something about anslistings.sty
+Inline comments apply the \code{todonotes} {\LaTeX} package if the \code{ptex2tex}
+or \code{doconce ptex2tex} command is run with \code{-DTODONOTES}.  The
+\code{todonotes} package requires several other packages: \code{xcolor},
+\code{ifthen}, \code{xkeyval}, \code{tikz}, \code{calc}, \code{graphicx}, and \code{setspace}. The
+relevant Debian packages for installing all this are listed below.
+
+\paragraph{{\LaTeX} packages.}
+Many {\LaTeX} packages are potentially needed (depending on various
+preprocessor variables given to \code{ptex2tex} or \code{doconce ptex2tex}.  The
+standard packages always included are \code{relsize}, \code{epsfig}, \code{makeidx},
+\code{setspace}, \code{color}, \code{amsmath}, \code{amsfonts}, \code{xcolor}, \code{bm},
+\code{microtype}, \code{titlesec}, and \code{hyperref}.  The \code{ptex2tex} package (from
+\href{{http://code.google.com/p/ptex2tex}}{ptex2tex}) is also included, but
+removed again if \code{doconce ptex2tex} is run instead of the \code{ptex2tex}
+program, meaning that if you do not use \code{ptex2tex}, you do not need
+\code{ptex2tex.sty}. Optional packages that might be included are \code{minted},
+\code{fontspec}, \code{xunicode}, \code{inputenc}, \code{helvet}, \code{mathpazo}, \code{wrapfig},
+\code{calc}, \code{ifthen}, \code{xkeyval}, \code{tikz}, \code{graphicx}, \code{setspace}, \code{shadow},
+\code{disable}, \code{todonotes}, \code{lineno}, \code{xr}, \code{framed}, \code{mdframe},
+\code{movie15}, \code{a4paper}, and \code{a6paper}.
+
+Relevant Debian packages that gives you all of these {\LaTeX} packages are
+
+\bccq
+texlive
+texlive-extra-utils
+texlive-latex-extra
+texlive-font-utils
+\eccq
+On old Ubuntu 12.04 one has to do \code{sudo add-apt-repository ppa:texlive-backports/ppa} and \code{sudo apt-get update} first, or alternatively install these as well:
+
+\bccq
+texlive-math-extra
+texlive-bibtex-extra
+texlive-xetex
+texlive-humanities
+texlive-pictures
+\eccq
+Alternatively, one may pull in \code{texlive-full} to get all available
+style files.
+
+If you want to use the \emph{anslistings} code environment with \code{ptex2tex}
+(\code{.ptex2tex.cfg} styles \code{Python_ANS}, \code{Python_ANSt}, \code{Cpp_ANS}, etc.) or
+\code{doconce ptex2tex} (\code{envir=ans} or \code{envir=ans:nt}), you need the
+\code{anslistings.sty} file. It can be obtained from
+the \href{{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}}{ptex2tex source}. It should get installed
+by the \code{cp2texmf.sh} script executed above.
+
 
 \paragraph{reStructuredText (reST) Output.}
-
 The \code{rst} output from Doconce allows further transformation to {\LaTeX},
 HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
 most recent version can be done by
 
 \bsys
-svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+svn checkout \
+  http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
 \esys
+The command
+
+\bsys
+pip install sphinx
+\esys
+installs Docutils along with Sphinx and Pygments.
+
 To use the OpenOffice suite you will typically on Debian systems install
 \bsys
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
@@ -548,7 +699,7 @@ using ReportLab instead of {\LaTeX}. The enabling software is
 or clone the svn repository, go to the \code{rst2pdf} directory and
 run the usual \code{sudo python setup.py install}.
 
-
+\paragraph{Sphinx Output.}
 Output to \code{sphinx} requires of course the
 \href{{http://sphinx.pocoo.org}}{Sphinx software},
 installed by
@@ -559,9 +710,31 @@ cd sphinx
 sudo python setup.py install
 cd ..
 \esys
+An alternative is
+
+\bsys
+pip install sphinx
+\esys
+
+Doconce comes with many Sphinx themes that are not part of the
+standard Sphinx source distribution. Some of these themes require
+additional Python/Sphinx modules to be installed:
+
+\begin{itemize}
+ \item cloud and redcloud: \href{{https://bitbucket.org/ecollins/cloud_sptheme}}{\nolinkurl{https://bitbucket.org/ecollins/cloud_sptheme}}
+
+ \item bootstrap: \href{{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}{\nolinkurl{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}
+
+ \item solarized: \href{{https://bitbucket.org/miiton/sphinxjp.themes.solarized}}{\nolinkurl{https://bitbucket.org/miiton/sphinxjp.themes.solarized}}
+
+ \item impressjs: \href{{https://github.com/shkumagai/sphinxjp.themes.impressjs}}{\nolinkurl{https://github.com/shkumagai/sphinxjp.themes.impressjs}}
+\end{itemize}
+
+\noindent
+These must be downloaded or cloned, and \code{setup.py} must be run as shown
+above.
 
 \paragraph{Markdown and Pandoc Output.}
-
 The Doconce format \code{pandoc} outputs the document in the Pandoc
 extended Markdown format, which via the \code{pandoc} program can be
 translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
@@ -573,7 +746,6 @@ sudo apt-get install pandoc
 on Debian (Ubuntu) systems.
 
 \paragraph{Epydoc Output.}
-
 When the output format is \code{epydoc} one needs that program too, installed
 by
 \bsys
@@ -593,7 +765,90 @@ run \code{svn update}, and then \code{sudo python setup.py install}. For
 Mercurial (\code{hg}) directories, go to the directory, run
 \code{hg pull; hg update}, and then \code{sudo python setup.py install}.
 
+\paragraph{The \protect\code{doconce diff} command.}
+The \code{doconce diff file1 file prog} command for illustrating differences between
+two files \code{file1} and \code{file2} using the program \code{prog} requires \code{prog}
+to be installed. By default, \code{prog} is \code{difflib} which comes with Python
+and is always present if you have Doconce installed. Another choice, \code{diff},
+should be available on all Unix/Linux systems. Other choices, their
+URL, and their \code{sudo apt-get install} command on Debian (Ubuntu) systems
+appear in the table below.
 
+
+\begin{quote}\begin{tabular}{lll}
+\hline
+\multicolumn{1}{c}{ Program } & \multicolumn{1}{c}{ URL } & \multicolumn{1}{c}{ Debian/Ubuntu install } \\
+\hline
+\code{pdiff}                                                                              & \href{{http://www.gnu.org/software/a2ps/}}{a2ps} \href{{http://www.gnu.org/software/wdiff/}}{wdiff} & \code{sudo apt-get install a2ps wdiff texlive-latex-extra texlive-latex-recommended}      \\
+\code{latexdiff}                                                                          & \href{{http://www.ctan.org/pkg/latexdiff}}{latexdiff}                                          & \code{sudo apt-get install latexdiff}                                                     \\
+\code{kdiff3}                                                                             & \href{{http://kdiff3.sourceforge.net/}}{kdiff3}                                                & \code{sudo apt-get install kdiff3}                                                        \\
+\code{diffuse}                                                                            & \href{{http://diffuse.sourceforge.net/}}{diffuse}                                              & \code{sudo apt-get install diffuse}                                                       \\
+\code{xxdiff}                                                                             & \href{{http://xxdiff.sourceforge.net/local/}}{xxdiff}                                          & \code{sudo apt-get install xxdiff}                                                        \\
+\code{meld}                                                                               & \href{{http://meldmerge.org/}}{meld}                                                           & \code{sudo apt-get install meld}                                                          \\
+\code{tkdiff.tcl}                                                                         & \href{{https://sourceforge.net/projects/tkdiff/}}{tkdiff}                                      & not in Debian                                                                             \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+\subsection{Quick Debian/Ubuntu Install}
+
+On Debian (including Ubuntu) systems, it is straightforward to install the
+long series of Doconce dependencies:
+
+\bccq
+# Version control systems
+sudo apt-get install -y mercurial git subversion
+
+# Python
+sudo apt-get install -y idle ipython python-pip python-pdftools texinfo
+
+# These lines are only necessary for Ubuntu 12.04 to install texlive 2012
+ubuntu_version=`lsb_release -r | awl '{print $2}'`
+if [ $ubuntu_version = "12.04" ]; then
+  sudo add-apt-repository ppa:texlive-backports/ppa
+  sudo apt-get update
+fi
+# LaTeX
+sudo apt-get install -y texlive texlive-extra-utils texlive-latex-extra texlive-math-extra texlive-font-utils
+# or sudo apt-get install -y texlive-full  # get everything
+sudo apt-get install -y latexdiff auctex
+
+# Image and movie tools
+sudo apt-get install -y imagemagick netpbm mjpegtools pdftk giftrans gv evince smpeg-plaympeg mplayer totem ffmpeg libav-tools
+
+# Misc
+sudo apt-get install -y ispell pandoc libreoffice unoconv libreoffice-dmaths curl a2ps wdiff meld xxdiff diffpdf kdiff3 diffuse
+
+# More Python software
+pip install sphinx  # install pygments and docutils too
+pip install mako
+pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+pip install -e hg+https://bitbucket.org/logg/publish#egg=publish
+
+pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
+pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
+pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
+pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
+pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
+
+# Doconce itself
+rm -rf srclib   # put downloaded software in srclib
+mkdir srclib
+cd srclib
+hg clone https://code.google.com/p/doconce/
+cd doconce
+sudo python setup.py install -y
+cd ../..
+
+# Ptex2tex
+cd srclib
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install -y
+cd latex
+sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+cd ../../..
+\eccq
 % 
 % Here are some comment lines that do not affect any formatting
 % these lines are converted to comments in the output format.
@@ -691,7 +946,7 @@ format specific actions through tests like \code{#if FORMAT == "latex"}
 
 \subsection{Removal of inline comments}
 
-The command-line arguments \code{--no-preprocess} and \code{--no-mako} turn off
+The command-line arguments \code{--no_preprocess} and \code{--no_mako} turn off
 running \code{preprocess} and \code{mako}, respectively.
 
 Inline comments in the text are removed from the output by
@@ -740,7 +995,7 @@ in an external CSS file; or in a template file.
 
 An external CSS file \code{filename} used by setting the command-line
 argument \code{--css=filename}. There available built-in styles are
-specified as \code{--html-style=name}, where \code{name} can be
+specified as \code{--html_style=name}, where \code{name} can be
 
 \begin{itemize}
  \item \code{solarized}: the famous \href{{http://ethanschoonover.com/solarized}}{solarized}
@@ -767,33 +1022,41 @@ HTML file can have any specified layout.
 
 If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with
-aid of this package. The command-line argument \code{--no-pygments-html}
+aid of this package. The command-line argument \code{--no_pygments_html}
 turns off the use of Pygments and makes code blocks appear with
-plain (\code{pre}) HTML tags. The option \code{--pygments-html-linenos} turns
+plain (\code{pre}) HTML tags. The option \code{--pygments_html_linenos} turns
 on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \code{--pygments-html-style=style}, where \code{style}
+Pygments style is set by \code{--pygments_html_style=style}, where \code{style}
 can be \code{default}, \code{emacs}, \code{perldoc}, and other valid names for
 Pygments styles.
 
-The HTML file can be embedded in a template if the Doconce document
-does not have a title (because then there will be
-no header and footer in the HTML file). The template file must contain
+The HTML file can be embedded in a template with your own tailored
+design, see a "tutorial": " \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{\nolinkurl{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}" on this topic. The template file must contain
 valid HTML code and can have three "slots": \code{%(title)s} for a title,
-\code{%(date)s} for a date, and \code{%(main)s} for the main body of text, i.e., the
+\code{%(date)s} for a date, and \code{%(main)s} for the main body of text. The
+latter is the
 Doconce document translated to HTML. The title becomes the first
-heading in the Doconce document, and the date is extracted from the
-\code{DATE:} line, if present. With the template feature one can easily embed
-the text in the look and feel of a website. The template can be extracted
-from the source code of a page at the site; just insert \code{%(title)s} and
-\code{%(date)s} at appropriate places and replace the main bod of text
-by \code{%(main)s}. Here is an example:
+heading in the Doconce document, or the title (but a title is not
+recommended when using templates). The date is extracted from the
+\code{DATE:} line. With the template feature one can easily embed
+the text in the look and feel of a website. Doconce comes with
+two templates in \code{bundled/html_styles}. Just copy the directory
+containing the template and the CSS and JavaScript files to your
+document directory, edit the template as needed (also check that
+paths to the \code{css} and \code{js} subdirectories are correct - according
+to how you store the template files), and run
 \bsys
-Terminal> doconce format html mydoc --html-template=mytemplate.html
+Terminal> doconce format html mydoc --html_template=mytemplate.html
 \esys
+The template in \code{style_vagrant} also needs an extra option
+\code{--html_style=vagrant}. With this style, one has nice navigation buttons
+that are used if the document contains \code{!split} commands for splitting
+it into many pages.
 
-\subsection{Blogs}
 
-Doconce can be used for writing blogs provided the blog site accepts
+\subsection{Blog Posts}
+
+Doconce can be used for writing blog posts provided the blog site accepts
 raw HTML code. Google's Blogger service (\code{blogger.com} or
 \code{blogname.blogspot.com}) is particularly well suited since it also
 allows extensive {\LaTeX} mathematics via MathJax.
@@ -815,18 +1078,31 @@ a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
 for demonstrations of blogs at \code{blogspot.no}.
 
 
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Warning} \\[0.4cm]
-In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\begin{graybox1admon}[Warning.]
+In the readers' comments after the blog one cannot paste raw HTML
+code with MathJax
+scripts so there is no support for mathematics in the discussion forum.
+\end{graybox1admon}
+\begin{graybox1admon}[Notice.]
+Figure files must be uploaded to some web site and the filenames name must
+be replaced by the relevant URL. This can be automatically edited:
+
+\bshcod
+cp mydoc.do.txt mydoc2.do.txt
+url="https//raw.github.com/someuser/someuser.github.com"
+dir="master/project/dir1/dir2"
+for figname in fig1 fig2 fig3; do
+  doconce replace "[$figname," "[$site/$dir/$figname.png," \
+          mydoc2.do.txt
+done
+doconce format html mydoc2
+# Paste mydoc2.html into a new blog page
+\eshcod
+\end{graybox1admon}
+Blog posts at Google can also be published \href{{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}}{automatically through email}.
+A Python program can send the contents of the HTML file
+to the blog's email address using the packages  \code{smtplib} and \code{email}.
+
 WordPress (\code{wordpress.com}) allows raw HTML code in blogs,
 but has very limited
 {\LaTeX} support, basically only formulas. The \code{--wordpress} option to
@@ -835,6 +1111,10 @@ in a way that is acceptable to WordPress.
 Look at a \href{{http://doconce.wordpress.com}}{simple doconce example}
 and a \href{{http://doconcereportdemo.wordpress.com/}}{scientific report}
 to see blogging with mathematics and code on WordPress.
+
+Speaking of WordPress, the related project \href{{http://pressbooks.com}}{\nolinkurl{http://pressbooks.com}} can take raw HTML code (from Doconce, for
+instance) and produce very nice-looking books.  There is no support
+for mathematics in the text, though.
 
 \subsection{Pandoc and Markdown}
 
@@ -915,7 +1195,7 @@ can be placed in files \code{newcommands.tex}, \code{newcommands_keep.tex}, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \code{--latex-printed} makes some adjustments for documents
+An option \code{--latex_printed} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
 
@@ -947,8 +1227,7 @@ A separate titlepage can be generate by
 Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
- \item \code{BOOK} for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings with 9 \code{=})
+ \item \code{XELATEX} for processing by \code{xelatex}
 
  \item \code{PALATINO} for the Palatino font
 
@@ -958,7 +1237,11 @@ Preprocessor variables to be defined or undefined are
 
  \item \code{A6PAPER} for A6 paper size (suitable for reading PDFs on phones)
 
- \item \code{MOVIE15} for using the movie15 {\LaTeX} package to display movies
+ \item \code{MOVIE} for specifying how movies are handled: the value \code{media9}
+   implies the \code{media9} package and the \code{\includemedia} command (default),
+   while other values are \code{movie15} (\code{\includemovie} command),
+   \code{multimedia} (for Beamer-style \code{\movie} command),
+   or \code{href-run} (for the plain \code{\href{run:file}} command)
 
  \item \code{PREAMBLE} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
@@ -968,11 +1251,36 @@ Preprocessor variables to be defined or undefined are
  \item \code{MINTED} for inclusion of the minted package for typesetting of
    code with the Pygments tool (which requires \code{latex}
    or \code{pdflatex} to be run with the \code{-shell-escape} option)
+
+ \item \code{TODONOTES} for using the fancy \code{todonotes} package for typesetting
+   inline comments (looks much like track changes in MS Word). This
+   macro has only effect if inline comments are used (name, colon,
+   and comment inside brackets).
+
+ \item \code{LINENUMBERS} for inclusion of line numbers in the text.
+
+ \item \code{AMON} for setting the type of admonitions: \code{"colors"} for colored
+   boxes with icons, \code{"graybox1"} for gray frame boxes with rounded
+   corners (default), \code{"graybox2"} for narrower square gray frame boxes
+   (except for summary, which for A4 format is small and with wrapped
+   text around if it does not contain verbatim code),
+   or \code{"paragraph"} for simple, plain paragraph headings and ordinary text
+
+ \item \code{COLORED_TABLE_ROWS} for coloring every other table rows (set this
+   variable to \code{gray} or \code{blue})
+
+ \item \code{BLUE_SECTION_HEADINGS} for blue section and subsection headings
+
+ \item \code{LATEX_HEADING} for the typesetting of the title, author, parts of
+   preamble (values: \code{traditional} for traditional {\LaTeX} heading,
+   \code{titlepage} for a separate titlepage, \code{Springer_collection} for
+   edited volumes on Springer, \code{beamer} for Beamer slides, \code{doconce_heading}
+   (default) for listing institutions after names)
 \end{itemize}
 
 \noindent
 If you are not satisfied with the Doconce preamble, you can provide
-your own preamble by adding the command-line option \code{--latex-preamble=myfile}.
+your own preamble by adding the command-line option \code{--latex_preamble=myfile}.
 In case \code{myfile} contains a documentclass definition, Doconce assumes
 that the file contains the \emph{complete} preamble you want (not that all
 the packages listed in the default preamble are required and must be
@@ -1085,6 +1393,19 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 \esys
+
+\subsection{XeLaTeX}
+
+XeLaTeX is an alternative to \textsc{pdf}{\LaTeX} and is run in almost the
+same way, except for the \code{-DXELATEX} flag to ptex2tex:
+
+\bccq
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce ptex2tex mydoc -DXELATEX
+Terminal> ptex2tex -DXELATEX mydoc  # alternative
+Terminal> xelatex mydoc
+\eccq
+
 
 \subsection{Plain ASCII Text}
 
@@ -1291,7 +1612,6 @@ doconce sphinx_dir theme=scipy_lectures \
 \esys
 
 \paragraph{The manual Sphinx procedure.}
-
 If it is not desirable to use the autogenerated scripts explained
 above, here is the complete manual procedure of generating a
 Sphinx document from a file \code{mydoc.do.txt}.
@@ -1583,12 +1903,13 @@ associated with \code{TITLE:} and \code{AUTHOR:} keywords must appear on a singl
 line.  Here is an example:
 \bccq
 TITLE: On an Ultimate Markup Language
-AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 \eccq
-Note how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions
+(with \code{&} as separator between institutions),
 and no institution. In some formats (including \code{rst} and \code{sphinx})
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
@@ -1739,11 +2060,18 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 % latex/PDF format can make use of the movie15 package for displaying movies,
 % or just plain \href{run: ...}{...}
 
+ (Movie figs/mjolnir.mpeg: play \href{{mjolnir.html}}{\nolinkurl{mjolnir.html}})
+% #if MOVIE == "media9"
+\includemedia[
+label=figs/mjolnir.mpeg,
+activate=pageopen,
+width=0.9\linewidth,
+addresource=figs/mjolnir.mpeg,
+flashvars={
+source=figs/mjolnir.mpeg,
+&autoPlay=true}]{VPlayer.swf}
 
-\begin{figure}[ht]
-\begin{center}
-
-% #ifdef MOVIE15
+% #elif MOVIE == "movie15"
 \includemovie[poster,
 label=figs/mjolnir.mpeg,
 autoplay,
@@ -1754,7 +2082,7 @@ externalviewer,
 % #endif
 text={\small (Loading figs/mjolnir.mpeg)},
 repeat,
-]{0.9\linewidth}{0.9\linewidth}{figs/mjolnir.mpeg}    % requires \usepackage{movie15}
+]{0.9\linewidth}{0.9\linewidth}{figs/mjolnir.mpeg}
 % #ifndef EXTERNAL_MOVIE_VIEWER
 \movieref[rate=0.5]{figs/mjolnir.mpeg}{Slower}
 \movieref[rate=2]{figs/mjolnir.mpeg}{Faster}
@@ -1765,15 +2093,15 @@ repeat,
 \href{run:figs/mjolnir.mpeg}{figs/mjolnir.mpeg}
 % #endif
 
+% #elif MOVIE == "multimedia"
+% Beamer-style \movie command
+\movie[
+label=figs/mjolnir.mpeg,
+width=0.9\linewidth,
+autostart]{figs/mjolnir.mpeg}{figs/mjolnir.mpeg}
 % #else
 \href{run:figs/mjolnir.mpeg}{figs/mjolnir.mpeg}
-
-% alternative: \movie command that comes with beamer
-% \movie[options]{figs/mjolnir.mpeg}{figs/mjolnir.mpeg}
 % #endif
-\end{center}
-\caption{}
-\end{figure}
 
 
 % MOVIE: [figs/wavepacket.gif, width=600 height=470]
@@ -1841,11 +2169,11 @@ Section~\ref{sec:verbatim:blocks} below.
 \index{inline comments}
 
 Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
-and \code{verbatim text} (also called type writer text, for inline code)
+and \code{verbatim text} (also called type writer text, for inline code),
+\textcolor{blue}{colored words},
 plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
 
 \paragraph{Emphasized Words.}
-
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 \bccq
@@ -1860,7 +2188,6 @@ The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
 \paragraph{Inline Verbatim Text.}
-
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
 \bccq
@@ -1876,24 +2203,15 @@ the Doconce file, because some formats ({\LaTeX} and \code{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
 
-\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{noticebackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/notice.eps}
-\vskip-0.3in\hskip1.9in{\large\sc Notice} \\[0.4cm]
+\begin{graybox1admon}[Notice.]
 Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\end{graybox1admon}
 \paragraph{Links to Web Addresses.}
-
 Web addresses with links are typeset as
 \bccq
 some URL like "Search Google": "http://google.com".
@@ -1915,7 +2233,6 @@ with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
 
 \paragraph{Links to Local Files.}
-
 Links to files ending in \code{.txt}, \code{.html}, \code{.pdf}, \code{.py}, \code{.f},
 \code{.f77}, \code{.f90}, \code{.f95}, \code{.sh}, \code{.csh}, \code{.ksh}, \code{.zsh},
 \code{.c}, \code{.cpp}, \code{.cxx}, \code{.pl}, and \code{.java} follows the same
@@ -1986,17 +2303,17 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % adjusted.)
 
 \paragraph{Inline Comments.}
-
 Doconce also supports inline comments in the text:
 \bccq
 [name: comment]
 \eccq
 where \code{name} is the name of the author of the command, and \code{comment} is a
 plain text text. Note that there must be a space after the colon,
-otherwise the comment is not recognized. Inline comments
+otherwise the comment is not recognized. \shortinlinecomment{hpl 1}{ Inline comments
 can span
 several lines,
-if desired.
+if desired. }{ Inline comments can span }
+
 The name and comment are visible in the output unless \code{doconce format}
 is run with a command-line argument \code{--skip_inline_comments}
 (see Section~\ref{doconce2formats} for an example). Inline comments
@@ -2005,8 +2322,12 @@ and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the \code{.do.txt} file
 (see Section~\ref{doconce2formats}).
 
-\paragraph{Inline Mathematics.}
+Inline comments are typeset in a simple way (boldface name and the
+comment in parenthesis), but in {\LaTeX} very visible color boxes
+are used (via the \code{todonotes} package).
 
+
+\paragraph{Inline Mathematics.}
 Inline mathematics is written as in {\LaTeX}, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in {\LaTeX}, HTML, MediaWiki,
@@ -2214,9 +2535,9 @@ the paragraph heading and the text body, although this works fine if
 \subsection{Bibliography}
 
 Doconce applies the software tool \href{{https://bitbucket.org/logg/publish}}{Publish} to handle the bibliography in a
-document. With Publish it is easy to import BibTeX data and maintain a
-database in a clean, self-explaining textual format. From the Publish
-format it is easy to go BibTeX and reST or straightforward Doconce
+document. With Publish it is easy to import \textsc{Bib}\negthinspace{\TeX} data and maintain a
+database in a clean, self-explanatory textual format. From the Publish
+format it is easy to go \textsc{Bib}\negthinspace{\TeX} and reST or straightforward Doconce
 typesetting (and from there to HTML, plain text, wiki formats, and so
 on).
 
@@ -2225,7 +2546,6 @@ Installing Publish is straightforward: just checkout the code on
 \code{publish} directory and run \code{sudo python setup.py install}.
 
 \paragraph{Importing your data to the Publish database.}
-
 Many scientists have their bibliographic data in the BibTex format. Here we
 assume that you have two files, \code{refs1.bib} and \code{refs2.bib}. These can
 be imported to a Publish database, residing in the file \code{papers.pub},
@@ -2245,10 +2565,19 @@ your version control system).
 
 \paragraph{Requirements to input data.}
 
-Note that Publish only accepts BibTeX files where the keys (author,
+\begin{graybox1admon}[Notice.]
+Note that Publish only accepts \textsc{Bib}\negthinspace{\TeX} files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
-curly braces. You may need to edit your BibTeX files to meet this
-demand. Although references are visible as numbers only in the
+curly braces. You may need to edit your \textsc{Bib}\negthinspace{\TeX} files to meet this
+demand.
+\end{graybox1admon}
+The utility \code{doconce fix_bibtex4publish file.bib} fixes several known
+issues with \textsc{Bib}\negthinspace{\TeX} files such that Publish has a better chance of
+accepting the entries. Run this utility first, then run Publish,
+respond to any requirements that Publish spits out, remove \code{papers.pub}
+if it exists, and run the import statements again.
+
+Although references are visible as numbers only in the
 output, it is recommended to have apply a nice, consistent
 typesetting of your keys. It is suggested to use the following scheme:
 
@@ -2261,27 +2590,24 @@ One can add a, b, c, and so forth if several keys feature the same
 authors and year.
 
 \paragraph{Adding new references to the database.}
-
-When you get some new BibTeX references you simply put them in
+When you get some new \textsc{Bib}\negthinspace{\TeX} references you simply put them in
 a file, say \code{refs3.pub} and run the \code{publish import refs3.pub} command
 to update the database. You may also consider editing the \code{papers.pub}
 file directly when adding new references.
 
 \paragraph{Exporting the database.}
-
 Export of everything in the database to
-BibTeX is done by
+\textsc{Bib}\negthinspace{\TeX} is done by
 
 \bsys
 publish export mybibtexfile.bib
 \esys
 You can easily export subsets of the database, e.g., only papers associated
 with a particular author (the Publish manual has details on how this is
-done). Doconce will automatically export the database to BibTeX if
+done). Doconce will automatically export the database to \textsc{Bib}\negthinspace{\TeX} if
 the output format is \code{latex} or \code{pdflatex}.
 
 \paragraph{Referring to publications.}
-
 We use the command
 
 \bccq
@@ -2309,7 +2635,6 @@ brackets and the corresponding references are listed in the order they
 are cited.
 
 \paragraph{Specifying the Publish database.}
-
 The specification of the Publish database file in the Doconce document
 is done one a line containing \code{BIBFILE: papers.pub} (you may give
 the database file another name and store it in another directory).
@@ -2324,12 +2649,11 @@ Here is an example:
 
 BIBFILE: papers.pub
 \eccq
-In {\LaTeX} and \textsc{pdf}{\LaTeX} the \code{papers.pub} file is exported to BibTeX format
+In {\LaTeX} and \textsc{pdf}{\LaTeX} the \code{papers.pub} file is exported to \textsc{Bib}\negthinspace{\TeX} format
 and included in the document, while in all other formats, suitable
 text is produced from the database.
 
 \paragraph{{\LaTeX} bibliography style.}
-
 The bibliography style is "plain" in {\LaTeX} output. To change this, just
 edit the \code{.p.tex} file. For example,
 
@@ -2378,7 +2702,10 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-
+The command-line option \code{--tables2csv} (to \code{doconce format})
+makes Doconce dump each table to CSV format in a file \code{table_X.csv},
+where \code{X} is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 \subsection{Exercises, Problems, Projects, and Examples}
 
@@ -2466,30 +2793,24 @@ directives is always typeset at the end of the exercise.
 !bsol
 Here goes a full solution of the whole exercise.
 !esol
-\eccq
+!ec
 
 A recommended rule for using the different "exercise" types goes as follows:
 
-\begin{itemize}
-  \item Exercises are smaller problems directly related to the present chapter
+  * Exercises are smaller problems directly related to the present chapter
     (e.g., with references to the text).
-
-  \item Problems are sufficiently independent of the chapter's text
+  * Problems are sufficiently independent of the chapter's text
     that they make sense on their own, separated from the rest of the docoment.
+  * Projects are larger problems that also make sense on their own.
+  * Examples are exercises, problems, or projects with full solutions.
 
-  \item Projects are larger problems that also make sense on their own.
-
-  \item Examples are exercises, problems, or projects with full solutions.
-\end{itemize}
-
-\noindent
-The command line options \code{--without-answers} and \code{--without-solutions}
+The command line options `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 
 Sometimes one does not want the heading of an exercise, problem, project,
-or example to contain the keyword \code{Exercise:}, \code{Problem:}, \code{Project:},
-or \code{Example:}. By enclosing the keyword in braces, as in
+or example to contain the keyword `Exercise:`, `Problem:`, `Project:`,
+or `Example:`. By enclosing the keyword in braces, as in
 
 \bccq
 ===== {Problem}: Find a solution to a problem =====
@@ -2531,11 +2852,11 @@ works well in all formats (i.e., no double "Problem Problem" appears).
 
 \paragraph{Remark.}
 Examples are \emph{not} typeset similarly to exercises unless one adds
-the command-line option \code{--examples-as-exercises}. That is, without
+the command-line option \code{--examples_as_exercises}. That is, without
 this option, any heading and starting with \code{Example:} makes Doconce
 treat the forthcoming text as ordinary text without any interpretation
 of exercise-style instructions.
-With the command-line option \code{--examples-as-exercises},
+With the command-line option \code{--examples_as_exercises},
 one can use the \code{!bsubex} and \code{!bsol}
 commands to indicate a subproblem and a solution. In this way, the
 typesetting of the example looks like an exercise equipped with a solution.
@@ -2843,7 +3164,6 @@ alternatively:
 
 
 \paragraph{Mathematics for PowerPoint/OpenOffice.}
-
 If you have {\LaTeX} mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
 use with PowerPoint or OpenOffice presentations.
@@ -2902,22 +3222,22 @@ expressions).
 Suppose we have the following commands in
 \code{newcommand_replace.tex}:
 
-\bpro
+\blatexpro
 \newcommand{\beqa}{\begin{eqnarray}}
 \newcommand{\eeqa}{\end{eqnarray}}
 \newcommand{\ep}{\thinspace . }
 \newcommand{\uvec}{\vec u}
 \newcommand{\Q}{\pmb{Q}}
-\epro
+\elatexpro
 
 and these in \code{newcommands_keep.tex}:
 
-\bpro
+\blatexpro
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 \newcommand{\half}{\frac{1}{2}}
-\epro
+\elatexpro
 
 The {\LaTeX} block
 \bccq
@@ -2933,6 +3253,142 @@ will then be rendered to
 \eeqa
 in the current format.
 
+\subsection{Admonitions}
+
+Doconce offers strong support for admonition environments, such
+as warning boxes, notification boxes, hint boxes, question boxes,
+and summary boxes. The boxes normally have an icon, a heading,
+and may also have a background color. A special box, the block,
+has never any icon and can be used when an icon would be disturbing
+or misleading.
+
+The following admonition environments are available:
+\code{block}, \code{warning}, \code{notice}, \code{hint}, \code{question}, and \code{summary}.
+The box is defined by begin and end tags such as \code{!bhint} and \code{!ehint}.
+(The hint box is typeset differently inside exercises compared to outside
+exericises: inside a plain paragraph heading \emph{Hint} (with number)
+appears, while outside exercises the \code{hint} environment gives a
+box with some admonition icon, text and/or colored background.)
+The title of the box is fully customizable.
+
+Here are a few examples:
+
+\bccq
+!bwarning
+Here is a warning!
+!ewarning
+
+!bhint
+This is a hint.
+!ehint
+
+!bblock This is a block.
+A block has never any icon.
+!eblock
+
+!bnotice Going deeper
+This is text meant to provide more details. The box has the
+layout of the notice box, but a custom title, here "Going deeper".
+!enotice
+
+Finally some summary:
+
+!bsummary
+The main message is to utilize the admonition styles for
+marking different parts of the text
+!esummary
+\eccq
+The above Doconce code is in the present format rendered as
+
+
+\begin{graybox1admon}[Warning.]
+Here is a warning!
+\end{graybox1admon}
+\begin{graybox1admon}[Hint.]
+This is a hint.
+\end{graybox1admon}
+
+\begin{graybox1admon}[This is a block.]
+A block has never any icon.
+\end{graybox1admon}
+\begin{graybox1admon}[Going deeper.]
+This is text meant to provide more details. The box has the
+layout of the notice box, but a custom title, here "Going deeper".
+\end{graybox1admon}
+Finally some summary:
+
+
+\begin{graybox1admon}[Summary.]
+The main message is to utilize the admonition styles for
+marking different parts of the text
+\end{graybox1admon}
+The layout of admonitions depend on the format.
+In \code{rst} and \code{sphinx} one applies the native admonitions, but
+in \code{sphinx} the \code{automake_sphinx.py} script manipulates the HTML
+file to set a gray background for all admonitions.
+In \code{html} one has a command-line argument \code{--html_admon} that
+can be set to different styles: \code{--html_admon=white} for
+white background and small icons, \code{--html_admon=gray} for
+larger icons with gray background and small font, \code{--html_admon=yellow}
+and \code{--html_admon=apricot}
+works as the \code{gray} style, but the color is different.
+With \code{--html_admon=colors} one gets quite bright colors
+as backgrounds for the different admonitions.
+
+Some recommended combinations for admonitions in HTML are
+
+\begin{itemize}
+ \item \code{--html_admon=apricot}, \code{--html_style=solarized}
+
+ \item \code{--html_admon=yellow}, \code{--html_style=bluish2}, \code{--no_pygments_html}
+
+ \item \code{--html_admon=yellow}, \code{--html_style=blueish2}, \code{--pygments_html_style=default}
+
+ \item \code{--html_admon=gray}, \code{--html_style=bloodish}, \code{--no_pygments_html}
+
+ \item \code{--html_admon=gray}, \code{--html_style=bloodish}, \code{--pygments_html_style=default}
+
+ \item \code{--html_style=vagrant}, \code{--pygments_html_style=default}, \code{--html_template=...}
+\end{itemize}
+
+\noindent
+The \code{vagrant} HTML style has CSS files that override the definition
+how the admons are typset. The \code{notice} environment is gray with an
+icon (defined in \code{vagrant.css}), while the others are yellow (defined
+in \code{twitter_bootstrap.css}). The \code{--html_admon} color has no effect
+for the \code{vagrant} style.
+
+In \code{latex} and \code{pdflatex}, the type of admonition is configured in the
+\code{.p.tex} file through the \code{ADMON} preprocessor variable.
+Several values are available:
+
+\begin{itemize}
+ \item \code{paragraph} is the simplest type of admonition and typeset
+   as plain text with an optional paragraph heading.
+
+ \item \code{colors1} (inspired by the NumPy User Guide) applies different colors for
+   the different admons with an embedded icon.
+
+ \item \code{colors2} is like \code{colors1} but the text is wrapped around the icon.
+
+ \item \code{graybox1} is the default and gives rounded gray boxes with a potential
+   title and no icon.
+
+ \item \code{graybox2} has square corners, gray background, and is narrower
+   than \code{graybox1}. One special feature of \code{graybox2} is the summary
+   admon, which has a different look with horizontal rules only,
+   and for A4 format, the summary box is half of the text width and
+   wrapped with running text around (if it does not contain verbatim text,
+   in that case the standard \code{graybox2} style is used). This small
+   summary box is effective in proposals to disperse small paragraphs
+   of key points around.
+
+ \item \code{graybox3} has icons and a light gray background.
+
+ \item \code{yellowbox} has icons and a light yellow background.
+\end{itemize}
+
+\noindent
 \subsection{Preprocessing Steps}
 
 Doconce allows preprocessor commands for, e.g., including files,
@@ -2959,6 +3415,7 @@ the value of \code{FORMAT} and take different actions for different
 formats. Below is an example:
 
 \bpro
+
 First some math:
 
 !bt
@@ -3015,48 +3472,80 @@ preprocessor include statements of the form \code{#include "file.do.txt"}.
 The preprocessor will put together all the pieces so that Doconce
 sees a long file with the complete text.
 
-For reST and Sphinx documents it is a point to have
-separate \code{.rst} files and an index file listing the various \code{.rst}
-that build up the document. To generate the various \code{.rst} files one
-should not run Doconce on the individual \code{.do.txt} files, because then
-references and index entries are not treated correctly. Instead,
-run Doconce on the master file and invoke the script \code{doconce split_rst}
-to split the long, complete \code{.rst} into pieces. This process requires
-that each \code{#include "file.do.txt} line in the master file is preceded by a
-"marker line" having the syntax \code{#>>>>>> part: file >>>>>>}, where
-\code{file} is the filename without extension. The number of greater than
-signs is not important, but it has to be a comment line and it has
-to contain the keyword \code{part:}.
 
-Here is an example. Say the name of the master file is \code{master.do.txt}.
-The following Bash script does the job:
-We run
-\bcod
-doconce format sphinx master
-# Split master.rst into parts
-# as defined by #>>>>> part: name >>>>> lines
-files=`doconce split_rst master.rst`
+For web documents it is often desired to split long pages into shorter
+ones. This is done by the Doconce command \code{!split} placed at the
+beginning of a line. The \code{!split} commands works with output in
+\code{html}, \code{rst}, \code{sphinx}, \code{latex}, and \code{pdflatex}. The \code{!split} command
+are normally placed before section headings. It is very actively used
+when writing slides with Doconce. The \code{doconce format} command does not
+recognize \code{!split} instructions: one needs to run \code{doconce split_*}
+as a postprocess, where the \code{*} means \code{html}, \code{rst}, or \code{beamer}.
 
-dir=sphinxm-rootdir
+\paragraph{HTML.}
+Splitting an HTML document is done by
 
-if [ ! -d $dir ]; then
-  doconce sphinx_dir dirname=$dir author='me and you' \
-          version=1.0 theme=default $files
-  sh automake_sphinx.sh
-else
-  for file in $files; do
-    cp $file.rst $dir
-  done
-  cd $dir
-  make html
-  cd ..
-fi
-\ecod
-The autogenerated \code{automake_sphinx.sh} file (by \code{doconce sphinx_dir})
-is compatible with a master \code{.rst} file split into pieces as long as
-the complete set of pieces in correct order is given to \code{doconce sphinx_dir}.
-This set is the output of \code{doconce split_rst}, which we catch in a
-variable \code{files} above.
+\bsys
+Terminal> doconce format html mydoc
+Terminal> doconce split_html mydoc
+\esys
+The \code{mydoc.html} document created by the first command is replaced
+by a new HTML file, representing the first part of the document,
+after the second command. The various files that constitute the
+parts of the document are listed after the \code{split_html} command.
+The files have names \code{mydoc.html}, \code{._part0000_mydoc.html} (equal to
+\code{mydoc.html}), \code{._part0001_mydoc.html}, \code{._part0002_mydoc.html}, and so
+on. Recall that all the parts are needed if the HTML document is to be moved
+to another location (you can always check \code{.mydoc_html_file_collection}
+for a list of all the files that are needed to display this HTML
+document).
+
+The HTML documents have very simple navigation buttons for the previous
+and next document. These are not customizable directly, but one can easily
+look up the HTML code and use \code{doconce replace} to edit the links to
+the images used for navigation. Some more colorful images arise from
+
+\bsys
+Terminal> doconce replace 'prev1.png' 'Knob_Left.png' \
+          mydoc.html ._part*_mydoc.html
+Terminal> doconce replace 'next1.png' 'Knob_Forward.png' \
+          mydoc.html ._part*_mydoc.html
+\esys
+This works because the \code{Knob*.png} images live in the same place in the
+Doconce repository as \code{prev1.png} and \code{next1.png}. Other images can be
+used by replacing the whole URL.
+
+With an HTML template one can have much more sophisticated navigation
+between parts. One example is the template
+in \code{bundled/html_styles/style_vagrant/template_vagrant.html} in the Doconce
+source.
+
+\paragraph{reStructuredText and Sphinx.}
+Here is a typical split of a large Sphinx document \code{mydoc.rst}
+into smaller pieces:
+
+\bsys
+Terminal> doconce sphinx_dir author="Some Author" \
+          title="Short title" theme=fenics dirname=mydir mydoc
+Terminal> doconce format sphinx mydoc
+Terminal> doconce split_rst mydoc
+Terminal> python automake_sphinx.py
+\esys
+The \code{doconce format sphinx mydoc} command is needed to produce \code{mydoc.rst},
+which is the starting point for the \code{doconce split_rst} command.
+The various files that constitute the complete Sphinx document are
+\code{mydoc.rst}, \code{._part0000_mydoc.rst}, \code{._part0001_mydoc.rst}, \code{._part0002_mydoc.rst},
+and so on. The \code{automake_sphinx.py} script ensures that the Sphinx document
+is compiled correctly. If all links to local files are in a \code{_static}
+directory, the whole Sphinx document exists in a complete version
+in the compiled directory (usually \code{sphinx-rootdir/_build/html}) and
+can easily be moved around.
+
+
+{\LaTeX} Beamer slides generated from Doconce source also apply \code{!split} to
+indicate the start of individual slides. However, the split is
+performed by the \code{doconce slides_beamer} command and does not result
+in individual files like \code{split_rst} and \code{split_html} do.
 
 
 \subsection{Missing Features}
@@ -3069,6 +3558,7 @@ format and use the if-else construction of the preprocessor. For example,
 if a sophisticated table is desired in {\LaTeX} output, do something like
 
 \bpro
+
 # #if FORMAT in ("latex", "pdflatex")
 # insert native LaTeX code for fancy table
 # #else
@@ -3146,289 +3636,151 @@ the different shortcuts and see how handy they are in learning
 Doconce and saving much typing!
 
 
-\section{Troubleshooting}
+\section{Writing Slides}
 
-\subsection{Disclaimer}
+It is a fast procedure to make slides from large amounts of Doconce
+text, in particular for condensing running material for teaching or
+just providing the slide set as an overview or study guide.
+The slides can either be ordinary, separate slides - or just
+a document with much briefer text and emphasis on bullet lists,
+figures, mathematical formulas, admonitions, and little text.
 
-Doconce has some support for syntax checking.  If you encounter Python
-errors while running \code{doconce format}, the reason for the error is
-most likely a syntax problem in your Doconce source file. You have to
-track down this syntax problem yourself. However, Doconce applies
-regular expressions to a large extent for transforming text, and
-regular expressions may sometimes fail. Therefore, there is a chance that legal
-Doconce syntax is not treated properly.
+Points:
 
+\begin{itemize}
+ \item Only some pygments style are suited for a particular reveal.js/deck.js
+   theme
 
-\subsection{General Problems}
+ \item Only some admon styles are appropriate
 
-\paragraph{Doconce aborts because of a syntax error that is not an error.}
+ \item Admon styles are erased in reveal
 
-Doconce searches for typical syntax errors and usually aborts the
-execution if errors are found. However, it may happen,
-especially in verbatim blocks, that Doconce reports syntax errors
-that are not errors. To continue execution, simply add the
-\code{--no-abort} option on the command line. You may send an email
-to the Doconce author at \code{hpl@simula.no} and report the problem.
+ \item Use \code{--keep_pygments_html_bg} to avoid big changes in background
+   color for code
+\end{itemize}
 
-\paragraph{The Mako preprocessor is seemingly not run.}
+\noindent
+\subsection{Overview}
 
-If you have lines starting with \code{%} inside code segments (for example,
-SWIG code or Matlab comment lines), the Mako preprocessor will crash
-because it thinks these lines are Mako statements. Doconce detects
-this problem and avoids running Mako.  Examine the output from
-Doconce: warnings are issued if Mako is not run.
+Basically, Doconce slides are ordinary Doconce text with \code{!split}
+inserted before each slide. Nevertheless, contents of slide differ
+considerably from ordinary running text. Some guidelines on
+the elements within each slide are necessary to produce effective
+slide sets:
 
-\paragraph{Something goes wrong in the preprocessing step.}
+\begin{itemize}
+ \item Use a subsection heading as slide heading (5 \code{=}).
 
-Doconce automatically removes the file \code{__tmp.do.txt}, which is the
-resulting of the preprocessing stge and the file to examine if
-something goes wrong in this stage (i.e., when \code{mako} and
-\code{preprocess} is run). Add the \code{--debug} flag at the end of the
-\code{doconce} command to (both make a debug file and) avoid that
-\code{__tmp.do.txt} is deleted.
+ \item Limit the amount of running text (as always).
 
-\paragraph{Figure captions are incomplete.}
+ \item Limit the amount of material so it fits within a slide
+   (inspect slides visually to move or delete content - just
+   an extra \code{!split} and a new heading is enough to make a new
+   slide).
 
-If only the first part of a figure caption in the Doconce file is seen
-in the target output format, the reason is usually that the caption
-occupies multiple lines in the Doconce file. The figure caption must
-be written as \emph{one line}, at the same line as the FIGURE keyword.
+ \item Use the \code{slidecell} environment (see below) to create
+   a grid of slide cells (makes it easy to move figures and
+   bullet lists or text around).
 
-\paragraph{Preprocessor directives do not work.}
+ \item Adjust the size of figures (\code{width} parameter for HTML,
+   \code{frac} parameter for {\LaTeX} Beamer) so they become effective
+   on the slide.
+\end{itemize}
 
-Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
+\noindent
+Doconce can generate two types of slides: HTML5+CSS3 type of
+slides to be presented through a web browser, and classical
+{\LaTeX} Beamer slides.
 
-\paragraph{Problems with boldface and emphasize.}
+\subsection{HTML5 Slides}
 
-Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
+% doconce-adjusted styles: easy to switch between styles since
+% font sizes are compatible
 
-\paragraph{Links to local directories do not work.}
-
-Links of the type
-\bccq
-see the "examples directory": "src/examples"
-\eccq
-do not work well. You need to link to a specific HTML file:
-\bccq
-see the "examples directory": "src/examples/index.html"
-\eccq
-
-\paragraph{Links are not typeset correctly.}
-
-Not all formats will allow formatting of the links. Verbatim words
-in links are allowed if the whole link is typeset in verbatim:
-\bccq
-see the directory "`examples`": "src/examples/index.html".
-\eccq
-However, the following will not be typeset correctly:
-\bccq
-see the "`examples` directory": "src/examples/index.html"
-\eccq
-The back-ticks must be removed, or the text can be reformulated as
-in the line above it.
-
-
-\paragraph{Inline verbatim code is not detected.}
-
-Make sure there is a space before the first back-tick.
-
-\paragraph{Inline verbatim text is not formatted correctly.}
-
-Make sure there is whitespace surrounding the text in back-ticks.
-
-\paragraph{Strange non-English characters.}
-
-Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
-or with
-\bccq
-Terminal> doconce guess_encoding myfile.do.txt
-\eccq
-If the encoding is utf-8, convert to latin-1 using either of
-the Unix commands
-\bccq
-Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
-
-Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-\eccq
-
-\paragraph{Wrong Norwegian charcters.}
-
-When Doconce documents have characters not in the standard ASCII set,
-the format of the file must be LATIN1 and not UTF-8. See
-the section "Strange non-English characters" above for how to
-run \code{doconce change_encoding} to change the encoding of the Doconce file.
-
-\paragraph{Too short underlining of reST headlines.}
-
-This may happen if there is a paragraph heading without
-proceeding text before some section heading.
-
-
-\paragraph{Found !bt but no tex blocks extracted (BUG).}
-
-This message points to a bug, but has been resolved by removing blank lines
-between the text and the first \code{!bt} (inserting the blanks again did not
-trigger the error message again...).
-
-\paragraph{Examples are typset with environment delimiters visible.}
-
-If you see an Example section containing \code{!bsubex}, \code{!bsol}, or other
-begin and end tags for environments, it means that you have intended
-to typeset examples as exercises, but forgotten the command-line
-option \code{--examples-as-exercises}. The text in the example is typeset
-as is unless this option is included.
-
-\paragraph{Emacs editing does not work properly because of "regexp overflow".}
-
-Sometimes the Doonce editing mode (see Section~\ref{emacs:doconce}) in Emacs
-leads to an error message ending with "overflow in regexp matcher".
-This error is due to some regular expression used in the Doconce editing
-mode. The remedy is to split the file into smaller pieces and include
-the pieces using the \code{preprocess} directive \code{#include "piece.do.txt"}.
-The error message comes with the Doconce file contains too much text
-for Emacs to handle.
-
-\subsection{Problems with code or Tex Blocks}
-
-\paragraph{Code or math block errors in reST.}
-
-First note that a code or math block must come after some plain
-sentence (at least for successful output in reST), not directly
-after a section/paragraph heading, table, comment, figure, or
-movie, because the code or math block is indented and then become
-parts of such constructions. Either the block becomes invisible or
-error messages are issued.
-
-Sometimes reST reports an "Unexpected indentation" at the beginning of
-a code block. If you see a \code{!bc}, which should have been removed when
-running \code{doconce format sphinx}, it is usually an error in the Doconce
-source, or a problem with the rst/sphinx translator.  Check if the
-line before the code block ends in one colon (not two!), a question
-mark, an exclamation mark, a comma, a period, or just a newline/space
-after text. If not, make sure that the ending is among the
-mentioned. Then \code{!bc} will most likely be replaced and a double colon
-at the preceding line will appear (which is the right way in reST to
-indicate a verbatim block of text).
-
-\paragraph{Strange errors around code or TeX blocks in reST.}
-
-If \code{idx} commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-\paragraph{Something is wrong with a verbatim code block.}
-
-Check first that there is a "normal" sentence right before
-the block (this is important for reST and similar
-"ASCII-close" formats).
-
-\paragraph{Code/TeX block is not shown in reST format.}
-
-A comment right before a code or tex block will treat the whole
-block also as a comment. It is important that there is normal
-running text right before \code{!bt} and \code{!bc} environments.
-
-\paragraph{Verbatim code blocks inside lists look ugly.}
-
-Read the Section~\ref{sec:verbatim:blocks} above.  Start the
-\code{!bc} and \code{!ec} tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-\paragraph{{\LaTeX} code blocks inside lists look ugly.}
-
-Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the \code{!bt} and \code{!et} tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-
-\subsection{Problems with reST/Sphinx Output}
-
-\paragraph{Title level inconsistent.}
-
-reST does not like jumps in the levels of headings. For example, you cannot
-have a \code{===} (paragraph) heading after a \code{=======} (section) heading without
-a \code{=====} (subsection) heading in between.
-
-\paragraph{Lists do not appear in .rst files.}
-
-Check if you have a comment right above the list. That comment
-will include the list if the list is indentend. Remove the comment.
-
-\paragraph{Error message "Undefined substitution..." from reST.}
-
-This may happen if there is much inline math in the text. reST cannot
-understand inline {\LaTeX} commands and interprets them as illegal code.
-Just ignore these error messages.
-
-\paragraph{Warning about duplicate link names.}
-
-Link names should be unique, but if (e.g.) "file" is used as link text
-several places in a reST file, the links still work. The warning can
-therefore be ignorned.
-
-\paragraph{Inconsistent headings in reST.}
-
-The \code{rst2*.py} and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for \code{===},
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-\paragraph{No code environment appears before "bc ipy" blocks.}
-
-The \code{!bc ipy} directive behaves this way for \code{sphinx} output because
-interactive sessions are automatically handled. If this is not
-appropriate, shift to \code{!bc cod} or another specification of the
-verbatim environment.
-
-\subsection{Problems with {\LaTeX} Output}
-
-\paragraph{{\LaTeX} does not like underscores in URLs.}
-
-Suppose you have a URL reference like
-
-\bccq
-..which can be found in the file "my_file.txt":
-"http://some.where.net/web/dir/my_file.txt".
-\eccq
-{\LaTeX} will stop with a message about a missing dollar sign. The reason
-is that underscores in link texts need to be preceded by a backslash.
-However, this is incovenient to do in the Doconce source since the
-underscore is misleading in other formats.
-The remedy is to format the link text with inline verbatim tags (backticks):
-\bccq
-..which can be found in the file "`my_file.txt`":
-"http://some.where.net/web/dir/my_file.txt".
-\eccq
-Verbatim text in links works fine with underscores.
-
-\paragraph{Error when running latex: You must have 'pygmentize' installed.}
-
-This message points to the use of the minted style for typesetting verbatim
-code. You need to include the \code{-shell-escape} command-line argument when
-running \code{latex} or \code{pdflatex}:
+Text is missing... Just a very preliminary sketch of commands:
 \bsys
-Terminal> latex -shell-escape file mydoc.tex
-Terminal> pdflatex -shell-escape file mydoc.tex
+Terminal> doconce format html myslides \
+          --pygments_html_style=native --keep_pygments_html_bg
+Terminal> doconce slides_html myslides reveal \
+          --html_slide_theme=darkgray
 \esys
-Using \code{doconce ptex2tex} will turn on the minted style if specified as
-environment on the command line, while using \code{ptex2tex} requires the
-preprocessor option \code{-DMINTED} to turn on the minted package.
-When this package is included, \code{latex} or \code{pdflatex} runs the
-\code{pygmentize} program and the \code{shell-escape} option is required.
 
-\paragraph{How can I use my fancy {\LaTeX} environments?.}
+\paragraph{Potential Problems.}
+\begin{itemize}
+ \item Some newer Firefox does not show rounded corners of the
+   admonition boxes, e.g., notice and warning (tested on Ubuntu)
+
+ \item Doconce performs some adjustments of the spacing around
+   equations. More edits (automate with \code{doconce subst}) might be needed.
+\end{itemize}
+
+\noindent
+\subsection{{\LaTeX} Beamer Slides}
+
+\section{Mako Programming}
+
+The \href{{http://docs.makotemplates.org/}}{Mako} templating engine is used
+as preprocessor for Doconce documents, but the \href{{http://code.google.com/p/preprocess}}{Preprocess} is run prior to Mako and is recommended for
+including other files via \code{# #include "filename"}. Preprocess is also
+sufficient for if-else tests to steer which parts of the text that
+are to be compiled. For more demanding tasks, use Mako, which resembles
+a real programming language.
+
+\subsection{The Basics of Mako}
+
+Just a preliminary sketch of some Mako code (next example is better!):
+
+\bccq
+# Define variables
+<%
+mycounter = 1
+mydict = {}
+%>
+
+# Assume MYVAR is given on the command line as MYVAR=mytext (e.g.)
+% if MYVAR is not UNDEFINED:
+The value of MYVAR is ${MYVAR}.
+% endif
+
+<%
+## Manipulation of variables
+mycounter += 1
+%>
+
+% if MYVAR in (2,4,6):
+MYVAR is even integer in [2,6].
+% elif MYVAR > 1000000:
+MYVAR is big.
+% else:
+MYVAR=${MYVAR}, mycounter=${mycounter}.
+% endif
+
+# Function
+<%
+# Define Python function: FORMAT and DEVICE
+# are always defined
+
+def link(filename):
+    url = "https://github.com/some/path/to/' + filename + '"'
+    if DEVICE == 'screen':
+        # make link to url
+        return '"filename":' + url
+    elif DEVICE == 'paper':
+        # write URL explicit on paper
+        return 'URL:' + url
+%>
+
+<%doc>
+This
+is
+a
+block
+comment in Mako.
+<%doc/>
+\eccq
+
+\subsection{Example: Defining a Theorem Environment}
+\label{manual:theorem:envir}
 
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while {\LaTeX} users are used to fancy environments for, e.g.,
@@ -3533,8 +3885,316 @@ the \code{ptex2tex} program with all its flexibility for choosing environments.
 Also \code{doconce ptex2tex} has some flexibility for typesetting computer code.
 
 
-\paragraph{The {\LaTeX} file does not compile.}
 
+\section{Troubleshooting}
+
+\subsection{Disclaimer}
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running \code{doconce format}, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself. However, Doconce applies
+regular expressions to a large extent for transforming text, and
+regular expressions may sometimes fail. Therefore, there is a chance that legal
+Doconce syntax is not treated properly.
+
+
+\subsection{General Problems}
+
+\paragraph{Doconce aborts because of a syntax error that is not an error.}
+Doconce searches for typical syntax errors and usually aborts the
+execution if errors are found. However, it may happen,
+especially in verbatim blocks, that Doconce reports syntax errors
+that are not errors. To continue execution, simply add the
+\code{--no_abort} option on the command line. You may send an email
+to the Doconce author at \code{hpl@simula.no} and report the problem.
+
+\paragraph{The Mako preprocessor is seemingly not run.}
+If you have lines starting with \code{%} inside code segments (for example,
+SWIG code or Matlab comment lines), the Mako preprocessor will crash
+because it thinks these lines are Mako statements. Doconce detects
+this problem and avoids running Mako.  Examine the output from
+Doconce: warnings are issued if Mako is not run.
+
+\paragraph{The Mako preprocessor is fooled by Doconce text.}
+Here are possible problems for Mako:
+
+\begin{itemize}
+ \item Strings with \code{'T<%.1f'} look as openings of Mako blocks (\code{<%}); change
+   to \code{'T < %.1f'} to avoid this confusion.
+\end{itemize}
+
+\noindent
+\paragraph{Something goes wrong in the preprocessing step.}
+You can examine \code{tmp_preprocess__filename} and \code{tmp_mako__filename},
+where \code{filename} is the complete name of the Doconce file, to see
+what the preprocessors actually to and if something is wrong in these
+files before Doconce starts translating the text.
+One or both of those files may be missing, but examine the beginning
+of the output from Doconce to see exactly which preprocessors are run
+and on which files.
+
+\paragraph{Figure captions are incomplete.}
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as \emph{one line}, at the same line as the FIGURE keyword.
+
+\paragraph{Preprocessor directives do not work.}
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+\paragraph{Problems with boldface and emphasize.}
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+\paragraph{Links to local directories do not work.}
+Links of the type
+\bccq
+see the "examples directory": "src/examples"
+\eccq
+do not work well. You need to link to a specific HTML file:
+\bccq
+see the "examples directory": "src/examples/index.html"
+\eccq
+We recommend to put all files you link to in a \code{_static} directory
+if you intend to use the \code{sphinx} output. This guarantees that all
+your files are collected in the Sphinx directory tree bundle.
+With plain \code{html} output only, you can link to whatever, but remember
+to move all files you link to if you move the primary \code{.html} file.
+
+\paragraph{Links are not typeset correctly.}
+Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim:
+\bccq
+see the directory "`examples`": "src/examples/index.html".
+\eccq
+However, the following will not be typeset correctly:
+\bccq
+see the "`examples`": "src/examples/index.html" directory.
+\eccq
+The back-ticks must be removed, or the text can be reformulated as
+in the line above it.
+
+
+\paragraph{Inline verbatim code is not detected.}
+Make sure there is a space before the first back-tick.
+
+\paragraph{Inline verbatim text is not formatted correctly.}
+Make sure there is whitespace surrounding the text in back-ticks.
+
+\paragraph{Strange non-English characters.}
+The former reason for this problem is that Doconce could only work with latin1
+(ISO-8859) encoding and not UTF-8. After May 2013, Doconce applies
+UTF-8 both for HTML and {\LaTeX}.
+
+Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
+or with
+\bccq
+Terminal> doconce guess_encoding myfile.do.txt
+\eccq
+If the encoding is UTF-8, convert to latin1 using either of
+the Unix commands
+\bccq
+Terminal> doconce change_encoding utf-8 latin1 myfile.do.txt
+Terminal> iconv -f utf-8 -t latin1 myfile.do.txt --output newfile
+\eccq
+
+
+\paragraph{Wrong Norwegian charcters.}
+When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section "Strange non-English characters" above for how to
+run \code{doconce change_encoding} to change the encoding of the Doconce file.
+
+\paragraph{Too short underlining of reST headlines.}
+This may happen if there is a paragraph heading without
+proceeding text before some section heading.
+
+
+\paragraph{Found !bt but no tex blocks extracted (BUG).}
+This message points to a bug, but has been resolved by removing blank lines
+between the text and the first \code{!bt} (inserting the blanks again did not
+trigger the error message again...).
+
+\paragraph{Examples are typset with environment delimiters visible.}
+If you see an Example section containing \code{!bsubex}, \code{!bsol}, or other
+begin and end tags for environments, it means that you have intended
+to typeset examples as exercises, but forgotten the command-line
+option \code{--examples_as_exercises}. The text in the example is typeset
+as is unless this option is included.
+
+\paragraph{Emacs editing does not work properly because of "regexp overflow".}
+Sometimes the Doonce editing mode (see Section~\ref{emacs:doconce}) in Emacs
+leads to an error message ending with "overflow in regexp matcher".
+This error is due to some regular expression used in the Doconce editing
+mode. The remedy is to split the file into smaller pieces and include
+the pieces using the \code{preprocess} directive \code{#include "piece.do.txt"}.
+The error message comes with the Doconce file contains too much text
+for Emacs to handle.
+
+\subsection{Problems with code or Tex Blocks}
+
+\paragraph{Code or math block errors in reST.}
+First note that a code or math block must come after some plain
+sentence (at least for successful output in reST), not directly
+after a section/paragraph heading, table, comment, figure, or
+movie, because the code or math block is indented and then become
+parts of such constructions. Either the block becomes invisible or
+error messages are issued.
+
+Sometimes reST reports an "Unexpected indentation" at the beginning of
+a code block. If you see a \code{!bc}, which should have been removed when
+running \code{doconce format sphinx}, it is usually an error in the Doconce
+source, or a problem with the rst/sphinx translator.  Check if the
+line before the code block ends in one colon (not two!), a question
+mark, an exclamation mark, a comma, a period, or just a newline/space
+after text. If not, make sure that the ending is among the
+mentioned. Then \code{!bc} will most likely be replaced and a double colon
+at the preceding line will appear (which is the right way in reST to
+indicate a verbatim block of text).
+
+\paragraph{Strange errors around code or TeX blocks in reST.}
+If \code{idx} commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+\paragraph{Something is wrong with a verbatim code block.}
+Check first that there is a "normal" sentence right before
+the block (this is important for reST and similar
+"ASCII-close" formats).
+
+\paragraph{Code/TeX block is not shown in reST format.}
+A comment right before a code or tex block will treat the whole
+block also as a comment. It is important that there is normal
+running text right before \code{!bt} and \code{!bc} environments.
+
+\paragraph{Verbatim code blocks inside lists look ugly.}
+Read the Section~\ref{sec:verbatim:blocks} above.  Start the
+\code{!bc} and \code{!ec} tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+\paragraph{{\LaTeX} code blocks inside lists look ugly.}
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the \code{!bt} and \code{!et} tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+\subsection{Problems with reST/Sphinx Output}
+
+\paragraph{Title level inconsistent.}
+reST does not like jumps in the levels of headings. For example, you cannot
+have a \code{===} (paragraph) heading after a \code{=======} (section) heading without
+a \code{=====} (subsection) heading in between.
+
+\paragraph{Lists do not appear in .rst files.}
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+\paragraph{Error message "Undefined substitution..." from reST.}
+This may happen if there is much inline math in the text. reST cannot
+understand inline {\LaTeX} commands and interprets them as illegal code.
+Just ignore these error messages.
+
+\paragraph{Warning about duplicate link names.}
+Link names should be unique, but if (e.g.) "file" is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.
+
+\paragraph{Inconsistent headings in reST.}
+The \code{rst2*.py} and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for \code{===},
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+\paragraph{No code environment appears before "bc ipy" blocks.}
+The \code{!bc ipy} directive behaves this way for \code{sphinx} output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to \code{!bc cod} or another specification of the
+verbatim environment.
+
+\subsection{Problems with {\LaTeX} Output}
+
+\paragraph{{\LaTeX} does not like underscores in URLs.}
+Suppose you have a URL reference like
+
+\bccq
+..which can be found in the file "my_file.txt":
+"http://some.where.net/web/dir/my_file.txt".
+\eccq
+{\LaTeX} will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+\bccq
+..which can be found in the file "`my_file.txt`":
+"http://some.where.net/web/dir/my_file.txt".
+\eccq
+Verbatim text in links works fine with underscores.
+
+\paragraph{Error when running latex: You must have 'pygmentize' installed.}
+This message points to the use of the minted style for typesetting verbatim
+code. You need to include the \code{-shell-escape} command-line argument when
+running \code{latex} or \code{pdflatex}:
+\bsys
+Terminal> latex -shell-escape file mydoc.tex
+Terminal> pdflatex -shell-escape file mydoc.tex
+\esys
+Using \code{doconce ptex2tex} will turn on the minted style if specified as
+environment on the command line, while using \code{ptex2tex} requires the
+preprocessor option \code{-DMINTED} to turn on the minted package.
+When this package is included, \code{latex} or \code{pdflatex} runs the
+\code{pygmentize} program and the \code{shell-escape} option is required.
+
+\paragraph{Why are the {\LaTeX} section headings smaller than normal?.}
+Doconce inserts a special command to make the headings
+more compact:
+
+\bccq
+\usepackage[compact]{titlesec}
+\eccq
+as explained in the \href{{http://www.ctex.org/documents/packages/layout/titlesec.pdf}}{\nolinkurl{titlesec}} package documentation.
+To retrieve the standard {\LaTeX} headings, comment out this line or remove it:
+
+\bsys
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce subst '\\usepack.+\{titlesec\} '' mydoc.p.tex
+\esys
+
+You can easily make the headings even smaller than the normal font
+by replacing \code{[compact]} by \code{[compact,small]} as parameter specification
+for \code{titlesec}.
+
+\paragraph{Can I have {\LaTeX} figures with shadows?.}
+This is easy by including the \code{fancybox} and \code{graphicx} packages
+and wrapping all \code{\includegraphics} in a shadow box:
+
+\bsys
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce replace \
+          'microtype}', 'microtype,fancybox,graphicx}' mydoc.p.tex
+Terminal> doconce subst '(\\includegraphics\[.+\}\})' \
+          '\\shadowbox{\g<1>}' mydoc.p.tex
+\esys
+
+\paragraph{How can I use my fancy {\LaTeX} environments?.}
+See Section~\ref{manual:theorem:envir} for how to make a custom
+theorem environment also in Doconce, without using implementations
+restricted to {\LaTeX}.
+
+
+\paragraph{The {\LaTeX} file does not compile.}
 If the problem is undefined control sequence involving
 \bccq
 \code{...}
@@ -3544,7 +4204,6 @@ Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
 \paragraph{Inline verbatim gives error.}
-
 Check if the inline verbatim contains typical {\LaTeX} commands, e.g.,
 \bccq
 some text with `\usepackage{mypack}` is difficult because
@@ -3562,7 +4221,6 @@ blocks - that is safe.
 
 
 \paragraph{Errors in figure captions.}
-
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar {\LaTeX} syntax errors.
 
@@ -3572,13 +4230,11 @@ a proper \code{texttt} command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
 \paragraph{Chapters are ignored.}
-
 The default {\LaTeX} style is "article". If you chapters in the Doconce file,
 you need to run \code{ptex2tex} with the option \code{-DBOOK} to set the {\LaTeX}
 documentstyle to "book".
 
 \paragraph{I want to tune the top of the {\LaTeX} file.}
-
 The top of the {\LaTeX} file, as generated by Doconce, is very simple.
 If this {\LaTeX} code is not sufficient for your needs, there are
 two ways out of it:
@@ -3607,12 +4263,10 @@ two ways out of it:
 \subsection{Problems with gwiki Output}
 
 \paragraph{Strange nested lists in gwiki.}
-
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the \code{.gwiki} file directly.
 
 \paragraph{Lists in gwiki look ugly in the gwiki source.}
-
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
 and because of the indentation in the original Doconce text, the gwiki
@@ -3623,28 +4277,43 @@ further.
 \subsection{Problems with HTML Output}
 
 \paragraph{How can I change the layout of the HTML page?.}
+The easiest way is to edit the HTML style or the HTML code directly.
+However, those edits are overwritten the next time you compile the
+Doconce document to HTML. The edits should therefore be automated
+using \code{doconce subst} (for regular expression editing) or \code{doconce replace}
+(for plain text substitution editing) commands in the file where
+you run \code{doconce format html mydoc}. For example, say you want narrower
+gray admonition boxes with a much thicker boundary. The \code{.alert}
+style must then be changed, more precisely the \code{border} and the \code{width}
+specification:
 
-The standard of way of controlling the HTML format is to use an
-HTML template. The Doconce source is then the body of text (leave
-out \code{TITLE:} to get HTML without a header and footer). The
-\code{--html-template=filename} command-line option will then embed the
+\bshcod
+doconce replace 'border:1px' 'border:11px' mydoc.html
+doconce replace 'width: 75%;' 'width: 35%' mydoc.html
+\eshcod
+
+Another way to control the layout is to copy the style in the HTML
+file into a \code{.css} file, edit that file as you like, and provide the
+file as part of the compilation using the \code{--css=mystyle.css}
+flag.
+
+The standard of way of completely controlling the HTML format is to
+use an HTML template. The Doconce source is then the body of text
+(leave out \code{TITLE:} to get HTML without a header and footer). The
+\code{--html_template=filename} command-line option will then embed the
 Doconce text in the specified template file, where you can use style
-sheets and desired constructs in the header and footer.
-The template can have "slots" for a title (\code{%(title)s}),
-a date (\code{%(date)s}), and the main body of text (\code{%(main)s}).
-For typesetting code, \code{pygments} is used (if installed) and can be
-turned off by \code{--no-pygments-html} (leaving code in gray boxes).
+sheets and desired constructs in the header and footer.  The template
+can have "slots" for a title (\code{%(title)s}), a date (\code{%(date)s}), and
+the main body of text (\code{%(main)s}).  For typesetting code, \code{pygments}
+is used (if installed) and can be turned off by \code{--no_pygments_html}
+(leaving code in gray boxes).
 
 
 The easiest way is to get fancy layouts in HTML is to
 use the \code{sphinx} format and one its many themes.
 
-A third, more primitive alternative is to edit the style in the top of
-the HTML file (preferably done automatically via \code{doconce replace} and
-\code{doconce subst} in the script that generates the final documents).
 
 \paragraph{Why do figures look ugly when using HTML templates?.}
-
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
 templates these styles are not defined, resulting in a rule that
