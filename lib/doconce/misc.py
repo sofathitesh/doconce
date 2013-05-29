@@ -3470,7 +3470,7 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
                     n = body.count('item%s' % marker)
                     for i in range(n):
                         body = body.replace('item%s' % marker,
-                                            'item<%d->' % (i+1), 1)
+                                            'item<%d->' % (i+2), 1)
                 else:
                     # treat whole part as a block
                     pattern = r'(\\begin\{block|\\summarybox\{|\\begin\{[A-Za-z0-9_]+admon\})'
