@@ -1188,7 +1188,7 @@ def typeset_envirs(filestr, format):
                     m2 = re.search('^\s*\((.+?)\)', title)
 
                     if title == '' and envir != 'block':
-                        title = envir[0].upper() + envir[1:] + '.'
+                        title = envir.capitalize() + '.'
                     elif title.lower() == 'none':
                         title == ''
                     elif m2:

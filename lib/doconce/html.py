@@ -1053,7 +1053,7 @@ admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
 global admon_css_vars        # set in define
 
 for _admon in admons:
-    _Admon = _admon[0].upper() + _admon[1:]  # upper first char
+    _Admon = _admon.capitalize()  # upper first char
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
     _text = '''

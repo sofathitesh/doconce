@@ -44,6 +44,7 @@ from doconce.misc import (
     fix_bibtex4publish,
     diff,
     gitdiff,
+    csv2table,
     )
 
 def remove_options_from_command_line():
@@ -770,6 +771,7 @@ makefile
 diff
 gitdiff
 fix_bibtex4publish
+csv2table
 """.split()
 
 # -----------------------------------------------------------------------
@@ -905,6 +907,9 @@ doconce diff file1.do.txt file2.do.txt [diffprog]
 
 # find differences between the last two Git versions of several files
 doconce gitdiff file1 file2 file3 ...
+
+# convert csv file to doconce table format
+doconce csv2table somefile.csv
 """
 #doconce teamod name
 #doconce assemble name master.do.txt

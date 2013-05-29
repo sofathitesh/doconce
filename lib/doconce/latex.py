@@ -813,7 +813,7 @@ def _get_admon_figs(filename):
 
 admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
 for _admon in admons:
-    _Admon = _admon[0].upper() + _admon[1:]
+    _Admon = _admon.capitalize()
     text = r"""
 def latex_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
     if title.lower().strip() == 'none':

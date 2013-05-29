@@ -1018,7 +1018,7 @@ transforming a <tt class="docutils literal">.do.txt</tt> file to some format. He
 list of capabilities:</p>
 <pre class="literal-block">
 Usage: doconce command [optional arguments]
-commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst md2html remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html slides_beamer latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format latex2doconce latex_dislikes pygmentize makefile diff gitdiff fix_bibtex4publish csv2table
 
 
 # transform doconce file to another format
@@ -1149,6 +1149,9 @@ doconce diff file1.do.txt file2.do.txt [diffprog]
 
 # find differences between the last two Git versions of several files
 doconce gitdiff file1 file2 file3 ...
+
+# convert csv file to doconce table format
+doconce csv2table somefile.csv
 </pre>
 </div>
 <div class="section" id="exercises">

@@ -274,6 +274,8 @@ cp mako_test3.html mako_test3b.html
 system doconce format html mako_test3 --no_pygments_html # no problem message
 system doconce format html mako_test4 --no_pygments_html  # works fine, lines start with %%
 
+system doconce csv2table testtable.csv > testtable.do.txt
+
 # Test error detection
 doconce format plain failures
 cp failures.do.txt tmp2.do.txt

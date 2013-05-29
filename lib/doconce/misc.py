@@ -5188,6 +5188,8 @@ def _latex2doconce(filestr):
                     table_lines[j] = columns
                 max_column_width += 2   # add space before/after widest column
                 # Construct doconce table
+                # (if the formatting gets wrong, see csv2table, that
+                # formatting works well)
                 width = max_column_width*num_columns + num_columns+1
                 separator0 = '|' + '-'*(width-2) + '|'
                 separator1 = separator0
@@ -5674,21 +5676,74 @@ def makefile():
         dofile = dofile[:-7]
 
     formats = sys.argv[2:]
+
+    # make.py with lots of functions for creating everything you can
+    # create, easy to use in ipython
+    # make.py mydoc sphinx pdflatex beamer
+
     if not formats:
         formats = ['pdflatex', 'html', 'sphinx']
 
-    f = open('make.sh', 'w')
-    f.write("""\
-#!/bin/sh
+    f = open('make.py', 'w')
+    f.write('''\
+#!/usr/bin/env python
+"""
+Automatically generated file for compiling doconce documents.
+"""
+import sys
+
+def system(command):
+    failure = os.system(command)
+    if failure:
+        print 'Could not run\n', command
+        sys.exit(1)
+
+def spellcheck(name):
+    cmd = 'doconce spellcheck -d .dict4spell.txt *.do.txt'
+    system(cmd)
+
+def latex(name, latex_options='', latex_program='pdflatex',
+          ptex2tex_options=''):
+    # Compile source
+    cmd = 'doconce format %(latex_program)ss %(name)s %(latex_options)s ' % vars()
+    # Add options manually here
+    # cmd += '-DVAR1=value1 ...'
+    system(cmd)
+
+    # Transform .p.tex to .tex
+    cmd = 'doconce ptex2tex %(name) %(ptex2tex_options)s envir=minted' % vars()
+    # Add options manually here
+    #cmd += '-DVAR2=value2 ...'
+    system(cmd)
+
+    # Run latex
+    cmd_latex = '%(latex_program)s %(name)s' % vars()
+    system(cmd_latex)
+    cmd = 'makeindex %(name)s' % vars()
+    system(cmd)
+    cmd = 'bibtex %(name)s' % vars()
+    system(cmd)
+    system(cmd_latex)
+    system(cmd_latex)
+    if latex_program == 'latex':
+        cmd = 'dvipdf %(name)s' % vars()
+        system(cmd)
+        # Could instead run dvips and ps2pdf
+
+if __name__ == '__main__':
+    dofile = sys.argv[1]
+    formats = sys.argv[2]
+
+# Bash
 name="%s"
 
 # Perform spellcheck
-doconce spellcheck -d .dict4spell.txt *.do.txt
+
 if [ $? -ne 0 ]; then echo "make.sh aborts due to misspellings"; exit 1; fi
 rm -rf tmp_stripped*
 
 options="--skip_inline_comments"
-""" % (dofile))
+''' % (dofile))
     for format in formats:
         if format == 'pdflatex':
             f.write("""
@@ -5834,6 +5889,61 @@ def fix_bibtex4publish():
         f.writelines(lines)
         f.close()
 
+def _usage_cvs2table():
+    print 'Usage: doconce csv2table somefile.csv'
+
+def csv2table():
+    """Convert a csv file to a Doconce table."""
+    if len(sys.argv) < 2:
+        _usage_csv2table()
+        sys.exit(1)
+    import csv
+    filename = sys.argv[1]
+    csvfile = open(filename, 'r')
+    table = []
+    for row in csv.reader(csvfile):
+        table.append(row)
+    csvfile.close()
+    # Now, table is list of lists
+    for i in range(len(table)):
+        for j in range(len(table[i])):
+            table[i][j] = table[i][j].strip()
+
+    #import pprint;pprint.pprint(table)
+    num_columns = 0
+    max_column_width = 0
+    for row in table:
+        num_columns = max(num_columns, len(row))
+        for column in row:
+            max_column_width = max(max_column_width, len(column))
+    # Add empty cells
+    for i in range(len(table)):
+        table[i] = table[i] + ['']*(num_columns-len(table[i]))
+    # Construct doconce table
+    width = (max_column_width+2)*num_columns + num_columns+1
+    separator0 = '|' + '-'*(width-2) + '|'
+    separator1 = separator0
+    separator2 = separator0
+
+    s = list(separator1)
+    for j in range(num_columns):
+        s[max_column_width/2 + 1 + j*(max_column_width+3)] = 'c'
+    separator1 = ''.join(s)
+    s = list(separator2)
+    for j in range(num_columns):
+        s[max_column_width/2 + 1 + j*(max_column_width+3)] = 'c'
+    separator2 = ''.join(s)
+
+    column_format = ' %%-%ds ' % max_column_width
+    for j in range(len(table)):
+        table[j] = [column_format % c for c in table[j]]
+        table[j] = '|' + '|'.join(table[j]) + '|'
+    text = '\n\n' + separator1 + '\n' + table[0] + '\n' + \
+           separator2 + '\n' + '\n'.join(table[1:]) + \
+           '\n' + separator0 + '\n\n'
+    print text
+
+
 # ------------ diff two files ----------------
 _diff_programs = {
     'latexdiff': ('http://www.ctan.org/pkg/latexdiff', 'latexdiff'),
@@ -5874,16 +5984,21 @@ def diff():
         diffprog = 'difflib'
 
     if diffprog == 'difflib':
-        pydiff(file1, file2)
+        diff_files = pydiff(file1, file2)
+        if diff_files:
+            print 'differences found, see ', \
+                  ','.join([name + '.html|.txt' for name in diff_files])
+
     elif diffprog == 'latexdiff':
         if which('latexdiff'):
             latexdiff(file1, file2)
         else:
             _missing_diff_program('latexdiff')
+
     else:
         diff_files(file1, file2, diffprog)
 
-def pydiff(files1, files2, n=3):
+def pydiff(files1, files2, n=3, prefix_diff_files='tmp_diff_'):
     """
     Use Python's difflib to compute the difference between
     files1 and files2 (can be corresponding lists of files
@@ -5898,6 +6013,7 @@ def pydiff(files1, files2, n=3):
         files2 = [files2]
 
     sizes = []  # measure diffs in bytes
+    diff_files = []  # filestem of non-empty diff files generated
     for fromfile, tofile in zip(files1, files2):
 
         if not os.path.isfile(fromfile):
@@ -5914,32 +6030,28 @@ def pydiff(files1, files2, n=3):
         tolines = open(tofile, 'U').readlines()
 
         diff_html = difflib.HtmlDiff().make_file(
-            fromlines, tolines, fromfile,tofile, context=True, numlines=n)
+            fromlines, tolines, fromfile, tofile, context=True, numlines=n)
         diff_plain = difflib.unified_diff(
             fromlines, tolines, fromfile, tofile, fromdate, todate, n=n)
-        filename_plain = 'tmp_diff_%s.txt' % tofile
-        filename_html  = 'tmp_diff_%s.html' % tofile
+        filename_plain = prefix_diff_files + tofile + '.txt'
+        filename_html  = prefix_diff_files + tofile + '.html'
 
-        if os.path.isfile(filename_plain):
-            os.remove(filename_plain)
         f = open(filename_plain, 'w')
         f.writelines(diff_plain)
         f.close()
 
-        if os.path.isfile(filename_html):
-            os.remove(filename_html)
         f = open(filename_html, 'w')
         f.writelines(diff_html)
         f.close()
         size = os.path.getsize(filename_plain)
+        # Any diff? (Could also just test if the file strings are different)
         if size > 4:
             sizes.append(size)
+            diff_files.append(prefix_diff_files + tofile)
         else:
             os.remove(filename_plain)
             os.remove(filename_html)
-    if sizes:
-        print 'detected differences, see tmp_diff_*.txt or tmp_diff_*.html'
-
+    return diff_files  # empty if no differences
 
 def check_diff(diff_file):
     size = os.path.getsize(diff_file)
