@@ -815,11 +815,27 @@ admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
 for _admon in admons:
     _Admon = _admon[0].upper() + _admon[1:]
     text = r"""
-def latex_%(_admon)s(block, format, title='%(_Admon)s'):
+def latex_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
     if title.lower().strip() == 'none':
         title = ''
     if title == 'Block':  # block admon has no default title
         title = ''
+
+    latex_admon = option('latex_admon=', 'graybox1')
+    if text_size == 'small':
+        # When a font size changing command is used, incl a \par at the end
+        block = r'{\footnotesize ' + block + r' \par}'
+        # Add reduced initial vertical space?
+        if latex_admon in ("yellowbox", "graybox3", "colors2"):
+            block = r'\vspace{-2.5mm}\par\noindent' + '\n' + block
+        elif latex_admon == "colors1":
+            # Add reduced initial vertical space
+            block = r'\vspace{-3.5mm}\par\noindent' + '\n' + block
+        elif latex_admon in ("graybox1", "graybox2"):
+            block = r'\vspace{0.5mm}\par\noindent' + '\n' + block
+    elif text_size == 'large':
+        block = r'{\large ' + block + r' \par}'
+        title = r'{\large ' + title + ' }'
 
     title_graybox1 = title.replace(',', '')  # title in graybox1 cannot handle ,
     if title_graybox1 and title_graybox1[-1] not in ('.', ':', '!', '?'):
@@ -861,34 +877,27 @@ def latex_%(_admon)s(block, format, title='%(_Admon)s'):
 \end{graybox2admon}
 ''' %% (title_graybox1, block_graybox2)
 
-    text = r'''
-%%%% #if ADMON == "colors1"
-\begin{%(_admon)s_colors1admon}[%%(title)s]
+    if latex_admon in ('colors1', 'colors2', 'graybox3', 'yellowbox'):
+        text = r'''
+\begin{%(_admon)s_%%(latex_admon)sadmon}[%%(title)s]
 %%(block)s
-\end{%(_admon)s_colors1admon}
-%%%% #elif ADMON == "colors2"
-\begin{%(_admon)s_colors2admon}[%%(title)s]
-%%(block)s
-\end{%(_admon)s_colors2admon}
-%%%% #elif ADMON == "graybox3"
-\begin{%(_admon)s_graybox3admon}[%%(title)s]
-%%(block)s
-\end{%(_admon)s_graybox3admon}
-%%%% #elif ADMON == "yellowbox"
-\begin{%(_admon)s_yellowboxadmon}[%%(title)s]
-%%(block)s
-\end{%(_admon)s_yellowboxadmon}
-%%%% #elif ADMON == "paragraph"
+\end{%(_admon)s_%%(latex_admon)sadmon}
+''' %% vars()
+    elif latex_admon == 'paragraph':
+        text = r'''
 \begin{paragraphadmon}[%%(title_para)s]
 %%(block)s
 \end{paragraphadmon}
-%%%% #elif ADMON == "graybox2"
+''' %% vars()
+    elif latex_admon == 'graybox2':
+        text = r'''
 %%(envir_graybox2)s
-%%%% #else
+''' %% vars()
+    else:
+        text = r'''
 \begin{graybox1admon}[%%(title_graybox1)s]
 %%(block)s
 \end{graybox1admon}
-%%%% #endif
 ''' %% vars()
     return text
     """ % vars()
@@ -1340,30 +1349,19 @@ final,                   % or draft (marks overfull hboxes)
 """
     # Admonitions
     if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
-        INTRO['latex'] += r"""
-% #ifndef ADMON
-% #define ADMON "colors1"
-% Default is "colors2", i.e., box with color and text wrapped around icon
-% #endif
-
-% #if ADMON == "colors1"
-\usepackage{framed}
-% #elif ADMON == "colors2"
-\usepackage{framed,wrapfig}
-% #elif ADMON == "graybox3"
-\usepackage{framed,wrapfig}
-% #elif ADMON == "yellowbox"
-\usepackage{framed,wrapfig}
-% #elif ADMON == "paragraph"
-% #elif ADMON == "graybox2"
-\usepackage{wrapfig,calc}
-\usepackage[framemethod=TikZ]{mdframed}
-% #else
-\usepackage[framemethod=TikZ]{mdframed}
-% #endif
-"""
-        INTRO['latex'] += r"""
-% #if ADMON == "graybox2"
+        latex_admon = option('latex_admon=', 'graybox1')
+        if latex_admon in ('colors1',):
+            packages = r'\usepackage{framed}'
+        elif latex_admon in ('colors2', 'graybox3', 'yellowbox'):
+            packages = r'\usepackage{framed,wrapfig}'
+        elif latex_admon in ('graybox2',):
+            packages = r"""\usepackage{wrapfig,calc}
+\usepackage[framemethod=TikZ]{mdframed}"""
+        else: # graybox1
+            packages = r'\usepackage[framemethod=TikZ]{mdframed}'
+        INTRO['latex'] += '\n' + packages + '\n'
+        if latex_admon == 'graybox2':
+            INTRO['latex'] += r"""
 % gray box with horizontal rules (cannot handle verbatim text)
 \definecolor{lightgray}{rgb}{0.94,0.94,0.94}
 % #ifdef A4PAPER
@@ -1409,15 +1407,16 @@ final,                   % or draft (marks overfull hboxes)
 {
 \end{graybox2mdframed}
 }
-
-% #elif ADMON == "paragraph"
+"""
+        elif latex_admon == 'paragraph':
+            INTRO['latex'] += r"""
 % Admonition is just a paragraph
 \newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
-% #elif ADMON == "colors1"
-% #elif ADMON == "colors2"
-% #elif ADMON == "graybox3"
-% #elif ADMON == "yellowbox"
-% #else
+"""
+        elif latex_admon in ('colors1', 'colors2', 'graybox3', 'yellowbox'):
+            pass
+        else:
+            INTRO['latex'] += r"""
 % Admonition is an oval gray box
 \newmdenv[
   backgroundcolor=gray!10,  %% white with 10%% gray
@@ -1435,7 +1434,6 @@ final,                   % or draft (marks overfull hboxes)
 {
 \end{graybox1mdframed}
 }
-% #endif
 """
         _light_blue = (0.87843, 0.95686, 1.0)
         _light_yellow1 = (0.988235, 0.964706, 0.862745)
@@ -1488,7 +1486,7 @@ final,                   % or draft (marks overfull hboxes)
 \vspace{-13pt}
 \includegraphics[width=0.07\textwidth]{latex_figs/%s}
 \end{wrapfigure}""" % admon
-            # Old typesetting of title (for ADMON=colors): {\large\sc #1}
+            # Old typesetting of title (for latex_admon==colors1): {\large\sc #1}
 
             #color_graybox3 = str(_gray3)[1:-1]
             color_graybox3 = str(_gray2)[1:-1]
@@ -1511,8 +1509,8 @@ final,                   % or draft (marks overfull hboxes)
                 graphics_graybox3 = ''
                 graphics_yellowbox = ''
 
-            INTRO['latex'] += r"""
-%% #if ADMON == "colors1"
+            if latex_admon == 'colors1':
+                INTRO['latex'] += r"""
 %% Admonition environment for "%(admon)s"
 %% Style from NumPy User Guide
 \definecolor{%(admon)sbackground}{rgb}{%(color_colors)s}
@@ -1525,12 +1523,14 @@ final,                   % or draft (marks overfull hboxes)
 \begin{%(admon)sshaded}
 \noindent
 %(graphics_colors1)s  \textbf{#1}\\ \par
-\nobreak\noindent\ignorespaces
+\vspace{-3mm}\nobreak\noindent\ignorespaces
 }
 {
 \end{%(admon)sshaded}
 }
-%% #elif ADMON == "colors2"
+""" % vars()
+            elif latex_admon == 'colors2':
+                INTRO['latex'] += r"""
 %% Admonition environment for "%(admon)s"
 \definecolor{%(admon)sbackground}{rgb}{%(color_colors)s}
 %% \fboxsep sets the space between the text and the box
@@ -1547,7 +1547,9 @@ final,                   % or draft (marks overfull hboxes)
 {
 \end{%(admon)sshaded}
 }
-%% #elif ADMON == "graybox3"
+""" % vars()
+            elif latex_admon == 'graybox3':
+                INTRO['latex'] += r"""
 %% Admonition environment for "%(admon)s"
 \definecolor{%(admon)sbackground}{rgb}{%(color_graybox3)s}
 %% \fboxsep sets the space between the text and the box
@@ -1564,7 +1566,9 @@ final,                   % or draft (marks overfull hboxes)
 {
 \end{%(admon)sshaded}
 }
-%% #elif ADMON == "yellowbox"
+""" % vars()
+            elif latex_admon == 'yellowbox':
+                INTRO['latex'] += r"""
 %% Admonition environment for "%(admon)s"
 \definecolor{%(admon)sbackground}{rgb}{%(color_yellowbox)s}
 %% \fboxsep sets the space between the text and the box
@@ -1581,7 +1585,6 @@ final,                   % or draft (marks overfull hboxes)
 {
 \end{%(admon)sshaded}
 }
-%% #endif
 """ % vars()
 
     INTRO['latex'] += r"""

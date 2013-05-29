@@ -36,6 +36,7 @@ pygments_html_linenos = False
 latex_double_hyphen = False
 #latex_preamble = 
 #html_admon = 
+#latex_admon = 
 #css = 
 verbose = False
 examples_as_exercises = False

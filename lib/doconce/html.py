@@ -62,9 +62,12 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
 # Style sheets
 
 admon_styles1 = """\
+    .alert-text-small  { font-size: 80%%;  }
+    .alert-text-large  { font-size: 130%%; }
+    .alert-text-normal  { font-size: 90%%; }
     .notice, .summary, .warning, .hint, .question, .block {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
+       border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+       background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: %(background_notice)s;
                 background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_notice)s); }
@@ -80,6 +83,9 @@ admon_styles1 = """\
 """
 
 admon_styles2 = """\
+    .alert-text-small  { font-size: 80%%;  }
+    .alert-text-large  { font-size: 130%%; }
+    .alert-text-normal  { font-size: 90%%; }
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -92,7 +98,6 @@ admon_styles2 = """\
              background-repeat: no-repeat;
              background-size: 38px;
              padding-left: 55px;
-             font-size: 90%%; /*0.8em;*/
              width: 75%%;
      }
      .alert-block {padding-top:14px; padding-bottom:14px}
@@ -1052,9 +1057,11 @@ for _admon in admons:
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
     _text = '''
-def html_%(_admon)s(block, format, title='%(_Admon)s'):
+def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
+    # No title?
     if title.lower().strip() == 'none':
         title = ''
+    # Blocks without explicit title should have empty title
     if title == 'Block':  # block admon has no default title
         title = ''
 
@@ -1069,21 +1076,22 @@ def html_%(_admon)s(block, format, title='%(_Admon)s'):
         if not keep_pygm_bg:
             block = re.sub(pygments_pattern, r'"background: %%s">' %%
                            admon_css_vars['colors']['background_%(_admon)s'], block)
-        janko = """<div class="%(_admon)s"><b>%%s</b>
+        janko = """<div class="%(_admon)s alert-text-%%s"><b>%%s</b>
 %%s
 </div>
-""" %% (title, block)
+""" %% (text_size, title, block)
         return janko
     elif html_admon in admon_css_vars or option('html_style=') == 'vagrant':
         if not keep_pygm_bg:
             block = re.sub(pygments_pattern, r'"background: %%s">' %%
                            admon_css_vars[html_admon]['background'], block)
-        vagrant = """<div class="alert alert-block alert-%(_admon)s"><b>%%s</b>
+        vagrant = """<div class="alert alert-block alert-%(_admon)s alert-text-%%s"><b>%%s</b>
 %%s
 </div>
-""" %% (title, block)
+""" %% (text_size, title, block)
         return vagrant
     else:
+        block = '<div class="alert-text-%%s">%%s<div>' %% (text_size, block)
         if '%(_admon)s' != 'block':
             lyx = """
 <table width="95%%%%" border="0">

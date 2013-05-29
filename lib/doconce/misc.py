@@ -65,6 +65,8 @@ inserted to the right in exercises - "default" and "none" are allowed
      """User-provided LaTeX preamble file, either complete or additions."""),
     ('--html_admon=',
      "Type of admonition and color: white, colors, gray, yellow."),
+    ('--latex_admon=',
+     "Type of admonition and color: colors1-2, graybox1-3, yellowbox, paragraph."),
     ('--css=',
      """Specify a .css style file for HTML output. If the file does not exist, the default or specified style (--html_style=) is written to it."""),
     ('--verbose',
@@ -2071,6 +2073,8 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
     hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }
     hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
+    .text-small  { font-size: 60%%;  }
+    .text-large  { font-size: 130%%; }
     .reveal .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
@@ -2939,6 +2943,8 @@ git://github.com/barraq/deck.ext.js.git
     hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }
     hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
+    .text-small  { font-size: 60%%;  }
+    .text-large  { font-size: 130%%; }
     .slide .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);

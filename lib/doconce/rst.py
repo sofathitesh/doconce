@@ -353,7 +353,7 @@ def rst_quote(block, format):
 # Admon:
 # reST has native admons, but only the warning applies color.
 
-def rst_admon(block, format, title='Admonition'):
+def rst_admon(block, format, title='Admonition', text_size='normal'):
     if title == '' or title.lower() == 'none':
         title = 'Notice'  # dummy title: with title as '', nothing comes out
     if title[-1] in ('!', ':', '?', ';', '.'):
@@ -366,13 +366,13 @@ def rst_admon(block, format, title='Admonition'):
 
 """ % (title, indent_lines(block, format, ' '*3))
 
-def rst_summary(block, format, title='Summary'):
-    return rst_admon(block, format, title)
+def rst_summary(block, format, title='Summary', text_size='normal'):
+    return rst_admon(block, format, title, text_size)
 
-def rst_block(block, format, title=''):
-    return rst_admon(block, format, title)
+def rst_block(block, format, title='', text_size='normal'):
+    return rst_admon(block, format, title, text_size)
 
-def rst_warning(block, format, title='Warning'):
+def rst_warning(block, format, title='Warning', text_size='normal'):
     if title.startswith('Warning'):
         # Use pre-defined admonition that coincides with our needs
         return """
@@ -381,19 +381,19 @@ def rst_warning(block, format, title='Warning'):
 
 """ % (indent_lines(block, format, ' '*4))
     else:
-        return rst_admon(block, format, title)
+        return rst_admon(block, format, title, text_size)
 
-def rst_question(block, format, title='Question'):
-    return rst_admon(block, format, title)
+def rst_question(block, format, title='Question', text_size='normal'):
+    return rst_admon(block, format, title, text_size)
 
-def rst_hint(block, format):
+def rst_hint(block, format, title='Hint', text_size='normal'):
     return """
 .. hint::
 %s
 
 """ % (indent_lines(block, format, ' '*3))
 
-def rst_notice(block, format, title='Notice'):
+def rst_notice(block, format, title='Notice', text_size='normal'):
     if title.startswith('Notice'):
         return """
 .. note::
@@ -401,7 +401,7 @@ def rst_notice(block, format, title='Notice'):
 
 """ % (indent_lines(block, format, ' '*3))
     else:
-        return rst_admon(block, format, title)
+        return rst_admon(block, format, title, text_size)
 
 
 def define(FILENAME_EXTENSION,

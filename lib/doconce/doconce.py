@@ -1127,11 +1127,20 @@ def typeset_envirs(filestr, format):
         if format in ENVIRS and envir in ENVIRS[format]:
             def subst(m):  # m: match object from re.sub, group(1) is the text
                 title = m.group(1).strip()
+                # Text size specified in parenthesis?
+                m2 = re.search('^\s*\((.+?)\)', title)
+                text_size = 'normal'
+                if m2:
+                    text_size = m2.group(1).lower()
+                    title = title.replace('(%s)' % text_size, '').strip()
+                    if text_size not in ('small', 'large'):
+                        print '*** error: wrong text size "%s" specified in %s environment!' % (text_size, envir)
+                        print '    must be large or small - will be set to normal'
                 if title == '':
                     # Rely on the format's default title
-                    return ENVIRS[format][envir](m.group(2), format)
+                    return ENVIRS[format][envir](m.group(2), format, text_size=text_size)
                 else:
-                    return ENVIRS[format][envir](m.group(2), format, title)
+                    return ENVIRS[format][envir](m.group(2), format, title, text_size=text_size)
         else:
             # subst functions for default handling in primitive formats
             if envir == 'quote':
@@ -1142,10 +1151,16 @@ def typeset_envirs(filestr, format):
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
                     title = m.group(1).strip()
+                    # Text size specified in parenthesis?
+                    m2 = re.search('^\s*\((.+?)\)', title)
+
                     if title == '' and envir != 'block':
                         title = envir[0].upper() + envir[1:] + '.'
                     elif title.lower() == 'none':
                         title == ''
+                    elif m2:
+                        text_size = m2.group(1).lower()
+                        title = title.replace('(%s)' % text_size, '').strip()
                     elif title and title[-1] not in ('.', ':', '!', '?'):
                         # Make sure the title ends with puncuation
                         title += '.'
@@ -1160,7 +1175,7 @@ def typeset_envirs(filestr, format):
             # else: other envirs for slides are treated later with
             # the begin and end directives set in comments, see doconce2format
 
-        pattern = r'^!b%s([A-Za-z0-9,.!:? /\-]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
+        pattern = r'^!b%s([A-Za-z0-9,.!:? /()\-]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
         filestr = re.sub(pattern, subst, filestr,
                          flags=re.DOTALL | re.MULTILINE)
     return filestr

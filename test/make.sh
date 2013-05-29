@@ -282,11 +282,11 @@ doconce format pandoc $name
 doconce md2latex $name
 
 # Test admonitions
-doconce format pdflatex admon
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 admon_tps="colors1 graybox1 paragraph graybox2 yellowbox graybox3 colors2"
 for admon_tp in $admon_tps; do
-doconce ptex2tex admon envir=minted -DADMON=$admon_tp
+doconce format pdflatex admon --latex_admon=$admon_tp
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce ptex2tex admon envir=minted
 cp admon.tex admon_${admon_tp}.tex
 pdflatex -shell-escape admon_${admon_tp}
 done
@@ -322,6 +322,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 #google-chrome admon_*.html
+#for pdf in admon_*.pdf; do evince $pdf; done
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
