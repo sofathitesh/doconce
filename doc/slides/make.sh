@@ -19,7 +19,7 @@ doconce replace '\label{fig1}' 'label{fig1}' $name_reveal.html
 doconce replace '\label{demo' 'label{demo' $name_reveal.html
 
 
-doconce format html $name --pygments_html_style=perldoc --html_style=solarized
+doconce format html $name --pygments_html_style=perldoc --html_style=solarized --html_admon=apricot
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp $name.html ${name}_solarized.html
 doconce format html $name --pygments_html_style=default
