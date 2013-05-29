@@ -18881,7 +18881,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
   <meta name="author" content="A. Dummy Author" />
   <meta name="author" content="I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst" />
   <meta name="author" content="J. Doe" />
-  <meta name="date" content="2013-05-28" />
+  <meta name="date" content="2013-05-29" />
   <title>A Document for Testing Doconce</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -28636,7 +28636,7 @@ cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg --tables2csv
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg
 
 system doconce remove_exercise_answers testdoc.html
 system doconce html_colorbullets testdoc.html
@@ -28679,7 +28679,7 @@ system doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbat
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-system doconce format plain testdoc.do.txt $ex -DSOMEVAR=1
+system doconce format plain testdoc.do.txt $ex -DSOMEVAR=1 --tables2csv
 system doconce format st testdoc.do.txt $ex
 system doconce format sphinx testdoc.do.txt $ex
 mv -f testdoc.rst testdoc.sphinx.rst
@@ -28790,7 +28790,7 @@ doconce sphinx_dir dirname=sphinx-rootdir-math $name
 cp automake_sphinx.py automake_sphinx_math_test.py
 python automake_sphinx.py
 doconce format pandoc $name
-# Do not use pandoc directly because it does not support MathJax enough
+# Do not use pandoc directly because it does not support MathJax sufficiently well
 doconce md2html $name.md
 cp $name.html ${name}_pandoc.html
 doconce format pandoc $name
@@ -28831,6 +28831,7 @@ system python automake_sphinx.py
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 system doconce format mwiki admon
+cp admon.mwiki admon_mwiki.mwiki
 
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done
@@ -29600,7 +29601,7 @@ to <code>\boldsymbol</code>.
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="HPL" />
-  <meta name="date" content="2013-05-28" />
+  <meta name="date" content="2013-05-29" />
   <title>How various formats can deal with LaTeX math</title>
   <style type="text/css">code{white-space: pre;}</style>
   
@@ -41325,6 +41326,256 @@ While the <div class="deep-blue">rest of the</div> getting started
 
 
 
+************** File: admon_mwiki.mwiki *****************
+#TITLE (actually governed by the filename): Testing admons
+
+By '''hpl'''
+==== Jan 32, 2100 ====
+
+== Introduction ==
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+
+
+==== Code ====
+
+Need some code outside admons for color and font comparisons:
+
+<syntaxhighlight lang="python">
+def some_code(x):
+    return sin(x)*exp(1-x)
+</syntaxhighlight>
+
+And some plain text verbatim:
+
+<syntaxhighlight lang="text">
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+</syntaxhighlight>
+
+==== Admonitions ====
+
+Let us start with a plain warning environment.
+
+
+{{mbox
+| type = warning
+| textstyle = font-size: 90%;
+| text = '''Warning.''' And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+
+
+<ul>
+  <li> and a list
+  <li> with items
+</ul>
+
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+}}
+
+Test warning with title:
+
+
+{{mbox
+| type = warning
+| textstyle = font-size: 130%;
+| text = '''Watch Out.''' And here comes some text with bad news in larger font.
+}}
+
+Then we test a block, which is guaranteed to never have any admon icon.
+
+''Block with title''\n
+Here is a block of text with title. It is typeset
+''without any icon'' and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+
+The next admonition features a title "Note, eventually!".
+
+<!-- Note that the final ! does not appear in Sphinx and reST since -->
+<!-- those formats automatically add : to the admonition title. -->
+
+
+{{mbox
+| type = notice
+| textstyle = font-size: illegal-size;
+| text = '''Note, eventually!''' Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math:
+:<math>
+ p=q
+</math>
+}}
+
+<!-- Test one word with a number -->
+
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Point1.''' Ah, we are soon close to the end.
+}}
+
+
+{{mbox
+| type = Question.
+| textstyle = font-size: 90%;
+| text = '''Question.''' So, how many admonition environments does Doconce support?
+}}
+
+
+{{mbox
+| type = Question.
+| textstyle = font-size: 90%;
+| text = '''Question.''' 
+<ol>
+ <li> Once more, how many admonition environments does Doconce support?
+</ol>
+}}
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Hint.''' It is smart to read on and remember to
+
+
+<ol>
+<li> stay cool
+<li> read hints carefully
+</ol>
+
+Also, remember
+
+<syntaxhighlight lang="python">
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+</syntaxhighlight>
+}}
+
+Next is a warning without a title ("none" implies no title).
+
+
+{{mbox
+| type = warning
+| textstyle = font-size: 90%;
+| text = '''''' And here comes some text with bad news.
+}}
+
+==== Going deeper environments ====
+
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Going deeper.''' We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+
+Let us start with some equations:
+
+:<math>
+\begin{align*}
+\frac{Du}{dt} &= 0
+\\
+\frac{1}{2} &= {1/2}\\
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align*}
+</math>
+
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+
+<syntaxhighlight lang="python">
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+</syntaxhighlight>
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+
+<syntaxhighlight lang="python">
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+</syntaxhighlight>
+And then we add a figure too.
+
+
+[[File:Wavepacket 0001.png|frame|alt=Wavepacket 0001.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
+}}
+
+==== The end ====
+
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+
+{{mbox
+| type = Concluding remarks, for the novice.
+| textstyle = font-size: 90%;
+| text = '''Concluding remarks, for the novice.''' We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+}}
+
+
 ************** File: slides1.do.txt *****************
 TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
@@ -48755,17 +49006,17 @@ time,velocity,acceleration
 3.0,1.1E+1,14.717624
 
 ************** File: table_3.csv *****************
-\( i \),\( h_i \),\( \bar T_i \),<code>L_i</code>
+i,h_i,\bar T_i,L_i
 0,0,288,-0.0065
 1,"11,000",216,0.0
 2,"20,000",216,0.001
 3,"32,000",228,0.0028
 4,"47,000",270,0.0
 5,"51,000",270,-0.0028
-6,"71,000",214,<code>NaN</code>
+6,"71,000",214,NaN
 
 ************** File: table_4.csv *****************
-exact,<code>v_1</code>,\( a_i \) + <code>v_2</code>,<code>verb_3_</code>
+exact,v_1,a_i + v_2,verb_3_
 9,9.62,5.57,8.98
 -20,-23.39,-7.65,-19.93
 10,17.74,-4.50,9.96
@@ -48993,7 +49244,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 28 May 2013 (23:34)</center>
+<center>Wed, 29 May 2013 (03:38)</center>
 
 
 
@@ -49124,7 +49375,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 28 May 2013 (23:34)</center>
+<center>Wed, 29 May 2013 (03:38)</center>
 
 
 
@@ -62227,8 +62478,8 @@ output in testdoc.html
 + doconce split_html testdoc_vagrant.html
 testdoc_vagrant.html now links to the generated files
 ._part0000_testdoc_vagrant.html, ._part0001_testdoc_vagrant.html, ._part0002_testdoc_vagrant.html
-+ system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --tables2csv
-+ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --tables2csv
++ system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
++ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg
 running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 translating doconce text in tmp_mako__testdoc.do.txt to html
@@ -64837,8 +65088,8 @@ Transcript written on testdoc.log.
 + '[' 0 -ne 0 ']'
 + echo '----------- end of doconce ptex2tex output ----------------'
 + cat testdoc.tex
-+ system doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
-+ doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1
++ system doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1 --tables2csv
++ doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1 --tables2csv
 running preprocess -DFORMAT=plain -DDEVICE=screen -DSOMEVAR=1 testdoc.do.txt > tmp_preprocess__testdoc.do.txt
 running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
 mako variables: {'DEVICE': 'screen', 'SOMEVAR': 1, 'FORMAT': 'plain'}
@@ -69019,6 +69270,7 @@ figure file ../doc/manual/figs/wavepacket_0001:
     must be large or small - will be set to normal
 output in admon.mwiki
 + '[' 0 -ne 0 ']'
++ cp admon.mwiki admon_mwiki.mwiki
 + system doconce guess_encoding encoding1.do.txt
 + doconce guess_encoding encoding1.do.txt
 + '[' 0 -ne 0 ']'
