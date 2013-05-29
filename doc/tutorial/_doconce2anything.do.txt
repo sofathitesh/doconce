@@ -3,7 +3,7 @@
 label{doconce2formats}
 
 Transformation of a Doconce document `mydoc.do.txt` to various other
-formats applies the script `doconce format`:
+formats apply the script `doconce format`:
 !bc sys
 Terminal> doconce format format mydoc.do.txt
 !ec

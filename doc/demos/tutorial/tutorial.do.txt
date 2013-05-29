@@ -27,41 +27,72 @@ DATE: today
 If any of these questions are of interest, you should keep on reading.
 
 
+======= Some Doconce Features =======
+
+ * Strong support for texts with much math and code.
+
+ * Same source can produce a variety of output formats.
+   The following support LaTeX math and (pygmentized) code:
+
+   o "traditional LaTeX B/W documents for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf"
+   o "color LaTeX PDF documents": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf"
+   o "color LaTeX PDF documents for viewing on small phones": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+   o "Sphinx HTML documents with 20+ different designs": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html"
+   o "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
+   o HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blogs
+   o "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page" (Wikipedia, Wikibooks, etc)
+   o Markdown
+   o IPython notebook
+
+   Other formats include plain untagged text (for email),
+   Creole wiki (for Bitbucket wikis), Google wiki (for Googlecode),
+   reStructuredText, and Epytext.
+
+ * Integration with Mako enables use of variables, functions, if-tests,
+   and loops to parameterize the text and generate various versions of
+   the text for different purposes.
+
+ * Computer code can be copied directly from parts of source code files.
+
+ * Running text can quickly be edited to slide formats (reveal.js and deck.js,
+   based on HTML5+CSS3).
+
+ * Special exercise environments with support for hints, answers,
+   subexercises, etc.
+
+ * Automatic inline embedding of YouTube and Vimeo movies.
+
+ * Good support for admonitions in various LaTeX and HTML styles
+   for warnings, questions, hints, remarks, summaries, etc.
+
+
 ======= What Does Doconce Look Like? =======
 
 Doconce text looks like ordinary text (much like Markdown), but there
 are some almost invisible text constructions that allow you to control
 the formating. Here are some examples.
 
-  * Bullet lists arise from lines starting with `*`.
+  * Bullet lists automatically arise from lines starting with `*`,
+    or `o` if the list is to be enumerated.
 
-  * *Emphasized words* are surrounded by `*`.
-
-  * _Words in boldface_ are surrounded by underscores.
+  * *Emphasized words* are surrounded by `*`. _Words in boldface_
+    are surrounded by underscores.
 
   * Words from computer code are enclosed in back quotes and
     then typeset `verbatim (in a monospace font)`.
 
-  * Section headings are recognied by equality (`=`) signs before
-    and after the title, and the number of `=` signs indicates the
-    level of the section: 7 for main section, 5 for subsection, and
-    3 for subsubsection.
+  * Section and paragraph headings are recognied special
+    decorating characters (`=` or `_`) before and after the heading.
+    The length of the decoration determines the level of the
+    section.
 
-  * Paragraph headings are recognized by a double underscore
-    before and after the heading.
-
-  * The abstract of a document starts with *Abstract* as paragraph
-    heading, and all text up to the next heading makes up the abstract,
-
-  * Blocks of computer code can easily be included by placing
-    `!bc` (begin code) and `!ec` (end code) commands at separate lines
-    before and after the code block.
+  * Blocks of computer code are included by surrounding the blocks with
+    `!bc` (begin code) and `!ec` (end code) tags on separate lines.
 
   * Blocks of computer code can also be imported from source files.
 
-  * Blocks of LaTeX mathematics can easily be included by placing
-    `!bt` (begin TeX) and `!et` (end TeX) commands at separate lines
-    before and after the math block.
+  * Blocks of LaTeX mathematics are included by surrounding the blocks
+    with `!bt` (begin TeX) and `!et` (end TeX) tags on separate lines.
 
   * There is support for both LaTeX and text-like inline mathematics
     such that formulas make sense also when not rendered by LaTeX
@@ -71,6 +102,9 @@ the formating. Here are some examples.
     URLs with links, index list, labels and references are supported.
     YouTube and Vimeo videos are automatically embedded in web documents.
 
+  * The abstract of a document starts with *Abstract* as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+
   * Special comment lines are not visible in the output.
 
   * Comments to authors can be inserted throughout the text and
@@ -78,14 +112,11 @@ the formating. Here are some examples.
 
   * There is an exercise environment with many advanced features.
 
-  * With a preprocessor, Preprocess or Mako, one can include
-    other documents (files), large portions of text can be defined
-    in or out of the text, and tailored format-specific constructs can easily
-    be included.
-
-  * With Mako one can also have Python code
-    embedded in the Doconce document and thereby parameterize the
-    text (e.g., one text can describe programming in two languages).
+  * With a preprocessor, Preprocess or Mako, one can include other
+    documents (files), large portions of text can be defined in or out
+    of the text, and tailored format-specific constructs can easily be
+    included. With Mako a single text can output its program examples
+    in two or more languages.
 
 ===== What Can Doconce Be Used For? =====
 
@@ -96,16 +127,25 @@ suited for thesis and books. IPython notebooks are ideal for
 documenting computational experiments, but do not (yet) meet the
 requirements of books and thesis.
 
-What about migrating a part of a book for blogging? What about
-making an MS Word version or an untagged text for inclusion in email?
-What about efficiently generating slides in modern HTML5/CSS3 style?
-Doconce enables all this with just *one source*. Doconce also has
-extra features for supporting documents with much code and mathematics.
+What about migrating a part of a book for blogging? What about making
+an MS Word version of parts or an untagged text for inclusion in
+email?  What about efficiently generating slides in modern HTML5
+style?  Doconce enables all this with just *one source* (the slogan is
+*document once - include anywhere*).
+Doconce also
+has many extra features for supporting documents with much code and
+mathematics, not found in any of the mentioned formats.
 
 ===== Basic Syntax =====
 
 Here is an example of some simple text written in the Doconce format:
 !bc
+======= First a Section Heading =======
+
+Section headings have 7 equality characters before and after the heading.
+With 9 characters we have a chapter heading, 5 gives a subsection
+heading, and 3 a subsubsection heading.
+
 ===== A Subsection with Sample Text =====
 label{my:first:sec}
 
@@ -123,9 +163,14 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
+__Hyperlinks.__ Paragraph headings are surrounded by double underscores.
 URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL": "tutorial.do.txt".
+as in "URL": "tutorial.do.txt". Doconce distinguishes between paper
+and screen output. In traditional paper output, in PDF generated from LaTeX
+generated from Doconce, the URLs of links appear as footnotes.
+With screen output, all links are clickable hyperlinks, except in
+the plain text format which does not support hyperlinks.
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -151,6 +196,13 @@ Tables are also supperted, e.g.,
 !ec
 The Doconce text above results in the following little document:
 
+
+======= First a Section Heading =======
+
+Section headings have 7 equality characters before and after the heading.
+With 9 characters we have a chapter heading, 5 gives a subsection
+heading, and 3 a subsubsection heading.
+
 ===== A Subsection with Sample Text =====
 label{my:first:sec}
 
@@ -169,9 +221,14 @@ Lists can also have numbered items instead of bullets, just use an `o`
   o item 2
   o item 3
 
-URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+__Hyperlinks.__ Paragraph headings are surrounded by double underscores.
+URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL": "tutorial.do.txt".
+as in "URL": "tutorial.do.txt". Doconce distinguishes between paper
+and screen output. In traditional paper output, in PDF generated from LaTeX
+generated from Doconce, the URLs of links appear as footnotes.
+With screen output, all links are clickable hyperlinks, except in
+the plain text format which does not support hyperlinks.
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -180,7 +237,9 @@ Section ref{my:first:sec}.
 Doconce also allows inline comments such as [hpl: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see Section ref{doconce2formats} for an example).
+(see Section ref{doconce2formats} for an example). Ordinary comment
+lines start with `#` and are copied to comment lines in the
+output format.
 
 Tables are also supperted, e.g.,
 
@@ -230,9 +289,12 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 \end{align}
 |et
 !ec
-# Note: |bt and |et (and |bc and |ec below) are used to illustrate
-# tex and code blocks in inside verbatim blocks and are replaced
-# by !bt, !et, !bc, and !ec after all other formatting is finished.
+## Note: |bt and |et (and |bc and |ec below) are used to illustrate
+## tex and code blocks in inside verbatim blocks and are replaced
+## by !bt, !et, !bc, and !ec after all other formatting is finished.
+## (Comment lines starting with ## are not copied to the output
+## format and hence much used to explain the Doconce syntax
+## used in special constructions.)
 The result looks like this:
 
 !bt
@@ -350,7 +412,7 @@ for various formats of this document).
 
 The current text is generated from a Doconce format stored in the file
 !bc
-docs/tutorial/tutorial.do.txt
+doc/tutorial/tutorial.do.txt
 !ec
 The file `make.sh` in the `tutorial` directory of the
 Doconce source code contains a demo of how to produce a variety of

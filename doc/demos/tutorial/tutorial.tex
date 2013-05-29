@@ -24,7 +24,8 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage{minted}
 \usemintedstyle{default}
 
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
@@ -32,16 +33,13 @@ final,                   % or draft (marks overfull hboxes)
 % Hyperlinks in PDF:
 \usepackage[%
     colorlinks=true,
-    linkcolor=black,
-    %linkcolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
-    urlcolor=black,
     pdfmenubar=true,
     pdftoolbar=true,
-    urlcolor=black,
-    %urlcolor=blue,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
@@ -63,11 +61,29 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 
-\newcommand{\shortinlinecomment}[3]{}
-\newcommand{\longinlinecomment}[3]{}
+\newcommand{\shortinlinecomment}[3]{{\bf #1}: \emph{#2}}
+\newcommand{\longinlinecomment}[3]{{\bf #1}: \emph{#2}}
 
-\usepackage[mathlines]{lineno}  % show line numbers
-\linenumbers
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% Admonition is an oval gray box
+\newmdenv[
+  backgroundcolor=gray!10,  %% white with 10%% gray
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  outerlinewidth=0.5,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+]{graybox1mdframed}
+
+\newenvironment{graybox1admon}[1][]{
+\begin{graybox1mdframed}[frametitle=#1]
+}
+{
+\end{graybox1mdframed}
+}
 
 
 % prevent orhpans and widows
@@ -76,6 +92,8 @@ final,                   % or draft (marks overfull hboxes)
 
 % http://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage[compact]{titlesec}  % narrower section headings
+
+% --- end of standard preamble for documents ---
 
 
 % insert custom LaTeX commands...
@@ -94,7 +112,6 @@ final,                   % or draft (marks overfull hboxes)
 
 
 % ----------------- title -------------------------
-
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -102,7 +119,6 @@ Doconce: Document Once, Include Anywhere
 \end{spacing}
 }
 \end{center}
-
 
 % ----------------- author(s) -------------------------
 
@@ -118,11 +134,8 @@ Doconce: Document Once, Include Anywhere
 % ----------------- end author(s) -------------------------
 
 
-% ----------------- date -------------------------
-
-
 \begin{center}
-Apr 24, 2013
+May 29, 2013
 \end{center}
 
 \vspace{1cm}
@@ -154,6 +167,58 @@ Apr 24, 2013
 If any of these questions are of interest, you should keep on reading.
 
 
+\section{Some Doconce Features}
+
+\begin{itemize}
+ \item Strong support for texts with much math and code.
+
+ \item Same source can produce a variety of output formats.
+   The following support {\LaTeX} math and (pygmentized) code:
+\begin{enumerate}
+
+  \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf}}{traditional {\LaTeX} B/W documents for printing}
+
+  \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/report.pdf}}{color {\LaTeX} PDF documents}
+
+  \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf}}{color {\LaTeX} PDF documents for viewing on small phones}
+
+  \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{Sphinx HTML documents with 20+ different designs}
+
+  \item \href{{http://hplgit.github.com/teamods/writing_reports/_static/report.html}}{Plain HTML} or with a \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html}}{template} or \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html}}{another template} or \href{{http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html}}{solarized}
+
+  \item HTML for \href{{http://doconce-report-demo.blogspot.no/}}{Google} or \href{{http://doconcereportdemo.wordpress.com/}}{Wordpress} blogs
+
+  \item \href{{http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page}}{MediaWiki} (Wikipedia, Wikibooks, etc)
+
+  \item Markdown
+
+  \item IPython notebook
+\end{enumerate}
+
+\noindent
+   Other formats include plain untagged text (for email),
+   Creole wiki (for Bitbucket wikis), Google wiki (for Googlecode),
+   reStructuredText, and Epytext.
+
+ \item Integration with Mako enables use of variables, functions, if-tests,
+   and loops to parameterize the text and generate various versions of
+   the text for different purposes.
+
+ \item Computer code can be copied directly from parts of source code files.
+
+ \item Running text can quickly be edited to slide formats (reveal.js and deck.js,
+   based on HTML5+CSS3).
+
+ \item Special exercise environments with support for hints, answers,
+   subexercises, etc.
+
+ \item Automatic inline embedding of YouTube and Vimeo movies.
+
+ \item Good support for admonitions in various {\LaTeX} and HTML styles
+   for warnings, questions, hints, remarks, summaries, etc.
+\end{itemize}
+
+\noindent
 \section{What Does Doconce Look Like?}
 
 Doconce text looks like ordinary text (much like Markdown), but there
@@ -161,35 +226,27 @@ are some almost invisible text constructions that allow you to control
 the formating. Here are some examples.
 
 \begin{itemize}
-  \item Bullet lists arise from lines starting with {\fontsize{10pt}{10pt}\Verb!*!}.
+  \item Bullet lists automatically arise from lines starting with {\fontsize{10pt}{10pt}\Verb!*!},
+    or {\fontsize{10pt}{10pt}\Verb!o!} if the list is to be enumerated.
 
-  \item \emph{Emphasized words} are surrounded by {\fontsize{10pt}{10pt}\Verb!*!}.
-
-  \item \textbf{Words in boldface} are surrounded by underscores.
+  \item \emph{Emphasized words} are surrounded by {\fontsize{10pt}{10pt}\Verb!*!}. \textbf{Words in boldface}
+    are surrounded by underscores.
 
   \item Words from computer code are enclosed in back quotes and
     then typeset {\fontsize{10pt}{10pt}\Verb!verbatim (in a monospace font)!}.
 
-  \item Section headings are recognied by equality ({\fontsize{10pt}{10pt}\Verb!=!}) signs before
-    and after the title, and the number of {\fontsize{10pt}{10pt}\Verb!=!} signs indicates the
-    level of the section: 7 for main section, 5 for subsection, and
-    3 for subsubsection.
+  \item Section and paragraph headings are recognied special
+    decorating characters ({\fontsize{10pt}{10pt}\Verb!=!} or {\fontsize{10pt}{10pt}\Verb!_!}) before and after the heading.
+    The length of the decoration determines the level of the
+    section.
 
-  \item Paragraph headings are recognized by a double underscore
-    before and after the heading.
-
-  \item The abstract of a document starts with \emph{Abstract} as paragraph
-    heading, and all text up to the next heading makes up the abstract,
-
-  \item Blocks of computer code can easily be included by placing
-    {\fontsize{10pt}{10pt}\Verb!!bc!} (begin code) and {\fontsize{10pt}{10pt}\Verb!!ec!} (end code) commands at separate lines
-    before and after the code block.
+  \item Blocks of computer code are included by surrounding the blocks with
+    {\fontsize{10pt}{10pt}\Verb!!bc!} (begin code) and {\fontsize{10pt}{10pt}\Verb!!ec!} (end code) tags on separate lines.
 
   \item Blocks of computer code can also be imported from source files.
 
-  \item Blocks of {\LaTeX} mathematics can easily be included by placing
-    {\fontsize{10pt}{10pt}\Verb!!bt!} (begin TeX) and {\fontsize{10pt}{10pt}\Verb!!et!} (end TeX) commands at separate lines
-    before and after the math block.
+  \item Blocks of {\LaTeX} mathematics are included by surrounding the blocks
+    with {\fontsize{10pt}{10pt}\Verb!!bt!} (begin TeX) and {\fontsize{10pt}{10pt}\Verb!!et!} (end TeX) tags on separate lines.
 
   \item There is support for both {\LaTeX} and text-like inline mathematics
     such that formulas make sense also when not rendered by {\LaTeX}
@@ -199,6 +256,9 @@ the formating. Here are some examples.
     URLs with links, index list, labels and references are supported.
     YouTube and Vimeo videos are automatically embedded in web documents.
 
+  \item The abstract of a document starts with \emph{Abstract} as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+
   \item Special comment lines are not visible in the output.
 
   \item Comments to authors can be inserted throughout the text and
@@ -206,14 +266,11 @@ the formating. Here are some examples.
 
   \item There is an exercise environment with many advanced features.
 
-  \item With a preprocessor, Preprocess or Mako, one can include
-    other documents (files), large portions of text can be defined
-    in or out of the text, and tailored format-specific constructs can easily
-    be included.
-
-  \item With Mako one can also have Python code
-    embedded in the Doconce document and thereby parameterize the
-    text (e.g., one text can describe programming in two languages).
+  \item With a preprocessor, Preprocess or Mako, one can include other
+    documents (files), large portions of text can be defined in or out
+    of the text, and tailored format-specific constructs can easily be
+    included. With Mako a single text can output its program examples
+    in two or more languages.
 \end{itemize}
 
 \noindent
@@ -226,17 +283,26 @@ suited for thesis and books. IPython notebooks are ideal for
 documenting computational experiments, but do not (yet) meet the
 requirements of books and thesis.
 
-What about migrating a part of a book for blogging? What about
-making an MS Word version or an untagged text for inclusion in email?
-What about efficiently generating slides in modern HTML5/CSS3 style?
-Doconce enables all this with just \emph{one source}. Doconce also has
-extra features for supporting documents with much code and mathematics.
+What about migrating a part of a book for blogging? What about making
+an MS Word version of parts or an untagged text for inclusion in
+email?  What about efficiently generating slides in modern HTML5
+style?  Doconce enables all this with just \emph{one source} (the slogan is
+\emph{document once - include anywhere}).
+Doconce also
+has many extra features for supporting documents with much code and
+mathematics, not found in any of the mentioned formats.
 
 \subsection{Basic Syntax}
 
 Here is an example of some simple text written in the Doconce format:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
+======= First a Section Heading =======
+
+Section headings have 7 equality characters before and after the heading.
+With 9 characters we have a chapter heading, 5 gives a subsection
+heading, and 3 a subsubsection heading.
+
 ===== A Subsection with Sample Text =====
 label{my:first:sec}
 
@@ -254,9 +320,14 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
+__Hyperlinks.__ Paragraph headings are surrounded by double underscores.
 URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL": "tutorial.do.txt".
+as in "URL": "tutorial.do.txt". Doconce distinguishes between paper
+and screen output. In traditional paper output, in PDF generated from LaTeX
+generated from Doconce, the URLs of links appear as footnotes.
+With screen output, all links are clickable hyperlinks, except in
+the plain text format which does not support hyperlinks.
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -282,6 +353,13 @@ Tables are also supperted, e.g.,
 \end{Verbatim}
 \noindent
 The Doconce text above results in the following little document:
+
+
+\section{First a Section Heading}
+
+Section headings have 7 equality characters before and after the heading.
+With 9 characters we have a chapter heading, 5 gives a subsection
+heading, and 3 a subsubsection heading.
 
 \subsection{A Subsection with Sample Text}
 \label{my:first:sec}
@@ -311,9 +389,15 @@ Lists can also have numbered items instead of bullets, just use an {\fontsize{10
 \end{enumerate}
 
 \noindent
+\paragraph{Hyperlinks.}
+Paragraph headings are surrounded by double underscores.
 URLs with a link word are possible, as in \href{{http://folk.uio.no/hpl}}{hpl}.
 If the word is URL, the URL itself becomes the link name,
-as in \href{{tutorial.do.txt}}{\nolinkurl{tutorial.do.txt}}.
+as in \href{{tutorial.do.txt}}{\nolinkurl{tutorial.do.txt}}. Doconce distinguishes between paper
+and screen output. In traditional paper output, in PDF generated from {\LaTeX}
+generated from Doconce, the URLs of links appear as footnotes.
+With screen output, all links are clickable hyperlinks, except in
+the plain text format which does not support hyperlinks.
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -322,7 +406,9 @@ Section~\ref{my:first:sec}.
 Doconce also allows inline comments such as \shortinlinecomment{hpl 1}{ here I will make
 some remarks to the text }{ here I will make } for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see Section~\ref{doconce2formats} for an example).
+(see Section~\ref{doconce2formats} for an example). Ordinary comment
+lines start with {\fontsize{10pt}{10pt}\Verb!#!} and are copied to comment lines in the
+output format.
 
 Tables are also supperted, e.g.,
 
@@ -382,9 +468,6 @@ fontfamily=tt,xleftmargin=7mm]
 !et
 \end{Verbatim}
 \noindent
-% Note: !bt and !et (and !bc and !ec below) are used to illustrate
-% tex and code blocks in inside verbatim blocks and are replaced
-% by !bt, !et, !bc, and !ec after all other formatting is finished.
 The result looks like this:
 
 \begin{align}
@@ -676,9 +759,9 @@ that are used if the document contains {\fontsize{10pt}{10pt}\Verb!!split!} comm
 it into many pages.
 
 
-\subsection{Blogs}
+\subsection{Blog Posts}
 
-Doconce can be used for writing blogs provided the blog site accepts
+Doconce can be used for writing blog posts provided the blog site accepts
 raw HTML code. Google's Blogger service ({\fontsize{10pt}{10pt}\Verb!blogger.com!} or
 {\fontsize{10pt}{10pt}\Verb!blogname.blogspot.com!}) is particularly well suited since it also
 allows extensive {\LaTeX} mathematics via MathJax.
@@ -700,19 +783,31 @@ a \href{{http://doconce-report-demo.blogspot.no/}}{scientific report}
 for demonstrations of blogs at {\fontsize{10pt}{10pt}\Verb!blogspot.no!}.
 
 
+\begin{graybox1admon}[Warning.]
+In the readers' comments after the blog one cannot paste raw HTML
+code with MathJax
+scripts so there is no support for mathematics in the discussion forum.
+\end{graybox1admon}
+\begin{graybox1admon}[Notice.]
+Figure files must be uploaded to some web site and the filenames name must
+be replaced by the relevant URL. This can be automatically edited:
 
-\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{warningbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{latex_figs/warning.eps}
-\ \ \ {\large\sc Warning}\\ [3mm]
-In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.
-\end{minipage}}
-\end{center}
-\setlength{\fboxrule}{0.4pt} % Back to default
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{bash}
+cp mydoc.do.txt mydoc2.do.txt
+url="https//raw.github.com/someuser/someuser.github.com"
+dir="master/project/dir1/dir2"
+for figname in fig1 fig2 fig3; do
+  doconce replace "[$figname," "[$site/$dir/$figname.png," \ 
+          mydoc2.do.txt
+done
+doconce format html mydoc2
+# Paste mydoc2.html into a new blog page
+\end{minted}
+\noindent
+\end{graybox1admon}
+Blog posts at Google can also be published \href{{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}}{automatically through email}.
+A Python program can send the contents of the HTML file
+to the blog's email address using the packages  {\fontsize{10pt}{10pt}\Verb!smtplib!} and {\fontsize{10pt}{10pt}\Verb!email!}.
 
 WordPress ({\fontsize{10pt}{10pt}\Verb!wordpress.com!}) allows raw HTML code in blogs,
 but has very limited
@@ -854,9 +949,7 @@ A separate titlepage can be generate by
 Preprocessor variables to be defined or undefined are
 
 \begin{itemize}
- \item {\fontsize{10pt}{10pt}\Verb!XETEX!} for processing by {\fontsize{10pt}{10pt}\Verb!xelatex!}
-
- \item {\fontsize{10pt}{10pt}\Verb!LATEX_HEADING!} for the typesetting of the title, author, etc.
+ \item {\fontsize{10pt}{10pt}\Verb!XELATEX!} for processing by {\fontsize{10pt}{10pt}\Verb!xelatex!}
 
  \item {\fontsize{10pt}{10pt}\Verb!PALATINO!} for the Palatino font
 
@@ -866,7 +959,11 @@ Preprocessor variables to be defined or undefined are
 
  \item {\fontsize{10pt}{10pt}\Verb!A6PAPER!} for A6 paper size (suitable for reading PDFs on phones)
 
- \item {\fontsize{10pt}{10pt}\Verb!MOVIE15!} for using the movie15 {\LaTeX} package to display movies
+ \item {\fontsize{10pt}{10pt}\Verb!MOVIE!} for specifying how movies are handled: the value {\fontsize{10pt}{10pt}\Verb!media9!}
+   implies the {\fontsize{10pt}{10pt}\Verb!media9!} package and the {\fontsize{10pt}{10pt}\Verb!\includemedia!} command (default),
+   while other values are {\fontsize{10pt}{10pt}\Verb!movie15!} ({\fontsize{10pt}{10pt}\Verb!\includemovie!} command),
+   {\fontsize{10pt}{10pt}\Verb!multimedia!} (for Beamer-style {\fontsize{10pt}{10pt}\Verb!\movie!} command),
+   or {\fontsize{10pt}{10pt}\Verb!href-run!} (for the plain {\fontsize{10pt}{10pt}\Verb!\href{run:file}!} command)
 
  \item {\fontsize{10pt}{10pt}\Verb!PREAMBLE!} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
@@ -882,10 +979,25 @@ Preprocessor variables to be defined or undefined are
    macro has only effect if inline comments are used (name, colon,
    and comment inside brackets).
 
+ \item {\fontsize{10pt}{10pt}\Verb!LINENUMBERS!} for inclusion of line numbers in the text.
+
+ \item {\fontsize{10pt}{10pt}\Verb!AMON!} for setting the type of admonitions: {\fontsize{10pt}{10pt}\Verb!"colors"!} for colored
+   boxes with icons, {\fontsize{10pt}{10pt}\Verb!"graybox1"!} for gray frame boxes with rounded
+   corners (default), {\fontsize{10pt}{10pt}\Verb!"graybox2"!} for narrower square gray frame boxes
+   (except for summary, which for A4 format is small and with wrapped
+   text around if it does not contain verbatim code),
+   or {\fontsize{10pt}{10pt}\Verb!"paragraph"!} for simple, plain paragraph headings and ordinary text
+
  \item {\fontsize{10pt}{10pt}\Verb!COLORED_TABLE_ROWS!} for coloring every other table rows (set this
    variable to {\fontsize{10pt}{10pt}\Verb!gray!} or {\fontsize{10pt}{10pt}\Verb!blue!})
 
  \item {\fontsize{10pt}{10pt}\Verb!BLUE_SECTION_HEADINGS!} for blue section and subsection headings
+
+ \item {\fontsize{10pt}{10pt}\Verb!LATEX_HEADING!} for the typesetting of the title, author, parts of
+   preamble (values: {\fontsize{10pt}{10pt}\Verb!traditional!} for traditional {\LaTeX} heading,
+   {\fontsize{10pt}{10pt}\Verb!titlepage!} for a separate titlepage, {\fontsize{10pt}{10pt}\Verb!Springer_collection!} for
+   edited volumes on Springer, {\fontsize{10pt}{10pt}\Verb!beamer!} for Beamer slides, {\fontsize{10pt}{10pt}\Verb!doconce_heading!}
+   (default) for listing institutions after names)
 \end{itemize}
 
 \noindent
@@ -1019,6 +1131,21 @@ Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 \end{Verbatim}
+
+\subsection{XeLaTeX}
+
+XeLaTeX is an alternative to \textsc{pdf}{\LaTeX} and is run in almost the
+same way, except for the {\fontsize{10pt}{10pt}\Verb!-DXELATEX!} flag to ptex2tex:
+
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+Terminal> doconce format pdflatex mydoc
+Terminal> doconce ptex2tex mydoc -DXELATEX
+Terminal> ptex2tex -DXELATEX mydoc  # alternative
+Terminal> xelatex mydoc
+\end{Verbatim}
+\noindent
+
 
 \subsection{Plain ASCII Text}
 
@@ -1416,7 +1543,7 @@ constitute comprehensive examples on how such scripts can be made.
 The current text is generated from a Doconce format stored in the file
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-docs/tutorial/tutorial.do.txt
+doc/tutorial/tutorial.do.txt
 \end{Verbatim}
 \noindent
 The file {\fontsize{10pt}{10pt}\Verb!make.sh!} in the {\fontsize{10pt}{10pt}\Verb!tutorial!} directory of the
@@ -1432,7 +1559,14 @@ There is another demo in the {\fontsize{10pt}{10pt}\Verb!docs/manual!} directory
 translates the more comprehensive documentation, {\fontsize{10pt}{10pt}\Verb!manual.do.txt!}, to
 various formats. The {\fontsize{10pt}{10pt}\Verb!make.sh!} script runs a set of translations.
 
+
+
 \section{Installation of Doconce and its Dependencies}
+
+Below, we explain the manual installation of all software that may be
+needed when working with Doconce documents.
+The impatient way to install what is needed is to run the
+\href{{doconce_install_all.sh}}{\nolinkurl{doconce_install_all.sh}} script.
 
 \subsection{Doconce}
 
@@ -1459,22 +1593,6 @@ hg update
 sudo python setup.py install
 \end{Verbatim}
 
-Debian GNU/Linux users can also run
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-sudo apt-get install doconce
-\end{Verbatim}
-This installs the latest release and not the most updated and bugfixed
-version.
-On Ubuntu one needs to run
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-sudo add-apt-repository ppa:scitools/ppa
-sudo apt-get update
-sudo apt-get install doconce
-\end{Verbatim}
 
 \subsection{Dependencies}
 
@@ -1550,6 +1668,15 @@ labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 sudo apt-get install texlive-extra-utils
 \end{Verbatim}
 
+Automatic image conversion from EPS to PDF calls up {\fontsize{10pt}{10pt}\Verb!epstopdf!}, which
+can be installed by
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install texlive-font-utils
+\end{Verbatim}
+
 \paragraph{Spellcheck.}
 The utility {\fontsize{10pt}{10pt}\Verb!doconce spellcheck!} applies the {\fontsize{10pt}{10pt}\Verb!ispell!} program for
 spellcheck. On Debian (including Ubuntu) it is installed by
@@ -1611,7 +1738,7 @@ are also needed. These are installed by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-sudo apt-get install texlive-latex-recommended texlive-latex-extra
+sudo apt-get install texlive
 \end{Verbatim}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -1638,6 +1765,14 @@ hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 \end{Verbatim}
+One can also do the simple
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+pip install sphinx
+\end{Verbatim}
+which also installs pygments.
 
 If you use the minted style together with {\fontsize{10pt}{10pt}\Verb!ptex2tex!}, you have to
 enable it by the {\fontsize{10pt}{10pt}\Verb!-DMINTED!} command-line argument to {\fontsize{10pt}{10pt}\Verb!ptex2tex!}.
@@ -1650,8 +1785,7 @@ Inline comments apply the {\fontsize{10pt}{10pt}\Verb!todonotes!} {\LaTeX} packa
 or {\fontsize{10pt}{10pt}\Verb!doconce ptex2tex!} command is run with {\fontsize{10pt}{10pt}\Verb!-DTODONOTES!}.  The
 {\fontsize{10pt}{10pt}\Verb!todonotes!} package requires several other packages: {\fontsize{10pt}{10pt}\Verb!xcolor!},
 {\fontsize{10pt}{10pt}\Verb!ifthen!}, {\fontsize{10pt}{10pt}\Verb!xkeyval!}, {\fontsize{10pt}{10pt}\Verb!tikz!}, {\fontsize{10pt}{10pt}\Verb!calc!}, {\fontsize{10pt}{10pt}\Verb!graphicx!}, and {\fontsize{10pt}{10pt}\Verb!setspace!}. The
-relevant Debian package for installing all this is
-{\fontsize{10pt}{10pt}\Verb!texlive-latex-extra!}.
+relevant Debian packages for installing all this are listed below.
 
 \paragraph{{\LaTeX} packages.}
 Many {\LaTeX} packages are potentially needed (depending on various
@@ -1665,16 +1799,23 @@ program, meaning that if you do not use {\fontsize{10pt}{10pt}\Verb!ptex2tex!}, 
 {\fontsize{10pt}{10pt}\Verb!ptex2tex.sty!}. Optional packages that might be included are {\fontsize{10pt}{10pt}\Verb!minted!},
 {\fontsize{10pt}{10pt}\Verb!fontspec!}, {\fontsize{10pt}{10pt}\Verb!xunicode!}, {\fontsize{10pt}{10pt}\Verb!inputenc!}, {\fontsize{10pt}{10pt}\Verb!helvet!}, {\fontsize{10pt}{10pt}\Verb!mathpazo!}, {\fontsize{10pt}{10pt}\Verb!wrapfig!},
 {\fontsize{10pt}{10pt}\Verb!calc!}, {\fontsize{10pt}{10pt}\Verb!ifthen!}, {\fontsize{10pt}{10pt}\Verb!xkeyval!}, {\fontsize{10pt}{10pt}\Verb!tikz!}, {\fontsize{10pt}{10pt}\Verb!graphicx!}, {\fontsize{10pt}{10pt}\Verb!setspace!}, {\fontsize{10pt}{10pt}\Verb!shadow!},
-{\fontsize{10pt}{10pt}\Verb!disable!}, {\fontsize{10pt}{10pt}\Verb!todonotes!}, {\fontsize{10pt}{10pt}\Verb!lineno!}, {\fontsize{10pt}{10pt}\Verb!xr!}, {\fontsize{10pt}{10pt}\Verb!movie15!}, {\fontsize{10pt}{10pt}\Verb!a4paper!}, and
-{\fontsize{10pt}{10pt}\Verb!a6paper!}.
+{\fontsize{10pt}{10pt}\Verb!disable!}, {\fontsize{10pt}{10pt}\Verb!todonotes!}, {\fontsize{10pt}{10pt}\Verb!lineno!}, {\fontsize{10pt}{10pt}\Verb!xr!}, {\fontsize{10pt}{10pt}\Verb!framed!}, {\fontsize{10pt}{10pt}\Verb!mdframe!},
+{\fontsize{10pt}{10pt}\Verb!movie15!}, {\fontsize{10pt}{10pt}\Verb!a4paper!}, and {\fontsize{10pt}{10pt}\Verb!a6paper!}.
 
 Relevant Debian packages that gives you all of these {\LaTeX} packages are
 
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-texlive-latex-base
-texlive-latex-recommended
+texlive
+texlive-extra-utils
 texlive-latex-extra
+texlive-font-utils
+\end{Verbatim}
+\noindent
+On old Ubuntu 12.04 one has to do {\fontsize{10pt}{10pt}\Verb!sudo add-apt-repository ppa:texlive-backports/ppa!} and {\fontsize{10pt}{10pt}\Verb!sudo apt-get update!} first, or alternatively install these as well:
+
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
 texlive-math-extra
 texlive-bibtex-extra
 texlive-xetex
@@ -1682,12 +1823,15 @@ texlive-humanities
 texlive-pictures
 \end{Verbatim}
 \noindent
+Alternatively, one may pull in {\fontsize{10pt}{10pt}\Verb!texlive-full!} to get all available
+style files.
 
 If you want to use the \emph{anslistings} code environment with {\fontsize{10pt}{10pt}\Verb!ptex2tex!}
 ({\fontsize{10pt}{10pt}\Verb!.ptex2tex.cfg!} styles {\fontsize{10pt}{10pt}\Verb!Python_ANS!}, {\fontsize{10pt}{10pt}\Verb!Python_ANSt!}, {\fontsize{10pt}{10pt}\Verb!Cpp_ANS!}, etc.) or
 {\fontsize{10pt}{10pt}\Verb!doconce ptex2tex!} ({\fontsize{10pt}{10pt}\Verb!envir=ans!} or {\fontsize{10pt}{10pt}\Verb!envir=ans:nt!}), you need the
 {\fontsize{10pt}{10pt}\Verb!anslistings.sty!} file. It can be obtained from
-the \href{{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}}{ptex2tex source}.
+the \href{{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}}{ptex2tex source}. It should get installed
+by the {\fontsize{10pt}{10pt}\Verb!cp2texmf.sh!} script executed above.
 
 
 \paragraph{reStructuredText (reST) Output.}
@@ -1698,11 +1842,21 @@ most recent version can be done by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+svn checkout \ 
+  http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
 \end{Verbatim}
+The command
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+pip install sphinx
+\end{Verbatim}
+installs Docutils along with Sphinx and Pygments.
+
 To use the OpenOffice suite you will typically on Debian systems install
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1729,13 +1883,20 @@ cd sphinx
 sudo python setup.py install
 cd ..
 \end{Verbatim}
+An alternative is
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+pip install sphinx
+\end{Verbatim}
 
 Doconce comes with many Sphinx themes that are not part of the
 standard Sphinx source distribution. Some of these themes require
 additional Python/Sphinx modules to be installed:
 
 \begin{itemize}
- \item could and redcloud: \href{{https://bitbucket.org/ecollins/cloud_sptheme}}{\nolinkurl{https://bitbucket.org/ecollins/cloud_sptheme}}
+ \item cloud and redcloud: \href{{https://bitbucket.org/ecollins/cloud_sptheme}}{\nolinkurl{https://bitbucket.org/ecollins/cloud_sptheme}}
 
  \item bootstrap: \href{{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}{\nolinkurl{https://github.com/ryan-roemer/sphinx-bootstrap-theme}}
 
@@ -1803,10 +1964,71 @@ appear in the table below.
 {\fontsize{10pt}{10pt}\Verb!diffuse!}                                                                            & \href{{http://diffuse.sourceforge.net/}}{diffuse}                                              & {\fontsize{10pt}{10pt}\Verb!sudo apt-get install diffuse!}                                                       \\
 {\fontsize{10pt}{10pt}\Verb!xxdiff!}                                                                             & \href{{http://xxdiff.sourceforge.net/local/}}{xxdiff}                                          & {\fontsize{10pt}{10pt}\Verb!sudo apt-get install xxdiff!}                                                        \\
 {\fontsize{10pt}{10pt}\Verb!meld!}                                                                               & \href{{http://meldmerge.org/}}{meld}                                                           & {\fontsize{10pt}{10pt}\Verb!sudo apt-get install meld!}                                                          \\
-{\fontsize{10pt}{10pt}\Verb!tkdiff.tcl!}                                                                         & \href{{https://sourceforge.net/projects/tkdiff/}}{tkdiff}                                      & {\fontsize{10pt}{10pt}\Verb!sudo apt-get install not in Debian!}                                                 \\
+{\fontsize{10pt}{10pt}\Verb!tkdiff.tcl!}                                                                         & \href{{https://sourceforge.net/projects/tkdiff/}}{tkdiff}                                      & not in Debian                                                                             \\
 \hline
 \end{tabular}\end{quote}
 
+\noindent
+\subsection{Quick Debian/Ubuntu Install}
+
+On Debian (including Ubuntu) systems, it is straightforward to install the
+long series of Doconce dependencies:
+
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+# Version control systems
+sudo apt-get install -y mercurial git subversion
+
+# Python
+sudo apt-get install -y idle ipython python-pip python-pdftools texinfo
+
+# These lines are only necessary for Ubuntu 12.04 to install texlive 2012
+ubuntu_version=`lsb_release -r | awl '{print $2}'`
+if [ $ubuntu_version = "12.04" ]; then
+  sudo add-apt-repository ppa:texlive-backports/ppa
+  sudo apt-get update
+fi
+# LaTeX
+sudo apt-get install -y texlive texlive-extra-utils texlive-latex-extra texlive-math-extra texlive-font-utils
+# or sudo apt-get install -y texlive-full  # get everything
+sudo apt-get install -y latexdiff auctex
+
+# Image and movie tools
+sudo apt-get install -y imagemagick netpbm mjpegtools pdftk giftrans gv evince smpeg-plaympeg mplayer totem ffmpeg libav-tools
+
+# Misc
+sudo apt-get install -y ispell pandoc libreoffice unoconv libreoffice-dmaths curl a2ps wdiff meld xxdiff diffpdf kdiff3 diffuse
+
+# More Python software
+pip install sphinx  # install pygments and docutils too
+pip install mako
+pip install -e svn+http://preprocess.googlecode.com/svn/trunk#egg=preprocess
+pip install -e hg+https://bitbucket.org/logg/publish#egg=publish
+
+pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
+pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
+pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
+pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
+pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
+
+# Doconce itself
+rm -rf srclib   # put downloaded software in srclib
+mkdir srclib
+cd srclib
+hg clone https://code.google.com/p/doconce/
+cd doconce
+sudo python setup.py install -y
+cd ../..
+
+# Ptex2tex
+cd srclib
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install -y
+cd latex
+sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+cd ../../..
+\end{Verbatim}
 \noindent
 
 % ------------------- end of main content ---------------

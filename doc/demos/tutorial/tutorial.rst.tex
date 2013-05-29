@@ -49,6 +49,9 @@
   \fi
 }
 
+% titlereference role
+\providecommand*{\DUroletitlereference}[1]{\textsl{#1}}
+
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
   \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
@@ -76,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Apr 24, 2013
+May 29, 2013
 %
 \begin{itemize}
 
@@ -109,6 +112,86 @@ If any of these questions are of interest, you should keep on reading.
 %___________________________________________________________________________
 
 \section*{\phantomsection%
+  Some Doconce Features%
+  \addcontentsline{toc}{section}{Some Doconce Features}%
+  \label{some-doconce-features}%
+}
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item Strong support for texts with much math and code.
+
+\item Same source can produce a variety of output formats.
+The following support LaTeX math and (pygmentized) code:
+
+\end{itemize}
+%
+\begin{quote}
+\newcounter{listcnt0}
+\begin{list}{\arabic{listcnt0}.}
+{
+\usecounter{listcnt0}
+\setlength{\rightmargin}{\leftmargin}
+}
+
+\item \href{http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf}{traditional LaTeX B/W documents for printing}
+
+\item \href{http://hplgit.github.com/teamods/writing_reports/_static/report.pdf}{color LaTeX PDF documents}
+
+\item \href{http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf}{color LaTeX PDF documents for viewing on small phones}
+
+\item \href{http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}{Sphinx HTML documents with 20+ different designs}
+
+\item \href{http://hplgit.github.com/teamods/writing_reports/_static/report.html}{Plain HTML} or with a \href{http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html}{template} or \href{http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html}{another template} or \href{http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html}{solarized}
+
+\item HTML for \href{http://doconce-report-demo.blogspot.no/}{Google} or \href{http://doconcereportdemo.wordpress.com/}{Wordpress} blogs
+
+\item \href{http://doconcedemo.shoutwiki.com/wiki/Doconce_demo_page}{MediaWiki} (Wikipedia, Wikibooks, etc)
+
+\item Markdown
+
+\item IPython notebook
+\end{list}
+%
+\begin{quote}
+
+Other formats include plain untagged text (for email),
+Creole wiki (for Bitbucket wikis), Google wiki (for Googlecode),
+reStructuredText, and Epytext.
+
+\end{quote}
+
+\end{quote}
+%
+\begin{itemize}
+
+\item Integration with Mako enables use of variables, functions, if-tests,
+and loops to parameterize the text and generate various versions of
+the text for different purposes.
+
+\item Computer code can be copied directly from parts of source code files.
+
+\item Running text can quickly be edited to slide formats (reveal.js and deck.js,
+based on HTML5+CSS3).
+
+\item Special exercise environments with support for hints, answers,
+subexercises, etc.
+
+\item Automatic inline embedding of YouTube and Vimeo movies.
+
+\item Good support for admonitions in various LaTeX and HTML styles
+for warnings, questions, hints, remarks, summaries, etc.
+
+\end{itemize}
+
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
   What Does Doconce Look Like?%
   \addcontentsline{toc}{section}{What Does Doconce Look Like?}%
   \label{what-does-doconce-look-like}%
@@ -122,35 +205,27 @@ the formating. Here are some examples.
 %
 \begin{itemize}
 
-\item Bullet lists arise from lines starting with \texttt{*}.
+\item Bullet lists automatically arise from lines starting with \texttt{*},
+or \texttt{o} if the list is to be enumerated.
 
-\item \emph{Emphasized words} are surrounded by \texttt{*}.
-
-\item \textbf{Words in boldface} are surrounded by underscores.
+\item \emph{Emphasized words} are surrounded by \texttt{*}. \textbf{Words in boldface}
+are surrounded by underscores.
 
 \item Words from computer code are enclosed in back quotes and
 then typeset \texttt{verbatim (in a monospace font)}.
 
-\item Section headings are recognied by equality (\texttt{=}) signs before
-and after the title, and the number of \texttt{=} signs indicates the
-level of the section: 7 for main section, 5 for subsection, and
-3 for subsubsection.
+\item Section and paragraph headings are recognied special
+decorating characters (\texttt{=} or \texttt{\_}) before and after the heading.
+The length of the decoration determines the level of the
+section.
 
-\item Paragraph headings are recognized by a double underscore
-before and after the heading.
-
-\item The abstract of a document starts with \emph{Abstract} as paragraph
-heading, and all text up to the next heading makes up the abstract,
-
-\item Blocks of computer code can easily be included by placing
-\texttt{!bc} (begin code) and \texttt{!ec} (end code) commands at separate lines
-before and after the code block.
+\item Blocks of computer code are included by surrounding the blocks with
+\texttt{!bc} (begin code) and \texttt{!ec} (end code) tags on separate lines.
 
 \item Blocks of computer code can also be imported from source files.
 
-\item Blocks of LaTeX mathematics can easily be included by placing
-\texttt{!bt} (begin TeX) and \texttt{!et} (end TeX) commands at separate lines
-before and after the math block.
+\item Blocks of LaTeX mathematics are included by surrounding the blocks
+with \texttt{!bt} (begin TeX) and \texttt{!et} (end TeX) tags on separate lines.
 
 \item There is support for both LaTeX and text-like inline mathematics
 such that formulas make sense also when not rendered by LaTeX
@@ -160,6 +235,9 @@ or MathJax.
 URLs with links, index list, labels and references are supported.
 YouTube and Vimeo videos are automatically embedded in web documents.
 
+\item The abstract of a document starts with \emph{Abstract} as paragraph
+heading, and all text up to the next heading makes up the abstract,
+
 \item Special comment lines are not visible in the output.
 
 \item Comments to authors can be inserted throughout the text and
@@ -167,14 +245,11 @@ made visible or invisible as desired.
 
 \item There is an exercise environment with many advanced features.
 
-\item With a preprocessor, Preprocess or Mako, one can include
-other documents (files), large portions of text can be defined
-in or out of the text, and tailored format-specific constructs can easily
-be included.
-
-\item With Mako one can also have Python code
-embedded in the Doconce document and thereby parameterize the
-text (e.g., one text can describe programming in two languages).
+\item With a preprocessor, Preprocess or Mako, one can include other
+documents (files), large portions of text can be defined in or out
+of the text, and tailored format-specific constructs can easily be
+included. With Mako a single text can output its program examples
+in two or more languages.
 
 \end{itemize}
 
@@ -196,11 +271,14 @@ suited for thesis and books. IPython notebooks are ideal for
 documenting computational experiments, but do not (yet) meet the
 requirements of books and thesis.
 
-What about migrating a part of a book for blogging? What about
-making an MS Word version or an untagged text for inclusion in email?
-What about efficiently generating slides in modern HTML5/CSS3 style?
-Doconce enables all this with just \emph{one source}. Doconce also has
-extra features for supporting documents with much code and mathematics.
+What about migrating a part of a book for blogging? What about making
+an MS Word version of parts or an untagged text for inclusion in
+email?  What about efficiently generating slides in modern HTML5
+style?  Doconce enables all this with just \emph{one source} (the slogan is
+\emph{document once - include anywhere}).
+Doconce also
+has many extra features for supporting documents with much code and
+mathematics, not found in any of the mentioned formats.
 
 
 %___________________________________________________________________________
@@ -214,6 +292,12 @@ extra features for supporting documents with much code and mathematics.
 Here is an example of some simple text written in the Doconce format:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
+=======~First~a~Section~Heading~=======\\
+~\\
+Section~headings~have~7~equality~characters~before~and~after~the~heading.\\
+With~9~characters~we~have~a~chapter~heading,~5~gives~a~subsection\\
+heading,~and~3~a~subsubsection~heading.\\
+~\\
 =====~A~Subsection~with~Sample~Text~=====\\
 label\{my:first:sec\}\\
 ~\\
@@ -231,9 +315,14 @@ Lists~can~also~have~automatically~numbered~items~instead~of~bullets,\\
 ~~o~item~2\\
 ~~o~item~3\\
 ~\\
+\_\_Hyperlinks.\_\_~Paragraph~headings~are~surrounded~by~double~underscores.\\
 URLs~with~a~link~word~are~possible,~as~in~"hpl":~"http://folk.uio.no/hpl".\\
 If~the~word~is~URL,~the~URL~itself~becomes~the~link~name,\\
-as~in~"URL":~"tutorial.do.txt".\\
+as~in~"URL":~"tutorial.do.txt".~Doconce~distinguishes~between~paper\\
+and~screen~output.~In~traditional~paper~output,~in~PDF~generated~from~LaTeX\\
+generated~from~Doconce,~the~URLs~of~links~appear~as~footnotes.\\
+With~screen~output,~all~links~are~clickable~hyperlinks,~except~in\\
+the~plain~text~format~which~does~not~support~hyperlinks.\\
 ~\\
 References~to~sections~may~use~logical~names~as~labels~(e.g.,~a\\
 "label"~command~right~after~the~section~title),~as~in~the~reference~to\\
@@ -260,6 +349,19 @@ Tables~are~also~supperted,~e.g.,\\
 \end{quote}
 
 The Doconce text above results in the following little document:
+
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
+  First a Section Heading%
+  \addcontentsline{toc}{section}{First a Section Heading}%
+  \label{first-a-section-heading}%
+}
+
+Section headings have 7 equality characters before and after the heading.
+With 9 characters we have a chapter heading, 5 gives a subsection
+heading, and 3 a subsubsection heading.
 
 
 %___________________________________________________________________________
@@ -293,7 +395,7 @@ Lists can also have numbered items instead of bullets, just use an \texttt{o}
 (for ordered) instead of the asterisk:
 %
 \begin{quote}
-\newcounter{listcnt0}
+\setcounter{listcnt0}{0}
 \begin{list}{\arabic{listcnt0}.}
 {
 \usecounter{listcnt0}
@@ -309,9 +411,14 @@ Lists can also have numbered items instead of bullets, just use an \texttt{o}
 
 \end{quote}
 
+\emph{Hyperlinks.} Paragraph headings are surrounded by double underscores.
 URLs with a link word are possible, as in \href{http://folk.uio.no/hpl}{hpl}.
 If the word is URL, the URL itself becomes the link name,
-as in \url{tutorial.do.txt}.
+as in \url{tutorial.do.txt}. Doconce distinguishes between paper
+and screen output. In traditional paper output, in PDF generated from LaTeX
+generated from Doconce, the URLs of links appear as footnotes.
+With screen output, all links are clickable hyperlinks, except in
+the plain text format which does not support hyperlinks.
 
 References to sections may use logical names as labels (e.g., a
 ``label'' command right after the section title), as in the reference to
@@ -320,7 +427,9 @@ the section \hyperref[a-subsection-with-sample-text]{A Subsection with Sample Te
 Doconce also allows inline comments such as (\textbf{hpl 1}: here I will make
 some remarks to the text) for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example).
+(see the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example). Ordinary comment
+lines start with \texttt{\#} and are copied to comment lines in the
+output format.
 
 Tables are also supperted, e.g.,
 
@@ -425,12 +534,6 @@ Blocks of mathematics are typeset with raw LaTeX, inside
 !et
 }
 \end{quote}
-
-% Note: !bt and !et (and !bc and !ec below) are used to illustrate
-
-% tex and code blocks in inside verbatim blocks and are replaced
-
-% by !bt, !et, !bc, and !ec after all other formatting is finished.
 
 The result looks like this:
 %
@@ -727,7 +830,18 @@ specified as \texttt{-{}-html\_style=name}, where \texttt{name} can be
 %
 \begin{itemize}
 
-\item \texttt{solarized}: the famous \href{http://ethanschoonover.com/solarized}{solarized}
+\item 
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+
+
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~429
+
+\hyperlink{id2}{
+Duplicate explicit target name: ``solarized''.
+}}
+
+\texttt{solarized}: the famous \href{http://ethanschoonover.com/solarized}{solarized}
 style (yellowish),
 
 \item \texttt{blueish}: a simple style with blue headings (default),
@@ -791,12 +905,12 @@ it into many pages.
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
-  Blogs%
-  \addcontentsline{toc}{subsection}{Blogs}%
-  \label{blogs}%
+  Blog Posts%
+  \addcontentsline{toc}{subsection}{Blog Posts}%
+  \label{blog-posts}%
 }
 
-Doconce can be used for writing blogs provided the blog site accepts
+Doconce can be used for writing blog posts provided the blog site accepts
 raw HTML code. Google's Blogger service (\texttt{blogger.com} or
 \texttt{blogname.blogspot.com}) is particularly well suited since it also
 allows extensive LaTeX mathematics via MathJax.
@@ -824,17 +938,42 @@ for demonstrations of blogs at \texttt{blogspot.no}.
 \DUadmonition[warning]{
 \DUtitle[warning]{Warning}
 
-In the comments after the blog one cannot paste raw HTML code with MathJax
-scripts so there is no support for mathematics in the comments.
+In the readers' comments after the blog one cannot paste raw HTML
+code with MathJax
+scripts so there is no support for mathematics in the discussion forum.
 }
+
+\DUadmonition[note]{
+\DUtitle[note]{Note}
+
+Figure files must be uploaded to some web site and the filenames name must
+be replaced by the relevant URL. This can be automatically edited:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+cp~mydoc.do.txt~mydoc2.do.txt\\
+url="https//raw.github.com/someuser/someuser.github.com"\\
+dir="master/project/dir1/dir2"\\
+for~figname~in~fig1~fig2~fig3;~do\\
+~~doconce~replace~"{[}\$figname,"~"{[}\$site/\$dir/\$figname.png,"~\textbackslash{}\\
+~~~~~~~~~~mydoc2.do.txt\\
+done\\
+doconce~format~html~mydoc2\\
+\#~Paste~mydoc2.html~into~a~new~blog~page
+}
+\end{quote}
+}
+
+Blog posts at Google can also be published \href{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}{automatically through email}.
+A Python program can send the contents of the HTML file
+to the blog's email address using the packages  \texttt{smtplib} and \texttt{email}.
 
 \DUadmonition[system-message]{
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~367
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~429
 
-\hyperlink{id2}{
+\hyperlink{id3}{
 Duplicate explicit target name: ``scientific report''.
 }}
 
@@ -937,7 +1076,7 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 \subsection*{\phantomsection%
   LaTeX%
   \addcontentsline{toc}{subsection}{LaTeX}%
-  \label{id3}%
+  \label{id4}%
 }
 
 Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two steps:
@@ -1004,9 +1143,7 @@ Preprocessor variables to be defined or undefined are
 %
 \begin{itemize}
 
-\item \texttt{XETEX} for processing by \texttt{xelatex}
-
-\item \texttt{LATEX\_HEADING} for the typesetting of the title, author, etc.
+\item \texttt{XELATEX} for processing by \texttt{xelatex}
 
 \item \texttt{PALATINO} for the Palatino font
 
@@ -1016,7 +1153,11 @@ Preprocessor variables to be defined or undefined are
 
 \item \texttt{A6PAPER} for A6 paper size (suitable for reading PDFs on phones)
 
-\item \texttt{MOVIE15} for using the movie15 LaTeX package to display movies
+\item \texttt{MOVIE} for specifying how movies are handled: the value \texttt{media9}
+implies the \texttt{media9} package and the \texttt{\textbackslash{}includemedia} command (default),
+while other values are \texttt{movie15} (\texttt{\textbackslash{}includemovie} command),
+\texttt{multimedia} (for Beamer-style \texttt{\textbackslash{}movie} command),
+or \texttt{href-run} (for the plain \DUroletitlereference{h`run:file`\_} command)
 
 \item \texttt{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere - and note that
@@ -1032,10 +1173,25 @@ inline comments (looks much like track changes in MS Word). This
 macro has only effect if inline comments are used (name, colon,
 and comment inside brackets).
 
+\item \texttt{LINENUMBERS} for inclusion of line numbers in the text.
+
+\item \texttt{AMON} for setting the type of admonitions: \texttt{"colors"} for colored
+boxes with icons, \texttt{"graybox1"} for gray frame boxes with rounded
+corners (default), \texttt{"graybox2"} for narrower square gray frame boxes
+(except for summary, which for A4 format is small and with wrapped
+text around if it does not contain verbatim code),
+or \texttt{"paragraph"} for simple, plain paragraph headings and ordinary text
+
 \item \texttt{COLORED\_TABLE\_ROWS} for coloring every other table rows (set this
 variable to \texttt{gray} or \texttt{blue})
 
 \item \texttt{BLUE\_SECTION\_HEADINGS} for blue section and subsection headings
+
+\item \texttt{LATEX\_HEADING} for the typesetting of the title, author, parts of
+preamble (values: \texttt{traditional} for traditional LaTeX heading,
+\texttt{titlepage} for a separate titlepage, \texttt{Springer\_collection} for
+edited volumes on Springer, \texttt{beamer} for Beamer slides, \texttt{doconce\_heading}
+(default) for listing institutions after names)
 
 \end{itemize}
 
@@ -1184,6 +1340,26 @@ Terminal>~pdflatex~-shell-escape~mydoc
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
+  XeLaTeX%
+  \addcontentsline{toc}{subsection}{XeLaTeX}%
+  \label{xelatex}%
+}
+
+XeLaTeX is an alternative to pdfLaTeX and is run in almost the
+same way, except for the \texttt{-DXELATEX} flag to ptex2tex:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~pdflatex~mydoc\\
+Terminal>~doconce~ptex2tex~mydoc~-DXELATEX\\
+Terminal>~ptex2tex~-DXELATEX~mydoc~~\#~alternative\\
+Terminal>~xelatex~mydoc
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
   Plain ASCII Text%
   \addcontentsline{toc}{subsection}{Plain ASCII Text}%
   \label{plain-ascii-text}%
@@ -1204,7 +1380,7 @@ Terminal>~doconce~format~plain~mydoc.do.txt~~\#~results~in~mydoc.txt
 \subsection*{\phantomsection%
   reStructuredText%
   \addcontentsline{toc}{subsection}{reStructuredText}%
-  \label{id4}%
+  \label{id5}%
 }
 
 Going from Doconce to reStructuredText gives a lot of possibilities to
@@ -1275,7 +1451,7 @@ Some links for going from LaTeX to Word are listed below.
 \subsection*{\phantomsection%
   Sphinx%
   \addcontentsline{toc}{subsection}{Sphinx}%
-  \label{id5}%
+  \label{id6}%
 }
 
 Sphinx documents demand quite some steps in their creation. We have automated
@@ -1550,6 +1726,16 @@ all such arguments can be customized both for Sphinx and LaTeX output.
   \label{wiki-formats}%
 }
 
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+
+
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~429
+
+\hyperlink{id7}{
+Duplicate explicit target name: ``mediawiki''.
+}}
+
 There are many different wiki formats, but Doconce only supports three:
 \href{http://code.google.com/p/support/wiki/WikiSyntax}{Googlecode wiki},
 \href{http://www.mediawiki.org/wiki/Help:Formatting}{MediaWiki}, and
@@ -1624,7 +1810,7 @@ constitute comprehensive examples on how such scripts can be made.
 The current text is generated from a Doconce format stored in the file:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-docs/tutorial/tutorial.do.txt
+doc/tutorial/tutorial.do.txt
 }
 \end{quote}
 
@@ -1649,6 +1835,11 @@ various formats. The \texttt{make.sh} script runs a set of translations.
   \addcontentsline{toc}{section}{Installation of Doconce and its Dependencies}%
   \label{installation-of-doconce-and-its-dependencies}%
 }
+
+Below, we explain the manual installation of all software that may be
+needed when working with Doconce documents.
+The impatient way to install what is needed is to run the
+\url{doconce_install_all.sh} script.
 
 
 %___________________________________________________________________________
@@ -1680,24 +1871,6 @@ cd~doconce\\
 hg~pull\\
 hg~update\\
 sudo~python~setup.py~install
-}
-\end{quote}
-
-Debian GNU/Linux users can also run:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-sudo~apt-get~install~doconce
-}
-\end{quote}
-
-This installs the latest release and not the most updated and bugfixed
-version.
-On Ubuntu one needs to run:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-sudo~add-apt-repository~ppa:scitools/ppa\\
-sudo~apt-get~update\\
-sudo~apt-get~install~doconce
 }
 \end{quote}
 
@@ -1795,6 +1968,14 @@ sudo~apt-get~install~texlive-extra-utils
 }
 \end{quote}
 
+Automatic image conversion from EPS to PDF calls up \texttt{epstopdf}, which
+can be installed by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~texlive-font-utils
+}
+\end{quote}
+
 
 %___________________________________________________________________________
 
@@ -1874,7 +2055,7 @@ that \texttt{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-sudo~apt-get~install~texlive-latex-recommended~texlive-latex-extra
+sudo~apt-get~install~texlive
 }
 \end{quote}
 
@@ -1905,6 +2086,15 @@ sudo~python~setup.py~install
 }
 \end{quote}
 
+One can also do the simple:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+pip~install~sphinx
+}
+\end{quote}
+
+which also installs pygments.
+
 If you use the minted style together with \texttt{ptex2tex}, you have to
 enable it by the \texttt{-DMINTED} command-line argument to \texttt{ptex2tex}.
 This is not necessary if you run the alternative \texttt{doconce ptex2tex} program.
@@ -1917,8 +2107,7 @@ Inline comments apply the \texttt{todonotes} LaTeX package if the \texttt{ptex2t
 or \texttt{doconce ptex2tex} command is run with \texttt{-DTODONOTES}.  The
 \texttt{todonotes} package requires several other packages: \texttt{xcolor},
 \texttt{ifthen}, \texttt{xkeyval}, \texttt{tikz}, \texttt{calc}, \texttt{graphicx}, and \texttt{setspace}. The
-relevant Debian package for installing all this is
-\texttt{texlive-latex-extra}.
+relevant Debian packages for installing all this are listed below.
 
 
 %___________________________________________________________________________
@@ -1940,15 +2129,22 @@ program, meaning that if you do not use \texttt{ptex2tex}, you do not need
 \texttt{ptex2tex.sty}. Optional packages that might be included are \texttt{minted},
 \texttt{fontspec}, \texttt{xunicode}, \texttt{inputenc}, \texttt{helvet}, \texttt{mathpazo}, \texttt{wrapfig},
 \texttt{calc}, \texttt{ifthen}, \texttt{xkeyval}, \texttt{tikz}, \texttt{graphicx}, \texttt{setspace}, \texttt{shadow},
-\texttt{disable}, \texttt{todonotes}, \texttt{lineno}, \texttt{xr}, \texttt{movie15}, \texttt{a4paper}, and
-\texttt{a6paper}.
+\texttt{disable}, \texttt{todonotes}, \texttt{lineno}, \texttt{xr}, \texttt{framed}, \texttt{mdframe},
+\texttt{movie15}, \texttt{a4paper}, and \texttt{a6paper}.
 
 Relevant Debian packages that gives you all of these LaTeX packages are:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-texlive-latex-base\\
-texlive-latex-recommended\\
+texlive\\
+texlive-extra-utils\\
 texlive-latex-extra\\
+texlive-font-utils
+}
+\end{quote}
+
+On old Ubuntu 12.04 one has to do \texttt{sudo add-apt-repository ppa:texlive-backports/ppa} and \texttt{sudo apt-get update} first, or alternatively install these as well:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
 texlive-math-extra\\
 texlive-bibtex-extra\\
 texlive-xetex\\
@@ -1957,11 +2153,15 @@ texlive-pictures
 }
 \end{quote}
 
+Alternatively, one may pull in \texttt{texlive-full} to get all available
+style files.
+
 If you want to use the \emph{anslistings} code environment with \texttt{ptex2tex}
 (\texttt{.ptex2tex.cfg} styles \texttt{Python\_ANS}, \texttt{Python\_ANSt}, \texttt{Cpp\_ANS}, etc.) or
 \texttt{doconce ptex2tex} (\texttt{envir=ans} or \texttt{envir=ans:nt}), you need the
 \texttt{anslistings.sty} file. It can be obtained from
-the \href{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}{ptex2tex source}.
+the \href{https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty}{ptex2tex source}. It should get installed
+by the \texttt{cp2texmf.sh} script executed above.
 
 
 %___________________________________________________________________________
@@ -1977,12 +2177,22 @@ HTML, XML, OpenOffice, and so on, through the \href{http://docutils.sourceforge.
 most recent version can be done by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-svn~checkout~http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils\\
+svn~checkout~\textbackslash{}\\
+~~http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils\\
 cd~docutils\\
 sudo~python~setup.py~install\\
 cd~..
 }
 \end{quote}
+
+The command:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+pip~install~sphinx
+}
+\end{quote}
+
+installs Docutils along with Sphinx and Pygments.
 
 To use the OpenOffice suite you will typically on Debian systems install:
 %
@@ -2018,6 +2228,13 @@ cd~..
 }
 \end{quote}
 
+An alternative is:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+pip~install~sphinx
+}
+\end{quote}
+
 Doconce comes with many Sphinx themes that are not part of the
 standard Sphinx source distribution. Some of these themes require
 additional Python/Sphinx modules to be installed:
@@ -2026,7 +2243,7 @@ additional Python/Sphinx modules to be installed:
 %
 \begin{itemize}
 
-\item could and redcloud: \url{https://bitbucket.org/ecollins/cloud_sptheme}
+\item cloud and redcloud: \url{https://bitbucket.org/ecollins/cloud_sptheme}
 
 \item bootstrap: \url{https://github.com/ryan-roemer/sphinx-bootstrap-theme}
 
@@ -2186,9 +2403,77 @@ Debian/Ubuntu install
  & 
 \href{https://sourceforge.net/projects/tkdiff/}{tkdiff}
  & 
-\texttt{sudo apt-get install not in Debian}
+not in Debian
  \\
 \hline
 \end{longtable*}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Quick Debian/Ubuntu Install%
+  \addcontentsline{toc}{subsection}{Quick Debian/Ubuntu Install}%
+  \label{quick-debian-ubuntu-install}%
+}
+
+On Debian (including Ubuntu) systems, it is straightforward to install the
+long series of Doconce dependencies:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\#~Version~control~systems\\
+sudo~apt-get~install~-y~mercurial~git~subversion\\
+~\\
+\#~Python\\
+sudo~apt-get~install~-y~idle~ipython~python-pip~python-pdftools~texinfo\\
+~\\
+\#~These~lines~are~only~necessary~for~Ubuntu~12.04~to~install~texlive~2012\\
+ubuntu\_version=`lsb\_release~-r~|~awl~'\{print~\$2\}'`\\
+if~{[}~\$ubuntu\_version~=~"12.04"~{]};~then\\
+~~sudo~add-apt-repository~ppa:texlive-backports/ppa\\
+~~sudo~apt-get~update\\
+fi\\
+\#~LaTeX\\
+sudo~apt-get~install~-y~texlive~texlive-extra-utils~texlive-latex-extra~texlive-math-extra~texlive-font-utils\\
+\#~or~sudo~apt-get~install~-y~texlive-full~~\#~get~everything\\
+sudo~apt-get~install~-y~latexdiff~auctex\\
+~\\
+\#~Image~and~movie~tools\\
+sudo~apt-get~install~-y~imagemagick~netpbm~mjpegtools~pdftk~giftrans~gv~evince~smpeg-plaympeg~mplayer~totem~ffmpeg~libav-tools\\
+~\\
+\#~Misc\\
+sudo~apt-get~install~-y~ispell~pandoc~libreoffice~unoconv~libreoffice-dmaths~curl~a2ps~wdiff~meld~xxdiff~diffpdf~kdiff3~diffuse\\
+~\\
+\#~More~Python~software\\
+pip~install~sphinx~~\#~install~pygments~and~docutils~too\\
+pip~install~mako\\
+pip~install~-e~svn+http://preprocess.googlecode.com/svn/trunk\#egg=preprocess\\
+pip~install~-e~hg+https://bitbucket.org/logg/publish\#egg=publish\\
+~\\
+pip~install~-e~hg+https://bitbucket.org/ecollins/cloud\_sptheme\#egg=cloud\_sptheme\\
+pip~install~-e~git+https://github.com/ryan-roemer/sphinx-bootstrap-theme\#egg=sphinx-bootstrap-theme\\
+pip~install~-e~hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized\#egg=sphinxjp.themes.solarized\\
+pip~install~-e~git+https://github.com/shkumagai/sphinxjp.themes.impressjs\#egg=sphinxjp.themes.impressjs\\
+pip~install~-e~svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc\#egg=epydoc\\
+~\\
+\#~Doconce~itself\\
+rm~-rf~srclib~~~\#~put~downloaded~software~in~srclib\\
+mkdir~srclib\\
+cd~srclib\\
+hg~clone~https://code.google.com/p/doconce/\\
+cd~doconce\\
+sudo~python~setup.py~install~-y\\
+cd~../..\\
+~\\
+\#~Ptex2tex\\
+cd~srclib\\
+svn~checkout~http://ptex2tex.googlecode.com/svn/trunk/~ptex2tex\\
+cd~ptex2tex\\
+sudo~python~setup.py~install~-y\\
+cd~latex\\
+sh~cp2texmf.sh~~\#~copy~stylefiles~to~\textasciitilde{}/texmf~directory\\
+cd~../../..
+}
+\end{quote}
 
 \end{document}
