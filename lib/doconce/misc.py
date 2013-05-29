@@ -902,7 +902,8 @@ def ptex2tex():
     envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
     envirs += ['htmlcod', 'htmlpro', 'html',
                'rbpro', 'rbcod', 'rb',
-               'xmlpro', 'xmlcod', 'xml', ]
+               'xmlpro', 'xmlcod', 'xml',
+               'latexpro', 'latexcod', 'latex']
 
     # Process command-line options
 

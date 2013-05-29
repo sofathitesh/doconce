@@ -1523,7 +1523,7 @@ as backgrounds for the different admonitions.
 
 Some recommended combinations for admonitions in HTML are
 
- * `--html_admon=apricot', `--html_style=solarized`
+ * `--html_admon=apricot`, `--html_style=solarized`
  * `--html_admon=yellow`, `--html_style=bluish2`, `--no_pygments_html`
  * `--html_admon=yellow`, `--html_style=blueish2`, `--pygments_html_style=default`
  * `--html_admon=gray`, `--html_style=bloodish`, `--no_pygments_html`
@@ -1715,7 +1715,7 @@ Terminal> python automake_sphinx.py
 The `doconce format sphinx mydoc` command is needed to produce `mydoc.rst`,
 which is the starting point for the `doconce split_rst` command.
 The various files that constitute the complete Sphinx document are
-`mydoc.rst`, `._part0000_mydoc.rst`, `._part0001_mydoc.rst`m `._part0002_mydoc.rst`,
+`mydoc.rst`, `._part0000_mydoc.rst`, `._part0001_mydoc.rst`, `._part0002_mydoc.rst`,
 and so on. The `automake_sphinx.py` script ensures that the Sphinx document
 is compiled correctly. If all links to local files are in a `_static`
 directory, the whole Sphinx document exists in a complete version
@@ -1854,6 +1854,7 @@ LaTeX Beamer slides.
 # doconce-adjusted styles: easy to switch between styles since
 # font sizes are compatible
 
+Text is missing... Just a very preliminary sketch of commands:
 !bc sys
 Terminal> doconce format html myslides \
           --pygments_html_style=native --keep_pygments_html_bg
@@ -1880,6 +1881,8 @@ are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
 
 ===== The Basics of Mako =====
+
+Just a preliminary sketch of some Mako code (next example is better!):
 
 !bc
 # Define variables
