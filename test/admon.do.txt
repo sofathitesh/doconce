@@ -51,15 +51,19 @@ And more and more text.
 
 Test warning with title:
 
-!bwarning Watch Out
-And here comes some text with bad news.
+!bwarning (large) Watch Out
+And here comes some text with bad news in larger font.
 !ewarning
 
 Then we test a block, which is guaranteed to never have any admon icon.
 
-!bblock Block with title
-Here is a block of text with title. It is typeset without any icon
-and is useful when you want some admons with icon and some without.
+!bblock (small) Block with title
+Here is a block of text with title. It is typeset
+*without any icon* and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
 !eblock
 
 # #if FORMAT == "sphinx"
@@ -78,8 +82,8 @@ The next admonition features a title "Note, eventually!".
 # Note that the final ! does not appear in Sphinx and reST since
 # those formats automatically add : to the admonition title.
 
-!bnotice Note, eventually!
-Ah, we are soon close to the end.
+!bnotice (illegal-size) Note, eventually!
+Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math:
 !bt
 \[ p=q\]
