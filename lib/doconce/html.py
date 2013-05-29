@@ -90,8 +90,8 @@ admon_styles2 = admon_styles_text + """\
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
              border:1px solid %(boundary)s;
-               -webkit-border-radius:4px; -moz-border-radius:4px;
-             border-radius:4px
+             -webkit-border-radius: 4px; -moz-border-radius: 4px;
+             border-radius: 4px
              color: #555;
              background-color: %(background)s;
              background-position: 10px 5px;
