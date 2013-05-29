@@ -1,4 +1,5 @@
 #!/bin/sh
+sh clean.sh
 
 # ----- scientific_writing talk -------
 name=scientific_writing
@@ -40,13 +41,14 @@ doconce replace '\label{demo' 'label{demo' ${name}_deck.html
 # LaTeX Beamer slides
 doconce format pdflatex $name
 doconce ptex2tex $name -DLATEX_HEADING=beamer envir=minted
-doconce slides_beamer $name --beamer_slide_theme=red2
-cp $name.tex ${name}_red2.tex
-pdflatex -shell-escape ${name}_red2
+doconce slides_beamer $name --beamer_slide_theme=red_shadow
+cp $name.tex ${name}_red_shadow.tex
+pdflatex -shell-escape ${name}_red_shadow
 
 # LaTeX documents
 doconce format pdflatex $name --minted_latex_style=trac
 doconce ptex2tex $name envir=minted -DBOOK
+doconce replace 'section{' 'section*{' $name.tex
 pdflatex -shell-escape $name
 mv -f $name.pdf ${name}_minted.pdf
 
@@ -54,6 +56,7 @@ doconce format pdflatex $name
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce ptex2tex $name envir=ans:nt -DBOOK
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+doconce replace 'section{' 'section*{' $name.tex
 pdflatex $name
 mv -f $name.pdf ${name}_anslistings.pdf
 
@@ -91,7 +94,7 @@ pygmentize -l text -f html -o demo_doconce.html demo.do.txt
 sh -x tmp_slides_html_all.sh
 
 # LaTeX Beamer slides
-themes="blue1 blue2 red1 red2 hpl1 hpl2 cbc simula umbc1 umbc2 umbc3 umbc4"
+themes="blue_plain blue_shadow red_plain red_shadow cbc simula"
 beamer_pdfs=""
 for theme in $themes; do
 doconce format pdflatex demo SLIDE_TYPE="beamer" SLIDE_THEME="$theme"
@@ -231,6 +234,8 @@ doconce slides_html demo csss --html_slide_theme=csss_default
 <li>LaTeX Beamer PDF: $beamer_pdfs
 <li><a href="demo.pdf">Handouts in PDF</a> (generated via LaTeX)
 <li><a href="demo_doconce.html">Doconce source code for the slides</a>
-<li>Doconce: Why and How, <a href="../scientific_writing.html">reveal w/darkgrey</a>, <a href="../scientific_writing_deck.html">deck w/sandstone.default</a>
+<li>Doconce: Why and How, <a href="../scientific_writing.html">reveal w/darkgrey</a>, <a href="../scientific_writing_deck.html">deck w/sandstone.default</a>,
+<a href="../scientific_writing_red_shadow.pdf">beamer</a>,
+<a href="../scientific_writing_solarized.html">solarized</a>
 </ul>
 EOF
