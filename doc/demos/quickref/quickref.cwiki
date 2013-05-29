@@ -1,7 +1,7 @@
 #summary Doconce Quick Reference
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen**
-=== May 28, 2013 ===
+=== May 29, 2013 ===
 
 <<TableOfContents>>
 
@@ -498,6 +498,11 @@ Note that
  * There may be horizontal rules, i.e., lines with dashes for   indicating the heading and the end of the table, and these may   contain characters 'c', 'l', or 'r' for how to align headings or   columns. The first horizontal rule may indicate how to align   headings (center, left, right), and the horizontal rule after the   heading line may indicate how to align the data in the columns   (center, left, right).
  * If the horizontal rules are without alignment information there should   be no vertical bar (pipe symbol) between the columns. Otherwise, such   a bar indicates a vertical bar between columns in LaTeX.
  * Many output formats are so primitive that heading and column alignment   have no effect.
+
+The command-line option {{{--tables2csv}}} (to {{{doconce format}}})
+makes Doconce dump each table to CSV format in a file {{{table_X.csv}}},
+where {{{X}}} is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 == Labels and References ==
 

@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 function system {
-  $@
+  "$@"
   if [ $? -ne 0 ]; then
     echo "make.sh: unsuccessful command $@"
     echo "abort!"
@@ -54,7 +54,7 @@ cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html
 
-system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg --tables2csv
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg
 
 system doconce remove_exercise_answers testdoc.html
 system doconce html_colorbullets testdoc.html
@@ -97,7 +97,7 @@ system doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbat
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
-system doconce format plain testdoc.do.txt $ex -DSOMEVAR=1
+system doconce format plain testdoc.do.txt $ex -DSOMEVAR=1 --tables2csv
 system doconce format st testdoc.do.txt $ex
 system doconce format sphinx testdoc.do.txt $ex
 mv -f testdoc.rst testdoc.sphinx.rst
@@ -208,7 +208,7 @@ doconce sphinx_dir dirname=sphinx-rootdir-math $name
 cp automake_sphinx.py automake_sphinx_math_test.py
 python automake_sphinx.py
 doconce format pandoc $name
-# Do not use pandoc directly because it does not support MathJax enough
+# Do not use pandoc directly because it does not support MathJax sufficiently well
 doconce md2html $name.md
 cp $name.html ${name}_pandoc.html
 doconce format pandoc $name
@@ -249,6 +249,7 @@ system python automake_sphinx.py
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 system doconce format mwiki admon
+cp admon.mwiki admon_mwiki.mwiki
 
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done

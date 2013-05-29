@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: May 28, 2013
+DATE: May 29, 2013
 B{WARNING: This quick reference is very incomplete!}
 
 I{Mission.} Enable writing documentation with much mathematics and
@@ -528,6 +528,11 @@ Note that
    a bar indicates a vertical bar between columns in LaTeX.
  - Many output formats are so primitive that heading and column alignment
    have no effect.
+
+The command-line option C{--tables2csv} (to C{doconce format})
+makes Doconce dump each table to CSV format in a file C{table_X.csv},
+where C{X} is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 Labels and References
 ---------------------

@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% May 28, 2013
+% May 29, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -575,6 +575,11 @@ Note that
 
  * Many output formats are so primitive that heading and column alignment
    have no effect.
+
+The command-line option `--tables2csv` (to `doconce format`)
+makes Doconce dump each table to CSV format in a file `table_X.csv`,
+where `X` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 ### Labels and References
 
