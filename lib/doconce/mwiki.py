@@ -272,8 +272,46 @@ from gwiki import wiki_ref_and_label_common
 def mwiki_ref_and_label(section_label2title, format, filestr):
     return wiki_ref_and_label_common(section_label2title, format, filestr)
 
-def mwiki_warning(block, format, title='warning'):
-    return '\n{{%s|%s}}\n\n' % (title, block)
+def mwiki_admon(block, format, title='Warning', text_size='normal',
+                admon_type='warning'):
+    if title.lower().strip() == 'none':
+        title = ''
+    # Blocks without explicit title should have empty title
+    if title == 'Block':  # block admon has no default title
+        title = ''
+
+    if title and title[-1] not in ('.', ':', '!', '?'):
+        # Make sure the title ends with puncuation
+        title += '.'
+
+    admon_type2mwiki = dict(notice='notice',
+                            warning='warning',  # or critical or important
+                            hint='notice',)
+    if admon_type in admon_type2mwiki:
+        admon_type = admon_type2mwiki[admon_type]  # use mwiki admon
+    else:
+        admon_type = title # Just use the title
+
+    text = "'''%s''' " % title + block
+
+    if text_size == 'normal':
+        text_size = '90%'
+    elif text_size == 'large':
+        text_size = '130%'
+    elif text_size == 'small':
+        text_size = '80%'
+
+    s = """
+{{mbox
+| type = %s
+| textstyle = font-size: %s;
+| text = %s
+}}
+
+""" % (admon_type, text_size, text)
+    return s
+
+# mbox: notice
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -329,7 +367,16 @@ def define(FILENAME_EXTENSION,
     from html import html_table
     TABLE['mwiki'] = html_table
     ENVIRS['mwiki'] = {
-        'warning':  mwiki_warning,
+        'warning':   lambda block, format, title='Warning', text_size='normal':
+           mwiki_admon(block, format, title, text_size, 'warning'),
+        'notice':    lambda block, format, title='Notice', text_size='normal':
+           mwiki_admon(block, format, title, text_size, 'notice'),
+        'question':  lambda block, format, title='Question', text_size='normal':
+           mwiki_admon(block, format, title, text_size, 'question'),
+        'hint':      lambda block, format, title='Hint', text_size='normal':
+           mwiki_admon(block, format, title, text_size, 'hint'),
+        'summary':   lambda block, format, title='Summary', text_size='normal':
+           mwiki_admon(block, format, title, text_size, 'summary')
         }
 
     # native list:
