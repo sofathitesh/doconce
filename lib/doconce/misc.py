@@ -81,6 +81,8 @@ inserted to the right in exercises - "default" and "none" are allowed
      'Leave out hints from exercises.'),
     ('--wordpress',
      'Make HTML output for wordpress.com pages.'),
+    ('--tables2csv',
+     'Write each table to a CSV file table_X.csv, where X is the table number.'),
     ]
 
 _legal_command_line_options = \
@@ -819,6 +821,32 @@ def expand_commands():
             f.close()
 
 
+def copy_latex_packages(packages):
+    """
+    Copy less well-known latex packages to the current directory
+    if the packages are not found on the (Unix) system.
+    """
+    import commands
+    for style in packages:
+        failure, output = commands.getstatusoutput('kpsewhich %s.sty' % style)
+        if output == '':
+            # Copy style.sty to current dir
+            filename = style + '.sty'
+            datafile = latexstyle_files  # global variable (latex_styles.zip)
+            if not os.path.isfile(filename):
+                import doconce
+                doconce_dir = os.path.dirname(doconce.__file__)
+                doconce_datafile = os.path.join(doconce_dir, datafile)
+                shutil.copy(doconce_datafile, os.curdir)
+                import zipfile
+                try:
+                    zipfile.ZipFile(datafile).extract(filename)
+                    msg = 'extracted'
+                except:
+                    msg = 'could not extract'
+                print '%s %s (from %s in the doconce installation)' % \
+                (msg, filename, latexstyle_files)
+                os.remove(datafile)
 
 def _usage_ptex2tex():
     print r"""\
@@ -1065,24 +1093,9 @@ download preprocess from http://code.google.com/p/preprocess""")
         filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
     # Copy less well-known latex packages to the current directory
-    # if the packages are not found on the (Unix) system
-    import commands
-    for style in ['minted', 'anslistings', 'fancyvrb']:
-        if style in packages:
-            failure, output = commands.getstatusoutput('kpsewhich %s.sty' % style)
-            if output == '':
-                # Copy style.sty to current dir
-                filename = style + '.sty'
-                datafile = latexstyle_files  # global variable (latex_styles.zip)
-                if not os.path.isfile(filename):
-                    import doconce
-                    doconce_dir = os.path.dirname(doconce.__file__)
-                    doconce_datafile = os.path.join(doconce_dir, datafile)
-                    shutil.copy(doconce_datafile, os.curdir)
-                    import zipfile
-                    zipfile.ZipFile(datafile).extract(filename)
-                    print 'extracted %s (from %s in the doconce installation)' % (filename, latexstyle_files)
-                    os.remove(datafile)
+    copy_latex_packages(
+        [name for name in ['minted', 'anslistings', 'fancyvrb']
+         if name in packages])
 
     if 'minted' in packages:
         failure, output = commands.getstatusoutput('pygmentize')
@@ -3337,8 +3350,11 @@ def slides_beamer():
 
 
 def generate_beamer_slides(header, parts, footer, basename, filename):
-    theme = option('beamer_slide_theme=', default='default')
     header = ''.join(header)
+    theme = option('beamer_slide_theme=', default='default')
+    if theme != 'default':
+        beamerstyle = 'beamertheme' + theme + '.sty'
+        copy_latex_packages([beamerstyle])
 
     slides = r"""
 %% LaTeX Beamer file automatically generated from Doconce

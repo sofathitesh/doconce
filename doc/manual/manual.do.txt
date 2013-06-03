@@ -931,7 +931,10 @@ headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
-
+The command-line option `--tables2csv` (to `doconce format`)
+makes Doconce dump each table to CSV format in a file `table_X.csv`,
+where `X` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
 
 ===== Exercises, Problems, Projects, and Examples =====
 

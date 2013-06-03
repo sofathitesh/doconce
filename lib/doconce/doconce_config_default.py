@@ -44,3 +44,4 @@ without_solutions = False
 without_answers = False
 without_hints = False
 wordpress = False
+tables2csv = False

@@ -110,7 +110,6 @@ def pandoc_table(table):
 
     """
     # Slight modification of rst_table
-    # Here is the pandoc table format
 
     column_width = table_analysis(table['rows'])
     ncolumns = len(column_width)
