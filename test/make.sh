@@ -248,6 +248,8 @@ system doconce sphinx_dir dirname=tmp_admon admon
 system python automake_sphinx.py
 cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
+system doconce format mwiki admon
+
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done
 
