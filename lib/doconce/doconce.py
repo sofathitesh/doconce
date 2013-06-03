@@ -1039,11 +1039,20 @@ def typeset_tables(filestr, format):
     The list is easily translated to various output formats
     by other modules.
     """
+
     from StringIO import StringIO
     result = StringIO()
+
     # table is a dict with keys rows, headings_align, columns_align
     table = {'rows': []}  # init new table
     inside_table = False
+
+    tables2csv = option('tables2csv')
+    import csv
+    table_counter = 0
+    # Add functionality:
+    # doconce csv2table, which reads a .csv file and outputs
+    # a doconce formatted table
 
     horizontal_rule_pattern = r'^\|[\-lrc]+\|'
     lines = filestr.splitlines()
@@ -1087,6 +1096,7 @@ def typeset_tables(filestr, format):
             # row in table:
             if not inside_table:
                 inside_table = True
+                table_counter += 1
             columns = line.strip().split('|')  # does not work with math2 syntax
             # Possible fix so that | $\bar T$|$T$ | $...$ | ... is possible:
             # .split(' | '), but need to make sure the syntax and no of columns
@@ -1113,6 +1123,15 @@ def typeset_tables(filestr, format):
                 inside_table = False
                 #import pprint; pprint.pprint(table)
                 result.write(TABLE[format](table))   # typeset table
+                # Write CSV file
+                if tables2csv:
+                    outfile = open('table_%d.csv' % table_counter, 'w')
+                    writer = csv.writer(outfile)
+                    for row in table['rows']:
+                        if row == ['horizontal rule']:
+                            continue
+                        writer.writerow(row)
+                    outfile.close()
                 table = {'rows': []}  # init new table
             else:
                 result.write(line + '\n')

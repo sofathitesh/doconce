@@ -1,3 +1,5 @@
+
+
 ======= Installation of Doconce and its Dependencies =======
 
 Below, we explain the manual installation of all software that may be
@@ -408,7 +410,7 @@ pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sp
 pip install -e svn+https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc#egg=epydoc
 
 # Doconce itself
-rm -rf srclib
+rm -rf srclib   # put downloaded software in srclib
 mkdir srclib
 cd srclib
 hg clone https://code.google.com/p/doconce/
