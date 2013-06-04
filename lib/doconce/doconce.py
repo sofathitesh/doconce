@@ -1122,6 +1122,20 @@ def typeset_tables(filestr, format):
                 # so the table is ended
                 inside_table = False
                 #import pprint; pprint.pprint(table)
+                # Check for consistency:
+                try:
+                    ok = table['rows'][0] == ['horizontal rule'] and \
+                         table['rows'][2] == ['horizontal rule'] and \
+                         table['rows'][-1] == ['horizontal rule']
+                except IndexError:
+                    ok = False
+                if not ok:
+                    print '*** error: syntax error in table:'
+                    for row in table['rows']:
+                        if row != ['horizontal rule']:
+                            print ' | '.join(row)
+                    _abort()
+
                 result.write(TABLE[format](table))   # typeset table
                 # Write CSV file
                 if tables2csv:
