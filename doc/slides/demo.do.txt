@@ -19,7 +19,7 @@ and get them rendered in numerous HTML formats.
 # #if FORMAT in ("html", "pdflatex", "latex")
 !bnotice Layout
 This version
-utilizes ${SLIDE_TYPE} slides with the theme ${SLIDE_THEME}.
+utilizes ${SLIDE_TYPE} slides with the theme `${SLIDE_THEME}`.
 !enotice
 # #endif
 
@@ -41,6 +41,8 @@ pressing "n".
 pressing "Ctrl-P".
 % elif SLIDE_TYPE == 'html5slides':
 pressing "p".
+% elif SLIDE_TYPE == 'dzslides':
+clicking on the arrow head before Details below.
 % elif SLIDE_TYPE == 'csss':
 using the "onstage.html": "https://doconce.googlecode.com/hg/bundled/dzslides/shells/onstage.html" embedding page.
 % endif
