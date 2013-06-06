@@ -91,7 +91,7 @@ pygmentize -l text -f html -o demo_doconce.html demo.do.txt
 sh -x tmp_slides_html_all.sh
 
 # LaTeX Beamer slides
-themes="blue_plain blue_shadow red_lain red_shadow"  # cbc simula"
+themes="blue_plain blue_shadow red_plain red_shadow"  # cbc simula"
 beamer_pdfs=""
 for theme in $themes; do
 doconce format pdflatex demo SLIDE_TYPE="beamer" SLIDE_THEME="$theme"
