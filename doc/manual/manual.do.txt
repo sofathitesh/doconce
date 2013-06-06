@@ -1871,9 +1871,16 @@ Terminal> doconce slides_html myslides reveal \
 
 ===== LaTeX Beamer Slides =====
 
-Four styles come with Doconce: `X_Y`, where `X` is `blue` or `red`
-(the main color of the slides) and `Y` is `plain` for simple layout and
-`shadow` for shadowed boxes and more visual structure in the slides.
+Not yet written...
+
+=== Themes ===
+
+Four themes come with Doconce: `X_Y`, where `X` is `blue` or `red`
+(the main color of the slides) and `Y` is "`plain`":
+"http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf"
+for simple layout and
+"`shadow`": "http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf"
+for shadowed boxes and more visual structure in the slides.
 
 ======= Mako Programming =======
 
