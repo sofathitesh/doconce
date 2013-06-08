@@ -150,12 +150,13 @@ def option(name, default=None):
 def check_command_line_options(option_start):
     # Error handling: check if all command-line options are of known types
     for arg in sys.argv[option_start:]:
+        arg_user = arg
         if '=' in arg:
-            arg_ = arg.split('=')[0] + '='
-        if arg_[:2] == '--':
-            if not arg_ in _legal_command_line_options:
+            arg = arg.split('=')[0] + '='
+        if arg[:2] == '--':
+            if not arg in _legal_command_line_options:
                 print '*** warning: unrecognized command-line option'
-                print '   ', arg
+                print '   ', arg_user
 
 def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
     """

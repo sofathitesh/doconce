@@ -1447,7 +1447,6 @@ final,                   % or draft (marks overfull hboxes)
             question=_light_yellow1,
             notice=_light_yellow1,
             summary=_light_yellow1,
-            hint=_light_blue,
             #block=_gray2,
             block=_light_yellow1,
             )
@@ -1455,14 +1454,12 @@ final,                   % or draft (marks overfull hboxes)
             warning='small_gray_warning',
             question='small_gray_question2',  # 'small_gray_question3'
             notice='small_gray_notice',
-            hint='small_gray_hint',
             summary='small_gray_summary',
             )
         yellowbox_figs = dict(
             warning='small_yellow_warning',
             question='small_yellow_question',
             notice='small_yellow_notice',
-            hint='small_yellow_hint',
             summary='small_yellow_summary',
             )
 
