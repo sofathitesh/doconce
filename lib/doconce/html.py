@@ -68,7 +68,7 @@ admon_styles_text = """\
 """
 
 admon_styles1 = admon_styles_text + """\
-    .notice, .summary, .warning, .hint, .question, .block {
+    .notice, .summary, .warning, .question, .block {
        border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
        background-repeat: no-repeat; background-position: 10px center;
     }
@@ -78,8 +78,6 @@ admon_styles1 = admon_styles_text + """\
                 background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }
     .warning  { color: #9F6000; background-color: %(background_warning)s;
                 background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_warning)s); }
-    .hint     { color: #00529B; background-color: %(background_hint)s;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_hint)s); }
     .question { color: #4F8A10; background-color: %(background_question)s;
                 background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_question)s); }
     .block    { color: #00529B; background-color: %(background_notice)s; }
@@ -107,7 +105,6 @@ admon_styles2 = admon_styles_text + """\
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_notice)s); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_summary)s); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_warning)s); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_hint)s); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/%(icon_question)s); }
 """
 # alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
@@ -1304,12 +1301,10 @@ def define(FILENAME_EXTENSION,
         background_block='#BDE5F8',
         background_summary='#DFF2BF',
         background_warning='#FEEFB3',
-        background_hint='#BDE5F8',
         background_question='#DFF2BF',
         icon_notice='Knob_Info.png',
         icon_summary='Knob_Valid_Green.png',
         icon_warning='Knob_Attention.png',
-        icon_hint='Knob_Info.png',
         icon_question='Knob_Forward.png',
         icon_block='',
         )

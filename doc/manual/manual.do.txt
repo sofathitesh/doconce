@@ -1480,19 +1480,15 @@ in the current format.
 ===== Admonitions =====
 
 Doconce offers strong support for admonition environments, such
-as warning boxes, notification boxes, hint boxes, question boxes,
+as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading.
 
 The following admonition environments are available:
-`block`, `warning`, `notice`, `hint`, `question`, and `summary`.
-The box is defined by begin and end tags such as `!bhint` and `!ehint`.
-(The hint box is typeset differently inside exercises compared to outside
-exericises: inside a plain paragraph heading *Hint* (with number)
-appears, while outside exercises the `hint` environment gives a
-box with some admonition icon, text and/or colored background.)
+`block`, `warning`, `notice`, `question`, and `summary`.
+The box is defined by begin and end tags such as `!bnotice` and `!enotice`.
 The title of the box is fully customizable.
 
 Here are a few examples:
@@ -1502,9 +1498,9 @@ Here are a few examples:
 Here is a warning!
 |ewarning
 
-|bhint
+|bnotice Hint
 This is a hint.
-|ehint
+|enotice
 
 |bblock This is a block.
 A block has never any icon.
@@ -1528,9 +1524,9 @@ The above Doconce code is in the present format rendered as
 Here is a warning!
 !ewarning
 
-!bhint
+!bnotice Hint
 This is a hint.
-!ehint
+!enotice
 
 !bblock This is a block.
 A block has never any icon.
