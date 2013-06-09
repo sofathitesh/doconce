@@ -2022,13 +2022,13 @@ def doconce_html_split(header, parts, footer, basename, filename):
             if pn > 0:
                 lines.append("""
 <a href="%s"><img src="%s" border=0 alt="previous"></a>
-    """ % (prev_part_filename, button_prev_filename))
+""" % (prev_part_filename, button_prev_filename))
             if pn < len(parts)-1:
                 lines.append("""
 <a href="%s"><img src="%s" border=0 alt="next"></a>
-    """ % (next_part_filename, button_next_filename))
+""" % (next_part_filename, button_next_filename))
+            lines.append('<!-- end top navigation -->\n\n')
             lines.append('<p>\n')
-            lines.append('<!-- end top navigation -->')
 
 
         # Main body of text
@@ -2045,12 +2045,12 @@ def doconce_html_split(header, parts, footer, basename, filename):
             if pn > 0:
                 lines.append("""
 <a href="%s"><img src="%s" border=0 alt="previous"></a>
-                """ % (prev_part_filename, button_prev_filename))
+""" % (prev_part_filename, button_prev_filename))
             if pn < len(parts)-1:
                 lines.append("""
 <a href="%s"><img src="%s" border=0 alt="next"></a>
-                """ % (next_part_filename, button_next_filename))
-            lines.append('<!-- end bottom navigation -->')
+""" % (next_part_filename, button_next_filename))
+            lines.append('<!-- end bottom navigation -->\n\n')
             lines += footer
 
         html.add_to_file_collection(part_filename, filename, 'a')

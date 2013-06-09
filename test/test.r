@@ -947,9 +947,9 @@ With label.
 
 Without label.
 
-!bhint
-Here is a hint.
-!ehint
+!bnotice Tip
+Here is a tip or hint box, typeset as a notice box.
+!enotice
 
 
 # #if FORMAT in ("latex", "pdflatex")
@@ -1139,7 +1139,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -1270,9 +1269,11 @@ $$
 
     
 <a name="part0000"></a>
-
-    <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+<!-- begin top navigation -->
+<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
     <p>
+<!-- end top navigation -->
+
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -1360,9 +1361,11 @@ $$
 
 <p>
 <p>
+<!-- begin bottom navigation -->
+<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+                <!-- end bottom navigation -->
 
-                <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-                <!-- ------------------- end of main content --------------- -->
+<!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -2955,8 +2958,8 @@ With label.
 Without label.
 
 
-\begin{graybox1admon}[Hint.]
-Here is a hint.
+\begin{graybox1admon}[Tip.]
+Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
 \clearpage
 
@@ -4420,8 +4423,8 @@ With label.
 Without label.
 
 
-\begin{graybox1admon}[Hint.]
-Here is a hint.
+\begin{graybox1admon}[Tip.]
+Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
 \clearpage
 
@@ -5828,8 +5831,8 @@ With label.
 Without label.
 
 
-\begin{graybox1admon}[Hint.]
-Here is a hint.
+\begin{graybox1admon}[Tip.]
+Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
 \clearpage
 
@@ -7195,8 +7198,9 @@ Appendix: Testing identical titles  (4)
 Without label.
 
 
-.. hint::
-   Here is a hint.
+.. admonition:: Tip
+
+   Here is a tip or hint box, typeset as a notice box.
 
 
 Need a lot of text to surround the summary box.
@@ -8715,8 +8719,9 @@ Appendix: Testing identical titles  (4)
 Without label.
 
 
-.. hint::
-   Here is a hint.
+.. admonition:: Tip
+
+   Here is a tip or hint box, typeset as a notice box.
 
 
 Need a lot of text to surround the summary box.
@@ -9789,8 +9794,8 @@ With label.
 
 Without label.
 
-*Hint.* 
-Here is a hint.
+*Tip.* 
+Here is a tip or hint box, typeset as a notice box.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -10939,7 +10944,7 @@ Without label.
 {{mbox
 | type = notice
 | textstyle = font-size: 90%;
-| text = '''Hint.''' Here is a hint.
+| text = '''Tip.''' Here is a tip or hint box, typeset as a notice box.
 }}
 
 Need a lot of text to surround the summary box.
@@ -11969,8 +11974,8 @@ With label.
 
 Without label.
 
-//Hint.// 
-Here is a hint.
+//Tip.// 
+Here is a tip or hint box, typeset as a notice box.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -12983,8 +12988,8 @@ Appendix: Testing identical titles
 
 Without label.
 
-*Hint.* 
-Here is a hint.
+*Tip.* 
+Here is a tip or hint box, typeset as a notice box.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -14034,8 +14039,8 @@ Appendix: Testing identical titles
 
 Without label.
 
-I{Hint.} 
-Here is a hint.
+I{Tip.} 
+Here is a tip or hint box, typeset as a notice box.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -15173,8 +15178,8 @@ Appendix: Testing identical titles
 
 Without label.
 
-*Hint.* 
-Here is a hint.
+*Tip.* 
+Here is a tip or hint box, typeset as a notice box.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -16435,8 +16440,8 @@ With label.
 
 Without label.
 
-*Hint.* 
-Here is a hint.
+*Tip.* 
+Here is a tip or hint box, typeset as a notice box.
 
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
@@ -17989,9 +17994,9 @@ case in LaTeX.
       "\n",
       "Without label.\n",
       "\n",
-      "!bhint\n",
-      "Here is a hint.\n",
-      "!ehint\n",
+      "!bnotice Tip\n",
+      "Here is a tip or hint box, typeset as a notice box.\n",
+      "!enotice\n",
       "\n",
       "\n",
       "\n",
@@ -18835,7 +18840,7 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>With label.</p>
 <h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
 <p>Without label.</p>
-<p><a href="#hint.">Hint.</a> Here is a hint.</p>
+<p>[Tip.] Here is a tip or hint box, typeset as a notice box.</p>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson’ excellent <a href="{http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
 <p>[Summary.] <strong>Bold remark:</strong> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
@@ -18881,7 +18886,6 @@ warranty, not even for merchantability or fitness for a particular purpose.
   <meta name="author" content="A. Dummy Author" />
   <meta name="author" content="I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst" />
   <meta name="author" content="J. Doe" />
-  <meta name="date" content="2013-05-29" />
   <title>A Document for Testing Doconce</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -19637,7 +19641,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p>With label.</p>
 <h3 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h3>
 <p>Without label.</p>
-<p><em>Hint.</em> Here is a hint.</p>
+<p><em>Tip.</em> Here is a tip or hint box, typeset as a notice box.</p>
 <p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
 <p><em>Summary.</em> <em>Bold remark:</em> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site &quot;in the cloud&quot; and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
@@ -21391,7 +21395,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -21522,9 +21525,11 @@ $$
 
     
 <a name="part0000"></a>
-
-    <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+<!-- begin top navigation -->
+<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
     <p>
+<!-- end top navigation -->
+
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -21612,9 +21617,11 @@ $$
 
 <p>
 <p>
+<!-- begin bottom navigation -->
+<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+                <!-- end bottom navigation -->
 
-                <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-                <!-- ------------------- end of main content --------------- -->
+<!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -21697,7 +21704,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -21828,11 +21834,13 @@ $$
 
     
 <a name="part0001"></a>
-
-    <a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+<!-- begin top navigation -->
+<a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
     
-    <a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+<a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
     <p>
+<!-- end top navigation -->
+
 <!-- !split -->
 
 <p>
@@ -21891,11 +21899,13 @@ Here is a nested list:
 </blockquote>
 <p>
 <p>
-
-                <a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+<!-- begin bottom navigation -->
+<a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
                 
-                <a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-                <!-- ------------------- end of main content --------------- -->
+<a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
+                <!-- end bottom navigation -->
+
+<!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -21978,7 +21988,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -22109,9 +22118,11 @@ $$
 
     
 <a name="part0002"></a>
-
-    <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+<!-- begin top navigation -->
+<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
     <p>
+<!-- end top navigation -->
+
 <!-- !split and check if these extra words are included properly in the comment -->
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
@@ -23348,8 +23359,8 @@ With label.
 Without label.
 
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-Here is a hint.
+<div class="alert alert-block alert-notice alert-text-normal"><b>Tip.</b>
+Here is a tip or hint box, typeset as a notice box.
 </div>
 <p>
 Need a lot of text to surround the summary box.
@@ -23473,9 +23484,11 @@ ending a heading with verbatim code as this triggers a special
 case in LaTeX.
 
 <p>
+<!-- begin bottom navigation -->
+<a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
+                <!-- end bottom navigation -->
 
-                <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-                <!-- ------------------- end of main content --------------- -->
+<!-- ------------------- end of main content --------------- -->
 
 
 </body>
@@ -23540,7 +23553,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -24761,8 +24773,8 @@ With label.
 Without label.
 
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-Here is a hint.
+<div class="alert alert-block alert-notice alert-text-normal"><b>Tip.</b>
+Here is a tip or hint box, typeset as a notice box.
 </div>
 <p>
 Need a lot of text to surround the summary box.
@@ -24951,7 +24963,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -26379,8 +26390,8 @@ With label.
 Without label.
 
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-Here is a hint.
+<div class="alert alert-block alert-notice alert-text-normal"><b>Tip.</b>
+Here is a tip or hint box, typeset as a notice box.
 </div>
 <p>
 Need a lot of text to surround the summary box.
@@ -28067,8 +28078,8 @@ With label.
 Without label.
 
 
-\begin{graybox1admon}[Hint.]
-Here is a hint.
+\begin{graybox1admon}[Tip.]
+Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
 \clearpage
 
@@ -29603,7 +29614,6 @@ to <code>\boldsymbol</code>.
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="HPL" />
-  <meta name="date" content="2013-05-29" />
   <title>How various formats can deal with LaTeX math</title>
   <style type="text/css">code{white-space: pre;}</style>
   
@@ -32879,8 +32889,8 @@ With label.
 Without label.
 
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-Here is a hint.
+<div class="alert alert-block alert-notice alert-text-normal"><b>Tip.</b>
+Here is a tip or hint box, typeset as a notice box.
 </div>
 <p>
 Need a lot of text to surround the summary box.
@@ -34457,8 +34467,9 @@ Appendix: Testing identical titles  (4)
 Without label.
 
 
-.. hint::
-   Here is a hint.
+.. admonition:: Tip
+
+   Here is a tip or hint box, typeset as a notice box.
 
 
 Need a lot of text to surround the summary box.
@@ -34696,26 +34707,6 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 \usepackage{framed,wrapfig}
-
-% Admonition environment for "hint"
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hint_colors2admon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-\vspace{-13pt}
-\includegraphics[width=0.07\textwidth]{latex_figs/hint}
-\end{wrapfigure} \textbf{#1}\par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{hintshaded}
-}
 
 % Admonition environment for "notice"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
@@ -35061,17 +35052,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_colors2admon}
-\begin{hint_colors2admon}[Hint]
-It is smart to read on and remember to
+\begin{warning_colors2admon}[Tip]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \bpycod
 import urllib
@@ -35079,7 +35070,7 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
-\end{hint_colors2admon}
+\end{warning_colors2admon}
 Next is a warning without a title ("none" implies no title).
 
 
@@ -35252,24 +35243,6 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 \usepackage{framed}
-
-% Admonition environment for "hint"
-% Style from NumPy User Guide
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hint_colors1admon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\includegraphics[height=0.3in]{latex_figs/hint}\ \ \   \textbf{#1}\\ \par
-\vspace{-3mm}\nobreak\noindent\ignorespaces
-}
-{
-\end{hintshaded}
-}
 
 % Admonition environment for "notice"
 % Style from NumPy User Guide
@@ -35515,17 +35488,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_colors1admon}
-\begin{hint_colors1admon}[Hint]
-It is smart to read on and remember to
+\begin{warning_colors1admon}[Tip]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -35533,7 +35506,7 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
-\end{hint_colors1admon}
+\end{warning_colors1admon}
 Next is a warning without a title ("none" implies no title).
 
 
@@ -35704,26 +35677,6 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 \usepackage{framed,wrapfig}
-
-% Admonition environment for "hint"
-\definecolor{hintbackground}{rgb}{0.87843, 0.95686, 1.0}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hint_colors2admon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-\vspace{-13pt}
-\includegraphics[width=0.07\textwidth]{latex_figs/hint}
-\end{wrapfigure} \textbf{#1}\par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{hintshaded}
-}
 
 % Admonition environment for "notice"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
@@ -35976,17 +35929,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_colors2admon}
-\begin{hint_colors2admon}[Hint]
-It is smart to read on and remember to
+\begin{warning_colors2admon}[Tip]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -35994,7 +35947,7 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
-\end{hint_colors2admon}
+\end{warning_colors2admon}
 Next is a warning without a title ("none" implies no title).
 
 
@@ -36338,17 +36291,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{graybox1admon}
-\begin{graybox1admon}[Hint.]
-It is smart to read on and remember to
+\begin{graybox1admon}[Tip.]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -36727,17 +36680,17 @@ So, how many admonition environments does Doconce support?
 \noindent
 \end{graybox2admon}
 
-\begin{graybox2admon}[Hint.]
-It is smart to read on and remember to
+\begin{graybox2admon}[Tip.]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -36921,26 +36874,6 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 \usepackage{framed,wrapfig}
-
-% Admonition environment for "hint"
-\definecolor{hintbackground}{rgb}{0.91, 0.91, 0.91}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hint_graybox3admon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-\vspace{-13pt}
-\includegraphics[width=0.07\textwidth]{latex_figs/small_gray_hint.pdf}
-\end{wrapfigure} \textbf{#1}\par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{hintshaded}
-}
 
 % Admonition environment for "notice"
 \definecolor{noticebackground}{rgb}{0.91, 0.91, 0.91}
@@ -37193,17 +37126,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_graybox3admon}
-\begin{hint_graybox3admon}[Hint]
-It is smart to read on and remember to
+\begin{warning_graybox3admon}[Tip]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -37211,7 +37144,7 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
-\end{hint_graybox3admon}
+\end{warning_graybox3admon}
 Next is a warning without a title ("none" implies no title).
 
 
@@ -37539,17 +37472,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{paragraphadmon}
-\begin{paragraphadmon}[Hint.]
-It is smart to read on and remember to
+\begin{paragraphadmon}[Tip.]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -37728,26 +37661,6 @@ final,                   % or draft (marks overfull hboxes)
 %\usepackage{float}\restylefloat{figure}
 
 \usepackage{framed,wrapfig}
-
-% Admonition environment for "hint"
-\definecolor{hintbackground}{rgb}{0.988235, 0.964706, 0.862745}
-% \fboxsep sets the space between the text and the box
-\newenvironment{hintshaded}
-{\def\FrameCommand{\fboxsep=3mm\colorbox{hintbackground}}
- \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
-
-\newenvironment{hint_yellowboxadmon}[1][Hint]{
-\begin{hintshaded}
-\noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-\vspace{-13pt}
-\includegraphics[width=0.07\textwidth]{latex_figs/small_yellow_hint.pdf}
-\end{wrapfigure} \textbf{#1}\par
-\nobreak\noindent\ignorespaces
-}
-{
-\end{hintshaded}
-}
 
 % Admonition environment for "notice"
 \definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
@@ -38000,17 +37913,17 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_yellowboxadmon}
-\begin{hint_yellowboxadmon}[Hint]
-It is smart to read on and remember to
+\begin{warning_yellowboxadmon}[Tip]
+It is of outmost important to
 
 \begin{enumerate}
 \item stay cool
 
-\item read hints carefully
+\item read hints and tips carefully
 \end{enumerate}
 
 \noindent
-Also, remember
+Because here the thing is to do
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import urllib
@@ -38018,7 +37931,7 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
-\end{hint_yellowboxadmon}
+\end{warning_yellowboxadmon}
 Next is a warning without a title ("none" implies no title).
 
 
@@ -38165,7 +38078,7 @@ Automatically generated HTML file from Doconce source
     .alert-text-small   { font-size: 80%;  }
     .alert-text-large   { font-size: 130%; }
     .alert-text-normal  { font-size: 90%;  }
-    .notice, .summary, .warning, .hint, .question, .block {
+    .notice, .summary, .warning, .question, .block {
        border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
        background-repeat: no-repeat; background-position: 10px center;
     }
@@ -38175,8 +38088,6 @@ Automatically generated HTML file from Doconce source
                 background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
                 background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png); }
     .question { color: #4F8A10; background-color: #DFF2BF;
                 background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png); }
     .block    { color: #00529B; background-color: #BDE5F8; }
@@ -38364,22 +38275,22 @@ So, how many admonition environments does Doconce support?
 </ol>
 </div>
 <p>
-<div class="hint alert-text-normal"><b>Hint.</b>
-It is smart to read on and remember to
+<div class="warning alert-text-normal"><b>Tip.</b>
+It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #BDE5F8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: #FEEFB3"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
@@ -38568,7 +38479,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -38754,17 +38664,17 @@ So, how many admonition environments does Doconce support?
 </ol>
 </div>
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-It is smart to read on and remember to
+<div class="alert alert-block alert-warning alert-text-normal"><b>Tip.</b>
+It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
@@ -38956,7 +38866,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
@@ -39142,17 +39051,17 @@ So, how many admonition environments does Doconce support?
 </ol>
 </div>
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-It is smart to read on and remember to
+<div class="alert alert-block alert-warning alert-text-normal"><b>Tip.</b>
+It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
@@ -39444,14 +39353,14 @@ But first a bit of math:</p>
 <li>Once more, how many admonition environments does Doconce support?</li>
 </ol>
 </div>
-<div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p>It is smart to read on and remember to</p>
+<div class="admonition-tip admonition">
+<p class="first admonition-title">Tip</p>
+<p>It is of outmost important to</p>
 <ol class="arabic simple">
 <li>stay cool</li>
-<li>read hints carefully</li>
+<li>read hints and tips carefully</li>
 </ol>
-<p>Also, remember</p>
+<p>Because here the thing is to do</p>
 <div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib</span>
 
 <span class="k">def</span> <span class="nf">grab</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
@@ -39903,20 +39812,20 @@ $$ p=q$$</div>
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="hint"></td>
-<th align="left" valign="middle"><b>Hint.</b></th>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="warning"></td>
+<th align="left" valign="middle"><b>Tip.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-normal">It is smart to read on and remember to
+<div class="alert-text-normal">It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
@@ -40324,18 +40233,18 @@ So, how many admonition environments does Doconce support?
 <p>
 
 
-<!-- admonition: hint, typeset as paragraph -->
-<div class="alert-text-normal"><b>Hint.</b>
-It is smart to read on and remember to
+<!-- admonition: warning, typeset as paragraph -->
+<div class="alert-text-normal"><b>Tip.</b>
+It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
@@ -40554,7 +40463,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
@@ -40740,17 +40648,17 @@ So, how many admonition environments does Doconce support?
 </ol>
 </div>
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-It is smart to read on and remember to
+<div class="alert alert-block alert-warning alert-text-normal"><b>Tip.</b>
+It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
@@ -41149,17 +41057,17 @@ So, how many admonition environments does Doconce support?
 </ol>
 </div>
 <p>
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
-It is smart to read on and remember to
+<div class="alert alert-block alert-warning alert-text-normal"><b>Tip.</b>
+It is of outmost important to
 
 <p>
 
 <ol>
 <li> stay cool</li>
-<li> read hints carefully</li>
+<li> read hints and tips carefully</li>
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <p>
 
@@ -41447,17 +41355,17 @@ But first a bit of math:
 }}
 
 {{mbox
-| type = notice
+| type = warning
 | textstyle = font-size: 90%;
-| text = '''Hint.''' It is smart to read on and remember to
+| text = '''Tip.''' It is of outmost important to
 
 
 <ol>
 <li> stay cool
-<li> read hints carefully
+<li> read hints and tips carefully
 </ol>
 
-Also, remember
+Because here the thing is to do
 
 <syntaxhighlight lang="python">
 import urllib
@@ -41668,9 +41576,12 @@ This box has title and math in normal 90 percent font:
 !et
 !enotice
 
+!bpop
 !bnotice None
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 !enotice
+!epop
 
 !bwarning (small)
 Can use, e.g., a warning admon to have my own notes, preferably
@@ -41743,7 +41654,6 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
      /*.reveal .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .reveal .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .reveal .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .reveal .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
 
 </style>
@@ -41967,9 +41877,17 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <p>&nbsp;<br>
 </div>
 <p>
-<div class="alert alert-block alert-notice alert-text-normal"><b></b>
+
+<p class="fragment">
+
+<div class="fragment alert alert-block alert-notice alert-text-normal"><b></b>
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 </div>
+
+</p>
+
+
 <p>
 <div class="alert alert-block alert-warning alert-text-small"><b>Warning.</b>
 Can use, e.g., a warning admon to have my own notes, preferably
@@ -42301,7 +42219,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -42500,9 +42417,13 @@ This box has title and math in normal 90 percent font:
 $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 </div>
 <p>
+<!-- !bpop -->
 <div class="alert alert-block alert-notice alert-text-normal"><b></b>
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 </div>
+<!-- !epop -->
+
 <p>
 <div class="alert alert-block alert-warning alert-text-small"><b>Warning.</b>
 Can use, e.g., a warning admon to have my own notes, preferably
@@ -42640,7 +42561,6 @@ git://github.com/barraq/deck.ext.js.git
      /*.slide .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .slide .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .slide .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .slide .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .slide .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
 
 </style>
@@ -42854,9 +42774,17 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <p>&nbsp;<br>
 </div>
 <p>
-<div class="alert alert-block alert-notice alert-text-normal"><b style="font-weight: bold"></b>
+
+<p class="slide">
+
+<div class="slide alert alert-block alert-notice alert-text-normal"><b style="font-weight: bold"></b>
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 </div>
+
+</p>
+
+
 <p>
 <div class="alert alert-block alert-warning alert-text-small"><b style="font-weight: bold">Warning.</b>
 Can use, e.g., a warning admon to have my own notes, preferably
@@ -43662,10 +43590,14 @@ Can use admons to simulate blocks:
 This box has title and math in normal 90 percent font:
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{graybox1admon}
+% !bpop
 
 \begin{graybox1admon}[]
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 \end{graybox1admon}
+% !epop
+
 
 \begin{graybox1admon}[Warning.]
 \vspace{0.5mm}\par\noindent
@@ -43758,10 +43690,6 @@ title (Warning) since no title is specified. \par}
 \newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
 \newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
 
-\newenvironment{hint_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
@@ -43937,9 +43865,13 @@ This box has title and math in normal 90 percent font:
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{graybox1admon}
 
+\pause
 \begin{graybox1admon}[]
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 \end{graybox1admon}
+
+
 
 \begin{graybox1admon}[Warning.]
 \vspace{0.5mm}\par\noindent
@@ -44616,7 +44548,6 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
      /*.reveal .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .reveal .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .reveal .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .reveal .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
 
 </style>
@@ -45356,9 +45287,9 @@ keywords = random numbers; Monte Carlo simulation
 !bsubex
 Make a program that simulates flipping a coin $N$ times.
 
-<div class="alert alert-block alert-hint alert-text-normal"><b>Hint.</b>
+<b>Hint.</b>\n
 Use `r = random.random()` and define head as `r &lt;= 0.5`.
-</div>
+
 !esubex
 
 !bsubex
@@ -46526,10 +46457,9 @@ keywords = random numbers; Monte Carlo simulation
 !bsubex
 Make a program that simulates flipping a coin $N$ times.
 
-
-\begin{graybox1admon}[Hint.]
+\paragraph{Hint.}\n
 Use `r = random.random()` and define head as `r <= 0.5`.
-\end{graybox1admon}
+
 !esubex
 
 !bsubex
@@ -46817,10 +46747,6 @@ Last page gets rendered to
 \newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
 \newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
 
-\newenvironment{hint_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
@@ -47451,10 +47377,9 @@ keywords = random numbers; Monte Carlo simulation
 !bsubex
 Make a program that simulates flipping a coin $N$ times.
 
-
-\begin{graybox1admon}[Hint.]
+\noindent\textbf{Hint.}\n
 Use `r = random.random()` and define head as `r <= 0.5`.
-\end{graybox1admon}
+
 !esubex
 
 !bsubex
@@ -47908,7 +47833,6 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
      /*.reveal .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .reveal .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .reveal .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .reveal .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
 
 </style>
@@ -48191,7 +48115,7 @@ $$ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thi
 
 <p class="fragment">
 
-<div class="alert alert-block alert-summary alert-text-normal"><b>Concluding remarks:</b>
+<div class="fragment alert alert-block alert-summary alert-text-normal"><b>Concluding remarks:</b>
 Only the Backward Euler scheme is guaranteed to always give
 qualitatively correct results.
 </div>
@@ -48777,10 +48701,6 @@ qualitatively correct results.
 \newcommand{\shortinlinecomment}[3]{\note{\textbf{#1}: #2}}
 \newcommand{\longinlinecomment}[3]{\shortinlinecomment{#1}{#2}{#3}}
 
-\newenvironment{hint_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
-\newenvironment{hint_yellowboxadmon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_colors1admon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_colors2admon}[1][]{\begin{block}{#1}}{\end{block}}
 \newenvironment{notice_graybox3admon}[1][]{\begin{block}{#1}}{\end{block}}
@@ -49273,7 +49193,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 29 May 2013 (13:19)</center>
+<center>Sat, 08 Jun 2013 (23:48)</center>
 
 
 
@@ -49404,7 +49324,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 29 May 2013 (13:19)</center>
+<center>Sat, 08 Jun 2013 (23:48)</center>
 
 
 
@@ -50486,7 +50406,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -66967,8 +66886,7 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 
 [2 <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
-<latex_figs/hint.pdf, id=41, 89.33376pt x 89.33376pt>
-<use latex_figs/hint.pdf>
+<use latex_figs/warning.pdf>
 Underfull \hbox (badness 10000) 
 
 (./admon_colors1.out.pyg) <use latex_figs/warning.pdf>
@@ -66978,12 +66896,12 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 
 (./admon_colors1.out.pyg) (./admon_colors1.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=42, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3 <./latex_figs/hint.pdf>]
-Underfull \vbox (badness 10000) detected at line 431
+<../doc/manual/figs/wavepacket_0001.png, id=41, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3]
+Underfull \vbox (badness 10000) detected at line 413
 
-Underfull \vbox (badness 10000) detected at line 431
-[4] <latex_figs/summary.pdf, id=60, 89.33376pt x 89.33376pt>
+Underfull \vbox (badness 10000) detected at line 413
+[4] <latex_figs/summary.pdf, id=54, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 Underfull \hbox (badness 10000) 
 
@@ -67090,7 +67008,7 @@ latex_figs/notice.pdf
 latex_figs/notice.pdf
 latex_figs/question.pdf
 latex_figs/question.pdf
-latex_figs/hint.pdf
+latex_figs/warning.pdf
 admon_colors1.out.pyg
 latex_figs/warning.pdf
 latex_figs/notice.pdf
@@ -68383,18 +68301,17 @@ dmap/pdftex.map} <./latex_figs/small_yellow_warning.pdf>]
 <latex_figs/small_yellow_question.pdf, id=25, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_question.pdf>
 <use latex_figs/small_yellow_question.pdf>
-<latex_figs/small_yellow_hint.pdf, id=26, 32.12pt x 32.12pt>
-<use latex_figs/small_yellow_hint.pdf> (./admon_yellowbox.out.pyg) [2 <./latex_
-figs/small_yellow_notice.pdf> <./latex_figs/small_yellow_question.pdf> <./latex
-_figs/small_yellow_hint.pdf>] <use latex_figs/small_yellow_warning.pdf>
+<use latex_figs/small_yellow_warning.pdf> (./admon_yellowbox.out.pyg) [2 <./lat
+ex_figs/small_yellow_notice.pdf> <./latex_figs/small_yellow_question.pdf>]
+<use latex_figs/small_yellow_warning.pdf>
 <use latex_figs/small_yellow_notice.pdf> (./admon_yellowbox.out.pyg)
 (./admon_yellowbox.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=54, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=47, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 440
+Underfull \vbox (badness 10000) detected at line 420
 
-Underfull \vbox (badness 10000) detected at line 440
-[4] <latex_figs/small_yellow_summary.pdf, id=67, 32.12pt x 32.12pt>
+Underfull \vbox (badness 10000) detected at line 420
+[4] <latex_figs/small_yellow_summary.pdf, id=60, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_summary.pdf>
 No file admon_yellowbox.ind.
 [5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/small_yellow_summary.
@@ -68500,7 +68417,7 @@ latex_figs/small_yellow_notice.pdf
 latex_figs/small_yellow_notice.pdf
 latex_figs/small_yellow_question.pdf
 latex_figs/small_yellow_question.pdf
-latex_figs/small_yellow_hint.pdf
+latex_figs/small_yellow_warning.pdf
 admon_yellowbox.out.pyg
 latex_figs/small_yellow_warning.pdf
 latex_figs/small_yellow_notice.pdf
@@ -68655,18 +68572,16 @@ ap/pdftex.map} <./latex_figs/small_gray_warning.pdf>]
 <latex_figs/small_gray_question2.pdf, id=25, 64.24pt x 64.24pt>
 <use latex_figs/small_gray_question2.pdf>
 <use latex_figs/small_gray_question2.pdf>
-<latex_figs/small_gray_hint.pdf, id=26, 40.15pt x 40.15pt>
-<use latex_figs/small_gray_hint.pdf> (./admon_graybox3.out.pyg) [2 <./latex_fig
-s/small_gray_notice.pdf> <./latex_figs/small_gray_question2.pdf> <./latex_figs/
-small_gray_hint.pdf>] <use latex_figs/small_gray_warning.pdf>
-<use latex_figs/small_gray_notice.pdf> (./admon_graybox3.out.pyg)
-(./admon_graybox3.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=54, 642.4pt x 481.8pt>
+<use latex_figs/small_gray_warning.pdf> (./admon_graybox3.out.pyg) [2 <./latex_
+figs/small_gray_notice.pdf> <./latex_figs/small_gray_question2.pdf>]
+<use latex_figs/small_gray_warning.pdf> <use latex_figs/small_gray_notice.pdf>
+(./admon_graybox3.out.pyg) (./admon_graybox3.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=47, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 440
+Underfull \vbox (badness 10000) detected at line 420
 
-Underfull \vbox (badness 10000) detected at line 440
-[4] <latex_figs/small_gray_summary.pdf, id=67, 48.18pt x 48.18pt>
+Underfull \vbox (badness 10000) detected at line 420
+[4] <latex_figs/small_gray_summary.pdf, id=60, 48.18pt x 48.18pt>
 <use latex_figs/small_gray_summary.pdf>
 No file admon_graybox3.ind.
 [5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/small_gray_summary.pd
@@ -68772,7 +68687,7 @@ latex_figs/small_gray_notice.pdf
 latex_figs/small_gray_notice.pdf
 latex_figs/small_gray_question2.pdf
 latex_figs/small_gray_question2.pdf
-latex_figs/small_gray_hint.pdf
+latex_figs/small_gray_warning.pdf
 admon_graybox3.out.pyg
 latex_figs/small_gray_warning.pdf
 latex_figs/small_gray_notice.pdf
@@ -68926,17 +68841,15 @@ ap} <./latex_figs/warning.pdf>]
 <use latex_figs/notice.pdf> <use latex_figs/notice.pdf>
 <latex_figs/question.pdf, id=23, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf> <use latex_figs/question.pdf>
-<latex_figs/hint.pdf, id=24, 89.33376pt x 89.33376pt>
-<use latex_figs/hint.pdf> (./admon_colors2.out.pyg) [2 <./latex_figs/notice.pdf
-> <./latex_figs/question.pdf> <./latex_figs/hint.pdf>]
-<use latex_figs/warning.pdf> <use latex_figs/notice.pdf>
-(./admon_colors2.out.pyg) (./admon_colors2.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=47, 642.4pt x 481.8pt>
+<use latex_figs/warning.pdf> (./admon_colors2.out.pyg) [2 <./latex_figs/notice.
+pdf> <./latex_figs/question.pdf>] <use latex_figs/warning.pdf>
+<use latex_figs/notice.pdf> (./admon_colors2.out.pyg) (./admon_colors2.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=41, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 440
+Underfull \vbox (badness 10000) detected at line 420
 
-Underfull \vbox (badness 10000) detected at line 440
-[4] <latex_figs/summary.pdf, id=60, 89.33376pt x 89.33376pt>
+Underfull \vbox (badness 10000) detected at line 420
+[4] <latex_figs/summary.pdf, id=54, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 No file admon_colors2.ind.
 [5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/summary.pdf>]
@@ -69042,7 +68955,7 @@ latex_figs/notice.pdf
 latex_figs/notice.pdf
 latex_figs/question.pdf
 latex_figs/question.pdf
-latex_figs/hint.pdf
+latex_figs/warning.pdf
 admon_colors2.out.pyg
 latex_figs/warning.pdf
 latex_figs/notice.pdf
