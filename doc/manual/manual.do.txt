@@ -1807,6 +1807,10 @@ has a title), the header and footer are included, otherwise not.
 ===== Emacs Doconce Formatter =====
 label{emacs:doconce}
 
+## Note: check http://www.latex-community.org/viewtopic.php?f=28&t=208
+## for highly configurable latex editors that perhaps can be adapted
+## to doconce (Kile seems to be the choice because of extensibility)
+
 The file ".doconce-mode.el": "https://doconce.googlecode.com/hg/misc/.doconce-mode.el" in the Doconce source distribution
 gives a "Doconce Editing Mode" in Emacs.
 
