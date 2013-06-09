@@ -5977,7 +5977,8 @@ _diff_programs = {
     'pdiff': ('http://www.gnu.org/software/a2ps/ http://www.gnu.org/software/wdiff/', 'a2ps wdiff texlive-latex-extra texlive-latex-recommended'),
     'kdiff3': ('http://www.gnu.org/software/wdiff/', 'kdiff3'),
     'diffuse': ('http://diffuse.sourceforge.net/', 'diffuse'),
-    'xxdiff': ('http://xxdiff.sourceforge.net/local/', 'xxdiff'),
+    'xxdiff': ('http://xxdiff.sourceforge.net/local/', 'fldiff'),
+    'fldiff': ('http://packages.debian.org/sid/fldiff', 'fldiff'),
     'meld': ('http://meldmerge.org/', 'meld'),
     'tkdiff.tcl': ('https://sourceforge.net/projects/tkdiff/', 'not in Debian')
     }
@@ -6136,12 +6137,12 @@ def diff_files(files1, files2, program='diff'):
 
     for fromfile, tofile in zip(files1, files2):
         cmd = '%s %s %s' % (program, fromfile, tofile)
-        if program in ['diffuse', 'kdiff3', 'xxdiff', 'meld', 'tkdiff.tcl']:
+        if program in ['diffuse', 'kdiff3', 'xxdiff', 'fldiff', 'meld', 'tkdiff.tcl']:
             # GUI program
-            if which(prorgram):
+            if which(program):
                 system(cmd, verbose=True)
             else:
-                __missing_diff_program(program)
+                _missing_diff_program(program)
         elif program == 'diff':
             diff_file = 'tmp_diff_%s.txt' % tofile
             system(cmd + ' > ' + diff_file, verbose=True)
@@ -6153,7 +6154,7 @@ def diff_files(files1, files2, program='diff'):
                 system('ps2pdf -sPAPERSIZE=a4 %s.ps; rm -f %s.ps' %
                        (diff_file, diff_file))
             else:
-                __missing_diff_program(program)
+                _missing_diff_program(program)
             print 'diff in %s.pdf' % diff_file
         else:
             print program, 'not supported'
