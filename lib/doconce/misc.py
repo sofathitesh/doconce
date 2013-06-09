@@ -6011,10 +6011,10 @@ def diff():
         diffprog = 'difflib'
 
     if diffprog == 'difflib':
-        diff_files = pydiff(file1, file2)
-        if diff_files:
+        diffing_files = pydiff(file1, file2)
+        if diffing_files:
             print 'differences found, see ', \
-                  ','.join([name + '.html|.txt' for name in diff_files])
+                  ','.join([name + '.html|.txt' for name in diffing_files])
 
     elif diffprog == 'latexdiff':
         if which('latexdiff'):
