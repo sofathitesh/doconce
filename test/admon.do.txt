@@ -104,13 +104,13 @@ So, how many admonition environments does Doconce support?
   o Once more, how many admonition environments does Doconce support?
 !equestion
 
-!bhint
-It is smart to read on and remember to
+!bwarning Tip
+It is of outmost important to
 
  o stay cool
- o read hints carefully
+ o read hints and tips carefully
 
-Also, remember
+Because here the thing is to do
 
 !bc pycod
 import urllib
@@ -118,7 +118,7 @@ import urllib
 def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 !ec
-!ehint
+!ewarning
 
 Next is a warning without a title ("none" implies no title).
 # #if FORMAT == "sphinx"

@@ -1049,7 +1049,7 @@ def html_quote(block, format, text_size='normal'):
 </blockquote>
 """ % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
-admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
+admons = 'notice', 'summary', 'warning', 'question', 'block'
 global admon_css_vars        # set in define
 
 for _admon in admons:
@@ -1197,7 +1197,6 @@ def define(FILENAME_EXTENSION,
         'warning':       html_warning,
         'question':      html_question,
         'notice':        html_notice,
-        'hint':          html_hint,
         'summary':       html_summary,
         'block':         html_block,
     }

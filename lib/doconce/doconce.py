@@ -35,11 +35,11 @@ def doconce_envirs():                     # begin-end environments
     return ['c', 't',                     # verbatim and tex blocks
             'ans', 'sol', 'subex',        # exercises
             'pop', 'slidecell', 'notes',  # slides
-            'hint', 'remarks',            # exercises and general
+            'hint', 'remarks',            # exercises
             'quote',
             'notice', 'summary', 'warning', 'question', 'block']  # admon
 
-admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
+admons = 'notice', 'summary', 'warning', 'question', 'block'
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
@@ -1179,8 +1179,7 @@ def typeset_envirs(filestr, format):
             if envir == 'quote':
                 def subst(m):
                     return indent_lines(m.group(1), format, ' '*4) + '\n'
-            elif envir in ['warning', 'question', 'hint', 'notice', 'summary',
-                           'remarks', 'block']:
+            elif envir in admons + ('hint', 'remarks'):
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
                     title = m.group(1).strip()
@@ -2535,6 +2534,9 @@ def main():
         from misc import help_format
         help_format()
         sys.exit(1)
+
+    from misc import check_command_line_options
+    check_command_line_options(4)
 
     try:
         format = sys.argv[1]
