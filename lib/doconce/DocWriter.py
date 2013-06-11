@@ -427,6 +427,8 @@ class Doconce(_BaseWriter):
         self.file.write(s)
 
     def table(self, table, column_headline_pos='c', column_pos='c'):
+        # Better to factor out code in misc.csv2table!
+        # See how we do it with html movie...
         # find max column width
         mcw = 0
         for row in table:

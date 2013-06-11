@@ -386,13 +386,6 @@ def rst_warning(block, format, title='Warning', text_size='normal'):
 def rst_question(block, format, title='Question', text_size='normal'):
     return rst_admon(block, format, title, text_size)
 
-def rst_hint(block, format, title='Hint', text_size='normal'):
-    return """
-.. hint::
-%s
-
-""" % (indent_lines(block, format, ' '*3))
-
 def rst_notice(block, format, title='Notice', text_size='normal'):
     if title.startswith('Notice'):
         return """
@@ -471,7 +464,6 @@ def define(FILENAME_EXTENSION,
         'warning':       rst_warning,
         'question':      rst_question,
         'notice':        rst_notice,
-        'hint':          rst_hint,
         'summary':       rst_summary,
         'block':         rst_block,
         }

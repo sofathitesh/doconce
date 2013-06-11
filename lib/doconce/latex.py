@@ -811,7 +811,7 @@ def _get_admon_figs(filename):
         os.remove(datafile)
         os.chdir(os.pardir)
 
-admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
+admons = 'notice', 'summary', 'warning', 'question', 'block'
 for _admon in admons:
     _Admon = _admon.capitalize()
     text = r"""
@@ -932,7 +932,7 @@ def latex_%s(block, format, title='%s'):
     return text
 
 # Dropped this since it cannot work with verbatim computer code
-#for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
+#for _admon in ['warning', 'question', 'notice', 'summary']:
 #    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
 #                           _admon, _admon2rgb[_admon]))
 
@@ -1077,7 +1077,6 @@ def define(FILENAME_EXTENSION,
         'warning':       latex_warning,
         'question':      latex_question,
         'notice':        latex_notice,
-        'hint':          latex_hint,
         'summary':       latex_summary,
         'block':         latex_block,
        }

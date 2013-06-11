@@ -931,9 +931,9 @@ With label.
 
 Without label.
 
-!bhint
-Here is a hint.
-!ehint
+!bnotice Tip
+Here is a tip or hint box, typeset as a notice box.
+!enotice
 
 
 # #if FORMAT in ("latex", "pdflatex")

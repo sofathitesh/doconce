@@ -147,6 +147,15 @@ def option(name, default=None):
 
     return value
 
+def check_command_line_options(option_start):
+    # Error handling: check if all command-line options are of known types
+    for arg in sys.argv[option_start:]:
+        if '=' in arg:
+            arg_ = arg.split('=')[0] + '='
+        if arg_[:2] == '--':
+            if not arg_ in _legal_command_line_options:
+                print '*** warning: unrecognized command-line option'
+                print '   ', arg
 
 def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
     """
@@ -4037,6 +4046,7 @@ _replacements = [
     (r"^@@@CODE.*$",    "", re.MULTILINE),
     (r"^\s*(FIGURE|MOVIE):\s*\[.+?\]",    "", re.MULTILINE),
     (r"^\s*TOC:\s+(on|off)", "", re.MULTILINE),
+    (r"\$[^$]+\$", ""),  # inline math
     ('!split', ''),
     (r'![be]slidecell', ''),
     (r'![be]ans', ''),
@@ -4045,6 +4055,8 @@ _replacements = [
     (r'![be]hint', ''),
     (r'![be]notes', ''),
     (r'![be]pop', ''),
+    (r'![be]warning', ''),
+    (r'![be]notice', ''),
     # Preprocess
     (r"^#.*ifn?def.*$", "", re.MULTILINE),
     (r"^#.*else.*$", "", re.MULTILINE),
@@ -4198,14 +4210,14 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
     text = f.read()
     f.close()
 
-    # First check for double words
-
     # Remove inline verbatim and !bc and !bt blocks
     text2 = re.sub(r'`.+?`', '`....`', text)  # remove inline verbatim
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
     text2 = code.sub('', text2)
     tex = re.compile(r'^!bt\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
     text2 = tex.sub('', text2)
+
+    # First check for double words
 
     pattern = r"\b([\w'\-]+)(\s+\1)+\b"
     found = False
