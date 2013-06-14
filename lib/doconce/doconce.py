@@ -71,7 +71,7 @@ def fix(filestr, format, verbose=0):
     for fig in figs:
         caption = fig[3]
         if '\n' in caption.strip():   # multiline caption?
-            if not '!ec' in caption:  # avoid verbatim block...
+            if not '!e' in caption:   # environments that end the figure...
                 caption1 = caption.replace('\n', ' ') + '\n'
                 filestr = filestr.replace(caption, caption1)
                 num_fixes += 1

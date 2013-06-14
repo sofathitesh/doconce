@@ -2104,6 +2104,15 @@ Doconce syntax is not treated properly.
 
 ===== General Problems =====
 
+=== Spellcheck reports a lot of mistakes related LaTeX math ===
+
+The `doconce spellcheck` command should ignore LaTeX math, but if
+the dollar signs for inline math are not correct (one missing, for instance),
+a lot of math enters the text to be spellchecked. Invoke the
+relevant `tmp_missing_*` file and search for the math expressions that
+are reported as misspellings. This will fortunately give you hint of
+what is wrong with the math typesetting.
+
 === Doconce aborts because of a syntax error that is not an error ===
 
 Doconce searches for typical syntax errors and usually aborts the
