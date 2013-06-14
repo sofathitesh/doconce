@@ -1,5 +1,5 @@
-#!/bin/sh
-sh clean.sh
+#!/bin/bash
+bash clean.sh
 
 # ----- scientific_writing talk -------
 name=scientific_writing
@@ -11,35 +11,46 @@ doconce format html $name --pygments_html_style=native --keep_pygments_html_bg
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 doconce slides_html $name reveal --html_slide_theme=darkgray
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp $name.html $name_reveal.html
+cp $name.html ${name}_reveal.html
+
+function editfix {
 # Fix selected backslashes inside verbatim envirs that doconce has added
 # (only a problem when we want to show full doconce code with
 # labels in !bc-!ec envirs).
-doconce replace '\label{this:section}' 'label{this:section}' $name_reveal.html
-doconce replace '\label{fig1}' 'label{fig1}' $name_reveal.html
-doconce replace '\label{demo' 'label{demo' $name_reveal.html
+doconce replace '\label{this:section}' 'label{this:section}' $1
+doconce replace '\label{fig1}' 'label{fig1}' $1
+doconce replace '\label{demo' 'label{demo' $1
+doconce replace '\eqref{eq1}' '(ref{eq1})' $1
+doconce replace '\eqref{myeq}' '(ref{myeq})' $1
+doconce replace '\eqref{mysec:eq:Dudt}' '(ref{mysec:eq:Dudt})' $1
+}
 
+editfix ${name}_reveal.html
 
-doconce format html $name --pygments_html_style=perldoc --html_style=solarized --html_admon=apricot
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-cp $name.html ${name}_solarized.html
-doconce format html $name --pygments_html_style=default
-cp $name.html ${name}_plain.html
 
 doconce format html $name --pygments_html_style=perldoc --keep_pygments_html_bg
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 cp $name.html ${name}_deck.html
 doconce slides_html ${name}_deck deck --html_slide_theme=sandstone.default
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-# Fix selected backslashes inside verbatim envirs that doconce has added
-# (only a problem at the places where we want to show full doconce code with
-# labels in !bc-!ec envirs - other labels in math blocks need backslash...).
-doconce replace '\label{this:section}' 'label{this:section}' ${name}_deck.html
-doconce replace '\label{fig1}' 'label{fig1}' ${name}_deck.html
-doconce replace '\label{demo' 'label{demo' ${name}_deck.html
+editfix ${name}_deck.html
+
+# Plain HTML documents
+doconce format html $name --pygments_html_style=perldoc --html_style=solarized --html_admon=apricot
+if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+cp $name.html ${name}_solarized.html
+editfix ${name}_solarized.html
+
+doconce format html $name --pygments_html_style=default
+cp $name.html ${name}_plain.html
+editfix ${name}_plain.html
+doconce split_html ${name}_plain.html
+# Remove top navigation in all parts
+doconce subst -s '<!-- begin top navigation.+?end top navigation -->' '' ${name}_plain.html ._part*_${name}*.html
 
 # LaTeX Beamer slides
 doconce format pdflatex $name
+editfix ${name}.p.tex
 doconce ptex2tex $name -DLATEX_HEADING=beamer envir=minted
 doconce slides_beamer $name --beamer_slide_theme=red_shadow
 cp $name.tex ${name}_red_shadow.tex
@@ -47,6 +58,7 @@ pdflatex -shell-escape ${name}_red_shadow
 
 # LaTeX documents
 doconce format pdflatex $name --minted_latex_style=trac
+editfix ${name}.p.tex
 doconce ptex2tex $name envir=minted -DBOOK
 doconce replace 'section{' 'section*{' $name.tex
 pdflatex -shell-escape $name
@@ -54,9 +66,10 @@ mv -f $name.pdf ${name}_minted.pdf
 
 doconce format pdflatex $name
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+editfix ${name}.p.tex
+doconce replace 'section{' 'section*{' ${name}.p.tex
 doconce ptex2tex $name envir=ans:nt -DBOOK
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
-doconce replace 'section{' 'section*{' $name.tex
 pdflatex $name
 mv -f $name.pdf ${name}_anslistings.pdf
 
@@ -64,6 +77,7 @@ mv -f $name.pdf ${name}_anslistings.pdf
 # other formats demonstrate doconce writing this way
 doconce format sphinx $name
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+editfix ${name}.rst
 doconce sphinx_dir author="H. P. Langtangen" theme=pyramid $name
 python automake_sphinx.py
 
@@ -78,7 +92,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
 pygmentize -l text -f html -o ${name}_doconce.html ${name}.do.txt
 
-cp -r ${name}*.pdf *.md *.gwiki ${name}*.html deck.js reveal.js fig ../demos/slides/
+cp -r ${name}*.pdf ._part*_${name}_*.html *.md *.gwiki ${name}*.html deck.js reveal.js fig ../demos/slides/
 
 doconce format html sw_index.do.txt
 cp sw_index.html ../demos/slides/index.html

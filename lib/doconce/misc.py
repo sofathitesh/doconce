@@ -1997,6 +1997,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
         if header_part_line and not vagrant:
             if local_navigation_pics:
                 header_part_line_filename = html_imagefile(header_part_line)
+            else:
                 header_part_line_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/%s.png' % header_part_line
             lines.append("""
 <p><br><img src="%s"><p><br><p>
@@ -2017,15 +2018,17 @@ def doconce_html_split(header, parts, footer, basename, filename):
             buttons = vagrant_navigation_active % (prev_, next_)
         else:
             # Simple navigation buttons at the top and bottom of the page
+            lines.append('<!-- begin top navigation -->') # for easy removal
             if pn > 0:
                 lines.append("""
-    <a href="%s"><img src="%s" border=0 alt="previous"></a>
+<a href="%s"><img src="%s" border=0 alt="previous"></a>
     """ % (prev_part_filename, button_prev_filename))
             if pn < len(parts)-1:
                 lines.append("""
-    <a href="%s"><img src="%s" border=0 alt="next"></a>
+<a href="%s"><img src="%s" border=0 alt="next"></a>
     """ % (next_part_filename, button_next_filename))
             lines.append('<p>\n')
+            lines.append('<!-- end top navigation -->')
 
 
         # Main body of text
@@ -2038,6 +2041,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
                 vagrant_navigation_passive, buttons)
             lines += footer_text.splitlines(True)
         else:
+            lines.append('<!-- begin bottom navigation -->')
             if pn > 0:
                 lines.append("""
                 <a href="%s"><img src="%s" border=0 alt="previous"></a>
@@ -2046,6 +2050,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
                 lines.append("""
                 <a href="%s"><img src="%s" border=0 alt="next"></a>
                 """ % (next_part_filename, button_next_filename))
+            lines.append('<!-- end bottom navigation -->')
             lines += footer
 
         html.add_to_file_collection(part_filename, filename, 'a')
@@ -2122,7 +2127,6 @@ document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.l
      /*.reveal .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .reveal .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .reveal .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .reveal .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
 
 </style>
@@ -2993,7 +2997,6 @@ git://github.com/barraq/deck.ext.js.git
      /*.slide .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .slide .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .slide .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .slide .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .slide .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); } */
 
 </style>
@@ -3449,7 +3452,7 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
         slides = slides.replace('{epsfig}', r'{epsfig}' + '\n' + r'\usepackage{minted} % requires pygments and latex -shell-escape filename')
 
     # Override all admon environments from latex.py by Beamer block envirs
-    admons = 'hint', 'notice', 'summary', 'warning', 'question', 'block'
+    admons = 'notice', 'summary', 'warning', 'question', 'block'
     for admon in admons:
         Admon = admon[0].upper() + admon[1:]
         for envir in 'colors1', 'colors2', 'graybox3', 'yellowbox':
@@ -4034,6 +4037,7 @@ _replacements = [
     # General
     (r'cf.', ''),
     # Doconce
+    (r'"([^"]+?)":\s*"[^"]+?"', r'\g<1>'),  # links
     (r"^#.*$", "", re.MULTILINE),
     (r"(idx|label|ref)\{.*?\}", ""),
     (r"={3,}",  ""),
@@ -4047,7 +4051,8 @@ _replacements = [
     (r"^@@@CODE.*$",    "", re.MULTILINE),
     (r"^\s*(FIGURE|MOVIE):\s*\[.+?\]",    "", re.MULTILINE),
     (r"^\s*TOC:\s+(on|off)", "", re.MULTILINE),
-    (r"\$[^$]+\$", ""),  # inline math
+    (r"\$.+?\$", ""),  # inline math (before mako variables)
+    (r"\$\{.*?\}", ""),   # mako variables (clashes with math: ${\cal O}(dx)$)
     ('!split', ''),
     (r'![be]slidecell', ''),
     (r'![be]ans', ''),
