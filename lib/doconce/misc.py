@@ -2044,11 +2044,11 @@ def doconce_html_split(header, parts, footer, basename, filename):
             lines.append('<!-- begin bottom navigation -->')
             if pn > 0:
                 lines.append("""
-                <a href="%s"><img src="%s" border=0 alt="previous"></a>
+<a href="%s"><img src="%s" border=0 alt="previous"></a>
                 """ % (prev_part_filename, button_prev_filename))
             if pn < len(parts)-1:
                 lines.append("""
-                <a href="%s"><img src="%s" border=0 alt="next"></a>
+<a href="%s"><img src="%s" border=0 alt="next"></a>
                 """ % (next_part_filename, button_next_filename))
             lines.append('<!-- end bottom navigation -->')
             lines += footer
@@ -3281,8 +3281,16 @@ MathJax.Hub.Config({
                         if tag in body:
                             body = body.replace(tag, '%s class="%s%s">' % (tag[:-1], class_tp, arg))
                 else:
-                    # treat whole block as paragraph
-                    body = body.replace('<p>&nbsp;<br>', '&nbsp;<br>&nbsp;<br>')  # hack to preserve spacings before equation (see above), when <p> below is removed
+                    # Treat whole block as paragraph
+
+                    # Agument any class= (especially in admonitions)
+                    # by class_tp so that piece also pops up
+                    body = body.replace('div class="',
+                                        'div class="%s ' % class_tp)
+
+                    # Hack to preserve spacings before equation (see above),
+                    # when <p> below is removed
+                    body = body.replace('<p>&nbsp;<br>', '&nbsp;<br>&nbsp;<br>')
                     body = body.replace('<p>', '')  # can make strange behavior
                     body2 = '\n<p class="%s">\n' % class_tp
                     if slide_tp == 'reveal' and arg:  # reveal specific

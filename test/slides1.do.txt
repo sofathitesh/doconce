@@ -87,9 +87,12 @@ This box has title and math in normal 90 percent font:
 !et
 !enotice
 
+!bpop
 !bnotice None
 Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
 !enotice
+!epop
 
 !bwarning (small)
 Can use, e.g., a warning admon to have my own notes, preferably
