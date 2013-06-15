@@ -755,7 +755,11 @@ placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
-LaTeX is the output format).
+LaTeX is the output format). For paragraphs with `===` heading,
+the index keywords should be placed above the heading.
+
+The keywords in the index are automatically placed in a meta
+tag in `html` output such that search engines can make use of the them.
 
 ===== Bibliography =====
 
