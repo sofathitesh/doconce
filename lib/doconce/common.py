@@ -91,11 +91,26 @@ def cite_with_multiple_args2multiple_cites(filestr):
 
 def table_analysis(table):
     """Return max width of each column."""
+    # Find max no of columns
+    max_num_columns = 0
+    for row in table:
+        max_num_columns = max(max_num_columns, len(row))
+    # Consistency checks
+    if table[0] != ['horizontal rule'] or \
+       table[2] != ['horizontal rule'] or \
+       table[-1] != ['horizontal rule']:
+        print '*** error: table lacks the right three horizontal rules'
+    if len(table[1]) < max_num_columns:
+        print '*** warning: table headline with entries'
+        print '   ', '| ' + ' | '.join(table[1]) + ' |'
+        print '   has %d columns while further down there are %d columns' % \
+              (len(table[1]), max_num_columns)
+    # Find width of the various columns
     column_list = []
     for i, row in enumerate(table):
         if row != ['horizontal rule']:
             if not column_list:
-                column_list = [[]]*len(row)
+                column_list = [[]]*max_num_columns
             for j, column in enumerate(row):
                 column_list[j].append(len(column))
     return [max(c) for c in column_list]

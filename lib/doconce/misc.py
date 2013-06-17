@@ -5928,7 +5928,8 @@ def csv2table():
     csvfile = open(filename, 'r')
     table = []
     for row in csv.reader(csvfile):
-        table.append(row)
+        if row:
+            table.append(row)
     csvfile.close()
     # Now, table is list of lists
     for i in range(len(table)):
@@ -6185,4 +6186,3 @@ def gitdiff():
             old_files.append(old_filename)
             print 'doconce diff', old_filename, filename
             #pydiff(filenames, old_files)
-
