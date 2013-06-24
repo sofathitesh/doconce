@@ -1267,10 +1267,14 @@ def define(FILENAME_EXTENSION,
     if body_font_family is not None:
         if body_font_family in google_fonts:
             import_body_font = link % body_font_family
+        else:
+            print '*** warning: --html_body_font=%s is not valid' % body_font_family
     import_heading_font = ''
     if heading_font_family is not None:
         if heading_font_family in google_fonts:
             import_heading_font = link % heading_font_family
+        else:
+            print '*** warning: --html_heading_font=%s is not valid' % heading_font_family
     if import_body_font or import_heading_font:
         css = '    ' + '\n    '.join([import_body_font, import_heading_font]) \
               + '\n' + css
@@ -1286,7 +1290,8 @@ def define(FILENAME_EXTENSION,
     admon_css_vars = {style: {} for style in admon_styles}
     admon_css_vars['yellow']  = dict(boundary='#fbeed5', background='#fcf8e3')
     admon_css_vars['apricot'] = dict(boundary='#FFBF00', background='#fbeed5')
-    admon_css_vars['gray']    = dict(boundary='#bababa', background='whiteSmoke')
+    #admon_css_vars['gray']    = dict(boundary='#bababa', background='whiteSmoke')
+    admon_css_vars['gray']    = dict(boundary='#bababa', background='#f8f8f8') # same color as in pygments light gray background
     for a in admons:
         if a != 'block':
             admon_css_vars['yellow']['icon_' + a]  = 'small_yellow_%s.png' % a

@@ -43,6 +43,31 @@ def safe_join(lines, delimiter):
             print e
             sys.exit(1)
 
+def fix_backslashes(text):
+    """
+    If some Doconce text is read from a doc string
+    or from a GUI, backslashes are normally interpreted,
+    and the Doconce text is then malformed. This function
+    restores backslashes. For double backslash in LaTeX
+    one needs to have the double backslash at the end of
+    the line, otherwise they are not preserved.
+    """
+    # Preserve backslashes as in a raw string
+    escape = {
+        '\\'+ '\n':'\\\\' + '\n',
+        '\a':r'\a',
+        '\b':r'\b',
+        '\c':r'\c',
+        '\f':r'\f',
+        '\r':r'\r',
+        '\t':r'\t',
+        '\v':r'\v',
+        }
+    for char in escape:
+        text = text.replace(char, escape[char])
+    return text
+
+
 def where():
     """
     Return the location where the doconce package is installed.

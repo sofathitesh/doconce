@@ -1698,7 +1698,7 @@ def handle_index_and_bib(filestr, format, has_title):
         # version < 2.7 warning
         print '*** warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
     if len(citations) > 0 and 'BIBFILE:' not in filestr:
-        print '*** error: you have citations but no biblioraphy (BIBFILE: ...)'
+        print '*** error: you have citations but no bibliography (BIBFILE: ...)'
         _abort()
     if 'BIBFILE:' in filestr and len(citations) > 0 and \
            which('publish') is None:
@@ -2436,6 +2436,18 @@ need to include --no_mako on the command line.
             print 'fix the lines as described or remove all mako statements.'
             _abort()
             return filename if preprocessor is None else resultfile
+
+        # Check if LaTeX math has ${...} problems
+        inline_math = re.findall(INLINE_TAGS['math'], filestr_without_code)
+        for groups in inline_math:
+            formula = groups[2]
+            suggestion = ''
+            if formula[0] == '{':
+                if formula[1] == '}':
+                    suggestion = 'as $\,{}...$'
+                print '*** error: potential problem with formula $%s$' % formula
+                print '    since ${ can confuse Mako - rewrite', suggestion
+                _abort()
 
         if preprocessor is not None:  # already found preprocess commands?
             # The output is in resultfile, mako is run on that

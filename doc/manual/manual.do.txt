@@ -1937,6 +1937,15 @@ sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
 
+!bwarning
+Unfortunately, the combination of Mako and LaTeX mathematics may
+lead to problems because Mako applies syntax like `${var}` to extract
+variables or call functions, while LaTeX mathematics sometimes applies
+the same syntax, e.g., `${\cal O}(\Delta x^2)$` which looks like a
+Mako function call. This problem can give rise to strange error
+messages from Mako, usually that a variable is not defined.
+!ewarning
+
 ===== The Basics of Mako =====
 
 Just a preliminary sketch of some Mako code (next example is better!):
@@ -2144,6 +2153,26 @@ Here are possible problems for Mako:
 
  * Strings with `'T<%.1f'` look as openings of Mako blocks (`<%`); change
    to `'T < %.1f'` to avoid this confusion.
+
+=== The Mako preprocessor claims a variable is undefined ===
+
+Very often such errors are related to typos when using Mako
+variables or functions, or correct yet undesired LaTeX syntax.
+For example, ${\cal O}(\Delta x^2)$ is valid LaTeX, but
+the dollar sign and curly braces confuse Mako. Rewrite such
+mathematics. It is wise to not use `${` anywhere in LaTeX mathematics.
+Create a newcommand if there are no other possible rewritings.
+A known common problem is `${}^+$` type of indication of superscripts.
+A suggested rewrite is `$\,{}^+$`.
+
+The error message will ask you to rerun `doconce` with
+`--mako_strict_undefined`, which will display the variable that
+is confusing Mako. However, do not continue to use
+`--mako_strict_undefined` while you are debugging because this
+variable will then always be undefined in that mode.
+Use `# #ifdef` directives to comment out large portions of
+the text and apply a "bisection" procedure to locate where
+the Mako problem is (without `--mako_strict_undefined`).
 
 === Something goes wrong in the preprocessing step ===
 
@@ -2529,6 +2558,14 @@ is seldom to be looked at - it is the Doconce source that one edits
 further.
 
 ===== Problems with HTML Output =====
+
+=== MathJax formulas are not properly rendered ===
+
+Here are some common problems:
+
+ * Two equations cannot have identical label (this error often arises
+   from copying and pasting equations)
+ * `[` and `]` brackets must sometimes be replaced by `\lbrack` and `\rbrack`
 
 === How can I change the layout of the HTML page? ===
 
