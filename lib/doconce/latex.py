@@ -875,6 +875,7 @@ def latex_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 \begin{graybox2admon}[%%s]
 %%s
 \end{graybox2admon}
+
 ''' %% (title_graybox1, block_graybox2)
 
     if latex_admon in ('colors1', 'colors2', 'graybox3', 'yellowbox'):
@@ -882,22 +883,28 @@ def latex_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 \begin{%(_admon)s_%%(latex_admon)sadmon}[%%(title)s]
 %%(block)s
 \end{%(_admon)s_%%(latex_admon)sadmon}
+
 ''' %% vars()
+
     elif latex_admon == 'paragraph':
         text = r'''
 \begin{paragraphadmon}[%%(title_para)s]
 %%(block)s
 \end{paragraphadmon}
+
 ''' %% vars()
+
     elif latex_admon == 'graybox2':
         text = r'''
 %%(envir_graybox2)s
 ''' %% vars()
+
     else:
         text = r'''
 \begin{graybox1admon}[%%(title_graybox1)s]
 %%(block)s
 \end{graybox1admon}
+
 ''' %% vars()
     return text
     """ % vars()
@@ -1280,10 +1287,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -1418,7 +1426,7 @@ final,                   % or draft (marks overfull hboxes)
             INTRO['latex'] += r"""
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
   outerlinewidth=0.5,

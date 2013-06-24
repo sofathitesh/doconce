@@ -4058,6 +4058,7 @@ _replacements = [
     (r'^\s*file=[A-Za-z_0-9.]+\s*$', '', re.MULTILINE),
     (r"^@@@CODE.*$",    "", re.MULTILINE),
     (r"^\s*(FIGURE|MOVIE):\s*\[.+?\]",    "", re.MULTILINE),
+    (r"^\s*BIBFILE:.+$",    "", re.MULTILINE),
     (r"^\s*TOC:\s+(on|off)", "", re.MULTILINE),
     (r"\$.+?\$", ""),  # inline math (before mako variables)
     (r"\$\{.*?\}", ""),   # mako variables (clashes with math: ${\cal O}(dx)$)

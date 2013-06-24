@@ -84,9 +84,13 @@ The next admonition features a title "Note, eventually!".
 
 !bnotice (illegal-size) Note, eventually!
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 !bt
-\[ p=q\]
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 !et
 !enotice
 
