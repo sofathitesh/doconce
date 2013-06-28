@@ -5,7 +5,6 @@ translation modules (latex.py, html.py, etc.) are also included in
 here.
 """
 import re, sys, urllib
-from misc import option
 
 # Identifiers in the text used to identify code and math blocks
 _CODE_BLOCK = '<<<!!CODE_BLOCK'
@@ -29,6 +28,12 @@ envir_delimiter_lines = {
      '--- end exercise ---'),
 }
 
+def _abort():
+    if '--no_abort' in sys.argv:
+        print 'avoided abortion because of --no-abort'
+    else:
+        print 'Abort! (add --no_abort on the command line to avoid this abortion)'
+        sys.exit(1)
 
 def safe_join(lines, delimiter):
     try:
@@ -38,10 +43,10 @@ def safe_join(lines, delimiter):
         if "'ascii' codec can't decode" in e and 'position' in e:
             pos = int(e.split('position')[1].split(':'))
             print filestr[pos-50:pos], '[problematic char]', filestr[pos+1:pos+51]
-            sys.exit(1)
+            _abort()
         else:
             print e
-            sys.exit(1)
+            _abort()
 
 def fix_backslashes(text):
     """
@@ -162,7 +167,7 @@ def python_online_tutor(code, return_tp='iframe'):
         url = url.replace('%', '\\%').replace('#', '\\#')
         return url
     else:
-        print 'BUG'; sys.exit(1)
+        print 'BUG'; _abort()
 
 def align2equations(filestr, format):
     """Turn align environments into separate equation environments."""
@@ -259,7 +264,7 @@ def default_movie(m):
         plotfiles = sorted(glob.glob(filename))
         if not plotfiles:
             print 'No plotfiles on the form', filename
-            sys.exit(1)
+            _abort()
         basename  = os.path.basename(plotfiles[0])
         stem, ext = os.path.splitext(basename)
         kwargs['casename'] = stem
@@ -328,12 +333,12 @@ def begin_end_consistency_checks(filestr, envirs):
                     print '\n\nTwo', pattern, 'after each other!\n'
                     for j in range(begin_ends[k-1][1], begin_ends[k][1]+1):
                         print lines[j]
-                    sys.exit(1)
+                    _abort()
             if begin_ends[-1][0].startswith('!b'):
                 print 'Missing %s after final %s' % \
                       (begin_ends[-1][0].replace('!b', '!e'),
                        begin_ends[-1][0])
-                sys.exit(1)
+                _abort()
 
 
 def remove_code_and_tex(filestr):
@@ -393,12 +398,12 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     if len(code_blocks) != n:
         print '*** BUG: found %d code block markers for %d initial code blocks\nAbort!' % (n, len(code_blocks))
         print 'Possible cause: !bc and !ec inside code blocks - replace by |bc and |ec'
-        sys.exit(1)
+        _abort()
     n = filestr.count(_MATH_BLOCK)
     if len(tex_blocks) != n:
         print '*** BUG: found %d tex block markers for %d initial tex blocks\nAbort!' % (n, len(tex_blocks))
         print 'Possible cause: !bt and !et inside code blocks - replace by |bt and |ec'
-        sys.exit(1)
+        _abort()
 
     lines = filestr.splitlines()
 

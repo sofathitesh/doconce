@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% May 29, 2013
+% Jun 28, 2013
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -596,7 +596,7 @@ of the results.
 ## From Doconce to Other Formats
 
 Transformation of a Doconce document `mydoc.do.txt` to various other
-formats applies the script `doconce format`:
+formats apply the script `doconce format`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format format mydoc.do.txt
@@ -2265,7 +2265,11 @@ placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
-LaTeX is the output format).
+LaTeX is the output format). For paragraphs with `===` heading,
+the index keywords should be placed above the heading.
+
+The keywords in the index are automatically placed in a meta
+tag in `html` output such that search engines can make use of the them.
 
 ### Bibliography
 
@@ -2445,6 +2449,20 @@ alignment of the columns (centered, right, or left, respectively).
 Similar character can be inserted in the line above the header to
 algn the headings. Pipes `|` can also be inserted to indicate
 vertical rules in LaTeX tables (they are ignored for other formats).
+An example of centered headings (which is default anyway), first
+column left-adjusted and the others right-adjusted looks like
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  |--c--------c-----------c--------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Note that not all formats offer alignment of heading or entries
 in tables (`rst` and `sphinx` are examples). Also note that
 Doconce tables are very simple: neither entries nor
@@ -2456,6 +2474,38 @@ The command-line option `--tables2csv` (to `doconce format`)
 makes Doconce dump each table to CSV format in a file `table_X.csv`,
 where `X` is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.
+
+Data in CSV format can be transformed to Doconce table format
+by the `doconce csv2table` utility:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+Terminal> doconce csv2table somefile.csv > table.do.txt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a quick way of writing tables. For example, we can
+write a text file `tmp.csv` with
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+time, velocity, acceleration
+0.0, 1.4186, -5.01
+2.0, 1.376512, 11.919
+4.0, 1.1E+1, 14.717624
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Running `doconce csv2table tmp.csv` creates the table
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|------c--------------c--------------c-------|
+| time         | velocity     | acceleration |
+|------c--------------c--------------c-------|
+| 0.0          | 1.4186       | -5.01        |
+| 2.0          | 1.376512     | 11.919       |
+| 4.0          | 1.1E+1       | 14.717624    |
+|--------------------------------------------|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Exercises, Problems, Projects, and Examples
 
@@ -2881,20 +2931,6 @@ line and followed by a newline.
 !et
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here is the result:
-
-$$
-\begin{equation}
-{\partial u\over\partial t} = \nabla^2 u + f, \label{myeq1}
-\end{equation}
-$$
-
-$$
-\begin{equation} 
-{\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
-\end{equation}
-$$
-
 The support of LaTeX mathematics varies among the formats:
 
  * Output in LaTeX (`latex` and `pdflatex` formats) has of course full
@@ -2992,62 +3028,19 @@ newcommands in the `newcommands*.tex` files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-*Example.* Suppose we have the following commands in
-`newcommand_replace.tex`:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\newcommand{\beqa}{\begin{eqnarray}}
-\newcommand{\eeqa}{\end{eqnarray}}
-\newcommand{\ep}{\thinspace . }
-\newcommand{\uvec}{\vec u}
-\newcommand{\Q}{\pmb{Q}}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-and these in `newcommands_keep.tex`:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\half}{\frac{1}{2}}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The LaTeX block
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\beqa
-\x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
-\eeqa
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-will then be rendered to
-$$
-\begin{eqnarray}
-\x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   \label{my:eq2}
-\end{eqnarray}
-$$
-in the current format.
 
 ### Admonitions
 
 Doconce offers strong support for admonition environments, such
-as warning boxes, notification boxes, hint boxes, question boxes,
+as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading.
 
 The following admonition environments are available:
-`block`, `warning`, `notice`, `hint`, `question`, and `summary`.
-The box is defined by begin and end tags such as `!bhint` and `!ehint`.
-(The hint box is typeset differently inside exercises compared to outside
-exericises: inside a plain paragraph heading *Hint* (with number)
-appears, while outside exercises the `hint` environment gives a
-box with some admonition icon, text and/or colored background.)
+`block`, `warning`, `notice`, `question`, and `summary`.
+The box is defined by begin and end tags such as `!bnotice` and `!enotice`.
 The title of the box is fully customizable.
 
 Here are a few examples:
@@ -3058,9 +3051,9 @@ Here are a few examples:
 Here is a warning!
 !ewarning
 
-!bhint
+!bnotice Hint
 This is a hint.
-!ehint
+!enotice
 
 !bblock This is a block.
 A block has never any icon.
@@ -3464,7 +3457,9 @@ LaTeX Beamer slides.
 <!-- doconce-adjusted styles: easy to switch between styles since -->
 <!-- font sizes are compatible -->
 
-Text is missing... Just a very preliminary sketch of commands:
+Not yet written...
+
+Just a very preliminary sketch of commands:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format html myslides \
@@ -3483,6 +3478,16 @@ Terminal> doconce slides_html myslides reveal \
 
 ### LaTeX Beamer Slides
 
+Not yet written...
+
+#### Themes
+
+Four themes come with Doconce: `X_Y`, where `X` is `blue` or `red`
+(the main color of the slides) and `Y` is [`plain`](http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf)
+for simple layout and
+[`shadow`](http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf)
+for shadowed boxes and more visual structure in the slides.
+
 ## Mako Programming
 
 The [Mako](http://docs.makotemplates.org/) templating engine is used
@@ -3491,6 +3496,14 @@ including other files via `# #include "filename"`. Preprocess is also
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
+
+*Warning.* 
+Unfortunately, the combination of Mako and LaTeX mathematics may
+lead to problems because Mako applies syntax like `${var}` to extract
+variables or call functions, while LaTeX mathematics sometimes applies
+the same syntax, e.g., `${\cal O}(\Delta x^2)$` which looks like a
+Mako function call. This problem can give rise to strange error
+messages from Mako, usually that a variable is not defined.
 
 ### The Basics of Mako
 
@@ -3675,6 +3688,15 @@ Doconce syntax is not treated properly.
 
 ### General Problems
 
+#### Spellcheck reports a lot of mistakes related LaTeX math
+
+The `doconce spellcheck` command should ignore LaTeX math, but if
+the dollar signs for inline math are not correct (one missing, for instance),
+a lot of math enters the text to be spellchecked. Invoke the
+relevant `tmp_missing_*` file and search for the math expressions that
+are reported as misspellings. This will fortunately give you hint of
+what is wrong with the math typesetting.
+
 #### Doconce aborts because of a syntax error that is not an error
 
 Doconce searches for typical syntax errors and usually aborts the
@@ -3698,6 +3720,26 @@ Here are possible problems for Mako:
 
  * Strings with `'T<%.1f'` look as openings of Mako blocks (`<%`); change
    to `'T < %.1f'` to avoid this confusion.
+
+#### The Mako preprocessor claims a variable is undefined
+
+Very often such errors are related to typos when using Mako
+variables or functions, or correct yet undesired LaTeX syntax.
+For example, ${\cal O}(\Delta x^2)$ is valid LaTeX, but
+the dollar sign and curly braces confuse Mako. Rewrite such
+mathematics. It is wise to not use `${` anywhere in LaTeX mathematics.
+Create a newcommand if there are no other possible rewritings.
+A known common problem is `${}^+$` type of indication of superscripts.
+A suggested rewrite is `$\,{}^+$`.
+
+The error message will ask you to rerun `doconce` with
+`--mako_strict_undefined`, which will display the variable that
+is confusing Mako. However, do not continue to use
+`--mako_strict_undefined` while you are debugging because this
+variable will then always be undefined in that mode.
+Use `# #ifdef` directives to comment out large portions of
+the text and apply a "bisection" procedure to locate where
+the Mako problem is (without `--mako_strict_undefined`).
 
 #### Something goes wrong in the preprocessing step
 
@@ -4108,6 +4150,15 @@ is seldom to be looked at - it is the Doconce source that one edits
 further.
 
 ### Problems with HTML Output
+
+#### MathJax formulas are not properly rendered
+
+Here are some common problems:
+
+ * Two equations cannot have identical label (this error often arises
+   from copying and pasting equations)
+
+ * `[` and `]` brackets must sometimes be replaced by `\lbrack` and `\rbrack`
 
 #### How can I change the layout of the HTML page?
 

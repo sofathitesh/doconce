@@ -59,8 +59,8 @@ def bibdict2doconcelist(pyfile, citations):
     try:
         bibdict = eval(bibstr)
     except:
-        print 'Error in Python dictionary for bibliography in', pyfile
-        sys.exit(1)
+        print '*** error: in Python dictionary for bibliography in', pyfile
+        _abort()
     text = '\n\n======= Bibliography =======\n\n'
     for label in citations:
         # remove newlines in reference data:

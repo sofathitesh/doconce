@@ -6,7 +6,7 @@ Here called gwiki to make the dialect clear (g for google).
 
 
 import re, os, commands, sys
-from common import default_movie, plain_exercise, insert_code_and_tex
+from common import default_movie, plain_exercise, insert_code_and_tex, _abort
 
 def gwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
@@ -38,7 +38,7 @@ def gwiki_figure(m):
             if failure:
                 print '\n**** Warning: could not run', cmd
                 print 'Convert %s to PNG format manually' % filename
-                sys.exit(1)
+                _abort()
             filename = root + '.png'
     caption = m.group('caption')
     # keep label if it's there:

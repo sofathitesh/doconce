@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
+        URL_ROOT:    '',
         VERSION:     '0.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 29, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jun 28, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -562,7 +562,7 @@ of the results.</p>
 <div class="section" id="from-doconce-to-other-formats">
 <span id="doconce2formats"></span><h1>From Doconce to Other Formats<a class="headerlink" href="#from-doconce-to-other-formats" title="Permalink to this headline">¶</a></h1>
 <p>Transformation of a Doconce document <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> to various other
-formats applies the script <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>:</p>
+formats apply the script <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format format mydoc.do.txt</span>
 </pre></div>
 </div>
@@ -1537,7 +1537,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal"><span class="pre">FIGURE:</span></tt> will be
 included in the formatted caption).</p>
 <div class="figure" id="fig-viz">
-<a class="reference internal image-reference" href="_images/streamtubes.png"><img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" /></a>
+<img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
 <p class="caption"><em>Streamtube visualization of a fluid flow</em></p>
 </div>
 <p>Combining several image files into one, in a table fashion, can be done by the
@@ -1827,7 +1827,7 @@ By the way, here is an example on referencing Figure <a class="reference interna
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a class="reference internal" href="#mathtext"><em>LaTeX Blocks of Mathematical Text</em></a> and <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a> are
 nice to demonstrate, as well as a reference to equations,
-say <a href="#equation-myeq1">(1)</a>-<a href="#equation-myeq2">(2)</a>. A comparison of the output and
+say (<em class="xref std std-ref">myeq1</em>)-(<em class="xref std std-ref">myeq2</em>). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
@@ -1937,7 +1937,10 @@ placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
-LaTeX is the output format).</p>
+LaTeX is the output format). For paragraphs with <tt class="docutils literal"><span class="pre">===</span></tt> heading,
+the index keywords should be placed above the heading.</p>
+<p>The keywords in the index are automatically placed in a meta
+tag in <tt class="docutils literal"><span class="pre">html</span></tt> output such that search engines can make use of the them.</p>
 </div>
 <div class="section" id="bibliography-2">
 <h2>Bibliography  (2)<a class="headerlink" href="#bibliography-2" title="Permalink to this headline">¶</a></h2>
@@ -2113,7 +2116,18 @@ alignment of the columns (centered, right, or left, respectively).
 Similar character can be inserted in the line above the header to
 algn the headings. Pipes <tt class="docutils literal"><span class="pre">|</span></tt> can also be inserted to indicate
 vertical rules in LaTeX tables (they are ignored for other formats).
-Note that not all formats offer alignment of heading or entries
+An example of centered headings (which is default anyway), first
+column left-adjusted and the others right-adjusted looks like</p>
+<div class="highlight-text"><div class="highlight"><pre>|--c--------c-----------c--------|
+|time  | velocity | acceleration |
+|--l--------r-----------r--------|
+| 0.0  | 1.4186   | -5.01        |
+| 2.0  | 1.376512 | 11.919       |
+| 4.0  | 1.1E+1   | 14.717624    |
+|--------------------------------|
+</pre></div>
+</div>
+<p>Note that not all formats offer alignment of heading or entries
 in tables (<tt class="docutils literal"><span class="pre">rst</span></tt> and <tt class="docutils literal"><span class="pre">sphinx</span></tt> are examples). Also note that
 Doconce tables are very simple: neither entries nor
 headings can span several columns or rows. When that functionality
@@ -2123,6 +2137,29 @@ the format and insert format-specific code for tables.</p>
 makes Doconce dump each table to CSV format in a file <tt class="docutils literal"><span class="pre">table_X.csv</span></tt>,
 where <tt class="docutils literal"><span class="pre">X</span></tt> is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.</p>
+<p>Data in CSV format can be transformed to Doconce table format
+by the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">csv2table</span></tt> utility:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce csv2table somefile.csv &gt; table.do.txt</span>
+</pre></div>
+</div>
+<p>This is a quick way of writing tables. For example, we can
+write a text file <tt class="docutils literal"><span class="pre">tmp.csv</span></tt> with</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">time</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">acceleration</span>
+<span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.4186</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.01</span>
+<span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.376512</span><span class="p">,</span> <span class="mf">11.919</span>
+<span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.1E+1</span><span class="p">,</span> <span class="mf">14.717624</span>
+</pre></div>
+</div>
+<p>Running <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">csv2table</span> <span class="pre">tmp.csv</span></tt> creates the table</p>
+<div class="highlight-text"><div class="highlight"><pre>|------c--------------c--------------c-------|
+| time         | velocity     | acceleration |
+|------c--------------c--------------c-------|
+| 0.0          | 1.4186       | -5.01        |
+| 2.0          | 1.376512     | 11.919       |
+| 4.0          | 1.1E+1       | 14.717624    |
+|--------------------------------------------|
+</pre></div>
+</div>
 </div>
 <div class="section" id="exercises-problems-projects-and-examples">
 <h2>Exercises, Problems, Projects, and Examples<a class="headerlink" href="#exercises-problems-projects-and-examples" title="Permalink to this headline">¶</a></h2>
@@ -2377,7 +2414,7 @@ INLINE_TAGS = {
 </pre></div>
 </div>
 <p>And here is a C++ code snippet (<tt class="docutils literal"><span class="pre">cppcod</span></tt> style):</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="kt">void</span> <span class="n">myfunc</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span><span class="o">&amp;</span> <span class="n">myarr</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span><span class="o">&amp;</span> <span class="n">myarr</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">myarr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">myarr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">myarr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">myarr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="p">}</span>
@@ -2485,11 +2522,6 @@ line and followed by a newline.</p>
 !et
 </pre></div>
 </div>
-<p>Here is the result:</p>
-<div class="math" id="equation-myeq1">
-<span class="eqno">(1)</span>\[     {\partial u\over\partial t} = \nabla^2 u + f,\]</div>
-<div class="math" id="equation-myeq2">
-<span class="eqno">(2)</span>\[     {\partial v\over\partial t} = \nabla\cdot(q(u)\nabla v) + g.\]</div>
 <p>The support of LaTeX mathematics varies among the formats:</p>
 <blockquote>
 <div><ul class="simple">
@@ -2579,59 +2611,27 @@ elsewhere throughout the text will usually be placed in
 newcommands in the <tt class="docutils literal"><span class="pre">newcommands*.tex</span></tt> files <em>must</em> appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).</p>
-<p><em>Example.</em> Suppose we have the following commands in
-<tt class="docutils literal"><span class="pre">newcommand_replace.tex</span></tt>:</p>
-<div class="highlight-text"><div class="highlight"><pre>\newcommand{\beqa}{\begin{eqnarray}}
-\newcommand{\eeqa}{\end{eqnarray}}
-\newcommand{\ep}{\thinspace . }
-\newcommand{\uvec}{\vec u}
-\newcommand{\Q}{\pmb{Q}}
-</pre></div>
-</div>
-<p>and these in <tt class="docutils literal"><span class="pre">newcommands_keep.tex</span></tt>:</p>
-<div class="highlight-text"><div class="highlight"><pre>\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\half}{\frac{1}{2}}
-</pre></div>
-</div>
-<p>The LaTeX block</p>
-<div class="highlight-text"><div class="highlight"><pre>\beqa
-\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
-\Ddt{\uvec} &amp;=&amp; \Q \ep   label{my:eq2}
-\eeqa
-</pre></div>
-</div>
-<p>will then be rendered to</p>
-<div class="math">
-\[\begin{split}\pmb{x}\cdot\pmb{n}  &amp;=  0, \\
-\frac{D{\vec u}{dt}}  &amp;=  \pmb{Q} {\thinspace . }\end{split}\]</div>
-<p>in the current format.</p>
 </div>
 <div class="section" id="admonitions">
 <h2>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this headline">¶</a></h2>
 <p>Doconce offers strong support for admonition environments, such
-as warning boxes, notification boxes, hint boxes, question boxes,
+as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading.</p>
 <p>The following admonition environments are available:
-<tt class="docutils literal"><span class="pre">block</span></tt>, <tt class="docutils literal"><span class="pre">warning</span></tt>, <tt class="docutils literal"><span class="pre">notice</span></tt>, <tt class="docutils literal"><span class="pre">hint</span></tt>, <tt class="docutils literal"><span class="pre">question</span></tt>, and <tt class="docutils literal"><span class="pre">summary</span></tt>.
-The box is defined by begin and end tags such as <tt class="docutils literal"><span class="pre">!bhint</span></tt> and <tt class="docutils literal"><span class="pre">!ehint</span></tt>.
-(The hint box is typeset differently inside exercises compared to outside
-exericises: inside a plain paragraph heading <em>Hint</em> (with number)
-appears, while outside exercises the <tt class="docutils literal"><span class="pre">hint</span></tt> environment gives a
-box with some admonition icon, text and/or colored background.)
+<tt class="docutils literal"><span class="pre">block</span></tt>, <tt class="docutils literal"><span class="pre">warning</span></tt>, <tt class="docutils literal"><span class="pre">notice</span></tt>, <tt class="docutils literal"><span class="pre">question</span></tt>, and <tt class="docutils literal"><span class="pre">summary</span></tt>.
+The box is defined by begin and end tags such as <tt class="docutils literal"><span class="pre">!bnotice</span></tt> and <tt class="docutils literal"><span class="pre">!enotice</span></tt>.
 The title of the box is fully customizable.</p>
 <p>Here are a few examples:</p>
 <div class="highlight-text"><div class="highlight"><pre>!bwarning
 Here is a warning!
 !ewarning
 
-!bhint
+!bnotice Hint
 This is a hint.
-!ehint
+!enotice
 
 !bblock This is a block.
 A block has never any icon.
@@ -2655,7 +2655,7 @@ marking different parts of the text
 <p class="first admonition-title">Warning</p>
 <p class="last">Here is a warning!</p>
 </div>
-<div class="admonition hint">
+<div class="admonition-hint admonition">
 <p class="first admonition-title">Hint</p>
 <p class="last">This is a hint.</p>
 </div>
@@ -3024,7 +3024,8 @@ LaTeX Beamer slides.</p>
 </div>
 <div class="section" id="html5-slides">
 <h2>HTML5 Slides<a class="headerlink" href="#html5-slides" title="Permalink to this headline">¶</a></h2>
-<p>Text is missing... Just a very preliminary sketch of commands:</p>
+<p>Not yet written...</p>
+<p>Just a very preliminary sketch of commands:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format html myslides \</span>
 <span class="go">          --pygments_html_style=native --keep_pygments_html_bg</span>
 <span class="go">Terminal&gt; doconce slides_html myslides reveal \</span>
@@ -3045,6 +3046,15 @@ equations. More edits (automate with <tt class="docutils literal"><span class="p
 </div>
 <div class="section" id="latex-beamer-slides">
 <h2>LaTeX Beamer Slides<a class="headerlink" href="#latex-beamer-slides" title="Permalink to this headline">¶</a></h2>
+<p>Not yet written...</p>
+<div class="section" id="themes">
+<h3>Themes<a class="headerlink" href="#themes" title="Permalink to this headline">¶</a></h3>
+<p>Four themes come with Doconce: <tt class="docutils literal"><span class="pre">X_Y</span></tt>, where <tt class="docutils literal"><span class="pre">X</span></tt> is <tt class="docutils literal"><span class="pre">blue</span></tt> or <tt class="docutils literal"><span class="pre">red</span></tt>
+(the main color of the slides) and <tt class="docutils literal"><span class="pre">Y</span></tt> is <a class="reference external" href="http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf">plain</a>
+for simple layout and
+<a class="reference external" href="http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf">shadow</a>
+for shadowed boxes and more visual structure in the slides.</p>
+</div>
 </div>
 </div>
 <div class="section" id="mako-programming">
@@ -3055,6 +3065,15 @@ including other files via <tt class="docutils literal"><span class="pre">#</span
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Unfortunately, the combination of Mako and LaTeX mathematics may
+lead to problems because Mako applies syntax like <tt class="docutils literal"><span class="pre">${var}</span></tt> to extract
+variables or call functions, while LaTeX mathematics sometimes applies
+the same syntax, e.g., <tt class="docutils literal"><span class="pre">${\cal</span> <span class="pre">O}(\Delta</span> <span class="pre">x^2)$</span></tt> which looks like a
+Mako function call. This problem can give rise to strange error
+messages from Mako, usually that a variable is not defined.</p>
+</div>
 <div class="section" id="the-basics-of-mako">
 <h2>The Basics of Mako<a class="headerlink" href="#the-basics-of-mako" title="Permalink to this headline">¶</a></h2>
 <p>Just a preliminary sketch of some Mako code (next example is better!):</p>
@@ -3222,6 +3241,15 @@ Doconce syntax is not treated properly.</p>
 </div>
 <div class="section" id="general-problems">
 <h2>General Problems<a class="headerlink" href="#general-problems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spellcheck-reports-a-lot-of-mistakes-related-latex-math">
+<h3>Spellcheck reports a lot of mistakes related LaTeX math<a class="headerlink" href="#spellcheck-reports-a-lot-of-mistakes-related-latex-math" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">spellcheck</span></tt> command should ignore LaTeX math, but if
+the dollar signs for inline math are not correct (one missing, for instance),
+a lot of math enters the text to be spellchecked. Invoke the
+relevant <tt class="docutils literal"><span class="pre">tmp_missing_*</span></tt> file and search for the math expressions that
+are reported as misspellings. This will fortunately give you hint of
+what is wrong with the math typesetting.</p>
+</div>
 <div class="section" id="doconce-aborts-because-of-a-syntax-error-that-is-not-an-error">
 <h3>Doconce aborts because of a syntax error that is not an error<a class="headerlink" href="#doconce-aborts-because-of-a-syntax-error-that-is-not-an-error" title="Permalink to this headline">¶</a></h3>
 <p>Doconce searches for typical syntax errors and usually aborts the
@@ -3248,6 +3276,25 @@ Doconce: warnings are issued if Mako is not run.</p>
 to <tt class="docutils literal"><span class="pre">'T</span> <span class="pre">&lt;</span> <span class="pre">%.1f'</span></tt> to avoid this confusion.</li>
 </ul>
 </div></blockquote>
+</div>
+<div class="section" id="the-mako-preprocessor-claims-a-variable-is-undefined">
+<h3>The Mako preprocessor claims a variable is undefined<a class="headerlink" href="#the-mako-preprocessor-claims-a-variable-is-undefined" title="Permalink to this headline">¶</a></h3>
+<p>Very often such errors are related to typos when using Mako
+variables or functions, or correct yet undesired LaTeX syntax.
+For example, <span class="math">\({\cal O}(\Delta x^2)\)</span> is valid LaTeX, but
+the dollar sign and curly braces confuse Mako. Rewrite such
+mathematics. It is wise to not use <tt class="docutils literal"><span class="pre">${</span></tt> anywhere in LaTeX mathematics.
+Create a newcommand if there are no other possible rewritings.
+A known common problem is <tt class="docutils literal"><span class="pre">${}^+$</span></tt> type of indication of superscripts.
+A suggested rewrite is <tt class="docutils literal"><span class="pre">$\,{}^+$</span></tt>.</p>
+<p>The error message will ask you to rerun <tt class="docutils literal"><span class="pre">doconce</span></tt> with
+<tt class="docutils literal"><span class="pre">--mako_strict_undefined</span></tt>, which will display the variable that
+is confusing Mako. However, do not continue to use
+<tt class="docutils literal"><span class="pre">--mako_strict_undefined</span></tt> while you are debugging because this
+variable will then always be undefined in that mode.
+Use <tt class="docutils literal"><span class="pre">#</span> <span class="pre">#ifdef</span></tt> directives to comment out large portions of
+the text and apply a &#8220;bisection&#8221; procedure to locate where
+the Mako problem is (without <tt class="docutils literal"><span class="pre">--mako_strict_undefined</span></tt>).</p>
 </div>
 <div class="section" id="something-goes-wrong-in-the-preprocessing-step">
 <h3>Something goes wrong in the preprocessing step<a class="headerlink" href="#something-goes-wrong-in-the-preprocessing-step" title="Permalink to this headline">¶</a></h3>
@@ -3623,6 +3670,17 @@ further.</p>
 </div>
 <div class="section" id="problems-with-html-output">
 <h2>Problems with HTML Output<a class="headerlink" href="#problems-with-html-output" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mathjax-formulas-are-not-properly-rendered">
+<h3>MathJax formulas are not properly rendered<a class="headerlink" href="#mathjax-formulas-are-not-properly-rendered" title="Permalink to this headline">¶</a></h3>
+<p>Here are some common problems:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Two equations cannot have identical label (this error often arises
+from copying and pasting equations)</li>
+<li><tt class="docutils literal"><span class="pre">[</span></tt> and <tt class="docutils literal"><span class="pre">]</span></tt> brackets must sometimes be replaced by <tt class="docutils literal"><span class="pre">\lbrack</span></tt> and <tt class="docutils literal"><span class="pre">\rbrack</span></tt></li>
+</ul>
+</div></blockquote>
+</div>
 <div class="section" id="how-can-i-change-the-layout-of-the-html-page">
 <h3>How can I change the layout of the HTML page?<a class="headerlink" href="#how-can-i-change-the-layout-of-the-html-page" title="Permalink to this headline">¶</a></h3>
 <p>The easiest way is to edit the HTML style or the HTML code directly.
@@ -3919,7 +3977,10 @@ Springer,
 <li><a class="reference internal" href="#potential-problems">Potential Problems</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#latex-beamer-slides">LaTeX Beamer Slides</a></li>
+<li><a class="reference internal" href="#latex-beamer-slides">LaTeX Beamer Slides</a><ul>
+<li><a class="reference internal" href="#themes">Themes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#mako-programming">Mako Programming</a><ul>
@@ -3930,9 +3991,11 @@ Springer,
 <li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
 <li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
 <li><a class="reference internal" href="#general-problems">General Problems</a><ul>
+<li><a class="reference internal" href="#spellcheck-reports-a-lot-of-mistakes-related-latex-math">Spellcheck reports a lot of mistakes related LaTeX math</a></li>
 <li><a class="reference internal" href="#doconce-aborts-because-of-a-syntax-error-that-is-not-an-error">Doconce aborts because of a syntax error that is not an error</a></li>
 <li><a class="reference internal" href="#the-mako-preprocessor-is-seemingly-not-run">The Mako preprocessor is seemingly not run</a></li>
 <li><a class="reference internal" href="#the-mako-preprocessor-is-fooled-by-doconce-text">The Mako preprocessor is fooled by Doconce text</a></li>
+<li><a class="reference internal" href="#the-mako-preprocessor-claims-a-variable-is-undefined">The Mako preprocessor claims a variable is undefined</a></li>
 <li><a class="reference internal" href="#something-goes-wrong-in-the-preprocessing-step">Something goes wrong in the preprocessing step</a></li>
 <li><a class="reference internal" href="#figure-captions-are-incomplete">Figure captions are incomplete</a></li>
 <li><a class="reference internal" href="#preprocessor-directives-do-not-work">Preprocessor directives do not work</a></li>
@@ -3986,6 +4049,7 @@ Springer,
 </ul>
 </li>
 <li><a class="reference internal" href="#problems-with-html-output">Problems with HTML Output</a><ul>
+<li><a class="reference internal" href="#mathjax-formulas-are-not-properly-rendered">MathJax formulas are not properly rendered</a></li>
 <li><a class="reference internal" href="#how-can-i-change-the-layout-of-the-html-page">How can I change the layout of the HTML page?</a></li>
 <li><a class="reference internal" href="#why-do-figures-look-ugly-when-using-html-templates">Why do figures look ugly when using HTML templates?</a></li>
 </ul>
@@ -4040,7 +4104,7 @@ Springer,
     </div>
     <div class="footer">
         &copy; Copyright 2013, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

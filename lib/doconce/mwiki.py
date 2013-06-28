@@ -143,9 +143,9 @@ def mwiki_figure(m):
             cmd = 'convert %s png:%s' % (filename, root+'.png')
             failure, output = commands.getstatusoutput(cmd)
             if failure:
-                print '\n**** warning: could not run\n', cmd
-                print 'Convert %s to PNG format manually' % filename
-                sys.exit(1)
+                print '\n**** warning: could not run ', cmd
+                print '       convert %s to PNG format manually' % filename
+                _abort()
             filename = root + '.png'
 
     caption = m.group('caption').strip()

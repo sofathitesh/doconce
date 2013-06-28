@@ -31,6 +31,8 @@ d2f="doconce format"
 # doconce html format:
 $d2f html manual.do.txt --no_mako --no_pygments_html
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+# Need a fix: remove newcommands (and math) when displayed on googlecode
+doconce subst -s '<!\-\- newcommands.*?\$\$.*?\$\$' '' manual.html
 
 # Sphinx
 $d2f sphinx manual.do.txt --no_mako
@@ -73,8 +75,10 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 $d2f epytext manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-$d2f st manual.do.txt --no_mako
-if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+#Problem with st
+#$d2f st manual.do.txt --no_mako
+#if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
+
 
 $d2f pandoc manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
@@ -120,7 +124,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -167,7 +171,6 @@ Doconce can also be converted to
 <a href="manual.cwiki">Creole wiki</a>,
 <a href="manual.mwiki">MediaWiki</a>,
 <a href="manual.md">Markdown</a> (Pandoc extended version),
-<a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,
 and maybe the most important format of all:
 <a href="manual.txt">plain untagged ASCII text</a>.

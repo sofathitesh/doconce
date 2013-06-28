@@ -116,10 +116,11 @@ open=right               % start new chapters on odd-numbered pages
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -168,10 +169,10 @@ open=right               % start new chapters on odd-numbered pages
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -317,16 +318,16 @@ Department of Informatics, University of Oslo\inst{2}}
 
 
 % #if LATEX_HEADING == "traditional"
-\date{May 29, 2013}
+\date{Jun 28, 2013}
 \maketitle
 % #elif LATEX_HEADING == "beamer"
-\date{May 29, 2013
+\date{Jun 28, 2013
 % <titlepage figure>
 }
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{May 29, 2013}}
+{\large\textsf{Jun 28, 2013}}
 
 \end{center}
 \vfill
@@ -334,7 +335,7 @@ Department of Informatics, University of Oslo\inst{2}}
 
 % #else
 \begin{center}
-May 29, 2013
+Jun 28, 2013
 \end{center}
 
 \vspace{1cm}
@@ -896,7 +897,7 @@ of the results.
 \label{doconce2formats}
 
 Transformation of a Doconce document \code{mydoc.do.txt} to various other
-formats applies the script \code{doconce format}:
+formats apply the script \code{doconce format}:
 \bsys
 Terminal> doconce format format mydoc.do.txt
 \esys
@@ -1083,6 +1084,7 @@ In the readers' comments after the blog one cannot paste raw HTML
 code with MathJax
 scripts so there is no support for mathematics in the discussion forum.
 \end{graybox1admon}
+
 \begin{graybox1admon}[Notice.]
 Figure files must be uploaded to some web site and the filenames name must
 be replaced by the relevant URL. This can be automatically edited:
@@ -1099,6 +1101,7 @@ doconce format html mydoc2
 # Paste mydoc2.html into a new blog page
 \eshcod
 \end{graybox1admon}
+
 Blog posts at Google can also be published \href{{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}}{automatically through email}.
 A Python program can send the contents of the HTML file
 to the blog's email address using the packages  \code{smtplib} and \code{email}.
@@ -2211,6 +2214,7 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 \end{graybox1admon}
+
 \paragraph{Links to Web Addresses.}
 Web addresses with links are typeset as
 \bccq
@@ -2530,7 +2534,11 @@ placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
-{\LaTeX} is the output format).
+{\LaTeX} is the output format). For paragraphs with \code{===} heading,
+the index keywords should be placed above the heading.
+
+The keywords in the index are automatically placed in a meta
+tag in \code{html} output such that search engines can make use of the them.
 
 \subsection{Bibliography}
 
@@ -2571,6 +2579,7 @@ title, etc.) are in lower case and where the data are enclosed in
 curly braces. You may need to edit your \textsc{Bib}\negthinspace{\TeX} files to meet this
 demand.
 \end{graybox1admon}
+
 The utility \code{doconce fix_bibtex4publish file.bib} fixes several known
 issues with \textsc{Bib}\negthinspace{\TeX} files such that Publish has a better chance of
 accepting the entries. Run this utility first, then run Publish,
@@ -2695,6 +2704,19 @@ alignment of the columns (centered, right, or left, respectively).
 Similar character can be inserted in the line above the header to
 algn the headings. Pipes \code{|} can also be inserted to indicate
 vertical rules in {\LaTeX} tables (they are ignored for other formats).
+An example of centered headings (which is default anyway), first
+column left-adjusted and the others right-adjusted looks like
+
+\bccq
+  |--c--------c-----------c--------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+\eccq
+
 Note that not all formats offer alignment of heading or entries
 in tables (\code{rst} and \code{sphinx} are examples). Also note that
 Doconce tables are very simple: neither entries nor
@@ -2706,6 +2728,33 @@ The command-line option \code{--tables2csv} (to \code{doconce format})
 makes Doconce dump each table to CSV format in a file \code{table_X.csv},
 where \code{X} is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.
+
+Data in CSV format can be transformed to Doconce table format
+by the \code{doconce csv2table} utility:
+
+\bsys
+Terminal> doconce csv2table somefile.csv > table.do.txt
+\esys
+This is a quick way of writing tables. For example, we can
+write a text file \code{tmp.csv} with
+
+\bdat
+time, velocity, acceleration
+0.0, 1.4186, -5.01
+2.0, 1.376512, 11.919
+4.0, 1.1E+1, 14.717624
+\edat
+Running \code{doconce csv2table tmp.csv} creates the table
+
+\bccq
+|------c--------------c--------------c-------|
+| time         | velocity     | acceleration |
+|------c--------------c--------------c-------|
+| 0.0          | 1.4186       | -5.01        |
+| 2.0          | 1.376512     | 11.919       |
+| 4.0          | 1.1E+1       | 14.717624    |
+|--------------------------------------------|
+\eccq
 
 \subsection{Exercises, Problems, Projects, and Examples}
 
@@ -3108,12 +3157,6 @@ line and followed by a newline.
 \end{align}
 !et
 \eccq
-Here is the result:
-
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
-\end{align}
 
 The support of {\LaTeX} mathematics varies among the formats:
 
@@ -3218,57 +3261,19 @@ newcommands in the \code{newcommands*.tex} files \emph{must} appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-\paragraph{Example.}
-Suppose we have the following commands in
-\code{newcommand_replace.tex}:
-
-\blatexpro
-\newcommand{\beqa}{\begin{eqnarray}}
-\newcommand{\eeqa}{\end{eqnarray}}
-\newcommand{\ep}{\thinspace . }
-\newcommand{\uvec}{\vec u}
-\newcommand{\Q}{\pmb{Q}}
-\elatexpro
-
-and these in \code{newcommands_keep.tex}:
-
-\blatexpro
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\half}{\frac{1}{2}}
-\elatexpro
-
-The {\LaTeX} block
-\bccq
-\beqa
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
-\eeqa
-\eccq
-will then be rendered to
-\beqa
-\x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
-\eeqa
-in the current format.
 
 \subsection{Admonitions}
 
 Doconce offers strong support for admonition environments, such
-as warning boxes, notification boxes, hint boxes, question boxes,
+as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading.
 
 The following admonition environments are available:
-\code{block}, \code{warning}, \code{notice}, \code{hint}, \code{question}, and \code{summary}.
-The box is defined by begin and end tags such as \code{!bhint} and \code{!ehint}.
-(The hint box is typeset differently inside exercises compared to outside
-exericises: inside a plain paragraph heading \emph{Hint} (with number)
-appears, while outside exercises the \code{hint} environment gives a
-box with some admonition icon, text and/or colored background.)
+\code{block}, \code{warning}, \code{notice}, \code{question}, and \code{summary}.
+The box is defined by begin and end tags such as \code{!bnotice} and \code{!enotice}.
 The title of the box is fully customizable.
 
 Here are a few examples:
@@ -3278,9 +3283,9 @@ Here are a few examples:
 Here is a warning!
 !ewarning
 
-!bhint
+!bnotice Hint
 This is a hint.
-!ehint
+!enotice
 
 !bblock This is a block.
 A block has never any icon.
@@ -3304,17 +3309,21 @@ The above Doconce code is in the present format rendered as
 \begin{graybox1admon}[Warning.]
 Here is a warning!
 \end{graybox1admon}
+
 \begin{graybox1admon}[Hint.]
 This is a hint.
 \end{graybox1admon}
 
+
 \begin{graybox1admon}[This is a block.]
 A block has never any icon.
 \end{graybox1admon}
+
 \begin{graybox1admon}[Going deeper.]
 This is text meant to provide more details. The box has the
 layout of the notice box, but a custom title, here "Going deeper".
 \end{graybox1admon}
+
 Finally some summary:
 
 
@@ -3322,6 +3331,7 @@ Finally some summary:
 The main message is to utilize the admonition styles for
 marking different parts of the text
 \end{graybox1admon}
+
 The layout of admonitions depend on the format.
 In \code{rst} and \code{sphinx} one applies the native admonitions, but
 in \code{sphinx} the \code{automake_sphinx.py} script manipulates the HTML
@@ -3593,6 +3603,7 @@ has a title), the header and footer are included, otherwise not.
 \subsection{Emacs Doconce Formatter}
 \label{emacs:doconce}
 
+
 The file \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} in the Doconce source distribution
 gives a "Doconce Editing Mode" in Emacs.
 
@@ -3697,7 +3708,9 @@ slides to be presented through a web browser, and classical
 % doconce-adjusted styles: easy to switch between styles since
 % font sizes are compatible
 
-Text is missing... Just a very preliminary sketch of commands:
+Not yet written...
+
+Just a very preliminary sketch of commands:
 \bsys
 Terminal> doconce format html myslides \
           --pygments_html_style=native --keep_pygments_html_bg
@@ -3717,6 +3730,15 @@ Terminal> doconce slides_html myslides reveal \
 \noindent
 \subsection{{\LaTeX} Beamer Slides}
 
+Not yet written...
+
+\paragraph{Themes.}
+Four themes come with Doconce: \code{X_Y}, where \code{X} is \code{blue} or \code{red}
+(the main color of the slides) and \code{Y} is \href{{http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf}}{\nolinkurl{plain}}
+for simple layout and
+\href{{http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf}}{\nolinkurl{shadow}}
+for shadowed boxes and more visual structure in the slides.
+
 \section{Mako Programming}
 
 The \href{{http://docs.makotemplates.org/}}{Mako} templating engine is used
@@ -3725,6 +3747,16 @@ including other files via \code{# #include "filename"}. Preprocess is also
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
+
+
+\begin{graybox1admon}[Warning.]
+Unfortunately, the combination of Mako and {\LaTeX} mathematics may
+lead to problems because Mako applies syntax like \code{${var}} to extract
+variables or call functions, while {\LaTeX} mathematics sometimes applies
+the same syntax, e.g., \code{${\cal O}(\Delta x^2)$} which looks like a
+Mako function call. This problem can give rise to strange error
+messages from Mako, usually that a variable is not defined.
+\end{graybox1admon}
 
 \subsection{The Basics of Mako}
 
@@ -3901,6 +3933,14 @@ Doconce syntax is not treated properly.
 
 \subsection{General Problems}
 
+\paragraph{Spellcheck reports a lot of mistakes related {\LaTeX} math.}
+The \code{doconce spellcheck} command should ignore {\LaTeX} math, but if
+the dollar signs for inline math are not correct (one missing, for instance),
+a lot of math enters the text to be spellchecked. Invoke the
+relevant \code{tmp_missing_*} file and search for the math expressions that
+are reported as misspellings. This will fortunately give you hint of
+what is wrong with the math typesetting.
+
 \paragraph{Doconce aborts because of a syntax error that is not an error.}
 Doconce searches for typical syntax errors and usually aborts the
 execution if errors are found. However, it may happen,
@@ -3925,6 +3965,25 @@ Here are possible problems for Mako:
 \end{itemize}
 
 \noindent
+\paragraph{The Mako preprocessor claims a variable is undefined.}
+Very often such errors are related to typos when using Mako
+variables or functions, or correct yet undesired {\LaTeX} syntax.
+For example, ${\cal O}(\Delta x^2)$ is valid {\LaTeX}, but
+the dollar sign and curly braces confuse Mako. Rewrite such
+mathematics. It is wise to not use \code{${} anywhere in {\LaTeX} mathematics.
+Create a newcommand if there are no other possible rewritings.
+A known common problem is \code{${}^+$} type of indication of superscripts.
+A suggested rewrite is \code{$\,{}^+$}.
+
+The error message will ask you to rerun \code{doconce} with
+\code{--mako_strict_undefined}, which will display the variable that
+is confusing Mako. However, do not continue to use
+\code{--mako_strict_undefined} while you are debugging because this
+variable will then always be undefined in that mode.
+Use \code{# #ifdef} directives to comment out large portions of
+the text and apply a "bisection" procedure to locate where
+the Mako problem is (without \code{--mako_strict_undefined}).
+
 \paragraph{Something goes wrong in the preprocessing step.}
 You can examine \code{tmp_preprocess__filename} and \code{tmp_mako__filename},
 where \code{filename} is the complete name of the Doconce file, to see
@@ -4157,7 +4216,7 @@ preprocessor option \code{-DMINTED} to turn on the minted package.
 When this package is included, \code{latex} or \code{pdflatex} runs the
 \code{pygmentize} program and the \code{shell-escape} option is required.
 
-\paragraph{Why are the {\LaTeX} section headings smaller than normal?.}
+\paragraph{Why are the {\LaTeX} section headings smaller than normal?}
 Doconce inserts a special command to make the headings
 more compact:
 
@@ -4176,7 +4235,7 @@ You can easily make the headings even smaller than the normal font
 by replacing \code{[compact]} by \code{[compact,small]} as parameter specification
 for \code{titlesec}.
 
-\paragraph{Can I have {\LaTeX} figures with shadows?.}
+\paragraph{Can I have {\LaTeX} figures with shadows?}
 This is easy by including the \code{fancybox} and \code{graphicx} packages
 and wrapping all \code{\includegraphics} in a shadow box:
 
@@ -4188,7 +4247,7 @@ Terminal> doconce subst '(\\includegraphics\[.+\}\})' \
           '\\shadowbox{\g<1>}' mydoc.p.tex
 \esys
 
-\paragraph{How can I use my fancy {\LaTeX} environments?.}
+\paragraph{How can I use my fancy {\LaTeX} environments?}
 See Section~\ref{manual:theorem:envir} for how to make a custom
 theorem environment also in Doconce, without using implementations
 restricted to {\LaTeX}.
@@ -4276,7 +4335,18 @@ further.
 
 \subsection{Problems with HTML Output}
 
-\paragraph{How can I change the layout of the HTML page?.}
+\paragraph{MathJax formulas are not properly rendered.}
+Here are some common problems:
+
+\begin{itemize}
+ \item Two equations cannot have identical label (this error often arises
+   from copying and pasting equations)
+
+ \item \code{[} and \code{]} brackets must sometimes be replaced by \code{\lbrack} and \code{\rbrack}
+\end{itemize}
+
+\noindent
+\paragraph{How can I change the layout of the HTML page?}
 The easiest way is to edit the HTML style or the HTML code directly.
 However, those edits are overwritten the next time you compile the
 Doconce document to HTML. The edits should therefore be automated
@@ -4313,7 +4383,7 @@ The easiest way is to get fancy layouts in HTML is to
 use the \code{sphinx} format and one its many themes.
 
 
-\paragraph{Why do figures look ugly when using HTML templates?.}
+\paragraph{Why do figures look ugly when using HTML templates?}
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
 templates these styles are not defined, resulting in a rule that

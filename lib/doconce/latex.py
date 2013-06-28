@@ -4,7 +4,7 @@ import os, commands, re, sys, glob
 from common import plain_exercise, table_analysis, \
      _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
      python_online_tutor, envir_delimiter_lines, safe_join, \
-     insert_code_and_tex
+     insert_code_and_tex, _abort
 from misc import option
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
@@ -92,7 +92,7 @@ def latex_code(filestr, code_blocks, code_block_types,
             if current_code_envir is None:
                 # There should have been checks for this in doconce.py
                 print '*** errror: mismatch between !bc and !ec, line', i
-                sys.exit(1)
+                _abort()
             lines[i] = '\\b' + current_code_envir
         if lines[i].startswith('!ec'):
             lines[i] = '\\e' + current_code_envir
@@ -208,12 +208,12 @@ def latex_figure(m, includegraphics=True):
         except IOError, e:
             print 'tried to download %s, but failure:' % filename, e
             print '*** error: cannot treat latex figure on the net (no connection or invalid URL)'
-            sys.exit(1)
+            _abort()
         file_content = f.read()
         f.close()
         if 'DOCTYPE html' in file_content:
             print '*** error: could not download', filename
-            sys.exit(1)
+            _abort()
         f = open(basename, 'w')
         f.write(file_content)
         f.close()
@@ -376,7 +376,7 @@ def latex_table(table):
         print 'Table has column alignment specification: %s, but %d columns' \
               % (column_spec, ncolumns)
         print 'Table with rows', table['rows']
-        sys.exit(1)
+        _abort()
 
     # we do not support | in headings alignments (could be fixed,
     # by making column_spec not a string but a list so the
@@ -386,7 +386,7 @@ def latex_table(table):
         print 'Table has headings alignment specification: %s, '\
               'but %d columns' % (heading_spec, ncolumns)
         print 'Table with rows', table['rows']
-        sys.exit(1)
+        _abort()
 
     s = '\n' + r'\begin{quote}\begin{tabular}{%s}' % column_spec + '\n'
     for i, row in enumerate(table['rows']):
@@ -944,6 +944,15 @@ def latex_%s(block, format, title='%s'):
 #                           _admon, _admon2rgb[_admon]))
 
 
+def latex_subsubsection(m):
+    title = m.group('subst').strip()
+    if title[-1] in ('?', '!', '.', ':',):
+        pass
+    else:
+        title += '.'
+    return r'\paragraph{%s}' % title
+
+
 def latex_inline_comment(m):
     name = m.group('name')
     comment = m.group('comment')
@@ -1022,7 +1031,7 @@ def define(FILENAME_EXTENSION,
         'section':       r'\section{\g<subst>}',
         'subsection':    r'\subsection{\g<subst>}',
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
-        'subsubsection': r'\paragraph{\g<subst>.}',
+        'subsubsection': latex_subsubsection,
         'paragraph':     r'\paragraph{\g<subst>}\n',
         #'abstract':      '\n\n' + r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n' + r'\g<rest>', # not necessary with separate \n
         #'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
@@ -1429,7 +1438,7 @@ final,                   % or draft (marks overfull hboxes)
   backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,

@@ -1356,6 +1356,7 @@ line and followed by a newline.
 \end{align}
 |et
 !ec
+# #ifdef EXTRA
 Here is the result:
 
 !bt
@@ -1364,6 +1365,7 @@ Here is the result:
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 !et
+# #endif
 
 The support of LaTeX mathematics varies among the formats:
 
@@ -1456,6 +1458,7 @@ newcommands in the `newcommands*.tex` files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
+# #ifdef EXTRA
 __Example.__ Suppose we have the following commands in
 `newcommand_replace.tex`:
 
@@ -1480,6 +1483,7 @@ will then be rendered to
 \eeqa
 !et
 in the current format.
+# #endif
 
 ===== Admonitions =====
 
