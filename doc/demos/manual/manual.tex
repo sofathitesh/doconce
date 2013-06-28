@@ -37,10 +37,11 @@ open=right               % start new chapters on odd-numbered pages
 \renewcommand\familydefault{phv}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -75,10 +76,10 @@ open=right               % start new chapters on odd-numbered pages
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -145,7 +146,7 @@ Doconce Description
 
 
 \begin{center}
-May 29, 2013
+Jun 28, 2013
 \end{center}
 
 \vspace{1cm}
@@ -705,7 +706,7 @@ of the results.
 \label{doconce2formats}
 
 Transformation of a Doconce document \Verb!mydoc.do.txt! to various other
-formats applies the script \Verb!doconce format!:
+formats apply the script \Verb!doconce format!:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Terminal> doconce format format mydoc.do.txt
 \end{Verbatim}
@@ -892,6 +893,7 @@ In the readers' comments after the blog one cannot paste raw HTML
 code with MathJax
 scripts so there is no support for mathematics in the discussion forum.
 \end{graybox1admon}
+
 \begin{graybox1admon}[Notice.]
 Figure files must be uploaded to some web site and the filenames name must
 be replaced by the relevant URL. This can be automatically edited:
@@ -908,6 +910,7 @@ doconce format html mydoc2
 # Paste mydoc2.html into a new blog page
 \end{Verbatim}
 \end{graybox1admon}
+
 Blog posts at Google can also be published \href{{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}}{automatically through email}.
 A Python program can send the contents of the HTML file
 to the blog's email address using the packages  \Verb!smtplib! and \Verb!email!.
@@ -1986,6 +1989,7 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 \end{graybox1admon}
+
 \paragraph{Links to Web Addresses.}
 Web addresses with links are typeset as
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -2304,7 +2308,11 @@ placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
-{\LaTeX} is the output format).
+{\LaTeX} is the output format). For paragraphs with \Verb!===! heading,
+the index keywords should be placed above the heading.
+
+The keywords in the index are automatically placed in a meta
+tag in \Verb!html! output such that search engines can make use of the them.
 
 \subsection{Bibliography}
 
@@ -2345,6 +2353,7 @@ title, etc.) are in lower case and where the data are enclosed in
 curly braces. You may need to edit your \textsc{Bib}\negthinspace{\TeX} files to meet this
 demand.
 \end{graybox1admon}
+
 The utility \Verb!doconce fix_bibtex4publish file.bib! fixes several known
 issues with \textsc{Bib}\negthinspace{\TeX} files such that Publish has a better chance of
 accepting the entries. Run this utility first, then run Publish,
@@ -2469,6 +2478,19 @@ alignment of the columns (centered, right, or left, respectively).
 Similar character can be inserted in the line above the header to
 algn the headings. Pipes \Verb!|! can also be inserted to indicate
 vertical rules in {\LaTeX} tables (they are ignored for other formats).
+An example of centered headings (which is default anyway), first
+column left-adjusted and the others right-adjusted looks like
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+  |--c--------c-----------c--------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+\end{Verbatim}
+
 Note that not all formats offer alignment of heading or entries
 in tables (\Verb!rst! and \Verb!sphinx! are examples). Also note that
 Doconce tables are very simple: neither entries nor
@@ -2480,6 +2502,33 @@ The command-line option \Verb!--tables2csv! (to \Verb!doconce format!)
 makes Doconce dump each table to CSV format in a file \Verb!table_X.csv!,
 where \Verb!X! is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.
+
+Data in CSV format can be transformed to Doconce table format
+by the \Verb!doconce csv2table! utility:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+Terminal> doconce csv2table somefile.csv > table.do.txt
+\end{Verbatim}
+This is a quick way of writing tables. For example, we can
+write a text file \Verb!tmp.csv! with
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+time, velocity, acceleration
+0.0, 1.4186, -5.01
+2.0, 1.376512, 11.919
+4.0, 1.1E+1, 14.717624
+\end{Verbatim}
+Running \Verb!doconce csv2table tmp.csv! creates the table
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+|------c--------------c--------------c-------|
+| time         | velocity     | acceleration |
+|------c--------------c--------------c-------|
+| 0.0          | 1.4186       | -5.01        |
+| 2.0          | 1.376512     | 11.919       |
+| 4.0          | 1.1E+1       | 14.717624    |
+|--------------------------------------------|
+\end{Verbatim}
 
 \subsection{Exercises, Problems, Projects, and Examples}
 
@@ -2882,12 +2931,6 @@ line and followed by a newline.
 \end{align}
 !et
 \end{Verbatim}
-Here is the result:
-
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
-\end{align}
 
 The support of {\LaTeX} mathematics varies among the formats:
 
@@ -2991,57 +3034,19 @@ newcommands in the \Verb!newcommands*.tex! files \emph{must} appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-\paragraph{Example.}
-Suppose we have the following commands in
-\Verb!newcommand_replace.tex!:
-
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-\newcommand{\beqa}{\begin{eqnarray}}
-\newcommand{\eeqa}{\end{eqnarray}}
-\newcommand{\ep}{\thinspace . }
-\newcommand{\uvec}{\vec u}
-\newcommand{\Q}{\pmb{Q}}
-\end{Verbatim}
-
-and these in \Verb!newcommands_keep.tex!:
-
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\half}{\frac{1}{2}}
-\end{Verbatim}
-
-The {\LaTeX} block
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-\beqa
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
-\eeqa
-\end{Verbatim}
-will then be rendered to
-\beqa
-\x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
-\eeqa
-in the current format.
 
 \subsection{Admonitions}
 
 Doconce offers strong support for admonition environments, such
-as warning boxes, notification boxes, hint boxes, question boxes,
+as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading.
 
 The following admonition environments are available:
-\Verb!block!, \Verb!warning!, \Verb!notice!, \Verb!hint!, \Verb!question!, and \Verb!summary!.
-The box is defined by begin and end tags such as \Verb!!bhint! and \Verb!!ehint!.
-(The hint box is typeset differently inside exercises compared to outside
-exericises: inside a plain paragraph heading \emph{Hint} (with number)
-appears, while outside exercises the \Verb!hint! environment gives a
-box with some admonition icon, text and/or colored background.)
+\Verb!block!, \Verb!warning!, \Verb!notice!, \Verb!question!, and \Verb!summary!.
+The box is defined by begin and end tags such as \Verb!!bnotice! and \Verb!!enotice!.
 The title of the box is fully customizable.
 
 Here are a few examples:
@@ -3051,9 +3056,9 @@ Here are a few examples:
 Here is a warning!
 !ewarning
 
-!bhint
+!bnotice Hint
 This is a hint.
-!ehint
+!enotice
 
 !bblock This is a block.
 A block has never any icon.
@@ -3077,17 +3082,21 @@ The above Doconce code is in the present format rendered as
 \begin{graybox1admon}[Warning.]
 Here is a warning!
 \end{graybox1admon}
+
 \begin{graybox1admon}[Hint.]
 This is a hint.
 \end{graybox1admon}
 
+
 \begin{graybox1admon}[This is a block.]
 A block has never any icon.
 \end{graybox1admon}
+
 \begin{graybox1admon}[Going deeper.]
 This is text meant to provide more details. The box has the
 layout of the notice box, but a custom title, here "Going deeper".
 \end{graybox1admon}
+
 Finally some summary:
 
 
@@ -3095,6 +3104,7 @@ Finally some summary:
 The main message is to utilize the admonition styles for
 marking different parts of the text
 \end{graybox1admon}
+
 The layout of admonitions depend on the format.
 In \Verb!rst! and \Verb!sphinx! one applies the native admonitions, but
 in \Verb!sphinx! the \Verb!automake_sphinx.py! script manipulates the HTML
@@ -3366,6 +3376,7 @@ has a title), the header and footer are included, otherwise not.
 \subsection{Emacs Doconce Formatter}
 \label{emacs:doconce}
 
+
 The file \href{{https://doconce.googlecode.com/hg/misc/.doconce-mode.el}}{.doconce-mode.el} in the Doconce source distribution
 gives a "Doconce Editing Mode" in Emacs.
 
@@ -3470,7 +3481,9 @@ slides to be presented through a web browser, and classical
 % doconce-adjusted styles: easy to switch between styles since
 % font sizes are compatible
 
-Text is missing... Just a very preliminary sketch of commands:
+Not yet written...
+
+Just a very preliminary sketch of commands:
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 Terminal> doconce format html myslides \
           --pygments_html_style=native --keep_pygments_html_bg
@@ -3490,6 +3503,15 @@ Terminal> doconce slides_html myslides reveal \
 \noindent
 \subsection{{\LaTeX} Beamer Slides}
 
+Not yet written...
+
+\paragraph{Themes.}
+Four themes come with Doconce: \Verb!X_Y!, where \Verb!X! is \Verb!blue! or \Verb!red!
+(the main color of the slides) and \Verb!Y! is \href{{http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf}}{\nolinkurl{plain}}
+for simple layout and
+\href{{http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf}}{\nolinkurl{shadow}}
+for shadowed boxes and more visual structure in the slides.
+
 \section{Mako Programming}
 
 The \href{{http://docs.makotemplates.org/}}{Mako} templating engine is used
@@ -3498,6 +3520,16 @@ including other files via \Verb!# #include "filename"!. Preprocess is also
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
+
+
+\begin{graybox1admon}[Warning.]
+Unfortunately, the combination of Mako and {\LaTeX} mathematics may
+lead to problems because Mako applies syntax like \Verb!${var}! to extract
+variables or call functions, while {\LaTeX} mathematics sometimes applies
+the same syntax, e.g., \Verb!${\cal O}(\Delta x^2)$! which looks like a
+Mako function call. This problem can give rise to strange error
+messages from Mako, usually that a variable is not defined.
+\end{graybox1admon}
 
 \subsection{The Basics of Mako}
 
@@ -3674,6 +3706,14 @@ Doconce syntax is not treated properly.
 
 \subsection{General Problems}
 
+\paragraph{Spellcheck reports a lot of mistakes related {\LaTeX} math.}
+The \Verb!doconce spellcheck! command should ignore {\LaTeX} math, but if
+the dollar signs for inline math are not correct (one missing, for instance),
+a lot of math enters the text to be spellchecked. Invoke the
+relevant \Verb!tmp_missing_*! file and search for the math expressions that
+are reported as misspellings. This will fortunately give you hint of
+what is wrong with the math typesetting.
+
 \paragraph{Doconce aborts because of a syntax error that is not an error.}
 Doconce searches for typical syntax errors and usually aborts the
 execution if errors are found. However, it may happen,
@@ -3698,6 +3738,25 @@ Here are possible problems for Mako:
 \end{itemize}
 
 \noindent
+\paragraph{The Mako preprocessor claims a variable is undefined.}
+Very often such errors are related to typos when using Mako
+variables or functions, or correct yet undesired {\LaTeX} syntax.
+For example, ${\cal O}(\Delta x^2)$ is valid {\LaTeX}, but
+the dollar sign and curly braces confuse Mako. Rewrite such
+mathematics. It is wise to not use \Verb!${! anywhere in {\LaTeX} mathematics.
+Create a newcommand if there are no other possible rewritings.
+A known common problem is \Verb!${}^+$! type of indication of superscripts.
+A suggested rewrite is \Verb!$\,{}^+$!.
+
+The error message will ask you to rerun \Verb!doconce! with
+\Verb!--mako_strict_undefined!, which will display the variable that
+is confusing Mako. However, do not continue to use
+\Verb!--mako_strict_undefined! while you are debugging because this
+variable will then always be undefined in that mode.
+Use \Verb!# #ifdef! directives to comment out large portions of
+the text and apply a "bisection" procedure to locate where
+the Mako problem is (without \Verb!--mako_strict_undefined!).
+
 \paragraph{Something goes wrong in the preprocessing step.}
 You can examine \Verb!tmp_preprocess__filename! and \Verb!tmp_mako__filename!,
 where \Verb!filename! is the complete name of the Doconce file, to see
@@ -3930,7 +3989,7 @@ preprocessor option \Verb!-DMINTED! to turn on the minted package.
 When this package is included, \Verb!latex! or \Verb!pdflatex! runs the
 \Verb!pygmentize! program and the \Verb!shell-escape! option is required.
 
-\paragraph{Why are the {\LaTeX} section headings smaller than normal?.}
+\paragraph{Why are the {\LaTeX} section headings smaller than normal?}
 Doconce inserts a special command to make the headings
 more compact:
 
@@ -3949,7 +4008,7 @@ You can easily make the headings even smaller than the normal font
 by replacing \Verb![compact]! by \Verb![compact,small]! as parameter specification
 for \Verb!titlesec!.
 
-\paragraph{Can I have {\LaTeX} figures with shadows?.}
+\paragraph{Can I have {\LaTeX} figures with shadows?}
 This is easy by including the \Verb!fancybox! and \Verb!graphicx! packages
 and wrapping all \Verb!\includegraphics! in a shadow box:
 
@@ -3961,7 +4020,7 @@ Terminal> doconce subst '(\\includegraphics\[.+\}\})' \
           '\\shadowbox{\g<1>}' mydoc.p.tex
 \end{Verbatim}
 
-\paragraph{How can I use my fancy {\LaTeX} environments?.}
+\paragraph{How can I use my fancy {\LaTeX} environments?}
 See Section~\ref{manual:theorem:envir} for how to make a custom
 theorem environment also in Doconce, without using implementations
 restricted to {\LaTeX}.
@@ -4049,7 +4108,18 @@ further.
 
 \subsection{Problems with HTML Output}
 
-\paragraph{How can I change the layout of the HTML page?.}
+\paragraph{MathJax formulas are not properly rendered.}
+Here are some common problems:
+
+\begin{itemize}
+ \item Two equations cannot have identical label (this error often arises
+   from copying and pasting equations)
+
+ \item \Verb![! and \Verb!]! brackets must sometimes be replaced by \Verb!\lbrack! and \Verb!\rbrack!
+\end{itemize}
+
+\noindent
+\paragraph{How can I change the layout of the HTML page?}
 The easiest way is to edit the HTML style or the HTML code directly.
 However, those edits are overwritten the next time you compile the
 Doconce document to HTML. The edits should therefore be automated
@@ -4086,7 +4156,7 @@ The easiest way is to get fancy layouts in HTML is to
 use the \Verb!sphinx! format and one its many themes.
 
 
-\paragraph{Why do figures look ugly when using HTML templates?.}
+\paragraph{Why do figures look ugly when using HTML templates?}
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
 templates these styles are not defined, resulting in a rule that

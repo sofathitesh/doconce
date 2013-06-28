@@ -7,13 +7,6 @@ except ImportError:
     # citations is then lost)
     OrderedDict = dict
 
-def _abort():
-    if not option('no_abort'):
-        print 'Abort! (add --no_abort on the command line to avoid this abortion)'
-        sys.exit(1)
-    else:
-        print 'avoided abortion because of --no-abort'
-
 
 def debugpr(out):
     """Add the text in string `out` to the log file (name in _log variable)."""
@@ -25,6 +18,7 @@ def debugpr(out):
 
 
 from common import *
+from common import _abort  # needs explicit import because of leading _
 from misc import option, which
 import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb
 
@@ -2570,7 +2564,7 @@ def main():
     names = supported_format_names()
     if format not in names:
         print '%s is not among the supported formats:\n%s' % (format, names)
-        sys.exit(1)
+        _abort()
 
     encoding = option('encoding=', default='')
 

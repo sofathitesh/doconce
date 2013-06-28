@@ -1,4 +1,5 @@
 import os, sys, shutil, re, glob, sets, time, commands
+from common import _abort
 
 _registered_command_line_options = [
     ('--help',
@@ -126,10 +127,21 @@ def option(name, default=None):
     option_name = '--' + name
     if not option_name in _legal_command_line_options:
         print 'test for illegal option:', option_name
-        print 'Abort!'
-        sys.exit(1)
+        _abort()
 
     value = default
+
+    # Check if a command-line option has dash instead of underscore,
+    # which is a common mistake
+    for arg in sys.argv[1:]:
+        if arg.startswith('--'):
+            if '=' in arg:
+                arg = arg.split('=')[0] + '='
+            if arg not in _legal_command_line_options and \
+              ('--' + arg[2:].replace('-', '_')) in _legal_command_line_options:
+                print 'found option %s, should be %s' % \
+                      (arg, '--' + arg[2:].replace('-', '_'))
+                _abort()
 
     # Check first if name is in configuration file (doconce_config)
     name_dash2underscore = name.replace('-', '_')
@@ -171,8 +183,7 @@ def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
     if failure:
         print 'could not run', cmd, failure_info
         if abort_on_failure:
-            print 'Abort!'
-            sys.exit(1)
+            _abort()
 
 def recommended_html_styles_and_pygments_styles():
     """
@@ -223,7 +234,7 @@ def remove_inline_comments():
         filename = sys.argv[1]
     except IndexError:
         print 'Usage: doconce remove_inline_comments myfile.do.txt'
-        sys.exit(1)
+        _abort()
 
     shutil.copy(filename, filename + '.old~~')
     f = open(filename, 'r')
@@ -268,7 +279,7 @@ def gwiki_figsubst():
     except IndexError:
         print 'Usage: %s wikifile URL-stem' % sys.argv[0]
         print 'Ex:    %s somefile.gwiki http://code.google.com/p/myproject/trunk/doc/somedir' % sys.argv[0]
-        sys.exit(1)
+        _abort()
 
     # first grep out all filenames with local path:
     shutil.copy(gwikifile, gwikifile + '.old~~')
@@ -492,7 +503,7 @@ def _dofix_localURLs(filename, exclude_adr):
     if os.path.splitext(filename)[1] != '.rst':
         print 'Wrong filename extension in "%s" - must be a .rst file' \
               % filename
-        sys.exit(1)
+        _abort()
 
     f = open(filename, 'r')
     text = f.read()
@@ -1002,7 +1013,7 @@ def ptex2tex():
         filename
     except:
         print 'no specification of the .p.tex file'
-        sys.exit(1)
+        _abort()
 
     # Find which environments that will be defined and which
     # latex packages that must be included.
@@ -1055,8 +1066,8 @@ def ptex2tex():
 
 
     if not os.path.isfile(filename + '.p.tex'):
-        print 'No file %s' % (filename + '.p.tex')
-        sys.exit(1)
+        print 'no file %s' % (filename + '.p.tex')
+        _abort()
 
     output_filename = filename + '.tex'
     cmd = 'preprocess %s %s > %s' % \
@@ -1114,7 +1125,7 @@ download preprocess from http://code.google.com/p/preprocess""")
             print 'You have requested the minted latex style, but this'
             print 'requires the pygments package to be installed. On Debian/Ubuntu: run'
             print 'Terminal> sudo apt-get install python-pygments'
-            sys.exit(1)
+            _abort()
 
     # --- Treat the \code{} commands ---
 
@@ -1167,7 +1178,7 @@ def grab():
     filename = sys.argv[-1]
     if not sys.argv[1].startswith('--from'):
         print 'missing --from fromtext or --from_ fromtext option on the command line'
-        sys.exit(1)
+        _abort()
     from_included = sys.argv[1] == '--from'
     from_text = sys.argv[2]
 
@@ -1425,8 +1436,8 @@ def _change_encoding_unix(filename, from_enc, to_enc):
         cmd = 'iconv -f %s -t %s %s > %s' % \
               (from_enc, to_enc, backupfile, filename)
     else:
-        print 'Changing encoding is not implemented on Windows machines'
-        sys.exit(1)
+        print 'changing encoding is not implemented on Windows machines'
+        _abort()
     os.rename(filename, backupfile)
     system(cmd)
 
@@ -1668,8 +1679,8 @@ def slides_html():
     if not filename.endswith('.html'):
         filename += '.html'
     if not os.path.isfile(filename):
-        print 'doconce file in html format, %s, does not exist - abort' % filename
-        sys.exit(1)
+        print 'doconce file in html format, %s, does not exist' % filename
+        _abort()
     basename = os.path.basename(filename)
     filestem = os.path.splitext(basename)[0]
 
@@ -1781,8 +1792,7 @@ def tablify(parts, format="html"):
                                     print 'no width',
                                 else:
                                     print '%g' % width,
-                            print '\nAbort!'
-                            sys.exit(1)
+                            _abort()
                 else:
                     width = 1./len(row)
                     for s, c in enumerate(row):
@@ -3124,7 +3134,7 @@ git://github.com/barraq/deck.ext.js.git
         # the slide type is legal (before calling this function)
         print '*** error: slide type "%s" is not known - abort' % slide_tp
         print 'known slide types:', ', '.join(list(all_combinations.keys()))
-        sys.exit(1)
+        _abort()
 
     # We need the subdir with reveal.js, deck.js, or similar to show
     # the HTML slides so add the subdir to the registered file collection
@@ -3138,7 +3148,7 @@ git://github.com/barraq/deck.ext.js.git
             print '*** error: %s theme "%s" is not known - abort' % \
                   (slide_tp, theme)
             print 'known themes:', ', '.join(list(all_combinations[slide_tp].keys()))
-            sys.exit(1)
+            _abort()
 
     m = re.search(r'<title>(.*?)</title>', ''.join(parts[0]))
     if m:
@@ -3354,7 +3364,7 @@ def slides_beamer():
         filename += '.tex'
     if not os.path.isfile(filename):
         print 'doconce file in latex format, %s, does not exist - abort' % filename
-        sys.exit(1)
+        _abort()
     basename = os.path.basename(filename)
     filestem = os.path.splitext(basename)[0]
 
@@ -3754,7 +3764,7 @@ def list_labels():
             else:
                 print 'Syntax error in line'
                 print line
-                sys.exit(1)
+                _abort()
             print label
             labels.append(label)
 
@@ -4217,8 +4227,8 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
     try:
         f = open(filename, 'r')
     except IOError:
-        print '\nThe file %s does not exist!' % filename
-        sys.exit(1)
+        print '\nfile %s does not exist!' % filename
+        _abort()
 
     verbose = 1 if option('debug') else 0
 
@@ -5426,8 +5436,8 @@ try:
     from pygments.styles import get_all_styles
 except ImportError:
     pygm = None
-    print 'pygments is not installed...abort'
-    sys.exit(1)
+    print 'pygments is not installed'
+    _abort()
 
 class DoconceLexer(RegexLexer):
     """
@@ -5840,8 +5850,8 @@ def fix_bibtex4publish():
     bibfiles = sys.argv[1:]
     for bibfile in bibfiles:
         if not bibfile.endswith('.bib'):
-            print bibfile, 'is not a BibTeX file - abort'
-            sys.exit(1)
+            print bibfile, 'is not a BibTeX file'
+            _abort()
         shutil.copy(bibfile, bibfile + '.old~~')
         f = open(bibfile, 'r')
         lines = f.readlines()
@@ -5909,8 +5919,7 @@ def fix_bibtex4publish():
                 print '*** error: broken line'
                 print lines[i]
                 print 'Glue with previous line!'
-                print 'Abort!'
-                sys.exit(1)
+                _abort()
 
         f = open(bibfile, 'w')
         f.writelines(lines)
@@ -6047,10 +6056,10 @@ def pydiff(files1, files2, n=3, prefix_diff_files='tmp_diff_'):
 
         if not os.path.isfile(fromfile):
             print fromfile, 'does not exist'
-            sys.exit(1)
+            _abort()
         if not os.path.isfile(tofile):
             print tofile, 'does not exist'
-            sys.exit(1)
+            _abort()
 
         fromdate = time.ctime(os.stat(fromfile).st_mtime)
         todate = time.ctime(os.stat(tofile).st_mtime)
@@ -6159,7 +6168,7 @@ def diff_files(files1, files2, program='diff'):
             print 'diff in %s.pdf' % diff_file
         else:
             print program, 'not supported'
-            sys.exit(1)
+            _abort()
 
 def _usage_diffgit():
     #print 'Usage: doconce gitdiff diffprog file1 file2 file3'

@@ -1,7 +1,7 @@
 import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex, \
      indent_lines, python_online_tutor, bibliography, \
-     cite_with_multiple_args2multiple_cites
+     cite_with_multiple_args2multiple_cites, _abort
 from misc import option
 
 global _file_collection_filename
@@ -251,7 +251,7 @@ def html_code(filestr, code_blocks, code_block_types,
         legal_styles += ['no', 'none']
         if pygm_style not in legal_styles:
             print 'pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles))
-            #sys.exit(1)
+            #_abort()
             print 'using the default style...'
             pygm_style = 'default'
         if pygm_style in ['no', 'none']:
@@ -266,7 +266,7 @@ def html_code(filestr, code_blocks, code_block_types,
             if pygm is None:
                 print '*** error: cannot use Python Online Tutorial (pyproopt)'
                 print '    without pygmentized code'
-                sys.exit(1)
+                _abort()
             code_blocks[i] = python_online_tutor(code_blocks[i],
                                                  return_tp='iframe')
 
@@ -504,14 +504,14 @@ MathJax.Hub.Config({
     # edit template_vargrant.html to template_mystyle.html
     --html_template=template_mystyle.html
 """
-            sys.exit(1)
+            _abort()
     if 'template_vagrant.html' in template \
        and not option('html_style=') == 'vagrant':
         print """
 *** error: --html_template= with a template based on
     template_vagrant.html requires --html_style=vagrant
 """
-        sys.exit(1)
+        _abort()
 
     if template:
         title = ''
@@ -544,11 +544,11 @@ MathJax.Hub.Config({
             if m:
                 title = m.group(1).strip()
                 filestr = re.sub(pattern, '\n<h1>%s</h1>\n' % title, filestr)
-
-            # Now use the first heading as title
-            m = re.search(r'<h\d>(.+?)<a name=', filestr)
-            if m:
-                title = m.group(1).strip()
+            else:
+                # Use the first ordinary heading as title
+                m = re.search(r'<h\d>(.+?)<a name=', filestr)
+                if m:
+                    title = m.group(1).strip()
 
         # Extract date
         pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
@@ -580,7 +580,7 @@ MathJax.Hub.Config({
             f = open(template, 'r'); template = f.read(); f.close()
         except IOError:
             print '*** error: could not find template "%s"' % template
-            print 'Abort!'; sys.exit(1)
+            _abort()
 
         # Check that template does not have "main content" begin and
         # end lines that may interfere with the automatically generated
@@ -591,7 +591,7 @@ MathJax.Hub.Config({
             print '    with markers that doconce inserts - remove these'
             for line in m:
                 print line
-            print 'Abort!'; sys.exit(1)
+            _abort()
 
         # template can only have slots for title, date, main
         template = latin2html(template) # code non-ascii chars
@@ -746,7 +746,7 @@ def html_movie(m):
         plotfiles = glob.glob(filename)
         if not plotfiles:
             print 'No plotfiles on the form', filename
-            sys.exit(1)
+            _abort()
         plotfiles.sort()
         basename  = os.path.basename(plotfiles[0])
         stem, ext = os.path.splitext(basename)
@@ -997,8 +997,7 @@ def html_index_bib(filestr, index, citations, pubfile, pubdata):
                 print e
                 print '*** error: problems in %s' % pubfile
                 print '    with key', label
-                print 'Abort!'
-                sys.exit(1)
+                _abort()
 
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
@@ -1261,7 +1260,7 @@ def define(FILENAME_EXTENSION,
     if body_font_family == '?' or body_font_family == 'help' or \
        heading_font_family == '?' or heading_font_family == 'help':
         print ' '.join(google_fonts)
-        sys.exit(1)
+        _abort()
     link = "@import url(http://fonts.googleapis.com/css?family=%s);"
     import_body_font = ''
     if body_font_family is not None:

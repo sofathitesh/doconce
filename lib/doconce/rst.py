@@ -125,8 +125,7 @@ def rst_code(filestr, code_blocks, code_block_types,
 Still %s left after handling of code and tex blocks. Problem is probably
 that %s is not preceded by text which can be extended with :: (required).
 """ % (pattern, pattern)
-            print 'Abort!'
-            sys.exit(1)
+            _abort()
 
     # Final fixes
 

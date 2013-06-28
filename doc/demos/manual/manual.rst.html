@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">May 29, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jun 28, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -846,7 +846,7 @@ of the results.</p>
 <div class="section" id="from-doconce-to-other-formats">
 <span id="doconce2formats"></span><h1>From Doconce to Other Formats</h1>
 <p>Transformation of a Doconce document <tt class="docutils literal">mydoc.do.txt</tt> to various other
-formats applies the script <tt class="docutils literal">doconce format</tt>:</p>
+formats apply the script <tt class="docutils literal">doconce format</tt>:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format format mydoc.do.txt
 </pre>
@@ -2246,7 +2246,10 @@ placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
-LaTeX is the output format).</p>
+LaTeX is the output format). For paragraphs with <tt class="docutils literal">===</tt> heading,
+the index keywords should be placed above the heading.</p>
+<p>The keywords in the index are automatically placed in a meta
+tag in <tt class="docutils literal">html</tt> output such that search engines can make use of the them.</p>
 </div>
 <div class="section" id="bibliography-2">
 <h2>Bibliography  (2)</h2>
@@ -2422,7 +2425,18 @@ alignment of the columns (centered, right, or left, respectively).
 Similar character can be inserted in the line above the header to
 algn the headings. Pipes <tt class="docutils literal">|</tt> can also be inserted to indicate
 vertical rules in LaTeX tables (they are ignored for other formats).
-Note that not all formats offer alignment of heading or entries
+An example of centered headings (which is default anyway), first
+column left-adjusted and the others right-adjusted looks like:</p>
+<pre class="literal-block">
+|--c--------c-----------c--------|
+|time  | velocity | acceleration |
+|--l--------r-----------r--------|
+| 0.0  | 1.4186   | -5.01        |
+| 2.0  | 1.376512 | 11.919       |
+| 4.0  | 1.1E+1   | 14.717624    |
+|--------------------------------|
+</pre>
+<p>Note that not all formats offer alignment of heading or entries
 in tables (<tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> are examples). Also note that
 Doconce tables are very simple: neither entries nor
 headings can span several columns or rows. When that functionality
@@ -2432,6 +2446,29 @@ the format and insert format-specific code for tables.</p>
 makes Doconce dump each table to CSV format in a file <tt class="docutils literal">table_X.csv</tt>,
 where <tt class="docutils literal">X</tt> is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.</p>
+<p>Data in CSV format can be transformed to Doconce table format
+by the <tt class="docutils literal">doconce csv2table</tt> utility:</p>
+<pre class="literal-block">
+Terminal&gt; doconce csv2table somefile.csv &gt; table.do.txt
+</pre>
+<p>This is a quick way of writing tables. For example, we can
+write a text file <tt class="docutils literal">tmp.csv</tt> with:</p>
+<pre class="literal-block">
+time, velocity, acceleration
+0.0, 1.4186, -5.01
+2.0, 1.376512, 11.919
+4.0, 1.1E+1, 14.717624
+</pre>
+<p>Running <tt class="docutils literal">doconce csv2table tmp.csv</tt> creates the table:</p>
+<pre class="literal-block">
+|------c--------------c--------------c-------|
+| time         | velocity     | acceleration |
+|------c--------------c--------------c-------|
+| 0.0          | 1.4186       | -5.01        |
+| 2.0          | 1.376512     | 11.919       |
+| 4.0          | 1.1E+1       | 14.717624    |
+|--------------------------------------------|
+</pre>
 </div>
 <div class="section" id="exercises-problems-projects-and-examples">
 <h2>Exercises, Problems, Projects, and Examples</h2>
@@ -2801,13 +2838,6 @@ line and followed by a newline:</p>
 \end{align}
 !et
 </pre>
-<p>Here is the result:</p>
-<pre class="literal-block">
-\begin{align}
-{\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
-\end{align}
-</pre>
 <p>The support of LaTeX mathematics varies among the formats:</p>
 <blockquote>
 <ul class="simple">
@@ -2897,53 +2927,18 @@ elsewhere throughout the text will usually be placed in
 newcommands in the <tt class="docutils literal"><span class="pre">newcommands*.tex</span></tt> files <em>must</em> appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).</p>
-<p><em>Example.</em> Suppose we have the following commands in
-<tt class="docutils literal">newcommand_replace.tex</tt>:</p>
-<pre class="literal-block">
-\newcommand{\beqa}{\begin{eqnarray}}
-\newcommand{\eeqa}{\end{eqnarray}}
-\newcommand{\ep}{\thinspace . }
-\newcommand{\uvec}{\vec u}
-\newcommand{\Q}{\pmb{Q}}
-</pre>
-<p>and these in <tt class="docutils literal">newcommands_keep.tex</tt>:</p>
-<pre class="literal-block">
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\half}{\frac{1}{2}}
-</pre>
-<p>The LaTeX block:</p>
-<pre class="literal-block">
-\beqa
-\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
-\Ddt{\uvec} &amp;=&amp; \Q \ep   label{my:eq2}
-\eeqa
-</pre>
-<p>will then be rendered to:</p>
-<pre class="literal-block">
-\begin{eqnarray}
-\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
-\Ddt{{\vec u}} &amp;=&amp; \pmb{Q} {\thinspace . }   label{my:eq2}
-\end{eqnarray}
-</pre>
-<p>in the current format.</p>
 </div>
 <div class="section" id="admonitions">
 <h2>Admonitions</h2>
 <p>Doconce offers strong support for admonition environments, such
-as warning boxes, notification boxes, hint boxes, question boxes,
+as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading.</p>
 <p>The following admonition environments are available:
-<tt class="docutils literal">block</tt>, <tt class="docutils literal">warning</tt>, <tt class="docutils literal">notice</tt>, <tt class="docutils literal">hint</tt>, <tt class="docutils literal">question</tt>, and <tt class="docutils literal">summary</tt>.
-The box is defined by begin and end tags such as <tt class="docutils literal">!bhint</tt> and <tt class="docutils literal">!ehint</tt>.
-(The hint box is typeset differently inside exercises compared to outside
-exericises: inside a plain paragraph heading <em>Hint</em> (with number)
-appears, while outside exercises the <tt class="docutils literal">hint</tt> environment gives a
-box with some admonition icon, text and/or colored background.)
+<tt class="docutils literal">block</tt>, <tt class="docutils literal">warning</tt>, <tt class="docutils literal">notice</tt>, <tt class="docutils literal">question</tt>, and <tt class="docutils literal">summary</tt>.
+The box is defined by begin and end tags such as <tt class="docutils literal">!bnotice</tt> and <tt class="docutils literal">!enotice</tt>.
 The title of the box is fully customizable.</p>
 <p>Here are a few examples:</p>
 <pre class="literal-block">
@@ -2951,9 +2946,9 @@ The title of the box is fully customizable.</p>
 Here is a warning!
 !ewarning
 
-!bhint
+!bnotice Hint
 This is a hint.
-!ehint
+!enotice
 
 !bblock This is a block.
 A block has never any icon.
@@ -2976,7 +2971,7 @@ marking different parts of the text
 <p class="first admonition-title">Warning</p>
 <p class="last">Here is a warning!</p>
 </div>
-<div class="hint">
+<div class="admonition-hint admonition">
 <p class="first admonition-title">Hint</p>
 <p class="last">This is a hint.</p>
 </div>
@@ -3348,7 +3343,8 @@ LaTeX Beamer slides.</p>
 <h2>HTML5 Slides</h2>
 <!-- doconce-adjusted styles: easy to switch between styles since -->
 <!-- font sizes are compatible -->
-<p>Text is missing... Just a very preliminary sketch of commands:</p>
+<p>Not yet written...</p>
+<p>Just a very preliminary sketch of commands:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format html myslides \
           --pygments_html_style=native --keep_pygments_html_bg
@@ -3369,12 +3365,21 @@ equations. More edits (automate with <tt class="docutils literal">doconce subst<
 </div>
 <div class="section" id="latex-beamer-slides">
 <h2>LaTeX Beamer Slides</h2>
+<p>Not yet written...</p>
+<div class="section" id="themes">
+<h3>Themes</h3>
+<p>Four themes come with Doconce: <tt class="docutils literal">X_Y</tt>, where <tt class="docutils literal">X</tt> is <tt class="docutils literal">blue</tt> or <tt class="docutils literal">red</tt>
+(the main color of the slides) and <tt class="docutils literal">Y</tt> is <a class="reference external" href="http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf">plain</a>
+for simple layout and
+<a class="reference external" href="http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf">shadow</a>
+for shadowed boxes and more visual structure in the slides.</p>
+</div>
 </div>
 </div>
 <div class="section" id="mako-programming">
 <h1>Mako Programming</h1>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 3501); <em><a href="#id15">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 3513); <em><a href="#id15">backlink</a></em></p>
 Duplicate explicit target name: &quot;mako&quot;.</div>
 <p>The <a class="reference external" href="http://docs.makotemplates.org/">Mako</a> templating engine is used
 as preprocessor for Doconce documents, but the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a> is run prior to Mako and is recommended for
@@ -3382,6 +3387,15 @@ including other files via <tt class="docutils literal"># #include &quot;filename
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.</p>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Unfortunately, the combination of Mako and LaTeX mathematics may
+lead to problems because Mako applies syntax like <tt class="docutils literal">${var}</tt> to extract
+variables or call functions, while LaTeX mathematics sometimes applies
+the same syntax, e.g., <tt class="docutils literal"><span class="pre">${\cal</span> <span class="pre">O}(\Delta</span> x^2)$</tt> which looks like a
+Mako function call. This problem can give rise to strange error
+messages from Mako, usually that a variable is not defined.</p>
+</div>
 <div class="section" id="the-basics-of-mako">
 <h2>The Basics of Mako</h2>
 <p>Just a preliminary sketch of some Mako code (next example is better!):</p>
@@ -3549,6 +3563,15 @@ Doconce syntax is not treated properly.</p>
 </div>
 <div class="section" id="general-problems">
 <h2>General Problems</h2>
+<div class="section" id="spellcheck-reports-a-lot-of-mistakes-related-latex-math">
+<h3>Spellcheck reports a lot of mistakes related LaTeX math</h3>
+<p>The <tt class="docutils literal">doconce spellcheck</tt> command should ignore LaTeX math, but if
+the dollar signs for inline math are not correct (one missing, for instance),
+a lot of math enters the text to be spellchecked. Invoke the
+relevant <tt class="docutils literal">tmp_missing_*</tt> file and search for the math expressions that
+are reported as misspellings. This will fortunately give you hint of
+what is wrong with the math typesetting.</p>
+</div>
 <div class="section" id="doconce-aborts-because-of-a-syntax-error-that-is-not-an-error">
 <h3>Doconce aborts because of a syntax error that is not an error</h3>
 <p>Doconce searches for typical syntax errors and usually aborts the
@@ -3575,6 +3598,25 @@ Doconce: warnings are issued if Mako is not run.</p>
 to <tt class="docutils literal">'T &lt; %.1f'</tt> to avoid this confusion.</li>
 </ul>
 </blockquote>
+</div>
+<div class="section" id="the-mako-preprocessor-claims-a-variable-is-undefined">
+<h3>The Mako preprocessor claims a variable is undefined</h3>
+<p>Very often such errors are related to typos when using Mako
+variables or functions, or correct yet undesired LaTeX syntax.
+For example, {cal O}(Delta x^2) is valid LaTeX, but
+the dollar sign and curly braces confuse Mako. Rewrite such
+mathematics. It is wise to not use <tt class="docutils literal">${</tt> anywhere in LaTeX mathematics.
+Create a newcommand if there are no other possible rewritings.
+A known common problem is <tt class="docutils literal"><span class="pre">${}^+$</span></tt> type of indication of superscripts.
+A suggested rewrite is <tt class="docutils literal"><span class="pre">$\,{}^+$</span></tt>.</p>
+<p>The error message will ask you to rerun <tt class="docutils literal">doconce</tt> with
+<tt class="docutils literal"><span class="pre">--mako_strict_undefined</span></tt>, which will display the variable that
+is confusing Mako. However, do not continue to use
+<tt class="docutils literal"><span class="pre">--mako_strict_undefined</span></tt> while you are debugging because this
+variable will then always be undefined in that mode.
+Use <tt class="docutils literal"># #ifdef</tt> directives to comment out large portions of
+the text and apply a &quot;bisection&quot; procedure to locate where
+the Mako problem is (without <tt class="docutils literal"><span class="pre">--mako_strict_undefined</span></tt>).</p>
 </div>
 <div class="section" id="something-goes-wrong-in-the-preprocessing-step">
 <h3>Something goes wrong in the preprocessing step</h3>
@@ -3952,6 +3994,17 @@ further.</p>
 </div>
 <div class="section" id="problems-with-html-output">
 <h2>Problems with HTML Output</h2>
+<div class="section" id="mathjax-formulas-are-not-properly-rendered">
+<h3>MathJax formulas are not properly rendered</h3>
+<p>Here are some common problems:</p>
+<blockquote>
+<ul class="simple">
+<li>Two equations cannot have identical label (this error often arises
+from copying and pasting equations)</li>
+<li><tt class="docutils literal">[</tt> and <tt class="docutils literal">]</tt> brackets must sometimes be replaced by <tt class="docutils literal">\lbrack</tt> and <tt class="docutils literal">\rbrack</tt></li>
+</ul>
+</blockquote>
+</div>
 <div class="section" id="how-can-i-change-the-layout-of-the-html-page">
 <h3>How can I change the layout of the HTML page?</h3>
 <p>The easiest way is to edit the HTML style or the HTML code directly.
