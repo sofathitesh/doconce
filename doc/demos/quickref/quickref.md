@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% Jul 13, 2013
+% Jun 29, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -479,6 +479,24 @@ without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
 `mwiki`, `ipynb`, and `pandoc`, the mathematics in newcommands is
 rendered nicely anyway.
 
+
+### Hyperlinks
+
+Links use either a link text or the raw URL:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Figures and Movies
 

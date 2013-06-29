@@ -12,6 +12,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -73,20 +75,21 @@ Automatically generated HTML file from Doconce source
               (' Inline comments ', 2, None, '___sec7'),
               (' Verbatim/Computer Code ', 2, None, '___sec8'),
               (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Figures and Movies ', 2, None, '___sec10'),
-              (' Tables ', 2, None, '___sec11'),
-              (' Labels and References ', 2, None, '___sec12'),
-              (' Citations and Bibliography ', 2, None, '___sec13'),
-              (' Generalized Citations ', 2, None, '___sec14'),
-              (' Index of Keywords ', 2, None, '___sec15'),
+              (' Hyperlinks ', 2, None, '___sec10'),
+              (' Figures and Movies ', 2, None, '___sec11'),
+              (' Tables ', 2, None, '___sec12'),
+              (' Labels and References ', 2, None, '___sec13'),
+              (' Citations and Bibliography ', 2, None, '___sec14'),
+              (' Generalized Citations ', 2, None, '___sec15'),
+              (' Index of Keywords ', 2, None, '___sec16'),
               (' Capabilities of The Program `doconce` ',
                2,
                None,
-               '___sec16'),
-              (' Exercises ', 2, None, '___sec17'),
-              (' Environments ', 2, None, '___sec18'),
-              (' Preprocessing ', 2, None, '___sec19'),
-              (' Resources ', 2, None, '___sec20')]}
+               '___sec17'),
+              (' Exercises ', 2, None, '___sec18'),
+              (' Environments ', 2, None, '___sec19'),
+              (' Preprocessing ', 2, None, '___sec20'),
+              (' Resources ', 2, None, '___sec21')]}
 end of tocinfo -->
 
 <body>
@@ -132,7 +135,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
-<center><h4>Jul 13, 2013</h4></center> <!-- date -->
+<center><h4>Jun 29, 2013</h4></center> <!-- date -->
 
 <h2>Table of contents</h2>
 
@@ -147,17 +150,18 @@ MathJax.Hub.Config({
 <a href="#___sec7"> Inline comments </a><br>
 <a href="#___sec8"> Verbatim/Computer Code </a><br>
 <a href="#___sec9"> LaTeX Mathematics </a><br>
-<a href="#___sec10"> Figures and Movies </a><br>
-<a href="#___sec11"> Tables </a><br>
-<a href="#___sec12"> Labels and References </a><br>
-<a href="#___sec13"> Citations and Bibliography </a><br>
-<a href="#___sec14"> Generalized Citations </a><br>
-<a href="#___sec15"> Index of Keywords </a><br>
-<a href="#___sec16"> Capabilities of The Program <code>doconce</code> </a><br>
-<a href="#___sec17"> Exercises </a><br>
-<a href="#___sec18"> Environments </a><br>
-<a href="#___sec19"> Preprocessing </a><br>
-<a href="#___sec20"> Resources </a><br>
+<a href="#___sec10"> Hyperlinks </a><br>
+<a href="#___sec11"> Figures and Movies </a><br>
+<a href="#___sec12"> Tables </a><br>
+<a href="#___sec13"> Labels and References </a><br>
+<a href="#___sec14"> Citations and Bibliography </a><br>
+<a href="#___sec15"> Generalized Citations </a><br>
+<a href="#___sec16"> Index of Keywords </a><br>
+<a href="#___sec17"> Capabilities of The Program <code>doconce</code> </a><br>
+<a href="#___sec18"> Exercises </a><br>
+<a href="#___sec19"> Environments </a><br>
+<a href="#___sec20"> Preprocessing </a><br>
+<a href="#___sec21"> Resources </a><br>
 
 <p>
 <b>WARNING: This quick reference is very incomplete!</b>
@@ -666,7 +670,27 @@ without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</
 <code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
 rendered nicely anyway.
 
-<h3>Figures and Movies  <a name="___sec10"></a></h3>
+<h3>Hyperlinks  <a name="___sec10"></a></h3>
+
+<p>
+Links use either a link text or the raw URL:
+
+<p>
+<!-- begin verbatim block -->
+<pre><code>Here is some &quot;some link text&quot;: &quot;http://some.net/address&quot;
+(as in &quot;search google&quot;: &quot;http://google.com&quot;)
+or just the raw address: URL: &quot;http://google.com&quot;.
+
+Links to files typeset in verbatim mode applies backtics:
+&quot;`myfile.py`&quot;: &quot;http://some.net/some/place/myfile.py&quot;.
+
+Mail addresses works too: send problems to
+&quot;`hpl@simula.no`&quot;: &quot;mailto:hpl@simula.no&quot;
+or just &quot;send mail&quot;: &quot;mailto:hpl@simula.no&quot;.
+</code></pre>
+<!-- end verbatim block -->
+
+<h3>Figures and Movies  <a name="___sec11"></a></h3>
 
 <p>
 Figures and movies have almost equal syntax:
@@ -735,7 +759,7 @@ The latter results in
 
 <em>Vimeo movie.</em>
 
-<h3>Tables  <a name="___sec11"></a></h3>
+<h3>Tables  <a name="___sec12"></a></h3>
 
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
@@ -780,7 +804,7 @@ makes Doconce dump each table to CSV format in a file <code>table_X.csv</code>,
 where <code>X</code> is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.
 
-<h3>Labels and References  <a name="___sec12"></a></h3>
+<h3>Labels and References  <a name="___sec13"></a></h3>
 
 <p>
 The notion of labels and references (as well as bibliography and index)
@@ -810,7 +834,7 @@ Use labels for sections and equations only, and preceed the reference
 by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
-<h3>Citations and Bibliography  <a name="___sec13"></a></h3>
+<h3>Citations and Bibliography  <a name="___sec14"></a></h3>
 
 <p>
 Single citations are written as
@@ -838,7 +862,7 @@ BibTeX <code>.bib</code> files can easily be combined to a Publish database
 (which Doconce needs to create bibliographies in other formats
 than LaTeX).
 
-<h3>Generalized Citations  <a name="___sec14"></a></h3>
+<h3>Generalized Citations  <a name="___sec15"></a></h3>
 
 <p>
 There is a <em>generalized referencing</em> feature in Doconce that allows
@@ -870,7 +894,7 @@ LaTeX package <code>xr</code> is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
-<h3>Index of Keywords  <a name="___sec15"></a></h3>
+<h3>Index of Keywords  <a name="___sec16"></a></h3>
 
 <p>
 Doconce supports creating an index of keywords. A certain keyword
@@ -887,7 +911,7 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the <code>latex</code>,
 <code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
 
-<h3>Capabilities of The Program <code>doconce</code>  <a name="___sec16"></a></h3>
+<h3>Capabilities of The Program <code>doconce</code>  <a name="___sec17"></a></h3>
 
 <p>
 The <code>doconce</code> program can be used for a number of purposes besides
@@ -1034,7 +1058,7 @@ doconce csv2table somefile.csv
 </code></pre>
 <!-- end verbatim block -->
 
-<h3>Exercises  <a name="___sec17"></a></h3>
+<h3>Exercises  <a name="___sec18"></a></h3>
 
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
@@ -1152,7 +1176,7 @@ The command-line arguments <code>--without_answers</code> and <code>--without_so
 turn off output of answers and solutions, respectively, except for
 examples.
 
-<h3>Environments  <a name="___sec18"></a></h3>
+<h3>Environments  <a name="___sec19"></a></h3>
 
 <p>
 Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
@@ -1175,7 +1199,7 @@ the environments:
    slide</li>
 </ul>
 
-<h3>Preprocessing  <a name="___sec19"></a></h3>
+<h3>Preprocessing  <a name="___sec20"></a></h3>
 
 <p>
 Doconce documents may utilize a preprocessor, either <code>preprocess</code> and/or
@@ -1229,7 +1253,7 @@ An <a href="http://hplgit.github.com/bioinf-py/">example document</a> contains
 some illustrations on how to utilize <code>mako</code> (clone the GitHub project and
 examine the Doconce source and the <code>doc/src/make.sh</code> script).
 
-<h3>Resources  <a name="___sec20"></a></h3>
+<h3>Resources  <a name="___sec21"></a></h3>
 
 <p>
 

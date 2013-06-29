@@ -440,7 +440,7 @@ and all the work of
 cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
 old work cite{Langtangen_1988d} and cite{Langtangen_1989e}, and the
 talk cite{Langtangen_talk_2007a}.
-Langtangen also had two thesis cite{Langtangen:85,Langtangen:89d}.
+Langtangen also had two thesis cite{Langtangen:85,Langtangen_1989e}.
 More retro citations are
 the old ME-IN323 book cite{Langtangen:91} and the
 cite{Langtangen:94b} OONSKI '94 paper.
@@ -496,6 +496,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: "`hpl@simula.no`": "mailto:hpl@simula.no", or just a "mail link": "mailto:hpl@simula.no", or a raw URL: "mailto:hpl@simula.no".
 
 Here are some tough tests of URLs, especially for the `latex` format:
 "Newton-Cotes":
@@ -1078,6 +1080,7 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* solarized style */
     body {
       margin:5;
       padding:0;
@@ -1121,11 +1124,11 @@ Automatically generated HTML file from Doconce source
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:1px solid #bababa;
+             border:1px solid #FFBF00;
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #fbeed5;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -1136,10 +1139,10 @@ Automatically generated HTML file from Doconce source
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
-     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
-     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
 
@@ -1488,10 +1491,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -1540,10 +1544,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -2051,13 +2055,24 @@ Movie~\ref{mov:tsunami} shows a tsunami.
 
 % #if MOVIE == "media9"
 \includemedia[
+width=0.8\linewidth,
 label=../doc/manual/figs/mjolnir.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=../doc/manual/figs/mjolnir.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=../doc/manual/figs/mjolnir.mpeg,  % embed the video in the PDF
 flashvars={
-source=../doc/manual/figs/mjolnir.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=../doc/manual/figs/mjolnir.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
+% #ifdef MOVIE_CONTROLS
+\mediabutton[
+  mediacommand=../doc/manual/figs/mjolnir.mpeg:playPause,
+  overface=\\textcolor{blue}{\fbox{\strut Play/Pause}},
+  downface=\\textcolor{red}{\fbox{\strut Play/Pause}}
+  ]{\fhox{\strut Play/Pause}}
+% #endif
 
 % #elif MOVIE == "movie15"
 \includemovie[poster,
@@ -2101,13 +2116,24 @@ Test empty caption (for inline movie):
  (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}})
 % #if MOVIE == "media9"
 \includemedia[
+width=0.8\linewidth,
 label=../doc/manual/figs/wavepacket.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=../doc/manual/figs/wavepacket.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=../doc/manual/figs/wavepacket.mpeg,  % embed the video in the PDF
 flashvars={
-source=../doc/manual/figs/wavepacket.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=../doc/manual/figs/wavepacket.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
+% #ifdef MOVIE_CONTROLS
+\mediabutton[
+  mediacommand=../doc/manual/figs/wavepacket.mpeg:playPause,
+  overface=\\textcolor{blue}{\fbox{\strut Play/Pause}},
+  downface=\\textcolor{red}{\fbox{\strut Play/Pause}}
+  ]{\fhox{\strut Play/Pause}}
+% #endif
 
 % #elif MOVIE == "movie15"
 \includemovie[poster,
@@ -2371,7 +2397,7 @@ and all the work of
 \cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
 old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
 talk \cite{Langtangen_talk_2007a}.
-Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen_1989e}.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
@@ -2429,6 +2455,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
 
 Here are some tough tests of URLs, especially for the \code{latex} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
@@ -2961,6 +2989,7 @@ Without label.
 \begin{graybox1admon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
+
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -2988,6 +3017,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 \end{graybox1admon}
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -3110,10 +3140,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -3155,10 +3186,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -3841,7 +3872,7 @@ and all the work of
 \cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
 old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
 talk \cite{Langtangen_talk_2007a}.
-Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen_1989e}.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
@@ -3899,6 +3930,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi--colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}, or just a \href{{mailto:hpl@simula.no}}{mail link}\footnote{\texttt{mailto:hpl@simula.no}}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}.
 
 Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\Verb!latex!} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
@@ -4426,6 +4459,7 @@ Without label.
 \begin{graybox1admon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
+
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -4453,6 +4487,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 \end{graybox1admon}
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -4545,8 +4580,8 @@ case in {\LaTeX}.
 \bhtmlcod (!bc htmlcod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{html}
 \bcycod (!bc cycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{cython}
 \bcpppro (!bc cpppro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
-\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in testdoc.tex
 ----------- end of doconce ptex2tex output ----------------
 %%
@@ -4584,10 +4619,11 @@ final,                   % or draft (marks overfull hboxes)
 \linespread{1.05}            % Palatino needs extra line spread to look nice
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -4622,10 +4658,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -4869,7 +4905,7 @@ C     END1
 \end{minted}
 
 Testing other code environments. First Python:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc pycod
 def f(x):
     return x+1
@@ -4914,7 +4950,7 @@ int main()
 % The next should get correctly typset in sphinx (cod is fcod)
 And a little bit of Fortran:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -4926,7 +4962,7 @@ And a little bit of Fortran:
 \end{Verbatim}
 which then is typeset as
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
       x = (a + b)/2
@@ -5000,13 +5036,17 @@ Movie~\ref{mov:tsunami} shows a tsunami.
 \begin{center}
 
 \includemedia[
+width=0.8\linewidth,
 label=../doc/manual/figs/mjolnir.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=../doc/manual/figs/mjolnir.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=../doc/manual/figs/mjolnir.mpeg,  % embed the video in the PDF
 flashvars={
-source=../doc/manual/figs/mjolnir.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=../doc/manual/figs/mjolnir.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
 
 
 \end{center}
@@ -5018,13 +5058,17 @@ Test empty caption (for inline movie):
 
  (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}\footnote{\texttt{wavepacket.html}}})
 \includemedia[
+width=0.8\linewidth,
 label=../doc/manual/figs/wavepacket.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=../doc/manual/figs/wavepacket.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=../doc/manual/figs/wavepacket.mpeg,  % embed the video in the PDF
 flashvars={
-source=../doc/manual/figs/wavepacket.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=../doc/manual/figs/wavepacket.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
 
 
 
@@ -5076,7 +5120,7 @@ and an extra space before the FIGURE keyword.
 
 Functions do not always need to be advanced, here is one
 involving $\theta$:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def f(theta):
     return theta**2
 \end{Verbatim}
@@ -5167,7 +5211,7 @@ with the preprocessor.
 \end{table}
 
 The Doconce source code reads
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
   |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -5257,7 +5301,7 @@ and all the work of
 \cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
 old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
 talk \cite{Langtangen_talk_2007a}.
-Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen_1989e}.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
@@ -5315,6 +5359,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi--colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}, or just a \href{{mailto:hpl@simula.no}}{mail link}\footnote{\texttt{mailto:hpl@simula.no}}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}.
 
 Here are some tough tests of URLs, especially for the \Verb!latex! format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
@@ -5628,7 +5674,7 @@ Here goes a full solution of the whole exercise.
 With some math $a=b$ in this solution:
 \[ \hbox{math in solution: } a = b \]
 And code \Verb!a=b! in this solution:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 a = b  # code in solution
 \end{Verbatim}
 End of solution is here.
@@ -5647,7 +5693,7 @@ With math $a=b$ in hint:
 \[ a=b. \]
 And with code (in plain verbatim) returning $x+1$ in hint:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def func(x):
     return x + 1  # with code in hint
 \end{Verbatim}
@@ -5717,7 +5763,7 @@ to test that math block insertion is correct:
 
 And a test that the code \Verb!lambda x: x+2! is correctly placed here:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 lambda x: x+2
 \end{Verbatim}
 
@@ -5834,6 +5880,7 @@ Without label.
 \begin{graybox1admon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
+
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -5861,6 +5908,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 \end{graybox1admon}
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -6467,10 +6515,10 @@ and all the work of
 [Ref14]_ [Ref04]_ [Ref15]_ as well as
 old work [Ref05]_ and [Ref16]_, and the
 talk [Ref17]_.
-Langtangen also had two thesis [Ref18]_ [Ref19]_.
+Langtangen also had two thesis [Ref18]_ [Ref16]_.
 More retro citations are
-the old ME-IN323 book [Ref20]_ and the
-[Ref21]_ OONSKI '94 paper.
+the old ME-IN323 book [Ref19]_ and the
+[Ref20]_ OONSKI '94 paper.
 
 
 
@@ -6522,6 +6570,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in `<http://folk.uio.no/hpl>`_, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: `hpl@simula.no <mailto:hpl@simula.no>`_, or just a `mail link <mailto:hpl@simula.no>`_, or a raw `<mailto:hpl@simula.no>`_.
 
 Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
@@ -7088,7 +7138,8 @@ Bibliography
    **J. B. Haga, H. Osnes and H. P. Langtangen**. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
    *International Journal of Analytical and Numerical Methods in Geomechanics*,
    `doi: 10.1002/nag.1062 <http://dx.doi.org/10.1002/nag.1062>`_,
-   2011.
+   2011,
+   `http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>`_.
 
 .. [Ref11]
    **H. P. Langtangen**. *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
@@ -7106,7 +7157,8 @@ Bibliography
    edited by **J. Grue, B. Gjevik and J. E. Weber**,
    Kluwer Academic Publishers,
    pp. pp. 117-126,
-   1995.
+   1995,
+   `http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310 <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>`_.
 
 .. [Ref14]
    **H. P. Langtangen**. *A Primer on Scientific Programming With Python*,
@@ -7137,17 +7189,11 @@ Bibliography
    1985.
 
 .. [Ref19]
-   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
-   Ph.D. Thesis,
-   Mechanics Division, Department of Mathematics, University of Oslo,
-   1989.
-
-.. [Ref20]
    **H. P. Langtangen and A. Tveito**. Numerical Methods in Continuum Mechanics,
    *Center for Industrial Research*,
    1991.
 
-.. [Ref21]
+.. [Ref20]
    **H. P. Langtangen**. Diffpack: Software for Partial Differential Equations,
    Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA,
    edited by **A. Vermeulen**,
@@ -7885,10 +7931,10 @@ and all the work of
 [Ref14]_ [Ref04]_ [Ref15]_ as well as
 old work [Ref05]_ and [Ref16]_, and the
 talk [Ref17]_.
-Langtangen also had two thesis [Ref18]_ [Ref19]_.
+Langtangen also had two thesis [Ref18]_ [Ref16]_.
 More retro citations are
-the old ME-IN323 book [Ref20]_ and the
-[Ref21]_ OONSKI '94 paper.
+the old ME-IN323 book [Ref19]_ and the
+[Ref20]_ OONSKI '94 paper.
 
 
 
@@ -7940,6 +7986,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in `<http://folk.uio.no/hpl>`_, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: `hpl@simula.no <mailto:hpl@simula.no>`_, or just a `mail link <mailto:hpl@simula.no>`_, or a raw `<mailto:hpl@simula.no>`_.
 
 Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
@@ -8609,7 +8657,8 @@ Bibliography
    **J. B. Haga, H. Osnes and H. P. Langtangen**. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
    *International Journal of Analytical and Numerical Methods in Geomechanics*,
    `doi: 10.1002/nag.1062 <http://dx.doi.org/10.1002/nag.1062>`_,
-   2011.
+   2011,
+   `http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>`_.
 
 .. [Ref11]
    **H. P. Langtangen**. *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
@@ -8627,7 +8676,8 @@ Bibliography
    edited by **J. Grue, B. Gjevik and J. E. Weber**,
    Kluwer Academic Publishers,
    pp. pp. 117-126,
-   1995.
+   1995,
+   `http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310 <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>`_.
 
 .. [Ref14]
    **H. P. Langtangen**. *A Primer on Scientific Programming With Python*,
@@ -8658,17 +8708,11 @@ Bibliography
    1985.
 
 .. [Ref19]
-   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
-   Ph.D. Thesis,
-   Mechanics Division, Department of Mathematics, University of Oslo,
-   1989.
-
-.. [Ref20]
    **H. P. Langtangen and A. Tveito**. Numerical Methods in Continuum Mechanics,
    *Center for Industrial Research*,
    1991.
 
-.. [Ref21]
+.. [Ref20]
    **H. P. Langtangen**. Diffpack: Software for Partial Differential Equations,
    Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA,
    edited by **A. Vermeulen**,
@@ -9296,10 +9340,10 @@ and all the work of
 [14] [4] [15] as well as
 old work [5] and [16], and the
 talk [17].
-Langtangen also had two thesis [18] [19].
+Langtangen also had two thesis [18] [16].
 More retro citations are
-the old ME-IN323 book [20] and the
-[21] OONSKI '94 paper.
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
 
 
 
@@ -9343,6 +9387,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: [mailto:hpl@simula.no `hpl@simula.no`], or just a [mailto:hpl@simula.no mail link], or a raw mailto:hpl@simula.no.
 
 Here are some tough tests of URLs, especially for the `latex` format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
@@ -9752,16 +9798,15 @@ Filename: `selc_composed.pdf`.
  # M. Mortensen, H. P. Langtangen and G. N. Wells.     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,    *Advances in Water Resources*,    34(9),    [http://dx.doi.org/10.1016/j.advwatres.2011.02.013 doi: 10.1016/j.advwatres.2011.02.013],    2011.
  # S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt.     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,    *International Journal of Fluid Mechanics Research*,    33(1),    pp. 15-43,    2006.
  # S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen.     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,    *Physical Review B: Condensed Matter and Materials Physics*,    74,    2006.
-# J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    *International Journal of Analytical and Numerical Methods in Geomechanics*,    [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],    2011.
+# J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    *International Journal of Analytical and Numerical Methods in Geomechanics*,    [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],    2011,    http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract.
 # H. P. Langtangen.     *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,    Springer,    2003.
 # H. P. Langtangen.     *Python Scripting for Computational Science*,    Springer,    2008.
-# H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995.
+# H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995,    http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310.
 # H. P. Langtangen.     *A Primer on Scientific Programming With Python*,    Springer,    2012.
 # P. V. Jeberg, H. P. Langtangen and C. B. Terp.     Optimization With Diffpack: Practical Example From Welding,    *Simula Research Laboratory*,    2004.
 # H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
 # H. P. Langtangen.     Computational Modeling of Huge Tsunamis From Asteroid Impacts,    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,    2007.
 # H. P. Langtangen.     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,    M.Sc. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1985.
-# H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
 # H. P. Langtangen and A. Tveito.     Numerical Methods in Continuum Mechanics,    *Center for Industrial Research*,    1991.
 # H. P. Langtangen.     Diffpack: Software for Partial Differential Equations,    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,    edited by A. Vermeulen,    1994.
 
@@ -10328,10 +10373,10 @@ and all the work of
 [14] [4] [15] as well as
 old work [5] and [16], and the
 talk [17].
-Langtangen also had two thesis [18] [19].
+Langtangen also had two thesis [18] [16].
 More retro citations are
-the old ME-IN323 book [20] and the
-[21] OONSKI '94 paper.
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
 
 
 
@@ -10381,6 +10426,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: [mailto:hpl@simula.no <code>hpl@simula.no</code>], or just a [mailto:hpl@simula.no mail link], or a raw mailto:hpl@simula.no.
 
 Here are some tough tests of URLs, especially for the <code>latex</code> format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
@@ -10857,7 +10904,8 @@ Filename: <code>selc_composed.pdf</code>.
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     ''International Journal of Analytical and Numerical Methods in Geomechanics'',
     [http://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062],
-    2011.
+    2011,
+    http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract.
 <li> H. P. Langtangen. 
     ''Computational Partial Differential Equations - Numerical Methods and Diffpack Programming'',
     Springer,
@@ -10872,7 +10920,8 @@ Filename: <code>selc_composed.pdf</code>.
     edited by J. Grue, B. Gjevik and J. E. Weber,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.
+    1995,
+    http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310.
 <li> H. P. Langtangen. 
     ''A Primer on Scientific Programming With Python'',
     Springer,
@@ -10895,11 +10944,6 @@ Filename: <code>selc_composed.pdf</code>.
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.
-<li> H. P. Langtangen. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.
 <li> H. P. Langtangen and A. Tveito. 
     Numerical Methods in Continuum Mechanics,
     ''Center for Industrial Research'',
@@ -11467,10 +11511,10 @@ and all the work of
 [14] [4] [15] as well as
 old work [5] and [16], and the
 talk [17].
-Langtangen also had two thesis [18] [19].
+Langtangen also had two thesis [18] [16].
 More retro citations are
-the old ME-IN323 book [20] and the
-[21] OONSKI '94 paper.
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
 
 
 
@@ -11516,6 +11560,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in [[http://folk.uio.no/hpl]], if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: [[mailto:hpl@simula.no|{{{hpl@simula.no}}}]], or just a [[mailto:hpl@simula.no|mail link]], or a raw [[mailto:hpl@simula.no]].
 
 Here are some tough tests of URLs, especially for the {{{latex}}} format:
 [[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas|Newton-Cotes]] formulas
@@ -11930,16 +11976,15 @@ Filename: {{{selc_composed.pdf}}}.
  # M. Mortensen, H. P. Langtangen and G. N. Wells.     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,    //Advances in Water Resources//,    34(9),    [[http://dx.doi.org/10.1016/j.advwatres.2011.02.013|doi: 10.1016/j.advwatres.2011.02.013]],    2011.
  # S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt.     Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,    //International Journal of Fluid Mechanics Research//,    33(1),    pp. 15-43,    2006.
  # S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen.     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,    //Physical Review B: Condensed Matter and Materials Physics//,    74,    2006.
-# J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    //International Journal of Analytical and Numerical Methods in Geomechanics//,    [[http://dx.doi.org/10.1002/nag.1062|doi: 10.1002/nag.1062]],    2011.
+# J. B. Haga, H. Osnes and H. P. Langtangen.     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,    //International Journal of Analytical and Numerical Methods in Geomechanics//,    [[http://dx.doi.org/10.1002/nag.1062|doi: 10.1002/nag.1062]],    2011,    [[http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract]].
 # H. P. Langtangen.     //Computational Partial Differential Equations - Numerical Methods and Diffpack Programming//,    Springer,    2003.
 # H. P. Langtangen.     //Python Scripting for Computational Science//,    Springer,    2008.
-# H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995.
+# H. P. Langtangen and G. Pedersen.     Finite Elements for the Boussinesq Wave Equations,    Waves and Non-linear Processes in Hydrodynamics,    edited by J. Grue, B. Gjevik and J. E. Weber,    Kluwer Academic Publishers,    pp. pp. 117-126,    1995,    [[http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310]].
 # H. P. Langtangen.     //A Primer on Scientific Programming With Python//,    Springer,    2012.
 # P. V. Jeberg, H. P. Langtangen and C. B. Terp.     Optimization With Diffpack: Practical Example From Welding,    //Simula Research Laboratory//,    2004.
 # H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
 # H. P. Langtangen.     Computational Modeling of Huge Tsunamis From Asteroid Impacts,    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China,    2007.
 # H. P. Langtangen.     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,    M.Sc. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1985.
-# H. P. Langtangen.     Computational Methods for Two-Phase Flow in Oil Reservoirs,    Ph.D. Thesis,    Mechanics Division, Department of Mathematics, University of Oslo,    1989.
 # H. P. Langtangen and A. Tveito.     Numerical Methods in Continuum Mechanics,    //Center for Industrial Research//,    1991.
 # H. P. Langtangen.     Diffpack: Software for Partial Differential Equations,    //Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA//,    edited by A. Vermeulen,    1994.
 
@@ -12472,10 +12517,10 @@ and all the work of
 [14] [4] [15] as well as
 old work [5] and [16], and the
 talk [17].
-Langtangen also had two thesis [18] [19].
+Langtangen also had two thesis [18] [16].
 More retro citations are
-the old ME-IN323 book [20] and the
-[21] OONSKI '94 paper.
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
 
 
 
@@ -12517,6 +12562,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in "http://folk.uio.no/hpl":http://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: mailto:hpl@simula.no:'hpl@simula.no', or just a "mailto:hpl@simula.no":mail link, or a raw "mailto:hpl@simula.no":mailto:hpl@simula.no.
 
 Here are some tough tests of URLs, especially for the 'latex' format:
 "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas":Newton-Cotes formulas
@@ -12906,7 +12953,8 @@ Bibliography
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     *International Journal of Analytical and Numerical Methods in Geomechanics*,
     "http://dx.doi.org/10.1002/nag.1062":doi: 10.1002/nag.1062,
-    2011.
+    2011,
+    "http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract":http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract.
 11. H. P. Langtangen. 
     *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
     Springer,
@@ -12921,7 +12969,8 @@ Bibliography
     edited by J. Grue, B. Gjevik and J. E. Weber,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.
+    1995,
+    "http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310":http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310.
 14. H. P. Langtangen. 
     *A Primer on Scientific Programming With Python*,
     Springer,
@@ -12944,16 +12993,11 @@ Bibliography
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.
-19. H. P. Langtangen. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.
-20. H. P. Langtangen and A. Tveito. 
+19. H. P. Langtangen and A. Tveito. 
     Numerical Methods in Continuum Mechanics,
     *Center for Industrial Research*,
     1991.
-21. H. P. Langtangen. 
+20. H. P. Langtangen. 
     Diffpack: Software for Partial Differential Equations,
     *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,
     edited by A. Vermeulen,
@@ -13495,10 +13539,10 @@ and all the work of
 [14] [4] [15] as well as
 old work [5] and [16], and the
 talk [17].
-Langtangen also had two thesis [18] [19].
+Langtangen also had two thesis [18] [16].
 More retro citations are
-the old ME-IN323 book [20] and the
-[21] OONSKI '94 paper.
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
 
 
 
@@ -13542,6 +13586,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in U{http://folk.uio.no/hpl<http://folk.uio.no/hpl>}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: U{C{hpl@simula.no}<mailto:hpl@simula.no>}, or just a U{mail link<mailto:hpl@simula.no>}, or a raw U{mailto:hpl@simula.no<mailto:hpl@simula.no>}.
 
 Here are some tough tests of URLs, especially for the C{latex} format:
 U{Newton-Cotes<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>} formulas
@@ -13950,7 +13996,8 @@ Bibliography
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     I{International Journal of Analytical and Numerical Methods in Geomechanics},
     U{doi: 10.1002/nag.1062<http://dx.doi.org/10.1002/nag.1062>},
-    2011.
+    2011,
+    U{http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract<http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>}.
 11. H. P. Langtangen. 
     I{Computational Partial Differential Equations - Numerical Methods and Diffpack Programming},
     Springer,
@@ -13965,7 +14012,8 @@ Bibliography
     edited by J. Grue, B. Gjevik and J. E. Weber,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.
+    1995,
+    U{http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310<http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>}.
 14. H. P. Langtangen. 
     I{A Primer on Scientific Programming With Python},
     Springer,
@@ -13988,16 +14036,11 @@ Bibliography
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.
-19. H. P. Langtangen. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.
-20. H. P. Langtangen and A. Tveito. 
+19. H. P. Langtangen and A. Tveito. 
     Numerical Methods in Continuum Mechanics,
     I{Center for Industrial Research},
     1991.
-21. H. P. Langtangen. 
+20. H. P. Langtangen. 
     Diffpack: Software for Partial Differential Equations,
     I{Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA},
     edited by A. Vermeulen,
@@ -14614,10 +14657,10 @@ and all the work of
 [14] [4] [15] as well as
 old work [5] and [16], and the
 talk [17].
-Langtangen also had two thesis [18] [19].
+Langtangen also had two thesis [18] [16].
 More retro citations are
-the old ME-IN323 book [20] and the
-[21] OONSKI '94 paper.
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
 
 
 
@@ -14661,6 +14704,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: hpl@simula.no (mailto:hpl@simula.no), or just a mail link (mailto:hpl@simula.no), or a raw mailto:hpl@simula.no.
 
 Here are some tough tests of URLs, especially for the latex format:
 Newton-Cotes (http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
@@ -15078,7 +15123,8 @@ Bibliography
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     *International Journal of Analytical and Numerical Methods in Geomechanics*,
     doi: 10.1002/nag.1062 (http://dx.doi.org/10.1002/nag.1062),
-    2011.
+    2011,
+    http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract.
 
 11. H. P. Langtangen. 
     *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
@@ -15096,7 +15142,8 @@ Bibliography
     edited by J. Grue, B. Gjevik and J. E. Weber,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.
+    1995,
+    http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310.
 
 14. H. P. Langtangen. 
     *A Primer on Scientific Programming With Python*,
@@ -15125,18 +15172,12 @@ Bibliography
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.
 
-19. H. P. Langtangen. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.
-
-20. H. P. Langtangen and A. Tveito. 
+19. H. P. Langtangen and A. Tveito. 
     Numerical Methods in Continuum Mechanics,
     *Center for Industrial Research*,
     1991.
 
-21. H. P. Langtangen. 
+20. H. P. Langtangen. 
     Diffpack: Software for Partial Differential Equations,
     *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,
     edited by A. Vermeulen,
@@ -15757,7 +15798,7 @@ and all the work of
 @Langtangen_2012;@Mardal_et_al_2003a;@Jeberg_et_al_2004 as well as
 old work @Langtangen_1988d and @Langtangen_1989e, and the
 talk @Langtangen_talk_2007a.
-Langtangen also had two thesis @Langtangen:85;@Langtangen:89d.
+Langtangen also had two thesis @Langtangen:85;@Langtangen_1989e.
 More retro citations are
 the old ME-IN323 book @Langtangen:91 and the
 @Langtangen:94b OONSKI '94 paper.
@@ -15804,6 +15845,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in <http://folk.uio.no/hpl>, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: [`hpl@simula.no`](mailto:hpl@simula.no), or just a [mail link](mailto:hpl@simula.no), or a raw <mailto:hpl@simula.no>.
 
 Here are some tough tests of URLs, especially for the `latex` format:
 [Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
@@ -16347,7 +16390,8 @@ Filename: `selc_composed.pdf`.
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     *International Journal of Analytical and Numerical Methods in Geomechanics*,
     [doi: 10.1002/nag.1062](http://dx.doi.org/10.1002/nag.1062),
-    2011.
+    2011,
+    <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>.
 
 11. \label{Langtangen_2003a} _H. P. Langtangen_. 
     *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
@@ -16365,7 +16409,8 @@ Filename: `selc_composed.pdf`.
     edited by _J. Grue, B. Gjevik and J. E. Weber_,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.
+    1995,
+    <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>.
 
 14. \label{Langtangen_2012} _H. P. Langtangen_. 
     *A Primer on Scientific Programming With Python*,
@@ -16394,18 +16439,12 @@ Filename: `selc_composed.pdf`.
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.
 
-19. \label{Langtangen:89d} _H. P. Langtangen_. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.
-
-20. \label{Langtangen:91} _H. P. Langtangen and A. Tveito_. 
+19. \label{Langtangen:91} _H. P. Langtangen and A. Tveito_. 
     Numerical Methods in Continuum Mechanics,
     *Center for Industrial Research*,
     1991.
 
-21. \label{Langtangen:94b} _H. P. Langtangen_. 
+20. \label{Langtangen:94b} _H. P. Langtangen_. 
     Diffpack: Software for Partial Differential Equations,
     *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,
     edited by _A. Vermeulen_,
@@ -17223,7 +17262,7 @@ case in LaTeX.
       "[Langtangen_2012] [Mardal_et_al_2003a] [Jeberg_et_al_2004] as well as\n",
       "old work [Langtangen_1988d] and [Langtangen_1989e], and the\n",
       "talk [Langtangen_talk_2007a].\n",
-      "Langtangen also had two thesis [Langtangen:85] [Langtangen:89d].\n",
+      "Langtangen also had two thesis [Langtangen:85] [Langtangen_1989e].\n",
       "More retro citations are\n",
       "the old ME-IN323 book [Langtangen:91] and the\n",
       "[Langtangen:94b] OONSKI '94 paper.\n",
@@ -17270,6 +17309,8 @@ case in LaTeX.
       "the plain URL as in <http://folk.uio.no/hpl>, if followed by space, comma,\n",
       "colon, semi-colon, question mark, exclamation mark, but not a period\n",
       "(which gets confused with the periods inside the URL).\n",
+      "\n",
+      "Mail addresses can also be used: [`hpl@simula.no`](mailto:hpl@simula.no), or just a [mail link](mailto:hpl@simula.no), or a raw <mailto:hpl@simula.no>.\n",
       "\n",
       "Here are some tough tests of URLs, especially for the `latex` format:\n",
       "[Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas\n",
@@ -17901,7 +17942,8 @@ case in LaTeX.
       "    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,\n",
       "    *International Journal of Analytical and Numerical Methods in Geomechanics*,\n",
       "    [doi: 10.1002/nag.1062](http://dx.doi.org/10.1002/nag.1062),\n",
-      "    2011.\n",
+      "    2011,\n",
+      "    <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>.\n",
       "\n",
       "11. \\label{Langtangen_2003a} _H. P. Langtangen_. \n",
       "    *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,\n",
@@ -17919,7 +17961,8 @@ case in LaTeX.
       "    edited by _J. Grue, B. Gjevik and J. E. Weber_,\n",
       "    Kluwer Academic Publishers,\n",
       "    pp. pp. 117-126,\n",
-      "    1995.\n",
+      "    1995,\n",
+      "    <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>.\n",
       "\n",
       "14. \\label{Langtangen_2012} _H. P. Langtangen_. \n",
       "    *A Primer on Scientific Programming With Python*,\n",
@@ -17948,18 +17991,12 @@ case in LaTeX.
       "    Mechanics Division, Department of Mathematics, University of Oslo,\n",
       "    1985.\n",
       "\n",
-      "19. \\label{Langtangen:89d} _H. P. Langtangen_. \n",
-      "    Computational Methods for Two-Phase Flow in Oil Reservoirs,\n",
-      "    Ph.D. Thesis,\n",
-      "    Mechanics Division, Department of Mathematics, University of Oslo,\n",
-      "    1989.\n",
-      "\n",
-      "20. \\label{Langtangen:91} _H. P. Langtangen and A. Tveito_. \n",
+      "19. \\label{Langtangen:91} _H. P. Langtangen and A. Tveito_. \n",
       "    Numerical Methods in Continuum Mechanics,\n",
       "    *Center for Industrial Research*,\n",
       "    1991.\n",
       "\n",
-      "21. \\label{Langtangen:94b} _H. P. Langtangen_. \n",
+      "20. \\label{Langtangen:94b} _H. P. Langtangen_. \n",
       "    Diffpack: Software for Partial Differential Equations,\n",
       "    *Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA*,\n",
       "    edited by _A. Vermeulen_,\n",
@@ -18664,6 +18701,7 @@ output2</code></pre>
 <h2 id="urls">URLs</h2>
 <p>[subsubsec:ex]</p>
 <p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}"></a>. Here is a plain file link <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a>, or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}"></a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also <code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="{http://folk.uio.no/hpl}"></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Mail addresses can also be used: <a href="{mailto:hpl@simula.no}"></a>, or just a <a href="{mailto:hpl@simula.no}">mail link</a>, or a raw <a href="{mailto:hpl@simula.no}"></a>.</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/NewtonCotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+scienceengineering/book/978-3-642-23098-1}">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="{http://en.wikipedia.org/wiki/NewtonCotes_formulas}"></a> and <a href="{http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}"></a> which has a shebang.</p>
 <p>For the <code>--device=paper</code> option it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}"></a>.</p>
 <p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
@@ -19318,7 +19356,7 @@ output2</code></pre>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math <span class="math">\(a_{i-1}\)</span>.</em> Here is some text.</p>
 <h3 id="bibliography-test">Bibliography test</h3>
 <p>Here is an example: @Langtangen_Pedersen_2002 discussed propagation of large destructive water waves, @Langtangen_et_al_2002 gave an overview of numerical methods for solving the Navier-Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in @Langtangen_1994a. The book chapter @Mardal_et_al_2003a contains information on C++ software tools for programming multigrid methods. A real retro reference is @Langtangen_1988d about a big FORTRAN package. Multiple references are also possible, e.g., see @Langtangen_Pedersen_2002;@Mardal_et_al_2003a.</p>
-<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format: @Langtangen_1992c;@Langtangen_1994a;@Mortensen_et_al_2011;@Langtangen_Pedersen_2002 and @Langtangen_et_al_2002;@Glimsdal_et_al_20006;@Rahman_et_al_2006b;@Haga_et_al_2011a;@Langtangen_2003a;@Langtangen_2008a;@Langtangen:95 and all the work of @Langtangen_2012;@Mardal_et_al_2003a;@Jeberg_et_al_2004 as well as old work @Langtangen_1988d and @Langtangen_1989e, and the talk @Langtangen_talk_2007a. Langtangen also had two thesis @Langtangen:85;@Langtangen:89d. More retro citations are the old ME-IN323 book @Langtangen:91 and the @Langtangen:94b OONSKI '94 paper.</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format: @Langtangen_1992c;@Langtangen_1994a;@Mortensen_et_al_2011;@Langtangen_Pedersen_2002 and @Langtangen_et_al_2002;@Glimsdal_et_al_20006;@Rahman_et_al_2006b;@Haga_et_al_2011a;@Langtangen_2003a;@Langtangen_2008a;@Langtangen:95 and all the work of @Langtangen_2012;@Mardal_et_al_2003a;@Jeberg_et_al_2004 as well as old work @Langtangen_1988d and @Langtangen_1989e, and the talk @Langtangen_talk_2007a. Langtangen also had two thesis @Langtangen:85;@Langtangen_1989e. More retro citations are the old ME-IN323 book @Langtangen:91 and the @Langtangen:94b OONSKI '94 paper.</p>
 <!-- --- begin exercise --- -->
 
 <h3 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises</h3>
@@ -19334,6 +19372,22 @@ output2</code></pre>
 
 <h3 id="urls">URLs</h3>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl">http://folk.uio.no/hpl</a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="http://folk.uio.no/hpl">http://folk.uio.no/hpl</a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Mail addresses can also be used: <script type="text/javascript">
+<!--
+h='&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#46;&#110;&#x6f;';a='&#64;';n='&#104;&#112;&#108;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>hpl@simula.no</code>'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#60;&#x63;&#x6f;&#100;&#x65;&#62;&#104;&#112;&#108;&#64;&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#46;&#110;&#x6f;&#60;&#x2f;&#x63;&#x6f;&#100;&#x65;&#62;&#32;&#40;&#104;&#112;&#108;&#32;&#x61;&#116;&#32;&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#32;&#100;&#x6f;&#116;&#32;&#110;&#x6f;&#x29;</noscript>, or just a <script type="text/javascript">
+<!--
+h='&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#46;&#110;&#x6f;';a='&#64;';n='&#104;&#112;&#108;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'mail link'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x6d;&#x61;&#x69;&#108;&#32;&#108;&#x69;&#110;&#x6b;&#32;&#40;&#104;&#112;&#108;&#32;&#x61;&#116;&#32;&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#32;&#100;&#x6f;&#116;&#32;&#110;&#x6f;&#x29;</noscript>, or a raw <script type="text/javascript">
+<!--
+h='&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#46;&#110;&#x6f;';a='&#64;';n='&#104;&#112;&#108;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'mailto:hpl@simula.no'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#104;&#112;&#108;&#64;&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#46;&#110;&#x6f;&#32;&#40;&#104;&#112;&#108;&#32;&#x61;&#116;&#32;&#x73;&#x69;&#x6d;&#x75;&#108;&#x61;&#32;&#100;&#x6f;&#116;&#32;&#110;&#x6f;&#x29;</noscript>.</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</a> and <a href="http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae">http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</a> which has a shebang.</p>
 <p>For the <code>--device=paper</code> option it is important to test that URLs with monofont link text get a footnote, as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py"><code>decay_mod</code></a>.</p>
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
@@ -19614,16 +19668,15 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <li><p> <em>M. Mortensen, H. P. Langtangen and G. N. Wells</em>. A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations, <em>Advances in Water Resources</em>, 34(9), <a href="http://dx.doi.org/10.1016/j.advwatres.2011.02.013">doi: 10.1016/j.advwatres.2011.02.013</a>, 2011.</p></li>
 <li><p> <em>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L</em>. Propagation of the Dec.~26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics, <em>International Journal of Fluid Mechanics Research</em>, 33(1), pp. 15-43, 2006.</p></li>
 <li><p> <em>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</em>. Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel, <em>Physical Review B: Condensed Matter and Materials Physics</em>, 74, 2006.</p></li>
-<li><p> <em>J. B. Haga, H. Osnes and H. P. Langtangen</em>. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media, <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>, <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>, 2011.</p></li>
+<li><p> <em>J. B. Haga, H. Osnes and H. P. Langtangen</em>. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media, <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>, <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>, 2011, <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract">http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</a>.</p></li>
 <li><p> <em>H. P. Langtangen</em>. <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>, Springer, 2003.</p></li>
 <li><p> <em>H. P. Langtangen</em>. <em>Python Scripting for Computational Science</em>, Springer, 2008.</p></li>
-<li><p> <em>H. P. Langtangen and G. Pedersen</em>. Finite Elements for the Boussinesq Wave Equations, Waves and Non-linear Processes in Hydrodynamics, edited by <em>J. Grue, B. Gjevik and J. E. Weber</em>, Kluwer Academic Publishers, pp. pp. 117-126, 1995.</p></li>
+<li><p> <em>H. P. Langtangen and G. Pedersen</em>. Finite Elements for the Boussinesq Wave Equations, Waves and Non-linear Processes in Hydrodynamics, edited by <em>J. Grue, B. Gjevik and J. E. Weber</em>, Kluwer Academic Publishers, pp. pp. 117-126, 1995, <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310">http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</a>.</p></li>
 <li><p> <em>H. P. Langtangen</em>. <em>A Primer on Scientific Programming With Python</em>, Springer, 2012.</p></li>
 <li><p> <em>P. V. Jeberg, H. P. Langtangen and C. B. Terp</em>. Optimization With Diffpack: Practical Example From Welding, <em>Simula Research Laboratory</em>, 2004.</p></li>
 <li><p> <em>H. P. Langtangen</em>. Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989.</p></li>
 <li><p> <em>H. P. Langtangen</em>. Computational Modeling of Huge Tsunamis From Asteroid Impacts, Invited keynote lecture at the conference on Computational Science 2007 (ICCS'07), Beijing, China, 2007.</p></li>
 <li><p> <em>H. P. Langtangen</em>. Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions, M.Sc. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1985.</p></li>
-<li><p> <em>H. P. Langtangen</em>. Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989.</p></li>
 <li><p> <em>H. P. Langtangen and A. Tveito</em>. Numerical Methods in Continuum Mechanics, <em>Center for Industrial Research</em>, 1991.</p></li>
 <li><p> <em>H. P. Langtangen</em>. Diffpack: Software for Partial Differential Equations, <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>, edited by <em>A. Vermeulen</em>, 1994.</p></li>
 </ol>
@@ -20597,6 +20650,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -20736,17 +20791,17 @@ Here is a specific example on a generalized reference:
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">As explained in
-ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
-&quot;http://code.google.com/p/doconce/wiki/Description&quot;
-cite{testdoc:12}][a &quot;section&quot;: &quot;testdoc.html#___sec2&quot; in
-the document &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot;
+ref[Section ref{subsec:ex}][in &quot;Langtangen, 2013&quot;:
+&quot;http://doconce.googlecode.com/hg/test/demo_testdoc.html&quot;
+cite{testdoc:12}][a &quot;section&quot;: &quot;demo_testdoc.html#___sec2&quot; in
+the document &quot;A Document for Testing Doconce&quot;: &quot;demo_testdoc.html&quot;
 cite{testdoc:12}], Doconce documents may include movies.
 </pre></div>
 <p>
 This is rendered to the following text:
 As explained in
-a <a href="testdoc.html#___sec2">section</a> in
-the document <a href="testdoc.html">A Document for Testing Doconce</a>
+a <a href="demo_testdoc.html#___sec2">section</a> in
+the document <a href="demo_testdoc.html">A Document for Testing Doconce</a>
 <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
 
 <p>
@@ -20776,6 +20831,15 @@ Inline math, \( a=b \), is the only math in this document.
 <h2>Bibliography</h2>
 
 <p>
+
+<ol>
+ <li> <a name="testdoc:12"></a> <b>H. P. Langtangen</b>. 
+    A Document for Testing Doconce,
+    <em>Simula Research Laboratory</em>,
+    2013,
+    <a href="http://doconce.googlecode.com/hg/test/demo_testdoc.html"><tt>http://doconce.googlecode.com/hg/test/demo_testdoc.html</tt></a>.</li>
+</ol>
+
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -20887,10 +20951,11 @@ open=right               % start new chapters on odd-numbered pages
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -21097,15 +21162,15 @@ text will be the output.
 Here is a specific example on a generalized reference:
 \bccq
 As explained in
-ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://code.google.com/p/doconce/wiki/Description"
-cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
-the document "A Document for Testing Doconce": "testdoc.html"
+ref[Section ref{subsec:ex}][in "Langtangen, 2013":
+"http://doconce.googlecode.com/hg/test/demo_testdoc.html"
+cite{testdoc:12}][a "section": "demo_testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "demo_testdoc.html"
 cite{testdoc:12}], Doconce documents may include movies.
 \eccq
 This is rendered to the following text:
 As explained in
-Section~\ref{subsec:ex} in \href{{http://code.google.com/p/doconce/wiki/Description}}{Langtangen, 2012}
+Section~\ref{subsec:ex} in \href{{http://doconce.googlecode.com/hg/test/demo_testdoc.html}}{Langtangen, 2013}
 \cite{testdoc:12}, Doconce documents may include movies.
 
 And here is another example with internal references only:
@@ -21195,16 +21260,16 @@ Here is a specific example on a generalized reference:
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-        "http://code.google.com/p/doconce/wiki/Description"
-        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
-        the document "A Document for Testing Doconce": "testdoc.html"
+        ref[Section ref{subsec:ex}][in "Langtangen, 2013":
+        "http://doconce.googlecode.com/hg/test/demo_testdoc.html"
+        cite{testdoc:12}][a "section": "demo_testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "demo_testdoc.html"
         cite{testdoc:12}], Doconce documents may include movies.
 
 This is rendered to the following text:
 As explained in
-a `section <testdoc.html#___sec2>`_ in
-the document `A Document for Testing Doconce <testdoc.html>`_
+a `section <demo_testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <demo_testdoc.html>`_
 [Ref1]_, Doconce documents may include movies.
 
 And here is another example with internal references only:
@@ -21234,6 +21299,11 @@ Inline math, :math:`a=b`, is the only math in this document.
 Bibliography
 ============
 
+.. [Ref1]
+   **H. P. Langtangen**. A Document for Testing Doconce,
+   *Simula Research Laboratory*,
+   2013,
+   `http://doconce.googlecode.com/hg/test/demo_testdoc.html <http://doconce.googlecode.com/hg/test/demo_testdoc.html>`_.
 
 
 
@@ -21284,16 +21354,16 @@ Here is a specific example on a generalized reference::
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-        "http://code.google.com/p/doconce/wiki/Description"
-        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
-        the document "A Document for Testing Doconce": "testdoc.html"
+        ref[Section ref{subsec:ex}][in "Langtangen, 2013":
+        "http://doconce.googlecode.com/hg/test/demo_testdoc.html"
+        cite{testdoc:12}][a "section": "demo_testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "demo_testdoc.html"
         cite{testdoc:12}], Doconce documents may include movies.
 
 This is rendered to the following text:
 As explained in
-a section (testdoc.html#___sec2) in
-the document A Document for Testing Doconce (testdoc.html)
+a section (demo_testdoc.html#___sec2) in
+the document A Document for Testing Doconce (demo_testdoc.html)
 [1], Doconce documents may include movies.
 
 And here is another example with internal references only::
@@ -21315,7 +21385,11 @@ Inline math, a=b, is the only math in this document.
 Bibliography
 ============
 
-
+ 1. H. P. Langtangen. 
+    A Document for Testing Doconce,
+    *Simula Research Laboratory*,
+    2013,
+    http://doconce.googlecode.com/hg/test/demotestdoc.html.
 
 
 ************** File: ._part0000_testdoc.html *****************
@@ -21334,6 +21408,7 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* solarized style */
     body {
       margin:5;
       padding:0;
@@ -21377,11 +21452,11 @@ Automatically generated HTML file from Doconce source
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:1px solid #bababa;
+             border:1px solid #FFBF00;
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #fbeed5;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -21392,10 +21467,10 @@ Automatically generated HTML file from Doconce source
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
-     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
-     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
 
@@ -21643,6 +21718,7 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* solarized style */
     body {
       margin:5;
       padding:0;
@@ -21686,11 +21762,11 @@ Automatically generated HTML file from Doconce source
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:1px solid #bababa;
+             border:1px solid #FFBF00;
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #fbeed5;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -21701,10 +21777,10 @@ Automatically generated HTML file from Doconce source
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
-     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
-     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
 
@@ -21927,6 +22003,7 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* solarized style */
     body {
       margin:5;
       padding:0;
@@ -21970,11 +22047,11 @@ Automatically generated HTML file from Doconce source
     .alert {
              padding:8px 35px 8px 14px; margin-bottom:18px;
              text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:1px solid #bababa;
+             border:1px solid #FFBF00;
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #fbeed5;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -21985,10 +22062,10 @@ Automatically generated HTML file from Doconce source
      .alert-block > p, .alert-block > ul {margin-bottom:0}
      .alert li {margin-top: 1em}
      .alert-block p+p {margin-top:5px}
-     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
-     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
-     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
+     .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_notice.png); }
+     .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_summary.png); }
+     .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_warning.png); }
+     .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_yellow_question.png); }
 
 </style>
 
@@ -22637,10 +22714,10 @@ and all the work of
 <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
 old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
 talk <a href="#Langtangen_talk_2007a">[17]</a>.
-Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>.
 More retro citations are
-the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
-<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
 
 <p>
 <!-- --- begin exercise --- -->
@@ -22695,6 +22772,9 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+<p>
+Mail addresses can also be used: <a href="mailto:hpl@simula.no"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no">mail link</a>, or a raw <a href="mailto:hpl@simula.no"><tt>mailto:hpl@simula.no</tt></a>.
 
 <p>
 Here are some tough tests of URLs, especially for the <code>latex</code> format:
@@ -23269,7 +23349,8 @@ Filename: <code>selc_composed.pdf</code>.
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
-    2011.</li>
+    2011,
+    <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract"><tt>http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</tt></a>.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
     <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
@@ -23284,7 +23365,8 @@ Filename: <code>selc_composed.pdf</code>.
     edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.</li>
+    1995,
+    <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310"><tt>http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</tt></a>.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
     <em>A Primer on Scientific Programming With Python</em>,
     Springer,
@@ -23307,11 +23389,6 @@ Filename: <code>selc_composed.pdf</code>.
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.</li>
-</tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.</li>
 </tr><p><tr><td valign='top'><img src="https://doconce.googlecode.com/hg/bundled/html_images/bullet_red2.png"></td><td> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
     Numerical Methods in Continuum Mechanics,
     <em>Center for Industrial Research</em>,
@@ -23510,6 +23587,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -23539,7 +23618,7 @@ Automatically generated HTML file from Doconce source
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #f8f8f8;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -24118,10 +24197,10 @@ and all the work of
 <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
 old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
 talk <a href="#Langtangen_talk_2007a">[17]</a>.
-Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>.
 More retro citations are
-the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
-<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
 
 <h3>Example 1: Examples can be typeset as exercises <a name="Example"></a></h3>
 
@@ -24170,6 +24249,9 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+<p>
+Mail addresses can also be used: <a href="mailto:hpl@simula.no"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no">mail link</a>, or a raw <a href="mailto:hpl@simula.no"><tt>mailto:hpl@simula.no</tt></a>.
 
 <p>
 Here are some tough tests of URLs, especially for the <code>latex</code> format:
@@ -24683,7 +24765,8 @@ Filename: <code>selc_composed.pdf</code>.
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
-    2011.</li>
+    2011,
+    <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract"><tt>http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</tt></a>.</li>
 <li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
     <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
@@ -24698,7 +24781,8 @@ Filename: <code>selc_composed.pdf</code>.
     edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.</li>
+    1995,
+    <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310"><tt>http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</tt></a>.</li>
 <li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
     <em>A Primer on Scientific Programming With Python</em>,
     Springer,
@@ -24721,11 +24805,6 @@ Filename: <code>selc_composed.pdf</code>.
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.</li>
-<li> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.</li>
 <li> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
     Numerical Methods in Continuum Mechanics,
     <em>Center for Industrial Research</em>,
@@ -24920,6 +24999,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -24949,7 +25030,7 @@ Automatically generated HTML file from Doconce source
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #f8f8f8;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -25677,10 +25758,10 @@ and all the work of
 <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
 old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
 talk <a href="#Langtangen_talk_2007a">[17]</a>.
-Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>.
 More retro citations are
-the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
-<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
 
 <p>
 <!-- --- begin exercise --- -->
@@ -25735,6 +25816,9 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+<p>
+Mail addresses can also be used: <a href="mailto:hpl@simula.no"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no">mail link</a>, or a raw <a href="mailto:hpl@simula.no"><tt>mailto:hpl@simula.no</tt></a>.
 
 <p>
 Here are some tough tests of URLs, especially for the <code>latex</code> format:
@@ -26300,7 +26384,8 @@ Filename: <code>selc_composed.pdf</code>.
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
-    2011.</li>
+    2011,
+    <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract"><tt>http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</tt></a>.</li>
 <li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
     <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
@@ -26315,7 +26400,8 @@ Filename: <code>selc_composed.pdf</code>.
     edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.</li>
+    1995,
+    <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310"><tt>http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</tt></a>.</li>
 <li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
     <em>A Primer on Scientific Programming With Python</em>,
     Springer,
@@ -26338,11 +26424,6 @@ Filename: <code>selc_composed.pdf</code>.
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.</li>
-<li> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.</li>
 <li> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
     Numerical Methods in Continuum Mechanics,
     <em>Center for Industrial Research</em>,
@@ -26639,10 +26720,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -26691,10 +26773,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -26969,7 +27051,7 @@ is part of the abstract.
 
 
 
-\section{Section 1}
+\subsection{Section 1}
 \label{sec1}
 
 Here is a nested list:
@@ -27012,8 +27094,7 @@ Here is a nested list:
 \end{quote}
 % !split and check if these extra words are included properly in the comment
 
-\subsection{Subsection 1}
-
+\paragraph{Subsection 1.}
 More text, with a reference back to Section~\ref{sec1} and further
 to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 
@@ -27168,7 +27249,7 @@ And one more.} Some formats will only display this correctly when
 HTML is the output format.
 
 
-\subsection{Subsection 2: Testing figures and movies}
+\paragraph{Subsection 2: Testing figures and movies.}
 \label{subsec:ex}
 \index{figures}
 
@@ -27204,13 +27285,24 @@ Movie~\ref{mov:tsunami} shows a tsunami.
 
 % #if MOVIE == "media9"
 \includemedia[
+width=0.8\linewidth,
 label=../doc/manual/figs/mjolnir.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=../doc/manual/figs/mjolnir.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=../doc/manual/figs/mjolnir.mpeg,  % embed the video in the PDF
 flashvars={
-source=../doc/manual/figs/mjolnir.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=../doc/manual/figs/mjolnir.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
+% #ifdef MOVIE_CONTROLS
+\mediabutton[
+  mediacommand=../doc/manual/figs/mjolnir.mpeg:playPause,
+  overface=\\textcolor{blue}{\fbox{\strut Play/Pause}},
+  downface=\\textcolor{red}{\fbox{\strut Play/Pause}}
+  ]{\fhox{\strut Play/Pause}}
+% #endif
 
 % #elif MOVIE == "movie15"
 \includemovie[poster,
@@ -27254,13 +27346,24 @@ Test empty caption (for inline movie):
  (Movie ../doc/manual/figs/wavepacket.mpeg: play \href{{wavepacket.html}}{\nolinkurl{wavepacket.html}})
 % #if MOVIE == "media9"
 \includemedia[
+width=0.8\linewidth,
 label=../doc/manual/figs/wavepacket.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=../doc/manual/figs/wavepacket.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=../doc/manual/figs/wavepacket.mpeg,  % embed the video in the PDF
 flashvars={
-source=../doc/manual/figs/wavepacket.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=../doc/manual/figs/wavepacket.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
+% #ifdef MOVIE_CONTROLS
+\mediabutton[
+  mediacommand=../doc/manual/figs/wavepacket.mpeg:playPause,
+  overface=\\textcolor{blue}{\fbox{\strut Play/Pause}},
+  downface=\\textcolor{red}{\fbox{\strut Play/Pause}}
+  ]{\fhox{\strut Play/Pause}}
+% #endif
 
 % #elif MOVIE == "movie15"
 \includemovie[poster,
@@ -27338,7 +27441,7 @@ and an extra space before the FIGURE keyword.
 
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
 
-\subsection{The $\theta$ parameter (not $\nabla$?)}
+\paragraph{The $\theta$ parameter (not $\nabla$?).}
 \label{decay:sec:theta}
 
 Functions do not always need to be advanced, here is one
@@ -27373,8 +27476,7 @@ Or with align with label and numbers:
 \end{align}
 
 
-\subsection{Custom Environments}
-
+\paragraph{Custom Environments.}
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
 the \code{.tex} by proper begin-end {\LaTeX} environments for theorems.
@@ -27400,7 +27502,7 @@ As we see, the proof of Theorem 5 is a modest
 achievement.
 
 
-\subsection{Tables}
+\paragraph{Tables.}
 \label{subsec:table}
 
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
@@ -27496,14 +27598,12 @@ and \code{|} right after verbatim word (with no space):
 
 \noindent
 
-\subsection{A test of verbatim words in heading with subscript $a_i$: \protect\code{my\_file\_v1} and \protect\code{my\_file\_v2} }
-
+\paragraph{A test of verbatim words in heading with subscript $a_i$: \protect\code{my\_file\_v1} and \protect\code{my\_file\_v2}.}
 \paragraph{Files \protect\code{my\_file\_v1.py} and \protect\code{my\_file\_v2.py} define some math $a_{i-1}$.}
 Here is
 some text.
 
-\subsection{Bibliography test}
-
+\paragraph{Bibliography test.}
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solving the Navier-Stokes equations,
@@ -27524,12 +27624,10 @@ and all the work of
 \cite{Langtangen_2012,Mardal_et_al_2003a,Jeberg_et_al_2004} as well as
 old work \cite{Langtangen_1988d} and \cite{Langtangen_1989e}, and the
 talk \cite{Langtangen_talk_2007a}.
-Langtangen also had two thesis \cite{Langtangen:85,Langtangen:89d}.
+Langtangen also had two thesis \cite{Langtangen:85,Langtangen_1989e}.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
-
-
 
 
 % --- begin exercise ---
@@ -27568,7 +27666,7 @@ maybe over multiple doconce input lines.
 % --- end exercise ---
 
 
-\subsection{URLs}
+\paragraph{URLs.}
 \label{subsubsec:ex}
 
 Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}, or
@@ -27582,6 +27680,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
 
 Here are some tough tests of URLs, especially for the \code{latex} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
@@ -27609,8 +27709,7 @@ footnotes.
 
 
 
-\subsection{Test of Some {\LaTeX} Fixes}
-
+\paragraph{Test of Some {\LaTeX} Fixes.}
 Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example. Moreover, Dr.~Tang and Prof.~Monsen,
 or maybe also prof.~Ting,
@@ -27622,8 +27721,7 @@ A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e.~since the dot matches anything.
 Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
-\subsection{{\LaTeX} Mathematics}
-
+\paragraph{{\LaTeX} Mathematics.}
 Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
@@ -27691,8 +27789,7 @@ Below, we have Problem~\ref{demo:ex:1} and Project~\ref{demo:ex:2},
 as well as Projects~\ref{proj:circle1} and~\ref{exer:you}, and in
 between there we have Exercise~\ref{exer:some:formula}.
 
-\section{Exercises}
-
+\subsection{Exercises}
 
 
 % --- begin exercise ---
@@ -27712,21 +27809,8 @@ let the program count the number of heads.
 
 % Test syntax error
 
-
-
-
-\paragraph{Remarks.}
-Remarks with such a subsubsection heading would previously mark
-the beginning of a new exercise and cause trouble. Maybe a list
-
-\begin{enumerate}
-\item Mark 1.
-
-\item Mark 2.
 % --- begin hint in exercise ---
-\end{enumerate}
 
-\noindent
 \paragraph{Hint 1.}
 Use \code{r = random.random()} and define head as \code{r <= 0.5}.
 % --- end hint in exercise ---
@@ -27752,11 +27836,20 @@ Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 % --- end exercise ---
 
 
-\subsection{Not an exercise}
+\paragraph{Remarks.}
+Remarks with such a subsubsection heading would previously mark
+the beginning of a new exercise and cause trouble. Maybe a list
 
+\begin{enumerate}
+\item Mark 1.
+
+\item Mark 2.
+\end{enumerate}
+
+\noindent
+\paragraph{Not an exercise.}
 Should be possible to stick a normal section in the middle of many
 exercises.
-
 
 
 % --- begin exercise ---
@@ -27994,12 +28087,11 @@ Oslo.
 % --- end exercise ---
 
 
-\section{Here goes another section}
+\subsection{Here goes another section}
 
 With some text, before we continue with exercises.
 
-\section{More Exercises}
-
+\subsection{More Exercises}
 
 
 % --- begin exercise ---
@@ -28042,45 +28134,39 @@ Filename: \code{selc_composed.pdf}.
 
 
 
-
-
-\appendix
-
-\section{Just for testing; part I}
+\subsection{Appendix: Just for testing; part I}
 
 This is the first appendix.
 
-\subsection{A subsection within an appendix}
-
+\paragraph{A subsection within an appendix.}
 Some text.
 
-\section{Just for testing; part II}
+\subsection{Appendix: Just for testing; part II}
 
 This is more stuff for an appendix.
 
-\subsection{Appendix: Testing identical titles}
-
+\paragraph{Appendix: Testing identical titles.}
 Without label.
 
 
-\subsection{Appendix: Testing identical titles}
+\paragraph{Appendix: Testing identical titles.}
 \label{test:title:id1}
 
 With label.
 
-\subsection{Appendix: Testing identical titles}
+\paragraph{Appendix: Testing identical titles.}
 \label{test:title:id2}
 
 With label.
 
-\subsection{Appendix: Testing identical titles}
-
+\paragraph{Appendix: Testing identical titles.}
 Without label.
 
 
 \begin{graybox1admon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{graybox1admon}
+
 \clearpage
 
 Need a lot of text to surround the summary box.
@@ -28108,6 +28194,7 @@ Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 Much testing in this document, otherwise stupid content.
 \end{graybox1admon}
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
@@ -28155,8 +28242,7 @@ when you use version control systems every day. The point now is
 to get started.
 
 
-\subsection{Appendix: Testing inline comments}
-
+\paragraph{Appendix: Testing inline comments.}
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. \shortinlinecomment{hpl 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly
@@ -28178,8 +28264,7 @@ you with the minimum information to started with such
 systems. Numerous other tutorials contain more comprehensive material
 and in-depth explanations of the concepts and tools. }{ The following text aims }
 
-\subsection{Appendix: Testing headings ending with \protect\code{verbatim inline} }
-
+\paragraph{Appendix: Testing headings ending with \protect\code{verbatim inline}.}
 The point here is to test 1) \code{verbatim} code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in {\LaTeX}.
@@ -28637,7 +28722,7 @@ cp testdoc.html testdoc_wordpress.html
 system doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default
 cp testdoc.html testdoc_no_solutions.html
 
-system doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR
+system doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR --sections_down
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp -r ../bundled/html_styles/style_vagrant .
@@ -28652,6 +28737,8 @@ system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=s
 system doconce remove_exercise_answers testdoc.html
 system doconce html_colorbullets testdoc.html
 system doconce split_html testdoc.html
+
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_output=demo_testdoc
 
 system doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments
 system doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen
@@ -28843,6 +28930,8 @@ cp tmp_admon/_build/html/admon.html admon_sphinx.html
 
 system doconce format mwiki admon
 cp admon.mwiki admon_mwiki.mwiki
+
+system doconce format pandoc github_md.do.txt --github_md
 
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done
@@ -29311,6 +29400,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -29839,10 +29930,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -32154,10 +32246,10 @@ and all the work of
 <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
 old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
 talk <a href="#Langtangen_talk_2007a">[17]</a>.
-Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen:89d">[19]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>.
 More retro citations are
-the old ME-IN323 book <a href="#Langtangen:91">[20]</a> and the
-<a href="#Langtangen:94b">[21]</a> OONSKI '94 paper.
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
 
 <p>
 <!-- --- begin exercise --- -->
@@ -32212,6 +32304,9 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+<p>
+Mail addresses can also be used: <a href="mailto:hpl@simula.no"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no">mail link</a>, or a raw <a href="mailto:hpl@simula.no"><tt>mailto:hpl@simula.no</tt></a>.
 
 <p>
 Here are some tough tests of URLs, especially for the <code>latex</code> format:
@@ -32799,7 +32894,8 @@ Filename: <code>selc_composed.pdf</code>.
     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
     <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
     <a href="http://dx.doi.org/10.1002/nag.1062">doi: 10.1002/nag.1062</a>,
-    2011.</li>
+    2011,
+    <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract"><tt>http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</tt></a>.</li>
 <li> <a name="Langtangen_2003a"></a> <b>H. P. Langtangen</b>. 
     <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
     Springer,
@@ -32814,7 +32910,8 @@ Filename: <code>selc_composed.pdf</code>.
     edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
     Kluwer Academic Publishers,
     pp. pp. 117-126,
-    1995.</li>
+    1995,
+    <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310"><tt>http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</tt></a>.</li>
 <li> <a name="Langtangen_2012"></a> <b>H. P. Langtangen</b>. 
     <em>A Primer on Scientific Programming With Python</em>,
     Springer,
@@ -32837,11 +32934,6 @@ Filename: <code>selc_composed.pdf</code>.
     M.Sc. Thesis,
     Mechanics Division, Department of Mathematics, University of Oslo,
     1985.</li>
-<li> <a name="Langtangen:89d"></a> <b>H. P. Langtangen</b>. 
-    Computational Methods for Two-Phase Flow in Oil Reservoirs,
-    Ph.D. Thesis,
-    Mechanics Division, Department of Mathematics, University of Oslo,
-    1989.</li>
 <li> <a name="Langtangen:91"></a> <b>H. P. Langtangen and A. Tveito</b>. 
     Numerical Methods in Continuum Mechanics,
     <em>Center for Industrial Research</em>,
@@ -33633,10 +33725,10 @@ and all the work of
 [Ref14]_ [Ref04]_ [Ref15]_ as well as
 old work [Ref05]_ and [Ref16]_, and the
 talk [Ref17]_.
-Langtangen also had two thesis [Ref18]_ [Ref19]_.
+Langtangen also had two thesis [Ref18]_ [Ref16]_.
 More retro citations are
-the old ME-IN323 book [Ref20]_ and the
-[Ref21]_ OONSKI '94 paper.
+the old ME-IN323 book [Ref19]_ and the
+[Ref20]_ OONSKI '94 paper.
 
 
 
@@ -33688,6 +33780,8 @@ fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
 the plain URL as in `<http://folk.uio.no/hpl>`_, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: `hpl@simula.no <mailto:hpl@simula.no>`_, or just a `mail link <mailto:hpl@simula.no>`_, or a raw `<mailto:hpl@simula.no>`_.
 
 Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
@@ -34357,7 +34451,8 @@ Bibliography
    **J. B. Haga, H. Osnes and H. P. Langtangen**. On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
    *International Journal of Analytical and Numerical Methods in Geomechanics*,
    `doi: 10.1002/nag.1062 <http://dx.doi.org/10.1002/nag.1062>`_,
-   2011.
+   2011,
+   `http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>`_.
 
 .. [Ref11]
    **H. P. Langtangen**. *Computational Partial Differential Equations - Numerical Methods and Diffpack Programming*,
@@ -34375,7 +34470,8 @@ Bibliography
    edited by **J. Grue, B. Gjevik and J. E. Weber**,
    Kluwer Academic Publishers,
    pp. pp. 117-126,
-   1995.
+   1995,
+   `http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310 <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>`_.
 
 .. [Ref14]
    **H. P. Langtangen**. *A Primer on Scientific Programming With Python*,
@@ -34406,17 +34502,11 @@ Bibliography
    1985.
 
 .. [Ref19]
-   **H. P. Langtangen**. Computational Methods for Two-Phase Flow in Oil Reservoirs,
-   Ph.D. Thesis,
-   Mechanics Division, Department of Mathematics, University of Oslo,
-   1989.
-
-.. [Ref20]
    **H. P. Langtangen and A. Tveito**. Numerical Methods in Continuum Mechanics,
    *Center for Industrial Research*,
    1991.
 
-.. [Ref21]
+.. [Ref20]
    **H. P. Langtangen**. Diffpack: Software for Partial Differential Equations,
    Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA,
    edited by **A. Vermeulen**,
@@ -34677,10 +34767,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -35000,12 +35091,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{warning_colors2admon}
+
 Test warning with title:
 
 
 \begin{warning_colors2admon}[{\large Watch Out }]
 {\large And here comes some text with bad news in larger font. \par}
 \end{warning_colors2admon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -35019,10 +35112,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{block_colors2admon}
 
+
 \begin{block_colors2admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_colors2admon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -35038,6 +35133,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{notice_colors2admon}
+
 % Test one word with a number
 
 
@@ -35045,9 +35141,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{notice_colors2admon}
 
+
 \begin{question_colors2admon}[Question]
 So, how many admonition environments does Doconce support?
 \end{question_colors2admon}
+
 
 \begin{question_colors2admon}[Question]
 \begin{enumerate}
@@ -35056,6 +35154,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_colors2admon}
+
 \begin{warning_colors2admon}[Tip]
 It is of outmost important to
 
@@ -35075,12 +35174,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \epycod
 \end{warning_colors2admon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{warning_colors2admon}[]
 And here comes some text with bad news.
 \end{warning_colors2admon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -35164,6 +35265,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{notice_colors2admon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -35176,6 +35278,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{summary_colors2admon}
+
 % ------------------- end of main content ---------------
 
 
@@ -35217,10 +35320,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -35410,7 +35514,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -35440,12 +35544,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{warning_colors1admon}
+
 Test warning with title:
 
 
 \begin{warning_colors1admon}[{\large Watch Out }]
 {\large And here comes some text with bad news in larger font. \par}
 \end{warning_colors1admon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -35459,10 +35565,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{block_colors1admon}
 
+
 \begin{block_colors1admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_colors1admon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -35478,6 +35586,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{notice_colors1admon}
+
 % Test one word with a number
 
 
@@ -35485,9 +35594,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{notice_colors1admon}
 
+
 \begin{question_colors1admon}[Question]
 So, how many admonition environments does Doconce support?
 \end{question_colors1admon}
+
 
 \begin{question_colors1admon}[Question]
 \begin{enumerate}
@@ -35496,6 +35607,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_colors1admon}
+
 \begin{warning_colors1admon}[Tip]
 It is of outmost important to
 
@@ -35515,12 +35627,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
 \end{warning_colors1admon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{warning_colors1admon}[]
 And here comes some text with bad news.
 \end{warning_colors1admon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -35604,6 +35718,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{notice_colors1admon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -35616,6 +35731,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{summary_colors1admon}
+
 % ------------------- end of main content ---------------
 
 
@@ -35655,10 +35771,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -35855,7 +35972,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -35885,12 +36002,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{warning_colors2admon}
+
 Test warning with title:
 
 
 \begin{warning_colors2admon}[{\large Watch Out }]
 {\large And here comes some text with bad news in larger font. \par}
 \end{warning_colors2admon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -35904,10 +36023,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{block_colors2admon}
 
+
 \begin{block_colors2admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_colors2admon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -35923,6 +36044,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{notice_colors2admon}
+
 % Test one word with a number
 
 
@@ -35930,9 +36052,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{notice_colors2admon}
 
+
 \begin{question_colors2admon}[Question]
 So, how many admonition environments does Doconce support?
 \end{question_colors2admon}
+
 
 \begin{question_colors2admon}[Question]
 \begin{enumerate}
@@ -35941,6 +36065,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_colors2admon}
+
 \begin{warning_colors2admon}[Tip]
 It is of outmost important to
 
@@ -35960,12 +36085,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
 \end{warning_colors2admon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{warning_colors2admon}[]
 And here comes some text with bad news.
 \end{warning_colors2admon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -36049,6 +36176,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{notice_colors2admon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -36061,6 +36189,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{summary_colors2admon}
+
 % ------------------- end of main content ---------------
 
 
@@ -36100,10 +36229,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -36133,10 +36263,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -36221,7 +36351,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -36251,12 +36381,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{graybox1admon}
+
 Test warning with title:
 
 
 \begin{graybox1admon}[{\large Watch Out }.]
 {\large And here comes some text with bad news in larger font. \par}
 \end{graybox1admon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -36270,10 +36402,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{graybox1admon}
 
+
 \begin{graybox1admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{graybox1admon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -36289,6 +36423,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{graybox1admon}
+
 % Test one word with a number
 
 
@@ -36296,9 +36431,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{graybox1admon}
 
+
 \begin{graybox1admon}[Question.]
 So, how many admonition environments does Doconce support?
 \end{graybox1admon}
+
 
 \begin{graybox1admon}[Question.]
 \begin{enumerate}
@@ -36307,6 +36444,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{graybox1admon}
+
 \begin{graybox1admon}[Tip.]
 It is of outmost important to
 
@@ -36326,12 +36464,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
 \end{graybox1admon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{graybox1admon}[]
 And here comes some text with bad news.
 \end{graybox1admon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -36415,6 +36555,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{graybox1admon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -36427,6 +36568,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{graybox1admon}
+
 % ------------------- end of main content ---------------
 
 
@@ -36466,10 +36608,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -36598,7 +36741,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -36630,6 +36773,7 @@ And more and more text.
 And more and more text.
 \end{graybox2admon}
 
+
 Test warning with title:
 
 
@@ -36637,6 +36781,7 @@ Test warning with title:
 \begin{graybox2admon}[{\large Watch Out }.]
 {\large And here comes some text with bad news in larger font. \par}
 \end{graybox2admon}
+
 
 Then we test a block, which is guaranteed to never have any admon icon.
 
@@ -36654,10 +36799,12 @@ of understanding. \par}
 
 
 
+
 \begin{graybox2admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{graybox2admon}
+
 
 The next admonition features a title "Note, eventually!".
 
@@ -36676,6 +36823,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{align*}
 \end{graybox2admon}
 
+
 % Test one word with a number
 
 
@@ -36686,9 +36834,11 @@ Ah, we are soon close to the end.
 
 
 
+
 \begin{graybox2admon}[Question.]
 So, how many admonition environments does Doconce support?
 \end{graybox2admon}
+
 
 
 
@@ -36699,6 +36849,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{graybox2admon}
+
 
 \begin{graybox2admon}[Tip.]
 It is of outmost important to
@@ -36720,6 +36871,7 @@ def grab(url, filename):
 \end{minted}
 \end{graybox2admon}
 
+
 Next is a warning without a title ("none" implies no title).
 
 
@@ -36727,6 +36879,7 @@ Next is a warning without a title ("none" implies no title).
 \begin{graybox2admon}[]
 And here comes some text with bad news.
 \end{graybox2admon}
+
 
 \subsection{Going deeper environments}
 
@@ -36813,6 +36966,7 @@ And then we add a figure too.
 \end{center}
 \end{graybox2admon}
 
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -36864,10 +37018,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -37064,7 +37219,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -37094,12 +37249,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{warning_graybox3admon}
+
 Test warning with title:
 
 
 \begin{warning_graybox3admon}[{\large Watch Out }]
 {\large And here comes some text with bad news in larger font. \par}
 \end{warning_graybox3admon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -37113,10 +37270,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{block_graybox3admon}
 
+
 \begin{block_graybox3admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_graybox3admon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -37132,6 +37291,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{notice_graybox3admon}
+
 % Test one word with a number
 
 
@@ -37139,9 +37299,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{notice_graybox3admon}
 
+
 \begin{question_graybox3admon}[Question]
 So, how many admonition environments does Doconce support?
 \end{question_graybox3admon}
+
 
 \begin{question_graybox3admon}[Question]
 \begin{enumerate}
@@ -37150,6 +37312,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_graybox3admon}
+
 \begin{warning_graybox3admon}[Tip]
 It is of outmost important to
 
@@ -37169,12 +37332,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
 \end{warning_graybox3admon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{warning_graybox3admon}[]
 And here comes some text with bad news.
 \end{warning_graybox3admon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -37258,6 +37423,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{notice_graybox3admon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -37270,6 +37436,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{summary_graybox3admon}
+
 % ------------------- end of main content ---------------
 
 
@@ -37309,10 +37476,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -37415,7 +37583,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -37445,12 +37613,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{paragraphadmon}
+
 Test warning with title:
 
 
 \begin{paragraphadmon}[{\large Watch Out }.]
 {\large And here comes some text with bad news in larger font. \par}
 \end{paragraphadmon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -37463,10 +37633,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{paragraphadmon}
 
+
 \begin{paragraphadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{paragraphadmon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -37482,6 +37654,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{paragraphadmon}
+
 % Test one word with a number
 
 
@@ -37489,9 +37662,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{paragraphadmon}
 
+
 \begin{paragraphadmon}[Question.]
 So, how many admonition environments does Doconce support?
 \end{paragraphadmon}
+
 
 \begin{paragraphadmon}[Question.]
 \begin{enumerate}
@@ -37500,6 +37675,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{paragraphadmon}
+
 \begin{paragraphadmon}[Tip.]
 It is of outmost important to
 
@@ -37519,12 +37695,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
 \end{paragraphadmon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{paragraphadmon}[]
 And here comes some text with bad news.
 \end{paragraphadmon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -37608,6 +37786,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{paragraphadmon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -37620,6 +37799,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{paragraphadmon}
+
 % ------------------- end of main content ---------------
 
 
@@ -37659,10 +37839,11 @@ final,                   % or draft (marks overfull hboxes)
 \usepackage[utf8]{inputenc}
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -37859,7 +38040,7 @@ def some_code(x):
 
 And some plain text verbatim:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 \end{Verbatim}
@@ -37889,12 +38070,14 @@ And more and more text.
 And more and more text.
 And more and more text.
 \end{warning_yellowboxadmon}
+
 Test warning with title:
 
 
 \begin{warning_yellowboxadmon}[{\large Watch Out }]
 {\large And here comes some text with bad news in larger font. \par}
 \end{warning_yellowboxadmon}
+
 Then we test a block, which is guaranteed to never have any admon icon.
 
 
@@ -37908,10 +38091,12 @@ about fun facts that are not strictly necessary for the main flow
 of understanding. \par}
 \end{block_yellowboxadmon}
 
+
 \begin{block_yellowboxadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_yellowboxadmon}
+
 The next admonition features a title "Note, eventually!".
 
 % Note that the final ! does not appear in Sphinx and reST since
@@ -37927,6 +38112,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \bm{r} &= \varrho\bm{i}
 \end{align*}
 \end{notice_yellowboxadmon}
+
 % Test one word with a number
 
 
@@ -37934,9 +38120,11 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \end{notice_yellowboxadmon}
 
+
 \begin{question_yellowboxadmon}[Question]
 So, how many admonition environments does Doconce support?
 \end{question_yellowboxadmon}
+
 
 \begin{question_yellowboxadmon}[Question]
 \begin{enumerate}
@@ -37945,6 +38133,7 @@ So, how many admonition environments does Doconce support?
 
 \noindent
 \end{question_yellowboxadmon}
+
 \begin{warning_yellowboxadmon}[Tip]
 It is of outmost important to
 
@@ -37964,12 +38153,14 @@ def grab(url, filename):
     urllib.urlretrieve(url, filename=filename)
 \end{minted}
 \end{warning_yellowboxadmon}
+
 Next is a warning without a title ("none" implies no title).
 
 
 \begin{warning_yellowboxadmon}[]
 And here comes some text with bad news.
 \end{warning_yellowboxadmon}
+
 \subsection{Going deeper environments}
 
 Here is a long notice environment with a custom title and much
@@ -38053,6 +38244,7 @@ And then we add a figure too.
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
 \end{center}
 \end{notice_yellowboxadmon}
+
 \subsection{The end}
 
 A bit of text before the summary, which we now call "Concluding remarks,
@@ -38065,6 +38257,7 @@ We can summarize the most important things with admons: they have
 a different typesetting, and they may have a symbol.
 Titles should be optional.
 \end{summary_yellowboxadmon}
+
 % ------------------- end of main content ---------------
 
 
@@ -38088,6 +38281,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -38473,6 +38668,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish2 style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -38504,7 +38701,7 @@ Automatically generated HTML file from Doconce source
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #f8f8f8;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -38725,7 +38922,7 @@ Because here the thing is to do
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
@@ -38774,7 +38971,7 @@ code is task that this "Going deeper" environment targets.
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
@@ -38788,7 +38985,7 @@ Longer computer code requires vertical space:
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -38869,6 +39066,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -39596,6 +39795,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish2 style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -40060,6 +40261,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish2 style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -40470,6 +40673,7 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* solarized style */
     body {
       margin:5;
       padding:0;
@@ -40620,17 +40824,17 @@ Need some code outside admons for color and font comparisons:
 
 <p>
 
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
-    <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
+<!-- code=python (from !bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">some_code</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> sin(x)*exp(<span style="color: #B452CD">1</span>-x)
 </pre></div>
 <p>
 And some plain text verbatim:
 
 <p>
 
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
+<!-- code=text typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
 
@@ -40737,11 +40941,11 @@ Because here the thing is to do
 
 <p>
 
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<!-- code=python (from !bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">urllib</span>
 
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
-    urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">grab</span>(url, filename):
+    urllib.urlretrieve(url, filename=filename)
 </pre></div>
 <p>
 </div>
@@ -40786,13 +40990,13 @@ code is task that this "Going deeper" environment targets.
 
 <p>
 
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
-    r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
-    <span style="color: #008000; font-weight: bold">return</span> r
+<!-- code=python (from !bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">Dudt</span>(u):
+    r = diff(u, t) + u*grad(u)
+    <span style="color: #8B008B; font-weight: bold">return</span> r
 
-half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
-x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
+half = <span style="color: #B452CD">0.5</span>
+x = <span style="color: #B452CD">2</span>*n
 </pre></div>
 <p>
 And some more text that can help going into the next page.
@@ -40800,45 +41004,45 @@ Longer computer code requires vertical space:
 
 <p>
 
-<!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
-        <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
-        <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
+<!-- code=python (from !bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #fbeed5"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Diff</span>:
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__init__</span>(<span style="color: #658b00">self</span>, f, h=<span style="color: #B452CD">1E-5</span>):
+        <span style="color: #658b00">self</span>.f = f
+        <span style="color: #658b00">self</span>.h = <span style="color: #658b00">float</span>(h)
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward1</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x))<span style="color: #666666">/</span>h
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (f(x+h) - f(x))/h
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Backward1</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (f(x) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (f(x) - f(x-h))/h
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central2</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h)
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (f(x+h) - f(x-h))/(<span style="color: #B452CD">2</span>*h)
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central4</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">4./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
-               (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h)
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (<span style="color: #B452CD">4.</span>/<span style="color: #B452CD">3</span>)*(f(x+h)   - f(x-h))  /(<span style="color: #B452CD">2</span>*h) - \
+               (<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">3</span>)*(f(x+<span style="color: #B452CD">2</span>*h) - f(x-<span style="color: #B452CD">2</span>*h))/(<span style="color: #B452CD">4</span>*h)
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Central6</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">3./2</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+</span>h)   <span style="color: #666666">-</span> f(x<span style="color: #666666">-</span>h))  <span style="color: #666666">/</span>(<span style="color: #666666">2*</span>h) <span style="color: #666666">-</span> \
-               (<span style="color: #666666">3./5</span>) <span style="color: #666666">*</span>(f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-2*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">4*</span>h) <span style="color: #666666">+</span> \
-               (<span style="color: #666666">1./10</span>)<span style="color: #666666">*</span>(f(x<span style="color: #666666">+3*</span>h) <span style="color: #666666">-</span> f(x<span style="color: #666666">-3*</span>h))<span style="color: #666666">/</span>(<span style="color: #666666">6*</span>h)
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (<span style="color: #B452CD">3.</span>/<span style="color: #B452CD">2</span>) *(f(x+h)   - f(x-h))  /(<span style="color: #B452CD">2</span>*h) - \
+               (<span style="color: #B452CD">3.</span>/<span style="color: #B452CD">5</span>) *(f(x+<span style="color: #B452CD">2</span>*h) - f(x-<span style="color: #B452CD">2</span>*h))/(<span style="color: #B452CD">4</span>*h) + \
+               (<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">10</span>)*(f(x+<span style="color: #B452CD">3</span>*h) - f(x-<span style="color: #B452CD">3</span>*h))/(<span style="color: #B452CD">6</span>*h)
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Forward3</span>(Diff):
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__call__</span>(<span style="color: #008000">self</span>, x):
-        f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
-        <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
-                (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (-(<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">6</span>)*f(x+<span style="color: #B452CD">2</span>*h) + f(x+h) - <span style="color: #B452CD">0.5</span>*f(x) - \
+                (<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">3</span>)*f(x-h))/h
 </pre></div>
 <p>
 And then we add a figure too.
@@ -41154,7 +41358,7 @@ Because here the thing is to do
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
@@ -41203,7 +41407,7 @@ code is task that this "Going deeper" environment targets.
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
@@ -41217,7 +41421,7 @@ Longer computer code requires vertical space:
 <p>
 
 <!-- code=python (from !bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: whiteSmoke"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -41681,17 +41885,16 @@ title (Warning) since no title is specified.
 
 ************** File: slides1_reveal.html *****************
 <!DOCTYPE html>
-<html lang="en">
 
-<!--
-    Automatically translated from Doconce source.
-    http://code.google.com/p/doconce
--->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="On the Technicalities of Scientific Writing Anno 2012: The Doconce Way">
 
-<head>
-<meta charset="utf-8">
 
-<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+
+
+
+
 
 <!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 
@@ -41756,7 +41959,20 @@ td.padding {
 }
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -41771,15 +41987,32 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-<div class="reveal">
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
 
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
 
-<div class="slides">
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+
 
 
 <section>
@@ -42262,6 +42495,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -42291,7 +42526,7 @@ Automatically generated HTML file from Doconce source
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #f8f8f8;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -42527,17 +42762,16 @@ title (Warning) since no title is specified.
 
 ************** File: slides1_deck.html *****************
 <!DOCTYPE html>
-<html lang="en">
 
-<!--
-    Automatically translated from Doconce source.
-    http://code.google.com/p/doconce
--->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="On the Technicalities of Scientific Writing Anno 2012: The Doconce Way">
 
-<head>
-<meta charset="utf-8">
 
-<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+
+
+
+
 
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
@@ -42545,7 +42779,7 @@ title (Warning) since no title is specified.
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=1024, user-scalable=no">
 
-<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+<title>None</title>
 
 <!-- Required stylesheet -->
 <link rel="stylesheet" href="deck.js/core/deck.core.css">
@@ -42663,7 +42897,14 @@ td.padding {
 }
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+
+<body class="deck-container">
+
+
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -42678,9 +42919,32 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body class="deck-container">
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
+
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+
 
 
 <section class="slide">
@@ -43350,10 +43614,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -43402,10 +43667,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -43676,12 +43941,14 @@ Can use admons to simulate blocks:
 This box has title and math in normal 90 percent font:
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{graybox1admon}
+
 % !bpop
 
 \begin{graybox1admon}[]
 Just some block with text and a conclusion that something is important.
 This one pops up after the rest of the slide.
 \end{graybox1admon}
+
 % !epop
 
 
@@ -43692,6 +43959,7 @@ inside preprocess/mako if statements to turn notes on and off.
 This one is typeset in a small font and with the default
 title (Warning) since no title is specified. \par}
 \end{graybox1admon}
+
 % ------------------- end of main content ---------------
 
 
@@ -43923,7 +44191,7 @@ Over multiple lines.
 \[ f(x,y,t) = e^{-xt}\sin\pi y \]
 Python implementation:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 import numpy as np
 
 def f(x, y, t):
@@ -43950,6 +44218,7 @@ Can use admons to simulate blocks:
 This box has title and math in normal 90 percent font:
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{graybox1admon}
+
 
 \pause
 \begin{graybox1admon}[]
@@ -44575,17 +44844,17 @@ FIGURE: [../doc/slides/fig/broken_pen_and_paper, width=400]
 
 ************** File: slides2_reveal.html *****************
 <!DOCTYPE html>
-<html lang="en">
 
-<!--
-    Automatically translated from Doconce source.
-    http://code.google.com/p/doconce
--->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="Test slide features">
+<meta name="keywords" content="key word1,key word2">
 
-<head>
-<meta charset="utf-8">
 
-<title>Test slide features</title>
+
+
+
+
 
 <!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 
@@ -44650,7 +44919,20 @@ td.padding {
 }
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -44665,15 +44947,32 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-<div class="reveal">
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
 
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
 
-<div class="slides">
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+
 
 
 <section>
@@ -45786,10 +46085,11 @@ open=right               % start new chapters on odd-numbered pages
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -45819,10 +46119,10 @@ open=right               % start new chapters on odd-numbered pages
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -46141,7 +46441,7 @@ Old days (1985-2005): {\LaTeX} for BW paper output, but now
 
   \item Bloggs
 
-  \item Next new fancy format (iBook w/{\LaTeX}?)
+  \item Next new fancy format (iBook w/LaTeX?)
 \end{enumerate}
 
 \noindent
@@ -46288,6 +46588,7 @@ TOC: on
 \begin{graybox1admon}[Notice.]
 Title and authors must have all information \emph{on a single line}!
 \end{graybox1admon}
+
 % !split
 \section{Doconce: abstract}
 
@@ -46400,6 +46701,7 @@ URL: "http://code.google.com/p/doconce/"
 \begin{graybox1admon}[Notice.]
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
 \end{graybox1admon}
+
 \bccq
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
@@ -46495,6 +46797,7 @@ language: \code{pycod} for Python code snippet, \code{pypro} for complete Python
 program, \code{fcod} for Fortran snippet, \code{fpro} for Fortran program, and so
 forth (\code{c} for C, \code{cpp} for C++, \code{sh} for Unix shells, \code{m} for Matlab).
 \end{graybox1admon}
+
 % !split
 \section{Doconce: displaying interactive demo code}
 \label{slide:pot}
@@ -47039,7 +47342,7 @@ Old days (1985-2005): {\LaTeX} for BW paper output, but now
 
   \item Bloggs
 
-  \item Next new fancy format (iBook w/{\LaTeX}?)
+  \item Next new fancy format (iBook w/LaTeX?)
 \end{enumerate}
 
 \noindent
@@ -47187,7 +47490,7 @@ based on HTML and vice versa.
 \begin{frame}[plain,fragile]
 \frametitle{Doconce: title, authors, date, toc}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 TITLE: Some Title
 AUTHOR: name1 at institution1, with more info, and institution2
 AUTHOR: name2 email:name2@web.com at institution
@@ -47206,13 +47509,13 @@ Title and authors must have all information \emph{on a single line}!
 \begin{frame}[plain,fragile]
 \frametitle{Doconce: abstract}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 __Abstract.__
 Here goes the abstract...
 \end{Verbatim}
 
 Or:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 __Summary.__
 Here goes the summary...
 \end{Verbatim}
@@ -47222,7 +47525,7 @@ Here goes the summary...
 \frametitle{Doconce: section headings}
 
 Headings are surrounded by \Verb!=! signs:
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ========= This is an H1/chapter heading =========
 
 ======= This is an H2/section heading =======
@@ -47249,7 +47552,7 @@ Result:
 \begin{frame}[plain,fragile]
 \frametitle{Doconce: markup and lists}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
  * Bullet list items start with `*`
    and may span several lines
  * *Emphasized words* are possible
@@ -47289,7 +47592,7 @@ This gets rendered as
 \begin{frame}[plain,fragile]
 \frametitle{Doconce: labels, references, index items}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 # Insert index items in the source
 idx{key word1} idx{key word2}
 
@@ -47319,7 +47622,8 @@ URL: "http://code.google.com/p/doconce/"
 \begin{graybox1admon}[Notice.]
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
 \end{graybox1admon}
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
 # This figure will be 300 pixels wide in HTML and span 1.2 times
@@ -47328,7 +47632,7 @@ FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
 Movies are also supported:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 \end{Verbatim}
 and rendered as
@@ -47341,7 +47645,7 @@ and rendered as
 
 Inline math as in {\LaTeX}:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ...where $a=\int_{\Omega}fdx$ is an integral.
 \end{Verbatim}
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
@@ -47350,7 +47654,7 @@ gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
 An equation environment is surrounded by \Verb!!bt! and \Verb!!et! tags,
 the rest is plain {\LaTeX}:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
@@ -47375,7 +47679,7 @@ which is rendered as
 
 Code is enclosed in \Verb!!bc! and \Verb!!ec! tags:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc pycod
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
@@ -47452,7 +47756,7 @@ print u
 Doconce offers a special format for \emph{exercises}, \emph{problems}, \emph{projects},
 and \emph{examples}:
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
 
@@ -47543,7 +47847,7 @@ Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 \begin{frame}[plain,fragile]
 \frametitle{Doconce: example on slide code}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !split
 ======= Headline =======
 
@@ -47604,7 +47908,7 @@ MN is surrounded by \Verb!!bslidecell MN! and \Verb!!eslidecell!
 tags. Below is an example with a bullet list to the left and
 a figure to the right (two cells, numbered 00 and 01).
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !split
 ======= Headline =======
 
@@ -47860,17 +48164,16 @@ qualitatively correct results.
 
 ************** File: slides3_reveal.html *****************
 <!DOCTYPE html>
-<html lang="en">
 
-<!--
-    Automatically translated from Doconce source.
-    http://code.google.com/p/doconce
--->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+<meta name="description" content="On Schemes for Exponential Decay">
 
-<head>
-<meta charset="utf-8">
 
-<title>On Schemes for Exponential Decay</title>
+
+
+
+
 
 <!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 
@@ -47935,7 +48238,20 @@ td.padding {
 }
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -47950,15 +48266,32 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-<div class="reveal">
+<!-- newcommands_bfmath.tex -->
+$$
+\renewcommand{\u}{\pmb{u}}
 
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
+\newcommand{\xbm}{\boldsymbol{x}}
+\newcommand{\normalvecbm}{\boldsymbol{n}}
+\newcommand{\ubm}{\boldsymbol{u}}
+$$
 
-<div class="slides">
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
+$$
+
+
+
+
+    
+
 
 
 <section>
@@ -48349,10 +48682,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -48382,10 +48716,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -48571,6 +48905,7 @@ and get them rendered in numerous HTML formats.
 This version
 utilizes beamer slides with the theme red3.
 \end{graybox1admon}
+
 % !bnotes
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
@@ -48700,6 +49035,7 @@ Exact solution of the scheme:
 Only the Backward Euler scheme is guaranteed to always give
 qualitatively correct results.
 \end{graybox1admon}
+
 % !epop
 
 % ------------------- end of main content ---------------
@@ -48865,6 +49201,7 @@ and get them rendered in numerous HTML formats.
 This version
 utilizes beamer slides with the theme red3.
 \end{graybox1admon}
+
 \note{
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
@@ -49055,6 +49392,52 @@ i,h_i,\bar T_i,L_i
 | 6        | 71,000   | 214      | NaN      |          |          |          |
 |----------------------------------------------------------------------------|
 
+
+
+************** File: github_md.md *****************
+<!-- Test of GitHub Flavored Markdown -->
+
+<!-- Write in doconce -->
+<!-- Translate with doconce format pandoc githu_md --github_md -->
+
+> ### Problems with a function
+> 
+> There is a problem with the `f(x)` function
+> 
+> 
+> ```Python
+> def f(x):
+>     return 1 + x
+> 
+> ```
+> 
+> This function should be quadratic.
+
+OK, this is fixed:
+
+
+```Python
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+
+```
+
+### Updated task list
+
+   - [x] Offer an `f(x)` function
+
+   - [ ] Extension to cubic functions
+
+   - [x] Allowing general coefficient in the quadratic function
+
+#### Remaining functionality
+
+<table border="1">
+<tr><td align="center"><b>            function            </b></td> <td align="center"><b>            purpose             </b></td> <td align="center"><b>             state              </b></td> </tr>
+<tr><td align="left">   <code>g(x)</code>                            </td> <td align="left">   Compute the Gaussian function.    </td> <td align="left">   Formula ready.                    </td> </tr>
+<tr><td align="left">   <code>h(x)</code>                            </td> <td align="left">   Heaviside function.               </td> <td align="left">   Formula ready.                    </td> </tr>
+<tr><td align="left">   <code>I(x)</code>                            </td> <td align="left">   Indicator function.               </td> <td align="left">   Nothing done yet.                 </td> </tr>
+</table>
 
 
 ************** File: tmp_Doconce.do.txt *****************
@@ -49279,7 +49662,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 29 Jun 2013 (07:43)</center>
+<center>Sat, 29 Jun 2013 (15:58)</center>
 
 
 
@@ -49410,7 +49793,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 29 Jun 2013 (07:43)</center>
+<center>Sat, 29 Jun 2013 (15:58)</center>
 
 
 
@@ -50067,11 +50450,28 @@ without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
 rendered nicely anyway.
 
 
+===== Hyperlinks =====
+
+Links use either a link text or the raw URL:
+
+!bc
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+!ec
+
 ===== Figures and Movies =====
 
 Figures and movies have almost equal syntax:
 !bc
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -50079,6 +50479,8 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 Note three important syntax details:
 
   o A mandatory comma after the figure/movie filename,
+  o no comments between `width`, `height`, and `frac` and no spaces
+    around the `=` characters,
   o all of the command must appear on a single line,
   o there must be a blank line after the command.
 
@@ -50086,6 +50488,12 @@ The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The `width`
+and `height` parameters affect HTML formats (`html`, `rst`, `sphinx`),
+while `frac` is the width of the image as a fraction of the total text
+width in the `latex` and `pdflatex` formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -50449,6 +50857,8 @@ Automatically generated HTML file from Doconce source
 
 
 <style type="text/css">
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -50478,7 +50888,7 @@ Automatically generated HTML file from Doconce source
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #f8f8f8;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -50510,20 +50920,21 @@ Automatically generated HTML file from Doconce source
               (' Inline comments ', 2, None, '___sec7'),
               (' Verbatim/Computer Code ', 2, None, '___sec8'),
               (' LaTeX Mathematics ', 2, None, '___sec9'),
-              (' Figures and Movies ', 2, None, '___sec10'),
-              (' Tables ', 2, None, '___sec11'),
-              (' Labels and References ', 2, None, '___sec12'),
-              (' Citations and Bibliography ', 2, None, '___sec13'),
-              (' Generalized Citations ', 2, None, '___sec14'),
-              (' Index of Keywords ', 2, None, '___sec15'),
+              (' Hyperlinks ', 2, None, '___sec10'),
+              (' Figures and Movies ', 2, None, '___sec11'),
+              (' Tables ', 2, None, '___sec12'),
+              (' Labels and References ', 2, None, '___sec13'),
+              (' Citations and Bibliography ', 2, None, '___sec14'),
+              (' Generalized Citations ', 2, None, '___sec15'),
+              (' Index of Keywords ', 2, None, '___sec16'),
               (' Capabilities of The Program `doconce` ',
                2,
                None,
-               '___sec16'),
-              (' Exercises ', 2, None, '___sec17'),
-              (' Environments ', 2, None, '___sec18'),
-              (' Preprocessing ', 2, None, '___sec19'),
-              (' Resources ', 2, None, '___sec20')]}
+               '___sec17'),
+              (' Exercises ', 2, None, '___sec18'),
+              (' Environments ', 2, None, '___sec19'),
+              (' Preprocessing ', 2, None, '___sec20'),
+              (' Resources ', 2, None, '___sec21')]}
 end of tocinfo -->
 
 <body>
@@ -50584,17 +50995,18 @@ MathJax.Hub.Config({
 <a href="#___sec7"> Inline comments </a><br>
 <a href="#___sec8"> Verbatim/Computer Code </a><br>
 <a href="#___sec9"> LaTeX Mathematics </a><br>
-<a href="#___sec10"> Figures and Movies </a><br>
-<a href="#___sec11"> Tables </a><br>
-<a href="#___sec12"> Labels and References </a><br>
-<a href="#___sec13"> Citations and Bibliography </a><br>
-<a href="#___sec14"> Generalized Citations </a><br>
-<a href="#___sec15"> Index of Keywords </a><br>
-<a href="#___sec16"> Capabilities of The Program <code>doconce</code> </a><br>
-<a href="#___sec17"> Exercises </a><br>
-<a href="#___sec18"> Environments </a><br>
-<a href="#___sec19"> Preprocessing </a><br>
-<a href="#___sec20"> Resources </a><br>
+<a href="#___sec10"> Hyperlinks </a><br>
+<a href="#___sec11"> Figures and Movies </a><br>
+<a href="#___sec12"> Tables </a><br>
+<a href="#___sec13"> Labels and References </a><br>
+<a href="#___sec14"> Citations and Bibliography </a><br>
+<a href="#___sec15"> Generalized Citations </a><br>
+<a href="#___sec16"> Index of Keywords </a><br>
+<a href="#___sec17"> Capabilities of The Program <code>doconce</code> </a><br>
+<a href="#___sec18"> Exercises </a><br>
+<a href="#___sec19"> Environments </a><br>
+<a href="#___sec20"> Preprocessing </a><br>
+<a href="#___sec21"> Resources </a><br>
 
 <p>
 <b>WARNING: This quick reference is very incomplete!</b>
@@ -51103,12 +51515,32 @@ without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</
 <code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
 rendered nicely anyway.
 
-<h3>Figures and Movies  <a name="___sec10"></a></h3>
+<h3>Hyperlinks  <a name="___sec10"></a></h3>
+
+<p>
+Links use either a link text or the raw URL:
+
+<p>
+<!-- begin verbatim block -->
+<pre><code>Here is some &quot;some link text&quot;: &quot;http://some.net/address&quot;
+(as in &quot;search google&quot;: &quot;http://google.com&quot;)
+or just the raw address: URL: &quot;http://google.com&quot;.
+
+Links to files typeset in verbatim mode applies backtics:
+&quot;`myfile.py`&quot;: &quot;http://some.net/some/place/myfile.py&quot;.
+
+Mail addresses works too: send problems to
+&quot;`hpl@simula.no`&quot;: &quot;mailto:hpl@simula.no&quot;
+or just &quot;send mail&quot;: &quot;mailto:hpl@simula.no&quot;.
+</code></pre>
+<!-- end verbatim block -->
+
+<h3>Figures and Movies  <a name="___sec11"></a></h3>
 
 <p>
 Figures and movies have almost equal syntax:
 <!-- begin verbatim block -->
-<pre><code>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+<pre><code>FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -51120,6 +51552,8 @@ Note three important syntax details:
 
 <ol>
  <li> A mandatory comma after the figure/movie filename,</li>
+ <li> no comments between <code>width</code>, <code>height</code>, and <code>frac</code> and no spaces
+    around the <code>=</code> characters,</li>
  <li> all of the command must appear on a single line,</li>
  <li> there must be a blank line after the command.</li>
 </ol>
@@ -51128,6 +51562,13 @@ The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+<p>
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The <code>width</code>
+and <code>height</code> parameters affect HTML formats (<code>html</code>, <code>rst</code>, <code>sphinx</code>),
+while <code>frac</code> is the width of the image as a fraction of the total text
+width in the <code>latex</code> and <code>pdflatex</code> formats.
 
 <p>
 Movie files can either be a video or a wildcard expression for a
@@ -51163,7 +51604,7 @@ The latter results in
 
 <em>Vimeo movie.</em>
 
-<h3>Tables  <a name="___sec11"></a></h3>
+<h3>Tables  <a name="___sec12"></a></h3>
 
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
@@ -51208,7 +51649,7 @@ makes Doconce dump each table to CSV format in a file <code>table_X.csv</code>,
 where <code>X</code> is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.
 
-<h3>Labels and References  <a name="___sec12"></a></h3>
+<h3>Labels and References  <a name="___sec13"></a></h3>
 
 <p>
 The notion of labels and references (as well as bibliography and index)
@@ -51238,7 +51679,7 @@ Use labels for sections and equations only, and preceed the reference
 by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
-<h3>Citations and Bibliography  <a name="___sec13"></a></h3>
+<h3>Citations and Bibliography  <a name="___sec14"></a></h3>
 
 <p>
 Single citations are written as
@@ -51266,7 +51707,7 @@ BibTeX <code>.bib</code> files can easily be combined to a Publish database
 (which Doconce needs to create bibliographies in other formats
 than LaTeX).
 
-<h3>Generalized Citations  <a name="___sec14"></a></h3>
+<h3>Generalized Citations  <a name="___sec15"></a></h3>
 
 <p>
 There is a <em>generalized referencing</em> feature in Doconce that allows
@@ -51298,7 +51739,7 @@ LaTeX package <code>xr</code> is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
-<h3>Index of Keywords  <a name="___sec15"></a></h3>
+<h3>Index of Keywords  <a name="___sec16"></a></h3>
 
 <p>
 Doconce supports creating an index of keywords. A certain keyword
@@ -51315,7 +51756,7 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the <code>latex</code>,
 <code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
 
-<h3>Capabilities of The Program <code>doconce</code>  <a name="___sec16"></a></h3>
+<h3>Capabilities of The Program <code>doconce</code>  <a name="___sec17"></a></h3>
 
 <p>
 The <code>doconce</code> program can be used for a number of purposes besides
@@ -51462,7 +51903,7 @@ doconce csv2table somefile.csv
 </code></pre>
 <!-- end verbatim block -->
 
-<h3>Exercises  <a name="___sec17"></a></h3>
+<h3>Exercises  <a name="___sec18"></a></h3>
 
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
@@ -51580,7 +52021,7 @@ The command-line arguments <code>--without_answers</code> and <code>--without_so
 turn off output of answers and solutions, respectively, except for
 examples.
 
-<h3>Environments  <a name="___sec18"></a></h3>
+<h3>Environments  <a name="___sec19"></a></h3>
 
 <p>
 Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
@@ -51603,7 +52044,7 @@ the environments:
    slide</li>
 </ul>
 
-<h3>Preprocessing  <a name="___sec19"></a></h3>
+<h3>Preprocessing  <a name="___sec20"></a></h3>
 
 <p>
 Doconce documents may utilize a preprocessor, either <code>preprocess</code> and/or
@@ -51657,7 +52098,7 @@ An <a href="http://hplgit.github.com/bioinf-py/">example document</a> contains
 some illustrations on how to utilize <code>mako</code> (clone the GitHub project and
 examine the Doconce source and the <code>doc/src/make.sh</code> script).
 
-<h3>Resources  <a name="___sec20"></a></h3>
+<h3>Resources  <a name="___sec21"></a></h3>
 
 <p>
 
@@ -51787,10 +52228,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -51839,10 +52281,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -52487,6 +52929,7 @@ straightforward typesetting for other formats. In this way, one can
 also allow advanced {\LaTeX} features and fine tuning of resulting
 PDF document.
 \end{graybox1admon}
+
 \paragraph{LaTeX Newcommands.}
 The author can define \code{newcommand} statements in files with names
 \code{newcommands*.tex}. Such commands should only be used for mathematics
@@ -52500,11 +52943,28 @@ without {\LaTeX} support. For \code{html}, \code{sphinx}, \code{latex}, \code{pd
 rendered nicely anyway.
 
 
+\subsection{Hyperlinks}
+
+Links use either a link text or the raw URL:
+
+\bccq
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+\eccq
+
 \subsection{Figures and Movies}
 
 Figures and movies have almost equal syntax:
 \bccq
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -52513,6 +52973,9 @@ Note three important syntax details:
 
 \begin{enumerate}
  \item A mandatory comma after the figure/movie filename,
+
+ \item no comments between \code{width}, \code{height}, and \code{frac} and no spaces
+    around the \code{=} characters,
 
  \item all of the command must appear on a single line,
 
@@ -52524,6 +52987,12 @@ The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or {\LaTeX} formats). The \code{width}
+and \code{height} parameters affect HTML formats (\code{html}, \code{rst}, \code{sphinx}),
+while \code{frac} is the width of the image as a fraction of the total text
+width in the \code{latex} and \code{pdflatex} formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -53535,13 +54004,31 @@ without LaTeX support. For ``html``, ``sphinx``, ``latex``, ``pdflatex``,
 rendered nicely anyway.
 
 
+Hyperlinks
+----------
+
+Links use either a link text or the raw URL::
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
+
+
 Figures and Movies
 ------------------
 
 Figures and movies have almost equal syntax::
 
 
-        FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+        FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
         
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
@@ -53550,14 +54037,23 @@ Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
 
- 2. all of the command must appear on a single line,
+ 2. no comments between ``width``, ``height``, and ``frac`` and no spaces
+    around the ``=`` characters,
 
- 3. there must be a blank line after the command.
+ 3. all of the command must appear on a single line,
+
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The ``width``
+and ``height`` parameters affect HTML formats (``html``, ``rst``, ``sphinx``),
+while ``frac`` is the width of the image as a fraction of the total text
+width in the ``latex`` and ``pdflatex`` formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -54600,6 +55096,27 @@ without LaTeX support. For ``html``, ``sphinx``, ``latex``, ``pdflatex``,
 rendered nicely anyway.
 
 
+Hyperlinks
+----------
+
+Links use either a link text or the raw URL:
+
+
+.. code-block:: text
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
+
+
 Figures and Movies
 ------------------
 
@@ -54608,7 +55125,7 @@ Figures and movies have almost equal syntax:
 .. code-block:: text
 
 
-        FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+        FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
         
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
@@ -54617,14 +55134,23 @@ Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
 
- 2. all of the command must appear on a single line,
+ 2. no comments between ``width``, ``height``, and ``frac`` and no spaces
+    around the ``=`` characters,
 
- 3. there must be a blank line after the command.
+ 3. all of the command must appear on a single line,
+
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The ``width``
+and ``height`` parameters affect HTML formats (``html``, ``rst``, ``sphinx``),
+while ``frac`` is the width of the image as a fraction of the total text
+width in the ``latex`` and ``pdflatex`` formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -55614,11 +56140,28 @@ without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
 rendered nicely anyway.
 
 
+==== Hyperlinks ====
+
+Links use either a link text or the raw URL:
+
+{{{
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+}}}
+
 ==== Figures and Movies ====
 
 Figures and movies have almost equal syntax:
 {{{
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -55627,6 +56170,7 @@ Note three important syntax details:
 
 
  # A mandatory comma after the figure/movie filename,
+ # no comments between `width`, `height`, and `frac` and no spaces    around the `=` characters,
  # all of the command must appear on a single line,
  # there must be a blank line after the command.
 
@@ -55634,6 +56178,12 @@ The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The `width`
+and `height` parameters affect HTML formats (`html`, `rst`, `sphinx`),
+while `frac` is the width of the image as a fraction of the total text
+width in the `latex` and `pdflatex` formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -56565,11 +57115,28 @@ without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</
 rendered nicely anyway.
 
 
+==== Hyperlinks ====
+
+Links use either a link text or the raw URL:
+
+<syntaxhighlight lang="text">
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+</syntaxhighlight>
+
 ==== Figures and Movies ====
 
 Figures and movies have almost equal syntax:
 <syntaxhighlight lang="text">
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -56579,6 +57146,8 @@ Note three important syntax details:
 
 <ol>
  <li> A mandatory comma after the figure/movie filename,
+ <li> no comments between <code>width</code>, <code>height</code>, and <code>frac</code> and no spaces
+    around the <code>=</code> characters,
  <li> all of the command must appear on a single line,
  <li> there must be a blank line after the command.
 </ol>
@@ -56587,6 +57156,12 @@ The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The <code>width</code>
+and <code>height</code> parameters affect HTML formats (<code>html</code>, <code>rst</code>, <code>sphinx</code>),
+while <code>frac</code> is the width of the image as a fraction of the total text
+width in the <code>latex</code> and <code>pdflatex</code> formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -57513,11 +58088,28 @@ without LaTeX support. For {{{html}}}, {{{sphinx}}}, {{{latex}}}, {{{pdflatex}}}
 rendered nicely anyway.
 
 
+== Hyperlinks ==
+
+Links use either a link text or the raw URL:
+
+{{{
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+}}}
+
 == Figures and Movies ==
 
 Figures and movies have almost equal syntax:
 {{{
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -57526,6 +58118,7 @@ Note three important syntax details:
 
 
  # A mandatory comma after the figure/movie filename,
+ # no comments between {{{width}}}, {{{height}}}, and {{{frac}}} and no spaces    around the {{{=}}} characters,
  # all of the command must appear on a single line,
  # there must be a blank line after the command.
 
@@ -57533,6 +58126,12 @@ The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The {{{width}}}
+and {{{height}}} parameters affect HTML formats ({{{html}}}, {{{rst}}}, {{{sphinx}}}),
+while {{{frac}}} is the width of the image as a fraction of the total text
+width in the {{{latex}}} and {{{pdflatex}}} formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -58440,12 +59039,29 @@ without LaTeX support. For 'html', 'sphinx', 'latex', 'pdflatex',
 rendered nicely anyway.
 
 
+Hyperlinks
+
+Links use either a link text or the raw URL::
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
+
+
 Figures and Movies
 
 Figures and movies have almost equal syntax::
 
 
-        FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+        FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
         
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
@@ -58453,13 +59069,21 @@ Figures and movies have almost equal syntax::
 Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
- 2. all of the command must appear on a single line,
- 3. there must be a blank line after the command.
+ 2. no comments between 'width', 'height', and 'frac' and no spaces
+    around the '=' characters,
+ 3. all of the command must appear on a single line,
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The 'width'
+and 'height' parameters affect HTML formats ('html', 'rst', 'sphinx'),
+while 'frac' is the width of the image as a fraction of the total text
+width in the 'latex' and 'pdflatex' formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -59401,13 +60025,31 @@ C{mwiki}, C{ipynb}, and C{pandoc}, the mathematics in newcommands is
 rendered nicely anyway.
 
 
+Hyperlinks
+----------
+
+Links use either a link text or the raw URL::
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
+
+
 Figures and Movies
 ------------------
 
 Figures and movies have almost equal syntax::
 
 
-        FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+        FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
         
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
@@ -59415,13 +60057,21 @@ Figures and movies have almost equal syntax::
 Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
- 2. all of the command must appear on a single line,
- 3. there must be a blank line after the command.
+ 2. no comments between C{width}, C{height}, and C{frac} and no spaces
+    around the C{=} characters,
+ 3. all of the command must appear on a single line,
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The C{width}
+and C{height} parameters affect HTML formats (C{html}, C{rst}, C{sphinx}),
+while C{frac} is the width of the image as a fraction of the total text
+width in the C{latex} and C{pdflatex} formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -59923,6 +60573,7 @@ Table of contents:
  Inline comments 
  Verbatim/Computer Code 
  LaTeX Mathematics 
+ Hyperlinks 
  Figures and Movies 
  Tables 
  Labels and References 
@@ -60401,13 +61052,31 @@ mwiki, ipynb, and pandoc, the mathematics in newcommands is
 rendered nicely anyway.
 
 
+Hyperlinks
+----------
+
+Links use either a link text or the raw URL::
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
+
+
 Figures and Movies
 ------------------
 
 Figures and movies have almost equal syntax::
 
 
-        FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+        FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
         
         MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
         
@@ -60416,14 +61085,23 @@ Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
 
- 2. all of the command must appear on a single line,
+ 2. no comments between width, height, and frac and no spaces
+    around the = characters,
 
- 3. there must be a blank line after the command.
+ 3. all of the command must appear on a single line,
+
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The width
+and height parameters affect HTML formats (html, rst, sphinx),
+while frac is the width of the image as a fraction of the total text
+width in the latex and pdflatex formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -61429,12 +62107,30 @@ without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
 rendered nicely anyway.
 
 
+### Hyperlinks
+
+Links use either a link text or the raw URL:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ### Figures and Movies
 
 Figures and movies have almost equal syntax:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. \label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
@@ -61444,14 +62140,23 @@ Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
 
- 2. all of the command must appear on a single line,
+ 2. no comments between `width`, `height`, and `frac` and no spaces
+    around the `=` characters,
 
- 3. there must be a blank line after the command.
+ 3. all of the command must appear on a single line,
+
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The `width`
+and `height` parameters affect HTML formats (`html`, `rst`, `sphinx`),
+while `frac` is the width of the image as a fraction of the total text
+width in the `latex` and `pdflatex` formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
@@ -62181,9 +62886,9 @@ Found paper: (Rahman_et_al_2006b) - Numerical Investigation of a Piezoelectric S
 Found paper: (Haga_et_al_2011a) - On the causes of pressure oscillations in low-permeabl...
 Found paper: (Langtangen:95) - Finite elements for the {Boussinesq} wave equations
 Found paper: (Langtangen:85) - Solution of the {Navier-Stokes} equations with the finite...
-Found paper: (Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...
 Found paper: (Langtangen:91) - Numerical Methods in Continuum Mechanics
 Found paper: (Langtangen:94b) - {Diffpack}: Software for partial differential equations
+Found paper: (testdoc:12) - A Document for Testing Doconce
 
 Validating papers
 -----------------
@@ -62218,14 +62923,22 @@ Validating paper: (Langtangen:95) - Finite elements for the {Boussinesq} wave eq
   Status is not defined, assuming status is "published".
 Validating paper: (Langtangen:85) - Solution of the {Navier-Stokes} equations with the finite...
   Status is not defined, assuming status is "published".
-Validating paper: (Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...
-  Status is not defined, assuming status is "published".
 Validating paper: (Langtangen:91) - Numerical Methods in Continuum Mechanics
   Status is not defined, assuming status is "published".
 
   Unknown institution: "Center for Industrial Research"
   Would you like to add institution "Center for Industrial Research"? (y/[n]): Validating paper: (Langtangen:94b) - {Diffpack}: Software for partial differential equations
   Status is not defined, assuming status is "published".
+Validating paper: (testdoc:12) - A Document for Testing Doconce
+  Status is not defined, assuming status is "published".
+
+  Unknown institution: "Simula Research Laboratory and University of Oslo"
+  Suggested institution: "Simula Research Laboratory"
+  Unknown institution, what should I do?
+  [1] Replace institution.
+  [2] Add institution.
+  [3] Skip paper.
+Please enter 1, 2 or 3 (or press return to choose [1]): 
 
 Validated 10 paper(s) ok.
 Found 0 invalid paper(s).
@@ -62238,19 +62951,6 @@ Merging papers
 
 Need to merge 11 + 10 = 21 papers.
 
-Found close match between (Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi... and (Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv..., merging papers.
-  Langtangen_1989e: Computational Methods for Two-Phase Flow in Oil Reservoirs
-  Langtangen:89d: Computational Methods for Two-Phase Flow in Oil Reservoirs
-['category', 'status', 'school', 'author', 'title', 'thesistype', 'note', 'key', 'year', 'entrytype', 'category', 'status', 'school', 'title', 'author', 'thesistype', 'note', 'key', 'year', 'entrytype']
-  Attribute "author" differs, what should I do?
-  [1] Keep both papers (marking them as allowed duplicates).
-  [2] Ignore papers (marking them as invalid).
-  [3] Keep first paper ((Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...) and ignore second paper ((Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...)
-  [4] Keep second paper ((Langtangen_1989e) - Computational Methods for Two-Phase Flow in Oil Reserv...) and ignore first paper ((Langtangen:89d) - Computational Methods for Two-Phase Flow in Oil Reservoi...)
-  [5] Use attribute from first paper ("['H. P. Langtangen']")
-  [6] Use attribute from second paper ("('H. P. Langtangen',)")
-  [7] Print diff.
-Please enter 1, 2, 3, 4, 5, 6 or 7 (or press return to choose [1]): 
 
 Summary of papers
 -----------------
@@ -62261,9 +62961,9 @@ Edited Books:                       0
 Chapters in Books:                  1
 Refereed Proceedings:               0
 Conference Proceedings:             2
-Technical Reports:                  3
+Technical Reports:                  4
 Manuals:                            0
-Theses:                             3
+Theses:                             2
 Courses:                            0
 Talks:                              0
 Posters:                            0
@@ -62392,8 +63092,8 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + '[' 0 -ne 0 ']'
 + cp testdoc.html testdoc_no_solutions.html
-+ system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
-+ doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR
++ system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down
++ doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down
 
 Summary of papers
 -----------------
@@ -62404,9 +63104,9 @@ Edited Books:                       0
 Chapters in Books:                  1
 Refereed Proceedings:               0
 Conference Proceedings:             2
-Technical Reports:                  3
+Technical Reports:                  4
 Manuals:                            0
-Theses:                             3
+Theses:                             2
 Courses:                            0
 Talks:                              0
 Posters:                            0
@@ -62462,6 +63162,9 @@ copying from regex "subroutine" until end of file
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+transforming sections: subsection to subsubsection...
+transforming sections: section to subsection...
+transforming sections: chapter to section...
 
 warning: open the solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
@@ -62615,6 +63318,64 @@ no answers/solutions to exercises found in testdoc.html
 testdoc.html now links to the generated files
 ._part0000_testdoc.html, ._part0001_testdoc.html, ._part0002_testdoc.html
 + '[' 0 -ne 0 ']'
++ system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_output=demo_testdoc
++ doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_output=demo_testdoc
+running preprocess -DFORMAT=html -DDEVICE=screen  testdoc.do.txt > tmp_preprocess__testdoc.do.txt
+running mako on tmp_preprocess__testdoc.do.txt to make tmp_mako__testdoc.do.txt
+translating doconce text in tmp_mako__testdoc.do.txt to html
+
+FIX: multi-line caption
+
+ Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
+
+-- fixed to one line
+
+FIX: multi-line caption
+
+ A long
+caption spanning
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
+
+-- fixed to one line
+
+FIX: FIGURE not at the beginning of the line - 1 fixes
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
+
+
+FIX: MOVIE not at the beginning of the line - 1 fixes
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). label{mymov} 
+
+
+FIX: !bhint not at the beginning of the line - 1 fixes
+  !bhint
+
+
+FIX: !ehint not at the beginning of the line - 1 fixes
+  !ehint
+
+
+*** The total of 6 fixes above should be incorporated in the file!
+
+
+copying from regex "subroutine" until end of file
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open the solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
+found info about 9 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.png for format html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in demo_testdoc.html
++ '[' 0 -ne 0 ']'
 + system doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
 + doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments
 
@@ -62627,9 +63388,9 @@ Edited Books:                       0
 Chapters in Books:                  1
 Refereed Proceedings:               0
 Conference Proceedings:             2
-Technical Reports:                  3
+Technical Reports:                  4
 Manuals:                            0
-Theses:                             3
+Theses:                             2
 Courses:                            0
 Talks:                              0
 Posters:                            0
@@ -62709,9 +63470,9 @@ Edited Books:                       0
 Chapters in Books:                  1
 Refereed Proceedings:               0
 Conference Proceedings:             2
-Technical Reports:                  3
+Technical Reports:                  4
 Manuals:                            0
-Theses:                             3
+Theses:                             2
 Courses:                            0
 Talks:                              0
 Posters:                            0
@@ -63037,7 +63798,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-198.
+199.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -63135,71 +63896,71 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 747.
+t line 748.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 748.
+ine 749.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-51.
+52.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 752.
+ 753.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-54.
+55.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 756.
+t line 757.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 756.
+ 757.
 
 
 LaTeX Warning: Citation `Langtangen_1992c' on page 11 undefined on input line 7
-60.
+61.
 
 
 LaTeX Warning: Citation `Langtangen_1994a' on page 11 undefined on input line 7
-60.
+61.
 
 
 LaTeX Warning: Citation `Mortensen_et_al_2011' on page 11 undefined on input li
-ne 760.
+ne 761.
 
 
 LaTeX Warning: Citation `Langtangen_Pedersen_2002' on page 11 undefined on inpu
-t line 760.
+t line 761.
 
 
 LaTeX Warning: Citation `Langtangen_et_al_2002' on page 11 undefined on input l
-ine 762.
+ine 763.
 
 
 LaTeX Warning: Citation `Glimsdal_et_al_20006' on page 11 undefined on input li
-ne 762.
+ne 763.
 
 
 LaTeX Warning: Citation `Rahman_et_al_2006b' on page 11 undefined on input line
- 762.
+ 763.
 
 
 LaTeX Warning: Citation `Haga_et_al_2011a' on page 11 undefined on input line 7
-62.
+63.
 
 
 LaTeX Warning: Citation `Langtangen_2003a' on page 11 undefined on input line 7
-62.
+63.
 
 
 LaTeX Warning: Citation `Langtangen_2008a' on page 11 undefined on input line 7
-62.
+63.
 
 
 LaTeX Warning: Citation `Langtangen:95' on page 11 
@@ -63207,57 +63968,57 @@ LaTeX Warning: Citation `Langtangen:95' on page 11
 
 
 LaTeX Warning: Citation `Langtangen_2012' on page 11 undefined on input line 76
-4.
+5.
 
 
 LaTeX Warning: Citation `Mardal_et_al_2003a' on page 11 undefined on input line
- 764.
+ 765.
 
 
 LaTeX Warning: Citation `Jeberg_et_al_2004' on page 11 undefined on input line 
-764.
+765.
 
 
 LaTeX Warning: Citation `Langtangen_1988d' on page 11 undefined on input line 7
-65.
+66.
 
 
 LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 7
-65.
+66.
 
 
 LaTeX Warning: Citation `Langtangen_talk_2007a' on page 11 undefined on input l
-ine 766.
+ine 767.
 
 
 LaTeX Warning: Citation `Langtangen:85' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:89d' on page 11 undefined on input line 767
-.
+LaTeX Warning: Citation `Langtangen_1989e' on page 11 undefined on input line 7
+68.
 
 
 LaTeX Warning: Citation `Langtangen:91' on page 11 
 
 
 
-LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 770
+LaTeX Warning: Citation `Langtangen:94b' on page 11 undefined on input line 771
 .
 
 [11]
 Overfull \hbox (5.05241pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
+[12]
 
-LaTeX Warning: Reference `my:eq1' on page 12 
+LaTeX Warning: Reference `my:eq1' on page 13 
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12]
 
 LaTeX Warning: Reference `my:eq1' on page 13 
 
@@ -63269,7 +64030,7 @@ LaTeX Warning: Reference `eq2' on page 13
 
 
 LaTeX Warning: Reference `split:envir:eq' on page 13 undefined on input line 89
-3.
+6.
 
 
 LaTeX Warning: Reference `eq1' on page 13 
@@ -63301,11 +64062,11 @@ LaTeX Warning: Reference `exer:you' on page 13
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 919.
+ 922.
 
 [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15]
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1280
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1283
 .
 
 
@@ -63316,13 +64077,13 @@ LaTeX Warning: Reference `demo:ex:2' on page 16
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 16 undefined on input line
- 1297.
+ 1300.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 16 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1298
+LaTeX Warning: Reference `proj:circle1' on page 16 undefined on input line 1301
 .
 
 
@@ -63331,12 +64092,12 @@ LaTeX Warning: Reference `exer:you' on page 16
 (./testdoc.bbl [16]) [17]
 
 LaTeX Warning: Reference `mdf@pagelabel-1' on page 18 undefined on input line 1
-351.
+354.
 
 [18]
 
 LaTeX Warning: Reference `mdf@pagelabel-2' on page 19 undefined on input line 1
-378.
+382.
 
 [19]
 
@@ -63864,13 +64625,14 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Overfull \hbox (5.05241pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
+[12]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl
-[16]) [17] [18] [19]
+[13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl [16])
+[17] [18] [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -64103,14 +64865,12 @@ This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 The top-level auxiliary file: testdoc.aux
 The style file: plain.bst
 Database file #1: papers.bib.bib
-Warning--entry type for "Langtangen:85" isn't style-file defined
---line 158 of file papers.bib.bib
 Warning--entry type for "Langtangen_1989e" isn't style-file defined
---line 167 of file papers.bib.bib
-Warning--entry type for "Langtangen:89d" isn't style-file defined
---line 177 of file papers.bib.bib
+--line 166 of file papers.bib.bib
+Warning--entry type for "Langtangen:85" isn't style-file defined
+--line 175 of file papers.bib.bib
 Warning--can't use both author and editor fields in Langtangen:95
-(There were 4 warnings)
+(There were 3 warnings)
 + pdflatex -shell-escape testdoc
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
@@ -64406,13 +65166,14 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Overfull \hbox (5.05241pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
+[12]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl
-[16]) [17] [18] [19]
+[13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl [16])
+[17] [18] [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -64928,13 +65689,14 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Overfull \hbox (5.05241pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
+[12]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[12] [13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl
-[16]) [17] [18] [19]
+[13] (./testdoc.out.pyg) (./testdoc.out.pyg [14]) [15] (./testdoc.bbl [16])
+[17] [18] [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
@@ -65315,6 +66077,8 @@ Not recommended for sphinx output: math environment {eqnarray}
 (use equation, equation*, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
+*** warning: hyperlink to URL mailto:hpl@simula.no is to a local file,
+  - recommended to be _static/mailto:hpl@simula.no for sphinx
 *** warning: hyperlink to URL testdoc.do.txt is to a local file,
   - recommended to be _static/testdoc.do.txt for sphinx
 *** move linked files to _static and change URLs
@@ -65399,6 +66163,8 @@ Not recommended for sphinx output: math environment {eqnarray}
 (use equation, equation*, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
+*** warning: hyperlink to URL mailto:hpl@simula.no is to a local file,
+  - recommended to be _static/mailto:hpl@simula.no for sphinx
 *** warning: hyperlink to URL testdoc.do.txt is to a local file,
   - recommended to be _static/testdoc.do.txt for sphinx
 *** move linked files to _static and change URLs
@@ -65965,9 +66731,9 @@ Edited Books:                       0
 Chapters in Books:                  1
 Refereed Proceedings:               0
 Conference Proceedings:             2
-Technical Reports:                  3
+Technical Reports:                  4
 Manuals:                            0
-Theses:                             3
+Theses:                             2
 Courses:                            0
 Talks:                              0
 Posters:                            0
@@ -66036,16 +66802,16 @@ output in testdoc.p.tex
 + '[' 0 -ne 0 ']'
 + system doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
-\bpypro (!bc pypro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bcpppro (!bc cpppro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bfpro (!bc fpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bcycod (!bc cycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
-\bhtmlcod (!bc htmlcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bpypro (!bc pypro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bcpppro (!bc cpppro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bfpro (!bc fpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bcycod (!bc cycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\bhtmlcod (!bc htmlcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in testdoc.tex
 + '[' 0 -ne 0 ']'
 + system doconce replace '\Verb!' '\verb!' testdoc.tex
@@ -66167,7 +66933,7 @@ output in slides1.p.tex
 + '[' 0 -ne 0 ']'
 + system doconce ptex2tex slides1 -DLATEX_HEADING=beamer
 + doconce ptex2tex slides1 -DLATEX_HEADING=beamer
-\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in slides1.tex
 + '[' 0 -ne 0 ']'
 + system doconce slides_beamer slides1
@@ -66272,7 +67038,7 @@ output in slides2.p.tex
 + doconce ptex2tex slides2 -DLATEX_HEADING=beamer envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bpypro (!bc pypro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in slides2.tex
 + '[' 0 -ne 0 ']'
 + system doconce slides_beamer slides2
@@ -66376,9 +67142,9 @@ Edited Books:                       0
 Chapters in Books:                  1
 Refereed Proceedings:               0
 Conference Proceedings:             2
-Technical Reports:                  3
+Technical Reports:                  4
 Manuals:                            0
-Theses:                             3
+Theses:                             2
 Courses:                            0
 Talks:                              0
 Posters:                            0
@@ -66395,10 +67161,10 @@ output in author1.p.tex
 + system doconce format sphinx author1
 + doconce format sphinx author1
 translating doconce text in author1.do.txt to sphinx
-*** warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
-  - recommended to be _static/testdoc.html#___sec2 for sphinx
-*** warning: hyperlink to URL testdoc.html is to a local file,
-  - recommended to be _static/testdoc.html for sphinx
+*** warning: hyperlink to URL demo_testdoc.html is to a local file,
+  - recommended to be _static/demo_testdoc.html for sphinx
+*** warning: hyperlink to URL demo_testdoc.html#___sec2 is to a local file,
+  - recommended to be _static/demo_testdoc.html#___sec2 for sphinx
 *** move linked files to _static and change URLs
     (unless you really know that the links will be correct
     when the sphinx build directory is moved to its final destination)
@@ -66416,7 +67182,7 @@ running mako on tmp_preprocess__math_test.do.txt to make tmp_mako__math_test.do.
 translating doconce text in tmp_mako__math_test.do.txt to pdflatex
 output in math_test.p.tex
 + doconce ptex2tex math_test
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in math_test.tex
 + pdflatex math_test
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -66839,7 +67605,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_colors1.tex
 + pdflatex -shell-escape admon_colors1
@@ -67133,7 +67899,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_graybox1.tex
 + pdflatex -shell-escape admon_graybox1
@@ -67510,7 +68276,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_paragraph.tex
 + pdflatex -shell-escape admon_paragraph
@@ -67887,7 +68653,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_graybox2.tex
 + pdflatex -shell-escape admon_graybox2
@@ -68267,7 +69033,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_yellowbox.tex
 + pdflatex -shell-escape admon_yellowbox
@@ -68389,9 +69155,9 @@ dmap/pdftex.map} <./latex_figs/small_yellow_warning.pdf>]
 (./admon_yellowbox.out.pyg)
 <../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 424
+Underfull \vbox (badness 10000) detected at line 435
 
-Underfull \vbox (badness 10000) detected at line 424
+Underfull \vbox (badness 10000) detected at line 435
 [4] <latex_figs/small_yellow_summary.pdf, id=61, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_summary.pdf>
 No file admon_yellowbox.ind.
@@ -68540,7 +69306,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_graybox3.tex
 + pdflatex -shell-escape admon_graybox3
@@ -68660,9 +69426,9 @@ f> <./latex_figs/small_gray_question2.pdf>]
 (./admon_graybox3.out.pyg) (./admon_graybox3.out.pyg)
 <../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 424
+Underfull \vbox (badness 10000) detected at line 435
 
-Underfull \vbox (badness 10000) detected at line 424
+Underfull \vbox (badness 10000) detected at line 435
 [4] <latex_figs/small_gray_summary.pdf, id=61, 48.18pt x 48.18pt>
 <use latex_figs/small_gray_summary.pdf>
 No file admon_graybox3.ind.
@@ -68811,7 +69577,7 @@ output in admon.p.tex
 + '[' 0 -ne 0 ']'
 + doconce ptex2tex admon envir=minted
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 output in admon.tex
 + cp admon.tex admon_colors2.tex
 + pdflatex -shell-escape admon_colors2
@@ -68929,9 +69695,9 @@ tice.pdf> <./latex_figs/question.pdf>] <use latex_figs/warning.pdf>
 <use latex_figs/notice.pdf> (./admon_colors2.out.pyg) (./admon_colors2.out.pyg)
 <../doc/manual/figs/wavepacket_0001.png, id=43, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 424
+Underfull \vbox (badness 10000) detected at line 435
 
-Underfull \vbox (badness 10000) detected at line 424
+Underfull \vbox (badness 10000) detected at line 435
 [4] <latex_figs/summary.pdf, id=55, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 No file admon_colors2.ind.
@@ -69331,6 +70097,11 @@ figure file ../doc/manual/figs/wavepacket_0001:
 output in admon.mwiki
 + '[' 0 -ne 0 ']'
 + cp admon.mwiki admon_mwiki.mwiki
++ system doconce format pandoc github_md.do.txt --github_md
++ doconce format pandoc github_md.do.txt --github_md
+translating doconce text in github_md.do.txt to pandoc
+output in github_md.md
++ '[' 0 -ne 0 ']'
 + system doconce guess_encoding encoding1.do.txt
 + doconce guess_encoding encoding1.do.txt
 + '[' 0 -ne 0 ']'
@@ -69514,15 +70285,15 @@ replacing # Comment before list by  in tmp2.do.txt
 translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
-*** error: you have citations but no biblioraphy (BIBFILE: ...)
-Abort! (add --no_abort on the command line to avoid this abortion)
+*** warning: you have citations but no bibliography (BIBFILE: ...)
+output in tmp2.rst
 + doconce replace '`Google`' '`Google` site' tmp2.do.txt
 + doconce format rst tmp2
 translating doconce text in tmp2.do.txt to rst
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
-*** error: you have citations but no biblioraphy (BIBFILE: ...)
-Abort! (add --no_abort on the command line to avoid this abortion)
+*** warning: you have citations but no bibliography (BIBFILE: ...)
+output in tmp2.rst
 + echo
 
 + echo 'When we reach this point in the script,'
@@ -69544,10 +70315,10 @@ translating doconce text in tmp_mako__quickref.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.p.tex
 + doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
-\bshpro (!bc shpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
-\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bshpro (!bc shpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
+\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
+\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
 output in quickref.tex
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -69765,7 +70536,7 @@ Overfull \hbox (25.94281pt too wide)
 /10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [6] [7] [8]
 
-LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 688
+LaTeX Warning: Reference `quick:sections' on page 9 undefined on input line 716
 .
 
 [9]
@@ -69784,16 +70555,17 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Overfull \hbox (3.50804pt too wide) 
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
-
+[15]
 Overfull \hbox (0.45856pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-[15]
+
 Overfull \hbox (86.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
+[16]
 No file quickref.ind.
-[16] (./quickref.aux)
+[17] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -69949,7 +70721,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (16 pages, ).
+Output written on quickref.dvi (17 pages, ).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -70170,20 +70942,21 @@ Overfull \hbox (20.06894pt too wide)
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on 
 
-[12] [13] [14]
+[12] [13] [14] [15]
 Overfull \hbox (3.50804pt too wide) 
 \OT1/phv/m/n/10 Doconce en-vi-ron-ments start with []benvirname! and end with [
 ]eenvirname!, where
-[15]
+[16]
 Overfull \hbox (0.45856pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-[16]
+
 Overfull \hbox (86.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
+[17]
 No file quickref.ind.
-[17] (./quickref.aux)
+[18] (./quickref.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -70333,7 +71106,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (17 pages, ).
+Output written on quickref.dvi (18 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no_preprocess
@@ -70657,14 +71430,26 @@ m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 
 
  [7]
-Overfull \hbox (449.00006pt too wide) 
-\T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
-aption which must be on a single line. label{some:fig:label}  
+Overfull \hbox (41.00006pt too wide) 
+\T1/pcr/m/n/10 Here is some "some link text": "http://some.net/address"  
+
+Overfull \hbox (5.00006pt too wide) 
+[]\T1/pcr/m/n/10 or just the raw address: URL: "http://google.com".  
+
+Overfull \hbox (47.00006pt too wide) 
+[]\T1/pcr/m/n/10 Links to files typeset in verbatim mode applies backtics:  
+
+Overfull \hbox (29.00006pt too wide) 
+[]\T1/pcr/m/n/10 "`myfile.py`": "http://some.net/some/place/myfile.py".  
+
+Overfull \hbox (503.00006pt too wide) 
+\T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here g
+oes the caption which must be on a single line. label{some:fig:label}  
 
 Overfull \hbox (437.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label} 
-
+[8]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_image 
 
@@ -70675,10 +71460,9 @@ ight=315] YouTube movie.
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo
  movie. 
-[8]
 
 LaTeX Warning: Hyper reference `section-types' on page 9 undefined on input lin
-e 964.
+e 998.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -70725,7 +71509,7 @@ Overfull \hbox (54.34767pt too wide)
 Overfull \hbox (26.41858pt too wide) 
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
-
+[10]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
  
@@ -70733,7 +71517,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
-[10]
+
 Overfull \hbox (2969.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
@@ -70754,7 +71538,7 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (197.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce subst [-s -m -x --restore] regex-pattern regex-replace
 ment file1 file2 ...  
-
+[11]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier
 ,  
@@ -70778,7 +71562,7 @@ RLs
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
-[11]
+
 Overfull \hbox (53.00006pt too wide) 
 []    \T1/pcr/m/n/10 dirname=sphinx-rootdir theme=default logo=mylogo.png \  
 
@@ -70794,7 +71578,7 @@ Overfull \hbox (47.00006pt too wide)
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
-
+[12]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce split_rst complete_file        # !split delimiters  
 
@@ -70811,7 +71595,7 @@ ile
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
-[12]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
@@ -70841,7 +71625,7 @@ Overfull \hbox (17.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # insert a table of exercises in a latex file myfile.p.tex  
-
+[13]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning them
  up)  
@@ -70871,7 +71655,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce fix_bibtex4publish file1.bib file2.bib ...  
-[13]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diff
 use, ...)  
@@ -70879,7 +71663,7 @@ use, ...)
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # find differences between the last two Git versions of severa
 l files  
-
+[14]
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
@@ -70893,7 +71677,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
-[14]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
  ===== 
@@ -70904,7 +71688,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-
+[15]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -70915,18 +71699,18 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[15]
+
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
 
 Overfull \hbox (47.10902pt too wide) 
 []
-
+[16]
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[16]
+
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
@@ -71107,14 +71891,26 @@ m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 
 
  [8]
-Overfull \hbox (449.00006pt too wide) 
-\T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
-aption which must be on a single line. label{some:fig:label}  
+Overfull \hbox (41.00006pt too wide) 
+\T1/pcr/m/n/10 Here is some "some link text": "http://some.net/address"  
+
+Overfull \hbox (5.00006pt too wide) 
+[]\T1/pcr/m/n/10 or just the raw address: URL: "http://google.com".  
+
+Overfull \hbox (47.00006pt too wide) 
+[]\T1/pcr/m/n/10 Links to files typeset in verbatim mode applies backtics:  
+
+Overfull \hbox (29.00006pt too wide) 
+[]\T1/pcr/m/n/10 "`myfile.py`": "http://some.net/some/place/myfile.py".  
+
+Overfull \hbox (503.00006pt too wide) 
+\T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here g
+oes the caption which must be on a single line. label{some:fig:label}  
 
 Overfull \hbox (437.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label} 
-
+[9]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_image 
 
@@ -71125,7 +71921,7 @@ ight=315] YouTube movie.
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo
  movie. 
-[9]
+
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 |----------------c--------|------------------c------------------
 --|  
@@ -71170,7 +71966,7 @@ Overfull \hbox (54.34767pt too wide)
 Overfull \hbox (26.41858pt too wide) 
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
-
+[11]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
  
@@ -71178,7 +71974,7 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
-[11]
+
 Overfull \hbox (2969.00006pt too wide) 
 []\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
 le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
@@ -71199,7 +71995,7 @@ Overfull \hbox (53.00006pt too wide)
 Overfull \hbox (197.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce subst [-s -m -x --restore] regex-pattern regex-replace
 ment file1 file2 ...  
-
+[12]
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier
 ,  
@@ -71223,7 +72019,7 @@ RLs
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce sphinx_dir author='John Doe' title='Long title' \  
-[12]
+
 Overfull \hbox (53.00006pt too wide) 
 []    \T1/pcr/m/n/10 dirname=sphinx-rootdir theme=default logo=mylogo.png \  
 
@@ -71239,7 +72035,7 @@ Overfull \hbox (47.00006pt too wide)
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
-
+[13]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce split_rst complete_file        # !split delimiters  
 
@@ -71256,7 +72052,7 @@ ile
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
-[13]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
@@ -71286,7 +72082,7 @@ Overfull \hbox (17.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # insert a table of exercises in a latex file myfile.p.tex  
-
+[14]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning them
  up)  
@@ -71316,7 +72112,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce fix_bibtex4publish file1.bib file2.bib ...  
-[14]
+
 Overfull \hbox (131.00006pt too wide) 
 []\T1/pcr/m/n/10 (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diff
 use, ...)  
@@ -71324,7 +72120,7 @@ use, ...)
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # find differences between the last two Git versions of severa
 l files  
-
+[15]
 Overfull \hbox (101.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
@@ -71338,7 +72134,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
-[15]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellipse
  ===== 
@@ -71349,7 +72145,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-
+[16]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -71360,18 +72156,18 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[16]
+
 Overfull \hbox (2.38828pt too wide) 
 \T1/ptm/m/n/10 Doconce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
 1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
 
 Overfull \hbox (47.10902pt too wide) 
 []
-
+[17]
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[17]
+
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
