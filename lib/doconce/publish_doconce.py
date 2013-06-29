@@ -1,7 +1,7 @@
 from publish import config
 _format_venue = config.formatting._format_venue
 from publish.common import short_author
-from publish.config.attributes import thesistype_strings
+from publish.config.defaults import thesistype_strings
 
 #------------------------------------------------------------------------------
 # Doconce formatting
