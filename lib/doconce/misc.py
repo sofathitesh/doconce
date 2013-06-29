@@ -184,6 +184,7 @@ def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
         print 'could not run', cmd, failure_info
         if abort_on_failure:
             _abort()
+    return failure
 
 def recommended_html_styles_and_pygments_styles():
     """
@@ -997,7 +998,10 @@ def ptex2tex():
                     options = ''
                     if value == 'Verbatim':
                         # provide lots of options
-                        options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]'
+                        options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]'
+                    elif value == 'Verbatim-indent':
+                        # provide lots of options
+                        options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=8mm]'
 
                     begin = '\\' + 'begin{' + value + '}' + options
                     end = '\\' + 'end{' + value + '}'
@@ -1094,7 +1098,7 @@ download preprocess from http://code.google.com/p/preprocess""")
             print '%s (!bc %s) -> %s' % (ptex2tex_begin, envir, begin)
 
     # Replace other known ptex2tex environments by a default choice
-    begin = r"""\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]"""
+    begin = r"""\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]"""
     end = r"""\end{Verbatim}"""
     #begin = r"""\begin{quote}\begin{verbatim}"""
     #end = r"""\end{verbatim}\end{quote}"""
@@ -1439,7 +1443,11 @@ def _change_encoding_unix(filename, from_enc, to_enc):
         print 'changing encoding is not implemented on Windows machines'
         _abort()
     os.rename(filename, backupfile)
-    system(cmd)
+    failure = system(cmd, abort_on_failure=False)
+    if failure:
+        # Restore file
+        shutil.copy(backupfile, filename)
+        os.remove(backupfile)
 
 def _change_encoding_python(filename, from_enc, to_enc):
     f = codecs.open(filename, 'r', from_enc)

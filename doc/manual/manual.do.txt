@@ -245,6 +245,7 @@ section heading is taken as part of the text of the abstract).
 
 
 Here are some examples:
+
 !bc
 __Abstract.__ The following text just attempts to exemplify
 various section headings.
@@ -252,11 +253,6 @@ various section headings.
 Appendix is supported too: just let the heading start with "Appendix: "
 (this affects only `latex` output, where the appendix formatting
 is used - all other formats just leave the heading as it is written).
-
-========= Example on a Chapter Heading =========
-
-Some text.
-
 
 ======= Example on a Section Heading =======
 
@@ -374,11 +370,15 @@ A typical `MOVIE` command with a YouTube movie is then
 !bc
 MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
 
-MOVIE: [http://vimeo.com/55562330, width=500 height=278] Computational fluid dynamics movie.
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.
 !ec
 Note that there must be a blank line after every `MOVIE:` command.
 The width and height parameters are not required, but leaving them out
 may lead to movie sizes you do not want.
+
+MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
+
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.
 
 ===== Copying Computer Code from Source Files =====
 

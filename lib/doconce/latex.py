@@ -290,9 +290,12 @@ def latex_figure(m, includegraphics=True):
 
 def latex_movie(m):
     from common import default_movie
-    text = default_movie(m)
+    text = default = default_movie(m)
     filename = m.group('filename')
     caption = m.group('caption').strip()
+
+    if 'youtu.be' in filename:
+        filename = filename.replace('youtu.be', 'youtube.com')
 
     # URL to HTML viewer file must have absolute path in \href
     html_viewer_file_pattern = r'Movie of files `.+` in URL:"(.+)"'
@@ -312,16 +315,46 @@ def latex_movie(m):
 \begin{figure}[ht]
 \begin{center}
 """
-        text += r"""
+        if 'youtube.com' in filename:
+            text += r"""
 %% #if MOVIE == "media9"
 \includemedia[
-label=%(filename)s,
+width=0.6\linewidth,height=0.45\linewidth,
 activate=pageopen,
-width=0.9\linewidth,
-addresource=%(filename)s,
 flashvars={
-source=%(filename)s,
-&autoPlay=true}]{VPlayer.swf}
+modestbranding=1   %% no YouTube logo in control bar
+&autohide=1        %% controlbar autohide
+&showinfo=0        %% no title and other info before start
+&rel=0             %% no related videos after end
+}
+]{}{%(filename)s}
+%% #else
+%(default)s
+%% #endif
+""" % vars()
+
+        else:
+            text += r"""
+%% #if MOVIE == "media9"
+\includemedia[
+width=0.8\linewidth,
+label=%(filename)s,
+activate=pageopen,         %% or onclick or pagevisible
+addresource=%(filename)s,  %% embed the video in the PDF
+flashvars={
+source=%(filename)s
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   %% preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
+%% #ifdef MOVIE_CONTROLS
+\mediabutton[
+  mediacommand=%(filename)s:playPause,
+  overface=\color{blue}{\fbox{\strut Play/Pause}},
+  downface=\color{red}{\fbox{\strut Play/Pause}}
+  ]{\fhox{\strut Play/Pause}}
+%% #endif
 
 %% #elif MOVIE == "movie15"
 \includemovie[poster,

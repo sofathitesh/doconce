@@ -87,7 +87,7 @@ if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 $d2f pdflatex manual.do.txt --no_mako
 if [ $? -ne 0 ]; then echo "make.sh: abort"; exit 1; fi
 
-doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
+doconce ptex2tex manual -DHELVETICA envir=Verbatim
 pdflatex -shell-escape manual
 bibtex manual
 makeindex manual
