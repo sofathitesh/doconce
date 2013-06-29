@@ -39,18 +39,18 @@ text will be the output.
 Here is a specific example on a generalized reference:
 !bc
 As explained in
-ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://code.google.com/p/doconce/wiki/Description"
-cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
-the document "A Document for Testing Doconce": "testdoc.html"
+ref[Section ref{subsec:ex}][in "Langtangen, 2013":
+"http://doconce.googlecode.com/hg/test/demo_testdoc.html"
+cite{testdoc:12}][a "section": "demo_testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "demo_testdoc.html"
 cite{testdoc:12}], Doconce documents may include movies.
 !ec
 This is rendered to the following text:
 As explained in
-ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://code.google.com/p/doconce/wiki/Description"
-cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
-the document "A Document for Testing Doconce": "testdoc.html"
+ref[Section ref{subsec:ex}][in "Langtangen, 2013":
+"http://doconce.googlecode.com/hg/test/demo_testdoc.html"
+cite{testdoc:12}][a "section": "demo_testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "demo_testdoc.html"
 cite{testdoc:12}], Doconce documents may include movies.
 
 And here is another example with internal references only:

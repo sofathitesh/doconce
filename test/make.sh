@@ -60,6 +60,8 @@ system doconce remove_exercise_answers testdoc.html
 system doconce html_colorbullets testdoc.html
 system doconce split_html testdoc.html
 
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_output=demo_testdoc
+
 system doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments
 system doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen
 system doconce latex_exercise_toc testdoc
@@ -251,7 +253,7 @@ cp tmp_admon/_build/html/admon.html admon_sphinx.html
 system doconce format mwiki admon
 cp admon.mwiki admon_mwiki.mwiki
 
-system doconce format pandoc githu_md.do.txt --github_md
+system doconce format pandoc github_md.do.txt --github_md
 
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done

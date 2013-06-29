@@ -1,6 +1,6 @@
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Jul 13, 2013
+DATE: Jun 29, 2013
 **WARNING: This quick reference is very incomplete!**
 
 *Mission.* Enable writing documentation with much mathematics and
@@ -429,6 +429,23 @@ LaTeX code. This conventions helps make readable documents in formats
 without LaTeX support. For 'html', 'sphinx', 'latex', 'pdflatex',
 'mwiki', 'ipynb', and 'pandoc', the mathematics in newcommands is
 rendered nicely anyway.
+
+
+Hyperlinks
+
+Links use either a link text or the raw URL::
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
 
 
 Figures and Movies

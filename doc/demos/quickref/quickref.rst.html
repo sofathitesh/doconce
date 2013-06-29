@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jul 13, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jun 29, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -345,17 +345,18 @@ ul.auto-toc {
 <li><a class="reference internal" href="#inline-comments" id="id9">Inline comments</a></li>
 <li><a class="reference internal" href="#verbatim-computer-code" id="id10">Verbatim/Computer Code</a></li>
 <li><a class="reference internal" href="#latex-mathematics" id="id11">LaTeX Mathematics</a></li>
-<li><a class="reference internal" href="#figures-and-movies" id="id12">Figures and Movies</a></li>
-<li><a class="reference internal" href="#tables" id="id13">Tables</a></li>
-<li><a class="reference internal" href="#labels-and-references" id="id14">Labels and References</a></li>
-<li><a class="reference internal" href="#citations-and-bibliography" id="id15">Citations and Bibliography</a></li>
-<li><a class="reference internal" href="#generalized-citations" id="id16">Generalized Citations</a></li>
-<li><a class="reference internal" href="#index-of-keywords" id="id17">Index of Keywords</a></li>
-<li><a class="reference internal" href="#capabilities-of-the-program-doconce" id="id18">Capabilities of The Program <tt class="docutils literal">doconce</tt></a></li>
-<li><a class="reference internal" href="#exercises" id="id19">Exercises</a></li>
-<li><a class="reference internal" href="#environments" id="id20">Environments</a></li>
-<li><a class="reference internal" href="#preprocessing" id="id21">Preprocessing</a></li>
-<li><a class="reference internal" href="#resources" id="id22">Resources</a></li>
+<li><a class="reference internal" href="#hyperlinks" id="id12">Hyperlinks</a></li>
+<li><a class="reference internal" href="#figures-and-movies" id="id13">Figures and Movies</a></li>
+<li><a class="reference internal" href="#tables" id="id14">Tables</a></li>
+<li><a class="reference internal" href="#labels-and-references" id="id15">Labels and References</a></li>
+<li><a class="reference internal" href="#citations-and-bibliography" id="id16">Citations and Bibliography</a></li>
+<li><a class="reference internal" href="#generalized-citations" id="id17">Generalized Citations</a></li>
+<li><a class="reference internal" href="#index-of-keywords" id="id18">Index of Keywords</a></li>
+<li><a class="reference internal" href="#capabilities-of-the-program-doconce" id="id19">Capabilities of The Program <tt class="docutils literal">doconce</tt></a></li>
+<li><a class="reference internal" href="#exercises" id="id20">Exercises</a></li>
+<li><a class="reference internal" href="#environments" id="id21">Environments</a></li>
+<li><a class="reference internal" href="#preprocessing" id="id22">Preprocessing</a></li>
+<li><a class="reference internal" href="#resources" id="id23">Resources</a></li>
 </ul>
 </div>
 <p><strong>WARNING: This quick reference is very incomplete!</strong></p>
@@ -841,8 +842,24 @@ without LaTeX support. For <tt class="docutils literal">html</tt>, <tt class="do
 <tt class="docutils literal">mwiki</tt>, <tt class="docutils literal">ipynb</tt>, and <tt class="docutils literal">pandoc</tt>, the mathematics in newcommands is
 rendered nicely anyway.</p>
 </div>
+<div class="section" id="hyperlinks">
+<h1><a class="toc-backref" href="#id12">Hyperlinks</a></h1>
+<p>Links use either a link text or the raw URL:</p>
+<pre class="literal-block">
+Here is some &quot;some link text&quot;: &quot;http://some.net/address&quot;
+(as in &quot;search google&quot;: &quot;http://google.com&quot;)
+or just the raw address: URL: &quot;http://google.com&quot;.
+
+Links to files typeset in verbatim mode applies backtics:
+&quot;`myfile.py`&quot;: &quot;http://some.net/some/place/myfile.py&quot;.
+
+Mail addresses works too: send problems to
+&quot;`hpl&#64;simula.no`&quot;: &quot;mailto:hpl&#64;simula.no&quot;
+or just &quot;send mail&quot;: &quot;mailto:hpl&#64;simula.no&quot;.
+</pre>
+</div>
 <div class="section" id="figures-and-movies">
-<h1><a class="toc-backref" href="#id12">Figures and Movies</a></h1>
+<h1><a class="toc-backref" href="#id13">Figures and Movies</a></h1>
 <p>Figures and movies have almost equal syntax:</p>
 <pre class="literal-block">
 FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
@@ -889,7 +906,7 @@ MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 
 <em>Vimeo movie.</em></div>
 <div class="section" id="tables">
-<h1><a class="toc-backref" href="#id13">Tables</a></h1>
+<h1><a class="toc-backref" href="#id14">Tables</a></h1>
 <p>The table in the section <a class="reference internal" href="#section-types">Section Types</a> was written with this
 syntax:</p>
 <pre class="literal-block">
@@ -928,7 +945,7 @@ where <tt class="docutils literal">X</tt> is the table number. This feature make
 load tables into spreadsheet programs for further analysis.</p>
 </div>
 <div class="section" id="labels-and-references">
-<h1><a class="toc-backref" href="#id14">Labels and References</a></h1>
+<h1><a class="toc-backref" href="#id15">Labels and References</a></h1>
 <p>The notion of labels and references (as well as bibliography and index)
 is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
@@ -951,7 +968,7 @@ by &quot;Section&quot; or &quot;Chapter&quot;, or in case of an equation, surrou
 reference by parenthesis.</p>
 </div>
 <div class="section" id="citations-and-bibliography">
-<h1><a class="toc-backref" href="#id15">Citations and Bibliography</a></h1>
+<h1><a class="toc-backref" href="#id16">Citations and Bibliography</a></h1>
 <p>Single citations are written as:</p>
 <pre class="literal-block">
 cite{name}
@@ -974,7 +991,7 @@ BibTeX <tt class="docutils literal">.bib</tt> files can easily be combined to a 
 than LaTeX).</p>
 </div>
 <div class="section" id="generalized-citations">
-<h1><a class="toc-backref" href="#id16">Generalized Citations</a></h1>
+<h1><a class="toc-backref" href="#id17">Generalized Citations</a></h1>
 <p>There is a <em>generalized referencing</em> feature in Doconce that allows
 a reference with <tt class="docutils literal">ref</tt> to have one formulation if the label is
 in the same document and another formulation if the reference is
@@ -1004,7 +1021,7 @@ documents.  If none of the two situations above applies, the
 <tt class="docutils literal">external</tt> text will be the output.</p>
 </div>
 <div class="section" id="index-of-keywords">
-<h1><a class="toc-backref" href="#id17">Index of Keywords</a></h1>
+<h1><a class="toc-backref" href="#id18">Index of Keywords</a></h1>
 <p>Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!):</p>
@@ -1019,7 +1036,7 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 <tt class="docutils literal">pdflatex</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats.</p>
 </div>
 <div class="section" id="capabilities-of-the-program-doconce">
-<h1><a class="toc-backref" href="#id18">Capabilities of The Program <tt class="docutils literal">doconce</tt></a></h1>
+<h1><a class="toc-backref" href="#id19">Capabilities of The Program <tt class="docutils literal">doconce</tt></a></h1>
 <p>The <tt class="docutils literal">doconce</tt> program can be used for a number of purposes besides
 transforming a <tt class="docutils literal">.do.txt</tt> file to some format. Here is the
 list of capabilities:</p>
@@ -1162,7 +1179,7 @@ doconce csv2table somefile.csv
 </pre>
 </div>
 <div class="section" id="exercises">
-<h1><a class="toc-backref" href="#id19">Exercises</a></h1>
+<h1><a class="toc-backref" href="#id20">Exercises</a></h1>
 <p>Doconce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
 These are typeset
 as ordinary sections and referred to by their section labels.
@@ -1267,7 +1284,7 @@ turn off output of answers and solutions, respectively, except for
 examples.</p>
 </div>
 <div class="section" id="environments">
-<h1><a class="toc-backref" href="#id20">Environments</a></h1>
+<h1><a class="toc-backref" href="#id21">Environments</a></h1>
 <p>Doconce environments start with <tt class="docutils literal">!benvirname</tt> and end with <tt class="docutils literal">!eenvirname</tt>,
 where <tt class="docutils literal">envirname</tt> is the name of the environment. Here is a listing of
 the environments:</p>
@@ -1300,7 +1317,7 @@ slide</p>
 </blockquote>
 </div>
 <div class="section" id="preprocessing">
-<h1><a class="toc-backref" href="#id21">Preprocessing</a></h1>
+<h1><a class="toc-backref" href="#id22">Preprocessing</a></h1>
 <p>Doconce documents may utilize a preprocessor, either <tt class="docutils literal">preprocess</tt> and/or
 <tt class="docutils literal">mako</tt>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
@@ -1346,7 +1363,7 @@ some illustrations on how to utilize <tt class="docutils literal">mako</tt> (clo
 examine the Doconce source and the <tt class="docutils literal">doc/src/make.sh</tt> script).</p>
 </div>
 <div class="section" id="resources">
-<h1><a class="toc-backref" href="#id22">Resources</a></h1>
+<h1><a class="toc-backref" href="#id23">Resources</a></h1>
 <blockquote>
 <ul class="simple">
 <li>Excellent &quot;Sphinx Tutorial&quot; by C. Reller: &quot;<a class="reference external" href="http://people.ee.ethz.ch/~creller/web/tricks/reST.html">http://people.ee.ethz.ch/~creller/web/tricks/reST.html</a>&quot;</li>
