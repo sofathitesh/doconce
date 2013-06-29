@@ -1271,9 +1271,9 @@ $$
 <a name="part0000"></a>
 <!-- begin top navigation -->
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-    <p>
 <!-- end top navigation -->
 
+<p>
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -1363,7 +1363,7 @@ $$
 <p>
 <!-- begin bottom navigation -->
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-                <!-- end bottom navigation -->
+<!-- end bottom navigation -->
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -21527,9 +21527,9 @@ $$
 <a name="part0000"></a>
 <!-- begin top navigation -->
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-    <p>
 <!-- end top navigation -->
 
+<p>
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -21619,7 +21619,7 @@ $$
 <p>
 <!-- begin bottom navigation -->
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-                <!-- end bottom navigation -->
+<!-- end bottom navigation -->
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -21836,11 +21836,11 @@ $$
 <a name="part0001"></a>
 <!-- begin top navigation -->
 <a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-    
+
 <a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-    <p>
 <!-- end top navigation -->
 
+<p>
 <!-- !split -->
 
 <p>
@@ -21901,9 +21901,9 @@ Here is a nested list:
 <p>
 <!-- begin bottom navigation -->
 <a href="._part0000_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-                
+
 <a href="._part0002_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/next1.png" border=0 alt="next"></a>
-                <!-- end bottom navigation -->
+<!-- end bottom navigation -->
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -22120,9 +22120,9 @@ $$
 <a name="part0002"></a>
 <!-- begin top navigation -->
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-    <p>
 <!-- end top navigation -->
 
+<p>
 <!-- !split and check if these extra words are included properly in the comment -->
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
@@ -23486,7 +23486,7 @@ case in LaTeX.
 <p>
 <!-- begin bottom navigation -->
 <a href="._part0001_testdoc.html"><img src="https://doconce.googlecode.com/hg/bundled/html_images/prev1.png" border=0 alt="previous"></a>
-                <!-- end bottom navigation -->
+<!-- end bottom navigation -->
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -35031,8 +35031,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{notice_colors2admon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{notice_colors2admon}
 % Test one word with a number
 
@@ -35467,8 +35471,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{notice_colors1admon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{notice_colors1admon}
 % Test one word with a number
 
@@ -35908,8 +35916,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{notice_colors2admon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{notice_colors2admon}
 % Test one word with a number
 
@@ -36270,8 +36282,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{graybox1admon}[Note eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{graybox1admon}
 % Test one word with a number
 
@@ -36652,8 +36668,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{graybox2admon}[Note eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{graybox2admon}
 
 % Test one word with a number
@@ -37105,8 +37125,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{notice_graybox3admon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{notice_graybox3admon}
 % Test one word with a number
 
@@ -37451,8 +37475,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{paragraphadmon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{paragraphadmon}
 % Test one word with a number
 
@@ -37892,8 +37920,12 @@ The next admonition features a title "Note, eventually!".
 
 \begin{notice_yellowboxadmon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-\[ p=q\]
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 \end{notice_yellowboxadmon}
 % Test one word with a number
 
@@ -38253,8 +38285,15 @@ The next admonition features a title "Note, eventually!".
 <p>
 <div class="notice alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$
 </div>
 <p>
 <!-- Test one word with a number -->
@@ -38642,8 +38681,15 @@ The next admonition features a title "Note, eventually!".
 <p>
 <div class="alert alert-block alert-notice alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$
 </div>
 <p>
 <!-- Test one word with a number -->
@@ -39029,8 +39075,15 @@ The next admonition features a title "Note, eventually!".
 <p>
 <div class="alert alert-block alert-notice alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$
 </div>
 <p>
 <!-- Test one word with a number -->
@@ -39335,9 +39388,10 @@ and is useful when you want some admons with icon and some without.</p>
 <div class="admonition-note-eventually admonition">
 <p class="first admonition-title">Note, eventually</p>
 <p>Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:</p>
+But first a bit of math where we define <span class="math">\(\theta\)</span> and <span class="math">\(\boldsymbol{r}\)</span>:</p>
 <div class="last math">
-\[p=q\]</div>
+\[\begin{split}\theta &amp;= q^2,\\
+\boldsymbol{r} &amp;= \varrho\boldsymbol{i}\end{split}\]</div>
 </div>
 <div class="admonition-point1 admonition">
 <p class="first admonition-title">Point1</p>
@@ -39761,8 +39815,15 @@ The next admonition features a title "Note, eventually!".
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 <div class="alert-text-illegal-size">Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$</div>
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$</div>
 </p></td></tr>
 </table>
 <p>
@@ -40200,8 +40261,15 @@ The next admonition features a title "Note, eventually!".
 <!-- admonition: notice, typeset as paragraph -->
 <div class="alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$
 </div>
 <p>
 <!-- Test one word with a number -->
@@ -40626,8 +40694,15 @@ The next admonition features a title "Note, eventually!".
 <p>
 <div class="alert alert-block alert-notice alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$
 </div>
 <p>
 <!-- Test one word with a number -->
@@ -41035,8 +41110,15 @@ The next admonition features a title "Note, eventually!".
 <p>
 <div class="alert alert-block alert-notice alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
-$$ p=q$$
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+
+<p>
+$$
+\begin{align*}
+\theta &= q^2,\\
+\boldsymbol{r} &= \varrho\boldsymbol{i}
+\end{align*}
+$$
 </div>
 <p>
 <!-- Test one word with a number -->
@@ -41322,9 +41404,13 @@ The next admonition features a title "Note, eventually!".
 | type = notice
 | textstyle = font-size: illegal-size;
 | text = '''Note, eventually!''' Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math:
+But first a bit of math where we define <math>\theta</math> and <math>\bm{r}</math>:
+
 :<math>
- p=q
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
 </math>
 }}
 
@@ -49193,7 +49279,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 08 Jun 2013 (23:48)</center>
+<center>Sat, 29 Jun 2013 (07:43)</center>
 
 
 
@@ -49324,7 +49410,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 08 Jun 2013 (23:48)</center>
+<center>Sat, 29 Jun 2013 (07:43)</center>
 
 
 
@@ -66896,12 +66982,9 @@ Underfull \hbox (badness 10000)
 Underfull \hbox (badness 10000) 
 
 (./admon_colors1.out.pyg) (./admon_colors1.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=41, 642.4pt x 481.8pt>
-<use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 413
-
-Underfull \vbox (badness 10000) detected at line 413
-[4] <latex_figs/summary.pdf, id=54, 89.33376pt x 89.33376pt>
+<../doc/manual/figs/wavepacket_0001.png, id=42, 642.4pt x 481.8pt>
+<use ../doc/manual/figs/wavepacket_0001.png> [3] [4]
+<latex_figs/summary.pdf, id=55, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 Underfull \hbox (badness 10000) 
 
@@ -67028,12 +67111,13 @@ Package rerunfilecheck Warning: File `admon_colors1.out' has changed.
 ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+blic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_colors1.pdf (5 pages, ).
 Transcript written on admon_colors1.log.
 + for admon_tp in '$admon_tps'
@@ -67244,7 +67328,7 @@ ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
  [1{/var/lib/texmf/font
 s/map/pdftex/updmap/pdftex.map}] (./admon_graybox1.out.pyg) [2]
 (./admon_graybox1.out.pyg) (./admon_graybox1.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=31, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=33, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
 No file admon_graybox1.ind.
 [4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_graybox1.aux)
@@ -67403,13 +67487,14 @@ Package rerunfilecheck Warning: File `admon_graybox1.out' has changed.
  )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt9.pfb>
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt9.pfb>
 Output written on admon_graybox1.pdf (4 pages, ).
 Transcript written on admon_graybox1.log.
 + for admon_tp in '$admon_tps'
@@ -67619,8 +67704,8 @@ ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
 (./admon_paragraph.out.pyg)
  [1{/var/lib/texmf/font
 s/map/pdftex/updmap/pdftex.map}] (./admon_paragraph.out.pyg) [2]
-(./admon_paragraph.out.pyg) (./admon_paragraph.out.pyg) [3]
-<../doc/manual/figs/wavepacket_0001.png, id=37, 642.4pt x 481.8pt>
+(./admon_paragraph.out.pyg) (./admon_paragraph.out.pyg [3])
+<../doc/manual/figs/wavepacket_0001.png, id=38, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 No file admon_paragraph.ind.
 [4 <../doc/manual/figs/wavepacket_0001.png>] (./admon_paragraph.aux)
@@ -67779,13 +67864,14 @@ Package rerunfilecheck Warning: File `admon_paragraph.out' has changed.
  )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt9.pfb>
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt9.pfb>
 Output written on admon_paragraph.pdf (4 pages, ).
 Transcript written on admon_paragraph.log.
 + for admon_tp in '$admon_tps'
@@ -67995,15 +68081,9 @@ ABD: EveryShipout initializing macros (./newcommands_bfmath.tex)
 
 (./admon_graybox2.out.pyg)
  [1{/var/lib/texmf/font
-s/map/pdftex/updmap/pdftex.map}] (./admon_graybox2.out.pyg)
-
-Package mdframed Warning: You got a bad break
-(mdframed)                you have to change it manually
-(mdframed)                by changing the text, the space
-(mdframed)                or something else on 
-
-[2] (./admon_graybox2.out.pyg) (./admon_graybox2.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=31, 642.4pt x 481.8pt>
+s/map/pdftex/updmap/pdftex.map}] (./admon_graybox2.out.pyg) [2]
+(./admon_graybox2.out.pyg) (./admon_graybox2.out.pyg)
+<../doc/manual/figs/wavepacket_0001.png, id=33, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3] [4 <../doc/manual/figs/wavepac
 ket_0001.png>]
 No file admon_graybox2.ind.
@@ -68164,13 +68244,14 @@ Package rerunfilecheck Warning: File `admon_graybox2.out' has changed.
  )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt9.pfb>
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt9.pfb>
 Output written on admon_graybox2.pdf (5 pages, ).
 Transcript written on admon_graybox2.log.
 + for admon_tp in '$admon_tps'
@@ -68300,18 +68381,18 @@ dmap/pdftex.map} <./latex_figs/small_yellow_warning.pdf>]
 <use latex_figs/small_yellow_notice.pdf>
 <latex_figs/small_yellow_question.pdf, id=25, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_question.pdf>
-<use latex_figs/small_yellow_question.pdf>
-<use latex_figs/small_yellow_warning.pdf> (./admon_yellowbox.out.pyg) [2 <./lat
-ex_figs/small_yellow_notice.pdf> <./latex_figs/small_yellow_question.pdf>]
+<use latex_figs/small_yellow_question.pdf> [2 <./latex_figs/small_yellow_notice
+.pdf> <./latex_figs/small_yellow_question.pdf>]
+<use latex_figs/small_yellow_warning.pdf> (./admon_yellowbox.out.pyg)
 <use latex_figs/small_yellow_warning.pdf>
 <use latex_figs/small_yellow_notice.pdf> (./admon_yellowbox.out.pyg)
 (./admon_yellowbox.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=47, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 420
+Underfull \vbox (badness 10000) detected at line 424
 
-Underfull \vbox (badness 10000) detected at line 420
-[4] <latex_figs/small_yellow_summary.pdf, id=60, 32.12pt x 32.12pt>
+Underfull \vbox (badness 10000) detected at line 424
+[4] <latex_figs/small_yellow_summary.pdf, id=61, 32.12pt x 32.12pt>
 <use latex_figs/small_yellow_summary.pdf>
 No file admon_yellowbox.ind.
 [5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/small_yellow_summary.
@@ -68437,12 +68518,13 @@ Package rerunfilecheck Warning: File `admon_yellowbox.out' has changed.
 ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+blic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_yellowbox.pdf (5 pages, ).
 Transcript written on admon_yellowbox.log.
 + for admon_tp in '$admon_tps'
@@ -68571,17 +68653,17 @@ ap/pdftex.map} <./latex_figs/small_gray_warning.pdf>]
 <use latex_figs/small_gray_notice.pdf> <use latex_figs/small_gray_notice.pdf>
 <latex_figs/small_gray_question2.pdf, id=25, 64.24pt x 64.24pt>
 <use latex_figs/small_gray_question2.pdf>
-<use latex_figs/small_gray_question2.pdf>
-<use latex_figs/small_gray_warning.pdf> (./admon_graybox3.out.pyg) [2 <./latex_
-figs/small_gray_notice.pdf> <./latex_figs/small_gray_question2.pdf>]
+<use latex_figs/small_gray_question2.pdf> [2 <./latex_figs/small_gray_notice.pd
+f> <./latex_figs/small_gray_question2.pdf>]
+<use latex_figs/small_gray_warning.pdf> (./admon_graybox3.out.pyg)
 <use latex_figs/small_gray_warning.pdf> <use latex_figs/small_gray_notice.pdf>
 (./admon_graybox3.out.pyg) (./admon_graybox3.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=47, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=49, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 420
+Underfull \vbox (badness 10000) detected at line 424
 
-Underfull \vbox (badness 10000) detected at line 420
-[4] <latex_figs/small_gray_summary.pdf, id=60, 48.18pt x 48.18pt>
+Underfull \vbox (badness 10000) detected at line 424
+[4] <latex_figs/small_gray_summary.pdf, id=61, 48.18pt x 48.18pt>
 <use latex_figs/small_gray_summary.pdf>
 No file admon_graybox3.ind.
 [5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/small_gray_summary.pd
@@ -68707,12 +68789,13 @@ Package rerunfilecheck Warning: File `admon_graybox3.out' has changed.
 ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+blic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_graybox3.pdf (5 pages, ).
 Transcript written on admon_graybox3.log.
 + for admon_tp in '$admon_tps'
@@ -68840,16 +68923,16 @@ ap} <./latex_figs/warning.pdf>]
 <latex_figs/notice.pdf, id=22, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf> <use latex_figs/notice.pdf>
 <latex_figs/question.pdf, id=23, 89.33376pt x 89.33376pt>
-<use latex_figs/question.pdf> <use latex_figs/question.pdf>
-<use latex_figs/warning.pdf> (./admon_colors2.out.pyg) [2 <./latex_figs/notice.
-pdf> <./latex_figs/question.pdf>] <use latex_figs/warning.pdf>
+<use latex_figs/question.pdf> <use latex_figs/question.pdf> [2 <./latex_figs/no
+tice.pdf> <./latex_figs/question.pdf>] <use latex_figs/warning.pdf>
+(./admon_colors2.out.pyg) <use latex_figs/warning.pdf>
 <use latex_figs/notice.pdf> (./admon_colors2.out.pyg) (./admon_colors2.out.pyg)
-<../doc/manual/figs/wavepacket_0001.png, id=41, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=43, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png> [3]
-Underfull \vbox (badness 10000) detected at line 420
+Underfull \vbox (badness 10000) detected at line 424
 
-Underfull \vbox (badness 10000) detected at line 420
-[4] <latex_figs/summary.pdf, id=54, 89.33376pt x 89.33376pt>
+Underfull \vbox (badness 10000) detected at line 424
+[4] <latex_figs/summary.pdf, id=55, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
 No file admon_colors2.ind.
 [5 <../doc/manual/figs/wavepacket_0001.png> <./latex_figs/summary.pdf>]
@@ -68975,12 +69058,13 @@ Package rerunfilecheck Warning: File `admon_colors2.out' has changed.
 ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+blic/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on admon_colors2.pdf (5 pages, ).
 Transcript written on admon_colors2.log.
 + system doconce format html admon --html_admon=lyx --html_style=blueish2
@@ -69149,6 +69233,7 @@ running preprocess -DFORMAT=sphinx -DDEVICE=screen  admon.do.txt > tmp_preproces
 translating doconce text in tmp_preprocess__admon.do.txt to sphinx
 figure file ../doc/manual/figs/wavepacket_0001:
     can use ../doc/manual/figs/wavepacket_0001.png for format sphinx
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 *** error: wrong text size "illegal-size" specified in notice environment!
     must be large or small - will be set to normal
 output in admon.rst
