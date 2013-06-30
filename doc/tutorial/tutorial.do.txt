@@ -405,7 +405,7 @@ for various formats of this document).
 
 ## Example on including another Doconce file (using preprocess):
 
-# #include "_doconce2anything.do.txt"
+# #include "doconce2anything.do.txt"
 
 
 ===== Demos =====
