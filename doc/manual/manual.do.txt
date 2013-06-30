@@ -57,7 +57,7 @@ of the results.
 
 # Example on including another Doconce file:
 
-# #include "../tutorial/_doconce2anything.do.txt"
+# #include "../tutorial/doconce2anything.do.txt"
 
 
 

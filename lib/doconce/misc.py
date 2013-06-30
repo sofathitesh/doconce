@@ -999,8 +999,10 @@ def ptex2tex():
                     if value == 'Verbatim':
                         # provide lots of options
                         options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]'
-                    elif value == 'Verbatim-indent':
+                    elif value == 'Verbatim-0.85':
                         # provide lots of options
+                        options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]'
+                    elif value == 'Verbatim-indent':
                         options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=8mm]'
 
                     begin = '\\' + 'begin{' + value + '}' + options

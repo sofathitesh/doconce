@@ -294,9 +294,11 @@ can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option `--latex_printed` makes some adjustments for documents
+An option `-DDEVICE=paper` makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, `-DDEVICE=screen`, creates a PDF file for reading
+on a screen where links are clickable.
 
 __Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 !bc sys
@@ -390,9 +392,17 @@ above, which implies `\begin{minted}{fortran}` and `\end{minted}` as
 begin and end for blocks inside `!bc fpro` and `!ec`).  Specifying
 `envir=ans:nt` means that all other environments are typeset with the
 `anslistings.sty` package, e.g., `!bc cppcod` will then result in
-`\begin{c++}`. If no environments like `sys`, `fpro`, or the common
-`envir` are defined on the command line, the plain `\begin{verbatim}`
-and `\end{verbatim}` used.
+`\begin{c++}`. A predefined shortcut as in `shcod=Verbatim-0.85`
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+`shcod=Verbatim-indent` implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+`\begin{Verbatim}` instruction using the syntax illustrated for
+the `sys` environments above.
+
+If no environments like `sys`, `fpro`, or the common
+`envir` are defined on the command line, the plain `\begin{Verbatim}`
+and `\end{Verbatim}` instructions are used.
 
 
 __Step 2b (optional).__ Edit the `mydoc.tex` file to your needs.
