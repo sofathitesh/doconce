@@ -2336,6 +2336,8 @@ def preprocess(filename, format, preprocessor_options=[]):
 
     preprocess_commands = r'^#\s*#(if|define|include)'
     if re.search(preprocess_commands, filestr_without_code, re.MULTILINE):
+        debugpr('found use of %d preprocess directives # #if|define|include in file %s' % (len(re.findall(preprocess_commands, filestr_without_code, flags=re.MULTILINE)), filename))
+
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
         preprocess_options = ' '.join(preprocess_options)
@@ -2387,15 +2389,20 @@ preprocess package (sudo apt-get install preprocess).
     # matching the mako_commands pattern
     match_percentage = re.search(mako_commands, filestr_without_code,
                                  re.MULTILINE)  # match %
+    if match_percentage:
+        debugpr('found use of %% sign(s) for mako code in %s:\n%s' % (resultfile, ', '.join(re.findall(mako_commands, filestr_without_code))))
+
     match_mako_variable = False
     for name in mako_kwargs:
         pattern = r'\$\{%s\}' % name  # ${name}
         if re.search(pattern, filestr_without_code):
             match_mako_variable = True
+            debugpr('found use of mako variable(s) in %s: %s' % (resultfile, ', '.join(re.findall(pattern, filestr_without_code))))
             break
-        pattern = r'\b%s\b' % name    # e.g. % if name == 'a'
+        pattern = r'\b%s\b' % name    # e.g. % if name == 'a' (or Python code)
         if re.search(pattern, filestr_without_code):
             match_mako_variable = True
+            debugpr('found use mako variable(s) in mako code in %s: %s' % (resultfile, ', '.join(re.findall(pattern, filestr_without_code))))
             break
 
     if (match_percentage or match_mako_variable) and option('no_mako'):
