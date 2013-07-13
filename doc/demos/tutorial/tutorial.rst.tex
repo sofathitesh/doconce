@@ -79,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-May 29, 2013
+Jul 13, 2013
 %
 \begin{itemize}
 
@@ -641,7 +641,7 @@ Also,~cite\{Miller\_2000\}~supports~such~a~view.\\
 As~see~in~Figure~ref\{mysec:fig:myfig\},~the~key~equation\\
 features~large,~smooth~regions~*and*~abrupt~changes.\\
 ~\\
-FIGURE:~{[}fig/myfile,~width=600{]}~My~figure.~label\{mysec:fig:myfig\}\\
+FIGURE:~{[}fig/myfile,~width=600~frac=0.9{]}~My~figure.~label\{mysec:fig:myfig\}\\
 ~\\
 =====~References~=====\\
 ~\\
@@ -665,7 +665,7 @@ for various formats of this document).
 }
 
 Transformation of a Doconce document \texttt{mydoc.do.txt} to various other
-formats applies the script \texttt{doconce format}:
+formats apply the script \texttt{doconce format}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~format~format~mydoc.do.txt
@@ -808,6 +808,15 @@ in the coming sections.
   \label{id1}%
 }
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Basics%
+  \addcontentsline{toc}{subsubsection}{Basics}%
+  \label{basics}%
+}
+
 Making an HTML version of a Doconce file \texttt{mydoc.do.txt}
 is performed by:
 %
@@ -817,6 +826,34 @@ Terminal>~doconce~format~html~mydoc
 \end{quote}
 
 The resulting file \texttt{mydoc.html} can be loaded into any web browser for viewing.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Typesetting of Code%
+  \addcontentsline{toc}{subsubsection}{Typesetting of Code}%
+  \label{typesetting-of-code}%
+}
+
+If the Pygments package (including the \texttt{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument \texttt{-{}-no\_pygments\_html}
+turns off the use of Pygments and makes code blocks appear with
+plain (\texttt{pre}) HTML tags. The option \texttt{-{}-pygments\_html\_linenos} turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by \texttt{-{}-pygments\_html\_style=style}, where \texttt{style}
+can be \texttt{default}, \texttt{emacs}, \texttt{perldoc}, and other valid names for
+Pygments styles.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  HTML Styles%
+  \addcontentsline{toc}{subsubsection}{HTML Styles}%
+  \label{html-styles}%
+}
 
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
@@ -859,21 +896,20 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in \texttt{filename}. Several stylesheets can
 be specified: \texttt{-{}-ccs=file1.css,file2.css,file3.css}.
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  HTML templates%
+  \addcontentsline{toc}{subsubsection}{HTML templates}%
+  \label{html-templates}%
+}
+
 Templates are HTML files with ``slots'' \texttt{\%(main)s} for the main body
 of text, \texttt{\%(title)s} for the title, and \texttt{\%(date)s} for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a \href{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}{separate document}. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the \texttt{pygmentize} program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument \texttt{-{}-no\_pygments\_html}
-turns off the use of Pygments and makes code blocks appear with
-plain (\texttt{pre}) HTML tags. The option \texttt{-{}-pygments\_html\_linenos} turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \texttt{-{}-pygments\_html\_style=style}, where \texttt{style}
-can be \texttt{default}, \texttt{emacs}, \texttt{perldoc}, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a ``tutorial'': `` \url{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}'' on this topic. The template file must contain
@@ -900,6 +936,52 @@ The template in \texttt{style\_vagrant} also needs an extra option
 \texttt{-{}-html\_style=vagrant}. With this style, one has nice navigation buttons
 that are used if the document contains \texttt{!split} commands for splitting
 it into many pages.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  The HTML File Collection%
+  \addcontentsline{toc}{subsubsection}{The HTML File Collection}%
+  \label{the-html-file-collection}%
+}
+
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+\texttt{.basename\_html\_file\_collection}, where \texttt{basename} is the filestem of
+the Doconce file (i.e., the Doconce source is in \texttt{basename.do.txt}).
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Filenames%
+  \addcontentsline{toc}{subsubsection}{Filenames}%
+  \label{filenames}%
+}
+
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the \texttt{-{}-html\_output=basename} option, where \texttt{basename} is the
+filestem of the associated HTML files. The
+\texttt{.basename\_html\_file\_collection} file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: \texttt{mydoc\_bloodish.html}, \texttt{mydoc\_solarized}, and
+\texttt{mydoc\_vagrant}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~html~mydoc~-{}-html\_style=bloodish~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_output=mydoc\_bloodish\\
+Terminal>~doconce~split\_html~mydoc\_bloodish.html\\
+Terminal>~doconce~format~html~mydoc~-{}-html\_style=solarized~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_output=mydoc\_solarized~-{}-pygments\_html=perldoc~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_admon=apricot\\
+Terminal>~doconce~format~html~mydoc~-{}-html\_style=vagrant~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_output=mydoc\_vagrant~-{}-pygments\_html\_style=default~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_template=templates/my\_adapted\_vagrant\_template.html\\
+Terminal>~doconce~split\_html~mydoc\_vagrant.html
+}
+\end{quote}
 
 
 %___________________________________________________________________________
@@ -1101,9 +1183,11 @@ can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex},
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option \texttt{-{}-latex\_printed} makes some adjustments for documents
+An option \texttt{-DDEVICE=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, \texttt{-DDEVICE=screen}, creates a PDF file for reading
+on a screen where links are clickable.
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %
@@ -1159,6 +1243,9 @@ while other values are \texttt{movie15} (\texttt{\textbackslash{}includemovie} c
 \texttt{multimedia} (for Beamer-style \texttt{\textbackslash{}movie} command),
 or \texttt{href-run} (for the plain \DUroletitlereference{h`run:file`\_} command)
 
+\item \texttt{MOVIE\_CONTROLS} adds buttons for starting/stopping movies if the
+\texttt{media9} package is used.
+
 \item \texttt{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere - and note that
 the preamble is only included
@@ -1174,13 +1261,6 @@ macro has only effect if inline comments are used (name, colon,
 and comment inside brackets).
 
 \item \texttt{LINENUMBERS} for inclusion of line numbers in the text.
-
-\item \texttt{AMON} for setting the type of admonitions: \texttt{"colors"} for colored
-boxes with icons, \texttt{"graybox1"} for gray frame boxes with rounded
-corners (default), \texttt{"graybox2"} for narrower square gray frame boxes
-(except for summary, which for A4 format is small and with wrapped
-text around if it does not contain verbatim code),
-or \texttt{"paragraph"} for simple, plain paragraph headings and ordinary text
 
 \item \texttt{COLORED\_TABLE\_ROWS} for coloring every other table rows (set this
 variable to \texttt{gray} or \texttt{blue})
@@ -1232,9 +1312,17 @@ above, which implies \texttt{\textbackslash{}begin\{minted\}\{fortran\}} and \te
 begin and end for blocks inside \texttt{!bc fpro} and \texttt{!ec}).  Specifying
 \texttt{envir=ans:nt} means that all other environments are typeset with the
 \texttt{anslistings.sty} package, e.g., \texttt{!bc cppcod} will then result in
-\texttt{\textbackslash{}begin\{c++\}}. If no environments like \texttt{sys}, \texttt{fpro}, or the common
-\texttt{envir} are defined on the command line, the plain \texttt{\textbackslash{}begin\{verbatim\}}
-and \texttt{\textbackslash{}end\{verbatim\}} used.
+\texttt{\textbackslash{}begin\{c++\}}. A predefined shortcut as in \texttt{shcod=Verbatim-0.85}
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+\texttt{shcod=Verbatim-indent} implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+\texttt{\textbackslash{}begin\{Verbatim\}} instruction using the syntax illustrated for
+the \texttt{sys} environments above.
+
+If no environments like \texttt{sys}, \texttt{fpro}, or the common
+\texttt{envir} are defined on the command line, the plain \texttt{\textbackslash{}begin\{Verbatim\}}
+and \texttt{\textbackslash{}end\{Verbatim\}} instructions are used.
 
 \emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
 For example, you may want to substitute \texttt{section} by \texttt{section*} to

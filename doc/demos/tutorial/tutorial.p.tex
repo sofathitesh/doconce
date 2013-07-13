@@ -97,10 +97,11 @@ final,                   % or draft (marks overfull hboxes)
 % #endif
 
 % Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage[%
     colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -149,10 +150,10 @@ final,                   % or draft (marks overfull hboxes)
 
 % Admonition is an oval gray box
 \newmdenv[
-  backgroundcolor=gray!10,  %% white with 10%% gray
+  backgroundcolor=gray!5,  %% white with 5%% gray
   skipabove=\topsep,
   skipbelow=\topsep,
-  outerlinewidth=0.5,
+  outerlinewidth=0,
   leftmargin=0,
   rightmargin=0,
   roundcorner=5,
@@ -294,16 +295,16 @@ Department of Informatics, University of Oslo\inst{2}}
 
 
 % #if LATEX_HEADING == "traditional"
-\date{May 29, 2013}
+\date{Jul 13, 2013}
 \maketitle
 % #elif LATEX_HEADING == "beamer"
-\date{May 29, 2013
+\date{Jul 13, 2013
 % <titlepage figure>
 }
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{May 29, 2013}}
+{\large\textsf{Jul 13, 2013}}
 
 \end{center}
 \vfill
@@ -311,7 +312,7 @@ Department of Informatics, University of Oslo\inst{2}}
 
 % #else
 \begin{center}
-May 29, 2013
+Jul 13, 2013
 \end{center}
 
 \vspace{1cm}
@@ -730,7 +731,7 @@ Also, cite{Miller_2000} supports such a view.
 As see in Figure ref{mysec:fig:myfig}, the key equation
 features large, smooth regions *and* abrupt changes.
 
-FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+FIGURE: [fig/myfile, width=600 frac=0.9] My figure. label{mysec:fig:myfig}
 
 ===== References =====
 
@@ -749,7 +750,7 @@ for various formats of this document).
 \label{doconce2formats}
 
 Transformation of a Doconce document \code{mydoc.do.txt} to various other
-formats applies the script \code{doconce format}:
+formats apply the script \code{doconce format}:
 \bsys
 Terminal> doconce format format mydoc.do.txt
 \esys
@@ -835,6 +836,7 @@ in the coming sections.
 
 \subsection{HTML}
 
+\paragraph{Basics.}
 Making an HTML version of a Doconce file \code{mydoc.do.txt}
 is performed by
 \bsys
@@ -842,6 +844,19 @@ Terminal> doconce format html mydoc
 \esys
 The resulting file \code{mydoc.html} can be loaded into any web browser for viewing.
 
+\paragraph{Typesetting of Code.}
+If the Pygments package (including the \code{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument \code{--no_pygments_html}
+turns off the use of Pygments and makes code blocks appear with
+plain (\code{pre}) HTML tags. The option \code{--pygments_html_linenos} turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by \code{--pygments_html_style=style}, where \code{style}
+can be \code{default}, \code{emacs}, \code{perldoc}, and other valid names for
+Pygments styles.
+
+
+\paragraph{HTML Styles.}
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
 in an external CSS file; or in a template file.
@@ -867,21 +882,12 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in \code{filename}. Several stylesheets can
 be specified: \code{--ccs=file1.css,file2.css,file3.css}.
 
+\paragraph{HTML templates.}
 Templates are HTML files with "slots" \code{%(main)s} for the main body
 of text, \code{%(title)s} for the title, and \code{%(date)s} for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{separate document}. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the \code{pygmentize} program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument \code{--no_pygments_html}
-turns off the use of Pygments and makes code blocks appear with
-plain (\code{pre}) HTML tags. The option \code{--pygments_html_linenos} turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \code{--pygments_html_style=style}, where \code{style}
-can be \code{default}, \code{emacs}, \code{perldoc}, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a "tutorial": " \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{\nolinkurl{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}" on this topic. The template file must contain
@@ -906,6 +912,34 @@ The template in \code{style_vagrant} also needs an extra option
 that are used if the document contains \code{!split} commands for splitting
 it into many pages.
 
+\paragraph{The HTML File Collection.}
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+\code{.basename_html_file_collection}, where \code{basename} is the filestem of
+the Doconce file (i.e., the Doconce source is in \code{basename.do.txt}).
+
+\paragraph{Filenames.}
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the \code{--html_output=basename} option, where \code{basename} is the
+filestem of the associated HTML files. The
+\code{.basename_html_file_collection} file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: \code{mydoc_bloodish.html}, \code{mydoc_solarized}, and
+\code{mydoc_vagrant}.
+
+\bsys
+Terminal> doconce format html mydoc --html_style=bloodish \ 
+          --html_output=mydoc_bloodish
+Terminal> doconce split_html mydoc_bloodish.html
+Terminal> doconce format html mydoc --html_style=solarized \ 
+          --html_output=mydoc_solarized --pygments_html=perldoc \ 
+          --html_admon=apricot
+Terminal> doconce format html mydoc --html_style=vagrant \ 
+          --html_output=mydoc_vagrant --pygments_html_style=default \ 
+          --html_template=templates/my_adapted_vagrant_template.html
+Terminal> doconce split_html mydoc_vagrant.html
+\esys
 
 \subsection{Blog Posts}
 
@@ -936,6 +970,7 @@ In the readers' comments after the blog one cannot paste raw HTML
 code with MathJax
 scripts so there is no support for mathematics in the discussion forum.
 \end{graybox1admon}
+
 \begin{graybox1admon}[Notice.]
 Figure files must be uploaded to some web site and the filenames name must
 be replaced by the relevant URL. This can be automatically edited:
@@ -952,6 +987,7 @@ doconce format html mydoc2
 # Paste mydoc2.html into a new blog page
 \eshcod
 \end{graybox1admon}
+
 Blog posts at Google can also be published \href{{http://support.google.com/blogger/bin/answer.py?hl=en&answer=41452}}{automatically through email}.
 A Python program can send the contents of the HTML file
 to the blog's email address using the packages  \code{smtplib} and \code{email}.
@@ -1048,9 +1084,11 @@ can be placed in files \code{newcommands.tex}, \code{newcommands_keep.tex}, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \code{--latex_printed} makes some adjustments for documents
+An option \code{-DDEVICE=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, \code{-DDEVICE=screen}, creates a PDF file for reading
+on a screen where links are clickable.
 
 \paragraph{Step 2.}
 Run \code{ptex2tex} (if you have it) to make a standard {\LaTeX} file,
@@ -1096,6 +1134,9 @@ Preprocessor variables to be defined or undefined are
    \code{multimedia} (for Beamer-style \code{\movie} command),
    or \code{href-run} (for the plain \code{\href{run:file}} command)
 
+ \item \code{MOVIE_CONTROLS} adds buttons for starting/stopping movies if the
+   \code{media9} package is used.
+
  \item \code{PREAMBLE} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -1111,13 +1152,6 @@ Preprocessor variables to be defined or undefined are
    and comment inside brackets).
 
  \item \code{LINENUMBERS} for inclusion of line numbers in the text.
-
- \item \code{AMON} for setting the type of admonitions: \code{"colors"} for colored
-   boxes with icons, \code{"graybox1"} for gray frame boxes with rounded
-   corners (default), \code{"graybox2"} for narrower square gray frame boxes
-   (except for summary, which for A4 format is small and with wrapped
-   text around if it does not contain verbatim code),
-   or \code{"paragraph"} for simple, plain paragraph headings and ordinary text
 
  \item \code{COLORED_TABLE_ROWS} for coloring every other table rows (set this
    variable to \code{gray} or \code{blue})
@@ -1164,9 +1198,17 @@ above, which implies \code{\begin{minted}{fortran}} and \code{\end{minted}} as
 begin and end for blocks inside \code{!bc fpro} and \code{!ec}).  Specifying
 \code{envir=ans:nt} means that all other environments are typeset with the
 \code{anslistings.sty} package, e.g., \code{!bc cppcod} will then result in
-\code{\begin{c++}}. If no environments like \code{sys}, \code{fpro}, or the common
-\code{envir} are defined on the command line, the plain \code{\begin{verbatim}}
-and \code{\end{verbatim}} used.
+\code{\begin{c++}}. A predefined shortcut as in \code{shcod=Verbatim-0.85}
+results in denser
+vertical spacing (baselinestretch 0.85 in {\LaTeX} terminology), and
+\code{shcod=Verbatim-indent} implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+\code{\begin{Verbatim}} instruction using the syntax illustrated for
+the \code{sys} environments above.
+
+If no environments like \code{sys}, \code{fpro}, or the common
+\code{envir} are defined on the command line, the plain \code{\begin{Verbatim}}
+and \code{\end{Verbatim}} instructions are used.
 
 
 \paragraph{Step 2b (optional).}

@@ -90,12 +90,29 @@ in the coming sections.
 
 ===== HTML =====
 
+=== Basics ===
+
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 !bc sys
 Terminal> doconce format html mydoc
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
+
+=== Typesetting of Code ===
+
+If the Pygments package (including the `pygmentize` program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument `--no_pygments_html`
+turns off the use of Pygments and makes code blocks appear with
+plain (`pre`) HTML tags. The option `--pygments_html_linenos` turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by `--pygments_html_style=style`, where `style`
+can be `default`, `emacs`, `perldoc`, and other valid names for
+Pygments styles.
+
+
+=== HTML Styles ===
 
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
@@ -116,21 +133,13 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in `filename`. Several stylesheets can
 be specified: `--ccs=file1.css,file2.css,file3.css`.
 
+=== HTML templates ===
+
 Templates are HTML files with "slots" `%(main)s` for the main body
 of text, `%(title)s` for the title, and `%(date)s` for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a "separate document": "https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html". That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the `pygmentize` program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument `--no_pygments_html`
-turns off the use of Pygments and makes code blocks appear with
-plain (`pre`) HTML tags. The option `--pygments_html_linenos` turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by `--pygments_html_style=style`, where `style`
-can be `default`, `emacs`, `perldoc`, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a "tutorial": " https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html" on this topic. The template file must contain
@@ -155,6 +164,36 @@ The template in `style_vagrant` also needs an extra option
 that are used if the document contains `!split` commands for splitting
 it into many pages.
 
+=== The HTML File Collection ===
+
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+`.basename_html_file_collection`, where `basename` is the filestem of
+the Doconce file (i.e., the Doconce source is in `basename.do.txt`).
+
+=== Filenames ===
+
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the `--html_output=basename` option, where `basename` is the
+filestem of the associated HTML files. The
+`.basename_html_file_collection` file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: `mydoc_bloodish.html`, `mydoc_solarized`, and
+`mydoc_vagrant`.
+
+!bc sys
+Terminal> doconce format html mydoc --html_style=bloodish \
+          --html_output=mydoc_bloodish
+Terminal> doconce split_html mydoc_bloodish.html
+Terminal> doconce format html mydoc --html_style=solarized \
+          --html_output=mydoc_solarized --pygments_html=perldoc \
+          --html_admon=apricot
+Terminal> doconce format html mydoc --html_style=vagrant \
+          --html_output=mydoc_vagrant --pygments_html_style=default \
+          --html_template=templates/my_adapted_vagrant_template.html
+Terminal> doconce split_html mydoc_vagrant.html
+!ec
 
 ===== Blog Posts =====
 

@@ -44,9 +44,7 @@
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % or draft (marks overfull hboxes)
-chapterprefix=true,      % "Chapter" word at beginning of each chapter
-open=right               % start new chapters on odd-numbered pages
-10pt]{book}
+10pt]{article}
 
 \listfiles               % print all files needed to compile this document
 
@@ -318,16 +316,16 @@ Department of Informatics, University of Oslo\inst{2}}
 
 
 % #if LATEX_HEADING == "traditional"
-\date{Jun 28, 2013}
+\date{Jul 13, 2013}
 \maketitle
 % #elif LATEX_HEADING == "beamer"
-\date{Jun 28, 2013
+\date{Jul 13, 2013
 % <titlepage figure>
 }
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jun 28, 2013}}
+{\large\textsf{Jul 13, 2013}}
 
 \end{center}
 \vfill
@@ -335,7 +333,7 @@ Department of Informatics, University of Oslo\inst{2}}
 
 % #else
 \begin{center}
-Jun 28, 2013
+Jul 13, 2013
 \end{center}
 
 \vspace{1cm}
@@ -983,6 +981,7 @@ in the coming sections.
 
 \subsection{HTML}
 
+\paragraph{Basics.}
 Making an HTML version of a Doconce file \code{mydoc.do.txt}
 is performed by
 \bsys
@@ -990,6 +989,19 @@ Terminal> doconce format html mydoc
 \esys
 The resulting file \code{mydoc.html} can be loaded into any web browser for viewing.
 
+\paragraph{Typesetting of Code.}
+If the Pygments package (including the \code{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument \code{--no_pygments_html}
+turns off the use of Pygments and makes code blocks appear with
+plain (\code{pre}) HTML tags. The option \code{--pygments_html_linenos} turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by \code{--pygments_html_style=style}, where \code{style}
+can be \code{default}, \code{emacs}, \code{perldoc}, and other valid names for
+Pygments styles.
+
+
+\paragraph{HTML Styles.}
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
 in an external CSS file; or in a template file.
@@ -1015,21 +1027,12 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in \code{filename}. Several stylesheets can
 be specified: \code{--ccs=file1.css,file2.css,file3.css}.
 
+\paragraph{HTML templates.}
 Templates are HTML files with "slots" \code{%(main)s} for the main body
 of text, \code{%(title)s} for the title, and \code{%(date)s} for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{separate document}. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the \code{pygmentize} program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument \code{--no_pygments_html}
-turns off the use of Pygments and makes code blocks appear with
-plain (\code{pre}) HTML tags. The option \code{--pygments_html_linenos} turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \code{--pygments_html_style=style}, where \code{style}
-can be \code{default}, \code{emacs}, \code{perldoc}, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a "tutorial": " \href{{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}{\nolinkurl{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}}" on this topic. The template file must contain
@@ -1054,6 +1057,34 @@ The template in \code{style_vagrant} also needs an extra option
 that are used if the document contains \code{!split} commands for splitting
 it into many pages.
 
+\paragraph{The HTML File Collection.}
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+\code{.basename_html_file_collection}, where \code{basename} is the filestem of
+the Doconce file (i.e., the Doconce source is in \code{basename.do.txt}).
+
+\paragraph{Filenames.}
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the \code{--html_output=basename} option, where \code{basename} is the
+filestem of the associated HTML files. The
+\code{.basename_html_file_collection} file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: \code{mydoc_bloodish.html}, \code{mydoc_solarized}, and
+\code{mydoc_vagrant}.
+
+\bsys
+Terminal> doconce format html mydoc --html_style=bloodish \
+          --html_output=mydoc_bloodish
+Terminal> doconce split_html mydoc_bloodish.html
+Terminal> doconce format html mydoc --html_style=solarized \
+          --html_output=mydoc_solarized --pygments_html=perldoc \
+          --html_admon=apricot
+Terminal> doconce format html mydoc --html_style=vagrant \
+          --html_output=mydoc_vagrant --pygments_html_style=default \
+          --html_template=templates/my_adapted_vagrant_template.html
+Terminal> doconce split_html mydoc_vagrant.html
+\esys
 
 \subsection{Blog Posts}
 
@@ -1198,9 +1229,11 @@ can be placed in files \code{newcommands.tex}, \code{newcommands_keep.tex}, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \code{--latex_printed} makes some adjustments for documents
+An option \code{-DDEVICE=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, \code{-DDEVICE=screen}, creates a PDF file for reading
+on a screen where links are clickable.
 
 \paragraph{Step 2.}
 Run \code{ptex2tex} (if you have it) to make a standard {\LaTeX} file,
@@ -1246,6 +1279,9 @@ Preprocessor variables to be defined or undefined are
    \code{multimedia} (for Beamer-style \code{\movie} command),
    or \code{href-run} (for the plain \code{\href{run:file}} command)
 
+ \item \code{MOVIE_CONTROLS} adds buttons for starting/stopping movies if the
+   \code{media9} package is used.
+
  \item \code{PREAMBLE} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -1261,13 +1297,6 @@ Preprocessor variables to be defined or undefined are
    and comment inside brackets).
 
  \item \code{LINENUMBERS} for inclusion of line numbers in the text.
-
- \item \code{AMON} for setting the type of admonitions: \code{"colors"} for colored
-   boxes with icons, \code{"graybox1"} for gray frame boxes with rounded
-   corners (default), \code{"graybox2"} for narrower square gray frame boxes
-   (except for summary, which for A4 format is small and with wrapped
-   text around if it does not contain verbatim code),
-   or \code{"paragraph"} for simple, plain paragraph headings and ordinary text
 
  \item \code{COLORED_TABLE_ROWS} for coloring every other table rows (set this
    variable to \code{gray} or \code{blue})
@@ -1314,9 +1343,17 @@ above, which implies \code{\begin{minted}{fortran}} and \code{\end{minted}} as
 begin and end for blocks inside \code{!bc fpro} and \code{!ec}).  Specifying
 \code{envir=ans:nt} means that all other environments are typeset with the
 \code{anslistings.sty} package, e.g., \code{!bc cppcod} will then result in
-\code{\begin{c++}}. If no environments like \code{sys}, \code{fpro}, or the common
-\code{envir} are defined on the command line, the plain \code{\begin{verbatim}}
-and \code{\end{verbatim}} used.
+\code{\begin{c++}}. A predefined shortcut as in \code{shcod=Verbatim-0.85}
+results in denser
+vertical spacing (baselinestretch 0.85 in {\LaTeX} terminology), and
+\code{shcod=Verbatim-indent} implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+\code{\begin{Verbatim}} instruction using the syntax illustrated for
+the \code{sys} environments above.
+
+If no environments like \code{sys}, \code{fpro}, or the common
+\code{envir} are defined on the command line, the plain \code{\begin{Verbatim}}
+and \code{\end{Verbatim}} instructions are used.
 
 
 \paragraph{Step 2b (optional).}
@@ -1970,6 +2007,7 @@ section heading is taken as part of the text of the abstract).
 
 
 Here are some examples:
+
 \bccq
 __Abstract.__ The following text just attempts to exemplify
 various section headings.
@@ -1977,11 +2015,6 @@ various section headings.
 Appendix is supported too: just let the heading start with "Appendix: "
 (this affects only `latex` output, where the appendix formatting
 is used - all other formats just leave the heading as it is written).
-
-========= Example on a Chapter Heading =========
-
-Some text.
-
 
 ======= Example on a Section Heading =======
 
@@ -2009,7 +2042,7 @@ __A Paragraph.__ The running text goes here.
 
 Figures are recognized by the special line syntax
 \bccq
-FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+FIGURE:[filename, height=400 width=600 frac=0.8] caption
 
 \eccq
 The filename can be without extension, and Doconce will search for an
@@ -2018,17 +2051,29 @@ say \code{.eps} when requesting an HTML format, Doconce tries to find another
 file, and if not, the given file is converted to a proper format
 (using ImageMagick's \code{convert} utility).
 
-The height, width, and scale keywords (and others) can be included
-if desired and may have effect for some formats. Note the comma
-between the sespecifications and that there should be no space
-around the = sign.
+The height, width, and frac keywords can be included
+if desired and may have effect for some formats: the height and width
+are used for output in the formats \code{html}, \code{rst}, \code{sphinx}, while
+the frac specification is used for \code{latex} and \code{pdflatex} to specify
+the width of the image as a fraction of the text width.
+
+The figure caption is optional. If omitted, the figure appears "inline"
+in the text without any figure environment in {\LaTeX} formats or HTML.
+The caption may contain a label for referencing the figure.
+
+
+\begin{graybox1admon}[Warning.]
+Note the comma
+between the filename and the figure size specifications and
+that there should be no space around the = sign. This syntax must
+be strictly followed.
 
 Note also that, like for \code{TITLE:} and \code{AUTHOR:} lines, all information
 related to a figure line \emph{must be written on the same line}. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as \code{FIGURE:} will be
 included in the formatted caption).
-
+\end{graybox1admon}
 
 \begin{figure}[ht]
   \centerline{\includegraphics[width=0.9\linewidth]{figs/streamtubes.eps}}
@@ -2066,13 +2111,24 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
  (Movie figs/mjolnir.mpeg: play \href{{mjolnir.html}}{\nolinkurl{mjolnir.html}})
 % #if MOVIE == "media9"
 \includemedia[
+width=0.8\linewidth,
 label=figs/mjolnir.mpeg,
-activate=pageopen,
-width=0.9\linewidth,
-addresource=figs/mjolnir.mpeg,
+activate=pageopen,         % or onclick or pagevisible
+addresource=figs/mjolnir.mpeg,  % embed the video in the PDF
 flashvars={
-source=figs/mjolnir.mpeg,
-&autoPlay=true}]{VPlayer.swf}
+source=figs/mjolnir.mpeg
+&autoPlay=true
+&loop=true
+&scaleMode=letterbox   % preserve aspect ration while scaling this video
+}]{}{VPlayer.swf}
+
+% #ifdef MOVIE_CONTROLS
+\mediabutton[
+  mediacommand=figs/mjolnir.mpeg:playPause,
+  overface=\\textcolor{blue}{\fbox{\strut Play/Pause}},
+  downface=\\textcolor{red}{\fbox{\strut Play/Pause}}
+  ]{\fhox{\strut Play/Pause}}
+% #endif
 
 % #elif MOVIE == "movie15"
 \includemovie[poster,
@@ -2153,11 +2209,15 @@ A typical \code{MOVIE} command with a YouTube movie is then
 \bccq
 MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
 
-MOVIE: [http://vimeo.com/55562330, width=500 height=278] Computational fluid dynamics movie.
+MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.
 \eccq
 Note that there must be a blank line after every \code{MOVIE:} command.
 The width and height parameters are not required, but leaving them out
 may lead to movie sizes you do not want.
+
+ \href{{http://www.youtube.com/watch?v=sI2uCHH3qIM}}{\nolinkurl{http://www.youtube.com/watch?v=sI2uCHH3qIM}}
+
+ CFD. \href{{http://vimeo.com/55562330}}{\nolinkurl{http://vimeo.com/55562330}}
 
 \subsection{Copying Computer Code from Source Files}
 

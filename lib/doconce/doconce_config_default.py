@@ -23,6 +23,7 @@ keep_pygments_html_bg = False
 #minted_latex_style = 
 #pygments_html_style = 
 pygments_html_linenos = False
+#html_output = 
 #html_style = 
 #html_template = 
 #html_body_font = 

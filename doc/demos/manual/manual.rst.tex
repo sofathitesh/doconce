@@ -82,7 +82,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jun 28, 2013
+Jul 13, 2013
 
 \end{DUfieldlist}
 
@@ -1042,6 +1042,15 @@ in the coming sections.
   \label{html}%
 }
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Basics%
+  \addcontentsline{toc}{subsubsection}{Basics}%
+  \label{basics}%
+}
+
 Making an HTML version of a Doconce file \texttt{mydoc.do.txt}
 is performed by:
 %
@@ -1051,6 +1060,34 @@ Terminal>~doconce~format~html~mydoc
 \end{quote}
 
 The resulting file \texttt{mydoc.html} can be loaded into any web browser for viewing.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Typesetting of Code%
+  \addcontentsline{toc}{subsubsection}{Typesetting of Code}%
+  \label{typesetting-of-code}%
+}
+
+If the Pygments package (including the \texttt{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument \texttt{-{}-no\_pygments\_html}
+turns off the use of Pygments and makes code blocks appear with
+plain (\texttt{pre}) HTML tags. The option \texttt{-{}-pygments\_html\_linenos} turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by \texttt{-{}-pygments\_html\_style=style}, where \texttt{style}
+can be \texttt{default}, \texttt{emacs}, \texttt{perldoc}, and other valid names for
+Pygments styles.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  HTML Styles%
+  \addcontentsline{toc}{subsubsection}{HTML Styles}%
+  \label{html-styles}%
+}
 
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
@@ -1082,21 +1119,20 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in \texttt{filename}. Several stylesheets can
 be specified: \texttt{-{}-ccs=file1.css,file2.css,file3.css}.
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  HTML templates%
+  \addcontentsline{toc}{subsubsection}{HTML templates}%
+  \label{html-templates}%
+}
+
 Templates are HTML files with ``slots'' \texttt{\%(main)s} for the main body
 of text, \texttt{\%(title)s} for the title, and \texttt{\%(date)s} for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a \href{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}{separate document}. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the \texttt{pygmentize} program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument \texttt{-{}-no\_pygments\_html}
-turns off the use of Pygments and makes code blocks appear with
-plain (\texttt{pre}) HTML tags. The option \texttt{-{}-pygments\_html\_linenos} turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by \texttt{-{}-pygments\_html\_style=style}, where \texttt{style}
-can be \texttt{default}, \texttt{emacs}, \texttt{perldoc}, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a ``tutorial'': `` \url{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html}'' on this topic. The template file must contain
@@ -1123,6 +1159,52 @@ The template in \texttt{style\_vagrant} also needs an extra option
 \texttt{-{}-html\_style=vagrant}. With this style, one has nice navigation buttons
 that are used if the document contains \texttt{!split} commands for splitting
 it into many pages.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  The HTML File Collection%
+  \addcontentsline{toc}{subsubsection}{The HTML File Collection}%
+  \label{the-html-file-collection}%
+}
+
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+\texttt{.basename\_html\_file\_collection}, where \texttt{basename} is the filestem of
+the Doconce file (i.e., the Doconce source is in \texttt{basename.do.txt}).
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Filenames%
+  \addcontentsline{toc}{subsubsection}{Filenames}%
+  \label{filenames}%
+}
+
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the \texttt{-{}-html\_output=basename} option, where \texttt{basename} is the
+filestem of the associated HTML files. The
+\texttt{.basename\_html\_file\_collection} file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: \texttt{mydoc\_bloodish.html}, \texttt{mydoc\_solarized}, and
+\texttt{mydoc\_vagrant}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~html~mydoc~-{}-html\_style=bloodish~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_output=mydoc\_bloodish\\
+Terminal>~doconce~split\_html~mydoc\_bloodish.html\\
+Terminal>~doconce~format~html~mydoc~-{}-html\_style=solarized~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_output=mydoc\_solarized~-{}-pygments\_html=perldoc~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_admon=apricot\\
+Terminal>~doconce~format~html~mydoc~-{}-html\_style=vagrant~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_output=mydoc\_vagrant~-{}-pygments\_html\_style=default~\textbackslash{}\\
+~~~~~~~~~~-{}-html\_template=templates/my\_adapted\_vagrant\_template.html\\
+Terminal>~doconce~split\_html~mydoc\_vagrant.html
+}
+\end{quote}
 
 
 %___________________________________________________________________________
@@ -1324,9 +1406,11 @@ can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex},
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option \texttt{-{}-latex\_printed} makes some adjustments for documents
+An option \texttt{-DDEVICE=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, \texttt{-DDEVICE=screen}, creates a PDF file for reading
+on a screen where links are clickable.
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %
@@ -1382,6 +1466,9 @@ while other values are \texttt{movie15} (\texttt{\textbackslash{}includemovie} c
 \texttt{multimedia} (for Beamer-style \texttt{\textbackslash{}movie} command),
 or \texttt{href-run} (for the plain \DUroletitlereference{h`run:file`\_} command)
 
+\item \texttt{MOVIE\_CONTROLS} adds buttons for starting/stopping movies if the
+\texttt{media9} package is used.
+
 \item \texttt{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere - and note that
 the preamble is only included
@@ -1397,13 +1484,6 @@ macro has only effect if inline comments are used (name, colon,
 and comment inside brackets).
 
 \item \texttt{LINENUMBERS} for inclusion of line numbers in the text.
-
-\item \texttt{AMON} for setting the type of admonitions: \texttt{"colors"} for colored
-boxes with icons, \texttt{"graybox1"} for gray frame boxes with rounded
-corners (default), \texttt{"graybox2"} for narrower square gray frame boxes
-(except for summary, which for A4 format is small and with wrapped
-text around if it does not contain verbatim code),
-or \texttt{"paragraph"} for simple, plain paragraph headings and ordinary text
 
 \item \texttt{COLORED\_TABLE\_ROWS} for coloring every other table rows (set this
 variable to \texttt{gray} or \texttt{blue})
@@ -1455,9 +1535,17 @@ above, which implies \texttt{\textbackslash{}begin\{minted\}\{fortran\}} and \te
 begin and end for blocks inside \texttt{!bc fpro} and \texttt{!ec}).  Specifying
 \texttt{envir=ans:nt} means that all other environments are typeset with the
 \texttt{anslistings.sty} package, e.g., \texttt{!bc cppcod} will then result in
-\texttt{\textbackslash{}begin\{c++\}}. If no environments like \texttt{sys}, \texttt{fpro}, or the common
-\texttt{envir} are defined on the command line, the plain \texttt{\textbackslash{}begin\{verbatim\}}
-and \texttt{\textbackslash{}end\{verbatim\}} used.
+\texttt{\textbackslash{}begin\{c++\}}. A predefined shortcut as in \texttt{shcod=Verbatim-0.85}
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+\texttt{shcod=Verbatim-indent} implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+\texttt{\textbackslash{}begin\{Verbatim\}} instruction using the syntax illustrated for
+the \texttt{sys} environments above.
+
+If no environments like \texttt{sys}, \texttt{fpro}, or the common
+\texttt{envir} are defined on the command line, the plain \texttt{\textbackslash{}begin\{Verbatim\}}
+and \texttt{\textbackslash{}end\{Verbatim\}} instructions are used.
 
 \emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
 For example, you may want to substitute \texttt{section} by \texttt{section*} to
@@ -2272,11 +2360,6 @@ Appendix~is~supported~too:~just~let~the~heading~start~with~"Appendix:~"\\
 (this~affects~only~`latex`~output,~where~the~appendix~formatting\\
 is~used~-~all~other~formats~just~leave~the~heading~as~it~is~written).\\
 ~\\
-=========~Example~on~a~Chapter~Heading~=========\\
-~\\
-Some~text.\\
-~\\
-~\\
 =======~Example~on~a~Section~Heading~=======\\
 ~\\
 The~running~text~goes~here.\\
@@ -2321,7 +2404,7 @@ The~running~text~goes~here.\\
 Figures are recognized by the special line syntax:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-FIGURE:{[}filename,~height=xxx~width=yyy~scale=zzz{]}~possible~caption
+FIGURE:{[}filename,~height=400~width=600~frac=0.8{]}~caption
 }
 \end{quote}
 
@@ -2331,16 +2414,30 @@ say \texttt{.eps} when requesting an HTML format, Doconce tries to find another
 file, and if not, the given file is converted to a proper format
 (using ImageMagick's \texttt{convert} utility).
 
-The height, width, and scale keywords (and others) can be included
-if desired and may have effect for some formats. Note the comma
-between the sespecifications and that there should be no space
-around the = sign.
+The height, width, and frac keywords can be included
+if desired and may have effect for some formats: the height and width
+are used for output in the formats \texttt{html}, \texttt{rst}, \texttt{sphinx}, while
+the frac specification is used for \texttt{latex} and \texttt{pdflatex} to specify
+the width of the image as a fraction of the text width.
+
+The figure caption is optional. If omitted, the figure appears ``inline''
+in the text without any figure environment in LaTeX formats or HTML.
+The caption may contain a label for referencing the figure.
+
+\DUadmonition[warning]{
+\DUtitle[warning]{Warning}
+
+Note the comma
+between the filename and the figure size specifications and
+that there should be no space around the = sign. This syntax must
+be strictly followed.
 
 Note also that, like for \texttt{TITLE:} and \texttt{AUTHOR:} lines, all information
 related to a figure line \emph{must be written on the same line}. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as \texttt{FIGURE:} will be
 included in the formatted caption).
+}
 \begin{figure}
 \phantomsection\label{fig-viz}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/streamtubes}}
@@ -2435,7 +2532,7 @@ A typical \texttt{MOVIE} command with a YouTube movie is then:
 \begin{quote}{\ttfamily \raggedright \noindent
 MOVIE:~{[}http://www.youtube.com/watch?v=sI2uCHH3qIM,~width=420~height=315{]}\\
 ~\\
-MOVIE:~{[}http://vimeo.com/55562330,~width=500~height=278{]}~Computational~fluid~dynamics~movie.
+MOVIE:~{[}http://vimeo.com/55562330,~width=500~height=278{]}~CFD.
 }
 \end{quote}
 
@@ -4623,7 +4720,7 @@ for shadowed boxes and more visual structure in the slides.
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{manual.rst}, line~3513
+{\color{red}WARNING/2} in \texttt{manual.rst}, line~3586
 
 \hyperlink{id15}{
 Duplicate explicit target name: ``mako''.

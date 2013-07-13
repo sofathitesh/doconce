@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jun 29, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jul 13, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -845,7 +845,7 @@ rendered nicely anyway.</p>
 <h1><a class="toc-backref" href="#id12">Figures and Movies</a></h1>
 <p>Figures and movies have almost equal syntax:</p>
 <pre class="literal-block">
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 </pre>
@@ -853,6 +853,8 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 <blockquote>
 <ol class="arabic simple">
 <li>A mandatory comma after the figure/movie filename,</li>
+<li>no comments between <tt class="docutils literal">width</tt>, <tt class="docutils literal">height</tt>, and <tt class="docutils literal">frac</tt> and no spaces
+around the <tt class="docutils literal">=</tt> characters,</li>
 <li>all of the command must appear on a single line,</li>
 <li>there must be a blank line after the command.</li>
 </ol>
@@ -861,6 +863,11 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.</p>
+<p>The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The <tt class="docutils literal">width</tt>
+and <tt class="docutils literal">height</tt> parameters affect HTML formats (<tt class="docutils literal">html</tt>, <tt class="docutils literal">rst</tt>, <tt class="docutils literal">sphinx</tt>),
+while <tt class="docutils literal">frac</tt> is the width of the image as a fraction of the total text
+width in the <tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> formats.</p>
 <p>Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.</p>

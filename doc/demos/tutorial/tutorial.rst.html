@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">May 29, 2013</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 13, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -701,7 +701,7 @@ Also, cite{Miller_2000} supports such a view.
 As see in Figure ref{mysec:fig:myfig}, the key equation
 features large, smooth regions *and* abrupt changes.
 
-FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+FIGURE: [fig/myfile, width=600 frac=0.9] My figure. label{mysec:fig:myfig}
 
 ===== References =====
 
@@ -716,7 +716,7 @@ for various formats of this document).</p>
 <div class="section" id="from-doconce-to-other-formats">
 <span id="doconce2formats"></span><h1>From Doconce to Other Formats</h1>
 <p>Transformation of a Doconce document <tt class="docutils literal">mydoc.do.txt</tt> to various other
-formats applies the script <tt class="docutils literal">doconce format</tt>:</p>
+formats apply the script <tt class="docutils literal">doconce format</tt>:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format format mydoc.do.txt
 </pre>
@@ -797,12 +797,29 @@ in the coming sections.</p>
 </div>
 <div class="section" id="id1">
 <h2>HTML</h2>
+<div class="section" id="basics">
+<h3>Basics</h3>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
 is performed by:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
+</div>
+<div class="section" id="typesetting-of-code">
+<h3>Typesetting of Code</h3>
+<p>If the Pygments package (including the <tt class="docutils literal">pygmentize</tt> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt>
+turns off the use of Pygments and makes code blocks appear with
+plain (<tt class="docutils literal">pre</tt>) HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments_html_linenos</span></tt> turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by <tt class="docutils literal"><span class="pre">--pygments_html_style=style</span></tt>, where <tt class="docutils literal">style</tt>
+can be <tt class="docutils literal">default</tt>, <tt class="docutils literal">emacs</tt>, <tt class="docutils literal">perldoc</tt>, and other valid names for
+Pygments styles.</p>
+</div>
+<div class="section" id="html-styles">
+<h3>HTML Styles</h3>
 <p>The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
 in an external CSS file; or in a template file.</p>
@@ -830,20 +847,14 @@ style (yellowish),</p>
 Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in <tt class="docutils literal">filename</tt>. Several stylesheets can
 be specified: <tt class="docutils literal"><span class="pre">--ccs=file1.css,file2.css,file3.css</span></tt>.</p>
+</div>
+<div class="section" id="html-templates">
+<h3>HTML templates</h3>
 <p>Templates are HTML files with &quot;slots&quot; <tt class="docutils literal">%(main)s</tt> for the main body
 of text, <tt class="docutils literal">%(title)s</tt> for the title, and <tt class="docutils literal">%(date)s</tt> for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a <a class="reference external" href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html">separate document</a>. That document describes how you your Doconce-generated
 HTML file can have any specified layout.</p>
-<p>If the Pygments package (including the <tt class="docutils literal">pygmentize</tt> program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt>
-turns off the use of Pygments and makes code blocks appear with
-plain (<tt class="docutils literal">pre</tt>) HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments_html_linenos</span></tt> turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by <tt class="docutils literal"><span class="pre">--pygments_html_style=style</span></tt>, where <tt class="docutils literal">style</tt>
-can be <tt class="docutils literal">default</tt>, <tt class="docutils literal">emacs</tt>, <tt class="docutils literal">perldoc</tt>, and other valid names for
-Pygments styles.</p>
 <p>The HTML file can be embedded in a template with your own tailored
 design, see a &quot;tutorial&quot;: &quot; <a class="reference external" href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html">https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html</a>&quot; on this topic. The template file must contain
 valid HTML code and can have three &quot;slots&quot;: <tt class="docutils literal">%(title)s</tt> for a title,
@@ -866,6 +877,37 @@ Terminal&gt; doconce format html mydoc --html_template=mytemplate.html
 <tt class="docutils literal"><span class="pre">--html_style=vagrant</span></tt>. With this style, one has nice navigation buttons
 that are used if the document contains <tt class="docutils literal">!split</tt> commands for splitting
 it into many pages.</p>
+</div>
+<div class="section" id="the-html-file-collection">
+<h3>The HTML File Collection</h3>
+<p>There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+<tt class="docutils literal">.basename_html_file_collection</tt>, where <tt class="docutils literal">basename</tt> is the filestem of
+the Doconce file (i.e., the Doconce source is in <tt class="docutils literal">basename.do.txt</tt>).</p>
+</div>
+<div class="section" id="filenames">
+<h3>Filenames</h3>
+<p>An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the <tt class="docutils literal"><span class="pre">--html_output=basename</span></tt> option, where <tt class="docutils literal">basename</tt> is the
+filestem of the associated HTML files. The
+<tt class="docutils literal">.basename_html_file_collection</tt> file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: <tt class="docutils literal">mydoc_bloodish.html</tt>, <tt class="docutils literal">mydoc_solarized</tt>, and
+<tt class="docutils literal">mydoc_vagrant</tt>:</p>
+<pre class="literal-block">
+Terminal&gt; doconce format html mydoc --html_style=bloodish \
+          --html_output=mydoc_bloodish
+Terminal&gt; doconce split_html mydoc_bloodish.html
+Terminal&gt; doconce format html mydoc --html_style=solarized \
+          --html_output=mydoc_solarized --pygments_html=perldoc \
+          --html_admon=apricot
+Terminal&gt; doconce format html mydoc --html_style=vagrant \
+          --html_output=mydoc_vagrant --pygments_html_style=default \
+          --html_template=templates/my_adapted_vagrant_template.html
+Terminal&gt; doconce split_html mydoc_vagrant.html
+</pre>
+</div>
 </div>
 <div class="section" id="blog-posts">
 <h2>Blog Posts</h2>
@@ -995,9 +1037,11 @@ can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt cl
 <tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands-cross-references-index-and-bibliography">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
-<p>An option <tt class="docutils literal"><span class="pre">--latex_printed</span></tt> makes some adjustments for documents
+<p>An option <tt class="docutils literal"><span class="pre">-DDEVICE=paper</span></tt> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
-associated with a footnote listing the complete web address (URL).</p>
+associated with a footnote listing the complete web address (URL).
+The default, <tt class="docutils literal"><span class="pre">-DDEVICE=screen</span></tt>, creates a PDF file for reading
+on a screen where links are clickable.</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex mydoc
@@ -1033,6 +1077,8 @@ implies the <tt class="docutils literal">media9</tt> package and the <tt class="
 while other values are <tt class="docutils literal">movie15</tt> (<tt class="docutils literal">\includemovie</tt> command),
 <tt class="docutils literal">multimedia</tt> (for Beamer-style <tt class="docutils literal">\movie</tt> command),
 or <tt class="docutils literal"><span class="pre">href-run</span></tt> (for the plain <cite>h`run:file`_</cite> command)</li>
+<li><tt class="docutils literal">MOVIE_CONTROLS</tt> adds buttons for starting/stopping movies if the
+<tt class="docutils literal">media9</tt> package is used.</li>
 <li><tt class="docutils literal">PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere - and note that
 the preamble is only included
@@ -1045,12 +1091,6 @@ inline comments (looks much like track changes in MS Word). This
 macro has only effect if inline comments are used (name, colon,
 and comment inside brackets).</li>
 <li><tt class="docutils literal">LINENUMBERS</tt> for inclusion of line numbers in the text.</li>
-<li><tt class="docutils literal">AMON</tt> for setting the type of admonitions: <tt class="docutils literal">&quot;colors&quot;</tt> for colored
-boxes with icons, <tt class="docutils literal">&quot;graybox1&quot;</tt> for gray frame boxes with rounded
-corners (default), <tt class="docutils literal">&quot;graybox2&quot;</tt> for narrower square gray frame boxes
-(except for summary, which for A4 format is small and with wrapped
-text around if it does not contain verbatim code),
-or <tt class="docutils literal">&quot;paragraph&quot;</tt> for simple, plain paragraph headings and ordinary text</li>
 <li><tt class="docutils literal">COLORED_TABLE_ROWS</tt> for coloring every other table rows (set this
 variable to <tt class="docutils literal">gray</tt> or <tt class="docutils literal">blue</tt>)</li>
 <li><tt class="docutils literal">BLUE_SECTION_HEADINGS</tt> for blue section and subsection headings</li>
@@ -1091,9 +1131,16 @@ above, which implies <tt class="docutils literal"><span class="pre">\begin{minte
 begin and end for blocks inside <tt class="docutils literal">!bc fpro</tt> and <tt class="docutils literal">!ec</tt>).  Specifying
 <tt class="docutils literal">envir=ans:nt</tt> means that all other environments are typeset with the
 <tt class="docutils literal">anslistings.sty</tt> package, e.g., <tt class="docutils literal">!bc cppcod</tt> will then result in
-<tt class="docutils literal"><span class="pre">\begin{c++}</span></tt>. If no environments like <tt class="docutils literal">sys</tt>, <tt class="docutils literal">fpro</tt>, or the common
-<tt class="docutils literal">envir</tt> are defined on the command line, the plain <tt class="docutils literal">\begin{verbatim}</tt>
-and <tt class="docutils literal">\end{verbatim}</tt> used.</p>
+<tt class="docutils literal"><span class="pre">\begin{c++}</span></tt>. A predefined shortcut as in <tt class="docutils literal"><span class="pre">shcod=Verbatim-0.85</span></tt>
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+<tt class="docutils literal"><span class="pre">shcod=Verbatim-indent</span></tt> implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+<tt class="docutils literal">\begin{Verbatim}</tt> instruction using the syntax illustrated for
+the <tt class="docutils literal">sys</tt> environments above.</p>
+<p>If no environments like <tt class="docutils literal">sys</tt>, <tt class="docutils literal">fpro</tt>, or the common
+<tt class="docutils literal">envir</tt> are defined on the command line, the plain <tt class="docutils literal">\begin{Verbatim}</tt>
+and <tt class="docutils literal">\end{Verbatim}</tt> instructions are used.</p>
 <p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal">mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt class="docutils literal">section</tt> by <tt class="docutils literal">section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
