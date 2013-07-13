@@ -481,6 +481,8 @@ the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
 
+Mail addresses can also be used: "`hpl@simula.no`": "mailto:hpl@simula.no", or just a "mail link": "mailto:hpl@simula.no", or a raw URL: "mailto:hpl@simula.no".
+
 Here are some tough tests of URLs, especially for the `latex` format:
 "Newton-Cotes":
 "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" formulas
