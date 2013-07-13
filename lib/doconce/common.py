@@ -687,11 +687,11 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 
     'linkURL2':  # "some link": "https://bla-bla"
-    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
+    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:|ftp:/|mailto:)//.+?)"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
     'linkURL2v':  # verbatim link "`filelink`": "https://bla-bla"
-    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:/|https?:|ftp:)//.+?)"''',
+    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:/|https?:|ftp:/|mailto:)//.+?)"''',
 
     'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
     #r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
