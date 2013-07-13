@@ -42,7 +42,7 @@ Automatically generated HTML file from Doconce source
              -webkit-border-radius: 4px; -moz-border-radius: 4px;
              border-radius: 4px
              color: #555;
-             background-color: whiteSmoke;
+             background-color: #f8f8f8;
              background-position: 10px 5px;
              background-repeat: no-repeat;
              background-size: 38px;
@@ -56,7 +56,6 @@ Automatically generated HTML file from Doconce source
      .alert-notice { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_notice.png); }
      .alert-summary  { background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_summary.png); }
      .alert-warning { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_warning.png); }
-     .alert-hint { background-image: url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_hint.png); }
      .alert-question {background-image:url(https://doconce.googlecode.com/hg/bundled/html_images/small_gray_question.png); }
 
 </style>
@@ -89,36 +88,42 @@ Automatically generated HTML file from Doconce source
               (' Notes ', 2, None, '___sec12'),
               (' Demo of different formats ', 2, None, '___sec13'),
               (' HTML ', 2, None, '___sec14'),
-              (' Blog Posts ', 2, None, '___sec15'),
-              (' Pandoc and Markdown ', 2, None, '___sec16'),
-              (' LaTeX ', 2, None, '___sec17'),
-              (' PDFLaTeX ', 2, None, '___sec18'),
-              (' XeLaTeX ', 2, None, '___sec19'),
-              (' Plain ASCII Text ', 2, None, '___sec20'),
-              (' reStructuredText ', 2, None, '___sec21'),
-              (' Sphinx ', 2, None, '___sec22'),
-              (' The manual Sphinx procedure ', 3, None, '___sec23'),
-              (' Wiki Formats ', 2, None, '___sec24'),
-              (' Tweaking the Doconce Output ', 2, None, '___sec25'),
-              (' Demos ', 2, None, '___sec26'),
+              (' Basics ', 3, None, '___sec15'),
+              (' Typesetting of Code ', 3, None, '___sec16'),
+              (' HTML Styles ', 3, None, '___sec17'),
+              (' HTML templates ', 3, None, '___sec18'),
+              (' The HTML File Collection ', 3, None, '___sec19'),
+              (' Filenames ', 3, None, '___sec20'),
+              (' Blog Posts ', 2, None, '___sec21'),
+              (' Pandoc and Markdown ', 2, None, '___sec22'),
+              (' LaTeX ', 2, None, '___sec23'),
+              (' PDFLaTeX ', 2, None, '___sec24'),
+              (' XeLaTeX ', 2, None, '___sec25'),
+              (' Plain ASCII Text ', 2, None, '___sec26'),
+              (' reStructuredText ', 2, None, '___sec27'),
+              (' Sphinx ', 2, None, '___sec28'),
+              (' The manual Sphinx procedure ', 3, None, '___sec29'),
+              (' Wiki Formats ', 2, None, '___sec30'),
+              (' Tweaking the Doconce Output ', 2, None, '___sec31'),
+              (' Demos ', 2, None, '___sec32'),
               (' Installation of Doconce and its Dependencies ',
                1,
                None,
-               '___sec27'),
-              (' Doconce ', 2, None, '___sec28'),
-              (' Dependencies ', 2, None, '___sec29'),
-              (' Preprocessors ', 3, None, '___sec30'),
-              (' Image file handling ', 3, None, '___sec31'),
-              (' Spellcheck ', 3, None, '___sec32'),
-              (' Bibliography ', 3, None, '___sec33'),
-              (' Ptex2tex for LaTeX Output ', 3, None, '___sec34'),
-              (' LaTeX packages ', 3, None, '___sec35'),
-              (' reStructuredText (reST) Output ', 3, None, '___sec36'),
-              (' Sphinx Output ', 3, None, '___sec37'),
-              (' Markdown and Pandoc Output ', 3, None, '___sec38'),
-              (' Epydoc Output ', 3, None, '___sec39'),
-              (' The `doconce diff` command ', 3, None, '___sec40'),
-              (' Quick Debian/Ubuntu Install ', 2, None, '___sec41')]}
+               '___sec33'),
+              (' Doconce ', 2, None, '___sec34'),
+              (' Dependencies ', 2, None, '___sec35'),
+              (' Preprocessors ', 3, None, '___sec36'),
+              (' Image file handling ', 3, None, '___sec37'),
+              (' Spellcheck ', 3, None, '___sec38'),
+              (' Bibliography ', 3, None, '___sec39'),
+              (' Ptex2tex for LaTeX Output ', 3, None, '___sec40'),
+              (' LaTeX packages ', 3, None, '___sec41'),
+              (' reStructuredText (reST) Output ', 3, None, '___sec42'),
+              (' Sphinx Output ', 3, None, '___sec43'),
+              (' Markdown and Pandoc Output ', 3, None, '___sec44'),
+              (' Epydoc Output ', 3, None, '___sec45'),
+              (' The `doconce diff` command ', 3, None, '___sec46'),
+              (' Quick Debian/Ubuntu Install ', 2, None, '___sec47')]}
 end of tocinfo -->
 
 <body>
@@ -166,7 +171,7 @@ MathJax.Hub.Config({
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <p>
-<center><h4>May 29, 2013</h4></center> <!-- date -->
+<center><h4>Jul 13, 2013</h4></center> <!-- date -->
 <p>
 
 <ul>
@@ -575,7 +580,7 @@ Also, cite{Miller_2000} supports such a view.
 As see in Figure ref{mysec:fig:myfig}, the key equation
 features large, smooth regions *and* abrupt changes.
 
-FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+FIGURE: [fig/myfile, width=600 frac=0.9] My figure. label{mysec:fig:myfig}
 
 ===== References =====
 
@@ -593,7 +598,7 @@ for various formats of this document).
 
 <p>
 Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
-formats applies the script <code>doconce format</code>:
+formats apply the script <code>doconce format</code>:
 <!-- begin verbatim block  sys-->
 <pre><code>Terminal&gt; doconce format format mydoc.do.txt
 </code></pre>
@@ -692,6 +697,8 @@ in the coming sections.
 
 <h3>HTML  <a name="___sec14"></a></h3>
 
+<h4>Basics  <a name="___sec15"></a></h4>
+
 <p>
 Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
@@ -700,6 +707,21 @@ is performed by
 </code></pre>
 <!-- end verbatim block -->
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
+
+<h4>Typesetting of Code  <a name="___sec16"></a></h4>
+
+<p>
+If the Pygments package (including the <code>pygmentize</code> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <code>--no_pygments_html</code>
+turns off the use of Pygments and makes code blocks appear with
+plain (<code>pre</code>) HTML tags. The option <code>--pygments_html_linenos</code> turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by <code>--pygments_html_style=style</code>, where <code>style</code>
+can be <code>default</code>, <code>emacs</code>, <code>perldoc</code>, and other valid names for
+Pygments styles.
+
+<h4>HTML Styles  <a name="___sec17"></a></h4>
 
 <p>
 The HTML style can be defined either in the header of the HTML file,
@@ -726,23 +748,14 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in <code>filename</code>. Several stylesheets can
 be specified: <code>--ccs=file1.css,file2.css,file3.css</code>.
 
+<h4>HTML templates  <a name="___sec18"></a></h4>
+
 <p>
 Templates are HTML files with "slots" <code>%(main)s</code> for the main body
 of text, <code>%(title)s</code> for the title, and <code>%(date)s</code> for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a <a href="https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html">separate document</a>. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-<p>
-If the Pygments package (including the <code>pygmentize</code> program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument <code>--no_pygments_html</code>
-turns off the use of Pygments and makes code blocks appear with
-plain (<code>pre</code>) HTML tags. The option <code>--pygments_html_linenos</code> turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by <code>--pygments_html_style=style</code>, where <code>style</code>
-can be <code>default</code>, <code>emacs</code>, <code>perldoc</code>, and other valid names for
-Pygments styles.
 
 <p>
 The HTML file can be embedded in a template with your own tailored
@@ -769,7 +782,42 @@ The template in <code>style_vagrant</code> also needs an extra option
 that are used if the document contains <code>!split</code> commands for splitting
 it into many pages.
 
-<h3>Blog Posts  <a name="___sec15"></a></h3>
+<h4>The HTML File Collection  <a name="___sec19"></a></h4>
+
+<p>
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+<code>.basename_html_file_collection</code>, where <code>basename</code> is the filestem of
+the Doconce file (i.e., the Doconce source is in <code>basename.do.txt</code>).
+
+<h4>Filenames  <a name="___sec20"></a></h4>
+
+<p>
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the <code>--html_output=basename</code> option, where <code>basename</code> is the
+filestem of the associated HTML files. The
+<code>.basename_html_file_collection</code> file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: <code>mydoc_bloodish.html</code>, <code>mydoc_solarized</code>, and
+<code>mydoc_vagrant</code>.
+
+<p>
+<!-- begin verbatim block  sys-->
+<pre><code>Terminal&gt; doconce format html mydoc --html_style=bloodish \ 
+          --html_output=mydoc_bloodish
+Terminal&gt; doconce split_html mydoc_bloodish.html
+Terminal&gt; doconce format html mydoc --html_style=solarized \ 
+          --html_output=mydoc_solarized --pygments_html=perldoc \ 
+          --html_admon=apricot
+Terminal&gt; doconce format html mydoc --html_style=vagrant \ 
+          --html_output=mydoc_vagrant --pygments_html_style=default \ 
+          --html_template=templates/my_adapted_vagrant_template.html
+Terminal&gt; doconce split_html mydoc_vagrant.html
+</code></pre>
+<!-- end verbatim block -->
+
+<h3>Blog Posts  <a name="___sec21"></a></h3>
 
 <p>
 Doconce can be used for writing blog posts provided the blog site accepts
@@ -837,7 +885,7 @@ Speaking of WordPress, the related project <a href="http://pressbooks.com"><tt>h
 instance) and produce very nice-looking books.  There is no support
 for mathematics in the text, though.
 
-<h3>Pandoc and Markdown  <a name="___sec16"></a></h3>
+<h3>Pandoc and Markdown  <a name="___sec22"></a></h3>
 
 <p>
 Output in Pandoc's extended Markdown format results from
@@ -906,7 +954,7 @@ Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
-<h3>LaTeX  <a name="___sec17"></a></h3>
+<h3>LaTeX  <a name="___sec23"></a></h3>
 
 <p>
 Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is done in two steps:
@@ -929,9 +977,11 @@ If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
 <p>
-An option <code>--latex_printed</code> makes some adjustments for documents
+An option <code>-DDEVICE=paper</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, <code>-DDEVICE=screen</code>, creates a PDF file for reading
+on a screen where links are clickable.
 
 <p>
 <b>Step 2.</b>
@@ -979,6 +1029,8 @@ Preprocessor variables to be defined or undefined are
    while other values are <code>movie15</code> (<code>\includemovie</code> command),
    <code>multimedia</code> (for Beamer-style <code>\movie</code> command),
    or <code>href-run</code> (for the plain <code>\href{run:file}</code> command)</li>
+ <li> <code>MOVIE_CONTROLS</code> adds buttons for starting/stopping movies if the
+   <code>media9</code> package is used.</li>
  <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -991,12 +1043,6 @@ Preprocessor variables to be defined or undefined are
    macro has only effect if inline comments are used (name, colon,
    and comment inside brackets).</li>
  <li> <code>LINENUMBERS</code> for inclusion of line numbers in the text.</li>
- <li> <code>AMON</code> for setting the type of admonitions: <code>"colors"</code> for colored
-   boxes with icons, <code>"graybox1"</code> for gray frame boxes with rounded
-   corners (default), <code>"graybox2"</code> for narrower square gray frame boxes
-   (except for summary, which for A4 format is small and with wrapped
-   text around if it does not contain verbatim code),
-   or <code>"paragraph"</code> for simple, plain paragraph headings and ordinary text</li>
  <li> <code>COLORED_TABLE_ROWS</code> for coloring every other table rows (set this
    variable to <code>gray</code> or <code>blue</code>)</li>
  <li> <code>BLUE_SECTION_HEADINGS</code> for blue section and subsection headings</li>
@@ -1042,9 +1088,18 @@ above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}
 begin and end for blocks inside <code>!bc fpro</code> and <code>!ec</code>).  Specifying
 <code>envir=ans:nt</code> means that all other environments are typeset with the
 <code>anslistings.sty</code> package, e.g., <code>!bc cppcod</code> will then result in
-<code>\begin{c++}</code>. If no environments like <code>sys</code>, <code>fpro</code>, or the common
-<code>envir</code> are defined on the command line, the plain <code>\begin{verbatim}</code>
-and <code>\end{verbatim}</code> used.
+<code>\begin{c++}</code>. A predefined shortcut as in <code>shcod=Verbatim-0.85</code>
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+<code>shcod=Verbatim-indent</code> implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+<code>\begin{Verbatim}</code> instruction using the syntax illustrated for
+the <code>sys</code> environments above.
+
+<p>
+If no environments like <code>sys</code>, <code>fpro</code>, or the common
+<code>envir</code> are defined on the command line, the plain <code>\begin{Verbatim}</code>
+and <code>\end{Verbatim}</code> instructions are used.
 
 <p>
 <b>Step 2b (optional).</b>
@@ -1117,7 +1172,7 @@ When running <code>doconce ptex2tex mydoc envir=minted</code> (or other minted
 specifications with <code>doconce ptex2tex</code>), the minted package is automatically
 included so there is no need for the <code>-DMINTED</code> option.
 
-<h3>PDFLaTeX  <a name="___sec18"></a></h3>
+<h3>PDFLaTeX  <a name="___sec24"></a></h3>
 
 <p>
 Running <code>pdflatex</code> instead of <code>latex</code> follows almost the same steps,
@@ -1135,7 +1190,7 @@ Terminal&gt; pdflatex -shell-escape mydoc
 </code></pre>
 <!-- end verbatim block -->
 
-<h3>XeLaTeX  <a name="___sec19"></a></h3>
+<h3>XeLaTeX  <a name="___sec25"></a></h3>
 
 <p>
 XeLaTeX is an alternative to pdfLaTeX and is run in almost the
@@ -1150,7 +1205,7 @@ Terminal&gt; xelatex mydoc
 </code></pre>
 <!-- end verbatim block -->
 
-<h3>Plain ASCII Text  <a name="___sec20"></a></h3>
+<h3>Plain ASCII Text  <a name="___sec26"></a></h3>
 
 <p>
 We can go from Doconce "back to" plain untagged text suitable for viewing
@@ -1161,7 +1216,7 @@ computer source code:
 </code></pre>
 <!-- end verbatim block -->
 
-<h3>reStructuredText  <a name="___sec21"></a></h3>
+<h3>reStructuredText  <a name="___sec27"></a></h3>
 
 <p>
 Going from Doconce to reStructuredText gives a lot of possibilities to
@@ -1217,7 +1272,7 @@ Some links for going from LaTeX to Word are listed below.
  <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
-<h3>Sphinx  <a name="___sec22"></a></h3>
+<h3>Sphinx  <a name="___sec28"></a></h3>
 
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
@@ -1379,7 +1434,7 @@ and reuse it the next time <code>doconce sphinx_dir</code> is run
 </code></pre>
 <!-- end verbatim block -->
 
-<h4>The manual Sphinx procedure  <a name="___sec23"></a></h4>
+<h4>The manual Sphinx procedure  <a name="___sec29"></a></h4>
 
 <p>
 If it is not desirable to use the autogenerated scripts explained
@@ -1489,7 +1544,7 @@ depending the argument that follows <code>!bc</code>: <code>cod</code> gives Pyt
 (<code>code-block:: python</code> in Sphinx syntax) and <code>cppcod</code> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.
 
-<h3>Wiki Formats  <a name="___sec24"></a></h3>
+<h3>Wiki Formats  <a name="___sec30"></a></h3>
 
 <p>
 There are many different wiki formats, but Doconce only supports three:
@@ -1536,7 +1591,7 @@ the <code>.gwiki</code> file be replaced by a URL where the figure is
 available. There are instructions in the file for doing this. Usually,
 one performs this substitution automatically (see next section).
 
-<h3>Tweaking the Doconce Output  <a name="___sec25"></a></h3>
+<h3>Tweaking the Doconce Output  <a name="___sec31"></a></h3>
 
 <p>
 Occasionally, one would like to tweak the output in a certain format
@@ -1551,7 +1606,7 @@ from a script to automate all steps in going from Doconce to the final
 format(s). The <code>make.sh</code> files in <code>docs/manual</code> and <code>docs/tutorial</code>
 constitute comprehensive examples on how such scripts can be made.
 
-<h3>Demos  <a name="___sec26"></a></h3>
+<h3>Demos  <a name="___sec32"></a></h3>
 
 <p>
 The current text is generated from a Doconce format stored in the file
@@ -1573,7 +1628,7 @@ There is another demo in the <code>docs/manual</code> directory which
 translates the more comprehensive documentation, <code>manual.do.txt</code>, to
 various formats. The <code>make.sh</code> script runs a set of translations.
 
-<h2>Installation of Doconce and its Dependencies  <a name="___sec27"></a></h2>
+<h2>Installation of Doconce and its Dependencies  <a name="___sec33"></a></h2>
 
 <p>
 Below, we explain the manual installation of all software that may be
@@ -1581,7 +1636,7 @@ needed when working with Doconce documents.
 The impatient way to install what is needed is to run the
 <a href="doconce_install_all.sh"><tt>doconce_install_all.sh</tt></a> script.
 
-<h3>Doconce  <a name="___sec28"></a></h3>
+<h3>Doconce  <a name="___sec34"></a></h3>
 
 <p>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
@@ -1605,7 +1660,7 @@ sudo python setup.py install
 </code></pre>
 <!-- end verbatim block -->
 
-<h3>Dependencies  <a name="___sec29"></a></h3>
+<h3>Dependencies  <a name="___sec35"></a></h3>
 
 <p>
 Producing HTML documents, plain text, pandoc-extended Markdown,
@@ -1618,7 +1673,7 @@ and so on, the software below must be installed.
 <p>
 <!-- Make a debpkg_doconce.txt file with everything that is needed on Debian -->
 
-<h4>Preprocessors  <a name="___sec30"></a></h4>
+<h4>Preprocessors  <a name="___sec36"></a></h4>
 
 <p>
 If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess</a>
@@ -1660,7 +1715,7 @@ Mako can also be installed directly from
 tarball, pack it out, go to the directory and run
 the usual <code>sudo python setup.py install</code>.
 
-<h4>Image file handling  <a name="___sec31"></a></h4>
+<h4>Image file handling  <a name="___sec37"></a></h4>
 
 <p>
 Different output formats require different formats of image files.
@@ -1698,7 +1753,7 @@ can be installed by
 </code></pre>
 <!-- end verbatim block -->
 
-<h4>Spellcheck  <a name="___sec32"></a></h4>
+<h4>Spellcheck  <a name="___sec38"></a></h4>
 
 <p>
 The utility <code>doconce spellcheck</code> applies the <code>ispell</code> program for
@@ -1710,7 +1765,7 @@ spellcheck. On Debian (including Ubuntu) it is installed by
 </code></pre>
 <!-- end verbatim block -->
 
-<h4>Bibliography  <a name="___sec33"></a></h4>
+<h4>Bibliography  <a name="___sec39"></a></h4>
 
 <p>
 The Python package <a href="https://bitbucket.org/logg/publish">Publish</a> is needed if you use a bibliography
@@ -1732,7 +1787,7 @@ sudo python setup.py
 </code></pre>
 <!-- end verbatim block -->
 
-<h4>Ptex2tex for LaTeX Output  <a name="___sec34"></a></h4>
+<h4>Ptex2tex for LaTeX Output  <a name="___sec40"></a></h4>
 
 <p>
 To make LaTeX documents with very flexible choice of typesetting of
@@ -1816,7 +1871,7 @@ or <code>doconce ptex2tex</code> command is run with <code>-DTODONOTES</code>.  
 <code>ifthen</code>, <code>xkeyval</code>, <code>tikz</code>, <code>calc</code>, <code>graphicx</code>, and <code>setspace</code>. The
 relevant Debian packages for installing all this are listed below.
 
-<h4>LaTeX packages  <a name="___sec35"></a></h4>
+<h4>LaTeX packages  <a name="___sec41"></a></h4>
 
 <p>
 Many LaTeX packages are potentially needed (depending on various
@@ -1866,7 +1921,7 @@ If you want to use the <em>anslistings</em> code environment with <code>ptex2tex
 the <a href="https://code.google.com/p/ptex2tex/source/browse/trunk/latex/styles/with_license/anslistings.sty">ptex2tex source</a>. It should get installed
 by the <code>cp2texmf.sh</code> script executed above.
 
-<h4>reStructuredText (reST) Output  <a name="___sec36"></a></h4>
+<h4>reStructuredText (reST) Output  <a name="___sec42"></a></h4>
 
 <p>
 The <code>rst</code> output from Doconce allows further transformation to LaTeX,
@@ -1905,7 +1960,7 @@ using ReportLab instead of LaTeX. The enabling software is
 or clone the svn repository, go to the <code>rst2pdf</code> directory and
 run the usual <code>sudo python setup.py install</code>.
 
-<h4>Sphinx Output  <a name="___sec37"></a></h4>
+<h4>Sphinx Output  <a name="___sec43"></a></h4>
 
 <p>
 Output to <code>sphinx</code> requires of course the
@@ -1945,7 +2000,7 @@ additional Python/Sphinx modules to be installed:
 These must be downloaded or cloned, and <code>setup.py</code> must be run as shown
 above.
 
-<h4>Markdown and Pandoc Output  <a name="___sec38"></a></h4>
+<h4>Markdown and Pandoc Output  <a name="___sec44"></a></h4>
 
 <p>
 The Doconce format <code>pandoc</code> outputs the document in the Pandoc
@@ -1960,7 +2015,7 @@ easily done by
 <!-- end verbatim block -->
 on Debian (Ubuntu) systems.
 
-<h4>Epydoc Output  <a name="___sec39"></a></h4>
+<h4>Epydoc Output  <a name="___sec45"></a></h4>
 
 <p>
 When the output format is <code>epydoc</code> one needs that program too, installed
@@ -1984,7 +2039,7 @@ run <code>svn update</code>, and then <code>sudo python setup.py install</code>.
 Mercurial (<code>hg</code>) directories, go to the directory, run
 <code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
 
-<h4>The <code>doconce diff</code> command  <a name="___sec40"></a></h4>
+<h4>The <code>doconce diff</code> command  <a name="___sec46"></a></h4>
 
 <p>
 The <code>doconce diff file1 file prog</code> command for illustrating differences between
@@ -2007,7 +2062,7 @@ appear in the table below.
 <tr><td align="left">   <code>tkdiff.tcl</code>                                                                       </td> <td align="left">   <a href="https://sourceforge.net/projects/tkdiff/">tkdiff</a>                                          </td> <td align="left">   not in Debian                                                                                 </td> </tr>
 </table>
 
-<h3>Quick Debian/Ubuntu Install  <a name="___sec41"></a></h3>
+<h3>Quick Debian/Ubuntu Install  <a name="___sec47"></a></h3>
 
 <p>
 On Debian (including Ubuntu) systems, it is straightforward to install the

@@ -1901,8 +1901,8 @@ def subst_class_func_mod(filestr, format):
 def file2file(in_filename, format, basename):
     """
     Perform the transformation of a doconce file, stored in in_filename,
-    to a given format (html, latex, etc.), written to out_filename.
-    This is the "main" function in the module.
+    to a given format (html, latex, etc.), written to out_filename (returned).
+    This is the principal function in the module.
     """
     if in_filename.startswith('__'):
         print 'translating preprocessed doconce text in', in_filename, \
@@ -1911,9 +1911,12 @@ def file2file(in_filename, format, basename):
         print 'translating doconce text in', in_filename, 'to', format
 
     if format == 'html':
+        html_output = option('html_output=', '')
+        if html_output:
+            basename = html_output
         # Initial the doc's file collection
-        html.add_to_file_collection(filename[:-7] + '.html',
-                                    filename[:-7], mode='w')
+        html.add_to_file_collection(basename + '.html',
+                                    basename, mode='w')
 
     # if trouble with encoding:
     # Unix> doconce guess_encoding myfile.do.txt
@@ -2524,7 +2527,7 @@ python-mako package (sudo apt-get install python-mako).
 
     return resultfile
 
-def main():
+def format_driver():
     # doconce format accepts special command-line arguments:
     #   - debug (for debugging in file _doconce_debugging.log) or
     #   - skip_inline_comments
@@ -2605,4 +2608,4 @@ def main():
     print 'output in', out_filename
 
 if __name__ == '__main__':
-    main()
+    format_driver()

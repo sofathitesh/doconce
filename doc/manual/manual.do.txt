@@ -280,7 +280,7 @@ __A Paragraph.__ The running text goes here.
 
 Figures are recognized by the special line syntax
 !bc
-FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+FIGURE:[filename, height=400 width=600 frac=0.8] caption
 
 !ec
 The filename can be without extension, and Doconce will search for an
@@ -289,16 +289,28 @@ say `.eps` when requesting an HTML format, Doconce tries to find another
 file, and if not, the given file is converted to a proper format
 (using ImageMagick's `convert` utility).
 
-The height, width, and scale keywords (and others) can be included
-if desired and may have effect for some formats. Note the comma
-between the sespecifications and that there should be no space
-around the = sign.
+The height, width, and frac keywords can be included
+if desired and may have effect for some formats: the height and width
+are used for output in the formats `html`, `rst`, `sphinx`, while
+the frac specification is used for `latex` and `pdflatex` to specify
+the width of the image as a fraction of the text width.
+
+The figure caption is optional. If omitted, the figure appears "inline"
+in the text without any figure environment in LaTeX formats or HTML.
+The caption may contain a label for referencing the figure.
+
+!bwarning
+Note the comma
+between the filename and the figure size specifications and
+that there should be no space around the = sign. This syntax must
+be strictly followed.
 
 Note also that, like for `TITLE:` and `AUTHOR:` lines, all information
 related to a figure line *must be written on the same line*. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as `FIGURE:` will be
 included in the formatted caption).
+!ewarning
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. label{fig:viz}
 

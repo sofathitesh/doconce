@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
-% Jun 29, 2013
+% Jul 13, 2013
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
@@ -485,7 +485,7 @@ rendered nicely anyway.
 Figures and movies have almost equal syntax:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. \label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
@@ -495,14 +495,23 @@ Note three important syntax details:
 
  1. A mandatory comma after the figure/movie filename,
 
- 2. all of the command must appear on a single line,
+ 2. no comments between `width`, `height`, and `frac` and no spaces
+    around the `=` characters,
 
- 3. there must be a blank line after the command.
+ 3. all of the command must appear on a single line,
+
+ 4. there must be a blank line after the command.
 
 The figure file can be listed without extension. Doconce will then find
 the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, Doconce will convert
 another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The `width`
+and `height` parameters affect HTML formats (`html`, `rst`, `sphinx`),
+while `frac` is the width of the image as a fraction of the total text
+width in the `latex` and `pdflatex` formats.
 
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page

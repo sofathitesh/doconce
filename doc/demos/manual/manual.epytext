@@ -1,6 +1,6 @@
 TITLE: Doconce Description
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Jun 28, 2013
+DATE: Jul 13, 2013
 What Is Doconce?
 ================
 
@@ -645,6 +645,9 @@ in the coming sections.
 HTML
 ----
 
+Basics
+~~~~~~
+
 Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
@@ -652,6 +655,23 @@ is performed by::
         Terminal> doconce format html mydoc
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
+
+Typesetting of Code
+~~~~~~~~~~~~~~~~~~~
+
+If the Pygments package (including the C{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument C{--no_pygments_html}
+turns off the use of Pygments and makes code blocks appear with
+plain (C{pre}) HTML tags. The option C{--pygments_html_linenos} turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by C{--pygments_html_style=style}, where C{style}
+can be C{default}, C{emacs}, C{perldoc}, and other valid names for
+Pygments styles.
+
+
+HTML Styles
+~~~~~~~~~~~
 
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
@@ -672,21 +692,14 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in C{filename}. Several stylesheets can
 be specified: C{--ccs=file1.css,file2.css,file3.css}.
 
+HTML templates
+~~~~~~~~~~~~~~
+
 Templates are HTML files with "slots" C{%(main)s} for the main body
 of text, C{%(title)s} for the title, and C{%(date)s} for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a U{separate document<https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html>}. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the C{pygmentize} program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument C{--no_pygments_html}
-turns off the use of Pygments and makes code blocks appear with
-plain (C{pre}) HTML tags. The option C{--pygments_html_linenos} turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by C{--pygments_html_style=style}, where C{style}
-can be C{default}, C{emacs}, C{perldoc}, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a "tutorial": " U{https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html<https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html>}" on this topic. The template file must contain
@@ -711,6 +724,38 @@ The template in C{style_vagrant} also needs an extra option
 C{--html_style=vagrant}. With this style, one has nice navigation buttons
 that are used if the document contains C{!split} commands for splitting
 it into many pages.
+
+The HTML File Collection
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+C{.basename_html_file_collection}, where C{basename} is the filestem of
+the Doconce file (i.e., the Doconce source is in C{basename.do.txt}).
+
+Filenames
+~~~~~~~~~
+
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the C{--html_output=basename} option, where C{basename} is the
+filestem of the associated HTML files. The
+C{.basename_html_file_collection} file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: C{mydoc_bloodish.html}, C{mydoc_solarized}, and
+C{mydoc_vagrant}::
+
+
+        Terminal> doconce format html mydoc --html_style=bloodish \
+                  --html_output=mydoc_bloodish
+        Terminal> doconce split_html mydoc_bloodish.html
+        Terminal> doconce format html mydoc --html_style=solarized \
+                  --html_output=mydoc_solarized --pygments_html=perldoc \
+                  --html_admon=apricot
+        Terminal> doconce format html mydoc --html_style=vagrant \
+                  --html_output=mydoc_vagrant --pygments_html_style=default \
+                  --html_template=templates/my_adapted_vagrant_template.html
+        Terminal> doconce split_html mydoc_vagrant.html
 
 
 Blog Posts
@@ -851,9 +896,11 @@ C{newcommands_replace.tex} (see the section "Macros (Newcommands)").
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option C{--latex_printed} makes some adjustments for documents
+An option C{-DDEVICE=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, C{-DDEVICE=screen}, creates a PDF file for reading
+on a screen where links are clickable.
 
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
@@ -894,6 +941,8 @@ Preprocessor variables to be defined or undefined are
    while other values are C{movie15} (C{\includemovie} command),
    C{multimedia} (for Beamer-style C{\movie} command),
    or C{href-run} (for the plain C{\href{run:file}} command)
+ - C{MOVIE_CONTROLS} adds buttons for starting/stopping movies if the
+   C{media9} package is used.
  - C{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -906,12 +955,6 @@ Preprocessor variables to be defined or undefined are
    macro has only effect if inline comments are used (name, colon,
    and comment inside brackets).
  - C{LINENUMBERS} for inclusion of line numbers in the text.
- - C{AMON} for setting the type of admonitions: C{"colors"} for colored
-   boxes with icons, C{"graybox1"} for gray frame boxes with rounded
-   corners (default), C{"graybox2"} for narrower square gray frame boxes
-   (except for summary, which for A4 format is small and with wrapped
-   text around if it does not contain verbatim code),
-   or C{"paragraph"} for simple, plain paragraph headings and ordinary text
  - C{COLORED_TABLE_ROWS} for coloring every other table rows (set this
    variable to C{gray} or C{blue})
  - C{BLUE_SECTION_HEADINGS} for blue section and subsection headings
@@ -954,9 +997,17 @@ above, which implies C{\begin{minted}{fortran}} and C{\end{minted}} as
 begin and end for blocks inside C{!bc fpro} and C{!ec}).  Specifying
 C{envir=ans:nt} means that all other environments are typeset with the
 C{anslistings.sty} package, e.g., C{!bc cppcod} will then result in
-C{\begin{c++}}. If no environments like C{sys}, C{fpro}, or the common
-C{envir} are defined on the command line, the plain C{\begin{verbatim}}
-and C{\end{verbatim}} used.
+C{\begin{c++}}. A predefined shortcut as in C{shcod=Verbatim-0.85}
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+C{shcod=Verbatim-indent} implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+C{\begin{Verbatim}} instruction using the syntax illustrated for
+the C{sys} environments above.
+
+If no environments like C{sys}, C{fpro}, or the common
+C{envir} are defined on the command line, the plain C{\begin{Verbatim}}
+and C{\end{Verbatim}} instructions are used.
 
 
 I{Step 2b (optional).} Edit the C{mydoc.tex} file to your needs.
@@ -1603,11 +1654,6 @@ Here are some examples::
         (this affects only `latex` output, where the appendix formatting
         is used - all other formats just leave the heading as it is written).
         
-        ========= Example on a Chapter Heading =========
-        
-        Some text.
-        
-        
         ======= Example on a Section Heading =======
         
         The running text goes here.
@@ -1634,7 +1680,7 @@ Figures
 Figures are recognized by the special line syntax::
 
 
-        FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+        FIGURE:[filename, height=400 width=600 frac=0.8] caption
         
 
 The filename can be without extension, and Doconce will search for an
@@ -1643,10 +1689,21 @@ say C{.eps} when requesting an HTML format, Doconce tries to find another
 file, and if not, the given file is converted to a proper format
 (using ImageMagick's C{convert} utility).
 
-The height, width, and scale keywords (and others) can be included
-if desired and may have effect for some formats. Note the comma
-between the sespecifications and that there should be no space
-around the = sign.
+The height, width, and frac keywords can be included
+if desired and may have effect for some formats: the height and width
+are used for output in the formats C{html}, C{rst}, C{sphinx}, while
+the frac specification is used for C{latex} and C{pdflatex} to specify
+the width of the image as a fraction of the text width.
+
+The figure caption is optional. If omitted, the figure appears "inline"
+in the text without any figure environment in LaTeX formats or HTML.
+The caption may contain a label for referencing the figure.
+
+I{Warning.} 
+Note the comma
+between the filename and the figure size specifications and
+that there should be no space around the = sign. This syntax must
+be strictly followed.
 
 Note also that, like for C{TITLE:} and C{AUTHOR:} lines, all information
 related to a figure line I{must be written on the same line}. Introducing
@@ -1724,11 +1781,15 @@ A typical C{MOVIE} command with a YouTube movie is then::
 
         MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
         
-        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Computational fluid dynamics movie.
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.
 
 Note that there must be a blank line after every C{MOVIE:} command.
 The width and height parameters are not required, but leaving them out
 may lead to movie sizes you do not want.
+
+ U{http://www.youtube.com/watch?v=sI2uCHH3qIM<http://www.youtube.com/watch?v=sI2uCHH3qIM>}
+
+ CFD. U{http://vimeo.com/55562330<http://vimeo.com/55562330>}
 
 Copying Computer Code from Source Files
 ---------------------------------------

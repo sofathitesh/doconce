@@ -2,7 +2,7 @@
 #TITLE (actually governed by the filename): Doconce: Document Once, Include Anywhere
 
 By '''Hans Petter Langtangen'''
-==== May 29, 2013 ====
+==== Jul 13, 2013 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult
@@ -373,7 +373,7 @@ Also, cite{Miller_2000} supports such a view.
 As see in Figure ref{mysec:fig:myfig}, the key equation
 features large, smooth regions *and* abrupt changes.
 
-FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+FIGURE: [fig/myfile, width=600 frac=0.9] My figure. label{mysec:fig:myfig}
 
 ===== References =====
 
@@ -392,7 +392,7 @@ for various formats of this document).
 
 
 Transformation of a Doconce document <code>mydoc.do.txt</code> to various other
-formats applies the script <code>doconce format</code>:
+formats apply the script <code>doconce format</code>:
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc.do.txt
 </syntaxhighlight>
@@ -478,12 +478,29 @@ in the coming sections.
 
 ==== HTML ====
 
+==== Basics ====
+
 Making an HTML version of a Doconce file <code>mydoc.do.txt</code>
 is performed by
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc
 </syntaxhighlight>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
+
+==== Typesetting of Code ====
+
+If the Pygments package (including the <code>pygmentize</code> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <code>--no_pygments_html</code>
+turns off the use of Pygments and makes code blocks appear with
+plain (<code>pre</code>) HTML tags. The option <code>--pygments_html_linenos</code> turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by <code>--pygments_html_style=style</code>, where <code>style</code>
+can be <code>default</code>, <code>emacs</code>, <code>perldoc</code>, and other valid names for
+Pygments styles.
+
+
+==== HTML Styles ====
 
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
@@ -507,21 +524,13 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in <code>filename</code>. Several stylesheets can
 be specified: <code>--ccs=file1.css,file2.css,file3.css</code>.
 
+==== HTML templates ====
+
 Templates are HTML files with "slots" <code>%(main)s</code> for the main body
 of text, <code>%(title)s</code> for the title, and <code>%(date)s</code> for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a [https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html separate document]. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the <code>pygmentize</code> program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument <code>--no_pygments_html</code>
-turns off the use of Pygments and makes code blocks appear with
-plain (<code>pre</code>) HTML tags. The option <code>--pygments_html_linenos</code> turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by <code>--pygments_html_style=style</code>, where <code>style</code>
-can be <code>default</code>, <code>emacs</code>, <code>perldoc</code>, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a [ https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html tutorial] on this topic. The template file must contain
@@ -546,6 +555,36 @@ The template in <code>style_vagrant</code> also needs an extra option
 that are used if the document contains <code>!split</code> commands for splitting
 it into many pages.
 
+==== The HTML File Collection ====
+
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+<code>.basename_html_file_collection</code>, where <code>basename</code> is the filestem of
+the Doconce file (i.e., the Doconce source is in <code>basename.do.txt</code>).
+
+==== Filenames ====
+
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the <code>--html_output=basename</code> option, where <code>basename</code> is the
+filestem of the associated HTML files. The
+<code>.basename_html_file_collection</code> file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: <code>mydoc_bloodish.html</code>, <code>mydoc_solarized</code>, and
+<code>mydoc_vagrant</code>.
+
+<syntaxhighlight lang="bash">
+Terminal> doconce format html mydoc --html_style=bloodish \ 
+          --html_output=mydoc_bloodish
+Terminal> doconce split_html mydoc_bloodish.html
+Terminal> doconce format html mydoc --html_style=solarized \ 
+          --html_output=mydoc_solarized --pygments_html=perldoc \ 
+          --html_admon=apricot
+Terminal> doconce format html mydoc --html_style=vagrant \ 
+          --html_output=mydoc_vagrant --pygments_html_style=default \ 
+          --html_template=templates/my_adapted_vagrant_template.html
+Terminal> doconce split_html mydoc_vagrant.html
+</syntaxhighlight>
 
 ==== Blog Posts ====
 
@@ -692,9 +731,11 @@ can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex<
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option <code>--latex_printed</code> makes some adjustments for documents
+An option <code>-DDEVICE=paper</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, <code>-DDEVICE=screen</code>, creates a PDF file for reading
+on a screen where links are clickable.
 
 ''Step 2.''
 Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
@@ -735,6 +776,8 @@ Preprocessor variables to be defined or undefined are
    while other values are <code>movie15</code> (<code>\includemovie</code> command),
    <code>multimedia</code> (for Beamer-style <code>\movie</code> command),
    or <code>href-run</code> (for the plain <code>\hrun:file</code> command)
+ <li> <code>MOVIE_CONTROLS</code> adds buttons for starting/stopping movies if the
+   <code>media9</code> package is used.
  <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -747,12 +790,6 @@ Preprocessor variables to be defined or undefined are
    macro has only effect if inline comments are used (name, colon,
    and comment inside brackets).
  <li> <code>LINENUMBERS</code> for inclusion of line numbers in the text.
- <li> <code>AMON</code> for setting the type of admonitions: <code>"colors"</code> for colored
-   boxes with icons, <code>"graybox1"</code> for gray frame boxes with rounded
-   corners (default), <code>"graybox2"</code> for narrower square gray frame boxes
-   (except for summary, which for A4 format is small and with wrapped
-   text around if it does not contain verbatim code),
-   or <code>"paragraph"</code> for simple, plain paragraph headings and ordinary text
  <li> <code>COLORED_TABLE_ROWS</code> for coloring every other table rows (set this
    variable to <code>gray</code> or <code>blue</code>)
  <li> <code>BLUE_SECTION_HEADINGS</code> for blue section and subsection headings
@@ -795,9 +832,17 @@ above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}
 begin and end for blocks inside <code>!bc fpro</code> and <code>!ec</code>).  Specifying
 <code>envir=ans:nt</code> means that all other environments are typeset with the
 <code>anslistings.sty</code> package, e.g., <code>!bc cppcod</code> will then result in
-<code>\begin{c++}</code>. If no environments like <code>sys</code>, <code>fpro</code>, or the common
-<code>envir</code> are defined on the command line, the plain <code>\begin{verbatim}</code>
-and <code>\end{verbatim}</code> used.
+<code>\begin{c++}</code>. A predefined shortcut as in <code>shcod=Verbatim-0.85</code>
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+<code>shcod=Verbatim-indent</code> implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+<code>\begin{Verbatim}</code> instruction using the syntax illustrated for
+the <code>sys</code> environments above.
+
+If no environments like <code>sys</code>, <code>fpro</code>, or the common
+<code>envir</code> are defined on the command line, the plain <code>\begin{Verbatim}</code>
+and <code>\end{Verbatim}</code> instructions are used.
 
 
 ''Step 2b (optional).''

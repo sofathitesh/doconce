@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
-:Date: May 29, 2013
+:Date: Jul 13, 2013
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -436,7 +436,7 @@ Here is an example:
         As see in Figure ref{mysec:fig:myfig}, the key equation
         features large, smooth regions *and* abrupt changes.
         
-        FIGURE: [fig/myfile, width=600] My figure. label{mysec:fig:myfig}
+        FIGURE: [fig/myfile, width=600 frac=0.9] My figure. label{mysec:fig:myfig}
         
         ===== References =====
         
@@ -457,7 +457,7 @@ From Doconce to Other Formats
 =============================
 
 Transformation of a Doconce document ``mydoc.do.txt`` to various other
-formats applies the script ``doconce format``:
+formats apply the script ``doconce format``:
 
 .. code-block:: console
 
@@ -562,6 +562,9 @@ in the coming sections.
 HTML
 ----
 
+Basics
+~~~~~~
+
 Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by
 
@@ -570,6 +573,23 @@ is performed by
         Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
+
+Typesetting of Code
+~~~~~~~~~~~~~~~~~~~
+
+If the Pygments package (including the ``pygmentize`` program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument ``--no_pygments_html``
+turns off the use of Pygments and makes code blocks appear with
+plain (``pre``) HTML tags. The option ``--pygments_html_linenos`` turns
+on line numbers in Pygments-formatted code blocks. A specific
+Pygments style is set by ``--pygments_html_style=style``, where ``style``
+can be ``default``, ``emacs``, ``perldoc``, and other valid names for
+Pygments styles.
+
+
+HTML Styles
+~~~~~~~~~~~
 
 The HTML style can be defined either in the header of the HTML file,
 using a named built-in style;
@@ -593,21 +613,14 @@ Doconce write the built-in style to that file. Otherwise the HTML
 links to the CSS stylesheet in ``filename``. Several stylesheets can
 be specified: ``--ccs=file1.css,file2.css,file3.css``.
 
+HTML templates
+~~~~~~~~~~~~~~
+
 Templates are HTML files with "slots" ``%(main)s`` for the main body
 of text, ``%(title)s`` for the title, and ``%(date)s`` for the date.
 Doconce comes with a few templates. The usage of templates is
 described in a `separate document <https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html>`_. That document describes how you your Doconce-generated
 HTML file can have any specified layout.
-
-If the Pygments package (including the ``pygmentize`` program)
-is installed, code blocks are typeset with
-aid of this package. The command-line argument ``--no_pygments_html``
-turns off the use of Pygments and makes code blocks appear with
-plain (``pre``) HTML tags. The option ``--pygments_html_linenos`` turns
-on line numbers in Pygments-formatted code blocks. A specific
-Pygments style is set by ``--pygments_html_style=style``, where ``style``
-can be ``default``, ``emacs``, ``perldoc``, and other valid names for
-Pygments styles.
 
 The HTML file can be embedded in a template with your own tailored
 design, see a "tutorial": " `<https://doconce.googlecode.com/hg/doc/design/wrapper_tech.html>`_" on this topic. The template file must contain
@@ -633,6 +646,40 @@ The template in ``style_vagrant`` also needs an extra option
 ``--html_style=vagrant``. With this style, one has nice navigation buttons
 that are used if the document contains ``!split`` commands for splitting
 it into many pages.
+
+The HTML File Collection
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are usually a range of files needed for an HTML document arising
+from a Doconce source. The needed files are listed in
+``.basename_html_file_collection``, where ``basename`` is the filestem of
+the Doconce file (i.e., the Doconce source is in ``basename.do.txt``).
+
+Filenames
+~~~~~~~~~
+
+An HTML version of a Doconce document is often made in different styles,
+calling for a need to rename the HTML output file. This is conveniently
+done by the ``--html_output=basename`` option, where ``basename`` is the
+filestem of the associated HTML files. The
+``.basename_html_file_collection`` file lists all the needed files
+for the HTML document. Here is an example on making three versions of
+the HTML document: ``mydoc_bloodish.html``, ``mydoc_solarized``, and
+``mydoc_vagrant``.
+
+
+.. code-block:: console
+
+        Terminal> doconce format html mydoc --html_style=bloodish \ 
+                  --html_output=mydoc_bloodish
+        Terminal> doconce split_html mydoc_bloodish.html
+        Terminal> doconce format html mydoc --html_style=solarized \ 
+                  --html_output=mydoc_solarized --pygments_html=perldoc \ 
+                  --html_admon=apricot
+        Terminal> doconce format html mydoc --html_style=vagrant \ 
+                  --html_output=mydoc_vagrant --pygments_html_style=default \ 
+                  --html_template=templates/my_adapted_vagrant_template.html
+        Terminal> doconce split_html mydoc_vagrant.html
 
 
 Blog Posts
@@ -794,9 +841,11 @@ can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option ``--latex_printed`` makes some adjustments for documents
+An option ``-DDEVICE=paper`` makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+The default, ``-DDEVICE=screen``, creates a PDF file for reading
+on a screen where links are clickable.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file,
 
@@ -846,6 +895,9 @@ Preprocessor variables to be defined or undefined are
    ``multimedia`` (for Beamer-style ``\movie`` command),
    or ``href-run`` (for the plain `\h:ref:`run:file`` command)
 
+ * ``MOVIE_CONTROLS`` adds buttons for starting/stopping movies if the
+   ``media9`` package is used.
+
  * ``PREAMBLE`` to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere - and note that
    the preamble is only included
@@ -861,13 +913,6 @@ Preprocessor variables to be defined or undefined are
    and comment inside brackets).
 
  * ``LINENUMBERS`` for inclusion of line numbers in the text.
-
- * ``AMON`` for setting the type of admonitions: ``"colors"`` for colored
-   boxes with icons, ``"graybox1"`` for gray frame boxes with rounded
-   corners (default), ``"graybox2"`` for narrower square gray frame boxes
-   (except for summary, which for A4 format is small and with wrapped
-   text around if it does not contain verbatim code),
-   or ``"paragraph"`` for simple, plain paragraph headings and ordinary text
 
  * ``COLORED_TABLE_ROWS`` for coloring every other table rows (set this
    variable to ``gray`` or ``blue``)
@@ -914,9 +959,17 @@ above, which implies ``\begin{minted}{fortran}`` and ``\end{minted}`` as
 begin and end for blocks inside ``!bc fpro`` and ``!ec``).  Specifying
 ``envir=ans:nt`` means that all other environments are typeset with the
 ``anslistings.sty`` package, e.g., ``!bc cppcod`` will then result in
-``\begin{c++}``. If no environments like ``sys``, ``fpro``, or the common
-``envir`` are defined on the command line, the plain ``\begin{verbatim}``
-and ``\end{verbatim}`` used.
+``\begin{c++}``. A predefined shortcut as in ``shcod=Verbatim-0.85``
+results in denser
+vertical spacing (baselinestretch 0.85 in LaTeX terminology), and
+``shcod=Verbatim-indent`` implies indentation of the verbatim text.
+Alternatively, one can provide all desired parameters
+``\begin{Verbatim}`` instruction using the syntax illustrated for
+the ``sys`` environments above.
+
+If no environments like ``sys``, ``fpro``, or the common
+``envir`` are defined on the command line, the plain ``\begin{Verbatim}``
+and ``\end{Verbatim}`` instructions are used.
 
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
