@@ -471,6 +471,19 @@ Click on this link: URL: "http://code.google.com/p/doconce".
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
 
+=== Mail Addresses ===
+
+Links that launches a mail to a specified address is written as
+ordinary URLs, typically as
+
+!bc
+Send "mail": "mailto:hpl@simula.no"
+# Alternative:
+to "`hpl@simula.no`": "mailto:hpl@simula.no".
+!ec
+which appears as Send "mail": "mailto:hpl@simula.no" to
+"`hpl@simula.no`": "mailto:hpl@simula.no".
+
 === Links to Local Files ===
 
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,

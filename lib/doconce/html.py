@@ -806,7 +806,7 @@ def html_movie(m):
         # Specify mp4 as first video because on iOS only the first specified
         # video is loaded, and mp4 can play on iOS.
         if ext == '':
-            print 'Do not specify movie file without extension'
+            print 'do not specify movie file without extension'
         if ext in ('.mp4', '.ogg', '.webm'):
             # Use HTML video tag
             autoplay = 'autoplay' if autoplay else ''
