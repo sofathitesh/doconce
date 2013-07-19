@@ -429,6 +429,23 @@ without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
 rendered nicely anyway.
 
 
+===== Hyperlinks =====
+
+Links use either a link text or the raw URL:
+
+!bc
+Here is some "some link text": "http://some.net/address"
+(as in "search google": "http://google.com")
+or just the raw address: URL: "http://google.com".
+
+Links to files typeset in verbatim mode applies backtics:
+"`myfile.py`": "http://some.net/some/place/myfile.py".
+
+Mail addresses works too: send problems to
+"`hpl@simula.no`": "mailto:hpl@simula.no"
+or just "send mail": "mailto:hpl@simula.no".
+!ec
+
 ===== Figures and Movies =====
 
 Figures and movies have almost equal syntax:

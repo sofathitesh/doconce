@@ -396,8 +396,10 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     # Consistency check
     n = filestr.count(_CODE_BLOCK)
     if len(code_blocks) != n:
-        print '*** BUG: found %d code block markers for %d initial code blocks\nAbort!' % (n, len(code_blocks))
+        print '*** BUG: found %d code block markers for %d initial code blocks' % (n, len(code_blocks))
         print 'Possible cause: !bc and !ec inside code blocks - replace by |bc and |ec'
+        print 'or mismatch of !bt and !et across files in multi-file documents'
+        print '(run doconce on each file to locate the problem)'
         _abort()
     n = filestr.count(_MATH_BLOCK)
     if len(tex_blocks) != n:

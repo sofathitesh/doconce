@@ -4028,6 +4028,7 @@ _environments = [
     #("!bans",               "!eans"),
     #("!bsol",               "!esol"),
     #("!bsubex",             "!esubex"),
+    #("!bremarks",           "!eremarks"),
     # Mako
     ("<%doc>",              "</%doc>"),
     # hpl tex stuff
@@ -4069,13 +4070,14 @@ _replacements = [
     # Doconce
     (r'"([^"]+?)":\s*"[^"]+?"', r'\g<1>'),  # links
     (r"^#.*$", "", re.MULTILINE),
-    (r"(idx|label|ref)\{.*?\}", ""),
+    (r"(idx|label|ref|cite)\{.*?\}", ""),
     (r"={3,}",  ""),
     (r'`[^ ][^`]*?`', ""),
     (r"`[A-Za-z0-9_.]+?`", ""),
     (r"^#.*$",          "", re.MULTILINE),
     (r'"https?://.*?"', ""),
     (r'"ftp://.*?"', ""),
+    (r"\b[A-Za-z_0-9/.:]+\.(com|org|net|edu|)\b", ""),  # net name
     (r'\[[A-Za-z]+:\s+[^\]]*?\]', ''),  # inline comment
     (r'^\s*file=[A-Za-z_0-9.]+\s*$', '', re.MULTILINE),
     (r"^@@@CODE.*$",    "", re.MULTILINE),
@@ -4094,6 +4096,7 @@ _replacements = [
     (r'![be]pop', ''),
     (r'![be]warning', ''),
     (r'![be]notice', ''),
+    (r'![be]remarks', ''),
     # Preprocess
     (r"^#.*ifn?def.*$", "", re.MULTILINE),
     (r"^#.*else.*$", "", re.MULTILINE),

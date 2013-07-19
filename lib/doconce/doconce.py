@@ -1692,8 +1692,8 @@ def handle_index_and_bib(filestr, format, has_title):
         # version < 2.7 warning
         print '*** warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
     if len(citations) > 0 and 'BIBFILE:' not in filestr:
-        print '*** error: you have citations but no bibliography (BIBFILE: ...)'
-        _abort()
+        print '*** warning: you have citations but no bibliography (BIBFILE: ...)'
+        #_abort()
     if 'BIBFILE:' in filestr and len(citations) > 0 and \
            which('publish') is None:
         print '*** error: you have citations and specified a BIBFILE, but'
@@ -1701,6 +1701,13 @@ def handle_index_and_bib(filestr, format, has_title):
         print '    Download publish from https://bitbucket.org/logg/publish,'
         print '    do cd publish; sudo python setup.py install'
         _abort()
+    # Check that citations are correct
+    if pubdata:
+        pubdata_keys = [item['key'] for item in pubdata]
+        for citation in citations:
+            if not citation in pubdata_keys:
+                print '*** error: citation "%s" is not in the BIBFILE' % citation
+                _abort()
 
     filestr = INDEX_BIB[format](filestr, index, citations, pubfile, pubdata)
     return filestr

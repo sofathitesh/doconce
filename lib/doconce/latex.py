@@ -682,7 +682,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
                                application='match'), 'LaTeX', filestr)
     #filestr = re.sub('''([^"'`*_A-Za-z0-9-])LaTeX([^"'`*_A-Za-z0-9-])''',
     #                 r'\g<1>{\LaTeX}\g<2>', filestr)
-    filestr = re.sub(r'''([^"'`*-])\bLaTeX\b([^"'`*-])''',
+    filestr = re.sub(r'''([^"'`*/-])\bLaTeX\b([^"'`*/-])''',
                      r'\g<1>{\LaTeX}\g<2>', filestr)
     filestr = re.sub(r'''([^"'`*-])\bpdfLaTeX\b([^"'`*-])''',
                      fix_latex_command_regex(
