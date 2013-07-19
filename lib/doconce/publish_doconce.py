@@ -49,6 +49,10 @@ def doconce_format_articles(paper):
     if "year" in paper:
         values.append(paper["year"])
 
+    # URL
+    if "url" in paper:
+        values.append(_doconce_format_url(paper["url"]))
+
     return _doconce_join(values)
 
 def doconce_format_books(paper):
@@ -60,6 +64,7 @@ def doconce_format_books(paper):
     values += [paper["publisher"]]
     values += [paper["year"]]
     if "doi" in paper: values.append(_doconce_format_doi(paper["doi"]))
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_edited(paper):
@@ -70,6 +75,7 @@ def doconce_format_edited(paper):
     values += [_doconce_format_title(paper)]
     values += [paper["publisher"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_chapters(paper):
@@ -84,6 +90,7 @@ def doconce_format_chapters(paper):
     if "chapter" in paper: values += ["Chapter %s" % paper["chapter"]]
     if "pages" in paper: values += ["pp. %s" % _doconce_format_pages(paper["pages"])]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_proceedings(paper):
@@ -96,6 +103,7 @@ def doconce_format_proceedings(paper):
     if "editor" in paper: values += [_doconce_format_editors(paper)]
     if "publisher" in paper: values += [paper["publisher"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_reports(paper):
@@ -107,6 +115,7 @@ def doconce_format_reports(paper):
     if "institution" in paper: values += [_doconce_format_institution(paper)]
     if "number" in paper: values += [paper["number"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_manuals(paper):
@@ -116,6 +125,7 @@ def doconce_format_manuals(paper):
     values += [_doconce_get_authors_string(paper["author"])]
     values += [_doconce_format_title(paper)]
     if "year" in paper: values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_theses(paper):
@@ -127,6 +137,7 @@ def doconce_format_theses(paper):
     values += [thesistype_strings[paper["thesistype"]]]
     if "school" in paper: values += [paper["school"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_courses(paper):
@@ -137,6 +148,7 @@ def doconce_format_courses(paper):
     values += [_doconce_format_title(paper)]
     if "institution" in paper: values += [_doconce_format_institution(paper)]
     if "year" in paper: values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_talks(paper):
@@ -147,6 +159,7 @@ def doconce_format_talks(paper):
     values += [_doconce_format_title(paper)]
     if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def doconce_format_posters(paper):
@@ -157,6 +170,7 @@ def doconce_format_posters(paper):
     values += [_doconce_format_title(paper)]
     if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 
@@ -177,6 +191,7 @@ def doconce_format_misc(paper):
     if "volume" in paper: values += ["vol. %s" % paper["volume"]]
     if "pages" in paper: values += ["pp. %s" % _doconce_format_pages(paper["pages"])]
     if "year" in paper: values.append(paper["year"])
+    if "url" in paper: values.append(_doconce_format_url(paper["url"]))
     return _doconce_join(values)
 
 def _doconce_get_key_string(paper):
@@ -236,6 +251,10 @@ def _doconce_format_doi(doi):
 def _doconce_format_arxiv(arxiv):
     "Format arXiv"
     return '"arXiv: %s": "http://arxiv.org/abs/%s"' % (arxiv, arxiv)
+
+def _doconce_format_url(url):
+    "Format URL"
+    return 'URL: "%s"' % (url)
 
 def _doconce_join(values):
     "Join values for Doconce entry"
@@ -307,6 +326,10 @@ def rst_format_articles(paper):
     if "year" in paper:
         values.append(paper["year"])
 
+    # URL
+    if "url" in paper:
+        values.append(_rst_format_url(paper["url"]))
+
     return _rst_join(values)
 
 def rst_format_books(paper):
@@ -318,6 +341,7 @@ def rst_format_books(paper):
     values += [paper["publisher"]]
     values += [paper["year"]]
     if "doi" in paper: values.append(_rst_format_doi(paper["doi"]))
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_edited(paper):
@@ -328,6 +352,7 @@ def rst_format_edited(paper):
     values += [_rst_format_title(paper)]
     values += [paper["publisher"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_chapters(paper):
@@ -342,6 +367,7 @@ def rst_format_chapters(paper):
     if "chapter" in paper: values += ["Chapter %s" % paper["chapter"]]
     if "pages" in paper: values += ["pp. %s" % _rst_format_pages(paper["pages"])]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_proceedings(paper):
@@ -354,6 +380,7 @@ def rst_format_proceedings(paper):
     if "editor" in paper: values += [_rst_format_editors(paper)]
     if "publisher" in paper: values += [paper["publisher"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_reports(paper):
@@ -365,6 +392,7 @@ def rst_format_reports(paper):
     if "institution" in paper: values += [_rst_format_institution(paper)]
     if "number" in paper: values += [paper["number"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_manuals(paper):
@@ -374,6 +402,7 @@ def rst_format_manuals(paper):
     values += [_rst_get_authors_string(paper["author"])]
     values += [_rst_format_title(paper)]
     if "year" in paper: values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_theses(paper):
@@ -385,6 +414,7 @@ def rst_format_theses(paper):
     values += [thesistype_strings[paper["thesistype"]]]
     values += [paper["school"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_courses(paper):
@@ -395,6 +425,7 @@ def rst_format_courses(paper):
     values += [_rst_format_title(paper)]
     if "institution" in paper: values += [_rst_format_institution(paper)]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_talks(paper):
@@ -405,6 +436,7 @@ def rst_format_talks(paper):
     values += [_rst_format_title(paper)]
     if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def rst_format_posters(paper):
@@ -415,6 +447,7 @@ def rst_format_posters(paper):
     values += [_rst_format_title(paper)]
     if "meeting" in paper: values += [paper["meeting"]]
     values += [paper["year"]]
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 
@@ -436,6 +469,7 @@ def rst_format_misc(paper):
     if "volume" in paper: values += ["vol. %s" % paper["volume"]]
     if "pages" in paper: values += ["pp. %s" % _rst_format_pages(paper["pages"])]
     if "year" in paper: values.append(paper["year"])
+    if "url" in paper: values.append(_rst_format_url(paper["url"]))
     return _rst_join(values)
 
 def _rst_get_key_string(paper):
@@ -492,6 +526,10 @@ def _rst_format_doi(doi):
 def _rst_format_arxiv(arxiv):
     "Format arXiv"
     return '"arXiv: %s": "http://arxiv.org/abs/%s"' % (arxiv, arxiv)
+
+def _rst_format_url(url):
+    "Format URL"
+    return '`%s <%s>`_' % (url, url)
 
 def _rst_join(values):
     "Join values for reST entry"
