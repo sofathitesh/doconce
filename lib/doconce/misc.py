@@ -86,6 +86,8 @@ inserted to the right in exercises - "default" and "none" are allowed
      'Make HTML output for wordpress.com pages.'),
     ('--tables2csv',
      'Write each table to a CSV file table_X.csv, where X is the table number.'),
+    ('--github_md',
+     'Turn on github-flavored-markdown dialect of the pandoc translator'),
     ]
 
 _legal_command_line_options = \
@@ -4528,8 +4530,10 @@ def _usage_md2html():
 
 def md2html():
     """
-    Read the .md file and add MathJax.Hub.Config such that HTML
-    generated from Markdown (via pandoc) gets full LaTeX math support.
+    Translate a .md file to .html that the HTML code gets full LaTeX
+    math support.
+    The .md file is fixed, then ``pandoc -f markdown -t html`` is run
+    to create HTML from Markdown, then the HTML code is fixed.
     """
     if len(sys.argv) < 2:
         _usage_md2html()

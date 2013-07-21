@@ -46,3 +46,4 @@ without_answers = False
 without_hints = False
 wordpress = False
 tables2csv = False
+github_md = False

@@ -314,6 +314,60 @@ Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The `-s` option adds a proper header and footer to the `mydoc.html` file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+=== GitHub-flavored Markdown ===
+
+Adding the command-line option `github-md` turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on "GitHub": "http://github.com". A special feature is the support of task lists:
+unnumbered lists with `[x]` (task done) or `[ ]` (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+
+!bc
+|bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+|equote
+
+OK, this is fixed:
+
+|bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+|ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+!ec
+Say this text is stored in a file `mycomments.do.txt`. Running
+
+!bc sys
+Terminal> doconce format pandoc mycomments --github_md
+!ec
+produces `mycomments.md` which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 ===== LaTeX =====
 
