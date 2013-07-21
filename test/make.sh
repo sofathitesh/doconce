@@ -251,6 +251,8 @@ cp tmp_admon/_build/html/admon.html admon_sphinx.html
 system doconce format mwiki admon
 cp admon.mwiki admon_mwiki.mwiki
 
+system doconce format pandoc githu_md.do.txt --github_md
+
 #google-chrome admon_*.html
 #for pdf in admon_*.pdf; do evince $pdf; done
 

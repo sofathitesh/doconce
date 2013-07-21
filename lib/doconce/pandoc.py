@@ -6,7 +6,8 @@ for syntax.
 import re, sys
 from common import default_movie, plain_exercise, table_analysis, \
      insert_code_and_tex, bibliography
-from html import html_movie
+from html import html_movie, html_table
+from misc import option
 
 def pandoc_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
@@ -62,24 +63,33 @@ def pandoc_code(filestr, code_blocks, code_block_types,
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
+    github_md = option('github_md')
+
     # Code blocks apply the ~~~~~ delimiter, with blank lines before
     # and after (alternative: indent code 4 spaces - not preferred)
     for key in defs:
         language = defs[key]
-        replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}\n' % defs[key]
-        #replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s ,numberLines}\n' % defs[key]  # enable line numbering
-        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
-        #                 replacement, filestr, flags=re.MULTILINE)
-        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
-        filestr = cpattern.sub(replacement, filestr)
+        if github_md:
+            replacement = '\n```%s\n' % defs[key]
+        else:
+            # pandoc-extended Markdown
+            replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}\n' % defs[key]
+            #replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s ,numberLines}\n' % defs[key]  # enable line numbering
+        filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                         replacement, filestr, flags=re.MULTILINE)
 
     # any !bc with/without argument becomes an unspecified block
-    replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    cpattern = re.compile(r'^!bc.*$', flags=re.MULTILINE)
-    filestr = cpattern.sub(replacement, filestr)
+    if github_md:
+        replacement = '\n```'
+    else:
+        replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    filestr = re.sub(r'^!bc.*$', replacement, filestr, flags=re.MULTILINE)
 
-    cpattern = re.compile(r'^!ec\s*$', flags=re.MULTILINE)
-    filestr = cpattern.sub('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n', filestr)
+    if github_md:
+        replacement = '\n```\n'
+    else:
+        replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'
+    filestr = re.sub(r'^!ec\s*$', replacement, filestr, flags=re.MULTILINE)
 
     filestr = re.sub(r'^!bt *\n', '', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'^!et *\n', '', filestr, flags=re.MULTILINE)
@@ -95,10 +105,26 @@ def pandoc_code(filestr, code_blocks, code_block_types,
     # Seems that title and author must appear on the very first lines
     filestr = filestr.lstrip()
 
+    # Enable tasks lists:
+    #   - [x] task 1 done
+    #   - [ ] task 2 not yet done
+    if github_md:
+        pattern = '^(\s+)\*\s+(\[[x ]\])\s+'
+        filestr = re.sub(pattern, '\g<1>- \g<2> ', filestr, flags=re.MULTILINE)
+
     return filestr
 
 def pandoc_table(table):
-    """
+    if option('github_md'):
+        text = html_table(table)
+        # Fix the problem that `verbatim` inside the table is not
+        # typeset as verbatim in the GitHub Issue Tracker
+        text = re.sub(r'`([^`]+?)`', '<code>\g<1></code>', text)
+        return text
+
+    # else: Pandoc-extended Markdown syntax
+
+        """
 
     Simple markdown tables look like this::
 
