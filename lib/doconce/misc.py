@@ -88,6 +88,10 @@ inserted to the right in exercises - "default" and "none" are allowed
      'Write each table to a CSV file table_X.csv, where X is the table number.'),
     ('--github_md',
      'Turn on github-flavored-markdown dialect of the pandoc translator'),
+    ('--sections_up',
+     'Upgrade all sections: sections to chapters, subsections to sections, etc.'),
+    ('--sections_down',
+     'Downgrade all sections: chapters to sections, sections to subsections, etc.'),
     ]
 
 _legal_command_line_options = \
