@@ -2095,6 +2095,29 @@ def doconce2format(filestr, format):
     debugpr('%s\n**** The tex blocks:\n\n%s\n\n' % \
           ('*'*80, pprint.pformat(tex_blocks)))
 
+    # Lift sections up or down?
+    sections_up = option('sections_up')
+    sections_down = option('sections_down')
+    if sections_up or sections_down:
+        s2name = {9: 'chapter', 7: 'section',
+                  5: 'subsection', 3: 'subsubsection'}
+        for s in 9, 7, 5, 3:
+            if sections_up:
+                if s == 9:
+                    continue
+                header_old = '='*s
+                header_new = '='*(s+2)
+                print 'transforming %s to %s...' % (s2name[s], s2name[s+2])
+            else:
+                if s == 3:
+                    continue
+                header_new = '='*(s-2)
+                header_old = '='*s
+                print 'transforming %s to %s...' % (s2name[s], s2name[s-2])
+            pattern = r'=%s(.+?)=%s' % (header_old, header_old)
+            replacement = r'=%s\g<1>%s' % (header_new, header_new)
+            filestr = re.sub(pattern, replacement, filestr)
+
     # Remove linebreaks within paragraphs
     if option('oneline_paragraphs'):  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)
