@@ -3168,12 +3168,12 @@ git://github.com/barraq/deck.ext.js.git
             print 'known themes:', ', '.join(list(all_combinations[slide_tp].keys()))
             _abort()
 
-    m = re.search(r'<title>(.*?)</title>', ''.join(parts[0]))
-    if m:
-        title = m.group(1).strip()
-    else:
-        title = ''
-    slide_syntax[slide_tp]['title'] = title
+    #m = re.search(r'<title>(.*?)</title>', ''.join(parts[0]))
+    #if m:
+    #    title = m.group(1).strip()
+    #else:
+    #    title = ''
+    #slide_syntax[slide_tp]['title'] = title
     slide_syntax[slide_tp]['theme'] = \
        slide_syntax[slide_tp]['default_theme'] if (theme == 'default' or theme.endswith('_default')) else theme
 
@@ -3183,19 +3183,47 @@ git://github.com/barraq/deck.ext.js.git
     slide_syntax[slide_tp]['body_header'] = \
            slide_syntax[slide_tp]['body_header'] % slide_syntax[slide_tp]
 
+    # Grab the relevant lines in the <head> and <body> parts of
+    # the original header
+    head_lines = []
+    body_lines = []
+    inside_style = False
+    inside_head = False
+    inside_body = False
+    for line in header:
+        if '<head>' in line:
+            inside_head = True
+            continue
+        elif '</head>' in line:
+            inside_head = False
+            continue
+        elif line.strip().startswith('<body'):
+            inside_body = True
+            continue
+        elif '</body>' in line:
+            inside_body = False
+            continue
+        elif line.strip().startswith('<style'):
+            inside_style = True
+            continue
+        elif '</style>' in line:
+            inside_style = False
+            continue
+        if inside_style:
+            continue  # skip style lines
+        elif inside_body:
+            body_lines.append(line)
+        elif inside_head:
+            head_lines.append(line)
+    slide_syntax[slide_tp]['head_lines'] = ''.join(head_lines)
+    slide_syntax[slide_tp]['body_lines'] = ''.join(body_lines)
+
+    #<title>%(title)s</title>
     slides = """\
 <!DOCTYPE html>
-<html lang="en">
 
-<!--
-    Automatically translated from Doconce source.
-    http://code.google.com/p/doconce
--->
+%(head_lines)s
 
-<head>
-<meta charset="utf-8">
-
-<title>%(title)s</title>
 %(head_header)s
 
 <!-- Styles for table layout of slides -->
@@ -3208,24 +3236,12 @@ td.padding {
 }
 </style>
 
-<!-- Use MathJax to render mathematics -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 </head>
 
 %(body_header)s
+
+%(body_lines)s
+
 """ % slide_syntax[slide_tp]
 
     for part_no, part in enumerate(parts):
