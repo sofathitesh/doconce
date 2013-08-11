@@ -2312,7 +2312,15 @@ def preprocess(filename, format, preprocessor_options=[]):
     In addition, the preprocessor option FORMAT (=format) is
     always defined.
     """
-    device = 'paper' if option('device=', '') == 'paper' else 'screen'
+    device = None
+    # Is DEVICE set as command-line option?
+    for arg in sys.argv[1:]:
+        if arg.startswith('-DDEVICE='):
+            device = arg.split('-DDEVICE=')[1]
+        elif arg.startswith('DEVICE='):
+            device = arg.split('DEVICE=')[1]
+    if device is None:
+        device = 'paper' if option('device=', '') == 'paper' else 'screen'
 
     f = open(filename, 'r'); filestr = f.read(); f.close()
     if filestr.strip() == '':
