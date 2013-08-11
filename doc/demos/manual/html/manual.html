@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jul 13, 2013</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 11, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -116,11 +116,11 @@ cleaner LaTeX and HTML output.</li>
 </div></blockquote>
 <p><em>History.</em> Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.</p>
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.</p>
 <p><em>Disclaimer.</em> Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
@@ -737,8 +737,8 @@ the HTML document: <tt class="docutils literal"><span class="pre">mydoc_bloodish
 <span class="go">          --html_output=mydoc_bloodish</span>
 <span class="go">Terminal&gt; doconce split_html mydoc_bloodish.html</span>
 <span class="go">Terminal&gt; doconce format html mydoc --html_style=solarized \</span>
-<span class="go">          --html_output=mydoc_solarized --pygments_html=perldoc \</span>
-<span class="go">          --html_admon=apricot</span>
+<span class="go">          --html_output=mydoc_solarized \</span>
+<span class="go">          --pygments_html_style=perldoc --html_admon=apricot</span>
 <span class="go">Terminal&gt; doconce format html mydoc --html_style=vagrant \</span>
 <span class="go">          --html_output=mydoc_vagrant --pygments_html_style=default \</span>
 <span class="go">          --html_template=templates/my_adapted_vagrant_template.html</span>
@@ -855,6 +855,58 @@ HTML with mathematics displayed my MathJax:</p>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">-s</span></tt> option adds a proper header and footer to the <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
+<div class="section" id="github-flavored-markdown">
+<h3>GitHub-flavored Markdown<a class="headerlink" href="#github-flavored-markdown" title="Permalink to this headline">¶</a></h3>
+<p>Adding the command-line option <tt class="docutils literal"><span class="pre">github-md</span></tt> turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on <a class="reference external" href="http://github.com">GitHub</a>. A special feature is the support of task lists:
+unnumbered lists with <tt class="docutils literal"><span class="pre">[x]</span></tt> (task done) or <tt class="docutils literal"><span class="pre">[</span> <span class="pre">]</span></tt> (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:</p>
+<div class="highlight-text"><div class="highlight"><pre>!bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+!equote
+
+OK, this is fixed:
+
+!bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+!ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+</pre></div>
+</div>
+<p>Say this text is stored in a file <tt class="docutils literal"><span class="pre">mycomments.do.txt</span></tt>. Running</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mycomments --github_md</span>
+</pre></div>
+</div>
+<p>produces <tt class="docutils literal"><span class="pre">mycomments.md</span></tt> which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.</p>
+</div>
 </div>
 <div class="section" id="latex">
 <h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h2>
@@ -869,11 +921,11 @@ can be placed in files <tt class="docutils literal"><span class="pre">newcommand
 <tt class="docutils literal"><span class="pre">newcommands_replace.tex</span></tt> (see the section <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
-<p>An option <tt class="docutils literal"><span class="pre">-DDEVICE=paper</span></tt> makes some adjustments for documents
+<p>An option <tt class="docutils literal"><span class="pre">--device=paper</span></tt> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, <tt class="docutils literal"><span class="pre">-DDEVICE=screen</span></tt>, creates a PDF file for reading
-on a screen where links are clickable.</p>
+The default, <tt class="docutils literal"><span class="pre">--device=screen</span></tt>, creates a PDF file for reading
+on a screen where links are just clickable.</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> (if you have it) to make a standard LaTeX file,</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex mydoc</span>
 </pre></div>
@@ -1724,6 +1776,18 @@ Click on this link: <a class="reference external" href="http://code.google.com/p
 <p>(There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)</p>
+</div>
+<div class="section" id="mail-addresses">
+<h3>Mail Addresses<a class="headerlink" href="#mail-addresses" title="Permalink to this headline">¶</a></h3>
+<p>Links that launches a mail to a specified address is written as
+ordinary URLs, typically as</p>
+<div class="highlight-text"><div class="highlight"><pre>Send &quot;mail&quot;: &quot;mailto:hpl@simula.no&quot;
+# Alternative:
+to &quot;`hpl@simula.no`&quot;: &quot;mailto:hpl@simula.no&quot;.
+</pre></div>
+</div>
+<p>which appears as Send <a class="reference external" href="mailto:hpl&#37;&#52;&#48;simula&#46;no">mail</a> to
+<a class="reference external" href="mailto:hpl&#37;&#52;&#48;simula&#46;no">hpl<span>&#64;</span>simula<span>&#46;</span>no</a>.</p>
 </div>
 <div class="section" id="links-to-local-files">
 <h3>Links to Local Files<a class="headerlink" href="#links-to-local-files" title="Permalink to this headline">¶</a></h3>
@@ -2744,11 +2808,11 @@ as backgrounds for the different admonitions.</p>
 <p>Some recommended combinations for admonitions in HTML are</p>
 <blockquote>
 <div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">--html_admon=apricot</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=solarized</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=bluish2</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=blueish2</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=solarized</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=apricot</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=perldoc</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=blueish2</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=blueish2</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">--html_style=vagrant</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt>, <tt class="docutils literal"><span class="pre">--html_template=...</span></tt></li>
 </ul>
 </div></blockquote>
@@ -3972,7 +4036,10 @@ Springer,
 </ul>
 </li>
 <li><a class="reference internal" href="#blog-posts">Blog Posts</a></li>
-<li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a></li>
+<li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a><ul>
+<li><a class="reference internal" href="#github-flavored-markdown">GitHub-flavored Markdown</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#latex">LaTeX</a></li>
 <li><a class="reference internal" href="#pdflatex">PDFLaTeX</a></li>
 <li><a class="reference internal" href="#xelatex">XeLaTeX</a></li>
@@ -3999,6 +4066,7 @@ Springer,
 <li><a class="reference internal" href="#emphasized-words">Emphasized Words</a></li>
 <li><a class="reference internal" href="#inline-verbatim-text">Inline Verbatim Text</a></li>
 <li><a class="reference internal" href="#links-to-web-addresses">Links to Web Addresses</a></li>
+<li><a class="reference internal" href="#mail-addresses">Mail Addresses</a></li>
 <li><a class="reference internal" href="#links-to-local-files">Links to Local Files</a></li>
 <li><a class="reference internal" href="#inline-comments">Inline Comments</a></li>
 <li><a class="reference internal" href="#inline-mathematics">Inline Mathematics</a></li>

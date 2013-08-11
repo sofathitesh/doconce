@@ -136,7 +136,7 @@ Doconce: Document Once, Include Anywhere
 
 
 \begin{center}
-Jul 13, 2013
+Aug 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -772,8 +772,8 @@ Terminal> doconce format html mydoc --html_style=bloodish \
           --html_output=mydoc_bloodish
 Terminal> doconce split_html mydoc_bloodish.html
 Terminal> doconce format html mydoc --html_style=solarized \ 
-          --html_output=mydoc_solarized --pygments_html=perldoc \ 
-          --html_admon=apricot
+          --html_output=mydoc_solarized \ 
+          --pygments_html_style=perldoc --html_admon=apricot
 Terminal> doconce format html mydoc --html_style=vagrant \ 
           --html_output=mydoc_vagrant --pygments_html_style=default \ 
           --html_template=templates/my_adapted_vagrant_template.html
@@ -907,6 +907,61 @@ Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The {\fontsize{10pt}{10pt}\Verb!-s!} option adds a proper header and footer to the {\fontsize{10pt}{10pt}\Verb!mydoc.html!} file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+\paragraph{GitHub-flavored Markdown.}
+Adding the command-line option {\fontsize{10pt}{10pt}\Verb!github-md!} turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on \href{{http://github.com}}{GitHub}. A special feature is the support of task lists:
+unnumbered lists with {\fontsize{10pt}{10pt}\Verb![x]!} (task done) or {\fontsize{10pt}{10pt}\Verb![ ]!} (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,fontfamily=tt,xleftmargin=7mm]
+!bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+!equote
+
+OK, this is fixed:
+
+!bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+!ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+\end{Verbatim}
+\noindent
+Say this text is stored in a file {\fontsize{10pt}{10pt}\Verb!mycomments.do.txt!}. Running
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,fontsize=\fontsize{9pt}{9pt},labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format pandoc mycomments --github_md
+\end{Verbatim}
+produces {\fontsize{10pt}{10pt}\Verb!mycomments.md!} which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 \subsection{{\LaTeX}}
 
@@ -928,11 +983,11 @@ can be placed in files {\fontsize{10pt}{10pt}\Verb!newcommands.tex!}, {\fontsize
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option {\fontsize{10pt}{10pt}\Verb!-DDEVICE=paper!} makes some adjustments for documents
+An option {\fontsize{10pt}{10pt}\Verb!--device=paper!} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, {\fontsize{10pt}{10pt}\Verb!-DDEVICE=screen!}, creates a PDF file for reading
-on a screen where links are clickable.
+The default, {\fontsize{10pt}{10pt}\Verb!--device=screen!}, creates a PDF file for reading
+on a screen where links are just clickable.
 
 \paragraph{Step 2.}
 Run {\fontsize{10pt}{10pt}\Verb!ptex2tex!} (if you have it) to make a standard {\LaTeX} file,

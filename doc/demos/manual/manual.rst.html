@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jul 13, 2013</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Aug 11, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -389,11 +389,11 @@ cleaner LaTeX and HTML output.</li>
 </blockquote>
 <p><em>History.</em> Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.</p>
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.</p>
 <p><em>Disclaimer.</em> Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
@@ -1022,8 +1022,8 @@ Terminal&gt; doconce format html mydoc --html_style=bloodish \
           --html_output=mydoc_bloodish
 Terminal&gt; doconce split_html mydoc_bloodish.html
 Terminal&gt; doconce format html mydoc --html_style=solarized \
-          --html_output=mydoc_solarized --pygments_html=perldoc \
-          --html_admon=apricot
+          --html_output=mydoc_solarized \
+          --pygments_html_style=perldoc --html_admon=apricot
 Terminal&gt; doconce format html mydoc --html_style=vagrant \
           --html_output=mydoc_vagrant --pygments_html_style=default \
           --html_template=templates/my_adapted_vagrant_template.html
@@ -1142,6 +1142,58 @@ Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 </pre>
 <p>The <tt class="docutils literal"><span class="pre">-s</span></tt> option adds a proper header and footer to the <tt class="docutils literal">mydoc.html</tt> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
+<div class="section" id="github-flavored-markdown">
+<h3>GitHub-flavored Markdown</h3>
+<p>Adding the command-line option <tt class="docutils literal"><span class="pre">github-md</span></tt> turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on <a class="reference external" href="http://github.com">GitHub</a>. A special feature is the support of task lists:
+unnumbered lists with <tt class="docutils literal">[x]</tt> (task done) or <tt class="docutils literal">[ ]</tt> (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:</p>
+<pre class="literal-block">
+!bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+!equote
+
+OK, this is fixed:
+
+!bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+!ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+</pre>
+<p>Say this text is stored in a file <tt class="docutils literal">mycomments.do.txt</tt>. Running:</p>
+<pre class="literal-block">
+Terminal&gt; doconce format pandoc mycomments --github_md
+</pre>
+<p>produces <tt class="docutils literal">mycomments.md</tt> which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.</p>
+</div>
 </div>
 <div class="section" id="latex">
 <h2>LaTeX</h2>
@@ -1159,11 +1211,11 @@ can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt cl
 <tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands">Macros (Newcommands)</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
-<p>An option <tt class="docutils literal"><span class="pre">-DDEVICE=paper</span></tt> makes some adjustments for documents
+<p>An option <tt class="docutils literal"><span class="pre">--device=paper</span></tt> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, <tt class="docutils literal"><span class="pre">-DDEVICE=screen</span></tt>, creates a PDF file for reading
-on a screen where links are clickable.</p>
+The default, <tt class="docutils literal"><span class="pre">--device=screen</span></tt>, creates a PDF file for reading
+on a screen where links are just clickable.</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex mydoc
@@ -2021,6 +2073,18 @@ Click on this link: <a class="reference external" href="http://code.google.com/p
 <p>(There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)</p>
+</div>
+<div class="section" id="mail-addresses">
+<h3>Mail Addresses</h3>
+<p>Links that launches a mail to a specified address is written as
+ordinary URLs, typically as:</p>
+<pre class="literal-block">
+Send &quot;mail&quot;: &quot;mailto:hpl&#64;simula.no&quot;
+# Alternative:
+to &quot;`hpl&#64;simula.no`&quot;: &quot;mailto:hpl&#64;simula.no&quot;.
+</pre>
+<p>which appears as Send <a class="reference external" href="mailto:hpl&#64;simula.no">mail</a> to
+<a class="reference external" href="mailto:hpl&#64;simula.no">hpl&#64;simula.no</a>.</p>
 </div>
 <div class="section" id="links-to-local-files">
 <h3>Links to Local Files</h3>
@@ -3060,11 +3124,11 @@ as backgrounds for the different admonitions.</p>
 <p>Some recommended combinations for admonitions in HTML are</p>
 <blockquote>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">--html_admon=apricot</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=solarized</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=bluish2</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=blueish2</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=solarized</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=apricot</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=perldoc</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=blueish2</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=blueish2</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=yellow</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--no_pygments_html</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--html_style=bloodish</span></tt>, <tt class="docutils literal"><span class="pre">--html_admon=gray</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">--html_style=vagrant</span></tt>, <tt class="docutils literal"><span class="pre">--pygments_html_style=default</span></tt>, <tt class="docutils literal"><span class="pre">--html_template=...</span></tt></li>
 </ul>
 </blockquote>
@@ -3434,7 +3498,7 @@ for shadowed boxes and more visual structure in the slides.</p>
 <div class="section" id="mako-programming">
 <h1>Mako Programming</h1>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 3586); <em><a href="#id15">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 3655); <em><a href="#id15">backlink</a></em></p>
 Duplicate explicit target name: &quot;mako&quot;.</div>
 <p>The <a class="reference external" href="http://docs.makotemplates.org/">Mako</a> templating engine is used
 as preprocessor for Doconce documents, but the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a> is run prior to Mako and is recommended for

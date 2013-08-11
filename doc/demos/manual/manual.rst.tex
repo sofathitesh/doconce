@@ -82,7 +82,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jul 13, 2013
+Aug 11, 2013
 
 \end{DUfieldlist}
 
@@ -168,11 +168,11 @@ cleaner LaTeX and HTML output.
 
 \emph{History.} Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.
 
 \emph{Disclaimer.} Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
@@ -1197,8 +1197,8 @@ Terminal>~doconce~format~html~mydoc~-{}-html\_style=bloodish~\textbackslash{}\\
 ~~~~~~~~~~-{}-html\_output=mydoc\_bloodish\\
 Terminal>~doconce~split\_html~mydoc\_bloodish.html\\
 Terminal>~doconce~format~html~mydoc~-{}-html\_style=solarized~\textbackslash{}\\
-~~~~~~~~~~-{}-html\_output=mydoc\_solarized~-{}-pygments\_html=perldoc~\textbackslash{}\\
-~~~~~~~~~~-{}-html\_admon=apricot\\
+~~~~~~~~~~-{}-html\_output=mydoc\_solarized~\textbackslash{}\\
+~~~~~~~~~~-{}-pygments\_html\_style=perldoc~-{}-html\_admon=apricot\\
 Terminal>~doconce~format~html~mydoc~-{}-html\_style=vagrant~\textbackslash{}\\
 ~~~~~~~~~~-{}-html\_output=mydoc\_vagrant~-{}-pygments\_html\_style=default~\textbackslash{}\\
 ~~~~~~~~~~-{}-html\_template=templates/my\_adapted\_vagrant\_template.html\\
@@ -1378,6 +1378,71 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 %___________________________________________________________________________
 
+\subsubsection*{\phantomsection%
+  GitHub-flavored Markdown%
+  \addcontentsline{toc}{subsubsection}{GitHub-flavored Markdown}%
+  \label{github-flavored-markdown}%
+}
+
+Adding the command-line option \texttt{github-md} turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on \href{http://github.com}{GitHub}. A special feature is the support of task lists:
+unnumbered lists with \texttt{{[}x{]}} (task done) or \texttt{{[} {]}} (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+!bquote\\
+=====~Problems~with~a~function~=====\\
+~\\
+There~is~a~problem~with~the~`f(x)`~function\\
+~\\
+!bc~pycod\\
+def~f(x):\\
+~~~~return~1~+~x\\
+!ec\\
+This~function~should~be~quadratic.\\
+!equote\\
+~\\
+OK,~this~is~fixed:\\
+~\\
+!bc~pycod\\
+def~f(x,~a=1,~b=1,~c=1):\\
+~~~~return~a*x**2~+~b*x~+~c\\
+!ec\\
+~\\
+=====~Updated~task~list~=====\\
+~\\
+~~~*~{[}x{]}~Offer~an~`f(x)`~function\\
+~~~*~{[}~{]}~Extension~to~cubic~functions\\
+~~~*~{[}x{]}~Allowing~general~coefficient~in~the~quadratic~function\\
+~\\
+===~Remaining~functionality~===\\
+~\\
+|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+|~function~|~purpose~~~~~~~~~~~~~~~~~~~~~~~~|~state~|\\
+|-{}-{}-{}-l-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-l-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-l-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+|~~`g(x)`~~|~Compute~the~Gaussian~function.~|~Formula~ready.~|\\
+|~~`h(x)`~~|~Heaviside~function.~~~~~~~~~~~~|~Formula~ready.~|\\
+|~~`I(x)`~~|~Indicator~function.~~~~~~~~~~~~|~Nothing~done~yet.~|\\
+|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|
+}
+\end{quote}
+
+Say this text is stored in a file \texttt{mycomments.do.txt}. Running:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~pandoc~mycomments~-{}-github\_md
+}
+\end{quote}
+
+produces \texttt{mycomments.md} which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
+
+%___________________________________________________________________________
+
 \subsection*{\phantomsection%
   LaTeX%
   \addcontentsline{toc}{subsection}{LaTeX}%
@@ -1406,11 +1471,11 @@ can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex},
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option \texttt{-DDEVICE=paper} makes some adjustments for documents
+An option \texttt{-{}-device=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, \texttt{-DDEVICE=screen}, creates a PDF file for reading
-on a screen where links are clickable.
+The default, \texttt{-{}-device=screen}, creates a PDF file for reading
+on a screen where links are just clickable.
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %
@@ -2666,6 +2731,28 @@ Click on this link: \url{http://code.google.com/p/doconce}.
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Mail Addresses%
+  \addcontentsline{toc}{subsubsection}{Mail Addresses}%
+  \label{mail-addresses}%
+}
+
+Links that launches a mail to a specified address is written as
+ordinary URLs, typically as:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Send~"mail":~"mailto:hpl@simula.no"\\
+\#~Alternative:\\
+to~"`hpl@simula.no`":~"mailto:hpl@simula.no".
+}
+\end{quote}
+
+which appears as Send \href{mailto:hpl@simula.no}{mail} to
+\href{mailto:hpl@simula.no}{hpl@simula.no}.
 
 
 %___________________________________________________________________________
@@ -4120,15 +4207,15 @@ Some recommended combinations for admonitions in HTML are
 %
 \begin{itemize}
 
-\item \texttt{-{}-html\_admon=apricot}, \texttt{-{}-html\_style=solarized}
+\item \texttt{-{}-html\_style=solarized}, \texttt{-{}-html\_admon=apricot}, \texttt{-{}-pygments\_html\_style=perldoc}
 
-\item \texttt{-{}-html\_admon=yellow}, \texttt{-{}-html\_style=bluish2}, \texttt{-{}-no\_pygments\_html}
+\item \texttt{-{}-html\_style=blueish2}, \texttt{-{}-html\_admon=yellow}, \texttt{-{}-no\_pygments\_html}
 
-\item \texttt{-{}-html\_admon=yellow}, \texttt{-{}-html\_style=blueish2}, \texttt{-{}-pygments\_html\_style=default}
+\item \texttt{-{}-html\_style=blueish2}, \texttt{-{}-html\_admon=yellow}, \texttt{-{}-pygments\_html\_style=default}
 
-\item \texttt{-{}-html\_admon=gray}, \texttt{-{}-html\_style=bloodish}, \texttt{-{}-no\_pygments\_html}
+\item \texttt{-{}-html\_style=bloodish}, \texttt{-{}-html\_admon=gray}, \texttt{-{}-no\_pygments\_html}
 
-\item \texttt{-{}-html\_admon=gray}, \texttt{-{}-html\_style=bloodish}, \texttt{-{}-pygments\_html\_style=default}
+\item \texttt{-{}-html\_style=bloodish}, \texttt{-{}-html\_admon=gray}, \texttt{-{}-pygments\_html\_style=default}
 
 \item \texttt{-{}-html\_style=vagrant}, \texttt{-{}-pygments\_html\_style=default}, \texttt{-{}-html\_template=...}
 
@@ -4720,7 +4807,7 @@ for shadowed boxes and more visual structure in the slides.
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{manual.rst}, line~3586
+{\color{red}WARNING/2} in \texttt{manual.rst}, line~3655
 
 \hyperlink{id15}{
 Duplicate explicit target name: ``mako''.

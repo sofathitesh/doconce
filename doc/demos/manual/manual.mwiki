@@ -1,7 +1,7 @@
 #TITLE (actually governed by the filename): Doconce Description
 
 By '''Hans Petter Langtangen'''
-==== Jul 13, 2013 ====
+==== Aug 11, 2013 ====
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -67,11 +67,11 @@ Here are some Doconce features:
 ''History.''
 Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.
 
 ''Disclaimer.''
 Doconce is a simple tool, largely based on interpreting
@@ -735,8 +735,8 @@ Terminal> doconce format html mydoc --html_style=bloodish \
           --html_output=mydoc_bloodish
 Terminal> doconce split_html mydoc_bloodish.html
 Terminal> doconce format html mydoc --html_style=solarized \
-          --html_output=mydoc_solarized --pygments_html=perldoc \
-          --html_admon=apricot
+          --html_output=mydoc_solarized \
+          --pygments_html_style=perldoc --html_admon=apricot
 Terminal> doconce format html mydoc --html_style=vagrant \
           --html_output=mydoc_vagrant --pygments_html_style=default \
           --html_template=templates/my_adapted_vagrant_template.html
@@ -868,6 +868,60 @@ Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+==== GitHub-flavored Markdown ====
+
+Adding the command-line option <code>github-md</code> turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on [http://github.com GitHub]. A special feature is the support of task lists:
+unnumbered lists with <code>[x]</code> (task done) or <code>[ ]</code> (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+
+<syntaxhighlight lang="text">
+!bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+!equote
+
+OK, this is fixed:
+
+!bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+!ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+</syntaxhighlight>
+Say this text is stored in a file <code>mycomments.do.txt</code>. Running
+
+<syntaxhighlight lang="bash">
+Terminal> doconce format pandoc mycomments --github_md
+</syntaxhighlight>
+produces <code>mycomments.md</code> which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 ==== LaTeX ====
 
@@ -888,11 +942,11 @@ can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex<
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option <code>-DDEVICE=paper</code> makes some adjustments for documents
+An option <code>--device=paper</code> makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, <code>-DDEVICE=screen</code>, creates a PDF file for reading
-on a screen where links are clickable.
+The default, <code>--device=screen</code>, creates a PDF file for reading
+on a screen where links are just clickable.
 
 ''Step 2.''
 Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
@@ -1868,6 +1922,19 @@ Click on this link: http://code.google.com/p/doconce.
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
+
+==== Mail Addresses ====
+
+Links that launches a mail to a specified address is written as
+ordinary URLs, typically as
+
+<syntaxhighlight lang="text">
+Send "mail": "mailto:hpl@simula.no"
+# Alternative:
+to "`hpl@simula.no`": "mailto:hpl@simula.no".
+</syntaxhighlight>
+which appears as Send [mailto:hpl@simula.no mail] to
+[mailto:hpl@simula.no <code>hpl@simula.no</code>].
 
 ==== Links to Local Files ====
 
@@ -2979,11 +3046,11 @@ Some recommended combinations for admonitions in HTML are
 
 
 <ul>
- <li> <code>--html_admon=apricot</code>, <code>--html_style=solarized</code>
- <li> <code>--html_admon=yellow</code>, <code>--html_style=bluish2</code>, <code>--no_pygments_html</code>
- <li> <code>--html_admon=yellow</code>, <code>--html_style=blueish2</code>, <code>--pygments_html_style=default</code>
- <li> <code>--html_admon=gray</code>, <code>--html_style=bloodish</code>, <code>--no_pygments_html</code>
- <li> <code>--html_admon=gray</code>, <code>--html_style=bloodish</code>, <code>--pygments_html_style=default</code>
+ <li> <code>--html_style=solarized</code>, <code>--html_admon=apricot</code>, <code>--pygments_html_style=perldoc</code>
+ <li> <code>--html_style=blueish2</code>, <code>--html_admon=yellow</code>, <code>--no_pygments_html</code>
+ <li> <code>--html_style=blueish2</code>, <code>--html_admon=yellow</code>, <code>--pygments_html_style=default</code>
+ <li> <code>--html_style=bloodish</code>, <code>--html_admon=gray</code>, <code>--no_pygments_html</code>
+ <li> <code>--html_style=bloodish</code>, <code>--html_admon=gray</code>, <code>--pygments_html_style=default</code>
  <li> <code>--html_style=vagrant</code>, <code>--pygments_html_style=default</code>, <code>--html_template=...</code>
 </ul>
 
