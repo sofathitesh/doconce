@@ -144,7 +144,7 @@ Doconce Description
 
 
 \begin{center}
-Jul 13, 2013
+Aug 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -223,11 +223,11 @@ Here are some Doconce features:
 \paragraph{History.}
 Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.
 
 \paragraph{Disclaimer.}
 Doconce is a simple tool, largely based on interpreting
@@ -887,8 +887,8 @@ Terminal> doconce format html mydoc --html_style=bloodish \
           --html_output=mydoc_bloodish
 Terminal> doconce split_html mydoc_bloodish.html
 Terminal> doconce format html mydoc --html_style=solarized \
-          --html_output=mydoc_solarized --pygments_html=perldoc \
-          --html_admon=apricot
+          --html_output=mydoc_solarized \
+          --pygments_html_style=perldoc --html_admon=apricot
 Terminal> doconce format html mydoc --html_style=vagrant \
           --html_output=mydoc_vagrant --pygments_html_style=default \
           --html_template=templates/my_adapted_vagrant_template.html
@@ -1016,6 +1016,59 @@ Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The \Verb!-s! option adds a proper header and footer to the \Verb!mydoc.html! file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+\paragraph{GitHub-flavored Markdown.}
+Adding the command-line option \Verb!github-md! turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on \href{{http://github.com}}{GitHub}. A special feature is the support of task lists:
+unnumbered lists with \Verb![x]! (task done) or \Verb![ ]! (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
+!bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+!equote
+
+OK, this is fixed:
+
+!bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+!ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+\end{Verbatim}
+Say this text is stored in a file \Verb!mycomments.do.txt!. Running
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
+Terminal> doconce format pandoc mycomments --github_md
+\end{Verbatim}
+produces \Verb!mycomments.md! which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 \subsection{{\LaTeX}}
 
@@ -1036,11 +1089,11 @@ can be placed in files \Verb!newcommands.tex!, \Verb!newcommands_keep.tex!, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \Verb!-DDEVICE=paper! makes some adjustments for documents
+An option \Verb!--device=paper! makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, \Verb!-DDEVICE=screen!, creates a PDF file for reading
-on a screen where links are clickable.
+The default, \Verb!--device=screen!, creates a PDF file for reading
+on a screen where links are just clickable.
 
 \paragraph{Step 2.}
 Run \Verb!ptex2tex! (if you have it) to make a standard {\LaTeX} file,
@@ -2002,7 +2055,7 @@ Section~\ref{sec:verbatim:blocks} below.
 Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
 and \Verb!verbatim text! (also called type writer text, for inline code),
 \textcolor{blue}{colored words},
-plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
+plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$.
 
 \paragraph{Emphasized Words.}
 Emphasized text is typeset inside a pair of asterisk, and there should
@@ -2063,6 +2116,18 @@ Click on this link: \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
+
+\paragraph{Mail Addresses.}
+Links that launches a mail to a specified address is written as
+ordinary URLs, typically as
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
+Send "mail": "mailto:hpl@simula.no"
+# Alternative:
+to "`hpl@simula.no`": "mailto:hpl@simula.no".
+\end{Verbatim}
+which appears as Send \href{{mailto:hpl@simula.no}}{mail} to
+\href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}.
 
 \paragraph{Links to Local Files.}
 Links to files ending in \Verb!.txt!, \Verb!.html!, \Verb!.pdf!, \Verb!.py!, \Verb!.f!,
@@ -2810,7 +2875,7 @@ or print out, and \Verb!ipy! for interactive Python sessions (the latter
 does not introduce any environment  in \Verb!sphinx! output, as interactive
 sessions are automatically recognized and handled).  All these
 definitions of the arguments after \Verb!!bc! can be redefined in the
-\Verb!.ptex2tex.cfg! configuration file for ptex2tex/{\LaTeX} and in the
+\Verb!.ptex2tex.cfg! configuration file for ptex2tex/LaTeX and in the
 \Verb!sphinx code-blocks! comments for Sphinx. Support for other languages
 is easily added.
 
@@ -3174,15 +3239,15 @@ as backgrounds for the different admonitions.
 Some recommended combinations for admonitions in HTML are
 
 \begin{itemize}
- \item \Verb!--html_admon=apricot!, \Verb!--html_style=solarized!
+ \item \Verb!--html_style=solarized!, \Verb!--html_admon=apricot!, \Verb!--pygments_html_style=perldoc!
 
- \item \Verb!--html_admon=yellow!, \Verb!--html_style=bluish2!, \Verb!--no_pygments_html!
+ \item \Verb!--html_style=blueish2!, \Verb!--html_admon=yellow!, \Verb!--no_pygments_html!
 
- \item \Verb!--html_admon=yellow!, \Verb!--html_style=blueish2!, \Verb!--pygments_html_style=default!
+ \item \Verb!--html_style=blueish2!, \Verb!--html_admon=yellow!, \Verb!--pygments_html_style=default!
 
- \item \Verb!--html_admon=gray!, \Verb!--html_style=bloodish!, \Verb!--no_pygments_html!
+ \item \Verb!--html_style=bloodish!, \Verb!--html_admon=gray!, \Verb!--no_pygments_html!
 
- \item \Verb!--html_admon=gray!, \Verb!--html_style=bloodish!, \Verb!--pygments_html_style=default!
+ \item \Verb!--html_style=bloodish!, \Verb!--html_admon=gray!, \Verb!--pygments_html_style=default!
 
  \item \Verb!--html_style=vagrant!, \Verb!--pygments_html_style=default!, \Verb!--html_template=...!
 \end{itemize}

@@ -1,6 +1,6 @@
 TITLE: Doconce Description
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Jul 13, 2013
+DATE: Aug 11, 2013
 What Is Doconce?
 ================
 
@@ -58,11 +58,11 @@ Here are some Doconce features:
 
 I{History.} Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.
 
 I{Disclaimer.} Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
@@ -750,8 +750,8 @@ C{mydoc_vagrant}::
                   --html_output=mydoc_bloodish
         Terminal> doconce split_html mydoc_bloodish.html
         Terminal> doconce format html mydoc --html_style=solarized \
-                  --html_output=mydoc_solarized --pygments_html=perldoc \
-                  --html_admon=apricot
+                  --html_output=mydoc_solarized \
+                  --pygments_html_style=perldoc --html_admon=apricot
         Terminal> doconce format html mydoc --html_style=vagrant \
                   --html_output=mydoc_vagrant --pygments_html_style=default \
                   --html_template=templates/my_adapted_vagrant_template.html
@@ -878,6 +878,61 @@ HTML with mathematics displayed my MathJax::
 The C{-s} option adds a proper header and footer to the C{mydoc.html} file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+GitHub-flavored Markdown
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding the command-line option C{github-md} turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on U{GitHub<http://github.com>}. A special feature is the support of task lists:
+unnumbered lists with C{[x]} (task done) or C{[ ]} (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example::
+
+
+        !bquote
+        ===== Problems with a function =====
+        
+        There is a problem with the `f(x)` function
+        
+        !bc pycod
+        def f(x):
+            return 1 + x
+        !ec
+        This function should be quadratic.
+        !equote
+        
+        OK, this is fixed:
+        
+        !bc pycod
+        def f(x, a=1, b=1, c=1):
+            return a*x**2 + b*x + c
+        !ec
+        
+        ===== Updated task list =====
+        
+           * [x] Offer an `f(x)` function
+           * [ ] Extension to cubic functions
+           * [x] Allowing general coefficient in the quadratic function
+        
+        === Remaining functionality ===
+        
+        |---------------------------------------------------------------|
+        | function | purpose                        | state |
+        |----l-----------l------------------------------l---------------|
+        |  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+        |  `h(x)`  | Heaviside function.            | Formula ready. |
+        |  `I(x)`  | Indicator function.            | Nothing done yet. |
+        |---------------------------------------------------------------|
+
+Say this text is stored in a file C{mycomments.do.txt}. Running::
+
+
+        Terminal> doconce format pandoc mycomments --github_md
+
+produces C{mycomments.md} which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 LaTeX
 -----
@@ -896,11 +951,11 @@ C{newcommands_replace.tex} (see the section "Macros (Newcommands)").
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option C{-DDEVICE=paper} makes some adjustments for documents
+An option C{--device=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, C{-DDEVICE=screen}, creates a PDF file for reading
-on a screen where links are clickable.
+The default, C{--device=screen}, creates a PDF file for reading
+on a screen where links are just clickable.
 
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
@@ -1876,6 +1931,20 @@ Click on this link: U{http://code.google.com/p/doconce<http://code.google.com/p/
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
+
+Mail Addresses
+~~~~~~~~~~~~~~
+
+Links that launches a mail to a specified address is written as
+ordinary URLs, typically as::
+
+
+        Send "mail": "mailto:hpl@simula.no"
+        # Alternative:
+        to "`hpl@simula.no`": "mailto:hpl@simula.no".
+
+which appears as Send U{mail<mailto:hpl@simula.no>} to
+U{C{hpl@simula.no}<mailto:hpl@simula.no>}.
 
 Links to Local Files
 ~~~~~~~~~~~~~~~~~~~~
@@ -2986,11 +3055,11 @@ as backgrounds for the different admonitions.
 
 Some recommended combinations for admonitions in HTML are
 
- - C{--html_admon=apricot}, C{--html_style=solarized}
- - C{--html_admon=yellow}, C{--html_style=bluish2}, C{--no_pygments_html}
- - C{--html_admon=yellow}, C{--html_style=blueish2}, C{--pygments_html_style=default}
- - C{--html_admon=gray}, C{--html_style=bloodish}, C{--no_pygments_html}
- - C{--html_admon=gray}, C{--html_style=bloodish}, C{--pygments_html_style=default}
+ - C{--html_style=solarized}, C{--html_admon=apricot}, C{--pygments_html_style=perldoc}
+ - C{--html_style=blueish2}, C{--html_admon=yellow}, C{--no_pygments_html}
+ - C{--html_style=blueish2}, C{--html_admon=yellow}, C{--pygments_html_style=default}
+ - C{--html_style=bloodish}, C{--html_admon=gray}, C{--no_pygments_html}
+ - C{--html_style=bloodish}, C{--html_admon=gray}, C{--pygments_html_style=default}
  - C{--html_style=vagrant}, C{--pygments_html_style=default}, C{--html_template=...}
 
 The C{vagrant} HTML style has CSS files that override the definition

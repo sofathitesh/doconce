@@ -79,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jul 13, 2013
+Aug 11, 2013
 %
 \begin{itemize}
 
@@ -974,8 +974,8 @@ Terminal>~doconce~format~html~mydoc~-{}-html\_style=bloodish~\textbackslash{}\\
 ~~~~~~~~~~-{}-html\_output=mydoc\_bloodish\\
 Terminal>~doconce~split\_html~mydoc\_bloodish.html\\
 Terminal>~doconce~format~html~mydoc~-{}-html\_style=solarized~\textbackslash{}\\
-~~~~~~~~~~-{}-html\_output=mydoc\_solarized~-{}-pygments\_html=perldoc~\textbackslash{}\\
-~~~~~~~~~~-{}-html\_admon=apricot\\
+~~~~~~~~~~-{}-html\_output=mydoc\_solarized~\textbackslash{}\\
+~~~~~~~~~~-{}-pygments\_html\_style=perldoc~-{}-html\_admon=apricot\\
 Terminal>~doconce~format~html~mydoc~-{}-html\_style=vagrant~\textbackslash{}\\
 ~~~~~~~~~~-{}-html\_output=mydoc\_vagrant~-{}-pygments\_html\_style=default~\textbackslash{}\\
 ~~~~~~~~~~-{}-html\_template=templates/my\_adapted\_vagrant\_template.html\\
@@ -1155,6 +1155,71 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 %___________________________________________________________________________
 
+\subsubsection*{\phantomsection%
+  GitHub-flavored Markdown%
+  \addcontentsline{toc}{subsubsection}{GitHub-flavored Markdown}%
+  \label{github-flavored-markdown}%
+}
+
+Adding the command-line option \texttt{github-md} turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on \href{http://github.com}{GitHub}. A special feature is the support of task lists:
+unnumbered lists with \texttt{{[}x{]}} (task done) or \texttt{{[} {]}} (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+!bquote\\
+=====~Problems~with~a~function~=====\\
+~\\
+There~is~a~problem~with~the~`f(x)`~function\\
+~\\
+!bc~pycod\\
+def~f(x):\\
+~~~~return~1~+~x\\
+!ec\\
+This~function~should~be~quadratic.\\
+!equote\\
+~\\
+OK,~this~is~fixed:\\
+~\\
+!bc~pycod\\
+def~f(x,~a=1,~b=1,~c=1):\\
+~~~~return~a*x**2~+~b*x~+~c\\
+!ec\\
+~\\
+=====~Updated~task~list~=====\\
+~\\
+~~~*~{[}x{]}~Offer~an~`f(x)`~function\\
+~~~*~{[}~{]}~Extension~to~cubic~functions\\
+~~~*~{[}x{]}~Allowing~general~coefficient~in~the~quadratic~function\\
+~\\
+===~Remaining~functionality~===\\
+~\\
+|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+|~function~|~purpose~~~~~~~~~~~~~~~~~~~~~~~~|~state~|\\
+|-{}-{}-{}-l-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-l-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-l-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+|~~`g(x)`~~|~Compute~the~Gaussian~function.~|~Formula~ready.~|\\
+|~~`h(x)`~~|~Heaviside~function.~~~~~~~~~~~~|~Formula~ready.~|\\
+|~~`I(x)`~~|~Indicator~function.~~~~~~~~~~~~|~Nothing~done~yet.~|\\
+|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|
+}
+\end{quote}
+
+Say this text is stored in a file \texttt{mycomments.do.txt}. Running:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~pandoc~mycomments~-{}-github\_md
+}
+\end{quote}
+
+produces \texttt{mycomments.md} which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
+
+%___________________________________________________________________________
+
 \subsection*{\phantomsection%
   LaTeX%
   \addcontentsline{toc}{subsection}{LaTeX}%
@@ -1183,11 +1248,11 @@ can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex},
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option \texttt{-DDEVICE=paper} makes some adjustments for documents
+An option \texttt{-{}-device=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, \texttt{-DDEVICE=screen}, creates a PDF file for reading
-on a screen where links are clickable.
+The default, \texttt{-{}-device=screen}, creates a PDF file for reading
+on a screen where links are just clickable.
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %

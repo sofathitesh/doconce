@@ -328,10 +328,10 @@ is different from Pandoc extended Markdown.) Here is an example:
 
 There is a problem with the `f(x)` function
 
-!bc pycod
+|bc pycod
 def f(x):
     return 1 + x
-!ec
+|ec
 This function should be quadratic.
 |equote
 
@@ -387,11 +387,11 @@ can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option `-DDEVICE=paper` makes some adjustments for documents
+An option `--device=paper` makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, `-DDEVICE=screen`, creates a PDF file for reading
-on a screen where links are clickable.
+The default, `--device=screen`, creates a PDF file for reading
+on a screen where links are just clickable.
 
 __Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 !bc sys

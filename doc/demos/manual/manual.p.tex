@@ -316,16 +316,16 @@ Department of Informatics, University of Oslo\inst{2}}
 
 
 % #if LATEX_HEADING == "traditional"
-\date{Jul 13, 2013}
+\date{Aug 11, 2013}
 \maketitle
 % #elif LATEX_HEADING == "beamer"
-\date{Jul 13, 2013
+\date{Aug 11, 2013
 % <titlepage figure>
 }
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 13, 2013}}
+{\large\textsf{Aug 11, 2013}}
 
 \end{center}
 \vfill
@@ -333,7 +333,7 @@ Department of Informatics, University of Oslo\inst{2}}
 
 % #else
 \begin{center}
-Jul 13, 2013
+Aug 11, 2013
 \end{center}
 
 \vspace{1cm}
@@ -413,11 +413,11 @@ Here are some Doconce features:
 \paragraph{History.}
 Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.
+markup languages like Markdown and the Pandoc translator became
+popular. Doconce is not a replacement of Pandoc, which is a
+considerably more sophisticated project. Moreover, Doconce was
+developed mainly to fulfill the needs for a flexible source code base
+for books with much mathematics and computer code.
 
 \paragraph{Disclaimer.}
 Doconce is a simple tool, largely based on interpreting
@@ -1078,8 +1078,8 @@ Terminal> doconce format html mydoc --html_style=bloodish \
           --html_output=mydoc_bloodish
 Terminal> doconce split_html mydoc_bloodish.html
 Terminal> doconce format html mydoc --html_style=solarized \
-          --html_output=mydoc_solarized --pygments_html=perldoc \
-          --html_admon=apricot
+          --html_output=mydoc_solarized \
+          --pygments_html_style=perldoc --html_admon=apricot
 Terminal> doconce format html mydoc --html_style=vagrant \
           --html_output=mydoc_vagrant --pygments_html_style=default \
           --html_template=templates/my_adapted_vagrant_template.html
@@ -1209,6 +1209,59 @@ Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 The \code{-s} option adds a proper header and footer to the \code{mydoc.html} file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+\paragraph{GitHub-flavored Markdown.}
+Adding the command-line option \code{github-md} turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on \href{{http://github.com}}{GitHub}. A special feature is the support of task lists:
+unnumbered lists with \code{[x]} (task done) or \code{[ ]} (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example:
+
+\bccq
+!bquote
+===== Problems with a function =====
+
+There is a problem with the `f(x)` function
+
+!bc pycod
+def f(x):
+    return 1 + x
+!ec
+This function should be quadratic.
+!equote
+
+OK, this is fixed:
+
+!bc pycod
+def f(x, a=1, b=1, c=1):
+    return a*x**2 + b*x + c
+!ec
+
+===== Updated task list =====
+
+   * [x] Offer an `f(x)` function
+   * [ ] Extension to cubic functions
+   * [x] Allowing general coefficient in the quadratic function
+
+=== Remaining functionality ===
+
+|---------------------------------------------------------------|
+| function | purpose                        | state |
+|----l-----------l------------------------------l---------------|
+|  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+|  `h(x)`  | Heaviside function.            | Formula ready. |
+|  `I(x)`  | Indicator function.            | Nothing done yet. |
+|---------------------------------------------------------------|
+\eccq
+Say this text is stored in a file \code{mycomments.do.txt}. Running
+
+\bsys
+Terminal> doconce format pandoc mycomments --github_md
+\esys
+produces \code{mycomments.md} which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 \subsection{{\LaTeX}}
 
@@ -1229,11 +1282,11 @@ can be placed in files \code{newcommands.tex}, \code{newcommands_keep.tex}, or
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
 
-An option \code{-DDEVICE=paper} makes some adjustments for documents
+An option \code{--device=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, \code{-DDEVICE=screen}, creates a PDF file for reading
-on a screen where links are clickable.
+The default, \code{--device=screen}, creates a PDF file for reading
+on a screen where links are just clickable.
 
 \paragraph{Step 2.}
 Run \code{ptex2tex} (if you have it) to make a standard {\LaTeX} file,
@@ -2234,7 +2287,7 @@ Section~\ref{sec:verbatim:blocks} below.
 Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
 and \code{verbatim text} (also called type writer text, for inline code),
 \textcolor{blue}{colored words},
-plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
+plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$.
 
 \paragraph{Emphasized Words.}
 Emphasized text is typeset inside a pair of asterisk, and there should
@@ -2295,6 +2348,18 @@ Click on this link: \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
+
+\paragraph{Mail Addresses.}
+Links that launches a mail to a specified address is written as
+ordinary URLs, typically as
+
+\bccq
+Send "mail": "mailto:hpl@simula.no"
+# Alternative:
+to "`hpl@simula.no`": "mailto:hpl@simula.no".
+\eccq
+which appears as Send \href{{mailto:hpl@simula.no}}{mail} to
+\href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}.
 
 \paragraph{Links to Local Files.}
 Links to files ending in \code{.txt}, \code{.html}, \code{.pdf}, \code{.py}, \code{.f},
@@ -3043,7 +3108,7 @@ or print out, and \code{ipy} for interactive Python sessions (the latter
 does not introduce any environment  in \code{sphinx} output, as interactive
 sessions are automatically recognized and handled).  All these
 definitions of the arguments after \code{!bc} can be redefined in the
-\code{.ptex2tex.cfg} configuration file for ptex2tex/{\LaTeX} and in the
+\code{.ptex2tex.cfg} configuration file for ptex2tex/LaTeX and in the
 \code{sphinx code-blocks} comments for Sphinx. Support for other languages
 is easily added.
 
@@ -3408,15 +3473,15 @@ as backgrounds for the different admonitions.
 Some recommended combinations for admonitions in HTML are
 
 \begin{itemize}
- \item \code{--html_admon=apricot}, \code{--html_style=solarized}
+ \item \code{--html_style=solarized}, \code{--html_admon=apricot}, \code{--pygments_html_style=perldoc}
 
- \item \code{--html_admon=yellow}, \code{--html_style=bluish2}, \code{--no_pygments_html}
+ \item \code{--html_style=blueish2}, \code{--html_admon=yellow}, \code{--no_pygments_html}
 
- \item \code{--html_admon=yellow}, \code{--html_style=blueish2}, \code{--pygments_html_style=default}
+ \item \code{--html_style=blueish2}, \code{--html_admon=yellow}, \code{--pygments_html_style=default}
 
- \item \code{--html_admon=gray}, \code{--html_style=bloodish}, \code{--no_pygments_html}
+ \item \code{--html_style=bloodish}, \code{--html_admon=gray}, \code{--no_pygments_html}
 
- \item \code{--html_admon=gray}, \code{--html_style=bloodish}, \code{--pygments_html_style=default}
+ \item \code{--html_style=bloodish}, \code{--html_admon=gray}, \code{--pygments_html_style=default}
 
  \item \code{--html_style=vagrant}, \code{--pygments_html_style=default}, \code{--html_template=...}
 \end{itemize}

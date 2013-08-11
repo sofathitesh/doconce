@@ -1,7 +1,7 @@
 
 TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo)
-DATE: Jul 13, 2013
+DATE: Aug 11, 2013
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
@@ -588,8 +588,8 @@ C{mydoc_vagrant}::
                   --html_output=mydoc_bloodish
         Terminal> doconce split_html mydoc_bloodish.html
         Terminal> doconce format html mydoc --html_style=solarized \ 
-                  --html_output=mydoc_solarized --pygments_html=perldoc \ 
-                  --html_admon=apricot
+                  --html_output=mydoc_solarized \ 
+                  --pygments_html_style=perldoc --html_admon=apricot
         Terminal> doconce format html mydoc --html_style=vagrant \ 
                   --html_output=mydoc_vagrant --pygments_html_style=default \ 
                   --html_template=templates/my_adapted_vagrant_template.html
@@ -716,6 +716,61 @@ HTML with mathematics displayed my MathJax::
 The C{-s} option adds a proper header and footer to the C{mydoc.html} file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
+GitHub-flavored Markdown
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding the command-line option C{github-md} turns on the GutHub-flavored
+Markdown dialect, which is used for the issue tracker on U{GitHub<http://github.com>}. A special feature is the support of task lists:
+unnumbered lists with C{[x]} (task done) or C{[ ]} (task not done).
+(Tables get typeset directly as HTML and the syntax for code highlighting
+is different from Pandoc extended Markdown.) Here is an example::
+
+
+        !bquote
+        ===== Problems with a function =====
+        
+        There is a problem with the `f(x)` function
+        
+        !bc pycod
+        def f(x):
+            return 1 + x
+        !ec
+        This function should be quadratic.
+        !equote
+        
+        OK, this is fixed:
+        
+        !bc pycod
+        def f(x, a=1, b=1, c=1):
+            return a*x**2 + b*x + c
+        !ec
+        
+        ===== Updated task list =====
+        
+           * [x] Offer an `f(x)` function
+           * [ ] Extension to cubic functions
+           * [x] Allowing general coefficient in the quadratic function
+        
+        === Remaining functionality ===
+        
+        |---------------------------------------------------------------|
+        | function | purpose                        | state |
+        |----l-----------l------------------------------l---------------|
+        |  `g(x)`  | Compute the Gaussian function. | Formula ready. |
+        |  `h(x)`  | Heaviside function.            | Formula ready. |
+        |  `I(x)`  | Indicator function.            | Nothing done yet. |
+        |---------------------------------------------------------------|
+
+Say this text is stored in a file C{mycomments.do.txt}. Running::
+
+
+        Terminal> doconce format pandoc mycomments --github_md
+
+produces C{mycomments.md} which can be pasted into the Write field of
+the GitHub issue tracker. Turning on Preview shows the typesetting of
+the quote, compute code, inline verbatim, headings, the task list, and
+the table.
+
 
 LaTeX
 -----
@@ -734,11 +789,11 @@ C{newcommands_replace.tex} (see the section "Macros (Newcommands), Cross-Referen
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
-An option C{-DDEVICE=paper} makes some adjustments for documents
+An option C{--device=paper} makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
-The default, C{-DDEVICE=screen}, creates a PDF file for reading
-on a screen where links are clickable.
+The default, C{--device=screen}, creates a PDF file for reading
+on a screen where links are just clickable.
 
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
