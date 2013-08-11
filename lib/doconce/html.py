@@ -246,7 +246,14 @@ def html_code(filestr, code_blocks, code_block_types,
     if option('no_pygments_html'):
         pygm = None
     if pygm is not None:
-        pygm_style = option('pygments_html_style=', default='default')
+        pygm_style = option('pygments_html_style=', default=None)
+        if pygm_style is None:
+            # Set sensible default values
+            if option('html_style=') == 'solarized':
+                pygm_style = 'perldoc'
+            else:
+                pygm_style = 'default'
+
         legal_styles = list(get_all_styles())
         legal_styles += ['no', 'none']
         if pygm_style not in legal_styles:
@@ -1069,7 +1076,15 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
     keep_pygm_bg = option('keep_pygments_html_bg')
     pygments_pattern = r'"background: .+?">'
 
-    html_admon = option('html_admon=', 'gray')
+    html_admon = option('html_admon=', None)
+    if html_admon is None:
+        # Set sensible default value
+        if option('html_style=') == 'solarized':
+            html_admon = 'apricot'
+        elif option('html_style=') == 'blueish2':
+            html_admon = 'yellow'
+        else:
+            html_admon = 'gray'
     if html_admon == 'colors':
         if not keep_pygm_bg:
             block = re.sub(pygments_pattern, r'"background: %%s">' %%
