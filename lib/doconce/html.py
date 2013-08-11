@@ -110,6 +110,7 @@ admon_styles2 = admon_styles_text + """\
 # alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
 
 css_solarized = """\
+    /* solarized style */
     body {
       margin:5;
       padding:0;
@@ -150,6 +151,8 @@ css_solarized = """\
 """
 
 css_blueish = """\
+    /* blueish style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -172,6 +175,8 @@ css_blueish = """\
 """
 
 css_blueish2 = """\
+    /* blueish2 style */
+
     /* Color definitions:  http://www.december.com/html/spec/color0.html
        CSS examples:       http://www.w3schools.com/css/css_examples.asp */
 
@@ -203,6 +208,8 @@ css_blueish2 = """\
 """
 
 css_bloodish = """\
+    /* bloodish style */
+
     body {
       font-family: Helvetica, Verdana, Arial, Sans-serif;
       color: #404040;
@@ -1054,6 +1061,17 @@ def html_quote(block, format, text_size='normal'):
 
 admons = 'notice', 'summary', 'warning', 'question', 'block'
 global admon_css_vars        # set in define
+global html_admon_style      # set below
+
+html_admon_style = option('html_admon=', None)
+if html_admon_style is None:
+    # Set sensible default value
+    if option('html_style=') == 'solarized':
+        html_admon_style = 'apricot'
+    elif option('html_style=') == 'blueish2':
+        html_admon_style = 'yellow'
+    else:
+        html_admon_style = 'gray'
 
 for _admon in admons:
     _Admon = _admon.capitalize()  # upper first char
@@ -1076,16 +1094,8 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
     keep_pygm_bg = option('keep_pygments_html_bg')
     pygments_pattern = r'"background: .+?">'
 
-    html_admon = option('html_admon=', None)
-    if html_admon is None:
-        # Set sensible default value
-        if option('html_style=') == 'solarized':
-            html_admon = 'apricot'
-        elif option('html_style=') == 'blueish2':
-            html_admon = 'yellow'
-        else:
-            html_admon = 'gray'
-    if html_admon == 'colors':
+    # html_admon_style is global variable
+    if html_admon_style == 'colors':
         if not keep_pygm_bg:
             block = re.sub(pygments_pattern, r'"background: %%s">' %%
                            admon_css_vars['colors']['background_%(_admon)s'], block)
@@ -1095,17 +1105,17 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 """ %% (text_size, title, block)
         return janko
 
-    elif html_admon in ('gray', 'yellow', 'apricot') or option('html_style=') == 'vagrant':
+    elif html_admon_style in ('gray', 'yellow', 'apricot') or option('html_style=') == 'vagrant':
         if not keep_pygm_bg:
             block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                           admon_css_vars[html_admon]['background'], block)
+                           admon_css_vars[html_admon_style]['background'], block)
         vagrant = """<div class="alert alert-block alert-%(_admon)s alert-text-%%s"><b>%%s</b>
 %%s
 </div>
 """ %% (text_size, title, block)
         return vagrant
 
-    elif html_admon == 'lyx':
+    elif html_admon_style == 'lyx':
         block = '<div class="alert-text-%%s">%%s</div>' %% (text_size, block)
         if '%(_admon)s' != 'block':
             lyx = """
@@ -1327,15 +1337,14 @@ def define(FILENAME_EXTENSION,
         icon_question='Knob_Forward.png',
         icon_block='',
         )
-    html_admon = option('html_admon=', 'gray')
-    # Need to add admon_styles?
+    # Need to add admon_styles? (html_admon_style is global)
     for admon in admons:
         if '!b'+admon in filestr and '!e'+admon in filestr:
-            if html_admon == 'colors':
-                css += (admon_styles1 % admon_css_vars[html_admon])
-            elif html_admon in ('gray', 'yellow', 'apricot'):
-                css += (admon_styles2 % admon_css_vars[html_admon])
-            elif html_admon in ('lyx', 'paragraph'):
+            if html_admon_style == 'colors':
+                css += (admon_styles1 % admon_css_vars[html_admon_style])
+            elif html_admon_style in ('gray', 'yellow', 'apricot'):
+                css += (admon_styles2 % admon_css_vars[html_admon_style])
+            elif html_admon_style in ('lyx', 'paragraph'):
                 css += admon_styles_text
             break
 

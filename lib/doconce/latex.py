@@ -156,7 +156,7 @@ def latex_code(filestr, code_blocks, code_block_types,
             if not ('ftp:' in text or 'http' in text):
                 # The link text does not display the URL so we include it
                 # in a footnote (\nolinkurl{} indicates URL: "...")
-                texttt_url = url.replace('_', '\\_').replace('#', '\\#').replace('%', '\\%')
+                texttt_url = url.replace('_', '\\_').replace('#', '\\#').replace('%', '\\%').replace('&', '\\&')
                 return '\\href{{%s}}{%s}' % (url, text) + \
                        '\\footnote{\\texttt{%s}}' % texttt_url
             else: # no substitution, URL is in the link text

@@ -390,6 +390,9 @@ so that your commands are defined.
 An option `--device=paper` makes some adjustments for documents
 aimed at being printed. For example, links to web resources are
 associated with a footnote listing the complete web address (URL).
+(Very long URLs in footnotes can be shortened using services such
+as URL: "http://goo.gl/", URL: "http://tinyurl.com/", and
+URL: "https://bitly.com/".)
 The default, `--device=screen`, creates a PDF file for reading
 on a screen where links are just clickable.
 
