@@ -6114,6 +6114,9 @@ def pydiff(files1, files2, n=3, prefix_diff_files='tmp_diff_'):
         filename_html  = prefix_diff_files + tofile + '.html'
 
         f = open(filename_plain, 'w')
+        # Need to add newlines despite doc saying that trailing newlines are
+        # inserted...
+        diff_plain = [line + '\n' for line in diff_plain]
         f.writelines(diff_plain)
         f.close()
 
